@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+venv/
+.venv/
+
+# Environment / secrets
+.env
+.env.*
+workers/**/.env
+!.env.example
+!workers/**/.env.example
+*.pem
+*.key
+*.secret
+
+# Worker local runtime config
+workers/openmolt/config.yaml
+
+# Runtime data
+logs/
+workers/**/logs/
+workers/**/data/
+workers/**/db/
+
+# Frontend build
+workers/**/web/node_modules/
+workers/**/web/.next/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,28 @@
+# Moltbook Telegram Bot Configuration (Example)
+
+# Moltbook API Settings
+moltbook:
+  api_base: "https://www.moltbook.com/api/v1"
+  api_key: ""  # Leave empty for auto-registration
+  agent_name: "TelegramBot"
+  agent_description: "Moltbook hot posts curator for Telegram"
+
+# Scraper Settings
+scraper:
+  sort: "hot+new"       # hot / new / top / controversial / hot+new (mixed)
+  limit: 50             # Posts per fetch
+  schedule_hour: 21     # Daily push hour (24h format)
+  schedule_minute: 0    # Daily push minute
+  min_score: 5          # Minimum score filter
+  exclude_submolts: []  # Exclude these communities
+  include_submolts: []  # Only include these (empty = all)
+
+# Telegram Settings
+telegram:
+  bot_token: "YOUR_TELEGRAM_BOT_TOKEN"
+  channel_id: "@your_channel_username"
+
+# Storage Settings
+storage:
+  db_path: "data/sent_posts.db"
+  max_history: 10000  # Max records to keep

@@ -1,0 +1,34 @@
+# QweCryptoMonitor Configuration
+# 3-Minute Change Alert System
+
+# Alert Settings
+alerts:
+  cooldown_seconds: 3600       # Default 1 hour cooldown between same symbol alerts
+  max_batch_size: 10           # Max messages per batch
+  batch_window_seconds: 2.0    # Aggregation window in seconds
+
+# 3-Minute Change Alert Configuration
+change3m_alert:
+  enabled: true
+  scan_interval_seconds: 60    # Main scan loop frequency (seconds)
+  group_refresh_seconds: 600   # Group refresh frequency (10 minutes)
+  max_concurrent_requests: 20  # Max concurrent API requests
+
+  # Alert thresholds by market and volume group
+  # Volume groups are based on ABSOLUTE 24h quote volume (not percentile)
+  thresholds:
+    # Spot Market:
+    #   HIGH: > $100M
+    #   MID:  $10M - $100M
+    #   LOW:  $500k - $10M
+    spot_high: 3     # 3% threshold for > $100M volume
+    spot_mid: 8      # 8% threshold for $10M - $100M volume
+    spot_low: 15     # 15% threshold for $500k - $10M volume
+
+    # Futures Market:
+    #   HIGH: > $200M
+    #   MID:  $10M - $200M
+    #   LOW:  $500k - $10M
+    futures_high: 5   # 5% threshold for > $200M volume
+    futures_mid: 15   # 15% threshold for $10M - $200M volume
+    futures_low: 30   # 30% threshold for $500k - $10M volume
