@@ -7,12 +7,12 @@ WALL_THRESHOLD = 50000     # $50,000 for Wall Hunter
 # --- Platform Configuration ---
 # Polymarket
 POLYMARKET_ENABLE = True
-POLYMARKET_TRENDING_LIMIT = 20
+POLYMARKET_TRENDING_LIMIT = 8
 POLYMARKET_DAILY_REPORT_TIME = "00:00"  # UTC (北京时间 08:00)
 
 # Opinion
 OPINION_ENABLE = False  # Disabled - only Polymarket at 08:00 Beijing time
-OPINION_TRENDING_LIMIT = 20
+OPINION_TRENDING_LIMIT = 8
 OPINION_DAILY_REPORT_TIME = "12:00"  # UTC (北京时间 20:00)
 OPINION_API_BASE_URL = "https://api.opinion.trade"  # Opinion API Base URL
 

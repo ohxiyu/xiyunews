@@ -1,5 +1,5 @@
 /**
- * Utility functions for QweTruthMachine
+ * Utility functions for QwePolymarket
  */
 
 /**

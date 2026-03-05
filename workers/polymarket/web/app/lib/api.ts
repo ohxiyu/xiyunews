@@ -1,5 +1,5 @@
 /**
- * API types and fetch functions for QweTruthMachine
+ * API types and fetch functions for QwePolymarket
  *
  * Supported Platforms (7):
  * - polymarket, kalshi, limitless, prophetx, novig, sxbet, manifold

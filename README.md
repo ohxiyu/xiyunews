@@ -4,7 +4,7 @@ Unified project for three Telegram data-push services:
 
 - `qsh-openmolt`: Moltbook daily digest
 - `qsh-crypto-monitor`: Binance 3-minute change alerts
-- `qsh-truth-machine`: Prediction market daily reports + API
+- `qsh-polymarket`: Prediction market daily reports + API
 
 ## Project Layout
 
@@ -17,7 +17,7 @@ QweSignalHub/
   workers/
     openmolt/
     crypto_monitor/
-    truth_machine/
+    polymarket/
 ```
 
 ## Runtime Notes

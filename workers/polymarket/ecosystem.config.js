@@ -2,15 +2,15 @@ module.exports = {
     apps: [
         // Unified Service: Bot + Scheduler + API
         {
-            name: "qsh-truth-machine",
+            name: "qsh-polymarket",
             namespace: "qwe-signal-hub",
             script: "./run.py",
             interpreter: "./venv/bin/python3",
-            cwd: "/home/deploy/apps/QweSignalHub/workers/truth_machine",
+            cwd: "/home/deploy/apps/QweSignalHub/workers/polymarket",
             env: {
                 "NODE_ENV": "production",
                 "API_PORT": "8081",
-                "REPORTS_DB_PATH": "/home/deploy/apps/QweSignalHub/workers/truth_machine/db/reports.db"
+                "REPORTS_DB_PATH": "/home/deploy/apps/QweSignalHub/workers/polymarket/db/reports.db"
             },
             max_memory_restart: "300M",
             restart_delay: 5000,

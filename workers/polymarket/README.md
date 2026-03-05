@@ -1,8 +1,8 @@
-# 🔥 QweTruthMachine (V73)
+# 🔥 QwePolymarket (V73)
 
 **Multi-Platform Trending Top20 - 自动化预测市场情报机器人**
 
-QweTruthMachine 是一个全自动化的多平台预测市场热榜监控系统，每日推送 Polymarket 和 Opinion 的 Top20 热门市场，提供基于赔率的专业中文分析。
+QwePolymarket 是一个全自动化的多平台预测市场热榜监控系统，每日推送 Polymarket 和 Opinion 的 Top20 热门市场，提供基于赔率的专业中文分析。
 
 ---
 
@@ -143,7 +143,7 @@ python -m uvicorn src.api.main:app --host 0.0.0.0 --port 8000
 nohup python -m uvicorn src.api.main:app --host 0.0.0.0 --port 8000 > api.log 2>&1 &
 
 # 使用 PM2 管理 (推荐)
-pm2 start "uvicorn src.api.main:app --host 0.0.0.0 --port 8000" --name QweTruthMachine-API
+pm2 start "uvicorn src.api.main:app --host 0.0.0.0 --port 8000" --name QwePolymarket-API
 ```
 
 **API 文档**
@@ -271,7 +271,7 @@ fetch -> normalize -> persist (SQLite) -> telegram push
 ## 📂 项目结构
 
 ```
-QweTruthMachine/
+QwePolymarket/
 ├── src/
 │   ├── scheduler.py          # 主调度器（多平台定时任务）
 │   ├── config.py             # 配置文件（API密钥、提示词、平台配置）
@@ -438,16 +438,16 @@ python main.py
 pm2 start ecosystem.config.js
 
 # 查看状态
-pm2 status QweTruthMachine
+pm2 status QwePolymarket
 
 # 查看日志
-pm2 logs QweTruthMachine
+pm2 logs QwePolymarket
 
 # 重启服务
-pm2 restart QweTruthMachine
+pm2 restart QwePolymarket
 
 # 停止服务
-pm2 stop QweTruthMachine
+pm2 stop QwePolymarket
 ```
 
 ### 手动测试

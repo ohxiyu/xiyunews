@@ -149,7 +149,7 @@ class ReportService:
     async def build_latest_report(
         self,
         platform_id: str,
-        limit: int = 20,
+        limit: int = 8,
         lang: str = "zh",
         with_ai: bool = True,
     ) -> Optional[ReportPayload]:

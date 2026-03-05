@@ -1,5 +1,5 @@
 """
-FastAPI Web API for QweTruthMachine
+FastAPI Web API for QwePolymarket
 
 Provides HTTP endpoints to access report data and platform information.
 SSOT: When storage is empty, fetches real-time data from Polyrouter.
@@ -30,7 +30,7 @@ from src.services.report_service import ReportService
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="QweTruthMachine API",
+    title="QwePolymarket API",
     description="API for accessing prediction market reports",
     version="1.2.0"
 )
@@ -107,7 +107,7 @@ async def root():
     """Root endpoint"""
     platforms = get_valid_platforms()
     return {
-        "service": "QweTruthMachine API",
+        "service": "QwePolymarket API",
         "version": "1.1.0",
         "endpoints": {
             "platforms": "/v1/platforms",
@@ -130,7 +130,7 @@ async def healthz():
     return {
         "ok": True,
         "ts": datetime.now(timezone.utc).isoformat(),
-        "service": "QweTruthMachine API"
+        "service": "QwePolymarket API"
     }
 
 
@@ -162,7 +162,7 @@ async def get_latest_report(
     platform: str = Query(..., description="Platform name"),
     lang: str = Query("zh", description="Language for AI summary (zh or en)"),
     refresh: bool = Query(False, description="Force refresh from Polyrouter"),
-    limit: int = Query(20, ge=1, le=50, description="Maximum number of markets to fetch")
+    limit: int = Query(8, ge=1, le=50, description="Maximum number of markets to fetch")
 ):
     """
     Get the latest report for a platform.

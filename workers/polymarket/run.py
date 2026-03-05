@@ -1,5 +1,5 @@
 """
-QweTruthMachine - Unified Entry Point
+QwePolymarket - Unified Entry Point
 
 Runs both:
 1. Telegram Bot + Scheduler (async tasks)
