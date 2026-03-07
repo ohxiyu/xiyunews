@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from typing import List, Optional, Dict, Any
 from dataclasses import dataclass, field
 
-from .api import PolyrouterAPI, OpinionAPI
+from .api import PolyrouterAPI
 
 
 @dataclass
@@ -106,23 +106,12 @@ class ReportService:
     Single Source of Truth (SSOT) Report Service.
 
     ALL data MUST come from Polyrouter API.
-    No direct access to third-party platforms (polymarket.com, kalshi, etc.)
+    No direct access to third-party platforms.
     """
 
     # Platform display names
     PLATFORM_NAMES = {
         "polymarket": "Polymarket",
-        "kalshi": "Kalshi",
-        "limitless": "Limitless",
-        "manifold": "Manifold",
-        "metaculus": "Metaculus",
-        "opinion": "Opinion",
-    }
-
-    # Platform polyfill mapping (for platforms not yet in Polyrouter)
-    # Maps to the platform that should be used as data source
-    PLATFORM_POLYFILL = {
-        # Opinion now uses its own API directly
     }
 
     def __init__(
@@ -130,7 +119,6 @@ class ReportService:
         polyrouter_api: PolyrouterAPI,
         ai_service: Any = None,
         storage: Any = None,
-        opinion_api: OpinionAPI = None
     ):
         """
         Initialize ReportService.
@@ -139,12 +127,10 @@ class ReportService:
             polyrouter_api: PolyrouterAPI instance (REQUIRED - the ONLY data source)
             ai_service: Optional AI service for summary generation
             storage: Optional storage repository for persistence
-            opinion_api: Optional OpinionAPI instance for Opinion platform
         """
         self.polyrouter = polyrouter_api
         self.ai = ai_service
         self.storage = storage
-        self.opinion_api = opinion_api
 
     async def build_latest_report(
         self,
@@ -160,7 +146,7 @@ class ReportService:
         Both Web API and Telegram MUST call this method.
 
         Args:
-            platform_id: Platform identifier (polymarket, kalshi, etc.)
+            platform_id: Platform identifier (e.g., polymarket)
             limit: Maximum number of markets in report
             lang: Language for AI summaries (zh or en)
             with_ai: Whether to generate AI summaries
@@ -171,46 +157,22 @@ class ReportService:
         start_time = datetime.now(timezone.utc)
         platform_name = self.PLATFORM_NAMES.get(platform_id, platform_id.title())
 
-        # Check if platform needs polyfill
-        actual_platform = self.PLATFORM_POLYFILL.get(platform_id, platform_id)
-        is_polyfill = actual_platform != platform_id
-
-        # Special handling for Opinion platform - use direct API
-        use_opinion_api = platform_id == "opinion" and self.opinion_api is not None
-
-        if use_opinion_api:
-            print(f"📊 [SSOT] Building {platform_name} report via Opinion API...")
-        elif is_polyfill:
-            print(f"📊 [SSOT] Building {platform_name} report via polyfill ({actual_platform})...")
-        else:
-            print(f"📊 [SSOT] Building {platform_name} report via Polyrouter...")
+        print(f"📊 [SSOT] Building {platform_name} report via Polyrouter...")
 
         try:
-            # 1. Fetch market data
-            if use_opinion_api:
-                # Use Opinion's direct API with pagination
-                # API supports: page, limit (max 20), status=activated, marketType=2
-                # User requirement: show all Opinion API data without filtering/dedup
-                await self.opinion_api.start()
-                raw_markets = await self.opinion_api.get_markets(limit=limit)
-            else:
-                # Use Polyrouter for other platforms
-                await self.polyrouter.start()
-                # Note: Some platforms (limitless, kalshi) have API limits
-                # Use min(limit+5, 25) to avoid hitting rate limits while allowing dedup
-                fetch_limit = min(limit + 5, 25)
-                raw_markets = await self.polyrouter.get_markets(
-                    platform=actual_platform,  # Use actual platform for polyfill
-                    limit=fetch_limit
-                )
+            # 1. Fetch market data from Polyrouter
+            await self.polyrouter.start()
+            fetch_limit = min(limit + 5, 25)
+            raw_markets = await self.polyrouter.get_markets(
+                platform=platform_id,
+                limit=fetch_limit
+            )
 
             if not raw_markets:
-                source_name = "Opinion API" if use_opinion_api else "Polyrouter"
-                print(f"⚠️ [SSOT] No markets returned from {source_name} for {platform_name}")
+                print(f"⚠️ [SSOT] No markets returned from Polyrouter for {platform_name}")
                 return None
 
-            source_name = "Opinion API" if use_opinion_api else "Polyrouter"
-            print(f"📥 [SSOT] Fetched {len(raw_markets)} markets from {source_name}")
+            print(f"📥 [SSOT] Fetched {len(raw_markets)} markets from Polyrouter")
 
             # 2. Normalize and deduplicate
             items = self._normalize_markets(raw_markets, limit, platform_id)
@@ -228,13 +190,7 @@ class ReportService:
             end_time = datetime.now(timezone.utc)
             generation_time_ms = int((end_time - start_time).total_seconds() * 1000)
 
-            # Determine source type
-            if use_opinion_api:
-                source = "opinion-api"
-            elif is_polyfill:
-                source = f"polyfill-{actual_platform}"
-            else:
-                source = "realtime"
+            source = "realtime"
 
             payload = ReportPayload(
                 platform=platform_id,
@@ -277,13 +233,9 @@ class ReportService:
         """
         Normalize raw Polyrouter markets to unified format.
 
-        Note: Deduplication is skipped for Opinion platform to show all API data.
         """
         seen_ids = set()
         items = []
-
-        # Skip deduplication for Opinion - show all API data as-is
-        skip_dedup = (platform_id == "opinion")
 
         for m in raw_markets:
             # Get market ID
@@ -291,11 +243,10 @@ class ReportService:
             if not market_id:
                 continue
 
-            # Deduplication (skipped for Opinion)
-            if not skip_dedup:
-                if market_id in seen_ids:
-                    continue
-                seen_ids.add(market_id)
+            # Deduplication
+            if market_id in seen_ids:
+                continue
+            seen_ids.add(market_id)
 
             # Get title
             title = m.get("title") or m.get("question") or m.get("event_name", "")

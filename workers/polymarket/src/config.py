@@ -10,12 +10,6 @@ POLYMARKET_ENABLE = True
 POLYMARKET_TRENDING_LIMIT = 8
 POLYMARKET_DAILY_REPORT_TIME = "00:00"  # UTC (北京时间 08:00)
 
-# Opinion
-OPINION_ENABLE = False  # Disabled - only Polymarket at 08:00 Beijing time
-OPINION_TRENDING_LIMIT = 8
-OPINION_DAILY_REPORT_TIME = "12:00"  # UTC (北京时间 20:00)
-OPINION_API_BASE_URL = "https://api.opinion.trade"  # Opinion API Base URL
-
 # --- Filtering ---
 TAGS_SKIP = ['Sports', 'Football', 'Soccer', 'Basketball', 'Tennis', 'Golf', 'MMA', 'UFC', 'Baseball', 'Hockey', 'Cricket', 'Rugby', 'Athletics', 'Cycling', 'Esports', 'Volleyball']
 KEYWORDS_SKIP = [
@@ -157,7 +151,7 @@ ITEM_START
 - 分歧赔率(40-60%)：分析多空分歧原因，指出关键变量
 - 中等赔率(60-90%)：解读市场倾向性及潜在催化剂
 - 结合24h交易量判断市场关注度和资金流向
-- 平台：注意输入数据中的平台信息（Polymarket / Opinion），但不需要在输出中显式标注
+- 平台：Polymarket
 
 【禁止】重复标题内容、输出JSON、空洞评论
 """

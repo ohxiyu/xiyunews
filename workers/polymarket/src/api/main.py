@@ -24,7 +24,7 @@ from src.storage import SQLiteReportRepository
 from src.platforms import list_platforms, get_registry
 
 # SSOT imports - for real-time data fetching
-from src.services.api import PolyrouterAPI, OpinionAPI
+from src.services.api import PolyrouterAPI
 from src.services.ai import AIService
 from src.services.report_service import ReportService
 
@@ -50,14 +50,13 @@ storage = SQLiteReportRepository(db_path=DB_PATH)
 
 # SSOT: Initialize Polyrouter API for real-time data fetching
 _polyrouter_api = None
-_opinion_api = None
 _ai_service = None
 _report_service = None
 
 
 def get_report_service() -> Optional[ReportService]:
     """Get or create ReportService singleton for real-time data fetching."""
-    global _polyrouter_api, _opinion_api, _ai_service, _report_service
+    global _polyrouter_api, _ai_service, _report_service
 
     if _report_service is not None:
         return _report_service
@@ -70,19 +69,10 @@ def get_report_service() -> Optional[ReportService]:
     _polyrouter_api = PolyrouterAPI(api_key)
     _ai_service = AIService()
 
-    # Initialize Opinion API if key is available
-    opinion_key = os.getenv("OPINION_API_KEY")
-    if opinion_key:
-        _opinion_api = OpinionAPI(opinion_key)
-        print("✅ Opinion API initialized")
-    else:
-        print("⚠️ OPINION_API_KEY not set, Opinion will use Polyrouter polyfill")
-
     _report_service = ReportService(
         polyrouter_api=_polyrouter_api,
         ai_service=_ai_service,
         storage=storage,
-        opinion_api=_opinion_api
     )
     return _report_service
 
@@ -170,7 +160,7 @@ async def get_latest_report(
     SSOT: When storage is empty or refresh=true, fetches real-time data from Polyrouter.
 
     Args:
-        platform: Platform ID (e.g., polymarket, kalshi, opinion)
+        platform: Platform ID (e.g., polymarket)
         lang: Language for AI summaries (zh or en)
         refresh: Force refresh from Polyrouter API
         limit: Maximum number of markets to fetch (1-50, default 20)
@@ -236,7 +226,7 @@ async def get_report_history(
     Get report history for a platform.
 
     Args:
-        platform: Platform ID (e.g., polymarket, kalshi, metaculus)
+        platform: Platform ID (e.g., polymarket)
         days: Number of days to look back (1-30)
 
     Returns:

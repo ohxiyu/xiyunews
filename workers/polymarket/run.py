@@ -18,8 +18,8 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(dotenv_path=BASE_DIR / ".env")
 
-# SSOT Imports - Polyrouter for most data, OpinionAPI for Opinion platform
-from src.services.api import PolyrouterAPI, OpinionAPI
+# SSOT Import - Polyrouter as the ONLY data source
+from src.services.api import PolyrouterAPI
 from src.services.ai import AIService
 from src.services.telegram import TelegramService
 from src.storage import SQLiteReportRepository
@@ -54,28 +54,17 @@ async def main():
     tg = TelegramService()
     storage = SQLiteReportRepository(db_path="db/reports.db")
 
-    # Initialize Opinion API (direct access for Opinion platform)
-    opinion_key = os.getenv("OPINION_API_KEY")
-    opinion_api = None
-    if opinion_key:
-        opinion_api = OpinionAPI(opinion_key)
-        print("✅ Opinion API initialized for Telegram scheduler")
-    else:
-        print("⚠️ OPINION_API_KEY not set - Opinion will use Polyrouter polyfill")
-
     # Start API server in a separate thread
     api_thread = threading.Thread(target=run_api_server, daemon=True)
     api_thread.start()
     print(f"🌐 API server started on port {os.getenv('API_PORT', '8081')}")
 
-    # Initialize Scheduler (SSOT via Polyrouter + Opinion direct API)
+    # Initialize Scheduler (SSOT via Polyrouter)
     scheduler = Scheduler(
-        polymarket_api=None,  # DEPRECATED
-        opinion_api=opinion_api,  # Direct Opinion API access
         ai=ai,
         tg=tg,
         storage=storage,
-        poly_router_api=polyrouter  # SSOT: Primary data source
+        poly_router_api=polyrouter,
     )
 
     try:

@@ -6,7 +6,6 @@ from datetime import datetime, timedelta, timezone
 from src.config import (
     VOLATILITY_THRESHOLD,
     POLYMARKET_ENABLE, POLYMARKET_TRENDING_LIMIT, POLYMARKET_DAILY_REPORT_TIME,
-    OPINION_ENABLE, OPINION_TRENDING_LIMIT, OPINION_DAILY_REPORT_TIME
 )
 # SSOT: Use ReportService as the ONLY entry point for report generation
 from src.services.report_service import ReportService
@@ -14,40 +13,31 @@ from src.services.report_service import ReportService
 
 class Scheduler:
     """
-    V74: Multi-Platform Scheduler (SSOT via Polyrouter)
+    Polymarket Scheduler (SSOT via Polyrouter)
 
     IMPORTANT: All data MUST come from Polyrouter API.
-    No direct access to third-party platforms.
 
     - Polymarket: UTC 00:00 (北京时间 08:00)
-    - Opinion: UTC 12:00 (北京时间 20:00)
     """
 
-    def __init__(self, polymarket_api, opinion_api, ai, tg, storage=None, poly_router_api=None):
-        # DEPRECATED: These legacy APIs are kept for backward compatibility
-        # but should NOT be used for report generation
-        self.polymarket_api = polymarket_api  # DEPRECATED: Use poly_router_api
-        self.opinion_api = opinion_api        # DEPRECATED: Use poly_router_api
+    def __init__(self, ai, tg, storage=None, poly_router_api=None):
         self.ai = ai                          # AIService
         self.tg = tg                          # TelegramService
         self.storage = storage                # ReportRepository (数据持久化)
         self.poly_router_api = poly_router_api  # SSOT: The ONLY data source
 
-        # Initialize ReportService (SSOT + Opinion direct API)
+        # Initialize ReportService
         self.report_service = ReportService(
             polyrouter_api=poly_router_api,
             ai_service=ai,
             storage=storage,
-            opinion_api=opinion_api  # Direct Opinion API access
         ) if poly_router_api else None
 
         self.start_time = time.time()
         self.daily_report_count = 0
         self.polymarket_report_count = 0
-        self.opinion_report_count = 0
         self.alerted_markets = {}  # {id: last_alert_time}
         self.last_polymarket_report = None
-        self.last_opinion_report = None
         self.last_heartbeat = None
 
     async def start(self):
@@ -96,13 +86,6 @@ class Scheduler:
                             await self._run_polymarket_daily_report()
                             self.last_polymarket_report = report_key
 
-                    # Opinion Daily Report at UTC 12:00
-                    if OPINION_ENABLE and current_hour == 12:
-                        report_key = f"{current_date}_opinion"
-                        if self.last_opinion_report != report_key:
-                            await self._run_opinion_daily_report()
-                            self.last_opinion_report = report_key
-
                     await asyncio.sleep(65)
                     continue
 
@@ -120,10 +103,6 @@ class Scheduler:
         """Polymarket Trending Top20 日报 - 使用统一 pipeline"""
         await self._run_platform_daily_report("polymarket", POLYMARKET_TRENDING_LIMIT)
 
-    async def _run_opinion_daily_report(self):
-        """Opinion Trending Top20 日报 - 使用统一 pipeline"""
-        await self._run_platform_daily_report("opinion", OPINION_TRENDING_LIMIT)
-
     async def _run_platform_daily_report(self, platform_id: str, limit: int):
         """
         SSOT: 使用 ReportService (Polyrouter) 生成日报
@@ -132,7 +111,7 @@ class Scheduler:
         No direct access to third-party platforms.
 
         Args:
-            platform_id: 平台 ID (polymarket, kalshi, limitless, etc.)
+            platform_id: 平台 ID (e.g., polymarket)
             limit: 获取市场数量
         """
         start_time = time.time()
@@ -166,8 +145,6 @@ class Scheduler:
             self.daily_report_count += 1
             if platform_id == "polymarket":
                 self.polymarket_report_count += 1
-            elif platform_id == "opinion":
-                self.opinion_report_count += 1
 
             degraded_str = " (AI降级)" if payload.degraded else ""
             print(f"✅ [SSOT] {platform_name} report sent "
@@ -236,21 +213,13 @@ class Scheduler:
         uptime_h = int((time.time() - self.start_time) / 3600)
         now_utc = datetime.now(timezone.utc)
 
-        platforms = []
-        if POLYMARKET_ENABLE:
-            platforms.append(f"Polymarket (UTC {POLYMARKET_DAILY_REPORT_TIME})")
-        if OPINION_ENABLE:
-            platforms.append(f"Opinion (UTC {OPINION_DAILY_REPORT_TIME})")
-        platforms_str = ", ".join(platforms)
-
         msg = (
-            f"🖥️ **Truth Machine V73 (Multi-Platform)**\n"
+            f"🖥️ **Polymarket Scheduler**\n"
             f"`{now_utc.strftime('%Y-%m-%d %H:%M')} UTC`\n"
             f"⏳ Uptime: `{uptime_h}h`\n"
             f"📰 Total Reports: `{self.daily_report_count}`\n"
             f"   • Polymarket: `{self.polymarket_report_count}`\n"
-            f"   • Opinion: `{self.opinion_report_count}`\n"
-            f"📋 Platforms: {platforms_str}"
+            f"📋 Platform: Polymarket (UTC {POLYMARKET_DAILY_REPORT_TIME})"
         )
         await self.tg.push(msg, target='admin', silent=True)
         print(f"💓 Heartbeat sent at {now_utc.strftime('%H:%M')} UTC")
@@ -263,7 +232,7 @@ class Scheduler:
 
         # 1. Fetch top markets from Polyrouter
         raw = await self.poly_router_api.get_multi_platform_markets(
-            platforms=["polymarket", "kalshi", "limitless"],
+            platforms=["polymarket"],
             limit_per_platform=30
         )
 

@@ -60,7 +60,7 @@ class SQLiteReportRepository(ReportRepository):
         Save a report
 
         Args:
-            platform: Platform name (polymarket/opinion)
+            platform: Platform name (e.g., polymarket)
             payload: Report data dictionary
 
         Returns:

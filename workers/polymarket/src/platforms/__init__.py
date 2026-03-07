@@ -18,31 +18,13 @@ class PlatformInfo:
     description: str = ""
 
 
-# SSOT Platform List - these are platforms supported by Polyrouter
+# Platform List - Polymarket only
 PLATFORMS = [
     PlatformInfo(
         id="polymarket",
         name="Polymarket",
         enabled=True,
         description="The largest prediction market platform",
-    ),
-    PlatformInfo(
-        id="kalshi",
-        name="Kalshi",
-        enabled=True,
-        description="CFTC-regulated prediction market",
-    ),
-    PlatformInfo(
-        id="limitless",
-        name="Limitless",
-        enabled=True,
-        description="Decentralized prediction market",
-    ),
-    PlatformInfo(
-        id="opinion",
-        name="Opinion",
-        enabled=True,
-        description="Community prediction market",
     ),
 ]
 
