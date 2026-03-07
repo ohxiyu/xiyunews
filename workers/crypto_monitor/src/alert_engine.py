@@ -84,6 +84,10 @@ class AlertEngine:
         self.stats_alerts_triggered = 0
         self.stats_api_errors = 0
 
+        # Stale data detection: track last change value per symbol
+        # If change3mPct is identical across consecutive alerts, data is frozen
+        self._last_change_values: dict[str, tuple[float, int]] = {}  # key -> (change_pct, repeat_count)
+
         logger.info(
             f"AlertEngine initialized "
             f"(scan_interval={self.scan_interval}s, "
@@ -501,6 +505,27 @@ class AlertEngine:
                         f"(cooldown: {int(time_since_last)}s / {cooldown_seconds}s)"
                     )
                     return
+
+            # Stale data detection: suppress if change3mPct is identical to last alert
+            # This catches frozen/delisted coins that return the same klines repeatedly
+            stale_key = f"{alert_data['market']}_{alert_data['symbol']}"
+            current_change = alert_data['change3mPct']
+            if stale_key in self._last_change_values:
+                last_change, repeat_count = self._last_change_values[stale_key]
+                if last_change == current_change:
+                    repeat_count += 1
+                    self._last_change_values[stale_key] = (current_change, repeat_count)
+                    if repeat_count >= 2:
+                        logger.info(
+                            f"Stale data suppressed: {alert_data['symbol']} ({alert_data['market']}) "
+                            f"change3mPct={current_change}% repeated {repeat_count} times"
+                        )
+                        return
+                else:
+                    # Value changed, reset counter
+                    self._last_change_values[stale_key] = (current_change, 1)
+            else:
+                self._last_change_values[stale_key] = (current_change, 1)
 
             # Filter out low volume symbols (likely delisted or low liquidity)
             min_volume_threshold = 500000  # Minimum $500k 24h volume
