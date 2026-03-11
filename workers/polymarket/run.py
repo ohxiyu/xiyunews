@@ -20,7 +20,6 @@ load_dotenv(dotenv_path=BASE_DIR / ".env")
 
 # SSOT Import - Polyrouter as the ONLY data source
 from src.services.api import PolyrouterAPI
-from src.services.ai import AIService
 from src.services.telegram import TelegramService
 from src.storage import SQLiteReportRepository
 from src.scheduler import Scheduler
@@ -50,7 +49,6 @@ async def main():
 
     # Initialize services
     polyrouter = PolyrouterAPI(poly_router_key)
-    ai = AIService()
     tg = TelegramService()
     storage = SQLiteReportRepository(db_path="db/reports.db")
 
@@ -61,7 +59,6 @@ async def main():
 
     # Initialize Scheduler (SSOT via Polyrouter)
     scheduler = Scheduler(
-        ai=ai,
         tg=tg,
         storage=storage,
         poly_router_api=polyrouter,
@@ -72,7 +69,6 @@ async def main():
     finally:
         print("🛑 Shutting down services...")
         await polyrouter.close()
-        await ai.close()
         await tg.close()
 
 

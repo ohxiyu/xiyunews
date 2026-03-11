@@ -3,7 +3,7 @@
 
 # Alert Settings
 alerts:
-  cooldown_seconds: 3600       # Default 1 hour cooldown between same symbol alerts
+  cooldown_seconds: 7200       # 2 hour cooldown between same symbol alerts (was 3600)
   max_batch_size: 10           # Max messages per batch
   batch_window_seconds: 2.0    # Aggregation window in seconds
 
@@ -21,14 +21,14 @@ change3m_alert:
     #   HIGH: > $100M
     #   MID:  $10M - $100M
     #   LOW:  $500k - $10M
-    spot_high: 3     # 3% threshold for > $100M volume
-    spot_mid: 8      # 8% threshold for $10M - $100M volume
-    spot_low: 15     # 15% threshold for $500k - $10M volume
+    spot_high: 5     # 5% threshold for > $100M volume (was 3)
+    spot_mid: 12     # 12% threshold for $10M - $100M volume (was 8)
+    spot_low: 20     # 20% threshold for $500k - $10M volume (was 15)
 
     # Futures Market:
     #   HIGH: > $200M
     #   MID:  $10M - $200M
     #   LOW:  $500k - $10M
-    futures_high: 5   # 5% threshold for > $200M volume
-    futures_mid: 15   # 15% threshold for $10M - $200M volume
-    futures_low: 30   # 30% threshold for $500k - $10M volume
+    futures_high: 8   # 8% threshold for > $200M volume (was 5)
+    futures_mid: 20   # 20% threshold for $10M - $200M volume (was 15)
+    futures_low: 40   # 40% threshold for $500k - $10M volume (was 30)

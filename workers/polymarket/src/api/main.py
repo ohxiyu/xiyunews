@@ -25,7 +25,6 @@ from src.platforms import list_platforms, get_registry
 
 # SSOT imports - for real-time data fetching
 from src.services.api import PolyrouterAPI
-from src.services.ai import AIService
 from src.services.report_service import ReportService
 
 # Initialize FastAPI app
@@ -50,13 +49,12 @@ storage = SQLiteReportRepository(db_path=DB_PATH)
 
 # SSOT: Initialize Polyrouter API for real-time data fetching
 _polyrouter_api = None
-_ai_service = None
 _report_service = None
 
 
 def get_report_service() -> Optional[ReportService]:
     """Get or create ReportService singleton for real-time data fetching."""
-    global _polyrouter_api, _ai_service, _report_service
+    global _polyrouter_api, _report_service
 
     if _report_service is not None:
         return _report_service
@@ -67,11 +65,9 @@ def get_report_service() -> Optional[ReportService]:
         return None
 
     _polyrouter_api = PolyrouterAPI(api_key)
-    _ai_service = AIService()
 
     _report_service = ReportService(
         polyrouter_api=_polyrouter_api,
-        ai_service=_ai_service,
         storage=storage,
     )
     return _report_service
@@ -150,7 +146,6 @@ async def get_platforms(include_disabled: bool = Query(False, description="Inclu
 @app.get("/v1/reports/latest", response_model=Report)
 async def get_latest_report(
     platform: str = Query(..., description="Platform name"),
-    lang: str = Query("zh", description="Language for AI summary (zh or en)"),
     refresh: bool = Query(False, description="Force refresh from Polyrouter"),
     limit: int = Query(8, ge=1, le=50, description="Maximum number of markets to fetch")
 ):
@@ -161,9 +156,8 @@ async def get_latest_report(
 
     Args:
         platform: Platform ID (e.g., polymarket)
-        lang: Language for AI summaries (zh or en)
         refresh: Force refresh from Polyrouter API
-        limit: Maximum number of markets to fetch (1-50, default 20)
+        limit: Maximum number of markets to fetch (1-50, default 8)
 
     Returns:
         Latest report data (returns empty items array if no data available)
@@ -181,12 +175,10 @@ async def get_latest_report(
         if not report or refresh:
             report_service = get_report_service()
             if report_service:
-                print(f"📡 [API] Fetching real-time data for {platform} (lang={lang}, limit={limit})...")
+                print(f"📡 [API] Fetching real-time data for {platform} (limit={limit})...")
                 payload = await report_service.build_latest_report(
                     platform_id=platform,
                     limit=limit,
-                    lang=lang,
-                    with_ai=True  # Generate AI summaries
                 )
                 if payload:
                     # Convert ReportPayload to dict for response
@@ -202,7 +194,6 @@ async def get_latest_report(
                 items=[],
                 report_id=None,
                 generated_by="polyrouter",
-                lang=lang,
                 source="empty"
             )
 

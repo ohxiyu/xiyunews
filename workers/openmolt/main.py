@@ -137,6 +137,11 @@ def run_cycle(
         if not storage.is_sent(post_id):
             new_posts.append(post)
 
+    # Limit to max_push posts
+    max_push = scraper_cfg.get("max_push", 8)
+    if len(new_posts) > max_push:
+        new_posts = new_posts[:max_push]
+
     logger.info(f"New posts to send: {len(new_posts)}")
 
     if not new_posts:

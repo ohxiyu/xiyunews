@@ -1,13 +1,10 @@
 import asyncio
 import time
-import json
 import traceback
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from src.config import (
-    VOLATILITY_THRESHOLD,
     POLYMARKET_ENABLE, POLYMARKET_TRENDING_LIMIT, POLYMARKET_DAILY_REPORT_TIME,
 )
-# SSOT: Use ReportService as the ONLY entry point for report generation
 from src.services.report_service import ReportService
 
 
@@ -15,45 +12,36 @@ class Scheduler:
     """
     Polymarket Scheduler (SSOT via Polyrouter)
 
-    IMPORTANT: All data MUST come from Polyrouter API.
-
     - Polymarket: UTC 00:00 (北京时间 08:00)
     """
 
-    def __init__(self, ai, tg, storage=None, poly_router_api=None):
-        self.ai = ai                          # AIService
-        self.tg = tg                          # TelegramService
-        self.storage = storage                # ReportRepository (数据持久化)
-        self.poly_router_api = poly_router_api  # SSOT: The ONLY data source
+    def __init__(self, tg, storage=None, poly_router_api=None):
+        self.tg = tg
+        self.storage = storage
+        self.poly_router_api = poly_router_api
 
-        # Initialize ReportService
         self.report_service = ReportService(
             polyrouter_api=poly_router_api,
-            ai_service=ai,
             storage=storage,
         ) if poly_router_api else None
 
         self.start_time = time.time()
         self.daily_report_count = 0
-        self.polymarket_report_count = 0
-        self.alerted_markets = {}  # {id: last_alert_time}
         self.last_polymarket_report = None
         self.last_heartbeat = None
 
     async def start(self):
-        print("🚀 System V74 (SSOT via Polyrouter) Started...")
+        print("🚀 Polymarket Scheduler Started...")
 
-        # SSOT: Initialize Polyrouter as the ONLY data source
         if self.poly_router_api:
             await self.poly_router_api.start()
-            print(f"   ✅ Polyrouter connected (SSOT data source)")
+            print(f"   ✅ Polyrouter connected")
         else:
             print("   ❌ WARNING: Polyrouter not configured!")
 
         if POLYMARKET_ENABLE:
             print(f"   ✅ Polymarket reports enabled (UTC {POLYMARKET_DAILY_REPORT_TIME})")
 
-        await self.ai.start()
         await self.tg.start()
 
         # Initial Heartbeat
@@ -76,14 +64,11 @@ class Scheduler:
                             await self._send_heartbeat()
                             self.last_heartbeat = heartbeat_key
 
-                    # Volatility check every hour (保持原有逻辑)
-                    await self._run_volatility_check()
-
                     # Polymarket Daily Report at UTC 00:00
                     if POLYMARKET_ENABLE and current_hour == 0:
                         report_key = f"{current_date}_polymarket"
                         if self.last_polymarket_report != report_key:
-                            await self._run_polymarket_daily_report()
+                            await self._run_daily_report()
                             self.last_polymarket_report = report_key
 
                     await asyncio.sleep(65)
@@ -99,115 +84,35 @@ class Scheduler:
                 traceback.print_exc()
                 await asyncio.sleep(60)
 
-    async def _run_polymarket_daily_report(self):
-        """Polymarket Trending Top20 日报 - 使用统一 pipeline"""
-        await self._run_platform_daily_report("polymarket", POLYMARKET_TRENDING_LIMIT)
-
-    async def _run_platform_daily_report(self, platform_id: str, limit: int):
-        """
-        SSOT: 使用 ReportService (Polyrouter) 生成日报
-
-        All data MUST come from Polyrouter API.
-        No direct access to third-party platforms.
-
-        Args:
-            platform_id: 平台 ID (e.g., polymarket)
-            limit: 获取市场数量
-        """
+    async def _run_daily_report(self):
+        """Polymarket daily report via Polyrouter."""
         start_time = time.time()
         now_utc = datetime.now(timezone.utc)
-
-        platform_name = ReportService.PLATFORM_NAMES.get(platform_id, platform_id.title())
-        print(f"📰 [SSOT] Job: {platform_name} Daily Report (UTC {now_utc.strftime('%H:%M')})...")
+        print(f"📰 Job: Polymarket Daily Report (UTC {now_utc.strftime('%H:%M')})...")
 
         if not self.report_service:
-            print(f"❌ [SSOT] ReportService not initialized (poly_router_api missing)")
+            print(f"❌ ReportService not initialized (poly_router_api missing)")
             return
 
-        # SSOT: Use ReportService to generate report via Polyrouter
         payload = await self.report_service.build_latest_report(
-            platform_id=platform_id,
-            limit=limit,
-            lang="zh",  # Default to Chinese
-            with_ai=True,
+            platform_id="polymarket",
+            limit=POLYMARKET_TRENDING_LIMIT,
         )
 
         if not payload:
-            print(f"❌ [SSOT] No {platform_name} markets available for daily report")
+            print(f"❌ No Polymarket markets available for daily report")
             return
 
-        # Format and push to Telegram (using same payload as Web API)
         telegram_message = self.report_service.format_for_telegram(payload)
         if telegram_message:
             await self.tg.push(telegram_message, target='channel')
 
             elapsed = time.time() - start_time
             self.daily_report_count += 1
-            if platform_id == "polymarket":
-                self.polymarket_report_count += 1
-
-            degraded_str = " (AI降级)" if payload.degraded else ""
-            print(f"✅ [SSOT] {platform_name} report sent "
-                  f"(report_id={payload.report_id}, {payload.items_count} items, {elapsed:.1f}s){degraded_str}")
+            print(f"✅ Polymarket report sent "
+                  f"(report_id={payload.report_id}, {payload.items_count} items, {elapsed:.1f}s)")
         else:
-            print("❌ [SSOT] No content to send")
-
-    def _build_telegram_messages_from_payload(self, payload):
-        """
-        从 ReportPayload 构建 Telegram 消息
-
-        Args:
-            payload: ReportPayload 对象
-
-        Returns:
-            List[str]: Telegram 消息列表
-        """
-        messages = []
-
-        for item in payload.items:
-            rank = item.get('rank', '?')
-            title = item.get('title', 'Unknown')
-            yes = item.get('yes')
-            no = item.get('no')
-            vol = item.get('volume_24h')
-            url = item.get('url', '')
-            summary = item.get('summary')
-
-            # 格式化赔率
-            if yes is not None and no is not None:
-                yes_pct = yes * 100
-                no_pct = no * 100
-                odds_str = f"Yes {yes_pct:.1f}% / No {no_pct:.1f}%"
-            elif yes is not None:
-                yes_pct = yes * 100
-                odds_str = f"Yes {yes_pct:.1f}%"
-            else:
-                odds_str = "N/A"
-
-            # 格式化交易量
-            if vol is not None and vol > 0:
-                if vol >= 1_000_000:
-                    vol_str = f"${vol/1_000_000:.1f}M"
-                elif vol >= 1_000:
-                    vol_str = f"${vol/1_000:.0f}K"
-                else:
-                    vol_str = f"${vol:.0f}"
-            else:
-                vol_str = "N/A"
-
-            # 构建消息
-            msg = f"**#{rank}** ❓ **{title}**\n"
-            msg += f"📊 赔率：{odds_str}\n"
-            msg += f"💰 24h交易量：{vol_str}\n"
-
-            if summary:
-                msg += f"💡 {summary}\n"
-
-            msg += f"🔗 {url}"
-
-            messages.append(msg)
-
-        return messages
+            print("❌ No content to send")
 
     async def _send_heartbeat(self):
         uptime_h = int((time.time() - self.start_time) / 3600)
@@ -217,67 +122,8 @@ class Scheduler:
             f"🖥️ **Polymarket Scheduler**\n"
             f"`{now_utc.strftime('%Y-%m-%d %H:%M')} UTC`\n"
             f"⏳ Uptime: `{uptime_h}h`\n"
-            f"📰 Total Reports: `{self.daily_report_count}`\n"
-            f"   • Polymarket: `{self.polymarket_report_count}`\n"
+            f"📰 Reports: `{self.daily_report_count}`\n"
             f"📋 Platform: Polymarket (UTC {POLYMARKET_DAILY_REPORT_TIME})"
         )
         await self.tg.push(msg, target='admin', silent=True)
         print(f"💓 Heartbeat sent at {now_utc.strftime('%H:%M')} UTC")
-
-    async def _run_volatility_check(self):
-        """波动监控 - 保持原有逻辑"""
-        print("⚡ Job: Hourly Volatility Check...")
-        if not self.poly_router_api:
-            return
-
-        # 1. Fetch top markets from Polyrouter
-        raw = await self.poly_router_api.get_multi_platform_markets(
-            platforms=["polymarket"],
-            limit_per_platform=30
-        )
-
-        # 2. Check each market
-        for m in raw:
-            m_id = str(m.get('id'))
-            platform = m.get('platform')
-            title = m.get('title') or m.get('question')
-
-            if not title:
-                continue
-
-            # Anti-spam: Only alert once every 4 hours
-            last_alert = self.alerted_markets.get(m_id)
-            if last_alert and (time.time() - last_alert) < 14400:
-                continue
-
-            # 3. Get History
-            history = await self.poly_router_api.get_price_history(m_id, platform=platform, interval="1h", limit=2)
-            if len(history) < 2:
-                continue
-
-            prev_price = float(history[1].get('close', 0))
-            new_price = float(history[0].get('close', 0))
-
-            if prev_price <= 0:
-                continue
-
-            change = (new_price - prev_price) / prev_price
-
-            # 4. Detect Volatility
-            if abs(change) >= VOLATILITY_THRESHOLD:
-                print(f"🚨 Volatility Detected: {title} ({platform}) | {prev_price} -> {new_price} ({change:+.1%})")
-
-                report = await self.ai.analyze_volatility({
-                    "title": title,
-                    "platform": platform,
-                    "old_price": prev_price,
-                    "new_price": new_price,
-                    "change": change
-                })
-
-                if report:
-                    await self.tg.push(report, target='channel')
-                    self.alerted_markets[m_id] = time.time()
-
-            # Rate limit courtesy
-            await asyncio.sleep(0.5)

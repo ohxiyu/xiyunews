@@ -15,7 +15,6 @@ class MarketItem(BaseModel):
     volume_24h: Optional[float] = Field(None, description="24h trading volume")
     liquidity: Optional[float] = Field(None, description="Market liquidity")
     url: str = Field(..., description="Market URL")
-    summary: Optional[str] = Field(None, description="AI-generated summary")
     platform: Optional[str] = Field(None, description="Platform ID")
     category: Optional[str] = Field(None, description="Market category")
     slug: Optional[str] = Field(None, description="Market slug/identifier")
@@ -35,13 +34,11 @@ class Report(BaseModel):
     items: List[MarketItem] = Field(..., description="List of market items")
     items_count: Optional[int] = Field(None, description="Number of items")
     generation_time_ms: Optional[int] = Field(None, description="Report generation time in ms")
-    degraded: Optional[bool] = Field(None, description="True if AI summaries failed")
     # SSOT fields
     report_id: Optional[str] = Field(None, description="SSOT fingerprint for consistency verification")
     generated_by: Optional[str] = Field(None, description="Data source (should be 'polyrouter')")
     source_version: Optional[str] = Field(None, description="API version")
-    lang: Optional[str] = Field(None, description="Report language (zh or en)")
-    source: Optional[str] = Field(None, description="Data source: 'polyfill-{platform}', 'realtime', 'storage', 'empty'")
+    source: Optional[str] = Field(None, description="Data source: 'realtime', 'storage', 'empty'")
 
 
 class ReportMeta(BaseModel):
