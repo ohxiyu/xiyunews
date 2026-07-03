@@ -1,21 +1,19 @@
 # QweSignalHub
 
-Unified project for three Telegram data-push services:
+Unified project for two active Telegram data-push services:
 
-- `qsh-openmolt`: Moltbook daily digest
 - `qsh-crypto-monitor`: Binance 3-minute change alerts
-- `qsh-polymarket`: Prediction market daily reports + API
+- `qsh-polymarket`: Polymarket breaking market reports + API
 
 ## Project Layout
 
 ```text
 QweSignalHub/
-  ecosystem.config.js         # One PM2 config for all services
+  ecosystem.config.js         # One PM2 config for active services
   scripts/
     reload_pm2.sh             # Reload all services
     health_check.sh           # Quick runtime health check
   workers/
-    openmolt/
     crypto_monitor/
     polymarket/
 ```
@@ -25,6 +23,7 @@ QweSignalHub/
 - Services are still isolated workers, but now managed from one project root.
 - PM2 names are unified with `qsh-*` prefix.
 - Each worker keeps its own config/data inside its worker directory.
+- `qsh-openmolt` is no longer an active PM2 service.
 
 ## PM2 Commands
 
