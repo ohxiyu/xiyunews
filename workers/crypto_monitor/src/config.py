@@ -50,7 +50,6 @@ class LoggingConfig:
 
 @dataclass
 class Change3MConfig:
-    enabled: bool = True
     scan_interval_seconds: int = 60
     group_refresh_seconds: int = 600
     max_concurrent_requests: int = 20
@@ -113,7 +112,6 @@ class Config:
             self._alerts.batch_window_seconds = alerts.get("batch_window_seconds", self._alerts.batch_window_seconds)
 
             c3m = data.get("change3m_alert", {})
-            self._change3m.enabled = c3m.get("enabled", self._change3m.enabled)
             self._change3m.scan_interval_seconds = c3m.get("scan_interval_seconds", self._change3m.scan_interval_seconds)
             self._change3m.group_refresh_seconds = c3m.get("group_refresh_seconds", self._change3m.group_refresh_seconds)
             self._change3m.max_concurrent_requests = c3m.get("max_concurrent_requests", self._change3m.max_concurrent_requests)
