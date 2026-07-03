@@ -25,7 +25,7 @@ class AlertEngine:
     Main orchestrator for 3-minute change alert system.
 
     Features:
-    - Main scan loop (configurable interval, default 15s)
+    - Main scan loop (configurable interval, default 60s)
     - Background group refresh (configurable interval, default 600s)
     - Concurrent klines fetching with rate limiting
     - Alert generation with JSON output
@@ -52,17 +52,16 @@ class AlertEngine:
         # Volume grouper
         self.grouper = VolumeGrouper(refresh_interval=config.change3m.group_refresh_seconds)
 
-        # Update grouper thresholds from config (spot uses config, futures uses hardcoded values)
         thresholds = config.change3m.thresholds
         self.grouper.update_spot_thresholds(
-            high=thresholds.get("spot_high", 3.0),
-            mid=thresholds.get("spot_mid", 8.0),
-            low=thresholds.get("spot_low", 15.0)
+            high=thresholds.get("spot_high", 2.5),
+            mid=thresholds.get("spot_mid", 6.0),
+            low=thresholds.get("spot_low", 10.0)
         )
         self.grouper.update_futures_thresholds(
-            high=thresholds.get("futures_high", 5.0),
-            mid=thresholds.get("futures_mid", 15.0),
-            low=thresholds.get("futures_low", 30.0)
+            high=thresholds.get("futures_high", 4.0),
+            mid=thresholds.get("futures_mid", 10.0),
+            low=thresholds.get("futures_low", 20.0)
         )
 
         # Calculator (stateless utility)
@@ -350,7 +349,7 @@ class AlertEngine:
         """
         Main scan loop: check all symbols periodically.
 
-        Runs every scan_interval seconds (default: 15s).
+        Runs every scan_interval seconds (default: 60s).
         Scans all symbols in both spot and futures markets concurrently.
         """
         while self._running:
@@ -494,7 +493,7 @@ class AlertEngine:
             # Check cooldown to prevent repeated alerts for same symbol
             alert_key = f"{alert_data['market']}_{alert_data['symbol']}_3m"
             current_time = time.time()
-            cooldown_seconds = config.alerts.cooldown_seconds  # Default: 3600s (1 hour)
+            cooldown_seconds = config.alerts.cooldown_seconds
 
             # Check if symbol is in cooldown period
             if alert_key in self.alert_manager.last_alert_time:
