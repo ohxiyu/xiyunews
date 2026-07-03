@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(dotenv_path=BASE_DIR / ".env")
+DB_PATH = os.getenv("REPORTS_DB_PATH", str(BASE_DIR / "db" / "reports.db"))
 
 from src.services.api import PolymarketAPI
 from src.services.telegram import TelegramService
@@ -25,7 +26,7 @@ def run_api_server():
 async def main():
     polymarket = PolymarketAPI()
     tg = TelegramService()
-    storage = SQLiteReportRepository(db_path="db/reports.db")
+    storage = SQLiteReportRepository(db_path=DB_PATH)
 
     api_thread = threading.Thread(target=run_api_server, daemon=True)
     api_thread.start()
