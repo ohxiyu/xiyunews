@@ -11,10 +11,9 @@ load_dotenv()
 
 @dataclass
 class AlertSettings:
-    """Alert-related settings"""
-    cooldown_seconds: int = 3600           # Default 1 hour cooldown
-    max_batch_size: int = 10               # Max messages per batch
-    batch_window_seconds: float = 2.0      # Aggregation window
+    cooldown_seconds: int = 7200
+    max_batch_size: int = 10
+    batch_window_seconds: float = 2.0
 
 
 @dataclass
@@ -40,40 +39,28 @@ class LoggingConfig:
 
     @property
     def log_level_int(self) -> int:
-        level_map = {
+        return {
             "DEBUG": 10,
             "INFO": 20,
             "WARNING": 30,
             "ERROR": 40,
-            "CRITICAL": 50
-        }
-        return level_map.get(self.level.upper(), 20)
-
-
-@dataclass
-class BinanceConfig:
-    spot_api: str = "https://api.binance.com/api/v3/ticker/24hr"
-    futures_api: str = "https://fapi.binance.com/fapi/v1/exchangeInfo"
-    ws_url: str = "wss://stream.binance.com:9443"
-    futures_ws_url: str = "wss://fstream.binance.com/ws"
+            "CRITICAL": 50,
+        }.get(self.level.upper(), 20)
 
 
 @dataclass
 class Change3MConfig:
-    """Configuration for 3-minute change alert system"""
     enabled: bool = True
     scan_interval_seconds: int = 60
     group_refresh_seconds: int = 600
     max_concurrent_requests: int = 20
     thresholds: dict = field(default_factory=lambda: {
-        # Spot market thresholds
-        "spot_high": 3.0,
-        "spot_mid": 8.0,
-        "spot_low": 15.0,
-        # Futures market thresholds
-        "futures_high": 5.0,
-        "futures_mid": 15.0,
-        "futures_low": 30.0
+        "spot_high": 2.5,
+        "spot_mid": 6.0,
+        "spot_low": 10.0,
+        "futures_high": 4.0,
+        "futures_mid": 10.0,
+        "futures_low": 20.0,
     })
 
 
@@ -93,13 +80,11 @@ class Config:
         self._redis = RedisConfig()
         self._telegram = TelegramConfig()
         self._logging = LoggingConfig()
-        self._binance = BinanceConfig()
         self._change3m = Change3MConfig()
 
         self._load_from_env()
         self._load_from_yaml()
         self._validate()
-
         self._initialized = True
 
     def _load_from_env(self) -> None:
@@ -111,46 +96,30 @@ class Config:
         self._telegram.bot_token = os.getenv("TELEGRAM_BOT_TOKEN", "")
         self._telegram.chat_id = os.getenv("TELEGRAM_CHAT_ID", "")
         self._telegram.admin_id = os.getenv("TELEGRAM_ADMIN_ID") or None
-
         self._logging.level = os.getenv("LOG_LEVEL", self._logging.level)
 
     def _load_from_yaml(self) -> None:
-        config_dir = Path(__file__).parent.parent / "config"
-        thresholds_file = config_dir / "thresholds.yaml"
+        thresholds_file = Path(__file__).parent.parent / "config" / "thresholds.yaml"
+        if not thresholds_file.exists():
+            return
 
-        if thresholds_file.exists():
-            try:
-                with open(thresholds_file) as f:
-                    data = yaml.safe_load(f) or {}
+        try:
+            with open(thresholds_file) as f:
+                data = yaml.safe_load(f) or {}
 
-                # Load alert settings
-                if "alerts" in data:
-                    alerts = data["alerts"]
-                    self._alerts.cooldown_seconds = alerts.get("cooldown_seconds", self._alerts.cooldown_seconds)
-                    self._alerts.max_batch_size = alerts.get("max_batch_size", self._alerts.max_batch_size)
-                    self._alerts.batch_window_seconds = alerts.get("batch_window_seconds", self._alerts.batch_window_seconds)
+            alerts = data.get("alerts", {})
+            self._alerts.cooldown_seconds = alerts.get("cooldown_seconds", self._alerts.cooldown_seconds)
+            self._alerts.max_batch_size = alerts.get("max_batch_size", self._alerts.max_batch_size)
+            self._alerts.batch_window_seconds = alerts.get("batch_window_seconds", self._alerts.batch_window_seconds)
 
-                # Load 3-minute change alert settings
-                if "change3m_alert" in data:
-                    c3m = data["change3m_alert"]
-                    self._change3m.enabled = c3m.get("enabled", self._change3m.enabled)
-                    self._change3m.scan_interval_seconds = c3m.get("scan_interval_seconds", self._change3m.scan_interval_seconds)
-                    self._change3m.group_refresh_seconds = c3m.get("group_refresh_seconds", self._change3m.group_refresh_seconds)
-                    self._change3m.max_concurrent_requests = c3m.get("max_concurrent_requests", self._change3m.max_concurrent_requests)
-
-                    if "thresholds" in c3m:
-                        thresholds = c3m["thresholds"]
-                        # Spot thresholds
-                        self._change3m.thresholds["spot_high"] = thresholds.get("spot_high", 3.0)
-                        self._change3m.thresholds["spot_mid"] = thresholds.get("spot_mid", 8.0)
-                        self._change3m.thresholds["spot_low"] = thresholds.get("spot_low", 15.0)
-                        # Futures thresholds
-                        self._change3m.thresholds["futures_high"] = thresholds.get("futures_high", 5.0)
-                        self._change3m.thresholds["futures_mid"] = thresholds.get("futures_mid", 15.0)
-                        self._change3m.thresholds["futures_low"] = thresholds.get("futures_low", 30.0)
-
-            except Exception as e:
-                print(f"Warning: Failed to load thresholds.yaml: {e}")
+            c3m = data.get("change3m_alert", {})
+            self._change3m.enabled = c3m.get("enabled", self._change3m.enabled)
+            self._change3m.scan_interval_seconds = c3m.get("scan_interval_seconds", self._change3m.scan_interval_seconds)
+            self._change3m.group_refresh_seconds = c3m.get("group_refresh_seconds", self._change3m.group_refresh_seconds)
+            self._change3m.max_concurrent_requests = c3m.get("max_concurrent_requests", self._change3m.max_concurrent_requests)
+            self._change3m.thresholds.update(c3m.get("thresholds", {}))
+        except Exception as e:
+            print(f"Warning: Failed to load thresholds.yaml: {e}")
 
     def _validate(self) -> None:
         if not self._telegram.bot_token:
@@ -160,11 +129,6 @@ class Config:
 
     @property
     def alerts(self) -> AlertSettings:
-        return self._alerts
-
-    # Keep thresholds property for backward compatibility
-    @property
-    def thresholds(self) -> AlertSettings:
         return self._alerts
 
     @property
@@ -178,10 +142,6 @@ class Config:
     @property
     def logging(self) -> LoggingConfig:
         return self._logging
-
-    @property
-    def binance(self) -> BinanceConfig:
-        return self._binance
 
     @property
     def change3m(self) -> Change3MConfig:
