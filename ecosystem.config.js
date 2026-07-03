@@ -1,27 +1,6 @@
 module.exports = {
   apps: [
     {
-      name: "qsh-openmolt",
-      namespace: "qwe-signal-hub",
-      cwd: "/home/deploy/apps/QweSignalHub/workers/openmolt",
-      script: "main.py",
-      interpreter: "/home/deploy/apps/QweSignalHub/workers/openmolt/venv/bin/python",
-      instances: 1,
-      exec_mode: "fork",
-      autorestart: true,
-      watch: false,
-      min_uptime: "10s",
-      restart_delay: 5000,
-      max_restarts: 10,
-      out_file: "/home/deploy/apps/QweSignalHub/logs/qsh-openmolt-out.log",
-      error_file: "/home/deploy/apps/QweSignalHub/logs/qsh-openmolt-error.log",
-      log_date_format: "YYYY-MM-DD HH:mm:ss",
-      merge_logs: true,
-      env: {
-        TZ: "Asia/Shanghai",
-      },
-    },
-    {
       name: "qsh-crypto-monitor",
       namespace: "qwe-signal-hub",
       cwd: "/home/deploy/apps/QweSignalHub/workers/crypto_monitor",
