@@ -20,10 +20,9 @@ QweSignalHub/
 
 ## Runtime Notes
 
-- Services are still isolated workers, but now managed from one project root.
-- PM2 names are unified with `qsh-*` prefix.
+- Services are isolated workers managed from one project root.
+- PM2 names use the `qsh-*` prefix.
 - Each worker keeps its own config/data inside its worker directory.
-- `qsh-openmolt` is no longer an active PM2 service.
 
 ## PM2 Commands
 
@@ -35,4 +34,4 @@ cd /home/deploy/apps/QweSignalHub
 
 ## Notes
 
-The old standalone directories are deprecated. Use `QweSignalHub` as the single runtime source of truth.
+Use `QweSignalHub` as the single runtime source of truth.
