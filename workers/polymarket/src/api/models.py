@@ -14,6 +14,7 @@ class MarketItem(BaseModel):
     no: Optional[float] = Field(None, ge=0, le=1, description="No probability (None if not binary)")
     volume_24h: Optional[float] = Field(None, description="24h trading volume")
     liquidity: Optional[float] = Field(None, description="Market liquidity")
+    price_change_24h: Optional[float] = Field(None, description="24h price change")
     url: str = Field(..., description="Market URL")
     platform: Optional[str] = Field(None, description="Platform ID")
     category: Optional[str] = Field(None, description="Market category")
@@ -36,7 +37,7 @@ class Report(BaseModel):
     generation_time_ms: Optional[int] = Field(None, description="Report generation time in ms")
     # SSOT fields
     report_id: Optional[str] = Field(None, description="SSOT fingerprint for consistency verification")
-    generated_by: Optional[str] = Field(None, description="Data source (should be 'polyrouter')")
+    generated_by: Optional[str] = Field(None, description="Data source")
     source_version: Optional[str] = Field(None, description="API version")
     source: Optional[str] = Field(None, description="Data source: 'realtime', 'storage', 'empty'")
 
