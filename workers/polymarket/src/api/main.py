@@ -2,7 +2,7 @@
 FastAPI Web API for QwePolymarket
 
 Provides HTTP endpoints to access report data and platform information.
-SSOT: When storage is empty, fetches real-time data from Polyrouter.
+SSOT: When storage is empty, fetches real-time Polymarket breaking data.
 """
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -30,7 +30,7 @@ from src.services.report_service import ReportService
 # Initialize FastAPI app
 app = FastAPI(
     title="QwePolymarket API",
-    description="API for accessing prediction market reports",
+    description="API for accessing prediction market breaking reports",
     version="1.2.0"
 )
 
@@ -47,7 +47,6 @@ app.add_middleware(
 DB_PATH = os.getenv("REPORTS_DB_PATH", str(BASE_DIR / "db" / "reports.db"))
 storage = SQLiteReportRepository(db_path=DB_PATH)
 
-# SSOT: Initialize Polyrouter API for real-time data fetching
 _polyrouter_api = None
 _report_service = None
 
@@ -59,11 +58,8 @@ def get_report_service() -> Optional[ReportService]:
     if _report_service is not None:
         return _report_service
 
-    api_key = os.getenv("POLYROUTER_API_KEY")
-    if not api_key:
-        print("⚠️ POLYROUTER_API_KEY not set, real-time fetching disabled")
-        return None
-
+    # Optional for breaking mode; legacy Polyrouter methods still use it.
+    api_key = os.getenv("POLYROUTER_API_KEY", "")
     _polyrouter_api = PolyrouterAPI(api_key)
 
     _report_service = ReportService(
@@ -94,7 +90,7 @@ async def root():
     platforms = get_valid_platforms()
     return {
         "service": "QwePolymarket API",
-        "version": "1.1.0",
+        "version": "1.2.0",
         "endpoints": {
             "platforms": "/v1/platforms",
             "latest": f"/v1/reports/latest?platform={{{','.join(platforms)}}}",
@@ -146,17 +142,17 @@ async def get_platforms(include_disabled: bool = Query(False, description="Inclu
 @app.get("/v1/reports/latest", response_model=Report)
 async def get_latest_report(
     platform: str = Query(..., description="Platform name"),
-    refresh: bool = Query(False, description="Force refresh from Polyrouter"),
+    refresh: bool = Query(False, description="Force refresh from Polymarket breaking feed"),
     limit: int = Query(8, ge=1, le=50, description="Maximum number of markets to fetch")
 ):
     """
     Get the latest report for a platform.
 
-    SSOT: When storage is empty or refresh=true, fetches real-time data from Polyrouter.
+    SSOT: When storage is empty or refresh=true, fetches real-time breaking data.
 
     Args:
         platform: Platform ID (e.g., polymarket)
-        refresh: Force refresh from Polyrouter API
+        refresh: Force refresh from Polymarket breaking feed
         limit: Maximum number of markets to fetch (1-50, default 8)
 
     Returns:
@@ -171,11 +167,11 @@ async def get_latest_report(
         if not refresh:
             report = await storage.get_latest_report(platform)
 
-        # SSOT: If no data in storage, fetch real-time from Polyrouter
+        # SSOT: If no data in storage, fetch real-time breaking data
         if not report or refresh:
             report_service = get_report_service()
             if report_service:
-                print(f"📡 [API] Fetching real-time data for {platform} (limit={limit})...")
+                print(f"📡 [API] Fetching breaking data for {platform} (limit={limit})...")
                 payload = await report_service.build_latest_report(
                     platform_id=platform,
                     limit=limit,
@@ -183,17 +179,17 @@ async def get_latest_report(
                 if payload:
                     # Convert ReportPayload to dict for response
                     report = payload.to_dict()
-                    print(f"✅ [API] Real-time data fetched: {payload.items_count} items")
+                    print(f"✅ [API] Breaking data fetched: {payload.items_count} items")
 
         # Still no data? Return empty response
         if not report:
             return Report(
                 platform=platform,
                 updated_at=datetime.now(timezone.utc).isoformat(),
-                title=f"{platform.title()} Markets",
+                title=f"{platform.title()} Breaking Markets",
                 items=[],
                 report_id=None,
-                generated_by="polyrouter",
+                generated_by="polymarket-breaking",
                 source="empty"
             )
 
