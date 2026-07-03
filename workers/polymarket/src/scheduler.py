@@ -10,9 +10,9 @@ from src.services.report_service import ReportService
 
 class Scheduler:
     """
-    Polymarket Scheduler (SSOT via Polyrouter)
+    Polymarket Breaking Scheduler
 
-    - Polymarket: UTC 00:00 (北京时间 08:00)
+    - Polymarket Breaking: UTC 00:00 (北京时间 08:00)
     """
 
     def __init__(self, tg, storage=None, poly_router_api=None):
@@ -31,16 +31,16 @@ class Scheduler:
         self.last_heartbeat = None
 
     async def start(self):
-        print("🚀 Polymarket Scheduler Started...")
+        print("🚀 Polymarket Breaking Scheduler Started...")
 
         if self.poly_router_api:
             await self.poly_router_api.start()
-            print(f"   ✅ Polyrouter connected")
+            print("   ✅ Polymarket breaking data client ready")
         else:
-            print("   ❌ WARNING: Polyrouter not configured!")
+            print("   ❌ WARNING: Polymarket data client not configured!")
 
         if POLYMARKET_ENABLE:
-            print(f"   ✅ Polymarket reports enabled (UTC {POLYMARKET_DAILY_REPORT_TIME})")
+            print(f"   ✅ Polymarket breaking reports enabled (UTC {POLYMARKET_DAILY_REPORT_TIME})")
 
         await self.tg.start()
 
@@ -64,9 +64,9 @@ class Scheduler:
                             await self._send_heartbeat()
                             self.last_heartbeat = heartbeat_key
 
-                    # Polymarket Daily Report at UTC 00:00
+                    # Polymarket Breaking Daily Report at UTC 00:00
                     if POLYMARKET_ENABLE and current_hour == 0:
-                        report_key = f"{current_date}_polymarket"
+                        report_key = f"{current_date}_polymarket_breaking"
                         if self.last_polymarket_report != report_key:
                             await self._run_daily_report()
                             self.last_polymarket_report = report_key
@@ -85,13 +85,13 @@ class Scheduler:
                 await asyncio.sleep(60)
 
     async def _run_daily_report(self):
-        """Polymarket daily report via Polyrouter."""
+        """Polymarket breaking report."""
         start_time = time.time()
         now_utc = datetime.now(timezone.utc)
-        print(f"📰 Job: Polymarket Daily Report (UTC {now_utc.strftime('%H:%M')})...")
+        print(f"📰 Job: Polymarket Breaking Report (UTC {now_utc.strftime('%H:%M')})...")
 
         if not self.report_service:
-            print(f"❌ ReportService not initialized (poly_router_api missing)")
+            print("❌ ReportService not initialized (data client missing)")
             return
 
         payload = await self.report_service.build_latest_report(
@@ -100,7 +100,7 @@ class Scheduler:
         )
 
         if not payload:
-            print(f"❌ No Polymarket markets available for daily report")
+            print("❌ No Polymarket breaking markets available for report")
             return
 
         telegram_message = self.report_service.format_for_telegram(payload)
@@ -109,7 +109,7 @@ class Scheduler:
 
             elapsed = time.time() - start_time
             self.daily_report_count += 1
-            print(f"✅ Polymarket report sent "
+            print(f"✅ Polymarket breaking report sent "
                   f"(report_id={payload.report_id}, {payload.items_count} items, {elapsed:.1f}s)")
         else:
             print("❌ No content to send")
@@ -119,11 +119,11 @@ class Scheduler:
         now_utc = datetime.now(timezone.utc)
 
         msg = (
-            f"🖥️ **Polymarket Scheduler**\n"
+            f"🖥️ **Polymarket Breaking Scheduler**\n"
             f"`{now_utc.strftime('%Y-%m-%d %H:%M')} UTC`\n"
             f"⏳ Uptime: `{uptime_h}h`\n"
             f"📰 Reports: `{self.daily_report_count}`\n"
-            f"📋 Platform: Polymarket (UTC {POLYMARKET_DAILY_REPORT_TIME})"
+            f"📋 Platform: Polymarket Breaking (UTC {POLYMARKET_DAILY_REPORT_TIME})"
         )
         await self.tg.push(msg, target='admin', silent=True)
         print(f"💓 Heartbeat sent at {now_utc.strftime('%H:%M')} UTC")
