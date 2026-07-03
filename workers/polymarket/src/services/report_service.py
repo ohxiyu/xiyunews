@@ -1,7 +1,7 @@
 """
 ReportService - Single Source of Truth (SSOT) for all report generation.
 
-All data flows through Polyrouter API as the ONLY data source.
+Polymarket reports use the breaking movers feed from polymarket.com/zh/breaking.
 
 Architecture:
     PolyrouterAPI -> ReportService -> ReportPayload -> Storage/Telegram/API
@@ -25,6 +25,7 @@ class MarketItem:
     no: Optional[float] = None
     volume_24h: Optional[float] = None
     liquidity: Optional[float] = None
+    price_change_24h: Optional[float] = None
     url: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
@@ -36,6 +37,7 @@ class MarketItem:
             "no": self.no,
             "volume_24h": self.volume_24h,
             "liquidity": self.liquidity,
+            "price_change_24h": self.price_change_24h,
             "url": self.url,
         }
 
@@ -50,8 +52,8 @@ class ReportPayload:
     items_count: int
     generation_time_ms: int
     report_id: str = ""
-    generated_by: str = "polyrouter"
-    source_version: str = "v2"
+    generated_by: str = "polymarket-breaking"
+    source_version: str = "breaking-v1"
     lang: str = "zh"
     source: str = "realtime"
 
@@ -84,11 +86,11 @@ class ReportService:
     """
     Single Source of Truth (SSOT) Report Service.
 
-    ALL data MUST come from Polyrouter API.
+    Polymarket data is restricted to the breaking movers feed.
     """
 
     PLATFORM_NAMES = {
-        "polymarket": "Polymarket",
+        "polymarket": "Polymarket Breaking",
     }
 
     def __init__(
@@ -105,7 +107,7 @@ class ReportService:
         limit: int = 8,
     ) -> Optional[ReportPayload]:
         """
-        Build a report for the specified platform using Polyrouter.
+        Build a breaking report for the specified platform.
 
         Args:
             platform_id: Platform identifier (e.g., polymarket)
@@ -117,28 +119,29 @@ class ReportService:
         start_time = datetime.now(timezone.utc)
         platform_name = self.PLATFORM_NAMES.get(platform_id, platform_id.title())
 
-        print(f"📊 Building {platform_name} report via Polyrouter...")
+        print(f"📊 Building {platform_name} report...")
 
         try:
-            # 1. Fetch market data from Polyrouter
+            # 1. Fetch breaking mover data from Polymarket.
             await self.polyrouter.start()
             fetch_limit = min(limit + 5, 25)
-            raw_markets = await self.polyrouter.get_markets(
-                platform=platform_id,
-                limit=fetch_limit
+            raw_markets = await self.polyrouter.get_breaking_markets(
+                category="all",
+                limit=fetch_limit,
+                locale="zh",
             )
 
             if not raw_markets:
-                print(f"⚠️ No markets returned from Polyrouter for {platform_name}")
+                print(f"⚠️ No breaking markets returned for {platform_name}")
                 return None
 
-            print(f"📥 Fetched {len(raw_markets)} markets from Polyrouter")
+            print(f"📥 Fetched {len(raw_markets)} breaking markets")
 
             # 2. Normalize and deduplicate
             items = self._normalize_markets(raw_markets, limit)
 
             if not items:
-                print(f"⚠️ No valid markets after normalization")
+                print(f"⚠️ No valid breaking markets after normalization")
                 return None
 
             # 3. Build payload
@@ -148,7 +151,7 @@ class ReportService:
             payload = ReportPayload(
                 platform=platform_id,
                 updated_at=end_time.isoformat(),
-                title=f"{platform_name} - Trending Top{len(items)}",
+                title=f"{platform_name} - 24h Biggest Movers Top{len(items)}",
                 items=[item.to_dict() for item in items],
                 items_count=len(items),
                 generation_time_ms=generation_time_ms,
@@ -178,7 +181,7 @@ class ReportService:
         raw_markets: List[Dict],
         limit: int,
     ) -> List[MarketItem]:
-        """Normalize raw Polyrouter markets to unified format."""
+        """Normalize raw Polymarket breaking markets to unified format."""
         seen_ids = set()
         items = []
 
@@ -196,7 +199,8 @@ class ReportService:
                 continue
 
             yes_price, no_price = self._parse_prices(m)
-            url = m.get("source_url") or m.get("url", "")
+            url = self._build_market_url(m)
+            volume_24h = m.get("volume_24h") or self._event_value(m, "volume")
 
             items.append(MarketItem(
                 rank=len(items) + 1,
@@ -204,8 +208,9 @@ class ReportService:
                 title=title,
                 yes=yes_price,
                 no=no_price,
-                volume_24h=m.get("volume_24h"),
+                volume_24h=volume_24h,
                 liquidity=m.get("liquidity"),
+                price_change_24h=m.get("oneDayPriceChange"),
                 url=url,
             ))
 
@@ -214,9 +219,34 @@ class ReportService:
 
         return items
 
+    def _event_value(self, market: Dict, key: str):
+        """Read a value from the first attached event when available."""
+        events = market.get("events") or []
+        if events and isinstance(events[0], dict):
+            return events[0].get(key)
+        return None
+
+    def _build_market_url(self, market: Dict) -> str:
+        """Build the user-facing Polymarket URL."""
+        events = market.get("events") or []
+        if events and isinstance(events[0], dict) and events[0].get("slug"):
+            return f"https://polymarket.com/event/{events[0]['slug']}"
+
+        slug = market.get("slug")
+        if slug:
+            return f"https://polymarket.com/market/{slug}"
+
+        return market.get("source_url") or market.get("url", "")
+
     def _parse_prices(self, market: Dict) -> tuple:
-        """Parse yes/no prices from Polyrouter market data."""
+        """Parse yes/no prices from Polymarket market data."""
         try:
+            outcome_prices = market.get("outcomePrices")
+            if isinstance(outcome_prices, list) and len(outcome_prices) >= 2:
+                yes_price = round(float(outcome_prices[0]), 4)
+                no_price = round(float(outcome_prices[1]), 4)
+                return yes_price, no_price
+
             prices = market.get("current_prices", {})
             if not prices:
                 return None, None
@@ -258,19 +288,23 @@ class ReportService:
             return None, None
 
     def format_for_telegram(self, payload: ReportPayload) -> str:
-        """Format report payload for Telegram push. Title + link only."""
+        """Format report payload for Telegram push."""
         lines = []
 
         platform_name = self.PLATFORM_NAMES.get(payload.platform, payload.platform.title())
         lines.append(f"🔥 {platform_name} Top{payload.items_count}")
+        lines.append("过去 24 小时波动最大")
         lines.append(f"⏰ {payload.updated_at[:16].replace('T', ' ')} UTC\n")
 
         for item in payload.items:
             rank = item.get("rank", "?")
             title = item.get("title", "Unknown")
             url = item.get("url", "")
+            change = item.get("price_change_24h")
 
             msg = f"#{rank} {title}"
+            if change is not None:
+                msg += f"\n24h: {change:+.1%}"
             if url:
                 msg += f"\n🔗 {url}"
 
