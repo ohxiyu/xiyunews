@@ -1,25 +1,25 @@
 """
 SSOT API Client
 
-Primary: Polyrouter API for Polymarket data.
+Primary: Polymarket breaking movers for market data.
 """
 import aiohttp
 import asyncio
 import time
-import os
 
 
 class PolyrouterAPI:
     """
-    SSOT Data Source - Polyrouter API Client
+    Market data client.
 
-    This is the ONLY allowed data source for market data.
-    Supports Polymarket platform via Polyrouter aggregator.
+    Polymarket reports intentionally use the public breaking movers endpoint,
+    which powers https://polymarket.com/zh/breaking.
     """
 
     def __init__(self, api_key: str):
         self.api_key = api_key
         self.base_url = "https://api-v2.polyrouter.io"
+        self.polymarket_base_url = "https://polymarket.com"
         self.headers = {
             "X-API-Key": self.api_key,
             "Content-Type": "application/json"
@@ -37,16 +37,51 @@ class PolyrouterAPI:
             await self.session.close()
             self.session = None
 
+    async def get_breaking_markets(
+        self,
+        category: str = "all",
+        limit: int = 50,
+        locale: str = "zh",
+    ):
+        """
+        Fetch Polymarket breaking markets.
+
+        This mirrors the public breaking page: markets with the largest price
+        moves over the last 24 hours.
+        """
+        if not self.session:
+            await self.start()
+
+        url = f"{self.polymarket_base_url}/api/biggest-movers"
+        params = {
+            "category": category,
+            "locale": locale,
+        }
+
+        try:
+            print(f"🌐 [Polymarket] Fetching breaking movers (category={category}, limit={limit})...")
+            async with self.session.get(url, params=params, timeout=30) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    markets = data.get("markets", [])[:limit]
+                    print(f"✅ [Polymarket] Got {len(markets)} breaking movers")
+                    return markets
+
+                text = await resp.text()
+                print(f"⚠️ Polymarket Breaking API Error: {resp.status} - {text[:200]}")
+        except Exception as e:
+            print(f"🔥 Polymarket Breaking request failed: {e}")
+            import traceback
+            traceback.print_exc()
+
+        return []
+
     async def get_markets(self, platform: str = "polymarket", limit: int = 50):
         """
         Fetch markets from a specific platform via Polyrouter.
 
-        Args:
-            platform: Platform ID (e.g., polymarket)
-            limit: Maximum number of markets to fetch
-
-        Returns:
-            List of market dictionaries
+        Kept for non-breaking use cases, but Polymarket reports should call
+        get_breaking_markets().
         """
         if not self.session:
             await self.start()
