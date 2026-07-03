@@ -11,7 +11,11 @@ class PolymarketAPI:
 
     async def start(self):
         if not self.session:
-            self.session = aiohttp.ClientSession()
+            self.session = aiohttp.ClientSession(headers={
+                "User-Agent": "Mozilla/5.0",
+                "Accept": "application/json,text/plain,*/*",
+                "Referer": "https://polymarket.com/zh/breaking",
+            })
 
     async def close(self):
         if self.session:
