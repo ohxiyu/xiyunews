@@ -571,10 +571,10 @@ class AlertEngine:
             success = await self.alert_manager.send_json_alert(
                 alert_data,
                 telegram_enabled=config.telegram.enabled,
+                cooldown_key=alert_key,
             )
 
             if success:
-                await self.alert_manager.record_cooldown(alert_key)
                 self.stats_alerts_triggered += 1
 
                 logger.info(

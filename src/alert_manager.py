@@ -29,6 +29,7 @@ class QueuedMessage:
     message: str
     chat_id: str
     result: asyncio.Future[bool]
+    cooldown_key: str | None = None
 
 
 class AlertManager:
@@ -104,16 +105,21 @@ class AlertManager:
         print(f"{log_color}[{timestamp}] [{level.value}] [{strategy.value}] {symbol}")
 
         chat_id = target_chat_id or config.telegram.chat_id
-        delivered = await self._enqueue_and_wait(full_message, chat_id)
-        if delivered and self._cooldown_enabled and not bypass_cooldown:
-            await self.record_cooldown(alert_key)
-        return delivered
+        cooldown_key = (
+            alert_key if self._cooldown_enabled and not bypass_cooldown else None
+        )
+        return await self._enqueue_and_wait(
+            full_message,
+            chat_id,
+            cooldown_key=cooldown_key,
+        )
 
     async def send_json_alert(
         self,
         alert_data: dict[str, Any],
         *,
         telegram_enabled: bool,
+        cooldown_key: str | None = None,
     ) -> bool:
         try:
             logger.info("ALERT_JSON: %s", orjson.dumps(alert_data).decode("utf-8"))
@@ -122,12 +128,24 @@ class AlertManager:
             return False
 
         if not telegram_enabled:
+            if cooldown_key is not None:
+                await self.record_cooldown(cooldown_key)
             return True
 
         message = self._format_json_alert_for_telegram(alert_data)
-        return await self._enqueue_and_wait(message, config.telegram.chat_id)
+        return await self._enqueue_and_wait(
+            message,
+            config.telegram.chat_id,
+            cooldown_key=cooldown_key,
+        )
 
-    async def _enqueue_and_wait(self, message: str, chat_id: str) -> bool:
+    async def _enqueue_and_wait(
+        self,
+        message: str,
+        chat_id: str,
+        *,
+        cooldown_key: str | None = None,
+    ) -> bool:
         if not config.telegram.enabled or not config.telegram.bot_token or not chat_id:
             logger.error("Telegram delivery requested without an enabled destination")
             return False
@@ -138,6 +156,7 @@ class AlertManager:
             message=message,
             chat_id=chat_id,
             result=result,
+            cooldown_key=cooldown_key,
         )
 
         try:
@@ -228,6 +247,8 @@ class AlertManager:
                     first.chat_id,
                 )
                 for item in batch:
+                    if delivered and item.cooldown_key is not None:
+                        await self.record_cooldown(item.cooldown_key)
                     if not item.result.done():
                         item.result.set_result(delivered)
                     self.queue.task_done()
@@ -239,6 +260,8 @@ class AlertManager:
                     self.queue.task_done()
                 if pending is not None and not pending.result.done():
                     pending.result.set_result(False)
+                if pending is not None:
+                    self.queue.task_done()
                 raise
             except Exception:
                 logger.exception("Unexpected Telegram worker failure")
