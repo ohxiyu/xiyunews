@@ -1,11 +1,15 @@
+const path = require("path");
+
+const root = __dirname;
+
 module.exports = {
   apps: [
     {
-      name: "qsh-crypto-monitor",
-      namespace: "qwe-signal-hub",
-      cwd: "/home/deploy/apps/QweSignalHub/workers/crypto_monitor",
+      name: "coinsignal",
+      namespace: "coinsignal",
+      cwd: root,
       script: "run.py",
-      interpreter: "/home/deploy/apps/QweSignalHub/workers/crypto_monitor/venv/bin/python",
+      interpreter: path.join(root, "venv", "bin", "python"),
       instances: 1,
       exec_mode: "fork",
       autorestart: true,
@@ -14,36 +18,13 @@ module.exports = {
       restart_delay: 4000,
       max_restarts: 10,
       max_memory_restart: "1G",
-      out_file: "/home/deploy/apps/QweSignalHub/logs/qsh-crypto-monitor-out.log",
-      error_file: "/home/deploy/apps/QweSignalHub/logs/qsh-crypto-monitor-error.log",
-      log_date_format: "YYYY-MM-DD HH:mm:ss",
-      merge_logs: true,
-      env: {
-        PYTHONUNBUFFERED: "1",
-      },
-    },
-    {
-      name: "qsh-polymarket",
-      namespace: "qwe-signal-hub",
-      cwd: "/home/deploy/apps/QweSignalHub/workers/polymarket",
-      script: "run.py",
-      interpreter: "/home/deploy/apps/QweSignalHub/workers/polymarket/venv/bin/python3",
-      instances: 1,
-      exec_mode: "fork",
-      autorestart: true,
-      watch: false,
-      min_uptime: "10s",
-      restart_delay: 5000,
-      max_restarts: 10,
-      max_memory_restart: "300M",
-      out_file: "/home/deploy/apps/QweSignalHub/logs/qsh-polymarket-out.log",
-      error_file: "/home/deploy/apps/QweSignalHub/logs/qsh-polymarket-error.log",
+      kill_timeout: 10000,
+      out_file: path.join(root, "logs", "coinsignal-out.log"),
+      error_file: path.join(root, "logs", "coinsignal-error.log"),
       log_date_format: "YYYY-MM-DD HH:mm:ss Z",
       merge_logs: true,
       env: {
-        NODE_ENV: "production",
-        API_PORT: "8081",
-        REPORTS_DB_PATH: "/home/deploy/apps/QweSignalHub/workers/polymarket/db/reports.db",
+        PYTHONUNBUFFERED: "1",
       },
     },
   ],

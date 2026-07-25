@@ -1,37 +1,84 @@
-# QweSignalHub
+# CoinSignal
 
-Unified project for two active Telegram data-push services:
+CoinSignal is a headless Binance market monitor that detects large three-minute
+price moves across USDT spot and USD-M futures pairs and sends confirmed
+Telegram alerts.
 
-- `qsh-crypto-monitor`: Binance 3-minute change alerts
-- `qsh-polymarket`: Polymarket breaking market reports + API
+## How it works
 
-## Project Layout
+1. Every ten minutes, CoinSignal groups Binance pairs by 24-hour quote volume.
+2. Every minute, it fetches four one-minute klines for each eligible pair.
+3. It compares the current close with the close three minutes earlier.
+4. When the configured threshold is crossed, it sends a Telegram alert.
+5. A two-hour per-symbol cooldown is recorded only after Telegram confirms
+   delivery. Redis preserves cooldowns across restarts when available.
 
-```text
-QweSignalHub/
-  ecosystem.config.js         # One PM2 config for active services
-  scripts/
-    reload_pm2.sh             # Reload all services
-    health_check.sh           # Quick runtime health check
-  workers/
-    crypto_monitor/
-    polymarket/
-```
+Current thresholds are stored in `config/thresholds.yaml`:
 
-## Runtime Notes
+| Market | High volume | Mid volume | Low volume |
+| --- | ---: | ---: | ---: |
+| Spot | 2.5% | 6% | 10% |
+| USD-M futures | 4% | 10% | 20% |
 
-- Services are isolated workers managed from one project root.
-- PM2 names use the `qsh-*` prefix.
-- Each worker keeps its own config/data inside its worker directory.
+Pairs below USD 500,000 in 24-hour quote volume are ignored.
 
-## PM2 Commands
+## Requirements
+
+- Python 3.11 or 3.12
+- PM2 for production process management
+- Redis is recommended but optional
+
+## Installation
 
 ```bash
-cd /home/deploy/apps/QweSignalHub
+git clone https://github.com/ohxiyu/coinsignal.git
+cd coinsignal
+python3.11 -m venv venv
+./venv/bin/pip install --require-hashes -r requirements.lock
+cp .env.example .env
+```
+
+Fill in `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, and optionally
+`TELEGRAM_ADMIN_ID`. Telegram delivery is enabled by default and missing
+credentials stop startup. To run intentionally without Telegram, set
+`TELEGRAM_ENABLED=false`; alerts will then be written only to logs.
+
+## Running
+
+Run directly:
+
+```bash
+./venv/bin/python run.py
+```
+
+Run with PM2:
+
+```bash
 ./scripts/reload_pm2.sh
 ./scripts/health_check.sh
 ```
 
-## Notes
+The PM2 service name and namespace are both `coinsignal`. Paths in
+`ecosystem.config.js` are resolved from the checkout directory and are no
+longer tied to a specific server path.
 
-Use `QweSignalHub` as the single runtime source of truth.
+## Migration from QweSignalHub
+
+Deploy this repository as `/home/deploy/apps/coinsignal`, copy the old Crypto
+Monitor `.env` into the new root, create a fresh virtual environment, then run
+`scripts/reload_pm2.sh`. That script removes the retired
+`qsh-crypto-monitor` and `qsh-polymarket` PM2 entries before saving the new PM2
+process list.
+
+Do not delete the previous checkout until `scripts/health_check.sh` confirms
+that `coinsignal` is online and a test alert has been delivered.
+
+## Validation
+
+```bash
+python -m ruff check .
+python -m mypy src
+python -m pytest
+```
+
+GitHub Actions runs the same checks on Python 3.11 and 3.12.
