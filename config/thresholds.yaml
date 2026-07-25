@@ -1,0 +1,21 @@
+# CoinSignal Configuration
+# 3-Minute Change Alert System
+
+alerts:
+  cooldown_seconds: 7200
+  max_batch_size: 10
+  batch_window_seconds: 2.0
+
+change3m_alert:
+  scan_interval_seconds: 60
+  group_refresh_seconds: 600
+  max_concurrent_requests: 20
+
+  # Thresholds by market and absolute 24h quote-volume group.
+  thresholds:
+    spot_high: 2.5
+    spot_mid: 6
+    spot_low: 10
+    futures_high: 4
+    futures_mid: 10
+    futures_low: 20

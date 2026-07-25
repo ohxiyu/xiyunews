@@ -4,33 +4,28 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.coverage
+htmlcov/
 venv/
 .venv/
+*.egg-info/
+build/
+dist/
 
-# Environment / secrets
+# Environment and secrets
 .env
 .env.*
-workers/**/.env
 !.env.example
-!workers/**/.env.example
 *.pem
 *.key
 *.secret
 
-# Worker local runtime config
-workers/openmolt/config.yaml
-
-# Runtime data
+# Runtime state
 logs/
-workers/**/logs/
-workers/**/data/
-workers/**/db/
+data/
+*.log
 
-# Frontend build
-workers/**/web/node_modules/
-workers/**/web/.next/
-
-# IDE / OS
+# IDE and OS
 .idea/
 .vscode/
 .DS_Store
