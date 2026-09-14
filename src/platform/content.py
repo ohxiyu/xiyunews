@@ -1,6 +1,8 @@
 """Bounded official article enrichment, separate from immutable delivery events."""
 
 import asyncio
+import html as html_module
+import json
 import re
 import time
 from html.parser import HTMLParser
@@ -69,13 +71,38 @@ def brief(body: str) -> str:
     excluded = re.compile(
         r"general update|please check|not an endorsement|past performance|"
         r"not financial advice|exercise control|unfamiliar|disclaimer|user agreement|terms of|"
-        r"一般性公告|地区而异",
+        r"一般性公告|地区而异|免责声明|风险提示",
         re.I,
     )
     candidates = [s.strip() for s in sentences if len(s.strip()) > 25 and not excluded.search(s)]
     selected = [s for s in candidates if keywords.search(s)][:3] or candidates[:2]
     result = " ".join(dict.fromkeys(selected))
     return result if len(result) <= 700 else result[:697] + "…"
+
+
+def cms_text(value: str) -> str:
+    tree = json.loads(value)
+    parts: list[str] = []
+
+    def walk(node: Any, depth: int = 0) -> None:
+        if depth > 40:
+            raise ValueError("CMS nesting limit")
+        if not isinstance(node, dict):
+            return
+        if node.get("tag") in {"script", "style"}:
+            return
+        if node.get("node") == "text":
+            parts.append(str(node.get("text", "")))
+        for child in node.get("child", []):
+            walk(child, depth + 1)
+        if node.get("tag") in {"p", "li", "tr", "br"}:
+            parts.append("\n")
+
+    walk(tree)
+    text = html_module.unescape("".join(parts)).strip()
+    if not text:
+        raise ValueError("Empty CMS body")
+    return text[:20000]
 
 
 class ContentCollector:
@@ -109,11 +136,33 @@ class ContentCollector:
                     match = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.S)
                     if match:
                         title = plain(match[1])
+            elif event["source"] == "binance" and event["source_id"].startswith("cms:"):
+                code = event["source_id"][4:]
+                if not re.fullmatch(r"[a-f0-9]{32}", code):
+                    raise ValueError("Invalid article code")
+                async with session.get(
+                    "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query",
+                    params={"articleCode": code},
+                    headers={"lang": "zh-CN"},
+                    allow_redirects=False,
+                ) as response:
+                    if response.status != 200:
+                        raise ValueError("CMS detail unavailable")
+                    raw = bytearray()
+                    async for chunk in response.content.iter_chunked(65536):
+                        raw.extend(chunk)
+                        if len(raw) > 2_000_000:
+                            raise ValueError("CMS detail exceeds limit")
+                    payload = json.loads(raw)
+                    if payload.get("code") != "000000":
+                        raise ValueError("CMS detail schema")
+                    title = plain(payload["data"]["title"])
+                    body = cms_text(payload["data"]["body"])
             if len(re.findall(r"[\u4e00-\u9fff]", body)) < 20:
                 state = "translation_pending"
             else:
                 language = "zh"
-        except (aiohttp.ClientError, TimeoutError, ValueError, UnicodeError):
+        except (aiohttp.ClientError, TimeoutError, ValueError, UnicodeError, KeyError, TypeError):
             state = "translation_pending"
         await self.store.save_content(
             event["id"],

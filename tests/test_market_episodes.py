@@ -163,3 +163,30 @@ def test_spot_only_switch_does_not_disable_announcements(monkeypatch):
     monkeypatch.setenv("FUTURES_ENABLED", "false")
     settings = Settings(telegram=False)
     assert settings.spot and not settings.futures and settings.announcements
+
+
+@pytest.mark.asyncio
+async def test_independent_push_threshold_and_persistent_limits(tmp_path, monkeypatch):
+    now = [10000.0]
+    monkeypatch.setattr(time, "time", lambda: now[0])
+    store = Store(str(tmp_path / "db"))
+    policy = dict(chat="private", notify=True, multiplier=2, interval=600, hourly=3)
+    assert await store.market_update(signal(now[0], 3), **policy) == "below_notice_threshold"
+    assert len(await store.listing()) == 1
+    assert await store.market_update(signal(now[0], 5), **policy) == "queued"
+    notice = await store.claim(set())
+    await store.finish(notice, "failed")
+    now[0] += 61
+    assert await store.market_update(signal(now[0], -5), **policy) == "rate_limited"
+    await store.close()
+    store = Store(str(tmp_path / "db"))
+    now[0] += 539
+    assert await store.market_update(signal(now[0], -5), **policy) == "queued"
+    await store.finish(await store.claim(set()), "failed")
+    now[0] += 600
+    assert await store.market_update(signal(now[0], 10), **policy) == "queued"
+    await store.finish(await store.claim(set()), "failed")
+    now[0] += 600
+    assert await store.market_update(signal(now[0], -15), **policy) == "hourly_limited"
+    assert len(await store.listing()) >= 4
+    await store.close()

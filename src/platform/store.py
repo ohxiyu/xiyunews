@@ -162,7 +162,16 @@ class Store:
 
         return await self.run(write)
 
-    async def market_update(self, event: dict[str, Any], *, chat: str, notify: bool) -> str:
+    async def market_update(
+        self,
+        event: dict[str, Any],
+        *,
+        chat: str,
+        notify: bool,
+        multiplier: float = 1,
+        interval: float = 60,
+        hourly: int = 100,
+    ) -> str:
         """One summary per directional episode; immutable, separately throttled notices."""
 
         def write() -> str:
@@ -240,10 +249,20 @@ class Store:
                     "last_hit=excluded.last_hit,data=excluded.data",
                     (eid, source, symbol, direction, batch["last_hit"], json.dumps(data)),
                 )
+                push_threshold = batch["threshold"] * multiplier
+                if abs(batch["peak_change"]) < push_threshold:
+                    return "below_notice_threshold"
                 if not notify:
                     return "disabled"
+                recent = self.db.execute(
+                    "SELECT count(*) FROM events WHERE source=? AND symbol=? "
+                    "AND category='price_notice' AND detected>?",
+                    (source, symbol, now - 3600),
+                ).fetchone()[0]
+                if recent >= hourly:
+                    return "hourly_limited"
                 # Severity levels are threshold multiples 1x/2x/3x, capped at three.
-                level = min(3, max(1, int(abs(batch["peak_change"]) / batch["threshold"])))
+                level = min(3, max(1, int(abs(batch["peak_change"]) / push_threshold)))
                 key = f"{base}:{direction}:{level}"
                 # Preserve legacy successful cooldowns across the additive migration.
                 keys = [base, *(f"{base}:{direction}:{n}" for n in range(level, 4))]
@@ -264,12 +283,12 @@ class Store:
                 attempt = self.db.execute(
                     "SELECT at FROM market_notice_attempt WHERE key=?", (base,)
                 ).fetchone()
-                if attempt and now - attempt[0] < 60:
+                if attempt and now - attempt[0] < interval:
                     return "rate_limited"
                 nid = hashlib.sha256(f"notice:{eid}:{now}:{key}".encode()).hexdigest()[:32]
                 title = f"{symbol} {batch['peak_change']:+.2f}% · L{level}"
                 body = (
-                    f"方向 {'上涨' if direction > 0 else '下跌'};阈值 {batch['threshold']}%;"
+                    f"方向 {'上涨' if direction > 0 else '下跌'};推送阈值 {push_threshold}%;"
                     f"本次采样峰值;最新价格 {batch['price']}。" + event["body"]
                 )
                 self.db.execute(

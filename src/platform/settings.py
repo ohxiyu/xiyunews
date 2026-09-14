@@ -29,6 +29,13 @@ class Settings:
     chat_interval: float = field(
         default_factory=lambda: float(os.getenv("TELEGRAM_CHAT_INTERVAL", "3.1"))
     )
+    notice_multiplier: float = field(
+        default_factory=lambda: float(os.getenv("MARKET_NOTICE_MULTIPLIER", "2"))
+    )
+    notice_interval: float = field(
+        default_factory=lambda: float(os.getenv("MARKET_NOTICE_INTERVAL", "600"))
+    )
+    notice_hourly: int = field(default_factory=lambda: int(os.getenv("MARKET_NOTICE_HOURLY", "3")))
     market: bool = field(default_factory=lambda: flag("MARKET_ENABLED", True))
     spot: bool = field(default_factory=lambda: flag("SPOT_ENABLED", True))
     futures: bool = field(default_factory=lambda: flag("FUTURES_ENABLED", True))
@@ -48,6 +55,12 @@ class Settings:
     revision: str = field(default_factory=lambda: os.getenv("SOURCE_COMMIT", "unknown"))
 
     def validate(self) -> None:
+        if not (
+            1 <= self.notice_multiplier <= 10
+            and self.notice_interval >= 60
+            and self.notice_hourly >= 1
+        ):
+            raise ValueError("Invalid market notification policy")
         if self.telegram and (not self.token or not self.chat):
             raise ValueError(
                 "Telegram credentials missing; explicit TELEGRAM_ENABLED=false required"

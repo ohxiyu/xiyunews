@@ -78,3 +78,39 @@ async def test_latest_priority_and_chinese_delivery_gate(tmp_path):
     assert len(await store.listing(kind="announcement", activity=True)) == 1
     assert len(await store.listing(kind="announcement")) == 3
     await store.close()
+
+
+def test_binance_public_identity_and_cms_text():
+    import json
+
+    from src.platform.announcements import parse_binance_public
+    from src.platform.content import cms_text
+
+    row = dict(code="a" * 32, title="币安上线 ABC", releaseDate=123000)
+    payload = {"code": "000000", "data": {"catalogs": [{"articles": [row, row]}]}}
+    events = parse_binance_public(payload)
+    assert len(events) == 1 and events[0]["source_id"] == "cms:" + "a" * 32
+    assert events[0]["published"] == 123
+    tree = {
+        "node": "root",
+        "child": [
+            {
+                "node": "element",
+                "tag": "p",
+                "child": [{"node": "text", "text": "ABC &amp; DEF 上线"}],
+            }
+        ],
+    }
+    assert cms_text(json.dumps(tree)) == "ABC & DEF 上线"
+    row["code"] = "../bad"
+    with pytest.raises(ValueError):
+        parse_binance_public(payload)
+
+
+def test_chinese_brief_skips_disclaimer_paragraph():
+    text = (
+        "免责声明:本产品仅向符合资格的用户提供二级市场交易,不面向其他地区。\n"
+        "币安将于2026年09月14日20:00新增BNCB作为合格抵押资产并开放杠杆交易。"
+    )
+    result = brief(text)
+    assert "免责声明" not in result and "BNCB" in result

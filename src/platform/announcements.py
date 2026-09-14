@@ -98,6 +98,28 @@ def parse_okx(payload: dict[str, Any]) -> list[dict[str, Any]]:
     return events
 
 
+def parse_binance_public(payload: dict[str, Any]) -> list[dict[str, Any]]:
+    if payload.get("code") != "000000":
+        raise ValueError("Invalid public announcement response")
+    events = {}
+    for catalog in payload["data"]["catalogs"]:
+        for row in catalog.get("articles", []):
+            code = row["code"]
+            if len(code) != 32 or any(c not in "0123456789abcdef" for c in code):
+                raise ValueError("Invalid article identity")
+            events[code] = announcement(
+                "binance",
+                "cms:" + code,
+                row["title"],
+                "",
+                "https://www.binance.com/zh-CN/support/announcement/detail/" + code,
+                float(row["releaseDate"]) / 1000,
+            )
+    if not events:
+        raise ValueError("Empty public announcement page")
+    return list(events.values())
+
+
 def parse_binance(payload: dict[str, Any]) -> dict[str, Any] | None:
     if payload.get("type") != "DATA" or payload.get("topic") != "com_announcement_en":
         return None
@@ -286,10 +308,36 @@ class Announcements:
                 if client is not None:
                     await client.disconnect()
 
+    async def binance_public(self) -> None:
+        async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=10)) as session:
+            while True:
+                delay = 30
+                try:
+                    async with session.get(
+                        "https://www.binance.com/bapi/composite/v1/public/cms/article/list/query",
+                        params={"type": 1, "pageNo": 1, "pageSize": 20},
+                        headers={"lang": "zh-CN"},
+                        allow_redirects=False,
+                    ) as response:
+                        if response.status != 200:
+                            raise ValueError("Public list unavailable")
+                        rows = parse_binance_public(await response.json())
+                    await self.accept_page("binance_public", rows)
+                    self.status(
+                        "binance_announcements",
+                        "degraded",
+                        "Public website polling every 30s; first page only; no realtime SLA",
+                    )
+                except (aiohttp.ClientError, TimeoutError, ValueError, KeyError, TypeError):
+                    self.status(
+                        "binance_announcements", "error", "Public website request/schema failed"
+                    )
+                    delay = 60
+                await asyncio.sleep(delay)
+
     async def binance(self) -> None:
         if not self.settings.binance_key or not self.settings.binance_secret:
-            self.status("binance_announcements", "blocked", "Official announcement API key missing")
-            await asyncio.Event().wait()
+            await self.binance_public()
             return
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=15)) as session:
             while True:

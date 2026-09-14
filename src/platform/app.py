@@ -69,7 +69,12 @@ class Platform:
                 )
                 if event["kind"] == "market" and "signal" in event:
                     reason = await self.store.market_update(
-                        event, chat=chat, notify=self.settings.telegram
+                        event,
+                        chat=chat,
+                        notify=self.settings.telegram,
+                        multiplier=self.settings.notice_multiplier,
+                        interval=self.settings.notice_interval,
+                        hourly=self.settings.notice_hourly,
                     )
                     reasons = self.stats.setdefault("notification_decisions", {})
                     reasons[reason] = reasons.get(reason, 0) + 1
@@ -122,6 +127,11 @@ class Platform:
             else None,
             decision_sample_count=len(samples),
             telegram_enabled=self.settings.telegram,
+            market_notice_policy=dict(
+                multiplier=self.settings.notice_multiplier,
+                interval_seconds=self.settings.notice_interval,
+                max_per_hour=self.settings.notice_hourly,
+            ),
             monitoring={**self.market.metrics(), **await self.store.monitoring()},
             enabled_markets=[
                 m for m in ("spot", "futures") if self.settings.market and getattr(self.settings, m)
