@@ -4,9 +4,12 @@ Low-latency Binance price-change alerts and official announcements from Binance,
 OKX and Hyperliquid, delivered through Telegram with a read-only dashboard.
 Formerly CoinSignal; the repository is now https://github.com/ohxiyu/fomobtc.
 
+Dashboard: [fomobtc.com](https://fomobtc.com). Current deployment and remaining
+credential requirements: [handoff](docs/handoff.md).
+
 ## Runtime
 
-- Python 3.11/3.12, asyncio/aiohttp; one VPS process managed by systemd or PM2.
+- Python 3.11/3.12, asyncio/aiohttp; one VPS process managed by systemd.
 - Binance aggregate-trade WebSockets, sharded subscriptions and REST bootstrap.
   Compares current price against the close of the minute bar three bars earlier;
   **not a strict rolling 180-second return**. Existing volume groups and thresholds

@@ -72,7 +72,7 @@ needed. Add an actual deploy-* evidence record only after a real deployment.
 
 ## Tokyo production host and domain
 
-The target production layout is Cloudflare static frontend `https://fomobtc.com` and
+The production layout is Cloudflare static frontend `https://fomobtc.com` and
 DNS-only backend `https://api.fomobtc.com` on the Tokyo VPS. Domain configuration
 and acceptance state are recorded separately in the latest handoff.
 
@@ -93,3 +93,6 @@ and acceptance state are recorded separately in the latest handoff.
 - Keep Telegram disabled until credentials are configured and delivery is
   deliberately validated. Readiness 503 is expected while required sources are
   blocked; do not relabel it healthy to complete deployment.
+
+The canonical public frontend is fomobtc.com. Adding its custom-domain route
+disables the old workers.dev route by Wrangler default; it is not a fallback URL.
