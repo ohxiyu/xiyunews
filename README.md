@@ -17,7 +17,8 @@ credential requirements: [handoff](docs/handoff.md).
 - Binance signed English announcement stream, OKX REST polling, Hyperliquid
   public channel preview fallback or an optional authorized Telegram client.
 - SQLite WAL stores immutable event revisions, deduplication, persistent outbox
-  and two-hour per-market/symbol cooldowns. No Redis required for the new runtime.
+  and two-hour notification cooldowns by market/symbol/direction/severity.
+  Live market episodes remain visible during notification cooldown. No Redis required for the new runtime.
 - First notification has no batching delay; per-chat pacing and delayed retries.
   Timeouts are marked unknown, not silently reported as successful.
 - Static frontend: live feed, searchable history and source health; optional

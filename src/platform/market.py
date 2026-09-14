@@ -70,8 +70,71 @@ class Market:
         self.thresholds = data["change3m_alert"]["thresholds"]
         self.refresh = data["change3m_alert"]["group_refresh_seconds"]
         self.universe_time: dict[str, float] = {}
-        self.last_emit: dict[str, float] = {}
+        self.pending: dict[str, dict[str, Any]] = {}
+        self.last_flush: dict[str, float] = {}
+        self.last_shape: dict[str, tuple[int, int]] = {}
+        self.rates: dict[str, dict[int, int]] = {}
+        self.started = time.time()
         self.latencies: deque[float] = deque(maxlen=5000)
+
+    def metrics(self) -> dict[str, Any]:
+        now = time.time()
+        per_market = {}
+        for market, values in self.stats.get("per_market", {}).items():
+            buckets = self.rates.get(market, {})
+            per_market[market] = dict(
+                values,
+                messages_per_second=sum(
+                    v for t, v in buckets.items() if int(now) - 10 <= t < int(now)
+                )
+                / min(10, max(1, now - self.started)),
+            )
+        return dict(
+            per_market=per_market,
+            notification_decisions=self.stats.get("notification_decisions", {}),
+            summary_buffer=len(self.pending),
+        )
+
+    async def flush(self, key: str) -> None:
+        event = self.pending.pop(key, None)
+        if event:
+            self.last_flush[key] = time.monotonic()
+            await self.emit(event, False)
+
+    async def flush_loop(self) -> None:
+        while True:
+            for key in list(self.pending):
+                if time.monotonic() - self.last_flush.get(key, 0) >= 5:
+                    await self.flush(key)
+            await asyncio.sleep(1)
+
+    async def signal(self, event: dict[str, Any]) -> None:
+        key = event["source"] + ":" + event["symbol"]
+        value = event["signal"]
+        direction = 1 if value["change"] > 0 else -1
+        level = min(3, max(1, int(abs(value["change"]) / value["threshold"])))
+        old_shape = self.last_shape.get(key)
+        immediate = old_shape is None or direction != old_shape[0] or level > old_shape[1]
+        previous = self.pending.get(key)
+        if previous and (
+            previous["signal"]["change"] * value["change"] < 0
+            or value["first_hit"] - previous["signal"]["last_hit"] > 60
+        ):
+            await self.flush(key)
+            previous = None
+        if previous:
+            prior = previous["signal"]
+            value["first_hit"] = prior["first_hit"]
+            value["hits"] += prior["hits"]
+            if abs(prior["peak_change"]) > abs(value["peak_change"]):
+                value["peak_change"] = prior["peak_change"]
+        self.pending[key] = event
+        self.last_shape[key] = (
+            direction,
+            max(level, old_shape[1]) if old_shape and old_shape[0] == direction else level,
+        )
+        if immediate or time.monotonic() - self.last_flush.get(key, 0) >= 5:
+            await self.flush(key)
 
     async def run(self, market: str) -> None:
         base = "https://api.binance.com" if market == "spot" else "https://fapi.binance.com"
@@ -216,13 +279,46 @@ class Market:
                         if window.gap and repairs[symbol].done():
                             repairs[symbol] = asyncio.create_task(seed(symbol))
                         self.stats["market_messages"] = self.stats.get("market_messages", 0) + 1
+                        counters = self.stats.setdefault("per_market", {}).setdefault(
+                            market,
+                            {
+                                "messages": 0,
+                                "valid_calculations": 0,
+                                "threshold_hits": 0,
+                                "invalid_or_warming": 0,
+                                "stale_universe": 0,
+                            },
+                        )
+                        counters["messages"] += 1
+                        counters["last_received"] = time.time()
+                        counters["last_trade"] = float(data["T"]) / 1000
+                        bucket = int(time.time())
+                        buckets = self.rates.setdefault(market, {})
+                        buckets[bucket] = buckets.get(bucket, 0) + 1
+                        self.rates[market] = {t: n for t, n in buckets.items() if t >= bucket - 11}
+                        counters[
+                            "valid_calculations" if change is not None else "invalid_or_warming"
+                        ] += 1
                         self.latencies.append((time.perf_counter() - received) * 1000)
                         if time.monotonic() - last_status > 1:
                             gaps = sum(w.gap for w in windows.values())
+                            ready = sum(
+                                not w.gap
+                                and w.last_time > 0
+                                and int(time.time() * 1000) - w.last_time <= 10000
+                                and all(
+                                    m in w.bars
+                                    for m in range(
+                                        w.last_time // 60000 - 3, w.last_time // 60000 + 1
+                                    )
+                                )
+                                for w in windows.values()
+                            )
                             self.status(
                                 name,
                                 "degraded" if gaps else "live",
-                                f"{len(symbols)} subscriptions; {gaps} gaps",
+                                f"{len(symbols)} subscriptions; {gaps} gaps; "
+                                f"{ready} fresh complete windows",
                             )
                             last_status = time.monotonic()
                         if (
@@ -231,16 +327,15 @@ class Market:
                             or time.monotonic() - self.universe_time.get(market, 0)
                             > 2 * self.refresh
                         ):
+                            if change is not None:
+                                counters["stale_universe"] += 1
                             continue
                         group, volume = groups[symbol]
                         if abs(change) < float(self.thresholds[f"{market}_{group}"]):
                             continue
-                        key = market + ":" + symbol
-                        now = time.time()
-                        if now - self.last_emit.get(key, 0) < 1:
-                            continue
-                        self.last_emit[key] = now
-                        await self.emit(
+                        counters["threshold_hits"] += 1
+                        counters["last_threshold_hit"] = float(data["T"]) / 1000
+                        await self.signal(
                             dict(
                                 kind="market",
                                 source="binance_" + market,
@@ -252,8 +347,18 @@ class Market:
                                 category="price",
                                 published=float(data["T"]) / 1000,
                                 url="",
+                                signal=dict(
+                                    change=change,
+                                    peak_change=change,
+                                    price=float(data["p"]),
+                                    threshold=float(self.thresholds[f"{market}_{group}"]),
+                                    volume=volume,
+                                    group=group,
+                                    hits=1,
+                                    first_hit=float(data["T"]) / 1000,
+                                    last_hit=float(data["T"]) / 1000,
+                                ),
                             ),
-                            False,
                         )
                 raise ConnectionError("Closed")
             except asyncio.CancelledError:

@@ -30,6 +30,8 @@ class Settings:
         default_factory=lambda: float(os.getenv("TELEGRAM_CHAT_INTERVAL", "3.1"))
     )
     market: bool = field(default_factory=lambda: flag("MARKET_ENABLED", True))
+    spot: bool = field(default_factory=lambda: flag("SPOT_ENABLED", True))
+    futures: bool = field(default_factory=lambda: flag("FUTURES_ENABLED", True))
     announcements: bool = field(default_factory=lambda: flag("ANNOUNCEMENTS_ENABLED", True))
     binance_key: str = field(default_factory=lambda: os.getenv("BINANCE_ANNOUNCEMENT_API_KEY", ""))
     binance_secret: str = field(

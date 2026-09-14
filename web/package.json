@@ -1,1 +1,14 @@
-{"name":"fomobtc-web","version":"2.0.0","private":true,"type":"module","scripts":{"build":"node build.mjs","check":"node --check public/app.js && node --check build.mjs","deploy":"npm run build && wrangler deploy"},"devDependencies":{"wrangler":"^4.0.0"}}
+{
+  "name": "fomobtc-web",
+  "version": "2.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node --check public/app.js && node --check build.mjs && node test-refresh.mjs",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

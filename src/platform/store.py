@@ -41,6 +41,16 @@ class Store:
             );
             CREATE TABLE IF NOT EXISTS cooldown (key TEXT PRIMARY KEY, until REAL NOT NULL);
             CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS market_episodes (
+              id TEXT PRIMARY KEY, source TEXT NOT NULL, symbol TEXT NOT NULL,
+              direction INTEGER NOT NULL, last_hit REAL NOT NULL, data TEXT NOT NULL,
+              notice_id TEXT NOT NULL DEFAULT ''
+            );
+            CREATE INDEX IF NOT EXISTS episode_symbol
+              ON market_episodes(source,symbol,last_hit DESC);
+            CREATE TABLE IF NOT EXISTS market_notice_attempt (
+              key TEXT PRIMARY KEY, at REAL NOT NULL
+            );
         """)
         # A crashed in-flight HTTP call may already have been accepted. Keep this explicit.
         self.db.execute(
@@ -142,6 +152,148 @@ class Store:
 
         return await self.run(write)
 
+    async def market_update(self, event: dict[str, Any], *, chat: str, notify: bool) -> str:
+        """One summary per directional episode; immutable, separately throttled notices."""
+
+        def write() -> str:
+            now = time.time()
+            batch = event["signal"]
+            source, symbol = event["source"], event["symbol"]
+            direction = 1 if batch["change"] > 0 else -1
+            base = f"{source.removeprefix('binance_')}_{symbol}_3m"
+            with self.db:
+                previous = self.db.execute(
+                    "SELECT * FROM market_episodes WHERE source=? AND symbol=? "
+                    "ORDER BY last_hit DESC LIMIT 1",
+                    (source, symbol),
+                ).fetchone()
+                continuing = (
+                    previous
+                    and previous["direction"] == direction
+                    and batch["first_hit"] - previous["last_hit"] <= 60
+                )
+                data = (
+                    json.loads(previous["data"])
+                    if continuing
+                    else dict(started=batch["first_hit"], hits=0, peak_change=batch["peak_change"])
+                )
+                data.update(
+                    {
+                        k: batch[k]
+                        for k in ("change", "price", "threshold", "volume", "group", "last_hit")
+                    }
+                )
+                data["hits"] += batch["hits"]
+                if abs(batch["peak_change"]) > abs(data["peak_change"]):
+                    data["peak_change"] = batch["peak_change"]
+                data["direction"] = direction
+                eid = (
+                    previous["id"]
+                    if continuing
+                    else hashlib.sha256(
+                        f"episode:{source}:{symbol}:{batch['first_hit']}:{direction}".encode()
+                    ).hexdigest()[:32]
+                )
+                if not continuing:
+                    self.db.execute(
+                        "INSERT INTO events (id,kind,source,source_id,title,url,body,category,"
+                        "symbol,published,detected,updated,status,chat,due,cooldown_key,expires) "
+                        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        (
+                            eid,
+                            "market",
+                            source,
+                            eid,
+                            event["title"],
+                            "",
+                            event["body"],
+                            "price",
+                            symbol,
+                            batch["first_hit"],
+                            now,
+                            0,
+                            "archived",
+                            "",
+                            now,
+                            "",
+                            now,
+                        ),
+                    )
+                else:
+                    self.db.execute(
+                        "UPDATE events SET title=?,body=?,updated=1 WHERE id=?",
+                        (event["title"], event["body"], eid),
+                    )
+                self.db.execute(
+                    "INSERT INTO market_episodes(id,source,symbol,direction,last_hit,data) "
+                    "VALUES (?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET "
+                    "last_hit=excluded.last_hit,data=excluded.data",
+                    (eid, source, symbol, direction, batch["last_hit"], json.dumps(data)),
+                )
+                if not notify:
+                    return "disabled"
+                # Severity levels are threshold multiples 1x/2x/3x, capped at three.
+                level = min(3, max(1, int(abs(batch["peak_change"]) / batch["threshold"])))
+                key = f"{base}:{direction}:{level}"
+                # Preserve legacy successful cooldowns across the additive migration.
+                keys = [base, *(f"{base}:{direction}:{n}" for n in range(level, 4))]
+                placeholders = ",".join("?" for _ in keys)
+                cool = self.db.execute(
+                    f"SELECT 1 FROM cooldown WHERE key IN ({placeholders}) AND until>?",
+                    (*keys, now),
+                ).fetchone()
+                if cool:
+                    return "cooldown"
+                pending = self.db.execute(
+                    f"SELECT 1 FROM events WHERE cooldown_key IN ({placeholders}) "
+                    "AND (status='unknown' OR (status IN ('pending','sending') AND expires>?))",
+                    (*keys, now),
+                ).fetchone()
+                if pending:
+                    return "pending_or_unknown"
+                attempt = self.db.execute(
+                    "SELECT at FROM market_notice_attempt WHERE key=?", (base,)
+                ).fetchone()
+                if attempt and now - attempt[0] < 60:
+                    return "rate_limited"
+                nid = hashlib.sha256(f"notice:{eid}:{now}:{key}".encode()).hexdigest()[:32]
+                title = f"{symbol} {batch['peak_change']:+.2f}% · L{level}"
+                body = (
+                    f"方向 {'上涨' if direction > 0 else '下跌'};阈值 {batch['threshold']}%;"
+                    f"本次采样峰值;最新价格 {batch['price']}。" + event["body"]
+                )
+                self.db.execute(
+                    "INSERT INTO events(id,kind,source,source_id,title,url,body,category,"
+                    "symbol,published,detected,updated,status,chat,due,cooldown_key,expires) "
+                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    (
+                        nid,
+                        "market",
+                        source,
+                        nid,
+                        title,
+                        "",
+                        body,
+                        "price_notice",
+                        symbol,
+                        batch["last_hit"],
+                        now,
+                        0,
+                        "pending",
+                        chat,
+                        now,
+                        key,
+                        now + 120,
+                    ),
+                )
+                self.db.execute("UPDATE market_episodes SET notice_id=? WHERE id=?", (nid, eid))
+                self.db.execute(
+                    "INSERT OR REPLACE INTO market_notice_attempt VALUES (?,?)", (base, now)
+                )
+                return "queued"
+
+        return await self.run(write)
+
     async def claim(self, unavailable: set[str]) -> dict[str, Any] | None:
         def take() -> dict[str, Any] | None:
             now = time.time()
@@ -212,22 +364,61 @@ class Store:
         query: str = "",
         before: float = 0,
         limit: int = 100,
+        activity: bool = False,
     ) -> list[dict[str, Any]]:
         def read() -> list[dict[str, Any]]:
+            order = (
+                "coalesce((SELECT last_hit FROM market_episodes WHERE id=events.id),detected)"
+                if activity
+                else "detected"
+            )
             rows = self.db.execute(
-                "SELECT * FROM events WHERE (?='' OR kind=?) "
+                "SELECT * FROM events WHERE category!='price_notice' AND (?='' OR kind=?) "
                 "AND (?='' OR source=?) AND (?='' OR instr(lower(title),lower(?))>0) "
-                "AND (?=0 OR detected<?) ORDER BY detected DESC LIMIT ?",
+                f"AND (?=0 OR detected<?) ORDER BY {order} DESC LIMIT ?",
                 (kind, kind, source, source, query, query, before, before, limit),
             ).fetchall()
             private = {"chat", "cooldown_key"}
-            return [{k: v for k, v in dict(r).items() if k not in private} for r in rows]
+            result = []
+            for row in rows:
+                item = {k: v for k, v in dict(row).items() if k not in private}
+                episode = self.db.execute(
+                    "SELECT data,notice_id FROM market_episodes WHERE id=?", (row["id"],)
+                ).fetchone()
+                if episode:
+                    item["signal"] = json.loads(episode["data"])
+                    notice = self.db.execute(
+                        "SELECT status FROM events WHERE id=?", (episode["notice_id"],)
+                    ).fetchone()
+                    item["notification_status"] = notice[0] if notice else "not_queued"
+                result.append(item)
+            return result
 
         return await self.run(read)
 
     async def counts(self) -> dict[str, int]:
         return await self.run(
             lambda: dict(
-                self.db.execute("SELECT status,count(*) FROM events GROUP BY status").fetchall()
+                self.db.execute(
+                    "SELECT status,count(*) FROM events WHERE category!='price_notice' "
+                    "GROUP BY status"
+                ).fetchall()
             )
         )
+
+    async def monitoring(self) -> dict[str, Any]:
+        def read() -> dict[str, Any]:
+            last = self.db.execute(
+                "SELECT max(t) FROM (SELECT max(last_hit) AS t FROM market_episodes "
+                "UNION ALL SELECT max(detected) FROM events WHERE kind='market' "
+                "AND category!='price_notice')"
+            ).fetchone()[0]
+            notices = dict(
+                self.db.execute(
+                    "SELECT status,count(*) FROM events WHERE category='price_notice' "
+                    "GROUP BY status"
+                ).fetchall()
+            )
+            return dict(last_signal=last, notification_counts=notices)
+
+        return await self.run(read)

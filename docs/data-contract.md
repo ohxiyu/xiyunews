@@ -20,8 +20,32 @@ Binance USDT 现货与合约，24h quoteVolume 为 USDT，不是假定等值的�
 事件字段：id、kind、source、source_id、title、url、body、category、symbol、published、detected、updated、status、attempts、sent、error、telegram_id、dispatch_ms。
 published 未知为 null，不填发现时间；detected 是本机首次保存时间。API 不暴露 chat 或 cooldown_key。
 状态包括 baseline、archived、pending、sending、sent、failed、unknown、expired。
-市场待发送事件 120 秒后过期，公告 1 小时；发送失败不进入成功冷却，超时结果未知不自动重发；重启中的 sending 变为 unknown。明确无 Telegram 模式的行情只归档并记录处理冷却，避免无限生成相同信号。
-发送确认后默认两小时 market/symbol 冷却。首次立即调度，默认同聊天 3.1 秒节流以兼容群组。429 完整遵守 retry_after。API 确认不是用户已读，5xx 重试也不能承诺绝不重复。
+市场待发送事件 120 秒后过期，公告 1 小时；发送失败不进入成功冷却，超时结果未知不自动重发；重启中的 sending 变为 unknown。2.1 起行情摘要归档不再受通知冷却限制，无 Telegram 模式不创建新的通知冷却。旧冷却保留至自然到期。
+发送确认后按 market/symbol/方向/级别冷却两小时，高级别成功也抑制同方向低级别重复。首次立即调度，默认同聊天 3.1 秒节流以兼容群组。429 完整遵守 retry_after。API 确认不是用户已读，5xx 重试也不能承诺绝不重复。
 
 ## 查询
 GET /api/events 支持 kind/source/q/before/limit，limit 最大 100；GET /api/health 返回运行版本与来源状态；GET /api/ready 对 blocked/degraded/error/warming 返回 503。GET /api/stream 仅推送刷新提示，断线后重新查询数据库，不依赖 SSE 内存历史。
+
+
+## 2.1 行情摘要与通知
+
+- 相同市场/币种/方向、相邻命中间隔不超过 60 秒合并一条摘要；反转或超过
+  60 秒无命中后新建。未记录的历史冷却期数据无法追回。
+- 摘要保留首次和最近命中、最近触发时价格/幅度、整段最大绝对幅度、命中数、最近分组
+  成交额和触发阈值。持续命中更新最多每 5 秒一次（后台每秒检查刷新），首次和
+  方向变化/升级优先提交。进程突然中断可能丢失尚未刷新约 5 秒的摘要增量。
+- 通知是独立不可变快照，不随网页摘要改写。严重程度按阈值 1x/2x/3x 分档，最高
+  3 档；反转或升级可绕过其他方向/低级别冷却，但每 market/symbol 入队间隔至少
+  60 秒。抑制期间只继续归档，不延迟补发已经消失的升级或反转。
+- 同方向/同级或高级别 pending/sending 预留抑制重复，unknown 持续阻止同级或
+  更低级别自动重试，需人工核对。成功回执才开始两小时通知冷却；限频从入队计时。
+- 新表为 additive migration；旧事件、冷却、发送回执均保留。API 不返回隐藏的
+  通知快照行，行情摘要带 signal 与 notification_status；通知计数单独提供。
+- 实时列表 activity=true 按最近命中排序；历史列表按首次发现排序和分页。
+- /api/health.monitoring 展示每市场收到消息、最近接收/成交时间、最近10秒速率、
+  有效计算/无效或预热/阈值命中计数及摘要通知判定。计算计数以成交消息为单位，
+  通知判定以提交的摘要批次为单位；均自进程启动计数，不可混为独立事件数量。
+- 来源状态另列 fresh complete windows，指近10秒有成交且参考桶完整的窗口数；
+  低成交频率市场不一定满足它，连接 live 不等于所有币种可计算。
+- SPOT_ENABLED / FUTURES_ENABLED 默认均 true，仅影响行情，不影响任何公告源。
+  本轮保留现有阈值和分钟桶；严格滚动180秒、分组缓冲、增量订阅与尖峰确认列为后续。

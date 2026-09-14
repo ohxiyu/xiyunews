@@ -19,7 +19,7 @@ from .settings import Settings, load_settings
 from .store import Store
 
 logger = logging.getLogger("fomobtc")
-VERSION = "2.0.0"
+VERSION = "2.1.0"
 
 
 class Platform:
@@ -65,17 +65,20 @@ class Platform:
                     if event["kind"] == "announcement"
                     else self.settings.chat
                 )
-                key = ""
-                if event["kind"] == "market":
-                    market = event["source"].removeprefix("binance_")
-                    key = f"{market}_{event['symbol']}_3m"
-                added = await self.store.add(
-                    event,
-                    chat=chat,
-                    notify=self.settings.telegram and event["category"] != "promotion",
-                    baseline=baseline,
-                    cooldown_key=key,
-                )
+                if event["kind"] == "market" and "signal" in event:
+                    reason = await self.store.market_update(
+                        event, chat=chat, notify=self.settings.telegram
+                    )
+                    reasons = self.stats.setdefault("notification_decisions", {})
+                    reasons[reason] = reasons.get(reason, 0) + 1
+                    added = True
+                else:
+                    added = await self.store.add(
+                        event,
+                        chat=chat,
+                        notify=self.settings.telegram and event["category"] != "promotion",
+                        baseline=baseline,
+                    )
                 if added:
                     for queue in list(self.subscribers):
                         if queue.full():
@@ -115,6 +118,10 @@ class Platform:
             else None,
             decision_sample_count=len(samples),
             telegram_enabled=self.settings.telegram,
+            monitoring={**self.market.metrics(), **await self.store.monitoring()},
+            enabled_markets=[
+                m for m in ("spot", "futures") if self.settings.market and getattr(self.settings, m)
+            ],
         )
 
     def api(self) -> web.Application:
@@ -160,6 +167,7 @@ class Platform:
                         query=request.query.get("q", "")[:200],
                         before=float(request.query.get("before", "0")),
                         limit=max(1, min(100, int(request.query.get("limit", "50")))),
+                        activity=request.query.get("activity") == "true",
                     ),
                 }
             )
@@ -206,7 +214,10 @@ class Platform:
         if self.settings.telegram:
             jobs.append(asyncio.create_task(self.delivery.run(), name="delivery"))
         if self.settings.market:
+            jobs.append(asyncio.create_task(self.market.flush_loop(), name="market-summaries"))
             for market in ("spot", "futures"):
+                if not getattr(self.settings, market):
+                    continue
                 self.status(market + "_universe", "warming", "Starting")
                 jobs.append(asyncio.create_task(self.market.run(market), name=market))
         if self.settings.announcements:
