@@ -1,0 +1,11 @@
+import React from 'react';
+import {createRoot} from 'react-dom/client';
+import {Table,TableHeader,TableBody,TableRow,TableHead,TableCell} from '@/components/ui/table';
+const states={pending:'待发送',sending:'发送中',sent:'API 已确认',unknown:'送达未知',failed:'失败',expired:'过期',baseline:'历史基线',archived:'仅归档'};
+const names={binance_spot:'BN 现货',binance_futures:'BN 合约',binance:'Binance',okx:'OKX',hyperliquid:'Hyperliquid'};
+const stamp=t=>t?new Date(t*1000).toLocaleString('zh-CN',{hour12:false}):'—';
+const time=t=>t?new Date(t*1000).toLocaleTimeString('zh-CN',{hour12:false}):'—';
+const pct=v=>Number.isFinite(v)?(v>0?'+':'')+v.toFixed(2)+'%':'—';
+function official(url){try{const u=new URL(url);return u.protocol==='https:'&&['www.binance.com','binance.com','www.okx.com','okx.com','t.me'].includes(u.hostname)?u.href:null;}catch{return null;}}
+let root;
+export function renderTable(rows){root??=createRoot(document.getElementById('feed'));root.render(rows.length?<Table className="tape"><TableHeader><TableRow>{['时间','市场','币种 / 公告','涨跌','峰值','触发价','次数','阈值','通知 / 记录'].map(t=><TableHead key={t}>{t}</TableHead>)}</TableRow></TableHeader><TableBody>{rows.map(e=>{const s=e.signal;const url=official(e.url);return <TableRow key={e.id}><TableCell title={stamp(s?.last_hit||e.detected)}>{time(s?.last_hit||e.detected)}</TableCell><TableCell>{names[e.source]||e.source}</TableCell><TableCell className="subject"><details><summary title={e.title}>{s?(s.symbol||e.title.split(' ')[0]):e.title}</summary><div className="detail"><p>{e.title}</p><p>{e.body}</p><p>首次发现 {stamp(e.detected)} · 发布 {stamp(e.published)} · 最近活动 {stamp(s?.last_hit||e.detected)}</p><p>记录 {e.id}</p>{url&&<a href={url} target="_blank" rel="noopener noreferrer">官方原文 ↗</a>}</div></details></TableCell><TableCell className={s?.change>=0?'up':'down'}>{pct(s?.change)}</TableCell><TableCell className={s?.peak_change>=0?'up':'down'}>{pct(s?.peak_change)}</TableCell><TableCell>{s?.price??'—'}</TableCell><TableCell>{s?.hits?.toLocaleString()??'—'}</TableCell><TableCell>{s?'±'+s.threshold+'%':'—'}</TableCell><TableCell>{s?(states[e.notification_status]||'未入队'):(states[e.status]||e.status)}</TableCell></TableRow>})}</TableBody></Table>:<div className="empty">暂无匹配记录</div>);}

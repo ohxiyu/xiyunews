@@ -1,7 +1,7 @@
 # FomoBTC Agent 规则
 
 ## 项目与边界
-- Python 3.11/3.12 + aiohttp，Binance 事件驱动行情，三家官方公告，SQLite 持久化，systemd 单实例；web 为原生静态看板，Cloudflare 托管。Redis 仅用于旧版本迁移。
+- Python 3.11/3.12 + aiohttp，Binance 事件驱动行情，三家官方公告，SQLite 持久化，systemd 单实例；web 为 React + Vite + shadcn/ui 静态看板，Cloudflare 托管。Redis 仅用于旧版本迁移。
 - 用户在 2026-09-14 明确授权本轮完整改造、改名、合并与部署；不再沿用上轮 Draft-only 限制。不购买付费服务，不引入交易或提现功能。
 - 密钥保存在服务器环境中，禁止写入 git、日志、URL 输出；Telegram 客户端会话也属于密钥。文档不继承登录权限。
 - 生产只由一位操作者迁移，先停止旧 CoinSignal，迁移冷却后再启动新服务。不能双实例发送。

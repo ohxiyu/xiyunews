@@ -1,3 +1,4 @@
+import {renderTable} from './tape.jsx';
 'use strict';
 const config=window.FOMOBTC_CONFIG||{};
 const base=(config.apiOrigin||'').replace(/\/$/,'');
@@ -9,23 +10,7 @@ function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefine
 function stamp(t){return t?new Date(t*1000).toLocaleString('zh-CN',{hour12:false}):'时间未知';}
 function warning(message){$('warning').textContent=message;$('warning').hidden=!message;}
 async function get(path){const r=await fetch(base+path,{signal:AbortSignal.timeout(8000)});if(!r.ok)throw new Error('API unavailable');return r.json();}
-function render(){
- const feed=$('feed');const opened=new Set([...feed.querySelectorAll('details[open]')].map(d=>d.dataset.id));feed.replaceChildren();
- if(!rows.length){feed.append(el('div','暂无符合条件的数据库记录。','empty'));return;}
- const table=el('table',undefined,'tape');const head=el('thead');const titles=el('tr');
- for(const title of ['最近活动','来源 / 市场','币种 / 公告','涨跌幅','峰值','最近触发价','命中','阈值','通知 / 记录','首次发现'])titles.append(el('th',title));
- head.append(titles);table.append(head);const body=el('tbody');
- const pct=v=>Number.isFinite(v)?v.toFixed(2)+'%':'—';
- for(const e of rows){const s=e.signal;const tr=el('tr');
- const activity=s?.last_hit||e.detected;const cell=(text,cls)=>{const td=el('td',text,cls);tr.append(td);return td;};
- cell(stamp(activity),'time');cell(({binance_spot:'Binance 现货',binance_futures:'Binance 合约',binance:'Binance 公告',okx:'OKX 公告',hyperliquid:'Hyperliquid 公告'})[e.source]||e.source);
- const detail=cell(undefined,'subject');const disclosure=el('details');disclosure.dataset.id=e.id;disclosure.open=opened.has(e.id);const summary=el('summary',s?(s.symbol||e.title.split(' ')[0]):e.title);disclosure.append(summary,el('p',e.title));if(e.body)disclosure.append(el('p',e.body));
- disclosure.append(el('small',`记录 ${e.id} · 发布 ${stamp(e.published)} · 发现 ${stamp(e.detected)}`));
- if(e.url){try{const u=new URL(e.url);if(u.protocol==='https:'&&['www.binance.com','binance.com','www.okx.com','okx.com','t.me'].includes(u.hostname)){const link=el('a','官方原文 ↗');link.href=u.href;link.target='_blank';link.rel='noopener noreferrer';disclosure.append(link);}}catch{}}
- detail.append(disclosure);cell(pct(s?.change),s?.change>=0?'up':'down');cell(pct(s?.peak_change),s?.peak_change>=0?'up':'down');cell(s?.price??'—','number');cell(s?.hits?.toLocaleString()??'—','number');cell(s?'±'+pct(s.threshold):'—');cell(s?(states[e.notification_status]||'未入队'):(states[e.status]||e.status));cell(stamp(e.detected),'time');body.append(tr);
- }
- table.append(body);feed.append(table);
-}
+function render(){renderTable(rows);}
 async function refresh(append=false){const request=++requestNumber;try{const query=new URLSearchParams({kind,source:$('source').value,q:$('search').value,limit:'50',activity:view==='live'?'true':'false'});if(append)query.set('before',String(cursor));const result=await get('/api/events?'+query);if(request!==requestNumber)return;rows=append?[...rows,...result.events]:result.events;cursor=rows.at(-1)?.detected||0;render();$('more').hidden=view!=='history'||result.events.length<50;$('updated').textContent='更新于 '+new Date().toLocaleTimeString();warning('');}catch{if(request!==requestNumber)return;warning('数据服务暂不可用。当前内容可能已过期，正在重试。');if(!rows.length)$('feed').replaceChildren(el('div','尚未连接到实时数据服务。','empty'));}}
 async function health(){try{const h=await get('/api/health');$('connection').textContent=stream?.readyState===EventSource.OPEN?'实时连接':'轮询连接';$('total').textContent=Object.values(h.events).reduce((a,b)=>a+b,0).toLocaleString();const sources=Object.entries(h.sources);$('sources').textContent=`${sources.filter(([,s])=>['live','polling'].includes(s.state)).length} / ${sources.length}`;$('latency').textContent=h.decision_p99_ms==null?'—':h.decision_p99_ms.toFixed(2)+' ms';const notices=h.monitoring?.notification_counts||{};$('pending').textContent=(h.events.pending||0)+(h.events.sending||0)+(notices.pending||0)+(notices.sending||0);renderMonitoring(h.monitoring);$('health-list').replaceChildren();for(const[name,s]of sources){const row=el('div',undefined,'source-row');row.append(el('strong',name+' · '+s.state),el('p',s.detail),el('p','最后状态更新 '+stamp(s.checked)));$('health-list').append(row);}$('version').textContent=`后端 ${h.version} · ${h.source_commit}\n前端 ${config.revision||'unknown'}\nTelegram ${h.telegram_enabled?'已启用':'未启用'} · 运行 ${h.uptime_seconds}s`;}catch{$('connection').textContent='数据离线';$('monitor').replaceChildren(el('p','无法验证当前采集状态，正在重试。'));}}
 function renderMonitoring(m){const panel=$('monitor');panel.replaceChildren();if(!m){panel.append(el('p','后端暂未提供采集指标。'));return;}panel.append(el('h2','行情采集状态'),el('p',`最后记录异动：${stamp(m.last_signal)}。没有新事件，不代表没有接收行情。`));for(const[name,v]of Object.entries(m.per_market||{})){const age=v.last_received?Math.max(0,Math.floor(Date.now()/1000-v.last_received)):null;panel.append(el('p',`${name==='spot'?'现货':'合约'} · ${age!==null&&age<15?'采集中':'等待/延迟'} · 最近收到 ${stamp(v.last_received)} · ${Number(v.messages_per_second||0).toFixed(0)} 条/秒`),el('p',`已收 ${v.messages.toLocaleString()} 条 · 有效计算 ${v.valid_calculations.toLocaleString()} 次 · 阈值命中 ${v.threshold_hits.toLocaleString()} 次 · 预热/无效 ${v.invalid_or_warming.toLocaleString()} 次`));}const d=m.notification_decisions||{};panel.append(el('p',`通知判定（摘要批次）：冷却拦截 ${d.cooldown||0} · 限速 ${d.rate_limited||0} · 待发送/结果未知 ${d.pending_or_unknown||0} · 通知未启用 ${d.disabled||0}`),el('small','采集计数自进程启动累计；速率取最近 10 秒。通知冷却 2 小时，反转/升级可触发新提醒，每币种最短 60 秒。'));}

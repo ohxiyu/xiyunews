@@ -16,7 +16,7 @@ const context={
   setTimeout(fn){const id=next++;timers.set(id,fn);return id;},
   clearTimeout(id){timers.delete(id);}, setInterval(){},
 };
-runInNewContext(readFileSync(new URL('./public/app.js',import.meta.url),'utf8'),context);
+runInNewContext(readFileSync(new URL('./src/controller.js',import.meta.url),'utf8').replace(/^import .*;\n/,''),context);
 assert.equal(requests,2); // initial feed + health
 for(let i=0;i<10000;i++)listeners.get('refresh')();
 assert.equal(timers.size,1);
