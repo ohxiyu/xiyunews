@@ -9,6 +9,7 @@ from urllib.parse import urlsplit
 
 import aiohttp
 
+from .announcements import plain
 from .store import Store
 
 
@@ -67,7 +68,8 @@ def brief(body: str) -> str:
     )
     excluded = re.compile(
         r"general update|please check|not an endorsement|past performance|"
-        r"not financial advice|exercise control|unfamiliar|disclaimer|user agreement|terms of",
+        r"not financial advice|exercise control|unfamiliar|disclaimer|user agreement|terms of|"
+        r"一般性公告|地区而异",
         re.I,
     )
     candidates = [s.strip() for s in sentences if len(s.strip()) > 25 and not excluded.search(s)]
@@ -79,37 +81,60 @@ def brief(body: str) -> str:
 class ContentCollector:
     def __init__(self, store: Store) -> None:
         self.store = store
+        self.wake = asyncio.Event()
 
     async def enrich(self, session: aiohttp.ClientSession, event: dict[str, Any]) -> None:
-        body = event["body"]
-        state = "ready"
+        body, title, source_url = event["body"], event["title"], event["url"]
+        state, language = "ready", ""
         try:
-            if not body:
-                url = urlsplit(event["url"])
+            if event["source"] == "okx":
+                url = urlsplit(source_url)
                 if (
-                    event["source"] != "okx"
-                    or url.scheme != "https"
+                    url.scheme != "https"
                     or url.hostname not in {"www.okx.com", "okx.com"}
                     or not url.path.startswith("/help/")
                 ):
-                    raise ValueError("No supported detail source")
-                async with session.get(event["url"], allow_redirects=False) as response:
+                    raise ValueError("Unsupported official article")
+                source_url = f"https://www.okx.com/zh-hans{url.path}"
+                async with session.get(source_url, allow_redirects=False) as response:
                     if response.status != 200:
-                        raise ValueError("Detail unavailable")
+                        raise ValueError("Chinese detail unavailable")
                     data = bytearray()
                     async for chunk in response.content.iter_chunked(65536):
                         data.extend(chunk)
                         if len(data) > 2_000_000:
                             raise ValueError("Article exceeds limit")
-                    body = article_text(data.decode("utf-8"))
+                    html = data.decode("utf-8")
+                    body = article_text(html)
+                    match = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.S)
+                    if match:
+                        title = plain(match[1])
+            if len(re.findall(r"[\u4e00-\u9fff]", body)) < 20:
+                state = "translation_pending"
+            else:
+                language = "zh"
         except (aiohttp.ClientError, TimeoutError, ValueError, UnicodeError):
-            state = "unavailable"
-        await self.store.save_content(event["id"], body, brief(body), state)
+            state = "translation_pending"
+        await self.store.save_content(
+            event["id"],
+            body,
+            brief(body) if language == "zh" else "",
+            state,
+            title=title,
+            language=language,
+            url=source_url if language == "zh" else event["url"],
+        )
 
     async def run(self) -> None:
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=10)) as session:
             while True:
-                for event in await self.store.content_pending(time.time()):
-                    await self.enrich(session, event)
-                    await asyncio.sleep(1)
-                await asyncio.sleep(15)
+                self.wake.clear()
+                # Re-query after each article so retries never queue ahead of new arrivals.
+                pending = await self.store.content_pending(time.time())
+                if pending:
+                    await self.enrich(session, pending[0])
+                    continue
+                try:
+                    await asyncio.wait_for(self.wake.wait(), timeout=2)
+                except TimeoutError:
+                    pass

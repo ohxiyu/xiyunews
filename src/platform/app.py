@@ -35,6 +35,7 @@ class Platform:
         self.started = time.time()
         self.subscribers: set[asyncio.Queue[str]] = set()
         self.market = Market(self.emit, self.status, self.stats)
+        self.content = ContentCollector(self.store)
         self.collectors = Announcements(settings, self.store, self.emit, self.status)
         self.delivery = Delivery(settings, self.store)
 
@@ -81,6 +82,8 @@ class Platform:
                         baseline=baseline,
                     )
                 if added:
+                    if event["kind"] == "announcement" and not baseline:
+                        self.content.wake.set()
                     for queue in list(self.subscribers):
                         if queue.full():
                             queue.get_nowait()
@@ -227,7 +230,7 @@ class Platform:
             jobs.extend(
                 asyncio.create_task(task, name=name)
                 for name, task in (
-                    ("announcement-content", ContentCollector(self.store).run()),
+                    ("announcement-content", self.content.run()),
                     ("okx", self.collectors.okx()),
                     ("binance-announcements", self.collectors.binance()),
                     ("hyperliquid", self.collectors.hyperliquid()),

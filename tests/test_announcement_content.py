@@ -37,7 +37,7 @@ async def test_enrichment_preserves_delivery_and_retries(tmp_path):
     original = (await store.listing())[0]
     await store.save_content(original["id"], "", "", "unavailable")
     assert await store.content_pending(0) == []
-    assert len(await store.content_pending(10**12)) == 1
+    assert await store.content_pending(10**12) == []  # Historical baseline is not retried
     await store.save_content(
         original["id"], "Actual official body.", "Actual official body.", "ready"
     )
@@ -47,4 +47,34 @@ async def test_enrichment_preserves_delivery_and_retries(tmp_path):
     assert len(await store.listing()) == 1 and "chat" not in row
     assert await store.content_pending(10**12) == []
     assert not await store.add(event, chat="private", notify=True)
+    await store.close()
+
+
+@pytest.mark.asyncio
+async def test_latest_priority_and_chinese_delivery_gate(tmp_path):
+    import time
+
+    store = Store(str(tmp_path / "db"))
+    base = dict(
+        kind="announcement",
+        source="okx",
+        title="English",
+        body="",
+        url="https://www.okx.com/help/a",
+    )
+    await store.add(
+        dict(base, source_id="old", published=time.time() - 90000), chat="a", notify=False
+    )
+    await store.add(dict(base, source_id="baseline"), chat="a", notify=False, baseline=True)
+    await store.add(dict(base, source_id="new", published=time.time()), chat="a", notify=True)
+    pending = await store.content_pending(time.time())
+    assert [e["source_id"] for e in pending] == ["new"]
+    assert await store.claim(set(), chinese_announcements=True) is None
+    await store.save_content(
+        pending[0]["id"], "中文正文", "中文简讯", "ready", title="中文标题", language="zh"
+    )
+    notice = await store.claim(set(), chinese_announcements=True)
+    assert notice["title"] == "中文标题" and notice["body"] == "中文简讯"
+    assert len(await store.listing(kind="announcement", activity=True)) == 1
+    assert len(await store.listing(kind="announcement")) == 3
     await store.close()

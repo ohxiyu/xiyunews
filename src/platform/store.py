@@ -56,6 +56,12 @@ class Store:
               key TEXT PRIMARY KEY, at REAL NOT NULL
             );
         """)
+        columns = {r[1] for r in self.db.execute("PRAGMA table_info(announcement_content)")}
+        for name in ("title", "language", "url"):
+            if name not in columns:
+                self.db.execute(
+                    f"ALTER TABLE announcement_content ADD COLUMN {name} TEXT NOT NULL DEFAULT ''"
+                )
         # A crashed in-flight HTTP call may already have been accepted. Keep this explicit.
         self.db.execute(
             "UPDATE events SET status='unknown',error='interrupted delivery' WHERE status='sending'"
@@ -298,7 +304,9 @@ class Store:
 
         return await self.run(write)
 
-    async def claim(self, unavailable: set[str]) -> dict[str, Any] | None:
+    async def claim(
+        self, unavailable: set[str], *, chinese_announcements: bool = False
+    ) -> dict[str, Any] | None:
         def take() -> dict[str, Any] | None:
             now = time.time()
             with self.db:
@@ -309,9 +317,12 @@ class Store:
                 # Scan only due work, highest priority first, without blocking another chat.
                 rows = self.db.execute(
                     "SELECT * FROM events WHERE status='pending' AND due<=? "
+                    "AND (?=0 OR kind!='announcement' OR EXISTS("
+                    "SELECT 1 FROM announcement_content c "
+                    "WHERE c.event_id=events.id AND c.state='ready' AND c.language='zh')) "
                     "ORDER BY CASE category WHEN 'security' THEN 0 "
                     "WHEN 'delisting' THEN 1 ELSE 2 END, detected LIMIT 100",
-                    (now,),
+                    (now, int(chinese_announcements)),
                 ).fetchall()
                 for row in rows:
                     if row["chat"] not in unavailable:
@@ -320,6 +331,13 @@ class Store:
                             (row["id"],),
                         )
                         result = dict(row)
+                        if chinese_announcements and result["kind"] == "announcement":
+                            content = self.db.execute(
+                                "SELECT * FROM announcement_content WHERE event_id=?", (row["id"],)
+                            ).fetchone()
+                            result["title"] = content["title"] or result["title"]
+                            result["body"] = content["brief"]
+                            result["url"] = content["url"] or result["url"]
                         result["attempts"] += 1
                         return result
                 return None
@@ -366,19 +384,30 @@ class Store:
                 dict(r)
                 for r in self.db.execute(
                     "SELECT e.* FROM events e LEFT JOIN announcement_content c ON c.event_id=e.id "
-                    "WHERE e.kind='announcement' AND (c.event_id IS NULL OR "
+                    "WHERE e.kind='announcement' AND e.status!='baseline' "
+                    "AND coalesce(e.published,e.detected)>=? AND (c.event_id IS NULL OR "
                     "(c.state!='ready' AND c.retry_at<?)) ORDER BY e.detected DESC LIMIT 100",
-                    (now,),
+                    (now - 86400, now),
                 ).fetchall()
             ]
         )
 
-    async def save_content(self, eid: str, body: str, brief: str, state: str) -> None:
+    async def save_content(
+        self,
+        eid: str,
+        body: str,
+        brief: str,
+        state: str,
+        *,
+        title: str = "",
+        language: str = "",
+        url: str = "",
+    ) -> None:
         def write() -> None:
             with self.db:
                 self.db.execute(
-                    "INSERT OR REPLACE INTO announcement_content VALUES (?,?,?,?,?,?)",
-                    (eid, body, brief, state, time.time(), time.time() + 3600),
+                    "INSERT OR REPLACE INTO announcement_content VALUES (?,?,?,?,?,?,?,?,?)",
+                    (eid, body, brief, state, time.time(), time.time() + 60, title, language, url),
                 )
 
         await self.run(write)
@@ -401,9 +430,23 @@ class Store:
             )
             rows = self.db.execute(
                 "SELECT * FROM events WHERE category!='price_notice' AND (?='' OR kind=?) "
+                "AND (?=0 OR kind!='announcement' OR (status!='baseline' "
+                "AND coalesce(published,detected)>=?)) "
                 "AND (?='' OR source=?) AND (?='' OR instr(lower(title),lower(?))>0) "
                 f"AND (?=0 OR detected<?) ORDER BY {order} DESC LIMIT ?",
-                (kind, kind, source, source, query, query, before, before, limit),
+                (
+                    kind,
+                    kind,
+                    int(activity),
+                    time.time() - 86400,
+                    source,
+                    source,
+                    query,
+                    query,
+                    before,
+                    before,
+                    limit,
+                ),
             ).fetchall()
             private = {"chat", "cooldown_key"}
             result = []
@@ -425,6 +468,11 @@ class Store:
                     item["content_state"] = content["state"] if content else "pending"
                     item["brief"] = content["brief"] if content else ""
                     item["brief_method"] = "extractive_v1"
+                    item["content_language"] = content["language"] if content else ""
+                    if content and content["language"] == "zh":
+                        item["original_title"] = item["title"]
+                        item["title"] = content["title"] or item["title"]
+                        item["url"] = content["url"] or item["url"]
                     item["content_checked"] = content["checked"] if content else None
                     if content and content["body"]:
                         item["body"] = content["body"]

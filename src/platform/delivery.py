@@ -50,7 +50,7 @@ class Delivery:
                     now = time.monotonic()
                     unavailable = self.busy | {c for c, t in self.next_chat.items() if t > now}
                     if len(self.tasks) < 3 and now >= self.global_pause:
-                        event = await self.store.claim(unavailable)
+                        event = await self.store.claim(unavailable, chinese_announcements=True)
                         if event:
                             self.busy.add(event["chat"])
                             task = asyncio.create_task(self.send(session, event))
