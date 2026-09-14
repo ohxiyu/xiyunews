@@ -1,96 +1,58 @@
-# CoinSignal
+# FomoBTC
 
-CoinSignal is a headless Binance market monitor that detects large three-minute
-price moves across USDT spot and USD-M futures pairs and sends confirmed
-Telegram alerts.
+Low-latency Binance price-change alerts and official announcements from Binance,
+OKX and Hyperliquid, delivered through Telegram with a read-only dashboard.
+Formerly CoinSignal; the repository is now https://github.com/ohxiyu/fomobtc.
 
-## How it works
+## Runtime
 
-1. Every ten minutes, CoinSignal groups Binance pairs by 24-hour quote volume.
-2. Every minute, it fetches four one-minute klines for each eligible pair.
-3. It compares the current close with the close three minutes earlier.
-4. When the configured threshold is crossed, it sends a Telegram alert.
-5. A two-hour per-symbol cooldown is recorded only after Telegram confirms
-   delivery. Redis preserves cooldowns across restarts when available.
+- Python 3.11/3.12, asyncio/aiohttp; one VPS process managed by systemd or PM2.
+- Binance aggregate-trade WebSockets, sharded subscriptions and REST bootstrap.
+  Compares current price against the close of the minute bar three bars earlier;
+  **not a strict rolling 180-second return**. Existing volume groups and thresholds
+  remain in [config/thresholds.yaml](config/thresholds.yaml).
+- Binance signed English announcement stream, OKX REST polling, Hyperliquid
+  public channel preview fallback or an optional authorized Telegram client.
+- SQLite WAL stores immutable event revisions, deduplication, persistent outbox
+  and two-hour per-market/symbol cooldowns. No Redis required for the new runtime.
+- First notification has no batching delay; per-chat pacing and delayed retries.
+  Timeouts are marked unknown, not silently reported as successful.
+- Static frontend: live feed, searchable history and source health; optional
+  Cloudflare hosting. Read-only API and SSE run on the VPS.
 
-Current thresholds are stored in `config/thresholds.yaml`:
-
-| Market | High volume | Mid volume | Low volume |
-| --- | ---: | ---: | ---: |
-| Spot | 2.5% | 6% | 10% |
-| USD-M futures | 4% | 10% | 20% |
-
-Pairs below USD 500,000 in 24-hour quote volume are ignored.
-
-## Requirements
-
-- Python 3.11 or 3.12
-- PM2 for production process management
-- Redis is recommended but optional
-
-## Installation
+## Quick start
 
 ```bash
-git clone https://github.com/ohxiyu/coinsignal.git
-cd coinsignal
-python3.11 -m venv venv
-./venv/bin/pip install --require-hashes -r requirements.lock
+python3.12 -m venv venv
+venv/bin/pip install --require-hashes -r requirements.lock
 cp .env.example .env
+# Configure Telegram and source credentials, or explicitly use log-only mode:
+TELEGRAM_ENABLED=false venv/bin/python run.py
 ```
 
-Fill in `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, and optionally
-`TELEGRAM_ADMIN_ID`. Telegram delivery is enabled by default and missing
-credentials stop startup. To run intentionally without Telegram, set
-`TELEGRAM_ENABLED=false`; alerts will then be written only to logs.
-
-## Running
-
-Run directly:
-
-```bash
-./venv/bin/python run.py
-```
-
-Run with PM2:
-
-```bash
-./scripts/reload_pm2.sh
-./scripts/health_check.sh
-```
-
-The PM2 service name and namespace are both `coinsignal`. Paths in
-`ecosystem.config.js` are resolved from the checkout directory and are no
-longer tied to a specific server path.
-
-## Migration from QweSignalHub
-
-Deploy this repository as `/home/deploy/apps/coinsignal`, copy the old Crypto
-Monitor `.env` into the new root, create a fresh virtual environment, then run
-`scripts/reload_pm2.sh`. That script removes the retired
-`qsh-crypto-monitor` and `qsh-polymarket` PM2 entries before saving the new PM2
-process list.
-
-Do not delete the previous checkout until `scripts/health_check.sh` confirms
-that `coinsignal` is online and a test alert has been delivered.
+Initial announcement history is archived without notification. Missing source
+credentials are visible as blocked. Public Hyperliquid preview is degraded and
+cannot satisfy realtime acceptance. Configuration lives in .env and must never
+be committed. API defaults to http://127.0.0.1:8080/api/health.
 
 ## Validation
 
 ```bash
 python -m ruff check .
 python -m mypy src
-python -m pytest
+TELEGRAM_ENABLED=false python -m pytest
+python -m compileall -q src run.py
+python scripts/check_repository.py
 ```
 
-GitHub Actions runs the same checks on Python 3.11 and 3.12.
+Frontend, from web/: `npm ci`, `npm run check`, `npm run build`.
+CI runs Python checks on 3.11/3.12 plus frontend and repository checks.
 
-## Agent collaboration
+## Handoff and delivery
 
-Start with [AGENTS.md](AGENTS.md) and [current handoff](docs/handoff.md).
-Track scoped work in Issues and delivery evidence in PRs. See the
+Read [AGENTS.md](AGENTS.md), [current handoff](docs/handoff.md),
 [backlog](docs/backlog.md), [data contract](docs/data-contract.md),
-[message rules](docs/ui-rules.md), and [release records](docs/releases/README.md).
-
-Run `python scripts/check_repository.py` for version, handoff and local Markdown
-file-link checks. In a PR, also run `python scripts/check_repository.py --base origin/main`
-to enforce handoff and validation records for application changes. CI additionally
-compiles Python sources; this headless service has no frontend build step.
+[UI rules](docs/ui-rules.md), [deployment and rollback](docs/deployment.md),
+and [release evidence](docs/releases/README.md).
+Production runtime and real notification acceptance must be verified separately
+from local tests and frontend publication.

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
-pm2 show coinsignal | sed -n '1,35p'
-echo
-echo "=== Recent CoinSignal logs ==="
-pm2 logs coinsignal --lines 30 --nostream
+API_URL="${FOMOBTC_API_URL:-http://127.0.0.1:8080}"
+curl --fail --silent --show-error "${API_URL}/api/health"
+# Fails on missing credentials, degraded sources, startup or unavailable collectors.
+curl --fail --silent --show-error "${API_URL}/api/ready"

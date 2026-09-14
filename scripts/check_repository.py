@@ -1,6 +1,7 @@
 """Offline repository contract checks; no credentials or external requests."""
 
 import argparse
+import json
 import re
 import subprocess
 import tomllib
@@ -52,6 +53,18 @@ def check(root: Path, base: str | None = None) -> list[str]:
     release = root / "docs/releases" / f"{version}.md"
     if not release.is_file() or release.read_text().splitlines()[0] != f"# {version}":
         errors.append("Missing or inconsistent version release heading")
+    web_package = root / "web/package.json"
+    if version != "1.0.0":
+        try:
+            package = json.loads(web_package.read_text())
+            lock = json.loads((root / "web/package-lock.json").read_text())
+            if any(
+                v != version
+                for v in (package["version"], lock["version"], lock["packages"][""]["version"])
+            ):
+                errors.append("Frontend version differs from VERSION")
+        except (OSError, KeyError, ValueError):
+            errors.append("Missing or invalid frontend package metadata")
     handoff = (root / "docs/handoff.md").read_text()
     if handoff.splitlines().count("## Current execution pointer") != 1:
         errors.append("Require exactly one Current execution pointer")
@@ -105,7 +118,7 @@ def check(root: Path, base: str | None = None) -> list[str]:
             .splitlines()
         )
         application = any(
-            name.startswith(("src/", "config/", "scripts/"))
+            name.startswith(("src/", "config/", "scripts/", "web/"))
             or name in {"run.py", "pyproject.toml", "VERSION", "ecosystem.config.js"}
             or name.startswith("requirements")
             for name in changed

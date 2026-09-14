@@ -1,10 +1,11 @@
 # 待办
 
-| 优先级 | 任务与范围 | 认领 | 验收条件 |
+| 优先级 | 范围 | 任务 | 验收 |
 | --- | --- | --- | --- |
-| P1 | 交接机制：根文档、docs、GitHub 模板、仓库检查 | [#2](https://github.com/ohxiyu/coinsignal/issues/2)，Codex / ohxiyu | 本地及 CI 通过、Draft PR 留证、当前交接唯一 |
-| P1 | 生产事实核对：PM2 状态、源码 SHA、日志；不自动重启 | 未认领，执行前开 Issue | 发布记录关联源码、运行环境、核验时间；未知项保留 |
-| P2 | 数据质量审计：非有限值、K 线时间连续性、过期数据 | 未认领，执行前开 Issue | 缺失/NaN/重复或断档时间戳有测试和处理规则；不改变阈值口径 |
+| P0 | 改名、公告、实时行情、前端与部署 | [#4](https://github.com/ohxiyu/fomobtc/issues/4)，Codex / ohxiyu | 测试、CI、合并、前端和 VPS 分别验收 |
+| P0 | 服务器与公告源凭据 | #4 所需输入 | VPS SSH/项目路径、Telegram、Binance 公告 Key；Hyperliquid 客户端会话可选 |
+| P1 | 长时间与峰值验收 | 尚未完成 | 24h 连续运行、行情峰值回放、真实收件与故障恢复 |
+| P1 | 公告断线补全 | 后续独立 Issue | OKX 分页追赶、Binance 官方可用重放、Hyperliquid 深历史覆盖 |
+| P2 | 滚动 180 秒策略 | 后续独立 Issue | 影子对比，不默默替换现有分钟桶口径 |
 
-开新任务时在 Issue 写明目标、涉及文件、负责人、分支、验收、权限和不做事项。
-当前执行任务只在 [handoff](handoff.md) 维护；本页不重复进度日志。
+当前进度唯一来源为 [交接](handoff.md)，历史证据见 [发布记录](releases/README.md)。

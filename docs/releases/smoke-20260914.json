@@ -1,0 +1,98 @@
+{
+  "environment": "local macOS smoke, Telegram disabled; not production or end-to-end benchmark",
+  "implementation": "pre-commit feature implementation, before final health supervision refinements",
+  "health": {
+    "name": "FomoBTC",
+    "version": "2.0.0",
+    "source_commit": "unknown",
+    "uptime_seconds": 455,
+    "sources": {
+      "spot_universe": {
+        "state": "live",
+        "detail": "329 eligible pairs",
+        "checked": 1789359154.879296,
+        "last_success": 1789359154.879298
+      },
+      "futures_universe": {
+        "state": "live",
+        "detail": "643 eligible pairs",
+        "checked": 1789359154.772188,
+        "last_success": 1789359154.7721899
+      },
+      "okx": {
+        "state": "polling",
+        "detail": "REST; first page polled, backlog coverage limited",
+        "checked": 1789359607.259698,
+        "last_success": 1789359607.259698
+      },
+      "binance_announcements": {
+        "state": "blocked",
+        "detail": "Official announcement API key missing",
+        "checked": 1789359154.240934,
+        "last_success": null
+      },
+      "hyperliquid": {
+        "state": "degraded",
+        "detail": "Public preview polling; not realtime; limited history and media-only posts not covered",
+        "checked": 1789359608.0432582,
+        "last_success": 1789359608.043259
+      },
+      "futures_stream_0": {
+        "state": "live",
+        "detail": "150 subscriptions; 0 gaps",
+        "checked": 1789359608.66901,
+        "last_success": 1789359608.6690109
+      },
+      "futures_stream_1": {
+        "state": "live",
+        "detail": "150 subscriptions; 0 gaps",
+        "checked": 1789359609.2545228,
+        "last_success": 1789359609.2545228
+      },
+      "futures_stream_2": {
+        "state": "live",
+        "detail": "150 subscriptions; 0 gaps",
+        "checked": 1789359608.356143,
+        "last_success": 1789359608.3561442
+      },
+      "futures_stream_3": {
+        "state": "live",
+        "detail": "150 subscriptions; 0 gaps",
+        "checked": 1789359608.420827,
+        "last_success": 1789359608.420827
+      },
+      "futures_stream_4": {
+        "state": "live",
+        "detail": "43 subscriptions; 0 gaps",
+        "checked": 1789359608.585881,
+        "last_success": 1789359608.5858822
+      },
+      "spot_stream_0": {
+        "state": "live",
+        "detail": "150 subscriptions; 0 gaps",
+        "checked": 1789359609.135167,
+        "last_success": 1789359609.135168
+      },
+      "spot_stream_1": {
+        "state": "live",
+        "detail": "150 subscriptions; 0 gaps",
+        "checked": 1789359608.5182028,
+        "last_success": 1789359608.518204
+      },
+      "spot_stream_2": {
+        "state": "live",
+        "detail": "29 subscriptions; 0 gaps",
+        "checked": 1789359608.428062,
+        "last_success": 1789359608.428062
+      }
+    },
+    "events": {
+      "baseline": 40
+    },
+    "ingestion_queue": 0,
+    "market_messages": 316586,
+    "decision_p99_ms": 0.040083999920170754,
+    "decision_sample_count": 5000,
+    "telegram_enabled": false
+  }
+}

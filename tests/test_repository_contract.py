@@ -27,6 +27,9 @@ def test_contract_rejects_inconsistent_documents(tmp_path):
         shutil.copy(ROOT / name, tmp_path / name)
     for name in ("docs", "src", "config", "scripts"):
         shutil.copytree(ROOT / name, tmp_path / name)
+    (tmp_path / "web").mkdir()
+    for name in ("package.json", "package-lock.json"):
+        shutil.copy(ROOT / "web" / name, tmp_path / "web" / name)
     subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
     assert module.check(tmp_path) == []
     (tmp_path / "VERSION").write_text("9.9.9\n")
