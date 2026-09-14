@@ -35,6 +35,10 @@ class Store:
             CREATE INDEX IF NOT EXISTS event_due ON events(status,due);
             CREATE INDEX IF NOT EXISTS event_detected ON events(detected DESC);
             CREATE INDEX IF NOT EXISTS event_cooldown ON events(cooldown_key,status);
+            CREATE TABLE IF NOT EXISTS announcement_content (
+              event_id TEXT PRIMARY KEY, body TEXT NOT NULL, brief TEXT NOT NULL,
+              state TEXT NOT NULL, checked REAL NOT NULL, retry_at REAL NOT NULL
+            );
             CREATE TABLE IF NOT EXISTS seen (
               source TEXT, source_id TEXT, digest TEXT NOT NULL,
               PRIMARY KEY(source,source_id)
@@ -356,6 +360,29 @@ class Store:
 
         await self.run(save)
 
+    async def content_pending(self, now: float) -> list[dict[str, Any]]:
+        return await self.run(
+            lambda: [
+                dict(r)
+                for r in self.db.execute(
+                    "SELECT e.* FROM events e LEFT JOIN announcement_content c ON c.event_id=e.id "
+                    "WHERE e.kind='announcement' AND (c.event_id IS NULL OR "
+                    "(c.state!='ready' AND c.retry_at<?)) ORDER BY e.detected DESC LIMIT 100",
+                    (now,),
+                ).fetchall()
+            ]
+        )
+
+    async def save_content(self, eid: str, body: str, brief: str, state: str) -> None:
+        def write() -> None:
+            with self.db:
+                self.db.execute(
+                    "INSERT OR REPLACE INTO announcement_content VALUES (?,?,?,?,?,?)",
+                    (eid, body, brief, state, time.time(), time.time() + 3600),
+                )
+
+        await self.run(write)
+
     async def listing(
         self,
         *,
@@ -391,6 +418,16 @@ class Store:
                         "SELECT status FROM events WHERE id=?", (episode["notice_id"],)
                     ).fetchone()
                     item["notification_status"] = notice[0] if notice else "not_queued"
+                if item["kind"] == "announcement":
+                    content = self.db.execute(
+                        "SELECT * FROM announcement_content WHERE event_id=?", (item["id"],)
+                    ).fetchone()
+                    item["content_state"] = content["state"] if content else "pending"
+                    item["brief"] = content["brief"] if content else ""
+                    item["brief_method"] = "extractive_v1"
+                    item["content_checked"] = content["checked"] if content else None
+                    if content and content["body"]:
+                        item["body"] = content["body"]
                 result.append(item)
             return result
 

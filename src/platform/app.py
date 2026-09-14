@@ -13,6 +13,7 @@ from typing import Any
 from aiohttp import web
 
 from .announcements import Announcements
+from .content import ContentCollector
 from .delivery import Delivery
 from .market import Market
 from .settings import Settings, load_settings
@@ -226,6 +227,7 @@ class Platform:
             jobs.extend(
                 asyncio.create_task(task, name=name)
                 for name, task in (
+                    ("announcement-content", ContentCollector(self.store).run()),
                     ("okx", self.collectors.okx()),
                     ("binance-announcements", self.collectors.binance()),
                     ("hyperliquid", self.collectors.hyperliquid()),
