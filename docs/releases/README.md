@@ -7,3 +7,5 @@
 后端记录 systemd/PM2 进程与 checkout SHA；前端记录 Cloudflare Worker 版本。前后端分别验收。进程在线不是业务验收。
 
 - [2026-09-14 前端部署证据](deploy-20260914-frontend.md)
+
+- [2026-09-14 东京后台部署与域名进度](deploy-20260914-tokyo.md)

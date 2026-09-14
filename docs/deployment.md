@@ -28,8 +28,8 @@ and announcement data only. Restrict access at the proxy if the dashboard is pri
    Enable boot startup only after verifying the service. Never run PM2 and systemd
    against the same instance. The SQLite lock catches duplicate new processes,
    but cannot stop an unmodified old CoinSignal process; explicitly stop it.
-6. Configure the TLS proxy using scripts/deploy/Caddyfile with the actual API
-   hostname. Only /api/* is routed. Limit request rate and concurrent streams at
+6. Configure the TLS proxy using scripts/deploy/nginx.conf (production) or
+   scripts/deploy/Caddyfile (alternative) with the actual API hostname. Only /api/* is routed. Limit request rate and concurrent streams at
    the proxy; application SSE limit is 100. Cap journal disk use on the host.
 7. Verify /api/health source_commit matches the checked-out SHA. /api/ready must
    return 200 for full acceptance; blocked/degraded sources return 503.
@@ -54,7 +54,7 @@ fomobtc and excluded from git. No credential means no authenticated acceptance.
 
 From web/: `npm ci`, `npm run check`, then build with API_ORIGIN=https://<backend>
 and SOURCE_COMMIT=<full SHA> using `npm run build`.
-Run `npx wrangler deploy --dry-run`, then `npx wrangler deploy`.
+Run `npx wrangler deploy --dry-run`, then `npx wrangler deploy --keep-vars`.
 API_ORIGIN is a public HTTPS address, not a secret. Without it the site clearly
 shows “待接入后端” and does not fabricate data. This is a frontend-only deployment,
 not a working backend. Verify TLS, security headers, real events and filters.
@@ -69,3 +69,27 @@ start both services. Re-check source SHA, process count, health and duplicate al
 Use Cloudflare deployment rollback to restore the recorded previous frontend
 version. First frontend deployment has no prior version; remove its exposure if
 needed. Add an actual deploy-* evidence record only after a real deployment.
+
+## Tokyo production host and domain
+
+The target production layout is Cloudflare static frontend `https://fomobtc.com` and
+DNS-only backend `https://api.fomobtc.com` on the Tokyo VPS. Domain configuration
+and acceptance state are recorded separately in the latest handoff.
+
+- Keep `/etc/fomobtc.env` root-owned mode 0600; bind the app to loopback only.
+- The 2 GB plan exposes about 1.6 GiB to Ubuntu. Install
+  `scripts/deploy/resources.conf` as a systemd drop-in to cap the daemon at 1 GiB.
+- Bootstrap nginx on port 80 with only `/.well-known/acme-challenge/` served from
+  `/var/www/fomobtc-acme`. Point the API A record at the VPS; wait for public DNS.
+- Certbot is isolated in `/opt/fomobtc-certbot`. Issue with `certbot certonly
+  --webroot -w /var/www/fomobtc-acme -d api.fomobtc.com`; only then install the TLS
+  nginx configuration. Check `nginx -t` before every reload.
+- Install the certificate service/timer from scripts/deploy and enable
+  `fomobtc-certbot.timer`. Verify a staging renewal with `certbot renew --dry-run`.
+- nginx limits each IP to 5 requests/second with a burst of 20, five concurrent
+  requests, and 80 total upstream requests/streams. Buffering is disabled for SSE.
+- Build frontend with `API_ORIGIN=https://api.fomobtc.com` and the actual source
+  SHA. Set backend `FRONTEND_ORIGIN=https://fomobtc.com` once that domain is live.
+- Keep Telegram disabled until credentials are configured and delivery is
+  deliberately validated. Readiness 503 is expected while required sources are
+  blocked; do not relabel it healthy to complete deployment.
