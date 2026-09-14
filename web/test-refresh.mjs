@@ -7,7 +7,7 @@ const context={
   window:{FOMOBTC_CONFIG:{apiOrigin:'https://api.example.com'}},
   location:{hostname:'example.com'}, URLSearchParams, URL,
   document:{querySelectorAll:()=>[],getElementById(id){
-    if(!elements.has(id))elements.set(id,{value:'',textContent:''});
+    if(!elements.has(id))elements.set(id,{value:'',textContent:'',setAttribute(){}});
     return elements.get(id);
   }},
   fetch(){requests++;return new Promise(()=>{});},
@@ -27,3 +27,13 @@ assert.equal(requests,3);
 for(let i=0;i<10000;i++)listeners.get('refresh')();
 assert.equal(timers.size,1); // next batch is allowed, no starvation
 console.log('Burst refresh checks passed');
+
+elements.get('follow').onclick();
+const beforePause=requests;
+for(const callback of timers.values())callback();
+assert.equal(requests,beforePause);
+listeners.get('refresh')();
+assert.equal(requests,beforePause);
+elements.get('follow').onclick();
+assert.equal(requests,beforePause+1);
+console.log('Pause and resume checks passed');
