@@ -37,106 +37,6 @@ def signal(at, change=3.0, **values):
 
 
 @pytest.mark.asyncio
-async def test_cooldown_keeps_live_summary_and_immutable_notice(tmp_path, monkeypatch):
-    now = [10000.0]
-    monkeypatch.setattr(time, "time", lambda: now[0])
-    store = Store(str(tmp_path / "db"))
-    assert await store.market_update(signal(now[0]), chat="secret", notify=True) == "queued"
-    notice = await store.claim(set())
-    original_title = notice["title"]
-    await store.finish(notice, "sent", message_id=123)
-    now[0] += 5
-    assert await store.market_update(signal(now[0], 4), chat="secret", notify=True) == "cooldown"
-    rows = await store.listing()
-    assert len(rows) == 1 and rows[0]["signal"]["hits"] == 2
-    assert rows[0]["signal"]["peak_change"] == 4
-    assert rows[0]["notification_status"] == "sent"
-    assert "secret" not in str(rows)
-    assert (
-        store.db.execute("SELECT title FROM events WHERE id=?", (notice["id"],)).fetchone()[0]
-        == original_title
-    )
-    assert (await store.counts()) == {"archived": 1}
-    await store.close()
-
-
-@pytest.mark.asyncio
-async def test_reversal_escalation_rate_limit_and_lower_level_suppression(tmp_path, monkeypatch):
-    now = [10000.0]
-    monkeypatch.setattr(time, "time", lambda: now[0])
-    store = Store(str(tmp_path / "db"))
-
-    async def update(change):
-        return await store.market_update(signal(now[0], change), chat="x", notify=True)
-
-    assert await update(3) == "queued"
-    await store.finish(await store.claim(set()), "sent")
-    now[0] += 5
-    assert await update(6) == "rate_limited"
-    now[0] += 56
-    assert await update(6) == "queued"
-    await store.finish(await store.claim(set()), "sent")
-    now[0] += 61
-    assert await update(3) == "cooldown"
-    assert await update(-3) == "queued"
-    assert len(await store.listing()) >= 2
-    await store.close()
-
-
-@pytest.mark.asyncio
-async def test_restart_coalesces_episode_and_preserves_unknown_guard(tmp_path, monkeypatch):
-    now = [10000.0]
-    monkeypatch.setattr(time, "time", lambda: now[0])
-    path = str(tmp_path / "db")
-    store = Store(path)
-    await store.market_update(signal(now[0]), chat="x", notify=True)
-    await store.claim(set())
-    await store.close()
-    now[0] += 5
-    store = Store(path)
-    assert (
-        await store.market_update(signal(now[0], 4), chat="x", notify=True) == "pending_or_unknown"
-    )
-    assert len(await store.listing()) == 1
-    now[0] += 500
-    assert (
-        await store.market_update(signal(now[0], 4), chat="x", notify=True) == "pending_or_unknown"
-    )
-    assert len(await store.listing()) == 2
-    await store.close()
-
-
-@pytest.mark.asyncio
-async def test_disabled_notifications_never_suppress_archive_or_create_cooldown(tmp_path):
-    store = Store(str(tmp_path / "db"))
-    await store.market_update(signal(10000), chat="", notify=False)
-    await store.market_update(signal(10005, 4), chat="", notify=False)
-    rows = await store.listing()
-    assert len(rows) == 1 and rows[0]["signal"]["peak_change"] == 4
-    assert store.db.execute("SELECT count(*) FROM cooldown").fetchone()[0] == 0
-    assert await store.claim(set()) is None
-    await store.close()
-
-
-@pytest.mark.asyncio
-async def test_live_activity_order_and_history_order(tmp_path, monkeypatch):
-    now = [10000.0]
-    monkeypatch.setattr(time, "time", lambda: now[0])
-    store = Store(str(tmp_path / "db"))
-    await store.market_update(signal(10000), chat="", notify=False)
-    now[0] += 1
-    other = signal(10001)
-    other["symbol"] = "ETHUSDT"
-    other["title"] = "ETH"
-    await store.market_update(other, chat="", notify=False)
-    now[0] += 1
-    await store.market_update(signal(10002), chat="", notify=False)
-    assert (await store.listing(activity=True))[0]["symbol"] == "BTCUSDT"
-    assert (await store.listing())[0]["symbol"] == "ETHUSDT"
-    await store.close()
-
-
-@pytest.mark.asyncio
 async def test_buffer_preserves_peak_and_flushes_quiet_tail(monkeypatch):
     clock = [100.0]
     monkeypatch.setattr(time, "monotonic", lambda: clock[0])
@@ -166,27 +66,63 @@ def test_spot_only_switch_does_not_disable_announcements(monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_independent_push_threshold_and_persistent_limits(tmp_path, monkeypatch):
-    now = [10000.0]
+async def test_daily_gate_restart_reversal_boundary_and_shared_threshold(tmp_path, monkeypatch):
+    now = [100000.0]
     monkeypatch.setattr(time, "time", lambda: now[0])
-    store = Store(str(tmp_path / "db"))
-    policy = dict(chat="private", notify=True, multiplier=2, interval=600, hourly=3)
-    assert await store.market_update(signal(now[0], 3), **policy) == "below_notice_threshold"
-    assert len(await store.listing()) == 1
-    assert await store.market_update(signal(now[0], 5), **policy) == "queued"
+    path = str(tmp_path / "db")
+    store = Store(path)
+    assert (
+        await store.market_update(signal(now[0], 2.49), chat="x", notify=True) == "below_threshold"
+    )
+    assert await store.market_update(signal(now[0], 2.5), chat="x", notify=True) == "queued"
     notice = await store.claim(set())
-    await store.finish(notice, "failed")
-    now[0] += 61
-    assert await store.market_update(signal(now[0], -5), **policy) == "rate_limited"
+    await store.finish(notice, "sent")
+    now[0] += 86399
+    assert await store.market_update(signal(now[0], -30), chat="x", notify=True) == "daily_limited"
+    assert len(await store.listing()) == 1
     await store.close()
+    store = Store(path)
+    assert await store.market_update(signal(now[0], 30), chat="x", notify=True) == "daily_limited"
+    other = signal(now[0])
+    other["symbol"] = "ETHUSDT"
+    assert await store.market_update(other, chat="x", notify=True) == "queued"
+    now[0] += 1
+    assert await store.market_update(signal(now[0], -3), chat="x", notify=True) == "queued"
+    rows = await store.listing(activity=True)
+    assert rows[0]["symbol"] == "BTCUSDT"
+    assert rows[-1]["signal"]["change"] == 2.5
+    await store.close()
+
+
+@pytest.mark.asyncio
+async def test_disabled_delivery_still_deduplicates_web_alert(tmp_path, monkeypatch):
+    monkeypatch.setattr(time, "time", lambda: 100000)
     store = Store(str(tmp_path / "db"))
-    now[0] += 539
-    assert await store.market_update(signal(now[0], -5), **policy) == "queued"
-    await store.finish(await store.claim(set()), "failed")
-    now[0] += 600
-    assert await store.market_update(signal(now[0], 10), **policy) == "queued"
-    await store.finish(await store.claim(set()), "failed")
-    now[0] += 600
-    assert await store.market_update(signal(now[0], -15), **policy) == "hourly_limited"
-    assert len(await store.listing()) >= 4
+    assert await store.market_update(signal(100000), chat="", notify=False) == "disabled"
+    assert await store.market_update(signal(100001, -6), chat="x", notify=True) == "daily_limited"
+    assert await store.claim(set()) is None
+    assert len(await store.listing()) == 1
+    await store.close()
+
+
+@pytest.mark.asyncio
+async def test_futures_history_excluded_from_live_and_announcement_independent(tmp_path):
+    store = Store(str(tmp_path / "db"))
+    event = signal(time.time())
+    event["source"] = "binance_futures"
+    await store.market_update(event, chat="", notify=False)
+    assert not await store.listing(activity=True)
+    assert len(await store.listing()) == 1
+    announcement = dict(
+        kind="announcement",
+        source="okx",
+        source_id="new",
+        title="BTC 公告",
+        symbol="BTCUSDT",
+        body="中文",
+        published=time.time(),
+    )
+    assert await store.add(announcement, chat="", notify=False)
+    rows = await store.listing(activity=True)
+    assert len(rows) == 1 and rows[0]["kind"] == "announcement"
     await store.close()

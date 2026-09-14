@@ -75,7 +75,7 @@ async def test_latest_priority_and_chinese_delivery_gate(tmp_path):
     )
     notice = await store.claim(set(), chinese_announcements=True)
     assert notice["title"] == "中文标题" and notice["body"] == "中文简讯"
-    assert len(await store.listing(kind="announcement", activity=True)) == 1
+    assert len(await store.listing(kind="announcement", activity=True)) == 3
     assert len(await store.listing(kind="announcement")) == 3
     await store.close()
 

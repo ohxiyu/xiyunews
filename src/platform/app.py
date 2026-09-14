@@ -72,13 +72,10 @@ class Platform:
                         event,
                         chat=chat,
                         notify=self.settings.telegram,
-                        multiplier=self.settings.notice_multiplier,
-                        interval=self.settings.notice_interval,
-                        hourly=self.settings.notice_hourly,
                     )
                     reasons = self.stats.setdefault("notification_decisions", {})
                     reasons[reason] = reasons.get(reason, 0) + 1
-                    added = True
+                    added = reason in {"queued", "disabled"}
                 else:
                     added = await self.store.add(
                         event,
@@ -128,9 +125,7 @@ class Platform:
             decision_sample_count=len(samples),
             telegram_enabled=self.settings.telegram,
             market_notice_policy=dict(
-                multiplier=self.settings.notice_multiplier,
-                interval_seconds=self.settings.notice_interval,
-                max_per_hour=self.settings.notice_hourly,
+                shared_threshold=True, interval_seconds=86400, scope="symbol", escalation=False
             ),
             monitoring={**self.market.metrics(), **await self.store.monitoring()},
             enabled_markets=[
