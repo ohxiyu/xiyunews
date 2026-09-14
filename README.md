@@ -82,3 +82,15 @@ python -m pytest
 ```
 
 GitHub Actions runs the same checks on Python 3.11 and 3.12.
+
+## Agent collaboration
+
+Start with [AGENTS.md](AGENTS.md) and [current handoff](docs/handoff.md).
+Track scoped work in Issues and delivery evidence in PRs. See the
+[backlog](docs/backlog.md), [data contract](docs/data-contract.md),
+[message rules](docs/ui-rules.md), and [release records](docs/releases/README.md).
+
+Run `python scripts/check_repository.py` for version, handoff and local Markdown
+file-link checks. In a PR, also run `python scripts/check_repository.py --base origin/main`
+to enforce handoff and validation records for application changes. CI additionally
+compiles Python sources; this headless service has no frontend build step.
