@@ -1,3 +1,9 @@
-# Agent 入口
+# FomoBTC 接手入口
 
-先读 [AGENTS.md](AGENTS.md)，再读 [当前交接](docs/handoff.md) 并核对 GitHub 与生产事实。按 Current execution pointer 接手；用户指定新任务时先更新指针。权限、免费边界及完成标准以 AGENTS.md 为准。
+先读 [AGENTS.md](AGENTS.md)、[当前交接](docs/handoff.md)、[Telegram运行与验收](docs/telegram-runbook.md)，再读当前任务 Issue。长期规则只维护在 AGENTS.md，当前状态只维护在 handoff.md。
+
+FomoBTC 的主产品是**无头采集与 Telegram 推送服务**。前端仅是数据库排查工具，不继续开发图表、卡片、市值或视觉效果，除非用户明确提出新任务。
+
+开工先核对工作区、远端main、开放Issue/PR、服务器源码及服务状态；文档冲突先核实。前端关闭不应影响采集、去重或发送。沿用已记录的合并部署授权、免费边界和密钥规则。
+
+当前规则以[数据契约](docs/data-contract.md)为准；不要自行恢复合约、调整窗口/阈值、绕过24小时限制或补推历史公告。完成后更新交接及发布证据，分别记录代码、测试、合并、部署和真实送达；未完成必须留下分支、提交、阻塞及下一步。

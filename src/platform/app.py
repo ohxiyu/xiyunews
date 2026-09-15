@@ -13,7 +13,6 @@ from typing import Any
 from aiohttp import web
 
 from .announcements import Announcements
-from .assets import Assets
 from .content import ContentCollector
 from .delivery import Delivery
 from .market import Market
@@ -37,7 +36,6 @@ class Platform:
         self.subscribers: set[asyncio.Queue[str]] = set()
         self.market = Market(self.emit, self.status, self.stats)
         self.content = ContentCollector(self.store)
-        self.assets = Assets()
         self.collectors = Announcements(settings, self.store, self.emit, self.status)
         self.delivery = Delivery(settings, self.store)
 
@@ -178,8 +176,6 @@ class Platform:
                 limit=max(1, min(100, int(request.query.get("limit", "50")))),
                 activity=request.query.get("activity") == "true",
             )
-            for row in rows:
-                row["assets"] = self.assets.match(row)
             return web.json_response({"events": rows})
 
         async def stream(request: web.Request) -> web.StreamResponse:
@@ -222,7 +218,6 @@ class Platform:
     async def run(self) -> None:
         jobs = [
             asyncio.create_task(self.ingest(), name="ingestion"),
-            asyncio.create_task(self.assets.run(), name="asset-metadata"),
         ]
         if self.settings.telegram:
             jobs.append(asyncio.create_task(self.delivery.run(), name="delivery"))
