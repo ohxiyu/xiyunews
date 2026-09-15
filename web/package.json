@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "check": "node --check src/controller.js && node --check build.mjs && node test-refresh.mjs && vite build",
+    "check": "node --check src/controller.js && node --check build.mjs && node test-refresh.mjs && node test-event-copy.mjs && vite build",
     "deploy": "npm run build && wrangler deploy"
   },
   "devDependencies": {
