@@ -77,6 +77,10 @@ async def test_daily_gate_restart_reversal_boundary_and_shared_threshold(tmp_pat
     assert await store.market_update(signal(now[0], 2.5), chat="x", notify=True) == "queued"
     notice = await store.claim(set())
     await store.finish(notice, "sent")
+    delivered = (await store.listing())[0]
+    assert delivered["notification_status"] == "sent"
+    assert delivered["notification_sent"] == now[0]
+    assert delivered["sent"] is None
     now[0] += 86399
     assert await store.market_update(signal(now[0], -30), chat="x", notify=True) == "daily_limited"
     assert len(await store.listing()) == 1
@@ -102,6 +106,7 @@ async def test_disabled_delivery_still_deduplicates_web_alert(tmp_path, monkeypa
     assert await store.market_update(signal(100001, -6), chat="x", notify=True) == "daily_limited"
     assert await store.claim(set()) is None
     assert len(await store.listing()) == 1
+    assert (await store.listing())[0]["notification_sent"] is None
     await store.close()
 
 

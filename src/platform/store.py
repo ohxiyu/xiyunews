@@ -404,9 +404,10 @@ class Store:
                 if episode:
                     item["signal"] = json.loads(episode["data"])
                     notice = self.db.execute(
-                        "SELECT status FROM events WHERE id=?", (episode["notice_id"],)
+                        "SELECT status,sent FROM events WHERE id=?", (episode["notice_id"],)
                     ).fetchone()
                     item["notification_status"] = notice[0] if notice else "not_queued"
+                    item["notification_sent"] = notice[1] if notice else None
                 if item["kind"] == "announcement":
                     content = self.db.execute(
                         "SELECT * FROM announcement_content WHERE event_id=?", (item["id"],)

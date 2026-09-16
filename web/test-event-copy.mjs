@@ -8,3 +8,16 @@ assert.equal(marketLine({symbol:'BTCUSDT',title:'BTCUSDT +2.51% · spot'}),'BTC 
 console.log('Event copy checks passed');
 
 assert.equal(mainBody('这是一般性币安交易所公告，地区说明。\n亲爱的用户：\n交易时段改为24/5。\n英文原版公告可能存在差异。'),'交易时段改为24/5。');
+
+const {marketBody}=await import("./src/event-copy.js");
+assert.match(marketBody({body:"Minute-bar reference (not rolling 180s). 24h quote volume: 12345678 USDT; group: MID"}),/12,345,678 USDT · 中成交额组/);
+const {announcementBrief,announcementCoins}=await import('./src/event-copy.js');
+assert.deepEqual(announcementCoins({title:'欧易关于上线 PONS/USDT (Pons Family) 现货交易的公告'}),['PONS']);
+assert.deepEqual(announcementCoins({title:'支持Vana（VANA）升级'}),['VANA']);
+assert.deepEqual(announcementCoins({title:'关于 API 与 ETF 更新 (UTC)',body:'API supports UTC'}),[]);
+assert.deepEqual(announcementCoins({title:'MINIMAXUSD X-合约上线'}),['MINIMAX']);
+assert.deepEqual(announcementCoins({title:'调整多个交易对',body:'交易对 BTC/USDT、ETH/USDT'}),['BTC','ETH']);
+assert.equal(announcementBrief({body:'此为一般性公告。本文所述产品与服务可能无法在您的地区提供。亲爱的用户：\n币安将于9月18日移除ABC/USDT交易对。\n感谢您的支持。'}),'币安将于9月18日移除ABC/USDT交易对。');
+assert.ok(announcementBrief({body:'平台将上线ABC。'.repeat(100)}).length<=180);
+
+assert.deepEqual(announcementCoins({title:'欧易关于 AKE 永续合约正式上线的公告'}),['AKE']);

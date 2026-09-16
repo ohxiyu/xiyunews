@@ -34,3 +34,6 @@ GET /api/events 支持 kind/source/q/before/limit，limit 最大 100；GET /api/
 具体证据及限制见[发布记录](releases/spot-timeline.md)。此前独立倍率、2小时分级冷却及最近命中排序已被替代。
 
 市值辅助模块保留源码但不再启动轮询或注入API，避免无头服务承担展示专用开销。
+
+## 前端交付时间
+行情列表在notification_status之外返回notification_sent（关联通知的API确认时间，未确认/null）；公告使用sent。UI分别显示detected采集时刻与推送确认时刻，确认不是手机已读。老后端缺少notification_sent时显示未知，不使用行情归档sent替代。
