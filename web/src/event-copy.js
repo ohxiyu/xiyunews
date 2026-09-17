@@ -16,6 +16,7 @@ export function mainBody(value='') {
   return text;
 }
 export function marketLine(event) {
+  if (event.signal?.policy_version === 2) return event.title;
   const change=event.signal?.change ?? Number(event.title.match(/([+-]\d+(?:\.\d+)?)%/)?.[1]);
   const symbol=(event.symbol||event.title.split(' ')[0]).replace(/USDT$/,'');
   if(!Number.isFinite(change)) return event.title;

@@ -21,3 +21,7 @@ assert.equal(announcementBrief({body:'此为一般性公告。本文所述产品
 assert.ok(announcementBrief({body:'平台将上线ABC。'.repeat(100)}).length<=180);
 
 assert.deepEqual(announcementCoins({title:'欧易关于 AKE 永续合约正式上线的公告'}),['AKE']);
+
+const trendTitle='ZEC 持续走强，24 小时上涨 9.10%，突破 24 小时新高';
+assert.equal(marketLine({title:trendTitle,signal:{policy_version:2}}),trendTitle);
+assert.equal(marketLine({title:'BTC 1 分钟内下跌 1.60%',signal:{policy_version:2}}),'BTC 1 分钟内下跌 1.60%');

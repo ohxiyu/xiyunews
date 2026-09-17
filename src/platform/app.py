@@ -67,7 +67,12 @@ class Platform:
                     if event["kind"] == "announcement"
                     else self.settings.chat
                 )
-                if event["kind"] == "market" and "signal" in event:
+                if event["kind"] == "market_reset":
+                    await self.store.market_rearm(
+                        event["source"], event["symbol"], event["direction"]
+                    )
+                    added = False
+                elif event["kind"] == "market" and "signal" in event:
                     reason = await self.store.market_update(
                         event,
                         chat=chat,
@@ -125,11 +130,17 @@ class Platform:
             decision_sample_count=len(samples),
             telegram_enabled=self.settings.telegram,
             market_notice_policy=dict(
-                shared_threshold=True, interval_seconds=86400, scope="symbol", escalation=False
+                policy_version=2,
+                shared_threshold=True,
+                scope="symbol_type_direction",
+                burst_cooldown_seconds=self.market.policy["burst"]["cooldown_seconds"],
+                trend_cooldown_seconds=self.market.policy["trend"]["cooldown_seconds"],
+                rearm_required=True,
+                breakout_escalation=True,
             ),
             monitoring={**self.market.metrics(), **await self.store.monitoring()},
             enabled_markets=[
-                m for m in ("spot", "futures") if self.settings.market and getattr(self.settings, m)
+                m for m in ("spot",) if self.settings.market and getattr(self.settings, m)
             ],
         )
 
@@ -223,7 +234,7 @@ class Platform:
             jobs.append(asyncio.create_task(self.delivery.run(), name="delivery"))
         if self.settings.market:
             jobs.append(asyncio.create_task(self.market.flush_loop(), name="market-summaries"))
-            for market in ("spot", "futures"):
+            for market in ("spot",):
                 if not getattr(self.settings, market):
                     continue
                 self.status(market + "_universe", "warming", "Starting")

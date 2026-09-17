@@ -19,3 +19,18 @@ change3m_alert:
     futures_high: 4
     futures_mid: 10
     futures_low: 20
+
+# Active v2 policy. Legacy change3m_alert is retained only for the legacy runtime.
+market_alerts:
+  burst:
+    confirmation_ms: 3000
+    cooldown_seconds: 900
+    thresholds:
+      high: {60: 1.5, 180: 2.5}
+      mid: {60: 2.5, 180: 4.0}
+      low: {60: 4.0, 180: 6.0}
+  trend:
+    change_6h: 5.0
+    change_24h: 8.0
+    edge_fraction: 0.1
+    cooldown_seconds: 21600

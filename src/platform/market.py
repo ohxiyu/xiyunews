@@ -1,4 +1,4 @@
-"""Event-driven Binance prices; preserve minute-bar reference, never call it rolling 180s."""
+"""Event-driven spot burst and closed-candle trend monitoring."""
 
 import asyncio
 import json
@@ -12,6 +12,7 @@ import aiohttp
 import yaml
 
 from .announcements import Emit, Status
+from .signals import BurstWindow, TrendWindow, signal_title
 
 
 class MinuteWindow:
@@ -67,7 +68,8 @@ class Market:
         data = yaml.safe_load(
             (Path(__file__).resolve().parents[2] / "config/thresholds.yaml").read_text()
         )
-        self.thresholds = data["change3m_alert"]["thresholds"]
+        self.policy = data["market_alerts"]
+        self.seed_semaphore = asyncio.Semaphore(3)
         self.refresh = data["change3m_alert"]["group_refresh_seconds"]
         self.universe_time: dict[str, float] = {}
         self.pending: dict[str, dict[str, Any]] = {}
@@ -104,39 +106,26 @@ class Market:
     async def flush_loop(self) -> None:
         while True:
             for key in list(self.pending):
-                if time.monotonic() - self.last_flush.get(key, 0) >= 5:
+                if time.monotonic() - self.last_flush[key] >= 1:
                     await self.flush(key)
-            await asyncio.sleep(1)
+            await asyncio.sleep(0.1)
 
     async def signal(self, event: dict[str, Any]) -> None:
-        key = event["source"] + ":" + event["symbol"]
-        value = event["signal"]
-        direction = 1 if value["change"] > 0 else -1
-        level = min(3, max(1, int(abs(value["change"]) / value["threshold"])))
-        old_shape = self.last_shape.get(key)
-        immediate = old_shape is None or direction != old_shape[0] or level > old_shape[1]
+        component = event["signal"]["components"][0]
+        key = f"{event['source']}:{event['symbol']}:{component['direction']}"
         previous = self.pending.get(key)
-        if previous and (
-            previous["signal"]["change"] * value["change"] < 0
-            or value["first_hit"] - previous["signal"]["last_hit"] > 60
-        ):
-            await self.flush(key)
-            previous = None
         if previous:
-            prior = previous["signal"]
-            value["first_hit"] = prior["first_hit"]
-            value["hits"] += prior["hits"]
-            if abs(prior["peak_change"]) > abs(value["peak_change"]):
-                value["peak_change"] = prior["peak_change"]
+            parts = {c["type"]: c for c in previous["signal"]["components"]}
+            parts[component["type"]] = component
+            event["signal"]["components"] = list(parts.values())
+        else:
+            self.last_flush[key] = time.monotonic()
+        event["title"] = signal_title(event["symbol"], event["signal"]["components"])
         self.pending[key] = event
-        self.last_shape[key] = (
-            direction,
-            max(level, old_shape[1]) if old_shape and old_shape[0] == direction else level,
-        )
-        if immediate or time.monotonic() - self.last_flush.get(key, 0) >= 5:
-            await self.flush(key)
 
     async def run(self, market: str) -> None:
+        if market != "spot":
+            raise ValueError("Alert policy v2 only supports spot")
         base = "https://api.binance.com" if market == "spot" else "https://fapi.binance.com"
         prefix = "/api/v3" if market == "spot" else "/fapi/v1"
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=10)) as session:
@@ -219,33 +208,49 @@ class Market:
             if market == "spot"
             else "wss://fstream.binance.com/market/ws"
         )
-        semaphore = asyncio.Semaphore(3)
         while True:
-            windows = {s: MinuteWindow() for s in symbols}
-            for window in windows.values():
-                window.gap = True
+            windows = {
+                s: BurstWindow(
+                    dict(self.policy["burst"]["thresholds"][groups[s][0]]),
+                    self.policy["burst"]["confirmation_ms"],
+                )
+                for s in symbols
+            }
+            trends = {
+                s: TrendWindow(
+                    self.policy["trend"]["change_6h"],
+                    self.policy["trend"]["change_24h"],
+                    self.policy["trend"]["edge_fraction"],
+                )
+                for s in symbols
+            }
             repairs: dict[str, asyncio.Task[None]] = {}
+            seed_attempt: dict[str, float] = {}
 
-            async def seed(symbol: str, windows: dict[str, MinuteWindow] = windows) -> None:
+            async def seed(
+                symbol: str,
+                trends: dict[str, TrendWindow] = trends,
+                seed_attempt: dict[str, float] = seed_attempt,
+            ) -> None:
+                seed_attempt[symbol] = time.monotonic()
                 try:
-                    async with semaphore:
+                    async with self.seed_semaphore:
                         async with session.get(
                             rest + "/klines",
                             params={
                                 "symbol": symbol,
-                                "interval": "1m",
-                                "limit": 5,
+                                "interval": "15m",
+                                "limit": 98,
                             },
                         ) as response:
                             response.raise_for_status()
-                            rows = await response.json()
-                        windows[symbol].seed(rows, int(time.time() * 1000))
+                            trends[symbol].seed(await response.json(), int(time.time() * 1000))
                         await asyncio.sleep(0.1)
                 except (aiohttp.ClientError, TimeoutError, ValueError, TypeError, KeyError):
-                    windows[symbol].gap = True
+                    pass  # Incomplete history fails closed and is retried on the next candle.
 
             try:
-                self.status(name, "warming", "Connecting and loading reference bars")
+                self.status(name, "warming", "Loading trend history; 180s live burst warmup")
                 async with session.ws_connect(
                     endpoint,
                     heartbeat=20,
@@ -255,7 +260,11 @@ class Market:
                     await ws.send_json(
                         {
                             "method": "SUBSCRIBE",
-                            "params": [s.lower() + "@aggTrade" for s in symbols],
+                            "params": [
+                                s.lower() + suffix
+                                for s in symbols
+                                for suffix in ("@aggTrade", "@kline_15m")
+                            ],
                             "id": 1,
                         }
                     )
@@ -270,14 +279,51 @@ class Market:
                         data = json.loads(message.data)
                         if "code" in data:
                             raise ValueError("Market subscription rejected")
-                        if data.get("e") != "aggTrade" or data.get("s") not in windows:
+                        symbol = data.get("s")
+                        if symbol not in windows or data.get("e") not in ("aggTrade", "kline"):
                             continue
                         received = time.perf_counter()
-                        symbol = data["s"]
+                        now_ms = int(time.time() * 1000)
                         window = windows[symbol]
-                        change = window.update(data, int(time.time() * 1000))
-                        if window.gap and repairs[symbol].done():
-                            repairs[symbol] = asyncio.create_task(seed(symbol))
+                        if (
+                            symbol not in groups
+                            or time.monotonic() - self.universe_time.get(market, 0)
+                            > 2 * self.refresh
+                        ):
+                            window.reset()
+                            continue
+                        group, volume = groups[symbol]
+                        thresholds = dict(self.policy["burst"]["thresholds"][group])
+                        if thresholds != window.thresholds:
+                            window.thresholds = thresholds
+                            window.reset()
+                        hits: list[dict[str, Any]] = []
+                        if data["e"] == "aggTrade":
+                            hits, resets = window.update(data, now_ms)
+                            for direction in resets:
+                                await self.flush(f"binance_spot:{symbol}:{direction}")
+                                await self.emit(
+                                    dict(
+                                        kind="market_reset",
+                                        source="binance_spot",
+                                        symbol=symbol,
+                                        direction=direction,
+                                    ),
+                                    False,
+                                )
+                        else:
+                            hit = trends[symbol].update(data["k"], now_ms)
+                            if hit:
+                                hits.append(hit)
+                            latest = now_ms // 900000 * 900000 - 900000
+                            if (
+                                not all(
+                                    latest - i * 900000 in trends[symbol].bars for i in range(96)
+                                )
+                                and repairs[symbol].done()
+                                and time.monotonic() - seed_attempt.get(symbol, 0) >= 60
+                            ):
+                                repairs[symbol] = asyncio.create_task(seed(symbol))
                         self.stats["market_messages"] = self.stats.get("market_messages", 0) + 1
                         counters = self.stats.setdefault("per_market", {}).setdefault(
                             market,
@@ -291,80 +337,57 @@ class Market:
                         )
                         counters["messages"] += 1
                         counters["last_received"] = time.time()
-                        counters["last_trade"] = float(data["T"]) / 1000
+                        counters["last_trade"] = float(data.get("T", data.get("E", 0))) / 1000
+                        counters[
+                            "valid_calculations" if window.ready else "invalid_or_warming"
+                        ] += 1
                         bucket = int(time.time())
                         buckets = self.rates.setdefault(market, {})
                         buckets[bucket] = buckets.get(bucket, 0) + 1
                         self.rates[market] = {t: n for t, n in buckets.items() if t >= bucket - 11}
-                        counters[
-                            "valid_calculations" if change is not None else "invalid_or_warming"
-                        ] += 1
                         self.latencies.append((time.perf_counter() - received) * 1000)
                         if time.monotonic() - last_status > 1:
-                            gaps = sum(w.gap for w in windows.values())
                             ready = sum(
-                                not w.gap
-                                and w.last_time > 0
-                                and int(time.time() * 1000) - w.last_time <= 10000
-                                and all(
-                                    m in w.bars
-                                    for m in range(
-                                        w.last_time // 60000 - 3, w.last_time // 60000 + 1
-                                    )
-                                )
-                                for w in windows.values()
+                                w.ready and now_ms - w.last_time <= 10000 for w in windows.values()
+                            )
+                            latest = now_ms // 900000 * 900000 - 900000
+                            history = sum(
+                                all(latest - i * 900000 in t.bars for i in range(96))
+                                for t in trends.values()
                             )
                             self.status(
                                 name,
-                                "degraded" if gaps else "live",
-                                f"{len(symbols)} subscriptions; {gaps} gaps; "
-                                f"{ready} fresh complete windows",
+                                "live" if ready == history == len(symbols) else "warming",
+                                f"{len(symbols)} pairs; {ready} burst ready; {history} trend ready",
                             )
                             last_status = time.monotonic()
-                        if (
-                            change is None
-                            or symbol not in groups
-                            or time.monotonic() - self.universe_time.get(market, 0)
-                            > 2 * self.refresh
-                        ):
-                            if change is not None:
-                                counters["stale_universe"] += 1
-                            continue
-                        group, volume = groups[symbol]
-                        if abs(change) < float(self.thresholds[f"{market}_{group}"]):
-                            continue
-                        counters["threshold_hits"] += 1
-                        counters["last_threshold_hit"] = float(data["T"]) / 1000
-                        await self.signal(
-                            dict(
-                                kind="market",
-                                source="binance_" + market,
-                                source_id=f"{symbol}:{data['a']}",
-                                symbol=symbol,
-                                title=f"{symbol} {change:+.2f}% · {market}",
-                                body=f"Minute-bar reference (not rolling 180s). "
-                                f"24h quote volume: {volume:.0f} USDT; group: {group.upper()}",
-                                category="price",
-                                published=float(data["T"]) / 1000,
-                                url="",
-                                signal=dict(
-                                    change=change,
-                                    peak_change=change,
-                                    price=float(data["p"]),
-                                    threshold=float(self.thresholds[f"{market}_{group}"]),
-                                    volume=volume,
-                                    group=group,
-                                    hits=1,
-                                    first_hit=float(data["T"]) / 1000,
-                                    last_hit=float(data["T"]) / 1000,
-                                ),
-                            ),
-                        )
+                        for hit in hits:
+                            counters["threshold_hits"] += 1
+                            counters["last_threshold_hit"] = hit["at"]
+                            await self.signal(
+                                dict(
+                                    kind="market",
+                                    source="binance_spot",
+                                    source_id=f"{symbol}:{hit['type']}:{hit['at']}",
+                                    symbol=symbol,
+                                    title="",
+                                    body="",
+                                    category="price",
+                                    published=hit["at"],
+                                    url="",
+                                    signal=dict(
+                                        policy_version=2,
+                                        components=[hit],
+                                        volume=volume,
+                                        group=group,
+                                    ),
+                                )
+                            )
                 raise ConnectionError("Closed")
             except asyncio.CancelledError:
                 raise
             except Exception:
-                self.status(name, "error", "Disconnected; reference bars will be reloaded")
+                self.status(name, "error", "Disconnected; fresh burst warmup and trend reload")
             finally:
                 for task in repairs.values():
                     task.cancel()

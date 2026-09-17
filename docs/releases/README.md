@@ -13,3 +13,5 @@
 - [2026-09-14 正式域名与 HTTPS 验收](deploy-20260914-domain.md)
 
 - [2.1.0 监控优化](2.1.0.md) · [上线与真实摘要验证](deploy-20260914-monitoring.md)
+
+- [突发与趋势预警重做（Issue #33）](burst-trend-alerts.md)

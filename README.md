@@ -10,16 +10,17 @@ credential requirements: [handoff](docs/handoff.md).
 ## Runtime
 
 - Python 3.11/3.12, asyncio/aiohttp; one VPS process managed by systemd.
-- Binance aggregate-trade WebSockets, sharded subscriptions and REST bootstrap.
-  Compares current price against the close of the minute bar three bars earlier;
-  **not a strict rolling 180-second return**. Existing volume groups and thresholds
-  remain in [config/thresholds.yaml](config/thresholds.yaml).
+- Binance spot aggregate trades: rolling 60s/180s burst alerts with 3s confirmation.
+  Closed 15m candles: 6h/24h trend alerts and previous-day high/low breakouts.
+  Volume tiers, confirmation and cooldown settings live in
+  [config/thresholds.yaml](config/thresholds.yaml); exact rules in the
+  [data contract](docs/data-contract.md).
 - Binance signed English announcement stream, OKX REST polling, Hyperliquid
   public channel preview fallback or an optional authorized Telegram client.
-- SQLite WAL stores immutable event revisions, deduplication, persistent outbox
-  and two-hour notification cooldowns by market/symbol/direction/severity.
-  Live market episodes remain visible during notification cooldown. No Redis required for the new runtime.
-- First notification has no batching delay; per-chat pacing and delayed retries.
+- SQLite WAL stores immutable events, a persistent outbox and direction-specific
+  gates: burst 15 minutes plus re-cross, trend 6 hours plus one breakout escalation.
+  Web and Telegram share one title and event; no Redis required.
+- Up to one second merges simultaneous signals; per-chat pacing and delayed retries.
   Timeouts are marked unknown, not silently reported as successful.
 - Static frontend: live feed, searchable history and source health; optional
   Cloudflare hosting. Read-only API and SSE run on the VPS.

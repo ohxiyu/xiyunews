@@ -9,11 +9,18 @@ from collections.abc import Callable
 from pathlib import Path
 from typing import Any, TypeVar
 
+import yaml
+
+from .signals import signal_title
+
 T = TypeVar("T")
 
 
 class Store:
     def __init__(self, path: str) -> None:
+        self.policy = yaml.safe_load(
+            (Path(__file__).resolve().parents[2] / "config/thresholds.yaml").read_text()
+        )["market_alerts"]
         Path(path).parent.mkdir(parents=True, exist_ok=True)
         self.db = sqlite3.connect(path, check_same_thread=False)
         self.db.row_factory = sqlite3.Row
@@ -53,6 +60,10 @@ class Store:
             );
             CREATE INDEX IF NOT EXISTS episode_symbol
               ON market_episodes(source,symbol,last_hit DESC);
+            CREATE TABLE IF NOT EXISTS alert_policy_state (
+              key TEXT PRIMARY KEY, at REAL NOT NULL, armed INTEGER NOT NULL,
+              breakout INTEGER NOT NULL
+            );
             CREATE TABLE IF NOT EXISTS market_notice_attempt (
               key TEXT PRIMARY KEY, at REAL NOT NULL
             );
@@ -67,6 +78,24 @@ class Store:
         self.db.execute(
             "UPDATE events SET status='unknown',error='interrupted delivery' WHERE status='sending'"
         )
+        # One-time conservative carryover from the previous policy; no historical replay.
+        if not self.db.execute("SELECT 1 FROM meta WHERE key='alert_policy_v2'").fetchone():
+            now = time.time()
+            for row in self.db.execute(
+                "SELECT e.source,e.symbol,e.detected,m.direction FROM events e "
+                "JOIN market_episodes m ON m.id=e.id WHERE e.detected>? ORDER BY e.detected",
+                (now - self.policy["burst"]["cooldown_seconds"],),
+            ).fetchall():
+                key = f"{row['source']}:{row['symbol']}:burst:{row['direction']}"
+                self.db.execute(
+                    "INSERT OR REPLACE INTO alert_policy_state VALUES (?,?,0,0)",
+                    (key, row["detected"]),
+                )
+            self.db.execute(
+                "UPDATE events SET status='expired',error='policy replaced' "
+                "WHERE category='price_notice' AND status='pending'"
+            )
+            self.db.execute("INSERT INTO meta VALUES ('alert_policy_v2','1')")
         self.db.commit()
 
     async def run(self, operation: Callable[[], T]) -> T:
@@ -163,6 +192,16 @@ class Store:
 
         return await self.run(write)
 
+    async def market_rearm(self, source: str, symbol: str, direction: int) -> None:
+        def write() -> None:
+            with self.db:
+                self.db.execute(
+                    "UPDATE alert_policy_state SET armed=1 WHERE key=?",
+                    (f"{source}:{symbol}:burst:{direction}",),
+                )
+
+        await self.run(write)
+
     async def market_update(
         self,
         event: dict[str, Any],
@@ -170,51 +209,87 @@ class Store:
         chat: str,
         notify: bool,
     ) -> str:
-        """One immutable alert per symbol per rolling day, shared with delivery."""
+        """Atomic policy gates and a shared immutable web/delivery event."""
 
         def write() -> str:
             now = time.time()
             batch = event["signal"]
+            if batch.get("policy_version") != 2 or event["source"] != "binance_spot":
+                return "unsupported_policy"
             symbol = event["symbol"].upper()
-            if abs(batch["peak_change"]) < batch["threshold"]:
-                return "below_threshold"
+            accepted = []
             with self.db:
-                # Include legacy alerts during migration; direction never bypasses the gate.
-                recent = self.db.execute(
-                    "SELECT 1 FROM events WHERE kind='market' AND symbol=? AND detected>? LIMIT 1",
-                    (symbol, now - 86400),
-                ).fetchone()
-                if recent:
-                    return "daily_limited"
-                eid = hashlib.sha256(f"alert:{symbol}:{now}".encode()).hexdigest()[:32]
-                data = dict(batch)
-                data["started"] = batch["first_hit"]
-                data["direction"] = 1 if batch["change"] > 0 else -1
-                self.db.execute(
-                    "INSERT INTO events(id,kind,source,source_id,title,url,body,category,"
-                    "symbol,published,detected,updated,status,chat,due,cooldown_key,expires) "
-                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    (
-                        eid,
-                        "market",
-                        event["source"],
-                        eid,
-                        event["title"],
-                        "",
-                        event["body"],
-                        "price",
-                        symbol,
-                        batch["first_hit"],
-                        now,
-                        0,
-                        "archived",
-                        "",
-                        now,
-                        "",
-                        now,
-                    ),
-                )
+                for c in batch["components"]:
+                    if (
+                        c["type"] not in ("burst", "trend")
+                        or c["direction"] not in (-1, 1)
+                        or c["direction"] * c["change"] + 1e-9 < c["threshold"]
+                        or now - c["at"] > 10
+                        or c["at"] > now + 2
+                    ):
+                        continue
+                    key = f"{event['source']}:{symbol}:{c['type']}:{c['direction']}"
+                    old = self.db.execute(
+                        "SELECT * FROM alert_policy_state WHERE key=?", (key,)
+                    ).fetchone()
+                    episode = c["at"]
+                    breakout = int(c.get("breakout", False))
+                    if old:
+                        if c["type"] == "burst":
+                            if (
+                                not old["armed"]
+                                or c["crossed_at"]
+                                < old["at"] + self.policy["burst"]["cooldown_seconds"]
+                            ):
+                                continue
+                        elif c["at"] < old["at"] + self.policy["trend"]["cooldown_seconds"]:
+                            if not breakout or old["breakout"] or c["at"] <= old["at"]:
+                                continue
+                            episode = old["at"]  # Extra breakout doesn't restart the 6h episode.
+                    self.db.execute(
+                        "INSERT OR REPLACE INTO alert_policy_state VALUES (?,?,0,?)",
+                        (key, episode, breakout),
+                    )
+                    accepted.append(c)
+                if not accepted:
+                    return "policy_limited"
+                title = signal_title(symbol, accepted)
+                data = dict(batch, components=accepted)
+                data["direction"] = accepted[0]["direction"]
+                data["started"] = min(c["at"] for c in accepted)
+                data["last_hit"] = max(c["at"] for c in accepted)
+                eid = hashlib.sha256(
+                    f"v2:{event['source']}:{symbol}:{json.dumps(accepted, sort_keys=True)}".encode()
+                ).hexdigest()[:32]
                 nid = eid + "n" if notify else ""
+                for record, category, status, target, expires in [
+                    (eid, "price", "archived", "", now),
+                    *(([(nid, "price_notice", "pending", chat, now + 120)]) if notify else []),
+                ]:
+                    self.db.execute(
+                        "INSERT INTO events(id,kind,source,source_id,title,url,body,category,"
+                        "symbol,published,detected,updated,status,chat,due,cooldown_key,expires) "
+                        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        (
+                            record,
+                            "market",
+                            event["source"],
+                            record,
+                            title,
+                            "",
+                            "",
+                            category,
+                            symbol,
+                            data["started"],
+                            now,
+                            0,
+                            status,
+                            target,
+                            now,
+                            "",
+                            expires,
+                        ),
+                    )
                 self.db.execute(
                     "INSERT INTO market_episodes VALUES (?,?,?,?,?,?,?)",
                     (
@@ -222,36 +297,11 @@ class Store:
                         event["source"],
                         symbol,
                         data["direction"],
-                        batch["last_hit"],
+                        data["last_hit"],
                         json.dumps(data),
                         nid,
                     ),
                 )
-                if notify:
-                    self.db.execute(
-                        "INSERT INTO events(id,kind,source,source_id,title,url,body,category,"
-                        "symbol,published,detected,updated,status,chat,due,cooldown_key,expires) "
-                        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                        (
-                            nid,
-                            "market",
-                            event["source"],
-                            nid,
-                            event["title"],
-                            "",
-                            event["body"],
-                            "price_notice",
-                            symbol,
-                            batch["first_hit"],
-                            now,
-                            0,
-                            "pending",
-                            chat,
-                            now,
-                            "",
-                            now + 120,
-                        ),
-                    )
                 return "queued" if notify else "disabled"
 
         return await self.run(write)

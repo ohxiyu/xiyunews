@@ -12,6 +12,8 @@ from .store import Store
 
 
 def format_message(event: dict[str, Any]) -> str:
+    if event["kind"] == "market":
+        return html.escape(event["title"][:500])
     heading = "行情异动" if event["kind"] == "market" else "官方公告"
     revised = " · 更新" if event["updated"] else ""
     parts = [
