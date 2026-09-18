@@ -15,3 +15,5 @@
 - [2.1.0 监控优化](2.1.0.md) · [上线与真实摘要验证](deploy-20260914-monitoring.md)
 
 - [突发与趋势预警重做（Issue #33）](burst-trend-alerts.md)
+
+- [2026-09-17策略部署](deploy-burst-trend-20260917.md)
