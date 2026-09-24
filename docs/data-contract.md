@@ -31,10 +31,11 @@ Telegram 行情合并（market_alerts.digest）：行情通知入队后保留 ho
 ## 公告
 [采集器](../src/platform/announcements.py) 使用官方来源。
 - [Binance 公告](https://developers.binance.com/zh-CN/docs/products/announcements/announcement)：英文签名 WebSocket，需 API Key。文档没有文章 ID/URL，使用目录+发布时间+标题作为近似身份，只链接官方公告目录，不能假装是文章原文。标题修订无法可靠关联为同一篇。无断线重放，需标识覆盖缺口。
+  配置只读 Key 后官方流与官网 CMS 中文列表（每 30 秒，状态 binance_catalog）并行：官方流英文正文立即就绪并推送；两份副本按 catalogId 相同且发布时间相差 ≤5 秒识别为同一篇（announcement_alias），只通知一次。官网副本后到时把该事件升级为 cms:code、详情链接并重新抓取中文正文，仅更新网页，已发送的通知不重发；官网副本先到则忽略官方流副本。只有英文版的官网文章也按英文就绪。
 - [OKX 更新记录](https://www.okx.com/docs-v5/log_en/)：REST /api/v5/support/announcements，每 6 秒读取第一页；URL 路径作 ID，pTime 是首次发布时间，businessPTime 不用于延迟计算。第一页以外的长时间积压不保证补齐。
 - [Hyperliquid 官方来源](https://hyperliquid.gitbook.io/hyperliquid-docs/support)：hyperliquid_announcements；公开预览每 15 秒轮询，有限历史和媒体内容缺失，明确 degraded。可选授权 Telegram 客户端订阅新增和编辑，重连补最近 100 条，仍非无限回放。
 
-首次采集仅基线归档，不推历史。source + source_id + 正文哈希去重，内容变化保存修订。分类是规则启发式，未知分类仍通知；营销类仅归档。标题与原文优先，未引入阻塞通知的 AI 摘要。
+首次采集仅基线归档，不推历史。source + source_id + 正文哈希去重，内容变化保存修订。分类是规则启发式，未知分类仍通知；营销类仅归档。标题与原文优先，未引入阻塞通知的 AI 摘要。推送要求正文就绪：中文，或币安英文原文（官方流/仅英文文章）；其他来源英文仍等待翻译。
 
 ## 事件与交付
 事件字段：id、kind、source、source_id、title、url、body、category、symbol、published、detected、updated、status、attempts、sent、error、telegram_id、dispatch_ms。

@@ -64,6 +64,10 @@ class Store:
               key TEXT PRIMARY KEY, at REAL NOT NULL, armed INTEGER NOT NULL,
               breakout INTEGER NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS announcement_alias (
+              catalog INTEGER NOT NULL, published REAL NOT NULL, event_id TEXT NOT NULL
+            );
+            CREATE INDEX IF NOT EXISTS alias_time ON announcement_alias(catalog,published);
             CREATE TABLE IF NOT EXISTS market_notice_attempt (
               key TEXT PRIMARY KEY, at REAL NOT NULL
             );
@@ -143,6 +147,34 @@ class Store:
             ).fetchone()
             if old and old[0] == digest:
                 return False
+            alias = event.get("alias")
+            if alias and not old:
+                # The stream (English, instant) and website (Chinese, link) copies of one
+                # Binance article share catalog and publish time; notify only once.
+                twin = self.db.execute(
+                    "SELECT event_id FROM announcement_alias WHERE catalog=? "
+                    "AND abs(published-?)<=5 ORDER BY abs(published-?) LIMIT 1",
+                    (alias[0], alias[1], alias[1]),
+                ).fetchone()
+                if twin:
+                    with self.db:
+                        if sid.startswith("cms:"):
+                            # Upgrade the stream event to the website article; content is
+                            # re-fetched in Chinese. A sent notification is never repeated.
+                            moved = self.db.execute(
+                                "UPDATE events SET source_id=?,url=? WHERE id=? "
+                                "AND source_id NOT LIKE 'cms:%'",
+                                (sid, event.get("url", ""), twin[0]),
+                            )
+                            if moved.rowcount:
+                                self.db.execute(
+                                    "DELETE FROM announcement_content WHERE event_id=?",
+                                    (twin[0],),
+                                )
+                        self.db.execute(
+                            "INSERT OR REPLACE INTO seen VALUES (?,?,?)", (source, sid, digest)
+                        )
+                    return False
             if cooldown_key:
                 cool = self.db.execute(
                     "SELECT until FROM cooldown WHERE key=?", (cooldown_key,)
@@ -184,6 +216,10 @@ class Store:
                     ),
                 )
                 self.db.execute("INSERT OR REPLACE INTO seen VALUES (?,?,?)", (source, sid, digest))
+                if cursor.rowcount > 0 and alias:
+                    self.db.execute(
+                        "INSERT INTO announcement_alias VALUES (?,?,?)", (alias[0], alias[1], eid)
+                    )
                 if cursor.rowcount > 0 and cooldown_key and not notify:
                     self.db.execute(
                         "INSERT OR REPLACE INTO cooldown VALUES (?,?)", (cooldown_key, now + 7200)
@@ -326,7 +362,8 @@ class Store:
                     "SELECT * FROM events WHERE status='pending' AND due<=? "
                     "AND (?=0 OR kind!='announcement' OR EXISTS("
                     "SELECT 1 FROM announcement_content c "
-                    "WHERE c.event_id=events.id AND c.state='ready' AND c.language='zh')) "
+                    "WHERE c.event_id=events.id AND c.state='ready' "
+                    "AND c.language IN ('zh','en'))) "
                     "ORDER BY CASE category WHEN 'security' THEN 0 "
                     "WHEN 'delisting' THEN 1 ELSE 2 END, detected LIMIT 100",
                     (now, int(chinese_announcements)),

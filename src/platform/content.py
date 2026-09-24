@@ -158,20 +158,26 @@ class ContentCollector:
                         raise ValueError("CMS detail schema")
                     title = plain(payload["data"]["title"])
                     body = cms_text(payload["data"]["body"])
-            if len(re.findall(r"[\u4e00-\u9fff]", body)) < 20:
-                state = "translation_pending"
-            else:
+            if len(re.findall(r"[\u4e00-\u9fff]", body)) >= 20:
                 language = "zh"
+            elif event["source"] == "binance":
+                # Official English stream (or an English-only website article): deliver the
+                # original; a later website copy replaces it with Chinese on the web.
+                if len(body) < 40:
+                    raise ValueError("Stream body missing")
+                language = "en"
+            else:
+                state = "translation_pending"
         except (aiohttp.ClientError, TimeoutError, ValueError, UnicodeError, KeyError, TypeError):
             state = "translation_pending"
         await self.store.save_content(
             event["id"],
             body,
-            brief(body) if language == "zh" else "",
+            brief(body) if language else "",
             state,
             title=title,
             language=language,
-            url=source_url if language == "zh" else event["url"],
+            url=source_url if language else event["url"],
         )
 
     async def run(self) -> None:

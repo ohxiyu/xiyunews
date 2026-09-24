@@ -43,7 +43,22 @@ def category(title: str) -> str:
         ("security", ("security incident", "exploit", "暂停", "suspend", "漏洞", "被盗")),
         ("listing", ("to list", "will list", "listing", "上线", "上币", "launch", "lists ")),
         ("maintenance", ("maintenance", "upgrade", "维护", "升级")),
-        ("promotion", ("airdrop", "campaign", "reward", "competition", "活动", "奖励")),
+        (
+            "promotion",
+            (
+                "airdrop",
+                "campaign",
+                "reward",
+                "competition",
+                "tournament",
+                "voucher",
+                "carnival",
+                "win up to",
+                "活动",
+                "奖励",
+                "瓜分",
+            ),
+        ),
     ):
         if any(word in text for word in words):
             return name
@@ -115,6 +130,8 @@ def parse_binance_public(payload: dict[str, Any]) -> list[dict[str, Any]]:
                 "https://www.binance.com/zh-CN/support/announcement/detail/" + code,
                 float(row["releaseDate"]) / 1000,
             )
+            if catalog.get("catalogId") is not None:
+                events[code]["alias"] = (int(catalog["catalogId"]), events[code]["published"])
     if not events:
         raise ValueError("Empty public announcement page")
     return list(events.values())
@@ -128,7 +145,7 @@ def parse_binance(payload: dict[str, Any]) -> dict[str, Any] | None:
         data = json.loads(data)
     # The documented stream has no article ID/URL. Do not invent a detail-page identifier.
     sid = f"{data['catalogId']}:{data['publishDate']}:{data['title']}"
-    return announcement(
+    event = announcement(
         "binance",
         sid,
         data["title"],
@@ -136,6 +153,9 @@ def parse_binance(payload: dict[str, Any]) -> dict[str, Any] | None:
         "https://www.binance.com/en/support/announcement",
         float(data["publishDate"]) / 1000,
     )
+    # Same catalog and publish time identifies the website (CMS) copy of this article.
+    event["alias"] = (int(data["catalogId"]), float(data["publishDate"]) / 1000)
+    return event
 
 
 class TelegramPreview(HTMLParser):
@@ -308,7 +328,9 @@ class Announcements:
                 if client is not None:
                     await client.disconnect()
 
-    async def binance_public(self) -> None:
+    async def binance_public(self, source: str = "binance_announcements") -> None:
+        # With the realtime stream, this poll only supplies Chinese titles and article links.
+        state = "degraded" if source == "binance_announcements" else "polling"
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=10)) as session:
             while True:
                 delay = 30
@@ -324,14 +346,12 @@ class Announcements:
                         rows = parse_binance_public(await response.json())
                     await self.accept_page("binance_public", rows)
                     self.status(
-                        "binance_announcements",
-                        "degraded",
+                        source,
+                        state,
                         "Public website polling every 30s; first page only; no realtime SLA",
                     )
                 except (aiohttp.ClientError, TimeoutError, ValueError, KeyError, TypeError):
-                    self.status(
-                        "binance_announcements", "error", "Public website request/schema failed"
-                    )
+                    self.status(source, "error", "Public website request/schema failed")
                     delay = 60
                 await asyncio.sleep(delay)
 
@@ -339,6 +359,9 @@ class Announcements:
         if not self.settings.binance_key or not self.settings.binance_secret:
             await self.binance_public()
             return
+        await asyncio.gather(self.binance_stream(), self.binance_public("binance_catalog"))
+
+    async def binance_stream(self) -> None:
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=15)) as session:
             while True:
                 try:

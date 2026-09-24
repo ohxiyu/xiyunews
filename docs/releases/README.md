@@ -25,3 +25,5 @@
 - [2026-09-24 无成交 K 线补丁部署](deploy-20260924-trend-empty-bars.md)
 
 - [币安公告只读 Key 配置](binance-announcement-setup.md)
+
+- [币安官方公告流推送与去重](binance-stream-delivery.md)
