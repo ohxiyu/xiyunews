@@ -153,3 +153,19 @@ def test_future_timestamp_does_not_poison_fresh_stream_watermark():
     for t in range(181, 362):
         assert not trade(w, t)[0]
     assert w.ready
+
+
+def test_trade_free_bars_are_flat_and_do_not_block_readiness():
+    rows = [row(i, 100 + i / 10) for i in range(98) if i not in (40, 41)]
+    w = TrendWindow()
+    w.seed(rows, 98 * 900000)
+    assert w.bars[40 * 900000] == w.bars[41 * 900000] == (103.9, 103.9, 103.9)
+    assert w.complete(97 * 900000, 0)
+    # Two trailing bars without trades: still complete while nothing has traded since.
+    w = TrendWindow()
+    w.seed(rows[:-2], 98 * 900000)
+    assert w.complete(97 * 900000, 0) and w.complete(97 * 900000, 96 * 900000 - 1)
+    assert not w.complete(97 * 900000, 96 * 900000)
+    # The next closed candle fills the quiet run and the trend is evaluated.
+    assert w.update(candle(98, 120), 99 * 900000)["breakout"]
+    assert w.bars[97 * 900000][2] == w.bars[95 * 900000][2]

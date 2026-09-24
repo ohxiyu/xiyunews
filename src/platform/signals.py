@@ -122,7 +122,26 @@ class TrendWindow:
                 and low <= close <= high
             ):
                 self.bars.setdefault(start, (high, low, close))
+        if self.bars:
+            self.fill(min(self.bars), max(self.bars))
         self.bars = dict(sorted(self.bars.items())[-97:])
+
+    def fill(self, start: int, until: int) -> None:
+        """Binance omits 15m bars with no trades; such a bar is flat at the prior close."""
+        close = self.bars[start][2]
+        for bar in range(start, until + 1, 900000):
+            if bar in self.bars:
+                close = self.bars[bar][2]
+            else:
+                self.bars[bar] = (close, close, close)
+
+    def complete(self, latest: int, last_trade_ms: int) -> bool:
+        """96 contiguous closed bars, allowing a trailing run of trade-free bars."""
+        if not self.bars:
+            return False
+        end = max(self.bars)
+        contiguous = all(end - i * 900000 in self.bars for i in range(96))
+        return contiguous and (end >= latest or last_trade_ms < end + 900000)
 
     def update(self, k: dict[str, Any], now_ms: int) -> dict[str, Any] | None:
         if not k.get("x"):
@@ -130,6 +149,9 @@ class TrendWindow:
         start, end = int(k["t"]), int(k["T"])
         if start in self.bars or (self.bars and start <= max(self.bars)):
             return None
+        # Within one stream, closed bars missing before this one had no trades.
+        if self.bars:
+            self.fill(max(self.bars), start - 900000)
         previous = [self.bars.get(start - i * 900000) for i in range(96, 0, -1)]
         self.seed([[start, 0, k["h"], k["l"], k["c"], 0, end]], now_ms)
         if (

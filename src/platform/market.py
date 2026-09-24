@@ -367,9 +367,7 @@ class Market:
                                 hits.append(hit)
                             latest = now_ms // 900000 * 900000 - 900000
                             if (
-                                not all(
-                                    latest - i * 900000 in trends[symbol].bars for i in range(96)
-                                )
+                                not trends[symbol].complete(latest, window.last_time)
                                 and repairs[symbol].done()
                                 and time.monotonic() - seed_attempt.get(symbol, 0) >= 60
                             ):
@@ -404,8 +402,7 @@ class Market:
                             recent = sum(now_ms - windows[s].last_time <= 10000 for s in active)
                             latest = now_ms // 900000 * 900000 - 900000
                             history = sum(
-                                all(latest - i * 900000 in trends[s].bars for i in range(96))
-                                for s in active
+                                trends[s].complete(latest, windows[s].last_time) for s in active
                             )
                             young = len(listings.intersection(active))
                             warm = time.monotonic() - connected >= 180
