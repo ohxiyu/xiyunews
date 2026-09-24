@@ -180,3 +180,24 @@ async def test_category_change_is_not_a_revision_and_exchange_text_is_deliverabl
     row = next(r for r in await store.listing(kind="announcement") if r["source"] == "bithumb")
     assert row["content_language"] == "ko" and row["content_state"] == "ready"
     await store.close()
+
+
+@pytest.mark.asyncio
+async def test_existing_pairs_baseline_is_not_listed_but_new_pair_is(tmp_path):
+    store = Store(str(tmp_path / "db"))
+    old = exchanges.pair_event("upbit", "KRW-OLD", "OLD", "KRW", "KRW-OLD")
+    new = exchanges.pair_event("upbit", "KRW-NEW", "NEW", "KRW", "KRW-NEW")
+    notice = dict(
+        kind="announcement",
+        source="bybit",
+        source_id="/a/",
+        title="Old notice",
+        body="",
+        url="https://announcements.bybit.com/a/",
+    )
+    await store.add(old, chat="c", notify=False, baseline=True)
+    await store.add(notice, chat="c", notify=False, baseline=True)
+    await store.add(new, chat="c", notify=True)
+    titles = [r["title"] for r in await store.listing(kind="announcement")]
+    assert titles == ["Upbit 新增交易对 NEW/KRW", "Old notice"]
+    await store.close()

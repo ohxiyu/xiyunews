@@ -29,3 +29,5 @@
 - [币安官方公告流推送与去重](binance-stream-delivery.md)
 
 - [2.2.0 多交易所公告与分类](2.2.0.md)
+
+- [2026-09-24 2.2.0 部署](deploy-20260924-exchanges.md)

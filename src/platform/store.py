@@ -503,7 +503,9 @@ class Store:
         def read() -> list[dict[str, Any]]:
             order = "detected"
             rows = self.db.execute(
+                # Market-list baselines are the pairs that already existed, not news.
                 "SELECT * FROM events WHERE category!='price_notice' AND (?='' OR kind=?) "
+                "AND NOT (status='baseline' AND source_id LIKE 'market:%') "
                 "AND (?=0 OR source!='binance_futures') "
                 "AND (?='' OR source=?) AND (?='' OR instr(lower(title),lower(?))>0) "
                 f"AND (?=0 OR detected<?) ORDER BY {order} DESC LIMIT ?",
