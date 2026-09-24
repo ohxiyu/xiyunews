@@ -35,12 +35,15 @@ Telegram 行情合并（market_alerts.digest）：行情通知入队后保留 ho
 - [OKX 更新记录](https://www.okx.com/docs-v5/log_en/)：REST /api/v5/support/announcements，每 6 秒读取第一页；URL 路径作 ID，pTime 是首次发布时间，businessPTime 不用于延迟计算。第一页以外的长时间积压不保证补齐。
 - [Hyperliquid 官方来源](https://hyperliquid.gitbook.io/hyperliquid-docs/support)：hyperliquid_announcements；公开预览每 15 秒轮询，有限历史和媒体内容缺失，明确 degraded。可选授权 Telegram 客户端订阅新增和编辑，重连补最近 100 条，仍非无限回放。
 
-首次采集仅基线归档，不推历史。source + source_id + 正文哈希去重，内容变化保存修订。分类是规则启发式，未知分类仍通知；营销类仅归档。标题与原文优先，未引入阻塞通知的 AI 摘要。推送要求正文就绪：中文，或币安英文原文（官方流/仅英文文章），或交易所列表 API 的英文/韩文原文；OKX 与 Hyperliquid 英文仍等待翻译。去重摘要为标题+正文+链接，不含类别。
+首次采集仅基线归档，不推历史。source + source_id + 正文哈希去重，内容变化保存修订。分类是规则启发式，未知分类仍通知；营销类仅归档。标题与原文优先，未引入阻塞通知的 AI 摘要。推送要求正文就绪（2.3.0 起官方详情暂不可用最多等待 3 分钟后发送原文）：中文，或币安英文原文（官方流/仅英文文章），或交易所列表 API 的英文/韩文原文；OKX 与 Hyperliquid 英文仍等待翻译。去重摘要为标题+正文+链接，不含类别。
 
 ## 其他交易所（2.2.0）
 [exchanges.py](../src/platform/exchanges.py)。公告 API：Bybit /v5/announcements/index（publishTime）、Bitget /api/v2/public/annoucements（cTime）、KuCoin /api/v3/announcements（cTime）每 5 秒；HTX support getList/v2（showTime）、Bithumb feed-api /v1/notices（published_at，KST，CDN 缓存）每 10 秒。均只取第一页，身份为交易所文章 ID 或 URL 路径，时间为交易所给出的发布时间。
 新交易对：Upbit /v1/market/all、Bithumb /v1/market/all、Gate /api/v4/spot/currency_pairs、MEXC /api/v3/defaultSymbols。进程启动后首个列表只基线；之后新增的交易对生成“新增交易对”事件（category=listing），表示已开放或即将开放交易，不等于公告发布时刻。Gate/MEXC 为 quiet，只记录网页。
 分类先用标题关键词，未命中再用交易所类型字段；活动/奖励类只归档。
+
+## 语言版本与摘要（2.3.0）
+announcement_i18n(event_id, lang, title, summary, points, url, method)。只保存交易所官方版本（official）或来源原文（original），不做机器翻译。Binance CMS 详情 zh-CN/en（英文专属文章在中文区返回英文，不计为中文）；OKX /zh-hans/help 与 /help 页面；Bybit en-US 与 zh-TW 列表按 art 编号对应；Bitget en_US 与 zh_CN 按 annId 对应；翻译晚到时后续轮询补写（不重复通知）。摘要为开头两句，要点为之后含日期、时刻、UTC、交易对或数值的最多两句。推送优先中文，其次英文，否则原文。HTX、KuCoin 已停止，历史行不列出。
 
 ## 事件与交付
 事件字段：id、kind、source、source_id、title、url、body、category、symbol、published、detected、updated、status、attempts、sent、error、telegram_id、dispatch_ms。

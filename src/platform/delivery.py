@@ -42,20 +42,40 @@ def format_message(event: dict[str, Any], market_wide: int = 4) -> str:
         if len(members) > 1:
             return format_digest(members, market_wide)
         return html.escape(event["title"][:500])
-    heading = "行情异动" if event["kind"] == "market" else "官方公告"
-    revised = " · 更新" if event["updated"] else ""
+    return format_announcement(event)
+
+
+SOURCES = {
+    "binance": "Binance",
+    "okx": "OKX",
+    "bybit": "Bybit",
+    "bitget": "Bitget",
+    "bithumb": "Bithumb",
+    "upbit": "Upbit",
+    "gate": "Gate",
+    "mexc": "MEXC",
+    "hyperliquid": "Hyperliquid",
+}
+LABELS = {"zh": ("要点\uff1a", "原文"), "en": ("Key points: ", "Source")}
+
+
+def format_announcement(event: dict[str, Any]) -> str:
+    """Title, summary and key points in the best official language (Chinese first)."""
+    version = event.get("i18n") or dict(
+        title=event["title"], summary=event.get("body", "")[:300], points="", url=event["url"]
+    )
+    points_label, link_label = LABELS.get(event.get("lang", ""), LABELS["en"])
+    revised = " · 更新" if event.get("updated") else ""
     parts = [
-        f"<b>FomoBTC · {heading}{revised}</b>",
-        html.escape(event["source"]),
-        "",
-        html.escape(event["title"][:500]),
+        f"<b>{html.escape(SOURCES.get(event['source'], event['source']))}{revised} · "
+        f"{html.escape(version['title'][:300])}</b>"
     ]
-    if event["body"]:
-        # Escape after truncation so HTML entities cannot be cut in half.
-        parts += ["", html.escape(event["body"][:300])]
-    if event["url"]:
-        parts += ["", f'<a href="{html.escape(event["url"], quote=True)}">官方来源</a>']
-    parts += ["", f"事件 {event['id'][:8]}"]
+    if version.get("summary"):
+        parts += ["", html.escape(version["summary"][:600])]
+    if version.get("points"):
+        parts += ["", f"📌 {points_label}{html.escape(version['points'][:400])}"]
+    if version.get("url"):
+        parts += ["", f'<a href="{html.escape(version["url"], quote=True)}">{link_label} ↗</a>']
     return "\n".join(parts)
 
 
@@ -71,8 +91,13 @@ class Delivery:
         async with aiohttp.ClientSession(
             timeout=aiohttp.ClientTimeout(total=8, connect=3)
         ) as session:
+            last_edit = 0.0
             try:
                 while True:
+                    if time.monotonic() - last_edit > 5 and time.monotonic() >= self.global_pause:
+                        last_edit = time.monotonic()
+                        for sent in await self.store.pending_edits(time.time() - 1800):
+                            await self.edit(session, sent)
                     for completed in list(self.tasks):
                         if completed.done():
                             self.tasks.remove(completed)
@@ -135,6 +160,32 @@ class Delivery:
         finally:
             self.next_chat[event["chat"]] = time.monotonic() + self.settings.chat_interval
             self.busy.discard(event["chat"])
+
+    async def edit(self, session: aiohttp.ClientSession, event: dict[str, Any]) -> None:
+        """Replace an earlier non-Chinese push once the official Chinese version exists."""
+        state = "failed"
+        try:
+            async with session.post(
+                f"https://api.telegram.org/bot{self.settings.token}/editMessageText",
+                json={
+                    "chat_id": event["chat"],
+                    "message_id": event["telegram_id"],
+                    "text": format_message(event),
+                    "parse_mode": "HTML",
+                    "disable_web_page_preview": True,
+                },
+            ) as r:
+                data = await r.json(content_type=None)
+                if r.status == 200 and data.get("ok") is True:
+                    state = "zh"
+                elif r.status == 429:
+                    self.global_pause = time.monotonic() + max(
+                        1, float(data.get("parameters", {}).get("retry_after", 30))
+                    )
+                    return  # Left pending; retried after the pause.
+        except (aiohttp.ClientError, TimeoutError, ValueError, KeyError, TypeError):
+            state = "unknown"
+        await self.store.mark_edit(event["id"], state)
 
     async def retry(self, event: dict[str, Any], delay: float, error: str) -> None:
         await self.store.finish(

@@ -21,7 +21,7 @@ from .settings import Settings, load_settings
 from .store import Store
 
 logger = logging.getLogger("fomobtc")
-VERSION = "2.2.0"
+VERSION = "2.3.0"
 
 
 class Platform:

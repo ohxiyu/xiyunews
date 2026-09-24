@@ -6,6 +6,7 @@ market list is reported instead: it marks the moment trading opens, not the noti
 """
 
 import asyncio
+import re
 from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
@@ -21,8 +22,6 @@ QUOTES = ("USDT", "USDC", "USDE", "FDUSD", "BTC", "ETH", "KRW", "EUR", "TRY", "B
 NAMES = {
     "bybit": "Bybit",
     "bitget": "Bitget",
-    "kucoin": "KuCoin",
-    "htx": "HTX",
     "bithumb": "Bithumb",
     "upbit": "Upbit",
     "gate": "Gate",
@@ -80,38 +79,6 @@ def parse_bitget(payload: dict[str, Any]) -> list[dict[str, Any]]:
     return events
 
 
-def parse_kucoin(payload: dict[str, Any]) -> list[dict[str, Any]]:
-    if payload.get("code") != "200000":
-        raise ValueError("Invalid KuCoin response")
-    events = []
-    for row in payload["data"]["items"]:
-        desc = row.get("annDesc", "")
-        event = announcement(
-            "kucoin",
-            str(row["annId"]),
-            row["annTitle"],
-            "" if desc == row["annTitle"] else desc,
-            row["annUrl"],
-            float(row["cTime"]) / 1000,
-        )
-        events.append(hinted(event, " ".join(row.get("annType") or [])))
-    return events
-
-
-def parse_htx(payload: dict[str, Any]) -> list[dict[str, Any]]:
-    if payload.get("code") != 200:
-        raise ValueError("Invalid HTX response")
-    return [
-        announcement(
-            "htx",
-            str(row["id"]),
-            row["title"],
-            "",
-            f"https://www.htx.com/support/en-us/detail/{row['id']}",
-            float(row["showTime"]) / 1000,
-        )
-        for row in payload["data"]["list"]
-    ]
 
 
 def parse_bithumb(payload: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -131,6 +98,32 @@ def parse_bithumb(payload: list[dict[str, Any]]) -> list[dict[str, Any]]:
         )
         events.append(hinted(event, " ".join(row.get("categories") or [])))
     return events
+
+
+def bybit_key(url: str) -> str:
+    # The article id suffix is shared by every locale of one Bybit announcement.
+    match = re.search(r"-(art[0-9a-f]+)/?$", url)
+    return match[1] if match else url
+
+
+def versions_bybit(payload: dict[str, Any]) -> dict[str, dict[str, str]]:
+    if payload.get("retCode") != 0:
+        raise ValueError("Invalid Bybit response")
+    return {
+        bybit_key(row["url"]): dict(
+            title=row["title"], body=row.get("description", ""), url=row["url"]
+        )
+        for row in payload["result"]["list"]
+    }
+
+
+def versions_bitget(payload: dict[str, Any]) -> dict[str, dict[str, str]]:
+    if payload.get("code") != "00000":
+        raise ValueError("Invalid Bitget response")
+    return {
+        str(row["annId"]): dict(title=row["annTitle"], body="", url=row["annUrl"])
+        for row in payload["data"]
+    }
 
 
 def split_symbol(symbol: str) -> tuple[str, str]:
@@ -196,6 +189,14 @@ def pair_event(
     event["category"] = "listing"
     event["symbol"] = base
     event["quiet"] = quiet
+    event["i18n"] = {
+        "en": dict(
+            title=f"{NAMES[source]} lists new pair {base}/{quote or '?'}",
+            body=f"A new trading pair {base}/{quote or '?'} appeared in the public {NAMES[source]} "
+            "market list, which usually means trading is open or about to open.",
+            url=event["url"],
+        )
+    }
     return event
 
 
@@ -205,6 +206,9 @@ class Feed:
     url: str
     parse: Callable[[Any], list[dict[str, Any]]]
     interval: float
+    # Official second language: (language, list URL, parser keyed like `key`).
+    translation: tuple[str, str, Callable[[Any], dict[str, dict[str, str]]]] | None = None
+    key: Callable[[dict[str, Any]], str] = lambda event: str(event["source_id"])
 
 
 @dataclass(frozen=True)
@@ -222,27 +226,22 @@ FEEDS = (
         "https://api.bybit.com/v5/announcements/index?locale=en-US&limit=20",
         parse_bybit,
         5,
+        # Bybit publishes Chinese as zh-TW (traditional); shown as-is, not converted.
+        (
+            "zh",
+            "https://api.bybit.com/v5/announcements/index?locale=zh-TW&limit=20",
+            versions_bybit,
+        ),
+        lambda event: bybit_key(event["url"]),
     ),
     Feed(
         "bitget",
         "https://api.bitget.com/api/v2/public/annoucements?language=en_US",
         parse_bitget,
         5,
+        ("zh", "https://api.bitget.com/api/v2/public/annoucements?language=zh_CN", versions_bitget),
     ),
-    Feed(
-        "kucoin",
-        "https://api.kucoin.com/api/v3/announcements?lang=en_US&pageSize=20",
-        parse_kucoin,
-        5,
-    ),
-    Feed(
-        "htx",
-        "https://www.htx.com/-/x/support/public/getList/v2?language=en-us&page=1&limit=20"
-        "&oneLevelId=360000031902&twoLevelId=360000039481",
-        parse_htx,
-        10,
-    ),
-    # Served through a CDN cache; new notices can appear minutes late.
+    # Korean only; served through a CDN cache, so new notices can appear minutes late.
     Feed("bithumb", "https://feed-api.bithumb.com/v1/notices?count=20", parse_bithumb, 10),
 )
 MARKETS = (
@@ -283,6 +282,15 @@ class Exchanges:
                     rows = feed.parse(await self.get(session, feed.url))
                     if not rows:
                         raise ValueError("Empty announcement page")
+                    if feed.translation:
+                        lang, url, parse = feed.translation
+                        try:
+                            other = parse(await self.get(session, url))
+                        except (aiohttp.ClientError, TimeoutError, ValueError, KeyError):
+                            other = {}  # The original language still flows; retried next poll.
+                        for row in rows:
+                            if feed.key(row) in other:
+                                row["i18n"] = {lang: other[feed.key(row)]}
                     await self.accept(feed.source, rows)
                     self.status(
                         feed.source,

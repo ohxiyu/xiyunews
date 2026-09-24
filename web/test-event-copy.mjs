@@ -25,3 +25,18 @@ assert.deepEqual(announcementCoins({title:'欧易关于 AKE 永续合约正式�
 const trendTitle='ZEC 持续走强，24 小时上涨 9.10%，突破 24 小时新高';
 assert.equal(marketLine({title:trendTitle,signal:{policy_version:2}}),trendTitle);
 assert.equal(marketLine({title:'BTC 1 分钟内下跌 1.60%',signal:{policy_version:2}}),'BTC 1 分钟内下跌 1.60%');
+
+const burst={symbol:'ONEUSDT',title:'ONE 1 分钟内下跌 2.77%',signal:{policy_version:2,components:[{type:'burst',direction:-1,change:-2.77,window_seconds:60}]}};
+assert.equal(marketLine(burst,'en'),'ONE down 2.77% in 1 min');
+assert.equal(marketLine(burst),'ONE 1 分钟内下跌 2.77%');
+const trend={symbol:'ZECUSDT',title:trendTitle,signal:{policy_version:2,components:[{type:'trend',direction:1,change:9.1,window_seconds:86400,breakout:true}]}};
+assert.equal(marketLine(trend,'en'),'ZEC strengthening, up 9.10% over 24h, new 24h high');
+const {localized}=await import('./src/event-copy.js');
+const both={title:'x',url:'https://www.bitget.com/en/a',i18n:{en:{title:'Bitget to delist ABC',summary:'S',points:'P',url:'https://www.bitget.com/en/a'},zh:{title:'Bitget 将下架 ABC',summary:'摘',points:'点',url:'https://www.bitget.com/zh-CN/a'}}};
+assert.deepEqual(localized(both,'zh'),{title:'Bitget 将下架 ABC',summary:'摘',points:'点',url:'https://www.bitget.com/zh-CN/a',original:false,alt:'Bitget to delist ABC'});
+assert.equal(localized(both,'en').title,'Bitget to delist ABC');
+const koOnly={title:'k',url:'u',i18n:{ko:{title:'만트라 출금 중지',summary:'',points:'',url:'u'}}};
+assert.equal(localized(koOnly,'zh').original,true);assert.equal(localized(koOnly,'en').title,'만트라 출금 중지');
+console.log('Bilingual selection and English market line checks passed');
+assert.deepEqual(announcementCoins({title:'Bybit Odds launch with a 17,000 USDT total prize pool'}),[]);
+console.log('Numeric amounts are not coin tags');

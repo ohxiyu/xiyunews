@@ -1,6 +1,7 @@
 """Bounded official article enrichment, separate from immutable delivery events."""
 
 import asyncio
+import contextlib
 import html as html_module
 import json
 import re
@@ -13,6 +14,7 @@ import aiohttp
 
 from .announcements import plain
 from .store import Store
+from .text import language
 
 
 class ArticleParser(HTMLParser):
@@ -105,7 +107,8 @@ def cms_text(value: str) -> str:
     return text[:20000]
 
 
-DIRECT = {"bybit", "bitget", "kucoin", "htx", "bithumb", "upbit", "gate", "mexc"}
+FAILURES = (aiohttp.ClientError, TimeoutError, ValueError, UnicodeError, KeyError, TypeError)
+Versions = dict[str, dict[str, str]]
 
 
 class ContentCollector:
@@ -113,89 +116,106 @@ class ContentCollector:
         self.store = store
         self.wake = asyncio.Event()
 
+    async def fetch(
+        self, session: aiohttp.ClientSession, url: str, headers: dict[str, str] | None = None
+    ) -> str:
+        async with session.get(url, headers=headers, allow_redirects=False) as response:
+            if response.status != 200:
+                raise ValueError("Official detail unavailable")
+            data = bytearray()
+            async for chunk in response.content.iter_chunked(65536):
+                data.extend(chunk)
+                if len(data) > 2_000_000:
+                    raise ValueError("Article exceeds limit")
+            return data.decode("utf-8")
+
+    async def okx(self, session: aiohttp.ClientSession, event: dict[str, Any]) -> Versions:
+        url = urlsplit(event["url"])
+        if (
+            url.scheme != "https"
+            or url.hostname not in {"www.okx.com", "okx.com"}
+            or not url.path.startswith("/help/")
+        ):
+            raise ValueError("Unsupported official article")
+        versions: Versions = {}
+        for lang, prefix in (("zh", "/zh-hans"), ("en", "")):
+            with contextlib.suppress(*FAILURES):
+                page_url = f"https://www.okx.com{prefix}{url.path}"
+                html = await self.fetch(session, page_url)
+                match = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.S)
+                title = plain(match[1]) if match else event["title"]
+                versions[lang] = dict(title=title, body=article_text(html), url=page_url)
+        return versions
+
+    async def binance(self, session: aiohttp.ClientSession, code: str) -> Versions:
+        if not re.fullmatch(r"[a-f0-9]{32}", code):
+            raise ValueError("Invalid article code")
+        versions: Versions = {}
+        for lang, header, path in (("zh", "zh-CN", "zh-CN"), ("en", "en", "en")):
+            with contextlib.suppress(*FAILURES):
+                payload = json.loads(
+                    await self.fetch(
+                        session,
+                        "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query"
+                        f"?articleCode={code}",
+                        {"lang": header},
+                    )
+                )
+                if payload.get("code") != "000000":
+                    raise ValueError("CMS detail schema")
+                body = cms_text(payload["data"]["body"])
+                # An English-only article is served for every locale; not a translation.
+                if lang == "zh" and len(re.findall(r"[\u4e00-\u9fff]", body)) < 20:
+                    continue
+                versions[lang] = dict(
+                    title=plain(payload["data"]["title"]),
+                    body=body,
+                    url=f"https://www.binance.com/{path}/support/announcement/detail/{code}",
+                )
+        return versions
+
     async def enrich(self, session: aiohttp.ClientSession, event: dict[str, Any]) -> None:
-        body, title, source_url = event["body"], event["title"], event["url"]
-        state, language = "ready", ""
+        """Store each official language version; never machine-translate."""
+        versions: Versions = {}
+        failed = False
         try:
             if event["source"] == "okx":
-                url = urlsplit(source_url)
-                if (
-                    url.scheme != "https"
-                    or url.hostname not in {"www.okx.com", "okx.com"}
-                    or not url.path.startswith("/help/")
-                ):
-                    raise ValueError("Unsupported official article")
-                source_url = f"https://www.okx.com/zh-hans{url.path}"
-                async with session.get(source_url, allow_redirects=False) as response:
-                    if response.status != 200:
-                        raise ValueError("Chinese detail unavailable")
-                    data = bytearray()
-                    async for chunk in response.content.iter_chunked(65536):
-                        data.extend(chunk)
-                        if len(data) > 2_000_000:
-                            raise ValueError("Article exceeds limit")
-                    html = data.decode("utf-8")
-                    body = article_text(html)
-                    match = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.S)
-                    if match:
-                        title = plain(match[1])
+                versions = await self.okx(session, event)
             elif event["source"] == "binance" and event["source_id"].startswith("cms:"):
-                code = event["source_id"][4:]
-                if not re.fullmatch(r"[a-f0-9]{32}", code):
-                    raise ValueError("Invalid article code")
-                async with session.get(
-                    "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query",
-                    params={"articleCode": code},
-                    headers={"lang": "zh-CN"},
-                    allow_redirects=False,
-                ) as response:
-                    if response.status != 200:
-                        raise ValueError("CMS detail unavailable")
-                    raw = bytearray()
-                    async for chunk in response.content.iter_chunked(65536):
-                        raw.extend(chunk)
-                        if len(raw) > 2_000_000:
-                            raise ValueError("CMS detail exceeds limit")
-                    payload = json.loads(raw)
-                    if payload.get("code") != "000000":
-                        raise ValueError("CMS detail schema")
-                    title = plain(payload["data"]["title"])
-                    body = cms_text(payload["data"]["body"])
-            if event["source"] in DIRECT:
-                # Exchange list APIs: title and summary are the notice; no detail fetch.
-                text = title + body
-                language = (
-                    "zh"
-                    if re.search(r"[\u4e00-\u9fff]", text)
-                    else "ko"
-                    if re.search(r"[\uac00-\ud7a3]", text)
-                    else "en"
-                )
-                body = body or title
-            elif len(re.findall(r"[\u4e00-\u9fff]", body)) >= 20:
-                language = "zh"
-            elif event["source"] == "binance":
-                # Official English stream (or an English-only website article): deliver the
-                # original; a later website copy replaces it with Chinese on the web.
-                if len(body) < 40:
-                    raise ValueError("Stream body missing")
-                language = "en"
-            else:
-                state = "translation_pending"
-        except (aiohttp.ClientError, TimeoutError, ValueError, UnicodeError, KeyError, TypeError):
-            state = "translation_pending"
+                versions = await self.binance(session, event["source_id"][4:])
+            failed = event["source"] == "okx" or event["source_id"].startswith("cms:")
+            failed = failed and not versions
+        except FAILURES:
+            failed = True
+        method = "official"
+        if not versions:
+            # Stream, list-API and channel sources carry the notice itself; also the fallback.
+            text = event["title"] + event["body"]
+            versions = {
+                language(text): dict(title=event["title"], body=event["body"], url=event["url"])
+            }
+            method = "original"
+        lang = next((x for x in ("zh", "en") if x in versions), next(iter(versions)))
+        chosen = versions[lang]
+        # A detail page that is briefly unavailable is retried; after 3 minutes the
+        # original is delivered rather than holding the notice back.
+        waiting = failed and time.time() - event["detected"] < 180
         await self.store.save_content(
             event["id"],
-            body,
-            brief(body) if language else "",
-            state,
-            title=title,
-            language=language,
-            url=source_url if language else event["url"],
+            chosen["body"] or chosen["title"],
+            brief(chosen["body"]),
+            "translation_pending" if waiting else "ready",
+            title=chosen["title"],
+            language=lang,
+            url=chosen["url"],
         )
+        await self.store.save_i18n(event["id"], versions, method)
 
     async def run(self) -> None:
-        async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=10)) as session:
+        # No cookies: OKX remembers the last locale and would redirect the next language.
+        async with aiohttp.ClientSession(
+            timeout=aiohttp.ClientTimeout(total=10), cookie_jar=aiohttp.DummyCookieJar()
+        ) as session:
             while True:
                 self.wake.clear()
                 # Re-query after each article so retries never queue ahead of new arrivals.

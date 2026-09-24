@@ -20,6 +20,7 @@ const context={
   EventSource:class {addEventListener(name,fn){listeners.set(name,fn);} close(){}},
   setTimeout(fn){const id=next++;timers.set(id,fn);return id;},
   clearTimeout(id){timers.delete(id);}, setInterval(){},
+  renderTable(){},
 };
 runInNewContext(readFileSync(new URL('./src/controller.js',import.meta.url),'utf8').replace(/^import .*;\n/,''),context);
 assert.equal(requests,2); // initial feed + health

@@ -11,5 +11,8 @@ try{
  assert.ok(html.includes('&lt;img'));assert.ok(!html.includes('<script>'));assert.ok(!html.includes('https://evil.example'));assert.ok(html.includes('送达未知'));assert.ok(!html.includes('#01'));assert.ok(html.includes('ABC'));assert.ok(!html.includes('<details>'));
  const official=render({...row,url:'https://www.okx.com/help/test'});assert.ok(official.includes('https://www.okx.com/help/test'));assert.ok(official.includes('noopener noreferrer'));
  const market=render({...row,kind:'market',symbol:'BTCUSDT',title:'BTC +2.50%',body:'SHOULD_NOT_APPEAR',notification_status:'sent',notification_sent:1700000030,sent:null});assert.ok(market.includes('上涨 2.50%'));assert.ok(!market.includes('SHOULD_NOT_APPEAR'));assert.ok(!market.includes('event-meta'));assert.ok(market.includes(new Date(1700000030000).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false})));
+ const bi=render({...row,url:'https://www.bitget.com/en/a',i18n:{en:{title:'Bitget to delist ABC',summary:'Trading ends soon.',points:'2026-10-01 08:00 UTC',url:'https://www.bitget.com/en/a'},zh:{title:'Bitget 将下架 ABC',summary:'交易即将结束。',points:'2026-10-01 08:00 UTC',url:'https://www.bitget.com/zh-CN/a'}}});
+ assert.ok(bi.includes('Bitget 将下架 ABC')&&bi.includes('Bitget to delist ABC')&&bi.includes('交易即将结束')&&bi.includes('key-points')&&bi.includes('要点')&&bi.includes('https://www.bitget.com/zh-CN/a'));
+ const en=renderToStaticMarkup(React.createElement(EventFeed,{rows:[{...row,i18n:{zh:{title:'仅中文',summary:'',points:'',url:''}}}],lang:'en'}));assert.ok(en.includes('仅中文')&&en.includes('Original')&&en.includes('Unknown'));
  console.log('Compact announcement, coin labels, market-only title and minute time checks passed');
 }finally{await server.close();}

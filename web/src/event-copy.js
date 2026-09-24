@@ -15,7 +15,20 @@ export function mainBody(value='') {
   if(tail>=0) text=text.slice(0,tail).trim();
   return text;
 }
-export function marketLine(event) {
+// English market line from the signal itself; the stored title is Chinese.
+function marketLineEn(event) {
+  const parts=event.signal?.components;
+  if(event.signal?.policy_version!==2||!parts?.length) return '';
+  const coin=(event.symbol||'').replace(/USDT$/,'');
+  const burst=parts.find(c=>c.type==='burst'),trend=parts.find(c=>c.type==='trend'),main=burst||trend;
+  const up=main.direction===1,pct=Math.abs(main.change).toFixed(2)+'%';
+  let text=burst?`${coin} ${up?'up':'down'} ${pct} in ${burst.window_seconds/60} min`:`${coin} ${up?'strengthening':'weakening'}, ${up?'up':'down'} ${pct} over ${trend.window_seconds/3600}h`;
+  if(trend?.breakout) text+=trend.direction===1?', new 24h high':', new 24h low';
+  return text;
+}
+
+export function marketLine(event, lang='zh') {
+  if (lang==='en') { const en=marketLineEn(event); if(en) return en; }
   if (event.signal?.policy_version === 2) return event.title;
   const change=event.signal?.change ?? Number(event.title.match(/([+-]\d+(?:\.\d+)?)%/)?.[1]);
   const symbol=(event.symbol||event.title.split(' ')[0]).replace(/USDT$/,'');
@@ -48,7 +61,7 @@ export function announcementBrief(event) {
 export function announcementCoins(event) {
   const result=new Set();
   const ignore=new Set(['USDT','USDC','USD','API','UTC','ETF','NFT','VIP','OKX','BUSD','CEO','APR','APY','POS','POW']);
-  const add=value=>{const s=value.toUpperCase().replace(/(?:USDT|USDC|USD)$/,'');if(s&&!ignore.has(s)&&/^[A-Z0-9]{2,20}$/.test(s))result.add(s);};
+  const add=value=>{const s=value.toUpperCase().replace(/(?:USDT|USDC|USD)$/,'');if(s&&!ignore.has(s)&&/^[A-Z0-9]{2,20}$/.test(s)&&/[A-Z]/.test(s))result.add(s);};
   if(event.symbol)add(event.symbol);
   const title=event.title||'';
   for(const match of title.matchAll(/\b([A-Z0-9]{2,20})\s*[/／-]?\s*(?:USDT|USDC|USD)\b/g))add(match[1]);
@@ -57,4 +70,13 @@ export function announcementCoins(event) {
   // Only explicit pairs in the body; unrelated uppercase acronyms are not coin names.
   if(!result.size)for(const match of (event.body||'').matchAll(/\b([A-Z0-9]{2,20})\s*[/／]\s*(?:USDT|USDC|USD)\b/g))add(match[1]);
   return [...result].slice(0,12);
+}
+
+// Pick the viewer's language from official versions; otherwise show what exists, marked.
+export function localized(event, lang='zh') {
+  const versions=event.i18n||{};
+  const key=(lang==='en'?['en','zh']:['zh','en']).find(k=>versions[k])||Object.keys(versions)[0];
+  if(!key) return {title:event.title,summary:announcementBrief(event),points:'',url:event.url,original:false,alt:''};
+  const chosen=versions[key],other=Object.keys(versions).find(k=>k!==key);
+  return {title:chosen.title,summary:chosen.summary,points:chosen.points,url:chosen.url||event.url,original:key!==lang,alt:other&&versions[other].title!==chosen.title?versions[other].title:''};
 }

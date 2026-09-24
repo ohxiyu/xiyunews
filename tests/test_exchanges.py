@@ -14,8 +14,6 @@ from src.platform.exchanges import (
     parse_bitget,
     parse_bithumb,
     parse_bybit,
-    parse_htx,
-    parse_kucoin,
 )
 from src.platform.store import Store
 
@@ -62,28 +60,6 @@ def test_announcement_parsers_identity_time_and_category():
         }
     )
     assert bitget[0]["source_id"] == "1256" and bitget[0]["category"] == "security"
-    kucoin = parse_kucoin(
-        {
-            "code": "200000",
-            "data": {
-                "items": [
-                    {
-                        "annId": 337590,
-                        "annTitle": "KuCoin Futures Will Adjust the Maximum Leverage",
-                        "annType": ["latest-announcements", "futures-announcements"],
-                        "annDesc": "KuCoin Futures Will Adjust the Maximum Leverage",
-                        "annUrl": "https://www.kucoin.com/announcement/en-adjust",
-                        "cTime": 1790240040000,
-                    }
-                ]
-            },
-        }
-    )
-    assert kucoin[0]["body"] == "" and kucoin[0]["published"] == 1790240040
-    htx = parse_htx(
-        {"code": 200, "data": {"list": [{"id": 65, "title": "HTX Launches X", "showTime": 1000}]}}
-    )
-    assert htx[0]["url"] == "https://www.htx.com/support/en-us/detail/65"
     bithumb = parse_bithumb(
         [
             {
@@ -97,11 +73,7 @@ def test_announcement_parsers_identity_time_and_category():
     assert bithumb[0]["published"] == 1790258789 and bithumb[0]["category"] == "maintenance"
     with pytest.raises(ValueError):
         parse_bybit({"retCode": 10001})
-    with pytest.raises(ValueError):
-        parse_htx(
-            {"code": 200, "data": {"list": [{"id": 1, "title": "x", "showTime": 1}]}}
-            | {"code": 502}
-        )
+
 
 
 @pytest.mark.asyncio
