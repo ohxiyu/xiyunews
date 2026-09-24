@@ -10,7 +10,7 @@
 尚未验证的内容：手机端合并消息显示由用户确认；宇宙变动时仅单分片重启的长期表现；24 小时连续稳定性。
 线上版本 / 对应源码提交：后端 2.1.0 运行 ff21d4cb20bccbe343310e6d11d30b5b8e846f1d；前端 f131fc0d8d0cc84f3ad7546aa904636208982c35（无前端变更）。
 阻塞与所需权限：公告实时化需 Binance 公告 API Key 或 Hyperliquid 授权会话；/api/ready 因公告降级仍 503。
-下一步具体动作：观察一天推送量与内容，按反馈调整 digest 参数（hold_seconds / market_wide_symbols）或进入推送分级。
+下一步具体动作：用户用 setup_binance_announcements.sh 配置只读币安 Key，核验 binance_announcements live 与公告延迟；随后实现英文公告补全（只有英文版的公告当前会漏）。
 
 运行资料：[Telegram运行与验收](telegram-runbook.md)。本轮证据：[阅读型信息流](releases/editorial-feed.md)。
 生产路径：/opt/fomobtc/current，SQLite /var/lib/fomobtc/fomobtc.sqlite3，systemd fomobtc，配置/etc/fomobtc.env（root0600），API https://api.fomobtc.com。虚拟环境依赖9810344 release，不能删除该目录。
