@@ -54,6 +54,8 @@ def category(title: str) -> str:
                 "voucher",
                 "carnival",
                 "win up to",
+                "prize",
+                "giveaway",
                 "活动",
                 "奖励",
                 "瓜分",
@@ -72,6 +74,14 @@ def announcement(
         "binance": {"www.binance.com", "binance.com"},
         "okx": {"www.okx.com", "okx.com"},
         "hyperliquid": {"t.me"},
+        "bybit": {"announcements.bybit.com"},
+        "bitget": {"www.bitget.com"},
+        "kucoin": {"www.kucoin.com"},
+        "htx": {"www.htx.com"},
+        "bithumb": {"feed.bithumb.com", "www.bithumb.com"},
+        "upbit": {"upbit.com"},
+        "gate": {"www.gate.com"},
+        "mexc": {"www.mexc.com"},
     }
     if urlsplit(url).scheme != "https" or urlsplit(url).hostname not in allowed[source]:
         raise ValueError("Untrusted announcement link")

@@ -105,6 +105,9 @@ def cms_text(value: str) -> str:
     return text[:20000]
 
 
+DIRECT = {"bybit", "bitget", "kucoin", "htx", "bithumb", "upbit", "gate", "mexc"}
+
+
 class ContentCollector:
     def __init__(self, store: Store) -> None:
         self.store = store
@@ -158,7 +161,18 @@ class ContentCollector:
                         raise ValueError("CMS detail schema")
                     title = plain(payload["data"]["title"])
                     body = cms_text(payload["data"]["body"])
-            if len(re.findall(r"[\u4e00-\u9fff]", body)) >= 20:
+            if event["source"] in DIRECT:
+                # Exchange list APIs: title and summary are the notice; no detail fetch.
+                text = title + body
+                language = (
+                    "zh"
+                    if re.search(r"[\u4e00-\u9fff]", text)
+                    else "ko"
+                    if re.search(r"[\uac00-\ud7a3]", text)
+                    else "en"
+                )
+                body = body or title
+            elif len(re.findall(r"[\u4e00-\u9fff]", body)) >= 20:
                 language = "zh"
             elif event["source"] == "binance":
                 # Official English stream (or an English-only website article): deliver the

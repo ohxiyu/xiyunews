@@ -3,12 +3,15 @@ import {runInNewContext} from 'node:vm';
 import assert from 'node:assert/strict';
 let requests=0, next=1;
 const timers=new Map(), elements=new Map(), listeners=new Map();
-const buttons=['','market','announcement'].map(kind=>({dataset:{kind},classList:{toggle(){}}}));
+const button=data=>({dataset:data,active:false,classList:{toggle(name,on){if(name==='active')this.owner.active=on;}},setAttribute(){}});
+const buttons=['','market','announcement'].map(kind=>button({kind}));
+const chips=['','binance','okx','upbit'].map(source=>button({source}));
+for(const b of [...buttons,...chips])b.classList.owner=b;
 const urls=[];
 const context={
   window:{FOMOBTC_CONFIG:{apiOrigin:'https://api.example.com'}},
   location:{hostname:'example.com'}, URLSearchParams, URL,
-  document:{querySelectorAll:selector=>selector==='[data-kind]'?buttons:[],getElementById(id){
+  document:{querySelectorAll:selector=>selector==='[data-kind]'?buttons:selector==='[data-source]'?chips:[],getElementById(id){
     if(!elements.has(id))elements.set(id,{value:'',textContent:'',setAttribute(){}});
     return elements.get(id);
   }},
@@ -40,14 +43,14 @@ elements.get('follow').onclick();
 assert.equal(requests,beforePause+1);
 console.log('Pause and resume checks passed');
 
-const source=elements.get('source');
-source.options=['','binance_spot','binance_futures','binance','okx','hyperliquid'].map(value=>({value}));
-source.value='binance_spot';buttons[2].onclick();
-assert.equal(source.value,'');
-assert.equal(new URL(urls.at(-1)).searchParams.get('kind'),'announcement');
-assert.equal(new URL(urls.at(-1)).searchParams.get('source'),'');
-assert.equal(source.options[1].disabled,true);
-source.value='okx';buttons[1].onclick();assert.equal(source.value,'');
-assert.equal(source.options[4].disabled,true);
-buttons[0].onclick();assert.ok(source.options.every(o=>!o.disabled));
-console.log('Cross-category source filter checks passed');
+const param=name=>new URL(urls.at(-1)).searchParams.get(name);
+buttons[2].onclick();
+assert.equal(elements.get('exchanges').hidden,false);
+assert.equal(param('kind'),'announcement');assert.equal(param('source'),'');
+chips[3].onclick();
+assert.equal(param('kind'),'announcement');assert.equal(param('source'),'upbit');assert.ok(chips[3].active&&!chips[0].active);
+buttons[1].onclick();
+assert.equal(elements.get('exchanges').hidden,true);
+assert.equal(param('kind'),'market');assert.equal(param('source'),'');assert.ok(chips[0].active&&!chips[3].active);
+buttons[2].onclick();assert.equal(param('source'),'');
+console.log('Category and exchange filter checks passed');

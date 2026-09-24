@@ -14,6 +14,7 @@ import yaml
 from .signals import signal_title
 
 T = TypeVar("T")
+CATEGORIES = ("listing", "delisting", "security", "maintenance", "promotion", "other", "price", "")
 
 
 class Store:
@@ -140,12 +141,20 @@ class Store:
         def write() -> bool:
             now = time.time()
             source, sid = str(event["source"]), str(event["source_id"])
-            content = [event.get(k, "") for k in ("title", "body", "url", "category")]
+            content = [event.get(k, "") for k in ("title", "body", "url")]
             digest = hashlib.sha256(json.dumps(content, ensure_ascii=False).encode()).hexdigest()
             old = self.db.execute(
                 "SELECT digest FROM seen WHERE source=? AND source_id=?", (source, sid)
             ).fetchone()
-            if old and old[0] == digest:
+            # Rows seen before 2.2 also hashed the derived category, whose rules may have
+            # changed since; a category change alone is not a content revision.
+            legacy = {
+                hashlib.sha256(
+                    json.dumps([*content, name], ensure_ascii=False).encode()
+                ).hexdigest()
+                for name in CATEGORIES
+            }
+            if old and (old[0] == digest or old[0] in legacy):
                 return False
             alias = event.get("alias")
             if alias and not old:
@@ -363,7 +372,7 @@ class Store:
                     "AND (?=0 OR kind!='announcement' OR EXISTS("
                     "SELECT 1 FROM announcement_content c "
                     "WHERE c.event_id=events.id AND c.state='ready' "
-                    "AND c.language IN ('zh','en'))) "
+                    "AND c.language IN ('zh','en','ko'))) "
                     "ORDER BY CASE category WHEN 'security' THEN 0 "
                     "WHEN 'delisting' THEN 1 ELSE 2 END, detected LIMIT 100",
                     (now, int(chinese_announcements)),

@@ -27,3 +27,5 @@
 - [币安公告只读 Key 配置](binance-announcement-setup.md)
 
 - [币安官方公告流推送与去重](binance-stream-delivery.md)
+
+- [2.2.0 多交易所公告与分类](2.2.0.md)

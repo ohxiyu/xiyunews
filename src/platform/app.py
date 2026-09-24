@@ -15,12 +15,13 @@ from aiohttp import web
 from .announcements import Announcements
 from .content import ContentCollector
 from .delivery import Delivery
+from .exchanges import FEEDS, MARKETS, Exchanges
 from .market import Market
 from .settings import Settings, load_settings
 from .store import Store
 
 logger = logging.getLogger("fomobtc")
-VERSION = "2.1.0"
+VERSION = "2.2.0"
 
 
 class Platform:
@@ -37,6 +38,7 @@ class Platform:
         self.market = Market(self.emit, self.status, self.stats)
         self.content = ContentCollector(self.store)
         self.collectors = Announcements(settings, self.store, self.emit, self.status)
+        self.exchanges = Exchanges(self.collectors.accept_page, self.emit, self.status)
         self.delivery = Delivery(settings, self.store)
 
     def status(self, source: str, state: str, detail: str) -> None:
@@ -85,7 +87,9 @@ class Platform:
                     added = await self.store.add(
                         event,
                         chat=chat,
-                        notify=self.settings.telegram and event["category"] != "promotion",
+                        notify=self.settings.telegram
+                        and event["category"] != "promotion"
+                        and not event.get("quiet"),
                         baseline=baseline,
                     )
                 if added:
@@ -240,7 +244,13 @@ class Platform:
                 self.status(market + "_universe", "warming", "Starting")
                 jobs.append(asyncio.create_task(self.market.run(market), name=market))
         if self.settings.announcements:
-            for source in ("okx", "binance_announcements", "hyperliquid"):
+            for source in (
+                "okx",
+                "binance_announcements",
+                "hyperliquid",
+                *(f.source for f in FEEDS),
+                *(m.source + "_markets" for m in MARKETS),
+            ):
                 self.status(source, "warming", "Starting")
             jobs.extend(
                 asyncio.create_task(task, name=name)
@@ -249,6 +259,7 @@ class Platform:
                     ("okx", self.collectors.okx()),
                     ("binance-announcements", self.collectors.binance()),
                     ("hyperliquid", self.collectors.hyperliquid()),
+                    *self.exchanges.tasks(),
                 )
             )
         runner = web.AppRunner(self.api(), shutdown_timeout=2)

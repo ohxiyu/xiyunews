@@ -40,7 +40,8 @@ export function announcementBrief(event) {
   if(!facts.length) facts=split(event.brief);
   if(!facts.length) facts=split(event.body);
   const selected=[...new Set(facts)].filter(s=>s!==event.title).slice(0,2).join(' ');
-  if(!selected) return '公告正文待补充';
+  // Many exchange list APIs carry only a title; show nothing rather than a placeholder.
+  if(!selected) return '';
   return selected.length>180?selected.slice(0,177)+'…':selected;
 }
 
