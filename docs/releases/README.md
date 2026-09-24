@@ -17,3 +17,5 @@
 - [突发与趋势预警重做（Issue #33）](burst-trend-alerts.md)
 
 - [2026-09-17策略部署](deploy-burst-trend-20260917.md)
+
+- [行情覆盖修复与 Telegram 大盘合并](universe-digest.md)

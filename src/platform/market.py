@@ -62,6 +62,67 @@ class MinuteWindow:
         return (price / self.bars[minute - 3] - 1) * 100
 
 
+SHARD_SIZE = 150
+ENTRY_VOLUME = 500000
+# Hysteresis: a monitored pair stays until volume falls 20% below the entry level,
+# so pairs hovering around the cutoff do not churn subscriptions every refresh.
+EXIT_VOLUME = 400000
+
+
+def eligible(
+    tickers: list[dict[str, Any]], now_ms: int, current: set[str] | frozenset[str] = frozenset()
+) -> dict[str, tuple[str, float]]:
+    """USDT spot pairs by 24h quote volume, excluding delisted or halted pairs.
+
+    Binance keeps returning delisted symbols from /ticker/24hr with their last
+    rolling statistics; a closeTime older than an hour means no live window.
+    """
+    groups = {}
+    for item in tickers:
+        symbol = item.get("symbol", "")
+        try:
+            volume = float(item["quoteVolume"])
+            closed = int(item["closeTime"])
+        except (ValueError, TypeError, KeyError):
+            continue
+        if (
+            not symbol.endswith("USDT")
+            or not math.isfinite(volume)
+            or volume < (EXIT_VOLUME if symbol in current else ENTRY_VOLUME)
+            or now_ms - closed > 3600000
+        ):
+            continue
+        group = "high" if volume >= 100000000 else ("mid" if volume >= 10000000 else "low")
+        groups[symbol] = (group, volume)
+    return groups
+
+
+def plan_shards(
+    shards: list[list[str]], universe: set[str], size: int = SHARD_SIZE, prune: int = 30
+) -> tuple[list[list[str]], set[int]]:
+    """Stable shard membership so a universe change restarts only the affected streams.
+
+    Removed pairs stay subscribed (their data is ignored) until a shard accumulates
+    more than `prune` of them; new pairs fill the last shard with room.
+    """
+    result = [list(shard) for shard in shards]
+    changed = set()
+    for number, shard in enumerate(result):
+        if sum(symbol not in universe for symbol in shard) > prune:
+            result[number] = [symbol for symbol in shard if symbol in universe]
+            changed.add(number)
+    assigned = {symbol for shard in result for symbol in shard}
+    for symbol in sorted(universe - assigned):
+        room = [n for n in range(len(result)) if len(result[n]) < size]
+        if not room:
+            result.append([])
+            room = [len(result) - 1]
+        number = room[-1]
+        result[number].append(symbol)
+        changed.add(number)
+    return result, changed
+
+
 class Market:
     def __init__(self, emit: Emit, status: Status, stats: dict[str, Any]) -> None:
         self.emit, self.status, self.stats = emit, status, stats
@@ -129,69 +190,48 @@ class Market:
         base = "https://api.binance.com" if market == "spot" else "https://fapi.binance.com"
         prefix = "/api/v3" if market == "spot" else "/fapi/v1"
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=10)) as session:
-            tasks: list[asyncio.Task[None]] = []
+            tasks: dict[int, asyncio.Task[None]] = {}
+            shards: list[list[str]] = []
             groups: dict[str, tuple[str, float]] = {}
-            symbols: set[str] = set()
             try:
                 while True:
                     try:
                         async with session.get(base + prefix + "/ticker/24hr") as response:
                             response.raise_for_status()
                             tickers = await response.json()
-                        new_groups = {}
-                        for item in tickers:
-                            symbol = item.get("symbol", "")
-                            try:
-                                volume = float(item["quoteVolume"])
-                            except (ValueError, TypeError, KeyError):
-                                continue
-                            if (
-                                not symbol.endswith("USDT")
-                                or not math.isfinite(volume)
-                                or volume < 500000
-                            ):
-                                continue
-                            high = 100000000 if market == "spot" else 200000000
-                            group = (
-                                "high"
-                                if volume >= high
-                                else ("mid" if volume >= 10000000 else "low")
-                            )
-                            new_groups[symbol] = (group, volume)
+                        new_groups = eligible(tickers, int(time.time() * 1000), set(groups))
                         if not new_groups:
                             raise ValueError("No eligible pairs")
                         groups.clear()
                         groups.update(new_groups)
                         self.universe_time[market] = time.monotonic()
                         self.status(market + "_universe", "live", f"{len(groups)} eligible pairs")
-                        if symbols != set(groups):
-                            for task in tasks:
-                                task.cancel()
-                            await asyncio.gather(*tasks, return_exceptions=True)
-                            for number in range(len(tasks)):
-                                self.status(f"{market}_stream_{number}", "retired", "Rebalancing")
-                            symbols = set(groups)
-                            ordered = sorted(symbols)
-                            tasks = [
-                                asyncio.create_task(
-                                    self.shard(
-                                        session,
-                                        market,
-                                        base + prefix,
-                                        ordered[i : i + 150],
-                                        groups,
-                                        i // 150,
-                                    )
+                        shards, changed = plan_shards(shards, set(groups))
+                        for number in sorted(changed):
+                            old = tasks.pop(number, None)
+                            if old:
+                                old.cancel()
+                                await asyncio.gather(old, return_exceptions=True)
+                            if not shards[number]:
+                                self.status(f"{market}_stream_{number}", "retired", "Empty")
+                                continue
+                            tasks[number] = asyncio.create_task(
+                                self.shard(
+                                    session,
+                                    market,
+                                    base + prefix,
+                                    shards[number],
+                                    groups,
+                                    number,
                                 )
-                                for i in range(0, len(ordered), 150)
-                            ]
+                            )
                     except (aiohttp.ClientError, TimeoutError, ValueError, TypeError, KeyError):
                         self.status(market + "_universe", "error", "Volume universe refresh failed")
                     await asyncio.sleep(self.refresh if groups else 15)
             finally:
-                for task in tasks:
+                for task in tasks.values():
                     task.cancel()
-                await asyncio.gather(*tasks, return_exceptions=True)
+                await asyncio.gather(*tasks.values(), return_exceptions=True)
 
     async def shard(
         self,
@@ -226,11 +266,13 @@ class Market:
             }
             repairs: dict[str, asyncio.Task[None]] = {}
             seed_attempt: dict[str, float] = {}
+            listings: set[str] = set()
 
             async def seed(
                 symbol: str,
                 trends: dict[str, TrendWindow] = trends,
                 seed_attempt: dict[str, float] = seed_attempt,
+                listings: set[str] = listings,
             ) -> None:
                 seed_attempt[symbol] = time.monotonic()
                 try:
@@ -244,7 +286,13 @@ class Market:
                             },
                         ) as response:
                             response.raise_for_status()
-                            trends[symbol].seed(await response.json(), int(time.time() * 1000))
+                            rows = await response.json()
+                            trends[symbol].seed(rows, int(time.time() * 1000))
+                        # Pairs listed less than 24h ago cannot have trend history yet.
+                        if len(rows) < 97:
+                            listings.add(symbol)
+                        else:
+                            listings.discard(symbol)
                         await asyncio.sleep(0.1)
                 except (aiohttp.ClientError, TimeoutError, ValueError, TypeError, KeyError):
                     pass  # Incomplete history fails closed and is retried on the next candle.
@@ -271,6 +319,7 @@ class Market:
                     for symbol in symbols:
                         repairs[symbol] = asyncio.create_task(seed(symbol))
                     last_status = 0.0
+                    connected = time.monotonic()
                     async for message in ws:
                         if message.type == aiohttp.WSMsgType.ERROR:
                             raise ConnectionError("Market stream failed")
@@ -295,8 +344,9 @@ class Market:
                         group, volume = groups[symbol]
                         thresholds = dict(self.policy["burst"]["thresholds"][group])
                         if thresholds != window.thresholds:
+                            # A volume-group change alters thresholds, not the price history.
                             window.thresholds = thresholds
-                            window.reset()
+                            window.candidates.clear()
                         hits: list[dict[str, Any]] = []
                         if data["e"] == "aggTrade":
                             hits, resets = window.update(data, now_ms)
@@ -347,18 +397,24 @@ class Market:
                         self.rates[market] = {t: n for t, n in buckets.items() if t >= bucket - 11}
                         self.latencies.append((time.perf_counter() - received) * 1000)
                         if time.monotonic() - last_status > 1:
-                            ready = sum(
-                                w.ready and now_ms - w.last_time <= 10000 for w in windows.values()
-                            )
+                            # A quiet pair keeps a valid window between trades; readiness is
+                            # not "traded within the last 10 seconds".
+                            active = [s for s in symbols if s in groups]
+                            ready = sum(windows[s].ready for s in active)
+                            recent = sum(now_ms - windows[s].last_time <= 10000 for s in active)
                             latest = now_ms // 900000 * 900000 - 900000
                             history = sum(
-                                all(latest - i * 900000 in t.bars for i in range(96))
-                                for t in trends.values()
+                                all(latest - i * 900000 in trends[s].bars for i in range(96))
+                                for s in active
                             )
+                            young = len(listings.intersection(active))
+                            warm = time.monotonic() - connected >= 180
                             self.status(
                                 name,
-                                "live" if ready == history == len(symbols) else "warming",
-                                f"{len(symbols)} pairs; {ready} burst ready; {history} trend ready",
+                                "live" if warm and history + young >= len(active) else "warming",
+                                f"{len(active)} pairs; {ready} burst ready "
+                                f"({recent} traded in 10s); "
+                                f"{history} trend ready; {young} listed <24h",
                             )
                             last_status = time.monotonic()
                         for hit in hits:

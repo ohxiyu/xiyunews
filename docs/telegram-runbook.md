@@ -31,3 +31,6 @@ P2：自然事件延迟P95/P99、断线恢复与24小时稳定性。Binance/Hype
 
 ## 2026-09-16 私聊准备
 用户已创建机器人，暂不加入群组。先在机器人私聊点击开始或发送/start，再由用户通过服务器编辑器将Token写入/etc/fomobtc.env，不要粘贴到聊天、命令参数或git。保持TELEGRAM_ENABLED=false，通过getUpdates识别私聊chat.id并核验目标后填写TELEGRAM_CHAT_ID。保留原有配置项，不覆盖整份文件。不关闭群组隐私模式、不申请群组权限。仍按上面的队列检查和启用顺序验收；本轮未发送消息。
+
+## 一键私聊配置（scripts/setup_telegram.sh）
+在本机运行 `ssh -t -F ~/.ssh/fomobtc_tokyo_config fomobtc-tokyo 'sudo bash /opt/fomobtc/current/scripts/setup_telegram.sh'`。脚本隐藏输入 Token（不进命令行/日志），getMe 核验机器人，提示私聊 /start 后用 getUpdates 取私聊 Chat ID 并请用户确认，显示待发送队列，发送测试消息并等待用户确认手机收件，之后备份 /etc/fomobtc.env（0600）、写入 Token/Chat ID/TELEGRAM_ENABLED=true 并重启；启动失败自动恢复备份。自然事件推送仍需单独观察记录。

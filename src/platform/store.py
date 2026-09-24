@@ -262,9 +262,14 @@ class Store:
                     f"v2:{event['source']}:{symbol}:{json.dumps(accepted, sort_keys=True)}".encode()
                 ).hexdigest()[:32]
                 nid = eid + "n" if notify else ""
-                for record, category, status, target, expires in [
-                    (eid, "price", "archived", "", now),
-                    *(([(nid, "price_notice", "pending", chat, now + 120)]) if notify else []),
+                hold = self.policy["digest"]["hold_seconds"]
+                for record, category, status, target, due, expires in [
+                    (eid, "price", "archived", "", now, now),
+                    *(
+                        [(nid, "price_notice", "pending", chat, now + hold, now + 120)]
+                        if notify
+                        else []
+                    ),
                 ]:
                     self.db.execute(
                         "INSERT INTO events(id,kind,source,source_id,title,url,body,category,"
@@ -285,7 +290,7 @@ class Store:
                             0,
                             status,
                             target,
-                            now,
+                            due,
                             "",
                             expires,
                         ),
@@ -341,10 +346,33 @@ class Store:
                             result["body"] = content["brief"]
                             result["url"] = content["url"] or result["url"]
                         result["attempts"] += 1
+                        if result["category"] == "price_notice":
+                            result["members"] = self._claim_digest(result, now)
                         return result
                 return None
 
         return await self.run(take)
+
+    def _claim_digest(self, leader: dict[str, Any], now: float) -> list[dict[str, Any]]:
+        """Claim every due market notice for the same chat into one Telegram message."""
+        rows = self.db.execute(
+            "SELECT id,title,symbol,detected FROM events WHERE status='pending' AND due<=? "
+            "AND category='price_notice' AND chat=? AND id!=? ORDER BY detected LIMIT ?",
+            (now, leader["chat"], leader["id"], self.policy["digest"]["max_items"] - 1),
+        ).fetchall()
+        members = [{k: leader[k] for k in ("id", "title", "symbol", "detected")}]
+        members += [dict(r) for r in rows]
+        for member in members[1:]:
+            self.db.execute(
+                "UPDATE events SET status='sending',attempts=attempts+1 WHERE id=?",
+                (member["id"],),
+            )
+        for member in members:
+            episode = self.db.execute(
+                "SELECT direction FROM market_episodes WHERE notice_id=?", (member["id"],)
+            ).fetchone()
+            member["direction"] = episode[0] if episode else 0
+        return members
 
     async def finish(
         self,
@@ -359,19 +387,21 @@ class Store:
         def save() -> None:
             now = time.time()
             with self.db:
-                self.db.execute(
-                    "UPDATE events SET status=?,due=?,sent=?,error=?,telegram_id=?,"
-                    "dispatch_ms=? WHERE id=?",
-                    (
-                        status,
-                        now + delay,
-                        now if status == "sent" else None,
-                        error,
-                        message_id,
-                        duration,
-                        event["id"],
-                    ),
-                )
+                # A digest shares one Telegram message and one outcome across its notices.
+                for eid in [m["id"] for m in event.get("members") or [event]]:
+                    self.db.execute(
+                        "UPDATE events SET status=?,due=?,sent=?,error=?,telegram_id=?,"
+                        "dispatch_ms=? WHERE id=?",
+                        (
+                            status,
+                            now + delay,
+                            now if status == "sent" else None,
+                            error,
+                            message_id,
+                            duration,
+                            eid,
+                        ),
+                    )
                 if status == "sent" and event["cooldown_key"]:
                     self.db.execute(
                         "INSERT OR REPLACE INTO cooldown VALUES (?,?)",

@@ -34,3 +34,9 @@ market_alerts:
     change_24h: 8.0
     edge_fraction: 0.1
     cooldown_seconds: 21600
+  # Telegram only: notices due together are sent as one message. The web keeps one
+  # event per symbol. hold_seconds delays each notice so candle-close trends cluster.
+  digest:
+    hold_seconds: 3
+    max_items: 30
+    market_wide_symbols: 4

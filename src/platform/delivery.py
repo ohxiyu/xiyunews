@@ -2,6 +2,7 @@
 
 import asyncio
 import html
+import re
 import time
 from typing import Any
 
@@ -11,8 +12,35 @@ from .settings import Settings
 from .store import Store
 
 
-def format_message(event: dict[str, Any]) -> str:
+def _magnitude(title: str) -> float:
+    match = re.search(r"(\d+(?:\.\d+)?)%", title)
+    return float(match[1]) if match else 0.0
+
+
+def format_digest(members: list[dict[str, Any]], market_wide: int) -> str:
+    """One message per delivery slot; a same-direction cluster gets a market-wide header."""
+    sections = []
+    for direction, label in ((-1, "下跌"), (1, "上涨"), (0, "")):
+        titles = sorted(
+            (m["title"] for m in members if m.get("direction", 0) == direction),
+            key=_magnitude,
+            reverse=True,
+        )
+        if not titles:
+            continue
+        symbols = {m["symbol"] for m in members if m.get("direction", 0) == direction}
+        lines = [html.escape(t[:200]) for t in titles]
+        if label and len(symbols) >= market_wide:
+            lines.insert(0, f"<b>市场联动{label} · {len(symbols)} 个币种</b>")
+        sections.append("\n".join(lines))
+    return "\n\n".join(sections)
+
+
+def format_message(event: dict[str, Any], market_wide: int = 4) -> str:
     if event["kind"] == "market":
+        members = event.get("members") or []
+        if len(members) > 1:
+            return format_digest(members, market_wide)
         return html.escape(event["title"][:500])
     heading = "行情异动" if event["kind"] == "market" else "官方公告"
     revised = " · 更新" if event["updated"] else ""
@@ -73,7 +101,9 @@ class Delivery:
                 f"https://api.telegram.org/bot{self.settings.token}/sendMessage",
                 json={
                     "chat_id": event["chat"],
-                    "text": format_message(event),
+                    "text": format_message(
+                        event, self.store.policy["digest"]["market_wide_symbols"]
+                    ),
                     "parse_mode": "HTML",
                     "disable_web_page_preview": True,
                 },
