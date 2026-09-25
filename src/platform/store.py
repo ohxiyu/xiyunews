@@ -498,9 +498,10 @@ class Store:
             )
         for member in members:
             episode = self.db.execute(
-                "SELECT direction FROM market_episodes WHERE notice_id=?", (member["id"],)
+                "SELECT direction,data FROM market_episodes WHERE notice_id=?", (member["id"],)
             ).fetchone()
             member["direction"] = episode[0] if episode else 0
+            member["signal"] = json.loads(episode[1]) if episode else None
         return members
 
     async def finish(

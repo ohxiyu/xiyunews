@@ -8,6 +8,8 @@ from typing import Any
 
 import aiohttp
 
+from .chart import render
+from .market_cap import MarketCap, compact
 from .settings import Settings
 from .store import Store
 
@@ -79,9 +81,46 @@ def format_announcement(event: dict[str, Any]) -> str:
     return "\n".join(parts)
 
 
+def market_caption(member: dict[str, Any], cap: float | None = None) -> str:
+    """Bilingual single-alert caption, as in the reference channel format."""
+    parts = member["signal"]["components"]
+    burst = next((c for c in parts if c["type"] == "burst"), None)
+    trend = next((c for c in parts if c["type"] == "trend"), None)
+    main = burst or trend
+    assert main is not None
+    up = main["direction"] == 1
+    dot, pct = ("🟢" if up else "🔴"), f"{abs(main['change']):.2f}%"
+    if burst:
+        seconds = burst["window_seconds"]
+        zh = f"币安现货价格在过去 {seconds} 秒内{'上涨' if up else '下跌'}了 {pct}"
+        move = "surged" if up else "dropped"
+        en = f"Binance spot price {move} {pct} in the past {seconds} seconds"
+    else:
+        assert trend is not None
+        hours = trend["window_seconds"] // 3600
+        zh = (
+            f"币安现货持续{'走强' if up else '走弱'}\uff0c"
+            f"过去 {hours} 小时{'上涨' if up else '下跌'}了 {pct}"
+        )
+        en = (
+            f"Binance spot kept {'rising' if up else 'falling'}, "
+            f"{'up' if up else 'down'} {pct} over the past {hours} hours"
+        )
+    if trend and trend.get("breakout"):
+        high = trend["direction"] == 1
+        zh += "\uff0c突破 24 小时新高" if high else "\uff0c跌破 24 小时新低"
+        en += ", breaking the 24h high" if high else ", breaking the 24h low"
+    symbol = html.escape(member["symbol"])
+    lines = [f"🇨🇳 {dot} [{symbol}] {zh}", f"🇺🇸 {dot} [{symbol}] {en}"]
+    if cap:
+        coin = html.escape(member["symbol"].removesuffix("USDT"))
+        lines += ["", "💰 市值", f"{coin}  MarketCap: {compact(cap)}"]
+    return "\n".join(lines)
+
+
 class Delivery:
-    def __init__(self, settings: Settings, store: Store) -> None:
-        self.settings, self.store = settings, store
+    def __init__(self, settings: Settings, store: Store, caps: MarketCap | None = None) -> None:
+        self.settings, self.store, self.caps = settings, store, caps
         self.busy: set[str] = set()
         self.next_chat: dict[str, float] = {}
         self.global_pause = 0.0
@@ -119,19 +158,59 @@ class Delivery:
                         task.cancel()
                     await asyncio.gather(*pending, return_exceptions=True)
 
+    async def chart(self, session: aiohttp.ClientSession, member: dict[str, Any]) -> bytes:
+        burst = any(c["type"] == "burst" for c in member["signal"]["components"])
+        # Bursts: 5 hours of 1m candles; trends: 24 hours of 15m candles.
+        interval, limit = ("1m", 300) if burst else ("15m", 96)
+        async with session.get(
+            "https://api.binance.com/api/v3/klines",
+            params={"symbol": member["symbol"], "interval": interval, "limit": limit},
+        ) as r:
+            if r.status != 200:
+                raise ValueError("Klines unavailable")
+            rows = await r.json()
+        title = f"{member['symbol']} · {interval} · Binance Spot"
+        return await asyncio.to_thread(render, rows, title)
+
+    async def request(
+        self, session: aiohttp.ClientSession, event: dict[str, Any]
+    ) -> tuple[str, dict[str, Any]]:
+        """Telegram method and arguments; a single market alert becomes a chart photo."""
+        members = event.get("members") or []
+        if event["kind"] == "market" and len(members) == 1 and members[0].get("signal"):
+            member = members[0]
+            caption = market_caption(member, self.caps.get(member["symbol"]) if self.caps else None)
+            try:
+                form = aiohttp.FormData()
+                form.add_field("chat_id", str(event["chat"]))
+                form.add_field("caption", caption)
+                form.add_field("parse_mode", "HTML")
+                form.add_field(
+                    "photo",
+                    await self.chart(session, member),
+                    filename="chart.png",
+                    content_type="image/png",
+                )
+                return "sendPhoto", {"data": form}
+            except (aiohttp.ClientError, TimeoutError, ValueError, KeyError, TypeError, OSError):
+                text = caption  # The chart is optional; the alert itself is not.
+        else:
+            text = format_message(event, self.store.policy["digest"]["market_wide_symbols"])
+        return "sendMessage", {
+            "json": {
+                "chat_id": event["chat"],
+                "text": text,
+                "parse_mode": "HTML",
+                "disable_web_page_preview": True,
+            }
+        }
+
     async def send(self, session: aiohttp.ClientSession, event: dict[str, Any]) -> None:
         started = time.perf_counter()
         try:
+            method, arguments = await self.request(session, event)
             async with session.post(
-                f"https://api.telegram.org/bot{self.settings.token}/sendMessage",
-                json={
-                    "chat_id": event["chat"],
-                    "text": format_message(
-                        event, self.store.policy["digest"]["market_wide_symbols"]
-                    ),
-                    "parse_mode": "HTML",
-                    "disable_web_page_preview": True,
-                },
+                f"https://api.telegram.org/bot{self.settings.token}/{method}", **arguments
             ) as r:
                 data = await r.json(content_type=None)
                 if r.status == 200 and data.get("ok") is True:

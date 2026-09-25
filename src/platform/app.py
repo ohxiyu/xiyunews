@@ -17,11 +17,12 @@ from .content import ContentCollector
 from .delivery import Delivery
 from .exchanges import FEEDS, MARKETS, Exchanges
 from .market import Market
+from .market_cap import MarketCap
 from .settings import Settings, load_settings
 from .store import Store
 
 logger = logging.getLogger("fomobtc")
-VERSION = "2.3.0"
+VERSION = "2.4.0"
 
 
 class Platform:
@@ -39,7 +40,8 @@ class Platform:
         self.content = ContentCollector(self.store)
         self.collectors = Announcements(settings, self.store, self.emit, self.status)
         self.exchanges = Exchanges(self.collectors.accept_page, self.emit, self.status)
-        self.delivery = Delivery(settings, self.store)
+        self.caps = MarketCap()
+        self.delivery = Delivery(settings, self.store, self.caps)
 
     def status(self, source: str, state: str, detail: str) -> None:
         old = self.sources.get(source, {})
@@ -236,6 +238,7 @@ class Platform:
         ]
         if self.settings.telegram:
             jobs.append(asyncio.create_task(self.delivery.run(), name="delivery"))
+            jobs.append(asyncio.create_task(self.caps.run(), name="market-cap"))
         if self.settings.market:
             jobs.append(asyncio.create_task(self.market.flush_loop(), name="market-summaries"))
             for market in ("spot",):

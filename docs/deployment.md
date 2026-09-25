@@ -96,3 +96,5 @@ and acceptance state are recorded separately in the latest handoff.
 
 The canonical public frontend is fomobtc.com. Adding its custom-domain route
 disables the old workers.dev route by Wrangler default; it is not a fallback URL.
+
+2.4.0 起依赖含 Pillow：每个 release 在自身目录创建 venv 并 `pip install --require-hashes -r requirements.lock`，不再链接旧 release 的 venv；回退时旧 release 仍使用其原有 venv。
