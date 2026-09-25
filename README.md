@@ -24,7 +24,10 @@ credential requirements: [handoff](docs/handoff.md).
 - Up to one second merges simultaneous signals; per-chat pacing and delayed retries.
   Timeouts are marked unknown, not silently reported as successful.
 - Read-only API on the VPS (`/api/health`, `/api/ready`, `/api/events`) for
-  monitoring and inspection; there is no web frontend.
+  monitoring and inspection; there is no web frontend. fomobtc.com redirects to the
+  Telegram group from the same nginx.
+- An off-server Cloudflare Worker checks `/api/health` every 5 minutes and alerts the
+  operator privately in Telegram (scripts/deploy/watchdog).
 
 ## Quick start
 

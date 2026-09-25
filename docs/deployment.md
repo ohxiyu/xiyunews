@@ -71,9 +71,21 @@ and acceptance state are recorded separately in the latest handoff.
 
 2.4.0 起依赖含 Pillow：每个 release 在自身目录创建 venv 并 `pip install --require-hashes -r requirements.lock`，不再链接旧 release 的 venv；回退时旧 release 仍使用其原有 venv。
 
-## Domain redirect
+## Single host, DNS and watchdog
 
-`fomobtc.com` serves no page: the Worker `fomobtc` in `scripts/deploy/redirect`
-answers every path with a 302 to the Telegram group invite link (`TARGET` var).
-Deploy from that directory with `npx wrangler deploy`; change `TARGET` there if the
-invite link is replaced. `api.fomobtc.com` is a separate DNS-only record to the VPS.
+Everything that serves traffic runs on the Tokyo VPS. Cloudflare only hosts the DNS
+zone (all records DNS-only, grey cloud) and the off-server watchdog.
+
+- DNS: `fomobtc.com`, `www.fomobtc.com` and `api.fomobtc.com` are A records to
+  47.79.36.171. Edit them in the Cloudflare dashboard (the wrangler login cannot).
+- `fomobtc.com` / `www` serve no page: nginx (see nginx.conf) returns a 302 to the
+  Telegram group invite link on every path. If the link is replaced, edit both
+  `return 302` lines and reload nginx. Its certificate (`--cert-name fomobtc.com`)
+  renews with the same certbot timer as the API certificate.
+- Watchdog: `scripts/deploy/watchdog` is a Cloudflare Worker (`fomobtc-watchdog`,
+  cron every 5 minutes, KV `STATE`) that reads `https://api.fomobtc.com/api/health`
+  and privately messages the operator after two consecutive failing checks
+  (no response, Telegram disabled, spot trades older than 5 minutes, a source in
+  error/stale/blocked, or more than 30 queued notices), reminds every 2 hours and
+  announces recovery. Deploy with `npx wrangler deploy` in that directory; secrets
+  `TELEGRAM_BOT_TOKEN` and `ALERT_CHAT_ID` are set by `scripts/setup_watchdog.sh`.

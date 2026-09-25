@@ -43,3 +43,5 @@
 - [2.5.1 精简为采集 + Telegram 推送](2.5.1.md)
 
 - [fomobtc.com 跳转群组与成员只读](domain-redirect.md)
+
+- [单机运行与看门狗](single-host-watchdog.md)
