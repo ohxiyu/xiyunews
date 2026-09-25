@@ -45,3 +45,5 @@
 - [fomobtc.com 跳转群组与成员只读](domain-redirect.md)
 
 - [单机运行与看门狗](single-host-watchdog.md)
+
+- [2.6.0 行情异动单一规则](2.6.0.md) · [部署与线上验收](deploy-20260925-simple-moves.md)
