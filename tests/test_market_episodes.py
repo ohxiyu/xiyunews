@@ -1,4 +1,4 @@
-"""Policy gates persist across restarts and share web/Telegram events."""
+"""Policy gates persist across restarts and share API/Telegram events."""
 
 import time
 

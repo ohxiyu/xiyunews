@@ -16,7 +16,7 @@ and announcement data only. Restrict access at the proxy if the dashboard is pri
 3. Create user/group fomobtc and /var/lib/fomobtc owned by it. Put production env
    in /etc/fomobtc.env (root-owned 0600, read by systemd), using .env.example.
    Set FOMOBTC_DB=/var/lib/fomobtc/fomobtc.sqlite3, SOURCE_COMMIT=<full SHA>,
-   FRONTEND_ORIGIN=<exact frontend origin>. Secrets remain server-side.
+   FRONTEND_ORIGIN may stay empty (no web frontend). Secrets remain server-side.
 4. Stop the old CoinSignal service before migration. If its Redis has active
    cooldowns, run `venv/bin/python -m scripts.import_cooldowns --database
    /var/lib/fomobtc/fomobtc.sqlite3` from the release with Redis variables present.
@@ -50,15 +50,6 @@ already authorized Telegram session file in /var/lib/fomobtc and API ID/hash.
 Do not log in interactively from the daemon. Session and DB must be writable by
 fomobtc and excluded from git. No credential means no authenticated acceptance.
 
-## Frontend: Cloudflare Workers static assets
-
-From web/: `npm ci`, `npm run check`, then build with API_ORIGIN=https://<backend>
-and SOURCE_COMMIT=<full SHA> using `npm run build`.
-Run `npx wrangler deploy --dry-run`, then `npx wrangler deploy --keep-vars`.
-API_ORIGIN is a public HTTPS address, not a secret. Without it the site clearly
-shows “待接入后端” and does not fabricate data. This is a frontend-only deployment,
-not a working backend. Verify TLS, security headers, real events and filters.
-
 ## Rollback
 
 Record the previous current symlink and source SHA before changing them. Stop
@@ -66,14 +57,12 @@ fomobtc, retain SQLite and env, restore the prior release and restart its manage
 If reverting to legacy CoinSignal, account for cooldowns created after migration:
 legacy Redis was preserved but does not include newly sent FomoBTC alerts. Do not
 start both services. Re-check source SHA, process count, health and duplicate alerts.
-Use Cloudflare deployment rollback to restore the recorded previous frontend
-version. First frontend deployment has no prior version; remove its exposure if
-needed. Add an actual deploy-* evidence record only after a real deployment.
+Add an actual deploy-* evidence record only after a real deployment.
 
 ## Tokyo production host and domain
 
-The production layout is Cloudflare static frontend `https://fomobtc.com` and
-DNS-only backend `https://api.fomobtc.com` on the Tokyo VPS. Domain configuration
+The production layout is the DNS-only backend `https://api.fomobtc.com` on the
+Tokyo VPS; the web frontend at `fomobtc.com` was retired on 2026-09-25. Domain configuration
 and acceptance state are recorded separately in the latest handoff.
 
 - Keep `/etc/fomobtc.env` root-owned mode 0600; bind the app to loopback only.
@@ -88,13 +77,8 @@ and acceptance state are recorded separately in the latest handoff.
   `fomobtc-certbot.timer`. Verify a staging renewal with `certbot renew --dry-run`.
 - nginx limits each IP to 5 requests/second with a burst of 20, five concurrent
   requests, and 80 total upstream requests/streams. Buffering is disabled for SSE.
-- Build frontend with `API_ORIGIN=https://api.fomobtc.com` and the actual source
-  SHA. Set backend `FRONTEND_ORIGIN=https://fomobtc.com` once that domain is live.
 - Keep Telegram disabled until credentials are configured and delivery is
   deliberately validated. Readiness 503 is expected while required sources are
   blocked; do not relabel it healthy to complete deployment.
-
-The canonical public frontend is fomobtc.com. Adding its custom-domain route
-disables the old workers.dev route by Wrangler default; it is not a fallback URL.
 
 2.4.0 起依赖含 Pillow：每个 release 在自身目录创建 venv 并 `pip install --require-hashes -r requirements.lock`，不再链接旧 release 的 venv；回退时旧 release 仍使用其原有 venv。

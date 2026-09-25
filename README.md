@@ -4,7 +4,8 @@ Low-latency Binance price-change alerts and official announcements from Binance,
 OKX and Hyperliquid, delivered through Telegram with a read-only dashboard.
 Formerly CoinSignal; the repository is now https://github.com/ohxiyu/fomobtc.
 
-Dashboard: [fomobtc.com](https://fomobtc.com). Current deployment and remaining
+Delivery: one Telegram forum group with topics for market moves, exchange
+announcements and on-chain Binance flows (no web frontend). Current deployment and remaining
 credential requirements: [handoff](docs/handoff.md).
 
 ## Runtime
@@ -22,8 +23,8 @@ credential requirements: [handoff](docs/handoff.md).
   Web and Telegram share one title and event; no Redis required.
 - Up to one second merges simultaneous signals; per-chat pacing and delayed retries.
   Timeouts are marked unknown, not silently reported as successful.
-- Static frontend: live feed, searchable history and source health; optional
-  Cloudflare hosting. Read-only API and SSE run on the VPS.
+- Read-only API on the VPS (`/api/health`, `/api/ready`, `/api/events`) for
+  monitoring and inspection; there is no web frontend.
 
 ## Quick start
 
@@ -50,8 +51,7 @@ python -m compileall -q src run.py
 python scripts/check_repository.py
 ```
 
-Frontend, from web/: `npm ci`, `npm run check`, `npm run build`.
-CI runs Python checks on 3.11/3.12 plus frontend and repository checks.
+CI runs Python checks on 3.11/3.12 plus repository checks.
 
 ## Handoff and delivery
 
@@ -60,4 +60,4 @@ Read [AGENTS.md](AGENTS.md), [current handoff](docs/handoff.md),
 [UI rules](docs/ui-rules.md), [deployment and rollback](docs/deployment.md),
 and [release evidence](docs/releases/README.md).
 Production runtime and real notification acceptance must be verified separately
-from local tests and frontend publication.
+from local tests.
