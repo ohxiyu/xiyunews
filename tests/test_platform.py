@@ -204,7 +204,6 @@ async def test_api_read_only_filter_and_secret_redaction(tmp_path):
             telegram=False,
             market=False,
             announcements=False,
-            origin="https://fomobtc.example",
         )
     )
     await app.store.add(event(), chat="secret-chat", notify=False)
@@ -212,7 +211,9 @@ async def test_api_read_only_filter_and_secret_redaction(tmp_path):
         result = await client.get(
             "/api/events?q=TEST", headers={"Origin": "https://fomobtc.example"}
         )
-        assert result.headers["Access-Control-Allow-Origin"] == "https://fomobtc.example"
+        # No browser client any more: no CORS grant, no live stream endpoint.
+        assert "Access-Control-Allow-Origin" not in result.headers
+        assert (await client.get("/api/stream")).status == 404
         body = await result.text()
         assert "secret-chat" not in body
         assert len(json.loads(body)["events"]) == 1

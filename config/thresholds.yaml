@@ -1,27 +1,8 @@
-# CoinSignal Configuration
-# 3-Minute Change Alert System
+# FomoBTC alert policy (src/platform).
 
-alerts:
-  cooldown_seconds: 7200
-  max_batch_size: 10
-  batch_window_seconds: 2.0
-
-change3m_alert:
-  scan_interval_seconds: 60
-  group_refresh_seconds: 600
-  max_concurrent_requests: 20
-
-  # Thresholds by market and absolute 24h quote-volume group.
-  thresholds:
-    spot_high: 2.5
-    spot_mid: 6
-    spot_low: 10
-    futures_high: 4
-    futures_mid: 10
-    futures_low: 20
-
-# Active v2 policy. Legacy change3m_alert is retained only for the legacy runtime.
 market_alerts:
+  # Binance spot universe and volume groups are refreshed this often.
+  universe_refresh_seconds: 600
   burst:
     confirmation_ms: 3000
     cooldown_seconds: 900

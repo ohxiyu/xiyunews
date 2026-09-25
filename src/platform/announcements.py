@@ -257,9 +257,6 @@ class Announcements:
                 await asyncio.sleep(delay)
 
     async def hyperliquid(self) -> None:
-        if self.settings.hyper_session:
-            await self.hyperliquid_client()
-            return
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=10)) as session:
             while True:
                 delay = self.settings.hyper_interval
@@ -279,64 +276,6 @@ class Announcements:
                     self.status("hyperliquid", "error", "Public channel preview unavailable")
                     delay = max(delay, 60)
                 await asyncio.sleep(delay)
-
-    async def hyperliquid_client(self) -> None:
-        # Optional dependency; never prompts for login in the daemon.
-        try:
-            from telethon import TelegramClient, events
-        except ImportError:
-            self.status(
-                "hyperliquid", "blocked", "Install requirements-telegram.txt for client mode"
-            )
-            await asyncio.Event().wait()
-            return
-
-        if not self.settings.telegram_api_id or not self.settings.telegram_api_hash:
-            self.status("hyperliquid", "blocked", "Telegram client credentials missing")
-            await asyncio.Event().wait()
-            return
-        while True:
-            client = None
-            try:
-                client = TelegramClient(
-                    self.settings.hyper_session,
-                    self.settings.telegram_api_id,
-                    self.settings.telegram_api_hash,
-                )
-                await client.connect()
-                if not await client.is_user_authorized():
-                    raise ValueError("Pre-authorized Telegram session required")
-                channel = await client.get_entity("hyperliquid_announcements")
-
-                def convert(message: Any) -> dict[str, Any]:
-                    body = message.message or "[Media-only announcement]"
-                    return announcement(
-                        "hyperliquid",
-                        f"hyperliquid_announcements/{message.id}",
-                        body.splitlines()[0][:200],
-                        body,
-                        f"https://t.me/hyperliquid_announcements/{message.id}",
-                        message.date.timestamp(),
-                    )
-
-                async def receive(update: Any) -> None:
-                    await self.emit(convert(update.message), False)
-                    self.status("hyperliquid", "live", "Telegram client updates")
-
-                client.add_event_handler(receive, events.NewMessage(chats=channel))
-                client.add_event_handler(receive, events.MessageEdited(chats=channel))
-                history = [convert(m) async for m in client.iter_messages(channel, limit=100)]
-                await self.accept_page("hyperliquid", history)
-                self.status("hyperliquid", "live", "Telegram client; last 100 messages reconciled")
-                await client.run_until_disconnected()
-            except asyncio.CancelledError:
-                raise
-            except Exception:
-                self.status("hyperliquid", "error", "Telegram client disconnected or unauthorized")
-                await asyncio.sleep(30)
-            finally:
-                if client is not None:
-                    await client.disconnect()
 
     async def binance_public(self, source: str = "binance_announcements") -> None:
         # With the realtime stream, this poll only supplies Chinese titles and article links.

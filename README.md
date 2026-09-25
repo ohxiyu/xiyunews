@@ -20,7 +20,7 @@ credential requirements: [handoff](docs/handoff.md).
   public channel preview fallback or an optional authorized Telegram client.
 - SQLite WAL stores immutable events, a persistent outbox and direction-specific
   gates: burst 15 minutes plus re-cross, trend 6 hours plus one breakout escalation.
-  Web and Telegram share one title and event; no Redis required.
+  API and Telegram share one title and event.
 - Up to one second merges simultaneous signals; per-chat pacing and delayed retries.
   Timeouts are marked unknown, not silently reported as successful.
 - Read-only API on the VPS (`/api/health`, `/api/ready`, `/api/events`) for

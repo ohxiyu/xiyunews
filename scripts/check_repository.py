@@ -106,7 +106,7 @@ def check(root: Path, base: str | None = None) -> list[str]:
         )
         application = any(
             name.startswith(("src/", "config/", "scripts/"))
-            or name in {"run.py", "pyproject.toml", "VERSION", "ecosystem.config.js"}
+            or name in {"run.py", "pyproject.toml", "VERSION"}
             or name.startswith("requirements")
             for name in changed
         )

@@ -131,7 +131,7 @@ class Market:
         )
         self.policy = data["market_alerts"]
         self.seed_semaphore = asyncio.Semaphore(3)
-        self.refresh = data["change3m_alert"]["group_refresh_seconds"]
+        self.refresh = self.policy["universe_refresh_seconds"]
         self.universe_time: dict[str, float] = {}
         self.pending: dict[str, dict[str, Any]] = {}
         self.last_flush: dict[str, float] = {}

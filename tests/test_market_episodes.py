@@ -56,9 +56,8 @@ async def test_buffer_combines_same_direction_but_isolates_reversal():
 
 
 def test_spot_only_switch_does_not_disable_announcements(monkeypatch):
-    monkeypatch.setenv("FUTURES_ENABLED", "false")
     settings = Settings(telegram=False)
-    assert settings.spot and not settings.futures and settings.announcements
+    assert settings.spot and settings.announcements
 
 
 @pytest.mark.asyncio

@@ -23,7 +23,7 @@ from .settings import Settings, load_settings
 from .store import Store
 
 logger = logging.getLogger("fomobtc")
-VERSION = "2.5.0"
+VERSION = "2.5.1"
 
 
 class Platform:
@@ -36,7 +36,6 @@ class Platform:
         self.sources: dict[str, dict[str, Any]] = {}
         self.stats: dict[str, Any] = {}
         self.started = time.time()
-        self.subscribers: set[asyncio.Queue[str]] = set()
         self.market = Market(self.emit, self.status, self.stats)
         self.content = ContentCollector(self.store)
         self.collectors = Announcements(settings, self.store, self.emit, self.status)
@@ -105,10 +104,6 @@ class Platform:
                 if added:
                     if event["kind"] == "announcement" and not baseline:
                         self.content.wake.set()
-                    for queue in list(self.subscribers):
-                        if queue.full():
-                            queue.get_nowait()
-                        queue.put_nowait("refresh")
                 if not done.done():
                     done.set_result(None)
             except Exception as exc:
@@ -166,19 +161,12 @@ class Platform:
     def api(self) -> web.Application:
         @web.middleware
         async def headers(request: web.Request, handler: Any) -> web.StreamResponse:
-            if request.method == "OPTIONS":
-                response: web.StreamResponse = web.Response(status=204)
-            else:
-                try:
-                    response = await handler(request)
-                except (ValueError, TypeError):
-                    response = web.json_response({"error": "invalid query"}, status=400)
+            try:
+                response: web.StreamResponse = await handler(request)
+            except (ValueError, TypeError):
+                response = web.json_response({"error": "invalid query"}, status=400)
             response.headers["Cache-Control"] = "no-store"
             response.headers["X-Content-Type-Options"] = "nosniff"
-            if request.headers.get("Origin") == self.settings.origin and self.settings.origin:
-                response.headers["Access-Control-Allow-Origin"] = self.settings.origin
-                response.headers["Vary"] = "Origin"
-                response.headers["Access-Control-Allow-Methods"] = "GET, OPTIONS"
             return response
 
         app = web.Application(middlewares=[headers], client_max_size=1024)
@@ -208,41 +196,9 @@ class Platform:
             )
             return web.json_response({"events": rows})
 
-        async def stream(request: web.Request) -> web.StreamResponse:
-            if len(self.subscribers) >= 100:
-                raise web.HTTPServiceUnavailable(text="Live connection limit reached")
-            response = web.StreamResponse(
-                headers={
-                    "Content-Type": "text/event-stream",
-                    "Cache-Control": "no-store",
-                    "X-Accel-Buffering": "no",
-                }
-            )
-            if request.headers.get("Origin") == self.settings.origin and self.settings.origin:
-                response.headers["Access-Control-Allow-Origin"] = self.settings.origin
-                response.headers["Vary"] = "Origin"
-            await response.prepare(request)
-            queue: asyncio.Queue[str] = asyncio.Queue(maxsize=1)
-            self.subscribers.add(queue)
-            try:
-                await response.write(b"event: refresh\ndata: {}\n\n")
-                while True:
-                    try:
-                        await asyncio.wait_for(queue.get(), timeout=15)
-                        await response.write(b"event: refresh\ndata: {}\n\n")
-                    except TimeoutError:
-                        await response.write(b": heartbeat\n\n")
-            except (ConnectionError, asyncio.CancelledError):
-                pass
-            finally:
-                self.subscribers.discard(queue)
-            return response
-
         app.router.add_get("/api/health", health)
         app.router.add_get("/api/ready", ready)
         app.router.add_get("/api/events", listing)
-        app.router.add_get("/api/stream", stream)
-        app.router.add_route("OPTIONS", "/api/{path:.*}", health)
         return app
 
     async def run(self) -> None:

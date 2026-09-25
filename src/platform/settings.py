@@ -19,7 +19,6 @@ class Settings:
     database: str = field(default_factory=lambda: os.getenv("FOMOBTC_DB", "data/fomobtc.sqlite3"))
     host: str = field(default_factory=lambda: os.getenv("API_HOST", "127.0.0.1"))
     port: int = field(default_factory=lambda: int(os.getenv("API_PORT", "8080")))
-    origin: str = field(default_factory=lambda: os.getenv("FRONTEND_ORIGIN", ""))
     telegram: bool = field(default_factory=lambda: flag("TELEGRAM_ENABLED", True))
     token: str = field(default_factory=lambda: os.getenv("TELEGRAM_BOT_TOKEN", ""))
     chat: str = field(default_factory=lambda: os.getenv("TELEGRAM_CHAT_ID", ""))
@@ -31,7 +30,6 @@ class Settings:
     )
     market: bool = field(default_factory=lambda: flag("MARKET_ENABLED", True))
     spot: bool = field(default_factory=lambda: flag("SPOT_ENABLED", True))
-    futures: bool = field(default_factory=lambda: flag("FUTURES_ENABLED", False))
     announcements: bool = field(default_factory=lambda: flag("ANNOUNCEMENTS_ENABLED", True))
     binance_key: str = field(default_factory=lambda: os.getenv("BINANCE_ANNOUNCEMENT_API_KEY", ""))
     binance_secret: str = field(
@@ -42,9 +40,6 @@ class Settings:
     hyper_interval: float = field(
         default_factory=lambda: float(os.getenv("HYPERLIQUID_POLL_SECONDS", "15"))
     )
-    hyper_session: str = field(default_factory=lambda: os.getenv("HYPERLIQUID_SESSION", ""))
-    telegram_api_id: int = field(default_factory=lambda: int(os.getenv("TELEGRAM_API_ID", "0")))
-    telegram_api_hash: str = field(default_factory=lambda: os.getenv("TELEGRAM_API_HASH", ""))
     revision: str = field(default_factory=lambda: os.getenv("SOURCE_COMMIT", "unknown"))
     flows: bool = field(default_factory=lambda: flag("FLOWS_ENABLED", True))
     # Forum topics (message_thread_id) in TELEGRAM_CHAT_ID; empty sends to the chat itself.

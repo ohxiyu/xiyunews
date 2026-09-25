@@ -33,7 +33,7 @@ Telegram 行情合并（market_alerts.digest）：行情通知入队后保留 ho
 - [Binance 公告](https://developers.binance.com/zh-CN/docs/products/announcements/announcement)：英文签名 WebSocket，需 API Key。文档没有文章 ID/URL，使用目录+发布时间+标题作为近似身份，只链接官方公告目录，不能假装是文章原文。标题修订无法可靠关联为同一篇。无断线重放，需标识覆盖缺口。
   配置只读 Key 后官方流与官网 CMS 中文列表（每 30 秒，状态 binance_catalog）并行：官方流英文正文立即就绪并推送；两份副本按 catalogId 相同且发布时间相差 ≤5 秒识别为同一篇（announcement_alias），只通知一次。官网副本后到时把该事件升级为 cms:code、详情链接并重新抓取中文正文，仅更新网页，已发送的通知不重发；官网副本先到则忽略官方流副本。只有英文版的官网文章也按英文就绪。
 - [OKX 更新记录](https://www.okx.com/docs-v5/log_en/)：REST /api/v5/support/announcements，每 6 秒读取第一页；URL 路径作 ID，pTime 是首次发布时间，businessPTime 不用于延迟计算。第一页以外的长时间积压不保证补齐。
-- [Hyperliquid 官方来源](https://hyperliquid.gitbook.io/hyperliquid-docs/support)：hyperliquid_announcements；公开预览每 15 秒轮询，有限历史和媒体内容缺失，明确 degraded。可选授权 Telegram 客户端订阅新增和编辑，重连补最近 100 条，仍非无限回放。
+- [Hyperliquid 官方来源](https://hyperliquid.gitbook.io/hyperliquid-docs/support)：hyperliquid_announcements；公开预览每 15 秒轮询，有限历史和媒体内容缺失，明确 degraded。
 
 首次采集仅基线归档，不推历史。source + source_id + 正文哈希去重，内容变化保存修订。分类是规则启发式，未知分类仍通知；营销类仅归档。标题与原文优先，未引入阻塞通知的 AI 摘要。推送要求正文就绪（2.3.0 起官方详情暂不可用最多等待 3 分钟后发送原文）：中文，或币安英文原文（官方流/仅英文文章），或交易所列表 API 的英文/韩文原文；OKX 与 Hyperliquid 英文仍等待翻译。去重摘要为标题+正文+链接，不含类别。
 
@@ -55,11 +55,11 @@ published 未知为 null，不填发现时间；detected 是本机首次保存�
 市场待发送事件 120 秒后过期，公告 1 小时；超时结果未知不自动重发；重启中的 sending 变为 unknown。行情门控从事件生成计时，与发送成功与否无关。行情可有最多 1 秒合并等待；默认同聊天 3.1 秒节流。429 遵守 retry_after；API 确认不是用户已读，5xx 重试不能承诺绝不重复。
 
 ## 查询
-GET /api/events 支持 kind/source/q/before/limit，limit 最大 100；GET /api/health 返回运行版本与来源状态；GET /api/ready 对 blocked/degraded/error/warming 返回 503。GET /api/stream 仅推送刷新提示，断线后重新查询数据库，不依赖 SSE 内存历史。
+GET /api/events 支持 kind/source/q/before/limit，limit 最大 100；GET /api/health 返回运行版本与来源状态；GET /api/ready 对 blocked/degraded/error/warming 返回 503。只读 API 仅供健康检查与排查，没有浏览器客户端（无 CORS、无 SSE）。
 
 
 ## 历史兼容
-旧的分钟桶、2小时分级冷却、同币24小时规则仅保留在历史记录及 legacy 源码中，当前入口不使用。实时页隐藏历史合约，历史页保留；公告不受行情门控限制。市值辅助模块不启动。
+旧的分钟桶、2小时分级冷却、同币24小时规则只保留在历史记录中，旧版 CoinSignal 源码已于 2026-09-25 删除（见 git 历史）。历史合约事件仍在数据库中；公告不受行情门控限制。
 
 ## 交付时间
 行情列表在notification_status之外返回notification_sent（关联通知的API确认时间，未确认为null）；公告使用sent。确认不是手机已读。网页前端已于 2026-09-25 下线，这些字段仍由只读 API 提供。
