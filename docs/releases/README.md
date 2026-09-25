@@ -41,3 +41,5 @@
 - [2026-09-25 2.3.0–2.5.0 部署与群组话题](deploy-20260925-flows-topics.md) · [网页前端下线](remove-web-frontend.md)
 
 - [2.5.1 精简为采集 + Telegram 推送](2.5.1.md)
+
+- [fomobtc.com 跳转群组与成员只读](domain-redirect.md)

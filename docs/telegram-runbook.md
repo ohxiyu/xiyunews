@@ -40,3 +40,6 @@ P2：自然事件延迟P95/P99、断线恢复与24小时稳定性。Binance/Hype
 
 ## 群组话题（scripts/setup_telegram_topics.sh，2.5.0）
 新建群组并开启“话题”，把机器人设为管理员并勾选“管理话题”，在群里发送 /start@机器人名，然后运行 `ssh -t -F ~/.ssh/fomobtc_tokyo_config fomobtc-tokyo 'sudo bash /opt/fomobtc/current/scripts/setup_telegram_topics.sh'`。脚本创建 📈 行情异动 / 📢 交易所公告 / 💰 资金流向 三个话题并发送测试消息，确认后写入 TELEGRAM_CHAT_ID 与 TELEGRAM_TOPIC_*，私聊不再接收推送。
+
+## 群组权限与入口（2026-09-25）
+成员只读：默认权限只保留表情回应，其余（发言、媒体、投票、邀请、置顶、管理话题）全部关闭；机器人为管理员不受影响。入口 https://fomobtc.com 302 跳转到机器人创建的邀请链接 https://t.me/+mdTufn9GK1UyODk0 （名称 fomobtc.com）。若撤销该链接，需同步修改 scripts/deploy/redirect/wrangler.jsonc 的 TARGET 并重新部署。

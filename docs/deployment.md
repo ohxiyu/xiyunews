@@ -70,3 +70,10 @@ and acceptance state are recorded separately in the latest handoff.
   blocked; do not relabel it healthy to complete deployment.
 
 2.4.0 起依赖含 Pillow：每个 release 在自身目录创建 venv 并 `pip install --require-hashes -r requirements.lock`，不再链接旧 release 的 venv；回退时旧 release 仍使用其原有 venv。
+
+## Domain redirect
+
+`fomobtc.com` serves no page: the Worker `fomobtc` in `scripts/deploy/redirect`
+answers every path with a 302 to the Telegram group invite link (`TARGET` var).
+Deploy from that directory with `npx wrangler deploy`; change `TARGET` there if the
+invite link is replaced. `api.fomobtc.com` is a separate DNS-only record to the VPS.
