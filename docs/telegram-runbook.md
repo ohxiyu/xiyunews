@@ -37,3 +37,6 @@ P2：自然事件延迟P95/P99、断线恢复与24小时稳定性。Binance/Hype
 
 ## 币安公告实时流（scripts/setup_binance_announcements.sh）
 在本机运行 `ssh -t -F ~/.ssh/fomobtc_tokyo_config fomobtc-tokyo 'sudo bash /opt/fomobtc/current/scripts/setup_binance_announcements.sh'`。币安 API Key 只勾“启用读取”，IP 可不限制。脚本隐藏输入 Key/Secret，用签名的 /sapi/v1/account/apiRestrictions 校验有效且只读（开启任何交易、提现、划转权限即拒绝），备份 /etc/fomobtc.env 后写入并重启，40 秒内 binance_announcements 未变为 live 则自动恢复。
+
+## 群组话题（scripts/setup_telegram_topics.sh，2.5.0）
+新建群组并开启“话题”，把机器人设为管理员并勾选“管理话题”，在群里发送 /start@机器人名，然后运行 `ssh -t -F ~/.ssh/fomobtc_tokyo_config fomobtc-tokyo 'sudo bash /opt/fomobtc/current/scripts/setup_telegram_topics.sh'`。脚本创建 📈 行情异动 / 📢 交易所公告 / 💰 资金流向 三个话题并发送测试消息，确认后写入 TELEGRAM_CHAT_ID 与 TELEGRAM_TOPIC_*，私聊不再接收推送。

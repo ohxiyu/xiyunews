@@ -46,6 +46,14 @@ class Settings:
     telegram_api_id: int = field(default_factory=lambda: int(os.getenv("TELEGRAM_API_ID", "0")))
     telegram_api_hash: str = field(default_factory=lambda: os.getenv("TELEGRAM_API_HASH", ""))
     revision: str = field(default_factory=lambda: os.getenv("SOURCE_COMMIT", "unknown"))
+    flows: bool = field(default_factory=lambda: flag("FLOWS_ENABLED", True))
+    # Forum topics (message_thread_id) in TELEGRAM_CHAT_ID; empty sends to the chat itself.
+    topics: dict[str, str] = field(
+        default_factory=lambda: {
+            kind: os.getenv(f"TELEGRAM_TOPIC_{kind.upper()}", "").strip()
+            for kind in ("market", "announcement", "flow")
+        }
+    )
 
     def validate(self) -> None:
         if self.telegram and (not self.token or not self.chat):

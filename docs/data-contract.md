@@ -45,6 +45,9 @@ Telegram 行情合并（market_alerts.digest）：行情通知入队后保留 ho
 ## 语言版本与摘要（2.3.0）
 announcement_i18n(event_id, lang, title, summary, points, url, method)。只保存交易所官方版本（official）或来源原文（original），不做机器翻译。Binance CMS 详情 zh-CN/en（英文专属文章在中文区返回英文，不计为中文）；OKX /zh-hans/help 与 /help 页面；Bybit en-US 与 zh-TW 列表按 art 编号对应；Bitget en_US 与 zh_CN 按 annId 对应；翻译晚到时后续轮询补写（不重复通知）。摘要为开头两句，要点为之后含日期、时刻、UTC、交易对或数值的最多两句。推送优先中文，其次英文，否则原文。HTX、KuCoin 已停止，历史行不列出。
 
+## 资金流向（2.5.0）
+[flows.py](../src/platform/flows.py)，地址簿 [exchange_addresses.json](../config/exchange_addresses.json)。只报币安地址簿与外部地址之间、按价格折算不低于 flows.threshold_usd 的单笔转账；地址簿之外的币安地址（如海量充值地址）不会被识别，覆盖率取决于地址簿。检查点只前进不跳块；以太坊原生 ETH 需回执 status=0x1；Solana 暂不扫描。事件发现时间为本机扫描到的时间，不是区块时间。
+
 ## 事件与交付
 事件字段：id、kind、source、source_id、title、url、body、category、symbol、published、detected、updated、status、attempts、sent、error、telegram_id、dispatch_ms。
 published 未知为 null，不填发现时间；detected 是本机首次保存时间。API 不暴露 chat 或 cooldown_key。

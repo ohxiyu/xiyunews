@@ -16,13 +16,14 @@ from .announcements import Announcements
 from .content import ContentCollector
 from .delivery import Delivery
 from .exchanges import FEEDS, MARKETS, Exchanges
+from .flows import Flows
 from .market import Market
 from .market_cap import MarketCap
 from .settings import Settings, load_settings
 from .store import Store
 
 logger = logging.getLogger("fomobtc")
-VERSION = "2.4.0"
+VERSION = "2.5.0"
 
 
 class Platform:
@@ -40,6 +41,13 @@ class Platform:
         self.content = ContentCollector(self.store)
         self.collectors = Announcements(settings, self.store, self.emit, self.status)
         self.exchanges = Exchanges(self.collectors.accept_page, self.emit, self.status)
+        self.flows = Flows(
+            self.emit,
+            self.status,
+            self.store.meta,
+            self.store.set_meta,
+            float(self.store.policy["flows"]["threshold_usd"]),
+        )
         self.caps = MarketCap()
         self.delivery = Delivery(settings, self.store, self.caps)
 
@@ -119,7 +127,12 @@ class Platform:
             uptime_seconds=int(time.time() - self.started),
             sources={
                 name: dict(s, state="stale")
-                if ("_stream_" in name or name.endswith("_universe") or name == "okx")
+                if (
+                    "_stream_" in name
+                    or name.endswith("_universe")
+                    or name == "okx"
+                    or name.startswith("flow_")
+                )
                 and s["state"] in {"live", "polling", "degraded"}
                 and time.time() - s["checked"]
                 > (self.market.refresh * 2 if name.endswith("_universe") else 90)
@@ -246,6 +259,10 @@ class Platform:
                     continue
                 self.status(market + "_universe", "warming", "Starting")
                 jobs.append(asyncio.create_task(self.market.run(market), name=market))
+        if self.settings.flows:
+            for name, task in self.flows.tasks():
+                self.status("flow_" + name.removeprefix("flow-"), "warming", "Starting")
+                jobs.append(asyncio.create_task(task, name=name))
         if self.settings.announcements:
             for source in (
                 "okx",

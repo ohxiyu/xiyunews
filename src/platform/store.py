@@ -267,7 +267,10 @@ class Store:
     ) -> None:
         verb = "INSERT OR REPLACE" if replace else "INSERT OR IGNORE"
         for lang, v in versions.items():
-            summary, points = summarize(v["title"], v.get("body", ""), lang)
+            if "summary" in v:  # Generated text (on-chain flows) is already structured.
+                summary, points = v["summary"], v.get("points", "")
+            else:
+                summary, points = summarize(v["title"], v.get("body", ""), lang)
             self.db.execute(
                 f"{verb} INTO announcement_i18n VALUES (?,?,?,?,?,?,?)",
                 (eid, lang, v["title"][:500], summary, points, v.get("url", ""), method),
@@ -469,8 +472,9 @@ class Store:
                             result["body"] = content["brief"]
                             result["url"] = content["url"] or result["url"]
                         result["attempts"] += 1
-                        if result["kind"] == "announcement":
+                        if result["kind"] in ("announcement", "flow"):
                             versions = self._i18n(row["id"])
+                            result["versions"] = versions
                             preferred: list[str] = [x for x in ("zh", "en") if x in versions]
                             lang = (preferred or list(versions) or [""])[0]
                             result["i18n"] = versions.get(lang)
@@ -625,6 +629,8 @@ class Store:
                     ).fetchone()
                     item["notification_status"] = notice[0] if notice else "not_queued"
                     item["notification_sent"] = notice[1] if notice else None
+                if item["kind"] == "flow":
+                    item["i18n"] = self._i18n(item["id"])
                 if item["kind"] == "announcement":
                     content = self.db.execute(
                         "SELECT * FROM announcement_content WHERE event_id=?", (item["id"],)

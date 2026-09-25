@@ -36,6 +36,9 @@ market_alerts:
     cooldown_seconds: 21600
   # Telegram only: notices due together are sent as one message. The web keeps one
   # event per symbol. hold_seconds delays each notice so candle-close trends cluster.
+  # On-chain Binance inflows/outflows (src/platform/flows.py).
+  flows:
+    threshold_usd: 10000000
   digest:
     hold_seconds: 3
     max_items: 30

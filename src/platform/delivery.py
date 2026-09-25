@@ -38,7 +38,25 @@ def format_digest(members: list[dict[str, Any]], market_wide: int) -> str:
     return "\n\n".join(sections)
 
 
+def format_flow(event: dict[str, Any]) -> str:
+    """Bilingual on-chain flow alert: 🔴 inflow (sell pressure), 🟢 outflow."""
+    versions = event.get("versions") or {}
+    zh, en = versions.get("zh"), versions.get("en")
+    icon = "🔴" if event["category"] == "inflow" else "🟢"
+    lines = []
+    if zh:
+        lines.append(f"{icon} 🇨🇳 <b>{html.escape(zh['title'])}</b>")
+    if en:
+        lines.append(f"{icon} 🇺🇸 {html.escape(en['title'])}")
+    lines += ["", html.escape((zh or en or {}).get("summary") or event["body"])]
+    if event.get("url"):
+        lines += ["", f'<a href="{html.escape(event["url"], quote=True)}">交易详情 / Tx ↗</a>']
+    return "\n".join(lines)
+
+
 def format_message(event: dict[str, Any], market_wide: int = 4) -> str:
+    if event["kind"] == "flow":
+        return format_flow(event)
     if event["kind"] == "market":
         members = event.get("members") or []
         if len(members) > 1:
@@ -183,6 +201,8 @@ class Delivery:
             try:
                 form = aiohttp.FormData()
                 form.add_field("chat_id", str(event["chat"]))
+                if self.settings.topics.get("market"):
+                    form.add_field("message_thread_id", self.settings.topics["market"])
                 form.add_field("caption", caption)
                 form.add_field("parse_mode", "HTML")
                 form.add_field(
@@ -196,14 +216,16 @@ class Delivery:
                 text = caption  # The chart is optional; the alert itself is not.
         else:
             text = format_message(event, self.store.policy["digest"]["market_wide_symbols"])
-        return "sendMessage", {
-            "json": {
-                "chat_id": event["chat"],
-                "text": text,
-                "parse_mode": "HTML",
-                "disable_web_page_preview": True,
-            }
+        body = {
+            "chat_id": event["chat"],
+            "text": text,
+            "parse_mode": "HTML",
+            "disable_web_page_preview": True,
         }
+        # Each kind posts into its own forum topic of the shared group.
+        if self.settings.topics.get(event["kind"]):
+            body["message_thread_id"] = int(self.settings.topics[event["kind"]])
+        return "sendMessage", {"json": body}
 
     async def send(self, session: aiohttp.ClientSession, event: dict[str, Any]) -> None:
         started = time.perf_counter()
