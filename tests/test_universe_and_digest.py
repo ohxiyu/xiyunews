@@ -5,7 +5,7 @@ import time
 import pytest
 
 from src.platform.delivery import format_message
-from src.platform.market import eligible, plan_shards
+from src.platform.market import day_ranges, eligible, plan_shards
 from src.platform.store import Store
 
 NOW = 1_790_000_000_000
@@ -50,7 +50,19 @@ def test_universe_change_restarts_only_affected_shard():
     assert len(shards) == 4 and changed == {0, 2, 3}
 
 
-def signal(symbol, change, at, kind="burst"):
+def test_day_ranges_only_for_monitored_pairs():
+    rows = [
+        dict(symbol="AUSDT", highPrice="2", lowPrice="1"),
+        dict(symbol="BUSDT", highPrice="1", lowPrice="0"),
+        dict(symbol="CUSDT", highPrice="nan", lowPrice="1"),
+        dict(symbol="DUSDT"),
+        dict(symbol="EUSDT", highPrice="3", lowPrice="2"),
+    ]
+    monitored = dict.fromkeys(("AUSDT", "BUSDT", "CUSDT", "DUSDT"))
+    assert day_ranges(rows, monitored) == {"AUSDT": [2.0, 1.0]}
+
+
+def signal(symbol, change, at):
     return dict(
         kind="market",
         source="binance_spot",
@@ -62,49 +74,44 @@ def signal(symbol, change, at, kind="burst"):
         published=at,
         url="",
         signal=dict(
-            policy_version=2,
+            policy_version=3,
             volume=1e8,
             group="high",
-            components=[
-                dict(
-                    type=kind,
-                    direction=1 if change > 0 else -1,
-                    change=change,
-                    threshold=2.5 if kind == "burst" else 8,
-                    window_seconds=180 if kind == "burst" else 86400,
-                    at=at,
-                    crossed_at=at - 3,
-                    breakout=False,
-                )
-            ],
+            move=dict(
+                direction=1 if change > 0 else -1,
+                change=change,
+                threshold=2.0,
+                window_seconds=180,
+                crossed_at=at - 3,
+                at=at,
+                price=100.0,
+            ),
         ),
     )
 
 
 @pytest.mark.asyncio
-async def test_candle_close_cluster_becomes_one_market_wide_message(tmp_path, monkeypatch):
+async def test_market_wide_moves_become_one_message(tmp_path, monkeypatch):
     now = [100_000.0]
     monkeypatch.setattr(time, "time", lambda: now[0])
     store = Store(str(tmp_path / "db"))
-    store.policy["digest"]["hold_seconds"] = 3
+    store.policy["digest"]["hold_seconds"] = 1
     for symbol, change in [
-        ("TAOUSDT", -9),
-        ("APEUSDT", -8.4),
-        ("XLMUSDT", -8.1),
-        ("HBARUSDT", -10.8),
+        ("TAOUSDT", -3.2),
+        ("APEUSDT", -2.4),
+        ("XLMUSDT", -2.1),
+        ("HBARUSDT", -4.8),
     ]:
         assert (
-            await store.market_update(
-                signal(symbol, change, now[0], "trend"), chat="c", notify=True
-            )
+            await store.market_update(signal(symbol, change, now[0]), chat="c", notify=True)
             == "queued"
         )
     assert (
         await store.market_update(signal("SAGAUSDT", 3.0, now[0]), chat="c", notify=True)
         == "queued"
     )
-    assert await store.claim(set()) is None  # Held so simultaneous closes cluster.
-    now[0] += 3
+    assert await store.claim(set()) is None  # Held so moves in the same second cluster.
+    now[0] += 1
     notice = await store.claim(set())
     assert len(notice["members"]) == 5
     assert await store.claim(set()) is None  # Every due notice rides in this message.

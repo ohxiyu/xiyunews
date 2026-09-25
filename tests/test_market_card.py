@@ -13,22 +13,9 @@ from src.platform.settings import Settings
 from src.platform.store import Store
 
 
-def member(kind="burst", direction=1, change=4.2, window=180, breakout=False):
-    return dict(
-        id="n1",
-        symbol="ZECUSDT",
-        signal=dict(
-            components=[
-                dict(
-                    type=kind,
-                    direction=direction,
-                    change=change,
-                    window_seconds=window,
-                    breakout=breakout,
-                )
-            ]
-        ),
-    )
+def member(direction=1, change=4.2, **extra):
+    move = dict(direction=direction, change=change, window_seconds=180, **extra)
+    return dict(id="n1", symbol="ZECUSDT", signal=dict(move=move))
 
 
 def test_caption_matches_reference_format():
@@ -37,11 +24,12 @@ def test_caption_matches_reference_format():
         "🇺🇸 🟢 [ZECUSDT] Binance spot price surged 4.20% in the past 180 seconds\n"
         "\n💰 市值\nZEC  MarketCap: 21.1B"
     )
-    down = market_caption(member("trend", -1, -9.04, 86400, True))
+    down = market_caption(member(-1, -9.04, further=11.26, extreme=True))
     assert down == (
-        "🇨🇳 🔴 [ZECUSDT] 币安现货持续走弱，过去 24 小时下跌了 9.04%，跌破 24 小时新低\n"
-        "🇺🇸 🔴 [ZECUSDT] Binance spot kept falling, down 9.04% over the past 24 hours, "
-        "breaking the 24h low"
+        "🇨🇳 🔴 [ZECUSDT] 币安现货价格在过去 180 秒内下跌了 9.04%，较上次提醒再跌 11.3%，"
+        "创 24 小时新低\n"
+        "🇺🇸 🔴 [ZECUSDT] Binance spot price dropped 9.04% in the past 180 seconds, "
+        "down another 11.3% since the last alert, a new 24h low"
     )
     assert (compact(812.34e6), compact(1.67e12), compact(950)) == ("812.3M", "1.7T", "950")
 
@@ -66,6 +54,34 @@ def test_chart_png():
     assert png[:8] == b"\x89PNG\r\n\x1a\n" and len(png) > 2000
     with pytest.raises(ValueError):
         render(rows[:3], "x")
+
+
+@pytest.mark.asyncio
+async def test_chart_is_five_hours_of_one_minute_candles(tmp_path):
+    store = Store(str(tmp_path / "db"))
+    requested = []
+
+    class Response:
+        status = 200
+
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, *args):
+            pass
+
+        async def json(self):
+            return [[i * 60000, 100, 101, 99, 100, 5] for i in range(300)]
+
+    class Session:
+        def get(self, url, params):
+            requested.append(params)
+            return Response()
+
+    png = await Delivery(Settings(telegram=False), store).chart(Session(), member())
+    assert png[:4] == b"\x89PNG"
+    assert requested == [{"symbol": "ZECUSDT", "interval": "1m", "limit": 300}]
+    await store.close()
 
 
 @pytest.mark.asyncio

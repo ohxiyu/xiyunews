@@ -23,7 +23,7 @@ from .settings import Settings, load_settings
 from .store import Store
 
 logger = logging.getLogger("fomobtc")
-VERSION = "2.5.1"
+VERSION = "2.6.0"
 
 
 class Platform:
@@ -36,7 +36,7 @@ class Platform:
         self.sources: dict[str, dict[str, Any]] = {}
         self.stats: dict[str, Any] = {}
         self.started = time.time()
-        self.market = Market(self.emit, self.status, self.stats)
+        self.market = Market(self.emit, self.status, self.stats, self.store.last_alert)
         self.content = ContentCollector(self.store)
         self.collectors = Announcements(settings, self.store, self.emit, self.status)
         self.exchanges = Exchanges(self.collectors.accept_page, self.emit, self.status)
@@ -78,12 +78,7 @@ class Platform:
                     if event["kind"] == "announcement"
                     else self.settings.chat
                 )
-                if event["kind"] == "market_reset":
-                    await self.store.market_rearm(
-                        event["source"], event["symbol"], event["direction"]
-                    )
-                    added = False
-                elif event["kind"] == "market" and "signal" in event:
+                if event["kind"] == "market" and "signal" in event:
                     reason = await self.store.market_update(
                         event,
                         chat=chat,
@@ -144,13 +139,9 @@ class Platform:
             decision_sample_count=len(samples),
             telegram_enabled=self.settings.telegram,
             market_notice_policy=dict(
-                policy_version=2,
-                shared_threshold=True,
-                scope="symbol_type_direction",
-                burst_cooldown_seconds=self.market.policy["burst"]["cooldown_seconds"],
-                trend_cooldown_seconds=self.market.policy["trend"]["cooldown_seconds"],
-                rearm_required=True,
-                breakout_escalation=True,
+                policy_version=3,
+                scope="symbol_direction",
+                **self.market.policy["move"],
             ),
             monitoring={**self.market.metrics(), **await self.store.monitoring()},
             enabled_markets=[
@@ -209,7 +200,6 @@ class Platform:
             jobs.append(asyncio.create_task(self.delivery.run(), name="delivery"))
             jobs.append(asyncio.create_task(self.caps.run(), name="market-cap"))
         if self.settings.market:
-            jobs.append(asyncio.create_task(self.market.flush_loop(), name="market-summaries"))
             for market in ("spot",):
                 if not getattr(self.settings, market):
                     continue

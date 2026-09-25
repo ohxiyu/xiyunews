@@ -101,33 +101,19 @@ def format_announcement(event: dict[str, Any]) -> str:
 
 def market_caption(member: dict[str, Any], cap: float | None = None) -> str:
     """Bilingual single-alert caption, as in the reference channel format."""
-    parts = member["signal"]["components"]
-    burst = next((c for c in parts if c["type"] == "burst"), None)
-    trend = next((c for c in parts if c["type"] == "trend"), None)
-    main = burst or trend
-    assert main is not None
-    up = main["direction"] == 1
-    dot, pct = ("🟢" if up else "🔴"), f"{abs(main['change']):.2f}%"
-    if burst:
-        seconds = burst["window_seconds"]
-        zh = f"币安现货价格在过去 {seconds} 秒内{'上涨' if up else '下跌'}了 {pct}"
-        move = "surged" if up else "dropped"
-        en = f"Binance spot price {move} {pct} in the past {seconds} seconds"
-    else:
-        assert trend is not None
-        hours = trend["window_seconds"] // 3600
-        zh = (
-            f"币安现货持续{'走强' if up else '走弱'}\uff0c"
-            f"过去 {hours} 小时{'上涨' if up else '下跌'}了 {pct}"
-        )
-        en = (
-            f"Binance spot kept {'rising' if up else 'falling'}, "
-            f"{'up' if up else 'down'} {pct} over the past {hours} hours"
-        )
-    if trend and trend.get("breakout"):
-        high = trend["direction"] == 1
-        zh += "\uff0c突破 24 小时新高" if high else "\uff0c跌破 24 小时新低"
-        en += ", breaking the 24h high" if high else ", breaking the 24h low"
+    move = member["signal"]["move"]
+    up = move["direction"] == 1
+    dot, pct = ("🟢" if up else "🔴"), f"{abs(move['change']):.2f}%"
+    seconds = move["window_seconds"]
+    zh = f"币安现货价格在过去 {seconds} 秒内{'上涨' if up else '下跌'}了 {pct}"
+    en = f"Binance spot price {'surged' if up else 'dropped'} {pct} in the past {seconds} seconds"
+    if move.get("further"):
+        further = f"{move['further']:.1f}%"
+        zh += f"\uff0c较上次提醒再{'涨' if up else '跌'} {further}"
+        en += f", {'up' if up else 'down'} another {further} since the last alert"
+    if move.get("extreme"):
+        zh += "\uff0c创 24 小时新高" if up else "\uff0c创 24 小时新低"
+        en += ", a new 24h high" if up else ", a new 24h low"
     symbol = html.escape(member["symbol"])
     lines = [f"🇨🇳 {dot} [{symbol}] {zh}", f"🇺🇸 {dot} [{symbol}] {en}"]
     if cap:
@@ -177,17 +163,15 @@ class Delivery:
                     await asyncio.gather(*pending, return_exceptions=True)
 
     async def chart(self, session: aiohttp.ClientSession, member: dict[str, Any]) -> bytes:
-        burst = any(c["type"] == "burst" for c in member["signal"]["components"])
-        # Bursts: 5 hours of 1m candles; trends: 24 hours of 15m candles.
-        interval, limit = ("1m", 300) if burst else ("15m", 96)
+        # The last 5 hours of 1m candles.
         async with session.get(
             "https://api.binance.com/api/v3/klines",
-            params={"symbol": member["symbol"], "interval": interval, "limit": limit},
+            params={"symbol": member["symbol"], "interval": "1m", "limit": 300},
         ) as r:
             if r.status != 200:
                 raise ValueError("Klines unavailable")
             rows = await r.json()
-        title = f"{member['symbol']} · {interval} · Binance Spot"
+        title = f"{member['symbol']} · 1m · Binance Spot"
         return await asyncio.to_thread(render, rows, title)
 
     async def request(

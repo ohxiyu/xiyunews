@@ -16,7 +16,6 @@ from src.platform.announcements import (
 )
 from src.platform.app import Platform
 from src.platform.delivery import Delivery, format_message
-from src.platform.market import MinuteWindow
 from src.platform.settings import Settings
 from src.platform.store import Store
 
@@ -149,34 +148,6 @@ def test_public_channel_parser_handles_nested_html_and_edits():
     assert rows[0]["source_id"] == "hyperliquid_announcements/123"
     with pytest.raises(ValueError):
         TelegramPreview().events()
-
-
-def seeded_window():
-    window = MinuteWindow()
-    rows = [[m * 60000, 0, 0, 0, "100", 0, (m + 1) * 60000 - 1] for m in (10, 11, 12)]
-    window.seed(rows, 13 * 60000)
-    return window
-
-
-def test_minute_reference_and_duplicate_trade():
-    window = seeded_window()
-    data = {"T": 13 * 60000 + 500, "a": 1, "p": "103"}
-    assert window.update(data, data["T"]) == pytest.approx(3)
-    assert window.update(data, data["T"]) is None
-    assert len(window.bars) <= 5
-
-
-@pytest.mark.parametrize("price", ["NaN", "Infinity", "0", "-1"])
-def test_invalid_prices_do_not_trigger(price):
-    assert seeded_window().update({"T": 780001, "a": 1, "p": price}, 780001) is None
-
-
-def test_gap_and_stale_data_suspend_signals():
-    window = seeded_window()
-    window.update({"T": 780001, "a": 1, "p": "100"}, 780001)
-    assert window.update({"T": 780002, "a": 3, "p": "110"}, 780002) is None
-    assert window.gap
-    assert window.update({"T": 780003, "a": 4, "p": "110"}, 800000) is None
 
 
 @pytest.mark.asyncio

@@ -1,10 +1,11 @@
-"""Event-driven spot burst and closed-candle trend monitoring."""
+"""Event-driven Binance spot move monitoring from aggregate trades."""
 
 import asyncio
 import json
 import math
 import time
 from collections import deque
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -12,61 +13,17 @@ import aiohttp
 import yaml
 
 from .announcements import Emit, Status
-from .signals import BurstWindow, TrendWindow, signal_title
-
-
-class MinuteWindow:
-    def __init__(self) -> None:
-        self.bars: dict[int, float] = {}
-        self.last_id: int | None = None
-        self.last_time = 0
-        self.gap = False
-
-    def seed(self, klines: list[list[Any]], now_ms: int) -> None:
-        closed = {}
-        for row in klines:
-            start, close_time, price = int(row[0]), int(row[6]), float(row[4])
-            if start % 60000 or close_time >= now_ms or price <= 0 or not math.isfinite(price):
-                continue
-            closed[start // 60000] = price
-        for minute, price in closed.items():
-            self.bars[minute] = price
-        self.bars = dict(sorted(self.bars.items())[-5:])
-        self.gap = False
-
-    def update(self, data: dict[str, Any], now_ms: int) -> float | None:
-        timestamp, trade_id, price = int(data["T"]), int(data["a"]), float(data["p"])
-        if not math.isfinite(price) or price <= 0:
-            return None
-        if timestamp < self.last_time or (self.last_id is not None and trade_id <= self.last_id):
-            return None
-        if now_ms - timestamp > 10000 or timestamp - now_ms > 2000:
-            self.bars.clear()
-            self.gap = True
-            return None
-        if self.last_id is not None and trade_id != self.last_id + 1:
-            self.bars.clear()
-            self.gap = True
-        self.last_id, self.last_time = trade_id, timestamp
-        minute = timestamp // 60000
-        # A continuous aggregate-trade sequence proves empty intervening minutes had no trades.
-        if self.bars and not self.gap:
-            previous = max(self.bars)
-            previous_price = self.bars[previous]
-            for empty in range(max(previous + 1, minute - 3), minute):
-                self.bars[empty] = previous_price
-        self.bars[minute] = price
-        self.bars = {m: p for m, p in self.bars.items() if m >= minute - 4}
-        if self.gap or not all(m in self.bars for m in range(minute - 3, minute + 1)):
-            return None
-        return (price / self.bars[minute - 3] - 1) * 100
-
+from .signals import MoveWindow, move_gate
 
 SHARD_SIZE = 150
 ENTRY_VOLUME = 500000
 # Hysteresis: a monitored pair stays until volume falls 20% below the entry level,
 # so pairs hovering around the cutoff do not churn subscriptions every refresh.
 EXIT_VOLUME = 400000
+REST = "https://api.binance.com/api/v3"
+STREAM = "wss://stream.binance.com:9443/ws"
+# (time, price) of the previous alert for a spot symbol and direction, from the store.
+LastAlert = Callable[[str, int], tuple[float, float | None] | None]
 
 
 def eligible(
@@ -97,6 +54,21 @@ def eligible(
     return groups
 
 
+def day_ranges(tickers: list[dict[str, Any]], symbols: dict[str, Any]) -> dict[str, list[float]]:
+    """Rolling 24h [high, low] of the monitored pairs at refresh time."""
+    ranges = {}
+    for item in tickers:
+        if item.get("symbol") not in symbols:
+            continue
+        try:
+            high, low = float(item["highPrice"]), float(item["lowPrice"])
+        except (ValueError, TypeError, KeyError):
+            continue
+        if math.isfinite(high) and 0 < low <= high:
+            ranges[item["symbol"]] = [high, low]
+    return ranges
+
+
 def plan_shards(
     shards: list[list[str]], universe: set[str], size: int = SHARD_SIZE, prune: int = 30
 ) -> tuple[list[list[str]], set[int]]:
@@ -124,18 +96,23 @@ def plan_shards(
 
 
 class Market:
-    def __init__(self, emit: Emit, status: Status, stats: dict[str, Any]) -> None:
+    def __init__(
+        self,
+        emit: Emit,
+        status: Status,
+        stats: dict[str, Any],
+        last_alert: LastAlert = lambda symbol, direction: None,
+    ) -> None:
         self.emit, self.status, self.stats = emit, status, stats
+        self.last_alert = last_alert
         data = yaml.safe_load(
             (Path(__file__).resolve().parents[2] / "config/thresholds.yaml").read_text()
         )
         self.policy = data["market_alerts"]
-        self.seed_semaphore = asyncio.Semaphore(3)
         self.refresh = self.policy["universe_refresh_seconds"]
         self.universe_time: dict[str, float] = {}
-        self.pending: dict[str, dict[str, Any]] = {}
-        self.last_flush: dict[str, float] = {}
-        self.last_shape: dict[str, tuple[int, int]] = {}
+        # 24h high/low per pair from the last refresh, extended by every trade since.
+        self.ranges: dict[str, list[float]] = {}
         self.rates: dict[str, dict[int, int]] = {}
         self.started = time.time()
         self.latencies: deque[float] = deque(maxlen=5000)
@@ -155,40 +132,11 @@ class Market:
         return dict(
             per_market=per_market,
             notification_decisions=self.stats.get("notification_decisions", {}),
-            summary_buffer=len(self.pending),
         )
-
-    async def flush(self, key: str) -> None:
-        event = self.pending.pop(key, None)
-        if event:
-            self.last_flush[key] = time.monotonic()
-            await self.emit(event, False)
-
-    async def flush_loop(self) -> None:
-        while True:
-            for key in list(self.pending):
-                if time.monotonic() - self.last_flush[key] >= 1:
-                    await self.flush(key)
-            await asyncio.sleep(0.1)
-
-    async def signal(self, event: dict[str, Any]) -> None:
-        component = event["signal"]["components"][0]
-        key = f"{event['source']}:{event['symbol']}:{component['direction']}"
-        previous = self.pending.get(key)
-        if previous:
-            parts = {c["type"]: c for c in previous["signal"]["components"]}
-            parts[component["type"]] = component
-            event["signal"]["components"] = list(parts.values())
-        else:
-            self.last_flush[key] = time.monotonic()
-        event["title"] = signal_title(event["symbol"], event["signal"]["components"])
-        self.pending[key] = event
 
     async def run(self, market: str) -> None:
         if market != "spot":
-            raise ValueError("Alert policy v2 only supports spot")
-        base = "https://api.binance.com" if market == "spot" else "https://fapi.binance.com"
-        prefix = "/api/v3" if market == "spot" else "/fapi/v1"
+            raise ValueError("Market alerts only support Binance spot")
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=10)) as session:
             tasks: dict[int, asyncio.Task[None]] = {}
             shards: list[list[str]] = []
@@ -196,7 +144,7 @@ class Market:
             try:
                 while True:
                     try:
-                        async with session.get(base + prefix + "/ticker/24hr") as response:
+                        async with session.get(REST + "/ticker/24hr") as response:
                             response.raise_for_status()
                             tickers = await response.json()
                         new_groups = eligible(tickers, int(time.time() * 1000), set(groups))
@@ -204,6 +152,7 @@ class Market:
                             raise ValueError("No eligible pairs")
                         groups.clear()
                         groups.update(new_groups)
+                        self.ranges = day_ranges(tickers, groups)
                         self.universe_time[market] = time.monotonic()
                         self.status(market + "_universe", "live", f"{len(groups)} eligible pairs")
                         shards, changed = plan_shards(shards, set(groups))
@@ -216,14 +165,7 @@ class Market:
                                 self.status(f"{market}_stream_{number}", "retired", "Empty")
                                 continue
                             tasks[number] = asyncio.create_task(
-                                self.shard(
-                                    session,
-                                    market,
-                                    base + prefix,
-                                    shards[number],
-                                    groups,
-                                    number,
-                                )
+                                self.shard(session, market, shards[number], groups, number)
                             )
                     except (aiohttp.ClientError, TimeoutError, ValueError, TypeError, KeyError):
                         self.status(market + "_universe", "error", "Volume universe refresh failed")
@@ -237,70 +179,26 @@ class Market:
         self,
         session: aiohttp.ClientSession,
         market: str,
-        rest: str,
         symbols: list[str],
         groups: dict[str, tuple[str, float]],
         number: int,
     ) -> None:
         name = f"{market}_stream_{number}"
-        endpoint = (
-            "wss://stream.binance.com:9443/ws"
-            if market == "spot"
-            else "wss://fstream.binance.com/market/ws"
-        )
+        policy = self.policy["move"]
         while True:
+            # Pairs that left the universe stay subscribed until pruned; their data is ignored.
             windows = {
-                s: BurstWindow(
-                    dict(self.policy["burst"]["thresholds"][groups[s][0]]),
-                    self.policy["burst"]["confirmation_ms"],
+                s: MoveWindow(
+                    policy["thresholds"][groups[s][0] if s in groups else "low"],
+                    policy["window_seconds"],
+                    policy["confirmation_ms"],
                 )
                 for s in symbols
             }
-            trends = {
-                s: TrendWindow(
-                    self.policy["trend"]["change_6h"],
-                    self.policy["trend"]["change_24h"],
-                    self.policy["trend"]["edge_fraction"],
-                )
-                for s in symbols
-            }
-            repairs: dict[str, asyncio.Task[None]] = {}
-            seed_attempt: dict[str, float] = {}
-            listings: set[str] = set()
-
-            async def seed(
-                symbol: str,
-                trends: dict[str, TrendWindow] = trends,
-                seed_attempt: dict[str, float] = seed_attempt,
-                listings: set[str] = listings,
-            ) -> None:
-                seed_attempt[symbol] = time.monotonic()
-                try:
-                    async with self.seed_semaphore:
-                        async with session.get(
-                            rest + "/klines",
-                            params={
-                                "symbol": symbol,
-                                "interval": "15m",
-                                "limit": 98,
-                            },
-                        ) as response:
-                            response.raise_for_status()
-                            rows = await response.json()
-                            trends[symbol].seed(rows, int(time.time() * 1000))
-                        # Pairs listed less than 24h ago cannot have trend history yet.
-                        if len(rows) < 97:
-                            listings.add(symbol)
-                        else:
-                            listings.discard(symbol)
-                        await asyncio.sleep(0.1)
-                except (aiohttp.ClientError, TimeoutError, ValueError, TypeError, KeyError):
-                    pass  # Incomplete history fails closed and is retried on the next candle.
-
             try:
-                self.status(name, "warming", "Loading trend history; 180s live burst warmup")
+                self.status(name, "warming", f"{policy['window_seconds']}s live warmup")
                 async with session.ws_connect(
-                    endpoint,
+                    STREAM,
                     heartbeat=20,
                     max_msg_size=1024 * 1024,
                     timeout=aiohttp.ClientWSTimeout(ws_receive=45, ws_close=5),
@@ -308,16 +206,10 @@ class Market:
                     await ws.send_json(
                         {
                             "method": "SUBSCRIBE",
-                            "params": [
-                                s.lower() + suffix
-                                for s in symbols
-                                for suffix in ("@aggTrade", "@kline_15m")
-                            ],
+                            "params": [s.lower() + "@aggTrade" for s in symbols],
                             "id": 1,
                         }
                     )
-                    for symbol in symbols:
-                        repairs[symbol] = asyncio.create_task(seed(symbol))
                     last_status = 0.0
                     connected = time.monotonic()
                     async for message in ws:
@@ -329,7 +221,7 @@ class Market:
                         if "code" in data:
                             raise ValueError("Market subscription rejected")
                         symbol = data.get("s")
-                        if symbol not in windows or data.get("e") not in ("aggTrade", "kline"):
+                        if symbol not in windows or data.get("e") != "aggTrade":
                             continue
                         received = time.perf_counter()
                         now_ms = int(time.time() * 1000)
@@ -342,36 +234,16 @@ class Market:
                             window.reset()
                             continue
                         group, volume = groups[symbol]
-                        thresholds = dict(self.policy["burst"]["thresholds"][group])
-                        if thresholds != window.thresholds:
-                            # A volume-group change alters thresholds, not the price history.
-                            window.thresholds = thresholds
-                            window.candidates.clear()
-                        hits: list[dict[str, Any]] = []
-                        if data["e"] == "aggTrade":
-                            hits, resets = window.update(data, now_ms)
-                            for direction in resets:
-                                await self.flush(f"binance_spot:{symbol}:{direction}")
-                                await self.emit(
-                                    dict(
-                                        kind="market_reset",
-                                        source="binance_spot",
-                                        symbol=symbol,
-                                        direction=direction,
-                                    ),
-                                    False,
-                                )
-                        else:
-                            hit = trends[symbol].update(data["k"], now_ms)
-                            if hit:
-                                hits.append(hit)
-                            latest = now_ms // 900000 * 900000 - 900000
-                            if (
-                                not trends[symbol].complete(latest, window.last_time)
-                                and repairs[symbol].done()
-                                and time.monotonic() - seed_attempt.get(symbol, 0) >= 60
-                            ):
-                                repairs[symbol] = asyncio.create_task(seed(symbol))
+                        threshold = policy["thresholds"][group]
+                        if threshold != window.threshold:
+                            # A volume-group change alters the threshold, not the price history.
+                            window.threshold = threshold
+                            window.since.clear()
+                        moves = window.update(data, now_ms)
+                        bounds = self.ranges.get(symbol)
+                        if bounds and window.price:
+                            bounds[0] = max(bounds[0], window.price)
+                            bounds[1] = min(bounds[1], window.price)
                         self.stats["market_messages"] = self.stats.get("market_messages", 0) + 1
                         counters = self.stats.setdefault("per_market", {}).setdefault(
                             market,
@@ -380,12 +252,11 @@ class Market:
                                 "valid_calculations": 0,
                                 "threshold_hits": 0,
                                 "invalid_or_warming": 0,
-                                "stale_universe": 0,
                             },
                         )
                         counters["messages"] += 1
                         counters["last_received"] = time.time()
-                        counters["last_trade"] = float(data.get("T", data.get("E", 0))) / 1000
+                        counters["last_trade"] = float(data.get("T", 0)) / 1000
                         counters[
                             "valid_calculations" if window.ready else "invalid_or_warming"
                         ] += 1
@@ -400,49 +271,51 @@ class Market:
                             active = [s for s in symbols if s in groups]
                             ready = sum(windows[s].ready for s in active)
                             recent = sum(now_ms - windows[s].last_time <= 10000 for s in active)
-                            latest = now_ms // 900000 * 900000 - 900000
-                            history = sum(
-                                trends[s].complete(latest, windows[s].last_time) for s in active
-                            )
-                            young = len(listings.intersection(active))
-                            warm = time.monotonic() - connected >= 180
+                            warm = time.monotonic() - connected >= policy["window_seconds"]
                             self.status(
                                 name,
-                                "live" if warm and history + young >= len(active) else "warming",
-                                f"{len(active)} pairs; {ready} burst ready "
-                                f"({recent} traded in 10s); "
-                                f"{history} trend ready; {young} listed <24h",
+                                "live" if warm else "warming",
+                                f"{len(active)} pairs; {ready} ready ({recent} traded in 10s)",
                             )
                             last_status = time.monotonic()
-                        for hit in hits:
+                        for move in moves:
+                            # The move stays confirmed on every trade; only a move the
+                            # store's gate would accept is worth an event.
+                            if not move_gate(
+                                self.last_alert(symbol, move["direction"]),
+                                move,
+                                policy["cooldown_seconds"],
+                                policy["continuation_percent"],
+                            ):
+                                continue
+                            # The 24h high/low was set within this move's window.
+                            move["extreme"] = bounds is not None and (
+                                window.extreme(1) >= bounds[0]
+                                if move["direction"] == 1
+                                else window.extreme(-1) <= bounds[1]
+                            )
                             counters["threshold_hits"] += 1
-                            counters["last_threshold_hit"] = hit["at"]
-                            await self.signal(
+                            counters["last_threshold_hit"] = move["at"]
+                            await self.emit(
                                 dict(
                                     kind="market",
                                     source="binance_spot",
-                                    source_id=f"{symbol}:{hit['type']}:{hit['at']}",
+                                    source_id=f"{symbol}:{move['direction']}:{move['at']}",
                                     symbol=symbol,
                                     title="",
                                     body="",
                                     category="price",
-                                    published=hit["at"],
+                                    published=move["at"],
                                     url="",
                                     signal=dict(
-                                        policy_version=2,
-                                        components=[hit],
-                                        volume=volume,
-                                        group=group,
+                                        policy_version=3, move=move, volume=volume, group=group
                                     ),
-                                )
+                                ),
+                                False,
                             )
                 raise ConnectionError("Closed")
             except asyncio.CancelledError:
                 raise
             except Exception:
-                self.status(name, "error", "Disconnected; fresh burst warmup and trend reload")
-            finally:
-                for task in repairs.values():
-                    task.cancel()
-                await asyncio.gather(*repairs.values(), return_exceptions=True)
+                self.status(name, "error", "Disconnected; fresh warmup")
             await asyncio.sleep(3)

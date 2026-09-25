@@ -1,16 +1,16 @@
 # 当前交接
 
 ## Current execution pointer
-当前目标：无进行中的开发任务。系统已稳定运行“采集 → Telegram 群组话题推送”，接手后先核对线上状态，再按用户新需求开工。
-任务 Issue / 负责人：无开放 Issue；运营者 ohxiyu，最近一轮开发为 Claude（2026-09-24/25）。
-工作分支 / 最后提交 / PR：仓库只有 main；最近合并为本交接更新 PR（docs/handoff-current-state）；线上后端源码 8f1751ef7f7ce403007965ab136d039657420461。
-已经完成：2.5.1 精简上线（仅采集与推送）；资金流向并入（原 cex.top 已从 Cloudflare 与 GitHub 彻底删除）；推送切换到开启话题的群组且成员只读；网页前端下线，fomobtc.com 由服务器 nginx 302 到群组；Cloudflare 只剩 DNS 与看门狗；服务器只保留当前与上一版 release；已合并分支与过时 Issue 已清理。
-尚未完成：Solana 资金流向（公共 RPC 在东京被拒/限流，需带 Key 的免费 RPC）；币安地址簿按新一期储备金证明更新；24 小时稳定性与误报评估；看门狗故障演练。
-已运行的验证及结果：线上 health 为 2.5.1/8f1751e、Telegram 开启、各来源 live/polling（Hyperliquid 按设计为 degraded）；fomobtc.com 与 www 的 http/https 任意路径 302 到群组；证书续期演练成功；看门狗读取 health 无异常项；cex.top 的 3 个 Worker、D1 与仓库均已不存在。
-尚未验证的内容：看门狗在真实故障时的私聊提醒；24 小时连续稳定性；各交易所自然公告的端到端延迟统计。
-线上版本 / 对应源码提交：后端 2.5.1 = 8f1751ef7f7ce403007965ab136d039657420461（上一版 2.5.0 = 1739fe3e97f077ed5d4e2dbe4ecb3cebbd55e7c6，可回滚）；nginx = scripts/deploy/nginx.conf；看门狗 Worker 版本 55671d87-29c2-4225-8bdf-176cb4712ed3。
-阻塞与所需权限：Cloudflare DNS 只能由用户在后台修改（wrangler 登录没有 DNS 权限）；永久删除（Cloudflare 资源、GitHub 仓库、服务器文件）由用户本人执行；Solana 需要 RPC Key。
-下一步具体动作：按用户新需求开工；可选：安排一次约 12 分钟的计划内停服验证看门狗提醒与恢复通知，或按新 PoR 扩充 config/exchange_addresses.json。
+当前目标：2.6.0 行情异动简化为单一规则并直接部署（用户 2026-09-25：“及时关注，请你给我优化简化逻辑”“改完直接部署”）：最近 3 分钟涨跌超过 2%/3%/5%（按成交额）并持续 3 秒即提醒；同币同向 1 小时一次，再涨跌 10% 立即再提醒；附 24 小时新高/新低。
+任务 Issue / 负责人：无 Issue（用户在会话中直接提出）；运营者 ohxiyu，开发 Claude（2026-09-25）。
+工作分支 / 最后提交 / PR：feat/simple-move-alerts（本 PR，基于 main b075aa3）；最终提交记录在 PR 中。
+已经完成：检测、门控、推送文案、配置与文档改为单一规则；删除趋势、60 秒窗口、rearm、1 秒合并缓冲；修复分片含已移出币时重启即退出的问题。此前事项（2.5.1 精简、资金流向并入、群组话题、网页下线、看门狗）见 [发布记录](releases/README.md)。
+尚未完成：合并并部署 2.6.0；线上自然行情推送验收；Solana 资金流向；币安地址簿按新一期储备金证明更新；看门狗故障演练。
+已运行的验证及结果：Python 61 项、Ruff、Mypy、仓库契约通过；本机只读运行接入币安实时逐笔流，结果见 [2.6.0](releases/2.6.0.md)。
+尚未验证的内容：生产环境的自然行情推送（新格式、约 132 条/天、检测到送达约 5 秒）；看门狗真实故障提醒；24 小时连续稳定性。
+线上版本 / 对应源码提交：后端 2.5.1 = 8f1751ef7f7ce403007965ab136d039657420461（上一版 2.5.0 = 1739fe3e97f077ed5d4e2dbe4ecb3cebbd55e7c6）；nginx = scripts/deploy/nginx.conf；看门狗 Worker 版本 55671d87-29c2-4225-8bdf-176cb4712ed3。
+阻塞与所需权限：无（用户已授权合并与部署）；Cloudflare DNS 只能由用户在后台修改；永久删除由用户本人执行；Solana 需要 RPC Key。
+下一步具体动作：CI 通过后合并；按“部署与回退”发布到 /opt/fomobtc/releases/<SHA>（独立 venv、停服务并备份数据库后切换），核验 health 为 2.6.0、三个 spot 分片 live、market_alert_state 迁移结果；观察首条新格式行情推送；写部署记录并更新本交接。
 
 ## 系统现状
 

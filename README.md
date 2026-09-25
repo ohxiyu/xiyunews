@@ -1,7 +1,7 @@
 # FomoBTC
 
-Low-latency Binance price-change alerts and official announcements from Binance,
-OKX and Hyperliquid, delivered through Telegram with a read-only dashboard.
+Low-latency Binance spot move alerts, official exchange announcements and on-chain
+Binance flows, delivered through one Telegram group.
 Formerly CoinSignal; the repository is now https://github.com/ohxiyu/fomobtc.
 
 Delivery: one Telegram forum group with topics for market moves, exchange
@@ -11,17 +11,17 @@ credential requirements: [handoff](docs/handoff.md).
 ## Runtime
 
 - Python 3.11/3.12, asyncio/aiohttp; one VPS process managed by systemd.
-- Binance spot aggregate trades: rolling 60s/180s burst alerts with 3s confirmation.
-  Closed 15m candles: 6h/24h trend alerts and previous-day high/low breakouts.
-  Volume tiers, confirmation and cooldown settings live in
-  [config/thresholds.yaml](config/thresholds.yaml); exact rules in the
+- Binance spot aggregate trades, one rule: the price moved 2% / 3% / 5% (by 24h volume
+  tier) within the last 3 minutes and held for 3s. Same coin and direction alert once
+  per hour, sooner after a further 10% move; new 24h highs/lows are noted. Settings
+  live in [config/thresholds.yaml](config/thresholds.yaml); exact rules in the
   [data contract](docs/data-contract.md).
 - Binance signed English announcement stream, OKX REST polling, Hyperliquid
   public channel preview fallback or an optional authorized Telegram client.
-- SQLite WAL stores immutable events, a persistent outbox and direction-specific
-  gates: burst 15 minutes plus re-cross, trend 6 hours plus one breakout escalation.
-  API and Telegram share one title and event.
-- Up to one second merges simultaneous signals; per-chat pacing and delayed retries.
+- SQLite WAL stores immutable events, a persistent outbox and the per-coin,
+  per-direction alert gate. API and Telegram share one title and event.
+- Market notices due within the same second go out as one message; per-chat pacing
+  and delayed retries.
   Timeouts are marked unknown, not silently reported as successful.
 - Read-only API on the VPS (`/api/health`, `/api/ready`, `/api/events`) for
   monitoring and inspection; there is no web frontend. fomobtc.com redirects to the

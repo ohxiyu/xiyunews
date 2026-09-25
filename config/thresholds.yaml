@@ -3,24 +3,21 @@
 market_alerts:
   # Binance spot universe and volume groups are refreshed this often.
   universe_refresh_seconds: 600
-  burst:
+  # One rule: the price moved at least the group's threshold (percent) against the last
+  # trade at or before window_seconds ago, and stayed beyond it for confirmation_ms.
+  move:
+    window_seconds: 180
     confirmation_ms: 3000
-    cooldown_seconds: 900
-    thresholds:
-      high: {60: 1.5, 180: 2.5}
-      mid: {60: 2.5, 180: 4.0}
-      low: {60: 4.0, 180: 6.0}
-  trend:
-    change_6h: 5.0
-    change_24h: 8.0
-    edge_fraction: 0.1
-    cooldown_seconds: 21600
-  # Telegram only: notices due together are sent as one message. The web keeps one
-  # event per symbol. hold_seconds delays each notice so candle-close trends cluster.
+    thresholds: {high: 2.0, mid: 3.0, low: 5.0}
+    # Same coin and direction alert at most once per cooldown, unless the price has gone
+    # a further continuation_percent beyond the previous alert's price.
+    cooldown_seconds: 3600
+    continuation_percent: 10
   # On-chain Binance inflows/outflows (src/platform/flows.py).
   flows:
     threshold_usd: 10000000
+  # Telegram only: market notices due together are sent as one message.
   digest:
-    hold_seconds: 3
+    hold_seconds: 1
     max_items: 30
     market_wide_symbols: 4

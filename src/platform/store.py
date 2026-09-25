@@ -11,7 +11,7 @@ from typing import Any, TypeVar
 
 import yaml
 
-from .signals import signal_title
+from .signals import move_gate, signal_title
 from .text import summarize
 
 T = TypeVar("T")
@@ -64,9 +64,8 @@ class Store:
             );
             CREATE INDEX IF NOT EXISTS episode_symbol
               ON market_episodes(source,symbol,last_hit DESC);
-            CREATE TABLE IF NOT EXISTS alert_policy_state (
-              key TEXT PRIMARY KEY, at REAL NOT NULL, armed INTEGER NOT NULL,
-              breakout INTEGER NOT NULL
+            CREATE TABLE IF NOT EXISTS market_alert_state (
+              key TEXT PRIMARY KEY, at REAL NOT NULL, price REAL
             );
             CREATE TABLE IF NOT EXISTS announcement_alias (
               catalog INTEGER NOT NULL, published REAL NOT NULL, event_id TEXT NOT NULL
@@ -76,9 +75,6 @@ class Store:
               event_id TEXT NOT NULL, lang TEXT NOT NULL, title TEXT NOT NULL,
               summary TEXT NOT NULL, points TEXT NOT NULL, url TEXT NOT NULL,
               method TEXT NOT NULL, PRIMARY KEY(event_id, lang)
-            );
-            CREATE TABLE IF NOT EXISTS market_notice_attempt (
-              key TEXT PRIMARY KEY, at REAL NOT NULL
             );
         """)
         # Telegram language actually sent, and whether a later Chinese edit was applied.
@@ -97,24 +93,28 @@ class Store:
             "UPDATE events SET status='unknown',error='interrupted delivery' WHERE status='sending'"
         )
         # One-time conservative carryover from the previous policy; no historical replay.
-        if not self.db.execute("SELECT 1 FROM meta WHERE key='alert_policy_v2'").fetchone():
-            now = time.time()
+        # A coin alerted within the cooldown stays quiet in that direction until it ends;
+        # old alerts have no price, so they cannot be passed by a further move.
+        if not self.db.execute("SELECT 1 FROM meta WHERE key='alert_policy_v3'").fetchone():
             for row in self.db.execute(
-                "SELECT e.source,e.symbol,e.detected,m.direction FROM events e "
-                "JOIN market_episodes m ON m.id=e.id WHERE e.detected>? ORDER BY e.detected",
-                (now - self.policy["burst"]["cooldown_seconds"],),
+                "SELECT source,symbol,direction,max(last_hit) FROM market_episodes "
+                "WHERE last_hit>? GROUP BY source,symbol,direction",
+                (time.time() - self.policy["move"]["cooldown_seconds"],),
             ).fetchall():
-                key = f"{row['source']}:{row['symbol']}:burst:{row['direction']}"
                 self.db.execute(
-                    "INSERT OR REPLACE INTO alert_policy_state VALUES (?,?,0,0)",
-                    (key, row["detected"]),
+                    "INSERT OR REPLACE INTO market_alert_state VALUES (?,?,NULL)",
+                    (f"{row[0]}:{row[1]}:{row[2]}", row[3]),
                 )
             self.db.execute(
                 "UPDATE events SET status='expired',error='policy replaced' "
                 "WHERE category='price_notice' AND status='pending'"
             )
-            self.db.execute("INSERT INTO meta VALUES ('alert_policy_v2','1')")
+            self.db.execute("INSERT INTO meta VALUES ('alert_policy_v3','1')")
         self.db.commit()
+        # Read without the lock by the market collector to skip moves the gate would refuse.
+        self.move_alerts: dict[str, tuple[float, float | None]] = {
+            r[0]: (r[1], r[2]) for r in self.db.execute("SELECT * FROM market_alert_state")
+        }
 
     async def run(self, operation: Callable[[], T]) -> T:
         async with self.lock:
@@ -317,15 +317,8 @@ class Store:
 
         await self.run(write)
 
-    async def market_rearm(self, source: str, symbol: str, direction: int) -> None:
-        def write() -> None:
-            with self.db:
-                self.db.execute(
-                    "UPDATE alert_policy_state SET armed=1 WHERE key=?",
-                    (f"{source}:{symbol}:burst:{direction}",),
-                )
-
-        await self.run(write)
+    def last_alert(self, symbol: str, direction: int) -> tuple[float, float | None] | None:
+        return self.move_alerts.get(f"binance_spot:{symbol}:{direction}")
 
     async def market_update(
         self,
@@ -334,60 +327,46 @@ class Store:
         chat: str,
         notify: bool,
     ) -> str:
-        """Atomic policy gates and a shared immutable web/delivery event."""
+        """Atomic per-coin, per-direction gate and one immutable event per alert."""
 
         def write() -> str:
             now = time.time()
             batch = event["signal"]
-            if batch.get("policy_version") != 2 or event["source"] != "binance_spot":
+            if batch.get("policy_version") != 3 or event["source"] != "binance_spot":
                 return "unsupported_policy"
+            move = dict(batch["move"])
+            direction = move["direction"]
+            if (
+                direction not in (-1, 1)
+                or direction * move["change"] + 1e-9 < move["threshold"]
+                or now - move["at"] > 10
+                or move["at"] > now + 2
+            ):
+                return "invalid_signal"
             symbol = event["symbol"].upper()
-            accepted = []
+            key = f"{event['source']}:{symbol}:{direction}"
+            policy = self.policy["move"]
+            row = self.db.execute(
+                "SELECT at,price FROM market_alert_state WHERE key=?", (key,)
+            ).fetchone()
+            last = (row["at"], row["price"]) if row else None
+            passed = move_gate(
+                last, move, policy["cooldown_seconds"], policy["continuation_percent"]
+            )
+            if not passed:
+                return "policy_limited"
+            if passed == "continuation" and last and last[1]:
+                move["further"] = direction * (move["price"] / last[1] - 1) * 100
+            title = signal_title(symbol, move)
+            data = dict(batch, move=move, direction=direction)
+            eid = hashlib.sha256(f"v3:{key}:{move['at']}".encode()).hexdigest()[:32]
+            nid = eid + "n" if notify else ""
+            hold = self.policy["digest"]["hold_seconds"]
             with self.db:
-                for c in batch["components"]:
-                    if (
-                        c["type"] not in ("burst", "trend")
-                        or c["direction"] not in (-1, 1)
-                        or c["direction"] * c["change"] + 1e-9 < c["threshold"]
-                        or now - c["at"] > 10
-                        or c["at"] > now + 2
-                    ):
-                        continue
-                    key = f"{event['source']}:{symbol}:{c['type']}:{c['direction']}"
-                    old = self.db.execute(
-                        "SELECT * FROM alert_policy_state WHERE key=?", (key,)
-                    ).fetchone()
-                    episode = c["at"]
-                    breakout = int(c.get("breakout", False))
-                    if old:
-                        if c["type"] == "burst":
-                            if (
-                                not old["armed"]
-                                or c["crossed_at"]
-                                < old["at"] + self.policy["burst"]["cooldown_seconds"]
-                            ):
-                                continue
-                        elif c["at"] < old["at"] + self.policy["trend"]["cooldown_seconds"]:
-                            if not breakout or old["breakout"] or c["at"] <= old["at"]:
-                                continue
-                            episode = old["at"]  # Extra breakout doesn't restart the 6h episode.
-                    self.db.execute(
-                        "INSERT OR REPLACE INTO alert_policy_state VALUES (?,?,0,?)",
-                        (key, episode, breakout),
-                    )
-                    accepted.append(c)
-                if not accepted:
-                    return "policy_limited"
-                title = signal_title(symbol, accepted)
-                data = dict(batch, components=accepted)
-                data["direction"] = accepted[0]["direction"]
-                data["started"] = min(c["at"] for c in accepted)
-                data["last_hit"] = max(c["at"] for c in accepted)
-                eid = hashlib.sha256(
-                    f"v2:{event['source']}:{symbol}:{json.dumps(accepted, sort_keys=True)}".encode()
-                ).hexdigest()[:32]
-                nid = eid + "n" if notify else ""
-                hold = self.policy["digest"]["hold_seconds"]
+                self.db.execute(
+                    "INSERT OR REPLACE INTO market_alert_state VALUES (?,?,?)",
+                    (key, move["at"], move["price"]),
+                )
                 for record, category, status, target, due, expires in [
                     (eid, "price", "archived", "", now, now),
                     *(
@@ -410,7 +389,7 @@ class Store:
                             "",
                             category,
                             symbol,
-                            data["started"],
+                            move["at"],
                             now,
                             0,
                             status,
@@ -422,17 +401,10 @@ class Store:
                     )
                 self.db.execute(
                     "INSERT INTO market_episodes VALUES (?,?,?,?,?,?,?)",
-                    (
-                        eid,
-                        event["source"],
-                        symbol,
-                        data["direction"],
-                        data["last_hit"],
-                        json.dumps(data),
-                        nid,
-                    ),
+                    (eid, event["source"], symbol, direction, move["at"], json.dumps(data), nid),
                 )
-                return "queued" if notify else "disabled"
+            self.move_alerts[key] = (move["at"], move["price"])
+            return "queued" if notify else "disabled"
 
         return await self.run(write)
 

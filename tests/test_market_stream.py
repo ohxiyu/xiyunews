@@ -1,4 +1,5 @@
-"""Replay both Binance stream shapes through subscription, detectors, buffer and outbox."""
+"""Replay a Binance aggregate-trade stream through subscription, detector, gate and outbox."""
+# ruff: noqa: RUF001
 
 import asyncio
 import json
@@ -13,92 +14,68 @@ from src.platform.market import Market
 from src.platform.store import Store
 
 
+def price(t):
+    # Flat, then +6% (confirmed 3s later), then a further +10.4% over the alerted price.
+    return "100" if t < 87297 else ("106" if t < 87305 else "117")
+
+
 @pytest.mark.asyncio
-async def test_stream_to_one_web_event_and_one_identical_telegram_title(tmp_path, monkeypatch):
+async def test_stream_alerts_once_per_move_and_again_after_a_further_move(tmp_path, monkeypatch):
     clock = [87116.0]
     monkeypatch.setattr(time, "time", lambda: clock[0])
     store = Store(str(tmp_path / "db"))
+    reasons = []
 
     async def emit(event, baseline):
-        if event["kind"] == "market_reset":
-            await store.market_rearm(event["source"], event["symbol"], event["direction"])
-        else:
-            await store.market_update(event, chat="private", notify=True)
+        reasons.append(await store.market_update(event, chat="private", notify=True))
 
-    market = Market(emit, lambda *_: None, {})
+    market = Market(emit, lambda *_: None, {}, store.last_alert)
     market.universe_time["spot"] = time.monotonic()
+    market.ranges = {"ZECUSDT": [105.0, 95.0]}
     finished = asyncio.Event()
     subscribed = []
 
-    class Response:
+    class Socket:
         async def __aenter__(self):
             return self
 
         async def __aexit__(self, *args):
             pass
 
-        def raise_for_status(self):
-            pass
-
-        async def json(self):
-            return [[i * 900000, 100, 100, 100, 100, 0, (i + 1) * 900000 - 1] for i in range(96)]
-
-    class Socket(Response):
         async def send_json(self, value):
             subscribed.extend(value["params"])
 
         async def __aiter__(self):
-            await asyncio.sleep(0)  # REST history loads before live close.
-            for t in range(87116, 87301):
+            for t in range(87116, 87312):
                 clock[0] = float(t)
                 yield SimpleNamespace(
                     type=aiohttp.WSMsgType.TEXT,
-                    data=json.dumps(
-                        dict(
-                            e="aggTrade",
-                            s="ZECUSDT",
-                            T=t * 1000,
-                            a=t,
-                            p="106" if t >= 87297 else "100",
-                        )
-                    ),
+                    data=json.dumps(dict(e="aggTrade", s="ZECUSDT", T=t * 1000, a=t, p=price(t))),
                 )
-            yield SimpleNamespace(
-                type=aiohttp.WSMsgType.TEXT,
-                data=json.dumps(
-                    dict(
-                        e="kline",
-                        s="ZECUSDT",
-                        E=87300000,
-                        k=dict(t=86400000, T=87299999, h="106", l="106", c="106", x=True),
-                    )
-                ),
-            )
             finished.set()
             await asyncio.Event().wait()
 
     class Session:
-        def get(self, url, params):
-            assert params["interval"] == "15m" and params["limit"] == 98
-            return Response()
-
         def ws_connect(self, *args, **kwargs):
             return Socket()
 
+    # GONEUSDT left the universe but stays subscribed until its shard is pruned.
     task = asyncio.create_task(
-        market.shard(
-            Session(), "spot", "https://example.invalid", ["ZECUSDT"], {"ZECUSDT": ("high", 2e8)}, 0
-        )
+        market.shard(Session(), "spot", ["ZECUSDT", "GONEUSDT"], {"ZECUSDT": ("high", 2e8)}, 0)
     )
     try:
         await asyncio.wait_for(finished.wait(), 2)
-        assert subscribed == ["zecusdt@aggTrade", "zecusdt@kline_15m"]
-        await market.flush("binance_spot:ZECUSDT:1")
+        assert subscribed == ["zecusdt@aggTrade", "goneusdt@aggTrade"]
+        # Confirmed on every later trade, but only moves the gate accepts become events.
+        assert reasons == ["queued", "queued"]
         rows = await store.listing()
-        assert len(rows) == 1 and len(rows[0]["signal"]["components"]) == 2
+        assert [r["title"] for r in rows] == [
+            "ZEC 3 分钟内上涨 17.00%，较上次提醒再涨 10.4%，创 24 小时新高",
+            "ZEC 3 分钟内上涨 6.00%，创 24 小时新高",
+        ]
+        assert market.ranges["ZECUSDT"] == [117.0, 95.0]
         notice = await store.claim(set())
-        assert format_message(notice) == rows[0]["title"]
-        assert "分钟内上涨" in notice["title"] and "24 小时新高" in notice["title"]
+        assert format_message(notice) == "\n".join(r["title"] for r in rows)
         assert await store.claim(set()) is None
     finally:
         task.cancel()

@@ -1,4 +1,4 @@
-"""Deterministic, bounded price detectors. No network or notification side effects."""
+"""Deterministic, bounded price detector and alert gate. No network or notification effects."""
 # ruff: noqa: RUF001
 
 import math
@@ -6,31 +6,34 @@ from collections import deque
 from typing import Any
 
 
-class BurstWindow:
-    """Exact last-traded prices at or before t-60s/t-180s, never minute-bar proxies."""
+class MoveWindow:
+    """Change against the exact last-traded price at or before t-180s, never a minute bar."""
 
-    def __init__(self, thresholds: dict[int, float], confirmation: int = 3000) -> None:
-        self.thresholds = thresholds
+    def __init__(self, threshold: float, seconds: int = 180, confirmation: int = 3000) -> None:
+        self.threshold = threshold
+        self.seconds = seconds
         self.confirmation = confirmation
-        self.points: dict[int, deque[tuple[int, float]]] = {60: deque(), 180: deque()}
+        self.points: deque[tuple[int, float]] = deque()
         self.last_id: int | None = None
         self.last_time = 0
+        self.price = 0.0
         self.start: int | None = None
-        self.candidates: dict[int, int] = {}
-        self.fired: set[int] = set()
-        self.below: set[int] = set()
+        self.since: dict[int, int] = {}
         self.ready = False
 
     def reset(self) -> None:
-        for points in self.points.values():
-            points.clear()
+        self.points.clear()
         self.start = None
-        self.candidates.clear()
-        self.fired.clear()
-        self.below.clear()
+        self.since.clear()
         self.ready = False
 
-    def update(self, data: dict[str, Any], now_ms: int) -> tuple[list[dict[str, Any]], list[int]]:
+    def extreme(self, direction: int) -> float:
+        """Highest (rising) or lowest (falling) price traded within the window."""
+        prices = [price for _, price in self.points]
+        return max(prices) if direction == 1 else min(prices)
+
+    def update(self, data: dict[str, Any], now_ms: int) -> list[dict[str, Any]]:
+        """Directions whose move has stayed beyond the threshold for the confirmation time."""
         timestamp, trade_id, price = int(data["T"]), int(data["a"]), float(data["p"])
         if (
             not math.isfinite(price)
@@ -38,182 +41,82 @@ class BurstWindow:
             or timestamp < self.last_time
             or (self.last_id is not None and trade_id <= self.last_id)
         ):
-            return [], []
+            return []
         if now_ms - timestamp > 10000 or timestamp > now_ms + 2000:
             self.reset()
             self.last_id, self.last_time = None, 0
-            return [], []
+            return []
         if self.last_id is not None and trade_id != self.last_id + 1:
             self.reset()
-        # No observations during an idle gap cannot establish continuous 3s confirmation.
+        # No observations during an idle gap cannot establish continuous confirmation.
         if timestamp - self.last_time > 2000:
-            self.candidates.clear()
-        self.last_id, self.last_time = trade_id, timestamp
+            self.since.clear()
+        self.last_id, self.last_time, self.price = trade_id, timestamp, price
         if self.start is None:
             self.start = timestamp
-        changes = {}
-        for seconds, points in self.points.items():
-            # Identical adjacent prices add no information to a last-price reference.
-            if not points or points[-1][1] != price:
-                if points and points[-1][0] == timestamp:
-                    points.pop()
-                points.append((timestamp, price))
-            cutoff = timestamp - seconds * 1000
-            while len(points) > 1 and points[1][0] <= cutoff:
-                points.popleft()
-            if len(points) > 50000:
-                # Fail closed under extreme load rather than use a truncated reference.
-                self.reset()
-                return [], []
-            if self.start <= cutoff and points[0][0] <= cutoff:
-                changes[seconds] = (price / points[0][1] - 1) * 100
-        self.ready = len(changes) == 2
+        points = self.points
+        # Identical adjacent prices add no information to a last-price reference.
+        if not points or points[-1][1] != price:
+            if points and points[-1][0] == timestamp:
+                points.pop()
+            points.append((timestamp, price))
+        cutoff = timestamp - self.seconds * 1000
+        while len(points) > 1 and points[1][0] <= cutoff:
+            points.popleft()
+        if len(points) > 50000:
+            # Fail closed under extreme load rather than use a truncated reference.
+            self.reset()
+            return []
+        self.ready = self.start <= cutoff and points[0][0] <= cutoff
         if not self.ready:
-            return [], []
-        hits, resets = [], []
+            return []
+        change = (price / points[0][1] - 1) * 100
+        moves = []
         for direction in (1, -1):
-            matches = [
-                (seconds, change)
-                for seconds, change in changes.items()
-                if direction * change + 1e-9 >= self.thresholds[seconds]
-            ]
-            if not matches:
-                self.candidates.pop(direction, None)
-                self.fired.discard(direction)
-                if direction not in self.below:
-                    resets.append(direction)
-                self.below.add(direction)
+            if direction * change + 1e-9 < self.threshold:
+                self.since.pop(direction, None)
                 continue
-            self.below.discard(direction)
-            since = self.candidates.setdefault(direction, timestamp)
-            if direction in self.fired or timestamp - since < self.confirmation:
-                continue
-            seconds, change = max(matches, key=lambda pair: abs(pair[1]) / self.thresholds[pair[0]])
-            self.fired.add(direction)
-            hits.append(
-                dict(
-                    type="burst",
-                    direction=direction,
-                    change=change,
-                    window_seconds=seconds,
-                    threshold=self.thresholds[seconds],
-                    crossed_at=since / 1000,
-                    at=timestamp / 1000,
-                    breakout=False,
+            since = self.since.setdefault(direction, timestamp)
+            if timestamp - since >= self.confirmation:
+                moves.append(
+                    dict(
+                        direction=direction,
+                        change=change,
+                        threshold=self.threshold,
+                        window_seconds=self.seconds,
+                        crossed_at=since / 1000,
+                        at=timestamp / 1000,
+                        price=price,
+                    )
                 )
-            )
-        return hits, resets
+        return moves
 
 
-class TrendWindow:
-    def __init__(self, six: float = 5, day: float = 8, edge: float = 0.1) -> None:
-        self.bars: dict[int, tuple[float, float, float]] = {}
-        self.six, self.day, self.edge = six, day, edge
+def move_gate(
+    last: tuple[float, float | None] | None,
+    move: dict[str, Any],
+    cooldown: float,
+    continuation: float,
+) -> str:
+    """Same coin and direction: once per cooldown, sooner only after a further move.
 
-    def seed(self, rows: list[list[Any]], now_ms: int) -> None:
-        for row in rows:
-            start, end = int(row[0]), int(row[6])
-            high, low, close = float(row[2]), float(row[3]), float(row[4])
-            if (
-                start % 900000 == 0
-                and end == start + 899999
-                and end < now_ms
-                and all(math.isfinite(v) and v > 0 for v in (high, low, close))
-                and low <= close <= high
-            ):
-                self.bars.setdefault(start, (high, low, close))
-        if self.bars:
-            self.fill(min(self.bars), max(self.bars))
-        self.bars = dict(sorted(self.bars.items())[-97:])
-
-    def fill(self, start: int, until: int) -> None:
-        """Binance omits 15m bars with no trades; such a bar is flat at the prior close."""
-        close = self.bars[start][2]
-        for bar in range(start, until + 1, 900000):
-            if bar in self.bars:
-                close = self.bars[bar][2]
-            else:
-                self.bars[bar] = (close, close, close)
-
-    def complete(self, latest: int, last_trade_ms: int) -> bool:
-        """96 contiguous closed bars, allowing a trailing run of trade-free bars."""
-        if not self.bars:
-            return False
-        end = max(self.bars)
-        contiguous = all(end - i * 900000 in self.bars for i in range(96))
-        return contiguous and (end >= latest or last_trade_ms < end + 900000)
-
-    def update(self, k: dict[str, Any], now_ms: int) -> dict[str, Any] | None:
-        if not k.get("x"):
-            return None
-        start, end = int(k["t"]), int(k["T"])
-        if start in self.bars or (self.bars and start <= max(self.bars)):
-            return None
-        # Within one stream, closed bars missing before this one had no trades.
-        if self.bars:
-            self.fill(max(self.bars), start - 900000)
-        previous = [self.bars.get(start - i * 900000) for i in range(96, 0, -1)]
-        self.seed([[start, 0, k["h"], k["l"], k["c"], 0, end]], now_ms)
-        if (
-            start not in self.bars
-            or now_ms - end > 10000
-            or end > now_ms
-            or any(bar is None for bar in previous)
-        ):
-            return None
-        bars = [bar for bar in previous if bar is not None]
-        price = self.bars[start][2]
-        six = (price / bars[-24][2] - 1) * 100
-        day = (price / bars[0][2] - 1) * 100
-        current = [*bars[1:], self.bars[start]]
-        high, low = max(b[0] for b in current), min(b[1] for b in current)
-        if high <= low:
-            return None
-        position = (price - low) / (high - low)
-        for direction in (1, -1):
-            qualified = [(21600, six, self.six), (86400, day, self.day)]
-            qualified = [q for q in qualified if direction * q[1] + 1e-9 >= q[2]]
-            at_edge = position >= 1 - self.edge if direction == 1 else position <= self.edge
-            if not qualified or not at_edge:
-                continue
-            seconds, change, threshold = max(qualified, key=lambda q: abs(q[1]) / q[2])
-            breakout = (
-                price > max(b[0] for b in bars)
-                if direction == 1
-                else (price < min(b[1] for b in bars))
-            )
-            return dict(
-                type="trend",
-                direction=direction,
-                change=change,
-                window_seconds=seconds,
-                threshold=threshold,
-                at=end / 1000,
-                breakout=breakout,
-                change_6h=six,
-                change_24h=day,
-            )
-        return None
+    `last` is the (time, price) of the previous alert in this direction; a carried-over
+    alert without a price only expires. Returns "fresh", "continuation" or "".
+    """
+    if last is None or move["at"] - last[0] >= cooldown:
+        return "fresh"
+    further = move["direction"] * (move["price"] / last[1] - 1) * 100 if last[1] else 0
+    return "continuation" if further + 1e-9 >= continuation else ""
 
 
-def signal_title(symbol: str, components: list[dict[str, Any]]) -> str:
-    coin = symbol.removesuffix("USDT")
-    burst = next((s for s in components if s["type"] == "burst"), None)
-    trend = next((s for s in components if s["type"] == "trend"), None)
-    selected = burst or trend
-    assert selected is not None
-    direction = "上涨" if selected["direction"] == 1 else "下跌"
-    if burst:
-        title = (
-            f"{coin} {burst['window_seconds'] // 60} 分钟内{direction} {abs(burst['change']):.2f}%"
-        )
-    else:
-        assert trend is not None
-        movement = "持续走强" if trend["direction"] == 1 else "持续走弱"
-        title = (
-            f"{coin} {movement}，{trend['window_seconds'] // 3600} 小时"
-            f"{direction} {abs(trend['change']):.2f}%"
-        )
-    if trend and trend["breakout"]:
-        title += "，突破 24 小时新高" if trend["direction"] == 1 else "，跌破 24 小时新低"
+def signal_title(symbol: str, move: dict[str, Any]) -> str:
+    up = move["direction"] == 1
+    title = (
+        f"{symbol.removesuffix('USDT')} {move['window_seconds'] // 60} 分钟内"
+        f"{'上涨' if up else '下跌'} {abs(move['change']):.2f}%"
+    )
+    if move.get("further"):
+        title += f"，较上次提醒再{'涨' if up else '跌'} {move['further']:.1f}%"
+    if move.get("extreme"):
+        title += "，创 24 小时新高" if up else "，创 24 小时新低"
     return title
