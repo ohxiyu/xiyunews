@@ -1,9 +1,21 @@
 # FomoBTC 接手入口
 
-先读 [AGENTS.md](AGENTS.md)、[当前交接](docs/handoff.md)、[Telegram运行与验收](docs/telegram-runbook.md)，再读当前任务 Issue。长期规则只维护在 AGENTS.md，当前状态只维护在 handoff.md。
+先读 [AGENTS.md](AGENTS.md)（长期规则），再读 [当前交接](docs/handoff.md)（唯一当前状态与 Current execution pointer），运维操作见 [Telegram 运行与验收](docs/telegram-runbook.md) 和 [部署与回退](docs/deployment.md)。
 
-2026-09-25 起产品只通过一个开启话题的 Telegram 群组交付（📈 行情异动 / 📢 交易所公告 / 💰 资金流向），网页前端已下线。后台采集与推送为单个 systemd 服务。
+## 产品一句话
+采集币安现货行情异动、交易所官方公告与链上币安资金流向 → 去重 → 推送到一个开启话题的 Telegram 群组（📈 行情异动 / 📢 交易所公告 / 💰 资金流向）。没有网页；fomobtc.com 只跳转到群组。
 
-开工先核对工作区、远端main、开放Issue/PR、服务器源码及服务状态；文档冲突先核实。沿用已记录的合并部署授权、免费边界和密钥规则。
+## 系统在哪里
+- 东京服务器 fomobtc-tokyo：systemd `fomobtc`（全部采集与推送）+ nginx（`api.fomobtc.com` 只读健康检查、fomobtc.com 跳转）。
+- Cloudflare：只有 DNS 与看门狗 `fomobtc-watchdog`（服务器外每 5 分钟检查，异常私聊运营者）。
+- GitHub `ohxiyu/fomobtc`：只有 main 分支。
 
-当前规则以[数据契约](docs/data-contract.md)为准；2026-09-17 用户已批准突发+趋势方案，替代旧24小时限制；不要自行恢复合约或补推历史公告。完成后更新交接及发布证据，分别记录代码、测试、合并、部署和真实送达；未完成必须留下分支、提交、阻塞及下一步。
+## 开工清单
+1. `git fetch`，确认 main 与服务器 `/opt/fomobtc/current` 的源码 SHA 一致。
+2. 查看 `https://api.fomobtc.com/api/health`：版本、各来源状态、Telegram 开关。
+3. 读交接的 Current execution pointer；接新任务时先更新指针，完成后更新交接与发布记录。
+
+## 不要做
+- 不重新引入网页前端、不恢复合约监控、不补推历史公告、不做机器翻译、不购买付费服务，除非用户明确要求。
+- 不在 git、日志、对话中输出任何密钥；永久删除操作（Cloudflare 资源、GitHub 仓库、服务器文件）请用户本人执行。
+- 不同时运行两个服务实例；改 DNS 需用户在 Cloudflare 后台操作。
