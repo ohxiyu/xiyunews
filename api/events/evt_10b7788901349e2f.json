@@ -96,14 +96,27 @@
       "current_state_en": "Evercrest Technologies, KelpDAO's parent, is suing LayerZero Labs and its CEO, with LayerZero denying the claims; roughly $14.5B in assets have announced migrations from LayerZero to Chainlink CCIP, and the case is testing cross-chain security responsibility.",
       "detailed_summary_zh": "KelpDAO parent Evercrest Technologies sued LayerZero Labs and CEO Bryan Pellegrino in British Columbia over April's $292M rsETH exploit, alleging negligence, misrepresentation, and defamation, as roughly $14.5B in assets have announced migrations from LayerZero to Chainlink CCIP.",
       "detailed_summary_en": "KelpDAO parent Evercrest Technologies sued LayerZero Labs and CEO Bryan Pellegrino in British Columbia over April's $292M rsETH exploit, alleging negligence, misrepresentation, and defamation, as roughly $14.5B in assets have announced migrations from LayerZero to Chainlink CCIP.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "4 月 18 日,攻击者诱使 LayerZero 的验证器批准了一笔伪造的跨链转账;LayerZero 的事件报告将入侵源头追溯到一名开发者,其在 3 月被社交工程诱导克隆了一个恶意 GitHub 代码库。按照该报告的说法,攻击者进入 LayerZero 的 RPC 环境,污染了两个内部节点并使一家外部 RPC 提供商下线,导致验证器签署了一条基于虚假源链数据的消息,116,500 枚 rsETH 因此离开 Kelp 的跨链桥。此次攻破之所以得手,是因为 Kelp 的跨链桥仅要求 LayerZero 自家一个验证器批准;链上签名校验本身按设计正常运行,因为签名有效,只是所证明的信息是虚假的。",
+      "background_en": "On April 18, attackers tricked LayerZero's verifier into approving a forged cross-chain transfer; LayerZero's incident report traces the intrusion to a developer who was socially engineered into cloning a malicious GitHub repository in March. According to that account, the attackers reached LayerZero's RPC environment, poisoned two internal nodes and knocked an external RPC provider offline, so the verifier signed a message built on false source-chain data and 116,500 rsETH left Kelp's bridge. The compromise succeeded because Kelp's bridge required approval from a single verifier — LayerZero's own — while the on-chain signature check worked as designed, since the signature was valid and simply attested to false information.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "这起争议的核心是跨链桥与互操作性安全,即基于 LayerZero 的应用和用户通过验证器配置、RPC 可靠性以及损失分担风险所面临的敞口。约 145 亿美元资产已宣布从 LayerZero 迁移至 Chainlink 的 CCIP(其中 BitGo 规模最大),表明部分持有者和协议正在转移其跨链流动性与托管假设的落点。",
+      "market_impact_en": "The dispute centers on cross-chain bridge and interoperability security, the segment where LayerZero-based applications and users would face exposure through verifier configuration, RPC reliability and loss-allocation risk. Roughly $14.5 billion in announced migrations from LayerZero to Chainlink's CCIP — with BitGo the largest — signal that some holders and protocols are shifting where cross-chain liquidity and custody assumptions sit.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://news.bitcoin.com/cryptoquant-kelpdao-hack-contagion-triggers-worst-defi-liquidity-crunch-since-2024/",
+          "title": "Cryptoquant: KelpDAO Hack 'Contagion' Triggers Worst DeFi Liquidity..."
+        },
+        {
+          "url": "https://www.kucoin.com/blog/kelpdao-hack-2026-rseth-exploit-analysis",
+          "title": "What Is KelpDAO? How Its $292M Hack Shook the Crypto Market in..."
+        },
+        {
+          "url": "https://chain.link/cross-chain",
+          "title": "Cross-Chain Interoperability Protocol (CCIP) | Chainlink"
+        }
+      ],
       "confidence": 0.92,
       "story_ids": [
         "rss:cryptoslate.com_feed_:0dc64a06501468de"
