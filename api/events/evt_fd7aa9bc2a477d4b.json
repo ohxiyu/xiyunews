@@ -49,17 +49,29 @@
       "current_state_en": "Fireworks AI introduced Ember-1, a new model from its research team, prompting Hacker News debate over open-model quality, pricing competition among providers like Sol and Kimi K3, and the implications of an inference provider training its own models.",
       "detailed_summary_zh": "Fireworks AI introduced Ember-1, a new model from its research team, prompting Hacker News debate over open-model quality, pricing competition among providers like Sol and Kimi K3, and the implications of an inference provider training its own models.",
       "detailed_summary_en": "Fireworks AI introduced Ember-1, a new model from its research team, prompting Hacker News debate over open-model quality, pricing competition among providers like Sol and Kimi K3, and the implications of an inference provider training its own models.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "background_zh": "Fireworks AI 主要以开源模型的推理与 API 服务商身份为人所知。Ember-1 建立在 Kimi K3 之上，后者是 Moonshot AI 推出的 2.8 万亿参数开源权重多模态推理模型，面向复杂编程、知识工作和长周期智能体任务。",
+      "background_en": "Fireworks AI is known primarily as an inference and API provider for open models. Ember-1 is built on Kimi K3, a 2.8T-parameter open-weight multimodal reasoning model from Moonshot AI aimed at complex coding, knowledge work and long-horizon agentic workflows.",
+      "community_discussion_zh": "在 Hacker News 上，评论者围绕开源模型的经济性展开讨论：有人提到 Sol 的价格与质量组合为 2/10，而 Kimi K3 为 3/15，认为 Kimi 需要降价；也有人质疑，即便需要的 token 更少，按每 token 计算的价格是 K3 的两倍是否值得。还有评论者对 Fireworks 在自家训练模型后仍作为 API 提供商表示担忧；另有用户称当前是模型训练的黄金时代，并用超过 14 万条生成样本对本地 Qwen 3 0.6B 模型进行微调，用于英译 Bash 命令。",
+      "community_discussion_en": "On Hacker News, commenters debated open-model economics, with one citing Sol at 2/10 versus Kimi K3 at 3/15 on price and quality and arguing Kimi needs to cut pricing; another questioned paying double the per-token price of K3 even if fewer tokens are needed. A third expressed concern about relying on Fireworks as an API provider now that it trains its own models, while another described the current period as a golden age of model training after fine-tuning a local Qwen 3 0.6B model for English-to-Bash translation with over 140k generated samples.",
+      "market_impact_zh": "Ember-1 是建立在开源权重模型 Kimi K3 之上的托管模型，因此它与 Sol、Kimi 等服务商的竞争主要体现在 token 效率与按任务计的推理定价上，而非新的模型权重。这会改变开发者在选择开源权重托管平台时的比较基准；不过相关价格数据来自社区评论，并非经确认的厂商定价条款。",
+      "market_impact_en": "Ember-1 is a hosted model built on the open-weight Kimi K3, so its competition with providers such as Sol and Kimi plays out through token efficiency and per-task inference pricing rather than new model weights. That shifts the comparison benchmark for developers choosing among open-weight hosting venues, though the pricing figures cited come from community comments rather than confirmed vendor terms.",
       "importance_score": 7.0,
       "references": [
         {
           "url": "https://news.ycombinator.com/item?id=49868830",
           "title": "Community discussion"
+        },
+        {
+          "url": "https://fireworks.ai/blog/ember-1",
+          "title": "Introducing Ember-1 | Fireworks AI"
+        },
+        {
+          "url": "https://fireworks.ai/models/fireworks/ember-1",
+          "title": "Ember-1 API & Playground | Fireworks AI"
+        },
+        {
+          "url": "https://openrouter.ai/moonshotai/kimi-k3",
+          "title": "Kimi K3 - API Pricing & Benchmarks | OpenRouter"
         }
       ],
       "confidence": 0.75,
