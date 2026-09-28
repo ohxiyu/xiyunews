@@ -123,6 +123,7 @@ Scoring granularity and calibration:
 - Score in 0.5-point increments (6.5, 7.5, 8.5, ...); do not round everything to whole numbers
 - Spread scores across the range so items can be meaningfully ranked; two items should only tie when they are genuinely equal in importance
 - Calibration anchors: a routine listing of a mid-cap asset on one exchange ≈ 6.5; a top exchange changing platform-wide fees or listing a top-20 asset ≈ 7.5; a confirmed exploit with >$50M in losses ≈ 8.5-9.0; a systemic event (major exchange insolvency, >$500M theft, landmark regulation reshaping market access) ≈ 9.5-10
+- AI calibration anchors (use the same scale; AI does not need a crypto connection): a minor product feature, model version bump or benchmark claim ≈ 6.0; a notable open-weights release, major developer-tool launch, or AI policy step with concrete obligations ≈ 7.0-7.5; a new frontier model from a leading lab, a major safety incident, or a court/regulatory decision that changes how AI is built or deployed ≈ 8.0-8.5; an industry-reshaping event (landmark capability jump, top-lab collapse or ban) ≈ 9.0+
 
 Summary style:
 - The summary must describe the substance of the news itself
@@ -155,14 +156,15 @@ Respond with valid JSON only:
   "category": "<configured-category-or-null>"
 }}"""
 
-EDITION_OVERVIEW_SYSTEM = """You structure the "Today at a glance" section for a daily crypto-market intelligence briefing.
+EDITION_OVERVIEW_SYSTEM = """You structure the "Today at a glance" section for a daily crypto and AI intelligence briefing. A reader should learn what mattered today in both crypto and AI from this section alone.
 
-Given today's ranked stories, identify the day's throughline and the 1-3 strongest supporting signals. This is an orientation layer above the ranking, not a rewrite of the top three headlines.
+Given today's ranked stories, identify the day's throughline and 2-3 supporting signals. This is an orientation layer above the ranking, not a rewrite of the top three headlines. Each story is tagged [Crypto], [AI] or [Policy].
 
 Rules:
 - `headline` is exactly one sentence: 35-60 Chinese characters / 12-24 English words. State the common direction or tension connecting the most important developments.
 - Each signal has a short category-like `label`, one factual `text` sentence, and the `item_rank` of the story supporting it.
-- Include only 1-3 genuinely important signals. Do not force Crypto, AI, or Policy representation and do not pad a quiet edition.
+- Include 2-3 signals. One signal must cover the highest-ranked [Crypto] story. If any [AI] story is listed, one signal must cover the highest-ranked [AI] story. Use a remaining slot only for another genuinely important story of any tag; do not pad a quiet edition.
+- The headline may focus on the single strongest theme; it does not need to mention both crypto and AI.
 - Each signal is 25-50 Chinese characters / 8-20 English words and adds information not already repeated verbatim in the headline.
 - Prefer concrete entities, amounts, decisions, outcomes, and current status.
 - Preserve each number's exact scope, subject and observation time. A percentage of one wave, tranche or subset is NOT a percentage of the overall total. Never combine amounts from different dates or denominators. If scope is unclear, omit the number instead of inferring it.

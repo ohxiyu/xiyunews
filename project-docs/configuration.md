@@ -563,6 +563,13 @@ Balanced digest filtering runs after AI score threshold filtering and topic
 deduplication, but before enrichment. This reduces enrichment calls to only the
 items that can appear in the final digest.
 
+A group may also set `min_items` (default 0, never above `limit`). Those
+slots are filled with the group's best stories before the open ranking, so a
+busy day in one track cannot crowd another out. Only stories that already
+passed the score threshold and deduplication are eligible; a quiet day yields
+fewer stories rather than weaker ones. Production reserves 3 of 14 slots for AI
+(`technology`: `min_items` 3, `limit` 5).
+
 Group matching uses the source category stored in `ContentItem.metadata.category`.
 All source types support a `category` field: `sources.rss[].category`,
 `sources.github[].category`, `sources.hackernews.category`,
