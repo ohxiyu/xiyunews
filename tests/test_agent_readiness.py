@@ -193,7 +193,11 @@ def test_custom_404_worker_and_cloudflare_output_are_included() -> None:
 
 
 def test_sitemap_and_robots_are_valid_and_discoverable() -> None:
-    tree = ElementTree.parse(DOCS / "sitemap.xml")
+    from src.api_output import render_sitemap
+
+    tree = ElementTree.ElementTree(
+        ElementTree.fromstring(render_sitemap([], generated_date="2026-09-28"))
+    )
     namespace = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
     urls = tree.findall("s:url", namespace)
     assert len(urls) >= 10
@@ -201,6 +205,19 @@ def test_sitemap_and_robots_are_valid_and_discoverable() -> None:
     assert all(url.find("s:lastmod", namespace) is not None for url in urls)
     robots = (DOCS / "robots.txt").read_text(encoding="utf-8")
     assert "Sitemap: https://bmt.news/sitemap.xml" in robots
+
+
+def test_sitemap_is_generated_never_committed() -> None:
+    """Every docs deployment copies docs/ over the live site, so a committed
+    sitemap would replace the one the daily edition generates."""
+    import subprocess
+
+    tracked = subprocess.run(
+        ["git", "ls-files", "docs/sitemap.xml"],
+        cwd=ROOT, capture_output=True, text=True, check=True,
+    ).stdout.strip()
+    assert tracked == ""
+    assert "docs/sitemap.xml" in (ROOT / ".gitignore").read_text(encoding="utf-8")
 
 
 def test_trust_and_developer_pages_are_substantive() -> None:

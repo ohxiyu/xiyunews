@@ -11,10 +11,9 @@ from test_ai_economy import Client, compare, stories
     (None, "not_object_or_invalid_json"),
     ({"duplicates": None}, "duplicates_not_list"),
     ({"duplicates": ["SECRET"]}, "group_not_list"),
-    ({"duplicates": [[0]]}, "group_too_short"),
     ({"duplicates": [[False, 1]]}, "index_not_integer"),
     ({"duplicates": [[0, 9]]}, "index_out_of_range"),
-    ({"duplicates": [[0, 0]]}, "repeated_index"),
+    ({"duplicates": [[0, 0, 1]]}, "repeated_index"),
 ])
 def test_precise_schema_codes(payload, code):
     with pytest.raises(DedupResponseError) as exc:
@@ -23,11 +22,25 @@ def test_precise_schema_codes(payload, code):
     assert "SECRET" not in str(exc.value)
 
 
+@pytest.mark.parametrize("groups", [[[0]], [[1, 1]], [[]], [[0], [1]]])
+def test_groups_without_a_second_story_are_ignored(groups):
+    """They name no duplicate, so they cannot justify failing an edition."""
+    assert validate_duplicates({"duplicates": groups}, 2) == []
+    assert validate_duplicates({"duplicates": groups + [[0, 1]]}, 2) == [[0, 1]]
+
+
+def test_single_story_group_no_longer_blocks_publication():
+    items = stories(2)
+    client = Client('{"duplicates": [[1]]}')
+    assert compare(client, items) == []
+    assert len(client.calls) == 1
+
+
 def test_logs_only_safe_context(caplog):
     items = stories(2)
     items[0].title = "SECRET article title"
     with caplog.at_level(logging.WARNING), pytest.raises(RuntimeError):
-        compare(Client('{"duplicates": [[0,0]], "extra":"SECRET"}'), items)
+        compare(Client('{"duplicates": [[0,0,1]], "extra":"SECRET"}'), items)
     assert "repeated_index" in caplog.text
     assert '"batch_size": 2' in caplog.text
     assert '"attempt": 2' in caplog.text

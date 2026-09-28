@@ -26,6 +26,7 @@ Design notes:
 
 from __future__ import annotations
 
+import asyncio
 import calendar
 import hashlib
 import logging
@@ -38,7 +39,12 @@ import feedparser
 import httpx
 
 from .base import BaseScraper
-from .google_news_url import canonicalize_entry_link
+from .domain_filter import domain_allowed
+from .google_news_url import (
+    article_token,
+    canonicalize_entry_link,
+    resolve_google_news_url_online,
+)
 from ..models import ContentItem, GoogleNewsConfig, SourceType
 
 logger = logging.getLogger(__name__)
@@ -96,12 +102,24 @@ class GoogleNewsScraper(BaseScraper):
             feed = feedparser.parse(response.text)
 
             items: List[ContentItem] = []
+            dropped = 0
             for entry in feed.entries:
                 if len(items) >= self.gn_config.max_results:
                     break
                 item = self._entry_to_item(entry)
-                if item is not None:
-                    items.append(item)
+                if item is None:
+                    continue
+                if not domain_allowed(
+                    item.metadata.get("publisher_url") or item.url,
+                    blocked=self.gn_config.blocked_domains,
+                    allowed=self.gn_config.allowed_domains,
+                ):
+                    dropped += 1
+                    continue
+                items.append(item)
+            if dropped:
+                logger.info("Google News: dropped %d items by domain filter", dropped)
+            await self._resolve_links(items)
             return items
 
         except httpx.HTTPError as exc:
@@ -110,6 +128,31 @@ class GoogleNewsScraper(BaseScraper):
         except Exception as exc:
             logger.warning("Error parsing Google News feed: %s", exc)
             return []
+
+    async def _resolve_links(self, items: List[ContentItem]) -> None:
+        """Replace opaque redirect links with publisher URLs where possible."""
+        pending = [item for item in items if article_token(str(item.url))]
+        pending = pending[: self.gn_config.resolve_links]
+        if not pending:
+            return
+        gate = asyncio.Semaphore(4)
+
+        async def resolve(item: ContentItem) -> bool:
+            async with gate:
+                url = await resolve_google_news_url_online(self.client, str(item.url))
+            if not url:
+                return False
+            try:
+                item.url = url
+            except Exception:  # noqa: BLE001 - keep the redirect on any validation issue
+                return False
+            item.metadata["google_news_link_resolved"] = True
+            return True
+
+        results = await asyncio.gather(*(resolve(item) for item in pending))
+        logger.info(
+            "Google News: resolved %d/%d redirect links", sum(results), len(pending)
+        )
 
     def _time_operator(self, since: datetime) -> str:
         """Build the Google News time operator from ``since``.
@@ -149,6 +192,7 @@ class GoogleNewsScraper(BaseScraper):
                 return None
 
             source_name = self._extract_source_name(entry)
+            title = self._strip_publisher_suffix(title, source_name)
 
             entry_id = entry.get("id") or link
             entry_hash = hashlib.sha256(str(entry_id).encode("utf-8")).hexdigest()[:16]
@@ -156,6 +200,7 @@ class GoogleNewsScraper(BaseScraper):
             meta = {
                 "gn_query": self.gn_config.query,
                 "source_name": source_name,
+                "publisher_url": self._extract_publisher_url(entry),
                 "category": self.gn_config.category,
             }
 
@@ -172,6 +217,23 @@ class GoogleNewsScraper(BaseScraper):
         except Exception as exc:
             logger.warning("Skipping invalid Google News entry: %s", exc)
             return None
+
+    @staticmethod
+    def _strip_publisher_suffix(title: str, source_name: Optional[str]) -> str:
+        """Drop the " - Publisher" tail Google News appends to headlines."""
+        if source_name:
+            for separator in (" - ", " | ", " – "):
+                tail = f"{separator}{source_name}"
+                if title.endswith(tail) and len(title) > len(tail):
+                    return title[: -len(tail)].rstrip()
+        return title
+
+    @staticmethod
+    def _extract_publisher_url(entry: Any) -> Optional[str]:
+        """Publisher homepage attached to the entry (``<source url=…>``)."""
+        source = entry.get("source")
+        href = source.get("href") if isinstance(source, dict) else getattr(source, "href", None)
+        return str(href).strip() if href else None
 
     @staticmethod
     def _extract_source_name(entry: Any) -> Optional[str]:

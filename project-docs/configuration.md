@@ -576,6 +576,23 @@ If the same category appears in multiple groups, BMTNews logs a warning and uses
 the first group in configuration order. Omitting both `category_groups` and
 `max_items` preserves the previous filtering behavior.
 
+## Aggregator Domain Filters
+
+Google News and GDELT surface any page that mentions the query, including
+press-release mills. Both accept domain lists, matched against the domain and
+its subdomains (`www.` is ignored):
+
+- `sources.google_news.blocked_domains` / `allowed_domains`: checked against the
+  publisher link Google News attaches to each entry, before any link resolution.
+- `sources.gdelt.blocked_domains` / `allowed_domains`: checked against the
+  article domain GDELT reports.
+- A non-empty `allowed_domains` keeps only those domains; `blocked_domains`
+  always wins.
+
+`sources.google_news.resolve_links` (default 40, 0 disables) resolves that many
+opaque `news.google.com` redirect links per fetch to the publisher's article
+URL. A failed resolution keeps the redirect link, so it never drops an item.
+
 ## Environment Variable Substitution
 
 Any string value in `data/config.json` supports `${VAR_NAME}` syntax. Variables are expanded at runtime from the environment (including values loaded from `.env`). This lets you keep secrets, tenant-specific endpoints, and private URLs out of the checked-in JSON file.

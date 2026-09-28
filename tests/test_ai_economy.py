@@ -102,7 +102,7 @@ def test_expired_comparison_is_not_reused(tmp_path):
 def test_invalid_response_never_cached_and_corrupt_hit_is_revalidated(tmp_path):
     cache = AnalysisResultCache(tmp_path / "cache.json", model="test")
     with pytest.raises(RuntimeError, match="invalid_response"):
-        compare(Client('{"duplicates": [[0,0]]}'), stories(2), cache=cache)
+        compare(Client('{"duplicates": [[0,0,1]]}'), stories(2), cache=cache)
     assert not cache.entries
     compare(Client(), stories(2), cache=cache)
     next(iter(cache.entries.values()))["value"] = {"duplicates": [[0, 99]]}

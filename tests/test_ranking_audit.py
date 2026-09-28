@@ -63,7 +63,7 @@ def test_invalid_final_audit_fails_closed(tmp_path, monkeypatch):
     runner = orchestrator(tmp_path)
     class Client:
         async def complete(self, **kw):
-            return '{"duplicates": [[0,0]]}'
+            return '{"duplicates": [[0,0,1]]}'
     monkeypatch.setattr("src.orchestrator.create_ai_client", lambda *a: Client())
     items = [story(0), story(1)]
     with pytest.raises(RuntimeError, match="refusing to publish"):

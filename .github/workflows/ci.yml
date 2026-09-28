@@ -43,7 +43,30 @@ jobs:
       - run: uv sync --frozen --extra dev
       - run: uv run pytest
       - run: uv export --all-extras --no-dev --no-hashes --no-emit-project --output-file "${RUNNER_TEMP}/requirements.txt"
-      - run: uvx --from pip-audit==2.10.1 pip-audit --requirement "${RUNNER_TEMP}/requirements.txt" --no-deps --disable-pip --progress-spinner off
+      - name: Audit dependencies (fall back to OSV when PyPI is down)
+        shell: bash
+        run: |
+          # A vulnerability finding fails at once. Only an outage of the
+          # vulnerability service (pip-audit ServiceError, HTTP 5xx, network)
+          # moves on: PyPI, then the independent OSV database, then PyPI again,
+          # so an outage of one backend cannot block an unrelated change.
+          services=(pypi osv pypi)
+          for attempt in 0 1 2; do
+            service="${services[$attempt]}"
+            if uvx --from pip-audit==2.10.1 pip-audit --requirement "${RUNNER_TEMP}/requirements.txt" --no-deps --disable-pip --progress-spinner off --vulnerability-service "$service" 2>&1 | tee "${RUNNER_TEMP}/pip-audit.log"; then
+              echo "pip-audit passed using $service"
+              exit 0
+            fi
+            if ! grep -qE 'ServiceError|ConnectionError|ProxyError|ReadTimeout|5[0-9][0-9] Server Error' "${RUNNER_TEMP}/pip-audit.log"; then
+              exit 1
+            fi
+            echo "::warning::pip-audit could not reach the $service vulnerability service"
+            if [ "$attempt" -lt 2 ]; then
+              sleep 20
+            fi
+          done
+          echo "::error::pip-audit could not reach PyPI or OSV"
+          exit 1
       - uses: actions/setup-node@v6
         with:
           node-version: "24"

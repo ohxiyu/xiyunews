@@ -376,11 +376,12 @@
       "enabled": true,
       "query": "(cryptocurrency OR bitcoin OR ethereum OR stablecoin OR blockchain)",
       "mode": "ArtList",
-      "max_records": 35,
+      "max_records": 100,
       "timespan": "24h",
       "language": "english",
       "country": null,
-      "category": "crypto-markets"
+      "category": "crypto-markets",
+      "allowed_domains": ["reuters.com", "bloomberg.com", "ft.com", "wsj.com", "cnbc.com", "apnews.com", "nytimes.com", "washingtonpost.com", "economist.com", "axios.com", "theguardian.com", "bbc.com", "bbc.co.uk", "fortune.com", "scmp.com", "nikkei.com", "caixinglobal.com", "politico.com", "barrons.com", "marketwatch.com"]
     },
     "google_news": {
       "enabled": true,
@@ -389,7 +390,9 @@
       "country": "US",
       "ceid": null,
       "max_results": 40,
-      "category": "exchange-announcements"
+      "category": "exchange-announcements",
+      "blocked_domains": ["openpr.com", "techbullion.com", "einpresswire.com", "ababnews.com", "bignewsnetwork.com", "timesdaily.com", "247wallst.com", "streetinsider.com"],
+      "resolve_links": 40
     }
   },
   "filtering": {
