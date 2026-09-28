@@ -43,23 +43,35 @@
       "material_change": true,
       "title_zh": "Sonnet 5.5",
       "title_en": "Sonnet 5.5",
-      "what_changed_zh": "Anthropic released Claude Sonnet 5.5, prompting Hacker News discussion on its thinking-effort token behavior and Terminal-Bench results, where a commenter noted Opus 5.5's higher rate of safeguard fallback trials likely explains Sonnet's better score.",
+      "what_changed_zh": "Anthropic 发布了 Claude Sonnet 5.5，称其为 Sonnet 系列新模型，网络（网络安全）能力较 Sonnet 5 有大幅提升。由于这一能力跃升，Anthropic 为其部署了 Opus 级别的安全防护机制：较高风险的网络安全任务会明确回退到 Sonnet 5 处理，而非由新模型承接。\n\n此次发布延续了 Anthropic 的做法：在新模型上叠加更严格、且会透明回退的安全机制，这意味着 Sonnet 5.5 的用户可能因请求内容不同而在任务中途被切换到另一个模型。社区对系统卡的分析还显示，安全回退率会实质性影响模型之间的基准测试对比结果。\n\n根据社区对 Sonnet 5.5 系统卡第 8.5 节的解读，Opus 5.5 在 Terminal-Bench 测试中约有 10% 的试次因安全机制由回退模型作答，而 Sonnet 5.5 的这一比例仅约 1.5%；评论者认为这很可能解释了 Sonnet 5.5 的 Terminal-Bench 得分（70.6）高于 Opus 5.5（66.4）。评论者还反映，在 \"max\" 思考档位下，Sonnet 5.5 消耗了 128,000 个思考 token、耗时约 15 分钟，但在产出最终 SVG 之前就用尽了预算，这与此前 Opus 5.5 被报告的问题一致。",
       "what_changed_en": "Anthropic released Claude Sonnet 5.5, prompting Hacker News discussion on its thinking-effort token behavior and Terminal-Bench results, where a commenter noted Opus 5.5's higher rate of safeguard fallback trials likely explains Sonnet's better score.",
-      "current_state_zh": "Anthropic released Claude Sonnet 5.5, prompting Hacker News discussion on its thinking-effort token behavior and Terminal-Bench results, where a commenter noted Opus 5.5's higher rate of safeguard fallback trials likely explains Sonnet's better score.",
+      "current_state_zh": "Anthropic 发布了 Claude Sonnet 5.5，称其为 Sonnet 系列新模型，网络（网络安全）能力较 Sonnet 5 有大幅提升。由于这一能力跃升，Anthropic 为其部署了 Opus 级别的安全防护机制：较高风险的网络安全任务会明确回退到 Sonnet 5 处理，而非由新模型承接。\n\n此次发布延续了 Anthropic 的做法：在新模型上叠加更严格、且会透明回退的安全机制，这意味着 Sonnet 5.5 的用户可能因请求内容不同而在任务中途被切换到另一个模型。社区对系统卡的分析还显示，安全回退率会实质性影响模型之间的基准测试对比结果。\n\n根据社区对 Sonnet 5.5 系统卡第 8.5 节的解读，Opus 5.5 在 Terminal-Bench 测试中约有 10% 的试次因安全机制由回退模型作答，而 Sonnet 5.5 的这一比例仅约 1.5%；评论者认为这很可能解释了 Sonnet 5.5 的 Terminal-Bench 得分（70.6）高于 Opus 5.5（66.4）。评论者还反映，在 \"max\" 思考档位下，Sonnet 5.5 消耗了 128,000 个思考 token、耗时约 15 分钟，但在产出最终 SVG 之前就用尽了预算，这与此前 Opus 5.5 被报告的问题一致。",
       "current_state_en": "Anthropic released Claude Sonnet 5.5, prompting Hacker News discussion on its thinking-effort token behavior and Terminal-Bench results, where a commenter noted Opus 5.5's higher rate of safeguard fallback trials likely explains Sonnet's better score.",
       "detailed_summary_zh": "Anthropic released Claude Sonnet 5.5, prompting Hacker News discussion on its thinking-effort token behavior and Terminal-Bench results, where a commenter noted Opus 5.5's higher rate of safeguard fallback trials likely explains Sonnet's better score.",
       "detailed_summary_en": "Anthropic released Claude Sonnet 5.5, prompting Hacker News discussion on its thinking-effort token behavior and Terminal-Bench results, where a commenter noted Opus 5.5's higher rate of safeguard fallback trials likely explains Sonnet's better score.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "background_zh": "Anthropic 此前表示，Opus 5.5 是首个搭载与 Fable 5.1 类似一类安全防护的 Opus 模型，覆盖网络安全、生物和反蒸馏领域，且这些机制都会透明地回退到另一个模型。该公司还在 Claude Opus 和 Sonnet 系列模型上部署了实时网络防护，用于按照其使用政策识别并拦截可能属于被禁止或高风险网络安全用途的请求。",
+      "background_en": "Anthropic previously said Opus 5.5 was the first Opus model to launch with a class of safeguards similar to Fable 5.1 in cybersecurity, biology, and anti-distillation, all of which fall back to another model transparently. The company also maintains real-time cyber safeguards across its Claude Opus and Sonnet models, designed to detect and block requests indicating prohibited or high-risk cybersecurity usage under its Usage Policy.",
+      "community_discussion_zh": "评论者深入讨论了基准测试结果的反转，认为安全回退率的差异使得 Sonnet 5.5 在 Terminal-Bench 上领先 Opus 5.5 难以按表面数值解读。也有人质疑该模型的实际使用场景，因为在现有套餐额度下 Opus 5.5 的效率已经相当够用；一项被广泛引用的测试则报告称，Sonnet 5.5 与 Opus 5.5 一样，在 \"max\" 档位下会在完成任务前耗尽思考预算。还有评论者将安全机制不断加码的趋势概括为：Anthropic 模型在更早版本就已达 \"网络安全能力峰值\"，此后版本在这类任务上反而回退到更旧的模型。",
+      "community_discussion_en": "Commenters dug into the benchmark inversion, arguing that differing safeguard fallback rates make Sonnet 5.5's Terminal-Bench lead over Opus 5.5 hard to read at face value. Others questioned the model's practical niche given how far Opus 5.5 efficiency has come on existing plan limits, and one widely cited test reported that Sonnet 5.5, like Opus 5.5, exhausts its thinking budget at \"max\" effort before finishing a task. One commenter framed the pattern of escalating safeguards as Anthropic models reaching \"peak cyber capabilities\" with earlier versions, with later releases falling back to older models for such tasks.",
+      "market_impact_zh": "与加密市场的直接传导路径较窄但确实存在：Anthropic 的网络能力提升及其回退路由规则，会影响自动化工具审计（或攻击）智能合约与链上基础设施的难易程度，这更多关系到安全支出以及市场对 AI 相关加密项目的情绪，而非任何代币的基本面。其影响主要经由开发者工具与安全叙事传导，而非协议层面的资金流动。",
+      "market_impact_en": "The direct crypto transmission path is narrow but real: Anthropic's cyber-capability gains and its fallback routing rules determine how easily automated tooling can audit — or attack — smart contracts and on-chain infrastructure, which touches security spending and sentiment around AI-adjacent crypto projects rather than any token's fundamentals. Any effect would run through developer tooling and security narratives, not through protocol-level flows.",
       "importance_score": 8.0,
       "references": [
         {
           "url": "https://news.ycombinator.com/item?id=49881850",
           "title": "Community discussion"
+        },
+        {
+          "url": "https://www.anthropic.com/claude-sonnet-5-5-system-card",
+          "title": "System Card: Claude Sonnet 5.5 September 28, 2026 anthropic.com"
+        },
+        {
+          "url": "https://www.anthropic.com/claude-opus-5-5",
+          "title": "Introducing Claude Opus 5.5 \\ Anthropic"
+        },
+        {
+          "url": "https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet",
+          "title": "Real-time cyber safeguards on Claude Opus and Sonnet"
         }
       ],
       "confidence": 0.75,

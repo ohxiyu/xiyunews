@@ -89,14 +89,23 @@
       "current_state_en": "The fake GIWA Layer 2 bridge received 767.65 ETH from 1,335 addresses, which was drained and funneled through Tornado Cash; DYORSWAP has promised 40% reimbursement to wallets that bridged under 5 ETH, distributed over 200 ETH in compensation, published suspected scammer addresses funded from Binance and Gate, and requested the funds back on-chain.",
       "detailed_summary_zh": "DYORSWAP was tricked into integrating a spoofed version of the upcoming GIWA blockchain that reused the genuine chain ID, causing more than 1,000 users to bridge 767 ETH (~$2M) into a fraudulent contract that scammers drained and routed through Tornado Cash.",
       "detailed_summary_en": "DYORSWAP was tricked into integrating a spoofed version of the upcoming GIWA blockchain that reused the genuine chain ID, causing more than 1,000 users to bridge 767 ETH (~$2M) into a fraudulent contract that scammers drained and routed through Tornado Cash.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "GIWA 是由韩国交易所 Upbit 的运营方 Dunamu 基于 Optimism 的 OP Stack 打造、尚未上线的 Layer 2 网络，去年已推出测试网。其官方 X 账号公开否认 GIWA 主网的存在，但该帖文发布时距离虚假跨链桥合约被取空仅剩几分钟。chain ID 是用于区分不同 EVM 网络的唯一数字标识。",
+      "background_en": "GIWA is an upcoming Layer 2 network built on Optimism's OP Stack by Dunamu, the operator of South Korean exchange Upbit, and launched its testnet last year. Its official X account publicly debunked the existence of a GIWA mainnet, but the post came only minutes before the fake bridge contract was emptied. A chain ID is the unique numerical identifier that distinguishes one EVM network from another.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "损失局限于 DYORSWAP 的跨链桥用户及其自有资金，因此直接的市场传导渠道是该 DEX 的流动性和用户信心，而非整体市场结构。被取走的资金流入 Tornado Cash，使混币器相关的合规审查继续成为交易所和追踪资金流向的链上分析机构所关注的议题。",
+      "market_impact_en": "The loss is confined to DYORSWAP's bridge users and its own treasury, so the direct market transmission runs through the DEX's liquidity and user confidence rather than broad market structure. The routing of drained funds into Tornado Cash keeps mixer-related compliance scrutiny relevant to exchanges and on-chain analytics providers tracking the proceeds.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://www.coindesk.com/web3/2025/09/09/upbit-parent-dunamu-unveils-layer-2-blockchain-giwa",
+          "title": "Upbit Operator Dunamu Unveils Its Own Layer-2 Blockchain GIWA"
+        },
+        {
+          "url": "https://optimism.io/blog/what-is-the-op-stack",
+          "title": "What Is the OP Stack? The Most Widely Deployed Framework for..."
+        }
+      ],
       "confidence": 0.92,
       "story_ids": [
         "rss:protos.com_feed_:4182d7a614288775"

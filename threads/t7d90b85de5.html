@@ -15,4 +15,4 @@ page_type: archive
 
 RPC客户端、索引器、中继器和费用赞助方如果没有及时更新，可能在第一条v1交易出现后遭遇硬性故障，或者执行错误的资源与费用限额。这使得主网激活前的窗口期成为Solana几乎所有基础设施运营方的兼容性截止时间。
 
-使用getTransaction、getBlock或blockSubscribe时，客户端必须传入maxSupportedTransactionVersion: 1，否则v1请求会返回-32015错误，包含v1交易的整个区块无法读取，订阅也会在受影响槽位停止前进。v1将计算单元、已加载账户数据与优先费放入transactionConfig对象而非ComputeBudget指令，过时的索引器会静默把每个v1交易的预算记为0；Geyser/gRPC用户需重新生成protobuf并在读取版本标志前检查字段7。</p><p class="archive-row-meta">CryptoSlate</p></div><span class="score-badge" data-tier="good">7.5</span></li></ul><p class="archive-back"><a href="/threads/">全部事件线</a> · <a href="/">返回首页</a></p>
+使用getTransaction、getBlock或blockSubscribe时，客户端必须传入maxSupportedTransactionVersion: 1，否则v1请求会返回-32015错误，包含v1交易的整个区块无法读取，订阅也会在受影响槽位停止前进。v1将计算单元、已加载账户数据与优先费放入transactionConfig对象而非ComputeBudget指令，过时的索引器会静默把每个v1交易的预算记为0；Geyser/gRPC用户需重新生成protobuf并在读取版本标志前检查字段7。</p><p class="archive-row-meta">CryptoSlate</p></div><span class="score-badge" data-tier="good">7.5</span></li></ul><p class="archive-back"><a href="/threads/">全部追踪</a> · <a href="/">返回首页</a></p>
