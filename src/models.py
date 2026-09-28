@@ -264,6 +264,11 @@ class TelegramChannelConfig(BaseModel):
     enabled: bool = True
     fetch_limit: int = 20
     category: Optional[str] = None
+    # Trial mode: fetch and report the channel (title, subscribers, message
+    # counts) without letting its messages into the edition. Crypto channel
+    # names are often impersonated, so a new channel stays in probe until a
+    # maintainer has confirmed from the report that it is the real one.
+    probe: bool = False
 
 
 class TelegramConfig(BaseModel):

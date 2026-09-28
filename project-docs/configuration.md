@@ -366,6 +366,18 @@ Telegram scraping uses the public web preview at `https://t.me/s/<channel>`, so 
 - `channel` — Telegram channel username only, without `@` or the full `https://t.me/` URL
 - `fetch_limit` — maximum number of recent messages to inspect per channel per run (default: `20`)
 - `category` — optional tag for balanced digest grouping (e.g., `"ai-news"`, `"finance"`)
+- `probe` — trial mode (default `false`). The channel is fetched and reported
+  but its messages never enter the edition. Crypto channel names are often
+  impersonated, so add new channels with `"probe": true`, confirm from the
+  run report that the title and subscriber count belong to the official
+  channel, then remove `probe`.
+
+Every fetch reports each channel in the run summary ("Telegram 频道" table)
+and the Actions log: title, subscribers, messages visible on the public
+preview, messages inside the window, messages kept, and the newest message.
+`messages_seen` 0 usually means the channel disabled its public preview;
+`in_window` 0 with messages seen means nothing new; `kept` below `in_window`
+means media-only messages were skipped.
 
 ### Twitter
 

@@ -179,6 +179,7 @@ class SourceFetchOutcome:
     items: List[ContentItem] = field(default_factory=list)
     subsource_counts: Dict[str, int] = field(default_factory=dict)
     error: Optional[str] = None
+    channels: List[Dict[str, object]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, object]:
         result: Dict[str, object] = {
@@ -189,6 +190,8 @@ class SourceFetchOutcome:
         }
         if self.error is not None:
             result["error"] = self.error
+        if self.channels:
+            result["channels"] = [dict(row) for row in self.channels]
         return result
 
 
@@ -2360,12 +2363,26 @@ class BMTNewsOrchestrator:
             for sub, count in sorted(sub_counts.items()):
                 self.console.print(f"      • {sub}: {count}")
 
+        channels = list(getattr(scraper, "channel_reports", []) or [])
+        for row in channels:
+            tag = f"@{row['channel']}{' [probe]' if row.get('probe') else ''}"
+            if row.get("status") == "ok":
+                self.console.print(
+                    f"      · {tag}: title={row.get('title')!r} "
+                    f"subscribers={row.get('subscribers')} seen={row.get('messages_seen')} "
+                    f"in_window={row.get('in_window')} kept={row.get('kept')} "
+                    f"newest={row.get('newest')}"
+                )
+            else:
+                self.console.print(f"      · {tag}: failed ({row.get('error')})")
+
         return SourceFetchOutcome(
             source_name=name,
             status=source_status,
             error=source_error,
             items=items,
             subsource_counts=dict(sorted(sub_counts.items())),
+            channels=channels,
         )
 
     @staticmethod

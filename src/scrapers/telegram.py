@@ -29,30 +29,42 @@ class TelegramScraper(BaseScraper):
     def __init__(self, config: TelegramConfig, http_client: httpx.AsyncClient):
         super().__init__(config.model_dump(), http_client)
         self.telegram_config = config
+        # One row per channel per fetch: why a channel yields what it yields.
+        self.channel_reports: List[dict] = []
 
     async def fetch(self, since: datetime) -> List[ContentItem]:
         if not self.config.get("enabled", True):
             return []
 
-        tasks = []
-        for channel_cfg in self.telegram_config.channels:
-            if channel_cfg.enabled:
-                tasks.append(self._fetch_channel(channel_cfg, since))
-
-        if not tasks:
+        self.channel_reports = []
+        channels = [cfg for cfg in self.telegram_config.channels if cfg.enabled]
+        if not channels:
             return []
 
-        results = await asyncio.gather(*tasks, return_exceptions=True)
+        results = await asyncio.gather(
+            *(self._fetch_channel(cfg, since) for cfg in channels),
+            return_exceptions=True,
+        )
         items = []
         failures = []
-        for result in results:
+        live = 0
+        for cfg, result in zip(channels, results):
+            if not cfg.probe:
+                live += 1
             if isinstance(result, Exception):
-                failures.append(result)
+                self.channel_reports.append({
+                    "channel": cfg.channel,
+                    "probe": cfg.probe,
+                    "status": "failed",
+                    "error": type(result).__name__,
+                })
+                if not cfg.probe:
+                    failures.append(result)
                 logger.warning("Error fetching Telegram channel: %s", result)
-            elif isinstance(result, list):
+            elif isinstance(result, list) and not cfg.probe:
                 items.extend(result)
 
-        if failures and len(failures) == len(results):
+        if live and len(failures) == live:
             raise RuntimeError(f"All Telegram channels failed: {failures[0]}") from failures[0]
         return items
 
@@ -70,7 +82,11 @@ class TelegramScraper(BaseScraper):
                     await asyncio.sleep(retry_after)
                     response = await self.client.get(url, headers=headers, follow_redirects=True, timeout=120.0)
                 response.raise_for_status()
-                return self._parse_channel_html(response.text, cfg, since)
+                items = self._parse_channel_html(response.text, cfg, since)
+                self.channel_reports.append(
+                    self._channel_report(response.text, cfg, since, items)
+                )
+                return items
             except httpx.HTTPError as exc:
                 failures.append(exc)
                 logger.warning(
@@ -86,6 +102,47 @@ class TelegramScraper(BaseScraper):
             f"All Telegram endpoints failed for {cfg.channel}: "
             f"{type(last_failure).__name__}: {last_failure}"
         ) from last_failure
+
+    @staticmethod
+    def _channel_report(
+        html: str, cfg: TelegramChannelConfig, since: datetime, items: List[ContentItem]
+    ) -> dict:
+        """Counts that explain a channel's yield, plus identity for probes.
+
+        ``messages_seen`` 0 usually means the channel disabled its public
+        preview; ``in_window`` 0 with messages seen means nothing new since
+        the last window; ``kept`` below ``in_window`` means messages without
+        text (media only) were skipped.
+        """
+        soup = BeautifulSoup(html, "html.parser")
+        messages = soup.select("div.tgme_widget_message[data-post]")
+        times = []
+        for message in messages[-cfg.fetch_limit:]:
+            stamp = message.select_one("time[datetime]")
+            try:
+                times.append(
+                    datetime.fromisoformat(stamp["datetime"].replace("Z", "+00:00"))
+                )
+            except (TypeError, KeyError, ValueError):
+                continue
+        title = soup.select_one(".tgme_channel_info_header_title")
+        subscribers = None
+        for counter in soup.select(".tgme_channel_info_counter"):
+            kind = counter.select_one(".counter_type")
+            value = counter.select_one(".counter_value")
+            if kind and value and "subscriber" in kind.get_text().lower():
+                subscribers = value.get_text(strip=True)
+        return {
+            "channel": cfg.channel,
+            "probe": cfg.probe,
+            "status": "ok",
+            "title": title.get_text(" ", strip=True)[:80] if title else None,
+            "subscribers": subscribers,
+            "messages_seen": len(messages),
+            "in_window": sum(1 for moment in times if moment >= since),
+            "kept": len(items),
+            "newest": max(times).isoformat() if times else None,
+        }
 
     def _parse_channel_html(
         self, html: str, cfg: TelegramChannelConfig, since: datetime
