@@ -43,9 +43,11 @@ from .ai.result_cache import AnalysisResultCache, split_cached
 from .ai.tokens import get_usage_snapshot, reset_usage, task_usage_snapshot
 from .event_pipeline import (
     EVENT_CATALOG_PATH,
+    is_tracked,
     known_story_assignments,
     load_event_catalog,
     load_legacy_event_urls,
+    material_update_count,
     save_event_catalog,
     update_events,
 )
@@ -2489,6 +2491,12 @@ class BMTNewsOrchestrator:
                 retry_count += 1
         work = list(incoming.values())
         if not work:
+            translated_events, translated = await self._translate_event_texts(
+                events, None, run_report
+            )
+            if translated:
+                save_event_catalog(metadata, translated_events, EVENT_CATALOG_PATH)
+                self._publish_current_event_pages(events=translated_events)
             return
         known = known_story_assignments(events)
         client = (
@@ -2511,6 +2519,7 @@ class BMTNewsOrchestrator:
         metadata["pending_relations"] = list(pending.values())
         run_report.set_metric("event_relations_pending", sum(row["attempts"] < 3 for row in pending.values()))
         run_report.set_metric("event_relations_parked", sum(row["attempts"] >= 3 for row in pending.values()))
+        updated, _ = await self._translate_event_texts(updated, client, run_report)
         save_event_catalog(metadata, updated, EVENT_CATALOG_PATH)
         self._publish_current_event_pages(events=updated)
         for key, value in {
@@ -2532,6 +2541,29 @@ class BMTNewsOrchestrator:
             f"{result.duplicate_sources} duplicate sources, "
             f"{result.new_events} new events\n"
         )
+
+    async def _translate_event_texts(self, events, client, run_report: RunReport):
+        """Translate English text still shown on Chinese pages of tracked events.
+
+        Bounded per run; a backlog drains over the next collections. Any
+        failure keeps the English text and never blocks the timeline.
+        """
+        from .ai.event_translation import translate_texts
+        from .event_pipeline import apply_zh_translations, untranslated_texts
+
+        texts = untranslated_texts(events)
+        run_report.set_metric("event_texts_untranslated", len(texts))
+        if not texts:
+            return events, 0
+        try:
+            client = client or create_ai_client(self.config.ai)
+            translations = await translate_texts(client, texts, max_calls=4)
+        except Exception as exc:  # noqa: BLE001 - translation is best effort
+            self.console.print(f"[yellow]⚠️  Event translation skipped: {exc}[/yellow]")
+            return events, 0
+        updated, changed = apply_zh_translations(events, translations)
+        run_report.set_metric("event_texts_translated", changed)
+        return updated, changed
 
     def _publish_current_event_pages(
         self,
@@ -2607,7 +2639,8 @@ class BMTNewsOrchestrator:
                 history,
                 threads=threads,
                 entities=entities,
-                events=event_rows,
+                # Only tracked events (2+ material updates) are indexable.
+                events=[event for event in event_rows if is_tracked(event)],
             )
             written = publish_archive_pages(threads, entities, languages)
             run_report.set_metric("archive_records", len(records))
@@ -2748,13 +2781,19 @@ class BMTNewsOrchestrator:
         latest state. Editorial picks stay pinned and are never auto-removed.
         """
         known = {}
+        updates_by_event: dict[str, int] = {}
         if EVENT_CATALOG_PATH.exists():
             _, events = load_event_catalog(EVENT_CATALOG_PATH)
             known = known_story_assignments(events)
+            updates_by_event = {
+                event.event_id: material_update_count(event) for event in events
+            }
         representatives = {}
         for item in items:
             if item.id in known:
                 item.metadata["event_id"], item.metadata["event_update_id"] = known[item.id]
+            if item.metadata.get("event_id") in updates_by_event:
+                item.metadata["event_updates"] = updates_by_event[item.metadata["event_id"]]
             key = item.metadata.get("event_id")
             if not key or item.source_type == SourceType.EDITORIAL:
                 continue
