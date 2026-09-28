@@ -924,3 +924,76 @@ def known_weeks(root: Path = WEEKLY_ROOT) -> List[str]:
             continue
         weeks.append(stem)
     return sorted(set(weeks), reverse=True)
+
+
+# ---------------------------------------------------------------------------
+# Weekly push (Telegram, X)
+# ---------------------------------------------------------------------------
+
+
+def weekly_push_texts(
+    digest: WeeklyDigest,
+    context: WeeklyContext,
+    *,
+    site_url: str,
+    x_limit: int,
+) -> tuple[str, str]:
+    """The Chinese Telegram message (HTML) and X post for one weekly review.
+
+    Built only from the published digest, so a push never says more than
+    the page it points to.
+    """
+    import html as _html
+
+    from .services.x_delivery import truncate_weighted
+
+    labels = _LABELS["zh"]
+    start = _display_date(context.start, "zh")
+    end = _display_date(context.end, "zh")
+    heading = f"{labels['title']} · {start}—{end}"
+    title = _clean_copy(digest.throughline.title, limit=80)
+    summary = _clean_copy(digest.throughline.summary, limit=400)
+    items = [_clean_copy(item.title, limit=80) for item in digest.items[:4]]
+    link = f"{site_url.rstrip('/')}/weekly/{context.end.isoformat()}/"
+
+    telegram = "\n".join(
+        [
+            f"<b>{_html.escape(heading)}</b>",
+            "",
+            f"<b>{_html.escape(title)}</b>",
+            _html.escape(summary),
+            "",
+            *[f"• {_html.escape(item)}" for item in items],
+            "",
+            f'<a href="{_html.escape(link, quote=True)}">阅读完整周报</a>',
+        ]
+    )
+    x_text = truncate_weighted(f"{heading}｜{title}\n\n{summary}", x_limit)
+    return telegram, x_text
+
+
+def load_week_deliveries(date: str, *, data_root: Optional[Path] = None) -> dict:
+    path = (data_root or DATA_ROOT) / "weeks.json"
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    for entry in payload.get("weeks", []) if isinstance(payload, dict) else []:
+        if isinstance(entry, dict) and entry.get("date") == date:
+            deliveries = entry.get("deliveries")
+            return dict(deliveries) if isinstance(deliveries, dict) else {}
+    return {}
+
+
+def record_week_delivery(
+    date: str, channel: str, receipt: Mapping[str, object], *, data_root: Optional[Path] = None
+) -> None:
+    """Remember a push inside the week's index entry (published with the site)."""
+    root = data_root or DATA_ROOT
+    deliveries = load_week_deliveries(date, data_root=root)
+    deliveries[channel] = dict(receipt)
+    save_weeks_index_data(
+        known_weeks(),
+        entry={"date": date, "deliveries": deliveries},
+        data_root=root,
+    )

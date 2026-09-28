@@ -1759,6 +1759,70 @@ class BMTNewsOrchestrator:
             )
         persist()
 
+    async def _push_weekly(self, digest, context, *, run_report: RunReport) -> None:
+        """Push the Chinese weekly review to Telegram and X, once per week.
+
+        Receipts live in the week's index entry; a rerun of the same week
+        skips any channel that already has one. An X outcome that cannot be
+        proven is recorded as unknown and never retried, as for daily posts.
+        """
+        from .weekly import load_week_deliveries, record_week_delivery, weekly_push_texts
+
+        week = context.end.isoformat()
+        deliveries = load_week_deliveries(week)
+        x_config = getattr(self.config, "x_delivery", None)
+        telegram_config = getattr(self.config, "telegram_delivery", None)
+        site_url = (
+            (telegram_config.site_url if telegram_config else None)
+            or (x_config.site_url if x_config else None)
+            or "https://bmt.news/"
+        )
+        telegram_text, x_text = weekly_push_texts(
+            digest,
+            context,
+            site_url=str(site_url),
+            x_limit=x_config.max_post_chars if x_config else 280,
+        )
+
+        telegram = getattr(self, "telegram_publisher", None)
+        if (
+            telegram
+            and telegram_config
+            and "zh" in telegram_config.languages
+            and "telegram" not in deliveries
+        ):
+            result = await telegram.send_html(telegram_text, label="weekly review")
+            if result.status.value == "success":
+                record_week_delivery(week, "telegram", {"status": "sent"})
+                run_report.set_metric("weekly_telegram_sent", 1)
+            elif result.status.value == "failure":
+                run_report.add_alert("warning", "weekly_telegram_failed", result.detail)
+
+        x = getattr(self, "x_publisher", None)
+        if x and x_config and x_config.enabled and "x" not in deliveries:
+            reason = x.not_ready_reason()
+            if reason:
+                run_report.add_alert("info", "weekly_x_skipped", reason)
+                return
+            outcome = await x.publish_post(x_text)
+            if outcome.kind in {"not_sent", "rate_limited"}:
+                # X created nothing; a rerun of this week may try again.
+                run_report.add_alert("warning", "weekly_x_not_sent", outcome.detail)
+                return
+            record_week_delivery(
+                week,
+                "x",
+                {"status": outcome.kind, "tweet_id": outcome.tweet_id, "detail": outcome.detail},
+            )
+            if outcome.kind == "sent":
+                run_report.set_metric("weekly_x_sent", 1)
+            else:
+                run_report.add_alert(
+                    "warning",
+                    f"weekly_x_{outcome.kind}",
+                    f"周报 X 推送结果：{outcome.detail}，不会自动重发，请人工核对。",
+                )
+
     async def run_weekly_review(
         self,
         *,
@@ -1877,6 +1941,10 @@ class BMTNewsOrchestrator:
                     entry=build_weekly_index_entry(context, weekly_digests),
                 )
                 run_report.set_metric("weekly_pages", len(languages))
+                if "zh" in weekly_digests:
+                    await self._push_weekly(
+                        weekly_digests["zh"], context, run_report=run_report
+                    )
 
             try:
                 calibration = await generate_calibration_review(
