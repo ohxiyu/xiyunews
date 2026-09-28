@@ -287,6 +287,18 @@ class TelegramEditionPublisher:
             total_candidates=total_candidates,
             language=language,
         )
+        return await self.send_html(message, label="daily edition")
+
+    async def send_html(self, message: str, *, label: str = "message") -> TelegramDeliveryResult:
+        """Send one already-built HTML message with the same gating and redaction."""
+        if not self.config.enabled:
+            return TelegramDeliveryResult(TelegramDeliveryStatus.SKIPPED)
+        token, channel_id = self._credentials()
+        if not token or not channel_id:
+            return TelegramDeliveryResult(
+                TelegramDeliveryStatus.SKIPPED,
+                "Missing Telegram bot token or channel id",
+            )
         endpoint = f"https://api.telegram.org/bot{token}/sendMessage"
         payload = {
             "chat_id": channel_id,
@@ -308,7 +320,7 @@ class TelegramEditionPublisher:
                     message_length=len(message),
                 )
             if response.is_success and data.get("ok") is True:
-                self.console.print("[green]✈️ Telegram daily edition sent.[/green]")
+                self.console.print(f"[green]✈️ Telegram {label} sent.[/green]")
                 return TelegramDeliveryResult(
                     TelegramDeliveryStatus.SUCCESS,
                     message_length=len(message),

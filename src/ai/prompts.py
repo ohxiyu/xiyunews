@@ -198,7 +198,7 @@ Use only ranks that appear above. Apply the same headline and signal rules to
 each language. Return valid JSON only in this shape:
 {{"zh": {{"headline": "...", "signals": [...]}}, "en": {{"headline": "...", "signals": [...]}}}}"""
 
-WEEKLY_DIGEST_SYSTEM = """You write the weekly review for a crypto-market intelligence briefing.
+WEEKLY_DIGEST_SYSTEM = """You write the weekly review for a crypto and AI intelligence briefing.
 
 You are given every story published in the past week, ranked by day and by importance score, plus the multi-day threads that developed. Produce a compact review that a reader who skipped the week can scan in two minutes and understand what actually changed.
 
@@ -222,6 +222,7 @@ Return one valid JSON object with this exact structure:
 Content rules:
 - Include 4-8 items total. Use "continuing" for 2-4 multi-day developments and "remember" for 2-4 developments whose importance may become clearer later.
 - Order items by consequence, not chronology. The first three become the page's key weekly developments.
+- Cover both crypto and AI: if the week's stories include AI developments, at least two items must be about AI and one of them must be among the first three.
 - Every item must cite 1-5 exact evidence ids from the supplied stories. Never invent or alter an id.
 - Be concrete: name entities, amounts, and outcomes. Avoid filler and repeated background.
 - This is analysis of what happened, not investment advice: no buy/sell/hold recommendations and no price predictions.
