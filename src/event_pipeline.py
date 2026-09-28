@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -247,6 +248,7 @@ def _brief_context_from_item(item: ContentItem) -> dict[str, object]:
     context: dict[str, object] = {
         "importance_score": item.ai_score,
         "references": _event_references(item),
+        "title_zh": _localized(item, "title", "zh"),
     }
     for field in _BRIEF_TEXT_FIELDS:
         for language in ("zh", "en"):
@@ -263,6 +265,7 @@ def _brief_context_from_archive(record: object) -> dict[str, object]:
     return {
         "detailed_summary_zh": str(getattr(record, "summary_zh", "") or ""),
         "detailed_summary_en": str(getattr(record, "summary_en", "") or ""),
+        "title_zh": str(getattr(record, "title_zh", "") or ""),
         "importance_score": score,
         "references": [],
     }
@@ -279,6 +282,19 @@ def _merge_update_brief(
             incoming = str(context.get(key) or "").strip()
             if incoming and not getattr(update, key):
                 changes[key] = incoming
+
+    # Events are created during collection, before stories are translated,
+    # so their Chinese display fields start as the English original. Those
+    # placeholders are replaced once a translated version exists; a field that
+    # already holds Chinese is never rewritten.
+    title_zh = str(context.get("title_zh") or "").strip()
+    if has_cjk(title_zh) and not has_cjk(update.title_zh):
+        changes["title_zh"] = title_zh
+    summary_zh = str(context.get("detailed_summary_zh") or "").strip()
+    if has_cjk(summary_zh) and update.update_type == EventUpdateType.INITIAL:
+        for key in ("what_changed_zh", "current_state_zh"):
+            if not has_cjk(getattr(update, key)):
+                changes[key] = summary_zh
 
     incoming_score = context.get("importance_score")
     if isinstance(incoming_score, (int, float)) and (
@@ -347,12 +363,121 @@ def backfill_event_briefs(
             if update_changed:
                 changed_updates += 1
                 event_changed = True
-        hydrated.append(
+        current_event = (
             event.model_copy(update={"updates": updates}, deep=True)
             if event_changed
             else event.model_copy(deep=True)
         )
+        hydrated.append(sync_event_zh(current_event))
     return hydrated, changed_updates
+
+
+_CJK = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff]")
+
+
+def has_cjk(value: object) -> bool:
+    return bool(_CJK.search(str(value or "")))
+
+
+def material_update_count(event: TrackedEvent) -> int:
+    return sum(1 for update in event.updates if update.material_change)
+
+
+def is_tracked(event: TrackedEvent) -> bool:
+    """An event with at least two material updates earns its own page."""
+    return material_update_count(event) >= 2
+
+
+def sync_event_zh(event: TrackedEvent) -> TrackedEvent:
+    """Lift translated update text to the event headline and state."""
+    changes: dict[str, str] = {}
+    ordered = sorted(event.updates, key=lambda update: update.occurred_at)
+    if not has_cjk(event.title_zh):
+        first = next((u.title_zh for u in ordered if has_cjk(u.title_zh)), "")
+        if first:
+            changes["title_zh"] = first
+    if not has_cjk(event.current_state_zh):
+        latest = next(
+            (
+                u.current_state_zh
+                for u in reversed(ordered)
+                if u.material_change and has_cjk(u.current_state_zh)
+            ),
+            "",
+        )
+        if latest:
+            changes["current_state_zh"] = latest
+    return event.model_copy(update=changes, deep=True) if changes else event
+
+
+_ZH_EVENT_FIELDS = ("title", "current_state")
+_ZH_UPDATE_FIELDS = ("title", "what_changed", "current_state")
+
+
+def _english_source(obj: object, field: str) -> str:
+    """The text a still-English zh field should be translated from."""
+    english = str(getattr(obj, f"{field}_en", "") or "").strip()
+    return english or str(getattr(obj, f"{field}_zh", "") or "").strip()
+
+
+def untranslated_texts(events: Sequence[TrackedEvent]) -> list[str]:
+    """English strings still shown on Chinese pages of tracked events.
+
+    Most recently changed events first, each string once.
+    """
+    texts: list[str] = []
+    seen: set[str] = set()
+
+    def add(obj: object, field: str) -> None:
+        if has_cjk(getattr(obj, f"{field}_zh", "")):
+            return
+        text = _english_source(obj, field)
+        if text and text not in seen:
+            seen.add(text)
+            texts.append(text)
+
+    for event in sorted(
+        (e for e in events if is_tracked(e)),
+        key=lambda e: e.last_material_change_at,
+        reverse=True,
+    ):
+        for field in _ZH_EVENT_FIELDS:
+            add(event, field)
+        for update in event.updates:
+            for field in _ZH_UPDATE_FIELDS:
+                add(update, field)
+    return texts
+
+
+def apply_zh_translations(
+    events: Sequence[TrackedEvent], translations: Mapping[str, str]
+) -> tuple[list[TrackedEvent], int]:
+    """Fill still-English zh fields from verified translations."""
+    changed = 0
+
+    def filled(obj, fields):
+        nonlocal changed
+        updates = {}
+        for field in fields:
+            if has_cjk(getattr(obj, f"{field}_zh", "")):
+                continue
+            translated = translations.get(_english_source(obj, field))
+            if translated:
+                updates[f"{field}_zh"] = translated
+        if updates:
+            changed += len(updates)
+            return obj.model_copy(update=updates, deep=True)
+        return obj
+
+    result = []
+    for event in events:
+        if not is_tracked(event):
+            result.append(event)
+            continue
+        updates = [filled(update, _ZH_UPDATE_FIELDS) for update in event.updates]
+        event = filled(event.model_copy(update={"updates": updates}, deep=True), _ZH_EVENT_FIELDS)
+        result.append(sync_event_zh(event))
+    return result, changed
 
 
 def _stable_event_id(story_id: str) -> str:

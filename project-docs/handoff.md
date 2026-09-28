@@ -21,7 +21,7 @@
     "PR 检查与合并（需维护者确认）"
   ],
   "validation": [
-    "uv run pytest 全部通过；治理检查通过"
+    "uv run pytest 全部通过；治理检查通过；生产数据离线模拟"
   ],
   "unverified": [
     "2026-10-05 周报真实推送与收据写入"

@@ -36,4 +36,6 @@ SIMPLE_BUDGETS = {
     "content_analysis": 1536,
     "concept_extraction": 768,
     "translation": 2048,
+    # Event headlines and states for Chinese pages, a few items per call.
+    "event_translation": 3072,
 }
