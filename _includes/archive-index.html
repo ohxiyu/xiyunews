@@ -27,7 +27,7 @@ Parameters: kind ("threads" | "entities" | "weekly"), language ("zh" | "en").
       <span class="day-state">{% if is_en %}Latest update{% else %}最近更新{% endif %}</span>
       {% if section_latest %}<time datetime="{{ section_latest | escape }}">{{ section_latest | date: "%Y.%m.%d" | escape }}</time>{% else %}<span class="day-window">{% if is_en %}Awaiting coverage{% else %}暂无更新{% endif %}</span>{% endif %}
     </div>
-    <div class="day-divider-stats"><span>{{ section_rows.size | default: 0 | escape }} {% if include.kind == "threads" %}{% if is_en %}events{% else %}条事件线{% endif %}{% else %}{% if is_en %}entities{% else %}个实体{% endif %}{% endif %}</span></div>
+    <div class="day-divider-stats"><span>{{ section_rows.size | default: 0 | escape }} {% if include.kind == "threads" %}{% if is_en %}events{% else %}个追踪事件{% endif %}{% else %}{% if is_en %}entities{% else %}个实体{% endif %}{% endif %}</span></div>
   {% endcapture %}
   {% include section-divider.html content=section_metadata %}
 {% endif %}
@@ -281,7 +281,7 @@ Parameters: kind ("threads" | "entities" | "weekly"), language ("zh" | "en").
                   </ol>
                 {% endif %}
                 <p class="source-line event-feed-meta entity-feed-meta">
-                  {% if is_en %}{{ row.mentions | escape }} reports · {{ row.days | escape }} days · {{ row.events_count | escape }} related events{% else %}{{ row.mentions | escape }} 条报道 · 跨 {{ row.days | escape }} 天 · {{ row.events_count | escape }} 条关联事件线{% endif %}
+                  {% if is_en %}{{ row.mentions | escape }} reports · {{ row.days | escape }} days · {{ row.events_count | escape }} related events{% else %}{{ row.mentions | escape }} 条报道 · 跨 {{ row.days | escape }} 天 · {{ row.events_count | escape }} 个关联事件{% endif %}
                   <a class="event-detail-link" href="{{ prefix | escape }}/entity/{{ row.slug | escape }}/">{% if is_en %}Open entity profile{% else %}查看实体档案{% endif %} →</a>
                 </p>
               </div>

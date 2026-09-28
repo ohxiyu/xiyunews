@@ -106,19 +106,11 @@
           <a
             href="{% if interface_language == 'en' %}{{ '/en/threads/' | relative_url }}{% else %}{{ '/threads/' | relative_url }}{% endif %}"
             {% if current_section == "events" %}class="is-current" aria-current="page"{% endif %}
-            data-i18n-zh="事件线"
-            data-i18n-en="Threads"
+            data-i18n-zh="追踪"
+            data-i18n-en="Tracking"
             data-i18n-href-zh="{{ '/threads/' | relative_url }}"
             data-i18n-href-en="{{ '/en/threads/' | relative_url }}"
-          >{% if interface_language == "en" %}Threads{% else %}事件线{% endif %}</a>
-          <a
-            href="{% if interface_language == 'en' %}{{ '/en/entity/' | relative_url }}{% else %}{{ '/entity/' | relative_url }}{% endif %}"
-            {% if current_section == "entities" %}class="is-current" aria-current="page"{% endif %}
-            data-i18n-zh="实体"
-            data-i18n-en="Entities"
-            data-i18n-href-zh="{{ '/entity/' | relative_url }}"
-            data-i18n-href-en="{{ '/en/entity/' | relative_url }}"
-          >{% if interface_language == "en" %}Entities{% else %}实体{% endif %}</a>
+          >{% if interface_language == "en" %}Tracking{% else %}追踪{% endif %}</a>
           <a
             href="{% if interface_language == 'en' %}{{ '/en/weekly/' | relative_url }}{% else %}{{ '/weekly/' | relative_url }}{% endif %}"
             {% if current_section == "weekly" %}class="is-current" aria-current="page"{% endif %}
@@ -263,8 +255,7 @@
     {% unless page.page_type == "source_console" or page.noindex %}
     <nav class="pwa-bottom-nav" aria-label="{% if interface_language == 'en' %}App navigation{% else %}App 导航{% endif %}">
       <a href="{{ interface_home_url }}" {% if current_section == "feed" %}aria-current="page"{% endif %}>{% if interface_language == "en" %}Feed{% else %}信息流{% endif %}</a>
-      <a href="{% if interface_language == 'en' %}/en{% endif %}/threads/" {% if current_section == "events" %}aria-current="page"{% endif %}>{% if interface_language == "en" %}Threads{% else %}事件线{% endif %}</a>
-      <a href="{% if interface_language == 'en' %}/en{% endif %}/entity/" {% if current_section == "entities" %}aria-current="page"{% endif %}>{% if interface_language == "en" %}Entities{% else %}实体{% endif %}</a>
+      <a href="{% if interface_language == 'en' %}/en{% endif %}/threads/" {% if current_section == "events" %}aria-current="page"{% endif %}>{% if interface_language == "en" %}Tracking{% else %}追踪{% endif %}</a>
       <a href="{% if interface_language == 'en' %}/en{% endif %}/weekly/" {% if current_section == "weekly" %}aria-current="page"{% endif %}>{% if interface_language == "en" %}Weekly{% else %}周报{% endif %}</a>
     </nav>
     {% endunless %}

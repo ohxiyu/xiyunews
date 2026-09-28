@@ -90,7 +90,7 @@
                 {% endif %}
                 <p class="source-line event-feed-meta weekly-feed-meta">
                   {% if item.sources_count > 0 %}<span>{{ item.sources_count }} {% if is_en %}sources{% else %}个来源{% endif %}</span>{% endif %}
-                  {% if item.event_url and item.event_url != "" %}<a class="event-detail-link" href="{{ item.event_url }}">{% if is_en %}Open event timeline{% else %}查看事件线{% endif %} →</a>{% endif %}
+                  {% if item.event_url and item.event_url != "" %}<a class="event-detail-link" href="{{ item.event_url }}">{% if is_en %}Open event timeline{% else %}查看追踪{% endif %} →</a>{% endif %}
                 </p>
               </div>
             </li>
