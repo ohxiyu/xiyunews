@@ -471,3 +471,74 @@ def test_run_balances_after_twitter_reanalysis(tmp_path, monkeypatch) -> None:
     asyncio.run(orchestrator.run())
 
     assert enriched_ids == ["second"]
+
+
+def test_min_items_reserves_slots_a_busy_track_cannot_take() -> None:
+    filtering = FilteringConfig(
+        max_items=5,
+        category_groups={
+            "crypto": CategoryGroupConfig(limit=5, categories=["crypto"]),
+            "ai": CategoryGroupConfig(limit=3, min_items=2, categories=["ai"]),
+        },
+    )
+    items = [make_item(f"crypto-{n}", 9.0 - n * 0.1, "crypto") for n in range(6)]
+    items += [make_item("ai-a", 7.5, "ai"), make_item("ai-b", 7.0, "ai"), make_item("ai-c", 7.0, "ai")]
+
+    result = make_orchestrator(filtering).apply_balanced_digest(items)
+
+    assert result.group_counts == {"crypto": 3, "ai": 2}
+    # Still one ranking ordered by importance, not a separate AI section.
+    assert [item.id for item in result.items] == [
+        "crypto-0", "crypto-1", "crypto-2", "ai-a", "ai-b",
+    ]
+
+
+def test_min_items_never_pulls_in_more_than_are_available() -> None:
+    filtering = FilteringConfig(
+        max_items=4,
+        category_groups={
+            "crypto": CategoryGroupConfig(limit=4, categories=["crypto"]),
+            "ai": CategoryGroupConfig(limit=3, min_items=3, categories=["ai"]),
+        },
+    )
+    items = [make_item(f"crypto-{n}", 9.0, "crypto") for n in range(4)]
+    items.append(make_item("ai-only", 7.0, "ai"))
+
+    result = make_orchestrator(filtering).apply_balanced_digest(items)
+
+    assert result.group_counts == {"crypto": 3, "ai": 1}
+
+
+def test_min_items_cannot_exceed_limit() -> None:
+    with pytest.raises(ValidationError):
+        CategoryGroupConfig(limit=2, min_items=3, categories=["ai"])
+
+
+def test_production_edition_reserves_three_to_five_ai_stories() -> None:
+    import json
+    from pathlib import Path
+
+    production = json.loads(
+        (Path(__file__).resolve().parents[1] / "data/config.github.json").read_text()
+    )
+    filtering = FilteringConfig.model_validate(production["filtering"])
+    ai = filtering.category_groups["technology"]
+    assert (ai.min_items, ai.limit) == (3, 5)
+    assert set(ai.categories) == {"ai-labs", "ai-devtools", "ai-media"}
+    assert filtering.category_groups["tech_community"].categories == ["tech-community"]
+
+    categories = {
+        "exchange-announcements": 6, "crypto-markets": 6, "crypto-protocols": 5,
+        "crypto-regulation": 3, "ai-labs": 6, "tech-community": 2,
+    }
+    items = [
+        make_item(f"{category}-{n}", 9.5 - n * 0.3 if category != "ai-labs" else 7.0 + n * 0.1,
+                  category, feed_name=f"{category}-feed-{n}")
+        for category, count in categories.items()
+        for n in range(count)
+    ]
+    result = make_orchestrator(filtering).apply_balanced_digest(items)
+
+    ai_count = result.group_counts.get("technology", 0)
+    assert 3 <= ai_count <= 5
+    assert len(result.items) <= filtering.max_items

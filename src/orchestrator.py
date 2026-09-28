@@ -3170,6 +3170,17 @@ class BMTNewsOrchestrator:
                 if selected_primary >= primary_minimum:
                     break
 
+        # Reserved slots (e.g. AI 3 of 14) are filled before the open ranking
+        # so a busy crypto day cannot crowd a whole track out of the edition.
+        for group_key, group in groups.items():
+            if not group.min_items:
+                continue
+            for item in sorted_items:
+                if group_counts[group_key] >= group.min_items:
+                    break
+                if group_for(item) == group_key:
+                    select(item, group_key)
+
         for item in sorted_items:
             select(item, group_for(item))
 
