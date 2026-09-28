@@ -7,11 +7,11 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Critical Bitcoin Lightning bugs exposed nodes to fund theft and restart failure",
+    "zh": "LDK v0.2.6 修复可致资金被盗与节点重启失败的严重漏洞",
     "en": "Critical Bitcoin Lightning bugs exposed nodes to fund theft and restart failure"
   },
   "current_state": {
-    "zh": "LDK v0.2.6 fixes critical bugs that could divert node funds via malicious splice peers and prevent saved channel state from loading after a rejected bogus payment.",
+    "zh": "Lightning 开发套件（LDK）于 9 月 9 日发布 v0.2.6，修复了两个漏洞：其一是 splice（拼接）缺陷，恶意对等节点可借此把超额手续费分配到自己的输出地址；其二是支付合约缺陷，当两个支付合约共用同一 payment hash、其中一个已成功转发时，接收并立即拒绝一个伪造支付会导致已保存的 ChannelManager 状态无法加载。受影响的应用程序团队需要集成 v0.2.6 才能应用这些修复。\n\nLDK 会被直接编译进移动钱包、支付服务基础设施等下游应用中，因此这次修复既消除了节点资金面临的直接财务风险，也解决了可能导致节点无法正常重启的问题。由于补丁代码必须由各个集成方自行引入，最终安全效果取决于开发者是否及时发布更新版本，而不是依赖全网升级。\n\n该版本说明仅描述节点发起 splice 时存在少量资金风险，并未给出具体的金额上限，同时公告称尚未观测到任何实际损失或已被利用的应用；值得注意的是，仅仅拒绝那笔伪造支付本身并不能避免重启时的状态反序列化失败。",
     "en": "LDK v0.2.6 fixes critical bugs that could divert node funds via malicious splice peers and prevent saved channel state from loading after a rejected bogus payment."
   },
   "first_seen_at": "2026-09-13T16:33:03.725707+00:00",
@@ -40,11 +40,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Critical Bitcoin Lightning bugs exposed nodes to fund theft and restart failure",
+      "title_zh": "LDK v0.2.6 修复可致资金被盗与节点重启失败的严重漏洞",
       "title_en": "Critical Bitcoin Lightning bugs exposed nodes to fund theft and restart failure",
-      "what_changed_zh": "LDK v0.2.6 fixes critical bugs that could divert node funds via malicious splice peers and prevent saved channel state from loading after a rejected bogus payment.",
+      "what_changed_zh": "Lightning 开发套件（LDK）于 9 月 9 日发布 v0.2.6，修复了两个漏洞：其一是 splice（拼接）缺陷，恶意对等节点可借此把超额手续费分配到自己的输出地址；其二是支付合约缺陷，当两个支付合约共用同一 payment hash、其中一个已成功转发时，接收并立即拒绝一个伪造支付会导致已保存的 ChannelManager 状态无法加载。受影响的应用程序团队需要集成 v0.2.6 才能应用这些修复。\n\nLDK 会被直接编译进移动钱包、支付服务基础设施等下游应用中，因此这次修复既消除了节点资金面临的直接财务风险，也解决了可能导致节点无法正常重启的问题。由于补丁代码必须由各个集成方自行引入，最终安全效果取决于开发者是否及时发布更新版本，而不是依赖全网升级。\n\n该版本说明仅描述节点发起 splice 时存在少量资金风险，并未给出具体的金额上限，同时公告称尚未观测到任何实际损失或已被利用的应用；值得注意的是，仅仅拒绝那笔伪造支付本身并不能避免重启时的状态反序列化失败。",
       "what_changed_en": "LDK v0.2.6 fixes critical bugs that could divert node funds via malicious splice peers and prevent saved channel state from loading after a rejected bogus payment.",
-      "current_state_zh": "LDK v0.2.6 fixes critical bugs that could divert node funds via malicious splice peers and prevent saved channel state from loading after a rejected bogus payment.",
+      "current_state_zh": "Lightning 开发套件（LDK）于 9 月 9 日发布 v0.2.6，修复了两个漏洞：其一是 splice（拼接）缺陷，恶意对等节点可借此把超额手续费分配到自己的输出地址；其二是支付合约缺陷，当两个支付合约共用同一 payment hash、其中一个已成功转发时，接收并立即拒绝一个伪造支付会导致已保存的 ChannelManager 状态无法加载。受影响的应用程序团队需要集成 v0.2.6 才能应用这些修复。\n\nLDK 会被直接编译进移动钱包、支付服务基础设施等下游应用中，因此这次修复既消除了节点资金面临的直接财务风险，也解决了可能导致节点无法正常重启的问题。由于补丁代码必须由各个集成方自行引入，最终安全效果取决于开发者是否及时发布更新版本，而不是依赖全网升级。\n\n该版本说明仅描述节点发起 splice 时存在少量资金风险，并未给出具体的金额上限，同时公告称尚未观测到任何实际损失或已被利用的应用；值得注意的是，仅仅拒绝那笔伪造支付本身并不能避免重启时的状态反序列化失败。",
       "current_state_en": "LDK v0.2.6 fixes critical bugs that could divert node funds via malicious splice peers and prevent saved channel state from loading after a rejected bogus payment.",
       "detailed_summary_zh": "LDK v0.2.6 fixes critical bugs that could divert node funds via malicious splice peers and prevent saved channel state from loading after a rejected bogus payment.",
       "detailed_summary_en": "LDK v0.2.6 fixes critical bugs that could divert node funds via malicious splice peers and prevent saved channel state from loading after a rejected bogus payment.",

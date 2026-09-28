@@ -7,11 +7,11 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Hidden Solana upgrade bug can freeze network readers and silently disable fee limits",
+    "zh": "Solana v1升级存隐患：可冻结RPC读取并静默禁用费用上限",
     "en": "Hidden Solana upgrade bug can freeze network readers and silently disable fee limits"
   },
   "current_state": {
-    "zh": "Solana's v1 transaction upgrade increases payload limits but risks freezing unprepared RPC readers and silently enforcing wrong fee limits for indexers and sponsors before mainnet activation.",
+    "zh": "Solana的v1交易格式将最大交易负载从1,232字节提高到4,096字节，但未选择接入的RPC读取方可能被冻结，依赖ComputeBudget指令的索引器和赞助方则可能静默失效费用上限。截至9月4日，该格式已在测试网和开发网生效，但尚未在主网激活。\n\nRPC客户端、索引器、中继器和费用赞助方如果没有及时更新，可能在第一条v1交易出现后遭遇硬性故障，或者执行错误的资源与费用限额。这使得主网激活前的窗口期成为Solana几乎所有基础设施运营方的兼容性截止时间。\n\n使用getTransaction、getBlock或blockSubscribe时，客户端必须传入maxSupportedTransactionVersion: 1，否则v1请求会返回-32015错误，包含v1交易的整个区块无法读取，订阅也会在受影响槽位停止前进。v1将计算单元、已加载账户数据与优先费放入transactionConfig对象而非ComputeBudget指令，过时的索引器会静默把每个v1交易的预算记为0；Geyser/gRPC用户需重新生成protobuf并在读取版本标志前检查字段7。",
     "en": "Solana's v1 transaction upgrade increases payload limits but risks freezing unprepared RPC readers and silently enforcing wrong fee limits for indexers and sponsors before mainnet activation."
   },
   "first_seen_at": "2026-09-04T22:27:16.971894+00:00",
@@ -42,11 +42,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Hidden Solana upgrade bug can freeze network readers and silently disable fee limits",
+      "title_zh": "Solana v1升级存隐患：可冻结RPC读取并静默禁用费用上限",
       "title_en": "Hidden Solana upgrade bug can freeze network readers and silently disable fee limits",
-      "what_changed_zh": "Solana's v1 transaction upgrade increases payload limits but risks freezing unprepared RPC readers and silently enforcing wrong fee limits for indexers and sponsors before mainnet activation.",
+      "what_changed_zh": "Solana的v1交易格式将最大交易负载从1,232字节提高到4,096字节，但未选择接入的RPC读取方可能被冻结，依赖ComputeBudget指令的索引器和赞助方则可能静默失效费用上限。截至9月4日，该格式已在测试网和开发网生效，但尚未在主网激活。\n\nRPC客户端、索引器、中继器和费用赞助方如果没有及时更新，可能在第一条v1交易出现后遭遇硬性故障，或者执行错误的资源与费用限额。这使得主网激活前的窗口期成为Solana几乎所有基础设施运营方的兼容性截止时间。\n\n使用getTransaction、getBlock或blockSubscribe时，客户端必须传入maxSupportedTransactionVersion: 1，否则v1请求会返回-32015错误，包含v1交易的整个区块无法读取，订阅也会在受影响槽位停止前进。v1将计算单元、已加载账户数据与优先费放入transactionConfig对象而非ComputeBudget指令，过时的索引器会静默把每个v1交易的预算记为0；Geyser/gRPC用户需重新生成protobuf并在读取版本标志前检查字段7。",
       "what_changed_en": "Solana's v1 transaction upgrade increases payload limits but risks freezing unprepared RPC readers and silently enforcing wrong fee limits for indexers and sponsors before mainnet activation.",
-      "current_state_zh": "Solana's v1 transaction upgrade increases payload limits but risks freezing unprepared RPC readers and silently enforcing wrong fee limits for indexers and sponsors before mainnet activation.",
+      "current_state_zh": "Solana的v1交易格式将最大交易负载从1,232字节提高到4,096字节，但未选择接入的RPC读取方可能被冻结，依赖ComputeBudget指令的索引器和赞助方则可能静默失效费用上限。截至9月4日，该格式已在测试网和开发网生效，但尚未在主网激活。\n\nRPC客户端、索引器、中继器和费用赞助方如果没有及时更新，可能在第一条v1交易出现后遭遇硬性故障，或者执行错误的资源与费用限额。这使得主网激活前的窗口期成为Solana几乎所有基础设施运营方的兼容性截止时间。\n\n使用getTransaction、getBlock或blockSubscribe时，客户端必须传入maxSupportedTransactionVersion: 1，否则v1请求会返回-32015错误，包含v1交易的整个区块无法读取，订阅也会在受影响槽位停止前进。v1将计算单元、已加载账户数据与优先费放入transactionConfig对象而非ComputeBudget指令，过时的索引器会静默把每个v1交易的预算记为0；Geyser/gRPC用户需重新生成protobuf并在读取版本标志前检查字段7。",
       "current_state_en": "Solana's v1 transaction upgrade increases payload limits but risks freezing unprepared RPC readers and silently enforcing wrong fee limits for indexers and sponsors before mainnet activation.",
       "detailed_summary_zh": "Solana's v1 transaction upgrade increases payload limits but risks freezing unprepared RPC readers and silently enforcing wrong fee limits for indexers and sponsors before mainnet activation.",
       "detailed_summary_en": "Solana's v1 transaction upgrade increases payload limits but risks freezing unprepared RPC readers and silently enforcing wrong fee limits for indexers and sponsors before mainnet activation.",

@@ -7,11 +7,11 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Hacker turned 55 days of failed transactions into a $3 million master key that drained GalaChain wallets",
+    "zh": "GalaChain 漏洞利用 74 个失败交易签名盗走约 300 万美元资产",
     "en": "Hacker turned 55 days of failed transactions into a $3 million master key that drained GalaChain wallets"
   },
   "current_state": {
-    "zh": "An attacker harvested 74 signatures from failed GalaChain transactions and used them to drain roughly 2 billion GALA (~$3 million) plus dozens of other tokens from nine wallets, exposing a gap between signature verification and replay protection that had survived multiple security reviews.",
+    "zh": "GalaChain 在 9 月 14 日发布的事后复盘报告中披露，攻击者利用从失败交易中收集到的 74 个可重放签名（最早可追溯至 55 天前），于 8 月 18 日从九个钱包中盗走约 20 亿枚 GALA（约 300 万美元）以及数十种其他代币。攻击期间该链暂停了跨链桥，并已修补签名范围混淆漏洞和重放密钥回滚缺陷。\n\n这起攻击表明，密码学上有效的签名并不等于用户已授权某项经济活动，而分别审查签名验证、重放保护和交易执行的审计流程，可能漏掉只在系统交互时才暴露的缺陷。它同时向链运营方提出治理层面的问题：当攻击已经实现自动化时，依赖人工触发的应急控制与基于有效签名的系统是否还能足够快地响应。\n\nGalaChain 的验证器此前接受请求中自带的 EIP-712 类型定义，而不是从被调用的操作中推导类型，因此可以提交覆盖某组字段的签名，却让另一个方法带着签名者从未承诺的额外信息执行——链上一个案例显示，一笔 TransferToken 调用转移了约 16.4 亿枚 GALA，而用于验证的 EIP-712 结构描述的却是 AddLiquidity 操作。由于交易失败时唯一交易键会随之回滚，签名仍留在公开账本上而重放键依然可用；与本次漏洞相关的 60 笔历史源交易中有 57 笔包含至少一个失败的内部操作，调查人员称没有证据表明受影响用户的私钥、助记词或密码遭到泄露。",
     "en": "An attacker harvested 74 signatures from failed GalaChain transactions and used them to drain roughly 2 billion GALA (~$3 million) plus dozens of other tokens from nine wallets, exposing a gap between signature verification and replay protection that had survived multiple security reviews."
   },
   "first_seen_at": "2026-09-17T17:11:51.691706+00:00",
@@ -40,11 +40,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Hacker turned 55 days of failed transactions into a $3 million master key that drained GalaChain wallets",
+      "title_zh": "GalaChain 漏洞利用 74 个失败交易签名盗走约 300 万美元资产",
       "title_en": "Hacker turned 55 days of failed transactions into a $3 million master key that drained GalaChain wallets",
-      "what_changed_zh": "An attacker harvested 74 signatures from failed GalaChain transactions and used them to drain roughly 2 billion GALA (~$3 million) plus dozens of other tokens from nine wallets, exposing a gap between signature verification and replay protection that had survived multiple security reviews.",
+      "what_changed_zh": "GalaChain 在 9 月 14 日发布的事后复盘报告中披露，攻击者利用从失败交易中收集到的 74 个可重放签名（最早可追溯至 55 天前），于 8 月 18 日从九个钱包中盗走约 20 亿枚 GALA（约 300 万美元）以及数十种其他代币。攻击期间该链暂停了跨链桥，并已修补签名范围混淆漏洞和重放密钥回滚缺陷。\n\n这起攻击表明，密码学上有效的签名并不等于用户已授权某项经济活动，而分别审查签名验证、重放保护和交易执行的审计流程，可能漏掉只在系统交互时才暴露的缺陷。它同时向链运营方提出治理层面的问题：当攻击已经实现自动化时，依赖人工触发的应急控制与基于有效签名的系统是否还能足够快地响应。\n\nGalaChain 的验证器此前接受请求中自带的 EIP-712 类型定义，而不是从被调用的操作中推导类型，因此可以提交覆盖某组字段的签名，却让另一个方法带着签名者从未承诺的额外信息执行——链上一个案例显示，一笔 TransferToken 调用转移了约 16.4 亿枚 GALA，而用于验证的 EIP-712 结构描述的却是 AddLiquidity 操作。由于交易失败时唯一交易键会随之回滚，签名仍留在公开账本上而重放键依然可用；与本次漏洞相关的 60 笔历史源交易中有 57 笔包含至少一个失败的内部操作，调查人员称没有证据表明受影响用户的私钥、助记词或密码遭到泄露。",
       "what_changed_en": "An attacker harvested 74 signatures from failed GalaChain transactions and used them to drain roughly 2 billion GALA (~$3 million) plus dozens of other tokens from nine wallets, exposing a gap between signature verification and replay protection that had survived multiple security reviews.",
-      "current_state_zh": "An attacker harvested 74 signatures from failed GalaChain transactions and used them to drain roughly 2 billion GALA (~$3 million) plus dozens of other tokens from nine wallets, exposing a gap between signature verification and replay protection that had survived multiple security reviews.",
+      "current_state_zh": "GalaChain 在 9 月 14 日发布的事后复盘报告中披露，攻击者利用从失败交易中收集到的 74 个可重放签名（最早可追溯至 55 天前），于 8 月 18 日从九个钱包中盗走约 20 亿枚 GALA（约 300 万美元）以及数十种其他代币。攻击期间该链暂停了跨链桥，并已修补签名范围混淆漏洞和重放密钥回滚缺陷。\n\n这起攻击表明，密码学上有效的签名并不等于用户已授权某项经济活动，而分别审查签名验证、重放保护和交易执行的审计流程，可能漏掉只在系统交互时才暴露的缺陷。它同时向链运营方提出治理层面的问题：当攻击已经实现自动化时，依赖人工触发的应急控制与基于有效签名的系统是否还能足够快地响应。\n\nGalaChain 的验证器此前接受请求中自带的 EIP-712 类型定义，而不是从被调用的操作中推导类型，因此可以提交覆盖某组字段的签名，却让另一个方法带着签名者从未承诺的额外信息执行——链上一个案例显示，一笔 TransferToken 调用转移了约 16.4 亿枚 GALA，而用于验证的 EIP-712 结构描述的却是 AddLiquidity 操作。由于交易失败时唯一交易键会随之回滚，签名仍留在公开账本上而重放键依然可用；与本次漏洞相关的 60 笔历史源交易中有 57 笔包含至少一个失败的内部操作，调查人员称没有证据表明受影响用户的私钥、助记词或密码遭到泄露。",
       "current_state_en": "An attacker harvested 74 signatures from failed GalaChain transactions and used them to drain roughly 2 billion GALA (~$3 million) plus dozens of other tokens from nine wallets, exposing a gap between signature verification and replay protection that had survived multiple security reviews.",
       "detailed_summary_zh": "An attacker harvested 74 signatures from failed GalaChain transactions and used them to drain roughly 2 billion GALA (~$3 million) plus dozens of other tokens from nine wallets, exposing a gap between signature verification and replay protection that had survived multiple security reviews.",
       "detailed_summary_en": "An attacker harvested 74 signatures from failed GalaChain transactions and used them to drain roughly 2 billion GALA (~$3 million) plus dozens of other tokens from nine wallets, exposing a gap between signature verification and replay protection that had survived multiple security reviews.",

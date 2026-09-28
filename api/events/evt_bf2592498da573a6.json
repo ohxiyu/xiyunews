@@ -7,11 +7,11 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "TAC blockchain remains frozen for over 10 days after a massive exploit forces a 1.26 billion token bailout",
+    "zh": "TAC网络遭质押池攻击冻结超10天，财库拟1.26B代币救助",
     "en": "TAC blockchain remains frozen for over 10 days after a massive exploit forces a 1.26 billion token bailout"
   },
   "current_state": {
-    "zh": "The TAC network remains frozen for over 10 days after a staking-pool exploit drained billions of tokens, prompting a treasury bailout while attacker-held tokens remain unresolved.",
+    "zh": "TAC网络在8月22日质押池遭攻击后已停在区块24,671,475超过10天，共被盗走约29.9亿枚TAC，约占总供应量28.6%。提议中的恢复方案拟用财库储备补足约12.58亿枚已售出的TAC，但约16.6亿枚攻击者留在BNB Chain上的TAC如何处理仍悬而未决。\n\n长时间停摆锁定了TAC用户的质押资金，并使其桥接与赎回功能中断；BNB Chain上未处置的约16.6亿枚TAC，也让大部分被盗代币的最终归属悬而未决。由于该漏洞模块被多个Cosmos-EVM链共用这一事实，事件影响并不只限于TAC本身。\n\n攻击者利用的是算术溢出漏洞：EVM StateDB只跟踪可花费余额，而Cosmos SDK账本还允许委托锁定的归属代币，导致未校验的减法回绕至接近2^256，随后第二次溢出使攻击者可清空受害者账户而保留其合法代币。提议的恢复方案是在停止区块上做定向状态编辑而非回滚，可恢复质押池和委托人余额，同时保留来自218个无关地址的7,772笔正常交易。",
     "en": "The TAC network remains frozen for over 10 days after a staking-pool exploit drained billions of tokens, prompting a treasury bailout while attacker-held tokens remain unresolved."
   },
   "first_seen_at": "2026-09-02T18:12:26.133251+00:00",
@@ -41,11 +41,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "TAC blockchain remains frozen for over 10 days after a massive exploit forces a 1.26 billion token bailout",
+      "title_zh": "TAC网络遭质押池攻击冻结超10天，财库拟1.26B代币救助",
       "title_en": "TAC blockchain remains frozen for over 10 days after a massive exploit forces a 1.26 billion token bailout",
-      "what_changed_zh": "The TAC network remains frozen for over 10 days after a staking-pool exploit drained billions of tokens, prompting a treasury bailout while attacker-held tokens remain unresolved.",
+      "what_changed_zh": "TAC网络在8月22日质押池遭攻击后已停在区块24,671,475超过10天，共被盗走约29.9亿枚TAC，约占总供应量28.6%。提议中的恢复方案拟用财库储备补足约12.58亿枚已售出的TAC，但约16.6亿枚攻击者留在BNB Chain上的TAC如何处理仍悬而未决。\n\n长时间停摆锁定了TAC用户的质押资金，并使其桥接与赎回功能中断；BNB Chain上未处置的约16.6亿枚TAC，也让大部分被盗代币的最终归属悬而未决。由于该漏洞模块被多个Cosmos-EVM链共用这一事实，事件影响并不只限于TAC本身。\n\n攻击者利用的是算术溢出漏洞：EVM StateDB只跟踪可花费余额，而Cosmos SDK账本还允许委托锁定的归属代币，导致未校验的减法回绕至接近2^256，随后第二次溢出使攻击者可清空受害者账户而保留其合法代币。提议的恢复方案是在停止区块上做定向状态编辑而非回滚，可恢复质押池和委托人余额，同时保留来自218个无关地址的7,772笔正常交易。",
       "what_changed_en": "The TAC network remains frozen for over 10 days after a staking-pool exploit drained billions of tokens, prompting a treasury bailout while attacker-held tokens remain unresolved.",
-      "current_state_zh": "The TAC network remains frozen for over 10 days after a staking-pool exploit drained billions of tokens, prompting a treasury bailout while attacker-held tokens remain unresolved.",
+      "current_state_zh": "TAC网络在8月22日质押池遭攻击后已停在区块24,671,475超过10天，共被盗走约29.9亿枚TAC，约占总供应量28.6%。提议中的恢复方案拟用财库储备补足约12.58亿枚已售出的TAC，但约16.6亿枚攻击者留在BNB Chain上的TAC如何处理仍悬而未决。\n\n长时间停摆锁定了TAC用户的质押资金，并使其桥接与赎回功能中断；BNB Chain上未处置的约16.6亿枚TAC，也让大部分被盗代币的最终归属悬而未决。由于该漏洞模块被多个Cosmos-EVM链共用这一事实，事件影响并不只限于TAC本身。\n\n攻击者利用的是算术溢出漏洞：EVM StateDB只跟踪可花费余额，而Cosmos SDK账本还允许委托锁定的归属代币，导致未校验的减法回绕至接近2^256，随后第二次溢出使攻击者可清空受害者账户而保留其合法代币。提议的恢复方案是在停止区块上做定向状态编辑而非回滚，可恢复质押池和委托人余额，同时保留来自218个无关地址的7,772笔正常交易。",
       "current_state_en": "The TAC network remains frozen for over 10 days after a staking-pool exploit drained billions of tokens, prompting a treasury bailout while attacker-held tokens remain unresolved.",
       "detailed_summary_zh": "TAC网络在8月22日质押池遭攻击后已停在区块24,671,475超过10天，共被盗走约29.9亿枚TAC，约占总供应量28.6%。提议中的恢复方案拟用财库储备补足约12.58亿枚已售出的TAC，但约16.6亿枚攻击者留在BNB Chain上的TAC如何处理仍悬而未决。\n\n长时间停摆锁定了TAC用户的质押资金，并使其桥接与赎回功能中断；BNB Chain上未处置的约16.6亿枚TAC，也让大部分被盗代币的最终归属悬而未决。由于该漏洞模块被多个Cosmos-EVM链共用这一事实，事件影响并不只限于TAC本身。\n\n攻击者利用的是算术溢出漏洞：EVM StateDB只跟踪可花费余额，而Cosmos SDK账本还允许委托锁定的归属代币，导致未校验的减法回绕至接近2^256，随后第二次溢出使攻击者可清空受害者账户而保留其合法代币。提议的恢复方案是在停止区块上做定向状态编辑而非回滚，可恢复质押池和委托人余额，同时保留来自218个无关地址的7,772笔正常交易。",
       "detailed_summary_en": "The TAC network has remained halted at block 24,671,475 for over 10 days after an Aug. 22 exploit drained 2.99 billion TAC, roughly 28.6% of supply, from the bonded staking pool. The proposed recovery plan would replace the ~1.26 billion sold TAC from treasury reserves, while the treatment of ~1.66 billion attacker-held TAC on BNB Chain remains unresolved.\n\nThe prolonged halt traps staked funds and disables bridging and redemptions for TAC users, while the unresolved 1.66 billion TAC balance on BNB Chain leaves a large part of the drained supply in limbo. Because the vulnerable module is shared by multiple Cosmos-EVM chains, the incident has implications beyond TAC itself.\n\nThe attacker exploited an arithmetic overflow: the EVM StateDB tracked only spendable balances, while the Cosmos SDK ledger also allowed delegating locked vesting tokens, so an unchecked subtraction wrapped toward roughly 2^256 and a second overflow then let the attacker zero a victim account. The proposed recovery is a targeted state edit at the halt block, not a rollback, restoring the bonded pool and delegator balances while preserving 7,772 legitimate transactions from 218 unrelated addresses.",

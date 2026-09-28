@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "event_id": "evt_1249d5389cb8ec9e",
+  "url": "https://bmt.news/events/evt_1249d5389cb8ec9e/",
+  "json": "https://bmt.news/api/events/evt_1249d5389cb8ec9e.json",
+  "type": "security_incident",
+  "status": "closed",
+  "category": "crypto",
+  "title": {
+    "zh": "假冒GIWA Layer 2跨链桥被掏空766 ETH",
+    "en": "Fake GIWA Layer 2 Bridge Drained of 766 ETH"
+  },
+  "current_state": {
+    "zh": "假 GIWA Layer 2 桥共收到 1,335 个地址桥入的 767.65 ETH，随后被盗并经由 Tornado Cash 洗币；DYORSWAP 已向桥入少于 5 ETH 的用户承诺 40% 退款并已分发逾 200 ETH 补偿，同时公开疑似骗子地址（资金来自 Binance 与 Gate）并在链上索还资金。",
+    "en": "The fake GIWA Layer 2 bridge received 767.65 ETH from 1,335 addresses, which was drained and funneled through Tornado Cash; DYORSWAP has promised 40% reimbursement to wallets that bridged under 5 ETH, distributed over 200 ETH in compensation, published suspected scammer addresses funded from Binance and Gate, and requested the funds back on-chain."
+  },
+  "first_seen_at": "2026-09-28T19:47:12.959674+00:00",
+  "last_updated_at": "2026-09-28T19:47:21.538076+00:00",
+  "last_material_change_at": "2026-09-28T19:47:21.538076+00:00",
+  "confidence": 0.75,
+  "updates_count": 2,
+  "sources_count": 2,
+  "entities": [
+    "bridge",
+    "drained",
+    "dyorswap",
+    "fake",
+    "giwa",
+    "layer"
+  ],
+  "identifiers": [],
+  "topics": [
+    "bridge",
+    "scam"
+  ],
+  "updates": [
+    {
+      "update_id": "upd_e4a1cedfe7f330ec",
+      "event_id": "evt_1249d5389cb8ec9e",
+      "occurred_at": "2026-09-28T12:14:29Z",
+      "published_at": "2026-09-28T12:14:29Z",
+      "first_seen_at": "2026-09-28T19:47:12.959674Z",
+      "time_precision": "published",
+      "update_type": "initial",
+      "material_change": true,
+      "title_zh": "假冒GIWA Layer 2跨链桥被掏空766 ETH",
+      "title_en": "Fake GIWA Layer 2 Bridge Drained of 766 ETH",
+      "what_changed_zh": "一个假冒的GIWA Layer 2跨链桥被攻击者掏空766 ETH，DYORSWAP误以为该假冒网络是Upbit支持的GIWA项目并将用户引导至此，现已承诺向跨链金额低于5 ETH的符合条件的钱包提供40%赔偿。",
+      "what_changed_en": "A fake GIWA Layer 2 bridge was drained of 766 ETH by an attacker, and DYORSWAP — which mistakenly routed users to the counterfeit network thinking it was the Upbit-backed GIWA project — has promised 40% reimbursement to eligible wallets that bridged less than 5 ETH.",
+      "current_state_zh": "一个假冒的GIWA Layer 2跨链桥被攻击者掏空766 ETH，DYORSWAP误以为该假冒网络是Upbit支持的GIWA项目并将用户引导至此，现已承诺向跨链金额低于5 ETH的符合条件的钱包提供40%赔偿。",
+      "current_state_en": "A fake GIWA Layer 2 bridge was drained of 766 ETH by an attacker, and DYORSWAP — which mistakenly routed users to the counterfeit network thinking it was the Upbit-backed GIWA project — has promised 40% reimbursement to eligible wallets that bridged less than 5 ETH.",
+      "detailed_summary_zh": "A fake GIWA Layer 2 bridge was drained of 766 ETH by an attacker, and DYORSWAP — which mistakenly routed users to the counterfeit network thinking it was the Upbit-backed GIWA project — has promised 40% reimbursement to eligible wallets that bridged less than 5 ETH.",
+      "detailed_summary_en": "A fake GIWA Layer 2 bridge was drained of 766 ETH by an attacker, and DYORSWAP — which mistakenly routed users to the counterfeit network thinking it was the Upbit-backed GIWA project — has promised 40% reimbursement to eligible wallets that bridged less than 5 ETH.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "rss:thedefiant.io_api_feed:fdcb61fd815f3028"
+      ],
+      "sources": [
+        {
+          "url": "https://thedefiant.io/news/security/fake-giwa-layer-2-bridge-drained-of-766-eth",
+          "label": "The Defiant",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_e2be353f46b1908a",
+      "event_id": "evt_1249d5389cb8ec9e",
+      "occurred_at": "2026-09-28T13:08:04Z",
+      "published_at": "2026-09-28T13:08:04Z",
+      "first_seen_at": "2026-09-28T19:47:21.538076Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "DYORSWAP用户被骗向假冒跨链桥合约发送767 ETH",
+      "title_en": "DYORSWAP users tricked into sending 767 ETH to fake bridge contract",
+      "what_changed_zh": "披露更多细节：DYORSWAP 因假 GIWA 链复用了真实链 ID 9134 而被骗集成，逾 1,335 个地址共桥入 767.65 ETH（约 200 万美元），资金被骗子通过 Tornado Cash 转移；疑似骗子地址由 Binance 和 Gate 出资，DYORSWAP 已向用户分发逾 200 ETH 补偿，并有团队地址在链上要求骗子归还资金。",
+      "what_changed_en": "More details emerged: DYORSWAP was tricked into integrating the spoofed GIWA chain because it reused the genuine chain ID 9134; 1,335 addresses bridged 767.65 ETH (~$2M), which the scammers drained and funneled through Tornado Cash. Suspected scammer addresses were funded from Binance and Gate, DYORSWAP has distributed over 200 ETH in compensation, and a team-linked address has asked the scammers on-chain to return the funds.",
+      "current_state_zh": "假 GIWA Layer 2 桥共收到 1,335 个地址桥入的 767.65 ETH，随后被盗并经由 Tornado Cash 洗币；DYORSWAP 已向桥入少于 5 ETH 的用户承诺 40% 退款并已分发逾 200 ETH 补偿，同时公开疑似骗子地址（资金来自 Binance 与 Gate）并在链上索还资金。",
+      "current_state_en": "The fake GIWA Layer 2 bridge received 767.65 ETH from 1,335 addresses, which was drained and funneled through Tornado Cash; DYORSWAP has promised 40% reimbursement to wallets that bridged under 5 ETH, distributed over 200 ETH in compensation, published suspected scammer addresses funded from Binance and Gate, and requested the funds back on-chain.",
+      "detailed_summary_zh": "DYORSWAP was tricked into integrating a spoofed version of the upcoming GIWA blockchain that reused the genuine chain ID, causing more than 1,000 users to bridge 767 ETH (~$2M) into a fraudulent contract that scammers drained and routed through Tornado Cash.",
+      "detailed_summary_en": "DYORSWAP was tricked into integrating a spoofed version of the upcoming GIWA blockchain that reused the genuine chain ID, causing more than 1,000 users to bridge 767 ETH (~$2M) into a fraudulent contract that scammers drained and routed through Tornado Cash.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "rss:protos.com_feed_:4182d7a614288775"
+      ],
+      "sources": [
+        {
+          "url": "https://protos.com/dyorswap-users-tricked-into-sending-767-eth-to-fake-bridge-contract/",
+          "label": "Protos",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    }
+  ]
+}

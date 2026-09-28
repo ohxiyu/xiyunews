@@ -7,7 +7,7 @@
   "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "Osmosis freezes 22.65 BTC after Nomic forwarding bug compromises Bitcoin reserves",
+    "zh": "Nomic 桥漏洞导致 allBTC 部分失去支撑，Osmosis 冻结 22.65 枚 BTC",
     "en": "Osmosis freezes 22.65 BTC after Nomic forwarding bug compromises Bitcoin reserves"
   },
   "current_state": {
@@ -42,11 +42,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Osmosis freezes 22.65 BTC after Nomic forwarding bug compromises Bitcoin reserves",
+      "title_zh": "Nomic 桥漏洞导致 allBTC 部分失去支撑，Osmosis 冻结 22.65 枚 BTC",
       "title_en": "Osmosis freezes 22.65 BTC after Nomic forwarding bug compromises Bitcoin reserves",
-      "what_changed_zh": "Osmosis froze 22.65 BTC after a flaw in Nomic's forwarding system enabled false-voucher minting of nBTC, leaving roughly 36% of allBTC's backing invalid and minting/redemption paused pending governance action.",
+      "what_changed_zh": "Osmosis 已冻结 22.65 枚 BTC，原因是 Nomic 自定义转发逻辑中的缺陷让攻击者得以双花并铸造虚假的 nBTC 凭证，这些凭证随后通过 IBC 跨链到 Osmosis 并被计入 allBTC 的合法支撑资产。这批无效 nBTC 占 allBTC 支撑的 36.03%，因此 allBTC 的铸造与赎回已被暂停，等待治理层决定如何补足储备。\n\n这起事件表明，某条桥的转发逻辑漏洞可以传导到另一个协议的封装资产篮子中，使持有人整体暴露在储备缺口之下，而不是遭遇直接盗币。同时它把治理投票推到了用户追偿的核心位置，这一模式对 Cosmos 生态内所有封装比特币产品都具有参照意义。\n\n截至报道截止时，allBTC 流通量为 110.57 枚，篮子中持有 39.84 枚 nBTC；即使 22.65 枚被冻结的 BTC 全部追回，仍有约 17.19 枚 BTC 的缺口需要由社区池补足。链上研究员 Rarma 将主要铸造活动追溯至 6 月 25 日，并指出 7 月 17 日活动中产生的 22.65060846 枚 allBTC 在追踪发布时仍未移动，而官方公开披露发生在两个多月之后；Osmosis 负责管理 allBTC 合约，一个 3-of-6 的 moderator 子 DAO 可暂停池子或将某成分资产标记为受损，而 Nomic 的托管文档规定储备支出需要代表其签名集合 90% 以上投票权的签名。",
       "what_changed_en": "Osmosis froze 22.65 BTC after a flaw in Nomic's forwarding system enabled false-voucher minting of nBTC, leaving roughly 36% of allBTC's backing invalid and minting/redemption paused pending governance action.",
-      "current_state_zh": "Osmosis froze 22.65 BTC after a flaw in Nomic's forwarding system enabled false-voucher minting of nBTC, leaving roughly 36% of allBTC's backing invalid and minting/redemption paused pending governance action.",
+      "current_state_zh": "Osmosis 已冻结 22.65 枚 BTC，原因是 Nomic 自定义转发逻辑中的缺陷让攻击者得以双花并铸造虚假的 nBTC 凭证，这些凭证随后通过 IBC 跨链到 Osmosis 并被计入 allBTC 的合法支撑资产。这批无效 nBTC 占 allBTC 支撑的 36.03%，因此 allBTC 的铸造与赎回已被暂停，等待治理层决定如何补足储备。\n\n这起事件表明，某条桥的转发逻辑漏洞可以传导到另一个协议的封装资产篮子中，使持有人整体暴露在储备缺口之下，而不是遭遇直接盗币。同时它把治理投票推到了用户追偿的核心位置，这一模式对 Cosmos 生态内所有封装比特币产品都具有参照意义。\n\n截至报道截止时，allBTC 流通量为 110.57 枚，篮子中持有 39.84 枚 nBTC；即使 22.65 枚被冻结的 BTC 全部追回，仍有约 17.19 枚 BTC 的缺口需要由社区池补足。链上研究员 Rarma 将主要铸造活动追溯至 6 月 25 日，并指出 7 月 17 日活动中产生的 22.65060846 枚 allBTC 在追踪发布时仍未移动，而官方公开披露发生在两个多月之后；Osmosis 负责管理 allBTC 合约，一个 3-of-6 的 moderator 子 DAO 可暂停池子或将某成分资产标记为受损，而 Nomic 的托管文档规定储备支出需要代表其签名集合 90% 以上投票权的签名。",
       "current_state_en": "Osmosis froze 22.65 BTC after a flaw in Nomic's forwarding system enabled false-voucher minting of nBTC, leaving roughly 36% of allBTC's backing invalid and minting/redemption paused pending governance action.",
       "detailed_summary_zh": "Osmosis froze 22.65 BTC after a flaw in Nomic's forwarding system enabled false-voucher minting of nBTC, leaving roughly 36% of allBTC's backing invalid and minting/redemption paused pending governance action.",
       "detailed_summary_en": "Osmosis froze 22.65 BTC after a flaw in Nomic's forwarding system enabled false-voucher minting of nBTC, leaving roughly 36% of allBTC's backing invalid and minting/redemption paused pending governance action.",
@@ -93,7 +93,7 @@
       "time_precision": "published",
       "update_type": "escalation",
       "material_change": true,
-      "title_zh": "Osmosis took 74 days to discover 40-BTC Nomic exploit",
+      "title_zh": "Osmosis 历时 74 天才发现 40 BTC 的 Nomic 漏洞",
       "title_en": "Osmosis took 74 days to discover 40-BTC Nomic exploit",
       "what_changed_zh": "新披露：攻击发生于6月25日，攻击者利用两个漏洞凭空铸造40.650602 BTC的nBTC；74天后才发现；攻击者通过671 ETH至Tornado Cash套现约100万美元；治理提案拟没收冻结的22.65 allBTC、取消USDC.noble流动性重新部署并动用Community Pool填补40 BTC缺口。",
       "what_changed_en": "Newly disclosed: exploit occurred June 25; attacker used two bugs to mint 40.650602 BTC of unbacked nBTC; detection took 74 days; attacker cashed out ~$1M via 671 ETH to Tornado Cash; governance proposal would seize frozen 22.65 allBTC, cancel USDC.noble liquidity re-deployment, and pull Community Pool allBTC to fill the 40 BTC shortfall.",
