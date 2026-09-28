@@ -161,6 +161,24 @@ def _public_fetch_report(payload: dict[str, Any]) -> dict[str, Any]:
         }
         if source.get("error"):
             public_source["error"] = sanitize_diagnostic(source["error"])
+        channels = [
+            {
+                key: (
+                    sanitize_diagnostic(row[key], 80)
+                    if isinstance(row[key], str)
+                    else row[key]
+                )
+                for key in (
+                    "channel", "probe", "status", "title", "subscribers",
+                    "messages_seen", "in_window", "kept", "newest", "error",
+                )
+                if key in row
+            }
+            for row in source.get("channels") or []
+            if isinstance(row, dict)
+        ]
+        if channels:
+            public_source["channels"] = channels
         sources.append(public_source)
     report["sources"] = sources
     return report
@@ -532,6 +550,42 @@ def render_markdown_report(payload: dict[str, Any]) -> str:
                     f"| ↳ {_markdown_cell(subsource)} | — | "
                     f"{int(count)} | — |"
                 )
+
+    channels = [row for source in sources for row in source.get("channels") or []]
+    if channels:
+        lines += [
+            "",
+            "### Telegram 频道",
+            "",
+            "试运行（probe）频道的内容不进入选稿；确认名称与订阅数属于官方频道后再正式启用。",
+            "",
+            "| 频道 | 模式 | 名称 | 订阅 | 页面可见 | 窗口内 | 保留 | 最新 |",
+            "| --- | --- | --- | --- | ---: | ---: | ---: | --- |",
+        ]
+        for row in channels:
+            mode = "probe" if row.get("probe") else "live"
+            if row.get("status") != "ok":
+                lines.append(
+                    f"| @{_markdown_cell(row.get('channel', ''))} | {mode} | "
+                    f"失败：{_markdown_cell(row.get('error', ''))} | — | — | — | — | — |"
+                )
+                continue
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        f"@{_markdown_cell(row.get('channel', ''))}",
+                        mode,
+                        _markdown_cell(row.get("title") or "—"),
+                        _markdown_cell(row.get("subscribers") or "—"),
+                        str(int(row.get("messages_seen") or 0)),
+                        str(int(row.get("in_window") or 0)),
+                        str(int(row.get("kept") or 0)),
+                        _markdown_cell(row.get("newest") or "—"),
+                    ]
+                )
+                + " |"
+            )
 
     if payload.get("ai_usage"):
         lines += ["", "### AI 分阶段用量", "",

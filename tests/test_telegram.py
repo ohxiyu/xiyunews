@@ -117,3 +117,94 @@ def test_fetch_raises_when_all_telegram_endpoints_fail() -> None:
         assert "All Telegram channels failed" in str(exc)
     else:
         raise AssertionError("Expected all Telegram endpoint failures to propagate")
+
+
+_PROBE_PAGE = """
+<div class="tgme_channel_info_header_title"><span>Whale Alert</span></div>
+<div class="tgme_channel_info_counter"><span class="counter_value">120K</span>
+<span class="counter_type">subscribers</span></div>
+<div class="tgme_widget_message" data-post="whale_alert_io/9">
+  <time datetime="2026-09-28T01:00:00+00:00"></time>
+  <div class="tgme_widget_message_text js-message_text">1,000 BTC moved</div>
+</div>
+<div class="tgme_widget_message" data-post="whale_alert_io/8">
+  <time datetime="2026-09-20T01:00:00+00:00"></time>
+  <div class="tgme_widget_message_text js-message_text">old</div>
+</div>
+<div class="tgme_widget_message" data-post="whale_alert_io/10">
+  <time datetime="2026-09-28T02:00:00+00:00"></time>
+</div>
+"""
+
+
+def _page_client(pages: dict[str, str]):
+    def handler(request):
+        channel = request.url.path.rsplit("/", 1)[-1]
+        if channel not in pages:
+            return httpx.Response(404)
+        return httpx.Response(200, text=pages[channel])
+
+    return httpx.AsyncClient(transport=httpx.MockTransport(handler))
+
+
+def test_channel_report_explains_yield_and_identity() -> None:
+    from datetime import datetime, timezone
+
+    from src.models import TelegramConfig, TelegramChannelConfig
+    from src.scrapers.telegram import TelegramScraper
+
+    async def run():
+        async with _page_client({"whale_alert_io": _PROBE_PAGE}) as client:
+            scraper = TelegramScraper(
+                TelegramConfig(channels=[TelegramChannelConfig(channel="whale_alert_io")]), client
+            )
+            items = await scraper.fetch(datetime(2026, 9, 27, tzinfo=timezone.utc))
+            return items, scraper.channel_reports
+
+    items, [report] = asyncio.run(run())
+    assert len(items) == 1
+    assert report["title"] == "Whale Alert"
+    assert report["subscribers"] == "120K"
+    assert (report["messages_seen"], report["in_window"], report["kept"]) == (3, 2, 1)
+    assert report["newest"] == "2026-09-28T02:00:00+00:00"
+
+
+def test_probe_channels_are_reported_but_never_published() -> None:
+    from datetime import datetime, timezone
+
+    from src.models import TelegramConfig, TelegramChannelConfig
+    from src.scrapers.telegram import TelegramScraper
+
+    config = TelegramConfig(channels=[
+        TelegramChannelConfig(channel="whale_alert_io", probe=True),
+        TelegramChannelConfig(channel="missing_probe", probe=True),
+        TelegramChannelConfig(channel="live_one"),
+    ])
+
+    async def run():
+        pages = {"whale_alert_io": _PROBE_PAGE, "live_one": _PROBE_PAGE.replace("whale_alert_io", "live_one")}
+        async with _page_client(pages) as client:
+            scraper = TelegramScraper(config, client)
+            items = await scraper.fetch(datetime(2026, 9, 27, tzinfo=timezone.utc))
+            return items, scraper.channel_reports
+
+    items, reports = asyncio.run(run())
+    assert {item.metadata["channel"] for item in items} == {"live_one"}
+    by_channel = {row["channel"]: row for row in reports}
+    assert by_channel["whale_alert_io"]["probe"] is True and by_channel["whale_alert_io"]["kept"] == 1
+    assert by_channel["missing_probe"]["status"] == "failed"
+
+
+def test_failed_probes_alone_do_not_fail_the_source() -> None:
+    from datetime import datetime, timezone
+
+    from src.models import TelegramConfig, TelegramChannelConfig
+    from src.scrapers.telegram import TelegramScraper
+
+    config = TelegramConfig(channels=[TelegramChannelConfig(channel="gone", probe=True)])
+
+    async def run():
+        async with _page_client({}) as client:
+            return await TelegramScraper(config, client).fetch(datetime(2026, 9, 27, tzinfo=timezone.utc))
+
+    assert asyncio.run(run()) == []

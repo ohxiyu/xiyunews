@@ -305,3 +305,28 @@ def test_native_pipeline_writes_funnel_and_frontend_stats(
     assert (
         tmp_path / "docs" / "editions" / date / "zh.html"
     ).exists()
+
+
+def test_markdown_lists_telegram_channel_diagnostics_and_probe_mode() -> None:
+    from src.run_report import _public_fetch_report, render_markdown_report
+
+    report = _public_fetch_report({
+        "status": "success",
+        "sources": [{
+            "source": "Telegram",
+            "status": "success",
+            "item_count": 1,
+            "channels": [
+                {"channel": "binance_announcements", "probe": False, "status": "ok",
+                 "title": "Binance Announcements", "subscribers": "1.2M",
+                 "messages_seen": 20, "in_window": 0, "kept": 0, "newest": "2026-09-27T03:02:00+00:00",
+                 "unexpected": "dropped"},
+                {"channel": "whale_alert_io", "probe": True, "status": "failed", "error": "RuntimeError"},
+            ],
+        }],
+    })
+    assert "unexpected" not in report["sources"][0]["channels"][0]
+    markdown = render_markdown_report({"status": "success", "fetch_report": report})
+    assert "### Telegram 频道" in markdown
+    assert "| @binance_announcements | live | Binance Announcements | 1.2M | 20 | 0 | 0 |" in markdown
+    assert "| @whale_alert_io | probe | 失败：RuntimeError |" in markdown
