@@ -8,7 +8,8 @@ from pathlib import Path
 from typing import Sequence
 
 from .archive import ArchiveRecord, load_archive
-from .site_pages import publish_entity_pages
+from .entity_profiles import load_entity_profiles
+from .site_pages import publish_entity_pages, publish_retired_entities
 from .threads import collect_entities
 
 
@@ -39,6 +40,7 @@ def republish_entities(
         records,
         minimum_mentions=minimum_mentions,
         limit=limit,
+        profiles=load_entity_profiles(),
     )
     pages = publish_entity_pages(
         entities,
@@ -46,6 +48,11 @@ def republish_entities(
         entity_root=entity_root,
         data_root=data_root,
     )
+    kept = {entity.slug for entity in entities}
+    retired = {
+        entity.slug for entity in collect_entities(records, minimum_mentions=minimum_mentions, limit=200)
+    } - kept
+    pages += publish_retired_entities(retired, ["zh", "en"], entity_root=entity_root)
     return len(entities), pages
 
 
