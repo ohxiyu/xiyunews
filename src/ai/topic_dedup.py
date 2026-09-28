@@ -24,18 +24,23 @@ def validate_duplicates(payload, size):
         raise DedupResponseError("not_object_or_invalid_json")
     if not isinstance(payload.get("duplicates"), list):
         raise DedupResponseError("duplicates_not_list")
+    groups = []
     for group in payload["duplicates"]:
         if not isinstance(group, list):
             raise DedupResponseError("group_not_list")
-        if len(group) < 2:
-            raise DedupResponseError("group_too_short")
         if any(type(index) is not int for index in group):
             raise DedupResponseError("index_not_integer")
         if any(not 0 <= index < size for index in group):
             raise DedupResponseError("index_out_of_range")
+        if len(set(group)) < 2:
+            # [] / [3] / [3, 3] name no second story, so they carry no merge
+            # decision at all. Dropping them cannot publish a duplicate, while
+            # failing on them stopped a whole edition (2026-09-25).
+            continue
         if len(set(group)) != len(group):
             raise DedupResponseError("repeated_index")
-    return payload["duplicates"]
+        groups.append(group)
+    return groups
 
 
 def response_shape(payload):

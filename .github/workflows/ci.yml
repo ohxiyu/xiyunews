@@ -43,7 +43,26 @@ jobs:
       - run: uv sync --frozen --extra dev
       - run: uv run pytest
       - run: uv export --all-extras --no-dev --no-hashes --no-emit-project --output-file "${RUNNER_TEMP}/requirements.txt"
-      - run: uvx --from pip-audit==2.10.1 pip-audit --requirement "${RUNNER_TEMP}/requirements.txt" --no-deps --disable-pip --progress-spinner off
+      - name: Audit dependencies (retry only when PyPI itself fails)
+        shell: bash
+        run: |
+          # A vulnerability finding fails at once. Only a PyPI/network outage
+          # (pip-audit ServiceError, e.g. HTTP 503) is retried, so a transient
+          # outage cannot block an unrelated change.
+          for attempt in 1 2 3; do
+            if uvx --from pip-audit==2.10.1 pip-audit --requirement "${RUNNER_TEMP}/requirements.txt" --no-deps --disable-pip --progress-spinner off 2>&1 | tee "${RUNNER_TEMP}/pip-audit.log"; then
+              exit 0
+            fi
+            if ! grep -qE 'ServiceError|ConnectionError|ReadTimeout|5[0-9][0-9] Server Error' "${RUNNER_TEMP}/pip-audit.log"; then
+              exit 1
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              echo "::warning::pip-audit could not reach PyPI (attempt $attempt); retrying"
+              sleep $((attempt * 30))
+            fi
+          done
+          echo "::error::pip-audit could not reach PyPI after 3 attempts"
+          exit 1
       - uses: actions/setup-node@v6
         with:
           node-version: "24"

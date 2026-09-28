@@ -177,3 +177,27 @@ def test_non_json_body_returns_empty() -> None:
     scraper = GDELTScraper(config, client)
 
     assert asyncio.run(scraper.fetch(SINCE)) == []
+
+
+def test_domain_allow_and_block_lists() -> None:
+    from src.scrapers.domain_filter import domain_allowed
+
+    assert domain_allowed("https://www.reuters.com/x", allowed=["reuters.com"])
+    assert domain_allowed("markets.reuters.com", allowed=["reuters.com"])
+    assert not domain_allowed("https://notreuters.com/x", allowed=["reuters.com"])
+    assert not domain_allowed("", allowed=["reuters.com"])
+    assert not domain_allowed("https://www.openpr.com/news/1", blocked=["openpr.com"])
+    assert domain_allowed("https://www.coindesk.com/a", blocked=["openpr.com"])
+    assert not domain_allowed(
+        "https://reuters.com/a", allowed=["reuters.com"], blocked=["reuters.com"]
+    )
+
+
+def test_scraper_applies_allowed_domains() -> None:
+    client = _mock_client(_articles_payload())
+    config = GDELTConfig(enabled=True, query="ai", allowed_domains=["news.test"])
+    items = asyncio.run(GDELTScraper(config, client).fetch(SINCE))
+    assert [str(item.url) for item in items] == ["https://news.test/ai-2"]
+    config = GDELTConfig(enabled=True, query="ai", blocked_domains=["example.com"])
+    items = asyncio.run(GDELTScraper(config, _mock_client(_articles_payload())).fetch(SINCE))
+    assert [str(item.url) for item in items] == ["https://news.test/ai-2"]

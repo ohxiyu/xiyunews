@@ -28,6 +28,7 @@ from typing import Any, List, Optional
 import httpx
 
 from .base import BaseScraper
+from .domain_filter import domain_allowed
 from ..models import ContentItem, GDELTConfig, SourceType
 
 logger = logging.getLogger(__name__)
@@ -109,10 +110,21 @@ class GDELTScraper(BaseScraper):
                 return []
 
             items: List[ContentItem] = []
+            dropped = 0
             for raw in articles:
                 item = self._raw_to_item(raw)
-                if item is not None:
-                    items.append(item)
+                if item is None:
+                    continue
+                if not domain_allowed(
+                    item.metadata.get("domain") or item.url,
+                    blocked=self.gdelt_config.blocked_domains,
+                    allowed=self.gdelt_config.allowed_domains,
+                ):
+                    dropped += 1
+                    continue
+                items.append(item)
+            if dropped:
+                logger.info("GDELT: dropped %d articles by domain filter", dropped)
             return items
 
         except httpx.HTTPError as exc:

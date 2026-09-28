@@ -371,6 +371,9 @@ class GDELTConfig(BaseModel):
     language: Optional[str] = None  # sourcelang filter, e.g. "english"; None = no filter
     country: Optional[str] = None  # sourcecountry filter; None = no filter
     category: Optional[str] = None  # BMTNews category label for downstream grouping
+    # When set, only articles from these domains (or their subdomains) are kept.
+    allowed_domains: List[str] = Field(default_factory=list)
+    blocked_domains: List[str] = Field(default_factory=list)
 
 
 class GoogleNewsConfig(BaseModel):
@@ -388,6 +391,13 @@ class GoogleNewsConfig(BaseModel):
     ceid: Optional[str] = None  # when None scraper derives it as "{country}:{language}"
     max_results: int = 100  # cap ~100
     category: Optional[str] = None
+    # Publisher domains to drop (press-release mills, content farms). Matched
+    # against the publisher link Google News attaches to every entry.
+    blocked_domains: List[str] = Field(default_factory=list)
+    allowed_domains: List[str] = Field(default_factory=list)
+    # Google News links are opaque redirects; resolve up to this many per
+    # fetch to the publisher's article URL (0 disables network resolution).
+    resolve_links: int = Field(default=40, ge=0, le=100)
 
 
 class SourcesConfig(BaseModel):

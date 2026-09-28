@@ -110,7 +110,7 @@ def test_parses_feed_into_content_items() -> None:
 
     assert len(items) == 2
     first = items[0]
-    assert first.title == "Headline One - Publisher"
+    assert first.title == "Headline One"
     assert str(first.url) == "https://example.com/a"
     assert first.published_at == datetime(2026, 6, 27, 12, 0, 0, tzinfo=timezone.utc)
     assert first.id.startswith("google_news:article:")
@@ -178,3 +178,88 @@ def test_max_results_cap() -> None:
     items = asyncio.run(scraper.fetch(_now() - timedelta(days=365)))
 
     assert len(items) == 2
+
+
+def test_publisher_suffix_is_only_stripped_when_it_names_the_source() -> None:
+    strip = GoogleNewsScraper._strip_publisher_suffix
+    assert strip("Polymarket sued - CryptoRank", "CryptoRank") == "Polymarket sued"
+    assert strip("Rate cut - what it means", "CryptoRank") == "Rate cut - what it means"
+    assert strip("CryptoRank", "CryptoRank") == "CryptoRank"
+    assert strip("Headline", None) == "Headline"
+
+
+def test_blocked_publisher_domains_are_dropped() -> None:
+    items_xml = (
+        '<item><title>Token launch - openPR.com</title><link>https://example.com/a</link>'
+        '<guid>a</guid><pubDate>Sat, 27 Jun 2026 12:00:00 GMT</pubDate>'
+        '<source url="https://www.openpr.com">openPR.com</source></item>'
+        '<item><title>Exchange hack - CoinDesk</title><link>https://example.com/b</link>'
+        '<guid>b</guid><pubDate>Sat, 27 Jun 2026 12:00:00 GMT</pubDate>'
+        '<source url="https://www.coindesk.com">CoinDesk</source></item>'
+    )
+    client = _mock_client(_feed(items_xml))
+    config = GoogleNewsConfig(enabled=True, query="ai", blocked_domains=["openpr.com"])
+    items = asyncio.run(GoogleNewsScraper(config, client).fetch(_now() - timedelta(days=365)))
+    assert [item.title for item in items] == ["Exchange hack"]
+    assert items[0].metadata["publisher_url"] == "https://www.coindesk.com"
+
+
+OPAQUE = (
+    "https://news.google.com/rss/articles/"
+    "CBMiigFBVV95cUxQb3ZYd3R4dlRRbXNnRW54YXlEbmRvdFlkQlFmcG03VVVsNm05TVRtOWZnMFZG?oc=5"
+)
+
+
+def _google_transport(article: str | None, *, page_status: int = 200):
+    import json
+
+    calls: list[str] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(f"{request.method} {request.url.path}")
+        if request.method == "GET" and "/rss/search" in request.url.path:
+            feed = _feed(_item("Headline - Publisher", OPAQUE))
+            return httpx.Response(200, text=feed)
+        if request.method == "GET":
+            return httpx.Response(
+                page_status,
+                text='<c-wiz><div jscontroller="x" data-n-a-sg="SIG" data-n-a-ts="1790000000"></div></c-wiz>',
+            )
+        body = request.content.decode()
+        assert "Fbv4je" in body and "SIG" in body and "1790000000" in body
+        if article is None:
+            return httpx.Response(200, text=")]}'\n\n[]")
+        row = ["wrb.fr", "Fbv4je", json.dumps(["garturlres", article, 1]), None, None, None, "generic"]
+        return httpx.Response(200, text=")]}'\n\n" + json.dumps([row, ["di", 42]]))
+
+    return httpx.MockTransport(handler), calls
+
+
+def _fetch_with(transport, **config):
+    async def run():
+        async with httpx.AsyncClient(transport=transport) as client:
+            scraper = GoogleNewsScraper(GoogleNewsConfig(enabled=True, query="ai", **config), client)
+            return await scraper.fetch(_now() - timedelta(days=365))
+
+    return asyncio.run(run())
+
+
+def test_opaque_links_are_resolved_to_the_publisher_article() -> None:
+    transport, _ = _google_transport("https://cryptorank.io/news/feed/abc")
+    [item] = _fetch_with(transport)
+    assert str(item.url) == "https://cryptorank.io/news/feed/abc"
+    assert item.metadata["google_news_link_resolved"] is True
+
+
+def test_resolution_failure_keeps_the_original_link() -> None:
+    for transport, _ in (_google_transport(None), _google_transport("x", page_status=429)):
+        [item] = _fetch_with(transport)
+        assert str(item.url) == OPAQUE
+        assert "google_news_link_resolved" not in item.metadata
+
+
+def test_resolution_can_be_disabled() -> None:
+    transport, calls = _google_transport("https://cryptorank.io/news/feed/abc")
+    [item] = _fetch_with(transport, resolve_links=0)
+    assert str(item.url) == OPAQUE
+    assert calls == ["GET /rss/search"]
