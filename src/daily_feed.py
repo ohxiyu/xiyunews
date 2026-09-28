@@ -39,6 +39,7 @@ _PERSISTED_METADATA_KEYS = {
     "editorial",
     "event_id",
     "event_update_id",
+    "event_updates",
     "feed_name",
     "merged_sources",
     "sources",
