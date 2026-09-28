@@ -90,7 +90,12 @@ from .editorial import (
     load_editorial_plan,
 )
 from .market_snapshot import MarketSnapshot, fetch_market_snapshot
-from .site_pages import publish_archive_pages, publish_event_compatibility_pages
+from .entity_profiles import load_entity_profiles
+from .site_pages import (
+    publish_archive_pages,
+    publish_event_compatibility_pages,
+    publish_retired_entities,
+)
 from .threads import (
     assign_threads,
     collect_entities,
@@ -2699,7 +2704,17 @@ class BMTNewsOrchestrator:
             write_category_feeds(history, languages)
 
             threads = collect_threads(history, minimum_days=2, limit=40)
-            entities = collect_entities(history, minimum_mentions=3, limit=40)
+            profiles = load_entity_profiles()
+            entities = collect_entities(
+                history, minimum_mentions=3, limit=40, profiles=profiles
+            )
+            # Entity pages published before curation stay reachable as
+            # noindex redirects instead of placeholder profiles.
+            kept = {entity.slug for entity in entities}
+            retired = {
+                entity.slug
+                for entity in collect_entities(history, minimum_mentions=3, limit=200)
+            } - kept
             event_rows = []
             if EVENT_CATALOG_PATH.exists():
                 _, event_rows = load_event_catalog(EVENT_CATALOG_PATH)
@@ -2711,6 +2726,7 @@ class BMTNewsOrchestrator:
                 events=[event for event in event_rows if is_tracked(event)],
             )
             written = publish_archive_pages(threads, entities, languages)
+            publish_retired_entities(retired, languages)
             run_report.set_metric("archive_records", len(records))
             run_report.set_metric("archive_threads", len(threads))
             run_report.set_metric("archive_entities", len(entities))

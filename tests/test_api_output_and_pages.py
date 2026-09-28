@@ -323,7 +323,7 @@ def test_entity_page_links_reports_to_related_event_timelines() -> None:
     assert 'class="event-detail-layout entity-detail-layout"' in page
     assert "实体概览" in page
     assert "近期进展" in page
-    assert "关联事件线" in page
+    assert "关联追踪" in page
     assert page.count('href="/events/evt_bybit/"') == 3
 
 

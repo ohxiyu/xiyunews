@@ -25,6 +25,7 @@ from pydantic import BaseModel, Field, ValidationError
 from ._file_utils import _atomic_write_text
 from .ai.utils import parse_json_response, unwrap_prose_response
 from .archive import ArchiveRecord
+from .entity_profiles import load_entity_profiles
 from .threads import collect_entities, collect_threads
 from .web_feed import _safe_url as safe_url
 
@@ -655,7 +656,9 @@ def _digest_language_payload(
     language: str,
 ) -> dict:
     record_by_id = {record.item_id: record for record in context.records}
-    entities = collect_entities(context.records, minimum_mentions=3, limit=12)
+    entities = collect_entities(
+        context.records, minimum_mentions=3, limit=12, profiles=load_entity_profiles()
+    )
     entity_by_record: dict[str, list[dict]] = {}
     for entity in entities:
         link = f"{'/en' if language == 'en' else ''}/entity/{entity.slug}/"

@@ -515,6 +515,7 @@ def collect_entities(
     # to show anything, which reads as broken rather than as selective.
     minimum_mentions: int = 2,
     limit: int = 60,
+    profiles: Optional[object] = None,
 ) -> List[EntitySummary]:
     """Group archive records by recurring named actor.
 
@@ -524,6 +525,18 @@ def collect_entities(
     answer "what has been written about this company" and a topic word
     quietly turns it back into a tag cloud.
     """
+    # With curated profiles, aliases fold into their profile (Claude ->
+    # Anthropic) and only profiled entities are kept: an entity page is a
+    # promise of a stable background, not a tag that happened to repeat.
+    canonical: Dict[str, str] = {}
+    if profiles is not None:
+        for profile in profiles.values():
+            canonical[profile.slug] = profile.slug
+            for alias in profile.aliases:
+                alias_slug = normalize_tag(alias)
+                if alias_slug:
+                    canonical.setdefault(alias_slug, profile.slug)
+
     buckets: Dict[str, EntitySummary] = {}
     for record in records:
         named = fingerprint_of_record(record).lead_anchors
@@ -534,14 +547,19 @@ def collect_entities(
                 continue
             if slug not in named:
                 continue
+            if profiles is not None:
+                if slug not in canonical:
+                    continue
+                slug = canonical[slug]
             if slug in seen:
                 continue
             seen.add(slug)
             entity = buckets.get(slug)
             if entity is None:
+                profile = profiles.get(slug) if profiles is not None else None
                 entity = EntitySummary(
                     slug=slug,
-                    label=clean_label(tag) or slug,
+                    label=(profile.label_en if profile else clean_label(tag)) or slug,
                     count=0,
                 )
                 buckets[slug] = entity
