@@ -99,7 +99,7 @@
     });
 
     if (matchedGroup && primary.indexOf(matchedGroup) !== -1) return 'crypto';
-    if (matchedGroup === 'technology') return 'technology';
+    if (matchedGroup === 'technology' || matchedGroup === 'tech_community') return 'technology';
     if (matchedGroup === 'regulation') return 'policy';
     return 'other';
   }

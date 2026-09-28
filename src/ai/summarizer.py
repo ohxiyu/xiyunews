@@ -82,6 +82,74 @@ def _parse_structured_overview(
     return EditionOverview(headline=legacy)
 
 
+_TRACK_TAGS = {"crypto": "Crypto", "technology": "AI", "policy": "Policy"}
+_TRACK_LABELS = {
+    "crypto": {"zh": "加密", "en": "Crypto"},
+    "technology": {"zh": "AI", "en": "AI"},
+}
+
+
+def _track(item: ContentItem) -> str:
+    from ..web_feed import _top_level_category
+
+    return _top_level_category(item)
+
+
+def _ensure_track_coverage(
+    overview: EditionOverview,
+    items: List[ContentItem],
+    *,
+    language: str,
+) -> EditionOverview:
+    """Make the glance cover the day's top crypto story and top AI story.
+
+    Readers open the page to learn what mattered in both worlds. When the
+    model's signals skip a track that has a ranked story, the story's own
+    published title stands in; it is factual by construction.
+    """
+    if not overview.signals:
+        # Headline-only is the degraded path (prose or invalid signals);
+        # keep it as it is rather than building a glance around it.
+        return overview
+    normalized = "en" if language.lower().startswith("en") else "zh"
+    limit = _SIGNAL_LIMITS[normalized]
+    signals = list(overview.signals)
+    for track in ("crypto", "technology"):
+        rank = next(
+            (index for index, item in enumerate(items, start=1) if _track(item) == track),
+            None,
+        )
+        if rank is None:
+            continue
+        if any(_track(items[signal.item_rank - 1]) == track for signal in signals):
+            continue
+        item = items[rank - 1]
+        text = _compact_text(item.metadata.get(f"title_{normalized}") or item.title)
+        if not text:
+            continue
+        if len(text) > limit:
+            text = text[: limit - 1].rstrip() + "…"
+        fallback = OverviewSignal(
+            label=_TRACK_LABELS[track][normalized], text=text, item_rank=rank
+        )
+        if len(signals) < 3:
+            signals.append(fallback)
+            continue
+        # Replace a signal whose track is already represented elsewhere.
+        tracks = [_track(items[signal.item_rank - 1]) for signal in signals]
+        replace = next(
+            (
+                index
+                for index in range(len(signals) - 1, -1, -1)
+                if tracks.count(tracks[index]) > 1
+            ),
+            len(signals) - 1,
+        )
+        signals[replace] = fallback
+    signals.sort(key=lambda signal: signal.item_rank)
+    return EditionOverview(headline=overview.headline, signals=tuple(signals))
+
+
 async def generate_edition_overview(
     ai_client,
     items: List[ContentItem],
@@ -108,7 +176,8 @@ async def generate_edition_overview(
             or ""
         )
         score = f"{item.ai_score:.1f}" if item.ai_score is not None else "?"
-        lines.append(f"{index}. [{score}/10] {title} — {summary}")
+        track = _TRACK_TAGS[_track(item)]
+        lines.append(f"{index}. [{track}] [{score}/10] {title} — {summary}")
 
     language_name = "Simplified Chinese (简体中文)" if language == "zh" else "English"
     try:
@@ -125,11 +194,14 @@ async def generate_edition_overview(
         logger.warning("Edition overview generation failed: %s", exc)
         return None
 
-    return _parse_structured_overview(
+    overview = _parse_structured_overview(
         response,
         language=language,
         item_count=len(items),
     )
+    if overview is None:
+        return None
+    return _ensure_track_coverage(overview, items, language=language)
 
 
 async def generate_edition_overviews(
@@ -155,8 +227,9 @@ async def generate_edition_overviews(
         summary_zh = item.metadata.get("detailed_summary_zh") or item.metadata.get("whats_new_zh") or item.ai_summary or ""
         summary_en = item.metadata.get("detailed_summary_en") or item.metadata.get("whats_new_en") or item.ai_summary or ""
         score = f"{item.ai_score:.1f}" if item.ai_score is not None else "?"
+        track = _TRACK_TAGS[_track(item)]
         lines.append(
-            f"{index}. [{score}/10] ZH: {title_zh} — {summary_zh}\n"
+            f"{index}. [{track}] [{score}/10] ZH: {title_zh} — {summary_zh}\n"
             f"   EN: {title_en} — {summary_en}"
         )
     try:
@@ -183,7 +256,7 @@ async def generate_edition_overviews(
             item_count=len(items),
         )
         if overview is not None:
-            result[language] = overview
+            result[language] = _ensure_track_coverage(overview, items, language=language)
     return result
 
 

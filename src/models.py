@@ -614,6 +614,16 @@ class CategoryGroupConfig(BaseModel):
     name: Optional[str] = None
     limit: int = Field(gt=0)
     categories: List[str] = Field(min_length=1)
+    # Reserve up to this many slots for the group's best stories. Only stories
+    # that already passed the score threshold and deduplication are eligible,
+    # so a quiet day yields fewer rather than weaker stories.
+    min_items: int = Field(default=0, ge=0)
+
+    @model_validator(mode="after")
+    def validate_min_items(self) -> "CategoryGroupConfig":
+        if self.min_items > self.limit:
+            raise ValueError("category group min_items must not exceed limit")
+        return self
 
 
 class FilteringConfig(BaseModel):
