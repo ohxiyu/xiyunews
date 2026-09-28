@@ -30,7 +30,7 @@ gh issue list --state open
 gh pr list --state open
 ```
 
-在已核实的仓库创建独立 worktree，例如 `git worktree add ../bmtnews-task -b agent/task origin/main`，先确认名称未被占用。只改分配文件；模块重叠串行。生产发布由一个获得当前任务授权的整合负责人执行，其他 Agent 仅交付 PR。
+在已核实的仓库创建独立 worktree，例如 `git worktree add ../bmtnews-task -b agent/task origin/main`，先确认名称未被占用。只改分配文件；模块重叠串行。生产发布由一个整合负责人执行：PR 与 main 同步且必需检查全部通过后直接合并，由自动部署上线（维护者 2026-09-28 的长期授权，见 AGENTS.md）；其他 Agent 仅交付 PR。
 
 ## 五个状态和结束动作
 
@@ -40,7 +40,7 @@ gh pr list --state open
 
 未完成时推送有效代码并保留 Draft PR，记录尚未完成、尚未验证、阻塞和准确下一步。最终 SHA 从 PR 获取；交接中的 last_verified_commit 记录上次实际核验 SHA，不能制造包含自身 SHA 的循环要求。远端 CI 状态用实时 PR 检查核验。
 
-合并后只有在本任务明确授权时才部署。站点产物由 Actions 写 gh-pages；Worker 的合并不等于部署，详见 [调度手册](daily-dispatcher.md)。完成生产验收后，以文档 PR 更新证据，禁止直接提交 main。清理任务分支前确认其提交已经进入 origin/main，且工作区无未提交内容。
+合并即走现有自动部署，站点产物由 Actions 写 gh-pages。Worker 的合并不等于部署，详见 [调度手册](daily-dispatcher.md)；强制推送、回滚、手工写状态分支、Worker 部署、密钥和费用变更仍需单独批准。完成生产验收后，以文档 PR 更新证据，禁止直接提交 main。清理任务分支前确认其提交已经进入 origin/main，且工作区无未提交内容。
 
 ## 自动检查的范围
 
@@ -60,4 +60,4 @@ Rollback: known-good version and authorized rollback procedure
 
 ## 给下一位 Agent 的提示
 
-> 接手 ohxiyu/bmtnews-standalone。先读 AGENTS.md、agent.md、project-docs/handoff.md，再核对远端 main、工作区、开放 Issue/PR、任务认领和生产版本。按 Current execution pointer 继续；如我指定新任务，先更新指针。遵守当前任务授权和成本边界，不把历史授权当作新授权。完成后更新交接和验证记录、提交 PR；未经本任务明确授权不合并或部署。未完成工作留下准确分支、提交和下一步。
+> 接手 ohxiyu/bmtnews-standalone。先读 AGENTS.md、agent.md、project-docs/handoff.md，再核对远端 main、工作区、开放 Issue/PR、任务认领和生产版本。按 Current execution pointer 继续；如我指定新任务，先更新指针。遵守成本边界。完成后更新交接和验证记录、提交 PR；与 main 同步且检查全部通过后直接合并，由自动部署上线，再做线上验收。强制推送、回滚、手工写状态分支、Worker 部署、密钥和费用变更仍需维护者批准。未完成工作留下准确分支、提交和下一步。

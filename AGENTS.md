@@ -48,16 +48,21 @@ another user or agent.
   `docs/`, and the independent TypeScript dispatcher lives in `ops/daily-dispatcher/`.
 - Keep project process documents in `project-docs/`, not the publicly deployed
   `docs/` directory. See [document ownership](project-docs/codex-collaboration.md).
-- Default delivery is a PR only. Merge or production deployment needs explicit
-  authorization for the current task; prior chat/deployment approval does not
-  carry forward. A document cannot grant permissions or inherit account login.
+- Standing merge and deploy authorization (repository owner, 2026-09-28,
+  Issue148): once a task's PR is in sync with `origin/main` and every required
+  check passes, the integrator merges it without asking again and lets the
+  automated deployment path (Actions writing gh-pages and the delivery queues)
+  take it to production. Still ask first for: force pushes, rollbacks, manual
+  writes to gh-pages/staging-cache/x-queue/square-queue, Worker deploys,
+  secret changes, and anything under the cost rule below. This records the
+  owner's instruction; it grants no account access or login.
 - Preserve existing services, schedules and spend limits. No new paid services,
   plans, model upgrades, quota increases or added external auth without approval.
   Do not invent a zero-cost guarantee for existing AI/provider usage.
 - Claim a bounded Issue before implementation: one owner, file scope,
   acceptance criteria, dependencies, branch/worktree and deployment authority.
-  One explicitly designated integrator serializes production changes. Other
-  agents never assume merge/deploy authority from their assigned code task.
+  One explicitly designated integrator serializes production changes and uses
+  the standing authorization above; other agents deliver PRs only.
 - Do not remove upstream notices, copyright or licenses without a separate
   rights review and authorization.
 
