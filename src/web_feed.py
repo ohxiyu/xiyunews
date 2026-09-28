@@ -36,7 +36,7 @@ _LABELS = {
         "editorial": "编辑精选",
         "sponsored": "广告",
         "thread_day": "持续追踪 · 第 {day} 天",
-        "event_update": "事件记录",
+        "event_update": "持续追踪 · {count} 次进展",
         "sources_confirmed": "{count} 源确认",
         "single_source": "单一来源",
         "market_impact": "市场影响",
@@ -63,7 +63,7 @@ _LABELS = {
         "editorial": "Editor's Pick",
         "sponsored": "Sponsored",
         "thread_day": "Thread · day {day}",
-        "event_update": "Event record",
+        "event_update": "Tracking · {count} updates",
         "sources_confirmed": "{count} sources",
         "single_source": "Single source",
         "market_impact": "Market impact",
@@ -387,12 +387,17 @@ def _thread_html(item: ContentItem, language: str) -> str:
     labels = _LABELS[language]
     prefix = "" if language == "zh" else "/en"
     if event_id and update_id:
+        updates = item.metadata.get("event_updates")
+        # Only events that have developed get a pill; a single-report event
+        # page would just repeat the story the reader is looking at.
+        if not isinstance(updates, int) or isinstance(updates, bool) or updates < 2:
+            return ""
         return (
             f'<a class="thread-pill event-pill" '
             f'data-event-id="{_escape(event_id)}" '
             f'data-update-id="{_escape(update_id)}" '
             f'href="{prefix}/events/{_escape(event_id)}/#{_escape(update_id)}">'
-            f'{_escape(labels["event_update"])}</a>'
+            f'{_escape(labels["event_update"].format(count=updates))}</a>'
         )
     thread_id = item.metadata.get("thread_id")
     day = item.metadata.get("thread_day") or 1

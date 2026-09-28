@@ -573,6 +573,9 @@ def render_event_page(event: TrackedEvent, language: str) -> str:
                 else f"/events/{event.event_id}/"
             ),
             page_class="event-detail-page",
+            # A single-report event repeats its daily story; keep the page as
+            # a permalink for existing links but out of search indexes.
+            noindex=len(material_updates) < 2,
         )
         + body
         + "\n"
