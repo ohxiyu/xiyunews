@@ -366,3 +366,38 @@ def test_assign_threads_ignores_coverage_older_than_the_gap() -> None:
     assignments = assign_threads([story], history, edition_date="2026-08-09")
     assert assignments["https://example.com/new"].thread_id != "tstale"
     assert assignments["https://example.com/new"].day == 1
+
+
+def test_curated_entities_fold_aliases_and_drop_unprofiled_tags() -> None:
+    from src.archive import ArchiveRecord
+    from src.entity_profiles import load_entity_profiles
+    from src.threads import collect_entities
+
+    def record(n: int, title: str, tags: list[str]) -> ArchiveRecord:
+        return ArchiveRecord(
+            date=f"2026-09-{10 + n:02d}", rank=1, item_id=f"s{n}", url=f"https://example.com/{n}",
+            title_zh=title, title_en=title, tags=tags,
+        )
+
+    records = [
+        record(0, "Anthropic ships a model", ["Anthropic"]),
+        record(1, "Claude gets a new mode", ["Claude"]),
+        record(2, "Anthropic and Claude outage", ["Anthropic", "Claude"]),
+        record(3, "Tether mints USDT", ["Tether"]),
+        record(4, "Tether freezes funds", ["Tether"]),
+        record(5, "Tether attestation", ["Tether"]),
+    ]
+    raw = {entity.slug: entity.count for entity in collect_entities(records, minimum_mentions=2)}
+    assert raw["tether"] == 3 and raw["claude"] == 2
+
+    curated = collect_entities(records, minimum_mentions=3, profiles=load_entity_profiles())
+    assert [(entity.slug, entity.count, entity.label) for entity in curated] == [("anthropic", 3, "Anthropic")]
+
+
+def test_retired_entity_page_redirects_and_is_not_indexed() -> None:
+    from src.site_pages import render_retired_entity_page
+
+    page = render_retired_entity_page("tether", "zh")
+    front = page.split("---", 2)[1]
+    assert "redirect_to: /entity/" in front and "noindex: true" in front
+    assert "permalink: /entity/tether/" in front

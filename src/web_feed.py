@@ -35,7 +35,7 @@ _LABELS = {
         "empty": "今日暂无达到展示阈值的重要资讯。",
         "editorial": "编辑精选",
         "sponsored": "广告",
-        "thread_day": "事件线 · 第 {day} 天",
+        "thread_day": "持续追踪 · 第 {day} 天",
         "event_update": "事件记录",
         "sources_confirmed": "{count} 源确认",
         "single_source": "单一来源",

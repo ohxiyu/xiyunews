@@ -46,11 +46,11 @@ DATA_ROOT = Path("docs/_data")
 
 _LABELS = {
     "zh": {
-        "threads_title": "事件线",
+        "threads_title": "持续追踪",
         "threads_intro": "跨天追踪的持续事件，最新进展在最上面。",
         "entities_title": "实体索引",
         "entities_intro": "按公司、协议、监管机构聚合的历史报道。",
-        "thread_prefix": "事件线",
+        "thread_prefix": "追踪",
         "entity_prefix": "实体",
         "days": "天",
         "entries": "条",
@@ -59,7 +59,7 @@ _LABELS = {
         "empty": "暂无内容。",
         "back": "返回首页",
         "back_entities": "全部实体",
-        "back_threads": "全部事件线",
+        "back_threads": "全部追踪",
         "last_seen": "最近报道",
         "first_seen": "首次收录",
         "peak_score": "最高评分",
@@ -71,10 +71,10 @@ _LABELS = {
         "official_updates": "官方动态",
         "background_pending": "背景资料整理中。近期报道仍会正常收录，待档案核验后补充稳定的实体说明。",
         "recent_developments": "近期进展",
-        "related_events": "关联事件线",
+        "related_events": "关联追踪",
         "related_events_short": "关联事件",
         "source": "来源",
-        "open_event": "查看事件线",
+        "open_event": "查看追踪",
         "weekly_title": "本周回顾",
     },
     "en": {
@@ -250,7 +250,7 @@ _EVENT_LABELS = {
         "sources": "个来源",
         "sources_short": "来源",
         "timeline": "进展时间线",
-        "back": "全部事件线",
+        "back": "全部追踪",
         "home": "返回首页",
         "first_seen": "首次追踪",
         "last_changed": "最近变化",
@@ -986,7 +986,7 @@ def render_entity_page(
             overview_text = (
                 f"自 {dates[0]} 起共收录 {entity.count} 条相关报道，"
                 f"最新关注“{latest_title}”。"
-                f"其中 {len(related)} 条持续事件线可用于追踪后续变化。"
+                f"其中 {len(related)} 条持续追踪的事件可查看后续变化。"
             )
         else:
             overview_text = (
@@ -1261,6 +1261,45 @@ def write_index_data(
             path, json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
         )
         written.append(path)
+    return written
+
+
+def render_retired_entity_page(slug: str, language: str) -> str:
+    """Keep an old entity URL working without a thin, indexable page."""
+    normalized = "en" if language == "en" else "zh"
+    prefix = "" if normalized == "zh" else "/en"
+    destination = f"{prefix}/entity/"
+    copy = (
+        "这个主体暂未收录背景资料，相关报道仍可在日报与追踪中查看。"
+        if normalized == "zh"
+        else "This subject has no curated profile yet; its reports remain in the feed and tracking."
+    )
+    return (
+        _front_matter(
+            title=slug,
+            permalink=f"{prefix}/entity/{slug}/",
+            language=normalized,
+            description=copy,
+            redirect_to=destination,
+            noindex=True,
+        )
+        + f'<p class="archive-lede">{escape_text(copy)}</p>\n'
+    )
+
+
+def publish_retired_entities(
+    slugs: Iterable[str],
+    languages: Iterable[str],
+    *,
+    entity_root: Path = ENTITY_ROOT,
+) -> int:
+    written = 0
+    for language in languages:
+        normalized = "en" if str(language).lower().startswith("en") else "zh"
+        suffix = "" if normalized == "zh" else "en-"
+        for slug in sorted(set(slugs)):
+            _write(entity_root / f"{suffix}{slug}.html", render_retired_entity_page(slug, normalized))
+            written += 1
     return written
 
 

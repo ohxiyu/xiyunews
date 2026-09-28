@@ -1,46 +1,43 @@
 # 当前交接
 
-当前目标：[Issue140](https://github.com/ohxiyu/bmtnews-standalone/issues/140) 信息源重组第一步。[Issue138](https://github.com/ohxiyu/bmtnews-standalone/issues/138) AI 选稿保底已由 PR139 合并，记录见 [2026-09-28-ai-coverage.md](releases/2026-09-28-ai-coverage.md)。
+当前目标：[Issue144](https://github.com/ohxiyu/bmtnews-standalone/issues/144) 导航与实体页。并行：[Issue142](https://github.com/ohxiyu/bmtnews-standalone/issues/142) 事件线质量（[PR143](https://github.com/ohxiyu/bmtnews-standalone/pull/143)）。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "信息源重组第一步：Telegram 频道诊断与试运行、补 AI 信源、暂停长期 403 源",
-  "issue": "https://github.com/ohxiyu/bmtnews-standalone/issues/140",
-  "owner": "Claude Code / source-reorg",
-  "branch": "agent/source-reorg",
-  "last_verified_commit": "d11e699cd83b9931383505a3e836f1933d21c85b",
-  "pr": "pending: PR for agent/source-reorg",
+  "goal": "导航收成信息流/追踪/周报；实体页只保留已核实主体并合并别名",
+  "issue": "https://github.com/ohxiyu/bmtnews-standalone/issues/144",
+  "owner": "Claude Code / nav-entities",
+  "branch": "agent/nav-entities",
+  "last_verified_commit": "c5951e3292a805aa7b4096ab28cc7eea868fa309",
+  "pr": "pending: PR for agent/nav-entities",
   "completed": [
-    "Telegram 每频道诊断（名称、订阅、可见/窗口内/保留条数、最新时间）写入日志与运行摘要",
-    "频道 probe 试运行模式，新增 11 个候选频道全部试运行",
-    "AI RSS 启用数 4→10；暂停 Kraken Blog 与吴说 Substack",
-    "AI 选稿保底（Issue138）已由 PR139 合并为 d11e699"
+    "导航、App 底部导航、PWA 快捷方式改为三项；读者可见文案改为「追踪」",
+    "实体按资料库别名折算并只保留有资料主体；旧实体页改为 noindex 跳转",
+    "本地全部测试通过；事件线质量（Issue142）在 PR143 中待合并"
   ],
   "unfinished": [
     "PR 检查与合并（需维护者确认）",
-    "根据上线后的诊断表转正或删除候选频道"
+    "周报推送为下一任务"
   ],
   "validation": [
-    "uv run pytest 全部通过；治理检查通过"
+    "uv run pytest 与 PWA 测试通过；治理检查通过；生产归档模拟保留 11 个实体"
   ],
   "unverified": [
-    "新频道名与新 RSS 地址未做真实请求（本环境无法访问 t.me 与各站点）",
-    "交易所频道产量低的原因"
+    "上线后实体索引与跳转页的实际发布结果"
   ],
   "production": {
-    "source_commit": "d11e699cd83b9931383505a3e836f1933d21c85b (PR137 and PR139 merged; this change not merged)",
+    "source_commit": "c5951e3292a805aa7b4096ab28cc7eea868fa309 (this change not merged)",
     "artifact_commit": "not changed by this branch",
-    "edition": "2026-09-28, 12 items",
-    "generated_at": "2026-09-27T23:26:33.795069Z",
+    "edition": "2026-09-29",
+    "generated_at": "not applicable",
     "worker_version": "not changed",
-    "verified_at": "2026-09-28; offline tests only"
+    "verified_at": "2026-09-29; offline tests and simulation only"
   },
   "blockers": [
-    "合并与上线需维护者确认",
-    "候选频道转正需维护者核对诊断表"
+    "合并与上线需维护者确认"
   ],
-  "next_action": "合并后看第一次 Feed Collection 的 Telegram 频道表与 RSS 计数，列出可转正的频道交维护者确认",
+  "next_action": "开 PR；接着做周报推送",
   "states": {
     "code": "complete",
     "tests": "complete",
@@ -48,6 +45,6 @@
     "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-09-28-source-reorg.md"
+  "evidence": "project-docs/releases/2026-09-29-nav-entities.md"
 }
 ```
