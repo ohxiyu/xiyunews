@@ -75,6 +75,10 @@ def make_record(
     )
 
 
+# Just after make_event() fixtures change, so they count as active.
+INDEX_NOW = datetime(2026, 8, 12, 8, tzinfo=timezone.utc)
+
+
 def make_event(
     event_id: str = "evt_example1",
     *,
@@ -577,7 +581,7 @@ def test_event_index_contains_progressions_not_single_updates() -> None:
     progression = make_event("evt_progress1", updates=2)
     duplicate_only = make_event("evt_duplicate1", updates=1)
 
-    payload = build_event_index_data([duplicate_only, progression])
+    payload = build_event_index_data([duplicate_only, progression], now=INDEX_NOW)
     rows = payload["threads"]
 
     assert [row["event_id"] for row in rows] == ["evt_progress1"]
@@ -596,27 +600,69 @@ def test_event_index_contains_progressions_not_single_updates() -> None:
     assert [row["event_id"] for row in payload["ranking"]] == ["evt_progress1"]
 
 
-def test_event_ranking_prioritizes_importance_before_recency() -> None:
-    higher_score = make_event("evt_higher01", updates=2)
-    newer = make_event("evt_newer001", updates=2)
-    higher_score.updates[-1].importance_score = 9.5
-    for update in newer.updates:
-        update.occurred_at += timedelta(days=10)
-        update.published_at += timedelta(days=10)
-        update.first_seen_at += timedelta(days=10)
-    newer.last_updated_at += timedelta(days=10)
-    newer.last_material_change_at += timedelta(days=10)
+def test_event_index_ranks_active_events_by_heat() -> None:
+    """Importance counts, but a stale event cools: heat halves every 3 days."""
+    important_old = make_event("evt_higher01", updates=2)
+    fresh = make_event("evt_newer001", updates=2)
+    important_old.updates[-1].importance_score = 9.5
+    for update in fresh.updates:
+        update.occurred_at += timedelta(days=5)
+        update.published_at += timedelta(days=5)
+        update.first_seen_at += timedelta(days=5)
+    fresh.last_updated_at += timedelta(days=5)
+    fresh.last_material_change_at += timedelta(days=5)
 
-    payload = build_event_index_data([newer, higher_score])
-
+    payload = build_event_index_data(
+        [important_old, fresh], now=fresh.last_material_change_at + timedelta(hours=1)
+    )
     assert [row["event_id"] for row in payload["threads"]] == [
         "evt_newer001",
         "evt_higher01",
     ]
-    assert [row["event_id"] for row in payload["ranking"]] == [
-        "evt_higher01",
-        "evt_newer001",
-    ]
+    assert payload["threads"] == payload["ranking"]
+    # Same age: the more important event is hotter.
+    same_age = build_event_index_data(
+        [important_old, make_event("evt_plain001", updates=2)], now=INDEX_NOW
+    )
+    assert same_age["threads"][0]["event_id"] == "evt_higher01"
+
+
+def test_event_lifecycle_moves_quiet_events_out_of_the_list() -> None:
+    from src.site_pages import event_lifecycle
+
+    assert event_lifecycle("developing", 6.9) == "active"
+    assert event_lifecycle("developing", 7.5) == "dormant"
+    assert event_lifecycle("monitoring", 30.5) == "archived"
+    assert event_lifecycle("resolved", 3) == "active"
+    assert event_lifecycle("resolved", 8) == "archived"
+
+    event = make_event("evt_quiet001", updates=2)
+    event.status = EventStatus.DEVELOPING  # resolved events skip "dormant"
+    base = event.last_material_change_at
+    dormant = build_event_index_data([event], now=base + timedelta(days=10))
+    assert dormant["threads"] == [] and dormant["featured"] == []
+    assert [row["event_id"] for row in dormant["dormant"]] == ["evt_quiet001"]
+    archived = build_event_index_data([event], now=base + timedelta(days=40))
+    assert [row["event_id"] for row in archived["archived"]] == ["evt_quiet001"]
+    assert archived["counts"] == {"active": 0, "dormant": 0, "archived": 1}
+
+
+def test_featured_and_spotlight_pick_only_major_developing_stories() -> None:
+    major = make_event("evt_major001", updates=3)
+    minor = make_event("evt_minor001", updates=2)
+    major.updates[-1].importance_score = 9.5
+    for update in minor.updates:
+        update.importance_score = 5.0
+    now = major.last_material_change_at + timedelta(hours=2)
+    payload = build_event_index_data([minor, major], now=now)
+    assert [row["event_id"] for row in payload["featured"]] == ["evt_major001"]
+    assert payload["spotlight"]["event_id"] == "evt_major001"
+    timeline = payload["featured"][0]["timeline"]
+    assert [row["text_zh"] for row in timeline] == ["第 3 个变化", "第 2 个变化", "第 1 个变化"]
+    # Four days later the same story is no longer a home-page spotlight.
+    later = build_event_index_data([minor, major], now=now + timedelta(days=4))
+    assert later["spotlight"] is None
+    assert later["featured"][0]["event_id"] == "evt_major001"
 
 
 def test_event_index_uses_local_material_timestamp_not_late_discovery() -> None:
@@ -625,7 +671,7 @@ def test_event_index_uses_local_material_timestamp_not_late_discovery() -> None:
     event = make_event("evt_local001", updates=2)
     event.last_material_change_at = datetime(2026, 9, 4, 18, tzinfo=timezone.utc)
     event.updates[0].first_seen_at = datetime(2026, 9, 9, tzinfo=timezone.utc)
-    row = build_event_index_data([event])["threads"][0]
+    row = build_event_index_data([event], now=event.last_material_change_at)["threads"][0]
     assert row["latest_date"] == "2026-09-05"
     assert row["latest_at"] == event.last_material_change_at.astimezone(ZoneInfo("Asia/Shanghai")).isoformat()
 
@@ -633,8 +679,8 @@ def test_event_index_uses_local_material_timestamp_not_late_discovery() -> None:
 def test_context_is_recent_and_latest_precedes_background() -> None:
     template = Path("docs/_includes/archive-index.html").read_text()
     context = template.split('<div class="event-index-layout">')[0]
-    assert "for row in rows limit: 3" in context
-    assert "for row in ranking limit: 3" not in context
+    # The lead is chosen by heat (importance and recency), not by recency alone.
+    assert "for row in featured" in context
     assert template.index('event-brief-latest') < template.index('event-brief-background')
     for section in ("threads", "entity"):
         assert f"alternate_url: /en/{section}/" in Path(f"docs/{section}.html").read_text()
@@ -656,9 +702,10 @@ def test_event_index_template_reuses_feed_layout_and_filters() -> None:
     assert 'class="digest-item event-feed-item"' in template
     assert "data-event-filters" in template
     assert 'class="headline-rail event-overview-rail"' in template
-    assert 'class="event-context"' in template
+    assert 'class="event-context event-spotlight"' in template
     assert 'class="event-brief-grid"' in template
-    assert 'class="headline-index event-ranking"' in template
+    # The active list is itself ordered by heat; no second ranking rail.
+    assert 'class="headline-index event-ranking"' not in template.split('{% elsif include.kind == "entities" %}')[0]
     assert "事件背景" in template
     assert "最新进展" in template
     assert "讨论焦点" in template
@@ -776,6 +823,7 @@ def test_publish_event_compatibility_pages_writes_real_redirect_targets(
         events_root=tmp_path / "events",
         threads_root=tmp_path / "threads",
         thread_index_path=tmp_path / "_data" / "threads.json",
+        now=INDEX_NOW,
     )
 
     assert counts == {"events": 6, "redirects": 2, "retired": 2, "merged": 0}

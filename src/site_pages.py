@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 import logging
 from collections import Counter
-from datetime import date as date_type, timedelta
+from datetime import date as date_type, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Iterable, List, Mapping, Optional, Sequence
 from zoneinfo import ZoneInfo
@@ -677,8 +677,67 @@ def render_retired_thread_page(
     )
 
 
-def build_event_index_data(events: Sequence[TrackedEvent]) -> dict:
-    """Build a shape compatible with the existing threads index template."""
+# Event lifecycle on the tracking page. An event with no material change for
+# a week is no longer news; after a month (or a week once resolved) it lives
+# only in the archive. A new material update brings it straight back.
+ACTIVE_DAYS = 7
+DORMANT_DAYS = 30
+FEATURED_MAX = 3
+# A second or third featured event must be comparably hot to the first.
+FEATURED_RELATIVE_HEAT = 0.6
+# Heat halves every three days without a material change.
+HEAT_HALF_LIFE_HOURS = 72
+# The home page links the top event only when it is a major, developing story.
+SPOTLIGHT_MIN_SCORE = 9.0
+SPOTLIGHT_MIN_UPDATES = 3
+SPOTLIGHT_MAX_AGE_DAYS = 3
+
+
+def event_lifecycle(status: str, age_days: float) -> str:
+    if status in {"resolved", "closed"}:
+        return "active" if age_days <= ACTIVE_DAYS else "archived"
+    if age_days <= ACTIVE_DAYS:
+        return "active"
+    return "dormant" if age_days <= DORMANT_DAYS else "archived"
+
+
+def event_heat(
+    score: float | None, age_hours: float, updates: int, sources: int
+) -> float:
+    """Importance, decayed by staleness, lifted by development and coverage."""
+    importance = score if score is not None else 6.0
+    recency = 0.5 ** (max(age_hours, 0.0) / HEAT_HALF_LIFE_HOURS)
+    development = 1 + 0.15 * min(max(updates - 1, 0), 8)
+    coverage = 1 + 0.03 * min(sources, 20)
+    return round(importance * recency * development * coverage, 3)
+
+
+def _timeline(material: Sequence[EventUpdate], limit: int = 5) -> list[dict]:
+    """The newest developments, newest first, for the featured cards."""
+    local_zone = ZoneInfo("Asia/Shanghai")
+    rows = []
+    for update in list(material)[-limit:][::-1]:
+        rows.append(
+            {
+                "date": update.first_seen_at.astimezone(local_zone).date().isoformat(),
+                "type_zh": _UPDATE_LABELS[update.update_type.value]["zh"],
+                "type_en": _UPDATE_LABELS[update.update_type.value]["en"],
+                "text_zh": _event_update_value(update, "what_changed", "zh"),
+                "text_en": _event_update_value(update, "what_changed", "en"),
+            }
+        )
+    return rows
+
+
+def build_event_index_data(
+    events: Sequence[TrackedEvent], *, now: datetime | None = None
+) -> dict:
+    """Tracking page data: featured, active, dormant and archived events.
+
+    ``threads`` keeps its name for the template but now holds only active
+    events, hottest first.
+    """
+    now = now or datetime.now(timezone.utc)
     rows = []
     for event in events:
         material = [update for update in event.updates if update.material_change]
@@ -822,21 +881,57 @@ def build_event_index_data(events: Sequence[TrackedEvent]) -> dict:
                 "score": max(score_values) if score_values else None,
                 "source_links": source_links,
                 "reference_links": reference_links,
+                "timeline": _timeline(ordered_material),
             }
         )
-    rows.sort(key=lambda row: (row["latest_at"], row["event_id"]), reverse=True)
-    ranking = sorted(
-        rows,
-        key=lambda row: (
-            row["score"] if row["score"] is not None else -1,
-            int(row["latest_date"].replace("-", "")),
-            row["sources_count"],
-            row["updates_count"],
-            row["event_id"],
-        ),
-        reverse=True,
+        row = rows[-1]
+        age_hours = (now - event.last_material_change_at).total_seconds() / 3600
+        row["age_days"] = round(age_hours / 24, 1)
+        row["lifecycle"] = event_lifecycle(row["status"], age_hours / 24)
+        row["heat"] = event_heat(
+            row["score"], age_hours, row["updates_count"], row["sources_count"]
+        )
+
+    def hottest(row: dict):
+        return (-row["heat"], row["latest_at"], row["event_id"])
+
+    def newest(row: dict):
+        return (row["latest_at"], row["event_id"])
+
+    active = sorted((r for r in rows if r["lifecycle"] == "active"), key=hottest)
+    dormant = sorted((r for r in rows if r["lifecycle"] == "dormant"), key=newest, reverse=True)
+    archived = sorted((r for r in rows if r["lifecycle"] == "archived"), key=newest, reverse=True)
+    featured = [
+        row
+        for row in active[:FEATURED_MAX]
+        if row["heat"] >= FEATURED_RELATIVE_HEAT * active[0]["heat"]
+    ]
+    top = active[0] if active else None
+    spotlight = (
+        top
+        if top
+        and (top["score"] or 0) >= SPOTLIGHT_MIN_SCORE
+        and top["updates_count"] >= SPOTLIGHT_MIN_UPDATES
+        and top["age_days"] <= SPOTLIGHT_MAX_AGE_DAYS
+        else None
     )
-    return {"threads": rows, "ranking": ranking}
+    compact = ("event_id", "title_zh", "title_en", "latest_date", "category",
+               "status", "status_zh", "status_en", "updates_count",
+               "latest_update_zh", "latest_update_en")
+    return {
+        "threads": active,
+        "ranking": active,
+        "featured": featured,
+        "spotlight": spotlight,
+        "dormant": [{key: row[key] for key in compact} for row in dormant],
+        "archived": [{key: row[key] for key in compact} for row in archived],
+        "counts": {
+            "active": len(active),
+            "dormant": len(dormant),
+            "archived": len(archived),
+        },
+        "rules": {"active_days": ACTIVE_DAYS, "dormant_days": DORMANT_DAYS},
+    }
 
 
 def publish_event_compatibility_pages(
@@ -850,6 +945,7 @@ def publish_event_compatibility_pages(
     thread_index_path: Path = DATA_ROOT / "threads.json",
     event_api_root: Path | None = None,
     event_api_index: Path | None = None,
+    now: datetime | None = None,
 ) -> dict[str, int]:
     """Write stable event targets and preserve every reviewed legacy URL."""
     by_id = {event.event_id: event for event in events}
@@ -874,7 +970,7 @@ def publish_event_compatibility_pages(
     _write(
         thread_index_path,
         json.dumps(
-            build_event_index_data(events), ensure_ascii=False, indent=2
+            build_event_index_data(events, now=now), ensure_ascii=False, indent=2
         )
         + "\n",
     )

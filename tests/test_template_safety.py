@@ -19,3 +19,11 @@ def test_event_references_use_protocol_validating_include():
     assert "reference_http == 'http://'" in reference
     assert '{{ reference_url | escape }}' in reference
     assert '{{ include.title | escape }}' in reference
+
+
+def test_home_spotlight_is_escaped_and_driven_by_event_data():
+    template = Path("docs/_includes/feed-home.html").read_text()
+    block = template.split("site.data.threads.spotlight", 1)[1].split("</a>", 1)[0]
+    assert "spotlight.event_id | escape" in block
+    assert "spotlight_title | escape" in block
+    assert "spotlight_update | escape" in block
