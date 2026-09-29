@@ -2564,10 +2564,13 @@ class BMTNewsOrchestrator:
                 retry_count += 1
         work = list(incoming.values())
         if not work:
-            translated_events, translated = await self._translate_event_texts(
-                events, None, run_report
+            merged_events, merge_changed = await self._merge_split_events(
+                events, metadata, None, run_report
             )
-            if translated:
+            translated_events, translated = await self._translate_event_texts(
+                merged_events, None, run_report
+            )
+            if translated or merge_changed:
                 save_event_catalog(metadata, translated_events, EVENT_CATALOG_PATH)
                 self._publish_current_event_pages(events=translated_events)
             return
@@ -2592,6 +2595,7 @@ class BMTNewsOrchestrator:
         metadata["pending_relations"] = list(pending.values())
         run_report.set_metric("event_relations_pending", sum(row["attempts"] < 3 for row in pending.values()))
         run_report.set_metric("event_relations_parked", sum(row["attempts"] >= 3 for row in pending.values()))
+        updated, _ = await self._merge_split_events(updated, metadata, client, run_report)
         updated, _ = await self._translate_event_texts(updated, client, run_report)
         save_event_catalog(metadata, updated, EVENT_CATALOG_PATH)
         self._publish_current_event_pages(events=updated)
@@ -2614,6 +2618,33 @@ class BMTNewsOrchestrator:
             f"{result.duplicate_sources} duplicate sources, "
             f"{result.new_events} new events\n"
         )
+
+    async def _merge_split_events(self, events, metadata, client, run_report: RunReport):
+        """Fold recent events that one real-world event was split into.
+
+        At most three model calls per run, only for subjects with events the
+        last review did not see. Any failure keeps the catalog as it was.
+        """
+        from .event_merge import merge_split_events, merge_groups, REVIEWS_KEY
+
+        now = datetime.now(timezone.utc)
+        if not merge_groups(events, now=now, reviewed=metadata.get(REVIEWS_KEY) or {}):
+            return events, 0
+        try:
+            client = client or create_ai_client(self.config.ai)
+            merged, result = await merge_split_events(events, client, metadata, now=now)
+        except Exception as exc:  # noqa: BLE001 - merging is best effort
+            self.console.print(f"[yellow]⚠️  Event merge skipped: {exc}[/yellow]")
+            return events, 0
+        run_report.set_metric("event_merge_groups_reviewed", result.groups_reviewed)
+        run_report.set_metric("event_merge_events_folded", result.events_folded)
+        run_report.set_metric("event_merge_calls_failed", result.calls_failed)
+        if result.events_folded:
+            self.console.print(
+                f"🧭 Event merge: {result.events_folded} split events folded\n"
+            )
+        # Reviews are saved even without a fold, so they are not repeated.
+        return merged, result.events_folded + result.groups_reviewed
 
     async def _translate_event_texts(self, events, client, run_report: RunReport):
         """Translate English text still shown on Chinese pages of tracked events.

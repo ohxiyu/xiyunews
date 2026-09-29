@@ -3,8 +3,10 @@
 The published event catalog is the durable state.  A story already present in
 any update is never classified again.  New, qualified stories first pass the
 hard candidate gate from :mod:`src.events`; only those candidate pairs reach
-the semantic classifier.  Ambiguous or low-confidence relations remain
-separate events, which is safer than silently corrupting an existing history.
+the semantic classifier.  Low-confidence relations remain separate events,
+which is safer than silently corrupting an existing history.  A story that
+confidently matches several events joins the most developed one, and
+:mod:`src.event_merge` folds events that one real event was split into.
 """
 
 from __future__ import annotations
@@ -706,6 +708,32 @@ def _attach_duplicate(
     )
 
 
+def _main_event_attachment(
+    decisions: Sequence[EventRelationDecision],
+    by_id: Mapping[str, TrackedEvent],
+) -> EventRelationDecision | None:
+    """Pick the main event when a story confidently matches several.
+
+    Several individually confident matches mean the event was already split.
+    Opening yet another event deepens the split; attaching to the most
+    developed candidate does not, and the merge pass folds the rest.
+    """
+    eligible = [
+        decision
+        for decision in decisions
+        if decision.should_attach(threshold=ATTACHMENT_THRESHOLD)
+        and decision.candidate_event_id in by_id
+    ]
+    if len({decision.candidate_event_id for decision in eligible}) < 2:
+        return None
+
+    def weight(decision: EventRelationDecision):
+        event = by_id[decision.candidate_event_id]
+        return (-material_update_count(event), event.first_seen_at, event.event_id)
+
+    return min(eligible, key=weight)
+
+
 async def _default_classifier(
     client: AIClient, event: TrackedEvent, story: StoryEvidence
 ) -> EventRelationDecision:
@@ -780,7 +808,7 @@ async def update_events(
             continue
         attachment = select_event_attachment(
             decisions, threshold=ATTACHMENT_THRESHOLD
-        )
+        ) or _main_event_attachment(decisions, by_id)
 
         if attachment is None:
             event = _new_event(item, story)
