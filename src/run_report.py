@@ -170,7 +170,7 @@ def _public_fetch_report(payload: dict[str, Any]) -> dict[str, Any]:
                 )
                 for key in (
                     "channel", "probe", "status", "title", "subscribers",
-                    "messages_seen", "in_window", "kept", "newest", "error",
+                    "messages_seen", "in_window", "kept", "pages", "newest", "error",
                 )
                 if key in row
             }
