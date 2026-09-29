@@ -7,37 +7,53 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Circle 的 Arc 将于 9 月 16 日上线，11 家华尔街机构出任创始验证者",
-    "en": "Circle’s Arc launch ties Wall Street firms to the network without making them its safety net"
+    "zh": "Circle 推出 Arc 主网，贝莱德、DTCC、Visa 等机构参与验证",
+    "en": "Circle Launches Arc Mainnet with BlackRock, DTCC, Visa Among Validators"
   },
   "current_state": {
-    "zh": "Arc 区块链已于9月16日正式上线；主网以 USDC 为原生 gas，支持 EVM、亚秒级最终性、20 多种稳定币和 20 多条链互操作，并已完成 100 亿枚 ARC 代币创世铸造（但不代表承诺公开发行）。",
-    "en": "The Arc blockchain is live following its Sept. 16 launch; the mainnet uses USDC as native gas, supports EVM, sub-second finality, 20+ stablecoins and 20+ blockchains via CCTP/Gateway, and has completed a genesis mint of 10 billion ARC tokens (though not a commitment to a public token launch)."
+    "zh": "Circle 面向 USDC 的 layer-1 区块链 Arc 于 2026 年 9 月 16 日正式向公众开放，其公共测试网在 2025 年 10 月上线后不到一年处理了超过 7 亿笔交易。上线首日即有 100 多家机构与生态合作伙伴接入该网络，Circle 首席执行官 Jeremy Allaire 称其为“Circle 历史上自 USDC 以来最重要的一次发布”。\n\n这是主要稳定币发行方首次推出自己的底层结算网络，意味着 Circle 从单纯的代币发行方转向掌控其稳定币使用场景的基础设施。若机构在支付与结算中采用 Arc，部分稳定币交易流量可能从以太坊、Solana 等通用链转向为合规与机构需求量身打造的专业化通道。\n\nArc 以 USDC 作为原生 gas，并可通过 paymaster 系统接受其他稳定币支付手续费；其费用模型基于以太坊 EIP-1559 架构，但以网络需求的加权移动平均替代区块级别的调整机制，手续费归入链上的 Arc Treasury。共识层采用 Malachite——一个基于 Tendermint 的拜占庭容错引擎，验证者集合为许可制、运行在权威证明（proof of authority）之上，Circle 表示可能在 2027 年过渡到权益证明；2026 年 9 月 USDC 流通量约为 740 亿美元。",
+    "en": "Circle's USDC-focused layer-1 blockchain Arc opened to the public on September 16, 2026, offering USDC gas, a built-in FX engine, and opt-in privacy to support institutional stablecoin applications."
   },
   "first_seen_at": "2026-09-14T23:18:05.201873+00:00",
-  "last_updated_at": "2026-09-16T17:12:36.937901+00:00",
-  "last_material_change_at": "2026-09-16T17:12:36.937901+00:00",
+  "last_updated_at": "2026-09-17T17:11:56.403662+00:00",
+  "last_material_change_at": "2026-09-17T17:11:56.403662+00:00",
   "confidence": 0.75,
-  "updates_count": 3,
-  "sources_count": 3,
+  "updates_count": 4,
+  "sources_count": 8,
   "entities": [
     "allaire",
     "arc",
     "arc-blockchain",
+    "arc-mainnet",
+    "blackrock",
+    "blocks",
     "circle",
+    "dtcc",
+    "from",
+    "issuer",
     "jeremy",
+    "launches",
+    "producing",
+    "stablecoin",
     "street",
     "usdc",
-    "wall"
+    "validators",
+    "visa",
+    "wall",
+    "what",
+    "with"
   ],
   "identifiers": [],
   "topics": [
     "arc",
     "arc-blockchain",
+    "arc-mainnet",
     "blockchain-infrastructure",
     "circle",
     "cross-chain",
+    "infrastructure",
     "layer-1",
+    "layer1",
     "stablecoins",
     "usdc"
   ],
@@ -65,7 +81,7 @@
       "community_discussion_en": "",
       "market_impact_zh": "Arc 将机构级稳定币结算与代币化资产——BlackRock 的 BUIDL，以及未来通过目标于 2027 年下半年落地的 DTCC 集成引入的 DTC 托管资产——导入由 Circle 技术栈绑定的一套许可制验证者网络，这有可能把机构资金流引向以 USDC 计价的通道，并分流原本流向其他 L1 网络的流量。验证者投票权的集中度问题尚未解决，以及 Arc 计划向更广泛治理过渡，都是公开主网上线后市场参与者将关注的结构性变量。",
       "market_impact_en": "Arc channels institutional stablecoin settlement and tokenized assets — BlackRock's BUIDL, and eventually DTC-custodied assets via a DTCC integration targeted for the second half of 2027 — onto a permissioned validator set tied to Circle's stack, which could pull institutional flow toward USDC-denominated rails and away from competing L1 networks. The unresolved concentration of validator voting power and Arc's planned transition toward broader governance are structural variables market participants will watch once the public mainnet is live.",
-      "importance_score": 7.5,
+      "importance_score": 8.5,
       "references": [
         {
           "url": "https://www.circle.com/blog/introducing-arc-an-open-layer-1-blockchain-purpose-built-for-stablecoin-finance",
@@ -78,16 +94,45 @@
         {
           "url": "https://en.wikipedia.org/wiki/Depository_Trust_&_Clearing_Corporation",
           "title": "Depository Trust & Clearing Corporation - Wikipedia"
+        },
+        {
+          "url": "https://www.arc.io/blog/building-with-usdc-on-arc-one-token-two-interfaces",
+          "title": "Building with USDC on Arc: Two Interfaces for One Token"
+        },
+        {
+          "url": "https://coinbureau.com/education/what-is-arc-circle-stablechain",
+          "title": "What Is Circle Arc Blockchain: Learn How Circle’s Layer-1 Stablechain Works - Coin Bureau"
         }
       ],
       "confidence": 0.75,
       "story_ids": [
-        "rss:cryptoslate.com_feed_:2afbbd1717d0b08a"
+        "rss:cryptoslate.com_feed_:2afbbd1717d0b08a",
+        "rss:www.theblock.co_rss.xml:479a1a7a052df729",
+        "rss:thedefiant.io_api_feed:970acf6af57c410d",
+        "rss:decrypt.co_feed:9fa2c0ac2ff7973c"
       ],
       "sources": [
         {
           "url": "https://cryptoslate.com/circles-arc-launch-ties-wall-street-firms-to-the-network-without-making-them-its-safety-net/",
           "label": "CryptoSlate",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://www.theblock.co/news/ecosystems/2026-09-16-circle-launches-arc-mainnet-with-blackrock-and-visa-among-validators-mints-10-billion-arc-tokens-415250",
+          "label": "The Block",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://thedefiant.io/converge/blockchains/circle-launches-arc-mainnet-with-blackrock-dtcc-and-visa-producing-blocks",
+          "label": "The Defiant",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://decrypt.co/378374/circle-launches-arc-mainnet-with-blackrock-dtcc-and-visa-as-validators",
+          "label": "Decrypt",
           "source_type": "rss",
           "official": false
         }
@@ -140,7 +185,7 @@
       "time_precision": "published",
       "update_type": "confirmation",
       "material_change": true,
-      "title_zh": "Circle launches Arc mainnet with USDC as native gas token",
+      "title_zh": "Circle上线Arc主网，以USDC作为原生Gas代币",
       "title_en": "Circle launches Arc mainnet with USDC as native gas token",
       "what_changed_zh": "新报道补充 Arc 主网技术细节：以 USDC 为原生 gas、EVM 兼容、亚秒级最终性、支持 20 多种法币稳定币与 20 多条链互操作，并披露本周完成 100 亿枚 ARC 代币创世铸造。",
       "what_changed_en": "New report adds Arc mainnet technical details: USDC as native gas, EVM compatibility, sub-second finality, support for 20+ fiat stablecoins and 20+ blockchains via CCTP/Gateway, and disclosed a genesis mint of 10 billion ARC tokens this week.",
@@ -164,6 +209,64 @@
         {
           "url": "https://cointelegraph.com/news/circle-arc-mainnet-launch-usdc-native-gas?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
           "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_d32e862a653e9d72",
+      "event_id": "evt_5ffb628ad93630c8",
+      "occurred_at": "2026-09-17T01:50:26Z",
+      "published_at": "2026-09-17T01:50:26Z",
+      "first_seen_at": "2026-09-17T09:35:01.343314Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Circle开放Arc主网，寻求为USDC实用性赢得优势",
+      "title_en": "Circle opens Arc mainnet as it seeks an edge for USDC utility",
+      "what_changed_zh": "Circle上线Arc的公开主网，这是一条一层区块链，让单一USDC余额即可同时覆盖支付和网络费用，旨在提升USDC相对Tether的实用性。",
+      "what_changed_en": "Circle launched the public mainnet of Arc, a layer-1 blockchain that lets a single USDC balance cover both payments and network fees, aiming to boost USDC utility against Tether.",
+      "current_state_zh": "Circle上线Arc的公开主网，这是一条一层区块链，让单一USDC余额即可同时覆盖支付和网络费用，旨在提升USDC相对Tether的实用性。",
+      "current_state_en": "Circle launched the public mainnet of Arc, a layer-1 blockchain that lets a single USDC balance cover both payments and network fees, aiming to boost USDC utility against Tether.",
+      "detailed_summary_zh": "Circle launched the public mainnet of Arc, a layer-1 blockchain that lets a single USDC balance cover both payments and network fees, aiming to boost USDC utility against Tether.",
+      "detailed_summary_en": "Circle launched the public mainnet of Arc, a layer-1 blockchain that lets a single USDC balance cover both payments and network fees, aiming to boost USDC utility against Tether.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Layer-1_blockchain",
+          "title": "Layer-1 blockchain"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Stablecoin",
+          "title": "Stablecoin"
+        },
+        {
+          "url": "https://www.investopedia.com/what-are-layer-1-and-layer-2-blockchain-scaling-solutions-7104877",
+          "title": "Blockchain Scaling Unveiled: Layer 1 vs. Layer 2 Solutions"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "rss:cryptoslate.com_feed_:e127615dfeaf04f7",
+        "rss:decrypt.co_feed:be55331fc77bf89d"
+      ],
+      "sources": [
+        {
+          "url": "https://cryptoslate.com/circle-opens-arc-mainnet-as-it-seeks-an-edge-for-usdc-utility/",
+          "label": "CryptoSlate",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://decrypt.co/resources/what-is-arc-the-stablecoin-blockchain-from-usdc-issuer-circle",
+          "label": "Decrypt",
           "source_type": "rss",
           "official": false
         }
