@@ -365,6 +365,7 @@ Telegram scraping uses the public web preview at `https://t.me/s/<channel>`, so 
 - `channels` — list of public Telegram channels to monitor
 - `channel` — Telegram channel username only, without `@` or the full `https://t.me/` URL
 - `fetch_limit` — maximum number of recent messages to inspect per channel per run (default: `20`)
+- `pages` — preview pages to read per run (default `1`, at most `5`). The public preview shows about 20 messages per page; a channel that posts more than that between runs needs older pages (`?before=<id>`). Paging stops once a page reaches back past the collection window. Raise `fetch_limit` to match (about 20 per page).
 - `category` — optional tag for balanced digest grouping (e.g., `"ai-news"`, `"finance"`)
 - `probe` — trial mode (default `false`). The channel is fetched and reported
   but its messages never enter the edition. Crypto channel names are often

@@ -263,6 +263,9 @@ class TelegramChannelConfig(BaseModel):
     channel: str  # channel username, e.g. "zaihuapd"
     enabled: bool = True
     fetch_limit: int = 20
+    # The public preview shows about 20 messages per page. A busy channel
+    # needs older pages (``?before=<id>``) to cover the collection window.
+    pages: int = Field(default=1, ge=1, le=5)
     category: Optional[str] = None
     # Trial mode: fetch and report the channel (title, subscribers, message
     # counts) without letting its messages into the edition. Crypto channel

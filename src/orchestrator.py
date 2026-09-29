@@ -2446,7 +2446,7 @@ class BMTNewsOrchestrator:
                     f"      · {tag}: title={row.get('title')!r} "
                     f"subscribers={row.get('subscribers')} seen={row.get('messages_seen')} "
                     f"in_window={row.get('in_window')} kept={row.get('kept')} "
-                    f"newest={row.get('newest')}"
+                    f"pages={row.get('pages', 1)} newest={row.get('newest')}"
                 )
             else:
                 self.console.print(f"      · {tag}: failed ({row.get('error')})")

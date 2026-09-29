@@ -82,10 +82,16 @@ class TelegramScraper(BaseScraper):
                     await asyncio.sleep(retry_after)
                     response = await self.client.get(url, headers=headers, follow_redirects=True, timeout=120.0)
                 response.raise_for_status()
-                items = self._parse_channel_html(response.text, cfg, since)
-                self.channel_reports.append(
-                    self._channel_report(response.text, cfg, since, items)
-                )
+                html = response.text
+                pages = 1
+                if cfg.pages > 1:
+                    html, pages = await self._with_older_pages(
+                        web_base, cfg, since, html, headers
+                    )
+                items = self._parse_channel_html(html, cfg, since)
+                report = self._channel_report(html, cfg, since, items)
+                report["pages"] = pages
+                self.channel_reports.append(report)
                 return items
             except httpx.HTTPError as exc:
                 failures.append(exc)
@@ -102,6 +108,62 @@ class TelegramScraper(BaseScraper):
             f"All Telegram endpoints failed for {cfg.channel}: "
             f"{type(last_failure).__name__}: {last_failure}"
         ) from last_failure
+
+    async def _with_older_pages(
+        self,
+        web_base: str,
+        cfg: TelegramChannelConfig,
+        since: datetime,
+        html: str,
+        headers: dict,
+    ) -> tuple[str, int]:
+        """Prepend older preview pages until the window or page budget ends.
+
+        Each page is the channel preview ``?before=<oldest post id>``. Older
+        pages go first so the combined messages stay oldest-to-newest. A
+        failed older page keeps what was already fetched.
+        """
+        older: List[str] = []
+        current = html
+        for _ in range(cfg.pages - 1):
+            ids, oldest = self._page_bounds(current)
+            if not ids or oldest is None or oldest < since:
+                break
+            url = f"{web_base}/{cfg.channel}?before={min(ids)}"
+            try:
+                response = await self.client.get(
+                    url, headers=headers, follow_redirects=True, timeout=120.0
+                )
+                response.raise_for_status()
+            except httpx.HTTPError as exc:
+                logger.warning("Telegram older page failed for %s: %r", cfg.channel, exc)
+                break
+            page_ids, _ = self._page_bounds(response.text)
+            if not page_ids or min(page_ids) >= min(ids):
+                break
+            older.append(response.text)
+            current = response.text
+        return "".join(reversed(older)) + html, 1 + len(older)
+
+    @staticmethod
+    def _page_bounds(html: str) -> tuple[List[int], Optional[datetime]]:
+        """Message numbers on a preview page and its oldest timestamp."""
+        soup = BeautifulSoup(html, "html.parser")
+        ids: List[int] = []
+        times: List[datetime] = []
+        for message in soup.select("div.tgme_widget_message[data-post]"):
+            try:
+                ids.append(int(message["data-post"].rsplit("/", 1)[1]))
+            except (KeyError, IndexError, ValueError):
+                continue
+            stamp = message.select_one("time[datetime]")
+            try:
+                times.append(
+                    datetime.fromisoformat(stamp["datetime"].replace("Z", "+00:00"))
+                )
+            except (TypeError, KeyError, ValueError):
+                continue
+        return ids, (min(times) if times else None)
 
     @staticmethod
     def _channel_report(
@@ -151,7 +213,12 @@ class TelegramScraper(BaseScraper):
         messages = soup.select("div.tgme_widget_message[data-post]")
 
         items = []
+        seen: set[str] = set()
         for msg in messages[-cfg.fetch_limit:]:
+            post = msg.get("data-post")
+            if post in seen:  # Adjacent preview pages can overlap.
+                continue
+            seen.add(post)
             item = self._parse_message(msg, cfg, since)
             if item:
                 items.append(item)

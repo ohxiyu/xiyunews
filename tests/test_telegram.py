@@ -208,3 +208,69 @@ def test_failed_probes_alone_do_not_fail_the_source() -> None:
             return await TelegramScraper(config, client).fetch(datetime(2026, 9, 27, tzinfo=timezone.utc))
 
     assert asyncio.run(run()) == []
+
+
+def _numbered_page(channel: str, numbers, hour_of) -> str:
+    return "".join(
+        f'<div class="tgme_widget_message" data-post="{channel}/{n}">'
+        f'<time datetime="2026-09-28T{hour_of(n):02d}:00:00+00:00"></time>'
+        f'<div class="tgme_widget_message_text js-message_text">msg {n}</div></div>'
+        for n in numbers
+    )
+
+
+def test_busy_channel_pages_back_until_the_window_is_covered() -> None:
+    """A preview page holds ~20 messages; busy channels need older pages."""
+    requests: list[str] = []
+    # Messages 1..60, one per 20 minutes before 20:00; window starts 05:00.
+    hour = lambda n: min(23, 20 - (60 - n) // 3)  # noqa: E731
+    pages = {
+        None: _numbered_page("busy", range(41, 61), hour),
+        "41": _numbered_page("busy", range(21, 41), hour),
+        "21": _numbered_page("busy", range(1, 21), hour),
+    }
+
+    def handler(request):
+        requests.append(str(request.url))
+        page = pages.get(request.url.params.get("before"))
+        return httpx.Response(200, text=page) if page else httpx.Response(404)
+
+    async def run(cfg):
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+            scraper = TelegramScraper(TelegramConfig(channels=[cfg]), client)
+            items = await scraper.fetch(datetime(2026, 9, 28, 5, tzinfo=timezone.utc))
+            return items, scraper.channel_reports[0]
+
+    items, report = asyncio.run(run(TelegramChannelConfig(channel="busy", fetch_limit=60, pages=3)))
+    assert report["pages"] == 3
+    assert [r.split("/s/", 1)[1] for r in requests] == ["busy", "busy?before=41", "busy?before=21"]
+    kept = sorted(int(str(item.url).rsplit("/", 1)[1]) for item in items)
+    # Messages before 05:00 (numbers 1-12) fall outside the window.
+    assert kept == list(range(13, 61))
+    assert all(item.published_at >= datetime(2026, 9, 28, 5, tzinfo=timezone.utc) for item in items)
+
+    # One page by default, as before.
+    requests.clear()
+    _, single = asyncio.run(run(TelegramChannelConfig(channel="busy", fetch_limit=60)))
+    assert single["pages"] == 1 and len(requests) == 1
+
+
+def test_paging_stops_once_the_window_is_covered() -> None:
+    requests: list[str] = []
+    page = _numbered_page("quiet", range(1, 21), lambda n: 10)
+
+    def handler(request):
+        requests.append(str(request.url))
+        return httpx.Response(200, text=page)
+
+    async def run():
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+            scraper = TelegramScraper(
+                TelegramConfig(channels=[TelegramChannelConfig(channel="quiet", pages=3)]), client
+            )
+            # The first page already reaches back past the window start.
+            await scraper.fetch(datetime(2026, 9, 28, 11, tzinfo=timezone.utc))
+            return scraper.channel_reports[0]
+
+    report = asyncio.run(run())
+    assert report["pages"] == 1 and len(requests) == 1
