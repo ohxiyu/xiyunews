@@ -117,8 +117,7 @@
         "name": "The Block",
         "url": "https://www.theblock.co/rss.xml",
         "enabled": true,
-        "category": "crypto-markets",
-        "content_extractor": "trafilatura"
+        "category": "crypto-markets"
       },
       {
         "name": "Blockworks",
@@ -128,17 +127,10 @@
         "content_extractor": "trafilatura"
       },
       {
-        "name": "Wu Blockchain",
-        "url": "https://wublock.substack.com/feed",
-        "enabled": false,
-        "category": "crypto-markets"
-      },
-      {
         "name": "The Defiant",
         "url": "https://thedefiant.io/api/feed",
         "enabled": true,
-        "category": "crypto-protocols",
-        "content_extractor": "trafilatura"
+        "category": "crypto-protocols"
       },
       {
         "name": "DL News",
@@ -172,12 +164,6 @@
         "url": "https://tether.io/feed",
         "enabled": true,
         "category": "crypto-markets"
-      },
-      {
-        "name": "Kraken Blog",
-        "url": "https://blog.kraken.com/feed",
-        "enabled": false,
-        "category": "exchange-announcements"
       },
       {
         "name": "Coinbase Status",
@@ -281,13 +267,6 @@
         "url": "https://cointelegraph.com/rss",
         "enabled": true,
         "category": "crypto-markets",
-        "content_extractor": "trafilatura"
-      },
-      {
-        "name": "Bitcoin Magazine",
-        "url": "https://bitcoinmagazine.com/.rss/full/",
-        "enabled": true,
-        "category": "crypto-protocols",
         "content_extractor": "trafilatura"
       }
     ],
@@ -449,17 +428,6 @@
       "max_items": 15,
       "category": "crypto-protocols"
     },
-    "gdelt": {
-      "enabled": true,
-      "query": "(cryptocurrency OR bitcoin OR ethereum OR stablecoin OR blockchain)",
-      "mode": "ArtList",
-      "max_records": 100,
-      "timespan": "24h",
-      "language": "english",
-      "country": null,
-      "category": "crypto-markets",
-      "allowed_domains": ["reuters.com", "bloomberg.com", "ft.com", "wsj.com", "cnbc.com", "apnews.com", "nytimes.com", "washingtonpost.com", "economist.com", "axios.com", "theguardian.com", "bbc.com", "bbc.co.uk", "fortune.com", "scmp.com", "nikkei.com", "caixinglobal.com", "politico.com", "barrons.com", "marketwatch.com"]
-    },
     "google_news": {
       "enabled": true,
       "query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
@@ -469,7 +437,15 @@
       "max_results": 40,
       "category": "exchange-announcements",
       "blocked_domains": ["openpr.com", "techbullion.com", "einpresswire.com", "ababnews.com", "bignewsnetwork.com", "timesdaily.com", "247wallst.com", "streetinsider.com"],
-      "resolve_links": 40
+      "resolve_links": 60,
+      "extra_queries": [
+        {
+          "query": "(bitcoin OR crypto OR cryptocurrency OR stablecoin OR ethereum OR blockchain) (site:reuters.com OR site:bloomberg.com OR site:ft.com OR site:wsj.com OR site:cnbc.com OR site:apnews.com OR site:axios.com OR site:fortune.com OR site:nytimes.com OR site:economist.com)",
+          "category": "crypto-markets",
+          "max_results": 20,
+          "allowed_domains": ["reuters.com", "bloomberg.com", "ft.com", "wsj.com", "cnbc.com", "apnews.com", "nytimes.com", "washingtonpost.com", "economist.com", "axios.com", "theguardian.com", "bbc.com", "bbc.co.uk", "fortune.com", "scmp.com", "nikkei.com", "caixinglobal.com", "politico.com", "barrons.com", "marketwatch.com"]
+        }
+      ]
     }
   },
   "filtering": {
@@ -529,6 +505,18 @@
         "Associated Press",
         "Axios",
         "Fortune",
+        "AP News",
+        "MarketWatch",
+        "Barron's",
+        "The Economist",
+        "Nikkei Asia",
+        "South China Morning Post",
+        "POLITICO",
+        "The Guardian",
+        "BBC",
+        "The New York Times",
+        "The Washington Post",
+        "Caixin Global",
         "reuters.com",
         "bloomberg.com",
         "ft.com",

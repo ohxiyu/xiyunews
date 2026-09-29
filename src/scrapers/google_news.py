@@ -45,7 +45,7 @@ from .google_news_url import (
     canonicalize_entry_link,
     resolve_google_news_url_online,
 )
-from ..models import ContentItem, GoogleNewsConfig, SourceType
+from ..models import ContentItem, GoogleNewsConfig, GoogleNewsQuery, SourceType
 
 logger = logging.getLogger(__name__)
 
@@ -79,7 +79,31 @@ class GoogleNewsScraper(BaseScraper):
         if not self.gn_config.enabled:
             return []
 
-        base_query = (self.gn_config.query or "").strip()
+        searches = [
+            GoogleNewsQuery(
+                query=self.gn_config.query,
+                category=self.gn_config.category,
+                max_results=self.gn_config.max_results,
+                blocked_domains=self.gn_config.blocked_domains,
+                allowed_domains=self.gn_config.allowed_domains,
+            ),
+            *self.gn_config.extra_queries,
+        ]
+        items: List[ContentItem] = []
+        seen: set[str] = set()
+        for search in searches:
+            for item in await self._fetch_query(search, since):
+                if item.id not in seen:
+                    seen.add(item.id)
+                    items.append(item)
+        await self._resolve_links(items)
+        return items
+
+    async def _fetch_query(
+        self, search: GoogleNewsQuery, since: datetime
+    ) -> List[ContentItem]:
+        """One search; a failed search leaves the others unaffected."""
+        base_query = (search.query or "").strip()
         if not base_query:
             return []
 
@@ -104,22 +128,21 @@ class GoogleNewsScraper(BaseScraper):
             items: List[ContentItem] = []
             dropped = 0
             for entry in feed.entries:
-                if len(items) >= self.gn_config.max_results:
+                if len(items) >= search.max_results:
                     break
-                item = self._entry_to_item(entry)
+                item = self._entry_to_item(entry, search)
                 if item is None:
                     continue
                 if not domain_allowed(
                     item.metadata.get("publisher_url") or item.url,
-                    blocked=self.gn_config.blocked_domains,
-                    allowed=self.gn_config.allowed_domains,
+                    blocked=search.blocked_domains,
+                    allowed=search.allowed_domains,
                 ):
                     dropped += 1
                     continue
                 items.append(item)
             if dropped:
                 logger.info("Google News: dropped %d items by domain filter", dropped)
-            await self._resolve_links(items)
             return items
 
         except httpx.HTTPError as exc:
@@ -170,7 +193,9 @@ class GoogleNewsScraper(BaseScraper):
             return f"when:{hours}h"
         return f"after:{since_utc.strftime('%Y-%m-%d')}"
 
-    def _entry_to_item(self, entry: Any) -> Optional[ContentItem]:
+    def _entry_to_item(
+        self, entry: Any, search: Optional[GoogleNewsQuery] = None
+    ) -> Optional[ContentItem]:
         """Map one Google News RSS entry into a ContentItem.
 
         Returns None when the entry has no title/link or an unparseable
@@ -198,10 +223,10 @@ class GoogleNewsScraper(BaseScraper):
             entry_hash = hashlib.sha256(str(entry_id).encode("utf-8")).hexdigest()[:16]
 
             meta = {
-                "gn_query": self.gn_config.query,
+                "gn_query": search.query if search else self.gn_config.query,
                 "source_name": source_name,
                 "publisher_url": self._extract_publisher_url(entry),
-                "category": self.gn_config.category,
+                "category": search.category if search else self.gn_config.category,
             }
 
             return ContentItem(

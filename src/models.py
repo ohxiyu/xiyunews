@@ -406,6 +406,22 @@ class GoogleNewsConfig(BaseModel):
     # Google News links are opaque redirects; resolve up to this many per
     # fetch to the publisher's article URL (0 disables network resolution).
     resolve_links: int = Field(default=40, ge=0, le=100)
+    # More searches in the same fetch, e.g. crypto news restricted to major
+    # outlets with site: operators. Each keeps its own category and filters.
+    extra_queries: List["GoogleNewsQuery"] = Field(default_factory=list)
+
+
+class GoogleNewsQuery(BaseModel):
+    """One additional Google News search."""
+
+    query: str
+    category: Optional[str] = None
+    max_results: int = Field(default=20, ge=1, le=100)
+    blocked_domains: List[str] = Field(default_factory=list)
+    allowed_domains: List[str] = Field(default_factory=list)
+
+
+GoogleNewsConfig.model_rebuild()
 
 
 class SourcesConfig(BaseModel):

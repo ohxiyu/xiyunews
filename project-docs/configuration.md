@@ -628,6 +628,14 @@ its subdomains (`www.` is ignored):
 opaque `news.google.com` redirect links per fetch to the publisher's article
 URL. A failed resolution keeps the redirect link, so it never drops an item.
 
+`sources.google_news.extra_queries` runs more searches in the same fetch, each
+with its own `query`, `category`, `max_results` (default 20) and domain lists;
+link resolution shares the one `resolve_links` budget. A story returned by
+several searches keeps the first search's category. A failed search does not
+affect the others. Production uses one to follow crypto coverage by major
+outlets (`site:` operators plus an `allowed_domains` list), which replaced
+GDELT after its API rate-limited every GitHub Actions run.
+
 ## Environment Variable Substitution
 
 Any string value in `data/config.json` supports `${VAR_NAME}` syntax. Variables are expanded at runtime from the environment (including values loaded from `.env`). This lets you keep secrets, tenant-specific endpoints, and private URLs out of the checked-in JSON file.
