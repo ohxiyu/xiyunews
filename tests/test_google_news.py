@@ -263,3 +263,80 @@ def test_resolution_can_be_disabled() -> None:
     [item] = _fetch_with(transport, resolve_links=0)
     assert str(item.url) == OPAQUE
     assert calls == ["GET /rss/search"]
+
+
+def _sourced(guid: str, title: str, outlet: str, domain: str) -> str:
+    return (
+        f'<item><title>{title} - {outlet}</title><link>https://example.com/{guid}</link>'
+        f'<guid>{guid}</guid><pubDate>Sat, 27 Jun 2026 12:00:00 GMT</pubDate>'
+        f'<source url="https://www.{domain}">{outlet}</source></item>'
+    )
+
+
+def test_extra_queries_keep_their_own_category_and_filters() -> None:
+    """Replaces GDELT: crypto news from major outlets as a second search."""
+    from src.models import GoogleNewsQuery
+
+    exchange_feed = _feed(
+        _sourced("a", "Binance maintenance", "CoinDesk", "coindesk.com")
+        + _sourced("shared", "Stablecoin bill", "Reuters", "reuters.com")
+    )
+    mainstream_feed = _feed(
+        _sourced("shared", "Stablecoin bill", "Reuters", "reuters.com")
+        + _sourced("b", "Bitcoin ETF flows", "Bloomberg", "bloomberg.com")
+        + _sourced("c", "Crypto press release", "openPR.com", "openpr.com")
+    )
+    queries: list[str] = []
+
+    async def get(url, params=None, **_):
+        queries.append(params["q"])
+        response = MagicMock()
+        response.raise_for_status.return_value = None
+        response.text = mainstream_feed if "site:" in params["q"] else exchange_feed
+        return response
+
+    client = AsyncMock()
+    client.get.side_effect = get
+    config = GoogleNewsConfig(
+        enabled=True,
+        query="Binance",
+        category="exchange-announcements",
+        resolve_links=0,
+        extra_queries=[
+            GoogleNewsQuery(
+                query="bitcoin (site:reuters.com OR site:bloomberg.com)",
+                category="crypto-markets",
+                allowed_domains=["reuters.com", "bloomberg.com"],
+            )
+        ],
+    )
+    items = asyncio.run(GoogleNewsScraper(config, client).fetch(_now() - timedelta(days=365)))
+
+    assert len(queries) == 2 and "site:reuters.com" in queries[1]
+    by_title = {item.title: item for item in items}
+    assert set(by_title) == {"Binance maintenance", "Stablecoin bill", "Bitcoin ETF flows"}
+    # The first search to return a story keeps it; no duplicates.
+    assert by_title["Stablecoin bill"].metadata["category"] == "exchange-announcements"
+    assert by_title["Bitcoin ETF flows"].metadata["category"] == "crypto-markets"
+    assert by_title["Bitcoin ETF flows"].metadata["gn_query"].startswith("bitcoin (site:")
+
+
+def test_a_failing_extra_query_does_not_drop_the_main_one() -> None:
+    from src.models import GoogleNewsQuery
+
+    async def get(url, params=None, **_):
+        if "site:" in params["q"]:
+            raise httpx.ConnectError("boom")
+        response = MagicMock()
+        response.raise_for_status.return_value = None
+        response.text = _feed(_sourced("a", "Binance maintenance", "CoinDesk", "coindesk.com"))
+        return response
+
+    client = AsyncMock()
+    client.get.side_effect = get
+    config = GoogleNewsConfig(
+        enabled=True, query="Binance", resolve_links=0,
+        extra_queries=[GoogleNewsQuery(query="bitcoin site:reuters.com")],
+    )
+    items = asyncio.run(GoogleNewsScraper(config, client).fetch(_now() - timedelta(days=365)))
+    assert [item.title for item in items] == ["Binance maintenance"]
