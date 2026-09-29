@@ -8,6 +8,24 @@
   <div data-quick-post-unplaced></div>
   <noscript>Quick Post 需要启用 JavaScript 查看实时内容。<a href="/api/quick-posts.json">Quick Post API</a></noscript>
 
+  {% comment %}Only a major, fast-developing event earns this line (src/site_pages.py SPOTLIGHT_*).{% endcomment %}
+  {% assign spotlight = site.data.threads.spotlight %}
+  {% if spotlight %}
+    {% assign spotlight_prefix = "" %}
+    {% assign spotlight_title = spotlight.title_zh | default: spotlight.title_en %}
+    {% assign spotlight_update = spotlight.latest_update_zh | default: spotlight.latest_update_en %}
+    {% if include.language == "en" %}
+      {% assign spotlight_prefix = "/en" %}
+      {% assign spotlight_title = spotlight.title_en | default: spotlight.title_zh %}
+      {% assign spotlight_update = spotlight.latest_update_en | default: spotlight.latest_update_zh %}
+    {% endif %}
+    <a class="event-spotlight-banner" href="{{ spotlight_prefix }}/events/{{ spotlight.event_id | escape }}/">
+      <span class="event-spotlight-banner__label">{% if include.language == "en" %}Top story · {{ spotlight.updates_count | escape }} updates{% else %}重点追踪 · {{ spotlight.updates_count | escape }} 次进展{% endif %}</span>
+      <strong>{{ spotlight_title | escape }}</strong>
+      {% if spotlight_update and spotlight_update != "" %}<span class="event-spotlight-banner__latest">{% if include.language == "en" %}Latest: {% else %}最新：{% endif %}{{ spotlight_update | escape }}</span>{% endif %}
+    </a>
+  {% endif %}
+
   {% if latest_post %}
     <section
       class="today-edition-status"
