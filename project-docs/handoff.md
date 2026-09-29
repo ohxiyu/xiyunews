@@ -1,49 +1,49 @@
 # 当前交接
 
-当前目标：[Issue148](https://github.com/ohxiyu/bmtnews-standalone/issues/148) 合并与部署授权调整。上三个任务已合并：PR143 事件线质量（[记录](releases/2026-09-29-event-quality.md)）、PR145 导航与实体（[记录](releases/2026-09-29-nav-entities.md)）、PR147 周报推送（[记录](releases/2026-09-29-weekly-push.md)）。
+当前目标：[Issue150](https://github.com/ohxiyu/bmtnews-standalone/issues/150) X 模板帖截断不再切断数字。上一任务 [Issue148](https://github.com/ohxiyu/bmtnews-standalone/issues/148) 合并与部署授权已由 PR149 合并，记录见 [2026-09-28-merge-policy.md](releases/2026-09-28-merge-policy.md)。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "开发完成且检查通过后直接合并，由自动部署上线",
-  "issue": "https://github.com/ohxiyu/bmtnews-standalone/issues/148",
-  "owner": "Claude Code / merge-policy",
-  "branch": "agent/merge-policy",
-  "last_verified_commit": "858e96c9c0cb7dbe6c4d7051806aabc799d1b655",
-  "pr": "pending: PR for agent/merge-policy",
+  "goal": "X 模板帖与周报 X 文案截断退到分句处，不在数字或单词中间切断",
+  "issue": "https://github.com/ohxiyu/bmtnews-standalone/issues/150",
+  "owner": "Claude Code / x-template-truncation",
+  "branch": "agent/x-template-truncation",
+  "last_verified_commit": "91e7645176a00c3f43ba858e8cbd21a9d9f721f8",
+  "pr": "pending: PR for agent/x-template-truncation",
   "completed": [
-    "AGENTS.md 与协作说明改为长期合并/部署授权；高风险动作仍需批准",
-    "PR143、PR145、PR147 已合并（main 858e96c）；PR143/145 的 Deploy Docs 成功"
+    "truncate_weighted 与 _first_sentence 截断退到分句处，无分句时丢弃半截数字/单词",
+    "用 2026-09-29 实际摘要加回归测试",
+    "线上验收（PR143/145/147）：追踪事件英文标题 101→40；单条事件页 noindex；sitemap 436 条且不含单条事件；实体索引 11 个、其余跳转；导航三项"
   ],
   "unfinished": [
-    "事件补译指标、实体页跳转、2026-10-05 周报推送的线上验收"
+    "Telegram 候选频道调整等待维护者决定",
+    "2026-10-05 周报推送验收"
   ],
   "validation": [
-    "uv run python scripts/check_governance.py 通过"
+    "uv run pytest 全部通过；治理检查通过"
   ],
   "unverified": [
-    "下一次 Feed Collection 的 event_texts_translated / event_texts_untranslated",
-    "上线后实体索引与跳转页",
-    "2026-10-05 周报 Telegram/X 推送与 weeks.json 收据",
-    "PR141 候选 Telegram 频道诊断结果"
+    "下一次模板回退帖的实际文案",
+    "2026-10-05 周报 Telegram/X 推送与 weeks.json 收据"
   ],
   "production": {
-    "source_commit": "858e96c9c0cb7dbe6c4d7051806aabc799d1b655 (PR143/145/147 merged)",
-    "artifact_commit": "Deploy Docs runs for f22dc34 and e10b946 succeeded; next Feed Collection pending",
+    "source_commit": "91e7645176a00c3f43ba858e8cbd21a9d9f721f8 (this change not merged)",
+    "artifact_commit": "gh-pages 7cf19ad (Daily Summary 2026-09-29)",
     "edition": "2026-09-29",
-    "generated_at": "not applicable",
+    "generated_at": "2026-09-29T07:31:02+08:00",
     "worker_version": "not changed",
-    "verified_at": "2026-09-28; CI and Deploy Docs only"
+    "verified_at": "2026-09-29; gh-pages, x-queue and Feed Collection run 36474557082"
   },
   "blockers": [],
-  "next_action": "合并本 PR；下一次 Feed Collection 后核对 Telegram 频道诊断、事件补译指标与实体页；2026-10-05 核对周报推送",
+  "next_action": "CI 通过后合并；下一次模板回退时核对帖子结尾",
   "states": {
     "code": "complete",
     "tests": "complete",
     "pr_merged": "pending",
-    "deployed": "not_required",
-    "production_verified": "not_required"
+    "deployed": "pending",
+    "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-09-28-merge-policy.md"
+  "evidence": "project-docs/releases/2026-09-29-x-template-truncation.md"
 }
 ```

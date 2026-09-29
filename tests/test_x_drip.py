@@ -1,6 +1,7 @@
 """Tests for drip-mode X distribution."""
 
 import asyncio
+import re
 from datetime import datetime, timezone
 
 from src.models import ContentItem, SourceType, XDeliveryConfig
@@ -279,6 +280,37 @@ def test_sanitize_rejects_a_headline_only_post() -> None:
     short = "比特币发生分叉。矿工信号只有 2.6%，远不到 55% 的门槛。"
     assert sanitize_composed_post(short, limit=400) is None
     assert sanitize_composed_post(GOOD, limit=400) == GOOD
+
+
+def test_template_post_never_cuts_inside_a_number() -> None:
+    """2026-09-29: the fallback post ended in "合计4098.…"."""
+    item = make_item(
+        "Bitget 恢复提现",
+        summary=(
+            "Bitget 于9月28日08:00 UTC恢复比特币提现后，首席执行官 Gracy Chen 表示，"
+            "截至 UTC+8 17:00，交易所已处理9585笔提现订单，合计4098.036枚BTC。"
+            "另据 DeFiLlama 数据，余额减少约4642枚BTC。"
+        ),
+        impact="约4642枚比特币流出单一平台，会收紧该平台上 BTC 的现货流动性。",
+    )
+    text = build_story_post(item, language="zh", site_url="https://bmt.news/")
+    lede = text.split("\n\n", 1)[0]
+    assert "4098.…" not in text
+    assert lede.endswith("…")
+    assert not re.search(r"[0-9A-Za-z.,]…", text)
+    assert _weighted_length(text) <= TWEET_LIMIT
+
+
+def test_truncate_weighted_backs_off_to_a_clause() -> None:
+    from src.services.x_delivery import truncate_weighted
+
+    text = "交易所已处理9585笔提现订单，合计4098.036枚BTC，余额继续下降"
+    # 40 weighted units would end inside "4098.036".
+    assert truncate_weighted(text, 40) == "交易所已处理9585笔提现订单…"
+    assert truncate_weighted(text, 50) == "交易所已处理9585笔提现订单，合计4098.036枚BTC…"
+    # Without a clause break, the partial number is dropped, not split.
+    assert truncate_weighted("合计409803612345枚", 12) == "合计…"
+    assert truncate_weighted("short", 50) == "short"
 
 
 def test_x_delivery_defaults_to_the_compact_limit() -> None:
