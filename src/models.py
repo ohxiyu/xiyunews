@@ -629,6 +629,10 @@ class CategoryGroupConfig(BaseModel):
         return self
 
 
+# Ordered best first: first-hand, original reporting, rewrites/aggregators.
+SOURCE_TIERS = ("primary", "original", "secondary")
+
+
 class FilteringConfig(BaseModel):
     """Content filtering configuration."""
 
@@ -649,6 +653,40 @@ class FilteringConfig(BaseModel):
     fallback_window_hours: Optional[int] = Field(default=None, gt=0)
     primary_group_borrow_limit: Optional[int] = Field(default=None, gt=0)
     max_items_per_source: Optional[int] = Field(default=None, gt=0)
+    # Editorial source tiers. "primary": first-hand (official channels,
+    # regulators, company blogs); "original": outlets doing their own
+    # reporting. Everything else is "secondary" (rewrites, aggregators).
+    # Entries match the source label (feed name, @channel or outlet name),
+    # case-insensitively. Duplicates keep the higher tier.
+    source_tiers: Dict[str, List[str]] = Field(default_factory=dict)
+    # Most items one tier may fill in an edition, e.g. {"secondary": 4}.
+    # Relaxed like max_items_per_source when the edition would be too short.
+    source_tier_limits: Dict[str, int] = Field(default_factory=dict)
+
+    @field_validator("source_tiers")
+    @classmethod
+    def validate_source_tiers(cls, value: Dict[str, List[str]]) -> Dict[str, List[str]]:
+        unknown = set(value) - {"primary", "original"}
+        if unknown:
+            raise ValueError(f"unknown source tiers: {sorted(unknown)}")
+        return value
+
+    @field_validator("source_tier_limits")
+    @classmethod
+    def validate_source_tier_limits(cls, value: Dict[str, int]) -> Dict[str, int]:
+        unknown = set(value) - set(SOURCE_TIERS)
+        if unknown:
+            raise ValueError(f"unknown source tiers: {sorted(unknown)}")
+        if any(limit <= 0 for limit in value.values()):
+            raise ValueError("source tier limits must be positive")
+        return value
+
+    def source_tier(self, label: str) -> str:
+        key = label.strip().lower()
+        for tier in ("primary", "original"):
+            if key in {entry.strip().lower() for entry in self.source_tiers.get(tier, [])}:
+                return tier
+        return "secondary"
 
     @field_validator("daily_timezone")
     @classmethod
