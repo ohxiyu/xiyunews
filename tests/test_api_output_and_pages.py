@@ -778,7 +778,7 @@ def test_publish_event_compatibility_pages_writes_real_redirect_targets(
         thread_index_path=tmp_path / "_data" / "threads.json",
     )
 
-    assert counts == {"events": 6, "redirects": 2, "retired": 2}
+    assert counts == {"events": 6, "redirects": 2, "retired": 2, "merged": 0}
     assert (tmp_path / "events" / "evt_progress1.html").exists()
     assert (tmp_path / "events" / "en-evt_progress1.html").exists()
     redirect = (tmp_path / "threads" / "taaaaaaaaaa.html").read_text()

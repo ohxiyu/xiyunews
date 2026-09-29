@@ -38,4 +38,6 @@ SIMPLE_BUDGETS = {
     "translation": 2048,
     # Event headlines and states for Chinese pages, a few items per call.
     "event_translation": 3072,
+    # Groups of entry IDs plus two headlines per merged event.
+    "event_merge": 3072,
 }

@@ -175,6 +175,8 @@ class TrackedEvent(BaseModel):
     last_material_change_at: datetime
     confidence: float = Field(ge=0.0, le=1.0)
     legacy_thread_ids: list[str] = Field(default_factory=list)
+    # Events folded into this one; their URLs redirect here.
+    merged_event_ids: list[str] = Field(default_factory=list)
     updates: list[EventUpdate] = Field(min_length=1)
 
     @field_validator(

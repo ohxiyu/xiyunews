@@ -611,6 +611,36 @@ def render_legacy_event_redirect(
     )
 
 
+def render_merged_event_redirect(
+    old_event_id: str,
+    event: TrackedEvent,
+    language: str,
+) -> str:
+    """Keep a folded event's URL working; it now lives on the survivor."""
+    normalized = "en" if language == "en" else "zh"
+    prefix = "" if normalized == "zh" else "/en"
+    destination = f"{prefix}/events/{event.event_id}/"
+    title = _event_value(event, "title", normalized) or event.event_id
+    copy = (
+        "这条报道已并入同一事件的完整时间线。"
+        if normalized == "zh"
+        else "This report is now part of the event's full timeline."
+    )
+    link = "查看事件" if normalized == "zh" else "View event"
+    return (
+        _front_matter(
+            title=title,
+            permalink=f"{prefix}/events/{old_event_id}/",
+            language=normalized,
+            description=copy,
+            redirect_to=destination,
+            noindex=True,
+        )
+        + f'<p class="archive-lede">{escape_text(copy)}</p>'
+        + f'<p><a href="{destination}">{escape_text(link)}</a></p>\n'
+    )
+
+
 def render_retired_thread_page(
     legacy_thread_id: str,
     events: Sequence[TrackedEvent],
@@ -823,6 +853,15 @@ def publish_event_compatibility_pages(
 ) -> dict[str, int]:
     """Write stable event targets and preserve every reviewed legacy URL."""
     by_id = {event.event_id: event for event in events}
+    # A legacy target that was later folded into another event follows it.
+    aliases = {
+        old: event.event_id for event in events for old in event.merged_event_ids
+    }
+    redirects = {key: aliases.get(value, value) for key, value in redirects.items()}
+    retired = {
+        key: list(dict.fromkeys(aliases.get(value, value) for value in values))
+        for key, values in retired.items()
+    }
     mapped_targets = set(redirects.values())
     for target_ids in retired.values():
         mapped_targets.update(target_ids)
@@ -845,7 +884,7 @@ def publish_event_compatibility_pages(
         api_root=event_api_root or site_root / "api" / "events",
         index_path=event_api_index or site_root / "api" / "events.json",
     )
-    written = {"events": 0, "redirects": 0, "retired": 0}
+    written = {"events": 0, "redirects": 0, "retired": 0, "merged": 0}
     for language in languages:
         normalized = "en" if str(language).lower().startswith("en") else "zh"
         suffix = "" if normalized == "zh" else "en-"
@@ -855,6 +894,12 @@ def publish_event_compatibility_pages(
                 render_event_page(event, normalized),
             )
             written["events"] += 1
+        for old_id, event_id in aliases.items():
+            _write(
+                events_root / f"{suffix}{old_id}.html",
+                render_merged_event_redirect(old_id, by_id[event_id], normalized),
+            )
+            written["merged"] += 1
         for legacy_id, event_id in redirects.items():
             _write(
                 threads_root / f"{suffix}{legacy_id}.html",
