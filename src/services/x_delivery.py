@@ -155,11 +155,32 @@ def _weighted_length(text: str) -> int:
     return total + _character_weight(text[position:])
 
 
+_CLAUSE_BREAKS = "，；：、,;:"
+_TOKEN_TAIL = re.compile(r"[0-9A-Za-z.,%$+\-]+$")
+
+
+def _back_off(head: str) -> str:
+    """End a cut on a clause break, never inside a number or word.
+
+    "合计4098.…" reads as a garbled figure. Back off to the last clause break
+    when that keeps at least half the text, else drop the partial token.
+    """
+    head = head.rstrip()
+    for index in range(len(head) - 1, len(head) // 2 - 1, -1):
+        if head[index] in _CLAUSE_BREAKS or head[index].isspace():
+            clause = head[:index].rstrip(_CLAUSE_BREAKS + " ")
+            if clause:
+                return clause
+    trimmed = _TOKEN_TAIL.sub("", head).rstrip(_CLAUSE_BREAKS + " ")
+    return trimmed or head
+
+
 def truncate_weighted(text: str, limit: int) -> str:
     """Cut text to ``limit`` weighted characters, ellipsis included.
 
     Slicing by character count would overshoot for CJK, where one character
-    costs two weighted units.
+    costs two weighted units. The cut backs off to a clause break so a post
+    never ends in the middle of a number or word.
     """
     ellipsis_cost = _character_weight(_ELLIPSIS)
     if limit <= ellipsis_cost:
@@ -175,7 +196,7 @@ def truncate_weighted(text: str, limit: int) -> str:
             break
         kept.append(char)
         used += cost
-    return "".join(kept).rstrip() + _ELLIPSIS if kept else ""
+    return _back_off("".join(kept)) + _ELLIPSIS if kept else ""
 
 
 def _truncate_to_fit(headline: str, fixed_cost: int, limit: int = TWEET_LIMIT) -> str:
@@ -259,9 +280,11 @@ def _first_sentence(text: str, limit: int = 110) -> str:
             return (
                 sentence
                 if len(sentence) <= limit
-                else sentence[: limit - 1].rstrip() + _ELLIPSIS
+                else _back_off(sentence[: limit - 1]) + _ELLIPSIS
             )
-    return cleaned[:limit].rstrip() + ("…" if len(cleaned) > limit else "")
+    if len(cleaned) <= limit:
+        return cleaned
+    return _back_off(cleaned[: limit - 1]) + _ELLIPSIS
 
 
 def _ensure_sentence_end(text: str) -> str:
