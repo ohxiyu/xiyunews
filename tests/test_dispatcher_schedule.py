@@ -25,7 +25,7 @@ def configured_crons():
     )["triggers"]["crons"]
 
 
-def test_shared_schedule_has_exact_coverage_without_overlap_or_early_publication():
+def test_shared_schedule_has_exact_coverage_without_overlap():
     actual = []
     for cron in configured_crons():
         minute, hour, day, month, weekday = cron.split()
@@ -34,10 +34,16 @@ def test_shared_schedule_has_exact_coverage_without_overlap_or_early_publication
             for utc_minute in range(60):
                 if matches(utc_hour, hour) and matches(utc_minute, minute):
                     actual.append(((utc_hour + 8) % 24) * 60 + utc_minute)
-    expected = [7 * 60 + minute for minute in (26, 36, 46, 56)]
-    expected += list(range(8 * 60, 24 * 60, 5))
+    # Edition triggers at 07:26/36/46/56 plus one shared 5-minute timer all
+    # day. The timer only checks publication 08:00-23:00 and Square
+    # 09:00-23:30 (publicationCron/dispatchSquare); overnight ticks exist for
+    # the collection check.
+    expected = sorted(
+        [7 * 60 + minute for minute in (26, 36, 46, 56)]
+        + list(range(0, 24 * 60, 5))
+    )
     assert sorted(actual) == expected
-    assert len(actual) == len(set(actual)) == 196
+    assert len(actual) == len(set(actual)) == 292
 
 
 def test_runtime_health_and_cron_routes_match_deployment_configuration():

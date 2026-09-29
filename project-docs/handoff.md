@@ -5,37 +5,42 @@
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "按诊断转正 5 个 Telegram 频道、删除 3 个无效频道，繁忙频道翻页覆盖采集窗口",
-  "issue": "https://github.com/ohxiyu/bmtnews-standalone/issues/154",
-  "owner": "Claude Code / telegram-sources",
-  "branch": "agent/telegram-sources",
-  "last_verified_commit": "fb625b4bbe07a89bcfd748dc734e5b81b85f679e",
-  "pr": "pending: PR for agent/telegram-sources",
+  "goal": "Cloudflare 调度器在最近一次采集超过 4 小时时派发 Feed Collection，不再只依赖 GitHub 定时",
+  "issue": "https://github.com/ohxiyu/bmtnews-standalone/issues/158",
+  "owner": "Claude Code / dispatcher-collection",
+  "branch": "agent/dispatcher-collection",
+  "last_verified_commit": "15b46cc4b81a4cb24eec16a52263ff349131737e",
+  "pr": "pending: PR for agent/dispatcher-collection",
   "completed": [
-    "TelegramChannelConfig.pages 与 ?before= 翻页，窗口覆盖即停，相邻页去重",
-    "转正 wublockchainenglish、lookonchainchannel、investigations、theblockbeats、foresightnews；删除 peckshieldalert、wublockchain、PANewsLab",
-    "PR153 线上验收：折叠 71 条事件，Bitget 24 并 1，重点追踪与首页入口为 Bitget"
+    "Worker 五分钟回调全天运行，整十分钟检查并派发过期采集，日报窗口避让",
+    "npm run check 通过（61 个测试、deploy dry-run）",
+    "PR157（来源分级与选稿）已合并（15b46cc）"
   ],
   "unfinished": [
+    "Worker 生产部署（需维护者执行 wrangler deploy）",
+    "清理失效源（Bitcoin Magazine 403、GDELT 429、The Block/The Defiant 正文 403）",
+    "PR155、PR157 线上验收",
     "2026-10-05 周报推送验收"
   ],
   "validation": [
-    "uv run pytest 全部通过；治理检查通过"
+    "npm run check 通过；uv run pytest 与治理检查通过"
   ],
   "unverified": [
-    "上线后两个中文频道的实际翻页数、收录量与分析成本",
-    "2026-10-05 周报 Telegram/X 推送与 weeks.json 收据"
+    "生产 Worker 部署与首次自动派发",
+    "上线后日报来源分布"
   ],
   "production": {
-    "source_commit": "fb625b4bbe07a89bcfd748dc734e5b81b85f679e (this change not merged)",
+    "source_commit": "15b46cc4b81a4cb24eec16a52263ff349131737e (this change not merged)",
     "artifact_commit": "gh-pages c8d49b4 (Event timeline 36513781108)",
     "edition": "2026-09-29",
     "generated_at": "2026-09-29T02:45:00Z",
-    "worker_version": "not changed",
-    "verified_at": "2026-09-29; gh-pages data after Feed Collection run 36513781108"
+    "worker_version": "1.0.0 deployed; 1.1.0 pending maintainer deploy",
+    "verified_at": "2026-09-29; local npm run check only"
   },
-  "blockers": [],
-  "next_action": "CI 通过后合并；下一次 Feed Collection 核对 Telegram 频道诊断中的 pages 与 kept",
+  "blockers": [
+    "Worker 部署需要维护者的 Cloudflare 登录"
+  ],
+  "next_action": "合并；维护者部署 Worker 后核对 /health 与 collection_dispatch 日志；接着清理失效源",
   "states": {
     "code": "complete",
     "tests": "complete",
@@ -43,6 +48,6 @@
     "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-09-29-telegram-sources.md"
+  "evidence": "project-docs/releases/2026-09-29-dispatcher-collection.md"
 }
 ```

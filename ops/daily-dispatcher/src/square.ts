@@ -1,7 +1,12 @@
 import { ACTIVE_STATUSES, fetchWorkflowRuns, githubRequest, SCHEDULE_CRONS } from "./lib";
 import { runSchedule } from "./recovery";
+import { dispatchCollection } from "./collection";
 
-export const SQUARE_CRON = "*/5 0-15 * * *";
+// Every 5 minutes, all day. Square and publication checks keep their own
+// windows below; the collection check needs the overnight ticks.
+export const SQUARE_CRON = "*/5 * * * *";
+// Earlier timers, still accepted while Cron configuration propagates.
+const LEGACY_COMBINED_CRONS = new Set(["*/5 0-15 * * *", "*/5 1-15 * * *"]);
 export const CONFIGURED_CRONS = [SCHEDULE_CRONS[0], SCHEDULE_CRONS[1], SQUARE_CRON];
 
 // Share one timer, but preserve the existing publication probe frequency.
@@ -28,15 +33,16 @@ export async function dispatchSquare(env: Env, now: number): Promise<string> {
 }
 
 export async function runCombinedSchedule(cron: string, scheduledTime: number, env: Env): Promise<void> {
-  if (cron !== SQUARE_CRON && cron !== "*/5 1-15 * * *") return runSchedule(cron, scheduledTime, env);
+  if (cron !== SQUARE_CRON && !LEGACY_COMBINED_CRONS.has(cron)) return runSchedule(cron, scheduledTime, env);
   const now = Math.max(scheduledTime, Date.now());
-  // Publication failure must not prevent distribution, and vice versa.
+  // Publication, distribution and collection must not block one another.
   const publication = publicationCron(now);
   const results = await Promise.allSettled([
     dispatchSquare(env, now).then(status => console.log(JSON.stringify({ event: "square_dispatch", status }))),
     publication ? runSchedule(publication, now, env) : Promise.resolve(),
+    dispatchCollection(env, now).then(status => console.log(JSON.stringify({ event: "collection_dispatch", status }))),
   ]);
   if (results.some(result => result.status === "rejected")) {
-    throw new Error("Scheduled publication or Square dispatch failed; inspect workflow and dispatcher permissions");
+    throw new Error("Scheduled publication, Square or collection dispatch failed; inspect workflow and dispatcher permissions");
   }
 }
