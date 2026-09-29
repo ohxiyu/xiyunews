@@ -523,7 +523,9 @@ Content is scored 0-10:
     "minimum_display_items": 5,
     "fallback_window_hours": 36,
     "primary_group_borrow_limit": 6,
-    "max_items_per_source": 3
+    "max_items_per_source": 2,
+    "source_tiers": {"primary": ["SEC Press Releases"], "original": ["CoinDesk"]},
+    "source_tier_limits": {"secondary": 4}
   }
 }
 ```
@@ -561,9 +563,22 @@ Content is scored 0-10:
   score threshold is unchanged.
 - `primary_group_borrow_limit`: Optional soft per-group limit for unused primary
   topic capacity. Side-topic caps remain hard.
-- `max_items_per_source`: Optional source cap applied only to items added by
-  primary-topic quota borrowing. It does not remove items from the normal
-  quota selection.
+- `max_items_per_source`: Optional cap per outlet in one edition. The outlet
+  is the source label, so CoinDesk via RSS and via Google News share one cap.
+  Relaxed only when the edition would otherwise fall below
+  `minimum_display_items`.
+- `source_tiers`: `{"primary": [...], "original": [...]}` source labels (feed
+  name, `@channel`, outlet or domain; case-insensitive). Primary is first-hand
+  (official channels, regulators, company blogs; GitHub releases and editor
+  picks always count as primary); original is outlets that do their own
+  reporting; everything else is secondary. When several outlets carry the same
+  story, topic dedup keeps the highest-tier copy among those scoring within
+  one point of the best.
+- `source_tier_limits`: e.g. `{"secondary": 4}`. Most items of a tier in the
+  crypto track (`primary_groups`). The crypto target
+  (`primary_group_min_items`) is filled first under the cap and then without
+  it, so rewrites still appear when original reporting is scarce; other tracks
+  keep their own quotas.
 
 When resilience is configured, BMTNews first selects the normal fixed-window
 edition. If it is short, primary groups may borrow unused capacity. Only if the
