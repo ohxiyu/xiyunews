@@ -83,6 +83,9 @@ def test_quota_refill_preserves_crypto_target_side_caps_and_score_order(tmp_path
     runner = orchestrator(tmp_path)
     production = json.loads((Path(__file__).resolve().parents[1] / "data/config.github.json").read_text())
     runner.config.filtering = FilteringConfig.model_validate(production["filtering"])
+    # Refill mechanics only: these synthetic feeds are unrated, which the
+    # rewrite cap would treat as secondary (see test_source_diversity.py).
+    runner.config.filtering.source_tier_limits = {}
     items = []
     for category in ("exchange-operations", "crypto-markets", "crypto-protocols", "ai-labs", "macro-regulation"):
         for _ in range(6):

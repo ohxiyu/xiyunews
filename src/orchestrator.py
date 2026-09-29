@@ -13,7 +13,7 @@ from urllib.parse import unquote_plus, urlsplit
 import httpx
 from rich.console import Console
 
-from .models import Config, ContentItem, SourceType
+from .models import SOURCE_TIERS, Config, ContentItem, SourceType
 from ._file_utils import _atomic_write_text
 from .storage.manager import StorageManager, safe_output_path
 from .services.email import EmailManager
@@ -2460,6 +2460,37 @@ class BMTNewsOrchestrator:
             channels=channels,
         )
 
+    def _source_tier(self, item: ContentItem) -> str:
+        """primary / original / secondary, from filtering.source_tiers."""
+        if item.source_type in (SourceType.GITHUB, SourceType.EDITORIAL):
+            return "primary"  # Releases and editor picks are first-hand.
+        return self.config.filtering.source_tier(self._sub_source_label(item))
+
+    def _preferred_first(self, group: List[int], items: List[ContentItem]) -> List[int]:
+        """Put the copy of a story worth showing first.
+
+        Among copies scoring within one point of the best, a first-hand
+        source beats original reporting, which beats a rewrite; then the
+        higher score, then the earlier report.
+        """
+        best = max((items[index].ai_score or 0) for index in group)
+        rank = {tier: position for position, tier in enumerate(SOURCE_TIERS)}
+
+        def key(index: int):
+            item = items[index]
+            score = item.ai_score or 0
+            close = score >= best - 1.0
+            return (
+                not close,
+                rank[self._source_tier(item)],
+                -score,
+                item.published_at,
+                index,
+            )
+
+        chosen = min(group, key=key)
+        return [chosen, *(index for index in group if index != chosen)]
+
     @staticmethod
     def _sub_source_label(item: ContentItem) -> str:
         """Return a human-readable sub-source label for an item."""
@@ -3054,6 +3085,16 @@ class BMTNewsOrchestrator:
                 sorted(group, key=lambda index: items[index].published_at, reverse=True)
                 for group in duplicate_groups
             ]
+        else:
+            # Same story from several outlets: show the first-hand or
+            # original report, not whichever rewrite was fetched first.
+            duplicate_groups = [
+                self._preferred_first(group, items)
+                for group in duplicate_groups
+                if isinstance(group, list)
+                and len(group) > 1
+                and all(isinstance(i, int) and 0 <= i < len(items) for i in group)
+            ]
 
         if not duplicate_groups:
             self._set_timing("topic_dedup", started)
@@ -3282,10 +3323,12 @@ class BMTNewsOrchestrator:
             )
 
         def source_for(item: ContentItem) -> str:
-            return (
-                f"{item.source_type.value}/"
-                f"{self._sub_source_label(item)}"
-            )
+            # One outlet, one budget: CoinDesk via RSS and via Google News
+            # share the same cap.
+            return self._sub_source_label(item).strip().lower()
+
+        tier_counts: Dict[str, int] = defaultdict(int)
+        tier_scope = set(filtering.primary_groups)
 
         def select(
             item: ContentItem,
@@ -3294,6 +3337,7 @@ class BMTNewsOrchestrator:
             group_limit: Optional[int] = None,
             enforce_group_limit: bool = True,
             enforce_source_limit: bool = True,
+            enforce_tier_limit: bool = True,
         ) -> bool:
             if id(item) in selected_object_ids:
                 return False
@@ -3320,26 +3364,41 @@ class BMTNewsOrchestrator:
             ):
                 source_deferred_ids.add(id(item))
                 return False
+            tier = self._source_tier(item)
+            tier_limit = filtering.source_tier_limits.get(tier)
+            # The tier cap is about the crypto track, where outlets rewrite
+            # one another; AI and policy keep their own quotas.
+            if (
+                enforce_source_limit
+                and enforce_tier_limit
+                and tier_limit is not None
+                and (not tier_scope or group_key in tier_scope)
+                and tier_counts[tier] >= tier_limit
+            ):
+                source_deferred_ids.add(id(item))
+                return False
 
             selected.append((item, group_key))
             selected_object_ids.add(id(item))
             group_counts[group_key] += 1
             source_counts[source_key] += 1
+            if not tier_scope or group_key in tier_scope:
+                tier_counts[tier] += 1
             return True
 
         primary_groups = set(filtering.primary_groups)
         primary_minimum = filtering.primary_group_min_items or 0
         if primary_groups and primary_minimum:
-            for item in sorted_items:
-                group_key = group_for(item)
-                if group_key not in primary_groups:
-                    continue
-                select(item, group_key)
-                selected_primary = sum(
-                    group_counts[group] for group in primary_groups
-                )
-                if selected_primary >= primary_minimum:
-                    break
+            # First with the rewrite cap; if original and first-hand reports
+            # cannot reach the crypto target, rewrites make up the rest.
+            for enforce_tier in (True, False):
+                for item in sorted_items:
+                    if sum(group_counts[g] for g in primary_groups) >= primary_minimum:
+                        break
+                    group_key = group_for(item)
+                    if group_key not in primary_groups:
+                        continue
+                    select(item, group_key, enforce_tier_limit=enforce_tier)
 
         # Reserved slots (e.g. AI 3 of 14) are filled before the open ranking
         # so a busy crypto day cannot crowd a whole track out of the edition.
