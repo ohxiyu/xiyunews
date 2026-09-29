@@ -3,14 +3,18 @@ layout: default
 title: "Sonnet 5.5"
 permalink: /events/evt_fceea6b1c7e1fb4b/
 interface_language: zh
-description: "Anthropic released Claude Sonnet 5.5, prompting Hacker News discussion on its thinking-effort token behavior and Terminal-Bench results, where a commenter noted Opus 5.5's higher r"
+description: "Anthropic 发布了 Claude Sonnet 5.5，称其为 Sonnet 系列新模型，网络（网络安全）能力较 Sonnet 5 有大幅提升。由于这一能力跃升，Anthropic 为其部署了 Opus 级别的安全防护机制：较高风险的网络安全任务会明确回退到 Sonnet 5 处理，而非由新模型承接。  此次发布延续了 Anthropic 的做法：在"
 page_type: archive
 alternate_url: /en/events/evt_fceea6b1c7e1fb4b/
 page_class: event-detail-page
 noindex: true
 ---
 
-<div class="event-detail-layout"><article class="event-detail-stream"><div class="event-detail-orientation"><div class="event-status-line"><span class="event-status" data-status="monitoring">持续观察</span><span class="category-pill" data-category="technology">AI 科技</span><span>产品发布</span><span>首次追踪 2026.09.28</span><span>最近变化 2026.09.28</span></div><section class="event-current-state"><h2>目前结论</h2><p>Anthropic released Claude Sonnet 5.5, prompting Hacker News discussion on its thinking-effort token behavior and Terminal-Bench results, where a commenter noted Opus 5.5&#x27;s higher rate of safeguard fallback trials likely explains Sonnet&#x27;s better score.</p></section></div><div class="event-timeline-heading"><h2>进展时间线</h2><span>1 次实质进展</span></div><ol class="event-timeline"><li class="event-update event-stream-item" id="upd_5302ac66f495e60b"><div class="event-update-rail"><strong>#01</strong><time datetime="2026-09-28T17:58:11+00:00">09.28</time><span class="event-update-marker" aria-hidden="true"></span></div><div class="event-update-content"><div class="digest-item-meta"><div><span class="event-update-type">首次出现</span><span class="event-update-precision">2026.09.28 17:58 · 报道时间</span></div></div><h3>Sonnet 5.5</h3><p class="event-update-change">Anthropic 发布了 Claude Sonnet 5.5，称其为 Sonnet 系列新模型，网络（网络安全）能力较 Sonnet 5 有大幅提升。由于这一能力跃升，Anthropic 为其部署了 Opus 级别的安全防护机制：较高风险的网络安全任务会明确回退到 Sonnet 5 处理，而非由新模型承接。
+<div class="event-detail-layout"><article class="event-detail-stream"><div class="event-detail-orientation"><div class="event-status-line"><span class="event-status" data-status="monitoring">持续观察</span><span class="category-pill" data-category="technology">AI 科技</span><span>产品发布</span><span>首次追踪 2026.09.28</span><span>最近变化 2026.09.28</span></div><section class="event-current-state"><h2>目前结论</h2><p>Anthropic 发布了 Claude Sonnet 5.5，称其为 Sonnet 系列新模型，网络（网络安全）能力较 Sonnet 5 有大幅提升。由于这一能力跃升，Anthropic 为其部署了 Opus 级别的安全防护机制：较高风险的网络安全任务会明确回退到 Sonnet 5 处理，而非由新模型承接。
+
+此次发布延续了 Anthropic 的做法：在新模型上叠加更严格、且会透明回退的安全机制，这意味着 Sonnet 5.5 的用户可能因请求内容不同而在任务中途被切换到另一个模型。社区对系统卡的分析还显示，安全回退率会实质性影响模型之间的基准测试对比结果。
+
+根据社区对 Sonnet 5.5 系统卡第 8.5 节的解读，Opus 5.5 在 Terminal-Bench 测试中约有 10% 的试次因安全机制由回退模型作答，而 Sonnet 5.5 的这一比例仅约 1.5%；评论者认为这很可能解释了 Sonnet 5.5 的 Terminal-Bench 得分（70.6）高于 Opus 5.5（66.4）。评论者还反映，在 &quot;max&quot; 思考档位下，Sonnet 5.5 消耗了 128,000 个思考 token、耗时约 15 分钟，但在产出最终 SVG 之前就用尽了预算，这与此前 Opus 5.5 被报告的问题一致。</p></section></div><div class="event-timeline-heading"><h2>进展时间线</h2><span>1 次实质进展</span></div><ol class="event-timeline"><li class="event-update event-stream-item" id="upd_5302ac66f495e60b"><div class="event-update-rail"><strong>#01</strong><time datetime="2026-09-28T17:58:11+00:00">09.28</time><span class="event-update-marker" aria-hidden="true"></span></div><div class="event-update-content"><div class="digest-item-meta"><div><span class="event-update-type">首次出现</span><span class="event-update-precision">2026.09.28 17:58 · 报道时间</span></div></div><h3>Sonnet 5.5</h3><p class="event-update-change">Anthropic 发布了 Claude Sonnet 5.5，称其为 Sonnet 系列新模型，网络（网络安全）能力较 Sonnet 5 有大幅提升。由于这一能力跃升，Anthropic 为其部署了 Opus 级别的安全防护机制：较高风险的网络安全任务会明确回退到 Sonnet 5 处理，而非由新模型承接。
 
 此次发布延续了 Anthropic 的做法：在新模型上叠加更严格、且会透明回退的安全机制，这意味着 Sonnet 5.5 的用户可能因请求内容不同而在任务中途被切换到另一个模型。社区对系统卡的分析还显示，安全回退率会实质性影响模型之间的基准测试对比结果。
 
