@@ -1,6 +1,7 @@
 import { checkReadiness } from "./lib";
 import { runRecovery, responseStatus } from "./recovery";
 import { CONFIGURED_CRONS, runCombinedSchedule } from "./square";
+import { FEED_INTERVAL_MS, FEED_WORKFLOW } from "./collection";
 import { timingSafeEqual } from "node:crypto";
 export { RecoveryGate } from "./gate";
 import {
@@ -77,6 +78,8 @@ export default {
       primary_cron_utc: "26 23 * * *",
       schedule_crons_utc: CONFIGURED_CRONS,
       square_check_window_local: "09:00–23:30",
+      collection_workflow: FEED_WORKFLOW,
+      collection_max_age_hours: FEED_INTERVAL_MS / 3_600_000,
       schedule_timezone: env.EDITION_TIMEZONE,
       edition_cutoff_hour: Number(env.EDITION_CUTOFF_HOUR),
       first_check_local: "07:26",

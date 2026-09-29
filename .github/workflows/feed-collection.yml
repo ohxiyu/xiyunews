@@ -2,6 +2,9 @@ name: BMTNews Feed Collection
 
 on:
   schedule:
+    # The Cloudflare dispatcher also dispatches this workflow whenever the
+    # newest run is over four hours old (project-docs/daily-dispatcher.md);
+    # this schedule is the second clock.
     # Coverage runs roughly every four hours; the final fetch happens in
     # daily-summary.yml at 07:26 after the 07:00 cutoff. High-churn sources (exchange
     # Telegram channels) overflow their fetch limits with fewer runs.

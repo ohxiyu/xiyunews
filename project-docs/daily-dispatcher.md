@@ -46,9 +46,13 @@ npm run check
 npx wrangler deploy --keep-vars
 ```
 
-`wrangler.jsonc` 通过 `secrets.required` 强制校验令牌，缺少 Secret 时生产部署会失败。Cloudflare Cron 使用 UTC，三组配置为 `26 23 * * *`、`36,46,56 23 * * *`、`*/5 0-15 * * *`。北京时间 07:26 对应前一 UTC 日 23:26，期号必须从 Asia/Shanghai 日期计算。共享五分钟回调仅在 08:00–11:50 每十分钟、12:00–23:00 每小时运行日报检查；币安广场仍只在 09:00–23:30 检查。修改后读取生产 schedules API 核对，并验证实际 Cron 记录；/health 只是代码声明。保留旧 Cron 路由兼容配置传播。
+`wrangler.jsonc` 通过 `secrets.required` 强制校验令牌，缺少 Secret 时生产部署会失败。Cloudflare Cron 使用 UTC，三组配置为 `26 23 * * *`、`36,46,56 23 * * *`、`*/5 * * * *`。北京时间 07:26 对应前一 UTC 日 23:26，期号必须从 Asia/Shanghai 日期计算。共享五分钟回调仅在 08:00–11:50 每十分钟、12:00–23:00 每小时运行日报检查；币安广场仍只在 09:00–23:30 检查；采集检查全天每十分钟一次（见下节）。修改后读取生产 schedules API 核对，并验证实际 Cron 记录；/health 只是代码声明。保留旧 Cron 路由兼容配置传播。
 
 Worker 当前没有仓库内的自动部署流程。修改或合并 `ops/daily-dispatcher/` 后，必须执行上述部署命令并验证 `/ready`；只合并代码不会更新生产 Worker。若 `/ready` 失败，先修复 Cloudflare Secret 中的 GitHub fine-grained token，再等待下一次 Cron。
+
+## 采集触发
+
+GitHub 对 `feed-collection.yml` 的定时经常晚 1–3 小时或漏跑。Worker 在五分钟回调的每个整十分钟检查一次：`main` 上最近一次 Feed Collection（任意触发来源）开始超过 4 小时且没有排队或运行中的采集时，派发一次 `workflow_dispatch`。北京时间 07:00–07:45 跳过，日报自己完成最后一次采集，且两者共用并发组。GitHub 自身的定时保留为第二时钟；任一来源的运行都会让下一次派发顺延，不会叠加。Workers Logs 事件为 `collection_dispatch`，`status` 取 `not_due`、`edition_window`、`active`、`fresh` 或 `dispatched`；`/health` 返回 `collection_workflow` 与 `collection_max_age_hours`。
 
 ## 验证与排障
 
