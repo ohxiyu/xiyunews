@@ -1,44 +1,46 @@
 # 当前交接
 
-当前目标：[Issue156](https://github.com/ohxiyu/bmtnews-standalone/issues/156) 加密媒体同质化（来源分级、去重保留原始报道、转述稿上限）。之后依次：Cloudflare 调度触发采集、清理失效源。上一任务 [Issue154](https://github.com/ohxiyu/bmtnews-standalone/issues/154) Telegram 频道调整已由 PR155 合并，记录见 [2026-09-29-telegram-sources.md](releases/2026-09-29-telegram-sources.md)。
+当前目标：[Issue154](https://github.com/ohxiyu/bmtnews-standalone/issues/154) Telegram 候选频道转正与翻页抓取。上一任务 [Issue152](https://github.com/ohxiyu/bmtnews-standalone/issues/152) 追踪优化已由 PR153 合并并完成线上验收，记录见 [2026-09-29-event-focus.md](releases/2026-09-29-event-focus.md)。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "日报不再由少数几家加密媒体的转述稿占据：同一新闻保留一手或原创版本，每家与转述稿有上限",
-  "issue": "https://github.com/ohxiyu/bmtnews-standalone/issues/156",
-  "owner": "Claude Code / source-diversity",
-  "branch": "agent/source-diversity",
-  "last_verified_commit": "6711e210fc9d8519873249d949cf0cf24899ef23",
-  "pr": "pending: PR for agent/source-diversity",
+  "goal": "Cloudflare 调度器在最近一次采集超过 4 小时时派发 Feed Collection，不再只依赖 GitHub 定时",
+  "issue": "https://github.com/ohxiyu/bmtnews-standalone/issues/158",
+  "owner": "Claude Code / dispatcher-collection",
+  "branch": "agent/dispatcher-collection",
+  "last_verified_commit": "15b46cc4b81a4cb24eec16a52263ff349131737e",
+  "pr": "pending: PR for agent/dispatcher-collection",
   "completed": [
-    "source_tiers / source_tier_limits 配置与校验",
-    "话题去重优先保留一手、原创版本",
-    "每家上限 2（跨渠道共用），加密版块转述稿上限 4，加密目标与最低条数可放开",
-    "PR155 已合并（6711e21）"
+    "Worker 五分钟回调全天运行，整十分钟检查并派发过期采集，日报窗口避让",
+    "npm run check 通过（61 个测试、deploy dry-run）",
+    "PR157（来源分级与选稿）已合并（15b46cc）"
   ],
   "unfinished": [
-    "Cloudflare 调度触发 Feed Collection（Worker 部署需维护者执行）",
+    "Worker 生产部署（需维护者执行 wrangler deploy）",
     "清理失效源（Bitcoin Magazine 403、GDELT 429、The Block/The Defiant 正文 403）",
-    "PR155 线上验收（两个中文频道翻页与收录）",
+    "PR155、PR157 线上验收",
     "2026-10-05 周报推送验收"
   ],
   "validation": [
-    "uv run pytest 全部通过；治理检查通过；暂存池新旧规则对比"
+    "npm run check 通过；uv run pytest 与治理检查通过"
   ],
   "unverified": [
-    "上线后连续几期日报的来源分布"
+    "生产 Worker 部署与首次自动派发",
+    "上线后日报来源分布"
   ],
   "production": {
-    "source_commit": "6711e210fc9d8519873249d949cf0cf24899ef23 (this change not merged)",
+    "source_commit": "15b46cc4b81a4cb24eec16a52263ff349131737e (this change not merged)",
     "artifact_commit": "gh-pages c8d49b4 (Event timeline 36513781108)",
     "edition": "2026-09-29",
     "generated_at": "2026-09-29T02:45:00Z",
-    "worker_version": "not changed",
-    "verified_at": "2026-09-29; offline comparison on the staging pool"
+    "worker_version": "1.0.0 deployed; 1.1.0 pending maintainer deploy",
+    "verified_at": "2026-09-29; local npm run check only"
   },
-  "blockers": [],
-  "next_action": "CI 通过后合并；接着做 Cloudflare 调度触发采集",
+  "blockers": [
+    "Worker 部署需要维护者的 Cloudflare 登录"
+  ],
+  "next_action": "合并；维护者部署 Worker 后核对 /health 与 collection_dispatch 日志；接着清理失效源",
   "states": {
     "code": "complete",
     "tests": "complete",
@@ -46,6 +48,6 @@
     "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-09-29-source-diversity.md"
+  "evidence": "project-docs/releases/2026-09-29-dispatcher-collection.md"
 }
 ```
