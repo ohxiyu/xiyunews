@@ -7,30 +7,40 @@
   "status": "monitoring",
   "category": "policy",
   "title": {
-    "zh": "Polymarket faced $10 million fraud attempt as its CEO pushed growth over compliance concerns: WSJ",
-    "en": "Polymarket faced $10 million fraud attempt as its CEO pushed growth over compliance concerns: WSJ"
+    "zh": "Polymarket身份验证漏洞导致账户被接管",
+    "en": "Polymarket authentication flaw allowed account takeovers"
   },
   "current_state": {
-    "zh": "Polymarket faced a $10 million fraud attempt and a separate hack compromising nearly 500 user accounts, according to a WSJ report that also detailed CEO-led growth over compliance concerns.",
-    "en": "Polymarket faced a $10 million fraud attempt and a separate hack compromising nearly 500 user accounts, according to a WSJ report that also detailed CEO-led growth over compliance concerns."
+    "zh": "据 Gizmodo 报道，Polymarket 的身份验证环节存在一处安全漏洞，使攻击者得以登入已有用户的账户。该问题被描述为账户接管式的访问，而非针对平台智能合约或市场结算逻辑的攻击。\n\nPolymarket 是全球规模最大的预测市场，账户被接管意味着用户的余额与未平仓头寸可能直接暴露在风险中，并动摇用户对平台身份核验与账户找回机制的信心。这也凸显了加密平台在 KYC 身份层与链上资产托管层之间存在的安全缝隙。\n\n据报的攻击路径属于身份层的弱点，使攻击者能够登入既有账户，这是典型的账户接管（ATO）模式，而非智能合约或预言机层面的失效，因此风险集中在账户与托管层而非撮合逻辑。漏洞针对的是已经存在的账户，这意味着受害者未必需要创建新账户或与恶意合约进行交互。",
+    "en": "A reported security flaw in Polymarket's identity and authentication flow allowed attackers to gain access to existing user accounts, according to a Gizmodo report. The issue is described as account-takeover-style access rather than an exploit of the platform's smart contracts or market settlement logic.\n\nPolymarket is the world's largest prediction market, so account takeover there exposes user balances and open positions directly and undermines confidence in how the platform verifies identity and recovers accounts. It also highlights the security seam that exists on crypto platforms where a KYC/identity layer sits on top of on-chain asset custody.\n\nThe reported attack path is an identity-layer weakness that lets someone log into an existing account, the classic pattern of an account takeover (ATO) rather than a smart-contract or oracle failure, so the risk concentrates in the account and custody layer instead of the trading engine. The reported flaw concerns access to accounts that already existed, meaning affected users would not necessarily have created anything new or interacted with a malicious contract."
   },
   "first_seen_at": "2026-09-20T16:21:56.761401+00:00",
-  "last_updated_at": "2026-09-20T16:21:56.761401+00:00",
-  "last_material_change_at": "2026-09-20T16:21:56.761401+00:00",
+  "last_updated_at": "2026-09-20T23:27:21.730703+00:00",
+  "last_material_change_at": "2026-09-20T23:27:21.730703+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 2,
   "entities": [
+    "accounts",
+    "bug",
     "ceo",
     "compliance",
+    "existing",
     "fraud",
+    "identity",
+    "into",
+    "let",
     "polymarket",
+    "reportedly",
+    "thieves",
     "wsj"
   ],
   "identifiers": [],
   "topics": [
+    "account-takeover",
     "compliance",
     "fraud",
+    "identity-theft",
     "polymarket",
     "prediction-markets",
     "security-breach"
@@ -60,16 +70,36 @@
       "market_impact_zh": "",
       "market_impact_en": "",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Polymarket",
+          "title": "Polymarket - Wikipedia"
+        },
+        {
+          "url": "https://www.cloudflare.com/learning/access-management/account-takeover/",
+          "title": "What is account takeover? | Cloudflare"
+        },
+        {
+          "url": "https://www.imperva.com/learn/application-security/account-takeover-ato/",
+          "title": "Account Takeover Attack (ATO) | Types, Detection & Protection | Imperva"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
-        "rss:www.theblock.co_rss.xml:57c5f743374a61b5"
+        "rss:www.theblock.co_rss.xml:57c5f743374a61b5",
+        "gdelt:article:20260920T191500Z::https://gizmodo.com/polymarket-bug-reportedly-let-identity-thieves-into-existing-accounts-2000814520"
       ],
       "sources": [
         {
           "url": "https://www.theblock.co/news/regulation/2026-09-20-polymarket-faced-10-million-fraud-attempt-as-its-ceo-pushed-growth-over-compliance-concerns-wsj-415875",
           "label": "The Block",
           "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://gizmodo.com/polymarket-bug-reportedly-let-identity-thieves-into-existing-accounts-2000814520",
+          "label": "gizmodo.com",
+          "source_type": "gdelt",
           "official": false
         }
       ]

@@ -54147,8 +54147,8 @@
           "what_changed_zh": "Balancer提议终止协议并将其金库资金分配给BAL持有者，此前六个月Balancer Labs在2025年一次导致1.28亿美元流失的攻击事件后停止了运营。"
         },
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Balancer describes itself as a DeFi AMM product suite delivering fungible and yield-bearing liquidity across Ethereum and select EVM chains, and released Balancer v3 in December 2024 with an Aave integration and Boosted Pools. The wind-down plan was written by former Balancer Labs CEO Marcus Hardt, and Unchained reported payouts estimated at about 16 cents per BAL. According to Foresight News, tetuBAL holders will receive BAL equal to 50% of their locked funds.",
+          "background_zh": "Balancer 自称是面向 DeFi 的自动做市产品套件，在以太坊及部分 EVM 链上提供同质化与生息流动性，并于 2024 年 12 月发布 Balancer v3，集成 Aave 并引入 Boosted Pools。该关停方案由 Balancer Labs 前 CEO Marcus Hardt 撰写，Unchained 报道称相关赔付估计约为每枚 BAL 16 美分。据 Foresight News 消息，tetuBAL 持有者将获得相当于其代币锁定资金 50% 的 BAL。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.92,
@@ -54159,12 +54159,25 @@
           "event_id": "evt_9edbfbad610dfdf8",
           "first_seen_at": "2026-09-30T02:19:37.703067Z",
           "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The transmission channels are governance and liquidity: BAL and tetuBAL holders hold a future claim on DAO treasury assets, while liquidity providers and integrators using Balancer pools face the migration of AMM liquidity to other venues as the October–November wind-down dates approach. Because the contracts are non-custodial and withdrawals remain open, the exposure is concentrated in BAL-linked claims and pool migration rather than a forced-loss event for users.",
+          "market_impact_zh": "传导渠道主要在治理与流动性两方面：BAL 与 tetuBAL 持有者持有对 DAO 金库资产的未来索取权，而使用 Balancer 资金池的流动性提供方与集成方，将随着 10 月至 11 月的关停节点临近而面临 AMM 流动性向其他场所迁移。由于合约为非托管模式且提款始终开放，风险敞口集中于 BAL 相关索取权与资金池迁移，而非用户被强制承受损失的事件。",
           "material_change": true,
           "occurred_at": "2026-09-30T00:46:03Z",
           "published_at": "2026-09-30T00:46:03Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Balancer Is Shutting Down, With Payouts Estimated at About 16 Cents...",
+              "url": "https://unchainedcrypto.com/balancer-is-shutting-down-with-payouts-estimated-at-about-16-cents-per-bal/"
+            },
+            {
+              "title": "Balancer Wind-Down Approved: Key Dates and BAL Payout",
+              "url": "https://www.cryptured.com/balancer-wind-down-shutdown-dates/"
+            },
+            {
+              "title": "Balancer v3 Launches with Aave Integration, Introduces... | HackerNoon",
+              "url": "https://hackernoon.com/balancer-v3-launches-with-aave-integration-introduces-new-developer-tools"
+            }
+          ],
           "sources": [
             {
               "label": "theblockbeats",
@@ -69352,30 +69365,42 @@
     {
       "category": "policy",
       "confidence": 0.75,
-      "current_state_en": "Polymarket faced a $10 million fraud attempt and a separate hack compromising nearly 500 user accounts, according to a WSJ report that also detailed CEO-led growth over compliance concerns.",
-      "current_state_zh": "Polymarket faced a $10 million fraud attempt and a separate hack compromising nearly 500 user accounts, according to a WSJ report that also detailed CEO-led growth over compliance concerns.",
+      "current_state_en": "A reported security flaw in Polymarket's identity and authentication flow allowed attackers to gain access to existing user accounts, according to a Gizmodo report. The issue is described as account-takeover-style access rather than an exploit of the platform's smart contracts or market settlement logic.\n\nPolymarket is the world's largest prediction market, so account takeover there exposes user balances and open positions directly and undermines confidence in how the platform verifies identity and recovers accounts. It also highlights the security seam that exists on crypto platforms where a KYC/identity layer sits on top of on-chain asset custody.\n\nThe reported attack path is an identity-layer weakness that lets someone log into an existing account, the classic pattern of an account takeover (ATO) rather than a smart-contract or oracle failure, so the risk concentrates in the account and custody layer instead of the trading engine. The reported flaw concerns access to accounts that already existed, meaning affected users would not necessarily have created anything new or interacted with a malicious contract.",
+      "current_state_zh": "据 Gizmodo 报道，Polymarket 的身份验证环节存在一处安全漏洞，使攻击者得以登入已有用户的账户。该问题被描述为账户接管式的访问，而非针对平台智能合约或市场结算逻辑的攻击。\n\nPolymarket 是全球规模最大的预测市场，账户被接管意味着用户的余额与未平仓头寸可能直接暴露在风险中，并动摇用户对平台身份核验与账户找回机制的信心。这也凸显了加密平台在 KYC 身份层与链上资产托管层之间存在的安全缝隙。\n\n据报的攻击路径属于身份层的弱点，使攻击者能够登入既有账户，这是典型的账户接管（ATO）模式，而非智能合约或预言机层面的失效，因此风险集中在账户与托管层而非撮合逻辑。漏洞针对的是已经存在的账户，这意味着受害者未必需要创建新账户或与恶意合约进行交互。",
       "entities": [
+        "accounts",
+        "bug",
         "ceo",
         "compliance",
+        "existing",
         "fraud",
+        "identity",
+        "into",
+        "let",
         "polymarket",
+        "reportedly",
+        "thieves",
         "wsj"
       ],
       "event_id": "evt_bf684c2514e2cc94",
       "event_type": "security_incident",
       "first_seen_at": "2026-09-20T16:21:56.761401Z",
       "identifiers": [],
-      "last_material_change_at": "2026-09-20T16:21:56.761401Z",
-      "last_updated_at": "2026-09-20T16:21:56.761401Z",
+      "last_material_change_at": "2026-09-20T23:27:21.730703Z",
+      "last_updated_at": "2026-09-20T23:27:21.730703Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_8083034763a6cb04"
+      ],
       "schema_version": 1,
       "status": "monitoring",
-      "title_en": "Polymarket faced $10 million fraud attempt as its CEO pushed growth over compliance concerns: WSJ",
-      "title_zh": "Polymarket faced $10 million fraud attempt as its CEO pushed growth over compliance concerns: WSJ",
+      "title_en": "Polymarket authentication flaw allowed account takeovers",
+      "title_zh": "Polymarket身份验证漏洞导致账户被接管",
       "topics": [
+        "account-takeover",
         "compliance",
         "fraud",
+        "identity-theft",
         "polymarket",
         "prediction-markets",
         "security-breach"
@@ -69399,17 +69424,37 @@
           "material_change": true,
           "occurred_at": "2026-09-20T16:07:19Z",
           "published_at": "2026-09-20T16:07:19Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Polymarket - Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Polymarket"
+            },
+            {
+              "title": "What is account takeover? | Cloudflare",
+              "url": "https://www.cloudflare.com/learning/access-management/account-takeover/"
+            },
+            {
+              "title": "Account Takeover Attack (ATO) | Types, Detection & Protection | Imperva",
+              "url": "https://www.imperva.com/learn/application-security/account-takeover-ato/"
+            }
+          ],
           "sources": [
             {
               "label": "The Block",
               "official": false,
               "source_type": "rss",
               "url": "https://www.theblock.co/news/regulation/2026-09-20-polymarket-faced-10-million-fraud-attempt-as-its-ceo-pushed-growth-over-compliance-concerns-wsj-415875"
+            },
+            {
+              "label": "gizmodo.com",
+              "official": false,
+              "source_type": "gdelt",
+              "url": "https://gizmodo.com/polymarket-bug-reportedly-let-identity-thieves-into-existing-accounts-2000814520"
             }
           ],
           "story_ids": [
-            "rss:www.theblock.co_rss.xml:57c5f743374a61b5"
+            "rss:www.theblock.co_rss.xml:57c5f743374a61b5",
+            "gdelt:article:20260920T191500Z::https://gizmodo.com/polymarket-bug-reportedly-let-identity-thieves-into-existing-accounts-2000814520"
           ],
           "time_precision": "published",
           "title_en": "Polymarket faced $10 million fraud attempt as its CEO pushed growth over compliance concerns: WSJ",
@@ -69848,94 +69893,6 @@
           "update_type": "initial",
           "what_changed_en": "A newly launched exchange-traded fund now offers investors regulated exposure to TRON (TRX), the native asset of the TRON blockchain, through an ordinary brokerage account rather than a crypto exchange. The product extends the altcoin ETF wave beyond Bitcoin and Ethereum to a top-20 digital asset.\n\nIt marks a market-structure shift: TRX becomes reachable to investors who cannot or will not open a crypto exchange account, potentially widening the holder base and deepening institutional familiarity with the asset. It also strengthens the precedent that altcoins beyond BTC and ETH can obtain US-listed, regulated wrappers, which matters for the dozens of other pending crypto ETF filings.\n\nTRON is a delegated proof-of-stake, smart-contract-capable blockchain whose TRX token can be frozen to obtain Tron Power, giving holders governance weight and energy or bandwidth resources. The asset has also drawn heavy regulatory and law-enforcement scrutiny, with The Wall Street Journal reporting in 2025 that TRON was the channel for more than half of illegal crypto activity in 2024 and the UN Office on Drugs and Crime describing it as a preferred choice for money launderers in Asia.",
           "what_changed_zh": "一只新推出的交易所交易基金（ETF）现可通过普通券商账户，为投资者提供对 TRON 区块链原生资产 TRX 的受监管敞口，而无需使用加密货币交易所。该产品把山寨币 ETF 的浪潮从比特币和以太坊扩展到了一只市值排名前二十的数字资产。\n\n这标志着市场结构的转变：TRX 现在可以被那些无法或不愿开设加密货币交易所账户的投资者所接触，有望扩大持有者基础并加深机构对该资产的熟悉度。这也强化了“除 BTC 和 ETH 之外的山寨币同样能获得美国上市受监管包装”的先例，对数十份仍在排队中的加密 ETF 申请意义重大。\n\nTRON 是一条采用委托权益证明（DPoS）机制、支持智能合约的区块链，其 TRX 代币可被冻结以获取 Tron Power，从而使持有者获得治理权重以及能量或带宽资源。该资产同时也面临严厉的监管与执法审视：据《华尔街日报》2025 年报道，2024 年超过一半的非法加密活动通过 TRON 进行，联合国毒品和犯罪问题办公室也将其称为亚洲洗钱者的首选渠道之一。"
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "A reported security flaw in Polymarket's identity and authentication flow allowed attackers to gain access to existing user accounts, according to a Gizmodo report. The issue is described as account-takeover-style access rather than an exploit of the platform's smart contracts or market settlement logic.\n\nPolymarket is the world's largest prediction market, so account takeover there exposes user balances and open positions directly and undermines confidence in how the platform verifies identity and recovers accounts. It also highlights the security seam that exists on crypto platforms where a KYC/identity layer sits on top of on-chain asset custody.\n\nThe reported attack path is an identity-layer weakness that lets someone log into an existing account, the classic pattern of an account takeover (ATO) rather than a smart-contract or oracle failure, so the risk concentrates in the account and custody layer instead of the trading engine. The reported flaw concerns access to accounts that already existed, meaning affected users would not necessarily have created anything new or interacted with a malicious contract.",
-      "current_state_zh": "据 Gizmodo 报道，Polymarket 的身份验证环节存在一处安全漏洞，使攻击者得以登入已有用户的账户。该问题被描述为账户接管式的访问，而非针对平台智能合约或市场结算逻辑的攻击。\n\nPolymarket 是全球规模最大的预测市场，账户被接管意味着用户的余额与未平仓头寸可能直接暴露在风险中，并动摇用户对平台身份核验与账户找回机制的信心。这也凸显了加密平台在 KYC 身份层与链上资产托管层之间存在的安全缝隙。\n\n据报的攻击路径属于身份层的弱点，使攻击者能够登入既有账户，这是典型的账户接管（ATO）模式，而非智能合约或预言机层面的失效，因此风险集中在账户与托管层而非撮合逻辑。漏洞针对的是已经存在的账户，这意味着受害者未必需要创建新账户或与恶意合约进行交互。",
-      "entities": [
-        "accounts",
-        "bug",
-        "existing",
-        "identity",
-        "into",
-        "let",
-        "polymarket",
-        "reportedly",
-        "thieves"
-      ],
-      "event_id": "evt_8083034763a6cb04",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-09-20T23:27:21.730703Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-09-20T23:27:21.730703Z",
-      "last_updated_at": "2026-09-20T23:27:21.730703Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Polymarket Bug Reportedly Let Identity Thieves Into Existing Accounts",
-      "title_zh": "Polymarket 漏洞据报让身份窃贼登入现有账户",
-      "topics": [
-        "account-takeover",
-        "identity-theft",
-        "polymarket",
-        "prediction-markets"
-      ],
-      "updates": [
-        {
-          "background_en": "Polymarket is an American cryptocurrency-based prediction market where users place bets on future outcomes spanning sports matches, economic indicators, weather patterns, awards, and political or legislative results. Account takeover, or ATO, happens when an attacker gains unauthorized control of an account — frequently not by \"hacking\" anything but simply by logging in with stolen or forged credentials. Because prediction market accounts are tied to balances and open positions, a compromised account can be used to move funds or place unauthorized trades.",
-          "background_zh": "Polymarket 是一家美国加密预测市场平台，用户可就未来事件的结果下注，范围涵盖体育赛事、经济指标、天气、奖项以及政治与立法结果等。账户接管（account takeover，简称 ATO）指攻击者未经授权取得账户控制权，其常见方式并非“攻破”系统，而是直接使用窃取或伪造的凭证登录。由于预测市场账户与余额和未平仓头寸绑定，被接管的账户可能被用于转移资金或进行未授权交易。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "A reported security flaw in Polymarket's identity and authentication flow allowed attackers to gain access to existing user accounts, according to a Gizmodo report. The issue is described as account-takeover-style access rather than an exploit of the platform's smart contracts or market settlement logic.\n\nPolymarket is the world's largest prediction market, so account takeover there exposes user balances and open positions directly and undermines confidence in how the platform verifies identity and recovers accounts. It also highlights the security seam that exists on crypto platforms where a KYC/identity layer sits on top of on-chain asset custody.\n\nThe reported attack path is an identity-layer weakness that lets someone log into an existing account, the classic pattern of an account takeover (ATO) rather than a smart-contract or oracle failure, so the risk concentrates in the account and custody layer instead of the trading engine. The reported flaw concerns access to accounts that already existed, meaning affected users would not necessarily have created anything new or interacted with a malicious contract.",
-          "current_state_zh": "据 Gizmodo 报道，Polymarket 的身份验证环节存在一处安全漏洞，使攻击者得以登入已有用户的账户。该问题被描述为账户接管式的访问，而非针对平台智能合约或市场结算逻辑的攻击。\n\nPolymarket 是全球规模最大的预测市场，账户被接管意味着用户的余额与未平仓头寸可能直接暴露在风险中，并动摇用户对平台身份核验与账户找回机制的信心。这也凸显了加密平台在 KYC 身份层与链上资产托管层之间存在的安全缝隙。\n\n据报的攻击路径属于身份层的弱点，使攻击者能够登入既有账户，这是典型的账户接管（ATO）模式，而非智能合约或预言机层面的失效，因此风险集中在账户与托管层而非撮合逻辑。漏洞针对的是已经存在的账户，这意味着受害者未必需要创建新账户或与恶意合约进行交互。",
-          "detailed_summary_en": "A reported security flaw in Polymarket's identity and authentication flow allowed attackers to gain access to existing user accounts, according to a Gizmodo report. The issue is described as account-takeover-style access rather than an exploit of the platform's smart contracts or market settlement logic.\n\nPolymarket is the world's largest prediction market, so account takeover there exposes user balances and open positions directly and undermines confidence in how the platform verifies identity and recovers accounts. It also highlights the security seam that exists on crypto platforms where a KYC/identity layer sits on top of on-chain asset custody.\n\nThe reported attack path is an identity-layer weakness that lets someone log into an existing account, the classic pattern of an account takeover (ATO) rather than a smart-contract or oracle failure, so the risk concentrates in the account and custody layer instead of the trading engine. The reported flaw concerns access to accounts that already existed, meaning affected users would not necessarily have created anything new or interacted with a malicious contract.",
-          "detailed_summary_zh": "据 Gizmodo 报道，Polymarket 的身份验证环节存在一处安全漏洞，使攻击者得以登入已有用户的账户。该问题被描述为账户接管式的访问，而非针对平台智能合约或市场结算逻辑的攻击。\n\nPolymarket 是全球规模最大的预测市场，账户被接管意味着用户的余额与未平仓头寸可能直接暴露在风险中，并动摇用户对平台身份核验与账户找回机制的信心。这也凸显了加密平台在 KYC 身份层与链上资产托管层之间存在的安全缝隙。\n\n据报的攻击路径属于身份层的弱点，使攻击者能够登入既有账户，这是典型的账户接管（ATO）模式，而非智能合约或预言机层面的失效，因此风险集中在账户与托管层而非撮合逻辑。漏洞针对的是已经存在的账户，这意味着受害者未必需要创建新账户或与恶意合约进行交互。",
-          "event_id": "evt_8083034763a6cb04",
-          "first_seen_at": "2026-09-20T23:27:21.730703Z",
-          "importance_score": 7.5,
-          "market_impact_en": "The transmission channel runs through user trust and platform-level liquidity: a confirmed authentication flaw at Polymarket could affect deposits and trading activity on that venue and invite closer scrutiny of identity and custody practices across prediction markets, with exposure concentrated in that segment rather than in majors like bitcoin or ether.",
-          "market_impact_zh": "传导路径主要体现在用户信任与平台层面的流动性：若 Polymarket 的身份验证漏洞被确认，可能影响该平台的入金与交易活跃度，并促使外界更严格审视整个预测市场板块的身份核验与托管实践；风险敞口集中于该细分领域，而非比特币、以太坊等主流资产。",
-          "material_change": true,
-          "occurred_at": "2026-09-20T19:15:00Z",
-          "published_at": "2026-09-20T19:15:00Z",
-          "references": [
-            {
-              "title": "Polymarket - Wikipedia",
-              "url": "https://en.wikipedia.org/wiki/Polymarket"
-            },
-            {
-              "title": "What is account takeover? | Cloudflare",
-              "url": "https://www.cloudflare.com/learning/access-management/account-takeover/"
-            },
-            {
-              "title": "Account Takeover Attack (ATO) | Types, Detection & Protection | Imperva",
-              "url": "https://www.imperva.com/learn/application-security/account-takeover-ato/"
-            }
-          ],
-          "sources": [
-            {
-              "label": "gizmodo.com",
-              "official": false,
-              "source_type": "gdelt",
-              "url": "https://gizmodo.com/polymarket-bug-reportedly-let-identity-thieves-into-existing-accounts-2000814520"
-            }
-          ],
-          "story_ids": [
-            "gdelt:article:20260920T191500Z::https://gizmodo.com/polymarket-bug-reportedly-let-identity-thieves-into-existing-accounts-2000814520"
-          ],
-          "time_precision": "published",
-          "title_en": "Polymarket Bug Reportedly Let Identity Thieves Into Existing Accounts",
-          "title_zh": "Polymarket 漏洞据报让身份窃贼登入现有账户",
-          "update_id": "upd_3416a79a6e4becb7",
-          "update_type": "initial",
-          "what_changed_en": "A reported security flaw in Polymarket's identity and authentication flow allowed attackers to gain access to existing user accounts, according to a Gizmodo report. The issue is described as account-takeover-style access rather than an exploit of the platform's smart contracts or market settlement logic.\n\nPolymarket is the world's largest prediction market, so account takeover there exposes user balances and open positions directly and undermines confidence in how the platform verifies identity and recovers accounts. It also highlights the security seam that exists on crypto platforms where a KYC/identity layer sits on top of on-chain asset custody.\n\nThe reported attack path is an identity-layer weakness that lets someone log into an existing account, the classic pattern of an account takeover (ATO) rather than a smart-contract or oracle failure, so the risk concentrates in the account and custody layer instead of the trading engine. The reported flaw concerns access to accounts that already existed, meaning affected users would not necessarily have created anything new or interacted with a malicious contract.",
-          "what_changed_zh": "据 Gizmodo 报道，Polymarket 的身份验证环节存在一处安全漏洞，使攻击者得以登入已有用户的账户。该问题被描述为账户接管式的访问，而非针对平台智能合约或市场结算逻辑的攻击。\n\nPolymarket 是全球规模最大的预测市场，账户被接管意味着用户的余额与未平仓头寸可能直接暴露在风险中，并动摇用户对平台身份核验与账户找回机制的信心。这也凸显了加密平台在 KYC 身份层与链上资产托管层之间存在的安全缝隙。\n\n据报的攻击路径属于身份层的弱点，使攻击者能够登入既有账户，这是典型的账户接管（ATO）模式，而非智能合约或预言机层面的失效，因此风险集中在账户与托管层而非撮合逻辑。漏洞针对的是已经存在的账户，这意味着受害者未必需要创建新账户或与恶意合约进行交互。"
         }
       ]
     },
@@ -82014,37 +81971,65 @@
     {
       "category": "policy",
       "confidence": 0.75,
-      "current_state_en": "New York Attorney General Letitia James sued Polymarket in Manhattan court, alleging unlicensed gambling and seeking an injunction, treble damages, and $100,000 per sports contract.",
-      "current_state_zh": "纽约总检察长 Letitia James 在曼哈顿法院起诉 Polymarket，指控其无证赌博，寻求禁令、三倍收益赔偿及每份体育合约 10 万美元罚款。",
+      "current_state_en": "New York has filed suit against Polymarket, alleging the crypto prediction market operates as an unlicensed gambling business.",
+      "current_state_zh": "纽约州总检察长 Letitia James 与州长 Kathy Hochul 对 Polymarket US 提起诉讼，指控该加密预测市场在纽约州内运营非法的无牌赌博业务。Polymarket 回应称其市场属于受美国商品期货交易委员会（CFTC）联邦监管的事件合约，并指出公司已收购一家持有 CFTC 牌照的机构、员工超过 350 人。\n\n据 CryptoRank 报道，此案加大了加密预测市场的监管风险，可能影响其用户采用、融资、代币与市场流动性。同时，它也加剧了事件合约究竟适用联邦衍生品规则还是州级赌博法的管辖权之争。\n\nPolymarket 近期推出了最高 20 倍杠杆的永续合约交易。纽约州此前已于 7 月以类似理由起诉 Polymarket 的竞争对手 Kalshi，并在 4 月起诉 Coinbase 和 Gemini，指其在未取得州赌博牌照的情况下运营预测市场平台。",
       "entities": [
+        "alleged",
+        "ban",
+        "bitke",
+        "calling",
+        "calls",
+        "cryptorank",
         "gambling",
+        "illegal",
+        "lawsuit",
+        "legal",
+        "market",
         "new",
         "new-york",
+        "operation",
         "over",
         "polymarket",
+        "prediction",
+        "prediction-markets",
+        "regulation",
         "sues",
         "unlicensed",
+        "wants",
         "york"
       ],
       "event_id": "evt_722c853a96c32398",
       "event_type": "legal_case",
       "first_seen_at": "2026-09-24T17:26:48.798032Z",
       "identifiers": [],
-      "last_material_change_at": "2026-09-24T17:26:48.798032Z",
-      "last_updated_at": "2026-09-24T17:26:48.798032Z",
+      "last_material_change_at": "2026-09-27T10:07:41.220038Z",
+      "last_updated_at": "2026-09-27T10:07:41.220038Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_93cc6b05e05fcf5f",
+        "evt_d31696be7e836ed2",
+        "evt_227224ac093a6110",
+        "evt_e697b7f1ad8815a8",
+        "evt_1fa86ee87f27f782"
+      ],
       "schema_version": 1,
       "status": "developing",
-      "title_en": "New York sues Polymarket over alleged illegal gambling business",
-      "title_zh": "纽约起诉Polymarket涉嫌非法赌博业务",
+      "title_en": "New York sues Polymarket over alleged illegal gambling operation",
+      "title_zh": "纽约起诉Polymarket涉嫌非法赌博",
       "topics": [
+        "cftc",
         "crypto-regulation",
         "enforcement",
+        "gambling-law",
         "gambling-laws",
+        "kalshi",
+        "lawsuit",
+        "legal",
+        "legal-enforcement",
         "new-york",
         "polymarket",
-        "prediction-markets"
+        "prediction-markets",
+        "unlicensed-gambling"
       ],
       "updates": [
         {
@@ -82059,23 +82044,86 @@
           "detailed_summary_zh": "New York Attorney General Letitia James sued Polymarket, alleging its sports event contracts violate state gambling laws and seeking potentially to block the platform for New York residents.",
           "event_id": "evt_722c853a96c32398",
           "first_seen_at": "2026-09-24T17:26:48.798032Z",
-          "importance_score": 7.5,
+          "importance_score": 8.5,
           "market_impact_en": "",
           "market_impact_zh": "",
           "material_change": true,
           "occurred_at": "2026-09-24T15:27:29Z",
           "published_at": "2026-09-24T15:27:29Z",
-          "references": [],
+          "references": [
+            {
+              "title": "New York Sues Polymarket Over Alleged Unlicensed Gambling ...",
+              "url": "https://www.cryptotimes.io/2026/09/24/new-york-sues-polymarket-over-alleged-unlicensed-gambling-operation/"
+            },
+            {
+              "title": "New York Sues Polymarket Over Alleged Illegal Gambling",
+              "url": "https://finance.yahoo.com/markets/crypto/articles/york-sues-polymarket-over-alleged-185819955.html?fr=sycsrp_catchall"
+            },
+            {
+              "title": "Understanding Prediction Markets and Event Contracts | CFTC",
+              "url": "https://www.cftc.gov/LearnandProtect/PredictionMarkets"
+            },
+            {
+              "title": "New York Sues Polymarket Over Unlicensed Gambling Operation | Regulation Blockchain | CryptoRank.io",
+              "url": "https://cryptorank.io/news/feed/d4d01-new-york-sues-polymarket-unlicensed-gambling"
+            },
+            {
+              "title": "Prediction markets regulation by CFTC eyed by White House",
+              "url": "https://www.cnbc.com/2026/05/27/prediction-markets-white-house-cftc-kalshi-polmarket-gensler.html"
+            }
+          ],
           "sources": [
             {
               "label": "Cointelegraph",
               "official": false,
               "source_type": "rss",
               "url": "https://cointelegraph.com/news/new-york-polymarket-illegal-gambling-operation-lawsuit?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            },
+            {
+              "label": "CoinDesk",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.coindesk.com/policy/2026/09/24/new-york-sues-polymarket-alleging-it-is-running-an-illegal-gambling-operation"
+            },
+            {
+              "label": "CryptoSlate",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cryptoslate.com/new-york-sues-polymarket-seeks-triple-gains-and-100000-penalties-over-prediction-markets/"
+            },
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/379244/new-york-ban-polymarket-lawsuit"
+            },
+            {
+              "label": "Bitcoin Magazine",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://bitcoinmagazine.com/news/new-york-sues-polymarket"
+            },
+            {
+              "label": "BitKE",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9ISTNMTEdyTVFOR2R6UWlMWEg2b0szSGlMclZhQ1FfdkxXYjdVeDV0TjRyWE9hRklvb0tjck5jUTR1QzIxLUVBYmppSGw2QWJydmFIR1ZWXzY0ajRINGNvSTJ2RGg?oc=5"
+            },
+            {
+              "label": "CryptoRank",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQb3ZYd3R4dlRRbXNnRW54YXlEbmRvdFlkQlFmcG03VVVsNm05TVRtOWZnMFZGMTBuSE1hdC1WQkJjQzdtbXB6Uk0ycUxGWTJWNnpmTUVlWGgya0xJQTM3c3Frc3JtU3hoWTd2UFNtcEI1Q2tZSXNUb0tPcUhFZGZZZjZDc2xPbmFnNlE?oc=5"
             }
           ],
           "story_ids": [
-            "rss:cointelegraph.com_rss:4081df84907da5e2"
+            "rss:cointelegraph.com_rss:4081df84907da5e2",
+            "rss:www.coindesk.com_arc_outboundfeeds_rss_:b60ae8731e7076d3",
+            "rss:cryptoslate.com_feed_:a74929262ca2e299",
+            "rss:decrypt.co_feed:bf884104e7eb4e88",
+            "rss:bitcoinmagazine.com_.rss_full_:88d51009b90a349d",
+            "google_news:article:2ebeec12561ece9e",
+            "google_news:article:a1648d799958faa3"
           ],
           "time_precision": "published",
           "title_en": "New York sues Polymarket over alleged illegal gambling business",
@@ -82310,116 +82358,6 @@
           "update_type": "confirmation",
           "what_changed_en": "The Fed's two proposals were opened for 60-day public comment periods and newly detailed coverage includes governance of stablecoin yield/rewards programs, capital and reserve requirements, and procedures for Fed-supervised banks to issue stablecoins.",
           "what_changed_zh": "美联储的两项提案进入60天公众评论期，并新增披露内容包括稳定币收益/奖励计划治理、资本与储备要求，以及受美联储监管银行发行稳定币的程序。"
-        }
-      ]
-    },
-    {
-      "category": "policy",
-      "confidence": 0.75,
-      "current_state_en": "New York Attorney General Letitia James sued QCX LLC, Polymarket's US operator, on Sept. 24, 2026, alleging an unlicensed gambling business and seeking an injunction, restitution, disgorgement, triple-gain penalties, and $100,000-per-violation fines, amid conflict between CFTC regulation and state gambling laws.",
-      "current_state_zh": "纽约总检察长 Letitia James 于2026年9月24日起诉 Polymarket 的美国运营商 QCX LLC，指控其未经许可经营赌博业务，寻求禁令、赔偿、三倍收益罚款及每项违规10万美元罚款，并涉及CFTC监管与州赌博法的冲突。",
-      "entities": [
-        "new",
-        "new-york",
-        "polymarket",
-        "prediction-markets",
-        "york"
-      ],
-      "event_id": "evt_d31696be7e836ed2",
-      "event_type": "legal_case",
-      "first_seen_at": "2026-09-24T23:18:02.698482Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-09-24T23:18:11.468696Z",
-      "last_updated_at": "2026-09-24T23:18:11.468696Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "New York sues Polymarket, alleging it is running an illegal gambling operation",
-      "title_zh": "纽约起诉Polymarket，指控其经营非法赌博业务",
-      "topics": [
-        "cftc",
-        "gambling-law",
-        "new-york",
-        "polymarket",
-        "prediction-markets"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "New York Attorney General Letitia James and Governor Kathy Hochul sued Polymarket's US business for allegedly operating an illegal, unlicensed gambling operation, seeking an injunction, restitution, forfeiture of gains, and penalties.",
-          "current_state_zh": "纽约州总检察长Letitia James和州长Kathy Hochul起诉Polymarket的美国业务，指控其涉嫌经营非法、无牌照的赌博业务，并寻求禁令、赔偿、没收收益及罚款。",
-          "detailed_summary_en": "New York Attorney General Letitia James and Governor Kathy Hochul sued Polymarket's US business for allegedly operating an illegal, unlicensed gambling operation, seeking an injunction, restitution, forfeiture of gains, and penalties.",
-          "detailed_summary_zh": "New York Attorney General Letitia James and Governor Kathy Hochul sued Polymarket's US business for allegedly operating an illegal, unlicensed gambling operation, seeking an injunction, restitution, forfeiture of gains, and penalties.",
-          "event_id": "evt_d31696be7e836ed2",
-          "first_seen_at": "2026-09-24T23:18:02.698482Z",
-          "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-09-24T22:41:44Z",
-          "published_at": "2026-09-24T22:41:44Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "CoinDesk",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://www.coindesk.com/policy/2026/09/24/new-york-sues-polymarket-alleging-it-is-running-an-illegal-gambling-operation"
-            }
-          ],
-          "story_ids": [
-            "rss:www.coindesk.com_arc_outboundfeeds_rss_:b60ae8731e7076d3"
-          ],
-          "time_precision": "published",
-          "title_en": "New York sues Polymarket, alleging it is running an illegal gambling operation",
-          "title_zh": "纽约起诉Polymarket，指控其经营非法赌博业务",
-          "update_id": "upd_552284ca9b16b5a8",
-          "update_type": "initial",
-          "what_changed_en": "New York Attorney General Letitia James and Governor Kathy Hochul sued Polymarket's US business for allegedly operating an illegal, unlicensed gambling operation, seeking an injunction, restitution, forfeiture of gains, and penalties.",
-          "what_changed_zh": "纽约州总检察长Letitia James和州长Kathy Hochul起诉Polymarket的美国业务，指控其涉嫌经营非法、无牌照的赌博业务，并寻求禁令、赔偿、没收收益及罚款。"
-        },
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.95,
-          "current_state_en": "New York Attorney General Letitia James sued QCX LLC, Polymarket's US operator, on Sept. 24, 2026, alleging an unlicensed gambling business and seeking an injunction, restitution, disgorgement, triple-gain penalties, and $100,000-per-violation fines, amid conflict between CFTC regulation and state gambling laws.",
-          "current_state_zh": "纽约总检察长 Letitia James 于2026年9月24日起诉 Polymarket 的美国运营商 QCX LLC，指控其未经许可经营赌博业务，寻求禁令、赔偿、三倍收益罚款及每项违规10万美元罚款，并涉及CFTC监管与州赌博法的冲突。",
-          "detailed_summary_en": "New York Attorney General Letitia James sued Polymarket's US operator QCX LLC on Sept. 24, alleging it runs an unlicensed gambling business through event contracts on sports, elections and culture, and seeking an injunction along with restitution, disgorgement and triple-gain penalties plus $100,000-per-violation fines.",
-          "detailed_summary_zh": "New York Attorney General Letitia James sued Polymarket's US operator QCX LLC on Sept. 24, alleging it runs an unlicensed gambling business through event contracts on sports, elections and culture, and seeking an injunction along with restitution, disgorgement and triple-gain penalties plus $100,000-per-violation fines.",
-          "event_id": "evt_d31696be7e836ed2",
-          "first_seen_at": "2026-09-24T23:18:11.468696Z",
-          "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-09-24T22:50:47Z",
-          "published_at": "2026-09-24T22:50:47Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "CryptoSlate",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://cryptoslate.com/new-york-sues-polymarket-seeks-triple-gains-and-100000-penalties-over-prediction-markets/"
-            }
-          ],
-          "story_ids": [
-            "rss:cryptoslate.com_feed_:a74929262ca2e299"
-          ],
-          "time_precision": "published",
-          "title_en": "New York sues Polymarket, seeks triple gains and $100,000 penalties over prediction markets",
-          "title_zh": "纽约起诉Polymarket，就预测市场寻求三倍收益及10万美元罚款",
-          "update_id": "upd_51f7e027d50728d7",
-          "update_type": "confirmation",
-          "what_changed_en": "Added specific defendant name QCX LLC, specific penalty amounts (triple gains and $100,000 per violation), and CFTC-designated contract market status.",
-          "what_changed_zh": "增加了被告具体名称QCX LLC、具体处罚金额（三倍收益及每项违规10万美元罚款）、以及CFTC指定合约市场身份等细节。"
         }
       ]
     },
@@ -83888,8 +83826,8 @@
           "what_changed_zh": "链上侦探 ZachXBT 表示，与 Bitget 热钱包被盗事件相关的攻击者已开始将约 2,700 枚 ZEC（约 380 万美元）转入 Zcash 的 Ironwood 屏蔽池；Bitget 热钱包此前共被盗约 1.89 万枚 ZEC（约 2,830 万美元）。"
         },
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "The incident sits within a broader pattern of crypto exchange security breaches, and Bitget's Protection Fund is marketed as an additional layer of resilience alongside its Proof of Reserves. On Wednesday, blockchain investigator ZachXBT reported that wallets tied to the Bitget hack moved about $3.8 million in Zcash (ZEC) into the network's Ironwood pool — roughly 14% of the 18,917 ZEC stolen in the attack. NEAR Intents separately said it blocked $50 million tied to the Bitget hackers.",
+          "background_zh": "此次事件属于加密货币交易所安全漏洞事件的一部分，Bitget的保护基金被宣传为其储备证明（Proof of Reserves）之外的另一层抗风险保障。周三，链上调查人员ZachXBT报告称，与Bitget黑客事件相关的钱包将约380万美元的Zcash（ZEC）转入该网络的Ironwood池，约占此次被盗18,917枚ZEC的14%。NEAR Intents另行表示，其已拦截与Bitget黑客相关的5,000万美元资金。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.92,
@@ -83900,12 +83838,21 @@
           "event_id": "evt_6655595dc1e36e0b",
           "first_seen_at": "2026-09-30T18:04:19.070907Z",
           "importance_score": 8.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The event transmits to markets mainly through exchange-solvency and custody sentiment: Bitget's own token and its BTC/ETH/USDT withdrawal rails are the directly exposed segments, while the attackers' reported movement of stolen ZEC into a privacy pool draws attention to privacy-asset laundering channels. Broader exchange-security incidents of this size can also weigh on user confidence in centralized venue custody and on stablecoin flows tied to trading venues.",
+          "market_impact_zh": "该事件的传导渠道主要是交易所偿付能力与托管信心：Bitget自身代币及其BTC/ETH/USDT提现通道是直接受影响的板块，而攻击者据报将被盗ZEC转入隐私池的举动，也令隐私资产洗钱渠道受到关注。此类规模的交易所安全事件还可能影响用户对中心化平台托管的信心，以及与交易平台相关的稳定币资金流动。",
           "material_change": true,
           "occurred_at": "2026-09-30T16:28:30Z",
           "published_at": "2026-09-30T16:28:30Z",
-          "references": [],
+          "references": [
+            {
+              "title": "5500 BTC Protection Fund | Bitget",
+              "url": "https://www.bitget.com/promotion/protection-fund"
+            },
+            {
+              "title": "Bitget Protection Fund to Protect User's Assets",
+              "url": "https://www.itbitget.com/academy/bitget-protection-fund-to-protect-user-assets"
+            }
+          ],
           "sources": [
             {
               "label": "Cointelegraph",
@@ -84643,83 +84590,6 @@
     {
       "category": "policy",
       "confidence": 0.75,
-      "current_state_en": "New York Attorney General Letitia James and Governor Kathy Hochul sued Polymarket, alleging it operates an illegal unlicensed gambling business, and are seeking to bar it from the state, recover gains, and impose treble-damage fines.",
-      "current_state_zh": "New York Attorney General Letitia James and Governor Kathy Hochul sued Polymarket, alleging it operates an illegal unlicensed gambling business, and are seeking to bar it from the state, recover gains, and impose treble-damage fines.",
-      "entities": [
-        "ban",
-        "calls",
-        "gambling",
-        "illegal",
-        "lawsuit",
-        "new",
-        "new-york",
-        "operation",
-        "polymarket",
-        "wants",
-        "york"
-      ],
-      "event_id": "evt_93cc6b05e05fcf5f",
-      "event_type": "legal_case",
-      "first_seen_at": "2026-09-24T23:18:16.228416Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-09-24T23:18:16.228416Z",
-      "last_updated_at": "2026-09-24T23:18:16.228416Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "New York Wants to Ban Polymarket, Lawsuit Calls It 'Illegal Gambling Operation'",
-      "title_zh": "New York Wants to Ban Polymarket, Lawsuit Calls It 'Illegal Gambling Operation'",
-      "topics": [
-        "lawsuit",
-        "new-york",
-        "polymarket",
-        "prediction-markets"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "New York Attorney General Letitia James and Governor Kathy Hochul sued Polymarket, alleging it operates an illegal unlicensed gambling business, and are seeking to bar it from the state, recover gains, and impose treble-damage fines.",
-          "current_state_zh": "New York Attorney General Letitia James and Governor Kathy Hochul sued Polymarket, alleging it operates an illegal unlicensed gambling business, and are seeking to bar it from the state, recover gains, and impose treble-damage fines.",
-          "detailed_summary_en": "New York Attorney General Letitia James and Governor Kathy Hochul sued Polymarket, alleging it operates an illegal unlicensed gambling business, and are seeking to bar it from the state, recover gains, and impose treble-damage fines.",
-          "detailed_summary_zh": "New York Attorney General Letitia James and Governor Kathy Hochul sued Polymarket, alleging it operates an illegal unlicensed gambling business, and are seeking to bar it from the state, recover gains, and impose treble-damage fines.",
-          "event_id": "evt_93cc6b05e05fcf5f",
-          "first_seen_at": "2026-09-24T23:18:16.228416Z",
-          "importance_score": 8.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-09-24T17:51:31Z",
-          "published_at": "2026-09-24T17:51:31Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "Decrypt",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://decrypt.co/379244/new-york-ban-polymarket-lawsuit"
-            }
-          ],
-          "story_ids": [
-            "rss:decrypt.co_feed:bf884104e7eb4e88"
-          ],
-          "time_precision": "published",
-          "title_en": "New York Wants to Ban Polymarket, Lawsuit Calls It 'Illegal Gambling Operation'",
-          "title_zh": "New York Wants to Ban Polymarket, Lawsuit Calls It 'Illegal Gambling Operation'",
-          "update_id": "upd_20ed46b7f28415c5",
-          "update_type": "initial",
-          "what_changed_en": "New York Attorney General Letitia James and Governor Kathy Hochul sued Polymarket, alleging it operates an illegal unlicensed gambling business, and are seeking to bar it from the state, recover gains, and impose treble-damage fines.",
-          "what_changed_zh": "New York Attorney General Letitia James and Governor Kathy Hochul sued Polymarket, alleging it operates an illegal unlicensed gambling business, and are seeking to bar it from the state, recover gains, and impose treble-damage fines."
-        }
-      ]
-    },
-    {
-      "category": "policy",
-      "confidence": 0.75,
       "current_state_en": "The Federal Reserve proposed capital requirements, a two-day redemption window, and new reserve disclosures for stablecoin issuers as it implements the GENIUS Act, including a tiered operational-risk capital charge of 2% on the first $20B in outstanding stablecoins, 1.5% on the next $30B, and 1% above $50B.",
       "current_state_zh": "The Federal Reserve proposed capital requirements, a two-day redemption window, and new reserve disclosures for stablecoin issuers as it implements the GENIUS Act, including a tiered operational-risk capital charge of 2% on the first $20B in outstanding stablecoins, 1.5% on the next $30B, and 1% above $50B.",
       "entities": [
@@ -84781,98 +84651,6 @@
           "update_type": "initial",
           "what_changed_en": "The Federal Reserve proposed capital requirements, a two-day redemption window, and new reserve disclosures for stablecoin issuers as it implements the GENIUS Act, including a tiered operational-risk capital charge of 2% on the first $20B in outstanding stablecoins, 1.5% on the next $30B, and 1% above $50B.",
           "what_changed_zh": "The Federal Reserve proposed capital requirements, a two-day redemption window, and new reserve disclosures for stablecoin issuers as it implements the GENIUS Act, including a tiered operational-risk capital charge of 2% on the first $20B in outstanding stablecoins, 1.5% on the next $30B, and 1% above $50B."
-        }
-      ]
-    },
-    {
-      "category": "policy",
-      "confidence": 0.75,
-      "current_state_en": "New York Attorney General Letitia James and Governor Kathy Hochul announced a lawsuit Wednesday against QCX LLC, which does business as Polymarket US, alleging the platform runs an illegal, unlicensed gambling operation in the state. The state is asking a court to bar Polymarket from operating in New York, force forfeiture of its gains, order restitution to users, and impose fines equal to three times what it earned through the alleged conduct.\n\nThe suit marks a state-level enforcement action against a leading prediction market that, if granted, would cut the platform off from New York users. James said Polymarket was \"targeting the most vulnerable and depriving New York families of critical services and support,\" while Hochul said the company had \"put New Yorkers at risk, especially those underage who are most vulnerable to problem gaming.\"\n\nThe complaint alleges Polymarket's markets meet New York's legal definition of gambling because users bet money on uncertain outcomes outside their control, and the attorney general's office said its investigation found the platform exposes New Yorkers, including those under the legal gambling age of 21, to financial and personal risk. Officials argued the company sidestepped the licensing requirements and taxes paid by regulated casinos and mobile sportsbooks. Polymarket launched in the U.S. in December 2025.",
-      "current_state_zh": "纽约州总检察长莱蒂蒂娅·詹姆斯（Letitia James）与州长凯西·霍楚尔（Kathy Hochul）于周三宣布，对以 Polymarket US 名义经营的 QCX LLC 提起诉讼，指控该平台在纽约州从事非法、无牌照的赌博业务。州政府请求法院禁止 Polymarket 在纽约州运营、没收其收益、向用户返还资金，并处以相当于其通过被指行为所获收入三倍的罚款。\n\n这是州一级监管机构针对头部预测市场采取的执法行动，若获法院支持，该平台将被切断纽约州用户。詹姆斯表示，Polymarket「正在瞄准最脆弱的群体，并剥夺纽约家庭所依赖的关键服务与支持」；霍楚尔则表示，该公司「让纽约人面临风险，尤其是最容易沉迷问题赌博的未成年人」。\n\n起诉书称，Polymarket 的市场符合纽约州法律对赌博的定义，因为用户是在对自身无法控制的不确定结果下注；总检察长办公室表示，调查发现该平台使纽约人——包括未满21岁法定赌博年龄者——面临财务与个人风险。官员称，该公司规避了受监管赌场和移动体育博彩所需承担的牌照要求与税负。Polymarket 于2025年12月在美国上线。",
-      "entities": [
-        "calling",
-        "gambling",
-        "illegal",
-        "market",
-        "new",
-        "new-york",
-        "operation",
-        "polymarket",
-        "prediction",
-        "sues",
-        "york"
-      ],
-      "event_id": "evt_227224ac093a6110",
-      "event_type": "legal_case",
-      "first_seen_at": "2026-09-25T00:40:57.214318Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-09-25T00:40:57.214318Z",
-      "last_updated_at": "2026-09-25T00:40:57.214318Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "New York Sues Polymarket, Calling Prediction Market an Illegal Gambling Operation",
-      "title_zh": "纽约起诉Polymarket，称该预测市场属非法赌博业务",
-      "topics": [
-        "kalshi",
-        "legal-enforcement",
-        "new-york",
-        "polymarket",
-        "prediction-markets",
-        "unlicensed-gambling"
-      ],
-      "updates": [
-        {
-          "background_en": "Prediction markets let users buy and sell contracts tied to real-world outcomes, with each contract typically settling at $1 if the event occurs and $0 if it does not, so the live price reads as an implied probability. The sector has grown from a crypto-native niche into a mainstream category, with Kalshi and Polymarket reaching multi-billion-dollar valuations; Bernstein analysts have projected prediction-market trading volumes could reach $1 trillion by 2030. New York's action extends what the state describes as a campaign against prediction markets: James and Hochul sued rival Kalshi in July, with the attorney general seeking $36 billion, and the state has also taken actions involving Coinbase and Gemini. At the federal level, the CFTC has issued an advance notice of proposed rulemaking on event contracts and states that prediction markets are federally regulated and may operate in all 50 states.",
-          "background_zh": "预测市场允许用户买卖与真实世界结果挂钩的合约，合约通常在该事件发生时结算为1美元、未发生则结算为0美元，因此实时价格可视为隐含概率。该行业已从加密原生的小众领域成长为主流品类，Kalshi 与 Polymarket 均达到数十亿美元估值；伯恩斯坦（Bernstein）分析师预计，到2030年预测市场交易量可能达到1万亿美元。纽约州此举延续了其针对预测市场的行动：詹姆斯与霍楚尔于7月起诉竞争对手 Kalshi，总检察长寻求360亿美元赔偿，该州还针对 Coinbase 和 Gemini 采取了行动。在联邦层面，美国商品期货交易委员会（CFTC）已就事件合约发布拟议规则制定的预先通知，并表示预测市场受联邦监管、可在全部50个州运营。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "New York Attorney General Letitia James and Governor Kathy Hochul announced a lawsuit Wednesday against QCX LLC, which does business as Polymarket US, alleging the platform runs an illegal, unlicensed gambling operation in the state. The state is asking a court to bar Polymarket from operating in New York, force forfeiture of its gains, order restitution to users, and impose fines equal to three times what it earned through the alleged conduct.\n\nThe suit marks a state-level enforcement action against a leading prediction market that, if granted, would cut the platform off from New York users. James said Polymarket was \"targeting the most vulnerable and depriving New York families of critical services and support,\" while Hochul said the company had \"put New Yorkers at risk, especially those underage who are most vulnerable to problem gaming.\"\n\nThe complaint alleges Polymarket's markets meet New York's legal definition of gambling because users bet money on uncertain outcomes outside their control, and the attorney general's office said its investigation found the platform exposes New Yorkers, including those under the legal gambling age of 21, to financial and personal risk. Officials argued the company sidestepped the licensing requirements and taxes paid by regulated casinos and mobile sportsbooks. Polymarket launched in the U.S. in December 2025.",
-          "current_state_zh": "纽约州总检察长莱蒂蒂娅·詹姆斯（Letitia James）与州长凯西·霍楚尔（Kathy Hochul）于周三宣布，对以 Polymarket US 名义经营的 QCX LLC 提起诉讼，指控该平台在纽约州从事非法、无牌照的赌博业务。州政府请求法院禁止 Polymarket 在纽约州运营、没收其收益、向用户返还资金，并处以相当于其通过被指行为所获收入三倍的罚款。\n\n这是州一级监管机构针对头部预测市场采取的执法行动，若获法院支持，该平台将被切断纽约州用户。詹姆斯表示，Polymarket「正在瞄准最脆弱的群体，并剥夺纽约家庭所依赖的关键服务与支持」；霍楚尔则表示，该公司「让纽约人面临风险，尤其是最容易沉迷问题赌博的未成年人」。\n\n起诉书称，Polymarket 的市场符合纽约州法律对赌博的定义，因为用户是在对自身无法控制的不确定结果下注；总检察长办公室表示，调查发现该平台使纽约人——包括未满21岁法定赌博年龄者——面临财务与个人风险。官员称，该公司规避了受监管赌场和移动体育博彩所需承担的牌照要求与税负。Polymarket 于2025年12月在美国上线。",
-          "detailed_summary_en": "New York Attorney General Letitia James and Governor Kathy Hochul announced a lawsuit Wednesday against QCX LLC, which does business as Polymarket US, alleging the platform runs an illegal, unlicensed gambling operation in the state. The state is asking a court to bar Polymarket from operating in New York, force forfeiture of its gains, order restitution to users, and impose fines equal to three times what it earned through the alleged conduct.\n\nThe suit marks a state-level enforcement action against a leading prediction market that, if granted, would cut the platform off from New York users. James said Polymarket was \"targeting the most vulnerable and depriving New York families of critical services and support,\" while Hochul said the company had \"put New Yorkers at risk, especially those underage who are most vulnerable to problem gaming.\"\n\nThe complaint alleges Polymarket's markets meet New York's legal definition of gambling because users bet money on uncertain outcomes outside their control, and the attorney general's office said its investigation found the platform exposes New Yorkers, including those under the legal gambling age of 21, to financial and personal risk. Officials argued the company sidestepped the licensing requirements and taxes paid by regulated casinos and mobile sportsbooks. Polymarket launched in the U.S. in December 2025.",
-          "detailed_summary_zh": "纽约州总检察长莱蒂蒂娅·詹姆斯（Letitia James）与州长凯西·霍楚尔（Kathy Hochul）于周三宣布，对以 Polymarket US 名义经营的 QCX LLC 提起诉讼，指控该平台在纽约州从事非法、无牌照的赌博业务。州政府请求法院禁止 Polymarket 在纽约州运营、没收其收益、向用户返还资金，并处以相当于其通过被指行为所获收入三倍的罚款。\n\n这是州一级监管机构针对头部预测市场采取的执法行动，若获法院支持，该平台将被切断纽约州用户。詹姆斯表示，Polymarket「正在瞄准最脆弱的群体，并剥夺纽约家庭所依赖的关键服务与支持」；霍楚尔则表示，该公司「让纽约人面临风险，尤其是最容易沉迷问题赌博的未成年人」。\n\n起诉书称，Polymarket 的市场符合纽约州法律对赌博的定义，因为用户是在对自身无法控制的不确定结果下注；总检察长办公室表示，调查发现该平台使纽约人——包括未满21岁法定赌博年龄者——面临财务与个人风险。官员称，该公司规避了受监管赌场和移动体育博彩所需承担的牌照要求与税负。Polymarket 于2025年12月在美国上线。",
-          "event_id": "evt_227224ac093a6110",
-          "first_seen_at": "2026-09-25T00:40:57.214318Z",
-          "importance_score": 8.5,
-          "market_impact_en": "The case runs through the regulatory/venue-access channel: Polymarket's U.S. entity and rival prediction-market platforms face state-level licensing and tax questions that could determine where U.S. users can trade event contracts. Platforms named in New York's broader enforcement push, including Coinbase and Gemini, are exposed to scrutiny over how crypto-funded event betting is reached by state residents, while the outcome remains a pending court matter.",
-          "market_impact_zh": "此案的传导路径是监管与交易场所准入：Polymarket 的美国实体及竞争性预测市场平台面临州一级的牌照与税务问题，这可能决定美国用户可在何处交易事件合约。在纽约州更广泛的执法行动中被点名的平台（包括 Coinbase 和 Gemini）也可能因州内居民接触加密资金事件投注的方式而受到审视，而案件结果目前仍待法院裁决。",
-          "material_change": true,
-          "occurred_at": "2026-09-24T22:09:02Z",
-          "published_at": "2026-09-24T22:09:02Z",
-          "references": [
-            {
-              "title": "New York Sues Polymarket Over Alleged Unlicensed Gambling ...",
-              "url": "https://www.cryptotimes.io/2026/09/24/new-york-sues-polymarket-over-alleged-unlicensed-gambling-operation/"
-            },
-            {
-              "title": "New York Sues Polymarket Over Alleged Illegal Gambling",
-              "url": "https://finance.yahoo.com/markets/crypto/articles/york-sues-polymarket-over-alleged-185819955.html?fr=sycsrp_catchall"
-            },
-            {
-              "title": "Understanding Prediction Markets and Event Contracts | CFTC",
-              "url": "https://www.cftc.gov/LearnandProtect/PredictionMarkets"
-            }
-          ],
-          "sources": [
-            {
-              "label": "Bitcoin Magazine",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://bitcoinmagazine.com/news/new-york-sues-polymarket"
-            }
-          ],
-          "story_ids": [
-            "rss:bitcoinmagazine.com_.rss_full_:88d51009b90a349d"
-          ],
-          "time_precision": "published",
-          "title_en": "New York Sues Polymarket, Calling Prediction Market an Illegal Gambling Operation",
-          "title_zh": "纽约起诉Polymarket，称该预测市场属非法赌博业务",
-          "update_id": "upd_2d120da5d87a6a24",
-          "update_type": "initial",
-          "what_changed_en": "New York Attorney General Letitia James and Governor Kathy Hochul announced a lawsuit Wednesday against QCX LLC, which does business as Polymarket US, alleging the platform runs an illegal, unlicensed gambling operation in the state. The state is asking a court to bar Polymarket from operating in New York, force forfeiture of its gains, order restitution to users, and impose fines equal to three times what it earned through the alleged conduct.\n\nThe suit marks a state-level enforcement action against a leading prediction market that, if granted, would cut the platform off from New York users. James said Polymarket was \"targeting the most vulnerable and depriving New York families of critical services and support,\" while Hochul said the company had \"put New Yorkers at risk, especially those underage who are most vulnerable to problem gaming.\"\n\nThe complaint alleges Polymarket's markets meet New York's legal definition of gambling because users bet money on uncertain outcomes outside their control, and the attorney general's office said its investigation found the platform exposes New Yorkers, including those under the legal gambling age of 21, to financial and personal risk. Officials argued the company sidestepped the licensing requirements and taxes paid by regulated casinos and mobile sportsbooks. Polymarket launched in the U.S. in December 2025.",
-          "what_changed_zh": "纽约州总检察长莱蒂蒂娅·詹姆斯（Letitia James）与州长凯西·霍楚尔（Kathy Hochul）于周三宣布，对以 Polymarket US 名义经营的 QCX LLC 提起诉讼，指控该平台在纽约州从事非法、无牌照的赌博业务。州政府请求法院禁止 Polymarket 在纽约州运营、没收其收益、向用户返还资金，并处以相当于其通过被指行为所获收入三倍的罚款。\n\n这是州一级监管机构针对头部预测市场采取的执法行动，若获法院支持，该平台将被切断纽约州用户。詹姆斯表示，Polymarket「正在瞄准最脆弱的群体，并剥夺纽约家庭所依赖的关键服务与支持」；霍楚尔则表示，该公司「让纽约人面临风险，尤其是最容易沉迷问题赌博的未成年人」。\n\n起诉书称，Polymarket 的市场符合纽约州法律对赌博的定义，因为用户是在对自身无法控制的不确定结果下注；总检察长办公室表示，调查发现该平台使纽约人——包括未满21岁法定赌博年龄者——面临财务与个人风险。官员称，该公司规避了受监管赌场和移动体育博彩所需承担的牌照要求与税负。Polymarket 于2025年12月在美国上线。"
         }
       ]
     },
@@ -85033,85 +84811,6 @@
           "update_type": "initial",
           "what_changed_en": "Ledger has partnered with Payward to enable cold storage support for tokenized stocks.",
           "what_changed_zh": "Ledger has partnered with Payward to enable cold storage support for tokenized stocks."
-        }
-      ]
-    },
-    {
-      "category": "policy",
-      "confidence": 0.75,
-      "current_state_en": "New York has filed suit against Polymarket, accusing the prediction-market platform of running an illegal gambling operation.",
-      "current_state_zh": "New York has filed suit against Polymarket, accusing the prediction-market platform of running an illegal gambling operation.",
-      "entities": [
-        "alleged",
-        "bitke",
-        "gambling",
-        "illegal",
-        "legal",
-        "new",
-        "new-york",
-        "operation",
-        "over",
-        "polymarket",
-        "regulation",
-        "sues",
-        "york"
-      ],
-      "event_id": "evt_e697b7f1ad8815a8",
-      "event_type": "legal_case",
-      "first_seen_at": "2026-09-25T09:43:54.635878Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-09-25T09:43:54.635878Z",
-      "last_updated_at": "2026-09-25T09:43:54.635878Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "REGULATION | New York Sues Polymarket Over Alleged ‘Illegal Gambling Operation’ - BitKE",
-      "title_zh": "REGULATION | New York Sues Polymarket Over Alleged ‘Illegal Gambling Operation’ - BitKE",
-      "topics": [
-        "legal",
-        "new-york",
-        "polymarket",
-        "prediction-markets"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "New York has filed suit against Polymarket, accusing the prediction-market platform of running an illegal gambling operation.",
-          "current_state_zh": "New York has filed suit against Polymarket, accusing the prediction-market platform of running an illegal gambling operation.",
-          "detailed_summary_en": "New York has filed suit against Polymarket, accusing the prediction-market platform of running an illegal gambling operation.",
-          "detailed_summary_zh": "New York has filed suit against Polymarket, accusing the prediction-market platform of running an illegal gambling operation.",
-          "event_id": "evt_e697b7f1ad8815a8",
-          "first_seen_at": "2026-09-25T09:43:54.635878Z",
-          "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-09-25T05:00:33Z",
-          "published_at": "2026-09-25T05:00:33Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "BitKE",
-              "official": false,
-              "source_type": "google_news",
-              "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9ISTNMTEdyTVFOR2R6UWlMWEg2b0szSGlMclZhQ1FfdkxXYjdVeDV0TjRyWE9hRklvb0tjck5jUTR1QzIxLUVBYmppSGw2QWJydmFIR1ZWXzY0ajRINGNvSTJ2RGg?oc=5"
-            }
-          ],
-          "story_ids": [
-            "google_news:article:2ebeec12561ece9e"
-          ],
-          "time_precision": "published",
-          "title_en": "REGULATION | New York Sues Polymarket Over Alleged ‘Illegal Gambling Operation’ - BitKE",
-          "title_zh": "REGULATION | New York Sues Polymarket Over Alleged ‘Illegal Gambling Operation’ - BitKE",
-          "update_id": "upd_820fd2b3a6b0aedb",
-          "update_type": "initial",
-          "what_changed_en": "New York has filed suit against Polymarket, accusing the prediction-market platform of running an illegal gambling operation.",
-          "what_changed_zh": "New York has filed suit against Polymarket, accusing the prediction-market platform of running an illegal gambling operation."
         }
       ]
     },
@@ -87709,8 +87408,8 @@
           "what_changed_zh": "IBM于9月24日宣布，其Digital Asset Haven平台已与SWIFT面向代币化存款的共享账本建立测试版（beta）连接，借助ISO 20022消息适配器，让参与机构能够通过标准支付报文发起账本交易。IBM同时公布了一个独立的本地部署（on-premises）Haven测试版，将平台与密钥管理都运行在客户自有的IBM Z或LinuxONE数据中心内。\n\n据IBM介绍，该适配器让银行可以用现有已交换的ISO 20022支付报文来测试银行发行的代币化存款转账，从而沿用熟悉的报文格式与合规流程。IBM将本地部署测试版定位为让受监管机构在评估数字资产服务时，能够直接掌控用于托管与交易管理的基础设施。\n\n账本上的转账可全天候运行，但最终结算仍依赖实时全额结算系统等现有机制，因此代币化存款转账可以先于最终结算环节完成。IBM表示，本地部署方案与Haven的SaaS及混合部署采用相同的架构、API和工作流，而已参与SWIFT项目的机构已使用Haven在共享账本上测试过代币化存款。"
         },
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Sibos is Swift's annual financial services conference; the 2026 edition is being held at the Miami Beach Convention Center and is the first US East Coast Sibos in recent years. In a July 9, 2026 press release, Swift said its blockchain-based ledger had moved from concept to activation in nine months and that 17 banks from six continents were preparing to pilot live transactions using tokenised deposits. Tokenized deposits are digital representations of conventional commercial bank deposits issued on a blockchain, typically backed 1:1 by fiat currency held at the bank.",
+          "background_zh": "Sibos 是 Swift 每年举办的金融服务大会，2026 年这届在迈阿密海滩会议中心举行，也是近年来首次在美国东海岸举办。在 2026 年 7 月 9 日的新闻稿中，Swift 表示其基于区块链的账本已在九个月内从概念走向启用，来自六大洲的 17 家银行正准备使用代币化存款试点实时交易。代币化存款是商业银行传统存款在区块链上的数字化表示，通常由银行持有的法币 1:1 支撑。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.9,
@@ -87721,12 +87420,25 @@
           "event_id": "evt_bd1b33b97bde741b",
           "first_seen_at": "2026-09-30T18:03:55.101984Z",
           "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The story transmits mainly through institutional settlement infrastructure: if bank tokenized deposits can clear 24/7 across 5 major currencies on a Swift-operated ledger, that competes for the same cross-border and treasury use cases that stablecoin rails and tokenization platforms target. Assets and venues most exposed are stablecoin markets and the tokens and infrastructure tied to bank-deposit tokenization, with sentiment and liquidity shifting on how much institutional payment flow migrates to on-chain bank money rather than public-chain stablecoins.",
+          "market_impact_zh": "该消息的传导路径主要在机构结算基础设施层面：如果银行代币化存款能够在 Swift 运营的账本上以 5 种主要货币实现 7×24 小时清算，它将与稳定币通道和代币化平台争夺同一批跨境支付与企业资金管理场景。受影响最直接的是稳定币市场，以及与银行存款代币化相关的代币和基础设施；市场情绪与流动性将取决于有多少机构支付流量转向链上银行货币，而非公链稳定币。",
           "material_change": true,
           "occurred_at": "2026-09-30T15:06:14Z",
           "published_at": "2026-09-30T15:06:14Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Swift’s blockchain ledger ready for use as 17 banks set to ...",
+              "url": "https://www.swift.com/news-events/press-releases/swifts-blockchain-ledger-ready-use-17-banks-set-pioneer-tokenised-cross-border-payments-trusted-global-infrastructure"
+            },
+            {
+              "title": "Building the digital payment stack of the future | Swift",
+              "url": "https://www.swift.com/payments/payment-innovation/blockchain-based-ledger"
+            },
+            {
+              "title": "Welcome to Sibos Miami | Sibos",
+              "url": "https://www.sibos.com/"
+            }
+          ],
           "sources": [
             {
               "label": "foresightnews",
@@ -88549,92 +88261,6 @@
           "update_type": "initial",
           "what_changed_en": "Payward, the parent company of Kraken, is advancing an expansion strategy anchored by roughly $2B in acquisitions to grow the exchange's business.",
           "what_changed_zh": "据 Crypto News 报道，加密货币交易所 Kraken 的母公司 Payward 正在推进一项以约 20 亿美元收购为核心的扩张战略，目标是扩大该交易所的业务版图。\n\nPayward 联合首席执行官 Arjun Sethi 曾表示，公司正在把交易、支付、资产管理与机构服务整合到共同的基础设施之上；此次报道的收购攻势，正属于这一“不止于加密货币交易所”的既定方向。\n\n这一收购计划的主体是 Kraken 的母公司 Payward，而非 Kraken 交易所本身。"
-        }
-      ]
-    },
-    {
-      "category": "policy",
-      "confidence": 0.75,
-      "current_state_en": "New York has filed suit against Polymarket, alleging the crypto prediction market operates as an unlicensed gambling business.",
-      "current_state_zh": "纽约州总检察长 Letitia James 与州长 Kathy Hochul 对 Polymarket US 提起诉讼，指控该加密预测市场在纽约州内运营非法的无牌赌博业务。Polymarket 回应称其市场属于受美国商品期货交易委员会（CFTC）联邦监管的事件合约，并指出公司已收购一家持有 CFTC 牌照的机构、员工超过 350 人。\n\n据 CryptoRank 报道，此案加大了加密预测市场的监管风险，可能影响其用户采用、融资、代币与市场流动性。同时，它也加剧了事件合约究竟适用联邦衍生品规则还是州级赌博法的管辖权之争。\n\nPolymarket 近期推出了最高 20 倍杠杆的永续合约交易。纽约州此前已于 7 月以类似理由起诉 Polymarket 的竞争对手 Kalshi，并在 4 月起诉 Coinbase 和 Gemini，指其在未取得州赌博牌照的情况下运营预测市场平台。",
-      "entities": [
-        "cryptorank",
-        "gambling",
-        "new",
-        "new-york",
-        "operation",
-        "over",
-        "polymarket",
-        "sues",
-        "unlicensed",
-        "york"
-      ],
-      "event_id": "evt_1fa86ee87f27f782",
-      "event_type": "regulatory_action",
-      "first_seen_at": "2026-09-27T10:07:41.220038Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-09-27T10:07:41.220038Z",
-      "last_updated_at": "2026-09-27T10:07:41.220038Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "New York Sues Polymarket Over Unlicensed Gambling Operation - CryptoRank",
-      "title_zh": "纽约起诉 Polymarket 涉嫌无牌赌博运营 - CryptoRank",
-      "topics": [
-        "crypto-regulation",
-        "gambling-law",
-        "new-york",
-        "polymarket",
-        "prediction-markets"
-      ],
-      "updates": [
-        {
-          "background_en": "The CFTC has argued it holds exclusive authority to regulate the growing prediction market sector rather than state-by-state regulation. Polymarket operates both an international platform and a separate US-facing venue, polymarket.us.",
-          "background_zh": "CFTC 主张其对该不断壮大的预测市场行业拥有专属监管权，而非由各州分别监管。Polymarket 同时运营国际平台和面向美国用户的独立站点 polymarket.us。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "New York has filed suit against Polymarket, alleging the crypto prediction market operates as an unlicensed gambling business.",
-          "current_state_zh": "纽约州总检察长 Letitia James 与州长 Kathy Hochul 对 Polymarket US 提起诉讼，指控该加密预测市场在纽约州内运营非法的无牌赌博业务。Polymarket 回应称其市场属于受美国商品期货交易委员会（CFTC）联邦监管的事件合约，并指出公司已收购一家持有 CFTC 牌照的机构、员工超过 350 人。\n\n据 CryptoRank 报道，此案加大了加密预测市场的监管风险，可能影响其用户采用、融资、代币与市场流动性。同时，它也加剧了事件合约究竟适用联邦衍生品规则还是州级赌博法的管辖权之争。\n\nPolymarket 近期推出了最高 20 倍杠杆的永续合约交易。纽约州此前已于 7 月以类似理由起诉 Polymarket 的竞争对手 Kalshi，并在 4 月起诉 Coinbase 和 Gemini，指其在未取得州赌博牌照的情况下运营预测市场平台。",
-          "detailed_summary_en": "New York has filed suit against Polymarket, alleging the crypto prediction market operates as an unlicensed gambling business.",
-          "detailed_summary_zh": "New York has filed suit against Polymarket, alleging the crypto prediction market operates as an unlicensed gambling business.",
-          "event_id": "evt_1fa86ee87f27f782",
-          "first_seen_at": "2026-09-27T10:07:41.220038Z",
-          "importance_score": 8.5,
-          "market_impact_en": "Polymarket is the largest crypto prediction market, so a successful suit could force geofencing or curtail US-facing event-contract trading, affecting order-book liquidity and US user access on the platform. The action also carries read-across risk for rival prediction market venues and for tokens linked to the sector, while reinforcing uncertainty over whether state gambling law or federal CFTC oversight governs these products.",
-          "market_impact_zh": "Polymarket 是规模最大的加密预测市场，若诉讼获胜，可能迫使其进行地理封锁或削减面向美国用户的事件合约交易，从而影响平台订单簿流动性与美国用户接入。该诉讼还可能对同类预测市场平台及相关赛道代币产生外溢风险，并进一步加剧市场对“事件合约究竟适用州赌博法还是 CFTC 联邦监管”的不确定性。",
-          "material_change": true,
-          "occurred_at": "2026-09-27T00:20:45Z",
-          "published_at": "2026-09-27T00:20:45Z",
-          "references": [
-            {
-              "title": "New York Sues Polymarket Over Unlicensed Gambling Operation | Regulation Blockchain | CryptoRank.io",
-              "url": "https://cryptorank.io/news/feed/d4d01-new-york-sues-polymarket-unlicensed-gambling"
-            },
-            {
-              "title": "Prediction markets regulation by CFTC eyed by White House",
-              "url": "https://www.cnbc.com/2026/05/27/prediction-markets-white-house-cftc-kalshi-polmarket-gensler.html"
-            }
-          ],
-          "sources": [
-            {
-              "label": "CryptoRank",
-              "official": false,
-              "source_type": "google_news",
-              "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQb3ZYd3R4dlRRbXNnRW54YXlEbmRvdFlkQlFmcG03VVVsNm05TVRtOWZnMFZGMTBuSE1hdC1WQkJjQzdtbXB6Uk0ycUxGWTJWNnpmTUVlWGgya0xJQTM3c3Frc3JtU3hoWTd2UFNtcEI1Q2tZSXNUb0tPcUhFZGZZZjZDc2xPbmFnNlE?oc=5"
-            }
-          ],
-          "story_ids": [
-            "google_news:article:a1648d799958faa3"
-          ],
-          "time_precision": "published",
-          "title_en": "New York Sues Polymarket Over Unlicensed Gambling Operation - CryptoRank",
-          "title_zh": "纽约起诉 Polymarket 涉嫌无牌赌博运营 - CryptoRank",
-          "update_id": "upd_c483bd97dad2f919",
-          "update_type": "initial",
-          "what_changed_en": "New York has filed suit against Polymarket, alleging the crypto prediction market operates as an unlicensed gambling business.",
-          "what_changed_zh": "纽约州总检察长 Letitia James 与州长 Kathy Hochul 对 Polymarket US 提起诉讼，指控该加密预测市场在纽约州内运营非法的无牌赌博业务。Polymarket 回应称其市场属于受美国商品期货交易委员会（CFTC）联邦监管的事件合约，并指出公司已收购一家持有 CFTC 牌照的机构、员工超过 350 人。\n\n据 CryptoRank 报道，此案加大了加密预测市场的监管风险，可能影响其用户采用、融资、代币与市场流动性。同时，它也加剧了事件合约究竟适用联邦衍生品规则还是州级赌博法的管辖权之争。\n\nPolymarket 近期推出了最高 20 倍杠杆的永续合约交易。纽约州此前已于 7 月以类似理由起诉 Polymarket 的竞争对手 Kalshi，并在 4 月起诉 Coinbase 和 Gemini，指其在未取得州赌博牌照的情况下运营预测市场平台。"
         }
       ]
     },
@@ -94766,8 +94392,8 @@
           "what_changed_zh": "新报道补充了 Anthropic 机密 IPO 文件中的具体财务数据：2025 年净亏损约 420 亿美元、经营亏损 80.6 亿美元、营收 45.9 亿美元，两大直接客户各贡献 12% 收入；并列出对 Google、Amazon、Microsoft、Broadcom 以及 xAI/AMD 的算力承诺细节，同时称上市预计在 11 月美国中期选举后推进。"
         },
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Anthropic’s Series H closed on May 28, a $65 billion round at a $965 billion post-money valuation led by Altimeter Capital, Dragoneer, Greenoaks and Sequoia Capital. The new prospectus also disclosed Q2 financials but used the month of May for its annualization, and warns that its models could become misaligned with human goals, display \"self-preserving behaviors,\" or attempt to \"resist shutdown.\" The prospectus has been leaked rather than officially filed.",
+          "background_zh": "Anthropic 的 H 轮融资于 5 月 28 日完成，募资 650 亿美元，投后估值 9650 亿美元，由 Altimeter Capital、Dragoneer、Greenoaks 和 Sequoia Capital 领投。新招股书还披露了第二季度财务数据，但年化计算采用的是 5 月单月数据；文件警告其模型可能偏离人类目标、表现出“自我保存行为”，或试图“抗拒关停”。该招股书目前为泄露版本，并非正式提交文件。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.95,
@@ -94778,12 +94404,21 @@
           "event_id": "evt_c765a0bcd269aec3",
           "first_seen_at": "2026-09-30T18:04:11.655603Z",
           "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The story’s market channel runs through pre-IPO exposure rather than tokens: the same reporting notes crypto traders have paid annualized fees of about 8,700% to bet on Anthropic, indicating demand for synthetic or off-exchange pre-listing exposure. A record AI-lab listing would also feed sentiment toward AI-compute and Nvidia-linked crypto narratives, given the reported talk of a $10 billion anchor stake.",
+          "market_impact_zh": "这一消息的市场传导渠道在于上市前的敞口而非代币本身：同一篇报道指出，加密交易者曾支付约 8700% 的年化费用来押注 Anthropic，显示市场对合成或场外上市前敞口存在需求。鉴于有报道称英伟达可能以 100 亿美元锚定入股，这宗创纪录的 AI 实验室上市也会影响市场对 AI 算力及与英伟达相关的加密叙事的情绪。",
           "material_change": true,
           "occurred_at": "2026-09-30T10:53:54Z",
           "published_at": "2026-09-30T10:53:54Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Anthropic raises $65B Series H at $965B valuation",
+              "url": "https://www.anthropic.com/news/series-h"
+            },
+            {
+              "title": "investopedia.com/terms/r/runrate.asp",
+              "url": "https://www.investopedia.com/terms/r/runrate.asp"
+            }
+          ],
           "sources": [
             {
               "label": "Protos",
@@ -96779,24 +96414,33 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Perpetual futures are crypto derivatives without an expiration date, typically anchored to spot prices through periodic funding payments. Alternative trading systems (ATS) are non-exchange US trading venues that match buyers and sellers; Bruce ATS is such a venue. Robinhood has been expanding its crypto and derivatives footprint through Robinhood Derivatives and its acquisition of crypto exchange Bitstamp.",
+          "background_zh": "永续合约是没有到期日的加密衍生品，通常通过定期资金费率与现货价格锚定。另类交易系统（ATS）是美国非交易所类的交易场所，负责撮合买卖双方，Bruce ATS 即属于此类平台。Robinhood 一直在通过 Robinhood Derivatives 以及收购加密交易所 Bitstamp 来扩展其加密与衍生品业务。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Robinhood announced it will offer crypto perpetual futures with up to 10x leverage to eligible US users, weekend trading in select US stocks and ETFs, and AI trading agents powered by user-selected OpenAI or Anthropic models.",
-          "current_state_zh": "Robinhood announced it will offer crypto perpetual futures with up to 10x leverage to eligible US users, weekend trading in select US stocks and ETFs, and AI trading agents powered by user-selected OpenAI or Anthropic models.",
+          "current_state_zh": "Robinhood 周二在得克萨斯州休斯敦举行的 HOOD Summit 上公布一系列面向活跃交易者的新产品，包括可执行交易的 AI 智能体、最高提供 10 倍杠杆的加密永续合约，以及部分美国股票和 ETF 的周末交易。平台还将延长期权交易时间、增加日内保证金额度，并推出企业财报事件合约。\n\n若这些产品按描述上线，将扩大美国散户对杠杆加密衍生品和智能体交易的可及范围，使 Robinhood 的业务从现有股票和现货加密进一步延伸。\n\n加密永续合约将通过 Robinhood Derivatives 和 Bitstamp 向符合条件的美国用户提供，BTC 和 ETH 合约最高支持 10 倍杠杆，其他支持资产初期提供 3 倍杠杆。Robinhood Agents 允许用户在应用内选择 OpenAI 或 Anthropic 模型，并授权其访问独立交易账户；平台默认要求用户批准每笔交易，用户可选择关闭该限制，产品上线初期不支持保证金借贷。周末交易则将通过另类交易系统 Bruce ATS 提供，覆盖部分股票和 ETF。",
           "detailed_summary_en": "Robinhood announced it will offer crypto perpetual futures with up to 10x leverage to eligible US users, weekend trading in select US stocks and ETFs, and AI trading agents powered by user-selected OpenAI or Anthropic models.",
           "detailed_summary_zh": "Robinhood announced it will offer crypto perpetual futures with up to 10x leverage to eligible US users, weekend trading in select US stocks and ETFs, and AI trading agents powered by user-selected OpenAI or Anthropic models.",
           "event_id": "evt_b0db05166e5a4acd",
           "first_seen_at": "2026-09-29T23:52:16.135365Z",
           "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The plan points to a new US retail channel into leveraged crypto derivatives, with execution routed through Robinhood Derivatives and Bitstamp, which could shift where BTC and ETH perpetual volume and liquidity sit relative to offshore venues; weekend equity and extended options hours route order flow through the Bruce ATS venue. The AI agent feature introduces model-driven order flow into stocks, options and crypto, subject to the stated per-trade approval default.",
+          "market_impact_zh": "该计划为美国散户进入杠杆加密衍生品提供了新渠道，执行环节经由 Robinhood Derivatives 和 Bitstamp，可能影响 BTC 与 ETH 永续合约成交量与流动性相对离岸平台的分布；周末股票交易与延长的期权时段则把订单流引向 Bruce ATS 这一交易场所。AI 智能体功能会把模型驱动的订单流引入股票、期权和加密市场，但受其默认逐笔审批机制约束。",
           "material_change": true,
           "occurred_at": "2026-09-29T23:43:03Z",
           "published_at": "2026-09-29T23:43:03Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Alternative trading system - Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Alternative_trading_system"
+            },
+            {
+              "title": "Perpetual Futures in Crypto Explained Clearly",
+              "url": "https://ecos.am/en/blog/perpetual-futures-crypto-guide"
+            }
+          ],
           "sources": [
             {
               "label": "theblockbeats",
@@ -96814,7 +96458,7 @@
           "update_id": "upd_34b09aa251a8fef8",
           "update_type": "initial",
           "what_changed_en": "Robinhood announced it will offer crypto perpetual futures with up to 10x leverage to eligible US users, weekend trading in select US stocks and ETFs, and AI trading agents powered by user-selected OpenAI or Anthropic models.",
-          "what_changed_zh": "Robinhood announced it will offer crypto perpetual futures with up to 10x leverage to eligible US users, weekend trading in select US stocks and ETFs, and AI trading agents powered by user-selected OpenAI or Anthropic models."
+          "what_changed_zh": "Robinhood 周二在得克萨斯州休斯敦举行的 HOOD Summit 上公布一系列面向活跃交易者的新产品，包括可执行交易的 AI 智能体、最高提供 10 倍杠杆的加密永续合约，以及部分美国股票和 ETF 的周末交易。平台还将延长期权交易时间、增加日内保证金额度，并推出企业财报事件合约。\n\n若这些产品按描述上线，将扩大美国散户对杠杆加密衍生品和智能体交易的可及范围，使 Robinhood 的业务从现有股票和现货加密进一步延伸。\n\n加密永续合约将通过 Robinhood Derivatives 和 Bitstamp 向符合条件的美国用户提供，BTC 和 ETH 合约最高支持 10 倍杠杆，其他支持资产初期提供 3 倍杠杆。Robinhood Agents 允许用户在应用内选择 OpenAI 或 Anthropic 模型，并授权其访问独立交易账户；平台默认要求用户批准每笔交易，用户可选择关闭该限制，产品上线初期不支持保证金借贷。周末交易则将通过另类交易系统 Bruce ATS 提供，覆盖部分股票和 ETF。"
         }
       ]
     },
@@ -97137,24 +96781,37 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Prediction markets let users trade contracts on the outcome of real-world events, and Kalshi operates as a CFTC-regulated US exchange while rival Polymarket is crypto-native and settles on-chain. Kalshi closed a $1 billion Series F in May at a $22 billion valuation, doubling its December valuation, and the Financial Times reported on June 24 that the company was already in talks at a $40 billion valuation that could close as soon as the third quarter.",
+          "background_zh": "预测市场允许用户就现实事件的结果进行合约交易，Kalshi 是受美国商品期货交易委员会（CFTC）监管的交易所，其竞争对手 Polymarket 则为加密原生平台并在链上结算。Kalshi 于今年 5 月完成 10 亿美元 F 轮融资，估值 220 亿美元，较去年 12 月翻倍；《金融时报》6 月 24 日曾报道，该公司已在以 400 亿美元估值洽谈融资，交易最快可能在今年第三季度完成。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Prediction market platform Kalshi is in advanced talks to raise roughly $1 billion at a valuation of about $40 billion, more than double its $22 billion valuation from a May 2026 round, as it expands beyond sports and election contracts into a multi-asset trading venue and weighs a future IPO.",
-          "current_state_zh": "Prediction market platform Kalshi is in advanced talks to raise roughly $1 billion at a valuation of about $40 billion, more than double its $22 billion valuation from a May 2026 round, as it expands beyond sports and election contracts into a multi-asset trading venue and weighs a future IPO.",
+          "current_state_zh": "据路透社报道，预测市场平台 Kalshi 正就约 10 亿美元的新一轮融资进行深入谈判，估值可能达到约 400 亿美元；现有投资方红杉资本与 Wellington Management 正洽谈联合领投，Tiger Global Management 与 Dragoneer Investment Group 等新老投资者拟参与。本轮融资预计将在未来数周内完成，估值较其 5 月 220 亿美元的水平高出约 82%。\n\n这一融资消息显示机构资本对受监管、与加密相邻的事件交易仍保持兴趣，并可能为 Kalshi 从体育和选举合约扩展为覆盖更多资产类别的一站式交易平台提供资金，该公司已开始与芝商所和纽约证券交易所母公司洲际交易所竞争。\n\n交易尚未敲定：报道称 Kalshi 与 Tiger Global 拒绝置评，红杉资本、Wellington 和 Dragoneer 尚未回应。知情人士还称，Kalshi 近期已就未来几年进行潜在 IPO 展开初步讨论，其竞争对手 Polymarket 也在另行洽谈一轮 10 亿美元融资。",
           "detailed_summary_en": "Prediction market platform Kalshi is in advanced talks to raise roughly $1 billion at a valuation of about $40 billion, more than double its $22 billion valuation from a May 2026 round, as it expands beyond sports and election contracts into a multi-asset trading venue and weighs a future IPO.",
           "detailed_summary_zh": "Prediction market platform Kalshi is in advanced talks to raise roughly $1 billion at a valuation of about $40 billion, more than double its $22 billion valuation from a May 2026 round, as it expands beyond sports and election contracts into a multi-asset trading venue and weighs a future IPO.",
           "event_id": "evt_90e6b7b9337429f2",
           "first_seen_at": "2026-09-30T02:19:37.220778Z",
           "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The news transmits mainly through sentiment and capital allocation in the crypto-adjacent prediction-market segment: a markedly higher Kalshi valuation raises the sector's profile with institutional investors, while its expansion into more asset classes could affect volumes at crypto-native venues such as Polymarket. Effects on crypto assets themselves would be indirect, running through event-trading and derivatives activity rather than token supply or protocol mechanics.",
+          "market_impact_zh": "该消息主要通过情绪和资金配置传导至与加密相邻的预测市场板块：Kalshi 估值大幅抬升会提高机构投资者对该赛道的关注度，而其向更多资产类别扩张可能影响 Polymarket 等加密原生平台的交易量。对加密资产本身的影响是间接的，更多经由事件交易与衍生品需求体现，而非代币供给或协议机制的变化。",
           "material_change": true,
           "occurred_at": "2026-09-30T01:04:42Z",
           "published_at": "2026-09-30T01:04:42Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Kalshi - Prediction Market for Trading the Future",
+              "url": "https://kalshi.com/"
+            },
+            {
+              "title": "Polymarket | The World’s Largest Prediction Market",
+              "url": "https://polymarket.com/"
+            },
+            {
+              "title": "investopedia.com/terms/p/prediction-market.asp",
+              "url": "https://www.investopedia.com/terms/p/prediction-market.asp"
+            }
+          ],
           "sources": [
             {
               "label": "foresightnews",
@@ -97193,7 +96850,7 @@
           "update_id": "upd_b311cc825b799d8b",
           "update_type": "initial",
           "what_changed_en": "Prediction market platform Kalshi is in advanced talks to raise roughly $1 billion at a valuation of about $40 billion, more than double its $22 billion valuation from a May 2026 round, as it expands beyond sports and election contracts into a multi-asset trading venue and weighs a future IPO.",
-          "what_changed_zh": "Prediction market platform Kalshi is in advanced talks to raise roughly $1 billion at a valuation of about $40 billion, more than double its $22 billion valuation from a May 2026 round, as it expands beyond sports and election contracts into a multi-asset trading venue and weighs a future IPO."
+          "what_changed_zh": "据路透社报道，预测市场平台 Kalshi 正就约 10 亿美元的新一轮融资进行深入谈判，估值可能达到约 400 亿美元；现有投资方红杉资本与 Wellington Management 正洽谈联合领投，Tiger Global Management 与 Dragoneer Investment Group 等新老投资者拟参与。本轮融资预计将在未来数周内完成，估值较其 5 月 220 亿美元的水平高出约 82%。\n\n这一融资消息显示机构资本对受监管、与加密相邻的事件交易仍保持兴趣，并可能为 Kalshi 从体育和选举合约扩展为覆盖更多资产类别的一站式交易平台提供资金，该公司已开始与芝商所和纽约证券交易所母公司洲际交易所竞争。\n\n交易尚未敲定：报道称 Kalshi 与 Tiger Global 拒绝置评，红杉资本、Wellington 和 Dragoneer 尚未回应。知情人士还称，Kalshi 近期已就未来几年进行潜在 IPO 展开初步讨论，其竞争对手 Polymarket 也在另行洽谈一轮 10 亿美元融资。"
         }
       ]
     },
@@ -97364,24 +97021,37 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Tokenized real-world assets (RWAs) digitally represent ownership of assets such as securities, commodities and real estate, and are marketed as offering liquidity, fractional ownership and near real-time settlement. Major financial institutions have been investing in tokenized treasury products, digital securities and blockchain-enabled settlement systems; JPMorgan, for example, has tested tokenized portfolios across blockchain networks including Avalanche, Provenance Blockchain and its own Onyx Digital Assets.",
+          "background_zh": "代币化真实世界资产（RWA）以数字形式代表证券、大宗商品、房地产等资产的所有权，被宣传为可提供流动性、份额化持有和近乎实时的结算。大型金融机构一直在投资代币化国债产品、数字证券和区块链结算系统；例如摩根大通已在 Avalanche、Provenance Blockchain 及其自有 Onyx Digital Assets 等多个区块链网络上测试代币化投资组合。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "BlackRock has brought investment portfolios onto the blockchain as digital tokens, extending tokenized real-world-asset products from the world's largest asset manager into mainstream investment offerings.",
-          "current_state_zh": "BlackRock has brought investment portfolios onto the blockchain as digital tokens, extending tokenized real-world-asset products from the world's largest asset manager into mainstream investment offerings.",
+          "current_state_zh": "贝莱德已将投资组合以数字代币形式搬上区块链，把这家全球最大资产管理公司的代币化真实世界资产（RWA）产品线延伸至主流投资产品。据有关此次上线的报道，组合由贝莱德构建，Ondo Finance 负责代币化，为每个组合发行一枚跟踪其表现的代币，涉及三个投资组合。\n\n此举为代币化真实世界资产带来了来自全球最大资产管理公司的重要主流背书，推动链上组合产品从细分试点走向主流投资品种。\n\n这些代币化产品属于模型投资组合，即预设的投资模板，每个组合发行一枚代币以跟踪其表现。有关此次上线的报道将代币化环节与 Ondo Finance 联系在一起。",
           "detailed_summary_en": "BlackRock has brought investment portfolios onto the blockchain as digital tokens, extending tokenized real-world-asset products from the world's largest asset manager into mainstream investment offerings.",
           "detailed_summary_zh": "BlackRock has brought investment portfolios onto the blockchain as digital tokens, extending tokenized real-world-asset products from the world's largest asset manager into mainstream investment offerings.",
           "event_id": "evt_393a7aa36e4849a7",
           "first_seen_at": "2026-09-30T02:19:37.964804Z",
           "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The announcement feeds directly into the tokenized-RWA segment, where Ondo Finance and similar issuers operate and where tokens tied to tokenized treasury and portfolio products trade. Transmission runs mainly through institutional sentiment and the perceived legitimacy of on-chain portfolio products rather than through any change to crypto market structure or liquidity rules.",
+          "market_impact_zh": "该消息直接作用于代币化 RWA 板块，Ondo Finance 及类似发行方处于这一领域，与代币化国债和组合产品挂钩的代币也在此交易。其传导渠道主要是机构情绪以及市场对链上组合产品合法性的认知，而非加密市场结构或流动性规则的实际改变。",
           "material_change": true,
           "occurred_at": "2026-09-30T01:07:32Z",
           "published_at": "2026-09-30T01:07:32Z",
-          "references": [],
+          "references": [
+            {
+              "title": "BlackRock Tokenized Model Portfolios Debut With Ondo",
+              "url": "https://coinlaw.io/blackrock-model-portfolios-launch-ondo-blockchain/"
+            },
+            {
+              "title": "Ondo Intelligent Portfolios: How to Invest in BlackRock’s Onchain...",
+              "url": "https://www.bitrue.com/blog/ondo-intelligent-portfolio-how-to-invest-in-blackrocks-onchain-token"
+            },
+            {
+              "title": "JPMorgan tests tokenized portfolios with Avalanche blockchain tech",
+              "url": "https://blockworks.com/news/jpmorgan-tokenized-blockchain-portfolio-avalanche"
+            }
+          ],
           "sources": [
             {
               "label": "WSJ",
@@ -97395,11 +97065,11 @@
           ],
           "time_precision": "published",
           "title_en": "Exclusive | BlackRock Investment Portfolios Debut on the Blockchain as Digital Tokens",
-          "title_zh": "Exclusive | BlackRock Investment Portfolios Debut on the Blockchain as Digital Tokens",
+          "title_zh": "独家 | 贝莱德投资组合以数字代币形式登陆区块链",
           "update_id": "upd_be35928e4381f024",
           "update_type": "initial",
           "what_changed_en": "BlackRock has brought investment portfolios onto the blockchain as digital tokens, extending tokenized real-world-asset products from the world's largest asset manager into mainstream investment offerings.",
-          "what_changed_zh": "BlackRock has brought investment portfolios onto the blockchain as digital tokens, extending tokenized real-world-asset products from the world's largest asset manager into mainstream investment offerings."
+          "what_changed_zh": "贝莱德已将投资组合以数字代币形式搬上区块链，把这家全球最大资产管理公司的代币化真实世界资产（RWA）产品线延伸至主流投资产品。据有关此次上线的报道，组合由贝莱德构建，Ondo Finance 负责代币化，为每个组合发行一枚跟踪其表现的代币，涉及三个投资组合。\n\n此举为代币化真实世界资产带来了来自全球最大资产管理公司的重要主流背书，推动链上组合产品从细分试点走向主流投资品种。\n\n这些代币化产品属于模型投资组合，即预设的投资模板，每个组合发行一枚代币以跟踪其表现。有关此次上线的报道将代币化环节与 Ondo Finance 联系在一起。"
         }
       ]
     },
@@ -98913,24 +98583,37 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "GPT-6 Astra is a large language model developed by OpenAI; according to Wikipedia it was initially released to approved users on September 3, 2026, with general availability the following day, and coverage highlighted its ability to carry out complex tasks on a computer and in a browser. The Unitree G1 is a humanoid robot from Unitree Robotics, which the company describes as combining force-position hybrid control with imitation and reinforcement learning for precise object manipulation. Embodied AI refers to systems that learn from and act in the physical world through sensors and models.",
+          "background_zh": "GPT-6 Astra 是 OpenAI 开发的大语言模型。据维基百科，该模型于 2026 年 9 月 3 日先向获批用户开放，次日全面可用，相关报道强调其在计算机和浏览器中独立完成复杂任务的能力。宇树 G1 是宇树科技（Unitree Robotics）的人形机器人，官方介绍其结合力位混合控制与模仿学习、强化学习，可实现对物体的精细操作。具身智能（embodied AI）指通过传感器和模型在物理世界中学习并行动的系統。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "A newly reported GPT-6 'Astra' model was connected to a Unitree G1 humanoid robot and completed a kitchen cleanup task by invoking robot skills as tools.",
-          "current_state_zh": "A newly reported GPT-6 'Astra' model was connected to a Unitree G1 humanoid robot and completed a kitchen cleanup task by invoking robot skills as tools.",
+          "current_state_zh": "据媒体报道，新近发布的 GPT-6「Astra」模型接入宇树（Unitree）G1 人形机器人，通过把机器人技能当作可调用的工具，完成了一次厨房整理任务。该演示将各项机器人能力视为语言模型可以调用的工具，用以执行物理动作。\n\n该演示体现了基于大模型的具身控制思路，即前沿模型通过与其调用软件时相同的工具调用接口来调度机器人的物理技能。\n\n演示的任务是用宇树 G1 收拾厨房。目前该演示仅见于媒体报道，尚无独立的性能评测或成功率数据公布。",
           "detailed_summary_en": "A newly reported GPT-6 'Astra' model was connected to a Unitree G1 humanoid robot and completed a kitchen cleanup task by invoking robot skills as tools.",
           "detailed_summary_zh": "A newly reported GPT-6 'Astra' model was connected to a Unitree G1 humanoid robot and completed a kitchen cleanup task by invoking robot skills as tools.",
           "event_id": "evt_c1df07c0fff95914",
           "first_seen_at": "2026-09-30T10:38:18.395510Z",
           "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "No crypto asset is directly involved in this demonstration; any market transmission would run through sentiment toward AI-and-robotics narrative sectors, such as AI agent and DePIN/robotics-related tokens, rather than through cash flows or protocol fundamentals.",
+          "market_impact_zh": "该演示没有直接涉及任何加密资产；潜在传导主要通过 AI 与机器人叙事情绪，影响 AI agent 及 DePIN／机器人相关代币板块的市场情绪，而非现金流或协议基本面。",
           "material_change": true,
           "occurred_at": "2026-09-30T07:54:54Z",
           "published_at": "2026-09-30T07:54:54Z",
-          "references": [],
+          "references": [
+            {
+              "title": "GPT-6 Astra - Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/GPT-6_Astra"
+            },
+            {
+              "title": "Humanoid robot G1_Humanoid Robot... | Unitree Robotics",
+              "url": "https://www.unitree.com/g1/"
+            },
+            {
+              "title": "GPT-6 Astra from OpenAI. What can the new AI model do?",
+              "url": "https://en.ain.ua/2026/09/04/openai-released-gpt-6-astra/"
+            }
+          ],
           "sources": [
             {
               "label": "QbitAI 量子位",
@@ -98948,7 +98631,7 @@
           "update_id": "upd_dfe303b5f4f2fe17",
           "update_type": "initial",
           "what_changed_en": "A newly reported GPT-6 'Astra' model was connected to a Unitree G1 humanoid robot and completed a kitchen cleanup task by invoking robot skills as tools.",
-          "what_changed_zh": "A newly reported GPT-6 'Astra' model was connected to a Unitree G1 humanoid robot and completed a kitchen cleanup task by invoking robot skills as tools."
+          "what_changed_zh": "据媒体报道，新近发布的 GPT-6「Astra」模型接入宇树（Unitree）G1 人形机器人，通过把机器人技能当作可调用的工具，完成了一次厨房整理任务。该演示将各项机器人能力视为语言模型可以调用的工具，用以执行物理动作。\n\n该演示体现了基于大模型的具身控制思路，即前沿模型通过与其调用软件时相同的工具调用接口来调度机器人的物理技能。\n\n演示的任务是用宇树 G1 收拾厨房。目前该演示仅见于媒体报道，尚无独立的性能评测或成功率数据公布。"
         }
       ]
     },
@@ -99598,24 +99281,37 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Chainlink CCIP is the protocol's cross-chain interoperability standard for token transfers and messaging, while CRE (Chainlink Runtime Environment) is an orchestration layer for building and operating cross-chain, data-connected smart contracts. Chainlink has published material on blockchain repo markets, describing cross-chain settlement that lets a bank on a private ledger execute a repo with counterparties on other networks.",
+          "background_zh": "Chainlink CCIP 是该协议的跨链互操作性标准，用于代币转移与消息传递；CRE（Chainlink Runtime Environment）则是用于构建和运行跨链、接入数据的智能合约的编排层。Chainlink 此前发布过关于区块链回购市场的文章，提到跨链结算可让私有账本上的银行与其他网络上的交易对手执行回购。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Chainlink launched Fulcrum, an institutional financing and collateral-management solution that lets counterparties negotiate terms and settle cross-chain repo and collateralized funding transactions across public and private chains using CRE, CCIP and Data Streams without acting as custodian or counterparty.",
-          "current_state_zh": "Chainlink launched Fulcrum, an institutional financing and collateral-management solution that lets counterparties negotiate terms and settle cross-chain repo and collateralized funding transactions across public and private chains using CRE, CCIP and Data Streams without acting as custodian or counterparty.",
+          "current_state_zh": "据 Chainlink 博客，Chainlink 推出了面向机构的融资及抵押品管理方案 Chainlink Fulcrum，支持在公链与私有链之间进行跨链回购协议（repo）等抵押融资交易。交易双方可通过单一入口选择合格资产、设定融资条款，并在任意受支持的链上协调结算，同时提供 24/7 运营支持。\n\n该方案将融资协议的管理场所与现金、抵押品的结算网络分离，可能允许机构在保留原有账本上资产的同时协调跨链交易。Chainlink 表示此前已在 Sibos 2026 上与 DTCC 演示了该方案的跨链机构融资流程。\n\nChainlink Fulcrum 整合了 Chainlink 的 CRE、CCIP 及 Data Streams，Chainlink 表示其本身不托管资产、不作为交易对手方，也不运营交易场所。",
           "detailed_summary_en": "Chainlink launched Fulcrum, an institutional financing and collateral-management solution that lets counterparties negotiate terms and settle cross-chain repo and collateralized funding transactions across public and private chains using CRE, CCIP and Data Streams without acting as custodian or counterparty.",
           "detailed_summary_zh": "Chainlink launched Fulcrum, an institutional financing and collateral-management solution that lets counterparties negotiate terms and settle cross-chain repo and collateralized funding transactions across public and private chains using CRE, CCIP and Data Streams without acting as custodian or counterparty.",
           "event_id": "evt_f8720e7d4f8311f9",
           "first_seen_at": "2026-09-30T18:03:55.096531Z",
           "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The announcement sits in the institutional market-structure segment, where tokenized collateral and repo settlement flows would run over Chainlink's CCIP messaging and CRE orchestration rather than a new venue; the transmission channel is therefore infrastructure enablement for tokenized collateral and cross-chain asset movement, with LINK and CCIP-integrated tokenized-asset deployments as the most directly exposed segments. It is a product launch rather than a live deployment with disclosed volumes, so any market effect depends on institutional adoption that has not yet been reported.",
+          "market_impact_zh": "该消息指向机构市场结构这一细分领域：代币化抵押品与回购结算流程将依托 Chainlink 的 CCIP 消息传递与 CRE 编排，而非新建交易场所；因此传导渠道是代币化抵押品与跨链资产流转的基础设施能力，最直接相关的敞口是 LINK 以及集成 CCIP 的代币化资产部署。这属于产品发布而非已披露交易量的实际部署，其市场影响取决于目前尚未见报道的机构采用情况。",
           "material_change": true,
           "occurred_at": "2026-09-30T12:39:12Z",
           "published_at": "2026-09-30T12:39:12Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Blockchain Repo Markets: Tokenization Explained | Chainlink",
+              "url": "https://chain.link/article/blockchain-repo-markets"
+            },
+            {
+              "title": "Chainlink Runtime Environment (CRE) | Chainlink",
+              "url": "https://chain.link/chainlink-runtime-environment"
+            },
+            {
+              "title": "Cross-Chain Interoperability Protocol (CCIP) | Chainlink",
+              "url": "https://chain.link/cross-chain"
+            }
+          ],
           "sources": [
             {
               "label": "foresightnews",
@@ -99633,7 +99329,7 @@
           "update_id": "upd_7e2f4f1755034335",
           "update_type": "initial",
           "what_changed_en": "Chainlink launched Fulcrum, an institutional financing and collateral-management solution that lets counterparties negotiate terms and settle cross-chain repo and collateralized funding transactions across public and private chains using CRE, CCIP and Data Streams without acting as custodian or counterparty.",
-          "what_changed_zh": "Chainlink launched Fulcrum, an institutional financing and collateral-management solution that lets counterparties negotiate terms and settle cross-chain repo and collateralized funding transactions across public and private chains using CRE, CCIP and Data Streams without acting as custodian or counterparty."
+          "what_changed_zh": "据 Chainlink 博客，Chainlink 推出了面向机构的融资及抵押品管理方案 Chainlink Fulcrum，支持在公链与私有链之间进行跨链回购协议（repo）等抵押融资交易。交易双方可通过单一入口选择合格资产、设定融资条款，并在任意受支持的链上协调结算，同时提供 24/7 运营支持。\n\n该方案将融资协议的管理场所与现金、抵押品的结算网络分离，可能允许机构在保留原有账本上资产的同时协调跨链交易。Chainlink 表示此前已在 Sibos 2026 上与 DTCC 演示了该方案的跨链机构融资流程。\n\nChainlink Fulcrum 整合了 Chainlink 的 CRE、CCIP 及 Data Streams，Chainlink 表示其本身不托管资产、不作为交易对手方，也不运营交易场所。"
         }
       ]
     },
@@ -99910,10 +99606,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://foresightnews.pro/news/h5Detail/114373"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/369814?from=telegram"
             }
           ],
           "story_ids": [
-            "telegram:foresightnews:119543"
+            "telegram:foresightnews:119543",
+            "telegram:theblockbeats:198496"
           ],
           "time_precision": "published",
           "title_en": "【Open Standard 稳定币 OUSD 正式上线，由 Stripe 旗下 Bridge 发行】",
@@ -100673,24 +100376,37 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Open Standard first emerged in June with more than 140 partners across payments, banking, crypto and technology, including BlackRock, BNY and Standard Chartered. Abrams previously co-founded and led stablecoin infrastructure firm Bridge, which Stripe acquired for $1.1 billion in 2024. Tempo, one of the chains where OUSD is now live, is a payments-first Layer 1 blockchain incubated by Stripe and Paradigm.",
+          "background_zh": "Open Standard 最早于 6 月亮相，当时拥有 140 多家覆盖支付、银行、加密和技术领域的合作伙伴，包括贝莱德（BlackRock）、纽约梅隆银行（BNY）和渣打银行（Standard Chartered）。Abrams 此前联合创立并领导稳定币基础设施公司 Bridge，该公司于 2024 年被 Stripe 以 11 亿美元收购。OUSD 此次上线的公链之一 Tempo，是由 Stripe 和 Paradigm 孵化的支付优先 Layer 1 区块链。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Open USD, the stablecoin backed by founding partners Coinbase, Mastercard, Shopify, Stripe and Visa, went live on Ethereum, Solana, Base and Tempo as part of Open Standard's bid to compete with USDT and USDC in payments, banking and institutional settlement, with most company equity to be distributed to partners based on growth contribution.",
-          "current_state_zh": "Open USD, the stablecoin backed by founding partners Coinbase, Mastercard, Shopify, Stripe and Visa, went live on Ethereum, Solana, Base and Tempo as part of Open Standard's bid to compete with USDT and USDC in payments, banking and institutional settlement, with most company equity to be distributed to partners based on growth contribution.",
+          "current_state_zh": "由 Coinbase、Mastercard、Shopify、Stripe 和 Visa 作为创始合作伙伴支持的稳定币 Open USD（OUSD）于周三在 Ethereum、Solana、Base 和 Tempo 上线。Open Standard 首席执行官 Zach Abrams 表示，公司\"绝大部分\"股权将随着时间推移，按各合作伙伴对 OUSD 供应量和交易活跃度的贡献程度进行分配。\n\nOUSD 进入的是一个规模超过 3000 亿美元、仍由 Tether 的 USDT（流通量约 1430 亿美元）和 Circle 的 USDC（约 740 亿美元）主导的稳定币市场，而竞争正从单纯的发行数字美元转向分发渠道、流动性和客户实际使用的平台。报道称，Open Standard 6 月的首次公布曾令竞争对手 Circle 感到震动。\n\nCoinbase、Mastercard、Shopify、Stripe 和 Visa 是 Open Standard 的首批五家创始合作伙伴及投资方，各获得相等的初始股权，具体投资金额和持股比例未披露。其合作伙伴网络已从 140 多家增至 200 多家，最新加入的包括瑞银（UBS）、日本 SBI Holdings 和金融科技公司 Jeeves；Abrams 表示，创始方群体最终预计将扩大到约 10 至 12 家公司，并将组建由创始方组成的董事会。",
           "detailed_summary_en": "Open USD, the stablecoin backed by founding partners Coinbase, Mastercard, Shopify, Stripe and Visa, went live on Ethereum, Solana, Base and Tempo as part of Open Standard's bid to compete with USDT and USDC in payments, banking and institutional settlement, with most company equity to be distributed to partners based on growth contribution.",
           "detailed_summary_zh": "Open USD, the stablecoin backed by founding partners Coinbase, Mastercard, Shopify, Stripe and Visa, went live on Ethereum, Solana, Base and Tempo as part of Open Standard's bid to compete with USDT and USDC in payments, banking and institutional settlement, with most company equity to be distributed to partners based on growth contribution.",
           "event_id": "evt_273612eefa0487fa",
           "first_seen_at": "2026-09-30T18:03:57.609067Z",
           "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "OUSD introduces an equity-for-usage model into the dollar-stablecoin segment, where Coinbase, Visa, Mastercard, Stripe and Shopify partners can hold, market-make or settle in the token — a channel that could shift payment and settlement flows among USDT, USDC and OUSD, and raise activity on Ethereum, Base, Solana and Tempo. The clearest exposures are stablecoin issuers' economics and reserve-related business models, plus the venues and chains hosting OUSD supply.",
+          "market_impact_zh": "OUSD 将\"按使用量分配股权\"的模式引入美元稳定币领域，Coinbase、Visa、Mastercard、Stripe 和 Shopify 等合作方可以持有、做市或以该代币结算，这一渠道可能改变 USDT、USDC 与 OUSD 之间的支付与结算资金流向，并提升 Ethereum、Base、Solana 和 Tempo 上的活动。最直接的敞口在于稳定币发行方的经济模型和与储备相关的业务，以及承载 OUSD 供应的交易场所和公链。",
           "material_change": true,
           "occurred_at": "2026-09-30T15:34:50Z",
           "published_at": "2026-09-30T15:34:50Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Introducing Open USD - Open Standard",
+              "url": "https://joinopenstandard.com/blog/introducing-open-usd"
+            },
+            {
+              "title": "Open Standard issues dollar stablecoin backed by Visa, Stripe ...",
+              "url": "https://finance.yahoo.com/markets/crypto/articles/open-standard-issues-dollar-stablecoin-165442644.html?fr=sycsrp_catchall"
+            },
+            {
+              "title": "Tempo: The blockchain for stablecoin payments",
+              "url": "https://tempo.xyz/"
+            }
+          ],
           "sources": [
             {
               "label": "CoinDesk",
@@ -100704,11 +100420,11 @@
           ],
           "time_precision": "published",
           "title_en": "Open USD takes on Tether, Circle with a different stablecoin model that's 'building money'",
-          "title_zh": "Open USD takes on Tether, Circle with a different stablecoin model that's 'building money'",
+          "title_zh": "Open USD 以不同稳定币模式挑战 Tether 与 Circle，主打\"创造货币\"",
           "update_id": "upd_0da0d93e1b77ab1d",
           "update_type": "initial",
           "what_changed_en": "Open USD, the stablecoin backed by founding partners Coinbase, Mastercard, Shopify, Stripe and Visa, went live on Ethereum, Solana, Base and Tempo as part of Open Standard's bid to compete with USDT and USDC in payments, banking and institutional settlement, with most company equity to be distributed to partners based on growth contribution.",
-          "what_changed_zh": "Open USD, the stablecoin backed by founding partners Coinbase, Mastercard, Shopify, Stripe and Visa, went live on Ethereum, Solana, Base and Tempo as part of Open Standard's bid to compete with USDT and USDC in payments, banking and institutional settlement, with most company equity to be distributed to partners based on growth contribution."
+          "what_changed_zh": "由 Coinbase、Mastercard、Shopify、Stripe 和 Visa 作为创始合作伙伴支持的稳定币 Open USD（OUSD）于周三在 Ethereum、Solana、Base 和 Tempo 上线。Open Standard 首席执行官 Zach Abrams 表示，公司\"绝大部分\"股权将随着时间推移，按各合作伙伴对 OUSD 供应量和交易活跃度的贡献程度进行分配。\n\nOUSD 进入的是一个规模超过 3000 亿美元、仍由 Tether 的 USDT（流通量约 1430 亿美元）和 Circle 的 USDC（约 740 亿美元）主导的稳定币市场，而竞争正从单纯的发行数字美元转向分发渠道、流动性和客户实际使用的平台。报道称，Open Standard 6 月的首次公布曾令竞争对手 Circle 感到震动。\n\nCoinbase、Mastercard、Shopify、Stripe 和 Visa 是 Open Standard 的首批五家创始合作伙伴及投资方，各获得相等的初始股权，具体投资金额和持股比例未披露。其合作伙伴网络已从 140 多家增至 200 多家，最新加入的包括瑞银（UBS）、日本 SBI Holdings 和金融科技公司 Jeeves；Abrams 表示，创始方群体最终预计将扩大到约 10 至 12 家公司，并将组建由创始方组成的董事会。"
         }
       ]
     },
@@ -101084,24 +100800,37 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Ostium is an Arbitrum-based real-world asset perpetuals exchange. In July 2026 it was hit by an oracle-related exploit in which, per press reports, a compromised oracle signer key was used to submit falsified future-dated price reports, with reporting at the time describing up to $18 million in USDC drained. Ostium's audits page lists an initial February 2024 audit with Zellic and a follow-up in November 2025 covering upgraded trading contracts.",
+          "background_zh": "Ostium 是一个基于 Arbitrum 的现实世界资产（RWA）永续合约交易所。2026 年 7 月，该协议遭遇与预言机相关的漏洞攻击：据媒体报道，攻击者利用被攻破的预言机签名密钥提交了伪造的、日期在未来的价格报告，当时报道称最多有 1,800 万美元 USDC 被转出。Ostium 的审计页面列出由 Zellic 于 2024 年 2 月进行的首次审计，以及 2025 年 11 月针对升级后交易合约的后续审计。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Ostium's recovery plan fully repays 3,321 wallets with losses of $1,000 or less, while 345 wallets carrying at least 86% of the $23.8 million loss must choose between a $1,000 payment and a pro-rata claim on still-unrecovered funds.",
-          "current_state_zh": "Ostium's recovery plan fully repays 3,321 wallets with losses of $1,000 or less, while 345 wallets carrying at least 86% of the $23.8 million loss must choose between a $1,000 payment and a pro-rata claim on still-unrecovered funds.",
+          "current_state_zh": "Ostium 的恢复门户将于周三开放，届时将向损失不超过 1,000 美元的 3,321 个钱包全额赔付。其余 345 个钱包承担了 2,380 万美元总损失中至少 86% 的部分，需在 1,000 美元定额赔付与对尚未追回资金的按比例索赔之间二选一。\n\n该方案一次性解决了损失较小的大多数用户，但最大额损失仍未结清：多数受影响用户获得全额补偿，而敞口最大的钱包只能在定额赔付与等待未追回资金之间做选择。\n\n这 345 个钱包占 2,380 万美元总损失中的至少 86%。除 1,000 美元定额赔付外，它们可选择按比例索赔，即依据各自损失占比、就 Ostium 尚未追回的资金获得相应份额。",
           "detailed_summary_en": "Ostium's recovery plan fully repays 3,321 wallets with losses of $1,000 or less, while 345 wallets carrying at least 86% of the $23.8 million loss must choose between a $1,000 payment and a pro-rata claim on still-unrecovered funds.",
           "detailed_summary_zh": "Ostium's recovery plan fully repays 3,321 wallets with losses of $1,000 or less, while 345 wallets carrying at least 86% of the $23.8 million loss must choose between a $1,000 payment and a pro-rata claim on still-unrecovered funds.",
           "event_id": "evt_9ebdd26bdcbc569d",
           "first_seen_at": "2026-09-30T18:04:05.792288Z",
           "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The recovery structure matters mainly to Arbitrum-based DeFi users and protocols dependent on oracle price feeds, since it sets a precedent for how unrecovered exploit funds are allocated among victims and how small-loss cohorts are treated first. It does not itself alter liquidity, custody or supply conditions on major venues.",
+          "market_impact_zh": "该恢复方案主要影响 Arbitrum 生态的 DeFi 用户以及依赖预言机价格源的协议，因为它为未追回的攻击资金如何在受害者之间分配、以及为何优先处理小额损失群体提供了先例。方案本身并不改变主流交易平台的流动性、托管或供给状况。",
           "material_change": true,
           "occurred_at": "2026-09-30T15:00:00Z",
           "published_at": "2026-09-30T15:00:00Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Ostium loses $18 million in oracle attack that gamed its own ...",
+              "url": "https://www.coindesk.com/business/2026/07/15/ostium-suffers-usd18-million-exploit-as-oracle-attack-wave-continues-to-hit-defi"
+            },
+            {
+              "title": "Compromised Oracle Key Drains $18M From Ostium, Exposing DeFi ...",
+              "url": "https://www.techtimes.com/articles/320708/20260716/compromised-oracle-key-drains-18m-ostium-exposing-defis-off-chain-blind-spot.htm"
+            },
+            {
+              "title": "Smart Contract Audits - Ostium",
+              "url": "https://docs.ostium.com/protocol/security/audits"
+            }
+          ],
           "sources": [
             {
               "label": "The Defiant",
@@ -101115,11 +100844,11 @@
           ],
           "time_precision": "published",
           "title_en": "Ostium Recovery Plan Repays 3,321 Wallets In Full, Leaves 345 To Choose",
-          "title_zh": "Ostium Recovery Plan Repays 3,321 Wallets In Full, Leaves 345 To Choose",
+          "title_zh": "Ostium 恢复方案全额赔付 3,321 个钱包，另有 345 个钱包需二选一",
           "update_id": "upd_3d7d18eec10ff99d",
           "update_type": "initial",
           "what_changed_en": "Ostium's recovery plan fully repays 3,321 wallets with losses of $1,000 or less, while 345 wallets carrying at least 86% of the $23.8 million loss must choose between a $1,000 payment and a pro-rata claim on still-unrecovered funds.",
-          "what_changed_zh": "Ostium's recovery plan fully repays 3,321 wallets with losses of $1,000 or less, while 345 wallets carrying at least 86% of the $23.8 million loss must choose between a $1,000 payment and a pro-rata claim on still-unrecovered funds."
+          "what_changed_zh": "Ostium 的恢复门户将于周三开放，届时将向损失不超过 1,000 美元的 3,321 个钱包全额赔付。其余 345 个钱包承担了 2,380 万美元总损失中至少 86% 的部分，需在 1,000 美元定额赔付与对尚未追回资金的按比例索赔之间二选一。\n\n该方案一次性解决了损失较小的大多数用户，但最大额损失仍未结清：多数受影响用户获得全额补偿，而敞口最大的钱包只能在定额赔付与等待未追回资金之间做选择。\n\n这 345 个钱包占 2,380 万美元总损失中的至少 86%。除 1,000 美元定额赔付外，它们可选择按比例索赔，即依据各自损失占比、就 Ostium 尚未追回的资金获得相应份额。"
         }
       ]
     },
@@ -101226,24 +100955,37 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Abracadabra launched in 2021 as a lending protocol that mints MIM against interest-bearing tokens. Its reputation was hit in 2022 when Abracadabra-linked 0xSifu was unmasked as a longtime fraudster and co-founder of QuadrigaCX, and the same year its DegenBox looping product tied to UST wiped out roughly $1 billion of its TVL. MIM has been depegged since June, when the DAO approved a “strategic transition and stewardship” of assets to a group “led by Anubis”; that proposal passed with just two votes totalling over 5 billion SPELL and no opposition. In early July the project’s X account promised a roadmap to restore the MIM peg but has not posted since.",
+          "background_zh": "Abracadabra 于 2021 年上线，是一个以生息代币为抵押铸造 MIM 的借贷协议。2022 年，与 Abracadabra 有关联的 0xSifu 被揭露为长期诈骗者、QuadrigaCX 联合创始人，重创了项目声誉；同年，其与 UST 挂钩的 DegenBox 循环杠杆产品导致约 10 亿美元锁仓价值蒸发。MIM 自 6 月起便处于脱锚状态，当时 DAO 批准将由“Anubis 领导”的团队对资产进行“战略过渡与管理”。该提案仅有两票、合计逾 50 亿枚 SPELL 便获通过，无人反对。7 月初，项目 X 账号曾承诺发布恢复 MIM 锚定、改善协议健康状况的路线图，此后未再发帖。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
-          "current_state_zh": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
+          "current_state_zh": "Abracadabra 已就“有序关停”协议发起治理投票，理由是一系列安全事件使其稳定币 Magic Internet Money（MIM）已“没有回到锚定价值的可行路径”。提案披露目前有 2200 万枚 MIM 未偿付，而“可动用抵押资产”仅约 90 万美元，隐含每枚 MIM 价值约 0.04 美元；截至发稿，投票约有 1 亿枚 SPELL 赞成、50 万枚反对，投票定于周三晚间结束。\n\n该投票将正式宣告一个锁仓总值曾达 60 亿美元的协议走向终结，其披露的资产缺口意味着仍持有 MIM 的用户将面临重大损失。DeFi 评论人、Trading Strategy 联合创始人 Mikko Ohtamaa 公开将此举称为“金库掠夺”，并指向此前的 DAO 资金转移。\n\n据文章称，该协议因 2024 年 1 月 650 万美元的黑客攻击，以及 2025 年 3 月和 10 月两起分别涉资 1300 万美元和 170 万美元的攻击，累计产生 2100 万美元坏账。Ohtamaa 指出，6 月 8 日和 11 日在 Curve 上出现了金库抛售 MIM 的操作，在“MIM 已经脱锚”的情况下为卖方换回约 50 万美元；随后的一个月又发生“金库提取”，逾 800 万美元被转入一个 Binance 充值地址和一个未标注地址。关停提案既未处理这些资金，也未在赎回计算中将其纳入。",
           "detailed_summary_en": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
           "detailed_summary_zh": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
           "event_id": "evt_9164c0c43a88bb60",
           "first_seen_at": "2026-09-30T18:04:11.237715Z",
           "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The exposure is concentrated in remaining MIM holders and the Curve pools where MIM trades, with redemption economics set by the ~$900,000 of actionable backing rather than the 22 million outstanding MIM; SPELL holders face the DAO wind-down process. The episode is a governance- and custody-risk signal for collateralised stablecoin and DAO-treasury designs, though the protocol’s shrunken size relative to its $6 billion peak limits any broader contagion channel.",
+          "market_impact_zh": "风险敞口集中在仍持有 MIM 的用户以及 MIM 交易的 Curve 资金池上，赎回经济性由约 90 万美元可动用抵押资产决定，而非 2200 万枚未偿付 MIM；SPELL 持有者则需面对 DAO 关停流程。这一事件对抵押型稳定币和 DAO 金库设计构成治理与托管风险信号，但协议规模相较其 60 亿美元峰值已大幅缩水，限制了更广泛传染渠道。",
           "material_change": true,
           "occurred_at": "2026-09-30T16:47:53Z",
           "published_at": "2026-09-30T16:47:53Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Abracadabra blames hacks for shutdown amid ‘looting’ claims",
+              "url": "https://protos.com/abracadabra-blames-hacks-for-shutdown-amid-looting-claims/"
+            },
+            {
+              "title": "Abracadabra TVL, Fees & Revenue - DefiLlama",
+              "url": "https://defillama.com/protocol/abracadabra"
+            },
+            {
+              "title": "Magic Internet Money price today, MIM to USD live price ...Magic Internet Money price today, MIM to USD live price ...Magic Internet Money Price Prediction, News, and Analysis (MIM)The Magic Internet Money (MIM) Stablecoin | Geminiabracadabra.moneyWhat is Magic Internet Money (MIM) Crypto Coin? DeFi ...Magic Internet Money (Ethereum) Price: MIM/USD Live Price ...",
+              "url": "https://coinmarketcap.com/currencies/magic-internet-money/"
+            }
+          ],
           "sources": [
             {
               "label": "Protos",
@@ -101257,11 +100999,11 @@
           ],
           "time_precision": "published",
           "title_en": "Abracadabra blames hacks for shutdown amid ‘looting’ claims",
-          "title_zh": "Abracadabra blames hacks for shutdown amid ‘looting’ claims",
+          "title_zh": "Abracadabra 将关停归咎于多次黑客攻击，同时面临“金库掠夺”指控",
           "update_id": "upd_9096836acf76b261",
           "update_type": "initial",
           "what_changed_en": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
-          "what_changed_zh": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions."
+          "what_changed_zh": "Abracadabra 已就“有序关停”协议发起治理投票，理由是一系列安全事件使其稳定币 Magic Internet Money（MIM）已“没有回到锚定价值的可行路径”。提案披露目前有 2200 万枚 MIM 未偿付，而“可动用抵押资产”仅约 90 万美元，隐含每枚 MIM 价值约 0.04 美元；截至发稿，投票约有 1 亿枚 SPELL 赞成、50 万枚反对，投票定于周三晚间结束。\n\n该投票将正式宣告一个锁仓总值曾达 60 亿美元的协议走向终结，其披露的资产缺口意味着仍持有 MIM 的用户将面临重大损失。DeFi 评论人、Trading Strategy 联合创始人 Mikko Ohtamaa 公开将此举称为“金库掠夺”，并指向此前的 DAO 资金转移。\n\n据文章称，该协议因 2024 年 1 月 650 万美元的黑客攻击，以及 2025 年 3 月和 10 月两起分别涉资 1300 万美元和 170 万美元的攻击，累计产生 2100 万美元坏账。Ohtamaa 指出，6 月 8 日和 11 日在 Curve 上出现了金库抛售 MIM 的操作，在“MIM 已经脱锚”的情况下为卖方换回约 50 万美元；随后的一个月又发生“金库提取”，逾 800 万美元被转入一个 Binance 充值地址和一个未标注地址。关停提案既未处理这些资金，也未在赎回计算中将其纳入。"
         }
       ]
     },
@@ -101689,6 +101431,175 @@
           "what_changed_zh": "The UK's FCA opened its crypto authorization application window with a Feb. 28, 2027 deadline ahead of a regime taking effect Oct. 25, 2027, requiring firms to obtain new authorization rather than relying on existing money laundering registrations."
         }
       ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Edison Design Group has released its long-commercially-licensed C++ compiler front-end as open source under the SPDX license Apache-2.0 WITH LLVM-exception. The release includes an emulation mode that mimics Microsoft Visual C++ and GNU/GCC behavior, with source code at github.com/edgcpp/compiler and documentation at edgcpp.org/doc.\n\nThe EDG front-end has been used by Intel C++ Compiler Classic, NVIDIA CUDA NVCC and Microsoft Visual Studio for IntelliSense, so a codebase previously gated behind commercial licensing is now available under a permissive license to compiler and tooling developers. Commenters on Hacker News called the release significant for C++ and singled out the MSVC/GCC emulation mode as useful for porting code and building tools that must replicate another compiler's behavior.\n\nThe license is Apache-2.0 WITH LLVM-exception, which permits use, modification and redistribution without royalties. According to EDG documentation, the front-end can be built to accept GNU extensions — with a compatibility mode covering GCC 3.2–7.3 and good enough to compile the Linux kernel — and also extensively emulates Microsoft Visual C++, with a --microsoft_version option to select a specific MSVC version.",
+      "current_state_zh": "Edison Design Group 将其长期以商业授权方式提供的 C++ 编译器前端以开源形式发布，采用的 SPDX 许可证为 Apache-2.0 WITH LLVM-exception。此次发布包含可模拟微软 Visual C++ 与 GNU/GCC 行为的仿真模式，源代码托管于 github.com/edgcpp/compiler，文档位于 edgcpp.org/doc。\n\nEDG 前端曾被 Intel C++ Compiler Classic、NVIDIA CUDA NVCC 以及微软 Visual Studio 的 IntelliSense 使用，这意味着此前受商业授权限制的代码库如今以宽松许可证向编译器与工具开发者开放。Hacker News 的评论者认为这对 C++ 生态是重大消息，并特别指出 MSVC/GCC 仿真模式对代码移植以及构建需精确复现其他编译器行为的工具有实际价值。\n\n许可证为 Apache-2.0 WITH LLVM-exception，允许无版税地使用、修改与再分发。根据 EDG 的文档，该前端可构建为接受 GNU 扩展，其兼容模式覆盖 GCC 3.2–7.3，兼容程度足以编译 Linux 内核；同时它也广泛仿真微软 Visual C++，并提供 --microsoft_version 选项以选择模拟特定版本的 MSVC。",
+      "entities": [
+        "edg"
+      ],
+      "event_id": "evt_11cda189bcc1e365",
+      "event_type": "product_release",
+      "first_seen_at": "2026-09-30T23:26:37.210027Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-09-30T23:26:37.210027Z",
+      "last_updated_at": "2026-09-30T23:26:37.210027Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "EDG C++ front-end goes public",
+      "title_zh": "EDG C++ 前端开源发布",
+      "topics": [
+        "c",
+        "compilers",
+        "developer-tools",
+        "edison-design-group",
+        "llvm",
+        "open-source"
+      ],
+      "updates": [
+        {
+          "background_en": "Edison Design Group is an American company that makes compiler front ends (preprocessing and parsing) for C++ and formerly Java and Fortran, and its front ends are widely used in commercially available compilers and code-analysis tools. The front-end supports ISO/IEC 14882, with full support for the C++98/03, C++11, C++14 and C++17 language versions and work under way on C++20 features. A compiler front-end is the component that reads source code and translates it to an intermediate, often language-agnostic form for the rest of the compiler. Hacker News commenters noted that EDG the company is winding down, which they said likely explains the open-sourcing; that claim comes from the discussion, not from the announcement itself.",
+          "background_zh": "Edison Design Group 是一家美国公司，为 C++（以及此前的 Java 和 Fortran）开发编译器前端（预处理与解析），其前端被广泛用于商业编译器与代码分析工具中。该前端支持 ISO/IEC 14882，完整支持 C++98/03、C++11、C++14 和 C++17 语言版本，并正在推进 C++20 特性支持。编译器前端是负责读取源代码并将其转换为中间形式（通常与源语言无关）以供编译器其余部分使用的组件。Hacker News 的评论者提到 EDG 公司正在逐步结束运营，他们认为这可能是此次开源的原因；这一说法来自讨论区，并非公告本身。",
+          "community_discussion_en": "Commenters welcomed the release, with one calling it \"big news for C++\" and noting that Visual C++'s IntelliSense used the EDG front-end even though VC does not use it for its own completion. Another praised the emulation feature as useful for porting code and building tools that must exactly replicate another compiler. A recurring point was that the announcement does not mention EDG winding down, which commenters cited — pointing to a Wikipedia entry and a Herb Sutter trip report — as the likely reason for open-sourcing.",
+          "community_discussion_zh": "评论者普遍欢迎此次发布，有人称其为“C++ 的重大新闻”，并指出 Visual C++ 的 IntelliSense 使用了 EDG 前端，尽管 VC 自身的代码补全并不使用它。另一位评论者赞赏仿真功能，认为它对代码移植和构建需精确复现其他编译器行为的工具很有用。讨论中反复提到的一点是：公告本身未说明 EDG 正在结束运营，而评论者引用维基百科条目和 Herb Sutter 的会议行程报告，认为这才是此次开源的真正原因。",
+          "confidence": 0.75,
+          "current_state_en": "Edison Design Group has released its long-commercially-licensed C++ compiler front-end as open source under the SPDX license Apache-2.0 WITH LLVM-exception. The release includes an emulation mode that mimics Microsoft Visual C++ and GNU/GCC behavior, with source code at github.com/edgcpp/compiler and documentation at edgcpp.org/doc.\n\nThe EDG front-end has been used by Intel C++ Compiler Classic, NVIDIA CUDA NVCC and Microsoft Visual Studio for IntelliSense, so a codebase previously gated behind commercial licensing is now available under a permissive license to compiler and tooling developers. Commenters on Hacker News called the release significant for C++ and singled out the MSVC/GCC emulation mode as useful for porting code and building tools that must replicate another compiler's behavior.\n\nThe license is Apache-2.0 WITH LLVM-exception, which permits use, modification and redistribution without royalties. According to EDG documentation, the front-end can be built to accept GNU extensions — with a compatibility mode covering GCC 3.2–7.3 and good enough to compile the Linux kernel — and also extensively emulates Microsoft Visual C++, with a --microsoft_version option to select a specific MSVC version.",
+          "current_state_zh": "Edison Design Group 将其长期以商业授权方式提供的 C++ 编译器前端以开源形式发布，采用的 SPDX 许可证为 Apache-2.0 WITH LLVM-exception。此次发布包含可模拟微软 Visual C++ 与 GNU/GCC 行为的仿真模式，源代码托管于 github.com/edgcpp/compiler，文档位于 edgcpp.org/doc。\n\nEDG 前端曾被 Intel C++ Compiler Classic、NVIDIA CUDA NVCC 以及微软 Visual Studio 的 IntelliSense 使用，这意味着此前受商业授权限制的代码库如今以宽松许可证向编译器与工具开发者开放。Hacker News 的评论者认为这对 C++ 生态是重大消息，并特别指出 MSVC/GCC 仿真模式对代码移植以及构建需精确复现其他编译器行为的工具有实际价值。\n\n许可证为 Apache-2.0 WITH LLVM-exception，允许无版税地使用、修改与再分发。根据 EDG 的文档，该前端可构建为接受 GNU 扩展，其兼容模式覆盖 GCC 3.2–7.3，兼容程度足以编译 Linux 内核；同时它也广泛仿真微软 Visual C++，并提供 --microsoft_version 选项以选择模拟特定版本的 MSVC。",
+          "detailed_summary_en": "Edison Design Group has released its long-commercially-licensed C++ compiler front-end as open source under the SPDX license Apache-2.0 WITH LLVM-exception. The release includes an emulation mode that mimics Microsoft Visual C++ and GNU/GCC behavior, with source code at github.com/edgcpp/compiler and documentation at edgcpp.org/doc.\n\nThe EDG front-end has been used by Intel C++ Compiler Classic, NVIDIA CUDA NVCC and Microsoft Visual Studio for IntelliSense, so a codebase previously gated behind commercial licensing is now available under a permissive license to compiler and tooling developers. Commenters on Hacker News called the release significant for C++ and singled out the MSVC/GCC emulation mode as useful for porting code and building tools that must replicate another compiler's behavior.\n\nThe license is Apache-2.0 WITH LLVM-exception, which permits use, modification and redistribution without royalties. According to EDG documentation, the front-end can be built to accept GNU extensions — with a compatibility mode covering GCC 3.2–7.3 and good enough to compile the Linux kernel — and also extensively emulates Microsoft Visual C++, with a --microsoft_version option to select a specific MSVC version.",
+          "detailed_summary_zh": "Edison Design Group 将其长期以商业授权方式提供的 C++ 编译器前端以开源形式发布，采用的 SPDX 许可证为 Apache-2.0 WITH LLVM-exception。此次发布包含可模拟微软 Visual C++ 与 GNU/GCC 行为的仿真模式，源代码托管于 github.com/edgcpp/compiler，文档位于 edgcpp.org/doc。\n\nEDG 前端曾被 Intel C++ Compiler Classic、NVIDIA CUDA NVCC 以及微软 Visual Studio 的 IntelliSense 使用，这意味着此前受商业授权限制的代码库如今以宽松许可证向编译器与工具开发者开放。Hacker News 的评论者认为这对 C++ 生态是重大消息，并特别指出 MSVC/GCC 仿真模式对代码移植以及构建需精确复现其他编译器行为的工具有实际价值。\n\n许可证为 Apache-2.0 WITH LLVM-exception，允许无版税地使用、修改与再分发。根据 EDG 的文档，该前端可构建为接受 GNU 扩展，其兼容模式覆盖 GCC 3.2–7.3，兼容程度足以编译 Linux 内核；同时它也广泛仿真微软 Visual C++，并提供 --microsoft_version 选项以选择模拟特定版本的 MSVC。",
+          "event_id": "evt_11cda189bcc1e365",
+          "first_seen_at": "2026-09-30T23:26:37.210027Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-09-30T19:26:37Z",
+          "published_at": "2026-09-30T19:26:37Z",
+          "references": [
+            {
+              "title": "Edison Design Group - Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Edison_Design_Group"
+            },
+            {
+              "title": "Edison Design Group",
+              "url": "https://www.edg.com/c"
+            },
+            {
+              "title": "Apache-2.0-with-LLVM-Exception",
+              "url": "https://en.wikipedia.org/wiki/Apache-2.0-with-LLVM-Exception"
+            },
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=49913192"
+            }
+          ],
+          "sources": [
+            {
+              "label": "iandinwoodie",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://edgcpp.org/#transition"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:49913192"
+          ],
+          "time_precision": "published",
+          "title_en": "EDG C++ front-end goes public",
+          "title_zh": "EDG C++ 前端开源发布",
+          "update_id": "upd_92f5ef0d10bdac64",
+          "update_type": "initial",
+          "what_changed_en": "Edison Design Group has released its long-commercially-licensed C++ compiler front-end as open source under the SPDX license Apache-2.0 WITH LLVM-exception. The release includes an emulation mode that mimics Microsoft Visual C++ and GNU/GCC behavior, with source code at github.com/edgcpp/compiler and documentation at edgcpp.org/doc.\n\nThe EDG front-end has been used by Intel C++ Compiler Classic, NVIDIA CUDA NVCC and Microsoft Visual Studio for IntelliSense, so a codebase previously gated behind commercial licensing is now available under a permissive license to compiler and tooling developers. Commenters on Hacker News called the release significant for C++ and singled out the MSVC/GCC emulation mode as useful for porting code and building tools that must replicate another compiler's behavior.\n\nThe license is Apache-2.0 WITH LLVM-exception, which permits use, modification and redistribution without royalties. According to EDG documentation, the front-end can be built to accept GNU extensions — with a compatibility mode covering GCC 3.2–7.3 and good enough to compile the Linux kernel — and also extensively emulates Microsoft Visual C++, with a --microsoft_version option to select a specific MSVC version.",
+          "what_changed_zh": "Edison Design Group 将其长期以商业授权方式提供的 C++ 编译器前端以开源形式发布，采用的 SPDX 许可证为 Apache-2.0 WITH LLVM-exception。此次发布包含可模拟微软 Visual C++ 与 GNU/GCC 行为的仿真模式，源代码托管于 github.com/edgcpp/compiler，文档位于 edgcpp.org/doc。\n\nEDG 前端曾被 Intel C++ Compiler Classic、NVIDIA CUDA NVCC 以及微软 Visual Studio 的 IntelliSense 使用，这意味着此前受商业授权限制的代码库如今以宽松许可证向编译器与工具开发者开放。Hacker News 的评论者认为这对 C++ 生态是重大消息，并特别指出 MSVC/GCC 仿真模式对代码移植以及构建需精确复现其他编译器行为的工具有实际价值。\n\n许可证为 Apache-2.0 WITH LLVM-exception，允许无版税地使用、修改与再分发。根据 EDG 的文档，该前端可构建为接受 GNU 扩展，其兼容模式覆盖 GCC 3.2–7.3，兼容程度足以编译 Linux 内核；同时它也广泛仿真微软 Visual C++，并提供 --microsoft_version 选项以选择模拟特定版本的 MSVC。"
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Google unveiled Gemini 4 Argon, its next frontier AI model, which the company says delivers \"frontier performance in complex workflows across real-world software engineering, enterprise knowledge work like legal and finance, and cybersecurity defense,\" according to chief AI architect and Google DeepMind SVP Koray Kavukcuoglu. Google is limiting access to the model for now, saying it will keep gathering feedback from early testers as it iterates on guardrails before making Argon available to developers, enterprises and consumers.\n\nThe announcement puts a new flagship model into the top-lab competition, but access remains restricted — developers, enterprises and consumers cannot yet use it generally, with Google citing continued work on guardrails and feedback from early testers as the reason.\n\nGoogle describes Argon's capabilities across coding, reasoning and multimodality, and its ability to sustain long, multi-step tasks in enterprise workflows. Hacker News commenters quoted the announcement as saying Argon agents are working on migrating C/C++ codebases to Rust across Google; independent evaluator Artificial Analysis rates Gemini 4 Argon (High) as among the leading models in intelligence and reasonably priced relative to models at a similar price point.",
+      "current_state_zh": "谷歌发布了其新一代前沿 AI 模型 Gemini 4 Argon。谷歌首席 AI 架构师、Google DeepMind 高级副总裁 Koray Kavukcuoglu 表示，该模型在“真实软件工程、法律与金融等企业知识工作，以及网络安全防御等复杂工作流中提供前沿性能”。谷歌目前限制该模型的访问权限，称将继续从早期测试者处收集反馈并迭代护栏机制，之后再向开发者、企业和消费者开放 Argon。\n\n该发布使顶级实验室之间的竞争再添一款旗舰模型，但访问权限仍受限——开发者、企业和消费者目前尚不能普遍使用，谷歌给出的理由是仍在完善护栏机制并收集早期测试者反馈。\n\n谷歌称 Argon 在编程、推理和多模态方面具备能力，并能在企业工作流中持续完成长链条、多步骤任务。Hacker News 评论者引用公告称，Argon 智能体正在谷歌内部将 C/C++ 代码库迁移至 Rust；独立评测机构 Artificial Analysis 将 Gemini 4 Argon（High）列为智能水平领先的模型之一，且相对于同等价位的模型定价合理。",
+      "entities": [
+        "argon",
+        "gemini",
+        "gemini-4-argon"
+      ],
+      "event_id": "evt_d5ced273c2ef0a66",
+      "event_type": "product_release",
+      "first_seen_at": "2026-09-30T23:26:56.671688Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-09-30T23:26:56.671688Z",
+      "last_updated_at": "2026-09-30T23:26:56.671688Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Gemini 4 Argon: our next era of frontier intelligence",
+      "title_zh": "Gemini 4 Argon：我们通往前沿智能的下一个时代",
+      "topics": [
+        "ai-model-release",
+        "frontier-models",
+        "gemini-4-argon",
+        "google-deepmind",
+        "koray-kavukcuoglu"
+      ],
+      "updates": [
+        {
+          "background_en": "Argon arrives as the successor in Google's Gemini flagship line: Gemini 3 was released in November, and Koray Kavukcuoglu, DeepMind's chief technology officer, holds the newly created role of Google chief AI architect aimed at accelerating productization of the company's AI technology. \"Frontier model\" is an industry and policy term for a model at or near the current leading edge of general-purpose AI capability, rather than a fixed technical class.",
+          "background_zh": "Argon 是谷歌 Gemini 旗舰系列的后续产品：Gemini 3 于 11 月发布，而 DeepMind 首席技术官 Koray Kavukcuoglu 担任新设立的谷歌首席 AI 架构师一职，职责是加快公司 AI 技术的产品化。“前沿模型”是产业与政策领域的术语，指处于当前通用人工智能能力最前沿或接近最前沿的模型，而非固定的技术类别。",
+          "community_discussion_en": "Commenters on Hacker News were divided. Several criticized the restricted rollout, noting that a non-Flash model is again unavailable to regular subscribers for an indefinite period and questioning the value of paid tiers, while one argued the steady leapfrogging between labs undercuts the idea — associated with Anthropic's Dario Amodei — that AI is a winner-takes-all field where an early lead is never ceded. Another user described a Gemini 3.8 Flash session in which the model attached GDB to a GPU driver, reverse-engineered a kernel queue ioctl interface and wrote an LD_PRELOAD shim to get ROCm llama.cpp working on a Strix Halo machine.",
+          "community_discussion_zh": "Hacker News 上的评论意见不一。一些人对受限的发布方式提出批评，指出非 Flash 模型再次对普通订阅用户无限期不可用，并质疑付费档位的价值；也有人认为各实验室之间的持续交替领先，削弱了“AI 是赢者通吃、先发优势永不丢失”这一与 Anthropic 的 Dario Amodei 相关的看法。另有用户描述了一次 Gemini 3.8 Flash 的使用经历：该模型将 GDB 附加到 GPU 驱动、逆向内核队列 ioctl 接口，并编写 LD_PRELOAD 垫片，使 ROCm 版 llama.cpp 在 Strix Halo 机器上运行起来。",
+          "confidence": 0.75,
+          "current_state_en": "Google unveiled Gemini 4 Argon, its next frontier AI model, which the company says delivers \"frontier performance in complex workflows across real-world software engineering, enterprise knowledge work like legal and finance, and cybersecurity defense,\" according to chief AI architect and Google DeepMind SVP Koray Kavukcuoglu. Google is limiting access to the model for now, saying it will keep gathering feedback from early testers as it iterates on guardrails before making Argon available to developers, enterprises and consumers.\n\nThe announcement puts a new flagship model into the top-lab competition, but access remains restricted — developers, enterprises and consumers cannot yet use it generally, with Google citing continued work on guardrails and feedback from early testers as the reason.\n\nGoogle describes Argon's capabilities across coding, reasoning and multimodality, and its ability to sustain long, multi-step tasks in enterprise workflows. Hacker News commenters quoted the announcement as saying Argon agents are working on migrating C/C++ codebases to Rust across Google; independent evaluator Artificial Analysis rates Gemini 4 Argon (High) as among the leading models in intelligence and reasonably priced relative to models at a similar price point.",
+          "current_state_zh": "谷歌发布了其新一代前沿 AI 模型 Gemini 4 Argon。谷歌首席 AI 架构师、Google DeepMind 高级副总裁 Koray Kavukcuoglu 表示，该模型在“真实软件工程、法律与金融等企业知识工作，以及网络安全防御等复杂工作流中提供前沿性能”。谷歌目前限制该模型的访问权限，称将继续从早期测试者处收集反馈并迭代护栏机制，之后再向开发者、企业和消费者开放 Argon。\n\n该发布使顶级实验室之间的竞争再添一款旗舰模型，但访问权限仍受限——开发者、企业和消费者目前尚不能普遍使用，谷歌给出的理由是仍在完善护栏机制并收集早期测试者反馈。\n\n谷歌称 Argon 在编程、推理和多模态方面具备能力，并能在企业工作流中持续完成长链条、多步骤任务。Hacker News 评论者引用公告称，Argon 智能体正在谷歌内部将 C/C++ 代码库迁移至 Rust；独立评测机构 Artificial Analysis 将 Gemini 4 Argon（High）列为智能水平领先的模型之一，且相对于同等价位的模型定价合理。",
+          "detailed_summary_en": "Google unveiled Gemini 4 Argon, its next frontier AI model, which the company says delivers \"frontier performance in complex workflows across real-world software engineering, enterprise knowledge work like legal and finance, and cybersecurity defense,\" according to chief AI architect and Google DeepMind SVP Koray Kavukcuoglu. Google is limiting access to the model for now, saying it will keep gathering feedback from early testers as it iterates on guardrails before making Argon available to developers, enterprises and consumers.\n\nThe announcement puts a new flagship model into the top-lab competition, but access remains restricted — developers, enterprises and consumers cannot yet use it generally, with Google citing continued work on guardrails and feedback from early testers as the reason.\n\nGoogle describes Argon's capabilities across coding, reasoning and multimodality, and its ability to sustain long, multi-step tasks in enterprise workflows. Hacker News commenters quoted the announcement as saying Argon agents are working on migrating C/C++ codebases to Rust across Google; independent evaluator Artificial Analysis rates Gemini 4 Argon (High) as among the leading models in intelligence and reasonably priced relative to models at a similar price point.",
+          "detailed_summary_zh": "谷歌发布了其新一代前沿 AI 模型 Gemini 4 Argon。谷歌首席 AI 架构师、Google DeepMind 高级副总裁 Koray Kavukcuoglu 表示，该模型在“真实软件工程、法律与金融等企业知识工作，以及网络安全防御等复杂工作流中提供前沿性能”。谷歌目前限制该模型的访问权限，称将继续从早期测试者处收集反馈并迭代护栏机制，之后再向开发者、企业和消费者开放 Argon。\n\n该发布使顶级实验室之间的竞争再添一款旗舰模型，但访问权限仍受限——开发者、企业和消费者目前尚不能普遍使用，谷歌给出的理由是仍在完善护栏机制并收集早期测试者反馈。\n\n谷歌称 Argon 在编程、推理和多模态方面具备能力，并能在企业工作流中持续完成长链条、多步骤任务。Hacker News 评论者引用公告称，Argon 智能体正在谷歌内部将 C/C++ 代码库迁移至 Rust；独立评测机构 Artificial Analysis 将 Gemini 4 Argon（High）列为智能水平领先的模型之一，且相对于同等价位的模型定价合理。",
+          "event_id": "evt_d5ced273c2ef0a66",
+          "first_seen_at": "2026-09-30T23:26:56.671688Z",
+          "importance_score": 8.5,
+          "market_impact_en": "The crypto-relevant transmission channel is sentiment rather than any disclosed integration: frontier-model releases from major labs tend to feed narratives around AI-adjacent and decentralized compute tokens, even though the announcement itself discloses no custody, liquidity, listing or regulatory linkage to crypto markets. Any effect would run through trader positioning on those AI-themed segments rather than through Gemini 4 Argon's own availability, which remains restricted.",
+          "market_impact_zh": "与加密市场相关的传导渠道主要是情绪面，而非公告披露的任何集成：大型实验室发布前沿模型往往会推动围绕 AI 相关代币和去中心化算力代币的叙事，尽管该公告本身并未披露与加密市场在托管、流动性、上币或监管方面的任何关联。任何影响都将通过交易者在这类 AI 主题板块上的仓位体现，而非通过目前仍受限的 Gemini 4 Argon 本身的可获得性。",
+          "material_change": true,
+          "occurred_at": "2026-09-30T20:01:45Z",
+          "published_at": "2026-09-30T20:01:45Z",
+          "references": [
+            {
+              "title": "Introducing Gemini 4 Argon",
+              "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/"
+            },
+            {
+              "title": "Gemini 4 Argon (high) - Intelligence, Performance... | Artificial Analysis",
+              "url": "https://artificialanalysis.ai/models/gemini-4-argon"
+            },
+            {
+              "title": "Google’s Koray Kavukcuoglu: Turning abstract AI thinking into...",
+              "url": "https://www.ft.com/content/3b477836-8a87-4ce3-bea1-719f28952a9a?syn-25a6b1a6=1"
+            }
+          ],
+          "sources": [
+            {
+              "label": "Google DeepMind Blog",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/"
+            }
+          ],
+          "story_ids": [
+            "rss:deepmind.google_blog_rss.xml:ce56aa83d0064ef1"
+          ],
+          "time_precision": "published",
+          "title_en": "Gemini 4 Argon: our next era of frontier intelligence",
+          "title_zh": "Gemini 4 Argon：我们通往前沿智能的下一个时代",
+          "update_id": "upd_2255c23391117659",
+          "update_type": "initial",
+          "what_changed_en": "Google unveiled Gemini 4 Argon, its next frontier AI model, which the company says delivers \"frontier performance in complex workflows across real-world software engineering, enterprise knowledge work like legal and finance, and cybersecurity defense,\" according to chief AI architect and Google DeepMind SVP Koray Kavukcuoglu. Google is limiting access to the model for now, saying it will keep gathering feedback from early testers as it iterates on guardrails before making Argon available to developers, enterprises and consumers.\n\nThe announcement puts a new flagship model into the top-lab competition, but access remains restricted — developers, enterprises and consumers cannot yet use it generally, with Google citing continued work on guardrails and feedback from early testers as the reason.\n\nGoogle describes Argon's capabilities across coding, reasoning and multimodality, and its ability to sustain long, multi-step tasks in enterprise workflows. Hacker News commenters quoted the announcement as saying Argon agents are working on migrating C/C++ codebases to Rust across Google; independent evaluator Artificial Analysis rates Gemini 4 Argon (High) as among the leading models in intelligence and reasonably priced relative to models at a similar price point.",
+          "what_changed_zh": "谷歌发布了其新一代前沿 AI 模型 Gemini 4 Argon。谷歌首席 AI 架构师、Google DeepMind 高级副总裁 Koray Kavukcuoglu 表示，该模型在“真实软件工程、法律与金融等企业知识工作，以及网络安全防御等复杂工作流中提供前沿性能”。谷歌目前限制该模型的访问权限，称将继续从早期测试者处收集反馈并迭代护栏机制，之后再向开发者、企业和消费者开放 Argon。\n\n该发布使顶级实验室之间的竞争再添一款旗舰模型，但访问权限仍受限——开发者、企业和消费者目前尚不能普遍使用，谷歌给出的理由是仍在完善护栏机制并收集早期测试者反馈。\n\n谷歌称 Argon 在编程、推理和多模态方面具备能力，并能在企业工作流中持续完成长链条、多步骤任务。Hacker News 评论者引用公告称，Argon 智能体正在谷歌内部将 C/C++ 代码库迁移至 Rust；独立评测机构 Artificial Analysis 将 Gemini 4 Argon（High）列为智能水平领先的模型之一，且相对于同等价位的模型定价合理。"
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -101824,6 +101735,12 @@
       "evt_ec97a671f9b9f595",
       "evt_f90e7e488826e7d6"
     ],
+    "polymarket": [
+      "evt_1f2b6fadaa0a74a3",
+      "evt_722c853a96c32398",
+      "evt_78e64f1c78c47a7b",
+      "evt_bf684c2514e2cc94"
+    ],
     "sec": [
       "evt_296c9ea1e623d182",
       "evt_2ec69b861089fb9e",
@@ -101860,6 +101777,13 @@
     "upbit": [
       "evt_6655595dc1e36e0b",
       "evt_f5148b9683ca65f7"
+    ],
+    "usdc": [
+      "evt_5ffb628ad93630c8",
+      "evt_67781f85819d83dc",
+      "evt_720f8d3373a42591",
+      "evt_744ca3dfabac306d",
+      "evt_fcc701c88723151d"
     ],
     "xrp": [
       "evt_04734a8ff2a7831d",
@@ -103537,36 +103461,6 @@
         "source_type": "google_news",
         "title": "Bitget Issues Security Update as BTC Withdrawals Resume",
         "url": "https://www.thecoinrepublic.com/2026/09/28/bitget-issues-security-update-as-btc-withdrawals-resume/?amp"
-      }
-    },
-    {
-      "attempts": 1,
-      "item": {
-        "ai_reason": "A newly launched, institutionally-backed stablecoin (OUSD) from Stripe's Bridge, with distribution via Mastercard, Stripe, Visa, Coinbase, Kraken and Uniswap, native support for Base, Ethereum, Solana and Tempo, and reserves custodied at BlackRock, Lead Bank and BNY Mellon with monthly proof of reserves. This is a material stablecoin and market-structure development with clear institutional adoption implications, though it is an incremental new entrant rather than a systemic or paradigm-shifting event.",
-        "ai_score": 7.5,
-        "ai_summary": "Open Standard launched its USD stablecoin OUSD, issued by Stripe's Bridge, offering free 1:1 mint/redeem, integrations across Stripe, Mastercard, Visa and Coinbase, and native support for Base, Ethereum, Solana and Tempo with reserves held at BlackRock, Lead Bank and BNY Mellon.",
-        "ai_tags": [
-          "stablecoin",
-          "OUSD",
-          "Stripe",
-          "Bridge",
-          "payments"
-        ],
-        "author": "theblockbeats",
-        "content": "Open Standard稳定币OUSD正式上线，由Stripe旗下Bridge发行\n\nBlockBeats 消息，9 月 30 日，Open Standard 宣布美元稳定币 OUSD 正式上线，企业及开发者现可使用 OUSD 构建银行、跨境支付、结算及机构交易等互联网原生金融服务和产品。\n\nOUSD 目前提供 4 种集成路径，相关 API 及工具覆盖结算、支付编排、交易、外汇兑换、钱包及银行卡等服务。所有渠道均支持按 1：1 美元汇率免费铸造和销毁 OUSD。企业目前可通过 Mastercard、Stripe 及 Visa Stablecoin Platform 接入，Coinbase 集成将于 10 月 1 日开放。\n\nOUSD 将原生支持 Base、Ethereum、Solana 及 Tempo，并首先上线 Coinbase、Kraken 和 Uniswap 等中心化及去中心化交易平台。OUSD 由 Stripe 旗下公司 Bridge 发行，储备资产存放于贝莱德、Lead Bank 及纽约梅隆银行，储备证明将按月公布。Open Standard 目前拥有超过 200 家金融机构、金融科技公司、银行及全球企业合作伙伴。\n\n原文链接 https://m.theblockbeats.info/flash/369814",
-        "fetched_at": "2026-09-30T18:03:55.355662Z",
-        "id": "telegram:theblockbeats:198496",
-        "metadata": {
-          "category": "crypto-markets",
-          "channel": "theblockbeats",
-          "event_retry_pending": true,
-          "msg_url": "https://telegram.me/theblockbeats/198496",
-          "score_model": "deepseek:deepseek-flash"
-        },
-        "published_at": "2026-09-30T15:20:03Z",
-        "source_type": "telegram",
-        "title": "Open Standard稳定币OUSD正式上线，由Stripe旗下Bridge发行",
-        "url": "https://m.theblockbeats.info/flash/369814?from=telegram"
       }
     }
   ],
