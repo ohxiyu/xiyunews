@@ -7,29 +7,33 @@
   "status": "monitoring",
   "category": "policy",
   "title": {
-    "zh": "重大法庭败诉后，Kalshi 必须屏蔽州内用户",
-    "en": "Another appeals court rules against prediction market provider Kalshi, says sports contracts are subject to state regulations"
+    "zh": "第六巡回上诉法院裁定 Kalshi 体育合约受州博彩法管辖",
+    "en": "Sixth Circuit rules Kalshi sports contracts subject to state gambling law"
   },
   "current_state": {
-    "zh": "第六巡回上诉法院于9月25日裁定，俄亥俄州和田纳西州可以将各自的赌博法适用于 Kalshi 的体育事件合约；法院维持了俄亥俄州对 Kalshi 不利的裁决，并撤销了此前使该公司在田纳西州免于执法的初步禁令。合议庭一致驳回了 Kalshi 的联邦优先适用抗辩，并指出地理围栏（geofencing）是同时满足联邦交易所规则与州赌博法的可行方式，两案均被发回下级法院。\n\n该裁决使 Kalshi 约69%的零售体育类需求面临风险——据 Eilers & Krejcik Gaming 的测算，这部分需求来自没有合法在线体育博彩的州。裁决还为该巡回区内的各州提供了两条独立的胜诉路径：合议庭认定，即使这些合约属于掉期（swap），联邦商品法也不会使俄亥俄州和田纳西州的赌博法失效。\n\n合议庭认定，Kalshi 未能证明其体育合约符合《商品交易法》对掉期（swap）的定义，而这正是其主张 CFTC 专属监管的前提。该裁决处于初步禁令阶段，现适用于俄亥俄州、田纳西州、密歇根州和肯塔基州的联邦法院；在密歇根州，9月1日的州法院禁令已要求 Kalshi 对位于该州的用户屏蔽受涵盖的体育合约，违规每日罚款最高可达50万美元。",
-    "en": "The Sixth Circuit Court of Appeals ruled against Kalshi, holding that its sports-related event contracts are not swaps and are therefore subject to state gaming regulations instead of CFTC oversight, adding to a growing circuit split that may push the issue to the Supreme Court."
+    "zh": "The 6th US Circuit Court of Appeals ruled against Kalshi, siding with Ohio and Tennessee that the prediction market's sports-event contracts fall under state gambling law rather than CFTC swap jurisdiction, deepening a circuit split and raising the likelihood of Supreme Court review.",
+    "en": "The 6th US Circuit Court of Appeals ruled against Kalshi, siding with Ohio and Tennessee that the prediction market's sports-event contracts fall under state gambling law rather than CFTC swap jurisdiction, deepening a circuit split and raising the likelihood of Supreme Court review."
   },
   "first_seen_at": "2026-09-25T23:24:10.942680+00:00",
-  "last_updated_at": "2026-09-26T16:34:47.628631+00:00",
-  "last_material_change_at": "2026-09-25T23:24:10.942680+00:00",
+  "last_updated_at": "2026-09-27T10:07:41.219677+00:00",
+  "last_material_change_at": "2026-09-26T16:34:50.832605+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 3,
+  "sources_count": 5,
   "entities": [
     "another",
-    "kalshi"
+    "court",
+    "kalshi",
+    "supreme"
   ],
   "identifiers": [],
   "topics": [
     "cftc",
+    "court-ruling",
     "crypto-regulation",
     "kalshi",
     "prediction-markets",
+    "state-gambling-law",
     "us-courts"
   ],
   "updates": [
@@ -75,7 +79,9 @@
       "story_ids": [
         "rss:www.coindesk.com_arc_outboundfeeds_rss_:c7bd922479a142e2",
         "rss:cryptoslate.com_feed_:f8939679c1cd0157",
-        "rss:www.theblock.co_rss.xml:03168ebfa3616014"
+        "rss:www.theblock.co_rss.xml:03168ebfa3616014",
+        "rss:cointelegraph.com_rss:0acbcb485812b7dc",
+        "google_news:article:6290ca431a023012"
       ],
       "sources": [
         {
@@ -94,6 +100,18 @@
           "url": "https://www.theblock.co/news/regulation/2026-09-26-kalshi-loses-appeal-over-ohio-and-tennessee-sports-betting-laws-widening-circuit-split-416937",
           "label": "The Block",
           "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://cointelegraph.com/news/kalshi-loses-appeal-setting-up-potential-supreme-court-case?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9LMDlscFdrdG4wWUZLVUJPOHRVWGUyeVladXNsUVNueHBHaVlOUWhvWkdONkIwTy1XNFFMRTZ3WG5ZQUVZaWd6cHd6aTFXYlQ5MXV2UDdDbGtyR3Y0SHdF?oc=5",
+          "label": "BitKE",
+          "source_type": "google_news",
           "official": false
         }
       ]
