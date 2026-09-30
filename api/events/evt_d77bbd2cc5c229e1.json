@@ -7,29 +7,35 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "Hacktron 串联 libheif 堆溢出与 SSO 配置错误攻破 OpenAI 内部仓库",
+    "zh": "研究人员利用 Claude 与漏洞链在72小时内入侵 OpenAI 内部代码库",
     "en": "A heap overflow and SSO misconfiguration to compromise OpenAI internal repos"
   },
   "current_state": {
-    "zh": "Hacktron AI 的安全研究人员发布了一份技术报告，披露他们通过串联 libheif 中的一个堆缓冲区溢出漏洞与一处 SSO 配置错误，实现了远程代码执行，并在不到 72 小时内接触到 OpenAI 的内部代码仓库。报告还称，直到大约两个月前，任何登录 community.openai.com 的用户或 OpenAI 员工都可能遭遇 ChatGPT 与 Codex 账号被接管，并且在早先模型均失败的情况下，他们借助 Claude Opus 5 在约三小时内绕过了 ASLR。\n\n这是一次罕见的公开演示：一个被广泛使用的图像解码库中的内存安全漏洞，加上身份层的配置错误，就足以串联成对一家人工智能实验室内部代码仓库的完整入侵，而这类资产正是知识产权高度集中的地方。它还显示出大模型辅助的自动化正在缩短从发现漏洞到写出可用利用程序的时间，从而提高了整个软件供应链在补丁管理与身份治理上的门槛。\n\n该溢出漏洞编号为 CVE-2026-32741，影响 libheif 1.21.2 及更早版本：构造一个包含恶意 “mski” 蒙版图像的 HEIF 文件，即可在 MaskImageCodec::decode_mask_image() 中触发堆缓冲区溢出；相应的补丁主要针对图像叠加图层的边界检查。社区分析指出，HEIF 支持多图像合成、旋转、裁剪、Alpha 通道和缩略图等特性，使其攻击面远大于传统的 JPEG 解码器，而照片上传功能恰恰会引入这类代码路径。",
-    "en": "Researchers chained a libheif heap overflow with an SSO misconfiguration to gain remote code execution and access OpenAI's internal repositories within 72 hours."
+    "zh": "Security researchers at Hacktron used Anthropic's Claude to chain an image-processing vulnerability with an OpenAI identity flaw, breaching employee ChatGPT and Codex accounts and reaching an internal OpenAI code repository within 72 hours.",
+    "en": "Security researchers at Hacktron used Anthropic's Claude to chain an image-processing vulnerability with an OpenAI identity flaw, breaching employee ChatGPT and Codex accounts and reaching an internal OpenAI code repository within 72 hours."
   },
   "first_seen_at": "2026-09-18T09:07:01.243499+00:00",
-  "last_updated_at": "2026-09-18T09:07:01.243499+00:00",
-  "last_material_change_at": "2026-09-18T09:07:01.243499+00:00",
+  "last_updated_at": "2026-09-19T01:30:51.260227+00:00",
+  "last_material_change_at": "2026-09-19T01:30:51.260227+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 2,
   "entities": [
+    "anthropic",
+    "claude",
     "openai",
     "sso"
   ],
   "identifiers": [],
   "topics": [
+    "ai-security",
+    "anthropic",
+    "coding-agents",
     "libheif",
     "openai",
     "sso",
-    "vulnerability"
+    "vulnerability",
+    "vulnerability-disclosure"
   ],
   "updates": [
     {
@@ -76,13 +82,20 @@
       ],
       "confidence": 0.75,
       "story_ids": [
-        "hackernews:story:49749656"
+        "hackernews:story:49749656",
+        "rss:cryptoslate.com_feed_:f5f4ffe026935ca5"
       ],
       "sources": [
         {
           "url": "https://www.hacktron.ai/blog/hacking-openai",
           "label": "Handy-Man",
           "source_type": "hackernews",
+          "official": false
+        },
+        {
+          "url": "https://cryptoslate.com/anthropics-claude-helped-3-researchers-breach-openai-in-under-72-hours/",
+          "label": "CryptoSlate",
+          "source_type": "rss",
           "official": false
         }
       ]

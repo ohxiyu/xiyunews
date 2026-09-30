@@ -7,20 +7,21 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Balancer Winddown: Exit Your Pools by October 30 - CryptoTicker",
+    "zh": "Balancer终止运营：请在10月30日前退出你的资金池 - CryptoTicker",
     "en": "Balancer Winddown: Exit Your Pools by October 30 - CryptoTicker"
   },
   "current_state": {
-    "zh": "Balancer is winding down certain pools, instructing users to exit their positions by October 30.",
-    "en": "Balancer is winding down certain pools, instructing users to exit their positions by October 30."
+    "zh": "Balancer 关停已获治理投票批准（BIP-928 通过，BIP-929 分叉被否），流动性池照常运行至 10 月 30 日，之后转为仅提现，11 月 30 日 V3 Vault 暂停，2027 年 5 月底起 BAL 持有者可销毁 BAL 按比例获取财库资金。",
+    "en": "Balancer's shutdown is approved by governance vote (BIP-928 passed, BIP-929 fork rejected); pools operate normally until Oct 30, then withdrawal-only, V3 Vault pauses Nov 30, and from late May 2027 BAL holders may burn BAL for pro-rata treasury redemption."
   },
   "first_seen_at": "2026-09-17T09:34:54.190852+00:00",
-  "last_updated_at": "2026-09-17T09:34:54.190852+00:00",
-  "last_material_change_at": "2026-09-17T09:34:54.190852+00:00",
+  "last_updated_at": "2026-09-30T02:19:37.220004+00:00",
+  "last_material_change_at": "2026-09-30T02:19:37.220004+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
+    "bal",
     "balancer",
     "cryptoticker",
     "exit",
@@ -29,10 +30,15 @@
     "winddown",
     "your"
   ],
-  "identifiers": [],
+  "identifiers": [
+    "bip-928",
+    "bip-929"
+  ],
   "topics": [
+    "bal",
     "balancer",
     "liquidity-pools",
+    "protocol-shutdown",
     "protocol-winddown",
     "user-funds"
   ],
@@ -46,11 +52,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Balancer Winddown: Exit Your Pools by October 30 - CryptoTicker",
+      "title_zh": "Balancer终止运营：请在10月30日前退出你的资金池 - CryptoTicker",
       "title_en": "Balancer Winddown: Exit Your Pools by October 30 - CryptoTicker",
-      "what_changed_zh": "Balancer is winding down certain pools, instructing users to exit their positions by October 30.",
+      "what_changed_zh": "Balancer正在终止部分资金池，指示用户在10月30日前退出其头寸。",
       "what_changed_en": "Balancer is winding down certain pools, instructing users to exit their positions by October 30.",
-      "current_state_zh": "Balancer is winding down certain pools, instructing users to exit their positions by October 30.",
+      "current_state_zh": "Balancer正在终止部分资金池，指示用户在10月30日前退出其头寸。",
       "current_state_en": "Balancer is winding down certain pools, instructing users to exit their positions by October 30.",
       "detailed_summary_zh": "Balancer is winding down certain pools, instructing users to exit their positions by October 30.",
       "detailed_summary_en": "Balancer is winding down certain pools, instructing users to exit their positions by October 30.",
@@ -71,6 +77,44 @@
           "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1hZThtN1NJdDQyZGtUOUZQU3JvcWYxcnJTbVp3emVxZWFXazFKUWRjVWZ5ak5DODh3NDFOUjV0VzY5ei13elJ3NVNSOXZIb3hvS3FMc0RPczJvYVRtcHBDeE5uZTcxRGF4YklrdQ?oc=5",
           "label": "CryptoTicker",
           "source_type": "google_news",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_9558d2dec47e187a",
+      "event_id": "evt_d1f7b5fea57295dc",
+      "occurred_at": "2026-09-30T00:50:25Z",
+      "published_at": "2026-09-30T00:50:25Z",
+      "first_seen_at": "2026-09-30T02:19:37.220004Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "【Balancer 社区投票通过关停提案，分叉提案未获通过】",
+      "title_en": "【Balancer 社区投票通过关停提案，分叉提案未获通过】",
+      "what_changed_zh": "BAL 持有者投票通过 BIP-928 有序关停提案，分叉提案 BIP-929 被否决；确认时间线：10 月 30 日前流动性池照常运行且提款开放，10 月 16 日为合作方申请 V3 池延长至 11 月 30 日的截止日，10 月 30 日起转为仅提现且漏洞赏金结束，11 月 30 日 V3 Vault 暂停，2027 年 5 月底起可销毁 BAL 按比例获得财库资金；tetuBAL 持有者获相当于锁定资金 50% 的 BAL。",
+      "what_changed_en": "BAL holders voted to approve BIP-928 for orderly shutdown and rejected the BIP-929 fork proposal; confirmed timeline: pools run normally with withdrawals open until Oct 30, Oct 16 deadline for partners to request V3 pool extension to Nov 30, withdrawal-only mode and end of bug bounty from Oct 30, V3 Vault pause Nov 30, and BAL burn-for-treasury redemption from late May 2027; tetuBAL holders receive BAL equal to 50% of locked funds.",
+      "current_state_zh": "Balancer 关停已获治理投票批准（BIP-928 通过，BIP-929 分叉被否），流动性池照常运行至 10 月 30 日，之后转为仅提现，11 月 30 日 V3 Vault 暂停，2027 年 5 月底起 BAL 持有者可销毁 BAL 按比例获取财库资金。",
+      "current_state_en": "Balancer's shutdown is approved by governance vote (BIP-928 passed, BIP-929 fork rejected); pools operate normally until Oct 30, then withdrawal-only, V3 Vault pauses Nov 30, and from late May 2027 BAL holders may burn BAL for pro-rata treasury redemption.",
+      "detailed_summary_zh": "Balancer's BAL holders voted to approve BIP-928 for the protocol's orderly shutdown while rejecting the BIP-929 fork proposal, setting a timeline of normal pool operation until Oct 30, withdrawal-only mode thereafter, V3 Vault pausing Nov 30, and treasury redemption through BAL burning from late May 2027.",
+      "detailed_summary_en": "Balancer's BAL holders voted to approve BIP-928 for the protocol's orderly shutdown while rejecting the BIP-929 fork proposal, setting a timeline of normal pool operation until Oct 30, withdrawal-only mode thereafter, V3 Vault pausing Nov 30, and treasury redemption through BAL burning from late May 2027.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.93,
+      "story_ids": [
+        "telegram:foresightnews:119435"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/114275",
+          "label": "foresightnews",
+          "source_type": "telegram",
           "official": false
         }
       ]
