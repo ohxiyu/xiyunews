@@ -1,6 +1,6 @@
 import {
   ACTIVE_STATUSES, editionContextFor, fetchWorkflowRuns,
-  githubRequest, publicationUrls, testing, urlExists,
+  githubRequest, publicationUrls, testing,
 } from "./lib";
 
 export interface RecoveryResult {
@@ -62,6 +62,33 @@ async function getText(url: string): Promise<string | null> {
   throw new Error("Publication redirect limit exceeded");
 }
 
+// Private repository content is read only from the fixed GitHub API origin.
+// Never follow a redirect with credentials or attach them to the public site.
+async function getRepositoryText(env: Env, url: string): Promise<string | null> {
+  const target = new URL(url);
+  const prefix = `/repos/${env.GITHUB_REPOSITORY}/contents/`;
+  if (target.origin !== "https://api.github.com" ||
+      !target.pathname.startsWith(prefix) || target.searchParams.get("ref") !== "gh-pages") {
+    throw new Error("Invalid repository content target");
+  }
+  const response = await fetch(target, {
+    headers: {
+      Authorization: `Bearer ${env.GITHUB_DISPATCH_TOKEN}`,
+      Accept: "application/vnd.github.raw+json",
+      "User-Agent": "bmtnews-cloudflare-dispatcher",
+      "X-GitHub-Api-Version": "2022-11-28",
+      "Cache-Control": "no-cache",
+    },
+    redirect: "manual", signal: AbortSignal.timeout(10_000),
+  });
+  if (response.status === 404) return null;
+  if (!response.ok) {
+    await response.body?.cancel();
+    throw new Error("Repository publication probe failed: HTTP " + response.status);
+  }
+  return readBounded(response);
+}
+
 function editionItems(text: string | null, date: string): number {
   if (text === null) return 0;
   // A soft 404 or corrupt JSON must not be mistaken for a missing edition
@@ -99,12 +126,13 @@ function renderedRevisionsMatch(html: string, expected: string[] | null): boolea
 export async function inspectPublication(env: Env, date: string, now: number) {
   const base = env.PUBLIC_SITE_URL.replace(/\/+$/, "");
   const nonce = "?publication_check=" + now;
-  const rawBase = "https://raw.githubusercontent.com/" +
-    env.GITHUB_REPOSITORY + "/gh-pages";
+  const rawBase = "https://api.github.com/repos/" +
+    env.GITHUB_REPOSITORY + "/contents";
   const urls = publicationUrls(env, date);
   const [rawJson, rawPosts, publicJson, home] = await Promise.all([
-    getText(rawBase + "/api/latest.json" + nonce),
-    Promise.all(urls.raw.map((url) => urlExists(url + nonce))),
+    getRepositoryText(env, rawBase + "/api/latest.json?ref=gh-pages&publication_check=" + now),
+    Promise.all(urls.raw.map(async (url) =>
+      (await getRepositoryText(env, url)) !== null)),
     getText(base + "/api/latest.json" + nonce),
     getText(base + "/" + nonce),
   ]);
@@ -218,4 +246,4 @@ export async function runSchedule(cron: string, time: number, env: Env): Promise
   if (responseStatus(result) === 503) throw new Error("Publication recovery needs attention");
 }
 
-export const recoveryTesting = { editionItems, contentRevisions, renderedRevisionsMatch };
+export const recoveryTesting = { editionItems, contentRevisions, renderedRevisionsMatch, getRepositoryText };

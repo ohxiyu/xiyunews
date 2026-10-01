@@ -7,12 +7,12 @@ import { env } from "cloudflare:test";
 
 const ENV = {
   ...env,
-  GITHUB_REPOSITORY: "ohxiyu/bmtnews-standalone",
+  GITHUB_REPOSITORY: "ohxiyu/xiyunews",
   GITHUB_WORKFLOW: "daily-summary.yml",
   GITHUB_REF: "main",
   EDITION_TIMEZONE: "Asia/Shanghai",
   EDITION_CUTOFF_HOUR: "7",
-  PUBLIC_SITE_URL: "https://bmt.news",
+  PUBLIC_SITE_URL: "https://xiyu.news",
   GITHUB_DISPATCH_TOKEN: "test-token",
 } satisfies Env;
 
@@ -55,12 +55,12 @@ describe("edition scheduling", () => {
   it("builds raw and rendered URLs for both languages", () => {
     expect(testing.publicationUrls(ENV, "2026-07-31")).toEqual({
       raw: [
-        "https://raw.githubusercontent.com/ohxiyu/bmtnews-standalone/gh-pages/_posts/2026-07-31-summary-zh.md",
-        "https://raw.githubusercontent.com/ohxiyu/bmtnews-standalone/gh-pages/_posts/2026-07-31-summary-en.md",
+        "https://api.github.com/repos/ohxiyu/xiyunews/contents/_posts/2026-07-31-summary-zh.md?ref=gh-pages",
+        "https://api.github.com/repos/ohxiyu/xiyunews/contents/_posts/2026-07-31-summary-en.md?ref=gh-pages",
       ],
       rendered: [
-        "https://bmt.news/2026/07/31/summary-zh.html",
-        "https://bmt.news/2026/07/31/summary-en.html",
+        "https://xiyu.news/2026/07/31/summary-zh.html",
+        "https://xiyu.news/2026/07/31/summary-en.html",
       ],
     });
   });
@@ -96,8 +96,8 @@ describe("dispatcher behavior", () => {
 
   it("actively verifies Actions write permission without creating a run", async () => {
     const fetchSpy = vi.fn(
-      async (_input: RequestInfo | URL, _init?: RequestInit) =>
-        new Response(null, { status: 422 }),
+      async (_input: RequestInfo | URL, init?: RequestInit) =>
+        new Response(null, { status: init?.method === "POST" ? 422 : 200 }),
     );
     vi.stubGlobal("fetch", fetchSpy);
     const response = await worker.fetch(
@@ -108,12 +108,13 @@ describe("dispatcher behavior", () => {
     expect(response.headers.get("Cache-Control")).toBe("no-store");
     await expect(response.json()).resolves.toMatchObject({
       status: "ready",
-      repository: "ohxiyu/bmtnews-standalone",
+      repository: "ohxiyu/xiyunews",
       workflow: "daily-summary.yml",
       ref: "main",
       dispatch_permission: "actions:write",
+      contents_permission: "contents:read",
     });
-    expect(fetchSpy).toHaveBeenCalledOnce();
+    expect(fetchSpy).toHaveBeenCalledTimes(2);
     const [input, init] = fetchSpy.mock.calls[0] ?? [];
     expect(String(input)).toContain("/daily-summary.yml/dispatches");
     expect(init?.method).toBe("POST");
@@ -214,7 +215,7 @@ describe("admin OAuth relay", () => {
     expect(response.headers.get("Cache-Control")).toBe("no-store");
     expect(body).toContain("authorization:github:success");
     expect(body).toContain("gho_test_token");
-    expect(body).toContain('"https://bmt.news"');
+    expect(body).toContain('"https://xiyu.news"');
     // The state cookie is cleared after one use.
     expect(response.headers.get("Set-Cookie")).toContain("Max-Age=0");
   });

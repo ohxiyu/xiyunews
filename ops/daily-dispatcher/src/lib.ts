@@ -216,6 +216,7 @@ export async function githubRequest(
       ...init.headers,
     },
     signal: AbortSignal.timeout(10_000),
+    redirect: "manual",
   });
   if (!response.ok) {
     throw new Error(
@@ -237,6 +238,7 @@ async function verifyDispatchPermission(env: Env): Promise<void> {
     headers: githubHeaders(env),
     body: JSON.stringify({ ref: PERMISSION_PROBE_REF }),
     signal: AbortSignal.timeout(10_000),
+    redirect: "manual",
   });
 
   // GitHub checks Actions: write before resolving the ref. A write-capable
@@ -255,17 +257,22 @@ export async function checkReadiness(env: Env): Promise<{
   workflow: string;
   ref: string;
   dispatch_permission: "actions:write";
+  contents_permission: "contents:read";
 }> {
   if (!env.GITHUB_DISPATCH_TOKEN) {
     throw new Error("GITHUB_DISPATCH_TOKEN is not configured");
   }
   await verifyDispatchPermission(env);
+  const contents = await githubRequest(env,
+    `/repos/${env.GITHUB_REPOSITORY}/contents/api/latest.json?ref=gh-pages`);
+  await contents.body?.cancel();
   return {
     status: "ready",
     repository: env.GITHUB_REPOSITORY,
     workflow: env.GITHUB_WORKFLOW,
     ref: env.GITHUB_REF,
     dispatch_permission: "actions:write",
+    contents_permission: "contents:read",
   };
 }
 
@@ -310,8 +317,8 @@ export function publicationUrls(env: Env, editionDate: string): {
   return {
     raw: ["zh", "en"].map(
       (language) =>
-        `https://raw.githubusercontent.com/${repository}/gh-pages/_posts/` +
-        `${editionDate}-summary-${language}.md`,
+        `https://api.github.com/repos/${repository}/contents/_posts/` +
+        `${editionDate}-summary-${language}.md?ref=gh-pages`,
     ),
     rendered: ["zh", "en"].map(
       (language) =>

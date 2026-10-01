@@ -40,7 +40,12 @@ function fixture(options: {
       return new Response(null, { status: 204 });
     }
     if (options.broken) return new Response("upstream failure", { status: 503 });
-    const raw = request.url.startsWith("https://raw.githubusercontent.com/");
+    const raw = request.url.startsWith("https://api.github.com/repos/");
+    if (raw && request.url.includes("/contents/_posts/")) {
+      return new Response(options.raw ? "published markdown" : "", {
+        status: options.raw ? 200 : 404,
+      });
+    }
     if (request.method === "HEAD") {
       return new Response(null, { status: (raw ? options.raw : options.public) ? 200 : 404 });
     }
@@ -69,6 +74,39 @@ function fixture(options: {
 }
 
 describe("production-aware recovery", () => {
+  it("authenticates private contents without leaking credentials to public pages", async () => {
+    const f = fixture({raw: true, public: true, homepage: true});
+    expect((await runRecovery(env, f.now, "test")).status).toBe("healthy");
+    const privateRequests = f.requests.filter(r => r.url.includes("/contents/"));
+    expect(privateRequests).toHaveLength(3);
+    for (const request of privateRequests) {
+      expect(request.headers.get("Authorization")).toBe("Bearer test-token");
+      expect(request.headers.get("Accept")).toBe("application/vnd.github.raw+json");
+      expect(request.redirect).toBe("manual");
+    }
+    for (const request of f.requests.filter(r => new URL(r.url).origin !== "https://api.github.com")) {
+      expect(request.headers.has("Authorization")).toBe(false);
+    }
+  });
+
+  it("refuses authenticated redirects and arbitrary repository targets", async () => {
+    const fetcher = vi.fn(async () => new Response(null, {
+      status: 302, headers: {Location: "https://attacker.example/"},
+    }));
+    vi.stubGlobal("fetch", fetcher);
+    const target = `https://api.github.com/repos/${env.GITHUB_REPOSITORY}/contents/api/latest.json?ref=gh-pages`;
+    await expect(recoveryTesting.getRepositoryText(env, target)).rejects.toThrow("HTTP 302");
+    expect(fetcher).toHaveBeenCalledOnce();
+    await expect(recoveryTesting.getRepositoryText(env, "https://attacker.example/?ref=gh-pages"))
+      .rejects.toThrow("Invalid repository");
+    expect(fetcher).toHaveBeenCalledOnce();
+  });
+
+  it("fails closed on missing contents permission", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => new Response(null, {status: 403})));
+    const target = `https://api.github.com/repos/${env.GITHUB_REPOSITORY}/contents/api/latest.json?ref=gh-pages`;
+    await expect(recoveryTesting.getRepositoryText(env, target)).rejects.toThrow("HTTP 403");
+  });
   it("dispatches the local edition exactly at 07:26 but not a millisecond early", async () => {
     const f = fixture();
     const due = Date.parse(f.date + "T07:26:00+08:00");

@@ -72,6 +72,8 @@ export default {
     const oauthEnv = env as OAuthEnv;
     return Response.json({
       service: "bmtnews-daily-dispatcher",
+      repository: env.GITHUB_REPOSITORY,
+      public_site_url: env.PUBLIC_SITE_URL,
       version_id: env.CF_VERSION_METADATA?.id ?? null,
       publication_revision: "story-content-v1",
       status: "ok",
