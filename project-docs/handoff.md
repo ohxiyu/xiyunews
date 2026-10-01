@@ -29,26 +29,26 @@
     "Pages 预览保留包含 * 并排除三状态分支；后续自然采集 36853175538 success，缓存 926e93c0 保留父提交且无 Pages check",
     "系统架构已进入 main，明确现有静态网站、Actions、边缘后台/调度与原实时服务，不把本地 subtree 当成上线",
     "实时完整历史仍保留；阶段 3 已合入最新 main 的网站/调度/许可/旧域停用代码，不回退此前修复",
-    "2026-10-01 20:05 上海时间自然 dispatcher 触发 Square 36859488592，成功尝试一条，累计 sent=11、remaining=3、attention=0"
+    "2026-10-01 20:05 上海时间自然 dispatcher 触发 Square 36859488592，成功尝试一条，累计 sent=11、remaining=3、attention=0",
+    "服务器迁移六步操作清单与 Telegram 品牌草案准备好，尚未执行；阈值和地址簿与原 main 字节一致"
   ],
   "unfinished": [
     "确认旧历史疑似 Telegram Token 已撤销后，同步最新 main、重新测试、推送阶段 3 PR 并用 merge commit 保留历史",
     "阶段 4 从原 SSH 电脑备份、部署、检查新 SHA/三分片/自然回执/看门狗后，才归档旧仓",
     "阶段 5 完成 Telegram 品牌文案和运营者确认；不合并群/频道，不改 fomobtc.com nginx",
-    "运营者完成新域验证码后验证 Quick Post；旧域 301 已取消，不再作为迁移验收要求",
-    "同步后的完整主项目与 realtime 双 Python 离线验证，再确认未更改阈值、地址簿、systemd、nginx和依赖锁"
+    "运营者完成新域验证码后验证 Quick Post；旧域 301 已取消，不再作为迁移验收要求"
   ],
   "validation": [
     "主仓最新修复完整 937 项 pytest、治理、6 项真实本地裸仓缓存回归、bash 语法与 diff 检查通过；远端 CI 和 Pages 预览成功",
     "独立调度器 64 项测试、类型检查/dry-run、22 项后台 Node 和跳转测试已通过",
     "本地阶段 3 Python 3.11/3.12 各 61 项 pytest，ruff、mypy、compileall、治理、3 项看门狗 Node 通过；当时根 929 项通过，合并最新 main 后须再跑",
     "实时阈值、地址簿、requirements.lock、systemd、nginx 与原仓对应文件逐字一致；未真实调用 AI、X、Telegram 作为测试",
-    "本阶段完整 942 项 pytest、84 项 Worker 测试、绑定类型、tsc 和 dry-run 通过"
+    "本阶段完整 942 项 pytest、84 项 Worker 测试、绑定类型、tsc 和 dry-run 通过",
+    "本次同步后 root 942 项、实时 3.11/3.12 各 61 项、ruff/mypy/compileall/仓库契约及 3 项看门狗 Node 通过；8 个部署 Bash 块与嵌入 Python 语法通过"
   ],
   "unverified": [
     "新域 Access 登录与 Quick Post 管理操作；旧域 301 已被运营者取消，不再作为验收要求",
-    "阶段 3 远端 CI、merge commit 历史祖先；服务器新仓完整 SHA、自然 message_id 和看门狗无新增告警",
-    "同步后的主/realtime 全量测试正在重新执行；Access 显示名仍待保存确认"
+    "阶段 3 远端 CI、merge commit 历史祖先；服务器新仓完整 SHA、自然 message_id 和看门狗无新增告警"
   ],
   "production": {
     "source_commit": "3b8f2b5cd82e257783c99501e6494e495bb20ca7",
@@ -66,7 +66,7 @@
   "next_action": "完成本地同步和部署操作清单及验证；等待旧凭据已撤销确认、原 SSH 配置、后台验证码登录。收到撤销确认后同步 main 推送阶段 3，CI 全绿后 merge commit 保留历史，再核对新仓部署。",
   "states": {
     "code": "complete",
-    "tests": "pending",
+    "tests": "complete",
     "pr_merged": "pending",
     "deployed": "pending",
     "production_verified": "pending"

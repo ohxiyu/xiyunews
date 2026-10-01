@@ -5,11 +5,11 @@
 任务 Issue / 负责人：https://github.com/ohxiyu/xiyunews/issues/172；本轮唯一迁移整合负责人。
 工作分支 / 最后提交 / PR：agent/xiyunews-realtime；主项目基线 d5360740bb571c6bf95d3fcb631a54ac00634e9f；导入旧仓 main 7807126d8c7cdb51e18f0b91ba27f500271f9f08，未 squash；PR 待建立。
 已经完成：原项目完整历史以 git subtree add 导入；根 CI 为 realtime 增加路径门控及 3.11/3.12 独立矩阵；治理兼容子目录；新部署从主仓完整 SHA 的 realtime 前缀打包。历史证据保留，提醒阈值、地址簿、信源、队列与目的地没有更改。
-尚未完成：CI、合并；阶段 4 运营者电脑重新部署；阶段 5 Telegram 品牌文案与运营者改名。旧仓归档必须等待阶段 4 实际验收，不删除。
+尚未完成：旧历史疑似凭据撤销确认、远端 CI、合并；阶段 4 实际重新部署；阶段 5 Telegram 文案确认与运营者改名。已补齐部署命令和品牌草案，不把准备说成执行。旧仓归档必须等待阶段 4 实际验收，不删除。
 已运行的验证及结果：2026-10-01 公网 health 回读仍为 2.6.0/b226b625cf3875b6693e0768d75d88d50b33c08d，Telegram 开启、三个 spot 分片 live；这是旧部署，不是本次迁移部署验收。离线验证执行结果见本阶段发布记录及 PR。
 尚未验证的内容：新仓合并 SHA 部署、自然推送 message_id、服务器进程与看门狗状态；历史手机回执不作为本次证据。
 线上版本 / 对应源码提交：后端 2.6.0 = b226b625cf3875b6693e0768d75d88d50b33c08d（上一版 2.5.1 = 8f1751ef7f7ce403007965ab136d039657420461，可回滚；2.5.0 = 1739fe3e97f077ed5d4e2dbe4ecb3cebbd55e7c6 仍在服务器）；nginx = scripts/deploy/nginx.conf；看门狗 Worker 版本 55671d87-29c2-4225-8bdf-176cb4712ed3。
-阻塞与所需权限：本机不存在既有 fomobtc_tokyo_config，私钥只在运营者电脑；不生成替代访问权限、不修改密钥。永久删除仍由用户本人操作；本次不清理旧 release。
+阻塞与所需权限：仅确认两个已知 fomobtc_tokyo_config 路径不存在，尚不能断言本机没有私钥；目标主机没有已验证的 known_hosts 条目，原配置路径待提供，不尝试猜用密钥或关闭指纹验证。旧历史疑似凭据撤销状态待确认，不上传；不生成替代访问权限、不修改密钥。永久删除仍由用户本人操作，本次不清理旧 release。
 下一步具体动作：检查全绿后以 merge commit 合并（禁止 squash/rebase），核对导入的旧 main 是新 main 的祖先；再按 deployment.md 从新仓发布。上轮已完成事项归档于 releases，旧 backlog 不授权顺带执行。
 
 ## 系统现状
@@ -18,7 +18,7 @@
 | --- | --- |
 | 东京服务器 fomobtc-tokyo（47.79.36.171） | systemd `fomobtc`：全部采集、去重、推送；nginx：`api.fomobtc.com` 只读接口，`fomobtc.com`/`www` 302 到群组；certbot 定时续期两张证书 |
 | Cloudflare（账号 Drminutes） | DNS：A `@`、`www`、`api` → 47.79.36.171，全部 DNS only；看门狗 Worker `fomobtc-watchdog`（每 5 分钟，KV `STATE`） |
-| GitHub `ohxiyu/xiyunews` 的 `realtime/` | 保留原项目历史，独立 Python 3.11/3.12、仓库契约和看门狗 Node 测试；旧仓待部署验证后归档 |
+| 本地 `ohxiyu/xiyunews` 的 `realtime/` 导入候选 | 原项目历史及独立测试已准备，远端 main 尚无 realtime/；旧仓待部署验证后归档 |
 
 Telegram 群组 fomobtc（`-1004364162227`，已开启话题，成员只读，仅保留表情回应；入口邀请链接 https://t.me/+mdTufn9GK1UyODk0 ，名称 fomobtc.com）：
 - 📈 行情异动（话题 3）：币安 USDT 现货最近 3 分钟涨跌超过 2%/3%/5%（按 24h 成交额）并持续 3 秒；同币同向 1 小时一次，再涨跌 10% 立即再提醒，附 24 小时新高/新低。单条为 1 分钟 K 线图 + 中英双语 + 市值，同一秒到期多条合并为文字。

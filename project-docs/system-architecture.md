@@ -41,7 +41,7 @@ flowchart TD
 | 模块 | 代码入口 | 执行位置 | 主要职责 |
 | --- | --- | --- | --- |
 | 内容管线 | src/main.py、src/orchestrator.py、src/scrapers/、src/ai/ | GitHub Actions 的 Python 任务 | 采集、去重、评分、选稿、翻译和扩写；缓存有效结果。 |
-| 网页与公开数据 | docs/、Jekyll 模板、src/publishers/ | Actions 生成，Cloudflare Pages 构建 | 日报、连续信息流、事件线、实体、周报、订阅与 JSON 输出。 |
+| 网页与公开数据 | docs/、Jekyll 模板、src/orchestrator.py、src/site_pages.py、src/weekly.py | Actions 生成，Cloudflare Pages 构建 | 日报、连续信息流、事件线、实体、周报、订阅与 JSON 输出。 |
 | 站点边缘层 | docs/_worker.js | Cloudflare Pages 的 Workers 运行时 | 内容协商、接口路由、缓存、旧域停用、Quick Post 读写及认证校验。 |
 | 独立调度器 | ops/daily-dispatcher/src/ | Cloudflare Cron + 既有 RecoveryGate Durable Object | 检查日报缺失、受限补发、四小时采集和分发到期门控。 |
 | 人工编辑 | src/quick_posts.py、data/editorial.json、站点后台 | Access 保护的 /s/ 与 Pages Worker | 不调用 AI 的快速发布，保留人工编辑身份和原始内容。 |

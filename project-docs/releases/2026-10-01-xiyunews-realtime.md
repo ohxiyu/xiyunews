@@ -19,3 +19,13 @@ Worker version: ac52cef1-d767-4d0e-903b-bfe1886b3b1f。
 Deployment: wrangler deploy --keep-vars，显式新仓、临时旧公共检查地址，原 Secrets 保留。
 Verification: health 仓库 ohxiyu/xiyunews，public_site_url 仍为过渡 bmt.news；ready 返回 actions:write 和 contents:read；自然采集派发尚未出现。阶段 3 服务器仍是旧版本 2.6.0/b226b625cf3875b6693e0768d75d88d50b33c08d，三个分片 live；本机缺少 SSH 配置，未切换。
 Rollback: 没有执行回滚；调度器保留 Durable Object 和重试记录，实时旧 release 保留，切换需要持有 SSH 的运营者电脑。
+
+## 继续准备（2026-10-01 晚间）
+
+本地 merge 0a7797bf 已合入主仓最新 99594ac28b5918f3192bc62501469bb01c66e802，旧仓 main 7807126d8c7cdb51e18f0b91ba27f500271f9f08 与最新主仓均为本地 HEAD 祖先。根 942 项 pytest 通过；实时 Python 3.11/3.12 各 61 项、ruff、mypy、compileall、仓库契约及 3 项看门狗 Node 通过。部署说明已补齐六步备份/切换/健康/自然回执/回退清单，8 个 Bash 代码块与嵌入 Python 的语法验证通过，没有在服务器执行。
+
+品牌文案见 [Telegram 草案](../telegram-brand-migration.md)，没有改群或频道名称、正文、规则或看门狗署名。修正架构文档中不存在的 src/publishers/ 入口为实际渲染模块。后台仍为验证码页，显示名待操作时确认；不获取验证码或发布测试内容。
+
+20:05 广场 workflow_dispatch 36859488592 success：attempted=1、sent=11、remaining=3、attention=0；持久化新回执 post_id=372593244617888，attempted_at=2026-10-01T20:05:45.314008+08:00。这是站点前序调度改动的真实到期发布证据，不是实时模块新仓部署。
+
+完整历史仍不上传：撤销确认和已验证的原 SSH 入口缺失。没有因继续执行请求而跳过安全门控；服务器仍是原版本，旧仓不归档。后续实际 commit 与验证以本地分支、最终 PR head 和根交接为准。
