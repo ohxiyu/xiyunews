@@ -23,3 +23,5 @@ PR169 的 4eda055a 检查中，Python test、governance、CodeQL analyze 和 Cod
 GitHub API 确认 fomobtc 为私有、xiyunews 为公开；不加 squash 的历史导入会公开私有提交，需要先明确公开范围并审计历史，不能只检查当前树。对敏感文件名的初查仅发现示例 env，不能代替完整历史密钥审计。本机未找到既有 fomobtc_tokyo_config，因此没有执行 SSH、服务器部署、自然推送验收或归档旧仓库。
 
 运营者随后确认“已经保存，合并都改为私有仓库，然后部署”。已把 xiyunews 改为私有，API 回读两仓 private=true；Dynadot 页面回读 xiyu.news 已保存 ignat/shaz.ns.cloudflare.com，公网 DNS 暂未更新。历史公开风险已因主仓私有消除，仍不提交密钥。e8155eab 的全部远端检查与 Pages 预览通过；私有化后 CodeQL 调整为只在公开仓或显式已有授权时运行，不新增付费扫描，不宣称跳过等于通过，现有依赖审计保留。未取得服务器 SSH 配置的事实不变。
+
+为在 NS 传播期间继续部署而不让旧站跳向未就绪域名，增加生产文本开关 LEGACY_REDIRECT_ENABLED：只有精确 false 暂停旧域 301，默认仍执行同路径查询跳转；新增两个暂缓期间旧域 200 测试。合并前必须回读 Pages 生产 false，新域及 HTTPS/Access 就绪后设 true 并自动重部署。阶段 1 可以先合并、发布品牌，但新旧域生产验收仍是 pending，不能把 DNS 保存或预览成功当作全部上线。

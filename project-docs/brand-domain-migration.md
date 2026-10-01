@@ -2,7 +2,9 @@
 
 ## 发布顺序
 
-先确认 xiyu.news DNS 委派与 Pages 自定义域可用，再发布品牌与 Worker 301。网页站名为 xiyu.news，中文品牌为稀有News。旧域名仍需留在同一 Pages 项目并保留 TLS；不要先解绑旧域，不直接写 gh-pages。
+网页站名为 xiyu.news，中文品牌为稀有News。品牌代码可以先发布，但旧域 301 必须在新域 DNS、Pages 与 HTTPS 就绪后启用。旧域名仍需留在同一 Pages 项目并保留 TLS；不要先解绑旧域，不直接写 gh-pages。
+
+过渡期间先在 Pages 生产环境设置文本变量 LEGACY_REDIRECT_ENABLED=false 并回读，再合并品牌 PR，由 Actions 正常发布；旧域暂时继续 200，不代表迁移验收完成。新域全部路径返回 200、后台 Access 与 HTTPS 就绪后，将该变量设为 true，并通过现有自动发布路径触发重新部署，然后验证 301。只有精确字符串 false 暂停跳转，其他值或未配置保持默认 301；不可在新域未就绪时移除该变量。过渡开关不绕过后台认证，后台的新域迁移仍须单独完成。
 
 Cloudflare Free zone 的 NS 为 ignat.ns.cloudflare.com 和 shaz.ns.cloudflare.com。保存后核对注册商回读、权威 DNS 和 Cloudflare active；创建 zone 不等于上线。Pages 内部项目名可保留 bmtnews，关联仓库须核对为 ohxiyu/xiyunews，生产分支仍为 gh-pages。
 

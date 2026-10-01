@@ -673,7 +673,10 @@ function cachedResponse(response, status, policy) {
 
 export async function handleRequest(request, env, ctx) {
   const url = new URL(request.url);
-  if (url.hostname === 'bmt.news' || url.hostname === 'www.bmt.news') {
+  // Keep the existing site reachable while the new zone/TLS is propagating.
+  // Only an explicit production false pauses redirects; normal behavior is 301.
+  if (env.LEGACY_REDIRECT_ENABLED !== 'false' &&
+      (url.hostname === 'bmt.news' || url.hostname === 'www.bmt.news')) {
     return new Response(null, {status: 301, headers: {
       Location: SITE_ORIGIN + url.pathname + url.search,
       'Cache-Control': 'public, max-age=300'

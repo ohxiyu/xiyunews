@@ -19,3 +19,14 @@ test('A similar hostname is not treated as the old brand domain', async () => {
   });
   assert.equal(response.status, 200);
 });
+
+for (const host of ['bmt.news', 'www.bmt.news']) {
+  test(`${host} stays reachable when the deployment switch explicitly pauses redirects`, async () => {
+    const response = await handleRequest(new Request(`https://${host}/robots.txt?y=1`), {
+      LEGACY_REDIRECT_ENABLED: 'false',
+      ASSETS: {fetch: async () => new Response('robots', {status: 200})}
+    });
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('Location'), null);
+  });
+}
