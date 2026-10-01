@@ -39,7 +39,7 @@ def test_legal_links_have_public_static_targets() -> None:
     llms = (ROOT / "docs/llms.txt").read_text()
     for notice in ("software-license", "content-rights", "third-party-notices"):
         url = f"/legal/{notice}.txt"
-        assert f"]({url})" in legal
+        assert f"](https://xiyu.news{url})" in legal
         assert f"](https://xiyu.news{url})" in llms
         assert (ROOT / "docs" / url.lstrip("/")).is_file()
 

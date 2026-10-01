@@ -33,5 +33,5 @@ does not provide investment, legal, tax, or compliance advice. Readers and
 agents should verify consequential claims against the original linked sources.
 The website, read-only API, feeds, and license notices are public. The
 operational repository is private; its issue tracker is not a public contact
-channel. See [contact information](/contact/) and
-[software and content rights](/legal/) for the current published information.
+channel. See [contact information](https://xiyu.news/contact/) and
+[software and content rights](https://xiyu.news/legal/) for the current published information.
