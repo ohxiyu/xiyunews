@@ -278,7 +278,7 @@ def test_build_post_fits_the_character_limit() -> None:
         site_url="https://xiyu.news/",
     )
     assert _weighted_length(text) <= TWEET_LIMIT
-    assert "https://xiyu.news/" in text
+    assert text.splitlines()[-1] == "https://xiyu.news/"
     assert text.startswith("稀有News 2026-08-09")
 
 

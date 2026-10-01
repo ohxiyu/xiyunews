@@ -51,7 +51,7 @@ def test_story_post_prefers_market_impact_and_fits() -> None:
     assert "影响集中在托管与合规成本。" in text
     assert "第二句不应出现" not in text
     assert text.split("\n\n", 1)[0].startswith("8月9日，新加坡")
-    assert text.rstrip().endswith("https://xiyu.news/")
+    assert text.splitlines()[-1] == "https://xiyu.news/"
     assert _weighted_length(text) <= TWEET_LIMIT
 
 
