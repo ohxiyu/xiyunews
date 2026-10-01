@@ -1,16 +1,16 @@
 # 当前交接
 
-运营者授权解决迁移审计全部问题，当前唯一编辑任务 Issue185：旧域停止服务、排除状态分支预览、记录真实系统架构。PR182 和 PR184 已合并部署，后台仅保留新域；按最新决定旧域返回 410，不再跳转。阶段 3 的凭据安全确认和后续实时部署仍不可跳过，不调整来源、阈值、地址簿或 UI 结构。
+本次文档回写任务为 Issue187；五阶段状态描述已完成的 PR186 产品发布，不把文档回写误当成新的部署。PR182/184/186 已合并并验收：公开联系仅 X @ohxiyu，后台仅新域，旧域停止服务且无跳转，空派发与状态分支预览已优化。完整迁移尚未完成，阶段 3 历史凭据撤销确认、原 SSH 配置、登录后 Quick Post 与 Telegram 实际改名仍不可跳过，不改提醒规则或 UI 结构。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "完成迁移审计收尾：旧域停用、无效预览过滤和系统架构",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/185",
+  "goal": "回写 PR186 产品发布的生产验收与系统架构，明确后续迁移的安全条件",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/187",
   "owner": "Codex / 迁移唯一编辑及部署整合负责人",
-  "branch": "agent/xiyunews-final-audit",
-  "last_verified_commit": "f0a2dc89d2fbcd702904379ffe0b7d197de88d02",
-  "pr": "Issue185 实施中；PR182 与 PR184 已合并部署",
+  "branch": "agent/xiyunews-final-receipt",
+  "last_verified_commit": "3b8f2b5cd82e257783c99501e6494e495bb20ca7",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/186（产品已合并部署验收；Issue187 仅回写证据）",
   "completed": [
     "阶段 1 PR169 与阶段 2 PR171 顺序全绿合并，主站与调度器已上线；PR174/176/178 后续修复也已合并",
     "ohxiyu/xiyunews 与 ohxiyu/fomobtc 均 private=true、archived=false，协作者仅 ohxiyu；私有 Git 集成 Pages 构建成功",
@@ -23,14 +23,17 @@
     "PR182 全绿合并并经 Deploy Docs 发布，站内许可入口 200，联系入口仅 X @ohxiyu，不公开私人信息",
     "Access 已按操作时确认仅保护新域六路径，原单账号策略与 AUD 不变，匿名入口 302 登录页",
     "PR184 全绿合并并 keep-vars 部署 9774435b；19:00 上海时间自然 Cron 返回采集 fresh、广场 idle、X idle、日报 healthy",
-    "公开联系页普通主域 200 且仅使用 X @ohxiyu，旧缓存已自然更新"
+    "公开联系页普通主域 200 且仅使用 X @ohxiyu，旧缓存已自然更新",
+    "PR186 全绿合并后 Deploy Docs 36853256492 成功，gh-pages c74d9092 对应生产 Pages 216fd183，正式检查 success",
+    "2026-10-01 11:12 UTC 普通新域主入口/日报/API/RSS/sitemap/openapi/llms/contact 200、canonical 新域；旧两域 26 路径全为 410，无 Location 且 no-store",
+    "Pages 预览保留包含 * 并排除三状态分支；后续自然采集 36853175538 success，缓存 926e93c0 保留父提交且无 Pages check",
+    "系统架构已进入 main，明确现有静态网站、Actions、边缘后台/调度与原实时服务，不把本地 subtree 当成上线"
   ],
   "unfinished": [
     "确认旧历史疑似 Telegram Token 已撤销后，同步最新 main、重新测试、推送阶段 3 PR 并用 merge commit 保留历史",
     "阶段 4 从原 SSH 电脑备份、部署、检查新 SHA/三分片/自然回执/看门狗后，才归档旧仓",
     "阶段 5 完成 Telegram 品牌文案和运营者确认；不合并群/频道，不改 fomobtc.com nginx",
     "运营者完成新域验证码后验证 Quick Post；旧域 301 已取消，不再作为迁移验收要求",
-    "Issue185 完成治理与远端 CI，正常 Actions 发布后回读两旧域全部 410，无跳转",
     "调度器首次自然到期派发尚待下一个计划时间，不主动发送生产测试消息"
   ],
   "validation": [
@@ -43,28 +46,28 @@
   "unverified": [
     "新域 Access 登录与 Quick Post 管理操作；旧域 301 已被运营者取消，不再作为验收要求",
     "阶段 3 远端 CI、merge commit 历史祖先；服务器新仓完整 SHA、自然 message_id 和看门狗无新增告警",
-    "旧域 410 尚未发布；Access 应用显示名修改仍待操作时确认；下一个自然到期派发待观察"
+    "Access 应用显示名修改仍待操作时确认；自然首次到期分发仍待下一个计划时间"
   ],
   "production": {
-    "source_commit": "21c96d4281e1cec771c7516d3722ea6ba6688c62",
-    "artifact_commit": "d4958131d9066268eef025fb07f912b25ea2b54a",
+    "source_commit": "3b8f2b5cd82e257783c99501e6494e495bb20ca7",
+    "artifact_commit": "c74d90926376852660aa8b56ab2deb35fc624c9e",
     "edition": "2026-10-01",
     "generated_at": "2026-09-30T23:28:59.968601Z",
-    "worker_version": "9774435b-1c72-4dad-9552-0440e2ab574f（独立调度器）",
-    "verified_at": "2026-10-01 11:03 UTC；普通联系页 200 新文案，19:00 自然 Cron healthy/idle"
+    "worker_version": "9774435b-1c72-4dad-9552-0440e2ab574f（独立调度器）；Pages 216fd183-cd53-4140-a744-ff6b48ff1bd6（站点 Worker）",
+    "verified_at": "2026-10-01 11:12 UTC；普通主域 200、新 canonical；旧两域 26 路径 410，无跳转"
   },
   "blockers": [
     "旧历史两份已删除 README 含同一疑似 Telegram Token，未输出或调用，未推入新仓；保留历史前需确认已撤销",
     "仅确认两个文档中记载的 fomobtc_tokyo_config 路径不存在，尚不能推断本机没有私钥；原 SSH 配置路径待提供，未尝试不明连接",
     "新域验证码登录待运营者完成，不绕过 Access，不发布生产测试消息"
   ],
-  "next_action": "完成 Issue185 合并及正常发布，验证旧域 410 与新域公开路由；随后写生产回读文档 PR。实时历史仍待旧凭据撤销与原 SSH 配置，后台待运营者登录。",
+  "next_action": "合并本次纯文档回写后，等待旧凭据已撤销确认、原 SSH 配置、新域验证码登录和 Telegram 文案确认；不推未撤销凭据的历史，不绕过后台，不发布测试消息。阶段 3 启动时先同步最新 main 并重新验证。",
   "states": {
     "code": "complete",
     "tests": "complete",
-    "pr_merged": "pending",
-    "deployed": "pending",
-    "production_verified": "pending"
+    "pr_merged": "complete",
+    "deployed": "complete",
+    "production_verified": "complete"
   },
   "evidence": "project-docs/releases/2026-10-01-final-audit.md"
 }
