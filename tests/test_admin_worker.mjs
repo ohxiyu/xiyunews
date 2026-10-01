@@ -39,6 +39,14 @@ test('encoded management paths cannot fall through to public assets',async()=>{
   assert.equal((await worker.handleRequest(new Request('https://xiyu.news'+path),env)).status,401);
  }
 });
+test('private source config uses authenticated same-origin API without writes',async()=>{
+ const response=await request('/api/admin/source-config');
+ assert.equal(response.status,200);
+ assert.deepEqual(await response.json(),registry);
+ assert.equal(writes,0);assert.equal(dispatches,0);
+ const denied=await worker.handleRequest(new Request('https://xiyu.news/api/admin/source-config'),env);
+ assert.equal(denied.status,401);
+});
 test('legacy editing keeps additional metadata and validates required fields',async()=>{
  const entry={type:'sponsored',enabled:true,url:'https://example.com/promo',title_zh:'广告',starts:'2026-09-10',expires:'2026-09-11',position:4,tags:[],sources:[]};
  let r=await request('/api/admin/legacy',{sha,index:0,entry});assert.equal(r.status,200);

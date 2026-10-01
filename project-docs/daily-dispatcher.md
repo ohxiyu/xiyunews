@@ -33,7 +33,7 @@ GitHub 官方说明 `schedule` 事件在高负载时可能延迟或被丢弃。�
 
 ## Cloudflare 部署
 
-Worker 位于 `ops/daily-dispatcher/`。生产部署前需要一个仅限 `ohxiyu/xiyunews` 仓库的 GitHub fine-grained personal access token，Repository permissions 只授予 `Actions: Read and write`；令牌只写入 Cloudflare Secret，不进入 Git、Wrangler 配置或日志。
+Worker 位于 `ops/daily-dispatcher/`。生产部署前需要一个仅限 `ohxiyu/xiyunews` 仓库的 GitHub fine-grained personal access token，Repository permissions 授予 `Actions: Read and write` 和 `Contents: Read`；私有化后后者用于读取 gh-pages 生成物。令牌只写入 Cloudflare Secret，不进入 Git、Wrangler 配置或日志。内容使用 GitHub Contents API 的 raw media type，禁止带鉴权跟随跳转；令牌不发送到公开站点或 raw 下载地址。
 
 ```bash
 cd ops/daily-dispatcher
@@ -56,7 +56,7 @@ GitHub 对 `feed-collection.yml` 的定时经常晚 1–3 小时或漏跑。Work
 
 ## 验证与排障
 
-1. 访问 Worker 的 `/health`，确认静态配置返回 `status: ok`；再访问 `/ready`，确认返回 `dispatch_permission: actions:write`。`/ready` 会用一个不可能成立的 Git ref 调用 dispatch API：具有 Actions 写权限时 GitHub 在 ref 校验阶段返回 422，Worker 据此确认权限，但不会创建 workflow run。两个端点都不允许通过 HTTP 触发日报。
+1. 访问 Worker 的 `/health`，确认 `repository: ohxiyu/xiyunews` 与实际 `public_site_url`；再访问 `/ready`，确认返回 `dispatch_permission: actions:write` 和 `contents_permission: contents:read`。`/ready` 使用不可能成立的 Git ref 调用 dispatch API，并读取 gh-pages/api/latest.json，不会创建 workflow run；两个端点都不允许通过 HTTP 触发日报。
 2. 在 07:26 后检查 Cloudflare Workers Logs 的 `publication_check` 事件，字段包含 `edition_date`、`status`、`raw_ready`、`public_ready`、`items`、`overdue` 和可选的 `active_run_url`。
 3. 在 GitHub Actions 中确认日报运行名包含明确期号和来源，例如 `Daily 2026-07-31 via cloudflare-primary`。
 4. 检查 `gh-pages/_posts/YYYY-MM-DD-summary-{zh,en}.md`，再检查站点 `/YYYY/MM/DD/summary-{zh,en}.html`。

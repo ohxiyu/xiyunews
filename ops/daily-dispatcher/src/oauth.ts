@@ -3,12 +3,12 @@
  *
  * Optional feature: routes return 503 until both secrets are set via
  * `wrangler secret put GITHUB_OAUTH_CLIENT_ID` / `GITHUB_OAUTH_CLIENT_SECRET`.
- * The OAuth app only needs the `public_repo` scope because the repository
- * is public, and the issued token is delivered exclusively to the admin
+ * This legacy relay only supports public repositories; it is not the private
+ * repository Quick Post sign-in (which uses Cloudflare Access). The token is delivered exclusively to the admin
  * origin via postMessage — never logged, stored, or echoed elsewhere.
  */
 
-const DEFAULT_ADMIN_ORIGIN = "https://bmt.news";
+const DEFAULT_ADMIN_ORIGIN = "https://xiyu.news";
 const OAUTH_SCOPE = "public_repo";
 const STATE_COOKIE = "bmtnews_oauth_state";
 

@@ -13,7 +13,7 @@ export default defineConfig({
         bindings: {
           // CI's GITHUB_REF must not replace the dispatch target in fixtures.
           GITHUB_REF: "main",
-          GITHUB_REPOSITORY: "ohxiyu/bmtnews-standalone",
+          GITHUB_REPOSITORY: "ohxiyu/xiyunews",
           GITHUB_WORKFLOW: "daily-summary.yml",
           GITHUB_DISPATCH_TOKEN: "test-token",
           RECOVERY_CHECK_TOKEN: "test-check-token",
