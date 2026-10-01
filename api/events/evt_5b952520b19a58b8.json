@@ -7,43 +7,57 @@
   "status": "resolved",
   "category": "crypto",
   "title": {
-    "zh": "Balancer 提议关闭协议，将 900 万美元金库返还给 BAL 持有者",
+    "zh": "Balancer 提出并获批关闭协议，将国库分配给 BAL 持有者",
     "en": "Balancer Proposes Shutting Down and Returning Its $9 Million Treasury to BAL Holders"
   },
   "current_state": {
-    "zh": "Balancer 的关停提案已获 BAL 持有人批准，官方分叉方案被否决，协议进入分阶段关停执行：可暂停池于 10 月 30 日转为仅可提取，漏洞赏金覆盖同日终止，11 月 30 日暂停 V3 Vault，并保留提款通道；BAL 持有人最早可自 2027 年 5 月底销毁代币以实物形式兑换国库资产，V2 与 V3 池中约 5240 万美元流动性仍可提取。",
-    "en": "Balancer's wind-down proposal was approved by BAL holders and an official fork was rejected, moving the protocol into phased shutdown execution: pausable pools move to withdrawals-only on Oct. 30, bug bounty coverage ends the same day, the V3 Vault pauses Nov. 30, and withdrawal channels remain open; BAL holders may burn tokens for in-kind treasury assets from end of May 2027, with ~$52.4 million still in V2 and V3 pools available for withdrawal."
+    "zh": "Balancer 社区已通过 BIP-928 有序关停提案并否决 BIP-929 分叉方案，协议进入关停执行阶段：资金池运行至 10 月 30 日，V3 Vault 于 11 月 30 日暂停，2027 年 5 月底起开放 BAL 兑换 DAO 金库资产。",
+    "en": "Balancer's community approved BIP-928 for an orderly wind-down and rejected the BIP-929 fork, moving the protocol into shutdown execution: pools run until Oct 30, the V3 Vault pauses Nov 30, and BAL redemption against DAO treasury assets opens from late May 2027."
   },
   "first_seen_at": "2026-09-14T23:18:04.621169+00:00",
-  "last_updated_at": "2026-09-29T23:26:49.779735+00:00",
-  "last_material_change_at": "2026-09-29T23:26:49.779735+00:00",
+  "last_updated_at": "2026-09-30T02:19:37.703067+00:00",
+  "last_material_change_at": "2026-09-30T02:19:37.703067+00:00",
   "confidence": 0.75,
-  "updates_count": 3,
-  "sources_count": 3,
+  "updates_count": 5,
+  "sources_count": 7,
   "entities": [
     "approve",
     "bal",
     "balancer",
+    "cryptoticker",
     "down",
+    "exit",
     "fork",
     "holders",
     "its",
     "million",
+    "october",
     "official",
+    "pools",
     "proposes",
     "reject",
     "returning",
     "shutting",
     "treasury",
-    "wind"
+    "wind",
+    "winddown",
+    "your"
   ],
-  "identifiers": [],
+  "identifiers": [
+    "bip-928",
+    "bip-929"
+  ],
   "topics": [
     "bal",
     "balancer",
+    "dao-treasury",
+    "liquidity-pools",
     "protocol-shutdown",
     "protocol-wind-down",
-    "treasury-distribution"
+    "protocol-winddown",
+    "treasury",
+    "treasury-distribution",
+    "user-funds"
   ],
   "updates": [
     {
@@ -136,6 +150,58 @@
       ]
     },
     {
+      "update_id": "upd_1e381dc2f9c006a6",
+      "event_id": "evt_5b952520b19a58b8",
+      "occurred_at": "2026-09-15T05:29:13Z",
+      "published_at": "2026-09-15T05:29:13Z",
+      "first_seen_at": "2026-09-15T09:31:53.152246Z",
+      "time_precision": "published",
+      "update_type": "resolution",
+      "material_change": true,
+      "title_zh": "Balancer提议终止协议并将金库资金分配给BAL持有者",
+      "title_en": "Balancer proposes winding down protocol and distributing treasury to BAL holders",
+      "what_changed_zh": "Balancer提议终止协议并将其金库资金分配给BAL持有者，此前六个月Balancer Labs在2025年一次导致1.28亿美元流失的攻击事件后停止了运营。",
+      "what_changed_en": "Balancer has proposed winding down the protocol and distributing its treasury to BAL holders, six months after Balancer Labs shut down operations following a 2025 exploit that drained $128 million.",
+      "current_state_zh": "Balancer提议终止协议并将其金库资金分配给BAL持有者，此前六个月Balancer Labs在2025年一次导致1.28亿美元流失的攻击事件后停止了运营。",
+      "current_state_en": "Balancer has proposed winding down the protocol and distributing its treasury to BAL holders, six months after Balancer Labs shut down operations following a 2025 exploit that drained $128 million.",
+      "detailed_summary_zh": "Balancer has proposed winding down the protocol and distributing its treasury to BAL holders, six months after Balancer Labs shut down operations following a 2025 exploit that drained $128 million.",
+      "detailed_summary_en": "Balancer has proposed winding down the protocol and distributing its treasury to BAL holders, six months after Balancer Labs shut down operations following a 2025 exploit that drained $128 million.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "rss:www.theblock.co_rss.xml:586fb885c8e3ca3c",
+        "google_news:article:5438c9fea6e80fd4",
+        "telegram:foresightnews:119435"
+      ],
+      "sources": [
+        {
+          "url": "https://www.theblock.co/news/defi/2026-09-15-balancer-proposes-winding-down-414782",
+          "label": "The Block",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1hZThtN1NJdDQyZGtUOUZQU3JvcWYxcnJTbVp3emVxZWFXazFKUWRjVWZ5ak5DODh3NDFOUjV0VzY5ei13elJ3NVNSOXZIb3hvS3FMc0RPczJvYVRtcHBDeE5uZTcxRGF4YklrdQ?oc=5",
+          "label": "CryptoTicker",
+          "source_type": "google_news",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/114275",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
       "update_id": "upd_4b8020808c2ba6f8",
       "event_id": "evt_5b952520b19a58b8",
       "occurred_at": "2026-09-29T19:08:31Z",
@@ -182,6 +248,57 @@
           "url": "https://thedefiant.io/news/defi/balancer-holders-approve-wind-down-reject-official-fork",
           "label": "The Defiant",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_eb88d6fb0e2cf278",
+      "event_id": "evt_5b952520b19a58b8",
+      "occurred_at": "2026-09-30T00:46:03Z",
+      "published_at": "2026-09-30T00:46:03Z",
+      "first_seen_at": "2026-09-30T02:19:37.703067Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Balancer社区通过有序关停提案，分叉方案未获通过",
+      "title_en": "Balancer社区通过有序关停提案，分叉方案未获通过",
+      "what_changed_zh": "BAL 持有者已批准有序关停提案 BIP-928，分叉提案 BIP-929 未获通过；现有资金池运行至 10 月 30 日（合作方可申请将特定 V3 池延长至 11 月 30 日），期间可随时提取资金，11 月 30 日 V3 Vault 暂停，自 2027 年 5 月底起持有者可销毁 BAL 按比例获得 DAO 金库资产。",
+      "what_changed_en": "BAL holders approved the orderly wind-down proposal BIP-928 while the fork proposal BIP-929 was rejected; pools run normally until Oct 30 (partners may apply to extend certain V3 pools to Nov 30), withdrawals remain available throughout, the V3 Vault pauses on Nov 30, and from late May 2027 holders can burn BAL for a pro-rata share of DAO treasury assets.",
+      "current_state_zh": "Balancer 社区已通过 BIP-928 有序关停提案并否决 BIP-929 分叉方案，协议进入关停执行阶段：资金池运行至 10 月 30 日，V3 Vault 于 11 月 30 日暂停，2027 年 5 月底起开放 BAL 兑换 DAO 金库资产。",
+      "current_state_en": "Balancer's community approved BIP-928 for an orderly wind-down and rejected the BIP-929 fork, moving the protocol into shutdown execution: pools run until Oct 30, the V3 Vault pauses Nov 30, and BAL redemption against DAO treasury assets opens from late May 2027.",
+      "detailed_summary_zh": "Balancer's BAL holders approved proposal BIP-928 for the orderly wind-down of the protocol and rejected the BIP-929 fork, with pools operating normally until October 30, withdrawals available throughout, and BAL redemption against DAO treasury assets opening from late May 2027.",
+      "detailed_summary_en": "Balancer's BAL holders approved proposal BIP-928 for the orderly wind-down of the protocol and rejected the BIP-929 fork, with pools operating normally until October 30, withdrawals available throughout, and BAL redemption against DAO treasury assets opening from late May 2027.",
+      "background_zh": "Balancer 自称是面向 DeFi 的自动做市产品套件，在以太坊及部分 EVM 链上提供同质化与生息流动性，并于 2024 年 12 月发布 Balancer v3，集成 Aave 并引入 Boosted Pools。该关停方案由 Balancer Labs 前 CEO Marcus Hardt 撰写，Unchained 报道称相关赔付估计约为每枚 BAL 16 美分。据 Foresight News 消息，tetuBAL 持有者将获得相当于其代币锁定资金 50% 的 BAL。",
+      "background_en": "Balancer describes itself as a DeFi AMM product suite delivering fungible and yield-bearing liquidity across Ethereum and select EVM chains, and released Balancer v3 in December 2024 with an Aave integration and Boosted Pools. The wind-down plan was written by former Balancer Labs CEO Marcus Hardt, and Unchained reported payouts estimated at about 16 cents per BAL. According to Foresight News, tetuBAL holders will receive BAL equal to 50% of their locked funds.",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "传导渠道主要在治理与流动性两方面：BAL 与 tetuBAL 持有者持有对 DAO 金库资产的未来索取权，而使用 Balancer 资金池的流动性提供方与集成方，将随着 10 月至 11 月的关停节点临近而面临 AMM 流动性向其他场所迁移。由于合约为非托管模式且提款始终开放，风险敞口集中于 BAL 相关索取权与资金池迁移，而非用户被强制承受损失的事件。",
+      "market_impact_en": "The transmission channels are governance and liquidity: BAL and tetuBAL holders hold a future claim on DAO treasury assets, while liquidity providers and integrators using Balancer pools face the migration of AMM liquidity to other venues as the October–November wind-down dates approach. Because the contracts are non-custodial and withdrawals remain open, the exposure is concentrated in BAL-linked claims and pool migration rather than a forced-loss event for users.",
+      "importance_score": 8.0,
+      "references": [
+        {
+          "url": "https://unchainedcrypto.com/balancer-is-shutting-down-with-payouts-estimated-at-about-16-cents-per-bal/",
+          "title": "Balancer Is Shutting Down, With Payouts Estimated at About 16 Cents..."
+        },
+        {
+          "url": "https://www.cryptured.com/balancer-wind-down-shutdown-dates/",
+          "title": "Balancer Wind-Down Approved: Key Dates and BAL Payout"
+        },
+        {
+          "url": "https://hackernoon.com/balancer-v3-launches-with-aave-integration-introduces-new-developer-tools",
+          "title": "Balancer v3 Launches with Aave Integration, Introduces... | HackerNoon"
+        }
+      ],
+      "confidence": 0.92,
+      "story_ids": [
+        "telegram:theblockbeats:198337"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/369651?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]
