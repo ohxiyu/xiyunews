@@ -1,5 +1,7 @@
 # FomoBTC Agent 规则
 
+本模块位于私有 `ohxiyu/xiyunews` 的 `realtime/`。根目录 AGENTS.md 优先；开发使用 agent/* 分支，一个 Issue/PR，同时更新根交接/发布记录和本模块交接/记录。当前操作指针以根 project-docs/handoff.md 为整合入口；本模块运行命令在 realtime/ 内执行，依赖和 src 包不得与日报交叉导入。
+
 ## 项目与边界
 - Python 3.11/3.12 + aiohttp，币安现货事件驱动行情、多家交易所官方公告与新交易对、链上币安资金流向，SQLite 持久化，systemd 单实例；推送目标为一个开启话题的 Telegram 群组（行情异动 / 交易所公告 / 资金流向）。网页前端已于 2026-09-25 按用户要求下线，只保留只读 API（健康检查与事件查询）。全部服务运行在东京服务器（含 fomobtc.com 跳转）；Cloudflare 只负责 DNS 与服务器外的看门狗（fomobtc-watchdog）。
 - 用户在 2026-09-14 明确授权本轮完整改造、改名、合并与部署；不再沿用上轮 Draft-only 限制。不购买付费服务，不引入交易或提现功能。

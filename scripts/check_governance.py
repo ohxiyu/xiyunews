@@ -34,7 +34,7 @@ def changed_paths(root, base, head):
 
 def check_change_evidence(paths, root=None):
     application = any(
-        p.startswith(("src/", "docs/", "ops/", "data/"))
+        p.startswith(("src/", "docs/", "ops/", "data/", "realtime/"))
         or p in {"VERSION", "pyproject.toml", "uv.lock"}
         or p.startswith(".github/workflows/")
         for p in paths

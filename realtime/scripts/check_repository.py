@@ -64,7 +64,7 @@ def check(root: Path, base: str | None = None) -> list[str]:
             errors.append(f"{name} must link to AGENTS.md")
     tracked = (
         subprocess.check_output(
-            ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+            ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z", "--", "."],
             cwd=root,
         )
         .decode()
@@ -96,6 +96,12 @@ def check(root: Path, base: str | None = None) -> list[str]:
         if not re.search(r"^部署状态\uFF1A(deployed|rolled-back)$", content, re.M):
             errors.append(f"{path.name}: invalid deployment state")
     if base:
+        # Git diff paths are repository-relative even from a subtree directory.
+        git_root = Path(subprocess.check_output(
+            ["git", "rev-parse", "--show-toplevel"], cwd=root, text=True,
+        ).strip()).resolve()
+        prefix = root.resolve().relative_to(git_root).as_posix()
+        prefix = "" if prefix == "." else prefix + "/"
         changed = set(
             subprocess.check_output(
                 ["git", "diff", "--name-only", f"{base}...HEAD"],
@@ -104,6 +110,7 @@ def check(root: Path, base: str | None = None) -> list[str]:
             .decode()
             .splitlines()
         )
+        changed = {name[len(prefix):] for name in changed if name.startswith(prefix)}
         application = any(
             name.startswith(("src/", "config/", "scripts/"))
             or name in {"run.py", "pyproject.toml", "VERSION"}

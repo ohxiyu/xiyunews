@@ -2,7 +2,10 @@
 
 Low-latency Binance spot move alerts, official exchange announcements and on-chain
 Binance flows, delivered through one Telegram group.
-Formerly CoinSignal; the repository is now https://github.com/ohxiyu/fomobtc.
+Formerly CoinSignal; maintained in the private
+https://github.com/ohxiyu/xiyunews/tree/main/realtime repository subtree.
+Run the commands below from `realtime/`; dependencies and src imports are
+independent from the daily-publication application at the repository root.
 
 Delivery: one Telegram forum group with topics for market moves, exchange
 announcements and on-chain Binance flows (no web frontend). Current deployment and remaining

@@ -45,7 +45,12 @@ def test_application_diff_requires_evidence(monkeypatch):
 
     def output(command, **kwargs):
         if command[1] == "diff":
-            return b"src/main.py\n"
+            git_root = Path(original(
+                ["git", "rev-parse", "--show-toplevel"], cwd=ROOT, text=True,
+            ).strip()).resolve()
+            prefix = ROOT.resolve().relative_to(git_root).as_posix()
+            prefix = "" if prefix == "." else prefix + "/"
+            return (prefix + "src/main.py\n").encode()
         return original(command, **kwargs)
 
     monkeypatch.setattr(module.subprocess, "check_output", output)

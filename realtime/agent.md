@@ -8,7 +8,7 @@
 ## 系统在哪里
 - 东京服务器 fomobtc-tokyo：systemd `fomobtc`（全部采集与推送）+ nginx（`api.fomobtc.com` 只读健康检查、fomobtc.com 跳转）。
 - Cloudflare：只有 DNS 与看门狗 `fomobtc-watchdog`（服务器外每 5 分钟检查，异常私聊运营者）。
-- GitHub `ohxiyu/fomobtc`：只有 main 分支。
+- GitHub `ohxiyu/xiyunews` 的 `realtime/`：按根目录规则使用 agent/* 分支和 PR，运行命令先进入 realtime/。
 
 ## 开工清单
 1. `git fetch`，确认 main 与服务器 `/opt/fomobtc/current` 的源码 SHA 一致。

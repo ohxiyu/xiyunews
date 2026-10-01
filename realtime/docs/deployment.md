@@ -1,5 +1,29 @@
 # FomoBTC deployment and rollback
 
+## Combined private repository packaging
+
+The maintained source is ohxiyu/xiyunews, under realtime/. Run development checks
+inside realtime/, but package from the combined repository root after fetching
+origin/main and verifying the reviewed merge SHA. Retain this module's independent
+requirements.lock and pyproject. Never install the daily application's dependencies
+or package its src into the realtime release.
+
+```bash
+git fetch origin
+SOURCE_SHA=$(git rev-parse origin/main)
+git merge-base --is-ancestor "$SOURCE_SHA" origin/main
+git archive "$SOURCE_SHA" realtime | tar -x --strip-components=1 -C /opt/fomobtc/releases/"$SOURCE_SHA"
+```
+
+The target directory must first be created on the existing server; when packaging
+on the operator's computer, transport the archive over the existing SSH connection.
+Alternatively use bash realtime/scripts/deploy/package_release.sh "$SOURCE_SHA"
+for the validated tar stream. SOURCE_COMMIT is this full combined-repository SHA;
+/api/health must match it, not the pre-import fomobtc commit. Do not change the
+systemd unit, /etc/fomobtc.env path, database path or nginx redirect. The complete
+operator-only switch/backup/rollback checklist will be added in stage 4; do not
+run the packaging example without its preparation steps.
+
 ## Backend: one Linux host, one sender
 
 Requires Python 3.11/3.12, HTTPS access to Binance/OKX/Telegram, and a persistent
