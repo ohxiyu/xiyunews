@@ -184,6 +184,10 @@ async function handleAdmin(request, env) {
       });
     }
     if (request.method === 'GET') {
+      if (path === '/api/admin/source-config') {
+        const file = await github(env, 'contents/data/config.github.json?ref=main');
+        return adminJson(JSON.parse(new TextDecoder().decode(decodeBase64(file.content || ''))));
+      }
       if (path === '/api/admin/state') {
         const current = await readEditorial(env);
         return adminJson({sha: current.sha, items: current.data.items});
