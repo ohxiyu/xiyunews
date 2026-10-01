@@ -5,6 +5,7 @@ const require = createRequire(import.meta.url);
 const sharp = require(process.argv[2] || 'sharp');
 const kit = new URL('../docs/media-kit/', import.meta.url);
 const images = new URL('../docs/assets/images/', import.meta.url);
+const brandVersion = 'v3';
 async function png(source, destination, width) {
   await sharp(await readFile(source), {density: 192}).resize({width}).png().toFile(destination.pathname);
 }
@@ -14,19 +15,19 @@ for (const file of await readdir(kit)) {
   await png(new URL(file, kit), new URL(file.replace('.svg', '.png'), kit), width);
 }
 for (const size of [192, 512]) {
-  const path = new URL(`bmtnews-app-${size}-v2.png`, images);
+  const path = new URL(`bmtnews-app-${size}-${brandVersion}.png`, images);
   await png(new URL('bmtnews-app.svg', kit), path, size);
   await copyFile(path, new URL(`app-icon-${size}.png`, images));
 }
-await png(new URL('bmtnews-maskable.svg', kit), new URL('bmtnews-maskable-512-v2.png', images), 512);
-await png(new URL('bmtnews-apple.svg', kit), new URL('bmtnews-apple-180-v2.png', images), 180);
-await copyFile(new URL('bmtnews-apple-180-v2.png', images), new URL('apple-touch-icon.png', images));
-await copyFile(new URL('bmtnews-social.png', kit), new URL('bmtnews-social-v2.png', images));
+await png(new URL('bmtnews-maskable.svg', kit), new URL(`bmtnews-maskable-512-${brandVersion}.png`, images), 512);
+await png(new URL('bmtnews-apple.svg', kit), new URL(`bmtnews-apple-180-${brandVersion}.png`, images), 180);
+await copyFile(new URL(`bmtnews-apple-180-${brandVersion}.png`, images), new URL('apple-touch-icon.png', images));
+await copyFile(new URL('bmtnews-social.png', kit), new URL(`bmtnews-social-${brandVersion}.png`, images));
 const frames = [];
 for (const size of [16, 32, 48]) {
   const frame = await sharp(await readFile(new URL('bmtnews-app.svg', kit)), {density: 192})
     .resize(size, size).png().toBuffer();
-  await writeFile(new URL(`bmtnews-favicon-${size}-v2.png`, images), frame);
+  await writeFile(new URL(`bmtnews-favicon-${size}-${brandVersion}.png`, images), frame);
   frames.push({size, frame});
 }
 // Standard ICO container with PNG frames; no platform-specific image editor.

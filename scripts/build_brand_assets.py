@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 KIT = ROOT / "docs/media-kit"
 IMAGES = ROOT / "docs/assets/images"
 BLUE, LIGHT, INK, DARK_BLUE = "#1d4c96", "#faf9f7", "#1b1b18", "#8fb0e6"
+BRAND_VERSION = "v3"
 NS = {"s": "http://www.w3.org/2000/svg"}
 
 
@@ -39,9 +40,9 @@ def build(font=None):
     parts = {p.attrib["id"]: p.attrib["d"] for p in ET.parse(ROOT / "brand/mark.svg").findall("s:path", NS)}
     word = ET.parse(ROOT / "brand/wordmark-path.svg").find("s:path", NS).attrib["d"]
 
-    def symbol(color, transform="", monochrome=False):
+    def symbol(color, transform="", monochrome=False, pupil_color=None):
         colors = {"body": color, "eye": "none" if monochrome else "#ffcc29",
-                  "pupil": color if monochrome else INK}
+                  "pupil": pupil_color or color}
         return ''.join(f'<path fill="{colors[name]}" fill-rule="evenodd" transform="{transform}" d="{path}"/>'
                        for name, path in parts.items())
 
@@ -56,17 +57,17 @@ def build(font=None):
         (KIT / f"bmtnews-lockup-{name}.svg").write_text(svg(670, 176, lockup(color, text, mono)))
 
     app = svg(512, 512, f'<rect width="512" height="512" rx="108" fill="{BLUE}"/>' +
-              symbol("#ffffff", "translate(66.56 66.56) scale(.74)"))
+              symbol("#ffffff", "translate(66.56 66.56) scale(.74)", pupil_color=BLUE))
     # All foreground points fit inside the maskable safe circle (r = 40%).
     maskable = svg(512, 512, f'<rect width="512" height="512" fill="{BLUE}"/>' +
-                   symbol("#ffffff", "translate(102.4 102.4) scale(.6)"))
+                   symbol("#ffffff", "translate(102.4 102.4) scale(.6)", pupil_color=BLUE))
     apple = svg(512, 512, f'<rect width="512" height="512" fill="{BLUE}"/>' +
-                symbol("#ffffff", "translate(66.56 66.56) scale(.74)"))
+                symbol("#ffffff", "translate(66.56 66.56) scale(.74)", pupil_color=BLUE))
     (KIT / "bmtnews-app.svg").write_text(app)
     (KIT / "bmtnews-maskable.svg").write_text(maskable)
     (KIT / "bmtnews-apple.svg").write_text(apple)
     for name, content in [("app-icon.svg", app), ("app-icon-maskable.svg", maskable),
-                          ("bmtnews-favicon-v2.svg", app)]:
+                          (f"bmtnews-favicon-{BRAND_VERSION}.svg", app)]:
         (IMAGES / name).write_text(content)
     social = svg(1200, 630, f'<rect width="1200" height="630" fill="{LIGHT}"/>' +
                  '<g transform="translate(100 180) scale(1.5)">' + lockup(BLUE, INK) + '</g>' +
@@ -77,6 +78,8 @@ def build(font=None):
     include = ('<svg xmlns="http://www.w3.org/2000/svg" class="site-brand-mark" viewBox="0 0 512 512" width="26" height="26" '
                'aria-hidden="true" focusable="false">' + symbol("currentColor") + '</svg>\n')
     (ROOT / "docs/_includes/brand-mark.html").write_text(include)
+    # Publish the specification from its single authoritative source.
+    (KIT / "logo-spec.md").write_bytes((ROOT / "brand/logo-spec.md").read_bytes())
 
 
 if __name__ == "__main__":
@@ -86,12 +89,12 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if args.package:
         files = [(p, p.name) for p in sorted(KIT.iterdir()) if p.suffix in {".svg", ".png", ".md"}]
-        files += [(p, "icons/" + p.name) for p in sorted(IMAGES.glob("bmtnews-*v2.*"))]
+        files += [(p, "icons/" + p.name) for p in sorted(IMAGES.glob(f"bmtnews-*{BRAND_VERSION}.*"))]
         files += [(ROOT / "docs/favicon.ico", "icons/favicon.ico")]
         files += [(p, "source/" + p.name) for p in sorted((ROOT / "brand").iterdir()) if p.is_file()]
-        with zipfile.ZipFile(KIT / "bmtnews-media-kit-v2.zip", "w", zipfile.ZIP_DEFLATED) as archive:
+        with zipfile.ZipFile(KIT / f"bmtnews-media-kit-{BRAND_VERSION}.zip", "w", zipfile.ZIP_DEFLATED) as archive:
             for path, name in files:
-                info = zipfile.ZipInfo(name, (2026, 9, 13, 0, 0, 0))
+                info = zipfile.ZipInfo(name, (2026, 10, 1, 0, 0, 0))
                 info.compress_type = zipfile.ZIP_DEFLATED
                 info.external_attr = 0o644 << 16
                 archive.writestr(info, path.read_bytes())

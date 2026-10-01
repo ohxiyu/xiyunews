@@ -1,46 +1,45 @@
 # 当前交接
 
-当前目标：[Issue160](https://github.com/ohxiyu/bmtnews-standalone/issues/160) 清理失效信源。上一任务 [Issue158](https://github.com/ohxiyu/bmtnews-standalone/issues/158) Cloudflare 调度触发采集已由 PR159 合并（Worker 待维护者部署），记录见 [2026-09-29-dispatcher-collection.md](releases/2026-09-29-dispatcher-collection.md)。
+当前目标：[Issue162](https://github.com/ohxiyu/bmtnews-standalone/issues/162) 发布用户已确认的 A「稀有信使」Logo v3。用户本次明确授权写入规范并上线；只替换品牌，不改内容、调度、认证或费用。规范唯一维护在 [brand/logo-spec.md](../brand/logo-spec.md)。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "删除 GDELT 并以 Google News 主流外媒搜索接替；删除失效 RSS；停止被拒的正文抓取",
-  "issue": "https://github.com/ohxiyu/bmtnews-standalone/issues/160",
-  "owner": "Claude Code / source-cleanup",
-  "branch": "agent/source-cleanup",
-  "last_verified_commit": "238c67e9bf7d97197757061035729df8762756f4",
-  "pr": "pending: PR for agent/source-cleanup",
+  "goal": "发布稀有信使 Logo v3、写入精确几何规范并同步网站与媒体资源",
+  "issue": "https://github.com/ohxiyu/bmtnews-standalone/issues/162",
+  "owner": "Codex / brand-v3（唯一编辑负责人及发布整合人）",
+  "branch": "agent/brand-v3",
+  "last_verified_commit": "9ba3df1c15dee517779c5780c9d0c37fd1806f1d",
+  "pr": "pending: PR for agent/brand-v3",
   "completed": [
-    "GoogleNewsConfig.extra_queries；主流外媒搜索接替 GDELT",
-    "删除 Bitcoin Magazine、Wu Blockchain Substack、Kraken Blog；The Block、The Defiant 用 RSS 摘要",
-    "PR157（来源分级）、PR159（调度触发采集）已合并（238c67e）"
+    "重建三路径矢量母版，新增 brand/logo-spec.md 单一规范",
+    "生成 v3 图标、公开媒体与 ZIP；保留 v1/v2 版本化文件",
+    "规范、完整回归测试和桌面/手机/暗色/媒体/分享视觉检查完成"
   ],
   "unfinished": [
-    "Worker 1.1.0 生产部署（需维护者执行 wrangler deploy）",
-    "PR155、PR157 线上验收",
-    "2026-10-05 周报推送验收"
+    "PR 检查、合并、自动部署和生产验收"
   ],
   "validation": [
-    "uv run pytest 全部通过；治理检查通过"
+    "uv sync --frozen --extra dev --offline 成功，锁文件未变",
+    "原生 SVG → sharp PNG/ICO → ZIP 构建成功",
+    "919 项 Python 测试通过；61 项 Node 前端测试通过；治理与 diff 检查通过",
+    "Jekyll 构建成功；1280×720 桌面及 390×844 手机/暗色无横向溢出",
+    "媒体浅深色 SVG 正常；分享 Canvas 1320×3045 px，三路径显示正常"
   ],
   "unverified": [
-    "主流外媒搜索的实际条数",
-    "上线后日报来源分布",
-    "Worker 首次自动派发采集"
+    "当前分支尚未部署；实际公网 v3 资源待验收",
+    "存量 iOS/Android 桌面图标刷新时机不受网站控制"
   ],
   "production": {
-    "source_commit": "238c67e9bf7d97197757061035729df8762756f4 (this change not merged)",
-    "artifact_commit": "gh-pages c8d49b4 (Event timeline 36513781108)",
-    "edition": "2026-09-29",
-    "generated_at": "2026-09-29T02:45:00Z",
-    "worker_version": "1.0.0 deployed; 1.1.0 merged, pending maintainer deploy",
-    "verified_at": "2026-09-29; Feed Collection logs 164/168/169/170"
+    "source_commit": "unknown; 本次尚未合并",
+    "artifact_commit": "1f40fedf (先前 fetch 的 gh-pages，非本次部署)",
+    "edition": "2026-10-01（本次替换前公网首页）",
+    "generated_at": "unknown; 待正式部署核验",
+    "worker_version": "not changed / unknown; 本次不操作独立 dispatcher",
+    "verified_at": "2026-10-01 替换前仅确认公开页头及 v2 引用"
   },
-  "blockers": [
-    "Worker 部署需要维护者的 Cloudflare 登录"
-  ],
-  "next_action": "合并；下一次采集核对 Google News 两条搜索的条数与 GDELT 移除后无报错",
+  "blockers": [],
+  "next_action": "提交 PR；实时确认全部检查通过后合并，等待 Pages 自动发布并回写生产证据",
   "states": {
     "code": "complete",
     "tests": "complete",
@@ -48,6 +47,10 @@
     "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-09-29-source-cleanup.md"
+  "evidence": "project-docs/releases/2026-10-01-brand-v3.md"
 }
 ```
+
+## 先前任务保留记录（非执行指针）
+
+上一指针为 Issue160 / Claude Code 的来源清理，代码已随 PR161 进入当前 main，记录见 [来源清理](releases/2026-09-29-source-cleanup.md)。先前未验收项仍保留：Worker 1.1.0 生产部署、PR155/157 线上验收、2026-10-05 周报推送验收；它们不属于本次 Logo 授权，不自动继续。先前声明并不代表本次已核验 Worker 实际版本。开放的历史发布证据 PR 不在本任务范围内合并。
