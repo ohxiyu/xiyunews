@@ -1,15 +1,15 @@
 # 当前交接
 
-当前在修复品牌验收发现的存量 sitemap/分类 feed XML；阶段 3 继续暂停历史推送。前台品牌和调度器已合并部署，不能将其等同于五阶段迁移全部完成。页面结构、实时规则、来源、数据库和 Telegram 目标未改变。
+当前在修复自然调度验收发现的采集缓存持久化失败；阶段 3 继续暂停历史推送。PR176 已合并，Deploy Docs 成功，Pages 与 XML 线上新值继续回读。前台品牌和调度器已部署，不能将其等同于五阶段迁移全部完成。页面结构、实时规则、来源、数据库和 Telegram 目标未改变。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "品牌验收补充：迁移存量 sitemap 与分类订阅 XML；阶段 3 历史迁移继续暂停",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/175",
+  "goal": "迁移部署验收：修复缓存分支误携带 workflow 改动；阶段 3 历史迁移继续暂停",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/177",
   "owner": "Codex / 迁移唯一编辑及部署整合负责人",
-  "branch": "agent/xiyunews-brand-xml",
-  "last_verified_commit": "d12dfb1e355206f462d7e6752989a82dcbb72f3a",
+  "branch": "agent/xiyunews-cache-persistence",
+  "last_verified_commit": "d115e7debbf70e8d4dfe6629592f283f5783e746",
   "pr": "待建立本修复 PR，最终检查与合并以远端为准",
   "completed": [
     "PR169、PR171 全绿后顺序合并；两仓已确认私有，协作者目前均仅 ohxiyu",
@@ -17,10 +17,13 @@
     "xiyu.news HTTPS 首页、中文日报、latest API、RSS、sitemap 和 quick-posts API 均 200，title/canonical 为新域",
     "调度器已部署 dd126dda，health 指新仓和新域，ready 验证 actions:write 与 contents:read",
     "阶段 3 本地 unsquashed subtree 历史、独立 CI、治理和打包准备完毕；未推送",
-    "PR174 纯文档已合并，记录实时历史安全阻塞；XML 存量迁移修复已实现，不修改新闻正文"
+    "PR174/176 已合并；XML 修复完整 931 项 pytest 与 CI 通过，Deploy Docs 36825452488 成功，产物 09a14bf7c435a915f911c57e0b5f280331d446a9",
+    "自然 workflow_dispatch 36825148528 于 14:30 上海时间触发；采集和事件发布成功，但缓存分支持久化被权限检查拒绝，整次运行 failure",
+    "数据专用缓存提交修复已实现；保留远端树与父历史，不从 main 分支携带 workflow，不强制推送或扩大凭据权限"
   ],
   "unfinished": [
-    "XML 修复验证、合并、正常发布与实际 sitemap/feed 内容验收",
+    "缓存持久化修复完整验证、合并；下一次自然运行核对成功保存缓存",
+    "XML 实际 Pages 发布与 sitemap/feed 内容验收",
     "确认旧历史疑似 Telegram Token 已撤销后，才能推送并合并阶段 3",
     "新域既有 Access 保护迁移和登录验收；旧域 301 仍暂停",
     "阶段 4 从运营者原 SSH 电脑部署并验证自然回执，之后才归档旧仓",
@@ -30,13 +33,13 @@
     "阶段 1–2 完整 929 项 pytest、64 项调度器、22 项后台 Node、类型/治理/dry-run 与远端 CI/Pages 通过",
     "本地 realtime Python 3.11/3.12 各 61 项 pytest、ruff、mypy、compileall、契约和 3 项看门狗 Node 通过；根 929 项重新通过",
     "原阈值、地址簿、requirements.lock、systemd 与 nginx 完整保持；旧 main 是本地导入提交祖先",
-    "XML 精确 URL、频道元数据、幂等和无效输入测试执行中，最终结果见 PR"
+    "XML 4 项和完整 931 项 pytest 已通过；缓存 6 项真实本地裸仓回归和完整 937 项 pytest、治理、bash 语法、diff 检查通过"
   ],
   "unverified": [
-    "sitemap 与分类 feed 的新域链接/署名，当前存量线上仍有旧值",
+    "sitemap 与分类 feed 的新域链接/署名，产物已更新，Pages 部署后的线上值待核对",
     "阶段 3 远端 CI 和合并祖先验证；新仓服务器 SHA 与自然 message_id",
     "新域后台实际登录、Quick Post 管理列表；旧域 301",
-    "调度器下一次自然 workflow_dispatch"
+    "缓存修复后下一次自然运行成功；已验证调度触发不代表采集全链路成功"
   ],
   "production": {
     "source_commit": "d5360740bb571c6bf95d3fcb631a54ac00634e9f",
@@ -51,15 +54,15 @@
     "本机未找到既有 fomobtc_tokyo_config，原服务器私钥不在此电脑",
     "Access 云端访问配置变更需操作时确认，已提出确认请求，未提交修改"
   ],
-  "next_action": "本 XML 修复全绿后合并并等待 Deploy Docs/Pages，线上确认 sitemap loc 与分类 feed title/self/id 新域；此任务完成后只在旧 Token 已撤销确认和 Access 操作确认到达时恢复阶段 3，不误推本地历史。",
+  "next_action": "缓存修复全绿且同步 main 后合并，不手动写 staging-cache，不重跑 AI。回读 XML Pages 发布和缓存下一次自然运行；只有旧 Token 已撤销确认后恢复阶段 3，Access 保护修改另需操作时确认，不误推本地历史。",
   "states": {
     "code": "complete",
-    "tests": "pending",
+    "tests": "complete",
     "pr_merged": "pending",
     "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-10-01-brand-xml.md"
+  "evidence": "project-docs/releases/2026-10-01-cache-persistence.md"
 }
 ```
 
