@@ -16,7 +16,7 @@
     "ohxiyu/xiyunews 与 ohxiyu/fomobtc 均 private=true、archived=false，协作者仅 ohxiyu；私有 Git 集成 Pages 构建成功",
     "Dynadot NS 已保存并传播，Cloudflare xiyu.news active；新主域和 www.bmt.news 已绑定 Pages",
     "首页、中文日报、latest API、RSS、openapi、llms 等线上 200，title/canonical 是 xiyu.news",
-    "PR176 XML 正常 Deploy Docs 与 Pages 成功，产物 sitemap 的 456 个 loc 和分类 feed 元数据已迁移新域；不重跑 AI",
+    "PR176 XML 正常 Deploy Docs 与 Pages 成功，14:49 上海时间普通 sitemap 456 个 loc 和全部六个分类 feed 均 200、旧域引用为 0；不重跑 AI",
     "调度器 dd126dda health 指向新仓和新域，ready 的 actions:write 与 contents:read 通过；14:30 自然 workflow_dispatch 实际触发",
     "自然采集运行的采集/事件发布成功但缓存推送失败；PR178 修复为保留缓存父历史的仅数据提交，不 force 或扩大权限",
     "阶段 3 本地 unsquashed subtree、独立 CI、治理及新仓打包准备完毕；旧 main 为导入祖先，未上传历史"
@@ -35,7 +35,6 @@
     "实时阈值、地址簿、requirements.lock、systemd、nginx 与原仓对应文件逐字一致；未真实调用 AI、X、Telegram 作为测试"
   ],
   "unverified": [
-    "XML 普通无查询链接的旧边缘缓存过期后的最终回读；新部署带校验查询和部署地址均已是新品牌",
     "新域 Access 登录、Quick Post 管理操作与旧域各类路径 301",
     "阶段 3 远端 CI、merge commit 历史祖先；服务器新仓完整 SHA、自然 message_id 和看门狗无新增告警",
     "缓存修复后下一次自然运行成功持久化；现有运行 36825148528 整体 failure，不能标 success"
@@ -46,7 +45,7 @@
     "edition": "2026-10-01",
     "generated_at": "2026-09-30T23:28:59.968601Z",
     "worker_version": "dd126dda-3c13-4e8d-b582-e2550c08cb98（独立调度器）",
-    "verified_at": "2026-10-01 06:43 UTC；主站与新部署 XML 验证，后台/301/实时新部署未验收"
+    "verified_at": "2026-10-01 06:49 UTC；主站和全部普通 XML 链接验证，后台/301/实时新部署未验收"
   },
   "blockers": [
     "旧历史两份已删除 README 含同一疑似 Telegram Token，未输出或调用，未推入新仓；保留历史前需确认已撤销",

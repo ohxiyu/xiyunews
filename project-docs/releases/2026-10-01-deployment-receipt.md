@@ -8,7 +8,7 @@ Issue: https://github.com/ohxiyu/xiyunews/issues/179
 
 Dynadot NS 为 ignat.ns.cloudflare.com 与 shaz.ns.cloudflare.com；新 zone active，xiyu.news 和 www.bmt.news 已绑定既有 bmtnews Pages。主站首页、2026/10/01/summary-zh、api/latest.json、feed.xml、openapi.json、llms.txt、about/contact/legal/media-kit 等 HTTPS 200，站名和 canonical 新域。域名配置未删除旧域，站点结构未改变。
 
-存量 XML PR176（d115e7debbf70e8d4dfe6629592f283f5783e746）通过完整 931 项 pytest、治理、CI/预览；Deploy Docs 36825452488 成功，gh-pages 产物 09a14bf7c435a915f911c57e0b5f280331d446a9，对应 Pages 生产 cafb3ffc-9d8a-4c37-be2d-c3ca79a7cd1c，GitHub Pages 检查 completed/success。新部署地址和新域带校验查询的 sitemap、crypto-zh 200、旧域引用为 0；policy/technology/crypto-en 普通订阅亦为新域。普通 sitemap/crypto-zh 请求曾命中之前的 600 秒边缘缓存，过期后最终回读仍需补充，不将查询旁路验收写成普通请求已更新。
+存量 XML PR176（d115e7debbf70e8d4dfe6629592f283f5783e746）通过完整 931 项 pytest、治理、CI/预览；Deploy Docs 36825452488 成功，gh-pages 产物 09a14bf7c435a915f911c57e0b5f280331d446a9，对应 Pages 生产 cafb3ffc-9d8a-4c37-be2d-c3ca79a7cd1c，GitHub Pages 检查 completed/success。新部署地址和校验查询先确认新品牌，普通 sitemap/crypto-zh 请求曾命中之前的 600 秒边缘缓存；2026-10-01 06:49 UTC 等自然过期后，普通无查询 sitemap 和全部六份 crypto/policy/technology 中英文分类 feed 均 200、旧域引用为 0，sitemap 456 个 loc 均为新域，所有频道标题已更新。不清空全站缓存、不以查询旁路代替普通链接验收。
 
 调度器部署版本 dd126dda-3c13-4e8d-b582-e2550c08cb98，health repository=ohxiyu/xiyunews、public_site_url=https://xiyu.news，ready 验证 actions:write 和 contents:read。2026-10-01 14:30:33 上海时间自然 workflow_dispatch 触发 Feed Collection 36825148528，head d12dfb1e355206f462d7e6752989a82dcbb72f3a；采集和事件发布成功，缓存分支持久化被 workflow 权限检查拒绝，整次运行 failure，未标全成功。
 
@@ -25,5 +25,5 @@ Dynadot NS 为 ignat.ns.cloudflare.com 与 shaz.ns.cloudflare.com；新 zone act
 Source commit: 网站 d115e7debbf70e8d4dfe6629592f283f5783e746；采集缓存脚本 e83ecc29af080adda7e3ee4e91e765f04d060293。
 Worker version: dd126dda-3c13-4e8d-b582-e2550c08cb98（独立调度器）。
 Deployment: Pages cafb3ffc-9d8a-4c37-be2d-c3ca79a7cd1c；artifact 09a14bf7c435a915f911c57e0b5f280331d446a9；正常 Actions，未手动 gh-pages 写入。
-Verification: 主站/new XML/调度 ready 通过；普通 XML 旧缓存过期、Access/301、首次修复后自然缓存和实时新 SHA 未验证。
+Verification: 06:49 UTC 主站、普通 sitemap 与全部六份分类 XML、调度 ready 通过；Access/301、首次修复后自然缓存和实时新 SHA 未验证。
 Rollback: 未执行回滚、删除、历史改写或旧仓归档；现有服务与群/频道保持。
