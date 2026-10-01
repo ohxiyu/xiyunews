@@ -8,8 +8,7 @@ on:
     types: [completed]
     branches: [main]
   schedule:
-    - cron: '*/5 1-14 * * *' # 09:00–22:55 Shanghai: queue-only checks
-    - cron: '0-30/5 15 * * *' # 23:00–23:30 Shanghai
+    - cron: '13 1-15 * * *' # Hourly backup; Worker checks due queues every 5 min.
   workflow_dispatch:
     inputs:
       queue_only:

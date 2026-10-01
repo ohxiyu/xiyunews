@@ -5,16 +5,18 @@ import { dispatchSquare, publicationCron, runCombinedSchedule, SQUARE_CRON } fro
 afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 const now = Date.parse("2026-09-12T03:35:00Z");
 
-it("dispatches main queue-only without fetching any edition or posting to Binance", async () => {
+it("dispatches a missing daily plan queue-only without posting to Binance", async () => {
   const calls: Request[] = [];
   vi.stubGlobal("fetch", vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
     const request = new Request(input, init); calls.push(request);
-    return request.method === "POST" ? new Response(null, { status: 204 }) : Response.json({ workflow_runs: [] });
+    if (request.method === "POST") return new Response(null, { status: 204 });
+    return Response.json(request.url.includes("/contents/") ? {version: 1, editions: {}, plans: {}} : { workflow_runs: [] });
   }));
   expect(await dispatchSquare(env, now)).toBe("dispatched");
-  expect(calls).toHaveLength(2);
+  expect(calls).toHaveLength(3);
   expect(calls[0]?.url).toContain("square-distribution.yml/runs");
-  expect(await calls[1]?.json()).toEqual({ ref: "main", inputs: { queue_only: true } });
+  expect(calls[1]?.url).toContain("queue.json?ref=square-queue");
+  expect(await calls[2]?.json()).toEqual({ ref: "main", inputs: { queue_only: true } });
 });
 
 it.each(["queued", "in_progress", "waiting", "pending", "requested"])("does not replace an %s run", async status => {
@@ -57,9 +59,14 @@ it("preserves original publication cadence while adding Square ticks", () => {
 
 it("combined tick runs distribution even when publication is not due", async () => {
   vi.spyOn(Date, "now").mockReturnValue(now);
-  const fetcher = vi.fn(async (_input: RequestInfo | URL, init?: RequestInit) =>
-    init?.method === "POST" ? new Response(null, { status: 204 }) : Response.json({ workflow_runs: [] }));
+  const fetcher = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+    if (init?.method === "POST") return new Response(null, { status: 204 });
+    const url = String(input);
+    if (url.includes("config.github.json")) return Response.json({x_delivery: {enabled: false, mode: "drip"}});
+    if (url.includes("queue.json")) return Response.json({version: 1, editions: {}, plans: {}});
+    return Response.json({ workflow_runs: [] });
+  });
   vi.stubGlobal("fetch", fetcher);
   await runCombinedSchedule(SQUARE_CRON, now, env);
-  expect(fetcher).toHaveBeenCalledTimes(2);
+  expect(fetcher).toHaveBeenCalledTimes(5);
 });
