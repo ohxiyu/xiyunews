@@ -84,12 +84,15 @@ jobs:
           mkdir -p docs/_data/archive
           cp -a current-site/_data/archive/. docs/_data/archive/
           # Preserve generated API/history and migrate only owned URL prefixes.
-          for directory in api editions; do
+          for directory in api editions feeds; do
             if [ -d "current-site/$directory" ]; then
               mkdir -p "docs/$directory"
               cp -a "current-site/$directory/." "docs/$directory/"
             fi
           done
+          if [ -f current-site/sitemap.xml ]; then
+            cp current-site/sitemap.xml docs/sitemap.xml
+          fi
 
       - name: Checkout pinned history snapshot
         if: ${{ github.event_name == 'workflow_dispatch' }}
