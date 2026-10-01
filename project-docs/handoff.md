@@ -1,46 +1,43 @@
 # 当前交接
 
-当前目标：[Issue160](https://github.com/ohxiyu/bmtnews-standalone/issues/160) 清理失效信源。上一任务 [Issue158](https://github.com/ohxiyu/bmtnews-standalone/issues/158) Cloudflare 调度触发采集已由 PR159 合并（Worker 待维护者部署），记录见 [2026-09-29-dispatcher-collection.md](releases/2026-09-29-dispatcher-collection.md)。
+当前目标：[Issue164](https://github.com/ohxiyu/bmtnews-standalone/issues/164) 独立处理依赖安全问题，再继续 [Logo PR163](https://github.com/ohxiyu/bmtnews-standalone/pull/163)。Logo 已有独立 Draft 分支，不混入本安全 PR。上一信源清理任务已由 PR161 合并；历史未完成验收见 [信源记录](releases/2026-09-29-source-cleanup.md) 与 [调度记录](releases/2026-09-29-dispatcher-collection.md)，本任务不扩展执行。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "删除 GDELT 并以 Google News 主流外媒搜索接替；删除失效 RSS；停止被拒的正文抓取",
-  "issue": "https://github.com/ohxiyu/bmtnews-standalone/issues/160",
-  "owner": "Claude Code / source-cleanup",
-  "branch": "agent/source-cleanup",
-  "last_verified_commit": "238c67e9bf7d97197757061035729df8762756f4",
-  "pr": "pending: PR for agent/source-cleanup",
+  "goal": "独立修复 PyJWT / urllib3 安全问题，通过完整审计后继续 Logo PR163 合并部署",
+  "issue": "https://github.com/ohxiyu/bmtnews-standalone/issues/164",
+  "owner": "Codex / security-deps; sole editor and integrator",
+  "branch": "agent/security-deps",
+  "last_verified_commit": "9ba3df1c15dee517779c5780c9d0c37fd1806f1d",
+  "pr": "pending: focused security dependency PR",
   "completed": [
-    "GoogleNewsConfig.extra_queries；主流外媒搜索接替 GDELT",
-    "删除 Bitcoin Magazine、Wu Blockchain Substack、Kraken Blog；The Block、The Defiant 用 RSS 摘要",
-    "PR157（来源分级）、PR159（调度触发采集）已合并（238c67e）"
+    "定向升级 PyJWT 2.15.1 / urllib3 2.8.0；设置最低安全版本",
+    "新增安全行为回归测试；未改变认证、Worker、费用、调度"
   ],
   "unfinished": [
-    "Worker 1.1.0 生产部署（需维护者执行 wrangler deploy）",
-    "PR155、PR157 线上验收",
-    "2026-10-05 周报推送验收"
+    "远端 CI 与安全 PR 合并",
+    "Logo PR163 同步 main、重跑检查、合并、发布及公网核验",
+    "历史待办：Worker 1.1.0 生产部署、PR155/157 线上验收、2026-10-05 周报推送验收"
   ],
   "validation": [
-    "uv run pytest 全部通过；治理检查通过"
+    "925 项 Python / 61 项前端 / 61 项 Worker 测试通过；治理、类型与 dry-run 通过",
+    "all-extras pip-audit 2.10.1 / PyPI 无已知漏洞；没有忽略项"
   ],
   "unverified": [
-    "主流外媒搜索的实际条数",
-    "上线后日报来源分布",
-    "Worker 首次自动派发采集"
+    "Worker npm 开发依赖 7 项告警未评估；不属于本次两项 Python 依赖修复",
+    "新版 Logo 生产部署与真实设备 PWA 系统图标刷新"
   ],
   "production": {
-    "source_commit": "238c67e9bf7d97197757061035729df8762756f4 (this change not merged)",
-    "artifact_commit": "gh-pages c8d49b4 (Event timeline 36513781108)",
-    "edition": "2026-09-29",
-    "generated_at": "2026-09-29T02:45:00Z",
-    "worker_version": "1.0.0 deployed; 1.1.0 merged, pending maintainer deploy",
-    "verified_at": "2026-09-29; Feed Collection logs 164/168/169/170"
+    "source_commit": "9ba3df1c15dee517779c5780c9d0c37fd1806f1d baseline; dependency fix not merged",
+    "artifact_commit": "last recorded gh-pages c8d49b4; not refreshed in this task",
+    "edition": "last recorded 2026-09-29; not refreshed",
+    "generated_at": "last recorded 2026-09-29T02:45:00Z; not refreshed",
+    "worker_version": "historical: 1.0.0 deployed; 1.1.0 merged pending maintainer deploy; unchanged",
+    "verified_at": "dependency task has not verified production"
   },
-  "blockers": [
-    "Worker 部署需要维护者的 Cloudflare 登录"
-  ],
-  "next_action": "合并；下一次采集核对 Google News 两条搜索的条数与 GDELT 移除后无报错",
+  "blockers": [],
+  "next_action": "完整验证安全修复，提交独立 PR；所有检查通过后合并，再继续 Logo PR163",
   "states": {
     "code": "complete",
     "tests": "complete",
@@ -48,6 +45,6 @@
     "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-09-29-source-cleanup.md"
+  "evidence": "project-docs/releases/2026-10-01-security-deps.md"
 }
 ```
