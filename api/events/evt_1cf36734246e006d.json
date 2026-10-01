@@ -11,22 +11,25 @@
     "en": "NEAR Intents exploited for over $3.8M and halts services"
   },
   "current_state": {
-    "zh": "NEAR Intents 在确认因 Omni 充提基础设施和合约交互漏洞遭受超过 380 万美元攻击并修补漏洞后，现已暂停服务，暂停 11 个网络的充提以进行修复，并承诺全额赔偿用户。",
-    "en": "After confirming an exploit of over $3.8M through a flaw in its Omni deposit/withdrawal infrastructure and contract interactions and patching the vulnerability, NEAR Intents has now halted services, suspended deposits and withdrawals across 11 networks for repairs, and pledged full compensation to affected users."
+    "zh": "NEAR Intents 攻击事件持续调查中，攻击者地址被指与朝鲜 Lazarus Group 标记地址交互，攻击者或为 Lazarus Group；此前已确认损失超 380 万美元、暂停 11 个网络充提并承诺赔偿。",
+    "en": "Investigation into the NEAR Intents exploit continues; the attacker's address has been linked to a wallet flagged as North Korea's Lazarus Group, suggesting the attacker may be Lazarus Group. Previously confirmed: over $3.8M loss, deposits/withdrawals suspended across 11 networks, and full compensation pledged."
   },
   "first_seen_at": "2026-10-01T15:11:04.403203+00:00",
-  "last_updated_at": "2026-10-01T15:11:13.240619+00:00",
-  "last_material_change_at": "2026-10-01T15:11:13.240619+00:00",
+  "last_updated_at": "2026-10-01T18:31:27.924841+00:00",
+  "last_material_change_at": "2026-10-01T18:31:27.924841+00:00",
   "confidence": 0.75,
-  "updates_count": 3,
-  "sources_count": 8,
+  "updates_count": 4,
+  "sources_count": 9,
   "entities": [
     "alert",
     "bsc",
     "community",
+    "group",
     "hacks",
     "halts",
     "intents",
+    "lazarus",
+    "lazarus-group",
     "loss",
     "million",
     "near",
@@ -42,6 +45,8 @@
     "fund-laundering",
     "hacks",
     "hot-wallet-compromise",
+    "lazarus-group",
+    "money-laundering",
     "near",
     "near-intents",
     "price-reaction",
@@ -194,6 +199,44 @@
           "url": "https://www.coindesk.com/tech/2026/10/01/near-intents-hit-by-usd3-8-million-exploit-as-crypto-s-rough-year-of-hacks-continues",
           "label": "CoinDesk",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_c08682101578dff7",
+      "event_id": "evt_1cf36734246e006d",
+      "occurred_at": "2026-10-01T15:12:03Z",
+      "published_at": "2026-10-01T15:12:03Z",
+      "first_seen_at": "2026-10-01T18:31:27.924841Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "⚡️NEAR Intents攻击者或为Lazarus Group",
+      "title_en": "⚡️NEAR Intents攻击者或为Lazarus Group",
+      "what_changed_zh": "调查显示攻击者地址与标记为朝鲜 Lazarus Group 的地址（0x098B7...E2f96）存在交互，攻击者可能为 Lazarus Group。",
+      "what_changed_en": "The attacker's address interacted with a wallet flagged as North Korea's Lazarus Group (0x098B7...E2f96), suggesting the attacker may be Lazarus Group.",
+      "current_state_zh": "NEAR Intents 攻击事件持续调查中，攻击者地址被指与朝鲜 Lazarus Group 标记地址交互，攻击者或为 Lazarus Group；此前已确认损失超 380 万美元、暂停 11 个网络充提并承诺赔偿。",
+      "current_state_en": "Investigation into the NEAR Intents exploit continues; the attacker's address has been linked to a wallet flagged as North Korea's Lazarus Group, suggesting the attacker may be Lazarus Group. Previously confirmed: over $3.8M loss, deposits/withdrawals suspended across 11 networks, and full compensation pledged.",
+      "detailed_summary_zh": "The NEAR Intents attacker moved stolen funds to KuCoin and bridged them into BTC, with the attacker's address interacting with a wallet flagged as North Korea's Lazarus Group.",
+      "detailed_summary_en": "The NEAR Intents attacker moved stolen funds to KuCoin and bridged them into BTC, with the attacker's address interacting with a wallet flagged as North Korea's Lazarus Group.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "telegram:theblockbeats:198636"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/369956?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]

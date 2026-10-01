@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_249798e3a397e38d/",
   "json": "https://xiyu.news/api/events/evt_249798e3a397e38d.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "developing",
   "category": "crypto",
   "title": {
     "zh": "Renzo回应MetaMask安全事件：Basis风险与流动性可完全链上验证，目前提现队列中仅有214.75枚stETH",
     "en": "Renzo回应MetaMask安全事件：Basis风险与流动性可完全链上验证，目前提现队列中仅有214.75枚stETH"
   },
   "current_state": {
-    "zh": "Renzo said its Basis product and ezETH remain unaffected by the MetaMask infrastructure security incident, with just 214.75 stETH (0.5%) in its withdrawal queue, as MetaMask proactively exits impacted validators from its non-custodial staking service.",
-    "en": "Renzo said its Basis product and ezETH remain unaffected by the MetaMask infrastructure security incident, with just 214.75 stETH (0.5%) in its withdrawal queue, as MetaMask proactively exits impacted validators from its non-custodial staking service."
+    "zh": "MetaMask因非托管质押安全事件退出17,000个验证者，涉及超523,000枚stETH（约14亿美元），其中18个验证者的奖励被转至Tornado Cash资助地址；Renzo此前表示其Basis/ezETH未受影响，提现队列仅214.75枚stETH。",
+    "en": "MetaMask is exiting 17,000 validators tied to its non-custodial staking security incident, covering over 523,000 stETH (~$1.4 billion), after rewards from 18 validators were diverted to a Tornado Cash-funded address; Renzo previously said its Basis/ezETH were unaffected with only 214.75 stETH in its withdrawal queue."
   },
   "first_seen_at": "2026-10-01T06:31:03.021202+00:00",
-  "last_updated_at": "2026-10-01T06:31:03.021202+00:00",
-  "last_material_change_at": "2026-10-01T06:31:03.021202+00:00",
+  "last_updated_at": "2026-10-01T15:11:15.151509+00:00",
+  "last_material_change_at": "2026-10-01T15:11:15.151509+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "basis",
     "metamask",
@@ -27,10 +27,12 @@
   ],
   "identifiers": [],
   "topics": [
+    "ethereum-staking",
     "liquid-staking",
     "metamask",
     "renzo",
     "security-incident",
+    "tornado-cash",
     "validators"
   ],
   "updates": [
@@ -45,9 +47,9 @@
       "material_change": true,
       "title_zh": "Renzo回应MetaMask安全事件：Basis风险与流动性可完全链上验证，目前提现队列中仅有214.75枚stETH",
       "title_en": "Renzo回应MetaMask安全事件：Basis风险与流动性可完全链上验证，目前提现队列中仅有214.75枚stETH",
-      "what_changed_zh": "Renzo said its Basis product and ezETH remain unaffected by the MetaMask infrastructure security incident, with just 214.75 stETH (0.5%) in its withdrawal queue, as MetaMask proactively exits impacted validators from its non-custodial staking service.",
+      "what_changed_zh": "Renzo 表示其 Basis 产品和 ezETH 未受 MetaMask 基础设施安全事件影响，提款队列中仅有 214.75 stETH（0.5%），MetaMask 正主动将受影响的验证者从其非托管质押服务中退出。",
       "what_changed_en": "Renzo said its Basis product and ezETH remain unaffected by the MetaMask infrastructure security incident, with just 214.75 stETH (0.5%) in its withdrawal queue, as MetaMask proactively exits impacted validators from its non-custodial staking service.",
-      "current_state_zh": "Renzo said its Basis product and ezETH remain unaffected by the MetaMask infrastructure security incident, with just 214.75 stETH (0.5%) in its withdrawal queue, as MetaMask proactively exits impacted validators from its non-custodial staking service.",
+      "current_state_zh": "Renzo 表示其 Basis 产品和 ezETH 未受 MetaMask 基础设施安全事件影响，提款队列中仅有 214.75 stETH（0.5%），MetaMask 正主动将受影响的验证者从其非托管质押服务中退出。",
       "current_state_en": "Renzo said its Basis product and ezETH remain unaffected by the MetaMask infrastructure security incident, with just 214.75 stETH (0.5%) in its withdrawal queue, as MetaMask proactively exits impacted validators from its non-custodial staking service.",
       "detailed_summary_zh": "Renzo said its Basis product and ezETH remain unaffected by the MetaMask infrastructure security incident, with just 214.75 stETH (0.5%) in its withdrawal queue, as MetaMask proactively exits impacted validators from its non-custodial staking service.",
       "detailed_summary_en": "Renzo said its Basis product and ezETH remain unaffected by the MetaMask infrastructure security incident, with just 214.75 stETH (0.5%) in its withdrawal queue, as MetaMask proactively exits impacted validators from its non-custodial staking service.",
@@ -68,6 +70,44 @@
           "url": "https://m.theblockbeats.info/flash/369866?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_9bd13d4fcb70b381",
+      "event_id": "evt_249798e3a397e38d",
+      "occurred_at": "2026-10-01T13:29:29Z",
+      "published_at": "2026-10-01T13:29:29Z",
+      "first_seen_at": "2026-10-01T15:11:15.151509Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "MetaMask 在验证者奖励被盗后解除 14 亿美元 ETH 质押",
+      "title_en": "MetaMask unstakes $1.4B of ETH after validator rewards stolen",
+      "what_changed_zh": "MetaMask已主动启动17,000个以太坊验证者退出，涉及超过523,000枚质押ETH（约14亿美元）；此前18个验证者的区块奖励被转移至一个由Tornado Cash资助的地址。",
+      "what_changed_en": "MetaMask proactively initiated the exit of 17,000 Ethereum validators holding over 523,000 staked ETH (~$1.4 billion), after block rewards from 18 validators were diverted to a Tornado Cash-funded address.",
+      "current_state_zh": "MetaMask因非托管质押安全事件退出17,000个验证者，涉及超523,000枚stETH（约14亿美元），其中18个验证者的奖励被转至Tornado Cash资助地址；Renzo此前表示其Basis/ezETH未受影响，提现队列仅214.75枚stETH。",
+      "current_state_en": "MetaMask is exiting 17,000 validators tied to its non-custodial staking security incident, covering over 523,000 stETH (~$1.4 billion), after rewards from 18 validators were diverted to a Tornado Cash-funded address; Renzo previously said its Basis/ezETH were unaffected with only 214.75 stETH in its withdrawal queue.",
+      "detailed_summary_zh": "MetaMask proactively initiated the exit of 17,000 Ethereum validators holding over 523,000 staked ETH ($1.4 billion) after block rewards from 18 validators were found diverted to a Tornado Cash-funded address in a staking-security incident.",
+      "detailed_summary_en": "MetaMask proactively initiated the exit of 17,000 Ethereum validators holding over 523,000 staked ETH ($1.4 billion) after block rewards from 18 validators were found diverted to a Tornado Cash-funded address in a staking-security incident.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "rss:protos.com_feed_:a631b91f33d5a28e"
+      ],
+      "sources": [
+        {
+          "url": "https://protos.com/metamask-unstakes-1-4b-of-eth-after-validator-rewards-stolen/",
+          "label": "Protos",
+          "source_type": "rss",
           "official": false
         }
       ]
