@@ -20,8 +20,14 @@ npm ci 另报告 Worker 开发依赖树中 7 项告警（2 moderate / 5 high）�
 
 本安全 PR 合并后，Logo PR163 必须同步新 main 并重新通过全部检查，才能合并及发布。依赖修复会由后续采集 / 日报 Actions 的 frozen sync 使用；静态 Pages 部署不会安装 Python 服务。不得为了验证依赖重跑 AI 或推送外部消息。
 
-Source commit: pending; baseline 9ba3df1c15dee517779c5780c9d0c37fd1806f1d
+## 正式合并及实际执行证据
+
+[PR165](https://github.com/ohxiyu/bmtnews-standalone/pull/165) 于 2026-10-01T04:13:34Z 合并，merge commit 84c93d9962a8bfb042a6f37b71816dd556250513。新 HEAD 20bca9f99122d8e4ebe8d601018d4307041d56f5 的 [CI 36813910166](https://github.com/ohxiyu/bmtnews-standalone/actions/runs/36813910166) / CodeQL / Pages 分支检查全部通过，远端 pytest 925 项、完整 all-extras 审计无已知漏洞。
+
+Logo PR163 同步后全部检查通过并合并。实际 [Deploy Docs 36814384490](https://github.com/ohxiyu/bmtnews-standalone/actions/runs/36814384490) 于 2026-10-01T04:17:25Z 成功；其 Install dependencies 日志明确为 pyjwt==2.15.1 / urllib3==2.8.0，随后实体重建与无 AI Quick Post 渲染通过。这是修复后冻结依赖实际被自动任务使用的证据；未手动重跑 AI / 日报或外部推送。所有未来任务是否成功仍取决于各自运行，不保证尚未发生的采集。
+
+Source commit: 84c93d9962a8bfb042a6f37b71816dd556250513; actual deployed source fa50a0fd95619db4ccd46cc056105925df294466 includes this fix
 Worker version: unchanged; no Worker deployment authorized or performed
-Deployment: pending normal Actions path
-Verification: local 925 Python + 61 frontend + 61 Worker tests passed; all-extras pip-audit clean; remote CI pending
+Deployment: Deploy Docs 36814384490 succeeded 2026-10-01T04:17:25Z; frozen sync used PyJWT 2.15.1 / urllib3 2.8.0
+Verification: CI 36813910166 passed, all-extras pip-audit clean; actual automated install and no-AI render succeeded
 Rollback: requires separate authorization; reverting the dependency PR would restore known vulnerable versions and is not an acceptable routine fallback
