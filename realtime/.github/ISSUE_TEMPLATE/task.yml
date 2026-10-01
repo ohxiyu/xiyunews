@@ -1,0 +1,31 @@
+name: Agent task
+description: 认领独立任务并定义交付边界
+title: "[Task] "
+body:
+  - type: textarea
+    id: scope
+    attributes:
+      label: 目标、范围与涉及文件
+      description: 写明不做事项和潜在重叠模块。
+    validations:
+      required: true
+  - type: textarea
+    id: owner
+    attributes:
+      label: 负责人、分支与协调
+      description: 填写 Agent、GitHub 负责人、分支或 worktree；重叠范围需先协调。
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 验收与验证命令
+    validations:
+      required: true
+  - type: textarea
+    id: permission
+    attributes:
+      label: 权限、阻塞与生产影响
+      description: 明确是否涉及付费、部署或消息发送；不要填写密钥。
+    validations:
+      required: true

@@ -1,0 +1,11 @@
+{
+  // Off-server health watchdog; alerts the operator privately via the FomoBTC bot.
+  // Secrets (never in git): TELEGRAM_BOT_TOKEN, ALERT_CHAT_ID — see scripts/setup_watchdog.sh.
+  "name": "fomobtc-watchdog",
+  "main": "worker.js",
+  "compatibility_date": "2026-09-25",
+  "workers_dev": false,
+  "triggers": { "crons": ["*/5 * * * *"] },
+  "kv_namespaces": [{ "binding": "STATE", "id": "469346950dfc4f36b8d9bf9997d960fa" }],
+  "observability": { "enabled": true }
+}
