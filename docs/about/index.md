@@ -31,5 +31,7 @@ Automation assists collection, ranking, translation, summarization, and
 enrichment, but generated analysis can still be incomplete or wrong. xiyu.news
 does not provide investment, legal, tax, or compliance advice. Readers and
 agents should verify consequential claims against the original linked sources.
-The implementation, tests, collaboration rules, and issue history are public
-in the [xiyu.news repository](https://github.com/ohxiyu/xiyunews).
+The website, read-only API, feeds, and license notices are public. The
+operational repository is private; its issue tracker is not a public contact
+channel. See [contact information](/contact/) and
+[software and content rights](/legal/) for the current published information.

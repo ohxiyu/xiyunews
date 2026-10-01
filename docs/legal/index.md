@@ -9,7 +9,7 @@ hide_language_toggle: true
 
 ## 软件
 
-xiyu.news 源代码采用 [MIT License](https://github.com/ohxiyu/xiyunews/blob/main/LICENSE)。
+xiyu.news 软件采用 [MIT License](/legal/software-license.txt)。
 许可范围包括代码、测试、自动化、配置示例和技术文档，文件另有说明的除外。
 
 ## 新闻内容与数据
@@ -19,19 +19,20 @@ xiyu.news 源代码采用 [MIT License](https://github.com/ohxiyu/xiyunews/blob/
 xiyu.news 提供原始来源链接，但不代表获得或转授了原文内容许可。
 
 xiyu.news 自有编辑文字和分析在法律允许保护的范围内保留权利。详细边界见
-[内容与数据权利说明](https://github.com/ohxiyu/xiyunews/blob/main/CONTENT-LICENSE.md)
-和[第三方声明](https://github.com/ohxiyu/xiyunews/blob/main/THIRD_PARTY_NOTICES.md)。
+[内容与数据权利说明](/legal/content-rights.txt)
+和[第三方声明](/legal/third-party-notices.txt)。这些声明可直接访问，不需要仓库权限。
 
 ## Software and content rights
 
-xiyu.news source code is available under the
-[MIT License](https://github.com/ohxiyu/xiyunews/blob/main/LICENSE). The software
+xiyu.news software is licensed under the
+[MIT License](/legal/software-license.txt). The operational repository is
+private; these notices do not imply public repository access. The software
 license does not cover generated editions or third-party news materials.
 Copyright and other rights in those materials remain with their respective
 owners. xiyu.news links to original publications and does not grant a license to
 their content.
 
-For a rights concern or removal request, open a
-[rights request](https://github.com/ohxiyu/xiyunews/issues/new?template=rights_request.md)
-and identify the affected URL and material. Do not publish private identity
-documents or confidential information in the issue.
+For the current status of correction and rights-request channels, see
+[contact information](/contact/). Identify the affected URL and material when
+submitting a request through a published contact channel. Do not publish
+private identity documents or confidential information.

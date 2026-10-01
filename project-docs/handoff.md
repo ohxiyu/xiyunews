@@ -1,16 +1,16 @@
 # 当前交接
 
-当前唯一下一步是阶段 3 的历史安全确认，而不是重新修改网站或继续其他 backlog。主站 https://xiyu.news 和独立调度器已经上线，两仓均为私有；阶段 3–5 尚未完成，旧域 301 和新域后台登录也仍待验收。页面结构、实时阈值、来源、地址簿、数据库、systemd 和 Telegram 目标保持不变。
+运营者新增授权解决迁移审计发现的全部问题，当前唯一编辑任务为 Issue181：修复私有仓后的公开页面、许可访问及抓取标识，之后按依赖顺序处理调度成本、后台和旧域跳转。阶段 3 的历史安全确认仍不可跳过；阶段 3–5 尚未完成。主站和独立调度器已上线，两仓私有，页面结构、实时阈值、来源、地址簿、数据库、systemd 和 Telegram 目标保持不变。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "稀有News 迁移阶段 3：安全确认后并入 realtime 完整历史；其余未完成项按依赖推进",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/172",
+  "goal": "解决迁移审计发现的问题，当前先修复私有仓后的公开页面与许可访问",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/181",
   "owner": "Codex / 迁移唯一编辑及部署整合负责人",
-  "branch": "agent/xiyunews-realtime",
-  "last_verified_commit": "1e6395f3a410233b817ce0c2ddaf9bd64fdf6f78",
-  "pr": "未上传阶段 3 PR；历史疑似凭据撤销状态未确认，禁止推送历史",
+  "branch": "agent/xiyunews-private-public-pages",
+  "last_verified_commit": "d09677fcd7a1ccf0cf9fedac3a4c81c2145a0fe3",
+  "pr": "Issue181 实施中；阶段 3 历史仍禁止推送，撤销状态待确认",
   "completed": [
     "阶段 1 PR169 与阶段 2 PR171 顺序全绿合并，主站与调度器已上线；PR174/176/178 后续修复也已合并",
     "ohxiyu/xiyunews 与 ohxiyu/fomobtc 均 private=true、archived=false，协作者仅 ohxiyu；私有 Git 集成 Pages 构建成功",
@@ -18,13 +18,12 @@
     "首页、中文日报、latest API、RSS、openapi、llms 等线上 200，title/canonical 是 xiyu.news",
     "PR176 XML 正常 Deploy Docs 与 Pages 成功，14:49 上海时间普通 sitemap 456 个 loc 和全部六个分类 feed 均 200、旧域引用为 0；不重跑 AI",
     "调度器 dd126dda health 指向新仓和新域，ready 的 actions:write 与 contents:read 通过；14:30 自然 workflow_dispatch 实际触发",
-    "自然采集运行的采集/事件发布成功但缓存推送失败；PR178 修复为保留缓存父历史的仅数据提交，不 force 或扩大权限",
+    "PR178 缓存修复首次自然采集 36849586444 整体 success，事件发布与缓存持久化步骤均成功，不 force 或扩大权限",
     "阶段 3 本地 unsquashed subtree、独立 CI、治理及新仓打包准备完毕；旧 main 为导入祖先，未上传历史"
   ],
   "unfinished": [
     "确认旧历史疑似 Telegram Token 已撤销后，同步最新 main、重新测试、推送阶段 3 PR 并用 merge commit 保留历史",
-    "新域增加既有 Access 保护的同样六条路径并验证登录和 Quick Post；之后才开启旧域 301",
-    "等待缓存修复后的首次自然运行成功，不能把调度触发或离线测试当作全链路成功",
+    "Access 仅保留新域同样六条路径，按运营者新决定取消旧域入口及 301，验证登录与 Quick Post",
     "阶段 4 从原 SSH 电脑备份、部署、检查新 SHA/三分片/自然回执/看门狗后，才归档旧仓",
     "阶段 5 完成 Telegram 品牌文案和运营者确认；不合并群/频道，不改 fomobtc.com nginx"
   ],
@@ -35,9 +34,9 @@
     "实时阈值、地址簿、requirements.lock、systemd、nginx 与原仓对应文件逐字一致；未真实调用 AI、X、Telegram 作为测试"
   ],
   "unverified": [
-    "新域 Access 登录、Quick Post 管理操作与旧域各类路径 301",
+    "新域 Access 登录与 Quick Post 管理操作；旧域 301 已被运营者取消，不再作为验收要求",
     "阶段 3 远端 CI、merge commit 历史祖先；服务器新仓完整 SHA、自然 message_id 和看门狗无新增告警",
-    "缓存修复后下一次自然运行成功持久化；现有运行 36825148528 整体 failure，不能标 success"
+    "私有仓公开页面修复尚未合并部署；公开联系入口指定 X @ohxiyu，不公布私人联系信息"
   ],
   "production": {
     "source_commit": "d115e7debbf70e8d4dfe6629592f283f5783e746",
@@ -49,10 +48,10 @@
   },
   "blockers": [
     "旧历史两份已删除 README 含同一疑似 Telegram Token，未输出或调用，未推入新仓；保留历史前需确认已撤销",
-    "本机未找到既有 fomobtc_tokyo_config，原服务器私钥不在此电脑，未尝试 SSH 部署",
+    "仅确认两个文档中记载的 fomobtc_tokyo_config 路径不存在，尚不能推断本机没有私钥；原 SSH 配置路径待提供，未尝试不明连接",
     "Access 属云端访问权限修改，computer-use 技能要求操作时确认；已请求确认，尚未提交修改"
   ],
-  "next_action": "先等待运营者确认旧 Token 已撤销，再在 /tmp/xiyunews-stage3 同步 origin/main 并重新验证；阶段 3 用 merge commit，不 squash/rebase。Access 确认后保留原策略追加新域六路径，登录验收后开启旧域跳转。服务器部署须使用原 SSH 电脑，三阶段依赖不得跳过。",
+  "next_action": "先创建并合并 Issue181 页面修复 PR，通过正常 Actions 发布并回读，再顺序处理调度和后台。公开联系入口只用 X @ohxiyu；Access 按最新确认仅保留新域六路径，不启用旧域 301。旧 Token 撤销和原 SSH 路径已请求提供，不得跳过凭据安全确认。",
   "states": {
     "code": "complete",
     "tests": "complete",
@@ -60,7 +59,7 @@
     "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-10-01-deployment-receipt.md"
+  "evidence": "project-docs/releases/2026-10-01-private-public-pages.md"
 }
 ```
 

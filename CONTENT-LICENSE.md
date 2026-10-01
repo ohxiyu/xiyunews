@@ -22,7 +22,8 @@ Contributors must use official feeds or APIs in accordance with their terms,
 preserve source attribution, and avoid committing article bodies or other
 licensed content unless the repository has documented permission.
 
-For a rights concern or removal request, open a
-[rights request](https://github.com/ohxiyu/xiyunews/issues/new?template=rights_request.md)
-and identify the affected URL and material. Do not include private identity
-documents, credentials, or other confidential information in a public issue.
+For the current correction and rights-request channel status, see
+[contact information](https://xiyu.news/contact/). When a contact channel is
+published, identify the affected URL and material in your request. Do not
+include private identity documents, credentials, or other confidential
+information in public comments.
