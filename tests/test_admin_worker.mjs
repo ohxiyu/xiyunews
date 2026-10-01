@@ -36,7 +36,7 @@ test('upstream redirects are rejected without a second credential-bearing reques
 
 test('encoded management paths cannot fall through to public assets',async()=>{
  for(const path of ['/%73/','/s%2findex.html','/%61dmin/config.yml','/api/%61dmin/state']){
-  assert.equal((await worker.handleRequest(new Request('https://bmt.news'+path),env)).status,401);
+  assert.equal((await worker.handleRequest(new Request('https://xiyu.news'+path),env)).status,401);
  }
 });
 test('legacy editing keeps additional metadata and validates required fields',async()=>{
@@ -74,7 +74,7 @@ test.beforeEach(()=>{
  globalThis.fetch=async(url,init={})=>{
   assert.equal(init.redirect,'manual', 'workerd requires manual redirect handling');
   if(url===env.ADMIN_ACCESS_ISSUER+'/cdn-cgi/access/certs')return Response.json({keys:[jwk]});
-  assert.ok(url.startsWith('https://api.github.com/repos/ohxiyu/bmtnews-standalone/'));
+  assert.ok(url.startsWith('https://api.github.com/repos/ohxiyu/xiyunews/'));
   assert.equal(init.headers.Authorization,'Bearer server-only-test');
   if(url.includes('dispatches')){dispatches++;return new Response(null,{status:204});}
   if(init.method==='PUT'){
@@ -87,17 +87,17 @@ test.beforeEach(()=>{
 });
 test.afterEach(()=>{globalThis.fetch=original;delete globalThis.caches;});
 async function request(path='/api/admin/state',body,overrides={}) {
- const headers={'Cf-Access-Jwt-Assertion':await token(),...(body?{'Origin':'https://bmt.news','X-BMT-Admin':'1','Content-Type':'application/json'}:{}),...overrides};
- return worker.handleRequest(new Request('https://bmt.news'+path,{method:body?'POST':'GET',headers,body:body?JSON.stringify(body):undefined}),env);
+ const headers={'Cf-Access-Jwt-Assertion':await token(),...(body?{'Origin':'https://xiyu.news','X-BMT-Admin':'1','Content-Type':'application/json'}:{}),...overrides};
+ return worker.handleRequest(new Request('https://xiyu.news'+path,{method:body?'POST':'GET',headers,body:body?JSON.stringify(body):undefined}),env);
 }
 function post(changes={}){return {id:'12345678-1234-1234-1234-123456789abc',body:'正文 🚀\n\n第二段',date:'2026-09-10',category:'',url:'',image:'',enabled:true,pin:false,breaking:false,sha,...changes};}
 test('fail closed before asset or cache reads including alternate admin URLs',async()=>{
  globalThis.caches={default:{match:()=>{throw Error('cache must not run');}}};
  for(const path of ['/s','/s/','/s/admin.js','/s/sources/','/admin/config.yml','/api/admin/state']){
-  const r=await worker.handleRequest(new Request('https://bmt.news'+path),env);
+  const r=await worker.handleRequest(new Request('https://xiyu.news'+path),env);
   assert.equal(r.status,401);assert.match(r.headers.get('Cache-Control'),/no-store/);assert.equal(r.headers.get('Access-Control-Allow-Origin'),null);
  }
- assert.equal((await worker.handleRequest(new Request('https://bmt.news/s/'),{})).status,503);
+ assert.equal((await worker.handleRequest(new Request('https://xiyu.news/s/'),{})).status,503);
 });
 test('JWT rejects wrong email, audience, issuer, expiry, future iat and algorithm',async()=>{
  for(const claim of [{email:'attacker@example.com'},{aud:['other']},{iss:'https://evil.example'},{exp:0},{iat:Date.now()/1000+1000}]){
@@ -108,7 +108,7 @@ test('JWT rejects wrong email, audience, issuer, expiry, future iat and algorith
 test('JWT rejects tampering, header spoofing and direct pages.dev bypass',async()=>{
  const jwt=await token();const parts=jwt.split('.');parts[1]=Buffer.from(JSON.stringify({email:'owner@example.com'})).toString('base64url');
  assert.equal((await request('/api/admin/state',undefined,{'Cf-Access-Jwt-Assertion':parts.join('.')})).status,401);
- assert.equal((await worker.handleRequest(new Request('https://bmt.news/s/',{headers:{'Cf-Access-Authenticated-User-Email':'owner@example.com'}}),env)).status,401);
+ assert.equal((await worker.handleRequest(new Request('https://xiyu.news/s/',{headers:{'Cf-Access-Authenticated-User-Email':'owner@example.com'}}),env)).status,401);
  assert.equal((await worker.handleRequest(new Request('https://bmtnews.pages.dev/s/',{headers:{'Cf-Access-Jwt-Assertion':jwt}}),env)).status,403);
 });
 test('authenticated state and assets are private and old CMS redirects',async()=>{
@@ -154,7 +154,7 @@ test('bounded request rejects oversized bodies and invalid JSON',async()=>{
 });
 test('unknown admin API and missing writer token are explicit failures',async()=>{
  assert.equal((await request('/api/admin/nope',{})).status,404);
- const r=await worker.handleRequest(new Request('https://bmt.news/api/admin/state',{headers:{'Cf-Access-Jwt-Assertion':await token()}}),{...env,ADMIN_GITHUB_TOKEN:''});
+ const r=await worker.handleRequest(new Request('https://xiyu.news/api/admin/state',{headers:{'Cf-Access-Jwt-Assertion':await token()}}),{...env,ADMIN_GITHUB_TOKEN:''});
  assert.equal(r.status,503);
 });
 
@@ -162,7 +162,7 @@ test('live public stream sees publish edit disable immediately without assets or
  const date=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
  globalThis.caches={default:{match:()=>{throw Error('must bypass cache');}}};
  const live=async()=>{
-  const response=await worker.handleRequest(new Request('https://bmt.news/api/quick-posts.json'),env);
+  const response=await worker.handleRequest(new Request('https://xiyu.news/api/quick-posts.json'),env);
   assert.equal(response.status,200);assert.equal(response.headers.get('Cache-Control'),'no-store');
   return response.json();
  };
@@ -177,14 +177,14 @@ test('live public stream sees publish edit disable immediately without assets or
 
 test('explicit history dates are supported but future and drafts never become public', async()=>{
  registry.items=[post({type:'quick_post',date:'2020-01-01',position:0}),post({type:'quick_post',id:'b'.repeat(36),date:'2099-01-01'}),post({type:'quick_post',id:'c'.repeat(36),enabled:false,date:'2020-01-01'})];
- const response=await worker.handleRequest(new Request('https://bmt.news/api/quick-posts.json?date=2020-01-01&date=2099-01-01'),env);
+ const response=await worker.handleRequest(new Request('https://xiyu.news/api/quick-posts.json?date=2020-01-01&date=2099-01-01'),env);
  assert.equal((await response.json()).items.length,1);
- assert.equal((await worker.handleRequest(new Request('https://bmt.news/api/quick-posts.json?date=2026-02-30'),env)).status,400);
+ assert.equal((await worker.handleRequest(new Request('https://xiyu.news/api/quick-posts.json?date=2026-02-30'),env)).status,400);
 });
 
 test('live read errors fail explicitly instead of returning stale generated data', async()=>{
  globalThis.fetch=async()=>new Response(null,{status:403});
- const response=await worker.handleRequest(new Request('https://bmt.news/api/quick-posts.json'),env);
+ const response=await worker.handleRequest(new Request('https://xiyu.news/api/quick-posts.json'),env);
  assert.equal(response.status,503);assert.equal(response.headers.get('Cache-Control'),'no-store');
  assert.equal((await response.json()).error.code,'quick_posts_unavailable');
 });
@@ -198,8 +198,8 @@ test('uploaded image is readable immediately and content hash is verified', asyn
  const bytes=Buffer.from([137,80,78,71,13,10,26,10]);
  const hash=Buffer.from(await crypto.subtle.digest('SHA-256',bytes)).toString('hex');
  globalThis.fetch=async(url,init)=>{assert.equal(init.cache,'no-store');return Response.json({content:bytes.toString('base64')});};
- const response=await worker.handleRequest(new Request('https://bmt.news/assets/uploads/quick-'+hash+'.png'),env);
+ const response=await worker.handleRequest(new Request('https://xiyu.news/assets/uploads/quick-'+hash+'.png'),env);
  assert.equal(response.status,200);assert.equal(response.headers.get('Content-Type'),'image/png');
  assert.deepEqual(Buffer.from(await response.arrayBuffer()),bytes);
- assert.equal((await worker.handleRequest(new Request('https://bmt.news/assets/uploads/quick-'+'a'.repeat(64)+'.png'),env)).status,503);
+ assert.equal((await worker.handleRequest(new Request('https://xiyu.news/assets/uploads/quick-'+'a'.repeat(64)+'.png'),env)).status,503);
 });

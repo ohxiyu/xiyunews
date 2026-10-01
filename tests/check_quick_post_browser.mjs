@@ -11,11 +11,11 @@ for(const width of [390,1280])for(const language of ['zh','en']) {
  const page=await browser.newPage({viewport:{width,height:900},colorScheme:language==='en'?'dark':'light'});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  let fail=false, posts=[0,1,2,3].map(position=>({id:'post-'+position,body:'人工信息 <script>安全文本</script>\n\n完整第二段 🚀',position,date:'2026-09-18',image:'',url:'javascript:bad'}));
- await page.route('https://bmt.news/**',route=>{
+ await page.route('https://xiyu.news/**',route=>{
   if(route.request().url().includes('/api/quick-posts.json'))return route.fulfill({status:fail?503:200,json:fail?{error:{}}:{revision:'test-revision',items:posts}});
   return route.fulfill({body:`<!doctype html><html lang="${language}"><meta charset="utf-8"><style>${css}body{margin:16px;background:${language==='en'?'#171717':'#faf9f6'};color:${language==='en'?'#eee':'#222'};font:16px system-ui}.daily-story-stream{max-width:720px;margin:auto}.digest-item{padding:24px 0;border-bottom:1px solid #888}</style><div data-quick-post-status></div><div data-quick-post-unplaced></div><div class="day-stream"><section class="daily-day" data-date="2026-09-18"><div class="daily-story-stream"><article class="digest-item" id="a">日报新闻 1</article><article class="digest-item" id="b">日报新闻 2</article><article class="digest-item" id="c">日报新闻 3</article></div></section></div><script>${source}</script></html>`,contentType:'text/html'});
  });
- await page.goto('https://bmt.news/');await page.waitForFunction(()=>document.querySelectorAll('[data-quick-post]').length===4);
+ await page.goto('https://xiyu.news/');await page.waitForFunction(()=>document.querySelectorAll('[data-quick-post]').length===4);
  assert.deepEqual(await page.locator('.daily-story-stream > *').evaluateAll(nodes=>nodes.map(n=>n.dataset.quickPost||n.id)),['post-0','a','post-1','b','post-2','c','post-3']);
  assert.equal(await page.locator('[data-quick-post] script').count(),0);assert.equal(await page.locator('[data-quick-post] a').count(),0);
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);

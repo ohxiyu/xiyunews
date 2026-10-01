@@ -1,29 +1,29 @@
 {
   "openapi": "3.1.1",
   "info": {
-    "title": "BMTNews Public API",
+    "title": "xiyu.news Public API",
     "version": "1.1.0",
-    "description": "Read-only access to BMTNews daily editions and continuously updated event timelines. No authentication is required.",
-    "termsOfService": "https://bmt.news/legal/",
+    "description": "Read-only access to xiyu.news daily editions and continuously updated event timelines. No authentication is required.",
+    "termsOfService": "https://xiyu.news/legal/",
     "contact": {
-      "name": "BMTNews contact and corrections",
-      "url": "https://bmt.news/contact/"
+      "name": "xiyu.news contact and corrections",
+      "url": "https://xiyu.news/contact/"
     },
     "license": {
       "name": "Content and data rights",
-      "url": "https://bmt.news/legal/"
+      "url": "https://xiyu.news/legal/"
     }
   },
   "servers": [
     {
-      "url": "https://bmt.news",
+      "url": "https://xiyu.news",
       "description": "Production"
     }
   ],
   "security": [],
   "externalDocs": {
-    "description": "BMTNews API and agent developer documentation",
-    "url": "https://bmt.news/developers/"
+    "description": "xiyu.news API and agent developer documentation",
+    "url": "https://xiyu.news/developers/"
   },
   "tags": [
     {
@@ -135,7 +135,7 @@
       "get": {
         "tags": ["Editions"],
         "summary": "Get the latest edition",
-        "description": "Returns the newest complete bilingual BMTNews edition, including ranked stories, publication-window metadata, run statistics, overview text, and an optional market snapshot.",
+        "description": "Returns the newest complete bilingual xiyu.news edition, including ranked stories, publication-window metadata, run statistics, overview text, and an optional market snapshot.",
         "operationId": "getLatestEdition",
         "responses": {
           "200": {
@@ -274,7 +274,7 @@
             "name": "event_id",
             "in": "path",
             "required": true,
-            "description": "Stable BMTNews event identifier returned by the event index.",
+            "description": "Stable xiyu.news event identifier returned by the event index.",
             "schema": {"type": "string", "pattern": "^evt_[a-z0-9_-]{6,80}$"}
           }
         ],
@@ -327,13 +327,13 @@
       },
       "Edition": {
         "type": "object",
-        "description": "One generated BMTNews daily edition.",
+        "description": "One generated xiyu.news daily edition.",
         "required": ["version", "date", "generated_at", "site", "window", "stats", "overview", "market", "items"],
         "properties": {
           "version": {"type": "integer", "description": "Payload schema version.", "const": 1},
           "date": {"type": "string", "format": "date", "description": "Asia/Shanghai edition date."},
           "generated_at": {"type": "string", "format": "date-time", "description": "UTC generation timestamp."},
-          "site": {"type": "string", "format": "uri", "description": "Canonical BMTNews site origin."},
+          "site": {"type": "string", "format": "uri", "description": "Canonical xiyu.news site origin."},
           "window": {"$ref": "#/components/schemas/PublicationWindow"},
           "stats": {
             "type": "object",

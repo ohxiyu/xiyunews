@@ -505,7 +505,7 @@ def _run_apply(args: argparse.Namespace) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Apply a maintainer-dispatched BMTNews source change"
+        description="Apply a maintainer-dispatched xiyu.news source change"
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
     apply_parser = subparsers.add_parser("apply")

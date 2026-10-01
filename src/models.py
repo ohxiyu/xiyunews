@@ -1,4 +1,4 @@
-"""Core data models for BMTNews."""
+"""Core data models for xiyu.news."""
 
 from datetime import datetime, timezone
 from enum import Enum
@@ -330,7 +330,7 @@ class OpenBBConfig(BaseModel):
 
     Provider credentials (FMP, Benzinga, Polygon, Intrinio, Tiingo, etc.)
     are resolved by openbb from environment variables / its own user
-    settings file, so BMTNews does not need to pass them explicitly.
+    settings file, so xiyu.news does not need to pass them explicitly.
     """
 
     enabled: bool = True
@@ -378,7 +378,7 @@ class GDELTConfig(BaseModel):
     timespan: Optional[str] = None  # e.g. "24h"; overrides since-derived window
     language: Optional[str] = None  # sourcelang filter, e.g. "english"; None = no filter
     country: Optional[str] = None  # sourcecountry filter; None = no filter
-    category: Optional[str] = None  # BMTNews category label for downstream grouping
+    category: Optional[str] = None  # xiyu.news category label for downstream grouping
     # When set, only articles from these domains (or their subdomains) are kept.
     allowed_domains: List[str] = Field(default_factory=list)
     blocked_domains: List[str] = Field(default_factory=list)
@@ -517,7 +517,7 @@ class EmailConfig(BaseModel):
     smtp_username: Optional[str] = None
     email_address: str
     password_env: str = "EMAIL_PASSWORD"
-    sender_name: str = "BMTNews"
+    sender_name: str = "xiyu.news"
     subscribe_keyword: str = "SUBSCRIBE"
     unsubscribe_keyword: str = "UNSUBSCRIBE"
     enabled: bool = False
@@ -530,7 +530,7 @@ class TelegramDeliveryConfig(BaseModel):
     bot_token_env: str = "TELEGRAM_BOT_TOKEN"
     channel_id_env: str = "TELEGRAM_CHANNEL_ID"
     languages: List[str] = Field(default_factory=lambda: ["zh"])
-    site_url: str = "https://bmt.news/"
+    site_url: str = "https://xiyu.news/"
     required: bool = False
     max_message_chars: int = Field(default=3900, ge=512, le=4096)
     featured_items: int = Field(default=3, ge=0, le=10)
@@ -567,7 +567,7 @@ class XDeliveryConfig(BaseModel):
     access_token_env: str = "X_ACCESS_TOKEN"
     access_secret_env: str = "X_ACCESS_SECRET"
     languages: List[str] = Field(default_factory=lambda: ["zh"])
-    site_url: str = "https://bmt.news/"
+    site_url: str = "https://xiyu.news/"
     max_items: int = Field(default=3, ge=1, le=5)
     required: bool = False
     # "digest" posts one round-up when the edition publishes.

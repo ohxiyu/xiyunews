@@ -1,8 +1,8 @@
-# BMTNewsHub Product Design Document
+# 稀有News 信源中心 Product Design Document
 
 ## Positioning
 
-**One-sentence positioning**: The information source marketplace for the BMTNews ecosystem—driven by real community usage data for discovery, recommendation, and quality assessment.
+**One-sentence positioning**: The information source marketplace for the xiyu.news ecosystem—driven by real community usage data for discovery, recommendation, and quality assessment.
 
 **Difference from Competitors**:
 
@@ -11,9 +11,9 @@
 | RSSHub | Turns websites without RSS into RSS (Pipe) | No quality assessment, no recommendations |
 | Feedly | RSS Reader with discovery features | No AI filtering, no personalized recommendations |
 | HN / Reddit | Community-driven content aggregation | Fixed sources, user cannot customize |
-| **BMTNewsHub** | **Data-driven source recommendation & quality assessment** | **No content hosting, not a reader** |
+| **稀有News 信源中心** | **Data-driven source recommendation & quality assessment** | **No content hosting, not a reader** |
 
-**Core Moat**: The daily operation of every BMTNews user generates quality data for information sources (AI scores, signal-to-noise ratio, output frequency). When aggregated in the Hub, this data forms a **dynamic quality profile** that no static recommendation list can provide.
+**Core Moat**: The daily operation of every xiyu.news user generates quality data for information sources (AI scores, signal-to-noise ratio, output frequency). When aggregated in the Hub, this data forms a **dynamic quality profile** that no static recommendation list can provide.
 
 ---
 
@@ -23,7 +23,7 @@
 ┌──────────────────────────────────────────────────┐
 │                    User Local                    │
 │                                                  │
-│  bmtnews-wizard (TUI)       BMTNews CLI          │
+│  bmtnews-wizard (TUI)       xiyu.news CLI          │
 │  ┌────────────────┐         ┌────────────────┐   │
 │  │ Browse/Search  │         │ Fetch -> AI    │   │
 │  │ Add/Remove     │──Write─▶│ Score ->       │   │
@@ -34,7 +34,7 @@
            │ Report Ops Events        │ Report Quality Data
            ▼                          ▼
 ┌──────────────────────────────────────────────────┐
-│                 BMTNewsHub Server                │
+│                 稀有News 信源中心 Server                │
 │                                                  │
 │  ┌───────────┐  ┌─────────────┐  ┌────────────┐  │
 │  │ Source DB │  │ Rank Engine │  │ Recommender│  │
@@ -183,9 +183,9 @@ Reported to the Hub, integrated with decay data for comprehensive judgment.
 
 ### Analogy
 
-If the BMTNews ecosystem is viewed as a **Distributed Agent Operating System**.
+If the xiyu.news ecosystem is viewed as a **Distributed Agent Operating System**.
 
-A single BMTNews instance is like a "standalone machine" managing one user's information flow. BMTNewsHub acts as the **Control Plane** that coordinates all users' Agents into a whole, allowing decentralized individual judgments to converge into collective intelligence.
+A single xiyu.news instance is like a "standalone machine" managing one user's information flow. 稀有News 信源中心 acts as the **Control Plane** that coordinates all users' Agents into a whole, allowing decentralized individual judgments to converge into collective intelligence.
 
 ### Why "Emergence"?
 

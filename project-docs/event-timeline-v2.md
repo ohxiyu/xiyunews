@@ -1,4 +1,4 @@
-# BMTNews Event Timeline v2
+# xiyu.news Event Timeline v2
 
 This document is the durable implementation path for replacing the legacy
 cross-day story threads with real event progression. The three phases must be

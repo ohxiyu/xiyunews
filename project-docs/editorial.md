@@ -7,7 +7,7 @@
 
 ## 当前网页后台：Quick Post + 邮箱验证
 
-入口为 **https://bmt.news/s/**。只允许平台中配置的邮箱通过 Cloudflare Access
+入口为 **https://xiyu.news/s/**。只允许平台中配置的邮箱通过 Cloudflare Access
 验证码登录，不再在浏览器输入 GitHub Token。旧 /admin/ 在鉴权后跳转到 /s/。
 首次上线配置与验收参见 [Quick Post 交付记录](releases/2026-09-10-quick-post-implementation.md)；
 只有完成其中平台配置和线上验证，才能宣称已上线。
@@ -27,7 +27,7 @@ Git 仓库仍然公开：不要在正文、草稿、备注和上传图片中保�
 
 ## 历史实现：Sveltia CMS（已由新入口替代，不按以下步骤配置）
 
-访问 **https://bmt.news/admin/**（Sveltia CMS，一个静态页面，无服务器）。
+访问 **https://xiyu.news/admin/**（Sveltia CMS，一个静态页面，无服务器）。
 后台分为三种明确操作：发布编辑精选、安排广告、隐藏已有报道。选择操作后只显示
 对应字段；日期使用日历选择器，URL 有格式校验。编辑精选还可以填写分类、背景、
 市场影响、讨论焦点、标签和补充参考资料，使手动内容保持与自动内容相同的信息结构。
@@ -36,7 +36,7 @@ Git 仓库仍然公开：不要在正文、草稿、备注和上传图片中保�
 首次登录需要一个 GitHub Personal Access Token：
 
 1. GitHub → Settings → Developer settings → **Fine-grained tokens** → Generate new token
-2. Repository access 选 **Only select repositories** → `ohxiyu/bmtnews-standalone`
+2. Repository access 选 **Only select repositories** → `ohxiyu/xiyunews`
 3. Permissions → Repository permissions → **Contents: Read and write**（其余保持 No access）
 4. 生成后复制，在 /admin/ 登录界面点 **「Sign In with Token」按钮**（不是
    "Sign In with GitHub"）粘贴即可（浏览器本地保存，不经过任何第三方服务器）

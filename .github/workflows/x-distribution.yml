@@ -1,4 +1,4 @@
-name: BMTNews X Distribution
+name: xiyu.news X Distribution
 
 # Posts today's top stories to X from a plan that is written before anything
 # is sent (src/x_queue.py). Only runs when x_delivery.mode is "drip" and the
@@ -17,7 +17,7 @@ on:
   # its completions doubles as this workflow's clock. Square must not list
   # this workflow among its own triggers, or the two would wake each other.
   workflow_run:
-    workflows: ['BMTNews Binance Square Distribution']
+    workflows: ['xiyu.news Binance Square Distribution']
     types: [completed]
     branches: [main]
   # Backup clock: every 20 minutes from 07:07 to 23:47 Asia/Shanghai (UTC).

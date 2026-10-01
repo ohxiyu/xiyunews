@@ -14,7 +14,7 @@ const token=data+'.'+Buffer.from(await crypto.subtle.sign('RSASSA-PKCS1-v1_5',ke
 const source=await readFile(new URL('../docs/_worker.js',import.meta.url),'utf8');
 const script=source.replace('export default {','const originalHandler = {')+`
 export default {async fetch(req,env){
- try { await verifyAdmin(new Request('https://bmt.news/s/',{headers:req.headers}),env); return new Response('verified'); }
+ try { await verifyAdmin(new Request('https://xiyu.news/s/',{headers:req.headers}),env); return new Response('verified'); }
  catch(e){return new Response(e.code,{status:401});}
 }}`;
 let redirect=false;

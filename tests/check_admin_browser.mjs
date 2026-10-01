@@ -6,7 +6,7 @@ import {execFileSync} from 'node:child_process';
 const baseline=process.env.BROWSER_BASELINE==='1';
 const require=createRequire(import.meta.url);
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const origin='https://bmt.news';
+const origin='https://xiyu.news';
 const browser=await chromium.launch({headless:true});
 let writes=0, failSave=false;
 for(const viewport of [{width:390,height:844},{width:1280,height:900}]) {

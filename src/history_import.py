@@ -256,7 +256,7 @@ def import_published_history(
 
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Safely import immutable BMTNews published history"
+        description="Safely import immutable xiyu.news published history"
     )
     parser.add_argument("--current", type=Path, required=True)
     parser.add_argument("--history", type=Path, required=True)

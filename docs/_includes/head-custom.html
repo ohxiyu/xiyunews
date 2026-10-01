@@ -5,10 +5,10 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="BMTNews">
-<link rel="alternate" type="application/rss+xml" title="BMTNews RSS" href="{{ '/feed.xml' | relative_url }}">
-<link rel="alternate" type="application/atom+xml" title="BMTNews 中文加密资讯" href="{{ '/feed-zh.xml' | relative_url }}">
-<link rel="alternate" type="application/atom+xml" title="BMTNews English Crypto News" href="{{ '/feed-en.xml' | relative_url }}">
+<meta name="apple-mobile-web-app-title" content="xiyu.news">
+<link rel="alternate" type="application/rss+xml" title="xiyu.news RSS" href="{{ '/feed.xml' | relative_url }}">
+<link rel="alternate" type="application/atom+xml" title="xiyu.news 中文加密资讯" href="{{ '/feed-zh.xml' | relative_url }}">
+<link rel="alternate" type="application/atom+xml" title="xiyu.news English Crypto News" href="{{ '/feed-en.xml' | relative_url }}">
 <link rel="describedby" href="{{ '/llms.txt' | relative_url }}" type="text/markdown">
 {% if page.page_type == "home" %}
 <link rel="alternate" type="text/markdown" href="{% if page.interface_language == 'en' %}{{ '/en/index.html.md' | relative_url }}{% else %}{{ '/index.html.md' | relative_url }}{% endif %}">
@@ -19,32 +19,32 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://bmt.news/#organization",
-      "name": "BMTNews",
-      "url": "https://bmt.news/",
+      "@id": "https://xiyu.news/#organization",
+      "name": "xiyu.news",
+      "url": "https://xiyu.news/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://bmt.news/assets/images/bmtnews-app-512-v3.png"
+        "url": "https://xiyu.news/assets/images/bmtnews-app-512-v3.png"
       },
       "sameAs": [
-        "https://github.com/ohxiyu/bmtnews-standalone"
+        "https://github.com/ohxiyu/xiyunews"
       ],
       "contactPoint": [
         {
           "@type": "ContactPoint",
           "contactType": "editorial, corrections, and rights requests",
-          "url": "https://bmt.news/contact/",
+          "url": "https://xiyu.news/contact/",
           "availableLanguage": ["zh-CN", "en"]
         }
       ]
     },
     {
       "@type": "WebSite",
-      "@id": "https://bmt.news/#website",
-      "name": "BMTNews",
-      "url": "https://bmt.news/",
+      "@id": "https://xiyu.news/#website",
+      "name": "xiyu.news",
+      "url": "https://xiyu.news/",
       "description": "Crypto market intelligence covering exchanges, markets, security, regulation, protocols, AI, and policy.",
-      "publisher": {"@id": "https://bmt.news/#organization"},
+      "publisher": {"@id": "https://xiyu.news/#organization"},
       "inLanguage": ["zh-CN", "en"]
     }
   ]

@@ -16,12 +16,12 @@ function storage() {
     setItem: (k, v) => data.set(k, v), removeItem: k => data.delete(k)};
 }
 test('story identity ignores tracking and rank but preserves meaningful query and language', () => {
-  const a = canonicalURL('https://example.org/a?id=123&utm_source=x#part', 'https://bmt.news');
-  const b = canonicalURL('https://example.org/a?id=123', 'https://bmt.news');
+  const a = canonicalURL('https://example.org/a?id=123&utm_source=x#part', 'https://xiyu.news');
+  const b = canonicalURL('https://example.org/a?id=123', 'https://xiyu.news');
   assert.equal(storyKey(a), storyKey(b));
   assert.notEqual(storyKey(a), storyKey(a, 'en'));
   assert.notEqual(storyKey(a), storyKey(canonicalURL('https://example.org/a?id=124')));
-  assert.equal(canonicalURL('javascript:alert(1)', 'https://bmt.news'), null);
+  assert.equal(canonicalURL('javascript:alert(1)', 'https://xiyu.news'), null);
   assert.equal(canonicalURL('https://user:secret@example.org/'), null);
 });
 test('changed content becomes unread, same revision reuses local state', () => {

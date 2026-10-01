@@ -294,7 +294,7 @@ def render_summary(
         success_text = f"[{success_text}]({decision.latest_success_url})"
 
     lines = [
-        "## BMTNews 日报发布心跳",
+        "## xiyu.news 日报发布心跳",
         "",
         f"**状态：{status}**",
         "",
@@ -332,14 +332,14 @@ def _escape_workflow_command(value: str) -> str:
 
 def _emit_error(message: str) -> None:
     print(
-        "::error title=BMTNews schedule watchdog::"
+        "::error title=xiyu.news schedule watchdog::"
         f"{_escape_workflow_command(message)}"
     )
 
 
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Check whether the latest due BMTNews edition was published"
+        description="Check whether the latest due xiyu.news edition was published"
     )
     parser.add_argument(
         "--repository",
@@ -426,12 +426,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 1
 
     if decision.state == "healthy":
-        print("BMTNews daily edition heartbeat is healthy.")
+        print("xiyu.news daily edition heartbeat is healthy.")
         return 0
     if args.success_on_recovery and (
         recovery_dispatched or decision.state == "missing_with_active_run"
     ):
-        print("BMTNews daily edition recovery is active or was dispatched.")
+        print("xiyu.news daily edition recovery is active or was dispatched.")
         return 0
     if recovery_dispatched:
         _emit_error("当期日报已到期但没有成功记录，已自动触发补跑")
@@ -471,7 +471,7 @@ def check_coordinator(*, success_on_recovery: bool = False) -> int:
         if not isinstance(state, str):
             raise ValueError("invalid coordinator response")
         _append_summary(
-            "## BMTNews 生产刊期检查\n\n"
+            "## xiyu.news 生产刊期检查\n\n"
             + json.dumps(result, ensure_ascii=False, indent=2) + "\n"
         )
         if status_code == 200 and state in {"healthy", "not_due"}:

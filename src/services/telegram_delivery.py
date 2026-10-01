@@ -164,7 +164,7 @@ class TelegramEditionPublisher:
         """Build one bounded message without cutting through HTML entities."""
         selected = list(items)
         is_zh = language == "zh"
-        title = f"BMTNews 日报 · {date}" if is_zh else f"BMTNews Daily · {date}"
+        title = f"稀有News 日报 · {date}" if is_zh else f"xiyu.news Daily · {date}"
         overview = (
             f"今日 {len(selected)} 条重点资讯"
             if is_zh

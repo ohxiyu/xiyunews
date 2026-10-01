@@ -1,8 +1,8 @@
-# BMTNews 07:26 日报调度
+# xiyu.news 07:26 日报调度
 
 ## 目标与时间边界
 
-BMTNews 每天生成一期早间日报，业务时区固定为 `Asia/Shanghai`。日报的数据窗口为 `[前一天 07:00，当天 07:00)`，07:00 截止，07:26 开始生成；`edition_date` 等于窗口结束日，例如 `2026-07-31` 代表 `[2026-07-30 07:00, 2026-07-31 07:00)`。
+xiyu.news 每天生成一期早间日报，业务时区固定为 `Asia/Shanghai`。日报的数据窗口为 `[前一天 07:00，当天 07:00)`，07:00 截止，07:26 开始生成；`edition_date` 等于窗口结束日，例如 `2026-07-31` 代表 `[2026-07-30 07:00, 2026-07-31 07:00)`。
 
 发布工作流不再依赖 GitHub `schedule` 作为主触发源，而是只接受带明确 `edition_date` 的 `workflow_dispatch`。这样即使补跑发生在数小时之后，任务仍会生成原定期号，不会因“当前时间”变化而错误跨期。
 
@@ -33,7 +33,7 @@ GitHub 官方说明 `schedule` 事件在高负载时可能延迟或被丢弃。�
 
 ## Cloudflare 部署
 
-Worker 位于 `ops/daily-dispatcher/`。生产部署前需要一个仅限 `ohxiyu/bmtnews-standalone` 仓库的 GitHub fine-grained personal access token，Repository permissions 只授予 `Actions: Read and write`；令牌只写入 Cloudflare Secret，不进入 Git、Wrangler 配置或日志。
+Worker 位于 `ops/daily-dispatcher/`。生产部署前需要一个仅限 `ohxiyu/xiyunews` 仓库的 GitHub fine-grained personal access token，Repository permissions 只授予 `Actions: Read and write`；令牌只写入 Cloudflare Secret，不进入 Git、Wrangler 配置或日志。
 
 ```bash
 cd ops/daily-dispatcher

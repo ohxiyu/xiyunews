@@ -1,8 +1,8 @@
-# BMTNews MCP Integration
+# xiyu.news MCP Integration
 
 ## Recommended Command
 
-Start the built-in MCP server from the BMTNews repository root:
+Start the built-in MCP server from the xiyu.news repository root:
 
 ```bash
 uv run bmtnews-mcp
@@ -18,7 +18,7 @@ uv run python -m src.mcp.server
 
 ### Option A: Client Config With Explicit `cwd`
 
-Some MCP clients need a fixed working directory in their config. In that case, the absolute path is only used in the client-side `cwd` field, not in BMTNews's code.
+Some MCP clients need a fixed working directory in their config. In that case, the absolute path is only used in the client-side `cwd` field, not in xiyu.news's code.
 
 Example:
 
@@ -28,7 +28,7 @@ Example:
     "bmtnews": {
       "command": "uv",
       "args": ["run", "bmtnews-mcp"],
-      "cwd": "/absolute/path/to/BMTNews"
+      "cwd": "/absolute/path/to/xiyu.news"
     }
   }
 }
@@ -41,7 +41,7 @@ Restart the client after saving the config.
 If your workflow allows you to start the MCP server manually, no absolute path is needed at all:
 
 ```bash
-cd /absolute/path/to/BMTNews
+cd /absolute/path/to/xiyu.news
 uv run bmtnews-mcp
 ```
 

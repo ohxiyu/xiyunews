@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: ohxiyu/bmtnews-standalone
+  repo: ohxiyu/xiyunews
   branch: main
   auth_methods: [token]
   skip_ci: false
@@ -15,10 +15,10 @@ backend:
   # base_url: https://<worker-host>
   # auth_endpoint: /oauth/auth
 
-site_url: https://bmt.news
-display_url: https://bmt.news
-logout_redirect_url: https://bmt.news/
-app_title: BMTNews 发布台
+site_url: https://xiyu.news
+display_url: https://xiyu.news
+logout_redirect_url: https://xiyu.news/
+app_title: xiyu.news 发布台
 logo:
   src: /assets/images/app-icon.svg?v=brand-20261001
   show_in_header: true
@@ -69,7 +69,7 @@ collections:
                     label: 原始报道链接
                     widget: string
                     pattern: ["^https?://.+", "必须是以 http:// 或 https:// 开头的完整链接"]
-                  - { name: label, label: 来源名称, widget: string, required: false, default: BMTNews, hint: 例如 Binance、SEC 或 The Block。 }
+                  - { name: label, label: 来源名称, widget: string, required: false, default: xiyu.news, hint: 例如 Binance、SEC 或 The Block。 }
                   - { name: official, label: 官方或第一手来源, widget: boolean, required: false, default: false }
                   - name: category
                     label: 内容分类

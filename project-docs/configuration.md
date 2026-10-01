@@ -5,7 +5,7 @@ title: Configuration Guide
 
 # Configuration Guide
 
-BMTNews is configured through two files: a `.env` file for API keys and a `data/config.json` file for sources, AI provider, and filtering options.
+xiyu.news is configured through two files: a `.env` file for API keys and a `data/config.json` file for sources, AI provider, and filtering options.
 
 ## AI Providers
 
@@ -20,9 +20,9 @@ OPENAI_API_KEY=sk-your-key
 GOOGLE_API_KEY=your-gemini-key
 ```
 
-When BMTNews starts, environment variables have priority because
+When xiyu.news starts, environment variables have priority because
 `data/config.json` does not store the secret. For local VS Code runs, create
-`.env` in the repository root and launch BMTNews from that same root directory.
+`.env` in the repository root and launch xiyu.news from that same root directory.
 
 Common API key variable names:
 
@@ -120,7 +120,7 @@ Use the endpoint for your account region and preferred compatible API:
 | China | `https://api.minimaxi.com/v1` | `https://api.minimaxi.com/anthropic` |
 
 For the Anthropic-compatible API, keep `provider` set to `minimax` and pass
-the base URL directly without adding `/v1`. BMTNews selects its Anthropic
+the base URL directly without adding `/v1`. xiyu.news selects its Anthropic
 client for this endpoint, and the SDK appends `/v1/messages` when sending a
 request:
 
@@ -168,7 +168,7 @@ Use the [DashScope compatible-mode](https://help.aliyun.com/zh/dashscope/develop
 Omit `base_url` to use the default `http://localhost:11434/v1`.
 For remote Ollama servers, set `ai.base_url` in `data/config.json` or set
 `BMTNEWS_OLLAMA_BASE_URL` in `.env`. `OLLAMA_BASE_URL` and `OLLAMA_HOST` are
-also recognized. If the value omits `/v1`, BMTNews appends it automatically
+also recognized. If the value omits `/v1`, xiyu.news appends it automatically
 for Ollama's OpenAI-compatible endpoint.
 
 ### AI throttling
@@ -245,7 +245,7 @@ runs incremental without committing it to `main` or `gh-pages`.
 }
 ```
 
-For OpenAI-compatible gateways, BMTNews sends `temperature` by default. If a newer reasoning-style model rejects that parameter with an error such as `temperature is deprecated for this model`, BMTNews retries once without it and remembers that capability for later requests.
+For OpenAI-compatible gateways, xiyu.news sends `temperature` by default. If a newer reasoning-style model rejects that parameter with an error such as `temperature is deprecated for this model`, xiyu.news retries once without it and remembers that capability for later requests.
 
 ## Information Sources
 
@@ -449,13 +449,13 @@ uv pip install --only-binary=:all: openbb openbb-benzinga
 
 - `enabled` — enable or disable the OpenBB source globally
 - `watchlists` — list of named ticker groups; each watchlist becomes one `news.company()` call per run
-- `name` — label shown in BMTNews metadata and selection breakdowns
+- `name` — label shown in xiyu.news metadata and selection breakdowns
 - `provider` — OpenBB provider name such as `yfinance` or `benzinga`
 - `fetch_limit` — maximum news rows requested for that watchlist
 - `category` — optional tag stored on fetched items
 - `symbols` — ticker symbols to fetch together; group symbols by provider to keep requests efficient
 
-OpenBB provider credentials are handled by the OpenBB SDK itself, using its own environment variables or user settings. BMTNews does not pass those secrets through `data/config.json`.
+OpenBB provider credentials are handled by the OpenBB SDK itself, using its own environment variables or user settings. xiyu.news does not pass those secrets through `data/config.json`.
 
 ### OSS Insight (Trending GitHub Repos)
 
@@ -580,12 +580,12 @@ Content is scored 0-10:
   it, so rewrites still appear when original reporting is scarce; other tracks
   keep their own quotas.
 
-When resilience is configured, BMTNews first selects the normal fixed-window
+When resilience is configured, xiyu.news first selects the normal fixed-window
 edition. If it is short, primary groups may borrow unused capacity. Only if the
-edition is still short does BMTNews analyze the older supplemental segment.
+edition is still short does xiyu.news analyze the older supplemental segment.
 Historical identity and semantic-topic deduplication both run before those
 items can be selected. A short edition is still published with an explicit run
-warning; BMTNews never reuses a published story or lowers the score threshold.
+warning; xiyu.news never reuses a published story or lowers the score threshold.
 
 Balanced digest filtering runs after AI score threshold filtering and topic
 deduplication, but before enrichment. This reduces enrichment calls to only the
@@ -607,7 +607,7 @@ All source types support a `category` field: `sources.rss[].category`,
 `sources.gdelt.category`, and `sources.google_news.category`.
 Sources without a category set enter the default group.
 
-If the same category appears in multiple groups, BMTNews logs a warning and uses
+If the same category appears in multiple groups, xiyu.news logs a warning and uses
 the first group in configuration order. Omitting both `category_groups` and
 `max_items` preserves the previous filtering behavior.
 
@@ -669,7 +669,7 @@ Example:
 
 ## Email Subscription
 
-Email delivery is optional and disabled unless `email.enabled` is `true`. BMTNews uses SMTP to send daily summaries and IMAP to check subscribe/unsubscribe requests.
+Email delivery is optional and disabled unless `email.enabled` is `true`. xiyu.news uses SMTP to send daily summaries and IMAP to check subscribe/unsubscribe requests.
 
 ```json
 {
@@ -683,7 +683,7 @@ Email delivery is optional and disabled unless `email.enabled` is `true`. BMTNew
     "imap_port": 993,
     "email_address": "xxx@qq.com",
     "password_env": "EMAIL_PASSWORD",
-    "sender_name": "BMTNews Daily",
+    "sender_name": "xiyu.news Daily",
     "subscribe_keyword": "SUBSCRIBE",
     "unsubscribe_keyword": "UNSUBSCRIBE"
   }
@@ -692,13 +692,13 @@ Email delivery is optional and disabled unless `email.enabled` is `true`. BMTNew
 
 - `enabled`: Turns email subscription handling and daily email delivery on or off.
 - `smtp_server` / `smtp_port`: SMTP server used to send emails.
-- `smtp_username`: Optional SMTP login username. If omitted, BMTNews uses `email_address`.
+- `smtp_username`: Optional SMTP login username. If omitted, xiyu.news uses `email_address`.
 - `imap_enabled`: Turns IMAP subscribe/unsubscribe checks on or off. Set it to `false` for send-only SMTP providers.
 - `imap_server` / `imap_port`: IMAP server used to scan incoming subscription requests when `imap_enabled` is `true`.
 - `email_address`: Sender account and mailbox checked for subscription requests.
 - `password_env`: Environment variable containing the email password or app password. Defaults to `EMAIL_PASSWORD`.
 - `sender_name`: Display name shown in sent emails.
-- `subscribe_keyword` / `unsubscribe_keyword`: Keywords BMTNews looks for in incoming email subjects.
+- `subscribe_keyword` / `unsubscribe_keyword`: Keywords xiyu.news looks for in incoming email subjects.
 
 Resend SMTP example:
 
@@ -714,7 +714,7 @@ Resend SMTP example:
     "imap_server": "",
     "imap_port": 993,
     "email_address": "noreply@example.com",
-    "sender_name": "BMTNews Daily"
+    "sender_name": "xiyu.news Daily"
   }
 }
 ```
@@ -734,7 +734,7 @@ a channel after the daily summary is generated. It is separate from
     "bot_token_env": "TELEGRAM_BOT_TOKEN",
     "channel_id_env": "TELEGRAM_CHANNEL_ID",
     "languages": ["zh"],
-    "site_url": "https://bmt.news/",
+    "site_url": "https://xiyu.news/",
     "required": false,
     "max_message_chars": 3900,
     "featured_items": 3,
@@ -747,7 +747,7 @@ a channel after the daily summary is generated. It is separate from
 - `bot_token_env`: Environment variable containing the BotFather token.
 - `channel_id_env`: Environment variable containing a public channel username
   such as `@channelname`, or the channel's numeric ID.
-- `languages`: Languages to publish. BMTNews uses `["zh"]` so the bilingual
+- `languages`: Languages to publish. xiyu.news uses `["zh"]` so the bilingual
   generation loop sends only one channel message per day.
 - `site_url`: Link appended to the message for the complete edition.
 - `required`: When `true`, a missing credential or failed Telegram request
@@ -770,7 +770,7 @@ Online setup requires no local service:
    `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHANNEL_ID` repository secrets. The
    channel value may be `@channelname`, a plain username, a `t.me` URL, or the
    channel's `-100…` numeric ID.
-4. Run **BMTNews Daily Edition** manually with `force_publish` enabled to verify
+4. Run **xiyu.news Daily Edition** manually with `force_publish` enabled to verify
    the first channel message. Normal 07:26 publication runs send automatically after generation completes.
 
 The token is used only to call the official
@@ -781,7 +781,7 @@ site still publishes.
 
 ## Webhook Notification
 
-Webhook notification is optional and disabled unless `webhook.enabled` is `true`. BMTNews can call Feishu/Lark, DingTalk, Slack, Discord, or any custom webhook endpoint when the pipeline succeeds or fails.
+Webhook notification is optional and disabled unless `webhook.enabled` is `true`. xiyu.news can call Feishu/Lark, DingTalk, Slack, Discord, or any custom webhook endpoint when the pipeline succeeds or fails.
 
 ```json
 {
@@ -810,14 +810,14 @@ Webhook notification is optional and disabled unless `webhook.enabled` is `true`
 - `layout`: Controls the message layout. Use `markdown` for templated Markdown delivery, or `collapsible` with `platform: "feishu"` / `"lark"` for a single Feishu Card JSON 2.0 message with each item in a collapsed panel.
 - `fallback_layout`: Reserved fallback layout for unsupported platform/layout combinations. The current safe fallback is `markdown`.
 - `languages`: Optional webhook-only language filter. Use `["zh"]` or `["en"]` to send only selected languages; use `null` or omit it to send all configured `ai.languages`.
-- `request_body`: Optional request body. If empty, BMTNews sends a `GET` request. If provided, BMTNews sends a `POST` request.
+- `request_body`: Optional request body. If empty, xiyu.news sends a `GET` request. If provided, xiyu.news sends a `POST` request.
 - `headers`: Optional custom headers, one `Key: Value` pair per line.
 
-When `request_body` is a JSON object or array, BMTNews renders placeholders and serializes it as JSON. When it is a string, BMTNews renders it directly and detects JSON if the rendered string is valid JSON.
+When `request_body` is a JSON object or array, xiyu.news renders placeholders and serializes it as JSON. When it is a string, xiyu.news renders it directly and detects JSON if the rendered string is valid JSON.
 
 ### Delivery Modes And Layouts
 
-`delivery` controls how many webhook messages BMTNews sends:
+`delivery` controls how many webhook messages xiyu.news sends:
 
 - `summary`: Sends one message containing the full daily summary. This is simple, but some chat platforms may reject long messages.
 - `summary_and_items`: Sends one overview message plus one message per selected item. In each item message, `#{summary}` contains only that item's Markdown body. This is useful for platforms that reject or truncate long messages.
@@ -825,7 +825,7 @@ When `request_body` is a JSON object or array, BMTNews renders placeholders and 
 `layout` controls how each message is rendered:
 
 - `markdown`: Uses your `request_body` template for each message. This is the default and works with generic webhooks, DingTalk, Slack, Discord, Feishu, and Lark.
-- `collapsible`: Currently supported for `platform: "feishu"` or `"lark"`. BMTNews ignores `request_body` and builds one Feishu/Lark Card JSON 2.0 message with each item in a collapsed panel.
+- `collapsible`: Currently supported for `platform: "feishu"` or `"lark"`. xiyu.news ignores `request_body` and builds one Feishu/Lark Card JSON 2.0 message with each item in a collapsed panel.
 
 For platforms without a platform-specific layout, keep `layout: "markdown"` and choose the message count with `delivery`.
 
@@ -847,7 +847,7 @@ Example `summary_and_items` Markdown delivery config:
 }
 ```
 
-With `summary_and_items`, BMTNews sends one overview plus one message per selected item. `overview_position: "last"` sends item messages first and keeps the overview as the newest chat message; omit it or set `"first"` to send the overview first.
+With `summary_and_items`, xiyu.news sends one overview plus one message per selected item. `overview_position: "last"` sends item messages first and keeps the overview as the newest chat message; omit it or set `"first"` to send the overview first.
 
 ### Webhook Templates
 
@@ -875,7 +875,7 @@ When `delivery` is `summary_and_items`, item messages also include:
 | `#{item_url}` | Current item URL |
 | `#{item_score}` | Current item AI score |
 
-For webhook delivery, BMTNews flattens HTML disclosure blocks such as `<details><summary>...</summary>` in `#{summary}` into plain Markdown link lists. This makes the generated summary easier to render in chat products. Saved Markdown files, GitHub Pages, and email content are unchanged.
+For webhook delivery, xiyu.news flattens HTML disclosure blocks such as `<details><summary>...</summary>` in `#{summary}` into plain Markdown link lists. This makes the generated summary easier to render in chat products. Saved Markdown files, GitHub Pages, and email content are unchanged.
 
 Use `#{key?limit=N&split=DELIM}` to truncate long values by splitting on `DELIM` and keeping segments until the total character count reaches `N`.
 
@@ -885,21 +885,21 @@ Use `#{key?limit=N&split=DELIM}` to truncate long values by splitting on `DELIM`
 
 ### DingTalk
 
-In DingTalk, create a custom group robot and use a custom keyword such as `BMTNews`. The keyword must appear in the body content.
+In DingTalk, create a custom group robot and use a custom keyword such as `xiyu.news`. The keyword must appear in the body content.
 
 ```json
 {
   "msgtype": "markdown",
   "markdown": {
-    "title": "BMTNews #{date} Daily",
-    "text": "BMTNews result: #{result}\n\nBMTNews important items: #{important_items}/#{all_items}\n\n#{summary}"
+    "title": "xiyu.news #{date} Daily",
+    "text": "xiyu.news result: #{result}\n\nxiyu.news important items: #{important_items}/#{all_items}\n\n#{summary}"
   }
 }
 ```
 
 ### Feishu / Lark
 
-In Feishu or Lark, create a custom group robot and use a custom keyword such as `BMTNews`. The keyword must appear in the body content.
+In Feishu or Lark, create a custom group robot and use a custom keyword such as `xiyu.news`. The keyword must appear in the body content.
 
 Use Card JSON 2.0 for Markdown rendering. The card must include `"schema": "2.0"` and put rich-text Markdown components under `card.body.elements`.
 
@@ -918,7 +918,7 @@ To keep the group chat compact while still allowing readers to browse the full b
 }
 ```
 
-With this layout, BMTNews sends one interactive card containing the overview and one collapsed panel per selected item. Each panel can be expanded in Feishu to read the full item detail. The regular `request_body` template is ignored for this rendered card.
+With this layout, xiyu.news sends one interactive card containing the overview and one collapsed panel per selected item. Each panel can be expanded in Feishu to read the full item detail. The regular `request_body` template is ignored for this rendered card.
 
 ```json
 {
@@ -939,7 +939,7 @@ With this layout, BMTNews sends one interactive card containing the overview and
       "elements": [
         {
           "tag": "markdown",
-          "content": "BMTNews result: #{result}\nBMTNews important items: #{important_items}/#{all_items}"
+          "content": "xiyu.news result: #{result}\nxiyu.news important items: #{important_items}/#{all_items}"
         },
         {
           "tag": "hr"
@@ -956,13 +956,13 @@ With this layout, BMTNews sends one interactive card containing the overview and
 
 ## Static Site
 
-BMTNews writes generated summaries to `data/summaries/` and copies publishable Markdown into `docs/` for the GitHub Pages site. The repository includes a ready-to-use workflow at `.github/workflows/daily-summary.yml`.
+xiyu.news writes generated summaries to `data/summaries/` and copies publishable Markdown into `docs/` for the GitHub Pages site. The repository includes a ready-to-use workflow at `.github/workflows/daily-summary.yml`.
 
 To use GitHub Pages, enable Pages for the repository and run the scheduled workflow or trigger it manually. The generated site is built from the `docs/` directory.
 
 ## MCP Server
 
-BMTNews includes an MCP server for AI assistants and MCP-compatible clients.
+xiyu.news includes an MCP server for AI assistants and MCP-compatible clients.
 
 ```bash
 uv run bmtnews-mcp

@@ -1,28 +1,28 @@
 <div align="center">
-<h1>🛰️ BMTNews</h1>
+<h1>🛰️ xiyu.news</h1>
 
 <p><strong>An AI-curated daily intelligence briefing for crypto markets, AI, and policy.</strong></p>
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
 [![Tool uv](https://img.shields.io/badge/Tool-uv-4B275F?style=for-the-badge&logo=uv&logoColor=white)](https://github.com/astral-sh/uv)
-[![Website](https://img.shields.io/badge/Website-bmt.news-263238?style=for-the-badge&logo=homepage&logoColor=white)](https://bmt.news/)
-[![Daily](https://img.shields.io/github/actions/workflow/status/ohxiyu/bmtnews-standalone/daily-summary.yml?branch=main&label=Daily&style=for-the-badge&logo=date-fns&logoColor=white)](https://bmt.news/)
-[![Commit](https://img.shields.io/github/commit-activity/m/ohxiyu/bmtnews-standalone?label=Commit&style=for-the-badge&logo=github&logoColor=white)](https://github.com/ohxiyu/bmtnews-standalone/commits/main)
+[![Website](https://img.shields.io/badge/Website-xiyu.news-263238?style=for-the-badge&logo=homepage&logoColor=white)](https://xiyu.news/)
+[![Daily](https://img.shields.io/github/actions/workflow/status/ohxiyu/xiyunews/daily-summary.yml?branch=main&label=Daily&style=for-the-badge&logo=date-fns&logoColor=white)](https://xiyu.news/)
+[![Commit](https://img.shields.io/github/commit-activity/m/ohxiyu/xiyunews?label=Commit&style=for-the-badge&logo=github&logoColor=white)](https://github.com/ohxiyu/xiyunews/commits/main)
 
-📡 One edition a day, in English and Chinese · [**Read it live →**](https://bmt.news/)
+📡 One edition a day, in English and Chinese · [**Read it live →**](https://xiyu.news/)
 
-[📖 Live Site](https://bmt.news/) · [🤖 Public API & Agents](https://bmt.news/developers/) · [📋 Configuration](project-docs/configuration.md) · [🧵 Archive & Threads](project-docs/archive-and-threads.md) · [✍️ Editorial Layer](project-docs/editorial.md) · [简体中文](README_zh.md) · [日本語](README_ja.md)
+[📖 Live Site](https://xiyu.news/) · [🤖 Public API & Agents](https://xiyu.news/developers/) · [📋 Configuration](project-docs/configuration.md) · [🧵 Archive & Threads](project-docs/archive-and-threads.md) · [✍️ Editorial Layer](project-docs/editorial.md) · [简体中文](README_zh.md) · [日本語](README_ja.md)
 
 </div>
 
-## What BMTNews is
+## What xiyu.news is
 
 For repository work, start with [AGENTS.md](AGENTS.md) and the
 [current execution pointer](project-docs/handoff.md). See the
 [collaboration guide](project-docs/codex-collaboration.md) for task ownership,
 verification and handoff conventions.
 
-Crypto moves faster than anyone can read. BMTNews watches exchange announcement
+Crypto moves faster than anyone can read. xiyu.news watches exchange announcement
 channels, protocol releases, regulators, and the crypto and AI press, then
 publishes **one ranked edition every morning, starting at 07:26 Asia/Shanghai** — typically
 7 to 14 stories that actually mattered. Background, market-impact analysis and
@@ -116,7 +116,7 @@ Full configuration reference: [project-docs/configuration.md](project-docs/confi
 
 ## Documentation
 
-- [Public API and agent resources](https://bmt.news/developers/) · [OpenAPI](https://bmt.news/openapi.json) · [llms.txt](https://bmt.news/llms.txt)
+- [Public API and agent resources](https://xiyu.news/developers/) · [OpenAPI](https://xiyu.news/openapi.json) · [llms.txt](https://xiyu.news/llms.txt)
 - [Configuration reference](project-docs/configuration.md)
 - [Archive, threads, entities, and the JSON API](project-docs/archive-and-threads.md)
 - [Editorial layer and web admin](project-docs/editorial.md)
@@ -130,7 +130,7 @@ Source suggestions and pull requests are welcome — see
 
 ## License
 
-BMTNews source code is available under the MIT License — see
+xiyu.news source code is available under the MIT License — see
 [LICENSE](LICENSE). Generated editions and third-party news materials are not
 covered by the software license; see [Content and Data Rights](CONTENT-LICENSE.md)
 and [Third-Party Notices](THIRD_PARTY_NOTICES.md).

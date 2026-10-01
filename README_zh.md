@@ -1,23 +1,23 @@
 <div align="center">
-<h1>🛰️ BMTNews</h1>
+<h1>🛰️ xiyu.news</h1>
 
 <p><strong>AI 策划的每日情报简报：加密市场、AI 与政策。</strong></p>
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
 [![Tool uv](https://img.shields.io/badge/Tool-uv-4B275F?style=for-the-badge&logo=uv&logoColor=white)](https://github.com/astral-sh/uv)
-[![Website](https://img.shields.io/badge/Website-bmt.news-263238?style=for-the-badge&logo=homepage&logoColor=white)](https://bmt.news/)
-[![Daily](https://img.shields.io/github/actions/workflow/status/ohxiyu/bmtnews-standalone/daily-summary.yml?branch=main&label=Daily&style=for-the-badge&logo=date-fns&logoColor=white)](https://bmt.news/)
-[![Commit](https://img.shields.io/github/commit-activity/m/ohxiyu/bmtnews-standalone?label=Commit&style=for-the-badge&logo=github&logoColor=white)](https://github.com/ohxiyu/bmtnews-standalone/commits/main)
+[![Website](https://img.shields.io/badge/Website-xiyu.news-263238?style=for-the-badge&logo=homepage&logoColor=white)](https://xiyu.news/)
+[![Daily](https://img.shields.io/github/actions/workflow/status/ohxiyu/xiyunews/daily-summary.yml?branch=main&label=Daily&style=for-the-badge&logo=date-fns&logoColor=white)](https://xiyu.news/)
+[![Commit](https://img.shields.io/github/commit-activity/m/ohxiyu/xiyunews?label=Commit&style=for-the-badge&logo=github&logoColor=white)](https://github.com/ohxiyu/xiyunews/commits/main)
 
-📡 每天一期，中英双语 · [**在线阅读 →**](https://bmt.news/)
+📡 每天一期，中英双语 · [**在线阅读 →**](https://xiyu.news/)
 
-[📖 在线站点](https://bmt.news/) · [📋 配置说明](project-docs/configuration.md) · [🧵 归档与事件线](project-docs/archive-and-threads.md) · [✍️ 编辑层](project-docs/editorial.md) · [English](README.md) · [日本語](README_ja.md)
+[📖 在线站点](https://xiyu.news/) · [📋 配置说明](project-docs/configuration.md) · [🧵 归档与事件线](project-docs/archive-and-threads.md) · [✍️ 编辑层](project-docs/editorial.md) · [English](README.md) · [日本語](README_ja.md)
 
 </div>
 
-## BMTNews 是什么
+## xiyu.news 是什么
 
-加密行业的信息量早已超过任何人的阅读能力。BMTNews 持续监听交易所公告频道、
+加密行业的信息量早已超过任何人的阅读能力。xiyu.news 持续监听交易所公告频道、
 协议发布、监管机构、加密与 AI 媒体，每天早上 **08:30（东八区）出一期排好序的
 日报**——通常 7 到 14 条真正重要的内容，每条附带背景、市场影响分析和来源链接。
 
@@ -107,6 +107,6 @@ uv run bmtnews --mode publish --hours 24 --cutoff-hour 8
 
 ## 许可
 
-BMTNews 源代码采用 MIT 许可，见 [LICENSE](LICENSE)。生成的日报和第三方
+xiyu.news 源代码采用 MIT 许可，见 [LICENSE](LICENSE)。生成的日报和第三方
 新闻材料不属于软件许可范围，详见[内容与数据权利说明](CONTENT-LICENSE.md)和
 [第三方声明](THIRD_PARTY_NOTICES.md)。

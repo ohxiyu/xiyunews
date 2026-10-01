@@ -185,7 +185,7 @@ def test_workflow_fast_gate_precedes_edition_read_and_install():
     assert '[ "$QUEUE_ONLY" != true ]' in workflow
     assert "head_repository.full_name == github.repository" in workflow
     assert "ref: main" in workflow and "branches: [main]" in workflow
-    assert "'Deploy Docs'" in workflow and "'BMTNews Feed Collection'" in workflow
+    assert "'Deploy Docs'" in workflow and "'xiyu.news Feed Collection'" in workflow
 
 
 def test_idle_gate_needs_no_installed_dependencies(tmp_path):

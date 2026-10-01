@@ -43,7 +43,7 @@
     {% if page.noindex %}
     <meta name="robots" content="noindex, nofollow">
     {% endif %}
-    {% capture document_title %}{% if page.page_type == "home" %}{{ site.title }}{% elsif page.lang %}BMTNews · {{ page.date | date: "%Y.%m.%d" }}{% elsif page.title and page.title != "Home" %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}{% endcapture %}
+    {% capture document_title %}{% if page.page_type == "home" %}{{ site.title }}{% elsif page.lang %}xiyu.news · {{ page.date | date: "%Y.%m.%d" }}{% elsif page.title and page.title != "Home" %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}{% endcapture %}
     <title>{{ document_title | strip | escape }}</title>
     <meta name="description" content="{{ page.description | default: site.description | escape }}">
     {% if page.redirect_to %}
@@ -61,7 +61,7 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="{{ '/assets/images/bmtnews-social-v3.png' | absolute_url }}">
-    <meta property="og:image:alt" content="BMTNews — Crypto, AI, and policy intelligence">
+    <meta property="og:image:alt" content="xiyu.news — Crypto, AI, and policy intelligence">
     {% include head-custom.html %}
   </head>
   <body
@@ -80,15 +80,15 @@
         <a
           class="site-brand"
           href="{{ interface_home_url }}"
-          aria-label="{% if interface_language == 'en' %}BMTNews Home{% else %}BMTNews 首页{% endif %}"
-          data-i18n-aria-zh="BMTNews 首页"
-          data-i18n-aria-en="BMTNews Home"
+          aria-label="{% if interface_language == 'en' %}xiyu.news Home{% else %}xiyu.news 首页{% endif %}"
+          data-i18n-aria-zh="xiyu.news 首页"
+          data-i18n-aria-en="xiyu.news Home"
         >
           {% include brand-mark.html %}
           <span class="site-brand-copy">
-            <strong>BMTNews</strong>
+            <strong>xiyu.news</strong>
           </span>
-          <span class="site-brand-domain" aria-hidden="true">bmt.news</span>
+          <span class="site-brand-domain" aria-hidden="true">xiyu.news</span>
         </a>
 
         <nav
@@ -156,9 +156,9 @@
             data-pwa-install
             data-i18n-zh="安装"
             data-i18n-en="Install"
-            aria-label="{% if interface_language == 'en' %}Install BMTNews{% else %}安装 BMTNews{% endif %}"
-            data-i18n-aria-zh="安装 BMTNews"
-            data-i18n-aria-en="Install BMTNews"
+            aria-label="{% if interface_language == 'en' %}Install xiyu.news{% else %}安装 xiyu.news{% endif %}"
+            data-i18n-aria-zh="安装 xiyu.news"
+            data-i18n-aria-en="Install xiyu.news"
           >{% if interface_language == "en" %}Install{% else %}安装{% endif %}</button>
           <button
             class="theme-toggle"
@@ -218,11 +218,11 @@
     {% elsif page.page_class == "event-index-page" or page.page_class == "entity-index-page" %}
       {% comment %}Index mastheads live with their overview, not in a separate full-width banner.{% endcomment %}
     {% elsif page.page_type == "archive" %}
-      {% assign archive_eyebrow = "BMTNEWS ARCHIVE" %}
+      {% assign archive_eyebrow = "XIYU.NEWS ARCHIVE" %}
       {% if page.page_class contains "event-" %}
-        {% assign archive_eyebrow = "BMTNEWS EVENTS" %}
+        {% assign archive_eyebrow = "XIYU.NEWS EVENTS" %}
       {% elsif page.page_class contains "entity-" %}
-        {% assign archive_eyebrow = "BMTNEWS ENTITIES" %}
+        {% assign archive_eyebrow = "XIYU.NEWS ENTITIES" %}
       {% endif %}
       <section class="page-intro page-intro-docs">
         <div class="page-intro-inner">
@@ -236,7 +236,7 @@
       <section class="page-intro page-intro-docs">
         <div class="page-intro-inner">
           <div>
-            <p class="eyebrow">{{ page.eyebrow | default: "BMTNEWS NOTES" }}</p>
+            <p class="eyebrow">{{ page.eyebrow | default: "XIYU.NEWS NOTES" }}</p>
             <h1>{{ page.title }}</h1>
           </div>
         </div>
@@ -262,14 +262,14 @@
 
     <footer class="site-footer">
       <div>
-        <strong class="footer-brand">{% include brand-mark.html %} BMTNews</strong>
+        <strong class="footer-brand">{% include brand-mark.html %} xiyu.news</strong>
         <span
           data-i18n-zh="面向加密、AI 与宏观市场的每日情报雷达。"
           data-i18n-en="A daily intelligence radar for crypto, AI, and macro markets."
         >{% if interface_language == "en" %}A daily intelligence radar for crypto, AI, and macro markets.{% else %}面向加密、AI 与宏观市场的每日情报雷达。{% endif %}</span>
       </div>
       <span>
-        © {{ site.time | date: "%Y" }} BMTNews ·
+        © {{ site.time | date: "%Y" }} xiyu.news ·
         <a href="{{ '/about/' | relative_url }}">{% if interface_language == "en" %}About{% else %}关于{% endif %}</a> ·
         <a href="{{ '/media-kit/' | relative_url }}">{% if interface_language == "en" %}Media kit{% else %}媒体资源{% endif %}</a> ·
         <a href="{{ '/developers/' | relative_url }}">API</a> ·
@@ -290,12 +290,12 @@
       <div class="pwa-install-panel">
         <header>
           <div>
-            <span class="pwa-install-kicker">BMTNEWS APP</span>
+            <span class="pwa-install-kicker">XIYU.NEWS APP</span>
             <h2
               id="pwa-install-title"
               data-i18n-zh="安装到主屏幕"
-              data-i18n-en="Install BMTNews"
-            >{% if interface_language == "en" %}Install BMTNews{% else %}安装到主屏幕{% endif %}</h2>
+              data-i18n-en="Install xiyu.news"
+            >{% if interface_language == "en" %}Install xiyu.news{% else %}安装到主屏幕{% endif %}</h2>
           </div>
           <button
             class="pwa-install-close"

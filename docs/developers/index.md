@@ -1,14 +1,14 @@
 ---
 layout: default
-title: BMTNews API and Agent Developer Resources
-description: Public BMTNews REST API, OpenAPI specification, feeds, agent instructions, caching, errors, and attribution guidance.
+title: xiyu.news API and Agent Developer Resources
+description: Public xiyu.news REST API, OpenAPI specification, feeds, agent instructions, caching, errors, and attribution guidance.
 permalink: /developers/
 interface_language: en
-eyebrow: BMTNEWS API
+eyebrow: XIYU.NEWS API
 hide_language_toggle: true
 ---
 
-BMTNews exposes a public, read-only REST surface for agents, research tools,
+xiyu.news exposes a public, read-only REST surface for agents, research tools,
 notebooks, and feed readers. No API key or account is required. The files are
 generated with each daily edition and served from Cloudflare's edge. Clients
 should cache responses according to their HTTP headers, avoid unnecessary
@@ -16,22 +16,22 @@ polling, and retain the original publisher URL when presenting a story.
 
 ## REST endpoints
 
-- [`GET /api/quick-posts.json`](https://bmt.news/api/quick-posts.json) returns enabled manual
+- [`GET /api/quick-posts.json`](https://xiyu.news/api/quick-posts.json) returns enabled manual
   Quick Posts for today and yesterday in Asia/Shanghai. These are separate
   from the AI-ranked edition, with body text but no fabricated title or score.
   Reads the current Git registry with no-store; drafts and future dates are excluded.
   Repeat `date=YYYY-MM-DD` (up to ten dates) for historical editions. `position`
   counts daily stories before the post; null/0 means first. Upstream failures return
   503 instead of old generated data. `revision` identifies the live registry.
-- [`GET /api/latest.json`](https://bmt.news/api/latest.json) returns the newest complete edition.
-- [`GET /api/editions.json`](https://bmt.news/api/editions.json) lists available edition dates.
+- [`GET /api/latest.json`](https://xiyu.news/api/latest.json) returns the newest complete edition.
+- [`GET /api/editions.json`](https://xiyu.news/api/editions.json) lists available edition dates.
 - `GET /editions/{date}/edition.json` returns one dated edition, where `date`
   uses `YYYY-MM-DD`.
-- [`GET /api/events.json`](https://bmt.news/api/events.json) lists events with at least two
+- [`GET /api/events.json`](https://xiyu.news/api/events.json) lists events with at least two
   verified material updates, newest change first.
 - `GET /api/events/{event_id}.json` returns one chronological event timeline,
   including status, current state, update type, story IDs, and source evidence.
-- [`GET /openapi.json`](https://bmt.news/openapi.json) is the authoritative OpenAPI 3.1
+- [`GET /openapi.json`](https://xiyu.news/openapi.json) is the authoritative OpenAPI 3.1
   description. Every operation has a unique `operationId`, typed parameters,
   response schemas, and an explicit JSON error response.
 
@@ -43,10 +43,10 @@ and optional thread data. The latest edition also includes publication-window,
 run-statistic, overview, and market-snapshot fields when available.
 
 ```bash
-curl -sS https://bmt.news/api/latest.json
-curl -sS https://bmt.news/api/editions.json
-curl -sS https://bmt.news/editions/2026-08-24/edition.json
-curl -sS https://bmt.news/api/events.json
+curl -sS https://xiyu.news/api/latest.json
+curl -sS https://xiyu.news/api/editions.json
+curl -sS https://xiyu.news/editions/2026-08-24/edition.json
+curl -sS https://xiyu.news/api/events.json
 ```
 
 ## Errors and compatibility
@@ -75,19 +75,19 @@ from the same canonical URL. Responses declare
 `Content-Type: text/markdown; charset=utf-8` and
 `Vary: Accept, Accept-Encoding`. Browser requests continue to receive the
 normal HTML page. Stable Markdown files are also available at
-[`/index.html.md`](https://bmt.news/index.html.md) and [`/en/index.html.md`](https://bmt.news/en/index.html.md).
+[`/index.html.md`](https://xiyu.news/index.html.md) and [`/en/index.html.md`](https://xiyu.news/en/index.html.md).
 
-Start agent discovery with [`/llms.txt`](https://bmt.news/llms.txt), and use
-[`/sitemap.xml`](https://bmt.news/sitemap.xml) for the complete indexable page inventory.
+Start agent discovery with [`/llms.txt`](https://xiyu.news/llms.txt), and use
+[`/sitemap.xml`](https://xiyu.news/sitemap.xml) for the complete indexable page inventory.
 Category-specific Atom feeds are available for
-[crypto](https://bmt.news/feeds/crypto-en.xml), [AI and technology](https://bmt.news/feeds/technology-en.xml),
-and [policy](https://bmt.news/feeds/policy-en.xml), with corresponding `-zh.xml` files.
+[crypto](https://xiyu.news/feeds/crypto-en.xml), [AI and technology](https://xiyu.news/feeds/technology-en.xml),
+and [policy](https://xiyu.news/feeds/policy-en.xml), with corresponding `-zh.xml` files.
 
 ## Attribution and limits
 
-BMTNews analysis is not investment advice. Third-party titles, reporting, and
+xiyu.news analysis is not investment advice. Third-party titles, reporting, and
 other source materials remain subject to their original rights. When quoting or
-summarizing an item, cite the original URL from the API and identify BMTNews as
-the ranking and analysis layer. See [Legal and content rights](https://bmt.news/legal/) for the
+summarizing an item, cite the original URL from the API and identify xiyu.news as
+the ranking and analysis layer. See [Legal and content rights](https://xiyu.news/legal/) for the
 full boundary. For corrections, rights concerns, or security reports, use the
-channels on the [contact page](https://bmt.news/contact/).
+channels on the [contact page](https://xiyu.news/contact/).

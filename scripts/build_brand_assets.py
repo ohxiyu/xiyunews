@@ -18,7 +18,7 @@ NS = {"s": "http://www.w3.org/2000/svg"}
 
 def svg(width, height, content):
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
-            f'viewBox="0 0 {width} {height}" role="img" aria-label="BMTNews">\n{content}\n</svg>\n')
+            f'viewBox="0 0 {width} {height}" role="img" aria-label="xiyu.news">\n{content}\n</svg>\n')
 
 
 def build(font=None):
@@ -31,7 +31,7 @@ def build(font=None):
         glyphs, cmap = face.getGlyphSet(), face.getBestCmap()
         scale = 100 / face["head"].unitsPerEm
         pen, x = SVGPathPen(glyphs), 0
-        for letter in "BMTNews":
+        for letter in "xiyu.news":
             glyph = glyphs[cmap[ord(letter)]]
             glyph.draw(TransformPen(pen, (scale, 0, 0, -scale, x, 80)))
             x += glyph.width * scale

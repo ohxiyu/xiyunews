@@ -1,6 +1,6 @@
-# Contributing to BMTNews
+# Contributing to xiyu.news
 
-Thanks for your interest in contributing to BMTNews.
+Thanks for your interest in contributing to xiyu.news.
 
 ## Ways to Contribute
 
@@ -23,7 +23,7 @@ Please keep pull requests focused and easy to review.
 
 ## Share Sources
 
-BMTNews also welcomes **source contributions**, not just code.
+xiyu.news also welcomes **source contributions**, not just code.
 
 If you discover high-quality sources worth sharing with other users, please submit them via **[bmtnews1123.top](https://bmtnews1123.top)**.
 
@@ -39,7 +39,7 @@ Good examples include:
 
 Please make sure your contribution is:
 
-- relevant to BMTNews users
+- relevant to xiyu.news users
 - clear and well-described
 - respectful of copyright and platform rules
 

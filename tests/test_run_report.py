@@ -92,11 +92,11 @@ def test_failed_report_preserves_safe_error_and_renders_markdown() -> None:
 
     assert payload["status"] == "failure"
     assert "super-secret" not in payload["error"]
-    assert "## BMTNews 采集运行报告" in markdown
+    assert "## xiyu.news 采集运行报告" in markdown
     assert "| 本次采集 | 0 |" in markdown
     assert "`pipeline_failed`" in markdown
     assert render_github_annotations(payload) == [
-        "::error title=BMTNews pipeline_failed::Authorization token=<redacted> failed"
+        "::error title=xiyu.news pipeline_failed::Authorization token=<redacted> failed"
     ]
 
 
@@ -173,7 +173,7 @@ def test_daily_report_renders_window_quotas_and_source_contribution() -> None:
     assert payload["version"] == 2
     assert payload["kind"] == "daily_publish"
     assert payload["timings"] == {"fetch": 1.234, "analysis": 2.346}
-    assert "## BMTNews 早间日报发布报告" in markdown
+    assert "## xiyu.news 早间日报发布报告" in markdown
     assert "### 性能分段" in markdown
     assert "`deepseek:deepseek-flash`：51 条" in markdown
     assert "| analysis | 2.346 |" in markdown

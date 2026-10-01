@@ -341,8 +341,8 @@ def test_story_card_matches_the_full_story_layout_without_a_page_url() -> None:
     assert "dateLabel:" in main_script
     assert "CARD_CSS_WIDTH = 440" in card_script
     assert "CARD_SCALE = 3" in card_script
-    assert "context.fillText('BMTNews'" in card_script
-    assert "context.fillText('bmt.news'" in card_script
+    assert "context.fillText('xiyu.news'" in card_script
+    assert "context.fillText('xiyu.news'" in card_script
     assert "context.fillText(story.rank || ''" in card_script
     assert "summaryParagraphs: summaryParagraphs" in main_script
     assert "normalizeStorySummary(article, language)" in main_script
@@ -397,8 +397,8 @@ def test_shared_chrome_keeps_reader_modules_visually_consistent() -> None:
     assert 'current_section = "entities"' in layout
     assert 'current_section = "weekly"' in layout
     assert 'aria-current="page"' in layout
-    assert "BMTNEWS EVENTS" in layout
-    assert "BMTNEWS ENTITIES" in layout
+    assert "XIYU.NEWS EVENTS" in layout
+    assert "XIYU.NEWS ENTITIES" in layout
     assert 'page.hide_language_toggle' in layout
 
     # The generic prose-document heading rule must not add document-sized

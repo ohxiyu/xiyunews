@@ -1,4 +1,4 @@
-"""BMTNews MCP package."""
+"""xiyu.news MCP package."""
 
 __all__ = ["__version__"]
 

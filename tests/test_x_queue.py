@@ -520,6 +520,6 @@ def test_x_is_clocked_by_square_without_a_trigger_loop():
     root = Path(__file__).resolve().parents[1] / ".github/workflows"
     x_workflow = (root / "x-distribution.yml").read_text()
     square_workflow = (root / "square-distribution.yml").read_text()
-    assert "workflows: ['BMTNews Binance Square Distribution']" in x_workflow
+    assert "workflows: ['xiyu.news Binance Square Distribution']" in x_workflow
     square_triggers = square_workflow.split("workflows:", 1)[1].split("\n", 1)[0]
-    assert "BMTNews X Distribution" not in square_triggers
+    assert "xiyu.news X Distribution" not in square_triggers

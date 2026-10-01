@@ -1,4 +1,4 @@
-"""Structured reporting for one native BMTNews pipeline run."""
+"""Structured reporting for one native xiyu.news pipeline run."""
 
 from __future__ import annotations
 
@@ -94,9 +94,9 @@ _DAILY_METRIC_LABELS = (
 )
 
 _REPORT_TITLES = {
-    "legacy_full": "BMTNews 采集运行报告",
-    "staging_fetch": "BMTNews 日内采集报告",
-    "daily_publish": "BMTNews 早间日报发布报告",
+    "legacy_full": "xiyu.news 采集运行报告",
+    "staging_fetch": "xiyu.news 日内采集报告",
+    "daily_publish": "xiyu.news 早间日报发布报告",
 }
 
 _METRICS_BY_KIND = {
@@ -624,12 +624,12 @@ def render_github_annotations(payload: dict[str, Any]) -> list[str]:
         message = sanitize_diagnostic(alert.get("message", ""), limit=500)
         title = title.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
         message = message.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
-        annotations.append(f"::{command} title=BMTNews {title}::{message}")
+        annotations.append(f"::{command} title=xiyu.news {title}::{message}")
     return annotations
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Render a BMTNews run report")
+    parser = argparse.ArgumentParser(description="Render a xiyu.news run report")
     parser.add_argument(
         "--input",
         type=Path,

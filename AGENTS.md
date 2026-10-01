@@ -1,4 +1,4 @@
-# BMTNews Collaboration Rules
+# xiyu.news Collaboration Rules
 
 These rules apply to every human or coding agent working in this repository.
 Detailed onboarding and command examples are in

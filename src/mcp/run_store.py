@@ -1,4 +1,4 @@
-"""Run artifact persistence for BMTNews MCP."""
+"""Run artifact persistence for xiyu.news MCP."""
 
 from __future__ import annotations
 

@@ -215,7 +215,7 @@ def build_post(
     """Compose one post linking back to the full edition."""
     selected = list(items)[:max_items]
     is_zh = language == "zh"
-    header = f"BMTNews {date}" if is_zh else f"BMTNews {date}"
+    header = f"稀有News {date}" if is_zh else f"xiyu.news {date}"
     link = site_url.rstrip("/") + ("/" if is_zh else "/en/")
     lines: List[str] = []
     # Reserve room for the header, the trailing link, and the newlines.

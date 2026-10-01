@@ -27,15 +27,15 @@ FEEDS_ROOT = Path("docs/feeds")
 EDITIONS_ROOT = Path("docs/editions")
 SITEMAP_PATH = Path("docs/sitemap.xml")
 
-DEFAULT_SITE_URL = "https://bmt.news"
+DEFAULT_SITE_URL = "https://xiyu.news"
 FEED_CATEGORIES = ("crypto", "technology", "policy")
 _FEED_TITLES = {
-    ("crypto", "zh"): "BMTNews · Crypto",
-    ("crypto", "en"): "BMTNews · Crypto",
-    ("technology", "zh"): "BMTNews · AI 科技",
-    ("technology", "en"): "BMTNews · AI & Tech",
-    ("policy", "zh"): "BMTNews · 政策",
-    ("policy", "en"): "BMTNews · Policy",
+    ("crypto", "zh"): "xiyu.news · Crypto",
+    ("crypto", "en"): "xiyu.news · Crypto",
+    ("technology", "zh"): "xiyu.news · AI 科技",
+    ("technology", "en"): "xiyu.news · AI & Tech",
+    ("policy", "zh"): "xiyu.news · 政策",
+    ("policy", "en"): "xiyu.news · Policy",
 }
 
 _SITEMAP_STATIC_PATHS = (
@@ -323,7 +323,7 @@ def render_category_feed(
 ) -> str:
     """Render one Atom feed for a top-level category."""
     base = site_url.rstrip("/")
-    title = _FEED_TITLES.get((category, language), f"BMTNews · {category}")
+    title = _FEED_TITLES.get((category, language), f"xiyu.news · {category}")
     self_url = f"{base}/feeds/{category}-{language}.xml"
     selected = [
         record for record in records if record.top_category == category

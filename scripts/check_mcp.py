@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local smoke check for BMTNews MCP integration."""
+"""Local smoke check for xiyu.news MCP integration."""
 
 from __future__ import annotations
 

@@ -34,7 +34,7 @@ class GitHubScraper(BaseScraper):
         """
         headers = {
             "Accept": "application/vnd.github.v3+json",
-            "User-Agent": "BMTNews-Aggregator"
+            "User-Agent": "xiyu.news-Aggregator"
         }
         if self.token:
             headers["Authorization"] = f"token {self.token}"
