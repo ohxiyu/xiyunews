@@ -1,13 +1,13 @@
 ---
 layout: default
-title: 关于 BMTNews
-description: BMTNews identity, editorial scope, publication model, and limitations.
+title: 关于稀有News
+description: xiyu.news identity, editorial scope, publication model, and limitations.
 permalink: /about/
-eyebrow: BMTNEWS ABOUT
+eyebrow: XIYU.NEWS ABOUT
 hide_language_toggle: true
 ---
 
-BMTNews 是一个公开、双语、每日更新的信息整理项目，主要覆盖加密市场、交易所、
+稀有News（xiyu.news）是一个公开、双语、每日更新的信息整理项目，主要覆盖加密市场、交易所、
 协议、安全事件和监管变化，同时保留有限篇幅给重要 AI 科技进展与可能影响数字资产
 市场的宏观政策。项目的目标不是追求最多新闻，而是将跨来源重复报道合并为较少、
 可核查、带上下文的事件条目，让读者在一个固定版本中理解当天真正发生了什么。
@@ -20,7 +20,7 @@ BMTNews 是一个公开、双语、每日更新的信息整理项目，主要覆
 
 ## English
 
-BMTNews is a public, bilingual daily intelligence project focused primarily
+xiyu.news is a public, bilingual daily intelligence project focused primarily
 on crypto markets, exchanges, protocols, security incidents, and regulation,
 with a deliberately limited allocation for material AI and macro-policy news.
 Its purpose is to reduce repeated coverage into a smaller set of verifiable,
@@ -28,8 +28,8 @@ context-rich events. The project publishes one fixed edition per day rather
 than presenting an endless real-time stream.
 
 Automation assists collection, ranking, translation, summarization, and
-enrichment, but generated analysis can still be incomplete or wrong. BMTNews
+enrichment, but generated analysis can still be incomplete or wrong. xiyu.news
 does not provide investment, legal, tax, or compliance advice. Readers and
 agents should verify consequential claims against the original linked sources.
 The implementation, tests, collaboration rules, and issue history are public
-in the [BMTNews repository](https://github.com/ohxiyu/bmtnews-standalone).
+in the [xiyu.news repository](https://github.com/ohxiyu/xiyunews).

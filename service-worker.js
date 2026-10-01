@@ -5,7 +5,7 @@ permalink: /service-worker.js
 /* Public reading only. No background collection, authentication or push. */
 const BUILD = '{{ site.time | date_to_xmlschema }}';
 const PAGES = 'bmt-reader-pages-v1';
-const ASSETS = 'bmt-reader-assets-v1';
+const ASSETS = 'bmt-reader-assets-v2-xiyu';
 const MAX_PAGES = 30;
 const MAX_BYTES = 20 * 1024 * 1024;
 const MAX_AGE = 30 * 86400000;
@@ -128,7 +128,7 @@ async function cachedPage(url) {
 }
 
 function offlinePage() {
-  return new Response('<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>BMTNews · 离线</title><style>body{font:16px/1.7 system-ui;background:#faf9f7;color:#222;max-width:640px;margin:12vh auto;padding:24px}a{color:#305587}</style><h1>BMTNews</h1><h2>此页面尚未离线保存</h2><p>连接恢复后重试。已保存的页面仍可阅读。<br>This page is not saved. Reconnect to load it.</p><p><a href="/">中文信息流</a> · <a href="/en/">English feed</a></p></html>', {status: 503, headers: {'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store'}});
+  return new Response('<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>xiyu.news · 离线</title><style>body{font:16px/1.7 system-ui;background:#faf9f7;color:#222;max-width:640px;margin:12vh auto;padding:24px}a{color:#305587}</style><h1>xiyu.news</h1><h2>此页面尚未离线保存</h2><p>连接恢复后重试。已保存的页面仍可阅读。<br>This page is not saved. Reconnect to load it.</p><p><a href="/">中文信息流</a> · <a href="/en/">English feed</a></p></html>', {status: 503, headers: {'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store'}});
 }
 
 async function navigate(request, url, event) {
