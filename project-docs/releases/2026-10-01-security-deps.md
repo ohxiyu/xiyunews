@@ -16,7 +16,7 @@ Logo PR163 的 CI 报告 PyJWT 2.13.0 的 13 条漏洞、urllib3 2.7.0 的 3 条
 
 本地验证：8 项安全回归通过，全量 pytest 925 项通过，治理与 diff 检查通过，61 项 Node 前端测试通过，Worker 61 项测试 / 类型检查 / 部署 dry-run 通过。CI 同参数导出全部 extras，pip-audit 2.10.1 / PyPI 完整审计报告 No known vulnerabilities found（未忽略任何漏洞）。urllib3 测试夹具最初错误传递 HTTPMessage，改为正常 headers 映射后回归及全量检查通过，未改动实际依赖行为。
 
-npm ci 另报告 Worker 开发依赖树中 7 项告警（2 moderate / 5 high）；本任务未评估或修复该独立 npm 范围，不执行 npm audit fix --force，也不将 Python 审计成功描述为所有技术栈无漏洞。PR、远端 CI、合并与生产部署尚未完成。
+npm ci 另报告 Worker 开发依赖树中 7 项告警（2 moderate / 5 high）；本任务未评估或修复该独立 npm 范围，不执行 npm audit fix --force，也不将 Python 审计成功描述为所有技术栈无漏洞。[PR165](https://github.com/ohxiyu/bmtnews-standalone/pull/165) 已提交；远端 CI、合并与生产部署尚未完成。
 
 本安全 PR 合并后，Logo PR163 必须同步新 main 并重新通过全部检查，才能合并及发布。依赖修复会由后续采集 / 日报 Actions 的 frozen sync 使用；静态 Pages 部署不会安装 Python 服务。不得为了验证依赖重跑 AI 或推送外部消息。
 

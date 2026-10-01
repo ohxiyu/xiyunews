@@ -10,7 +10,7 @@
   "owner": "Codex / security-deps; sole editor and integrator",
   "branch": "agent/security-deps",
   "last_verified_commit": "9ba3df1c15dee517779c5780c9d0c37fd1806f1d",
-  "pr": "pending: focused security dependency PR",
+  "pr": "https://github.com/ohxiyu/bmtnews-standalone/pull/165",
   "completed": [
     "定向升级 PyJWT 2.15.1 / urllib3 2.8.0；设置最低安全版本",
     "新增安全行为回归测试；未改变认证、Worker、费用、调度"
