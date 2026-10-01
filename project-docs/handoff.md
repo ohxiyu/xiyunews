@@ -1,6 +1,6 @@
 # 当前交接
 
-本次操作说明回写为 Issue189/PR190；当前执行指针继续尚未完成的阶段 3 Issue172，五阶段描述该产品迁移，不把文档发布当成历史合并或服务器上线。20:05 广场真实到期发送与回执已验证，本地 realtime 已同步并通过双版本测试；完整历史仍因凭据撤销未确认而禁止上传。原可信 SSH 入口、新域登录和 Telegram 品牌确认仍缺，不改提醒规则、账号权限或 UI。
+操作说明已由 Issue189/PR190 发布；本次 Issue191 记录运营者确认 Telegram 展示名为 xiyu.news。当前执行指针继续尚未完成的阶段 3 Issue172，五阶段描述该产品迁移，不把文档发布当成历史合并或服务器上线。20:05 广场真实到期发送与回执已验证，本地 realtime 已同步并通过双版本测试；完整历史仍因凭据撤销未确认而禁止上传。原可信 SSH 入口、新域登录、Telegram 实际改名与简介验收仍缺，不改提醒规则、账号权限或 UI。
 
 <!-- execution-pointer -->
 ```json
@@ -30,12 +30,13 @@
     "系统架构已进入 main，明确现有静态网站、Actions、边缘后台/调度与原实时服务，不把本地 subtree 当成上线",
     "20:05 Square 36859488592 workflow_dispatch success，真实新回执 372593244617888；attempted=1、sent=11、remaining=3、attention=0",
     "本地实时分支同步 main 并补齐操作清单，保存 a7edea4b1edfa34ba5fdb7abc3502ca3c1b873fc，完整历史仍未上传",
-    "服务器迁移清单、Telegram 品牌草案写入主仓文档任务；命令语法验证通过，未执行服务器或社交变更"
+    "服务器迁移清单、Telegram 品牌草案写入主仓文档任务；命令语法验证通过，未执行服务器或社交变更",
+    "运营者于 2026-10-01 确认 Telegram 日报频道和实时群展示名为 xiyu.news；实际改名与简介验收仍待完成"
   ],
   "unfinished": [
     "确认旧历史疑似 Telegram Token 已撤销后，同步最新 main、重新测试、推送阶段 3 PR 并用 merge commit 保留历史",
     "阶段 4 从原 SSH 电脑备份、部署、检查新 SHA/三分片/自然回执/看门狗后，才归档旧仓",
-    "阶段 5 完成 Telegram 品牌文案和运营者确认；不合并群/频道，不改 fomobtc.com nginx",
+    "阶段 5 Telegram 名称已确认为 xiyu.news，仍需实际频道/群改名、简介确认及看门狗标题发布验收；不合并群/频道，不改 fomobtc.com nginx",
     "运营者完成新域验证码后验证 Quick Post；旧域 301 已取消，不再作为迁移验收要求"
   ],
   "validation": [
@@ -64,7 +65,7 @@
     "仅确认两个文档中记载的 fomobtc_tokyo_config 路径不存在，尚不能推断本机没有私钥；原 SSH 配置路径待提供，未尝试不明连接",
     "新域验证码登录待运营者完成，不绕过 Access，不发布生产测试消息"
   ],
-  "next_action": "等待旧凭据已撤销确认后，先在 /tmp/xiyunews-stage3 合入最新 origin/main 并重新验证，随后推送阶段3 PR，以 merge commit 保留历史；收到原可信 SSH 配置路径后才实际备份部署。新域验证码登录、Access 显示名与 Telegram 文案确认分别等待，不发布生产测试内容。",
+  "next_action": "等待旧凭据已撤销确认后，先在 /tmp/xiyunews-stage3 合入最新 origin/main 并重新验证，随后推送阶段3 PR，以 merge commit 保留历史；确认原可信 SSH 入口后才实际备份部署。Telegram 名称使用已确认的 xiyu.news，无需重复确认名称；简介、实际改名验收、新域验证码登录与 Access 显示名仍待完成，不发布生产测试内容。",
   "states": {
     "code": "complete",
     "tests": "complete",
