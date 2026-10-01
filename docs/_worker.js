@@ -677,13 +677,13 @@ function cachedResponse(response, status, policy) {
 
 export async function handleRequest(request, env, ctx) {
   const url = new URL(request.url);
-  // Keep the existing site reachable while the new zone/TLS is propagating.
-  // Only an explicit production false pauses redirects; normal behavior is 301.
-  if (env.LEGACY_REDIRECT_ENABLED !== 'false' &&
-      (url.hostname === 'bmt.news' || url.hostname === 'www.bmt.news')) {
-    return new Response(null, {status: 301, headers: {
-      Location: SITE_ORIGIN + url.pathname + url.search,
-      'Cache-Control': 'public, max-age=300'
+  // Operator decision (2026-10-01): retire old entries WITHOUT a redirect.
+  // Keep DNS/TLS resources intact; stop before auth, assets or private APIs.
+  if (url.hostname === 'bmt.news' || url.hostname === 'www.bmt.news') {
+    return new Response('此域名已停止提供服务。\n', {status: 410, headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'no-store', 'CDN-Cache-Control': 'no-store',
+      'X-Robots-Tag': 'noindex, nofollow'
     }});
   }
   if (isAdminPath(new URL(request.url).pathname)) return handleAdmin(request, env);

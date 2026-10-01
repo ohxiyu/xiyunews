@@ -1,16 +1,16 @@
 # 当前交接
 
-运营者授权解决迁移审计全部问题，当前唯一编辑任务 Issue183：按私有队列到期派发，减少 Actions 空跑。PR182 已合并发布，后台仅保留新域；旧域 301 按最新决定取消。阶段 3 的凭据安全确认和后续实时部署仍不可跳过，不调整来源、阈值、地址簿或 UI 结构。
+运营者授权解决迁移审计全部问题，当前唯一编辑任务 Issue185：旧域停止服务、排除状态分支预览、记录真实系统架构。PR182 和 PR184 已合并部署，后台仅保留新域；按最新决定旧域返回 410，不再跳转。阶段 3 的凭据安全确认和后续实时部署仍不可跳过，不调整来源、阈值、地址簿或 UI 结构。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "解决迁移审计问题，当前实施私有分发队列到期门控减少空跑",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/183",
+  "goal": "完成迁移审计收尾：旧域停用、无效预览过滤和系统架构",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/185",
   "owner": "Codex / 迁移唯一编辑及部署整合负责人",
-  "branch": "agent/xiyunews-due-dispatch",
-  "last_verified_commit": "21c96d4281e1cec771c7516d3722ea6ba6688c62",
-  "pr": "Issue183 实施中；PR182 已合并，阶段 3 历史仍禁止推送",
+  "branch": "agent/xiyunews-final-audit",
+  "last_verified_commit": "f0a2dc89d2fbcd702904379ffe0b7d197de88d02",
+  "pr": "Issue185 实施中；PR182 与 PR184 已合并部署",
   "completed": [
     "阶段 1 PR169 与阶段 2 PR171 顺序全绿合并，主站与调度器已上线；PR174/176/178 后续修复也已合并",
     "ohxiyu/xiyunews 与 ohxiyu/fomobtc 均 private=true、archived=false，协作者仅 ohxiyu；私有 Git 集成 Pages 构建成功",
@@ -21,14 +21,17 @@
     "PR178 缓存修复首次自然采集 36849586444 整体 success，事件发布与缓存持久化步骤均成功，不 force 或扩大权限",
     "阶段 3 本地 unsquashed subtree、独立 CI、治理及新仓打包准备完毕；旧 main 为导入祖先，未上传历史",
     "PR182 全绿合并并经 Deploy Docs 发布，站内许可入口 200，联系入口仅 X @ohxiyu，不公开私人信息",
-    "Access 已按操作时确认仅保护新域六路径，原单账号策略与 AUD 不变，匿名入口 302 登录页"
+    "Access 已按操作时确认仅保护新域六路径，原单账号策略与 AUD 不变，匿名入口 302 登录页",
+    "PR184 全绿合并并 keep-vars 部署 9774435b；19:00 上海时间自然 Cron 返回采集 fresh、广场 idle、X idle、日报 healthy",
+    "公开联系页普通主域 200 且仅使用 X @ohxiyu，旧缓存已自然更新"
   ],
   "unfinished": [
     "确认旧历史疑似 Telegram Token 已撤销后，同步最新 main、重新测试、推送阶段 3 PR 并用 merge commit 保留历史",
     "阶段 4 从原 SSH 电脑备份、部署、检查新 SHA/三分片/自然回执/看门狗后，才归档旧仓",
     "阶段 5 完成 Telegram 品牌文案和运营者确认；不合并群/频道，不改 fomobtc.com nginx",
     "运营者完成新域验证码后验证 Quick Post；旧域 301 已取消，不再作为迁移验收要求",
-    "Issue183 同步 main、全绿合并、keep-vars 部署与真实 idle/到期回读"
+    "Issue185 完成治理与远端 CI，正常 Actions 发布后回读两旧域全部 410，无跳转",
+    "调度器首次自然到期派发尚待下一个计划时间，不主动发送生产测试消息"
   ],
   "validation": [
     "主仓最新修复完整 937 项 pytest、治理、6 项真实本地裸仓缓存回归、bash 语法与 diff 检查通过；远端 CI 和 Pages 预览成功",
@@ -40,22 +43,22 @@
   "unverified": [
     "新域 Access 登录与 Quick Post 管理操作；旧域 301 已被运营者取消，不再作为验收要求",
     "阶段 3 远端 CI、merge commit 历史祖先；服务器新仓完整 SHA、自然 message_id 和看门狗无新增告警",
-    "本阶段调度尚未合并部署；公开联系页普通主域缓存更新后回读"
+    "旧域 410 尚未发布；Access 应用显示名修改仍待操作时确认；下一个自然到期派发待观察"
   ],
   "production": {
     "source_commit": "21c96d4281e1cec771c7516d3722ea6ba6688c62",
     "artifact_commit": "d4958131d9066268eef025fb07f912b25ea2b54a",
     "edition": "2026-10-01",
     "generated_at": "2026-09-30T23:28:59.968601Z",
-    "worker_version": "dd126dda-3c13-4e8d-b582-e2550c08cb98（独立调度器）",
-    "verified_at": "2026-10-01 10:51 UTC；Pages 与 Actions success，普通许可 200，Access 匿名登录验证"
+    "worker_version": "9774435b-1c72-4dad-9552-0440e2ab574f（独立调度器）",
+    "verified_at": "2026-10-01 11:03 UTC；普通联系页 200 新文案，19:00 自然 Cron healthy/idle"
   },
   "blockers": [
     "旧历史两份已删除 README 含同一疑似 Telegram Token，未输出或调用，未推入新仓；保留历史前需确认已撤销",
     "仅确认两个文档中记载的 fomobtc_tokyo_config 路径不存在，尚不能推断本机没有私钥；原 SSH 配置路径待提供，未尝试不明连接",
     "新域验证码登录待运营者完成，不绕过 Access，不发布生产测试消息"
   ],
-  "next_action": "完成 Issue183 治理与远端 CI，同步 main 合并后 keep-vars 部署，检查真实 idle/到期派发；回读 PR182 普通主域。旧 Token 撤销和原 SSH 路径仍待提供，不能跳过历史安全确认；旧域 301 取消。",
+  "next_action": "完成 Issue185 合并及正常发布，验证旧域 410 与新域公开路由；随后写生产回读文档 PR。实时历史仍待旧凭据撤销与原 SSH 配置，后台待运营者登录。",
   "states": {
     "code": "complete",
     "tests": "complete",
@@ -63,10 +66,10 @@
     "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-10-01-due-dispatch.md"
+  "evidence": "project-docs/releases/2026-10-01-final-audit.md"
 }
 ```
 
 阶段 3 的唯一后续编辑入口是 /tmp/xiyunews-stage3，提交 1e6395f3a410233b817ce0c2ddaf9bd64fdf6f78，尚未上传。不要推送包含旧历史的 agent/xiyunews-realtime、agent/xiyunews-local-history-hold 或旧本地 dispatcher 分支，也不要使用 git push --all；两仓私有化不能替代撤销凭据，不擅自重写历史。
 
-完整生产证据见 [部署回读记录](releases/2026-10-01-deployment-receipt.md)，步骤见 [域名迁移手册](brand-domain-migration.md)。realtime 文档尚不在远端 main，其入口目前仅在本地 realtime/docs/handoff.md 与 realtime/docs/deployment.md；不建立伪造链接，不继续其他未授权 PR。GitHub 当前私有仓套餐不支持分支保护或 CodeQL，未新增付费服务；合并仍手动核对同步 main、治理和全部可用 CI。
+实际运行边界见 [系统架构](system-architecture.md)。完整生产证据见 [部署回读记录](releases/2026-10-01-deployment-receipt.md)，步骤见 [域名迁移手册](brand-domain-migration.md)。realtime 文档尚不在远端 main，其入口目前仅在本地 realtime/docs/handoff.md 与 realtime/docs/deployment.md；不建立伪造链接，不继续其他未授权 PR。GitHub 当前私有仓套餐不支持分支保护或 CodeQL，未新增付费服务；合并仍手动核对同步 main、治理和全部可用 CI。
