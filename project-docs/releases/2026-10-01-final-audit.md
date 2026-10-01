@@ -25,3 +25,19 @@ Rollback: 未回滚、删除资源或写入生产状态分支；恢复旧入口�
 ## 不可跳过的条件
 
 旧历史疑似凭据撤销状态、原 SSH 配置、新仓实时部署及自然回执、Telegram 实际改名、登录后 Quick Post 尚未完成。私有仓分支保护和 CodeQL 是套餐限制，本轮未购买升级，不将跳过写成安全扫描通过；现有 CI、依赖审计与逐项合并检查继续。
+
+## 正式生产回读（2026-10-01 11:12 UTC）
+
+本节为 Issue187 的纯文档跟进，更新前述“待发布”快照。PR186 于 11:06 UTC 全绿合并为 3b8f2b5cd82e257783c99501e6494e495bb20ca7；Deploy Docs 36853256492 正常 success，没有重跑 AI。gh-pages 产物 c74d90926376852660aa8b56ab2deb35fc624c9e，对应 Pages 生产 216fd183-cd53-4140-a744-ff6b48ff1bd6，产物提交的 Cloudflare Pages 检查 completed/success。站点 Worker 源文件与 main 对应 blob 均为 0540e73a1b1b7609bde67d58d84247175faa6f40。
+
+首次回读的旧域仍为 200/403/404，当时生产构建 in_progress，未当作验收通过；完成后重新检查两个 Host，各 13 个首页、文章、API、RSS、sitemap、openapi、llms、后台、带查询参数与不存在路径，全部 410、无 Location、Cache-Control=no-store。新域首页、日报、latest API、RSS、sitemap、openapi、llms、contact 在普通无校验查询链接 200，HTML canonical 为新域，contact 使用 https://x.com/ohxiyu。前序关于、法律、媒体、开发者、追踪、实体、周报、PWA 与三份许可共 23 个公开路由均 200；后台匿名请求仍跳至既有 Access，实际验证码登录后 Quick Post 尚未验收。
+
+后续自然 schedule 采集 36853175538 success，事件发布和 staging-cache 持久化步骤均 success。缓存提交 926e93c07a066b9bbb2b003a1c14c747c4482769 的父为前序 2fc2aca12acc21fb53255c7cd201976811bef127，未 force；该状态提交无 Pages check，与已保存的排除配置一致。调度器 ready 200，19:00 上海时间真实 Cron 已验证 fresh/idle/idle/healthy；首次自然到期发帖仍未发生，不用测试消息代替。
+
+实时服务健康接口仍为原仓 source_commit=b226b625cf3875b6693e0768d75d88d50b33c08d、三个现货分片 live，链上检查零区块延迟；Hyperliquid 为既有 degraded，ready 503，不宣称全系统健康或新仓已部署。原仓未归档，两仓仍 private=true、archived=false。Access 显示名仅准备修改，待操作时确认；安全条件与套餐限制仍按上节保留。
+
+Source commit: 3b8f2b5cd82e257783c99501e6494e495bb20ca7
+Worker version: 独立调度器 9774435b-1c72-4dad-9552-0440e2ab574f；站点 Worker 随 Pages 216fd183-cd53-4140-a744-ff6b48ff1bd6 发布。
+Deployment: Deploy Docs 36853256492 success；gh-pages c74d90926376852660aa8b56ab2deb35fc624c9e；Pages 正式检查 success。
+Verification: 942 项 pytest、79 项站点 Node、84 项调度器测试及治理/远端 CI；新域 200 与旧域 26 路径 410 验收通过，未完成项如上。
+Rollback: 没有回滚、强推、手工写生产状态分支、删除基础设施或更换 Secrets；未修改实时服务规则与目标群。
