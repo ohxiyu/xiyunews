@@ -20,9 +20,7 @@
     "16 项公开品牌资源逐字节校验通过；英文、追踪、实体、周报、媒体普通路径已显示新版",
     "2026-10-01T04:24:58.566Z：普通中文首页缓存自然刷新；6 个无版本参数页面与 16 项资源全部通过"
   ],
-  "unfinished": [
-    "仅余 Issue166 文档回写 PR 合并及已合并分支清理；应用交付已完成"
-  ],
+  "unfinished": [],
   "validation": [
     "uv sync --frozen --extra dev 成功，使用独立 PR165 修复后的锁文件",
     "原生 SVG → sharp PNG/ICO → ZIP 构建成功",
@@ -46,7 +44,7 @@
     "verified_at": "2026-10-01T04:24:58.566Z; 6 unversioned pages and 16 byte-matched assets passed"
   },
   "blockers": [],
-  "next_action": "应用交付已完成；合并独立文档回写后清理已合并分支，不自动执行 npm、真实设备或历史待办",
+  "next_action": "本次应用交付已完成；仅按用户新任务继续，不自动执行 npm、真实设备或历史待办",
   "states": {
     "code": "complete",
     "tests": "complete",
@@ -64,4 +62,4 @@
 
 安全处理记录：[PyJWT / urllib3](releases/2026-10-01-security-deps.md)，已通过独立 PR165 合并；不会恢复漏洞版本，也不跳过审计。
 
-本次交付证据由 [Issue166](https://github.com/ohxiyu/bmtnews-standalone/issues/166) / agent/brand-v3-release 文档 PR 回写；五阶段状态描述已合并的应用 PR163，不将待合并文档 PR 当作另一次应用部署。
+本次交付证据由 [Issue166](https://github.com/ohxiyu/bmtnews-standalone/issues/166) / [PR167](https://github.com/ohxiyu/bmtnews-standalone/pull/167) 回写；五阶段状态描述已合并的应用 PR163，不将纯文档 PR 当作另一次应用部署。
