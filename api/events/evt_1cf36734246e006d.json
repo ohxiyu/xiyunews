@@ -220,14 +220,27 @@
       "current_state_en": "Investigation into the NEAR Intents exploit continues; the attacker's address has been linked to a wallet flagged as North Korea's Lazarus Group, suggesting the attacker may be Lazarus Group. Previously confirmed: over $3.8M loss, deposits/withdrawals suspended across 11 networks, and full compensation pledged.",
       "detailed_summary_zh": "The NEAR Intents attacker moved stolen funds to KuCoin and bridged them into BTC, with the attacker's address interacting with a wallet flagged as North Korea's Lazarus Group.",
       "detailed_summary_en": "The NEAR Intents attacker moved stolen funds to KuCoin and bridged them into BTC, with the attacker's address interacting with a wallet flagged as North Korea's Lazarus Group.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "NEAR Intents 是一项跨链兑换服务，订单由相互竞争的市场做市商撮合，官方称其已处理超过 300 亿美元、覆盖 35 条区块链的兑换。在本次漏洞利用发生前两天，它拦截了来自 Bitget 黑客的 5000 万美元兑换尝试。Bitget 首席执行官陈雅琪（Gracy Chen）与区块链分析公司 Elliptic 均指朝鲜可能是上周 Bitget 交易所被盗事件的幕后黑手，但同样未获证实。跨链桥接层屡屡成为攻击目标，例如 2022 年 Harmony 跨链桥被盗约 1 亿美元。",
+      "background_en": "NEAR Intents is a cross-chain swap service that routes orders through competing market makers and says it has handled more than $30 billion in swaps across 35 blockchains. Two days before the exploit it blocked a $50 million swap attempt from the Bitget hacker. Bitget CEO Gracy Chen and analytics firm Elliptic pointed to North Korea as the likely culprit behind the Bitget exchange hack, which has also not been confirmed. Cross-chain bridging layers have repeatedly been targeted, as in the 2022 Harmony bridge hack that cost about $100 million.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "该事件直接影响 NEAR 代币以及两天前刚推出的 Bitwise NEAR ETF，二者在漏洞事件后均出现下跌；资金经由 KuCoin 转移并换成 BTC，则涉及交易所托管和跨链桥这一洗钱通道。已披露的约 380 万美元损失相对整体市场流动性规模较小，因此更广泛的影响更可能通过市场对跨链桥与意图（intents）类基础设施的情绪传导，而非系统性的资金流动。",
+      "market_impact_en": "The incident bears directly on the NEAR token and on the Bitwise NEAR ETF launched two days earlier, both of which declined after the exploit, while the routing of funds through KuCoin and into BTC touches exchange custody and cross-chain bridging as laundering channels. The disclosed loss of roughly $3.8 million is small relative to overall market liquidity, so any wider effect would travel through sentiment toward bridge and intent-based infrastructure rather than through systemic fund flows.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://www.kucoin.com/news/flash/near-intents-and-near-com-restore-after-security-incident-affecting-bsc-usdt",
+          "title": "NEAR Intents and near.com Restore Following Security... | KuCoin"
+        },
+        {
+          "url": "https://www.binance.com/en/square/post/10-01-2026-near-intents-fixes-vulnerability-in-omni-deposit-and-withdrawal-infrastructure-372609995363193",
+          "title": "NEAR Intents Fixes Vulnerability in Omni Deposit and Withdrawal..."
+        },
+        {
+          "url": "https://www.elliptic.co/insights/how-the-lazarus-group-is-stepping-up-crypto-hacks-and-changing-its-tactics/",
+          "title": "How the Lazarus Group is stepping up crypto hacks and... | Elliptic"
+        }
+      ],
       "confidence": 0.95,
       "story_ids": [
         "telegram:theblockbeats:198636"

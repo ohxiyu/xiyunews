@@ -45,22 +45,31 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Ethereum Foundation and Open Anonymity Launch zkAPI for Privacy-Preserving API P",
+      "title_zh": "以太坊基金会与 Open Anonymity 推出 zkAPI，实现隐私保护的 API 支付",
       "title_en": "Ethereum Foundation and Open Anonymity Launch zkAPI for Privacy-Preserving API P",
-      "what_changed_zh": "The Ethereum Foundation and Open Anonymity Project launched zkAPI on Ethereum mainnet, a zero-knowledge proof payment layer that lets metered API providers verify payment via onchain vault deposits and short-lived spending-capped keys without learning payer identity, initially targeting AI inference.",
+      "what_changed_zh": "以太坊基金会与 Open Anonymity Project 推出 zkAPI，这是一个面向计量式 API 的隐私保护支付层，现已在以太坊主网上线。用户将 ETH、USDC 或其他额度存入链上金库（vault），并通过零知识证明授权支出，使服务提供方能够验证付款，而无需得知付款人身份或该笔用量由哪笔存款支付。\n\n据 Coinotag 报道，此次上线为以太坊隐私技术栈提供了一个在主网运行的零知识支付范例，也让以太坊基金会拥有可供其他团队参考的部署案例；而 AI 推理这一侧仍需使用数据才能称得上被采用。\n\nzkAPI 可签发短期有效、带支出上限的 API 密钥，并按实际用量结算，初期聚焦 AI 推理，也可扩展到其他按使用量付费的服务。该系统不提供网络层或内容层匿名性，意味着 IP 地址、时间模式和提示词中的身份信息仍可能被关联。",
       "what_changed_en": "The Ethereum Foundation and Open Anonymity Project launched zkAPI on Ethereum mainnet, a zero-knowledge proof payment layer that lets metered API providers verify payment via onchain vault deposits and short-lived spending-capped keys without learning payer identity, initially targeting AI inference.",
-      "current_state_zh": "The Ethereum Foundation and Open Anonymity Project launched zkAPI on Ethereum mainnet, a zero-knowledge proof payment layer that lets metered API providers verify payment via onchain vault deposits and short-lived spending-capped keys without learning payer identity, initially targeting AI inference.",
+      "current_state_zh": "以太坊基金会与 Open Anonymity Project 推出 zkAPI，这是一个面向计量式 API 的隐私保护支付层，现已在以太坊主网上线。用户将 ETH、USDC 或其他额度存入链上金库（vault），并通过零知识证明授权支出，使服务提供方能够验证付款，而无需得知付款人身份或该笔用量由哪笔存款支付。\n\n据 Coinotag 报道，此次上线为以太坊隐私技术栈提供了一个在主网运行的零知识支付范例，也让以太坊基金会拥有可供其他团队参考的部署案例；而 AI 推理这一侧仍需使用数据才能称得上被采用。\n\nzkAPI 可签发短期有效、带支出上限的 API 密钥，并按实际用量结算，初期聚焦 AI 推理，也可扩展到其他按使用量付费的服务。该系统不提供网络层或内容层匿名性，意味着 IP 地址、时间模式和提示词中的身份信息仍可能被关联。",
       "current_state_en": "The Ethereum Foundation and Open Anonymity Project launched zkAPI on Ethereum mainnet, a zero-knowledge proof payment layer that lets metered API providers verify payment via onchain vault deposits and short-lived spending-capped keys without learning payer identity, initially targeting AI inference.",
       "detailed_summary_zh": "The Ethereum Foundation and Open Anonymity Project launched zkAPI on Ethereum mainnet, a zero-knowledge proof payment layer that lets metered API providers verify payment via onchain vault deposits and short-lived spending-capped keys without learning payer identity, initially targeting AI inference.",
       "detailed_summary_en": "The Ethereum Foundation and Open Anonymity Project launched zkAPI on Ethereum mainnet, a zero-knowledge proof payment layer that lets metered API providers verify payment via onchain vault deposits and short-lived spending-capped keys without learning payer identity, initially targeting AI inference.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "据 crypto-economy.com 报道，此次发布之前，以太坊开发者已就一种面向 AI 聊天机器人的隐私模型展开讨论，该模型在保护用户身份的同时仍允许服务提供方验证付款。基于金库的链上存款结构在以太坊主网上已是较为成熟的模式。",
+      "background_en": "The launch follows earlier Ethereum developer discussion of a privacy model for AI chatbots that shields user identities while still letting providers verify payments, as reported by crypto-economy.com. Vault-based onchain deposit structures are an established pattern on Ethereum mainnet.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "该基础设施将以太坊主网上以 ETH 和 USDC 计价的链上金库存款作为按使用量付费的结算通道，为金库合约和隐私工具带来新的需求来源；其影响程度取决于服务提供方的采用情况与实际用量，而现有信息尚不足以确认这一点。",
+      "market_impact_en": "The primitive routes pay-per-use settlement through onchain vault deposits denominated in ETH and USDC, creating a new demand channel for vault contracts and privacy tooling on Ethereum mainnet; the extent of that effect depends on provider adoption and usage, which the available evidence does not yet establish.",
       "importance_score": 7.0,
-      "references": [],
+      "references": [
+        {
+          "url": "https://en.coinotag.com/open-anonymity-project-ethereum-foundation-launch-zkapi-private-api-payments",
+          "title": "Ethereum Foundation Co-Develops ZKAPI Privacy Launch - COINOTAG"
+        },
+        {
+          "url": "https://crypto-economy.com/ethereum-zero-knowledge-privacy-ai-chatbots/",
+          "title": "Ethereum Developers Push Zero‑Knowledge Privacy Layer for AI ..."
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:wublockchainenglish:26251"

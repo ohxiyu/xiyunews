@@ -91,14 +91,27 @@
       "current_state_en": "MetaMask is exiting 17,000 validators tied to its non-custodial staking security incident, covering over 523,000 stETH (~$1.4 billion), after rewards from 18 validators were diverted to a Tornado Cash-funded address; Renzo previously said its Basis/ezETH were unaffected with only 214.75 stETH in its withdrawal queue.",
       "detailed_summary_zh": "MetaMask proactively initiated the exit of 17,000 Ethereum validators holding over 523,000 staked ETH ($1.4 billion) after block rewards from 18 validators were found diverted to a Tornado Cash-funded address in a staking-security incident.",
       "detailed_summary_en": "MetaMask proactively initiated the exit of 17,000 Ethereum validators holding over 523,000 staked ETH ($1.4 billion) after block rewards from 18 validators were found diverted to a Tornado Cash-funded address in a staking-security incident.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "Tornado Cash 是运行在以太坊上的开源、非托管隐私协议，通过混合交易来模糊资金的来源与去向，已被美国财政部制裁。此次事件与 Kiln 此前的案例相似：Kiln 在 SOL 质押业务中损失 4,100 万美元后，退出了全部活跃 ETH 验证者并轮换签名密钥，将相关操作视为\"可能已被攻破\"。今年 7 月，Drop Site News 报道称，MetaMask 的开发方 ConsenSys 曾误聘一名与朝鲜有关联的软件开发者担任约一个月的顾问，但该报道并未表示这一任职与受影响的质押业务有关。",
+      "background_en": "Tornado Cash is an open-source, non-custodial privacy protocol on Ethereum that mixes transactions to obscure their origin and destination, and it has been sanctioned by the U.S. Treasury. The incident resembles a prior case in which Kiln suffered a $41 million loss in its SOL staking operations and responded by exiting all active ETH validators and rotating signing keys, treating related operations as potentially compromised. In July, Drop Site News reported that ConsenSys, MetaMask's developer, accidentally hired a software developer linked to North Korea as a consultant for about a month, though that report does not suggest the role was related to the affected staking operations.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "此次退出使约 523,000 枚 ETH 进入以太坊质押提款通道，将退出队列推高至 773,447 ETH——为 2025 年 12 月以来最大积压——并推迟了这些资金的解锁时间；Lido 预计这些 ETH 将在\"退出、提款、再存入\"周期后重新质押，该周期估计最长约 45 天。风险传导渠道主要经由质押基础设施和流动性质押供应，而非现货托管，因此后续关于签名密钥是否泄露或是否发生罚没的披露，将影响市场对非托管质押服务商的情绪。",
+      "market_impact_en": "The exits move roughly 523,000 ETH through Ethereum's staking withdrawal pipeline, swelling the exit queue to 773,447 ETH — its largest backlog since December 2025 — and delaying when those funds become liquid, while Lido expects the ETH to be re-deposited after an exit, withdrawal and re-entry cycle estimated at up to 45 days. The channel of exposure runs through staking infrastructure and liquid-staking supply rather than spot custody, so further disclosure on signing-key exposure or slashing would shape sentiment toward non-custodial staking providers.",
       "importance_score": 8.0,
-      "references": [],
+      "references": [
+        {
+          "url": "https://info.etherscan.com/what-is-fee-recipient/",
+          "title": "Fee Recipient | Etherscan Information Center"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Tornado_Cash",
+          "title": "Tornado Cash - Wikipedia"
+        },
+        {
+          "url": "https://support.metamask.io/trade/earn/stake/how-do-i-stake-with-metamask-staking/",
+          "title": "How to stake with MetaMask Staking | MetaMask Help Center"
+        }
+      ],
       "confidence": 0.92,
       "story_ids": [
         "rss:protos.com_feed_:a631b91f33d5a28e"
