@@ -20,7 +20,7 @@ TELEGRAM_WEB_BASES = (
     "https://t.me/s",
 )
 TELEGRAM_LINK_BASE = "https://telegram.me"
-USER_AGENT = "Mozilla/5.0 (compatible; xiyu.news/1.0; +https://github.com/thysrael/bmtnews)"
+USER_AGENT = "Mozilla/5.0 (compatible; xiyu.news/1.0; +https://xiyu.news/)"
 
 
 class TelegramScraper(BaseScraper):
