@@ -9,7 +9,7 @@
   "issue": "https://github.com/ohxiyu/bmtnews-standalone/issues/162",
   "owner": "Codex / brand-v3（唯一编辑负责人及发布整合人）",
   "branch": "agent/brand-v3",
-  "last_verified_commit": "6ba4c1c0e087f9e67fd9a302af1751d186adfa54",
+  "last_verified_commit": "7e42780f3f5a0e7ee47f399865273b59861691a9",
   "pr": "https://github.com/ohxiyu/bmtnews-standalone/pull/163",
   "completed": [
     "重建三路径矢量母版，新增 brand/logo-spec.md 单一规范",
@@ -18,16 +18,16 @@
     "独立安全 PR165 已合并 84c93d9962a8bfb042a6f37b71816dd556250513；PyJWT / urllib3 升级并完成 all-extras 审计"
   ],
   "unfinished": [
-    "同步安全修复后的 main 并重跑完整测试 / CI",
+    "Logo 同步后的远端 CI 全部通过后合并",
     "合并 Logo PR163、自动部署及公网验收"
   ],
   "validation": [
-    "uv sync --frozen --extra dev --offline 成功，锁文件未变",
+    "uv sync --frozen --extra dev 成功，使用独立 PR165 修复后的锁文件",
     "原生 SVG → sharp PNG/ICO → ZIP 构建成功",
-    "919 项 Python 测试通过；61 项 Node 前端测试通过；治理与 diff 检查通过",
+    "同步后 927 项 Python / 61 项 Node 前端测试通过，all-extras 审计无已知漏洞；治理与 diff 检查通过",
     "Jekyll 构建成功；1280×720 桌面及 390×844 手机/暗色无横向溢出",
     "媒体浅深色 SVG 正常；分享 Canvas 1320×3045 px，三路径显示正常",
-    "远端 pytest / governance / CodeQL / Pages 分支预览通过，但 test job 因依赖审计失败，未合并",
+    "原远端审计失败已由 PR165 修复；Logo 新 HEAD 的远端检查待运行",
     "安全 PR165 CI 36813910166：925 项 Python 与完整 all-extras 审计通过；不忽略漏洞"
   ],
   "unverified": [
@@ -47,7 +47,7 @@
   "next_action": "合并已授权安全修复进 Logo 分支，完整重跑后发布 PR163，验收公网页面与资源",
   "states": {
     "code": "complete",
-    "tests": "pending",
+    "tests": "complete",
     "pr_merged": "pending",
     "deployed": "pending",
     "production_verified": "pending"
