@@ -11,19 +11,21 @@
     "en": "MetaMask: Security Incident Affects Part of Infrastructure, No Immediate Threat"
   },
   "current_state": {
-    "zh": "MetaMask 披露了一起影响部分基础设施的安全事件，并正在退出受影响的非托管质押验证者；MetaMask Staking 已开始退出其 Lido 验证者，Lido 估计相关周期可能长达约 45 天，Aave 创始人表示其市场运行正常。",
-    "en": "MetaMask disclosed a security incident affecting part of its infrastructure and is exiting affected validators from its non-custodial staking operations; MetaMask Staking has begun exiting its Lido validators, with Lido estimating the cycle could take up to about 45 days, while Aave's founder says its markets are operating normally."
+    "zh": "MetaMask披露影响部分基础设施的安全事件，并已关闭和退出受影响以太坊验证者；链上研究者 Kaden 的进一步分析显示，19 个验证者获得区块奖励中 18 笔未发送至原定 fee recipient，而是流向一个由 Tornado Cash 资金支持的地址，攻击者实际获取约 0.36 ETH；MetaMask 已预防性退出约 1.7 万个验证者，涉及约 52.3 万枚 ETH；新增信息显示约 821 个可能受影响的验证者仍活跃，受损签名密钥可能带来残余罚没风险；MetaMask 称其质押服务为非托管且不控制用户提款密钥；Lido 此前称退出和重新进入周期可能长达约 45 天，最后一批预计 10 月 7 日前停止质押，stETH 持有者无需行动。",
+    "en": "MetaMask disclosed a security incident affecting part of its infrastructure and has shut down and is exiting affected Ethereum validators; further analysis by on-chain researcher Kaden indicates that out of 19 validators receiving block rewards, 18 rewards were not sent to the intended fee recipient and instead went to an address funded by Tornado Cash, with the attacker actually obtaining about 0.36 ETH; MetaMask has preemptively exited roughly 17,000 validators holding about 523,000 ETH; new information indicates about 821 potentially affected validators remain active, and compromised signing keys could pose residual slashing risk; MetaMask said its staking service is non-custodial and it does not control users' withdrawal keys; Lido previously said the exit and re-entry cycle could take up to about 45 days, with the last validators expected to stop staking by Oct. 7 and no action needed from stETH holders."
   },
   "first_seen_at": "2026-10-01T00:03:16.761779+00:00",
-  "last_updated_at": "2026-10-01T06:31:03.021927+00:00",
-  "last_material_change_at": "2026-10-01T00:03:22.397862+00:00",
+  "last_updated_at": "2026-10-01T10:31:15.339105+00:00",
+  "last_material_change_at": "2026-10-01T10:31:15.339105+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 4,
+  "updates_count": 5,
+  "sources_count": 8,
   "entities": [
     "affects",
     "after",
+    "analysis",
     "compromise",
+    "ethereum-staking",
     "exits",
     "immediate",
     "incident",
@@ -38,11 +40,15 @@
   ],
   "identifiers": [],
   "topics": [
+    "ethereum-staking",
+    "ethereum-validators",
     "infrastructure",
     "lido",
     "metamask",
     "security-incident",
+    "slashing-risk",
     "staking",
+    "tornado-cash",
     "validators"
   ],
   "updates": [
@@ -119,7 +125,8 @@
       "confidence": 0.9,
       "story_ids": [
         "rss:thedefiant.io_api_feed:24be6122a7cf55ad",
-        "telegram:theblockbeats:198552"
+        "telegram:theblockbeats:198552",
+        "google_news:article:f1d22557ff83a92f"
       ],
       "sources": [
         {
@@ -131,6 +138,126 @@
         {
           "url": "https://m.theblockbeats.info/flash/369870?from=telegram",
           "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://www.binance.com/en-TR/square/post/372435515955471",
+          "label": "Binance",
+          "source_type": "google_news",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_111196485a5d53b5",
+      "event_id": "evt_8fca4d5c4b0173a2",
+      "occurred_at": "2026-10-01T07:06:30Z",
+      "published_at": "2026-10-01T07:06:30Z",
+      "first_seen_at": "2026-10-01T10:31:15.339105Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "MetaMask安全事件迫使以太坊质押退出，资金无风险",
+      "title_en": "MetaMask security incident forces Ethereum staking exits, no funds at risk",
+      "what_changed_zh": "新增研究员估算：约0.36 ETH区块生产收益被转移，约17,000个验证者、约523,000 ETH正在退出，MetaMask尚未确认；Lido称最后一批预计10月7日前停止质押，stETH持有者无需行动。",
+      "what_changed_en": "New researcher estimates: about 0.36 ETH in block-production payments was diverted and roughly 17,000 validators holding about 523,000 ETH are being withdrawn, though MetaMask has not confirmed those figures; Lido said the last validators are expected to stop staking by Oct. 7 and stETH holders need not act.",
+      "current_state_zh": "MetaMask披露影响部分基础设施的安全事件，并已关闭和退出受影响以太坊验证者；研究员估计约0.36 ETH区块生产收益被转移、约17,000个验证者/523,000 ETH受影响但未获MetaMask确认；Lido称退出和重新进入周期可能长达约45天，最后一批预计10月7日前停止质押，stETH持有者无需行动；MetaMask称未发现对钱包的直接威胁。",
+      "current_state_en": "MetaMask disclosed a security incident affecting part of its infrastructure and has shut down and is exiting affected Ethereum validators; a researcher estimated about 0.36 ETH in block-production payments was diverted and roughly 17,000 validators holding about 523,000 ETH were affected, though MetaMask has not confirmed those figures; Lido said the exit and re-entry cycle could take up to about 45 days, with the last validators expected to stop staking by Oct. 7 and no action needed from stETH holders; MetaMask says it has identified no immediate threat to wallets.",
+      "detailed_summary_zh": "MetaMask has shut down and is exiting affected Ethereum validators after a security incident that diverted an estimated 0.36 ETH in block-production payments, with roughly 523,000 ETH of stake withdrawn and Lido warning of lost rewards during an exit and re-entry process of up to 45 days.",
+      "detailed_summary_en": "MetaMask has shut down and is exiting affected Ethereum validators after a security incident that diverted an estimated 0.36 ETH in block-production payments, with roughly 523,000 ETH of stake withdrawn and Lido warning of lost rewards during an exit and re-entry process of up to 45 days.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "rss:www.coindesk.com_arc_outboundfeeds_rss_:a573b69a1b70b831"
+      ],
+      "sources": [
+        {
+          "url": "https://www.coindesk.com/tech/2026/10/01/metamask-security-incident-forces-ethereum-staking-exits-with-lido-warning-of-lost-rewards",
+          "label": "CoinDesk",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_8f9a5f35264c492a",
+      "event_id": "evt_8fca4d5c4b0173a2",
+      "occurred_at": "2026-10-01T08:03:18Z",
+      "published_at": "2026-10-01T08:03:18Z",
+      "first_seen_at": "2026-10-01T10:31:13.861270Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "【MetaMask 安全事件攻击者盗取了原属于验证者激励的 0.36 ETH】",
+      "title_en": "【MetaMask 安全事件攻击者盗取了原属于验证者激励的 0.36 ETH】",
+      "what_changed_zh": "链上研究者 Kaden 指出，受影响验证者中 19 个验证者获得区块奖励，其中 18 笔奖励未发送至原定 fee recipient，而是流向一个由 Tornado Cash 资金支持的地址，攻击者实际获取奖励约 0.36 ETH；MetaMask 已预防性退出约 1.7 万个验证者，涉及约 52.3 万枚 ETH。",
+      "what_changed_en": "On-chain researcher Kaden said that out of 19 validators receiving block rewards in the affected group, 18 rewards were not sent to the intended fee recipient but instead went to an address funded by Tornado Cash, with the attacker actually obtaining about 0.36 ETH; MetaMask has preemptively exited roughly 17,000 validators holding about 523,000 ETH.",
+      "current_state_zh": "MetaMask披露影响部分基础设施的安全事件，并已关闭和退出受影响以太坊验证者；链上研究者 Kaden 的进一步分析显示，19 个验证者获得区块奖励中 18 笔未发送至原定 fee recipient，而是流向一个由 Tornado Cash 资金支持的地址，攻击者实际获取约 0.36 ETH；MetaMask 已预防性退出约 1.7 万个验证者，涉及约 52.3 万枚 ETH；此前 Lido 称退出和重新进入周期可能长达约 45 天，最后一批预计 10 月 7 日前停止质押，stETH 持有者无需行动；MetaMask 称未发现对钱包的直接威胁。",
+      "current_state_en": "MetaMask disclosed a security incident affecting part of its infrastructure and has shut down and is exiting affected Ethereum validators; further analysis by on-chain researcher Kaden indicates that out of 19 validators receiving block rewards, 18 rewards were not sent to the intended fee recipient and instead went to an address funded by Tornado Cash, with the attacker actually obtaining about 0.36 ETH; MetaMask has preemptively exited roughly 17,000 validators holding about 523,000 ETH; Lido previously said the exit and re-entry cycle could take up to about 45 days, with the last validators expected to stop staking by Oct. 7 and no action needed from stETH holders; MetaMask says it has identified no immediate threat to wallets.",
+      "detailed_summary_zh": "On-chain analysis of the MetaMask security incident shows an attacker diverted about 0.36 ETH of validator block rewards to a Tornado Cash-funded address, while MetaMask preemptively exited roughly 17,000 validators holding some 523,000 ETH.",
+      "detailed_summary_en": "On-chain analysis of the MetaMask security incident shows an attacker diverted about 0.36 ETH of validator block rewards to a Tornado Cash-funded address, while MetaMask preemptively exited roughly 17,000 validators holding some 523,000 ETH.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "telegram:foresightnews:119570"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/114400",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_da21aa8206a28b68",
+      "event_id": "evt_8fca4d5c4b0173a2",
+      "occurred_at": "2026-10-01T08:04:10Z",
+      "published_at": "2026-10-01T08:04:10Z",
+      "first_seen_at": "2026-10-01T10:31:11.623399Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "分析：质押安全事件后，MetaMask 退出 17,000 个验证者",
+      "title_en": "Analysis: MetaMask Exits 17,000 Validators After Staking Security Incident",
+      "what_changed_zh": "新增：约821个可能受影响的验证者仍处于活跃状态，受损的验证者签名密钥可能带来残余罚没（slashing）风险；MetaMask表示其质押服务为非托管且不控制用户提款密钥。",
+      "what_changed_en": "New: about 821 potentially affected validators remain active, and compromised validator signing keys could pose residual slashing risk; MetaMask said its staking service is non-custodial and it does not control users' withdrawal keys.",
+      "current_state_zh": "MetaMask披露影响部分基础设施的安全事件，并已关闭和退出受影响以太坊验证者；链上研究者 Kaden 的进一步分析显示，19 个验证者获得区块奖励中 18 笔未发送至原定 fee recipient，而是流向一个由 Tornado Cash 资金支持的地址，攻击者实际获取约 0.36 ETH；MetaMask 已预防性退出约 1.7 万个验证者，涉及约 52.3 万枚 ETH；新增信息显示约 821 个可能受影响的验证者仍活跃，受损签名密钥可能带来残余罚没风险；MetaMask 称其质押服务为非托管且不控制用户提款密钥；Lido 此前称退出和重新进入周期可能长达约 45 天，最后一批预计 10 月 7 日前停止质押，stETH 持有者无需行动。",
+      "current_state_en": "MetaMask disclosed a security incident affecting part of its infrastructure and has shut down and is exiting affected Ethereum validators; further analysis by on-chain researcher Kaden indicates that out of 19 validators receiving block rewards, 18 rewards were not sent to the intended fee recipient and instead went to an address funded by Tornado Cash, with the attacker actually obtaining about 0.36 ETH; MetaMask has preemptively exited roughly 17,000 validators holding about 523,000 ETH; new information indicates about 821 potentially affected validators remain active, and compromised signing keys could pose residual slashing risk; MetaMask said its staking service is non-custodial and it does not control users' withdrawal keys; Lido previously said the exit and re-entry cycle could take up to about 45 days, with the last validators expected to stop staking by Oct. 7 and no action needed from stETH holders.",
+      "detailed_summary_zh": "MetaMask has begun proactively exiting about 17,000 staking validators (~523,000 ETH) after a security incident in which an attacker diverted 18 block rewards to a Tornado Cash-funded address for roughly 0.36 ETH, with ~821 potentially affected validators still active and compromised signing keys posing residual slashing risk.",
+      "detailed_summary_en": "MetaMask has begun proactively exiting about 17,000 staking validators (~523,000 ETH) after a security incident in which an attacker diverted 18 block rewards to a Tornado Cash-funded address for roughly 0.36 ETH, with ~821 potentially affected validators still active and compromised signing keys posing residual slashing risk.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "telegram:wublockchainenglish:26241"
+      ],
+      "sources": [
+        {
+          "url": "https://wublockchain.xyz/news/metamask-exits-17000-validators-after-staking-incident-21069",
+          "label": "wublockchainenglish",
           "source_type": "telegram",
           "official": false
         }

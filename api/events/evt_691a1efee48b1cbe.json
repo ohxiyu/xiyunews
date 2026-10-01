@@ -11,27 +11,31 @@
     "en": "【Base 完成 Cobalt 升级，新增条件交易并扩展了 B20 资产功能】"
   },
   "current_state": {
-    "zh": "Base completed its third mainnet upgrade, Cobalt, adding condition-gated Validity Transactions and three new B20 token-standard features, with a roadmap toward 200ms block times, native smart accounts, and gas sponsorship.",
-    "en": "Base completed its third mainnet upgrade, Cobalt, adding condition-gated Validity Transactions and three new B20 token-standard features, with a roadmap toward 200ms block times, native smart accounts, and gas sponsorship."
+    "zh": "Base 已完成第三次主网升级 Cobalt，该升级包含条件门控的 Validity Transactions、三项新的 B20 代币标准功能，以及针对 B20 的可选行政余额扣押规则（seizeWithMemo）。",
+    "en": "Base completed its third mainnet upgrade, Cobalt, which includes condition-gated Validity Transactions, three new B20 token-standard features, and an opt-in administrative balance-seizure rule (seizeWithMemo) for B20 tokens."
   },
   "first_seen_at": "2026-10-01T06:31:01.983776+00:00",
-  "last_updated_at": "2026-10-01T06:31:01.983776+00:00",
-  "last_material_change_at": "2026-10-01T06:31:01.983776+00:00",
+  "last_updated_at": "2026-10-01T10:31:18.969699+00:00",
+  "last_material_change_at": "2026-10-01T10:31:18.969699+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "b20",
     "base",
-    "cobalt"
+    "cobalt",
+    "cobalt-upgrade",
+    "token-balances"
   ],
   "identifiers": [],
   "topics": [
     "b20-token-standard",
     "base",
+    "cobalt-upgrade",
     "condition-transactions",
     "layer-2",
-    "protocol-upgrade"
+    "protocol-upgrade",
+    "token-balances"
   ],
   "updates": [
     {
@@ -45,9 +49,9 @@
       "material_change": true,
       "title_zh": "【Base 完成 Cobalt 升级，新增条件交易并扩展了 B20 资产功能】",
       "title_en": "【Base 完成 Cobalt 升级，新增条件交易并扩展了 B20 资产功能】",
-      "what_changed_zh": "Base completed its third mainnet upgrade, Cobalt, adding condition-gated Validity Transactions and three new B20 token-standard features, with a roadmap toward 200ms block times, native smart accounts, and gas sponsorship.",
+      "what_changed_zh": "Base完成第三次主网升级Cobalt，新增条件门控的有效性交易和三项B20代币标准功能，并规划了迈向200毫秒出块时间、原生智能账户和Gas代付的路线图。",
       "what_changed_en": "Base completed its third mainnet upgrade, Cobalt, adding condition-gated Validity Transactions and three new B20 token-standard features, with a roadmap toward 200ms block times, native smart accounts, and gas sponsorship.",
-      "current_state_zh": "Base completed its third mainnet upgrade, Cobalt, adding condition-gated Validity Transactions and three new B20 token-standard features, with a roadmap toward 200ms block times, native smart accounts, and gas sponsorship.",
+      "current_state_zh": "Base完成第三次主网升级Cobalt，新增条件门控的有效性交易和三项B20代币标准功能，并规划了迈向200毫秒出块时间、原生智能账户和Gas代付的路线图。",
       "current_state_en": "Base completed its third mainnet upgrade, Cobalt, adding condition-gated Validity Transactions and three new B20 token-standard features, with a roadmap toward 200ms block times, native smart accounts, and gas sponsorship.",
       "detailed_summary_zh": "Base completed its third mainnet upgrade, Cobalt, adding condition-gated Validity Transactions and three new B20 token-standard features, with a roadmap toward 200ms block times, native smart accounts, and gas sponsorship.",
       "detailed_summary_en": "Base completed its third mainnet upgrade, Cobalt, adding condition-gated Validity Transactions and three new B20 token-standard features, with a roadmap toward 200ms block times, native smart accounts, and gas sponsorship.",
@@ -68,6 +72,44 @@
           "url": "https://foresightnews.pro/news/h5Detail/114387",
           "label": "foresightnews",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_cc38ccd8243983f5",
+      "event_id": "evt_691a1efee48b1cbe",
+      "occurred_at": "2026-10-01T07:30:48Z",
+      "published_at": "2026-10-01T07:30:48Z",
+      "first_seen_at": "2026-10-01T10:31:18.969699Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Base的Cobalt升级新增一条影响代币余额的规则",
+      "title_en": "Base’s Cobalt upgrade adds another rule to affect token balances",
+      "what_changed_zh": "Cobalt 升级为 B20 代币引入可选的行政余额扣押规则（seizeWithMemo），要求发行方配置资格、SEIZE_ROLE 授权，并单独设置接收方策略，同时保留代币供应量，原有 burnBlocked 被弃用但仍可调用。",
+      "what_changed_en": "The Cobalt upgrade introduces an opt-in administrative balance-seizure rule (seizeWithMemo) for B20 tokens, requiring issuer eligibility configuration, SEIZE_ROLE authorization, and a separate recipient policy, while preserving token supply and keeping burnBlocked deprecated but callable.",
+      "current_state_zh": "Base 已完成第三次主网升级 Cobalt，该升级包含条件门控的 Validity Transactions、三项新的 B20 代币标准功能，以及针对 B20 的可选行政余额扣押规则（seizeWithMemo）。",
+      "current_state_en": "Base completed its third mainnet upgrade, Cobalt, which includes condition-gated Validity Transactions, three new B20 token-standard features, and an opt-in administrative balance-seizure rule (seizeWithMemo) for B20 tokens.",
+      "detailed_summary_zh": "Base's Cobalt upgrade introduces an opt-in administrative balance-seizure rule for B20 tokens, kept separate from ordinary transfer restrictions and requiring specific issuer eligibility and authorized roles.",
+      "detailed_summary_en": "Base's Cobalt upgrade introduces an opt-in administrative balance-seizure rule for B20 tokens, kept separate from ordinary transfer restrictions and requiring specific issuer eligibility and authorized roles.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.9,
+      "story_ids": [
+        "rss:cryptoslate.com_feed_:533fa844e9da6e99"
+      ],
+      "sources": [
+        {
+          "url": "https://cryptoslate.com/bases-cobalt-upgrade-adds-another-rule-to-affect-token-balances/",
+          "label": "CryptoSlate",
+          "source_type": "rss",
           "official": false
         }
       ]

@@ -11,15 +11,15 @@
     "en": "Aave创始人：密切关注MetaMask质押事件，Aave市场未受影响"
   },
   "current_state": {
-    "zh": "MetaMask正在调查一起未披露的安全事件，并退出其运营的以太坊质押验证者作为预防措施；Lido确认验证者退出并提示可能罚没，Aave市场此前确认未受影响。",
-    "en": "MetaMask is investigating an undisclosed security incident affecting its infrastructure and is exiting its operated Ethereum staking validators as a precaution; Lido confirmed the validator exits and flagged potential penalties, while Aave markets remain unaffected per the founder's earlier statement."
+    "zh": "MetaMask质押安全事件持续调查中；链上分析显示约19个验证者可能受影响，约1.7万个验证者主动退出，攻击者实际窃取约0.36 ETH，尚有部分疑似受影响验证者未退出。",
+    "en": "MetaMask staking security incident remains under investigation; on-chain analysis indicates about 19 validators may be affected, roughly 17,000 validators voluntarily exited, stolen rewards total about 0.36 ETH, and some suspected affected validators have not yet exited."
   },
   "first_seen_at": "2026-10-01T00:03:18.016656+00:00",
-  "last_updated_at": "2026-10-01T02:21:00.775876+00:00",
-  "last_material_change_at": "2026-10-01T02:21:00.775876+00:00",
+  "last_updated_at": "2026-10-01T10:31:14.210395+00:00",
+  "last_material_change_at": "2026-10-01T10:31:14.210395+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 2,
+  "updates_count": 3,
+  "sources_count": 3,
   "entities": [
     "aave",
     "metamask",
@@ -32,6 +32,7 @@
     "ethereum-staking",
     "lido",
     "metamask",
+    "on-chain-analysis",
     "security-incident",
     "staking",
     "validators"
@@ -109,6 +110,44 @@
           "url": "https://cointelegraph.com/news/metamask-exits-lido-validators-as-it-investigates-security-incident?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
           "label": "Cointelegraph",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_808490379440d270",
+      "event_id": "evt_1c7dad60aa02fbcc",
+      "occurred_at": "2026-10-01T08:07:02Z",
+      "published_at": "2026-10-01T08:07:02Z",
+      "first_seen_at": "2026-10-01T10:31:14.210395Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "分析师：疑似19个MetaMask验证者遭攻击，攻击者仅窃取约0.36 ETH奖励",
+      "title_en": "分析师：疑似19个MetaMask验证者遭攻击，攻击者仅窃取约0.36 ETH奖励",
+      "what_changed_zh": "链上分析师报告约19个MetaMask验证者疑似遭攻击，奖励费用被转入Tornado Cash资助的地址；约1.7万个验证者主动退出，涉及约52.3万枚ETH，但攻击者实际窃取奖励仅约0.36 ETH；仍有部分疑似受影响验证者未退出。",
+      "what_changed_en": "On-chain analyst reports about 19 MetaMask validators appear compromised with reward fees diverted to a Tornado Cash-funded address; roughly 17,000 validators (~523k ETH) voluntarily exited, though only ~0.36 ETH was actually stolen; some suspected affected validators remain unexited.",
+      "current_state_zh": "MetaMask质押安全事件持续调查中；链上分析显示约19个验证者可能受影响，约1.7万个验证者主动退出，攻击者实际窃取约0.36 ETH，尚有部分疑似受影响验证者未退出。",
+      "current_state_en": "MetaMask staking security incident remains under investigation; on-chain analysis indicates about 19 validators may be affected, roughly 17,000 validators voluntarily exited, stolen rewards total about 0.36 ETH, and some suspected affected validators have not yet exited.",
+      "detailed_summary_zh": "An on-chain analyst reports that about 19 MetaMask validators appear to have been compromised with reward fees diverted to a Tornado Cash-funded address, prompting roughly 17,000 validators (~523k ETH) to voluntarily exit even though only ~0.36 ETH was actually stolen.",
+      "detailed_summary_en": "An on-chain analyst reports that about 19 MetaMask validators appear to have been compromised with reward fees diverted to a Tornado Cash-funded address, prompting roughly 17,000 validators (~523k ETH) to voluntarily exit even though only ~0.36 ETH was actually stolen.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "telegram:theblockbeats:198589"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/369907?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]
