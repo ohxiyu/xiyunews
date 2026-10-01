@@ -12,7 +12,13 @@ Cloudflare Free zone 的 NS 为 ignat.ns.cloudflare.com 和 shaz.ns.cloudflare.c
 
 备选：Cloudflare Single Redirect Rule，表达式 `(http.host eq "bmt.news") or (http.host eq "www.bmt.news")`，动态目标 `concat("https://xiyu.news", http.request.uri.path)`，状态 301，勾选保留查询字符串。二选一承担入口跳转，不设置指回旧域的规则；保持旧域代理和 TLS。
 
-## 后台与 Quick Post
+## 私有仓库兼容
+
+运营者已要求主仓库及实时服务仓库保持私有，导入历史前必须以 GitHub API 再核对两仓 private=true。Cloudflare Git 集成支持私有仓库，但仍须实测其已安装应用可以拉取发布分支；不要恢复公开来修复权限。自动发布继续写 gh-pages 分支，不依赖公开 GitHub Pages 站点。
+
+GitHub CodeQL 私有扫描需要已有 Code Security 授权，本轮不新增付费产品。CodeQL 默认只在公开仓库运行；如运营者以后已有授权，可显式设置仓库变量 CODEQL_PRIVATE_ENABLED=true。私有状态下不能把跳过 CodeQL 说成扫描通过；pytest、Worker 检查、治理和 pip-audit 仍运行。阶段 2 须把调度器未认证 raw 读取改为认证的 GitHub 内容 API，且禁止将仓库令牌发送到公共网站或重定向后的域名。
+
+## 后台与 Quick Post 配置
 
 既有 Access 应用增加新主机的等效路径 /s、/s/*、/admin、/admin/*、/api/admin、/api/admin/*，保持允许邮箱、验证方式、策略与 AUD，不扩大用户或设置公开绕过。Pages 的 ADMIN_ACCESS_ISSUER、ADMIN_ACCESS_AUD、ADMIN_ALLOWED_EMAIL、ADMIN_GITHUB_TOKEN 保持已有安全配置；只核对权限存在，不抄写值或擅自重发密钥。
 

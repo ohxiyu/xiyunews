@@ -21,3 +21,5 @@ PR169 的 4eda055a 检查中，Python test、governance、CodeQL analyze 和 Cod
 公开 NS 查询仍返回 ns1.dyna-ns.net 和 ns2.dyna-ns.net；Safari AX 和不同入口均未能保存，坐标操作持续返回 noWindowsAvailable。已填写 ignat.ns.cloudflare.com、shaz.ns.cloudflare.com，尚需在注册商提交保存，不能声称已经改好 DNS。新域未接入前不合并强制 301，避免原站跳向未上线域名。
 
 GitHub API 确认 fomobtc 为私有、xiyunews 为公开；不加 squash 的历史导入会公开私有提交，需要先明确公开范围并审计历史，不能只检查当前树。对敏感文件名的初查仅发现示例 env，不能代替完整历史密钥审计。本机未找到既有 fomobtc_tokyo_config，因此没有执行 SSH、服务器部署、自然推送验收或归档旧仓库。
+
+运营者随后确认“已经保存，合并都改为私有仓库，然后部署”。已把 xiyunews 改为私有，API 回读两仓 private=true；Dynadot 页面回读 xiyu.news 已保存 ignat/shaz.ns.cloudflare.com，公网 DNS 暂未更新。历史公开风险已因主仓私有消除，仍不提交密钥。e8155eab 的全部远端检查与 Pages 预览通过；私有化后 CodeQL 调整为只在公开仓或显式已有授权时运行，不新增付费扫描，不宣称跳过等于通过，现有依赖审计保留。未取得服务器 SSH 配置的事实不变。
