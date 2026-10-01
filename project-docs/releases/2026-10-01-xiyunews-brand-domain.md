@@ -13,3 +13,11 @@ Rollback: 保留原域、Pages 项目、旧产物与媒体版本；回退须通�
 迁移读者可见品牌、自有地址、README、当前文档、RSS、API、后台 repo/origin 与媒体字标。旧域精确 Host 301 保留路径与查询，先于认证和缓存；PWA 资产缓存升级，页面存储保留。Logo 图形不变，备选 Redirect Rule 与后台核验列入手册。发布工作流迁移已有 API / editions / archive 的本站 URL，不调用 AI、不改新闻事实、ID 或交付状态；已验证幂等及队列不触碰。
 
 允许旧名剩余：历史记录及证据、旧媒体包、LICENSE 原版权、内部包/命令/类、BMTNEWS_* 变量、兼容存储标识与跳转代码。ops 旧仓库引用仅本阶段暂留，阶段 2 必须清除。私有实时服务完整历史尚未并入或公开。
+
+## 后续检查与部署阻碍
+
+PR169 的 4eda055a 检查中，Python test、governance、CodeQL analyze 和 CodeQL 均通过；Cloudflare 预览当时仍构建中。两条 URL 断言改为精确匹配推文最后一行，保留原覆盖意图并消除 CodeQL 误报，相关 39 项测试通过。每次后续提交仍需重新确认最终 head 的全部检查。
+
+公开 NS 查询仍返回 ns1.dyna-ns.net 和 ns2.dyna-ns.net；Safari AX 和不同入口均未能保存，坐标操作持续返回 noWindowsAvailable。已填写 ignat.ns.cloudflare.com、shaz.ns.cloudflare.com，尚需在注册商提交保存，不能声称已经改好 DNS。新域未接入前不合并强制 301，避免原站跳向未上线域名。
+
+GitHub API 确认 fomobtc 为私有、xiyunews 为公开；不加 squash 的历史导入会公开私有提交，需要先明确公开范围并审计历史，不能只检查当前树。对敏感文件名的初查仅发现示例 env，不能代替完整历史密钥审计。本机未找到既有 fomobtc_tokyo_config，因此没有执行 SSH、服务器部署、自然推送验收或归档旧仓库。

@@ -12,7 +12,7 @@
   "last_verified_commit": "de180b0cf4ef99699374d606137c750b897a2428",
   "pr": "https://github.com/ohxiyu/xiyunews/pull/169（Draft，待域名接入）",
   "completed": ["完整阅读两仓规则、交接、部署手册与发布记录", "主仓库已改名 ohxiyu/xiyunews，保持公开属性", "Cloudflare xiyu.news 免费 zone 已创建", "阶段 1 已推送并建立 Draft PR169；本地完整检查通过"],
-  "unfinished": ["品牌与媒体验证、PR、CI、合并及发布", "DNS、Pages 新域与后台 Access 验收", "阶段 2 调度器引用及部署", "阶段 3–5 实时服务并入、部署与 Telegram 品牌"],
+  "unfinished": ["阶段 1 合并、生产发布与新旧域验收", "DNS、Pages 新域与后台 Access 验收", "阶段 2 调度器引用及部署", "阶段 3–5 实时服务并入、部署与 Telegram 品牌"],
   "validation": ["GitHub API 确认新仓库名", "独立 worktree 从 origin/main 建立，不覆盖用户修改", "Python 3.13 本地完整 929 项 pytest 通过；模板安全与页面输出子集通过", "Node 全部 76 项前端/Worker 测试通过，其中新增 15 项旧域精确跳转检查", "独立调度器 61 项测试、类型、部署 dry-run 通过；未改其配置或部署", "Jekyll 本地 github-pages 232 / Ruby 3.3 构建通过；未改变仓库 Gemfile，远端 Pages 构建待检查", "治理与 git diff --check 通过；原 v1/v2 媒体包及历史证据未修改"],
   "unverified": ["新域 HTTP、旧域 301、后台登录及 Quick Post", "新仓库实时服务 SHA、三个分片与自然回执"],
   "production": {
@@ -23,8 +23,8 @@
     "worker_version": "本轮未部署或验收",
     "verified_at": "尚未完成迁移后生产验收"
   },
-  "blockers": ["Safari 坐标操作返回 noWindowsAvailable，注册商 NS 尚未确认保存；Pages 新域接入仍显示 DNS 转移管理，尚不可绑定", "fomobtc 私有、主仓公开；完整历史公开范围尚未确认"],
-  "next_action": "完成本阶段检查及 PR；新域就绪后合并发布，随后执行阶段 2",
+  "blockers": ["Safari 坐标操作返回 noWindowsAvailable；NS 已填写但未保存，公开 DNS 仍为 ns1/ns2.dyna-ns.net；Pages 尚不可绑定新域", "fomobtc 私有、主仓公开；完整历史公开范围尚未确认", "本机不存在 /Users/minutesdr/.ssh/fomobtc_tokyo_config；阶段 4 服务器部署仍需持有原 SSH 配置的运营者电脑"],
+  "next_action": "在 Dynadot 当前 DNS 弹窗保存已填写的 NS，确认委派和 Pages 绑定；阶段 1 最终检查全绿后合并发布，再从新 main 顺序执行阶段 2",
   "states": {"code": "complete", "tests": "complete", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
   "evidence": "project-docs/releases/2026-10-01-xiyunews-brand-domain.md"
 }
