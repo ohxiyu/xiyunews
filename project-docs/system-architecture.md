@@ -41,7 +41,7 @@ flowchart TD
 | 模块 | 代码入口 | 执行位置 | 主要职责 |
 | --- | --- | --- | --- |
 | 内容管线 | src/main.py、src/orchestrator.py、src/scrapers/、src/ai/ | GitHub Actions 的 Python 任务 | 采集、去重、评分、选稿、翻译和扩写；缓存有效结果。 |
-| 网页与公开数据 | docs/、Jekyll 模板、src/publishers/ | Actions 生成，Cloudflare Pages 构建 | 日报、连续信息流、事件线、实体、周报、订阅与 JSON 输出。 |
+| 网页与公开数据 | docs/、Jekyll 模板、src/orchestrator.py、src/site_pages.py、src/weekly.py | Actions 生成，Cloudflare Pages 构建 | 日报、连续信息流、事件线、实体、周报、订阅与 JSON 输出。 |
 | 站点边缘层 | docs/_worker.js | Cloudflare Pages 的 Workers 运行时 | 内容协商、接口路由、缓存、旧域停用、Quick Post 读写及认证校验。 |
 | 独立调度器 | ops/daily-dispatcher/src/ | Cloudflare Cron + 既有 RecoveryGate Durable Object | 检查日报缺失、受限补发、四小时采集和分发到期门控。 |
 | 人工编辑 | src/quick_posts.py、data/editorial.json、站点后台 | Access 保护的 /s/ 与 Pages Worker | 不调用 AI 的快速发布，保留人工编辑身份和原始内容。 |
@@ -105,4 +105,4 @@ PWA 的离线内容可能不是最新一期，必须显示保存状态并保留�
 3. Telegram 名称和简介仍需运营者确认并修改，建议频道“稀有News”、话题群“稀有News · 实时快讯”，两者简介加入 xiyu.news；不把文案准备说成改名完成。
 4. 新域后台的匿名登录入口已恢复；验证码登录后的 Quick Post 读写仍须验收，不发布生产测试新闻或绕过认证。
 
-以上限制不是新的技术架构，只是尚未满足的安全与运营条件。后续仍沿用这三个独立运行边界，不为了迁移引入额外系统。
+以上限制不是新的技术架构，只是尚未满足的安全与运营条件。逐条命令见 [实时服务器迁移清单](realtime-server-migration.md)，待确认文案见 [Telegram 品牌草案](telegram-brand-migration.md)；两份均为准备，不是执行记录。后续仍沿用这三个独立运行边界，不为了迁移引入额外系统。
