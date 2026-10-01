@@ -11,15 +11,15 @@
     "en": "MetaMask: Security Incident Affects Part of Infrastructure, No Immediate Threat"
   },
   "current_state": {
-    "zh": "MetaMask披露影响部分基础设施的安全事件，并已关闭和退出受影响以太坊验证者；链上研究者 Kaden 的进一步分析显示，19 个验证者获得区块奖励中 18 笔未发送至原定 fee recipient，而是流向一个由 Tornado Cash 资金支持的地址，攻击者实际获取约 0.36 ETH；MetaMask 已预防性退出约 1.7 万个验证者，涉及约 52.3 万枚 ETH；新增信息显示约 821 个可能受影响的验证者仍活跃，受损签名密钥可能带来残余罚没风险；MetaMask 称其质押服务为非托管且不控制用户提款密钥；Lido 此前称退出和重新进入周期可能长达约 45 天，最后一批预计 10 月 7 日前停止质押，stETH 持有者无需行动。",
-    "en": "MetaMask disclosed a security incident affecting part of its infrastructure and has shut down and is exiting affected Ethereum validators; further analysis by on-chain researcher Kaden indicates that out of 19 validators receiving block rewards, 18 rewards were not sent to the intended fee recipient and instead went to an address funded by Tornado Cash, with the attacker actually obtaining about 0.36 ETH; MetaMask has preemptively exited roughly 17,000 validators holding about 523,000 ETH; new information indicates about 821 potentially affected validators remain active, and compromised signing keys could pose residual slashing risk; MetaMask said its staking service is non-custodial and it does not control users' withdrawal keys; Lido previously said the exit and re-entry cycle could take up to about 45 days, with the last validators expected to stop staking by Oct. 7 and no action needed from stETH holders."
+    "zh": "MetaMask 披露影响部分基础设施的安全事件，并正预防性退出约 1.7 万个验证者，涉及约 52.3 万枚 ETH；链上研究者 Kaden 称 19 个获得区块奖励的验证者中 18 笔奖励未发送至原定 fee recipient，而是流向由 Tornado Cash 资金支持的地址，攻击者实际获取约 0.36 ETH；约 821 个可能受影响的验证者仍未退出，受损签名密钥可能带来残余罚没风险；MetaMask 称其质押服务为非托管且不控制用户提款密钥，但未披露事件原因、受影响范围或签名密钥是否暴露；新增信息显示以太坊验证者退出队列因此升至 773,447 ETH，为 2025 年 12 月以来最大积压，等待约 13 天 10 小时外加约 7.6 天 sweep，进入队列约 27 天；Lido 此前称退出、提取和重新进入周期可能长达约 45 天。",
+    "en": "MetaMask disclosed a security incident affecting part of its infrastructure and is preemptively exiting roughly 17,000 validators holding about 523,000 ETH; on-chain researcher Kaden said that out of 19 validators receiving block rewards, 18 rewards were not sent to the intended fee recipient and instead went to an address funded by Tornado Cash, with the attacker actually obtaining about 0.36 ETH; about 821 potentially affected validators have not yet exited, and compromised signing keys could pose residual slashing risk; MetaMask said its staking service is non-custodial and it does not control users’ withdrawal keys, but has not disclosed the cause, full scope, or whether signing keys were exposed; new information shows Ethereum’s validator exit queue swelled to 773,447 ETH, the largest backlog since December 2025, implying about a 13-day 10-hour exit wait plus a 7.6-day sweep, with an entry queue of about 27 days; Lido previously said the full exit, withdrawal and re-entry cycle could take up to about 45 days."
   },
   "first_seen_at": "2026-10-01T00:03:16.761779+00:00",
-  "last_updated_at": "2026-10-01T10:31:15.339105+00:00",
-  "last_material_change_at": "2026-10-01T10:31:15.339105+00:00",
+  "last_updated_at": "2026-10-01T15:11:13.917628+00:00",
+  "last_material_change_at": "2026-10-01T15:11:13.917628+00:00",
   "confidence": 0.75,
-  "updates_count": 5,
-  "sources_count": 8,
+  "updates_count": 6,
+  "sources_count": 10,
   "entities": [
     "affects",
     "after",
@@ -40,11 +40,13 @@
   ],
   "identifiers": [],
   "topics": [
+    "consensys",
     "ethereum-staking",
     "ethereum-validators",
     "infrastructure",
     "lido",
     "metamask",
+    "security-breach",
     "security-incident",
     "slashing-risk",
     "staking",
@@ -80,7 +82,8 @@
       "confidence": 0.75,
       "story_ids": [
         "telegram:wublockchainenglish:26231",
-        "telegram:theblockbeats:198509"
+        "telegram:theblockbeats:198509",
+        "telegram:theblockbeats:198612"
       ],
       "sources": [
         {
@@ -91,6 +94,12 @@
         },
         {
           "url": "https://m.theblockbeats.info/flash/369827?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://m.theblockbeats.info/flash/369933?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
           "official": false
@@ -259,6 +268,44 @@
           "url": "https://wublockchain.xyz/news/metamask-exits-17000-validators-after-staking-incident-21069",
           "label": "wublockchainenglish",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_6dcfcab6379c7cad",
+      "event_id": "evt_8fca4d5c4b0173a2",
+      "occurred_at": "2026-10-01T13:40:02Z",
+      "published_at": "2026-10-01T13:40:02Z",
+      "first_seen_at": "2026-10-01T15:11:13.917628Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "MetaMask 安全恐慌推动以太坊验证者退出量升至九个月高点",
+      "title_en": "MetaMask security scare pushes Ethereum validator exits to a nine-month high",
+      "what_changed_zh": "以太坊验证者退出队列升至 773,447 ETH，为 2025 年 12 月以来最大积压，等待约 13 天 10 小时外加约 7.6 天 sweep；进入队列约 27 天。",
+      "what_changed_en": "Ethereum’s validator exit queue reached 773,447 ETH, the largest backlog since December 2025, implying about a 13-day 10-hour exit wait plus a 7.6-day sweep; the entry queue is about 27 days.",
+      "current_state_zh": "MetaMask 披露影响部分基础设施的安全事件，并正预防性退出约 1.7 万个验证者，涉及约 52.3 万枚 ETH；链上研究者 Kaden 称 19 个获得区块奖励的验证者中 18 笔奖励未发送至原定 fee recipient，而是流向由 Tornado Cash 资金支持的地址，攻击者实际获取约 0.36 ETH；约 821 个可能受影响的验证者仍未退出，受损签名密钥可能带来残余罚没风险；MetaMask 称其质押服务为非托管且不控制用户提款密钥，但未披露事件原因、受影响范围或签名密钥是否暴露；新增信息显示以太坊验证者退出队列因此升至 773,447 ETH，为 2025 年 12 月以来最大积压，等待约 13 天 10 小时外加约 7.6 天 sweep，进入队列约 27 天；Lido 此前称退出、提取和重新进入周期可能长达约 45 天。",
+      "current_state_en": "MetaMask disclosed a security incident affecting part of its infrastructure and is preemptively exiting roughly 17,000 validators holding about 523,000 ETH; on-chain researcher Kaden said that out of 19 validators receiving block rewards, 18 rewards were not sent to the intended fee recipient and instead went to an address funded by Tornado Cash, with the attacker actually obtaining about 0.36 ETH; about 821 potentially affected validators have not yet exited, and compromised signing keys could pose residual slashing risk; MetaMask said its staking service is non-custodial and it does not control users’ withdrawal keys, but has not disclosed the cause, full scope, or whether signing keys were exposed; new information shows Ethereum’s validator exit queue swelled to 773,447 ETH, the largest backlog since December 2025, implying about a 13-day 10-hour exit wait plus a 7.6-day sweep, with an entry queue of about 27 days; Lido previously said the full exit, withdrawal and re-entry cycle could take up to about 45 days.",
+      "detailed_summary_zh": "MetaMask is exiting roughly 17,000 validators (~523,000 ETH) after an on-chain analysis found block-proposal fee rewards diverted to a Tornado Cash-funded address, swelling Ethereum's validator exit queue to a nine-month high of 773,447 ETH while the scope of the breach and slashing risk remain undisclosed.",
+      "detailed_summary_en": "MetaMask is exiting roughly 17,000 validators (~523,000 ETH) after an on-chain analysis found block-proposal fee rewards diverted to a Tornado Cash-funded address, swelling Ethereum's validator exit queue to a nine-month high of 773,447 ETH while the scope of the breach and slashing risk remain undisclosed.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.94,
+      "story_ids": [
+        "rss:cryptoslate.com_feed_:f2f6e67408bb3e14"
+      ],
+      "sources": [
+        {
+          "url": "https://cryptoslate.com/metamask-security-scare-pushes-ethereum-validator-exits-to-a-nine-month-high/",
+          "label": "CryptoSlate",
+          "source_type": "rss",
           "official": false
         }
       ]
