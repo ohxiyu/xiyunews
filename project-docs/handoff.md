@@ -1,16 +1,16 @@
 # 当前交接
 
-当前任务 Issue189：完成剩余迁移操作准备和真实到期发送验收，不把准备说成实际部署。前序线上修复保留，20:05 广场实际发送及回执已验证；本地 realtime 已同步并通过双版本测试，完整历史仍因凭据撤销未确认而禁止上传。原 SSH 入口、新域登录和 Telegram 品牌确认仍缺，本次纯文档无需部署，不改提醒规则或 UI。
+本次操作说明回写为 Issue189/PR190；当前执行指针继续尚未完成的阶段 3 Issue172，五阶段描述该产品迁移，不把文档发布当成历史合并或服务器上线。20:05 广场真实到期发送与回执已验证，本地 realtime 已同步并通过双版本测试；完整历史仍因凭据撤销未确认而禁止上传。原可信 SSH 入口、新域登录和 Telegram 品牌确认仍缺，不改提醒规则、账号权限或 UI。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "补齐剩余迁移操作说明、品牌草案与首次到期发送验收；实际历史/服务器迁移仍待安全输入",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/189",
+  "goal": "继续阶段 3 完整历史整合：本地代码与双版本测试已准备，确认凭据撤销后才能推送实际 PR",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/172",
   "owner": "Codex / 迁移唯一编辑及部署整合负责人",
-  "branch": "agent/xiyunews-remaining-prep",
-  "last_verified_commit": "99594ac28b5918f3192bc62501469bb01c66e802",
-  "pr": "Issue189 文档实施；此前 PR182/184/186/188 均已合并",
+  "branch": "agent/xiyunews-realtime",
+  "last_verified_commit": "a7edea4b1edfa34ba5fdb7abc3502ca3c1b873fc",
+  "pr": "阶段3仍未上传或建立PR；PR190只发布操作说明与真实分发验收，不包含旧历史",
   "completed": [
     "阶段 1 PR169 与阶段 2 PR171 顺序全绿合并，主站与调度器已上线；PR174/176/178 后续修复也已合并",
     "ohxiyu/xiyunews 与 ohxiyu/fomobtc 均 private=true、archived=false，协作者仅 ohxiyu；私有 Git 集成 Pages 构建成功",
@@ -64,13 +64,13 @@
     "仅确认两个文档中记载的 fomobtc_tokyo_config 路径不存在，尚不能推断本机没有私钥；原 SSH 配置路径待提供，未尝试不明连接",
     "新域验证码登录待运营者完成，不绕过 Access，不发布生产测试消息"
   ],
-  "next_action": "本次说明 PR 通过 CI 与 main 同步后合并；确认旧凭据已撤销、提供原可信 SSH 配置路径、在新域完成验证码登录后继续实际迁移。Telegram 名称简介与 Access 显示名待明确确认；不推未撤销凭据的历史、不猜用 SSH、不发测试内容。",
+  "next_action": "等待旧凭据已撤销确认后，先在 /tmp/xiyunews-stage3 合入最新 origin/main 并重新验证，随后推送阶段3 PR，以 merge commit 保留历史；收到原可信 SSH 配置路径后才实际备份部署。新域验证码登录、Access 显示名与 Telegram 文案确认分别等待，不发布生产测试内容。",
   "states": {
     "code": "complete",
     "tests": "complete",
     "pr_merged": "pending",
-    "deployed": "not_required",
-    "production_verified": "not_required"
+    "deployed": "pending",
+    "production_verified": "pending"
   },
   "evidence": "project-docs/releases/2026-10-01-remaining-preparation.md"
 }
