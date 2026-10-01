@@ -5,7 +5,7 @@ Issue：[#168](https://github.com/ohxiyu/xiyunews/issues/168)。分支 agent/xiy
 Source commit: 本阶段 PR head；基线 de180b0cf4ef99699374d606137c750b897a2428。
 Worker version: Pages 未部署；独立调度器留给阶段 2。
 Deployment: 未部署；GitHub 改名和免费 zone 创建成功，NS 保存、Pages 与 Access 未验收。
-Verification: 本地 Python 3.13 完整 929 项 pytest、Node 76 项（含 15 项跳转）、调度器 61 项测试及 dry-run、治理与 diff 检查通过。Ruby 3.3 / github-pages 232 本地 Jekyll 构建通过，远端 CI/Pages 仍核验仓库锁定依赖；尚未声称新域上线。
+Verification: 本地 Python 3.13 完整 929 项 pytest、Node 76 项（含 15 项跳转）、调度器 61 项测试及 dry-run、治理与 diff 检查通过。Ruby 3.3 / github-pages 232 本地 Jekyll 构建通过，未改变 Gemfile，远端 CI/Pages 构建待检查；尚未声称新域上线。
 Rollback: 保留原域、Pages 项目、旧产物与媒体版本；回退须通过独立 PR，禁止手写 gh-pages 或清空本地存储。
 
 ## 变更及剩余项
