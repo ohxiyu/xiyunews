@@ -80,6 +80,8 @@ export default {
       primary_cron_utc: "26 23 * * *",
       schedule_crons_utc: CONFIGURED_CRONS,
       square_check_window_local: "09:00–23:30",
+      distribution_gate: "private-queue-due-v1",
+      x_check_window_local: "07:26–23:30",
       collection_workflow: FEED_WORKFLOW,
       collection_max_age_hours: FEED_INTERVAL_MS / 3_600_000,
       schedule_timezone: env.EDITION_TIMEZONE,

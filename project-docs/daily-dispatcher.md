@@ -17,7 +17,7 @@ xiyu.news 每天生成一期早间日报，业务时区固定为 `Asia/Shanghai`
 | 08:17–15:17 | GitHub Actions | Watchdog 每小时复查，恢复被 GitHub 延迟或丢弃的早期事件。 |
 | 12:00–23:00 | Cloudflare Cron | 每小时整点检查；上午漏触发后继续自动恢复。 |
 
-Cloudflare 每天共 40 次日报检查，07:26 前和 23:00 后不安排新的日报检查。共享 Cron 还承载币安广场 09:00–23:30 的五分钟队列检查；不提前其发送时段。正常检查仅读取发布状态和页面，不调用 AI；增加检查频率不会增加每期的自动派发上限。仅使用现有 Cloudflare 和 GitHub，不接入 cron-job.org 等第三方定时服务，也不新增通知通道。
+Cloudflare 每天共 40 次日报检查，07:26 前和 23:00 后不安排新的日报检查。共享 Cron 还承载币安广场 09:00–23:30 和 X 07:26–23:30 的五分钟队列检查，仅读私有状态，仅任务到期或需同步时启动 Actions，不再每五分钟空派发广场并连带唤醒 X。GitHub 分发备用改为小时级，发布事件和日报首次 X 派发保留；内容时间表与检查点机制不改。正常 Worker 检查不调用 AI，仅使用现有平台，不接入第三方定时或新通知通道。
 
 Cloudflare Worker 同时验证生成物和实际生产页面：`gh-pages/api/latest.json` 的刊期与非空条目、中英文 Markdown、生产 `/api/latest.json` 的刊期和条目数、首页第一天的日期及文章数量，以及中英文详情页的日期和文章数量。探测使用独立查询参数避免命中旧缓存；不是 HTTP 200 或 GitHub 成功记录就算发布完成。
 
@@ -48,7 +48,7 @@ npx wrangler deploy --keep-vars
 
 `wrangler.jsonc` 通过 `secrets.required` 强制校验令牌，缺少 Secret 时生产部署会失败。Cloudflare Cron 使用 UTC，三组配置为 `26 23 * * *`、`36,46,56 23 * * *`、`*/5 * * * *`。北京时间 07:26 对应前一 UTC 日 23:26，期号必须从 Asia/Shanghai 日期计算。共享五分钟回调仅在 08:00–11:50 每十分钟、12:00–23:00 每小时运行日报检查；币安广场仍只在 09:00–23:30 检查；采集检查全天每十分钟一次（见下节）。修改后读取生产 schedules API 核对，并验证实际 Cron 记录；/health 只是代码声明。保留旧 Cron 路由兼容配置传播。
 
-Worker 当前没有仓库内的自动部署流程。修改或合并 `ops/daily-dispatcher/` 后，必须执行上述部署命令并验证 `/ready`；只合并代码不会更新生产 Worker。若 `/ready` 失败，先修复 Cloudflare Secret 中的 GitHub fine-grained token，再等待下一次 Cron。
+Worker 当前没有仓库内的自动部署流程。修改或合并 `ops/daily-dispatcher/` 后，必须执行上述部署命令并验证 `/ready`；只合并代码不会更新生产 Worker。队列到期门控上线后 /health 应显示 distribution_gate=private-queue-due-v1，日志 square_dispatch/x_dispatch 的 idle 表示未创建 Actions 任务。现有 Actions:write 和 Contents:read 权限足够，不扩大权限；/ready 失败不得以重跑 AI 绕过。
 
 ## 采集触发
 
