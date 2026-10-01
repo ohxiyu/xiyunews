@@ -53,6 +53,13 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["src"]
 
+[tool.uv]
+# Security floors for transitive dependencies; do not override parent constraints.
+constraint-dependencies = [
+    "PyJWT>=2.15.1,<3",
+    "urllib3>=2.8.0,<3",
+]
+
 [tool.pytest.ini_options]
 minversion = "8.0"
 addopts = "-q"
