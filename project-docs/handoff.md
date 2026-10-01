@@ -14,12 +14,12 @@
   "completed": [
     "重建三路径矢量母版，新增 brand/logo-spec.md 单一规范",
     "生成 v3 图标、公开媒体与 ZIP；保留 v1/v2 版本化文件",
-    "规范、完整回归测试和桌面/手机/暗色/媒体/分享视觉检查完成"
+    "规范、完整回归测试和桌面/手机/暗色/媒体/分享视觉检查完成",
+    "独立安全 PR165 已合并 84c93d9962a8bfb042a6f37b71816dd556250513；PyJWT / urllib3 升级并完成 all-extras 审计"
   ],
   "unfinished": [
-    "取得依赖安全处理的独立授权，确认修复路线",
-    "安全问题处理后同步 main 并重跑全部 CI",
-    "合并 Logo PR、自动部署及公网验收"
+    "同步安全修复后的 main 并重跑完整测试 / CI",
+    "合并 Logo PR163、自动部署及公网验收"
   ],
   "validation": [
     "uv sync --frozen --extra dev --offline 成功，锁文件未变",
@@ -27,12 +27,13 @@
     "919 项 Python 测试通过；61 项 Node 前端测试通过；治理与 diff 检查通过",
     "Jekyll 构建成功；1280×720 桌面及 390×844 手机/暗色无横向溢出",
     "媒体浅深色 SVG 正常；分享 Canvas 1320×3045 px，三路径显示正常",
-    "远端 pytest / governance / CodeQL / Pages 分支预览通过，但 test job 因依赖审计失败，未合并"
+    "远端 pytest / governance / CodeQL / Pages 分支预览通过，但 test job 因依赖审计失败，未合并",
+    "安全 PR165 CI 36813910166：925 项 Python 与完整 all-extras 审计通过；不忽略漏洞"
   ],
   "unverified": [
-    "扫描报告的漏洞对本项目的具体适用性与修复策略尚未评估",
-    "生产仍未发布 v3；Pages 分支预览成功不等于生产成功",
-    "存量真实设备图标刷新时机未验收"
+    "Logo 同步后完整 CI 与生产发布尚未完成",
+    "存量真实设备图标刷新时机未验收",
+    "独立 Worker npm 开发依赖 7 项告警保留待评估，不属于本次两个 Python 依赖修复"
   ],
   "production": {
     "source_commit": "unknown; 本次尚未合并",
@@ -42,10 +43,8 @@
     "worker_version": "not changed / unknown; 本次不操作独立 dispatcher",
     "verified_at": "2026-10-01 替换前仅确认公开页头及 v2 引用"
   },
-  "blockers": [
-    "CI 36812520245 的依赖安全扫描失败：现有 pyjwt 2.13.0 与 urllib3 2.7.0 报告 16 项漏洞，其中 CVE-2026-103001 未列出修复版本；必须先处理，不能跳过或强行合并"
-  ],
-  "next_action": "等待维护者授权先独立处理现有依赖安全问题；保留 Draft PR163 与 work/bmtnews-brand-v3，修复合并后再同步并继续 Logo 发布",
+  "blockers": [],
+  "next_action": "合并已授权安全修复进 Logo 分支，完整重跑后发布 PR163，验收公网页面与资源",
   "states": {
     "code": "complete",
     "tests": "pending",
@@ -60,3 +59,5 @@
 ## 先前任务保留记录（非执行指针）
 
 上一指针为 Issue160 / Claude Code 的来源清理，代码已随 PR161 进入当前 main，记录见 [来源清理](releases/2026-09-29-source-cleanup.md)。先前未验收项仍保留：Worker 1.1.0 生产部署、PR155/157 线上验收、2026-10-05 周报推送验收；它们不属于本次 Logo 授权，不自动继续。先前声明并不代表本次已核验 Worker 实际版本。开放的历史发布证据 PR 不在本任务范围内合并。
+
+安全处理记录：[PyJWT / urllib3](releases/2026-10-01-security-deps.md)，已通过独立 PR165 合并；不会恢复漏洞版本，也不跳过审计。
