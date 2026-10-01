@@ -4,12 +4,14 @@ import {handleRequest} from '../docs/_worker.js';
 
 for (const host of ['bmt.news', 'www.bmt.news']) {
   for (const path of ['/x?y=1', '/api/latest.json?source=agent', '/feed.xml', '/s/', '/openapi.json', '/llms.txt', '/2026/10/01/summary-zh.html']) {
-    test(`${host}${path} preserves the full URL in a 301`, async () => {
+    test(`${host}${path} retires the old entry without redirect or origin access`, async () => {
       const response = await handleRequest(new Request(`https://${host}${path}`), {
-        ASSETS: {fetch() { throw new Error('Legacy redirects must precede auth, assets and caches'); }}
+        ASSETS: {fetch() { throw new Error('Retired hosts must not access auth, assets or caches'); }}
       });
-      assert.equal(response.status, 301);
-      assert.equal(response.headers.get('Location'), 'https://xiyu.news' + path);
+      assert.equal(response.status, 410);
+      assert.equal(response.headers.get('Location'), null);
+      assert.equal(response.headers.get('Cache-Control'), 'no-store');
+      assert.equal(response.headers.get('X-Robots-Tag'), 'noindex, nofollow');
     });
   }
 }
@@ -21,12 +23,14 @@ test('A similar hostname is not treated as the old brand domain', async () => {
 });
 
 for (const host of ['bmt.news', 'www.bmt.news']) {
-  test(`${host} stays reachable when the deployment switch explicitly pauses redirects`, async () => {
-    const response = await handleRequest(new Request(`https://${host}/robots.txt?y=1`), {
-      LEGACY_REDIRECT_ENABLED: 'false',
-      ASSETS: {fetch: async () => new Response('robots', {status: 200})}
-    });
-    assert.equal(response.status, 200);
-    assert.equal(response.headers.get('Location'), null);
+  test(`${host} cannot reactivate redirects through the obsolete deployment switch`, async () => {
+    for (const setting of ['false', 'true', undefined]) {
+      const response = await handleRequest(new Request(`https://${host}/api/admin/quick-posts`), {
+        LEGACY_REDIRECT_ENABLED: setting,
+        ASSETS: {fetch() { throw new Error('Old admin entry is retired'); }}
+      });
+      assert.equal(response.status, 410);
+      assert.equal(response.headers.get('Location'), null);
+    }
   });
 }
