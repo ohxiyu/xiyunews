@@ -142,23 +142,7 @@ jobs:
       - name: Persist staging cache to branch
         if: ${{ always() }}
         shell: bash
-        run: |
-          if [ ! -f data/staging-items.json ]; then
-            echo "No staging file to persist"
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -B staging-cache
-          git add -f data/staging-items.json
-          if [ -f data/analysis-cache.json ]; then
-            git add -f data/analysis-cache.json
-          fi
-          if git commit -m "chore: update staging cache"; then
-            git push -f origin staging-cache
-          else
-            echo "Staging cache unchanged"
-          fi
+        run: bash scripts/persist_staging_cache.sh
 
   recover-daily:
     needs: collect

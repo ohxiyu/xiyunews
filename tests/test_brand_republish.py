@@ -1,4 +1,7 @@
 import json
+import xml.etree.ElementTree as ET
+
+import pytest
 
 from src.brand_republish import migrate, republish
 
@@ -24,3 +27,35 @@ def test_republish_is_idempotent_and_does_not_touch_queues(tmp_path):
     assert republish(tmp_path) == 0
     assert json.loads(path.read_text())["site"] == "https://xiyu.news"
     assert queue.read_text() == '{"url":"https://bmt.news"}'
+
+
+def test_xml_self_links_and_channel_title_only(tmp_path):
+    feeds = tmp_path / "feeds"
+    feeds.mkdir()
+    atom = feeds / "crypto-zh.xml"
+    atom.write_text('''<feed xmlns="http://www.w3.org/2005/Atom">
+<title>BMTNews · Crypto</title><link href="https://bmt.news/feeds/crypto-zh.xml"/>
+<id>https://bmt.news/feeds/crypto-zh.xml</id><entry><title>BMTNews · Original report</title>
+<link href="https://bmt.news.example/report"/><summary>Original summary</summary></entry></feed>''')
+    sitemap = tmp_path / "sitemap.xml"
+    sitemap.write_text('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>'
+                       '<loc>https://www.bmt.news/x?y=1&amp;z=2</loc><lastmod>2026-10-01</lastmod>'
+                       '</url></urlset>')
+    assert republish(tmp_path) == 2
+    assert republish(tmp_path) == 0
+    document = ET.fromstring(atom.read_text())
+    ns = {"a": "http://www.w3.org/2005/Atom"}
+    assert document.find("a:title", ns).text == "xiyu.news · Crypto"
+    assert document.find("a:entry/a:title", ns).text == "BMTNews · Original report"
+    assert document.find("a:entry/a:link", ns).attrib["href"] == "https://bmt.news.example/report"
+    assert document.find("a:entry/a:summary", ns).text == "Original summary"
+    assert "https://xiyu.news/x?y=1&amp;z=2" in sitemap.read_text()
+    assert "2026-10-01" in sitemap.read_text()
+
+
+def test_invalid_xml_fails_without_overwriting(tmp_path):
+    sitemap = tmp_path / "sitemap.xml"
+    sitemap.write_text("<invalid>")
+    with pytest.raises(ET.ParseError):
+        republish(tmp_path)
+    assert sitemap.read_text() == "<invalid>"

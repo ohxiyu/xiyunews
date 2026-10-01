@@ -1,6 +1,7 @@
-import { ACTIVE_STATUSES, fetchWorkflowRuns, githubRequest, SCHEDULE_CRONS } from "./lib";
+import { SCHEDULE_CRONS } from "./lib";
 import { runSchedule } from "./recovery";
 import { dispatchCollection } from "./collection";
+import { dispatchDistribution } from "./distribution";
 
 // Every 5 minutes, all day. Square and publication checks keep their own
 // windows below; the collection check needs the overnight ticks.
@@ -19,17 +20,7 @@ export function publicationCron(time: number): string | null {
 }
 
 export async function dispatchSquare(env: Env, now: number): Promise<string> {
-  const date = new Date(now);
-  const minute = date.getUTCHours() * 60 + date.getUTCMinutes();
-  if (minute < 60 || minute > 930) return "outside_window";
-  const runs = await fetchWorkflowRuns(env, "square-distribution.yml");
-  if (runs.some(run => run.headBranch === env.GITHUB_REF && ACTIVE_STATUSES.has(run.status))) {
-    return "active";
-  }
-  await githubRequest(env,
-    `/repos/${env.GITHUB_REPOSITORY}/actions/workflows/square-distribution.yml/dispatches`,
-    { method: "POST", body: JSON.stringify({ ref: env.GITHUB_REF, inputs: { queue_only: true } }) });
-  return "dispatched";
+  return dispatchDistribution(env, "square", now);
 }
 
 export async function runCombinedSchedule(cron: string, scheduledTime: number, env: Env): Promise<void> {
@@ -39,6 +30,7 @@ export async function runCombinedSchedule(cron: string, scheduledTime: number, e
   const publication = publicationCron(now);
   const results = await Promise.allSettled([
     dispatchSquare(env, now).then(status => console.log(JSON.stringify({ event: "square_dispatch", status }))),
+    dispatchDistribution(env, "x", now).then(status => console.log(JSON.stringify({ event: "x_dispatch", status }))),
     publication ? runSchedule(publication, now, env) : Promise.resolve(),
     dispatchCollection(env, now).then(status => console.log(JSON.stringify({ event: "collection_dispatch", status }))),
   ]);

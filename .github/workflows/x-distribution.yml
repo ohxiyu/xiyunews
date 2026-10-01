@@ -11,18 +11,15 @@ name: xiyu.news X Distribution
 # most one post, and an outcome that cannot be proven is never retried.
 
 on:
-  # GitHub's own schedules are unreliable on this repository (runs arrive
-  # hours late or not at all). The Cloudflare dispatcher starts the Square
-  # workflow every 5 minutes from 09:00 to 23:30 Asia/Shanghai, so each of
-  # its completions doubles as this workflow's clock. Square must not list
-  # this workflow among its own triggers, or the two would wake each other.
+  # Worker independently checks private X/Square queues every five minutes.
+  # Never use Square's completion as an X clock: private Actions idle runs cost.
   workflow_run:
-    workflows: ['xiyu.news Binance Square Distribution']
+    workflows: ['xiyu.news Daily Edition', 'xiyu.news Feed Collection', 'Deploy Docs']
     types: [completed]
     branches: [main]
-  # Backup clock: every 20 minutes from 07:07 to 23:47 Asia/Shanghai (UTC).
+  # Hourly backup. The primary five-minute clock runs in Cloudflare.
   schedule:
-    - cron: '7-59/20 23,0-15 * * *'
+    - cron: '17 23,0-15 * * *'
   workflow_dispatch:
     inputs:
       edition_date:
