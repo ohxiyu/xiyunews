@@ -950,7 +950,7 @@ def weekly_push_texts(
     labels = _LABELS["zh"]
     start = _display_date(context.start, "zh")
     end = _display_date(context.end, "zh")
-    heading = f"{labels['title']} · {start}—{end}"
+    heading = f"稀有News · {labels['title']} · {start}—{end}"
     title = _clean_copy(digest.throughline.title, limit=80)
     summary = _clean_copy(digest.throughline.summary, limit=400)
     items = [_clean_copy(item.title, limit=80) for item in digest.items[:4]]

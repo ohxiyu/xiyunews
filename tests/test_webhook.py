@@ -36,12 +36,12 @@ pytestmark = pytest.mark.usefixtures("public_test_dns")
 class TestRender:
     def test_simple_replacement(self):
         template = "Hello #{name}, today is #{date}"
-        variables = {"name": "BMTNews", "date": "2026-04-24"}
-        assert _render(template, variables) == "Hello BMTNews, today is 2026-04-24"
+        variables = {"name": "xiyu.news", "date": "2026-04-24"}
+        assert _render(template, variables) == "Hello xiyu.news, today is 2026-04-24"
 
     def test_no_matching_vars(self):
         template = "Hello #{unknown}"
-        variables = {"name": "BMTNews"}
+        variables = {"name": "xiyu.news"}
         assert _render(template, variables) == "Hello #{unknown}"
 
     def test_empty_template(self):
@@ -65,23 +65,23 @@ class TestRender:
 
 class TestRenderDictAndList:
     def test_simple_dict(self):
-        obj = {"title": "BMTNews #{date}", "count": "#{item_count} items"}
+        obj = {"title": "xiyu.news #{date}", "count": "#{item_count} items"}
         variables = {"date": "2026-04-24", "item_count": 15}
         result = _render(obj, variables)
-        assert result == {"title": "BMTNews 2026-04-24", "count": "15 items"}
+        assert result == {"title": "xiyu.news 2026-04-24", "count": "15 items"}
 
     def test_nested_dict(self):
         obj = {
             "msg_type": "interactive",
             "card": {
                 "schema": "2.0",
-                "header": {"title": "BMTNews #{date}"},
+                "header": {"title": "xiyu.news #{date}"},
                 "body": {"elements": [{"tag": "markdown", "content": "#{summary}"}]},
             },
         }
         variables = {"date": "2026-04-24", "summary": "## AI News\nLine 1"}
         result = _render(obj, variables)
-        assert result["card"]["header"]["title"] == "BMTNews 2026-04-24"
+        assert result["card"]["header"]["title"] == "xiyu.news 2026-04-24"
         assert result["card"]["body"]["elements"][0]["content"] == "## AI News\nLine 1"
 
     def test_list(self):
@@ -482,7 +482,7 @@ class TestWebhookNotifier:
         config = WebhookConfig(
             enabled=True,
             url_env=_TEST_URL_ENV,
-            request_body='{"msg_type": "post", "content": "BMTNews #{date} #{item_count} items"}',
+            request_body='{"msg_type": "post", "content": "xiyu.news #{date} #{item_count} items"}',
         )
         notifier = WebhookNotifier(config)
 
@@ -506,7 +506,7 @@ class TestWebhookNotifier:
             body_bytes = call_kwargs["content"]
             body_str = body_bytes.decode("utf-8")
             parsed = json.loads(body_str)
-            assert parsed["content"] == "BMTNews 2026-04-24 15 items"
+            assert parsed["content"] == "xiyu.news 2026-04-24 15 items"
         del os.environ[_TEST_URL_ENV]
 
     def test_post_request_with_json_str_body_containing_summary(self):
@@ -538,7 +538,7 @@ class TestWebhookNotifier:
             mock_client_cls.return_value = mock_client
 
             # summary without special chars — should parse fine
-            summary = "BMTNews daily report: 10 items"
+            summary = "xiyu.news daily report: 10 items"
             _run_async(notifier.notify({"summary": summary}))
             mock_client.post.assert_called_once()
 
@@ -654,7 +654,7 @@ class TestWebhookNotifier:
                 "msg_type": "interactive",
                 "card": {
                     "schema": "2.0",
-                    "header": {"title": "BMTNews #{date}"},
+                    "header": {"title": "xiyu.news #{date}"},
                     "body": {
                         "elements": [{"tag": "markdown", "content": "#{summary}"}]
                     },
@@ -684,7 +684,7 @@ class TestWebhookNotifier:
 
             body_str = call_kwargs["content"].decode("utf-8")
             parsed = json.loads(body_str)
-            assert parsed["card"]["header"]["title"] == "BMTNews 2026-04-24"
+            assert parsed["card"]["header"]["title"] == "xiyu.news 2026-04-24"
             assert parsed["card"]["body"]["elements"][0]["content"] == "## News\nLine 1"
         del os.environ[_TEST_URL_ENV]
 
@@ -838,7 +838,7 @@ class TestSendDailySummary:
         notifier = WebhookNotifier(config)
         summarizer = DailySummarizer()
         items = [_make_item()]
-        summary = "# BMTNews Daily\nTest summary"
+        summary = "# xiyu.news Daily\nTest summary"
 
         with patch.object(notifier, "notify", new_callable=AsyncMock) as mock_notify:
             _run_async(
@@ -854,7 +854,7 @@ class TestSendDailySummary:
             mock_notify.assert_called_once()
             vars = mock_notify.call_args[0][0]
             assert vars["message_kind"] == "summary"
-            assert vars["message_title"] == "BMTNews 2026-04-24 Daily"
+            assert vars["message_title"] == "xiyu.news 2026-04-24 Daily"
             assert vars["summary"] == summary
             assert vars["important_items"] == 1
             assert vars["all_items"] == 10
@@ -886,7 +886,7 @@ class TestSendDailySummary:
                 )
             )
             vars = mock_notify.call_args[0][0]
-            assert vars["message_title"] == "BMTNews 2026-04-24 日报"
+            assert vars["message_title"] == "xiyu.news 2026-04-24 日报"
             assert vars["language"] == "zh"
         del os.environ[_TEST_URL_ENV]
 
@@ -923,7 +923,7 @@ class TestSendDailySummary:
             # First call: overview
             overview_vars = mock_notify.call_args_list[0][0][0]
             assert overview_vars["message_kind"] == "overview"
-            assert overview_vars["message_title"] == "BMTNews 2026-04-24 Overview"
+            assert overview_vars["message_title"] == "xiyu.news 2026-04-24 Overview"
 
             # Second call: first item
             item1_vars = mock_notify.call_args_list[1][0][0]
@@ -980,7 +980,7 @@ class TestSendDailySummary:
             assert second_vars["item_index"] == 1
             assert second_vars["item_url"] == "https://example.com/test"
             assert third_vars["message_kind"] == "overview"
-            assert third_vars["message_title"] == "BMTNews 2026-04-24 Overview"
+            assert third_vars["message_title"] == "xiyu.news 2026-04-24 Overview"
         del os.environ[_TEST_URL_ENV]
 
     def test_feishu_collapsible_layout_builds_single_card_message(self):
@@ -1164,7 +1164,7 @@ class TestSendDailySummary:
                 )
             )
             overview_vars = mock_notify.call_args_list[0][0][0]
-            assert overview_vars["message_title"] == "BMTNews 2026-04-24 总览"
+            assert overview_vars["message_title"] == "xiyu.news 2026-04-24 总览"
         del os.environ[_TEST_URL_ENV]
 
 # ── send_failure_notification ──
@@ -1195,7 +1195,7 @@ class TestSendFailureNotification:
             assert vars["important_items"] == 0
             assert vars["all_items"] == 0
             assert vars["message_kind"] == "failure"
-            assert vars["message_title"] == "BMTNews generation failed"
+            assert vars["message_title"] == "xiyu.news generation failed"
             assert "something went wrong" in vars["summary"]
         del os.environ[_TEST_URL_ENV]
 

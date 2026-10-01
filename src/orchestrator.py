@@ -327,7 +327,7 @@ class BMTNewsOrchestrator:
         Args:
             force_hours: Optional override for time window in hours
         """
-        self.console.print("[bold cyan]🌅 BMTNews - Starting aggregation...[/bold cyan]\n")
+        self.console.print("[bold cyan]🌅 xiyu.news - Starting aggregation...[/bold cyan]\n")
 
         daily_timezone = getattr(self.config.filtering, "daily_timezone", "UTC")
         run_started_at = datetime.now(timezone.utc)
@@ -539,7 +539,7 @@ class BMTNewsOrchestrator:
                 run_report=run_report,
             )
 
-            self.console.print("[bold green]✅ BMTNews completed successfully![/bold green]")
+            self.console.print("[bold green]✅ xiyu.news completed successfully![/bold green]")
             usage = get_usage_snapshot()
             if usage.total_tokens > 0:
                 self.console.print(
@@ -607,7 +607,7 @@ class BMTNewsOrchestrator:
         reset_usage()
         self.last_run_report = run_report
         self.console.print(
-            "[bold cyan]📥 BMTNews - Collecting items for the daily edition...[/bold cyan]\n"
+            "[bold cyan]📥 xiyu.news - Collecting items for the daily edition...[/bold cyan]\n"
         )
 
         try:
@@ -750,7 +750,7 @@ class BMTNewsOrchestrator:
         reset_usage()
         self.last_run_report = run_report
         self.console.print(
-            "[bold cyan]🗞️ BMTNews - Building the daily edition...[/bold cyan]\n"
+            "[bold cyan]🗞️ xiyu.news - Building the daily edition...[/bold cyan]\n"
         )
         self.console.print(
             f"🕗 Edition window: {window.start.isoformat()} "
@@ -1775,7 +1775,7 @@ class BMTNewsOrchestrator:
         site_url = (
             (telegram_config.site_url if telegram_config else None)
             or (x_config.site_url if x_config else None)
-            or "https://bmt.news/"
+            or "https://xiyu.news/"
         )
         telegram_text, x_text = weekly_push_texts(
             digest,
@@ -1860,7 +1860,7 @@ class BMTNewsOrchestrator:
         reset_usage()
         self.last_run_report = run_report
         self.console.print(
-            "[bold cyan]🗓️ BMTNews - Building the weekly review...[/bold cyan]\n"
+            "[bold cyan]🗓️ xiyu.news - Building the weekly review...[/bold cyan]\n"
         )
 
         try:
@@ -2080,7 +2080,7 @@ class BMTNewsOrchestrator:
                 front_matter = (
                     "---\n"
                     "layout: default\n"
-                    f"title: \"BMTNews: {date} ({lang.upper()})\"\n"
+                    f"title: \"xiyu.news: {date} ({lang.upper()})\"\n"
                     f"date: {date}\n"
                     f"lang: {lang}\n"
                     f"fetched_count: {fetched_count}\n"
@@ -2148,7 +2148,7 @@ class BMTNewsOrchestrator:
             if self.email_manager and self.config.email and self.config.email.enabled:
                 self.console.print(f"📧 Sending {lang.upper()} email summary...")
                 subscribers = self.storage.load_subscribers()
-                subject = f"BMTNews ({lang.upper()}) - {date}"
+                subject = f"xiyu.news ({lang.upper()}) - {date}"
                 self.email_manager.send_daily_summary(
                     summary,
                     subject,

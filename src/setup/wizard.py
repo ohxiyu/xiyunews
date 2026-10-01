@@ -1,4 +1,4 @@
-"""Interactive setup wizard for BMTNews configuration."""
+"""Interactive setup wizard for xiyu.news configuration."""
 
 import json
 import os

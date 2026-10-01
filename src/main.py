@@ -1,4 +1,4 @@
-"""CLI entry point for BMTNews."""
+"""CLI entry point for xiyu.news."""
 
 import argparse
 import asyncio
@@ -44,7 +44,7 @@ def main():
     """Main CLI entry point."""
     print_banner()
 
-    parser = argparse.ArgumentParser(description="BMTNews - AI-Driven Information Aggregation System")
+    parser = argparse.ArgumentParser(description="xiyu.news - AI-Driven Information Aggregation System")
     parser.add_argument("--hours", type=int, help="Force fetch from last N hours")
     parser.add_argument(
         "--mode",

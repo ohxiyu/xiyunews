@@ -1,4 +1,4 @@
-"""Adapter layer that reuses BMTNews's native Python modules."""
+"""Adapter layer that reuses xiyu.news's native Python modules."""
 
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ ENV_KEY_RE = re.compile(r"^[A-Z_][A-Z0-9_]*$")
 
 @dataclass
 class BMTNewsRuntime:
-    """Loaded runtime references from a BMTNews codebase."""
+    """Loaded runtime references from a xiyu.news codebase."""
 
     project_path: Path
     ContentItem: Any
@@ -38,7 +38,7 @@ class BMTNewsRuntime:
 
 
 def resolve_project_path(explicit: str | None = None) -> Path:
-    """Resolve BMTNews repository path by explicit arg/env/common locations."""
+    """Resolve xiyu.news repository path by explicit arg/env/common locations."""
 
     candidates: list[Path] = []
     if explicit:
@@ -54,8 +54,10 @@ def resolve_project_path(explicit: str | None = None) -> Path:
         [
             repo_root,
             cwd,
-            cwd / "BMTNews",
+            cwd / "BMTNews",  # Legacy local checkout compatibility, not a public brand.
             cwd.parent / "BMTNews",
+            cwd / "xiyunews",
+            cwd.parent / "xiyunews",
         ]
     )
 
@@ -71,7 +73,7 @@ def resolve_project_path(explicit: str | None = None) -> Path:
     checked = ", ".join(str(p.resolve()) for p in candidates)
     raise BMTNewsMcpError(
         code="BMT_PROJECT_NOT_FOUND",
-        message="BMTNews repository was not found. Pass project_path or set BMTNEWS_PATH.",
+        message="xiyu.news repository was not found. Pass project_path or set BMTNEWS_PATH.",
         details={"checked": checked},
     )
 
@@ -100,12 +102,12 @@ def resolve_config_path(project_path: Path, config_path: str | None = None) -> P
 
 
 def load_runtime(project_path: Path) -> BMTNewsRuntime:
-    """Load BMTNews modules dynamically from local repository path."""
+    """Load xiyu.news modules dynamically from local repository path."""
 
     if not _is_project_repo(project_path):
         raise BMTNewsMcpError(
             code="BMT_INVALID_BMTNEWS_PATH",
-            message="project_path is not a valid BMTNews repository.",
+            message="project_path is not a valid xiyu.news repository.",
             details={"project_path": str(project_path)},
         )
 
@@ -127,7 +129,7 @@ def load_runtime(project_path: Path) -> BMTNewsRuntime:
     except Exception as exc:  # pragma: no cover - import failure edge case
         raise BMTNewsMcpError(
             code="BMT_IMPORT_FAILED",
-            message="Failed to load BMTNews modules.",
+            message="Failed to load xiyu.news modules.",
             details={"error": str(exc)},
         ) from exc
 
@@ -146,7 +148,7 @@ def load_runtime(project_path: Path) -> BMTNewsRuntime:
 
 
 def load_config(runtime: BMTNewsRuntime, config_path: Path) -> Any:
-    """Load BMTNews config using native pydantic model."""
+    """Load xiyu.news config using native pydantic model."""
 
     try:
         payload = runtime.expand_env_vars(
@@ -162,14 +164,14 @@ def load_config(runtime: BMTNewsRuntime, config_path: Path) -> Any:
 
 
 def make_storage(runtime: BMTNewsRuntime, config_path: Path) -> Any:
-    """Build BMTNews storage manager bound to config's data directory."""
+    """Build xiyu.news storage manager bound to config's data directory."""
 
     data_dir = str(config_path.parent.resolve())
     return runtime.StorageManager(data_dir=data_dir)
 
 
 def make_orchestrator(runtime: BMTNewsRuntime, config: Any, storage: Any) -> Any:
-    """Build native BMTNews orchestrator."""
+    """Build native xiyu.news orchestrator."""
 
     return runtime.BMTNewsOrchestrator(config, storage)
 
@@ -221,7 +223,7 @@ def get_enabled_sources(config: Any) -> list[str]:
 
 
 def items_to_dicts(items: list[Any]) -> list[dict[str, Any]]:
-    """Serialize BMTNews ContentItem models."""
+    """Serialize xiyu.news ContentItem models."""
 
     return [item.model_dump(mode="json") for item in items]
 

@@ -1,7 +1,7 @@
 # Source Registry and Management
 
-BMTNews keeps the source registry at
-[`https://bmt.news/s/sources/`](https://bmt.news/s/sources/), behind the same
+xiyu.news keeps the source registry at
+[`https://xiyu.news/s/sources/`](https://xiyu.news/s/sources/), behind the same
 email-only Cloudflare Access policy as Quick Post at /s/.
 
 The page has no database or self-managed login service:

@@ -37,7 +37,7 @@ def compose(item: dict, date: str) -> str:
         raise ValueError("Chinese title/summary missing")
     # Preserve the published wording, paragraphs and qualifications. No model call,
     # invented facts, tags, or arbitrary truncation of a sentence/number.
-    text = f"{title.strip()}\n\n{summary.strip()}\n\n来源：{item['url']}\nBMTNews · {date} · https://bmt.news"
+    text = f"{title.strip()}\n\n{summary.strip()}\n\n来源：{item['url']}\nxiyu.news · {date} · https://xiyu.news"
     if len(text) > 10000:
         raise ValueError("Content exceeds local safety limit; editorial review required")
     return text

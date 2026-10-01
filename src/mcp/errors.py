@@ -1,4 +1,4 @@
-"""Error definitions for BMTNews MCP service."""
+"""Error definitions for xiyu.news MCP service."""
 
 from __future__ import annotations
 

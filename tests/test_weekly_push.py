@@ -38,12 +38,12 @@ def context():
 
 
 def test_push_texts_are_built_from_the_digest_only():
-    telegram, x_text = weekly_push_texts(DIGEST, context(), site_url="https://bmt.news/", x_limit=280)
+    telegram, x_text = weekly_push_texts(DIGEST, context(), site_url="https://xiyu.news/", x_limit=280)
     assert "<b>监管收紧与 AI 问责同周发生</b>" in telegram
     assert "事件 0 &lt;b&gt;" in telegram and "事件 4" not in telegram  # top four, escaped
-    assert 'href="https://bmt.news/weekly/2026-09-28/"' in telegram
+    assert 'href="https://xiyu.news/weekly/2026-09-28/"' in telegram
     assert "http" not in x_text and _weighted_length(x_text) <= 280
-    assert x_text.startswith("本周回顾")
+    assert x_text.startswith("稀有News · 本周回顾")
 
 
 class Telegram:

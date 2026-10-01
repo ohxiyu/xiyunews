@@ -8,6 +8,7 @@ on:
       - 'data/editorial.json'
       - 'src/quick_posts.py'
       - 'src/entity_republish.py'
+      - 'src/brand_republish.py'
       - 'src/site_pages.py'
       - 'src/threads.py'
       - '.github/workflows/deploy-docs.yml'
@@ -82,6 +83,13 @@ jobs:
           test -d current-site/_data/archive
           mkdir -p docs/_data/archive
           cp -a current-site/_data/archive/. docs/_data/archive/
+          # Preserve generated API/history and migrate only owned URL prefixes.
+          for directory in api editions; do
+            if [ -d "current-site/$directory" ]; then
+              mkdir -p "docs/$directory"
+              cp -a "current-site/$directory/." "docs/$directory/"
+            fi
+          done
 
       - name: Checkout pinned history snapshot
         if: ${{ github.event_name == 'workflow_dispatch' }}
@@ -122,7 +130,11 @@ jobs:
       - name: Install dependencies
         run: uv sync --frozen
 
+      - name: Migrate published self links without AI
+        run: uv run python -m src.brand_republish --root docs
+
       - name: Rebuild entity pages from published history
+        # This path makes the brand migration independent of a new paid AI run.
         run: >-
           uv run python -m src.entity_republish
           --archive-root docs/_data/archive

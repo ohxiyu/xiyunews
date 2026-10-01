@@ -9,7 +9,7 @@ assignees: ""
 Do not include identity documents, credentials, private contact details, or
 other confidential information in this public issue.
 
-**Affected BMTNews URL**
+**Affected xiyu.news URL**
 
 <!-- Link to the page, feed entry, or repository artifact. -->
 

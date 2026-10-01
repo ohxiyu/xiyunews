@@ -2,9 +2,9 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in BMTNews, please do **not** open a public issue.
+If you discover a security vulnerability in xiyu.news, please do **not** open a public issue.
 Instead, use GitHub's private
-[Report a vulnerability](https://github.com/ohxiyu/bmtnews-standalone/security/advisories/new)
+[Report a vulnerability](https://github.com/ohxiyu/xiyunews/security/advisories/new)
 form so the details are visible only to the repository maintainers.
 
 Please include:
@@ -23,7 +23,7 @@ I will try to:
 
 ## Supported Versions
 
-Security updates are provided for the latest maintained version of BMTNews.
+Security updates are provided for the latest maintained version of xiyu.news.
 
 ## Disclosure Policy
 

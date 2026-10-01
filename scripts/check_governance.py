@@ -106,7 +106,7 @@ def check(root=ROOT, changed=()):
                     raise ValueError(f"{name} must be a list of nonempty strings")
             elif not isinstance(value, str) or not value.strip():
                 raise ValueError(f"{name} must be a nonempty string")
-        if not re.fullmatch(r"https://github.com/ohxiyu/bmtnews-standalone/issues/\d+", pointer["issue"]):
+        if not re.fullmatch(r"https://github.com/ohxiyu/xiyunews/issues/\d+", pointer["issue"]):
             raise ValueError("pointer must reference a task Issue in this repository")
         if not pointer["branch"].startswith("agent/"):
             raise ValueError("pointer branch must be agent/*")

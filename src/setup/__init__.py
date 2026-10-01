@@ -1,1 +1,1 @@
-"""Setup wizard for BMTNews configuration."""
+"""Setup wizard for xiyu.news configuration."""

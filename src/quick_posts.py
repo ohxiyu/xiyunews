@@ -68,7 +68,7 @@ def render_posts(items: list[dict]) -> str:
         esc = lambda value: html.escape(str(value), quote=True)
         badges = (" · Breaking" if item["breaking"] else "") + (" · PIN" if item["pin"] else "")
         parts.append(f'<article class="quick-post-public" id="quick-{esc(item["id"])}">'
-                     f'<small>BMTNews · {esc(item["date"])}{badges}</small>')
+                     f'<small>xiyu.news · {esc(item["date"])}{badges}</small>')
         for paragraph in re.split(r"\n\s*\n", item["body"]):
             parts.append(f'<p>{esc(paragraph).replace(chr(10), "<br>")}</p>')
         if item["image"]:

@@ -5,7 +5,7 @@ title: Source Scrapers
 
 # Source Scrapers
 
-BMTNews fetches content from multiple source types. All scrapers inherit from `BaseScraper`, share an async HTTP client, and implement a `fetch(since)` method that returns a list of `ContentItem` objects. Sources are fetched concurrently via `asyncio.gather`.
+xiyu.news fetches content from multiple source types. All scrapers inherit from `BaseScraper`, share an async HTTP client, and implement a `fetch(since)` method that returns a list of `ContentItem` objects. Sources are fetched concurrently via `asyncio.gather`.
 
 ## Hacker News
 
@@ -73,7 +73,7 @@ Two source types are supported:
 - `category` — optional tag for balanced digest grouping; set per source entry
 
 **Authentication**: Set `GITHUB_TOKEN` in your environment for higher rate
-limits (5000 req/hr vs 60 without). The BMTNews collection and publication
+limits (5000 req/hr vs 60 without). The xiyu.news collection and publication
 workflows pass their automatically generated, repository-scoped Actions token
 to the scraper; no personal token or additional repository secret is required.
 
@@ -156,7 +156,7 @@ Subreddits and users are fetched concurrently. Comments are sorted by score, lim
 
 Uses the [OpenBB Platform](https://www.openbb.co/platform) Python SDK via `obb.news.company()` to fetch company news for one or more ticker watchlists.
 
-The scraper imports `openbb` lazily. If the optional dependency is not installed, BMTNews logs a warning and skips the source instead of failing the whole run.
+The scraper imports `openbb` lazily. If the optional dependency is not installed, xiyu.news logs a warning and skips the source instead of failing the whole run.
 
 **Config** (`sources.openbb`):
 
@@ -189,7 +189,7 @@ Behavior:
 - Skips malformed rows, rows without URL/title/date, and items older than the current time window
 - Keeps fetching other watchlists if one provider call fails
 
-**Credentials**: provider-specific secrets are resolved by the OpenBB SDK from its own environment variables or settings file. BMTNews does not pass those values directly.
+**Credentials**: provider-specific secrets are resolved by the OpenBB SDK from its own environment variables or settings file. xiyu.news does not pass those values directly.
 
 **Extracted data**: title, URL, author, published time, article body/excerpt, watchlist name, provider, category, and symbol list.
 

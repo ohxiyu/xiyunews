@@ -69,7 +69,7 @@ def _transform_api_response(api_data: Dict) -> Dict:
         for src in category.get("sources", []):
             config = dict(src.get("config", {}))
 
-            # BMTNews-site stores "name" at the source level, but
+            # xiyu.news-site stores "name" at the source level, but
             # bmtnews's build_config() expects it inside config for RSS sources.
             src_type = src.get("type", "rss")
             source_name = src.get("name", "")

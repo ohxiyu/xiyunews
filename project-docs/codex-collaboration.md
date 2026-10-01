@@ -14,7 +14,7 @@
 | [data-contract.md](data-contract.md) | 窗口、数据/缺失值、统计和去重语义 |
 | [releases](releases/0.2.0.md) | 历史版本与交付证据，不作当前任务指针 |
 
-BMTNews 的 docs/ 是公开网站源码，会触发发布。上表路径均在 project-docs/，不是另一个项目的 docs/。现有调度、来源、编辑、PWA 等领域文档保留，各自的规则从本索引链接，不复制到各 Agent 入口。
+xiyu.news 的 docs/ 是公开网站源码，会触发发布。上表路径均在 project-docs/，不是另一个项目的 docs/。现有调度、来源、编辑、PWA 等领域文档保留，各自的规则从本索引链接，不复制到各 Agent 入口。
 
 ## 开工与认领
 
@@ -24,7 +24,7 @@ BMTNews 的 docs/ 是公开网站源码，会触发发布。上表路径均在 p
 git status -sb
 git remote -v
 gh auth status
-gh repo view ohxiyu/bmtnews-standalone
+gh repo view ohxiyu/xiyunews
 git fetch origin
 gh issue list --state open
 gh pr list --state open
@@ -60,4 +60,4 @@ Rollback: known-good version and authorized rollback procedure
 
 ## 给下一位 Agent 的提示
 
-> 接手 ohxiyu/bmtnews-standalone。先读 AGENTS.md、agent.md、project-docs/handoff.md，再核对远端 main、工作区、开放 Issue/PR、任务认领和生产版本。按 Current execution pointer 继续；如我指定新任务，先更新指针。遵守成本边界。完成后更新交接和验证记录、提交 PR；与 main 同步且检查全部通过后直接合并，由自动部署上线，再做线上验收。强制推送、回滚、手工写状态分支、Worker 部署、密钥和费用变更仍需维护者批准。未完成工作留下准确分支、提交和下一步。
+> 接手 ohxiyu/xiyunews。先读 AGENTS.md、agent.md、project-docs/handoff.md，再核对远端 main、工作区、开放 Issue/PR、任务认领和生产版本。按 Current execution pointer 继续；如我指定新任务，先更新指针。遵守成本边界。完成后更新交接和验证记录、提交 PR；与 main 同步且检查全部通过后直接合并，由自动部署上线，再做线上验收。强制推送、回滚、手工写状态分支、Worker 部署、密钥和费用变更仍需维护者批准。未完成工作留下准确分支、提交和下一步。

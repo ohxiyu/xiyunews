@@ -132,7 +132,7 @@ URL 一律按 23 计。`max_post_chars` 是加权上限，默认 400，标准账
   "compose": "ai",
   "max_post_chars": 400,
   "languages": ["zh"],
-  "site_url": "https://bmt.news/",
+  "site_url": "https://xiyu.news/",
   "max_items": 3
 }
 ```
@@ -157,5 +157,5 @@ URL 一律按 23 计。`max_post_chars` 是加权上限，默认 400，标准账
 
 ## 手动运行
 
-Actions 里手动运行 `BMTNews X Distribution` 和定时运行完全相同：只会发已到期的
+Actions 里手动运行 `xiyu.news X Distribution` 和定时运行完全相同：只会发已到期的
 任务，不会多发。`edition_date` 只能是今天，其他日期只记一条提示。

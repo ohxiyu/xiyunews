@@ -66,7 +66,7 @@ def test_openapi_is_typed_described_and_function_calling_friendly() -> None:
     spec = json.loads((DOCS / "openapi.json").read_text(encoding="utf-8"))
     assert spec["openapi"] == "3.1.1"
     assert spec["servers"] == [
-        {"url": "https://bmt.news", "description": "Production"}
+        {"url": "https://xiyu.news", "description": "Production"}
     ]
 
     operations = []
@@ -91,11 +91,11 @@ def test_openapi_is_typed_described_and_function_calling_friendly() -> None:
 def test_llms_txt_follows_the_required_discovery_shape() -> None:
     body = (DOCS / "llms.txt").read_text(encoding="utf-8")
     lines = body.splitlines()
-    assert lines[0] == "# BMTNews"
+    assert lines[0] == "# xiyu.news"
     assert next(line for line in lines[1:] if line.strip()).startswith("> ")
-    assert "## When to use BMTNews" in body
-    assert "[OpenAPI specification](https://bmt.news/openapi.json)" in body
-    assert "[BMTNews API and agent documentation]" in body
+    assert "## When to use xiyu.news" in body
+    assert "[OpenAPI specification](https://xiyu.news/openapi.json)" in body
+    assert "[xiyu.news API and agent documentation]" in body
 
 
 def test_home_template_and_metadata_are_present_without_javascript() -> None:
@@ -170,8 +170,8 @@ def test_json_ld_describes_the_real_site_identity_and_contact_route() -> None:
     graph = payload["@graph"]
     organization = next(item for item in graph if item["@type"] == "Organization")
     website = next(item for item in graph if item["@type"] == "WebSite")
-    assert organization["name"] == "BMTNews"
-    assert organization["contactPoint"][0]["url"] == "https://bmt.news/contact/"
+    assert organization["name"] == "xiyu.news"
+    assert organization["contactPoint"][0]["url"] == "https://xiyu.news/contact/"
     assert website["publisher"]["@id"] == organization["@id"]
 
 
@@ -204,7 +204,7 @@ def test_sitemap_and_robots_are_valid_and_discoverable() -> None:
     assert all(url.find("s:loc", namespace) is not None for url in urls)
     assert all(url.find("s:lastmod", namespace) is not None for url in urls)
     robots = (DOCS / "robots.txt").read_text(encoding="utf-8")
-    assert "Sitemap: https://bmt.news/sitemap.xml" in robots
+    assert "Sitemap: https://xiyu.news/sitemap.xml" in robots
 
 
 def test_sitemap_is_generated_never_committed() -> None:

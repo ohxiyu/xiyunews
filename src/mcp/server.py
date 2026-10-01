@@ -1,4 +1,4 @@
-"""MCP server entrypoint for BMTNews."""
+"""MCP server entrypoint for xiyu.news."""
 
 from __future__ import annotations
 
@@ -136,7 +136,7 @@ async def bmt_validate_config(
     sources: list[str] | None = None,
     check_env: bool = True,
 ) -> dict[str, Any]:
-    """Validate BMTNews config and required environment variables."""
+    """Validate xiyu.news config and required environment variables."""
 
     return await _run_tool(
         "bmt_validate_config",
@@ -497,7 +497,7 @@ async def bmt_send_webhook(
     """Send a webhook notification with the given variables.
 
     Uses the webhook URL (from environment variable), request_body template,
-    and headers from the BMTNews config. Template variables #{date}, #{language},
+    and headers from the xiyu.news config. Template variables #{date}, #{language},
     #{important_items}, #{all_items}, #{result}, #{timestamp},
     #{summary} are replaced in the URL and request_body before sending.
     """
@@ -574,7 +574,7 @@ def r_run_summary(run_id: str, language: str) -> dict[str, Any]:
 
 @mcp.resource("bmtnews://config/effective")
 def r_effective_config() -> dict[str, Any]:
-    """Effective default config resolved from local BMTNews path."""
+    """Effective default config resolved from local xiyu.news path."""
 
     return _resource_result("bmtnews://config/effective", service.get_effective_config)
 

@@ -241,10 +241,10 @@ def test_sitemap_lists_static_editions_threads_and_entities(tmp_path: Path) -> N
         generated_date="2026-08-24",
     )
     assert sitemap.startswith('<?xml version="1.0" encoding="UTF-8"?>')
-    assert "https://bmt.news/developers/" in sitemap
-    assert "https://bmt.news/editions/2026-08-24/zh.html" in sitemap
-    assert "https://bmt.news/en/threads/tabc/" in sitemap
-    assert "https://bmt.news/entity/cftc/" in sitemap
+    assert "https://xiyu.news/developers/" in sitemap
+    assert "https://xiyu.news/editions/2026-08-24/zh.html" in sitemap
+    assert "https://xiyu.news/en/threads/tabc/" in sitemap
+    assert "https://xiyu.news/entity/cftc/" in sitemap
     assert "<lastmod>2026-08-24</lastmod>" in sitemap
 
     path = write_sitemap(
@@ -309,7 +309,7 @@ def test_entity_page_escapes_labels_and_keeps_titles_plain() -> None:
     assert "Entity overview" in body
     assert "Recent developments" in body
     assert "<dt>Coverage</dt><dd>3</dd>" in body
-    assert "BMTNews has tracked 3 related reports" in body
+    assert "xiyu.news has tracked 3 related reports" in body
 
 
 def test_entity_page_links_reports_to_related_event_timelines() -> None:

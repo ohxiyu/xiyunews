@@ -5,7 +5,7 @@ title: Scoring System
 
 # Scoring System
 
-After fetching content from all sources, BMTNews uses an AI model to score each item on a 0-10 scale. This determines what appears in the daily summary.
+After fetching content from all sources, xiyu.news uses an AI model to score each item on a 0-10 scale. This determines what appears in the daily summary.
 
 ## Production scoring policy
 

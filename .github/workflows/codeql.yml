@@ -17,6 +17,9 @@ permissions:
 
 jobs:
   analyze:
+    # Private CodeQL scanning requires an existing Code Security license.
+    # Do not enable a paid product merely because repository visibility changed.
+    if: ${{ !github.event.repository.private || vars.CODEQL_PRIVATE_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

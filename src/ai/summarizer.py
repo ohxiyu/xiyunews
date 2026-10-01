@@ -299,7 +299,7 @@ def _pangu(text: str) -> str:
 
 LABELS = {
     "en": {
-        "header": "BMTNews",
+        "header": "xiyu.news",
         "source": "Source",
         "background": "Background",
         "discussion": "Discussion",
@@ -319,7 +319,7 @@ LABELS = {
         ),
     },
     "zh": {
-        "header": "BMTNews",
+        "header": "xiyu.news",
         "source": "来源",
         "background": "背景",
         "discussion": "社区讨论",

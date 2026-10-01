@@ -12,7 +12,7 @@ from .result_cache import AnalysisResultCache
 from .utils import parse_json_response
 
 
-PREFILTER_SYSTEM = """You are the fast first-pass editor for BMTNews.
+PREFILTER_SYSTEM = """You are the fast first-pass editor for xiyu.news.
 Rank candidates for a crypto-first daily briefing that may include a small
 number of consequential AI/technology and public-policy stories. Penalize
 promotions, generic market commentary, duplicates, and low-substance updates.

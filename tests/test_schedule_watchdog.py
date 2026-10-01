@@ -27,7 +27,7 @@ def _run(
         "created_at": started_at.isoformat(),
         "run_started_at": started_at.isoformat(),
         "updated_at": completed_at.isoformat(),
-        "html_url": f"https://github.com/ohxiyu/bmtnews-standalone/actions/runs/{run_id}",
+        "html_url": f"https://github.com/ohxiyu/xiyunews/actions/runs/{run_id}",
     }
 
 
@@ -133,7 +133,7 @@ def test_main_dispatches_recovery_and_fails_for_notification(
     summary = tmp_path / "summary.md"
     dispatches: list[dict[str, str]] = []
     monkeypatch.setenv("GITHUB_TOKEN", "test-token")
-    monkeypatch.setenv("GITHUB_REPOSITORY", "ohxiyu/bmtnews-standalone")
+    monkeypatch.setenv("GITHUB_REPOSITORY", "ohxiyu/xiyunews")
     monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(summary))
     monkeypatch.setattr(schedule_watchdog, "datetime", FrozenDateTime)
     monkeypatch.setattr(
@@ -153,7 +153,7 @@ def test_main_dispatches_recovery_and_fails_for_notification(
     assert dispatches == [
         {
             "token": "test-token",
-            "repository": "ohxiyu/bmtnews-standalone",
+            "repository": "ohxiyu/xiyunews",
             "workflow": "daily-summary.yml",
             "ref": "main",
             "edition_date": "2026-07-27",
@@ -164,7 +164,7 @@ def test_main_dispatches_recovery_and_fails_for_notification(
         encoding="utf-8"
     )
     assert "日报发布心跳" in summary.read_text(encoding="utf-8")
-    assert "::error title=BMTNews schedule watchdog::" in capsys.readouterr().out
+    assert "::error title=xiyu.news schedule watchdog::" in capsys.readouterr().out
 
 
 def test_main_can_treat_embedded_recovery_as_success(
@@ -179,7 +179,7 @@ def test_main_can_treat_embedded_recovery_as_success(
 
     dispatches: list[dict[str, str]] = []
     monkeypatch.setenv("GITHUB_TOKEN", "test-token")
-    monkeypatch.setenv("GITHUB_REPOSITORY", "ohxiyu/bmtnews-standalone")
+    monkeypatch.setenv("GITHUB_REPOSITORY", "ohxiyu/xiyunews")
     monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(tmp_path / "summary.md"))
     monkeypatch.setattr(schedule_watchdog, "datetime", FrozenDateTime)
     monkeypatch.setattr(
@@ -216,7 +216,7 @@ def test_embedded_recovery_succeeds_when_daily_run_is_active(
             return NOW if tz is not None else NOW.replace(tzinfo=None)
 
     monkeypatch.setenv("GITHUB_TOKEN", "test-token")
-    monkeypatch.setenv("GITHUB_REPOSITORY", "ohxiyu/bmtnews-standalone")
+    monkeypatch.setenv("GITHUB_REPOSITORY", "ohxiyu/xiyunews")
     monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(tmp_path / "summary.md"))
     monkeypatch.setattr(schedule_watchdog, "datetime", FrozenDateTime)
     monkeypatch.setattr(
@@ -248,7 +248,7 @@ def test_dispatch_includes_explicit_edition_inputs(monkeypatch) -> None:
 
     schedule_watchdog.dispatch_workflow(
         token="test-token",
-        repository="ohxiyu/bmtnews-standalone",
+        repository="ohxiyu/xiyunews",
         workflow="daily-summary.yml",
         ref="main",
         edition_date="2026-07-27",

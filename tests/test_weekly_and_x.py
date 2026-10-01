@@ -275,11 +275,11 @@ def test_build_post_fits_the_character_limit() -> None:
         items,
         date="2026-08-09",
         language="zh",
-        site_url="https://bmt.news/",
+        site_url="https://xiyu.news/",
     )
     assert _weighted_length(text) <= TWEET_LIMIT
-    assert "https://bmt.news/" in text
-    assert text.startswith("BMTNews 2026-08-09")
+    assert text.splitlines()[-1] == "https://xiyu.news/"
+    assert text.startswith("稀有News 2026-08-09")
 
 
 def test_build_post_respects_max_items() -> None:
@@ -288,7 +288,7 @@ def test_build_post_respects_max_items() -> None:
         items,
         date="2026-08-09",
         language="zh",
-        site_url="https://bmt.news/",
+        site_url="https://xiyu.news/",
         max_items=2,
     )
     assert "1. 标题0" in text

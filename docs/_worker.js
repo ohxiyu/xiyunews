@@ -1,8 +1,8 @@
-const SITE_ORIGIN = 'https://bmt.news';
+const SITE_ORIGIN = 'https://xiyu.news';
 
 // Admin requests are authenticated before ANY asset or cache lookup.
 // No browser-held GitHub credentials, public write proxy, or configurable file paths.
-const ADMIN_REPO = 'ohxiyu/bmtnews-standalone';
+const ADMIN_REPO = 'ohxiyu/xiyunews';
 const EDITORIAL_FILE = 'data/editorial.json';
 const QUICK_CATEGORIES = new Set(['', 'crypto-markets', 'crypto-exchange', 'crypto-protocol',
   'crypto-security', 'policy-regulation', 'ai-technology', 'macro-policy']);
@@ -67,7 +67,7 @@ export async function verifyAdmin(request, env) {
     throw new AdminError(503, 'admin_not_configured', '后台邮箱登录尚未配置完成，公开新闻仍可正常阅读。');
   }
   if (new URL(request.url).origin !== SITE_ORIGIN) {
-    throw new AdminError(403, 'wrong_origin', '请通过 https://bmt.news/s/ 访问后台。');
+    throw new AdminError(403, 'wrong_origin', '请通过 https://xiyu.news/s/ 访问后台。');
   }
   const token = request.headers.get('Cf-Access-Jwt-Assertion') || '';
   if (!token || token.length > 16384) throw new AdminError(401, 'login_required', '请重新打开 /s/，完成邮箱验证。');
@@ -104,7 +104,7 @@ async function github(env, path, init = {}) {
     ...init, cache: 'no-store', headers: {'Authorization': 'Bearer ' + env.ADMIN_GITHUB_TOKEN,
       'Cache-Control': 'no-cache',
       'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28',
-      'User-Agent': 'BMTNews-Admin', 'Content-Type': 'application/json'}
+      'User-Agent': 'xiyu.news-Admin', 'Content-Type': 'application/json'}
   });
   if (!response.ok) {
     if (response.status === 409 || response.status === 422) {
@@ -342,7 +342,7 @@ export function publicQuickPosts(data, today, dates = []) {
 
 async function handleLiveQuickPosts(request, env) {
   const headers = {'Cache-Control': 'no-store', 'CDN-Cache-Control': 'no-store',
-    'X-Content-Type-Options': 'nosniff', 'X-BMTNews-Cache': 'BYPASS'};
+    'X-Content-Type-Options': 'nosniff', 'X-xiyu.news-Cache': 'BYPASS'};
   if (!['GET', 'HEAD'].includes(request.method)) return new Response(null, {status: 405, headers: {...headers, Allow: 'GET, HEAD'}});
   try {
     const url = new URL(request.url);
@@ -461,16 +461,16 @@ export function renderEditionMarkdown(payload, language) {
   const items = Array.isArray(payload?.items) ? payload.items.slice(0, 15) : [];
   const lines = [
     isEnglish
-      ? '# BMTNews — Daily crypto, AI, and policy intelligence'
-      : '# BMTNews — 加密、AI 与政策每日情报',
+      ? '# xiyu.news — Daily crypto, AI, and policy intelligence'
+      : '# xiyu.news — 加密、AI 与政策每日情报',
     '',
     isEnglish
       ? '> A ranked, bilingual daily briefing with source attribution, background, and market-impact analysis.'
       : '> 每日发布的双语重要资讯排行，提供来源、背景和市场影响分析。',
     '',
     isEnglish
-      ? 'Use BMTNews when an agent needs a concise daily view of material crypto events, selected AI developments, or policy changes that can affect digital-asset markets. It is a research input, not investment advice.'
-      : '当智能体需要快速了解重要加密事件、少量关键 AI 进展，或可能影响数字资产市场的政策变化时，可以使用 BMTNews。内容用于研究参考，不构成投资建议。',
+      ? 'Use xiyu.news when an agent needs a concise daily view of material crypto events, selected AI developments, or policy changes that can affect digital-asset markets. It is a research input, not investment advice.'
+      : '当智能体需要快速了解重要加密事件、少量关键 AI 进展，或可能影响数字资产市场的政策变化时，可以使用 xiyu.news。内容用于研究参考，不构成投资建议。',
     '',
     `## ${isEnglish ? 'Latest edition' : '最新一期'} — ${markdownText(payload?.date) || '—'}`,
     ''
@@ -516,11 +516,11 @@ function markdown404(pathname, method) {
   const body = [
     '# 404 — Resource not found',
     '',
-    `No BMTNews resource exists at \`${pathname}\`.`,
+    `No xiyu.news resource exists at \`${pathname}\`.`,
     '',
-    '- [Sitemap](https://bmt.news/sitemap.xml)',
-    '- [Agent instructions](https://bmt.news/llms.txt)',
-    '- [Developer documentation](https://bmt.news/developers/)',
+    '- [Sitemap](https://xiyu.news/sitemap.xml)',
+    '- [Agent instructions](https://xiyu.news/llms.txt)',
+    '- [Developer documentation](https://xiyu.news/developers/)',
     ''
   ].join('\n');
   return new Response(method === 'HEAD' ? null : body, {
@@ -662,7 +662,7 @@ function cacheKey(request) {
 
 function cachedResponse(response, status, policy) {
   return responseWithHeaders(response, (headers) => {
-    headers.set('X-BMTNews-Cache', status);
+    headers.set('X-xiyu.news-Cache', status);
     if (policy) {
       const suffix = policy.immutable ? ', immutable' : ', must-revalidate';
       headers.set('Cache-Control', `public, max-age=${policy.browserTtl ?? 0}${suffix}`);
@@ -672,6 +672,16 @@ function cachedResponse(response, status, policy) {
 }
 
 export async function handleRequest(request, env, ctx) {
+  const url = new URL(request.url);
+  // Keep the existing site reachable while the new zone/TLS is propagating.
+  // Only an explicit production false pauses redirects; normal behavior is 301.
+  if (env.LEGACY_REDIRECT_ENABLED !== 'false' &&
+      (url.hostname === 'bmt.news' || url.hostname === 'www.bmt.news')) {
+    return new Response(null, {status: 301, headers: {
+      Location: SITE_ORIGIN + url.pathname + url.search,
+      'Cache-Control': 'public, max-age=300'
+    }});
+  }
   if (isAdminPath(new URL(request.url).pathname)) return handleAdmin(request, env);
   const livePath = new URL(request.url).pathname;
   if (livePath === '/api/quick-posts.json' || /^\/assets\/uploads\/quick-[a-f0-9]{64}\.(png|jpg|webp)$/.test(livePath)) {
@@ -713,7 +723,7 @@ export default {
       if (new URL(request.url).pathname.startsWith('/api/')) {
         return jsonError(500, 'internal_error', 'The API could not complete the request.', 'Retry later and consult /developers/ if the error persists.');
       }
-      return new Response('BMTNews could not complete this request.\n', {
+      return new Response('xiyu.news could not complete this request.\n', {
         status: 500,
         headers: {'Content-Type': 'text/plain; charset=utf-8'}
       });

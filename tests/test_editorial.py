@@ -158,7 +158,7 @@ def test_editorial_content_item_carries_full_manual_context() -> None:
 def test_admin_config_uses_branded_action_specific_editor() -> None:
     config = Path("docs/admin/config.yml").read_text(encoding="utf-8")
 
-    assert "app_title: BMTNews 发布台" in config
+    assert "app_title: xiyu.news 发布台" in config
     assert "src: /assets/images/app-icon.svg" in config
     assert "types:" in config
     assert config.count("\n              - name: editorial\n") == 1

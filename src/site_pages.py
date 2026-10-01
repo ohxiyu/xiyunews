@@ -329,7 +329,7 @@ def _event_stamp(value, language: str, *, include_time: bool = False) -> str:
     return value.strftime("%Y.%m.%d" if language == "zh" else "%Y-%m-%d")
 
 
-def event_payload(event: TrackedEvent, *, site_url: str = "https://bmt.news") -> dict:
+def event_payload(event: TrackedEvent, *, site_url: str = "https://xiyu.news") -> dict:
     """Return one stable, bilingual public event document."""
     base = site_url.rstrip("/")
     return {
@@ -396,8 +396,8 @@ def write_event_api(
         "events": [
             {
                 "event_id": event.event_id,
-                "url": f"https://bmt.news/events/{event.event_id}/",
-                "json": f"https://bmt.news/api/events/{event.event_id}.json",
+                "url": f"https://xiyu.news/events/{event.event_id}/",
+                "json": f"https://xiyu.news/api/events/{event.event_id}.json",
                 "status": event.status.value,
                 "type": event.event_type.value,
                 "title": {"zh": event.title_zh, "en": event.title_en},
@@ -1134,7 +1134,7 @@ def render_entity_page(
             )
         else:
             overview_text = (
-                f"BMTNews has tracked {entity.count} related reports since {dates[0]}. "
+                f"xiyu.news has tracked {entity.count} related reports since {dates[0]}. "
                 f'The latest focus is “{latest_title}”. '
                 f"{len(related)} continuing event timelines connect the coverage over time."
             )

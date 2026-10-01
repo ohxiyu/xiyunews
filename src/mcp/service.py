@@ -1,4 +1,4 @@
-"""Application service for staged BMTNews pipeline execution."""
+"""Application service for staged xiyu.news pipeline execution."""
 
 from __future__ import annotations
 
@@ -745,7 +745,7 @@ class BMTNewsPipelineService:
             "all_items": all_items,
             "result": result,
             "timestamp": str(int(datetime.now(timezone.utc).timestamp())),
-            "message_title": f"BMTNews {date} webhook",
+            "message_title": f"xiyu.news {date} webhook",
             "message_kind": "manual",
             "summary": summary,
         }

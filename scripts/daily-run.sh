@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# BMTNews daily run + deploy to GitHub Pages
+# xiyu.news daily run + deploy to GitHub Pages
 # Usage: ./scripts/daily-run.sh
 # Cron:  0 8 * * * /path/to/bmtnews/scripts/daily-run.sh >> /path/to/bmtnews/logs/cron.log 2>&1
 
@@ -11,7 +11,7 @@ LOG_PREFIX="[$(date '+%Y-%m-%d %H:%M:%S')]"
 
 cd "$PROJECT_DIR"
 
-echo "$LOG_PREFIX Starting BMTNews daily run..."
+echo "$LOG_PREFIX Starting xiyu.news daily run..."
 
 # 1. Pull latest code
 git pull --quiet origin main
@@ -19,7 +19,7 @@ git pull --quiet origin main
 # 2. Install/update dependencies
 uv sync --quiet
 
-# 3. Run BMTNews
+# 3. Run xiyu.news
 uv run bmtnews --hours 24
 
 # 4. Deploy docs to gh-pages

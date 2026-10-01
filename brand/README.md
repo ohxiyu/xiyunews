@@ -1,4 +1,4 @@
-# BMTNews brand source — v3 / 2026-10-01
+# xiyu.news brand source — v3 / 2026-10-01
 
 Approved direction: Rare Messenger / 稀有信使. Detached round head, rounded body,
 one negative-space news slot and off-center yellow observation ring, without

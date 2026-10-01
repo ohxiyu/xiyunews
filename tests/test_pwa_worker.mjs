@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
 
 const source = (await readFile(new URL('../docs/service-worker.js', import.meta.url), 'utf8')).replace(/^---\n[\s\S]*?\n---\n/, '').replace('{{ site.time | date_to_xmlschema }}', 'test-build');
-const origin = 'https://bmt.news';
+const origin = 'https://xiyu.news';
 const page = (assets = 'sha256-one', css = true) => `<html><head><meta name="bmt-assets" content="${assets}">${css ? `<link href="/assets/css/pwa-reader.css?v=${assets}" rel="stylesheet">` : ''}</head><body>Full story</body></html>`;
 const html = body => new Response(body, {headers: {'Content-Type': 'text/html'}});
 function harness() {

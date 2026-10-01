@@ -45,20 +45,20 @@ def test_story_post_prefers_market_impact_and_fits() -> None:
         impact="影响集中在托管与合规成本。第二句不应出现。",
     )
     text = build_story_post(
-        item, language="zh", site_url="https://bmt.news/", link_target="site"
+        item, language="zh", site_url="https://xiyu.news/", link_target="site"
     )
     assert "Bybit" in text and "Lazarus Group" in text
     assert "影响集中在托管与合规成本。" in text
     assert "第二句不应出现" not in text
     assert text.split("\n\n", 1)[0].startswith("8月9日，新加坡")
-    assert text.rstrip().endswith("https://bmt.news/")
+    assert text.splitlines()[-1] == "https://xiyu.news/"
     assert _weighted_length(text) <= TWEET_LIMIT
 
 
 def test_story_post_falls_back_to_summary_and_source_link() -> None:
     item = make_item("标题", summary="只有摘要可用。")
     text = build_story_post(
-        item, language="zh", site_url="https://bmt.news/", link_target="source"
+        item, language="zh", site_url="https://xiyu.news/", link_target="source"
     )
     assert "只有摘要可用。" in text
     assert text.rstrip().endswith("https://example.com/story")
@@ -67,14 +67,14 @@ def test_story_post_falls_back_to_summary_and_source_link() -> None:
 def test_story_post_truncates_a_very_long_headline() -> None:
     item = make_item("超长标题" * 60)
     text = build_story_post(
-        item, language="zh", site_url="https://bmt.news/", limit=TWEET_LIMIT
+        item, language="zh", site_url="https://xiyu.news/", limit=TWEET_LIMIT
     )
     assert _weighted_length(text) <= TWEET_LIMIT
     # Truncation must respect CJK double-weighting, not slice by character.
     text_with_link = build_story_post(
         item,
         language="zh",
-        site_url="https://bmt.news/",
+        site_url="https://xiyu.news/",
         link_target="site",
         limit=TWEET_LIMIT,
     )
@@ -89,7 +89,7 @@ def test_story_post_does_not_break_on_abbreviations() -> None:
             "第二句不应出现。"
         ),
     )
-    text = build_story_post(item, language="zh", site_url="https://bmt.news/")
+    text = build_story_post(item, language="zh", site_url="https://xiyu.news/")
     assert "（H.R. 3633）表态支持。" in text
     assert "第二句不应出现" not in text
 
@@ -107,7 +107,7 @@ def test_story_post_handles_english_sentences() -> None:
             "detailed_summary_en": "The U.S. Senate set a date. A second sentence.",
         },
     )
-    text = build_story_post(item, language="en", site_url="https://bmt.news/")
+    text = build_story_post(item, language="en", site_url="https://xiyu.news/")
     assert "The U.S. Senate set a date." in text
     assert "A second sentence" not in text
 
@@ -244,7 +244,7 @@ def test_template_post_omits_the_link_by_default() -> None:
     from src.services.x_delivery import build_story_post
 
     item = make_item("标题", summary="一句摘要内容。")
-    text = build_story_post(item, language="zh", site_url="https://bmt.news/")
+    text = build_story_post(item, language="zh", site_url="https://xiyu.news/")
     assert "http" not in text
     assert "标题" in text and "一句摘要内容。" in text
 
@@ -293,7 +293,7 @@ def test_template_post_never_cuts_inside_a_number() -> None:
         ),
         impact="约4642枚比特币流出单一平台，会收紧该平台上 BTC 的现货流动性。",
     )
-    text = build_story_post(item, language="zh", site_url="https://bmt.news/")
+    text = build_story_post(item, language="zh", site_url="https://xiyu.news/")
     lede = text.split("\n\n", 1)[0]
     assert "4098.…" not in text
     assert lede.endswith("…")

@@ -1,10 +1,10 @@
-name: BMTNews Binance Square Distribution
+name: xiyu.news Binance Square Distribution
 
 on:
   # Existing production flows provide an independent trigger if this cron is dropped.
   workflow_run:
-    # Not 'BMTNews X Distribution': X is triggered by this workflow's completion.
-    workflows: ['BMTNews Daily Edition', 'BMTNews Feed Collection', 'Deploy Docs']
+    # Not 'xiyu.news X Distribution': X is triggered by this workflow's completion.
+    workflows: ['xiyu.news Daily Edition', 'xiyu.news Feed Collection', 'Deploy Docs']
     types: [completed]
     branches: [main]
   schedule:
@@ -74,7 +74,7 @@ jobs:
           set -euo pipefail
           args=(--queue "$RUNNER_TEMP/square-state/queue.json" --date "$EDITION_DATE")
           if { [ "$EVENT_NAME" = workflow_dispatch ] && [ "$QUEUE_ONLY" != true ]; } ||
-             { [ "$EVENT_NAME" = workflow_run ] && [ "$UPSTREAM_NAME" != 'BMTNews X Distribution' ]; }; then
+             { [ "$EVENT_NAME" = workflow_run ] && [ "$UPSTREAM_NAME" != 'xiyu.news X Distribution' ]; }; then
             args+=(--force-sync)
           fi
           python -m src.square_plan "${args[@]}" | tee -a "$GITHUB_OUTPUT" "$GITHUB_STEP_SUMMARY"

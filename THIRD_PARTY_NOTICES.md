@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-BMTNews includes software made available under the MIT License by the following
+xiyu.news includes software made available under the MIT License by the following
 copyright holder:
 
 ```text

@@ -444,11 +444,11 @@ function drawHeader(context) {
   }
   setFont(context, 16, 750, false, 0.6);
   context.fillStyle = COLORS.text;
-  context.fillText('BMTNews', METRICS.left + markWidth, 17);
-  const brandWidth = context.measureText('BMTNews').width;
+  context.fillText('xiyu.news', METRICS.left + markWidth, 17);
+  const brandWidth = context.measureText('xiyu.news').width;
   setFont(context, METRICS.small, 450, true, 0.7);
   context.fillStyle = COLORS.muted;
-  context.fillText('bmt.news', METRICS.left + markWidth + brandWidth + 12, 20);
+  context.fillText('xiyu.news', METRICS.left + markWidth + brandWidth + 12, 20);
 
   context.fillStyle = COLORS.border;
   context.fillRect(0, METRICS.headerHeight - 1, CARD_CSS_WIDTH, 1);
