@@ -9,8 +9,8 @@
   "issue": "https://github.com/ohxiyu/xiyunews/issues/193",
   "owner": "Codex / 迁移唯一编辑及部署整合负责人",
   "branch": "agent/legacy-resource-cleanup",
-  "last_verified_commit": "2858290a6db7ec5f6eb38dc5fd30689bbfa90b14",
-  "pr": "本次清理文档PR待建立；不包含阶段3完整历史或服务器部署",
+  "last_verified_commit": "ea2b43a9987dab1b61912e3e227548cfb798540c",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/194；远端检查中，不包含阶段3完整历史或服务器部署",
   "completed": [
     "阶段 1 PR169 与阶段 2 PR171 顺序全绿合并，主站与调度器已上线；PR174/176/178 后续修复也已合并",
     "ohxiyu/xiyunews 与 ohxiyu/fomobtc 均 private=true、archived=false，协作者仅 ohxiyu；私有 Git 集成 Pages 构建成功",

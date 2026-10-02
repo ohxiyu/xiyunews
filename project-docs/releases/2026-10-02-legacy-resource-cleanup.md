@@ -1,6 +1,7 @@
 # 旧品牌资源清理与运行依赖核验
 
 Issue: https://github.com/ohxiyu/xiyunews/issues/193
+PR: https://github.com/ohxiyu/xiyunews/pull/194
 
 运营者授权清理确实无用的旧 FomoBTC/BMTNews 资源，并报告 Telegram Bot 已换、仍用原频道且频道已改名。本次删除的是停用的 Pages 项目 `horizon-ohxiyu`，不是承载新站的 `bmtnews`；后者、日报调度器、实时看门狗、旧实时仓和 API 域名均有实际依赖，继续保留。详见 [资源清单](../legacy-resources.md)。
 
