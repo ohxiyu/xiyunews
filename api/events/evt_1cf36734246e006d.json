@@ -11,15 +11,15 @@
     "en": "NEAR Intents exploited for over $3.8M and halts services"
   },
   "current_state": {
-    "zh": "NEAR Intents 攻击事件中，平台称已识别攻击者身份并给出 48 小时归还资金最后通牒；此前确认损失超 380 万美元、因 Omni 充提与合约交互缺陷暂停服务、承诺全额赔付，攻击者地址被指与朝鲜 Lazarus Group 标记地址交互。",
-    "en": "In the NEAR Intents exploit, the protocol says it has identified the attacker and issued a 48-hour ultimatum to return funds; previously confirmed: over $3.8M loss from a flaw in Omni deposit/withdrawal and smart contract interaction, services paused, full compensation pledged, and the attacker's address linked to a wallet flagged as North Korea's Lazarus Group."
+    "zh": "NEAR Intents 攻击事件中，攻击者已通过链上转账留言表示愿意合作并请求 Signal 联系方式，项目方已确认收到并回复感谢合作；此前项目方已识别攻击者身份并发出 48 小时归还资金最后通牒，目前资金尚未全额归还，事件仍在处理中。",
+    "en": "In the NEAR Intents exploit, the attacker has sent on-chain messages offering cooperation and requesting a Signal contact, and the project has acknowledged and thanked them; previously the project identified the attacker and issued a 48-hour ultimatum to return funds; full funds have not yet been returned and the situation is ongoing."
   },
   "first_seen_at": "2026-10-01T15:11:04.403203+00:00",
-  "last_updated_at": "2026-10-02T02:32:07.621471+00:00",
-  "last_material_change_at": "2026-10-02T02:32:07.621471+00:00",
+  "last_updated_at": "2026-10-02T14:41:08.884239+00:00",
+  "last_material_change_at": "2026-10-02T14:41:08.884239+00:00",
   "confidence": 0.75,
-  "updates_count": 5,
-  "sources_count": 12,
+  "updates_count": 6,
+  "sources_count": 13,
   "entities": [
     "alert",
     "bsc",
@@ -44,6 +44,7 @@
     "cross-chain",
     "crypto-protocols",
     "fund-laundering",
+    "fund-recovery",
     "hack",
     "hacks",
     "hot-wallet-compromise",
@@ -51,6 +52,7 @@
     "money-laundering",
     "near",
     "near-intents",
+    "on-chain-message",
     "price-reaction",
     "responsible-disclosure",
     "security-exploit",
@@ -303,6 +305,44 @@
         },
         {
           "url": "https://foresightnews.pro/news/h5Detail/114422",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_e51a1fbd172a60d0",
+      "event_id": "evt_1cf36734246e006d",
+      "occurred_at": "2026-10-02T14:04:24Z",
+      "published_at": "2026-10-02T14:04:24Z",
+      "first_seen_at": "2026-10-02T14:41:08.884239Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "【NEAR Intents 黑客链上转账留言称愿意合作，项目方此前要求其 48 小时内归还资金】",
+      "title_en": "【NEAR Intents 黑客链上转账留言称愿意合作，项目方此前要求其 48 小时内归还资金】",
+      "what_changed_zh": "NEAR Intents 漏洞利用者向恢复钱包转入 1 BNB 和 0.295 ETH，并留言表示愿意合作、请求提供 Signal 联系方式，项目方回复感谢合作。",
+      "what_changed_en": "The NEAR Intents exploiter transferred 1 BNB and 0.295 ETH to the recovery wallet with messages offering cooperation and requesting a Signal contact; the project replied thanking them for cooperating.",
+      "current_state_zh": "NEAR Intents 攻击事件中，攻击者已通过链上转账留言表示愿意合作并请求 Signal 联系方式，项目方已确认收到并回复感谢合作；此前项目方已识别攻击者身份并发出 48 小时归还资金最后通牒，目前资金尚未全额归还，事件仍在处理中。",
+      "current_state_en": "In the NEAR Intents exploit, the attacker has sent on-chain messages offering cooperation and requesting a Signal contact, and the project has acknowledged and thanked them; previously the project identified the attacker and issued a 48-hour ultimatum to return funds; full funds have not yet been returned and the situation is ongoing.",
+      "detailed_summary_zh": "The NEAR Intents exploiter, who drained about $3.8M in user funds on October 1, sent on-chain transfers of 1 BNB and 0.295 ETH with messages offering to cooperate and asking for a Signal contact, prompting the project's acknowledgment a day after it identified the attacker and set a 48-hour return deadline.",
+      "detailed_summary_en": "The NEAR Intents exploiter, who drained about $3.8M in user funds on October 1, sent on-chain transfers of 1 BNB and 0.295 ETH with messages offering to cooperate and asking for a Signal contact, prompting the project's acknowledgment a day after it identified the attacker and set a 48-hour return deadline.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "telegram:foresightnews:119643"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/114474",
           "label": "foresightnews",
           "source_type": "telegram",
           "official": false
