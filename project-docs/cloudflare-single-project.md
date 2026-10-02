@@ -8,7 +8,7 @@
 
 `cloudflare-unified.yml` 在出版工作流成功后串行读取最新 `gh-pages` 固定 SHA，Jekyll 渲染、校验资产后部署；不依靠 GITHUB_TOKEN 推送触发另一 push 工作流，不采集、不用 AI、不写状态分支。只有 `XIYUNEWS_EDGE_ENABLED=true` 才可部署，目前变量和自动部署凭据均未配置。新增 CI 真实构建出版快照并 dry-run，不以占位文件证明上线。
 
-此配置只作过渡：自动部署启用前，最终切换 PR 必须把 DO 改为迁入的本地绑定，并填写正式 Cron，否则后续发布会恢复过渡配置、移除 Cron。`schedule-watchdog.yml` 的旧 `DISPATCHER_BASE` 同时须改为 `https://xiyu.news`。免 AI 的部署恢复已支持固定新工作流，不再使用旧 Pages hook。
+此配置只作过渡：自动部署启用前，最终切换 PR 必须把 DO 改为迁入的本地绑定，并填写正式 Cron，否则后续发布会恢复过渡配置、移除 Cron。`src/schedule_watchdog.py` 的 `check_coordinator` 固定旧端点同时须改为 `https://xiyu.news/publication/check`，相关回归同步更新。免 AI 的部署恢复已支持固定新工作流，不再使用旧 Pages hook。
 
 ## 安全配置缺口
 

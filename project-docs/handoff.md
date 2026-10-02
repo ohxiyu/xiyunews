@@ -10,7 +10,7 @@
   "owner": "迁移唯一编辑及发布整合负责人",
   "branch": "agent/xiyunews-cloudflare",
   "last_verified_commit": "d6a9d3f29ef93c138842342c973b3049fb7bc252",
-  "pr": "本任务PR待建立；前序PR195已合并",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/197（Draft；前序PR195已合并）",
   "completed": [
     "PR195以merge commit合并，旧实时main7807126d8c7cdb51e18f0b91ba27f500271f9f08是origin/main祖先，远端realtime目录存在",
     "阶段3主站943项、实时Python3.11/3.12各61项、治理和看门狗3项通过；远端全部可用CI与Pages预览通过，CodeQL因私有套餐跳过",
@@ -29,7 +29,7 @@
   ],
   "validation": [
     "新入口与原dispatcher共94项边缘测试通过、tsc通过，看门狗3项Node通过",
-    "根完整Python测试通过，新增资产校验8项单独通过；最终计数及远端记录随PR补齐",
+    "根完整951项Python测试、原后台及公开路由51项Node通过，新增资产8项单独通过；实时3.11的61项/ruff/mypy/compileall/契约通过",
     "新域最新2026-10-02共14条；实时health仍是2.6.0/b226b625cf3875b6693e0768d75d88d50b33c08d，Telegram启用，三个spot分片live",
     "只读取GitHub和Worker Secrets名称；未复制加密值、未新增Token、未改密钥或发真实测试消息"
   ],

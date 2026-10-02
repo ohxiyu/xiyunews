@@ -13,7 +13,7 @@ Rollback: 本任务无生产切换；保留现役服务，不擅自恢复第二C
 
 按本轮操作时确认删除旧DNS区与三个旧Pages绑定；Safari列表没有bmt.news，仍有xiyu.news及fomobtc.com，生产Pages域绑定只剩xiyu.news。新域latest为2026-10-02、14条；实时仍是旧2.6.0/b226b625cf3875b6693e0768d75d88d50b33c08d、三现货分片live。未删除注册，旧设置不会自动恢复；本机三记录快照不是完整DNS备份。
 
-统一Worker基础默认不开Cron，复用原鉴权/公开路由/dispatcher/watchdog，原DO及KV不重置；准备固定出版SHA构建与默认关闭自动部署，恢复仅重建产物不用AI。94项边缘测试/tsc、看门狗3项、根完整pytest及新增资产8项通过，真实Jekyll/dry-run、治理和双版本实时最终CI需补齐。
+统一Worker基础默认不开Cron，复用原鉴权/公开路由/dispatcher/watchdog，原DO及KV不重置；准备固定出版SHA构建与默认关闭自动部署，恢复仅重建产物不用AI。94项边缘测试/tsc、看门狗3项、主站951项、原后台和路由51项、资产8项通过；实时3.11初次共享文档夹具缺两条链接导致60通过1失败，复制完整共享文档后61项/ruff/mypy/compileall/契约通过，未绕过检查。治理精确base/head通过；真实Jekyll/dry-run与双版本远端CI以[PR197](https://github.com/ohxiyu/xiyunews/pull/197)为准。
 
 ## 未完成
 
