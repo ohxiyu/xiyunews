@@ -30,3 +30,15 @@
 运营者报告已/start；新Bot API核验到切换后的一条私聊/start，消息时间21:05:15（Asia/Shanghai），该私聊getChat可读取。不输出私聊ID、用户资料、其他消息或Token，没有发送测试消息或通过offset确认/清除更新；不再要求重复/start。未直接比对Cloudflare加密ALERT_CHAT_ID，私聊初始化不证明现役看门狗实际告警已经送达。
 
 新看门狗计划21:15:23的第二轮自然Cron实际事件21:15:37.068，outcome=ok、日志watchdog: ok、exceptions为空；与21:10一轮一起，连续两次新版本检查通过。21:24服务仍MainPID235825/NRestarts0，原群administrator和话题3/5/7保留，仍没有切换后新自然事件。358807bc的CI37011428036及Pages预览全部可用检查通过，CodeQL跳过；本次补充仅为运维证据，不更换配置或部署应用。
+
+## 后续三类自然回执验收
+
+只读读取原 SQLite 在切换时间 1790946185 之后的事件，取得 11 条 `sent` 和 6 条按原规则 `archived`，没有失败/未知状态。以下是三类自然消息的最新成功回执，不是人为制造事件或测试发送。
+
+| 类别 | 来源与事件 | Telegram message_id | 发送时间（Unix） |
+| --- | --- | --- | --- |
+| 行情 | Binance 现货 MOVRUSDT | 1251 | 1790953172.0610588 |
+| 公告 | Bitget 公告 | 1250 | 1790952962.8294048 |
+| 资金流向 | Binance USDC 流入 | 1249 | 1790952812.5198238 |
+
+服务仍 active、MainPID235825/NRestarts0，getMe 为 @xiyunewsbot、原群 administrator，原话题 3/5/7 与其他配置未改。自然 Telegram API 回执已经确认，因此不再把“无新自然 message_id”列为阻塞；这不等于运营者手机收件或看门狗私聊实际告警已验证。群实际名称仍为 `xiyuNews`，精确统一为 `xiyu.news` 的资料更改尚未执行。

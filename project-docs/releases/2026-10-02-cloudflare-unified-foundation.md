@@ -54,3 +54,11 @@ Rollback: 边缘无生产切换，不擅自恢复第二Cron；实时上一版rel
 新看门狗版本计划21:10:23的自然Cron实际于21:10:32.765执行，outcome=ok、日志watchdog: ok、exceptions为空。21:11只读回读服务和原群管理员身份一致、备份0700/0600及SQLite integrity_check=ok，仍无切换后新自然事件。根完整Python回归和治理、实时61项及实时契约通过；发布文档的最终检查以PR197新head为准，不提前合并或启用统一Cron。
 
 21:24运营者确认已/start，API核验新Bot收到切换后私聊/start且该私聊可读取，不再把/start列为待用户操作；未比对加密ALERT_CHAT_ID，真实告警和手机送达仍未验证。新看门狗第二轮计划21:15:23、实际21:15:37.068也ok，服务/原群/话题仍保持，切换后仍无新自然事件。358807bc的CI37011428036与Pages预览全部可用检查通过，CodeQL跳过；详情见新Bot记录，本次不改生产配置。
+
+## 基础收尾与三类自然消息回读
+
+运营者进一步要求完成 Cloudflare 合并及剩余改造。核验 32a838fb2cd99c5ea72bf55f7aec4ccb1a06dbcd 的 [CI37012988502](https://github.com/ohxiyu/xiyunews/actions/runs/37012988502)：真实 edge-build、治理、主站、实时 3.11/3.12、路径检查全部成功，Pages 预览也通过；CodeQL 跳过，不写成成功。main 仍为 PR195 的 d6a9d3f，分支同步无冲突。
+
+实时新 Bot 切换后取得 11 条自然发送成功回执，最新行情 1251、公告 1250、资金流向 1249；6 条 archived 是原规则结果，不是发送失败。服务 active、MainPID235825/NRestarts0、原话题和配置保留，详细时间见 [自然回执](../../realtime/docs/releases/deploy-20261002-xiyunews-bot.md)。纠正现行交接中的无自然消息、旧 Bot 普通成员等过时阻塞；历史时点的记录保持原样。手机收件、看门狗实际私聊告警和群精确名称仍未独立验收。
+
+本 PR 的范围是默认关闭的迁移基础，代码与可用 CI 已完成；生产接管另建串行任务，不将缺少运行凭据的生产切换假装已完成。当前 GitHub 只有 github-pages 环境，没有 xiyunews-production 环境或 Cloudflare 自动发布 Secrets；本机 OAuth 不能替代 Actions 凭据，旧加密值不能导出。暂停预览部署单独请求确认，主域、旧 Cron、DO/KV 与现役服务尚未修改或删除。

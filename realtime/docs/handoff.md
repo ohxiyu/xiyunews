@@ -5,12 +5,12 @@
 任务 Issue / 负责人：https://github.com/ohxiyu/xiyunews/issues/196；本轮唯一迁移整合负责人，根交接是唯一执行指针。
 工作分支 / 最后提交 / PR：agent/xiyunews-cloudflare，基线d6a9d3f29ef93c138842342c973b3049fb7bc252；前序PR195已merge commit，旧main7807126d8c7cdb51e18f0b91ba27f500271f9f08是origin/main祖先，不再等待历史上传。
 已经完成：原项目完整历史以 git subtree add 导入；根 CI 为 realtime 增加路径门控及 3.11/3.12 独立矩阵；治理兼容子目录；新部署从主仓完整 SHA 的 realtime 前缀打包。历史证据保留，提醒阈值、地址簿、信源、队列与目的地没有更改。
-尚未完成：阶段4的新Bot自然Telegram送达与Cloudflare切换；专用SSH已恢复，服务器已切换到新仓合并d6a9d3f完整SHA。PR197的a54665c5全部可用检查已通过但保持Draft，边缘未切换。21:03明确授权换为@xiyunewsbot，原群和话题3/5/7、看门狗私聊目的地及KV保留；Worker新运维正文品牌代码仍未部署，旧仓退役等待实际业务验收。
-已运行的验证及结果：21:06公网health为2.6.0/d6a9d3f29ef93c138842342c973b3049fb7bc252，三spot分片live，MainPID235825/NRestarts0，21:03:05启动。进程Token与服务器配置一致、getMe为xiyunewsbot、原forum群成员身份为administrator；排除Token后所有配置与切换备份相同，没有改变阈值或目的地。截至该时点没有切换后新自然事件。历史旧Bot失败仍保留，不重放或伪造新回执；检查证据见新Bot发布记录。
-尚未验证的内容：@xiyunewsbot新的自然message_id与手机收件、看门狗实际告警送达。运营者报告已/start，21:24核验新Bot收到切换后的私聊/start且私聊可读取，不再要求重复；未把私聊ID与加密ALERT_CHAT_ID直接比对，也未发送测试告警。新仓SHA、进程、备份与管理员身份已验证，新看门狗21:10:23/21:15:23两轮自然Cron均ok，但Telegram启用、管理员身份和/start都不能代替送达。
+尚未完成：Cloudflare 单项目生产切换与群精确名称统一；服务器已切换到新仓合并 d6a9d3f 完整 SHA，@xiyunewsbot 已取得三类自然发送回执。PR197 的 32a838fb 全部可用检查通过，当前收尾迁移基础，随后另建串行切换任务；边缘未切换。原群和话题 3/5/7、看门狗私聊目的地及 KV 保留，Worker 新品牌正文代码仍未部署。
+已运行的验证及结果：公网 health 为 2.6.0/d6a9d3f29ef93c138842342c973b3049fb7bc252，三 spot 分片 live，MainPID235825/NRestarts0、21:03:05 启动。进程 Token 与配置一致、getMe 为 xiyunewsbot、原群 administrator，排除 Token 后全部配置与备份相同；后续切换时间后的原 SQLite 共 11 条 sent、6 条 archived，无失败状态，最新自然行情 1251、公告 1250、资金流向 1249。历史旧 Bot 失败保留，不重放，证据见新 Bot 发布记录。
+尚未验证的内容：手机收件、看门狗实际私聊告警，以及新 Cloudflare 项目的生产接管。新 Bot 自然 message_id 已核验，21:24 也核验收到切换后的私聊 /start 且私聊可读取，不重复要求；未与加密 ALERT_CHAT_ID 直接比对，也没有发送测试告警。现役看门狗 21:10:23/21:15:23 两轮自然 Cron 均 ok，但无告警不能代替实际私聊送达。
 线上版本 / 对应源码提交：后端2.6.0 = 新仓d6a9d3f29ef93c138842342c973b3049fb7bc252，源码未再发布；上一release和数据库备份保留，回滚须单独授权。看门狗21:03:11.654的Secret Change版本a5330597-ee57-4a61-91f0-9a34cb431676全量生效，只改TELEGRAM_BOT_TOKEN，未部署新业务代码或统一Worker。
-阻塞与所需权限：本次新Bot凭据切换已获明确确认并通过隐藏输入完成，不再要求给旧Bot恢复管理员。新Bot自然交付与私聊仍待实际证据；Cloudflare统一项目安全注入与自动部署配置尚缺，现役服务和旧release保留。本次Token授权不扩大为新Cloudflare访问凭据、群权限变更或旧资源删除。
-下一步具体动作：观察@xiyunewsbot在原话题的新自然回执，记录message_id，分别确认手机收件；/start已经完成，不再重复要求。不重发失败/未知消息，不重跑话题创建或私聊配置脚本、不人为触发告警。Cloudflare统一安全配置就绪后再串行切换，全部验收后退役旧资源，旧backlog不授权执行。
+阻塞与所需权限：Cloudflare 统一项目运行 Secret 安全注入与自动部署配置尚缺，现役服务和旧 release 保留。新 Bot 管理员、三类自然消息和 /start 已有证据，不再列为待操作。本次 Token 授权不扩大为新 Cloudflare 持久访问、群权限变更或提前删除旧资源。
+下一步具体动作：基础 PR197 全绿后合并，再从新 main 建立串行切换任务，先部署暂停预览。安全配置和验收完成后再接管域名、迁移 DO 和启用 Cron；不双 Cron，不重放失败/未知消息、不重建话题、不人为触发告警。分别保留 API 回执、手机收件与看门狗私聊验收边界。
 
 ## 系统现状
 
@@ -18,7 +18,7 @@
 | --- | --- |
 | 东京服务器 fomobtc-tokyo（47.79.36.171） | systemd `fomobtc`：全部采集、去重、推送；nginx：`api.fomobtc.com` 只读接口，`fomobtc.com`/`www` 302 到群组；certbot 定时续期两张证书 |
 | Cloudflare（账号 Drminutes） | DNS：A `@`、`www`、`api` → 47.79.36.171，全部 DNS only；看门狗 Worker `fomobtc-watchdog`（每 5 分钟，KV `STATE`） |
-| 私有 `ohxiyu/xiyunews/realtime/` | 原历史和独立测试已通过PR195进入远端main；服务器新仓SHA和新Bot已核验，自然送达待验证，旧仓暂留恢复 |
+| 私有 `ohxiyu/xiyunews/realtime/` | 原历史及独立测试通过 PR195 进入 main；服务器新仓 SHA、新 Bot 管理员和三类自然回执已核验，Cloudflare 接管和旧仓退役尚未完成 |
 
 Telegram 原群保留（话题开启、成员只读；2026-10-02 getChat实际名称为 `xiyuNews`），机器人为管理员 `@xiyunewsbot`，不合并到日报频道：
 - 📈 行情异动（话题 3）：币安 USDT 现货最近 3 分钟涨跌超过 2%/3%/5%（按 24h 成交额）并持续 3 秒；同币同向 1 小时一次，再涨跌 10% 立即再提醒，附 24 小时新高/新低。单条为 1 分钟 K 线图 + 中英双语 + 市值，同一秒到期多条合并为文字。
