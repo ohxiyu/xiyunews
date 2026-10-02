@@ -51,3 +51,5 @@
 - [2026-10-02 专用 SSH 连接恢复验证（非应用部署）](ssh-access-20261002.md)
 
 - [2026-10-02 新仓实时部署（Telegram 业务验收未通过）](deploy-20261002-xiyunews-repository.md)
+
+- [2026-10-02 新 Bot 切换（保留原群和三个话题；自然回执待验收）](deploy-20261002-xiyunews-bot.md)

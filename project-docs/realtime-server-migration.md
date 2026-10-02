@@ -1,6 +1,6 @@
 # 新仓实时服务迁移操作清单
 
-服务器版本已于2026-10-02 20:01:45（Asia/Shanghai）切换到新仓PR195合并SHA d6a9d3f29ef93c138842342c973b3049fb7bc252，三現货分片live，备份与配置保留验证通过。但原只读群中的Bot为普通成员，首条自然消息被Telegram拒绝，业务验收未通过，旧资源仍保留；见 [实际部署记录](../realtime/docs/releases/deploy-20261002-xiyunews-repository.md)。旧实时 main 是新仓 origin/main 的祖先，私钥和验证码不发送到聊天、仓库或服务器。下面是复用的操作清单，不代表其每个验收条件已经完成。
+服务器版本已于2026-10-02 20:01:45（Asia/Shanghai）切换到新仓PR195合并SHA d6a9d3f29ef93c138842342c973b3049fb7bc252，三个现货分片live，备份与配置保留验证通过。旧Bot在只读群中为普通成员，当时自然消息被拒绝；21:03又按运营者明确授权换为原群管理员@xiyunewsbot，原群与话题3/5/7保持，新Bot自然回执仍待验证，旧资源继续保留。版本迁移见 [原部署记录](../realtime/docs/releases/deploy-20261002-xiyunews-repository.md)，后续凭据切换见 [新Bot记录](../realtime/docs/releases/deploy-20261002-xiyunews-bot.md)。旧实时 main 是新仓 origin/main 的祖先，私钥和验证码不发送到聊天、仓库或服务器。下面是复用的操作清单，不代表其每个验收条件已经完成。
 
 ## 已恢复的专用连接（2026-10-02）
 

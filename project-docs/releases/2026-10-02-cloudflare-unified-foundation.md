@@ -2,7 +2,7 @@
 
 Task: https://github.com/ohxiyu/xiyunews/issues/196
 Source commit: 基线d6a9d3f29ef93c138842342c973b3049fb7bc252；最终head见本任务PR。
-Worker version: not changed；既有调度器9774435b-1c72-4dad-9552-0440e2ab574f，统一Worker未部署。
+Worker version: 统一Worker未部署、调度器9774435b-1c72-4dad-9552-0440e2ab574f未改；现役看门狗新Bot Secret Change版本a5330597-ee57-4a61-91f0-9a34cb431676于21:03:11.654生效，业务代码未再部署。
 Deployment: 统一边缘Worker未部署；实时服务器2026-10-02 20:01:45已切换到新仓PR195合并SHA，自然Telegram送达验收未通过，详情见本记录末尾。
 Verification: 2026-10-02，旧历史祖先、区域/绑定面板、普通latest与实时health回读、离线回归；02600b04真实Jekyll/资产校验/统一Worker dry-run及全部可用远端CI通过，见36969119354；19:55专用SSH严格身份登录及未重启服务验证成功。连接交接追加提交的检查以PR197当前head为准。
 Rollback: 边缘无生产切换，不擅自恢复第二Cron；实时上一版release与备份保留，服务器回滚另需授权，不覆盖数据库。
@@ -44,3 +44,11 @@ Rollback: 边缘无生产切换，不擅自恢复第二Cron；实时上一版rel
 共享治理测试夹具原先只复制两个实时入口文件，新连接记录的跨模块链接导致第一次完整测试952通过1失败；补齐复制realtime/docs后953项通过，没有弱化链接检查。实时61项、ruff/mypy、两套治理与看门狗3项复测通过。本次连接/部署文档最终CI仍以PR197当前head为准。
 
 现役看门狗20:10:23和20:15:23两轮自然Cron均outcome=ok、日志watchdog: ok，KV无告警。其规则不检查Bot群权限，因此“无告警”不能代替Telegram自然回执；该观察不解除业务验收阻塞。20:15最终公网回读新仓SHA正确且三个spot分片live。[CI37005429902](https://github.com/ohxiyu/xiyunews/actions/runs/37005429902)对应8dad631fd69f406172eb4e16acd49916729cd781，全部可用检查和Pages预览成功，CodeQL跳过；追加本段冻结记录后检查以PR当前head为准。
+
+## 后续授权：新 Bot 保留原话题
+
+运营者明确指定@xiyunewsbot，确认已是管理员并保留原话题，通过本机隐藏输入提供Token。21:03:05备份环境与SQLite后仅更新实时Token并重启原systemd，21:03:11.654同步更新现役看门狗Token；不改群、话题3/5/7、ALERT_CHAT_ID、Cron、KV、信源或提醒规则。21:06只读回读新Bot身份、原群administrator、进程与配置Token一致，排除Token后所有配置与备份相同；MainPID235825/NRestarts0，三个spot分片live。管理员问题不再列为未解决，但截至该时点无切换后新自然触发回执，手机收件及新Bot看门狗私聊未验证，不能提前删除旧恢复资源。详见 [新Bot切换证据](../../realtime/docs/releases/deploy-20261002-xiyunews-bot.md)。
+
+前序a54665c5的[CI37005750396](https://github.com/ohxiyu/xiyunews/actions/runs/37005750396)与Pages预览均通过，CodeQL跳过；本次仅更新真实运维交接和验证记录，统一Worker仍未部署，PR197保留Draft。
+
+新看门狗版本计划21:10:23的自然Cron实际于21:10:32.765执行，outcome=ok、日志watchdog: ok、exceptions为空。21:11只读回读服务和原群管理员身份一致、备份0700/0600及SQLite integrity_check=ok，仍无切换后新自然事件。根完整Python回归和治理、实时61项及实时契约通过；发布文档的最终检查以PR197新head为准，不提前合并或启用统一Cron。

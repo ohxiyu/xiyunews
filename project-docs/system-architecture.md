@@ -1,6 +1,6 @@
 # 稀有News 系统架构
 
-本文件描述当前实际架构，不把已写代码、已合并、已部署和已验收混为一谈。项目统一名为 xiyunews，主仓为私有 ohxiyu/xiyunews，网站为 https://xiyu.news；PR195 已保留完整历史并入 realtime/，旧 main 已核验为新 main 祖先。实时服务器2026-10-02已切换到新仓合并d6a9d3f完整SHA，三个现货分片live，但Bot在只读群中仅为普通成员，自然推送被拒绝，业务验收尚未通过。当前 Cloudflare 还是三个现役项目，单项目入口仅在开发；最终待办见 [当前交接](handoff.md)，切换步骤见 [单项目清单](cloudflare-single-project.md)。
+本文件描述当前实际架构，不把已写代码、已合并、已部署和已验收混为一谈。项目统一名为 xiyunews，主仓为私有 ohxiyu/xiyunews，网站为 https://xiyu.news；PR195 已保留完整历史并入 realtime/，旧 main 已核验为新 main 祖先。实时服务器已切换到新仓合并 d6a9d3f 完整 SHA；2026-10-02 21:03 又按明确授权换为 @xiyunewsbot，原群管理员身份和话题保留已核验，三个现货分片 live，新 Bot 自然送达仍待回执。现役看门狗同步更新了机器人密钥，但不改变原私聊目标、Cron 或 KV。当前 Cloudflare 还是三个现役项目，单项目入口仅在开发；最终待办见 [当前交接](handoff.md)，切换步骤见 [单项目清单](cloudflare-single-project.md)。
 
 ## 1. 总体结构
 
@@ -46,7 +46,7 @@ flowchart TD
 | 独立调度器 | ops/daily-dispatcher/src/ | Cloudflare Cron + 既有 RecoveryGate Durable Object | 检查日报缺失、受限补发、四小时采集和分发到期门控。 |
 | 人工编辑 | src/quick_posts.py、data/editorial.json、站点后台 | Access 保护的 /s/ 与 Pages Worker | 不调用 AI 的快速发布，保留人工编辑身份和原始内容。 |
 | 社交分发 | src/x_queue.py、src/services/x_delivery.py、src/square_plan.py、src/square_delivery.py | 独立 GitHub Actions | 持久化计划、到期发送、保留回执，未知结果不自动重发。 |
-| 实时提醒 | realtime/ | 东京 systemd 服务 fomobtc，已部署新仓合并 SHA | 三个币安现货分片、公告与链上监测，输出到独立话题群；当前群Bot权限导致发送失败，需管理员恢复。 |
+| 实时提醒 | realtime/ | 东京 systemd 服务 fomobtc，已部署新仓合并 SHA | 三个币安现货分片、公告与链上监测，输出到独立话题群；@xiyunewsbot 已为原群管理员，自然送达待回执。 |
 
 前端仍是静态模板和原生 JavaScript/CSS，不是 React 应用，没有因为视觉调整引入一套前端组件服务。PWA 增加安装、离线阅读、阅读状态和更新提示，不新增服务器常驻进程；本站没有引入 D1、Redis、Kafka 或独立用户数据库。
 

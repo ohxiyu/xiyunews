@@ -2,7 +2,13 @@
 
 ## 当前结构
 systemd `fomobtc` → Python asyncio采集 → SQLite事件/发送队列 → Telegram Bot API。
-网页只是只读API客户端，关闭网页不影响服务。入口src/platform/app.py；发送src/platform/delivery.py；持久化src/platform/store.py；配置src/platform/settings.py。
+网页前端已下线，只保留只读API；关闭健康检查页面不影响服务。入口src/platform/app.py；发送src/platform/delivery.py；持久化src/platform/store.py；配置src/platform/settings.py。
+
+### 当前 Bot 与原话题（2026-10-02）
+
+运营者明确指定 `@xiyunewsbot` 并要求保留原群和话题，已通过本机隐藏输入更新实时服务与现役看门狗。21:03:05单服务重启，21:06只读核验运行Bot为xiyunewsbot、原群administrator，排除Token后全部环境配置与备份相同；行情/公告/资金流向仍使用话题3/5/7。不要重跑下面历史私聊或话题创建脚本，它们会修改目标或创建话题；自然消息回执与手机收件单独验收，详见 [切换证据](releases/deploy-20261002-xiyunews-bot.md)。
+
+本次看门狗只更换TELEGRAM_BOT_TOKEN，不重写ALERT_CHAT_ID，不清KV或修改Cron；运营者需要对新Bot发送/start以允许私聊。原Bot曾因只读群内身份为member遭拒绝，这是历史问题，不再要求恢复旧Bot权限；管理员身份确认也不等于已经取得自然送达回执。
 
 ## 配置
 东京服务器配置文件 `/etc/fomobtc.env`，root:root，0600。当前SSH使用运营者电脑 `/Users/minutesdr/.ssh/xiyunews_tokyo_config` 中 `xiyunews-tokyo`，兼容 `fomobtc-tokyo`；2026-10-02专用访问已获操作时确认并通过严格主机校验。私钥留本机，不进仓库；新电脑没有此配置时需重新取得安全连接，不复制私钥到聊天。详见 [连接验证](releases/ssh-access-20261002.md)。

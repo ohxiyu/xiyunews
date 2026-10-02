@@ -1,6 +1,6 @@
 # 当前交接
 
-项目统一名为 `xiyunews`，网页展示名为 `xiyu.news`，Telegram名称按运营者报告已调整。PR195 已将实时服务以 unsquashed subtree 完整历史并入 `realtime/` 并按 merge commit 合并，旧 Token 撤销已获运营者明确确认。当前执行 Issue196 的 Cloudflare 单项目迁移基础；生产仍使用原三个边缘项目。实时服务器已于2026-10-02切换到新仓d6a9d3f完整SHA，三现货分片live，但自然推送被Telegram拒绝，不能写成业务验收完成。
+项目统一名为 `xiyunews`，网页展示名为 `xiyu.news`。PR195 已将实时服务以 unsquashed subtree 完整历史并入 `realtime/` 并按 merge commit 合并，旧 Token 撤销已获运营者明确确认。当前执行 Issue196 的 Cloudflare 单项目迁移基础；生产仍使用原三个边缘项目。实时服务器已切换到新仓 d6a9d3f 完整 SHA，2026-10-02 21:03:05 又按明确授权换为 @xiyunewsbot，原群和话题 3/5/7 保留、管理员身份已核验；三个现货分片 live，但新 Bot 自然送达仍待回执，不能写成全部业务验收完成。
 
 <!-- execution-pointer -->
 ```json
@@ -9,7 +9,7 @@
   "issue": "https://github.com/ohxiyu/xiyunews/issues/196",
   "owner": "迁移唯一编辑及发布整合负责人",
   "branch": "agent/xiyunews-cloudflare",
-  "last_verified_commit": "8dad631fd69f406172eb4e16acd49916729cd781",
+  "last_verified_commit": "a54665c5eab4cd43901f09f2b52f33ddc7d374e3",
   "pr": "https://github.com/ohxiyu/xiyunews/pull/197（Draft；前序PR195已合并）",
   "completed": [
     "PR195以merge commit合并，旧实时main7807126d8c7cdb51e18f0b91ba27f500271f9f08是origin/main祖先，远端realtime目录存在",
@@ -25,13 +25,14 @@
     "统一自动部署仅允许main手动派发或可信main出版成功；部署前执行完整审计，新增两项离线门槛回归，纠正服务器清单仍称历史未合并的过时说明",
     "02600b04全部可用远端CI与Pages预览通过，CodeQL因私有套餐跳过；仍未生产切换",
     "运营者操作时确认后创建本机xiyunews专用SSH密钥；通过已登录阿里云核对主机指纹并追加公钥，保留原两把公钥及服务器备份；19:55严格指纹SSH登录与sudo -n验证成功，该连接恢复步骤未重启服务",
-    "按此前服务器部署授权，20:01:45切换到新仓合并d6a9d3f29ef93c138842342c973b3049fb7bc252；独立venv哈希安装、pip check和停机SQLite备份通过，仅改SOURCE_COMMIT，原release保留；新MainPID233683/NRestarts0，三现货分片live"
+    "按此前服务器部署授权，20:01:45切换到新仓合并d6a9d3f29ef93c138842342c973b3049fb7bc252；独立venv哈希安装、pip check和停机SQLite备份通过，仅改SOURCE_COMMIT，原release保留；当时MainPID233683/NRestarts0，三现货分片live",
+    "运营者明确指定@xiyunewsbot、确认已为管理员并要求保留原话题，通过本机隐藏输入提供Token；21:03:05配置备份和单服务重启，21:03:11现役看门狗Secret Change发布，保留原ALERT_CHAT_ID/Cron/KV，无测试消息或历史补发"
   ],
   "unfinished": [
     "迁移基础PR保留Draft，最终域名/状态/Cron切换尚未实施，不能把全绿dry-run当成生产",
     "通过安全渠道补齐新Worker配置及最小权限自动部署凭据；可信SSH入口已恢复，不再等待旧配置路径",
     "停旧Cron、迁移原RecoveryGate归属、保持STATE KV、迁域、自然调度与后台验收；最终切换配置须另一个串行PR",
-    "实时新仓版本已部署，仍需解决自然Telegram拒绝并取得message_id、看门狗自然验收后退役旧fomobtc仓库；不补发失败消息",
+    "实时新仓版本及新Bot已部署、原群管理员身份已核验；等待新Bot新的自然message_id与手机验收，看门狗私聊还需/start及真实告警验收，不补发失败消息、不提前退役旧仓",
     "本轮连接交接文档提交后核验其远端CI；基础仍默认关闭，不能据此启用新Cron或删除现役服务"
   ],
   "validation": [
@@ -42,12 +43,14 @@
     "Vitest4.1.11与原Cloudflare测试池兼容：94项通过，完整审计0、types:check/tsc/原Wrangler dry-run通过；新增资产与发布门槛共10项、后台公开路由51项、看门狗3项通过",
     "2026-10-02 19:55上海时间：专用SSH以admin登录、sudo -n成功；原两公钥与新公钥均存在，目录0700和文件0600；当时旧服务未重启；随后服务器版本切换证据另记",
     "部署后首条自然行情price_notice为telegram_rejected、telegram_id为空；getMe200且Bot有效，目标为只读话题群，但getChatMember返回member而非administrator；迁移前已有43条同类失败，不把开关开启当送达。主站953项、实时61项与ruff/mypy、治理和看门狗3项复测通过",
-    "8dad631f远端全部可用CI和Pages预览通过，CodeQL跳过；现役看门狗20:10:23和20:15:23两轮自然Cron均outcome=ok，但不覆盖Bot群权限；20:15最终公网新仓SHA与三个spot分片live再次确认"
+    "8dad631f远端全部可用CI和Pages预览通过，CodeQL跳过；现役看门狗20:10:23和20:15:23两轮自然Cron均outcome=ok，但不覆盖Bot群权限；20:15最终公网新仓SHA与三个spot分片live再次确认",
+    "a54665c5的CI37005750396与Pages预览全部可用检查成功，CodeQL跳过；21:06只读getMe为xiyunewsbot、getChatMember为administrator，进程Token与配置一致，排除Token后全部配置与切换备份相同；MainPID235825/NRestarts0、三spot分片live，watchdog版本a5330597-ee57-4a61-91f0-9a34cb431676，KV无告警；该时点没有切换后新事件",
+    "新看门狗版本计划21:10:23的真实Cron于21:10:32.765执行，outcome=ok、日志watchdog: ok、exceptions为空；21:11服务配置和管理员身份再次通过，备份0700/0600、SQLite integrity_check=ok；本轮根完整Python回归、治理、实时61项和实时契约通过"
   ],
   "unverified": [
     "统一Worker真实部署/流量切换/DO迁入及自然调度；当前配置为过渡状态而非最终单项目",
     "新域Access登录后的Quick Post操作、新Bot自然回执和实时群简介",
-    "实时自然message_id与手机收件；新仓服务器SHA、进程、备份及现役看门狗两次自然检查已验证，后者不证明Telegram送达"
+    "新Bot自然message_id与手机收件、看门狗新凭据下的真实私聊；新仓SHA、进程、备份和管理员身份已验证，但不能代替送达"
   ],
   "production": {
     "source_commit": "2858290a6db7ec5f6eb38dc5fd30689bbfa90b14",
@@ -59,10 +62,10 @@
   },
   "blockers": [
     "现有仓库没有Cloudflare自动部署Secrets和启用变量；旧Worker加密Secrets不可通过名称列表恢复，需运营者既有安全注入方式",
-    "实时Bot有效但在只读群中仅为member，目标消息被拒绝；恢复管理员发消息权限需群管理员操作或针对该权限变更确认，不能改目标群或盲目重发",
+    "旧Bot普通member导致的权限问题已通过运营者授权换为管理员@xiyunewsbot解决；观察期尚无新自然触发回执，不能人为改阈值或重放旧消息来验收；看门狗私聊需运营者对新Bot/start",
     "SSH新增持久访问已经操作时确认并完成；Cloudflare新增持久权限、秘密值注入及后续浏览器删除仍须各自安全流程，不从SSH确认扩大权限，不重复询问已完成旧区与三绑定删除"
   ],
-  "next_action": "提交SSH及服务器部署证据并核验PR197当前head检查；请求运营者恢复实时Bot在原只读群的管理员发消息权限，再观察新的自然回执，不补发失败/未知消息。保留Draft等待Cloudflare安全配置；边缘缺口补齐后按串行切换PR迁移状态和域名，自然验收后再退役旧资源，不双Cron。",
+  "next_action": "观察管理员@xiyunewsbot在原群和话题3/5/7的新自然回执，不补发失败/未知消息；提醒运营者对新Bot/start以允许看门狗私聊。提交真实凭据切换证据，保留PR197 Draft等待Cloudflare安全配置；边缘缺口补齐后按串行切换PR迁移状态和域名，全部自然验收后再退役旧资源，不双Cron。",
   "states": {
     "code": "pending",
     "tests": "pending",
