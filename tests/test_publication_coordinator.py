@@ -8,6 +8,11 @@ import pytest
 from src import schedule_watchdog as watchdog
 
 
+@pytest.fixture(autouse=True)
+def isolate_edge_cutover(monkeypatch):
+    monkeypatch.delenv("XIYUNEWS_EDGE_ENABLED", raising=False)
+
+
 def response(status, state):
     body = io.BytesIO(json.dumps({"status": state}).encode())
     body.code = status
@@ -61,3 +66,41 @@ def test_missing_coordinator_secret_is_fail_closed(monkeypatch):
     monkeypatch.setattr(watchdog, "urlopen", opener)
     assert watchdog.main(["--coordinator"]) == 1
     opener.assert_not_called()
+
+
+@pytest.mark.parametrize("enabled,origin", [
+    ("true", "https://xiyu.news"),
+    ("false", "https://bmtnews-daily-dispatcher.drminutes.workers.dev"),
+    ("TRUE", "https://bmtnews-daily-dispatcher.drminutes.workers.dev"),
+    ("", "https://bmtnews-daily-dispatcher.drminutes.workers.dev"),
+])
+def test_coordinator_switch_requires_exact_opt_in(monkeypatch, enabled, origin):
+    monkeypatch.setenv("RECOVERY_CHECK_TOKEN", "test-secret")
+    monkeypatch.setenv("XIYUNEWS_EDGE_ENABLED", enabled)
+    opener = Mock(return_value=response(200, "healthy"))
+    monkeypatch.setattr(watchdog, "urlopen", opener)
+    assert watchdog.check_coordinator() == 0
+    assert opener.call_args.args[0].full_url == origin + "/publication/check"
+    assert opener.call_count == 1
+
+
+def test_new_coordinator_failure_never_falls_back_to_legacy(monkeypatch):
+    monkeypatch.setenv("RECOVERY_CHECK_TOKEN", "test-secret")
+    monkeypatch.setenv("XIYUNEWS_EDGE_ENABLED", "true")
+    opener = Mock(side_effect=URLError("unreachable"))
+    monkeypatch.setattr(watchdog, "urlopen", opener)
+    direct = Mock()
+    monkeypatch.setattr(watchdog, "dispatch_workflow", direct)
+    assert watchdog.check_coordinator(success_on_recovery=True) == 1
+    assert opener.call_count == 1
+    assert opener.call_args.args[0].full_url == "https://xiyu.news/publication/check"
+    direct.assert_not_called()
+
+
+def test_both_automatic_callers_pass_the_same_cutover_flag():
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[1]
+    for name in ("schedule-watchdog.yml", "feed-collection.yml"):
+        content = (root / ".github/workflows" / name).read_text()
+        assert "XIYUNEWS_EDGE_ENABLED: ${{ vars.XIYUNEWS_EDGE_ENABLED }}" in content

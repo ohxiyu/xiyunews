@@ -16,6 +16,13 @@ def test_edge_deployment_requires_main_and_audits_before_upload():
     assert workflow.index("run: npm run audit") < workflow.index("npx wrangler deploy")
 
 
+def test_deployment_does_not_require_an_unconfigured_paid_environment():
+    workflow = (ROOT / ".github/workflows/cloudflare-unified.yml").read_text()
+    assert "environment: xiyunews-production" not in workflow
+    assert "CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}" in workflow
+    assert "CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" in workflow
+
+
 def test_dependency_audit_includes_the_locked_development_toolchain():
     dispatcher = ROOT / "ops/daily-dispatcher"
     package = json.loads((dispatcher / "package.json").read_text())

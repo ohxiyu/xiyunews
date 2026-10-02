@@ -446,8 +446,15 @@ def check_coordinator(*, success_on_recovery: bool = False) -> int:
     if not token:
         _emit_error("缺少 RECOVERY_CHECK_TOKEN；不会绕过共享锁补发")
         return 1
+    # Switch only after the reviewed edge cutover. Do not fail over between
+    # coordinators: a failure must never bypass the shared retry budget.
+    endpoint = (
+        "https://xiyu.news/publication/check"
+        if os.getenv("XIYUNEWS_EDGE_ENABLED") == "true"
+        else "https://bmtnews-daily-dispatcher.drminutes.workers.dev/publication/check"
+    )
     request = Request(
-        "https://bmtnews-daily-dispatcher.drminutes.workers.dev/publication/check",
+        endpoint,
         method="POST",
         headers={
             "Authorization": f"Bearer {token}",

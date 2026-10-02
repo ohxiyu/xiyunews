@@ -1,16 +1,16 @@
 # 当前交接
 
-项目统一名为 `xiyunews`，网页展示名为 `xiyu.news`。PR195 已将实时服务以 unsquashed subtree 完整历史并入 `realtime/` 并按 merge commit 合并，旧 Token 撤销已获运营者明确确认。当前完成 Issue196 的 Cloudflare 单项目迁移基础，随后串行执行生产切换；生产仍使用原三个边缘项目。实时服务器已切换到新仓 d6a9d3f 完整 SHA，2026-10-02 21:03:05 又按明确授权换为 @xiyunewsbot，原群和话题 3/5/7 保留；最新只读核验取得 11 条自然发送成功回执，包括行情、公告和资金流向，不能再把自然回执列为缺口，也不将 API 回执说成手机或看门狗私聊验收。
+项目统一名为 `xiyunews`，网页展示名为 `xiyu.news`。PR195 已保留完整实时历史，PR197 的迁移基础于 2026-10-02 23:09:10（上海时间）合并为 91fb5981；当前串行执行 Issue198 的生产接管，线上仍是原三个 Cloudflare 项目。实时服务器运行新仓 d6a9d3f 完整 SHA，@xiyunewsbot 在原话题 3/5/7 最新已有 18 条自然成功回执；23:22:48 已将群名按既有确认改为 xiyu.news 并回读，简介、权限、话题未改。API 回执、手机收件和看门狗私聊实际告警分别验收，不提前删除现役项目。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "将网站、日报调度和实时看门狗整合为单个Cloudflare项目xiyunews，先完成安全迁移基础",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/196",
+  "goal": "完成xiyunews单个Cloudflare项目生产接管及剩余品牌统一，保留状态、单调度和后台权限",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/198",
   "owner": "迁移唯一编辑及发布整合负责人",
-  "branch": "agent/xiyunews-cloudflare",
-  "last_verified_commit": "32a838fb2cd99c5ea72bf55f7aec4ccb1a06dbcd",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/197（迁移基础收尾；生产切换另建串行PR）",
+  "branch": "agent/xiyunews-edge-cutover",
+  "last_verified_commit": "91fb5981cd09a51be7c3ef8c355eb6ee179f60fa",
+  "pr": "待建立Issue198的Draft PR；前序PR197已合并",
   "completed": [
     "PR195以merge commit合并，旧实时main7807126d8c7cdb51e18f0b91ba27f500271f9f08是origin/main祖先，远端realtime目录存在",
     "阶段3主站943项、实时Python3.11/3.12各61项、治理和看门狗3项通过；远端全部可用CI与Pages预览通过，CodeQL因私有套餐跳过",
@@ -28,14 +28,19 @@
     "按此前服务器部署授权，20:01:45切换到新仓合并d6a9d3f29ef93c138842342c973b3049fb7bc252；独立venv哈希安装、pip check和停机SQLite备份通过，仅改SOURCE_COMMIT，原release保留；当时MainPID233683/NRestarts0，三现货分片live",
     "运营者明确指定@xiyunewsbot、确认已为管理员并要求保留原话题，通过本机隐藏输入提供Token；21:03:05配置备份和单服务重启，21:03:11现役看门狗Secret Change发布，保留原ALERT_CHAT_ID/Cron/KV，无测试消息或历史补发",
     "运营者报告已向新Bot发送/start；21:24核验新Bot收到切换后私聊/start且私聊可读取，不再要求重复/start；没有发测试消息，未取得实际告警送达证明",
-    "32a838fb的CI37012988502全部可用检查与Pages预览成功，CodeQL跳过；新Bot切换后11条自然事件sent、最新telegram_id1251，覆盖行情/公告/资金流向，原群话题和配置未改"
+    "32a838fb的CI37012988502全部可用检查与Pages预览成功，CodeQL跳过；新Bot切换后11条自然事件sent、最新telegram_id1251，覆盖行情/公告/资金流向，原群话题和配置未改",
+    "99d2465e的CI37024644728全部可用检查和Pages预览成功，CodeQL跳过；PR197正常merge为91fb5981并删除任务分支，Issue196基础任务关闭，生产接管转Issue198",
+    "Cloudflare令牌草稿已准备至最终创建前，仅现役账户Workers Scripts编辑、2027-01-01到期，无DNS/Access/账单权限；没有创建、读取或提交任何新Secret",
+    "已准备统一项目启用后使用正式域协调接口；迁移前默认旧端点，新端点失败不回退补发，两条自动调用工作流共享同一启用变量",
+    "本阶段主站968项和治理通过，实时61项/契约与看门狗3项通过；用Ruby3.3构建233597f8出版快照并校验8364个资产，统一Wrangler dry-run成功，无实际部署",
+    "按运营者既有Telegram名称确认，核对新Bot管理员及can_change_info权限后仅把原群xiyuNews改为xiyu.news；2026-10-02T15:22:48Z回读名称正确，简介和话题保持，没有改变权限/规则或手工发送测试消息"
   ],
   "unfinished": [
-    "基础PR收尾并按全绿检查合并；最终域名/状态/Cron切换尚未实施，不能把全绿dry-run当成生产",
+    "基础PR已合并；最终域名/状态/Cron切换尚未实施，不能把全绿dry-run当成生产",
     "通过安全渠道补齐新Worker配置及最小权限自动部署凭据；可信SSH入口已恢复，不再等待旧配置路径",
     "停旧Cron、迁移原RecoveryGate归属、保持STATE KV、迁域、自然调度与后台验收；最终切换配置须另一个串行PR",
     "实时新仓版本及新Bot已部署并取得三类自然回执；手机收件和看门狗实际私聊告警仍未独立验收，不补发失败消息、不提前删除恢复资源",
-    "核验收尾提交远端CI后合并基础，最终切换另建Issue/分支/PR；基础仍默认关闭，不能据此启用新Cron或删除现役服务"
+    "完成本阶段回归并建立Draft PR；基础默认关闭，不能据代码合并启用新Cron或删除现役服务；评估新改名API仅是候选路径，实际身份及状态保留尚未验证"
   ],
   "validation": [
     "新入口与原dispatcher共94项边缘测试通过、tsc通过，看门狗3项Node通过",
@@ -53,7 +58,7 @@
   ],
   "unverified": [
     "统一Worker真实部署/流量切换/DO迁入及自然调度；当前配置为过渡状态而非最终单项目",
-    "新域Access登录后的Quick Post操作、实时群精确名称与简介统一",
+    "新域Access登录后的Quick Post操作、实时群建议简介尚未确认，不擅自更改",
     "手机收件、看门狗实际告警送达；自然message_id已核验，私聊/start也已核验，但未把其chat.id与加密ALERT_CHAT_ID直接比对，未发送测试告警"
   ],
   "production": {
@@ -69,16 +74,16 @@
     "旧Bot普通member问题已通过授权换为管理员@xiyunewsbot解决，私聊/start和三类自然回执已确认；看门狗实际私聊告警仍未验证，不人为制造故障或重放旧消息",
     "SSH新增持久访问已经操作时确认并完成；Cloudflare新增持久权限、秘密值注入及后续浏览器删除仍须各自安全流程，不从SSH确认扩大权限，不重复询问已完成旧区与三绑定删除"
   ],
-  "next_action": "收尾PR197的迁移基础与真实交接，CI通过后合并；再从新origin/main认领串行切换Issue/PR。Cloudflare安全配置需单独注入，先部署暂停预览，旧Cron保持至可切换；不双Cron、不重置DO/KV、不提前删除。新Bot三类自然回执和/start已完成，不重复要求或补发。",
+  "next_action": "在Issue198串行接管：运行凭据/自动部署权限安全配置尚待确认和注入，不复制广权限CLI/OAuth Token。若原地改名证据不足，沿已审计的状态迁移路径；先暂停预览，再停旧Cron、接管状态/域名、验证后台与自然调度，最后退役。新Bot三类自然回执和/start已完成，不重复操作。",
   "states": {
-    "code": "complete",
-    "tests": "complete",
+    "code": "pending",
+    "tests": "pending",
     "pr_merged": "pending",
     "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-10-02-cloudflare-unified-foundation.md"
+  "evidence": "project-docs/releases/2026-10-02-cloudflare-production-cutover.md"
 }
 ```
 
-当前唯一编辑工作区是 `/tmp/xiyunews-cloudflare`；前序阶段3合并和历史祖先已有实际证据，不再沿用旧Token待撤销或远端无realtime的说明。总体实际架构见 [系统架构](system-architecture.md)，最终边缘切换顺序见 [单项目清单](cloudflare-single-project.md)，服务器步骤见 [实时服务器迁移](realtime-server-migration.md)，运行和测试入口见 [实时交接](../realtime/docs/handoff.md)。历史 release 保留原样，本指针不授权执行旧 backlog。
+当前唯一编辑工作区复用 `/tmp/xiyunews-cloudflare`，已从最新 origin/main 切换为 `agent/xiyunews-edge-cutover`，没有并行所有者；基础的远端和本地任务分支均已删除。前序合并、历史祖先和自然回执已有证据，不重复旧 Token 撤销或 /start。总体实际架构见 [系统架构](system-architecture.md)，最终切换见 [单项目清单](cloudflare-single-project.md)，实时入口见 [实时交接](../realtime/docs/handoff.md)。历史 release 保留，本指针不授权执行旧 backlog。
