@@ -4,24 +4,25 @@
   "url": "https://xiyu.news/events/evt_9442440e58c62af0/",
   "json": "https://xiyu.news/api/events/evt_9442440e58c62af0.json",
   "type": "security_incident",
-  "status": "developing",
+  "status": "closed",
   "category": "crypto",
   "title": {
     "zh": "Zano 在 Gateway Address 漏洞利用后回滚区块链一个月",
     "en": "Zano rolls blockchain back a month after Gateway Address exploit"
   },
   "current_state": {
-    "zh": "在 Gateway Address 漏洞导致未授权 ZANO 和 Freedom Dollar 进入流通后，Zano 已在区块 3,833,000 重启链并回滚约一个月的交易；团队已承诺通过开发者基金、个人资金和贡献者资金进行恢复，但索赔流程和赔付规则尚未上线。",
-    "en": "After the Gateway Address exploit allowed unauthorized ZANO and Freedom Dollar into circulation, Zano restarted its chain at block 3,833,000, rolling back about a month of transactions; the team has promised recovery funding through the developer fund, personal funds, and contributors, but the claims process and payment rules are not yet live."
+    "zh": "Zano 已确认 Gateway Address 漏洞被利用铸造 3690 万枚未授权 ZANO 及 fUSD，并已回滚约一个月链上历史；恢复工作将主要通过交易所和支付服务执行，交易所将回放被回滚撤销的提款，团队将贷记受影响的存款。",
+    "en": "Zano has confirmed the Gateway Address exploit minted 36.9M unauthorized ZANO plus fUSD and has rolled back about a month of chain history; recovery is now being carried out primarily through exchanges and payment services, with exchanges to replay withdrawals reversed by the rollback and the team crediting affected deposits."
   },
   "first_seen_at": "2026-09-28T01:56:50.752531+00:00",
-  "last_updated_at": "2026-09-29T18:12:13.615499+00:00",
-  "last_material_change_at": "2026-09-29T18:12:13.615499+00:00",
+  "last_updated_at": "2026-10-02T06:41:10.670498+00:00",
+  "last_material_change_at": "2026-10-02T06:41:10.670498+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 2,
+  "updates_count": 3,
+  "sources_count": 3,
   "entities": [
     "address",
+    "blockchain-rollback",
     "gateway",
     "zano"
   ],
@@ -108,6 +109,44 @@
         {
           "url": "https://cryptoslate.com/zano-rollback-removes-month-of-transactions-personal-funds-recovery/",
           "label": "CryptoSlate",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_875ba78f1fab8884",
+      "event_id": "evt_9442440e58c62af0",
+      "occurred_at": "2026-10-02T05:02:23Z",
+      "published_at": "2026-10-02T05:02:23Z",
+      "first_seen_at": "2026-10-02T06:41:10.670498Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "Zano 攻击者在区块链回滚前创建了 3690 万枚未授权 ZANO",
+      "title_en": "Zano exploiter created 36.9M unauthorized ZANO before blockchain rollback",
+      "what_changed_zh": "Zano 发布事后分析，披露攻击者通过 Gateway Address 漏洞在 8 月 29 日和 9 月 25 日分别铸造约 1840 万枚 ZANO，共 3690 万枚未授权 ZANO 及 fUSD；攻击者支付 100 ZANO 注册费并先行测试伪造资产，首次铸造近一个月未被发现。恢复将主要通过交易所和支付服务进行，交易所将回放被回滚撤销的提款，团队将贷记受影响的存款。",
+      "what_changed_en": "Zano's post-mortem revealed the attacker exploited the Gateway Address vulnerability to mint about 18.4M ZANO on Aug. 29 and another 18.4M on Sept. 25, totaling 36.9M unauthorized ZANO plus fUSD; the attacker paid a 100 ZANO registration fee, tested a fabricated asset first, and the first mint went unnoticed for nearly a month. Recovery will primarily run through exchanges and payment services, with exchanges to replay withdrawals reversed by the rollback and the team crediting affected deposits.",
+      "current_state_zh": "Zano 已确认 Gateway Address 漏洞被利用铸造 3690 万枚未授权 ZANO 及 fUSD，并已回滚约一个月链上历史；恢复工作将主要通过交易所和支付服务执行，交易所将回放被回滚撤销的提款，团队将贷记受影响的存款。",
+      "current_state_en": "Zano has confirmed the Gateway Address exploit minted 36.9M unauthorized ZANO plus fUSD and has rolled back about a month of chain history; recovery is now being carried out primarily through exchanges and payment services, with exchanges to replay withdrawals reversed by the rollback and the team crediting affected deposits.",
+      "detailed_summary_zh": "Zano's post-mortem revealed an attacker exploited its Gateway Address vulnerability to mint 36.9 million unauthorized ZANO and fUSD tokens, which were indistinguishable from legitimate coins and ultimately forced the team to roll the blockchain back by a month.",
+      "detailed_summary_en": "Zano's post-mortem revealed an attacker exploited its Gateway Address vulnerability to mint 36.9 million unauthorized ZANO and fUSD tokens, which were indistinguishable from legitimate coins and ultimately forced the team to roll the blockchain back by a month.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.97,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:928fd26ba44b66c9"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/zano-exploiter-created-369m-unauthorized-zano-before-blockchain-rollback?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
           "source_type": "rss",
           "official": false
         }

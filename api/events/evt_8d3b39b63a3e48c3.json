@@ -11,15 +11,15 @@
     "en": "Core Lightning Advises Node Operators to Go Offline Over Unpatched Vulnerability"
   },
   "current_state": {
-    "zh": "Core Lightning 运营商仍需修复未修补的漏洞，现在需检查 Docker 镜像摘要以确认修补是否到位，并计划于 9 月 11 日公开披露。",
-    "en": "Core Lightning operators still need to address the unpatched vulnerability, now with added instructions to verify Docker image digests, with source disclosure planned for Sept. 11."
+    "zh": "攻击者正积极针对未修补的 Core Lightning 节点；运行 26.06.7 或更早版本的操作者被敦促立即升级，此前关于验证 Docker 镜像摘要的指示仍然适用。",
+    "en": "Attackers are actively targeting unpatched Core Lightning nodes; operators on version 26.06.7 or earlier are urged to upgrade immediately, and prior instructions to verify Docker image digests remain relevant."
   },
   "first_seen_at": "2026-08-27T08:00:00+08:00",
-  "last_updated_at": "2026-09-09T09:04:47.363343+00:00",
-  "last_material_change_at": "2026-09-09T09:04:47.363343+00:00",
+  "last_updated_at": "2026-10-02T06:41:10.711852+00:00",
+  "last_material_change_at": "2026-10-02T06:41:10.711852+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 2,
+  "updates_count": 3,
+  "sources_count": 3,
   "entities": [
     "advises",
     "core",
@@ -38,6 +38,7 @@
     "core-lightning",
     "docker",
     "lightning",
+    "lightning-network",
     "vulnerability"
   ],
   "updates": [
@@ -112,6 +113,44 @@
         {
           "url": "https://cryptoslate.com/bitcoin-core-lightning-docker-bug-leaves-node-operators-exposed-despite-showing-updated-version/",
           "label": "CryptoSlate",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_77cbd08ab4cdab5a",
+      "event_id": "evt_8d3b39b63a3e48c3",
+      "occurred_at": "2026-10-02T04:18:43Z",
+      "published_at": "2026-10-02T04:18:43Z",
+      "first_seen_at": "2026-10-02T06:41:10.711852Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "Core Lightning 警告攻击者正针对未修补的节点",
+      "title_en": "Core Lightning warns attackers are targeting unpatched nodes",
+      "what_changed_zh": "Core Lightning 收到攻击者正积极针对未修补节点发起攻击的报告，并敦促运行 26.06.7 或更早版本的操作者立即升级至最新版本。",
+      "what_changed_en": "Core Lightning received reports of attackers actively targeting unpatched nodes and urged operators running version 26.06.7 or earlier to upgrade to the latest release immediately.",
+      "current_state_zh": "攻击者正积极针对未修补的 Core Lightning 节点；运行 26.06.7 或更早版本的操作者被敦促立即升级，此前关于验证 Docker 镜像摘要的指示仍然适用。",
+      "current_state_en": "Attackers are actively targeting unpatched Core Lightning nodes; operators on version 26.06.7 or earlier are urged to upgrade immediately, and prior instructions to verify Docker image digests remain relevant.",
+      "detailed_summary_zh": "Core Lightning urged node operators on version 26.06.7 or earlier to upgrade immediately after receiving reports that attackers are actively targeting unpatched nodes.",
+      "detailed_summary_en": "Core Lightning urged node operators on version 26.06.7 or earlier to upgrade immediately after receiving reports that attackers are actively targeting unpatched nodes.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:769db2500f9b239f"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/core-lightning-urges-upgrade-amid-reports-attackers-targeting-unpatched-nodes?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
           "source_type": "rss",
           "official": false
         }
