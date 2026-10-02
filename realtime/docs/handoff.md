@@ -7,7 +7,7 @@
 已经完成：原项目完整历史以 git subtree add 导入；根 CI 为 realtime 增加路径门控及 3.11/3.12 独立矩阵；治理兼容子目录；新部署从主仓完整 SHA 的 realtime 前缀打包。历史证据保留，提醒阈值、地址簿、信源、队列与目的地没有更改。
 尚未完成：阶段4自然Telegram送达与Cloudflare切换；专用SSH已恢复，服务器20:01:45已切换到新仓合并d6a9d3f完整SHA。PR197基线02600b04检查已通过但保持Draft，边缘未切换。原Token撤销已获确认，规则、私聊目的地和KV保留，Worker新运维正文品牌代码未部署；旧仓退役仍等实际业务验收，不提前删除。
 已运行的验证及结果：2026-10-02公网health为2.6.0/d6a9d3f29ef93c138842342c973b3049fb7bc252，三spot分片live，MainPID233683/NRestarts0；停机SQLite备份integrity_check=ok，除SOURCE_COMMIT外环境逐字节一致。首条自然消息telegram_rejected，getMe200，但Bot在只读话题群中仅为member；迁移前已有43条同类失败。主站953项、实时61项与ruff/mypy、治理及看门狗3项通过；最终远端CI以PR197当前head为准。
-尚未验证的内容：恢复Bot管理员发消息权限后新的自然message_id与手机收件、看门狗两轮自然检查；新仓SHA、进程和备份已验证。历史手机回执不作为本次证据，Telegram启用不证明送达。
+尚未验证的内容：恢复Bot管理员发消息权限后新的自然message_id与手机收件；新仓SHA、进程、备份已验证，20:10:23/20:15:23看门狗两轮自然Cron均ok，但其规则不检查Bot群权限。历史手机回执不作为本次证据，Telegram启用不证明送达。
 线上版本 / 对应源码提交：后端2.6.0 = 新仓d6a9d3f29ef93c138842342c973b3049fb7bc252；保留上一release b226b625cf3875b6693e0768d75d88d50b33c08d，回滚须单独授权；nginx未修改，看门狗Worker未部署，最近记录版本55671d87-29c2-4225-8bdf-176cb4712ed3。
 阻塞与所需权限：专用SSH已获操作时确认并验证；连接恢复时未重启，后续按此前部署授权完成一次服务器切换。自然发送被拒绝，需群管理员恢复@fomobtcbot在xiyuNews只读群的管理员发消息权限；不更换Bot/群/话题，不重发失败消息。Cloudflare安全注入与自动部署配置尚缺，现役服务和旧release保留，SSH授权不扩大为新Cloudflare或群权限。
 下一步具体动作：先由群管理员恢复@fomobtcbot在xiyuNews只读话题群中的管理员发消息权限，再观察新的自然回执，不重发失败/未知消息。使用新专用连接验收，Cloudflare安全配置就绪后再串行切换，全部自然验收后退役旧资源；上轮事项见releases，旧backlog不授权执行。

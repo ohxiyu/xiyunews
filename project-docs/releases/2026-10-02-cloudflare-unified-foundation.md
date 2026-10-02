@@ -43,4 +43,4 @@ Rollback: 边缘无生产切换，不擅自恢复第二Cron；实时上一版rel
 
 共享治理测试夹具原先只复制两个实时入口文件，新连接记录的跨模块链接导致第一次完整测试952通过1失败；补齐复制realtime/docs后953项通过，没有弱化链接检查。实时61项、ruff/mypy、两套治理与看门狗3项复测通过。本次连接/部署文档最终CI仍以PR197当前head为准。
 
-现役看门狗20:10:23自然Cron的outcome=ok、日志watchdog: ok，KV无告警。其规则不检查Bot群权限，因此“无告警”不能代替Telegram自然回执；该观察不解除业务验收阻塞。
+现役看门狗20:10:23和20:15:23两轮自然Cron均outcome=ok、日志watchdog: ok，KV无告警。其规则不检查Bot群权限，因此“无告警”不能代替Telegram自然回执；该观察不解除业务验收阻塞。20:15最终公网回读新仓SHA正确且三个spot分片live。[CI37005429902](https://github.com/ohxiyu/xiyunews/actions/runs/37005429902)对应8dad631fd69f406172eb4e16acd49916729cd781，全部可用检查和Pages预览成功，CodeQL跳过；追加本段冻结记录后检查以PR当前head为准。

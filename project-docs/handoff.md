@@ -9,7 +9,7 @@
   "issue": "https://github.com/ohxiyu/xiyunews/issues/196",
   "owner": "迁移唯一编辑及发布整合负责人",
   "branch": "agent/xiyunews-cloudflare",
-  "last_verified_commit": "02600b04020a79cc1e13355c42064cdc8aa35cc8",
+  "last_verified_commit": "8dad631fd69f406172eb4e16acd49916729cd781",
   "pr": "https://github.com/ohxiyu/xiyunews/pull/197（Draft；前序PR195已合并）",
   "completed": [
     "PR195以merge commit合并，旧实时main7807126d8c7cdb51e18f0b91ba27f500271f9f08是origin/main祖先，远端realtime目录存在",
@@ -41,12 +41,13 @@
     "只读取GitHub和Worker Secrets名称；未复制加密值或新增Token，SSH公钥已按明确授权追加，业务密钥未变化，未发真实测试消息",
     "Vitest4.1.11与原Cloudflare测试池兼容：94项通过，完整审计0、types:check/tsc/原Wrangler dry-run通过；新增资产与发布门槛共10项、后台公开路由51项、看门狗3项通过",
     "2026-10-02 19:55上海时间：专用SSH以admin登录、sudo -n成功；原两公钥与新公钥均存在，目录0700和文件0600；当时旧服务未重启；随后服务器版本切换证据另记",
-    "部署后首条自然行情price_notice为telegram_rejected、telegram_id为空；getMe200且Bot有效，目标为只读话题群，但getChatMember返回member而非administrator；迁移前已有43条同类失败，不把开关开启当送达。主站953项、实时61项与ruff/mypy、治理和看门狗3项复测通过"
+    "部署后首条自然行情price_notice为telegram_rejected、telegram_id为空；getMe200且Bot有效，目标为只读话题群，但getChatMember返回member而非administrator；迁移前已有43条同类失败，不把开关开启当送达。主站953项、实时61项与ruff/mypy、治理和看门狗3项复测通过",
+    "8dad631f远端全部可用CI和Pages预览通过，CodeQL跳过；现役看门狗20:10:23和20:15:23两轮自然Cron均outcome=ok，但不覆盖Bot群权限；20:15最终公网新仓SHA与三个spot分片live再次确认"
   ],
   "unverified": [
     "统一Worker真实部署/流量切换/DO迁入及自然调度；当前配置为过渡状态而非最终单项目",
     "新域Access登录后的Quick Post操作、新Bot自然回执和实时群简介",
-    "实时自然message_id、手机收件和看门狗两次自然检查；新仓服务器SHA、进程和备份已经验证，不再列为未执行"
+    "实时自然message_id与手机收件；新仓服务器SHA、进程、备份及现役看门狗两次自然检查已验证，后者不证明Telegram送达"
   ],
   "production": {
     "source_commit": "2858290a6db7ec5f6eb38dc5fd30689bbfa90b14",
