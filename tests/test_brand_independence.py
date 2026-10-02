@@ -5,7 +5,6 @@ ROOT = Path(__file__).parents[1]
 VISIBLE_TEXT_ROOTS = (
     ROOT / ".github",
     ROOT / "docs",
-    ROOT / "project-docs",
     ROOT / "scripts",
     ROOT / "src",
 )
@@ -52,6 +51,17 @@ def test_user_visible_project_surfaces_use_bmtnews_brand() -> None:
             leftovers.append(str(path.relative_to(ROOT)))
 
     assert leftovers == []
+
+
+def test_brand_scan_covers_public_site_not_internal_resource_records() -> None:
+    # Process documents audit exact legacy resource names and are not deployed.
+    # Reader-facing docs, code, workflows and public README files stay covered.
+    paths = _visible_text_files()
+    assert ROOT / "README.md" in paths
+    assert any(path.is_relative_to(ROOT / "docs") for path in paths)
+    assert any(path.is_relative_to(ROOT / "src") for path in paths)
+    assert any(path.is_relative_to(ROOT / ".github") for path in paths)
+    assert not any(path.is_relative_to(ROOT / "project-docs") for path in paths)
 
 
 def test_legal_files_separate_code_and_content_rights() -> None:
