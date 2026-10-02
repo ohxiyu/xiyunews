@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_6655595dc1e36e0b/",
   "json": "https://xiyu.news/api/events/evt_6655595dc1e36e0b.json",
   "type": "security_incident",
-  "status": "closed",
+  "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Bitget 遭 DPRK 相关黑客攻击，损失约 3.88 亿美元",
-    "en": "Bitget suffers DPRK-linked hack with roughly $388M lost"
+    "zh": "Bitget 遭朝鲜关联黑客攻击，约3.88亿美元被盗",
+    "en": "Bitget Suffers DPRK-Linked Hack with Roughly $388M Stolen"
   },
   "current_state": {
-    "zh": "Bitget 被盗事件已被 Chainalysis 正式归因于朝鲜（DPRK）关联行为者；被盗的 3.87 亿美元资金在数小时内跨 Ethereum、XRP、Zcash、Tron 四链转移，部分 XRP 已跨链兑换为比特币，2026 年朝鲜相关加密盗窃总额突破 10 亿美元。Bitget 此前已恢复 BTC、ETH、USDT 提现，保护基金达 3.09 亿美元，并继续逐步恢复正常运营。",
-    "en": "The Bitget theft has now been formally attributed by Chainalysis to DPRK-linked actors; the $387M in stolen funds moved across Ethereum, XRP, Zcash and Tron within hours, with some XRP swapped into Bitcoin, pushing total DPRK-linked crypto theft in 2026 above $1 billion. Bitget had already restored BTC, ETH and USDT withdrawals with a $309M Protection Fund and continues gradually returning to normal operations."
+    "zh": "Chainalysis 将 3.87 亿美元的 Bitget 黑客攻击归因于与朝鲜有关的黑客，使 2026 年归因于朝鲜的加密货币盗窃金额超过 10 亿美元，链上记录显示被盗的 XRP 通过 THORChain 进行兑换。",
+    "en": "Chainalysis attributes the $387 million Bitget hack to North Korea-linked hackers, bringing DPRK-attributed crypto theft above $1 billion in 2026, with on-chain records showing the stolen XRP being swapped through THORChain."
   },
   "first_seen_at": "2026-09-24T23:18:03.365059+00:00",
-  "last_updated_at": "2026-10-02T14:41:06.184506+00:00",
-  "last_material_change_at": "2026-10-02T14:41:06.184506+00:00",
+  "last_updated_at": "2026-10-02T17:58:03.256753+00:00",
+  "last_material_change_at": "2026-10-02T17:58:03.256753+00:00",
   "confidence": 0.75,
-  "updates_count": 26,
-  "sources_count": 72,
+  "updates_count": 28,
+  "sources_count": 75,
   "entities": [
     "about",
     "accounting",
@@ -76,6 +76,7 @@
     "exploit",
     "exposes",
     "fallout",
+    "familiar",
     "fed",
     "foresight",
     "freeze",
@@ -104,6 +105,7 @@
     "issues",
     "korea",
     "korean",
+    "links",
     "losses",
     "million",
     "morning",
@@ -118,6 +120,7 @@
     "odds",
     "offers",
     "official",
+    "pattern",
     "pluang",
     "project",
     "protection-fund",
@@ -129,6 +132,7 @@
     "refuses",
     "rejects",
     "reopens",
+    "repeats",
     "request",
     "resume",
     "ripple",
@@ -221,6 +225,7 @@
     "incident-response",
     "industry-response",
     "institutional-custody",
+    "lazarus",
     "lazarus-group",
     "money-laundering",
     "near-intents",
@@ -1529,7 +1534,8 @@
       "confidence": 0.75,
       "story_ids": [
         "google_news:article:c898923a2afda6dc",
-        "google_news:article:60e1a2a9881c2ef2"
+        "google_news:article:60e1a2a9881c2ef2",
+        "google_news:article:2c4a4f9e07eb24c6"
       ],
       "sources": [
         {
@@ -1541,6 +1547,12 @@
         {
           "url": "https://startupfortune.com/bitgets-ceo-tells-cnbc-most-of-its-stolen-388-million-is-probably-gone/",
           "label": "Startup Fortune",
+          "source_type": "google_news",
+          "official": false
+        },
+        {
+          "url": "https://www.cnbc.com/2026/10/02/bitget-crypto-stolen-hack-recovery.html",
+          "label": "CNBC",
           "source_type": "google_news",
           "official": false
         }
@@ -1669,6 +1681,82 @@
           "url": "https://wublockchain.xyz/news/chainalysis-links-bitget-387m-hack-to-dprk-actors-traces-funds-21093",
           "label": "wublockchainenglish",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_045ea8d5ee615178",
+      "event_id": "evt_6655595dc1e36e0b",
+      "occurred_at": "2026-10-02T15:20:48Z",
+      "published_at": "2026-10-02T15:20:48Z",
+      "first_seen_at": "2026-10-02T17:57:54.736834Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "Bitget 黑客攻击重演熟悉的模式",
+      "title_en": "The Bitget Hack Repeats a Familiar Pattern",
+      "what_changed_zh": "Galaxy Research 分析 Bitget 黑客攻击，显示其遵循了此前在 Bybit 入侵事件中出现的与 Lazarus 相关的相同攻击模式。",
+      "what_changed_en": "Galaxy Research analyzes the Bitget hack, showing it follows the same Lazarus-linked attack pattern previously seen in the Bybit breach.",
+      "current_state_zh": "Galaxy Research 分析 Bitget 黑客攻击，显示其遵循了此前在 Bybit 入侵事件中出现的与 Lazarus 相关的相同攻击模式。",
+      "current_state_en": "Galaxy Research analyzes the Bitget hack, showing it follows the same Lazarus-linked attack pattern previously seen in the Bybit breach.",
+      "detailed_summary_zh": "Galaxy Research analyzes the Bitget hack, showing it follows the same Lazarus-linked attack pattern previously seen in the Bybit breach.",
+      "detailed_summary_en": "Galaxy Research analyzes the Bitget hack, showing it follows the same Lazarus-linked attack pattern previously seen in the Bybit breach.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "google_news:article:3cdbf1ea6dc278cd"
+      ],
+      "sources": [
+        {
+          "url": "https://www.galaxy.com/insights/research/bitget-hack-lazarus-bybit-pattern",
+          "label": "galaxy.com",
+          "source_type": "google_news",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_17d4564bdbcaa5bd",
+      "event_id": "evt_6655595dc1e36e0b",
+      "occurred_at": "2026-10-02T16:10:41Z",
+      "published_at": "2026-10-02T16:10:41Z",
+      "first_seen_at": "2026-10-02T17:58:03.256753Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Chainalysis Links $387 Million Bitget Hack to North Korea",
+      "title_en": "Chainalysis Links $387 Million Bitget Hack to North Korea",
+      "what_changed_zh": "Chainalysis 将 3.87 亿美元的 Bitget 黑客攻击归因于与朝鲜有关的黑客，使 2026 年归因于朝鲜的加密货币盗窃金额超过 10 亿美元，链上记录显示被盗的 XRP 通过 THORChain 进行兑换。",
+      "what_changed_en": "Chainalysis attributes the $387 million Bitget hack to North Korea-linked hackers, bringing DPRK-attributed crypto theft above $1 billion in 2026, with on-chain records showing the stolen XRP being swapped through THORChain.",
+      "current_state_zh": "Chainalysis 将 3.87 亿美元的 Bitget 黑客攻击归因于与朝鲜有关的黑客，使 2026 年归因于朝鲜的加密货币盗窃金额超过 10 亿美元，链上记录显示被盗的 XRP 通过 THORChain 进行兑换。",
+      "current_state_en": "Chainalysis attributes the $387 million Bitget hack to North Korea-linked hackers, bringing DPRK-attributed crypto theft above $1 billion in 2026, with on-chain records showing the stolen XRP being swapped through THORChain.",
+      "detailed_summary_zh": "Chainalysis attributes the $387 million Bitget hack to North Korea-linked hackers, bringing DPRK-attributed crypto theft above $1 billion in 2026, with on-chain records showing the stolen XRP being swapped through THORChain.",
+      "detailed_summary_en": "Chainalysis attributes the $387 million Bitget hack to North Korea-linked hackers, bringing DPRK-attributed crypto theft above $1 billion in 2026, with on-chain records showing the stolen XRP being swapped through THORChain.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "rss:thedefiant.io_api_feed:62bf3a5d5dc3d647"
+      ],
+      "sources": [
+        {
+          "url": "https://thedefiant.io/news/hacks/chainalysis-links-387-million-bitget-hack-to-north-korea",
+          "label": "The Defiant",
+          "source_type": "rss",
           "official": false
         }
       ]
