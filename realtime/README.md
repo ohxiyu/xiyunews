@@ -1,8 +1,8 @@
-# FomoBTC
+# xiyunews · Realtime
 
 Low-latency Binance spot move alerts, official exchange announcements and on-chain
 Binance flows, delivered through one Telegram group.
-Formerly CoinSignal; maintained in the private
+Formerly FomoBTC / CoinSignal; maintained in the private
 https://github.com/ohxiyu/xiyunews/tree/main/realtime repository subtree.
 Run the commands below from `realtime/`; dependencies and src imports are
 independent from the daily-publication application at the repository root.
