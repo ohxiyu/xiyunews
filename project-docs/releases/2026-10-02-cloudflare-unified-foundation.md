@@ -52,3 +52,5 @@ Rollback: 边缘无生产切换，不擅自恢复第二Cron；实时上一版rel
 前序a54665c5的[CI37005750396](https://github.com/ohxiyu/xiyunews/actions/runs/37005750396)与Pages预览均通过，CodeQL跳过；本次仅更新真实运维交接和验证记录，统一Worker仍未部署，PR197保留Draft。
 
 新看门狗版本计划21:10:23的自然Cron实际于21:10:32.765执行，outcome=ok、日志watchdog: ok、exceptions为空。21:11只读回读服务和原群管理员身份一致、备份0700/0600及SQLite integrity_check=ok，仍无切换后新自然事件。根完整Python回归和治理、实时61项及实时契约通过；发布文档的最终检查以PR197新head为准，不提前合并或启用统一Cron。
+
+21:24运营者确认已/start，API核验新Bot收到切换后私聊/start且该私聊可读取，不再把/start列为待用户操作；未比对加密ALERT_CHAT_ID，真实告警和手机送达仍未验证。新看门狗第二轮计划21:15:23、实际21:15:37.068也ok，服务/原群/话题仍保持，切换后仍无新自然事件。358807bc的CI37011428036与Pages预览全部可用检查通过，CodeQL跳过；详情见新Bot记录，本次不改生产配置。

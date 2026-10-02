@@ -24,3 +24,9 @@
 本轮交接修改通过根完整Python回归、根治理、实时61项测试和实时仓库契约；远端CI以PR197后续head为准。只更新运维说明与证据，没有发布应用新源码，不能把文档检查或看门狗无告警当作新Bot手机收件验证。
 
 关联：[当前交接](../handoff.md)、[Telegram运行手册](../telegram-runbook.md)、[原新仓部署](deploy-20261002-xiyunews-repository.md)、[根交接](../../../project-docs/handoff.md)、[PR197](https://github.com/ohxiyu/xiyunews/pull/197)。Cloudflare单项目切换仍未实施，不提前删除现役服务或恢复入口。
+
+## 后续私聊初始化确认（21:24）
+
+运营者报告已/start；新Bot API核验到切换后的一条私聊/start，消息时间21:05:15（Asia/Shanghai），该私聊getChat可读取。不输出私聊ID、用户资料、其他消息或Token，没有发送测试消息或通过offset确认/清除更新；不再要求重复/start。未直接比对Cloudflare加密ALERT_CHAT_ID，私聊初始化不证明现役看门狗实际告警已经送达。
+
+新看门狗计划21:15:23的第二轮自然Cron实际事件21:15:37.068，outcome=ok、日志watchdog: ok、exceptions为空；与21:10一轮一起，连续两次新版本检查通过。21:24服务仍MainPID235825/NRestarts0，原群administrator和话题3/5/7保留，仍没有切换后新自然事件。358807bc的CI37011428036及Pages预览全部可用检查通过，CodeQL跳过；本次补充仅为运维证据，不更换配置或部署应用。
