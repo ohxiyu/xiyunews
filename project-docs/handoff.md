@@ -1,16 +1,16 @@
 # 当前交接
 
-操作说明已由 Issue189/PR190 发布；本次 Issue191 记录运营者确认 Telegram 展示名为 xiyu.news。当前执行指针继续尚未完成的阶段 3 Issue172，五阶段描述该产品迁移，不把文档发布当成历史合并或服务器上线。20:05 广场真实到期发送与回执已验证，本地 realtime 已同步并通过双版本测试；完整历史仍因凭据撤销未确认而禁止上传。原可信 SSH 入口、新域登录、Telegram 实际改名与简介验收仍缺，不改提醒规则、账号权限或 UI。
+当前任务为运营者 2026-10-02 授权的旧资源清理 Issue193，不继续未经安全条件确认的历史上传。停用 Horizon Pages 已删除并回读，新站与现役调度、实时服务保留；旧域绑定与 DNS 区域已核验，浏览器删除等待操作时确认。运营者报告 Bot 已换且原频道已改名，但旧 Token 撤销尚未确认；不把换 Bot 当作撤销，不删除仍承担生产与恢复职责的旧 FomoBTC 仓、看门狗或域名。当前交接是唯一执行入口，历史阶段 3 作为后续依赖保留，不改提醒规则、账号权限或 UI。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "继续阶段 3 完整历史整合：本地代码与双版本测试已准备，确认凭据撤销后才能推送实际 PR",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/172",
+  "goal": "清理已验证停用的旧资源，保留新站与实时生产依赖，准确记录 Telegram 更换及未完成迁移",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/193",
   "owner": "Codex / 迁移唯一编辑及部署整合负责人",
-  "branch": "agent/xiyunews-realtime",
-  "last_verified_commit": "a7edea4b1edfa34ba5fdb7abc3502ca3c1b873fc",
-  "pr": "阶段3仍未上传或建立PR；PR190只发布操作说明与真实分发验收，不包含旧历史",
+  "branch": "agent/legacy-resource-cleanup",
+  "last_verified_commit": "2858290a6db7ec5f6eb38dc5fd30689bbfa90b14",
+  "pr": "本次清理文档PR待建立；不包含阶段3完整历史或服务器部署",
   "completed": [
     "阶段 1 PR169 与阶段 2 PR171 顺序全绿合并，主站与调度器已上线；PR174/176/178 后续修复也已合并",
     "ohxiyu/xiyunews 与 ohxiyu/fomobtc 均 private=true、archived=false，协作者仅 ohxiyu；私有 Git 集成 Pages 构建成功",
@@ -31,12 +31,17 @@
     "20:05 Square 36859488592 workflow_dispatch success，真实新回执 372593244617888；attempted=1、sent=11、remaining=3、attention=0",
     "本地实时分支同步 main 并补齐操作清单，保存 a7edea4b1edfa34ba5fdb7abc3502ca3c1b873fc，完整历史仍未上传",
     "服务器迁移清单、Telegram 品牌草案写入主仓文档任务；命令语法验证通过，未执行服务器或社交变更",
-    "运营者于 2026-10-01 确认 Telegram 日报频道和实时群展示名为 xiyu.news；实际改名与简介验收仍待完成"
+    "运营者于 2026-10-01 确认 Telegram 展示名为 xiyu.news；2026-10-02 报告 Bot 已换且沿用原频道，频道已改名，未独立读取身份或自然回执",
+    "本次核验生产Pages bmtnews与日报调度器均仍在用；旧bmtnews-standalone仅重定向同一主仓，不是可删除副本",
+    "停用Horizon Pages无自定义域与现役依赖，保存配置及首页快照后删除horizon-ohxiyu，项目列表确认不存在；备份不含全部部署历史",
+    "旧bmt.news区域仅三条CNAME，xiyu.news自身DNS独立；三个旧绑定与区域尚未删除，等待操作时确认",
+    "原实时2.6.0首次三现货分片live、随后第三分片warming；旧仓、watchdog、fomobtc.com与API均仍有生产或恢复依赖，继续保留"
   ],
   "unfinished": [
-    "确认旧历史疑似 Telegram Token 已撤销后，同步最新 main、重新测试、推送阶段 3 PR 并用 merge commit 保留历史",
+    "操作时确认后删除bmt.news、www.bmt.news、next.bmt.news的Pages绑定与旧DNS区域，再回读新站和项目身份",
+    "确认旧历史疑似 Telegram Token 已撤销后恢复Issue172，同步最新 main、重新测试、推送阶段 3 PR 并用 merge commit 保留历史",
     "阶段 4 从原 SSH 电脑备份、部署、检查新 SHA/三分片/自然回执/看门狗后，才归档旧仓",
-    "阶段 5 Telegram 名称已确认为 xiyu.news，仍需实际频道/群改名、简介确认及看门狗标题发布验收；不合并群/频道，不改 fomobtc.com nginx",
+    "频道改名已由运营者报告完成，不重复操作；简介、实时群实际元数据、看门狗标题和新Bot自然回执仍需验收，不合并群/频道，不改nginx",
     "运营者完成新域验证码后验证 Quick Post；旧域 301 已取消，不再作为迁移验收要求"
   ],
   "validation": [
@@ -45,27 +50,30 @@
     "本地阶段 3 Python 3.11/3.12 各 61 项 pytest，ruff、mypy、compileall、治理、3 项看门狗 Node 通过；当时根 929 项通过，合并最新 main 后须再跑",
     "实时阈值、地址簿、requirements.lock、systemd、nginx 与原仓对应文件逐字一致；未真实调用 AI、X、Telegram 作为测试",
     "本阶段完整 942 项 pytest、84 项 Worker 测试、绑定类型、tsc 和 dry-run 通过",
-    "同步后的 root 942 项和 realtime Python3.11/3.12 各 61 项、ruff/mypy/compileall/仓库契约/看门狗 3 项通过；8 个迁移 Bash 块及嵌入 Python 语法通过"
+    "同步后的 root 942 项和 realtime Python3.11/3.12 各 61 项、ruff/mypy/compileall/仓库契约/看门狗 3 项通过；8 个迁移 Bash 块及嵌入 Python 语法通过",
+    "本次旧项目列表回读成功、新域latest为2026-10-02且14条、调度器指向新仓新域；实时首次三分片live、随后第三分片warming，不作为持续就绪验收",
+    "编辑前942项pytest通过，编辑后品牌扫描内部资源文档导致1项失败；修正内部与公开边界并新增回归后完整943项、治理和diff检查通过，精确changed-range与远端检查随PR核验"
   ],
   "unverified": [
     "新域 Access 登录与 Quick Post 管理操作；旧域 301 已被运营者取消，不再作为验收要求",
     "阶段 3 远端 CI、merge commit 历史祖先；服务器新仓完整 SHA、自然 message_id 和看门狗无新增告警",
-    "Access 应用显示名修改仍待操作时确认"
+    "Access 应用显示名修改仍待操作时确认；旧域最终删除、新Bot自然回执、实时群资料及简介未独立核验"
   ],
   "production": {
-    "source_commit": "3b8f2b5cd82e257783c99501e6494e495bb20ca7",
-    "artifact_commit": "c74d90926376852660aa8b56ab2deb35fc624c9e",
-    "edition": "2026-10-01",
-    "generated_at": "2026-09-30T23:28:59.968601Z",
-    "worker_version": "9774435b-1c72-4dad-9552-0440e2ab574f（独立调度器）；Pages 216fd183-cd53-4140-a744-ff6b48ff1bd6（站点 Worker）",
-    "verified_at": "2026-10-01 11:12 UTC；普通主域 200、新 canonical；旧两域 26 路径 410，无跳转"
+    "source_commit": "2858290a6db7ec5f6eb38dc5fd30689bbfa90b14",
+    "artifact_commit": "31a0cba37ae643962e26ee4c3d8497e88a0f2e1e",
+    "edition": "2026-10-02",
+    "generated_at": "2026-10-01T23:29:37.357545Z",
+    "worker_version": "调度器9774435b-1c72-4dad-9552-0440e2ab574f；生产Pages07cdba23-711f-4172-92da-1862a24f6e65；本次未部署Worker",
+    "verified_at": "2026-10-02，旧Horizon删除后项目列表、普通新域API、调度与实时健康分别回读"
   },
   "blockers": [
-    "旧历史两份已删除 README 含同一疑似 Telegram Token，未输出或调用，未推入新仓；保留历史前需确认已撤销",
+    "浏览器删除须操作时确认，已询问三个旧域绑定与bmt.news区域的精确范围，尚未收到回复",
+    "旧历史两份已删除 README 含同一疑似 Telegram Token，未输出或调用，未推入新仓；保留历史前需确认已撤销，换Bot不能替代撤销",
     "仅确认两个文档中记载的 fomobtc_tokyo_config 路径不存在，尚不能推断本机没有私钥；原 SSH 配置路径待提供，未尝试不明连接",
     "新域验证码登录待运营者完成，不绕过 Access，不发布生产测试消息"
   ],
-  "next_action": "等待旧凭据已撤销确认后，先在 /tmp/xiyunews-stage3 合入最新 origin/main 并重新验证，随后推送阶段3 PR，以 merge commit 保留历史；确认原可信 SSH 入口后才实际备份部署。Telegram 名称使用已确认的 xiyu.news，无需重复确认名称；简介、实际改名验收、新域验证码登录与 Access 显示名仍待完成，不发布生产测试内容。",
+  "next_action": "先完成本次清理文档PR的同步、治理与远端检查；收到操作时删除确认后仅清理三个旧域绑定与bmt.news区域并回读，再通过文档PR记录结果。保留旧Fomo仓和看门狗；确认旧Token已撤销后才恢复Issue172的历史整合，原可信SSH入口恢复后才服务器备份部署。不重复改已改名频道，不改提醒规则或发生产测试消息。",
   "states": {
     "code": "complete",
     "tests": "complete",
@@ -73,10 +81,12 @@
     "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-10-01-remaining-preparation.md"
+  "evidence": "project-docs/releases/2026-10-02-legacy-resource-cleanup.md"
 }
 ```
 
-阶段 3 的唯一后续编辑入口是 /tmp/xiyunews-stage3，提交 a7edea4b1edfa34ba5fdb7abc3502ca3c1b873fc，尚未上传。不要推送包含旧历史的 agent/xiyunews-realtime、agent/xiyunews-local-history-hold 或旧本地 dispatcher 分支，也不要使用 git push --all；两仓私有化不能替代撤销凭据，不擅自重写历史。
+本任务唯一编辑入口为 `/tmp/xiyunews-stage2`、分支 `agent/legacy-resource-cleanup`，只修改过程文档。精确资源身份、删除结果和恢复限制见 [旧资源清单](legacy-resources.md)。文档通过并合并不代表旧域删除、历史导入或服务器发布全部完成。
+
+阶段 3 为后续依赖 [Issue172](https://github.com/ohxiyu/xiyunews/issues/172)，唯一后续编辑入口是 /tmp/xiyunews-stage3，提交 a7edea4b1edfa34ba5fdb7abc3502ca3c1b873fc，尚未上传。不要推送包含旧历史的 agent/xiyunews-realtime、agent/xiyunews-local-history-hold 或旧本地 dispatcher 分支，也不要使用 git push --all；两仓私有化不能替代撤销凭据，不擅自重写历史。
 
 实际运行边界见 [系统架构](system-architecture.md)，逐条命令见 [服务器迁移清单](realtime-server-migration.md)，确认文案见 [Telegram 品牌草案](telegram-brand-migration.md)。完整生产证据见 [部署回读记录](releases/2026-10-01-deployment-receipt.md)，步骤见 [域名迁移手册](brand-domain-migration.md)。realtime 文档尚不在远端 main，其入口目前仅在本地 realtime/docs/handoff.md 与 realtime/docs/deployment.md；不建立伪造链接，不继续其他未授权 PR。GitHub 当前私有仓套餐不支持分支保护或 CodeQL，未新增付费服务；合并仍手动核对同步 main、治理和全部可用 CI。
