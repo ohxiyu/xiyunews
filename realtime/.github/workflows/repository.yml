@@ -1,0 +1,26 @@
+name: Repository contracts
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  repository:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check current repository
+        run: python scripts/check_repository.py
+      - name: Check PR handoff and validation evidence
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python scripts/check_repository.py --base "$BASE_SHA"
+      - name: Compile service
+        run: python -m compileall -q src run.py

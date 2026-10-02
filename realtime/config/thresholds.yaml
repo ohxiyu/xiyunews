@@ -1,0 +1,23 @@
+# FomoBTC alert policy (src/platform).
+
+market_alerts:
+  # Binance spot universe and volume groups are refreshed this often.
+  universe_refresh_seconds: 600
+  # One rule: the price moved at least the group's threshold (percent) against the last
+  # trade at or before window_seconds ago, and stayed beyond it for confirmation_ms.
+  move:
+    window_seconds: 180
+    confirmation_ms: 3000
+    thresholds: {high: 2.0, mid: 3.0, low: 5.0}
+    # Same coin and direction alert at most once per cooldown, unless the price has gone
+    # a further continuation_percent beyond the previous alert's price.
+    cooldown_seconds: 3600
+    continuation_percent: 10
+  # On-chain Binance inflows/outflows (src/platform/flows.py).
+  flows:
+    threshold_usd: 10000000
+  # Telegram only: market notices due together are sent as one message.
+  digest:
+    hold_seconds: 1
+    max_items: 30
+    market_wide_symbols: 4

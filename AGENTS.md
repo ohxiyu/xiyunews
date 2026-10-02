@@ -6,6 +6,14 @@ Detailed onboarding and command examples are in
 
 ## Source of truth
 
+This private repository has two isolated applications: the daily publication
+(`src/`, `docs/`, `project-docs/handoff.md`) and the Telegram-only realtime service
+(`realtime/`, `realtime/AGENTS.md`, `realtime/docs/handoff.md`). Read the relevant
+application's entry documents. Root rules take precedence when rules conflict:
+all development uses agent/* and one Issue/PR, and root handoff/release evidence
+is required alongside realtime evidence. Never import either application's src
+package into the other or combine their dependencies, destinations or databases.
+
 - `origin/main` is the only source of truth for application code.
 - Never commit or push directly to `main`.
 - Never edit `gh-pages` manually. It is generated exclusively by the

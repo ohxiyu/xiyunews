@@ -18,6 +18,8 @@ def tree(tmp_path):
     paths += [str(p.relative_to(ROOT)) for p in (ROOT / "project-docs").rglob("*") if p.is_file()]
     # Handoff/release records may link the authoritative brand specification.
     paths += ["docs/openapi.json", "brand/logo-spec.md"]
+    # Combined-repository handoff links the independent realtime entry docs.
+    paths += ["realtime/docs/handoff.md", "realtime/docs/deployment.md"]
     for relative in set(paths):
         target = tmp_path / relative
         target.parent.mkdir(parents=True, exist_ok=True)
