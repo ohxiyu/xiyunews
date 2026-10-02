@@ -11,20 +11,21 @@
     "en": "NEAR Intents exploited for over $3.8M and halts services"
   },
   "current_state": {
-    "zh": "NEAR Intents 攻击事件持续调查中，攻击者地址被指与朝鲜 Lazarus Group 标记地址交互，攻击者或为 Lazarus Group；此前已确认损失超 380 万美元、暂停 11 个网络充提并承诺赔偿。",
-    "en": "Investigation into the NEAR Intents exploit continues; the attacker's address has been linked to a wallet flagged as North Korea's Lazarus Group, suggesting the attacker may be Lazarus Group. Previously confirmed: over $3.8M loss, deposits/withdrawals suspended across 11 networks, and full compensation pledged."
+    "zh": "NEAR Intents 攻击事件中，平台称已识别攻击者身份并给出 48 小时归还资金最后通牒；此前确认损失超 380 万美元、因 Omni 充提与合约交互缺陷暂停服务、承诺全额赔付，攻击者地址被指与朝鲜 Lazarus Group 标记地址交互。",
+    "en": "In the NEAR Intents exploit, the protocol says it has identified the attacker and issued a 48-hour ultimatum to return funds; previously confirmed: over $3.8M loss from a flaw in Omni deposit/withdrawal and smart contract interaction, services paused, full compensation pledged, and the attacker's address linked to a wallet flagged as North Korea's Lazarus Group."
   },
   "first_seen_at": "2026-10-01T15:11:04.403203+00:00",
-  "last_updated_at": "2026-10-01T18:31:27.924841+00:00",
-  "last_material_change_at": "2026-10-01T18:31:27.924841+00:00",
+  "last_updated_at": "2026-10-02T02:32:07.621471+00:00",
+  "last_material_change_at": "2026-10-02T02:32:07.621471+00:00",
   "confidence": 0.75,
-  "updates_count": 4,
-  "sources_count": 9,
+  "updates_count": 5,
+  "sources_count": 12,
   "entities": [
     "alert",
     "bsc",
     "community",
     "group",
+    "hack",
     "hacks",
     "halts",
     "intents",
@@ -43,6 +44,7 @@
     "cross-chain",
     "crypto-protocols",
     "fund-laundering",
+    "hack",
     "hacks",
     "hot-wallet-compromise",
     "lazarus-group",
@@ -50,6 +52,7 @@
     "near",
     "near-intents",
     "price-reaction",
+    "responsible-disclosure",
     "security-exploit",
     "security-incident"
   ],
@@ -249,6 +252,58 @@
         {
           "url": "https://m.theblockbeats.info/flash/369956?from=telegram",
           "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_4ed585036ab97802",
+      "event_id": "evt_1cf36734246e006d",
+      "occurred_at": "2026-10-02T02:02:13Z",
+      "published_at": "2026-10-02T02:02:13Z",
+      "first_seen_at": "2026-10-02T02:32:07.621471Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "NEAR Intents 称已确认黑客身份，并发出 48 小时最后通牒",
+      "title_en": "NEAR Intents says its identified the hacker, gives 48-hour ultimatum",
+      "what_changed_zh": "NEAR Intents 总经理 Alex Shevchenko 表示已识别出攻击者身份，并公开三个收款钱包地址（BTC、BNB、SOL），向攻击者发出 48 小时最后通牒，要求其依据负责任披露原则归还资金，否则窗口关闭。",
+      "what_changed_en": "NEAR Intents general manager Alex Shevchenko said the attacker has been identified and publicly shared three wallet addresses (BTC, BNB, SOL), issuing a 48-hour ultimatum for the funds to be returned under responsible disclosure before the window closes.",
+      "current_state_zh": "NEAR Intents 攻击事件中，平台称已识别攻击者身份并给出 48 小时归还资金最后通牒；此前确认损失超 380 万美元、因 Omni 充提与合约交互缺陷暂停服务、承诺全额赔付，攻击者地址被指与朝鲜 Lazarus Group 标记地址交互。",
+      "current_state_en": "In the NEAR Intents exploit, the protocol says it has identified the attacker and issued a 48-hour ultimatum to return funds; previously confirmed: over $3.8M loss from a flaw in Omni deposit/withdrawal and smart contract interaction, services paused, full compensation pledged, and the attacker's address linked to a wallet flagged as North Korea's Lazarus Group.",
+      "detailed_summary_zh": "NEAR Intents paused services and lost $3.8 million in user funds after a bug in its Omni deposit/withdrawal infrastructure, and its general manager says the attacker has been identified and given 48 hours to return the funds under responsible disclosure.",
+      "detailed_summary_en": "NEAR Intents paused services and lost $3.8 million in user funds after a bug in its Omni deposit/withdrawal infrastructure, and its general manager says the attacker has been identified and given 48 hours to return the funds under responsible disclosure.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:b3f68a910ad66285",
+        "telegram:theblockbeats:198680",
+        "telegram:foresightnews:119592"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/near-intents-says-its-identified-the-hacker-gives-48-hour-ultimatum?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://m.theblockbeats.info/flash/370000?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/114422",
+          "label": "foresightnews",
           "source_type": "telegram",
           "official": false
         }
