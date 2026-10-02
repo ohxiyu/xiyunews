@@ -24,7 +24,7 @@ jobs:
     # Explicit opt-in only after secure configuration and the reviewed cutover.
     if: >-
       vars.XIYUNEWS_EDGE_ENABLED == 'true' &&
-      (github.event_name == 'workflow_dispatch' ||
+      ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
        (github.event.workflow_run.conclusion == 'success' &&
         github.event.workflow_run.head_branch == 'main' &&
         github.event.workflow_run.head_repository.full_name == github.repository))
@@ -60,6 +60,8 @@ jobs:
           cache: npm
           cache-dependency-path: ops/daily-dispatcher/package-lock.json
       - run: npm ci
+        working-directory: ops/daily-dispatcher
+      - run: npm run audit
         working-directory: ops/daily-dispatcher
       - name: Deploy the single existing project without replacing operator vars
         working-directory: ops/daily-dispatcher

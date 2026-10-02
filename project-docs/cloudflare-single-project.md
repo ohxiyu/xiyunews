@@ -28,6 +28,8 @@ GitHub 环境 `xiyunews-production` 需要最小权限 `CLOUDFLARE_API_TOKEN` �
 
 状态迁移依据 [Cloudflare transfer migration](https://developers.cloudflare.com/durable-objects/reference/durable-object-class-migrations-legacy/#transfer-migration)，网站迁移依据 [Pages → Workers](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)。保留现役服务不等于迁移完成，HTTP 200 不等于自然推送；失败时不擅自回滚或启动第二发送者。
 
-## 工具链告警
+## 工具链安全验证
 
-原锁定 Node 开发依赖 audit 报告 7 项（5 high、2 moderate，Wrangler/Miniflare/Undici/Sharp/Vitest 链）。本轮没有升级、force fix 或忽略，需上线前独立处理和复测；运行时 omit-dev 审计不替代工具链安全，也不据此宣称主站已被攻击。没有新增收费服务或模型。
+原锁定 Node 开发依赖 audit 报告 7 项（5 high、2 moderate，Wrangler/Miniflare/Undici/Sharp/Vitest 链）。本轮已锁定 Vitest 4.1.11、Wrangler 4.131.0 和配套 workers-types 5.20260910.1，并用 overrides 锁定 Undici 7.29.1、Sharp 0.35.4；保留测试池 0.22.0，不用 force/legacy-peer-deps。重新安装后完整 npm audit 为 0，94 项边缘测试、类型检查和原调度器 dry-run 通过。
+
+`npm run check` 与统一生产发布工作流均包含覆盖开发依赖的低级别审计门槛，不以 omit-dev 隐藏工具链问题。统一资产真实构建与新版本 dry-run 以本任务最终远端 CI 为准；这不是实际部署，也不据原告警宣称主站曾被攻击。没有新增收费服务或模型。运营者已要求一次执行此前提出的迁移步骤，但授权不会生成缺失的安全配置或可信 SSH 入口；现役服务保留至切换验收。

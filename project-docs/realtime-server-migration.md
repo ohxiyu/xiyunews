@@ -1,6 +1,6 @@
 # 新仓实时服务迁移操作清单
 
-本文件已准备但尚未执行，不能当作部署证据。完整 realtime 历史尚未上传至远端 main；必须先确认旧历史凭据已撤销、阶段 3 PR 以 merge commit 合并，再使用其实际完整 SHA 执行。SSH 配置和主机指纹必须使用运营者既有可信连接，不发送私钥或验证码。
+本文件已准备但尚未执行，不能当作部署证据。运营者已确认旧历史凭据撤销，PR195 已以 merge commit d6a9d3f29ef93c138842342c973b3049fb7bc252 合并；旧实时 main 是新仓 origin/main 的祖先，realtime/ 已存在。部署必须使用包含完整历史的实际合并 SHA，不能把代码合并当成服务器切换；SSH 配置和主机指纹必须使用运营者既有可信连接，不发送私钥或验证码。
 
 ## 现有东京服务迁移清单（阶段 4）
 
@@ -22,7 +22,7 @@ ssh -F "$XIYU_SSH_CONFIG" -o StrictHostKeyChecking=yes fomobtc-tokyo \
   'systemctl is-active fomobtc; readlink -f /opt/fomobtc/current'
 ```
 
-记录当前 release 路径和健康接口的 source_commit。SOURCE_SHA 必须来自实际合并的阶段 3 PR；当前仅网站迁移的 main 没有 realtime，不能拿它冒充服务器新版本。
+记录当前 release 路径和健康接口的 source_commit。SOURCE_SHA 必须是新仓中包含 realtime/ 与旧历史的实际合并提交；PR195 的合并 SHA 已满足代码前提，但服务器尚未使用它。本轮公网回读仍为旧 b226b625cf3875b6693e0768d75d88d50b33c08d，不是新仓部署证据。
 
 ### 2. 运营者电脑：传送独立模块
 

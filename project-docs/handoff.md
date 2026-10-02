@@ -9,7 +9,7 @@
   "issue": "https://github.com/ohxiyu/xiyunews/issues/196",
   "owner": "迁移唯一编辑及发布整合负责人",
   "branch": "agent/xiyunews-cloudflare",
-  "last_verified_commit": "a7a4fe76847dee984a0ad8439fc1f8ea8539deff",
+    "last_verified_commit": "5708845f08356b2be6a913eb9b21a613b4a9f81d",
   "pr": "https://github.com/ohxiyu/xiyunews/pull/197（Draft；前序PR195已合并）",
   "completed": [
     "PR195以merge commit合并，旧实时main7807126d8c7cdb51e18f0b91ba27f500271f9f08是origin/main祖先，远端realtime目录存在",
@@ -20,20 +20,23 @@
     "已复用原网站鉴权/API/缓存、调度和看门狗准备新入口xiyunews，默认无Cron且双开关关闭，不修改UI或实时规则",
     "已准备固定出版SHA构建和默认关闭的自动发布工作流，补充真实静态构建CI与免AI部署恢复路径",
     "PR197的a7a4fe76全部可用远端检查通过：真实Jekyll渲染/资产校验/统一Worker dry-run、治理、主站和实时双版本；CodeQL跳过，未部署",
-    "GitHub主仓名xiyunews、描述统一稀有News及实时快讯、主页链接改为https://xiyu.news，private保持true"
+    "GitHub主仓名xiyunews、描述统一稀有News及实时快讯、主页链接改为https://xiyu.news，private保持true",
+    "在同一Issue196/PR197独立提交工具链安全修复：Vitest4.1.11、Wrangler4.131.0、配套类型、Undici7.29.1/Sharp0.35.4覆盖；完整npm audit从7项到0，94项边缘回归通过",
+    "统一自动部署仅允许main手动派发或可信main出版成功；部署前执行完整审计，新增两项离线门槛回归，纠正服务器清单仍称历史未合并的过时说明"
   ],
   "unfinished": [
     "迁移基础PR保留Draft，最终域名/状态/Cron切换尚未实施，不能把全绿dry-run当成生产",
-    "安全补齐新Worker配置、最小权限自动部署凭据及原可信SSH入口，取得对应部署/配置授权后完成切换",
+    "通过既有安全渠道补齐新Worker配置、最小权限自动部署凭据及原可信SSH入口；运营者已要求执行此前迁移步骤，但缺失凭据不会因授权自动恢复",
     "停旧Cron、迁移原RecoveryGate归属、保持STATE KV、迁域、自然调度与后台验收；最终切换配置须另一个串行PR",
     "服务器按新仓完整SHA重新发布、三现货分片和自然message_id验收后退役旧fomobtc仓库",
-    "现有Node开发工具链7项依赖告警需单独修复和复测，未强制升级"
+    "本轮安全锁定与发布门槛修改须等最终远端CI通过；基础仍默认关闭，不能据此启用新Cron或删除现役服务"
   ],
   "validation": [
     "新入口与原dispatcher共94项边缘测试通过、tsc通过，看门狗3项Node通过",
-    "根完整951项Python测试、原后台及公开路由51项Node通过，新增资产8项单独通过；实时3.11的61项/ruff/mypy/compileall/契约通过",
+    "本轮根完整953项Python测试通过、治理与实时契约通过；原后台及公开路由51项Node通过，资产及发布门槛10项单独通过；实时3.11的61项/ruff/mypy/compileall基线通过",
     "新域最新2026-10-02共14条；实时health仍是2.6.0/b226b625cf3875b6693e0768d75d88d50b33c08d，Telegram启用，三个spot分片live",
-    "只读取GitHub和Worker Secrets名称；未复制加密值、未新增Token、未改密钥或发真实测试消息"
+    "只读取GitHub和Worker Secrets名称；未复制加密值、未新增Token、未改密钥或发真实测试消息",
+    "Vitest4.1.11与原Cloudflare测试池兼容：94项通过，完整审计0、types:check/tsc/原Wrangler dry-run通过；新增资产与发布门槛共10项、后台公开路由51项、看门狗3项通过"
   ],
   "unverified": [
     "统一Worker真实部署/流量切换/DO迁入及自然调度；当前配置为过渡状态而非最终单项目",
@@ -49,11 +52,11 @@
     "verified_at": "2026-10-02，普通latest API与实时health回读；旧区和旧域绑定面板回读"
   },
   "blockers": [
-    "原可信SSH配置路径待提供；两个已知路径不存在，默认ssh -G未解析fomobtc-tokyo主机，不能推断本机没有私钥，不猜用密钥或关闭指纹校验",
+    "原可信SSH配置路径待提供；两个已知路径不存在，默认ssh -G未解析fomobtc-tokyo主机，known_hosts无目标IP已知条目；不能推断本机没有私钥，不猜用密钥或关闭指纹校验",
     "现有仓库没有Cloudflare自动部署Secrets和启用变量；旧Worker加密Secrets不可通过名称列表恢复，需运营者既有安全注入方式",
-    "Worker部署/密钥/DNS和最终删资源需要对应授权；当前只完成明确确认的旧区与三绑定清理"
+    "运营者要求一次执行所讨论迁移步骤；新增持久访问权限与秘密值注入仍须按安全配置流程处理，后续浏览器删除须操作时确认；不重复询问已完成旧区与三绑定删除"
   ],
-  "next_action": "迁移基础真实构建CI已通过，保留Draft等待安全配置与可信SSH；条件具备后再完成串行切换配置、迁移原状态与域名及自然验收，最后删旧资源，不双Cron。",
+  "next_action": "安全修复正常提交推送PR197并核对最终CI；保留Draft等待既有安全配置和可信SSH。缺口补齐后按串行切换PR迁移原状态与域名，实际部署新仓服务器并自然验收，再退役旧资源，不双Cron。",
   "states": {
     "code": "pending",
     "tests": "pending",
