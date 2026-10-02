@@ -8,14 +8,19 @@
     "types:check": "wrangler types --include-runtime false --check",
     "typecheck": "tsc --noEmit",
     "test": "GITHUB_DISPATCH_TOKEN=test-token RECOVERY_CHECK_TOKEN=test-check-token PAGES_DEPLOY_HOOK=https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/test vitest run",
-    "check": "npm run types:check && npm run typecheck && npm test && wrangler deploy --dry-run"
+    "audit": "npm audit --audit-level=low",
+    "check": "npm run audit && npm run types:check && npm run typecheck && npm test && wrangler deploy --dry-run"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "0.22.0",
-    "@cloudflare/workers-types": "5.20260905.1",
+    "@cloudflare/workers-types": "5.20260910.1",
     "@types/node": "26.1.2",
     "typescript": "5.9.3",
-    "vitest": "4.1.10",
-    "wrangler": "4.129.0"
+    "vitest": "4.1.11",
+    "wrangler": "4.131.0"
+  },
+  "overrides": {
+    "undici": "7.29.1",
+    "sharp": "0.35.4"
   }
 }

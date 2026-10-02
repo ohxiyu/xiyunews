@@ -20,10 +20,7 @@ def test_contract_rejects_inconsistent_documents(tmp_path):
     fixture_root.mkdir()
     process_docs = tmp_path / "project-docs"
     process_docs.mkdir()
-    shutil.copy(
-        ROOT.parent / "project-docs/realtime-server-migration.md",
-        process_docs / "realtime-server-migration.md",
-    )
+    shutil.copytree(ROOT.parent / "project-docs", process_docs, dirs_exist_ok=True)
     for name in (
         "AGENTS.md",
         "agent.md",

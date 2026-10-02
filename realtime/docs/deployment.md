@@ -21,12 +21,14 @@ Alternatively use bash realtime/scripts/deploy/package_release.sh "$SOURCE_SHA"
 for the validated tar stream. SOURCE_COMMIT is this full combined-repository SHA;
 /api/health must match it, not the pre-import fomobtc commit. Do not change the
 systemd unit, /etc/fomobtc.env path, database path or nginx redirect. The complete
-operator-only switch/backup/rollback checklist is below. It is prepared, not executed;
-do not run the packaging example without its preparation steps.
+operator-only switch/backup/rollback checklist is below. The 2026-10-02 switch to
+the combined repository is recorded in docs/releases/deploy-20261002-xiyunews-repository.md;
+Telegram delivery remains blocked by the existing group's bot permissions.
+Do not rerun the packaging example over the already deployed release.
 
 ## 现有东京服务迁移清单（阶段 4）
 
-完整逐条命令仅维护在 [服务器迁移清单](../../project-docs/realtime-server-migration.md)，包括原 SSH/主机指纹、完整 SHA、独立打包、备份、原子切换、健康与自然回执、看门狗及经授权回退。该清单已经准备并通过语法检查，但本次未执行服务器迁移；必须先完成阶段 3 历史安全确认和实际合并，再使用真实合并 SHA。
+完整逐条命令仅维护在 [服务器迁移清单](../../project-docs/realtime-server-migration.md)，包括专用 SSH/可信主机指纹、完整 SHA、独立打包、备份、原子切换、健康与自然回执、看门狗及经授权回退。阶段3历史安全确认与PR195实际合并已完成，2026-10-02已用该合并SHA完成服务器版本切换；源码和三分片通过，Bot群权限导致自然送达尚未通过，见 [实际部署记录](releases/deploy-20261002-xiyunews-repository.md)。不把服务在线写成业务验收完成。
 
 ## Backend: one Linux host, one sender
 

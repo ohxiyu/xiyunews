@@ -1,0 +1,39 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "xiyunews",
+  "main": "src/unified.ts",
+  "compatibility_date": "2026-08-26",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "version_metadata": {"binding": "CF_VERSION_METADATA"},
+  "assets": {
+    "directory": "../../.edge-site",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "vars": {
+    "GITHUB_REPOSITORY": "ohxiyu/xiyunews",
+    "GITHUB_WORKFLOW": "daily-summary.yml",
+    "GITHUB_REF": "main",
+    "EDITION_TIMEZONE": "Asia/Shanghai",
+    "EDITION_CUTOFF_HOUR": "7",
+    "PUBLIC_SITE_URL": "https://xiyu.news",
+    "EDGE_DEPLOY_WORKFLOW": "cloudflare-unified.yml",
+    "ENABLE_DISPATCHER": "false",
+    "ENABLE_REALTIME_WATCHDOG": "false"
+  },
+  // Transitional external namespace: preserve leases, budgets and cooldowns.
+  // Transfer ownership using the reviewed cutover plan before retiring its host.
+  "durable_objects": {"bindings": [
+    {"name": "RECOVERY_GATE", "class_name": "RecoveryGate", "script_name": "bmtnews-daily-dispatcher"}
+  ]},
+  "kv_namespaces": [
+    {"binding": "STATE", "id": "469346950dfc4f36b8d9bf9997d960fa"}
+  ],
+  // No scheduled side effects until the old schedulers are stopped and verified.
+  "triggers": {"crons": []},
+  "observability": {"enabled": true}
+}

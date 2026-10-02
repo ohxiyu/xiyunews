@@ -1,0 +1,30 @@
+"""Offline guards for the opt-in production deployment and its toolchain."""
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_edge_deployment_requires_main_and_audits_before_upload():
+    workflow = (ROOT / ".github/workflows/cloudflare-unified.yml").read_text()
+    assert "vars.XIYUNEWS_EDGE_ENABLED == 'true'" in workflow
+    assert "github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'" in workflow
+    assert "github.event.workflow_run.conclusion == 'success'" in workflow
+    assert "github.event.workflow_run.head_branch == 'main'" in workflow
+    assert "github.event.workflow_run.head_repository.full_name == github.repository" in workflow
+    assert workflow.index("run: npm ci") < workflow.index("run: npm run audit")
+    assert workflow.index("run: npm run audit") < workflow.index("npx wrangler deploy")
+
+
+def test_dependency_audit_includes_the_locked_development_toolchain():
+    dispatcher = ROOT / "ops/daily-dispatcher"
+    package = json.loads((dispatcher / "package.json").read_text())
+    lock = json.loads((dispatcher / "package-lock.json").read_text())
+    assert package["scripts"]["audit"] == "npm audit --audit-level=low"
+    assert package["scripts"]["check"].startswith("npm run audit && ")
+    assert package["devDependencies"] == lock["packages"][""]["devDependencies"]
+    for name, version in package["overrides"].items():
+        resolved = [item for path, item in lock["packages"].items()
+                    if path.endswith(f"node_modules/{name}")]
+        assert resolved, f"override {name} must resolve in the lockfile"
+        assert all(item["version"] == version for item in resolved)

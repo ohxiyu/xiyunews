@@ -36,12 +36,12 @@ test("alert after two failing checks, remind every two hours, announce recovery"
   let r = step(null, found, now);
   assert.equal(r.message, null); // One transient failure is ignored.
   r = step(r.state, found, now + 300_000);
-  assert.match(r.message, /^🚨 FomoBTC 服务异常\n• 服务无响应/);
+  assert.match(r.message, /^🚨 xiyu.news 实时服务异常\n• 服务无响应/);
   r = step(r.state, found, now + 600_000);
   assert.equal(r.message, null); // No repeat within two hours.
   r = step(r.state, found, now + 300_000 + 2 * 3600_000);
-  assert.match(r.message, /^⚠️ FomoBTC 仍未恢复/);
+  assert.match(r.message, /^⚠️ xiyu.news 实时服务仍未恢复/);
   r = step(r.state, [], now + 3 * 3600_000);
-  assert.equal(r.message, "✅ FomoBTC 已恢复正常");
+  assert.equal(r.message, "✅ xiyu.news 实时服务已恢复正常");
   assert.deepEqual(step(r.state, [], now).message, null); // Quiet when nothing was alerted.
 });

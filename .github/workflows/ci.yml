@@ -13,6 +13,31 @@ permissions:
   contents: read
 
 jobs:
+  edge-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+          path: .edge-source
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
+      - run: python3 scripts/prepare_edge_assets.py .edge-rendered .edge-site
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - run: npm ci
+        working-directory: ops/daily-dispatcher
+      - run: npx wrangler deploy --config wrangler.unified.jsonc --dry-run
+        working-directory: ops/daily-dispatcher
   realtime-paths:
     runs-on: ubuntu-latest
     timeout-minutes: 5

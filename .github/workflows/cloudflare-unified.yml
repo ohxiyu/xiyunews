@@ -1,0 +1,79 @@
+name: xiyunews Cloudflare
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - xiyu.news Daily Edition
+      - xiyu.news Feed Collection
+      - Deploy Docs
+      - xiyu.news Weekly Review
+      - Editorial Rebuild
+      - Apply Event Archive Migration
+    types: [completed]
+
+concurrency:
+  group: xiyunews-cloudflare-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    # Explicit opt-in only after secure configuration and the reviewed cutover.
+    if: >-
+      vars.XIYUNEWS_EDGE_ENABLED == 'true' &&
+      ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+       (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'main' &&
+        github.event.workflow_run.head_repository.full_name == github.repository))
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: xiyunews-production
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+          path: .edge-source
+          persist-credentials: false
+      - name: Record immutable source and published artifact
+        id: source
+        run: |
+          echo "code=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "artifact=$(git -C .edge-source rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - name: Render published snapshot without collection or AI
+        run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
+      - name: Validate and stage public assets
+        run: python3 scripts/prepare_edge_assets.py .edge-rendered .edge-site
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: ops/daily-dispatcher/package-lock.json
+      - run: npm ci
+        working-directory: ops/daily-dispatcher
+      - run: npm run audit
+        working-directory: ops/daily-dispatcher
+      - name: Deploy the single existing project without replacing operator vars
+        working-directory: ops/daily-dispatcher
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          SOURCE_SHA: ${{ steps.source.outputs.code }}
+          ARTIFACT_SHA: ${{ steps.source.outputs.artifact }}
+        run: >-
+          npx wrangler deploy --config wrangler.unified.jsonc --keep-vars
+          --var "SITE_SOURCE_COMMIT:$SOURCE_SHA"
+          --var "SITE_ARTIFACT_COMMIT:$ARTIFACT_SHA"
+
+      # Traffic and cron activation are deliberately not performed by this job.
+      # Update the final owned DO binding/cron config in a reviewed cutover PR.

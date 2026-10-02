@@ -1,16 +1,22 @@
 # 新仓实时服务迁移操作清单
 
-本文件已准备但尚未执行，不能当作部署证据。完整 realtime 历史尚未上传至远端 main；必须先确认旧历史凭据已撤销、阶段 3 PR 以 merge commit 合并，再使用其实际完整 SHA 执行。SSH 配置和主机指纹必须使用运营者既有可信连接，不发送私钥或验证码。
+服务器版本已于2026-10-02 20:01:45（Asia/Shanghai）切换到新仓PR195合并SHA d6a9d3f29ef93c138842342c973b3049fb7bc252，三个现货分片live，备份与配置保留验证通过。旧Bot在只读群中为普通成员，当时自然消息被拒绝；21:03又按运营者明确授权换为原群管理员@xiyunewsbot，原群与话题3/5/7保持，新Bot自然回执仍待验证，旧资源继续保留。版本迁移见 [原部署记录](../realtime/docs/releases/deploy-20261002-xiyunews-repository.md)，后续凭据切换见 [新Bot记录](../realtime/docs/releases/deploy-20261002-xiyunews-bot.md)。旧实时 main 是新仓 origin/main 的祖先，私钥和验证码不发送到聊天、仓库或服务器。下面是复用的操作清单，不代表其每个验收条件已经完成。
+
+## 已恢复的专用连接（2026-10-02）
+
+运营者在操作时确认生成专用密钥并追加公钥后，本机连接配置为 `/Users/minutesdr/.ssh/xiyunews_tokyo_config`，主机别名为 `xiyunews-tokyo`，兼容 `fomobtc-tokyo`。通过已登录阿里云控制台读取主机 ED25519 指纹，再与本机扫描比对一致：`SHA256:XIxHR56+d7J8ntuK03ICzWZf7d2pEJQOFRl231KXE9Y`。独立 known_hosts 与 StrictHostKeyChecking=yes 固定此身份，不修改全局 SSH 配置；私钥只在运营者电脑，公钥禁用 agent、X11 和端口转发。
+
+实际验证已通过 admin 登录和免交互 sudo，保留原两把公钥，并在服务器保存追加前备份。systemd 仍 active/running，MainPID=219051、NRestarts=0，未重启服务。公网 health 仍是旧版本 SHA、三个现货分片 live；连接恢复不是服务器版本迁移完成。详见 [连接验证记录](../realtime/docs/releases/ssh-access-20261002.md)。
 
 ## 现有东京服务迁移清单（阶段 4）
 
 仅在阶段 3 使用 merge commit 合并、确认旧历史凭据已撤销后执行。以下迁移不重装 systemd、nginx、证书或看门狗，不改阈值、地址簿、群组、数据库位置与密钥；没有 SSH 配置或既有主机指纹时停止，不使用 StrictHostKeyChecking=no。所有标为“服务器”的命令在同一次 SSH 会话中执行，保留变量；命令不是本轮已执行的部署证据。
 
-### 1. 运营者电脑：核对实际合并 SHA 与原连接
+### 1. 运营者电脑：核对实际合并 SHA 与专用连接
 
 ```bash
 set -euo pipefail
-XIYU_SSH_CONFIG='/填写已有SSH配置的绝对路径'
+XIYU_SSH_CONFIG='/Users/minutesdr/.ssh/xiyunews_tokyo_config'
 SOURCE_SHA='填写阶段3实际合并的40位SHA'
 test -f "$XIYU_SSH_CONFIG"
 [[ "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]
@@ -22,7 +28,7 @@ ssh -F "$XIYU_SSH_CONFIG" -o StrictHostKeyChecking=yes fomobtc-tokyo \
   'systemctl is-active fomobtc; readlink -f /opt/fomobtc/current'
 ```
 
-记录当前 release 路径和健康接口的 source_commit。SOURCE_SHA 必须来自实际合并的阶段 3 PR；当前仅网站迁移的 main 没有 realtime，不能拿它冒充服务器新版本。
+记录当前 release 路径和健康接口的 source_commit。SOURCE_SHA 必须是新仓中包含 realtime/ 与旧历史的实际合并提交；本次服务器已使用PR195合并SHA d6a9d3f29ef93c138842342c973b3049fb7bc252，旧b226b625release作为上一版保留。未来重复执行时使用当时已审核的新合并SHA，不能覆盖本次已存在目录，实际部署证据以本文件开头链接的记录为准。
 
 ### 2. 运营者电脑：传送独立模块
 
