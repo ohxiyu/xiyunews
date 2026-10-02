@@ -7,51 +7,71 @@
   "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "MetaMask：安全事件影响部分基础设施，暂无直接威胁",
-    "en": "MetaMask: Security Incident Affects Part of Infrastructure, No Immediate Threat"
+    "zh": "MetaMask基础设施安全事件：主动退出受影响验证者",
+    "en": "MetaMask Infrastructure Security Incident: Proactive Exit of Affected Validators"
   },
   "current_state": {
-    "zh": "MetaMask 披露影响部分基础设施的安全事件，并正预防性退出约 1.7 万个验证者，涉及约 52.3 万枚 ETH；链上研究者 Kaden 称 19 个获得区块奖励的验证者中 18 笔奖励未发送至原定 fee recipient，而是流向由 Tornado Cash 资金支持的地址，攻击者实际获取约 0.36 ETH；约 821 个可能受影响的验证者仍未退出，受损签名密钥可能带来残余罚没风险；MetaMask 称其质押服务为非托管且不控制用户提款密钥，但未披露事件原因、受影响范围或签名密钥是否暴露；新增信息显示以太坊验证者退出队列因此升至 773,447 ETH，为 2025 年 12 月以来最大积压，等待约 13 天 10 小时外加约 7.6 天 sweep，进入队列约 27 天；Lido 此前称退出、提取和重新进入周期可能长达约 45 天。",
-    "en": "MetaMask disclosed a security incident affecting part of its infrastructure and is preemptively exiting roughly 17,000 validators holding about 523,000 ETH; on-chain researcher Kaden said that out of 19 validators receiving block rewards, 18 rewards were not sent to the intended fee recipient and instead went to an address funded by Tornado Cash, with the attacker actually obtaining about 0.36 ETH; about 821 potentially affected validators have not yet exited, and compromised signing keys could pose residual slashing risk; MetaMask said its staking service is non-custodial and it does not control users’ withdrawal keys, but has not disclosed the cause, full scope, or whether signing keys were exposed; new information shows Ethereum’s validator exit queue swelled to 773,447 ETH, the largest backlog since December 2025, implying about a 13-day 10-hour exit wait plus a 7.6-day sweep, with an entry queue of about 27 days; Lido previously said the full exit, withdrawal and re-entry cycle could take up to about 45 days."
+    "zh": "在MetaMask安全事件后，Linea已退出Yield Boost验证者运营，同时坚称其金库中的资金未受影响。",
+    "en": "Linea has pulled out of Yield Boost validator operations following a MetaMask security incident, while maintaining that funds in its vaults were not affected."
   },
   "first_seen_at": "2026-10-01T00:03:16.761779+00:00",
-  "last_updated_at": "2026-10-01T15:11:13.917628+00:00",
-  "last_material_change_at": "2026-10-01T15:11:13.917628+00:00",
+  "last_updated_at": "2026-10-02T14:41:05.045695+00:00",
+  "last_material_change_at": "2026-10-02T14:41:05.045695+00:00",
   "confidence": 0.75,
-  "updates_count": 6,
-  "sources_count": 10,
+  "updates_count": 9,
+  "sources_count": 19,
   "entities": [
+    "aave",
     "affects",
     "after",
+    "amid",
     "analysis",
+    "basis",
+    "boost",
     "compromise",
     "ethereum-staking",
     "exits",
+    "funds",
     "immediate",
     "incident",
     "infrastructure",
     "lido",
+    "linea",
     "metamask",
+    "morpho",
     "part",
+    "renzo",
+    "says",
     "security-incident",
+    "sentora",
     "staking",
     "threat",
-    "validators"
+    "unaffected",
+    "validators",
+    "vault",
+    "yield"
   ],
   "identifiers": [],
   "topics": [
+    "aave",
     "consensys",
     "ethereum-staking",
     "ethereum-validators",
     "infrastructure",
     "lido",
+    "linea",
+    "liquid-staking",
     "metamask",
+    "morpho",
+    "on-chain-analysis",
+    "renzo",
     "security-breach",
     "security-incident",
     "slashing-risk",
     "staking",
     "tornado-cash",
-    "validators"
+    "validators",
+    "vault-outflows"
   ],
   "updates": [
     {
@@ -83,7 +103,9 @@
       "story_ids": [
         "telegram:wublockchainenglish:26231",
         "telegram:theblockbeats:198509",
-        "telegram:theblockbeats:198612"
+        "telegram:theblockbeats:198612",
+        "telegram:foresightnews:119551",
+        "rss:decrypt.co_feed:9d6053e3b66b6ebe"
       ],
       "sources": [
         {
@@ -102,6 +124,97 @@
           "url": "https://m.theblockbeats.info/flash/369933?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/114381",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://decrypt.co/379800/metamask-exits-lido-validators-amid-infrastructure-security-incident",
+          "label": "Decrypt",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_4d1f48756556a816",
+      "event_id": "evt_8fca4d5c4b0173a2",
+      "occurred_at": "2026-09-30T23:57:02Z",
+      "published_at": "2026-09-30T23:57:02Z",
+      "first_seen_at": "2026-10-01T00:03:18.016656Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "Aave创始人：密切关注MetaMask质押事件，Aave市场未受影响",
+      "title_en": "Aave创始人：密切关注MetaMask质押事件，Aave市场未受影响",
+      "what_changed_zh": "Aave创始人Stani表示，其团队正与Lido一同监控MetaMask Staking基础设施安全事件，并确认Aave市场未受影响，所有操作正常运行。",
+      "what_changed_en": "Aave founder Stani said his team is monitoring the MetaMask Staking infrastructure security incident alongside Lido, confirming that Aave markets are unaffected and all operations are running normally.",
+      "current_state_zh": "Aave创始人Stani表示，其团队正与Lido一同监控MetaMask Staking基础设施安全事件，并确认Aave市场未受影响，所有操作正常运行。",
+      "current_state_en": "Aave founder Stani said his team is monitoring the MetaMask Staking infrastructure security incident alongside Lido, confirming that Aave markets are unaffected and all operations are running normally.",
+      "detailed_summary_zh": "Aave founder Stani said his team is monitoring the MetaMask Staking infrastructure security incident alongside Lido, confirming that Aave markets are unaffected and all operations are running normally.",
+      "detailed_summary_en": "Aave founder Stani said his team is monitoring the MetaMask Staking infrastructure security incident alongside Lido, confirming that Aave markets are unaffected and all operations are running normally.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [
+        {
+          "url": "https://info.etherscan.com/what-is-fee-recipient/",
+          "title": "Fee Recipient | Etherscan Information Center"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Tornado_Cash",
+          "title": "Tornado Cash - Wikipedia"
+        },
+        {
+          "url": "https://support.metamask.io/trade/earn/stake/how-do-i-stake-with-metamask-staking/",
+          "title": "How to stake with MetaMask Staking | MetaMask Help Center"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:theblockbeats:198510",
+        "google_news:article:43e9341e4ce450c7",
+        "telegram:theblockbeats:198548",
+        "rss:protos.com_feed_:a631b91f33d5a28e",
+        "google_news:article:ca589be939eb6178"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/369828?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://cryptobriefing.com/sentora-morpho-vaults-outflows-metamask-incident/",
+          "label": "Crypto Briefing",
+          "source_type": "google_news",
+          "official": false
+        },
+        {
+          "url": "https://m.theblockbeats.info/flash/369866?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://protos.com/metamask-unstakes-1-4b-of-eth-after-validator-rewards-stolen/",
+          "label": "Protos",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://www.cryptotimes.io/2026/10/02/linea-exits-yield-boost-validators-after-metamask-security-incident-says-vault-funds-unaffected/",
+          "label": "The Crypto Times",
+          "source_type": "google_news",
           "official": false
         }
       ]
@@ -154,6 +267,44 @@
           "url": "https://www.binance.com/en-TR/square/post/372435515955471",
           "label": "Binance",
           "source_type": "google_news",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_b6d36c648af577d0",
+      "event_id": "evt_8fca4d5c4b0173a2",
+      "occurred_at": "2026-10-01T00:15:55Z",
+      "published_at": "2026-10-01T00:15:55Z",
+      "first_seen_at": "2026-10-01T02:21:00.775876Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "MetaMask因未披露的安全事件退出以太坊验证者行列",
+      "title_en": "MetaMask exits Ethereum validators amid undisclosed security incident",
+      "what_changed_zh": "MetaMask正在调查一起影响其基础设施的安全事件，并作为预防措施退出其运营的以太坊质押验证者；Lido确认验证者退出并提示可能产生罚没；最后一批受影响验证者预计10月7日前退出，提款再进入周期估计最长45天。",
+      "what_changed_en": "MetaMask is investigating a security incident affecting its infrastructure and is exiting its operated Ethereum staking validators as a precaution; Lido confirmed the validator exits and flagged potential penalties; the last affected validators are expected to exit by Oct. 7, with withdrawal and re-entry cycle estimated up to 45 days.",
+      "current_state_zh": "MetaMask正在调查一起未披露的安全事件，并退出其运营的以太坊质押验证者作为预防措施；Lido确认验证者退出并提示可能罚没，Aave市场此前确认未受影响。",
+      "current_state_en": "MetaMask is investigating an undisclosed security incident affecting its infrastructure and is exiting its operated Ethereum staking validators as a precaution; Lido confirmed the validator exits and flagged potential penalties, while Aave markets remain unaffected per the founder's earlier statement.",
+      "detailed_summary_zh": "MetaMask is investigating an undisclosed security incident affecting its infrastructure and is exiting its operated Ethereum staking validators as a precaution, with Lido confirming the validator exits and flagging potential penalties.",
+      "detailed_summary_en": "MetaMask is investigating an undisclosed security incident affecting its infrastructure and is exiting its operated Ethereum staking validators as a precaution, with Lido confirming the validator exits and flagging potential penalties.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:dd4cc96383ddfbc9"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/metamask-exits-lido-validators-as-it-investigates-security-incident?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
           "official": false
         }
       ]
@@ -267,6 +418,44 @@
         {
           "url": "https://wublockchain.xyz/news/metamask-exits-17000-validators-after-staking-incident-21069",
           "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_808490379440d270",
+      "event_id": "evt_8fca4d5c4b0173a2",
+      "occurred_at": "2026-10-01T08:07:02Z",
+      "published_at": "2026-10-01T08:07:02Z",
+      "first_seen_at": "2026-10-01T10:31:14.210395Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "分析师：疑似19个MetaMask验证者遭攻击，攻击者仅窃取约0.36 ETH奖励",
+      "title_en": "分析师：疑似19个MetaMask验证者遭攻击，攻击者仅窃取约0.36 ETH奖励",
+      "what_changed_zh": "链上分析师报告约19个MetaMask验证者疑似遭攻击，奖励费用被转入Tornado Cash资助的地址；约1.7万个验证者主动退出，涉及约52.3万枚ETH，但攻击者实际窃取奖励仅约0.36 ETH；仍有部分疑似受影响验证者未退出。",
+      "what_changed_en": "On-chain analyst reports about 19 MetaMask validators appear compromised with reward fees diverted to a Tornado Cash-funded address; roughly 17,000 validators (~523k ETH) voluntarily exited, though only ~0.36 ETH was actually stolen; some suspected affected validators remain unexited.",
+      "current_state_zh": "MetaMask质押安全事件持续调查中；链上分析显示约19个验证者可能受影响，约1.7万个验证者主动退出，攻击者实际窃取约0.36 ETH，尚有部分疑似受影响验证者未退出。",
+      "current_state_en": "MetaMask staking security incident remains under investigation; on-chain analysis indicates about 19 validators may be affected, roughly 17,000 validators voluntarily exited, stolen rewards total about 0.36 ETH, and some suspected affected validators have not yet exited.",
+      "detailed_summary_zh": "An on-chain analyst reports that about 19 MetaMask validators appear to have been compromised with reward fees diverted to a Tornado Cash-funded address, prompting roughly 17,000 validators (~523k ETH) to voluntarily exit even though only ~0.36 ETH was actually stolen.",
+      "detailed_summary_en": "An on-chain analyst reports that about 19 MetaMask validators appear to have been compromised with reward fees diverted to a Tornado Cash-funded address, prompting roughly 17,000 validators (~523k ETH) to voluntarily exit even though only ~0.36 ETH was actually stolen.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "telegram:theblockbeats:198589"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/369907?from=telegram",
+          "label": "theblockbeats",
           "source_type": "telegram",
           "official": false
         }
