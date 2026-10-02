@@ -33190,7 +33190,7 @@
       "first_seen_at": "2026-09-09T05:05:41.575436Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-01T10:31:25.356877Z",
-      "last_updated_at": "2026-10-01T22:41:09.004265Z",
+      "last_updated_at": "2026-10-01T22:41:09.004634Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_a1cf944ee31e88c6",
@@ -33811,6 +33811,12 @@
               "official": false,
               "source_type": "google_news",
               "url": "https://financefeeds.com/binance-eu-services-face-scrutiny-over-mica-exit/"
+            },
+            {
+              "label": "unchainedcrypto.com",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://unchainedcrypto.com/esma-and-national-regulators-scrutinize-binances-reliance-on-reverse-solicitation-exemption-in-the-eu-ft-reports/"
             }
           ],
           "story_ids": [
@@ -33818,7 +33824,8 @@
             "google_news:article:34aca2b9f16b50eb",
             "google_news:article:0a225560b34584ee",
             "google_news:article:b28ee66bb0137ccb",
-            "google_news:article:c6b5e7db779c9c48"
+            "google_news:article:c6b5e7db779c9c48",
+            "google_news:article:5b0b8a65d0709530"
           ],
           "time_precision": "published",
           "title_en": "Binance’s EU services face scrutiny over licensing exemption: Report",
@@ -82730,35 +82737,46 @@
     {
       "category": "policy",
       "confidence": 0.75,
-      "current_state_en": "The Federal Reserve Board has proposed two rules to implement its portion of the GENIUS Act, now open for 60-day public comment, covering stablecoin yield/rewards, capital and reserve requirements, and procedures for supervised banks to issue stablecoins.",
-      "current_state_zh": "美联储理事会已提出两项规则以实施其在《GENIUS法案》下的职责，目前开放60天公众评论，内容涵盖稳定币收益/奖励、资本与储备要求，以及受监管银行发行稳定币的程序。",
+      "current_state_en": "The Federal Reserve proposed rules requiring payment stablecoin issuers to fully back tokens with short-term Treasuries or other highly liquid assets and to meet standardized capital requirements, advancing implementation of the GENIUS Act; the proposal also includes a crisis timeline requiring notification within 24 hours and liquidation by the next business day if reserves fall below token value, with continued minting allowed during the rescue window.",
+      "current_state_zh": "美联储提出规则，要求支付稳定币发行人用短期国债或其他高流动性资产全额支持代币，并满足标准化资本要求，以推进GENIUS法案实施；该提案还包含危机时间线，若储备低于代币价值，须在24小时内通知并在下一个工作日开始清算，同时允许在救助窗口内继续铸造。",
       "entities": [
         "board",
+        "capital",
+        "fed",
         "federal",
         "federal-reserve",
         "genius",
         "genius-act",
         "payment-stablecoin-issuers",
         "reserve",
-        "stablecoins"
+        "reserves",
+        "rules",
+        "stablecoin",
+        "stablecoins",
+        "unveils"
       ],
       "event_id": "evt_59b13e83f7cf5973",
       "event_type": "regulatory_action",
       "first_seen_at": "2026-09-24T23:18:00.567038Z",
       "identifiers": [],
-      "last_material_change_at": "2026-09-24T23:18:03.130618Z",
-      "last_updated_at": "2026-09-24T23:18:03.130618Z",
+      "last_material_change_at": "2026-09-26T23:03:47.646252Z",
+      "last_updated_at": "2026-09-26T23:03:47.646252Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_c28194243725a7f8",
+        "evt_37fc8de60f77f528"
+      ],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "Federal Reserve Board requests public comment on two proposals related to establishing a regulatory framework for Board-supervised payment stablecoin issuers under the GENIUS Act",
-      "title_zh": "美联储理事会就两项提案征求公众意见，这两项提案涉及根据GENIUS法案为理事会监管的支付稳定币发行方建立监管框架",
+      "title_zh": "美联储就GENIUS法案下支付稳定币发行人监管框架提出规则并征求公众意见",
       "topics": [
+        "capital-requirements",
         "crypto-regulation",
         "federal-reserve",
         "genius-act",
         "payment-stablecoin-issuers",
+        "reserve-liquidation",
         "stablecoins"
       ],
       "updates": [
@@ -82774,23 +82792,64 @@
           "detailed_summary_zh": "The Federal Reserve Board is seeking public comment on two proposals that would establish the regulatory framework for payment stablecoin issuers it supervises under the GENIUS Act.",
           "event_id": "evt_59b13e83f7cf5973",
           "first_seen_at": "2026-09-24T23:18:00.567038Z",
-          "importance_score": 7.5,
+          "importance_score": 8.5,
           "market_impact_en": "",
           "market_impact_zh": "",
           "material_change": true,
           "occurred_at": "2026-09-24T18:30:00Z",
           "published_at": "2026-09-24T18:30:00Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Stablecoin Legislation: An Overview of the GENIUS Act of 2025 (P.L. 119-27) | Congress.gov | Library of Congress",
+              "url": "https://www.congress.gov/crs-product/IN12553"
+            },
+            {
+              "title": "The GENIUS Act of 2025 Stablecoin Legislation Adopted in the US",
+              "url": "https://www.lw.com/en/insights/the-genius-act-of-2025-stablecoin-legislation-adopted-in-the-us"
+            },
+            {
+              "title": "The GENIUS Act: A Comprehensive Guide to US Stablecoin...",
+              "url": "https://www.paulhastings.com/en-GB/insights/crypto-policy-tracker/the-genius-act-a-comprehensive-guide-to-us-stablecoin-regulation"
+            }
+          ],
           "sources": [
             {
               "label": "Federal Reserve Press Releases",
               "official": false,
               "source_type": "rss",
               "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260924a.htm"
+            },
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/379274/federal-reserve-unveils-stablecoin-rules-on-reserves-and-capital"
+            },
+            {
+              "label": "tokenpost.com",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB6WVV2X2x0SEgzNGgzWnc5RHlsMzFJVXpBV2pocEF0bDVVbjNLbW9PU3d4ZmJqcTAxajVQZEtCN2tCcDltREdUWlY3d0lIaHNEa1NkdFJCbm9WRzA?oc=5"
+            },
+            {
+              "label": "The Block",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.theblock.co/news/regulation/2026-09-24-fed-proposes-reserve-limits-capital-standards-stablecoin-issuers-genius-act-416336"
+            },
+            {
+              "label": "CryptoSlate",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cryptoslate.com/fed-proposed-stablecoin-rule-could-trigger-a-48-hour-liquidation-run/"
             }
           ],
           "story_ids": [
-            "rss:www.federalreserve.gov_feeds_press_all.xml:ae574d1347db7223"
+            "rss:www.federalreserve.gov_feeds_press_all.xml:ae574d1347db7223",
+            "rss:decrypt.co_feed:7bdfae887a72f061",
+            "google_news:article:b16f12e070d32b25",
+            "rss:www.theblock.co_rss.xml:ff19566663ec0342",
+            "rss:cryptoslate.com_feed_:470eca28f1b85aaf"
           ],
           "time_precision": "published",
           "title_en": "Federal Reserve Board requests public comment on two proposals related to establishing a regulatory framework for Board-supervised payment stablecoin issuers under the GENIUS Act",
@@ -84587,115 +84646,6 @@
       ]
     },
     {
-      "category": "policy",
-      "confidence": 0.75,
-      "current_state_en": "The Federal Reserve proposed rules requiring payment stablecoin issuers to fully back tokens with short-term Treasuries or other highly liquid assets and to meet standardized capital requirements, advancing implementation of the GENIUS Act; the proposal also includes a crisis timeline requiring notification within 24 hours and liquidation by the next business day if reserves fall below token value, with continued minting allowed during the rescue window.",
-      "current_state_zh": "美联储提出规则，要求支付稳定币发行人用短期国债或其他高流动性资产全额支持代币，并满足标准化资本要求，以推进GENIUS法案实施；该提案还包含危机时间线，若储备低于代币价值，须在24小时内通知并在下一个工作日开始清算，同时允许在救助窗口内继续铸造。",
-      "entities": [
-        "fed",
-        "genius",
-        "genius-act"
-      ],
-      "event_id": "evt_37fc8de60f77f528",
-      "event_type": "regulatory_action",
-      "first_seen_at": "2026-09-24T23:18:08.894592Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-09-26T23:03:47.646252Z",
-      "last_updated_at": "2026-09-26T23:03:47.646252Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Fed proposes reserve limits, capital standards for stablecoin issuers under GENIUS Act",
-      "title_zh": "美联储根据GENIUS法案提出稳定币发行方的准备金限制和资本标准",
-      "topics": [
-        "capital-requirements",
-        "crypto-regulation",
-        "federal-reserve",
-        "genius-act",
-        "reserve-liquidation",
-        "stablecoins"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "The Federal Reserve proposed rules requiring payment stablecoin issuers to fully back tokens with short-term Treasuries or other highly liquid assets and to meet standardized capital requirements, advancing implementation of the GENIUS Act, while Governor Michael Barr supported the proposal but called for stronger bank anti-money-laundering oversight.",
-          "current_state_zh": "美联储提出规则，要求支付稳定币发行方以短期国债或其他高流动性资产全额支持代币，并满足标准化资本要求，以推进GENIUS法案的实施；理事Michael Barr支持该提案，但呼吁加强对银行的anti-money-laundering监管。",
-          "detailed_summary_en": "The Federal Reserve proposed rules requiring payment stablecoin issuers to fully back tokens with short-term Treasuries or other highly liquid assets and to meet standardized capital requirements, advancing implementation of the GENIUS Act, while Governor Michael Barr supported the proposal but called for stronger bank anti-money-laundering oversight.",
-          "detailed_summary_zh": "The Federal Reserve proposed rules requiring payment stablecoin issuers to fully back tokens with short-term Treasuries or other highly liquid assets and to meet standardized capital requirements, advancing implementation of the GENIUS Act, while Governor Michael Barr supported the proposal but called for stronger bank anti-money-laundering oversight.",
-          "event_id": "evt_37fc8de60f77f528",
-          "first_seen_at": "2026-09-24T23:18:08.894592Z",
-          "importance_score": 8.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-09-24T20:19:46Z",
-          "published_at": "2026-09-24T20:19:46Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "The Block",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://www.theblock.co/news/regulation/2026-09-24-fed-proposes-reserve-limits-capital-standards-stablecoin-issuers-genius-act-416336"
-            }
-          ],
-          "story_ids": [
-            "rss:www.theblock.co_rss.xml:ff19566663ec0342"
-          ],
-          "time_precision": "published",
-          "title_en": "Fed proposes reserve limits, capital standards for stablecoin issuers under GENIUS Act",
-          "title_zh": "美联储根据GENIUS法案提出稳定币发行方的准备金限制和资本标准",
-          "update_id": "upd_45d21179bb3a9ad6",
-          "update_type": "initial",
-          "what_changed_en": "The Federal Reserve proposed rules requiring payment stablecoin issuers to fully back tokens with short-term Treasuries or other highly liquid assets and to meet standardized capital requirements, advancing implementation of the GENIUS Act, while Governor Michael Barr supported the proposal but called for stronger bank anti-money-laundering oversight.",
-          "what_changed_zh": "美联储提出规则，要求支付稳定币发行方以短期国债或其他高流动性资产全额支持代币，并满足标准化资本要求，以推进GENIUS法案的实施；理事Michael Barr支持该提案，但呼吁加强对银行的anti-money-laundering监管。"
-        },
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.95,
-          "current_state_en": "The Federal Reserve proposed rules requiring payment stablecoin issuers to fully back tokens with short-term Treasuries or other highly liquid assets and to meet standardized capital requirements, advancing implementation of the GENIUS Act; the proposal also includes a crisis timeline requiring notification within 24 hours and liquidation by the next business day if reserves fall below token value, with continued minting allowed during the rescue window.",
-          "current_state_zh": "美联储提出规则，要求支付稳定币发行人用短期国债或其他高流动性资产全额支持代币，并满足标准化资本要求，以推进GENIUS法案实施；该提案还包含危机时间线，若储备低于代币价值，须在24小时内通知并在下一个工作日开始清算，同时允许在救助窗口内继续铸造。",
-          "detailed_summary_en": "The Federal Reserve's proposed stablecoin rule would force issuers whose reserves fall below outstanding token value to notify the Fed within 24 hours and begin liquidating reserves and redeeming tokens by 5 p.m. the next business day, a window of under 48 hours that could accelerate liquidation runs while permitting continued minting during the rescue period.",
-          "detailed_summary_zh": "The Federal Reserve's proposed stablecoin rule would force issuers whose reserves fall below outstanding token value to notify the Fed within 24 hours and begin liquidating reserves and redeeming tokens by 5 p.m. the next business day, a window of under 48 hours that could accelerate liquidation runs while permitting continued minting during the rescue period.",
-          "event_id": "evt_37fc8de60f77f528",
-          "first_seen_at": "2026-09-26T23:03:47.646252Z",
-          "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-09-26T17:55:58Z",
-          "published_at": "2026-09-26T17:55:58Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "CryptoSlate",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://cryptoslate.com/fed-proposed-stablecoin-rule-could-trigger-a-48-hour-liquidation-run/"
-            }
-          ],
-          "story_ids": [
-            "rss:cryptoslate.com_feed_:470eca28f1b85aaf"
-          ],
-          "time_precision": "published",
-          "title_en": "Fed proposed stablecoin rule could trigger a 48-hour liquidation run",
-          "title_zh": "美联储提出的稳定币规则可能引发48小时清算挤兑",
-          "update_id": "upd_6aa775592b958ef7",
-          "update_type": "confirmation",
-          "what_changed_en": "The proposed rule's crisis timeline: issuers whose reserves fall below outstanding token value must notify the Fed within 24 hours and begin liquidating reserves and redeeming tokens by 5 p.m. the next business day (under 48 hours), while continuing to mint during the rescue window.",
-          "what_changed_zh": "拟议规则中的危机时间线：若储备低于未偿付代币价值，发行人须在24小时内通知美联储，并在下一个工作日17:00前开始清算储备和赎回代币（不足48小时），同时在救助窗口内允许继续铸造。"
-        }
-      ]
-    },
-    {
       "category": "crypto",
       "confidence": 0.75,
       "current_state_en": "ARK Invest has tokenized its $1.3 billion ARK Venture Fund (ARKVX) on Ethereum via Securitize, with holdings including OpenAI, Anthropic and Stripe; US retail investors can access it with a $500 minimum, with liquidity limited to quarterly repurchase offers.",
@@ -84888,101 +84838,6 @@
           "update_type": "initial",
           "what_changed_en": "Anthropic publishes 'Project Swap,' a study of how AI agents behave when they execute trades on behalf of users, probing the risks and dynamics of autonomous agent-driven markets.",
           "what_changed_zh": "Anthropic publishes 'Project Swap,' a study of how AI agents behave when they execute trades on behalf of users, probing the risks and dynamics of autonomous agent-driven markets."
-        }
-      ]
-    },
-    {
-      "category": "policy",
-      "confidence": 0.75,
-      "current_state_en": "The Federal Reserve opened two public-comment proposals requiring Fed-supervised stablecoin issuers to fully back tokens with safe liquid assets like short-term T-bills and meet standardized capital, risk-management and reserve-safekeeping standards, plus a tailored application process for banks seeking to issue stablecoins.",
-      "current_state_zh": "美联储周四就两项提案公开征求意见：受美联储理事会监管的支付型稳定币发行人须以短期美国国库券等合格资产全额支撑其代币，并满足标准化资本要求、风险管理标准以及储备资产托管规则。第二项提案为受理事会监管、拟发行支付型稳定币的银行设立专门的申请程序，意见期在《联邦公报》发布后60天截止。\n\n这两项提案补上了GENIUS Act多机构落地过程中的美联储环节，此前货币监理署(OCC)正力争在11月前敲定其稳定币规则，财政部则提议禁止平台向美国客户销售不合规稳定币。\n\n银行申请提案要求提交业务计划和财务信息，并设定了上诉、听证和最终决定的程序。美联储理事迈克尔·巴尔表示支持该提案，但希望在银行反洗钱方面有更多举措；两项措施目前仍是公开征求意见的提案，尚未成为最终规则。",
-      "entities": [
-        "capital",
-        "federal",
-        "federal-reserve",
-        "reserve",
-        "reserves",
-        "rules",
-        "stablecoin",
-        "unveils"
-      ],
-      "event_id": "evt_c28194243725a7f8",
-      "event_type": "regulatory_action",
-      "first_seen_at": "2026-09-24T23:18:15.561311Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-09-24T23:18:15.561311Z",
-      "last_updated_at": "2026-09-25T09:43:54.637010Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Federal Reserve Unveils Stablecoin Rules on Reserves and Capital",
-      "title_zh": "美联储公布稳定币储备与资本规则",
-      "topics": [
-        "capital-requirements",
-        "crypto-regulation",
-        "federal-reserve",
-        "genius-act",
-        "stablecoins"
-      ],
-      "updates": [
-        {
-          "background_en": "The GENIUS Act, signed by President Donald Trump in July 2025, created the first federal framework for payment stablecoins and limits permitted reserves to items including coins and currency, deposits at insured banks and credit unions, and short-dated Treasury bills. The law takes effect on the earlier of 18 months after enactment or 120 days after primary federal stablecoin regulators issue final implementing regulations. Stablecoins are blockchain-based tokens pegged most commonly to the U.S. dollar and backed by reserves so each token can be redeemed at face value.",
-          "background_zh": "美国总统唐纳德·特朗普于2025年7月签署的GENIUS Act首次为支付型稳定币建立了联邦监管框架，将合格储备限定为硬币与现金、在受保银行和信用社的存款以及短期国库券等资产。该法在“颁布后18个月”与“主要联邦稳定币监管机构发布最终实施规则后120天”两者中较早的日期生效。稳定币是基于区块链、通常锚定美元的代币，由发行人持有储备资产，以便每枚代币可按面值赎回。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "The Federal Reserve opened two public-comment proposals requiring Fed-supervised stablecoin issuers to fully back tokens with safe liquid assets like short-term T-bills and meet standardized capital, risk-management and reserve-safekeeping standards, plus a tailored application process for banks seeking to issue stablecoins.",
-          "current_state_zh": "美联储周四就两项提案公开征求意见：受美联储理事会监管的支付型稳定币发行人须以短期美国国库券等合格资产全额支撑其代币，并满足标准化资本要求、风险管理标准以及储备资产托管规则。第二项提案为受理事会监管、拟发行支付型稳定币的银行设立专门的申请程序，意见期在《联邦公报》发布后60天截止。\n\n这两项提案补上了GENIUS Act多机构落地过程中的美联储环节，此前货币监理署(OCC)正力争在11月前敲定其稳定币规则，财政部则提议禁止平台向美国客户销售不合规稳定币。\n\n银行申请提案要求提交业务计划和财务信息，并设定了上诉、听证和最终决定的程序。美联储理事迈克尔·巴尔表示支持该提案，但希望在银行反洗钱方面有更多举措；两项措施目前仍是公开征求意见的提案，尚未成为最终规则。",
-          "detailed_summary_en": "The Federal Reserve opened two public-comment proposals requiring Fed-supervised stablecoin issuers to fully back tokens with safe liquid assets like short-term T-bills and meet standardized capital, risk-management and reserve-safekeeping standards, plus a tailored application process for banks seeking to issue stablecoins.",
-          "detailed_summary_zh": "The Federal Reserve opened two public-comment proposals requiring Fed-supervised stablecoin issuers to fully back tokens with safe liquid assets like short-term T-bills and meet standardized capital, risk-management and reserve-safekeeping standards, plus a tailored application process for banks seeking to issue stablecoins.",
-          "event_id": "evt_c28194243725a7f8",
-          "first_seen_at": "2026-09-24T23:18:15.561311Z",
-          "importance_score": 8.5,
-          "market_impact_en": "The proposals apply to Fed-supervised stablecoin issuers, a segment whose reserves are held largely in short-term Treasuries, so the definition of permissible reserve assets and the capital standards transmit through reserve demand and issuer compliance costs. Because the measures are still at the comment stage, they also feed into regulatory-clarity expectations for stablecoin-linked assets and the venues that use them for settlement and transfers.",
-          "market_impact_zh": "这两项提案适用于受美联储监管的稳定币发行人，该群体的储备资产主要集中于短期美国国库券，因此合格储备资产范围与资本标准会通过储备需求和发行人合规成本产生传导。由于措施仍处于征求意见阶段，它们也会影响市场对稳定币相关资产以及使用稳定币进行结算和转账的交易场所的监管清晰度预期。",
-          "material_change": true,
-          "occurred_at": "2026-09-24T21:56:03Z",
-          "published_at": "2026-09-24T21:56:03Z",
-          "references": [
-            {
-              "title": "Stablecoin Legislation: An Overview of the GENIUS Act of 2025 (P.L. 119-27) | Congress.gov | Library of Congress",
-              "url": "https://www.congress.gov/crs-product/IN12553"
-            },
-            {
-              "title": "The GENIUS Act of 2025 Stablecoin Legislation Adopted in the US",
-              "url": "https://www.lw.com/en/insights/the-genius-act-of-2025-stablecoin-legislation-adopted-in-the-us"
-            },
-            {
-              "title": "The GENIUS Act: A Comprehensive Guide to US Stablecoin...",
-              "url": "https://www.paulhastings.com/en-GB/insights/crypto-policy-tracker/the-genius-act-a-comprehensive-guide-to-us-stablecoin-regulation"
-            }
-          ],
-          "sources": [
-            {
-              "label": "Decrypt",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://decrypt.co/379274/federal-reserve-unveils-stablecoin-rules-on-reserves-and-capital"
-            },
-            {
-              "label": "tokenpost.com",
-              "official": false,
-              "source_type": "google_news",
-              "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB6WVV2X2x0SEgzNGgzWnc5RHlsMzFJVXpBV2pocEF0bDVVbjNLbW9PU3d4ZmJqcTAxajVQZEtCN2tCcDltREdUWlY3d0lIaHNEa1NkdFJCbm9WRzA?oc=5"
-            }
-          ],
-          "story_ids": [
-            "rss:decrypt.co_feed:7bdfae887a72f061",
-            "google_news:article:b16f12e070d32b25"
-          ],
-          "time_precision": "published",
-          "title_en": "Federal Reserve Unveils Stablecoin Rules on Reserves and Capital",
-          "title_zh": "美联储公布稳定币储备与资本规则",
-          "update_id": "upd_504d73d483a03e72",
-          "update_type": "initial",
-          "what_changed_en": "The Federal Reserve opened two public-comment proposals requiring Fed-supervised stablecoin issuers to fully back tokens with safe liquid assets like short-term T-bills and meet standardized capital, risk-management and reserve-safekeeping standards, plus a tailored application process for banks seeking to issue stablecoins.",
-          "what_changed_zh": "美联储周四就两项提案公开征求意见：受美联储理事会监管的支付型稳定币发行人须以短期美国国库券等合格资产全额支撑其代币，并满足标准化资本要求、风险管理标准以及储备资产托管规则。第二项提案为受理事会监管、拟发行支付型稳定币的银行设立专门的申请程序，意见期在《联邦公报》发布后60天截止。\n\n这两项提案补上了GENIUS Act多机构落地过程中的美联储环节，此前货币监理署(OCC)正力争在11月前敲定其稳定币规则，财政部则提议禁止平台向美国客户销售不合规稳定币。\n\n银行申请提案要求提交业务计划和财务信息，并设定了上诉、听证和最终决定的程序。美联储理事迈克尔·巴尔表示支持该提案，但希望在银行反洗钱方面有更多举措；两项措施目前仍是公开征求意见的提案，尚未成为最终规则。"
         }
       ]
     },
@@ -106265,7 +106120,7 @@
       "first_seen_at": "2026-10-01T22:41:10.059173Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-01T22:41:10.059173Z",
-      "last_updated_at": "2026-10-01T22:41:10.059173Z",
+      "last_updated_at": "2026-10-02T00:01:36.966927Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -106290,7 +106145,7 @@
           "detailed_summary_zh": "The Ethereum Foundation and Open Anonymity Project launched zkAPI on Ethereum mainnet, a zero-knowledge proof payment layer that lets metered API providers verify payment via onchain vault deposits and short-lived spending-capped keys without learning payer identity, initially targeting AI inference.",
           "event_id": "evt_5b1b1bcdf298f741",
           "first_seen_at": "2026-10-01T22:41:10.059173Z",
-          "importance_score": 7.0,
+          "importance_score": 7.5,
           "market_impact_en": "The primitive routes pay-per-use settlement through onchain vault deposits denominated in ETH and USDC, creating a new demand channel for vault contracts and privacy tooling on Ethereum mainnet; the extent of that effect depends on provider adoption and usage, which the available evidence does not yet establish.",
           "market_impact_zh": "该基础设施将以太坊主网上以 ETH 和 USDC 计价的链上金库存款作为按使用量付费的结算通道，为金库合约和隐私工具带来新的需求来源；其影响程度取决于服务提供方的采用情况与实际用量，而现有信息尚不足以确认这一点。",
           "material_change": true,
@@ -106312,10 +106167,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://wublockchain.xyz/news/ethereum-foundation-open-anonymity-launch-zkapi-privacy-preserving-api-payments-21079"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/369976?from=telegram"
             }
           ],
           "story_ids": [
-            "telegram:wublockchainenglish:26251"
+            "telegram:wublockchainenglish:26251",
+            "telegram:theblockbeats:198656"
           ],
           "time_precision": "published",
           "title_en": "Ethereum Foundation and Open Anonymity Launch zkAPI for Privacy-Preserving API P",
@@ -106777,6 +106639,72 @@
           "what_changed_zh": "Evernorth won shareholder approval for its merger with Armada Acquisition Corp. II and will list on Nasdaq as ticker XRPN on Oct. 8, creating a publicly traded pure-play XRP treasury that raised more than $1 billion with backing from Ripple, Pantera and Kraken."
         }
       ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "The IMF approved a $139 million disbursement to El Salvador under its $1.4 billion Extended Fund Facility and granted a waiver for the country's breach of program conditions limiting further bitcoin purchases.",
+      "current_state_zh": "The IMF approved a $139 million disbursement to El Salvador under its $1.4 billion Extended Fund Facility and granted a waiver for the country's breach of program conditions limiting further bitcoin purchases.",
+      "entities": [
+        "imf"
+      ],
+      "event_id": "evt_4d20ef51f41ca1b0",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-02T00:01:36.966627Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-02T00:01:36.966627Z",
+      "last_updated_at": "2026-10-02T00:01:36.966627Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "⚡️IMF批准向萨尔瓦多拨款1.39亿美元，就此前违反限制增持比特币给予豁免",
+      "title_zh": "⚡️IMF批准向萨尔瓦多拨款1.39亿美元，就此前违反限制增持比特币给予豁免",
+      "topics": [
+        "el-salvador",
+        "imf",
+        "sovereign-adoption"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "The IMF approved a $139 million disbursement to El Salvador under its $1.4 billion Extended Fund Facility and granted a waiver for the country's breach of program conditions limiting further bitcoin purchases.",
+          "current_state_zh": "The IMF approved a $139 million disbursement to El Salvador under its $1.4 billion Extended Fund Facility and granted a waiver for the country's breach of program conditions limiting further bitcoin purchases.",
+          "detailed_summary_en": "The IMF approved a $139 million disbursement to El Salvador under its $1.4 billion Extended Fund Facility and granted a waiver for the country's breach of program conditions limiting further bitcoin purchases.",
+          "detailed_summary_zh": "The IMF approved a $139 million disbursement to El Salvador under its $1.4 billion Extended Fund Facility and granted a waiver for the country's breach of program conditions limiting further bitcoin purchases.",
+          "event_id": "evt_4d20ef51f41ca1b0",
+          "first_seen_at": "2026-10-02T00:01:36.966627Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-01T23:36:02Z",
+          "published_at": "2026-10-01T23:36:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/369975?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:198655"
+          ],
+          "time_precision": "published",
+          "title_en": "⚡️IMF批准向萨尔瓦多拨款1.39亿美元，就此前违反限制增持比特币给予豁免",
+          "title_zh": "⚡️IMF批准向萨尔瓦多拨款1.39亿美元，就此前违反限制增持比特币给予豁免",
+          "update_id": "upd_9a73e6bf7596947b",
+          "update_type": "initial",
+          "what_changed_en": "The IMF approved a $139 million disbursement to El Salvador under its $1.4 billion Extended Fund Facility and granted a waiver for the country's breach of program conditions limiting further bitcoin purchases.",
+          "what_changed_zh": "The IMF approved a $139 million disbursement to El Salvador under its $1.4 billion Extended Fund Facility and granted a waiver for the country's breach of program conditions limiting further bitcoin purchases."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -106916,6 +106844,16 @@
     "europe": [
       "evt_1851f7d38a8f886b",
       "evt_a19b521351853b93"
+    ],
+    "federal-reserve": [
+      "evt_59b13e83f7cf5973"
+    ],
+    "funding": [
+      "evt_85b8850df81f687c",
+      "evt_90e6b7b9337429f2"
+    ],
+    "genius-act": [
+      "evt_59b13e83f7cf5973"
     ],
     "hack": [
       "evt_6655595dc1e36e0b",
@@ -108749,39 +108687,6 @@
         "source_type": "telegram",
         "title": "MetaMask质押基础设施遭入侵？Lido、Ethena等均声明未受影响｜实时更新 - 链接",
         "url": "https://m.theblockbeats.info/news/63823?from=telegram"
-      }
-    },
-    {
-      "attempts": 2,
-      "item": {
-        "ai_reason": "Regulatory scrutiny of Binance's use of the EU 'reverse solicitation' exemption by ESMA and national authorities is a material development: it targets the legal mechanism Binance relies on to serve EU users under MiCA, and a negative outcome could constrain market access for the region's largest exchange. However, this is reporting of an ongoing review rather than a final decision, penalty, or market-structure change, so it falls short of the 8+ tier reserved for definitive regulatory actions.",
-        "ai_score": 7.0,
-        "ai_summary": "ESMA and national EU regulators are examining Binance's heavy reliance on the 'reverse solicitation' exemption to serve European users outside MiCA authorization, according to FT reporting.",
-        "ai_tags": [
-          "binance",
-          "esma",
-          "mica",
-          "eu-regulation",
-          "reverse-solicitation"
-        ],
-        "author": "unchainedcrypto.com",
-        "content": "<a href=\"https://news.google.com/rss/articles/CBMi2AFBVV95cUxOeG1udXp5Tm5YNFYyM1lmVmxpYXpCczhzeWRlVUNGc3NaTnFGM2g3RVJxR3pCeXQzcTJZeFFUNUlOZTJrRkNzT3F3bHd3bXp6MmpGZ3p1YWVaYlBlVVFWR2hBVE9MRF9TY0dsQk1YV3JIclBQRkJpT3RfNDRLVkt2R0NkNnM5NlM2WE9oOTRMWGdYV1dRTGVkTnpmZlJaYWJJTXZsTnhOZElmY1EwWHBmdXEyQ1VCT2pHa3FxTVlTR1VQbmZtWDNnaVpWSDdfRTE3VEMxV1dkZXY?oc=5\" target=\"_blank\">ESMA and National Regulators Scrutinize Binance’s Reliance on ‘Reverse Solicitation’ Exemption in the EU, FT Reports</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">unchainedcrypto.com</font>",
-        "fetched_at": "2026-10-01T22:41:09.004634Z",
-        "id": "google_news:article:5b0b8a65d0709530",
-        "metadata": {
-          "category": "crypto-regulation",
-          "event_retry_pending": true,
-          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
-          "google_news_link_resolved": true,
-          "publisher_url": "https://unchainedcrypto.com",
-          "score_model": "deepseek:deepseek-flash",
-          "source_category": "exchange-announcements",
-          "source_name": "unchainedcrypto.com"
-        },
-        "published_at": "2026-10-01T10:22:00Z",
-        "source_type": "google_news",
-        "title": "ESMA and National Regulators Scrutinize Binance’s Reliance on ‘Reverse Solicitation’ Exemption in the EU, FT Reports",
-        "url": "https://unchainedcrypto.com/esma-and-national-regulators-scrutinize-binances-reliance-on-reverse-solicitation-exemption-in-the-eu-ft-reports/"
       }
     }
   ],

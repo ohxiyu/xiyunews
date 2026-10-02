@@ -7,35 +7,43 @@
   "status": "monitoring",
   "category": "policy",
   "title": {
-    "zh": "美联储理事会就两项提案征求公众意见，这两项提案涉及根据GENIUS法案为理事会监管的支付稳定币发行方建立监管框架",
+    "zh": "美联储就GENIUS法案下支付稳定币发行人监管框架提出规则并征求公众意见",
     "en": "Federal Reserve Board requests public comment on two proposals related to establishing a regulatory framework for Board-supervised payment stablecoin issuers under the GENIUS Act"
   },
   "current_state": {
-    "zh": "美联储理事会已提出两项规则以实施其在《GENIUS法案》下的职责，目前开放60天公众评论，内容涵盖稳定币收益/奖励、资本与储备要求，以及受监管银行发行稳定币的程序。",
-    "en": "The Federal Reserve Board has proposed two rules to implement its portion of the GENIUS Act, now open for 60-day public comment, covering stablecoin yield/rewards, capital and reserve requirements, and procedures for supervised banks to issue stablecoins."
+    "zh": "美联储提出规则，要求支付稳定币发行人用短期国债或其他高流动性资产全额支持代币，并满足标准化资本要求，以推进GENIUS法案实施；该提案还包含危机时间线，若储备低于代币价值，须在24小时内通知并在下一个工作日开始清算，同时允许在救助窗口内继续铸造。",
+    "en": "The Federal Reserve proposed rules requiring payment stablecoin issuers to fully back tokens with short-term Treasuries or other highly liquid assets and to meet standardized capital requirements, advancing implementation of the GENIUS Act; the proposal also includes a crisis timeline requiring notification within 24 hours and liquidation by the next business day if reserves fall below token value, with continued minting allowed during the rescue window."
   },
   "first_seen_at": "2026-09-24T23:18:00.567038+00:00",
-  "last_updated_at": "2026-09-24T23:18:03.130618+00:00",
-  "last_material_change_at": "2026-09-24T23:18:03.130618+00:00",
+  "last_updated_at": "2026-09-26T23:03:47.646252+00:00",
+  "last_material_change_at": "2026-09-26T23:03:47.646252+00:00",
   "confidence": 0.75,
   "updates_count": 2,
-  "sources_count": 2,
+  "sources_count": 6,
   "entities": [
     "board",
+    "capital",
+    "fed",
     "federal",
     "federal-reserve",
     "genius",
     "genius-act",
     "payment-stablecoin-issuers",
     "reserve",
-    "stablecoins"
+    "reserves",
+    "rules",
+    "stablecoin",
+    "stablecoins",
+    "unveils"
   ],
   "identifiers": [],
   "topics": [
+    "capital-requirements",
     "crypto-regulation",
     "federal-reserve",
     "genius-act",
     "payment-stablecoin-issuers",
+    "reserve-liquidation",
     "stablecoins"
   ],
   "updates": [
@@ -62,16 +70,57 @@
       "community_discussion_en": "",
       "market_impact_zh": "",
       "market_impact_en": "",
-      "importance_score": 7.5,
-      "references": [],
+      "importance_score": 8.5,
+      "references": [
+        {
+          "url": "https://www.congress.gov/crs-product/IN12553",
+          "title": "Stablecoin Legislation: An Overview of the GENIUS Act of 2025 (P.L. 119-27) | Congress.gov | Library of Congress"
+        },
+        {
+          "url": "https://www.lw.com/en/insights/the-genius-act-of-2025-stablecoin-legislation-adopted-in-the-us",
+          "title": "The GENIUS Act of 2025 Stablecoin Legislation Adopted in the US"
+        },
+        {
+          "url": "https://www.paulhastings.com/en-GB/insights/crypto-policy-tracker/the-genius-act-a-comprehensive-guide-to-us-stablecoin-regulation",
+          "title": "The GENIUS Act: A Comprehensive Guide to US Stablecoin..."
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
-        "rss:www.federalreserve.gov_feeds_press_all.xml:ae574d1347db7223"
+        "rss:www.federalreserve.gov_feeds_press_all.xml:ae574d1347db7223",
+        "rss:decrypt.co_feed:7bdfae887a72f061",
+        "google_news:article:b16f12e070d32b25",
+        "rss:www.theblock.co_rss.xml:ff19566663ec0342",
+        "rss:cryptoslate.com_feed_:470eca28f1b85aaf"
       ],
       "sources": [
         {
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260924a.htm",
           "label": "Federal Reserve Press Releases",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://decrypt.co/379274/federal-reserve-unveils-stablecoin-rules-on-reserves-and-capital",
+          "label": "Decrypt",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFB6WVV2X2x0SEgzNGgzWnc5RHlsMzFJVXpBV2pocEF0bDVVbjNLbW9PU3d4ZmJqcTAxajVQZEtCN2tCcDltREdUWlY3d0lIaHNEa1NkdFJCbm9WRzA?oc=5",
+          "label": "tokenpost.com",
+          "source_type": "google_news",
+          "official": false
+        },
+        {
+          "url": "https://www.theblock.co/news/regulation/2026-09-24-fed-proposes-reserve-limits-capital-standards-stablecoin-issuers-genius-act-416336",
+          "label": "The Block",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://cryptoslate.com/fed-proposed-stablecoin-rule-could-trigger-a-48-hour-liquidation-run/",
+          "label": "CryptoSlate",
           "source_type": "rss",
           "official": false
         }
