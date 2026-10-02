@@ -34,6 +34,12 @@ Safari 现役 Worker 设置提供名称字段，官方 Workers Beta PATCH 也支
 
 初次回读实时服务器三类自然消息 1251/1250/1249，共 11 条 sent；后续只读核验增长到 18 条 sent、9 条按规则 archived，最新资金流向 1258、公告 1257、行情 1254，无失败状态。原群话题保留，手机收件及看门狗私聊实际告警仍未独立验证，不制造告警或重放旧消息。旧 Cloudflare 资源仍承担业务，不能先删除。
 
+## 生产接管明确授权与安全验证待办（2026-10-03）
+
+运营者随后明确要求直接在生产环境完成全部剩余工作，作为本阶段Worker部署、业务配置和受控切换的授权，不再把隔离预览部署确认列为阻塞。删除或创建持久访问的浏览器动作仍遵循操作时安全确认；不扩大到无关项目、付费服务或绕过身份认证。现役dispatcher版本的只读资源核验确认RECOVERY_GATE原namespace_id为d4f55a5a95624e7e9776bbf050cf1ee7，三个运行Secret名称存在；看门狗ALERT_CHAT_ID及TELEGRAM_BOT_TOKEN名称存在，未读值或迁移状态。
+
+统一后台需要私有仓Contents写权限，调度需要Actions写权限；Cloudflare上传令牌不能充当这类业务认证。已使用Safari打开GitHub单仓库运行令牌配置页，身份为@ohxiyu；进入设置前触发sudo模式再认证，已按页面发起GitHub Mobile安全验证，需运营者本人批准。没有创建新GitHub Token、读取密钥、保存新权限或改动生产域/Cron/Secrets；先补安全配置再接管，不以代理依赖旧项目冒充单项目。手机验证不是创建Token的最终确认，后续权限摘要还要核对。
+
 ## 群名称实际统一与验证
 
 运营者此前明确确认 Telegram 名称为 xiyu.news，本次仅更正现役实时群实际大小写/格式。服务器进程 getMe 为 @xiyunewsbot，原群 administrator 且已有 can_change_info=true；核对新仓 SHA、原群/话题3/5/7之后调用 setChatTitle。2026-10-02T15:22:48.674197Z（上海23:22:48）getChat 回读为 xiyu.news，forum=true，简介逐值保持；不改成员权限、创建话题、重启服务、改 Token/配置或另发宣布/测试消息。Token始终留在服务器，不进入本机、Git 或日志；Telegram 自身可能生成改名服务记录，这不是业务测试推送。
