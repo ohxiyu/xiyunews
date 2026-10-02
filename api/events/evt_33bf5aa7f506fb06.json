@@ -46,22 +46,35 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Arbitrum Pauses New Stylus Activations in Emergency Security Action",
+      "title_zh": "Arbitrum因紧急安全行动暂停新的Stylus激活",
       "title_en": "Arbitrum Pauses New Stylus Activations in Emergency Security Action",
-      "what_changed_zh": "Arbitrum paused new Stylus activations as an emergency security measure, while a new BoLD guard could delay unconfirmed withdrawals if contradictory proofs are accepted.",
+      "what_changed_zh": "Arbitrum已作为紧急安全措施暂停新的Stylus激活。此外，一项新的BoLD防护机制若接受相互矛盾的证明，可能会延迟尚未确认的提款。\n\n此次暂停使新的Stylus合约无法在Arbitrum上激活，而现有合约仍可继续运行和续期；同时BoLD防护机制引入了一条新路径，可能使等待确认的提款被延迟。\n\n现有活跃合约仍可继续运行和续期。此次行动中没有用户资金损失的报道。",
       "what_changed_en": "Arbitrum paused new Stylus activations as an emergency security measure, while a new BoLD guard could delay unconfirmed withdrawals if contradictory proofs are accepted.",
-      "current_state_zh": "Arbitrum paused new Stylus activations as an emergency security measure, while a new BoLD guard could delay unconfirmed withdrawals if contradictory proofs are accepted.",
+      "current_state_zh": "Arbitrum已作为紧急安全措施暂停新的Stylus激活。此外，一项新的BoLD防护机制若接受相互矛盾的证明，可能会延迟尚未确认的提款。\n\n此次暂停使新的Stylus合约无法在Arbitrum上激活，而现有合约仍可继续运行和续期；同时BoLD防护机制引入了一条新路径，可能使等待确认的提款被延迟。\n\n现有活跃合约仍可继续运行和续期。此次行动中没有用户资金损失的报道。",
       "current_state_en": "Arbitrum paused new Stylus activations as an emergency security measure, while a new BoLD guard could delay unconfirmed withdrawals if contradictory proofs are accepted.",
       "detailed_summary_zh": "Arbitrum paused new Stylus activations as an emergency security measure, while a new BoLD guard could delay unconfirmed withdrawals if contradictory proofs are accepted.",
       "detailed_summary_en": "Arbitrum paused new Stylus activations as an emergency security measure, while a new BoLD guard could delay unconfirmed withdrawals if contradictory proofs are accepted.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "Stylus是Arbitrum的智能合约系统，允许开发者使用可编译为WebAssembly的语言（如Rust、C和C++）编写兼容EVM的合约。BoLD（Bounded Liquidity Delay，有界流动性延迟）是Arbitrum的争议协议，用于实现无需许可的验证，目前已部署在Arbitrum One、Arbitrum Nova和Arbitrum Sepolia上。",
+      "background_en": "Stylus is Arbitrum's smart contract system that lets developers write EVM-compatible contracts in languages compiling to WebAssembly, such as Rust, C and C++. BoLD (Bounded Liquidity Delay) is Arbitrum's dispute protocol enabling permissionless validation, and it is active on Arbitrum One, Arbitrum Nova and Arbitrum Sepolia.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "Arbitrum是规模最大的Layer 2网络之一，因此暂停新的Stylus激活会影响面向开发者的合约部署流程，而BoLD防护机制则涉及提款与跨链桥环节，未确认的提款可能被放慢。市场反应主要通过ARB情绪以及用户和开发者对Arbitrum跨链桥延迟的信心传导。",
+      "market_impact_en": "Arbitrum is one of the largest Layer 2 networks, so a pause on new Stylus activations affects the developer-facing contract deployment pipeline, while the BoLD guard touches the withdrawal and bridging segment where unconfirmed exits could be slowed. Any market reaction would transmit mainly through sentiment toward ARB and through user and developer confidence in Arbitrum bridge latency.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://www.tokenpost.com/news/technology/26489",
+          "title": "Arbitrum Halts New Stylus Activations and Adds a BoLD Guard"
+        },
+        {
+          "url": "https://docs.arbitrum.io/stylus/gentle-introduction",
+          "title": "A gentle introduction to Stylus - Arbitrum Docs"
+        },
+        {
+          "url": "https://docs.arbitrum.io/how-arbitrum-works/bold/gentle-introduction",
+          "title": "Overview of BoLD | Arbitrum Docs"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "rss:thedefiant.io_api_feed:a130f735314650d9"

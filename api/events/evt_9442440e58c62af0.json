@@ -131,14 +131,27 @@
       "current_state_en": "Zano has confirmed the Gateway Address exploit minted 36.9M unauthorized ZANO plus fUSD and has rolled back about a month of chain history; recovery is now being carried out primarily through exchanges and payment services, with exchanges to replay withdrawals reversed by the rollback and the team crediting affected deposits.",
       "detailed_summary_zh": "Zano's post-mortem revealed an attacker exploited its Gateway Address vulnerability to mint 36.9 million unauthorized ZANO and fUSD tokens, which were indistinguishable from legitimate coins and ultimately forced the team to roll the blockchain back by a month.",
       "detailed_summary_en": "Zano's post-mortem revealed an attacker exploited its Gateway Address vulnerability to mint 36.9 million unauthorized ZANO and fUSD tokens, which were indistinguishable from legitimate coins and ultimately forced the team to roll the blockchain back by a month.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "Zano 是一条以隐私为核心的加密货币，fUSD（Freedom Dollar）是在 Zano 上发行的去中心化、锚定美元的稳定币，其官方说明称该协议没有管理员密钥或黑名单功能。据相关事件报道，该网络从区块 3,833,000 重新启动，删除了约 30 天的链上数据，并推送了热修复，团队称更新后的链运行稳定。Zano 周三表示，正使用开发者基金、团队成员个人资金以及已承诺的捐款来恢复受影响的余额，主要通过与交易所和支付服务商的协作进行：交易所将重放被回滚撤销的提现，团队则为受影响的充值记账。",
+      "background_en": "Zano is a privacy-focused cryptocurrency, and fUSD (Freedom Dollar) is a decentralized, dollar-pegged stablecoin issued on Zano that its documentation describes as having no admin keys or blacklist function. According to reports on the incident, the network was restarted from block 3,833,000, removing roughly 30 days of blockchain data, and a hotfix was pushed with the team saying the network is stable on the updated chain. Zano said Wednesday it is working to restore affected balances using its developer fund, team members' personal funds and committed contributions, primarily through exchanges and payment services, with exchanges replaying withdrawals reversed by the rollback and the team crediting affected deposits.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
-      "importance_score": 7.5,
-      "references": [],
+      "market_impact_zh": "此次漏洞直接冲击 ZANO 与 fUSD 的供应完整性，风险传导路径主要经由已上线或托管这些代币的交易所与支付服务商——它们需要重新对账被回滚撤销的提现与充值——以及持有 fUSD、其余额取决于重启后链上状态的用户。由于 Zano 属于较小市值网络，影响主要集中在该生态的流动性以及市场对隐私币和稳定币协议安全的情绪，而非更广泛的市场结构。",
+      "market_impact_en": "The exploit directly hits the supply integrity of ZANO and fUSD, so exposure runs through exchanges and payment services that listed or custody the tokens and must now reconcile withdrawals and deposits reversed by the rollback, plus fUSD holders whose balances depend on the restarted chain state. Because Zano is a smaller-cap network, the transmission is concentrated in that ecosystem's liquidity and in sentiment toward privacy-coin and stablecoin protocol security rather than broader market structure.",
+      "importance_score": 8.0,
+      "references": [
+        {
+          "url": "https://financefeeds.com/zano-attacker-minted-36-9-million-zano-and-1-8-quadrillion-fusd/",
+          "title": "Zano Attacker Minted 36.9 Million ZANO and... - FinanceFeeds"
+        },
+        {
+          "url": "https://coindesk.cc/story/2026/09/zano-zano-network-rewinds-30-days-following-gateway-address-security-flaw",
+          "title": "Zano rolls back 30 days after Gateway Address flaw"
+        },
+        {
+          "url": "https://www.freedomdollar.com/",
+          "title": "Freedom Dollar (fUSD) - Private, Censorship-Resistant Stablecoin on..."
+        }
+      ],
       "confidence": 0.97,
       "story_ids": [
         "rss:cointelegraph.com_rss:928fd26ba44b66c9"
