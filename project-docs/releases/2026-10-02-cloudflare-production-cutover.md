@@ -1,6 +1,7 @@
 # Cloudflare 单项目生产接管：进行中
 
 Task: https://github.com/ohxiyu/xiyunews/issues/198
+PR: https://github.com/ohxiyu/xiyunews/pull/199 （Draft，最终生产接管尚未实施）
 Source commit: 基线 91fb5981cd09a51be7c3ef8c355eb6ee179f60fa，PR197 的实际 merge SHA。
 Worker version: 统一项目未部署；现役调度器和看门狗版本见基础记录。
 Deployment: pending；尚未保存 Cloudflare 权限或 Secret，未改主域、Cron、DO/KV 或服务器配置。

@@ -3,14 +3,14 @@
 ## Current execution pointer
 当前目标：项目统一为xiyunews，阶段3完整历史已合并；当前准备Cloudflare单项目入口，不改变原实时运行方式和规则。
 任务 Issue / 负责人：https://github.com/ohxiyu/xiyunews/issues/198；本轮唯一迁移整合负责人，根交接是唯一执行指针；Issue196 / PR197 基础已完成合并。
-工作分支 / 最后提交 / PR：agent/xiyunews-edge-cutover，基线91fb5981cd09a51be7c3ef8c355eb6ee179f60fa；本阶段Draft PR待建立。PR195已保留完整历史，服务器运行d6a9d3f，不将文档或边缘基础main SHA当服务器已重新部署。
+工作分支 / 最后提交 / PR：agent/xiyunews-edge-cutover，基线91fb5981cd09a51be7c3ef8c355eb6ee179f60fa；本阶段[PR199](https://github.com/ohxiyu/xiyunews/pull/199)保持Draft。PR195已保留完整历史，服务器运行d6a9d3f，不将文档或边缘基础main SHA当服务器已重新部署。
 已经完成：原项目完整历史以 git subtree add 导入；根 CI 为 realtime 增加路径门控及 3.11/3.12 独立矩阵；治理兼容子目录；新部署从主仓完整 SHA 的 realtime 前缀打包。历史证据保留，提醒阈值、地址簿、信源、队列与目的地没有更改。
 尚未完成：Cloudflare 单项目生产切换；服务器运行新仓 d6a9d3f，@xiyunewsbot 已取得三类自然回执，最新共18条sent。原群23:22:48已按确认统一名为xiyu.news，简介和话题不变。PR197最终99d2465e全部可用检查通过并已合并，当前串行Issue198；边缘未切换，看门狗私聊目的地及KV保留，新品牌正文代码仍未部署。
 已运行的验证及结果：公网 health 为 2.6.0/d6a9d3f29ef93c138842342c973b3049fb7bc252，三 spot 分片 live，MainPID235825/NRestarts0、21:03:05 启动。进程 Token 与配置一致、getMe 为 xiyunewsbot、原群 administrator，排除 Token 后全部配置与备份相同；后续切换时间后的原 SQLite 共 11 条 sent、6 条 archived，无失败状态，最新自然行情 1251、公告 1250、资金流向 1249。历史旧 Bot 失败保留，不重放，证据见新 Bot 发布记录。
 尚未验证的内容：手机收件、看门狗实际私聊告警，以及新 Cloudflare 项目的生产接管。新 Bot 自然 message_id 已核验，21:24 也核验收到切换后的私聊 /start 且私聊可读取，不重复要求；未与加密 ALERT_CHAT_ID 直接比对，也没有发送测试告警。现役看门狗 21:10:23/21:15:23 两轮自然 Cron 均 ok，但无告警不能代替实际私聊送达。
 线上版本 / 对应源码提交：后端2.6.0 = 新仓d6a9d3f29ef93c138842342c973b3049fb7bc252，源码未再发布；上一release和数据库备份保留，回滚须单独授权。看门狗21:03:11.654的Secret Change版本a5330597-ee57-4a61-91f0-9a34cb431676全量生效，只改TELEGRAM_BOT_TOKEN，未部署新业务代码或统一Worker。
 阻塞与所需权限：Cloudflare 统一项目运行 Secret 安全注入与自动部署配置尚缺，现役服务和旧 release 保留。新 Bot 管理员、三类自然消息和 /start 已有证据，不再列为待操作。本次 Token 授权不扩大为新 Cloudflare 持久访问、群权限变更或提前删除旧资源。
-下一步具体动作：基础 PR197 全绿后合并，再从新 main 建立串行切换任务，先部署暂停预览。安全配置和验收完成后再接管域名、迁移 DO 和启用 Cron；不双 Cron，不重放失败/未知消息、不重建话题、不人为触发告警。分别保留 API 回执、手机收件与看门狗私聊验收边界。
+下一步具体动作：基础PR197已合并，当前串行Issue198/PR199补齐Cloudflare安全配置和对应部署授权；根据改名状态保留验证选择原地接管或迁移，不抢占项目名。接管域名、保留DO/KV、停旧Cron再启用统一Cron并验收；不双Cron、不重放失败/未知消息、不重建话题或制造告警，分别保留API/手机/私聊验收边界。
 
 ## 系统现状
 

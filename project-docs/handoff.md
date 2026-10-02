@@ -10,7 +10,7 @@
   "owner": "迁移唯一编辑及发布整合负责人",
   "branch": "agent/xiyunews-edge-cutover",
   "last_verified_commit": "91fb5981cd09a51be7c3ef8c355eb6ee179f60fa",
-  "pr": "待建立Issue198的Draft PR；前序PR197已合并",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/199（Draft，生产配置与验收未完成；前序PR197已合并）",
   "completed": [
     "PR195以merge commit合并，旧实时main7807126d8c7cdb51e18f0b91ba27f500271f9f08是origin/main祖先，远端realtime目录存在",
     "阶段3主站943项、实时Python3.11/3.12各61项、治理和看门狗3项通过；远端全部可用CI与Pages预览通过，CodeQL因私有套餐跳过",
