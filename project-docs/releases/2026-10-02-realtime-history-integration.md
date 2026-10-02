@@ -11,5 +11,5 @@ Issue: https://github.com/ohxiyu/xiyunews/issues/172
 Source commit: 3e7885ac5fba2354adaa65abd2e05e2d14aa5b98（同步的远端主仓基线）；旧仓祖先7807126d8c7cdb51e18f0b91ba27f500271f9f08。
 Worker version: not changed；日报调度器9774435b-1c72-4dad-9552-0440e2ab574f，实时看门狗最近记录55671d87-29c2-4225-8bdf-176cb4712ed3，本次未部署。
 Deployment: 阶段3仅代码与完整历史整合，尚未服务器发布或Cloudflare统一切换。
-Verification: 根pytest/治理、实时Python3.11/3.12的ruff/mypy/pytest/compileall/契约与看门狗测试正在重新执行，远端CI及历史祖先需实际PR核验。
+Verification: 根943项pytest和治理通过；实时首次各60项通过/1项失败，独立仓夹具缺合并后共享部署清单，修正为monorepo布局后Python3.11/3.12各61项、ruff/mypy/compileall/契约及3项看门狗Node均通过。src、config、requirements.lock、systemd和nginx的Git对象与旧main完全相同，远端CI及新main祖先仍须实际PR核验。
 Rollback: 未执行回滚、强推、清数据库或生产状态分支写入；旧运行服务及备份继续保留。

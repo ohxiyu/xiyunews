@@ -15,6 +15,15 @@ spec.loader.exec_module(module)
 
 
 def test_contract_rejects_inconsistent_documents(tmp_path):
+    # Mirror the monorepo so deployment's shared root runbook can be validated.
+    fixture_root = tmp_path / "realtime"
+    fixture_root.mkdir()
+    process_docs = tmp_path / "project-docs"
+    process_docs.mkdir()
+    shutil.copy(
+        ROOT.parent / "project-docs/realtime-server-migration.md",
+        process_docs / "realtime-server-migration.md",
+    )
     for name in (
         "AGENTS.md",
         "agent.md",
@@ -24,17 +33,17 @@ def test_contract_rejects_inconsistent_documents(tmp_path):
         "pyproject.toml",
         "README.md",
     ):
-        shutil.copy(ROOT / name, tmp_path / name)
+        shutil.copy(ROOT / name, fixture_root / name)
     for name in ("docs", "src", "config", "scripts"):
-        shutil.copytree(ROOT / name, tmp_path / name)
+        shutil.copytree(ROOT / name, fixture_root / name)
     subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
-    assert module.check(tmp_path) == []
-    (tmp_path / "VERSION").write_text("9.9.9\n")
-    handoff = tmp_path / "docs/handoff.md"
+    assert module.check(fixture_root) == []
+    (fixture_root / "VERSION").write_text("9.9.9\n")
+    handoff = fixture_root / "docs/handoff.md"
     handoff.write_text(handoff.read_text() + "\n## Current execution pointer\n")
-    with (tmp_path / "README.md").open("a") as stream:
+    with (fixture_root / "README.md").open("a") as stream:
         stream.write("\n[missing](docs/missing.md)\n")
-    errors = module.check(tmp_path)
+    errors = module.check(fixture_root)
     assert any("differs" in error for error in errors)
     assert any("exactly one Current" in error for error in errors)
     assert any("Broken file link" in error for error in errors)

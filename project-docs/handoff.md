@@ -54,7 +54,9 @@
     "同步后的 root 942 项和 realtime Python3.11/3.12 各 61 项、ruff/mypy/compileall/仓库契约/看门狗 3 项通过；8 个迁移 Bash 块及嵌入 Python 语法通过",
     "本次旧项目列表回读成功、新域latest为2026-10-02且14条、调度器指向新仓新域；实时首次三分片live、随后第三分片warming，不作为持续就绪验收",
     "编辑前942项pytest通过，编辑后品牌扫描内部资源文档导致1项失败；修正内部与公开边界并新增回归后完整943项、治理和diff检查通过，精确changed-range与远端检查随PR核验",
-    "PR194最终head7e8be714的943项pytest、治理、远端CI及Pages预览通过；新域首页200和今日14条复核成功；本次阶段3仍须完整复测"
+    "PR194最终head7e8be714的943项pytest、治理、远端CI及Pages预览通过；新域首页200和今日14条复核成功",
+    "本次阶段3根943项和治理通过；修正实时契约测试夹具为monorepo布局后，Python3.11/3.12各61项、ruff/mypy/compileall/契约和看门狗3项通过",
+    "src/config/requirements.lock/systemd/nginx对象与旧main逐字相同；旧main和最新main均为本地HEAD祖先"
   ],
   "unverified": [
     "新域 Access 登录与 Quick Post 管理操作；旧域 301 已被运营者取消，不再作为验收要求",
@@ -77,7 +79,7 @@
   "next_action": "完成旧域绑定清理与回读；阶段3通过根及实时双版本测试后推送PR，远端全绿同步后用merge commit合并，验证旧main祖先。随后单独认领Cloudflare单Worker整合，取得原可信SSH入口与安全配置条件后实际切换，不提前删除旧仓或状态。",
   "states": {
     "code": "complete",
-    "tests": "pending",
+    "tests": "complete",
     "pr_merged": "pending",
     "deployed": "pending",
     "production_verified": "pending"
