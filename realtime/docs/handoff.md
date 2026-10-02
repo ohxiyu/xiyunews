@@ -1,16 +1,16 @@
 # 当前交接
 
 ## Current execution pointer
-当前目标：阶段 3 将实时提醒并入私有 ohxiyu/xiyunews/realtime，保留历史、独立依赖、原运行方式及全部业务规则。
-任务 Issue / 负责人：https://github.com/ohxiyu/xiyunews/issues/172；本轮唯一迁移整合负责人。
-工作分支 / 最后提交 / PR：agent/xiyunews-realtime；主项目基线 d5360740bb571c6bf95d3fcb631a54ac00634e9f；导入旧仓 main 7807126d8c7cdb51e18f0b91ba27f500271f9f08，未 squash；PR 待建立。
+当前目标：项目统一为xiyunews，阶段3完整历史已合并；当前准备Cloudflare单项目入口，不改变原实时运行方式和规则。
+任务 Issue / 负责人：https://github.com/ohxiyu/xiyunews/issues/196；本轮唯一迁移整合负责人，根交接是唯一执行指针。
+工作分支 / 最后提交 / PR：agent/xiyunews-cloudflare，基线d6a9d3f29ef93c138842342c973b3049fb7bc252；前序PR195已merge commit，旧main7807126d8c7cdb51e18f0b91ba27f500271f9f08是origin/main祖先，不再等待历史上传。
 已经完成：原项目完整历史以 git subtree add 导入；根 CI 为 realtime 增加路径门控及 3.11/3.12 独立矩阵；治理兼容子目录；新部署从主仓完整 SHA 的 realtime 前缀打包。历史证据保留，提醒阈值、地址簿、信源、队列与目的地没有更改。
-尚未完成：远端 CI、merge commit合并及祖先核验；阶段4原可信SSH入口恢复和新仓实际重新部署；Cloudflare单项目切换。运营者2026-10-02确认原Token已撤销，并报告Bot已换、原频道改名；安全历史上传门槛已解除，不调用或输出旧凭据。旧仓退役仍必须等待新仓实际部署验收，不提前删除。
+尚未完成：本轮单项目真实静态构建/dry-run与远端检查；阶段4原可信SSH入口、新仓部署和Cloudflare切换。原Token撤销已获确认，规则、私聊目的地和KV保留，新运维正文品牌代码未部署；旧仓退役仍等实际部署验收，不提前删除。
 已运行的验证及结果：2026-10-01 公网 health 回读仍为 2.6.0/b226b625cf3875b6693e0768d75d88d50b33c08d，Telegram 开启、三个 spot 分片 live；这是旧部署，不是本次迁移部署验收。离线验证执行结果见本阶段发布记录及 PR。
 尚未验证的内容：新仓合并 SHA 部署、自然推送 message_id、服务器进程与看门狗状态；历史手机回执不作为本次证据。
 线上版本 / 对应源码提交：后端 2.6.0 = b226b625cf3875b6693e0768d75d88d50b33c08d（上一版 2.5.1 = 8f1751ef7f7ce403007965ab136d039657420461，可回滚；2.5.0 = 1739fe3e97f077ed5d4e2dbe4ecb3cebbd55e7c6 仍在服务器）；nginx = scripts/deploy/nginx.conf；看门狗 Worker 版本 55671d87-29c2-4225-8bdf-176cb4712ed3。
 阻塞与所需权限：仅确认两个已知 fomobtc_tokyo_config 路径不存在，尚不能断言本机没有私钥；目标主机没有已验证的known_hosts条目，原配置路径待提供，不猜用密钥或关闭指纹验证。旧Token撤销已获运营者确认，不再作为上传阻塞；不生成替代访问权限、不修改密钥，不清理旧release。Cloudflare统一项目尚未切换，现役服务保留。
-下一步具体动作：检查全绿后以 merge commit 合并（禁止 squash/rebase），核对导入的旧 main 是新 main 的祖先；再按 deployment.md 从新仓发布。上轮已完成事项归档于 releases，旧 backlog 不授权顺带执行。
+下一步具体动作：完成根交接指定的单项目基础验证；原安全配置与可信SSH恢复后按deployment.md实际部署新仓，单调度切换自然验收后再删旧资源。上轮事项见releases，旧backlog不授权执行。
 
 ## 系统现状
 
@@ -18,7 +18,7 @@
 | --- | --- |
 | 东京服务器 fomobtc-tokyo（47.79.36.171） | systemd `fomobtc`：全部采集、去重、推送；nginx：`api.fomobtc.com` 只读接口，`fomobtc.com`/`www` 302 到群组；certbot 定时续期两张证书 |
 | Cloudflare（账号 Drminutes） | DNS：A `@`、`www`、`api` → 47.79.36.171，全部 DNS only；看门狗 Worker `fomobtc-watchdog`（每 5 分钟，KV `STATE`） |
-| 本地 `ohxiyu/xiyunews` 的 `realtime/` 导入候选 | 原项目历史及独立测试已准备，远端 main 尚无 realtime/；旧仓待部署验证后归档 |
+| 私有 `ohxiyu/xiyunews/realtime/` | 原历史和独立测试已通过PR195进入远端main；服务器新仓部署仍待验证，旧仓暂留恢复 |
 
 Telegram 群组 fomobtc（`-1004364162227`，已开启话题，成员只读，仅保留表情回应；入口邀请链接 https://t.me/+mdTufn9GK1UyODk0 ，名称 fomobtc.com）：
 - 📈 行情异动（话题 3）：币安 USDT 现货最近 3 分钟涨跌超过 2%/3%/5%（按 24h 成交额）并持续 3 秒；同币同向 1 小时一次，再涨跌 10% 立即再提醒，附 24 小时新高/新低。单条为 1 分钟 K 线图 + 中英双语 + 市值，同一秒到期多条合并为文字。

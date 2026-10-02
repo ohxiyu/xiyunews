@@ -206,6 +206,15 @@ export async function runRecovery(
     const claim = await gate.claimAction(owner, kind, now);
     if (claim !== "claimed") return { ...result, status: kind + "_" + claim };
     if (kind === "pages") {
+      const edgeWorkflow = (env as Env & {EDGE_DEPLOY_WORKFLOW?: string}).EDGE_DEPLOY_WORKFLOW;
+      if (edgeWorkflow) {
+        if (edgeWorkflow !== "cloudflare-unified.yml") throw new Error("Invalid edge recovery workflow");
+        // Rebuild published gh-pages only. Never rerun AI for a deployment lag.
+        await githubRequest(env,
+          "/repos/" + env.GITHUB_REPOSITORY + "/actions/workflows/" + edgeWorkflow + "/dispatches",
+          {method: "POST", body: JSON.stringify({ref: env.GITHUB_REF})},
+        );
+      } else {
       // The secret hook builds the current gh-pages HEAD, without invoking AI.
       const hook = new URL(env.PAGES_DEPLOY_HOOK);
       if (hook.origin !== "https://api.cloudflare.com" ||
@@ -216,6 +225,7 @@ export async function runRecovery(
         method: "POST", redirect: "manual", signal: AbortSignal.timeout(10_000),
       });
       if (!response.ok) throw new Error("Pages recovery hook failed");
+      }
     } else {
       await githubRequest(env,
         "/repos/" + env.GITHUB_REPOSITORY + "/actions/workflows/" +

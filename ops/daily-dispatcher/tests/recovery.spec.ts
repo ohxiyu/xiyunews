@@ -74,6 +74,23 @@ function fixture(options: {
 }
 
 describe("production-aware recovery", () => {
+  it("rebuilds only published assets through the single-project workflow without a Pages hook", async () => {
+    const f = fixture({raw: true});
+    const unifiedEnv = {...env, EDGE_DEPLOY_WORKFLOW: "cloudflare-unified.yml", PAGES_DEPLOY_HOOK: ""};
+    expect((await runRecovery(unifiedEnv, f.now, "test")).status).toBe("pages_waiting");
+    expect((await runRecovery(unifiedEnv, f.now + 16 * 60_000, "test")).status).toBe("pages_dispatched");
+    expect(f.posts()).toHaveLength(1);
+    expect(f.posts()[0]?.url).toBe("https://api.github.com/repos/ohxiyu/xiyunews/actions/workflows/cloudflare-unified.yml/dispatches");
+    expect(await f.posts()[0]?.json()).toEqual({ref: "main"});
+  });
+  it("rejects an arbitrary replacement deployment workflow", async () => {
+    const f = fixture({raw: true});
+    const invalidEnv = {...env, EDGE_DEPLOY_WORKFLOW: "other.yml"};
+    await runRecovery(invalidEnv, f.now, "test");
+    await expect(runRecovery(invalidEnv, f.now + 16 * 60_000, "test"))
+      .rejects.toThrow("Invalid edge recovery workflow");
+    expect(f.posts()).toHaveLength(0);
+  });
   it("authenticates private contents without leaking credentials to public pages", async () => {
     const f = fixture({raw: true, public: true, homepage: true});
     expect((await runRecovery(env, f.now, "test")).status).toBe("healthy");

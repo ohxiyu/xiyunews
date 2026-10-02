@@ -28,7 +28,7 @@ export function problems(health, nowMs) {
 export function step(state, found, nowMs) {
   const previous = state || { failing: 0, alerted: false, lastAlert: 0 };
   if (!found.length) {
-    const message = previous.alerted ? "✅ FomoBTC 已恢复正常" : null;
+    const message = previous.alerted ? "✅ xiyu.news 实时服务已恢复正常" : null;
     return { state: { failing: 0, alerted: false, lastAlert: 0 }, message };
   }
   const failing = previous.failing + 1;
@@ -36,7 +36,7 @@ export function step(state, found, nowMs) {
   if (failing < CONFIRM_CHECKS || !due) {
     return { state: { ...previous, failing }, message: null };
   }
-  const title = previous.alerted ? "⚠️ FomoBTC 仍未恢复" : "🚨 FomoBTC 服务异常";
+  const title = previous.alerted ? "⚠️ xiyu.news 实时服务仍未恢复" : "🚨 xiyu.news 实时服务异常";
   const message = [title, ...found.map((item) => `• ${item}`), "", HEALTH_URL].join("\n");
   return { state: { failing, alerted: true, lastAlert: nowMs }, message };
 }
