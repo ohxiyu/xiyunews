@@ -5,7 +5,7 @@
 任务 Issue / 负责人：https://github.com/ohxiyu/xiyunews/issues/196；本轮唯一迁移整合负责人，根交接是唯一执行指针。
 工作分支 / 最后提交 / PR：agent/xiyunews-cloudflare，基线d6a9d3f29ef93c138842342c973b3049fb7bc252；前序PR195已merge commit，旧main7807126d8c7cdb51e18f0b91ba27f500271f9f08是origin/main祖先，不再等待历史上传。
 已经完成：原项目完整历史以 git subtree add 导入；根 CI 为 realtime 增加路径门控及 3.11/3.12 独立矩阵；治理兼容子目录；新部署从主仓完整 SHA 的 realtime 前缀打包。历史证据保留，提醒阈值、地址簿、信源、队列与目的地没有更改。
-尚未完成：本轮单项目真实静态构建/dry-run与远端检查；阶段4原可信SSH入口、新仓部署和Cloudflare切换。原Token撤销已获确认，规则、私聊目的地和KV保留，新运维正文品牌代码未部署；旧仓退役仍等实际部署验收，不提前删除。
+尚未完成：阶段4原可信SSH入口、新仓部署和Cloudflare切换；本轮PR197基线a7a4fe76的真实静态构建/dry-run及双版本远端检查已通过，但保持Draft，未生产切换。原Token撤销已获确认，规则、私聊目的地和KV保留，新运维正文品牌代码未部署；旧仓退役仍等实际部署验收，不提前删除。
 已运行的验证及结果：2026-10-01 公网 health 回读仍为 2.6.0/b226b625cf3875b6693e0768d75d88d50b33c08d，Telegram 开启、三个 spot 分片 live；这是旧部署，不是本次迁移部署验收。离线验证执行结果见本阶段发布记录及 PR。
 尚未验证的内容：新仓合并 SHA 部署、自然推送 message_id、服务器进程与看门狗状态；历史手机回执不作为本次证据。
 线上版本 / 对应源码提交：后端 2.6.0 = b226b625cf3875b6693e0768d75d88d50b33c08d（上一版 2.5.1 = 8f1751ef7f7ce403007965ab136d039657420461，可回滚；2.5.0 = 1739fe3e97f077ed5d4e2dbe4ecb3cebbd55e7c6 仍在服务器）；nginx = scripts/deploy/nginx.conf；看门狗 Worker 版本 55671d87-29c2-4225-8bdf-176cb4712ed3。

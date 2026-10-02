@@ -9,7 +9,7 @@
   "issue": "https://github.com/ohxiyu/xiyunews/issues/196",
   "owner": "迁移唯一编辑及发布整合负责人",
   "branch": "agent/xiyunews-cloudflare",
-  "last_verified_commit": "d6a9d3f29ef93c138842342c973b3049fb7bc252",
+  "last_verified_commit": "a7a4fe76847dee984a0ad8439fc1f8ea8539deff",
   "pr": "https://github.com/ohxiyu/xiyunews/pull/197（Draft；前序PR195已合并）",
   "completed": [
     "PR195以merge commit合并，旧实时main7807126d8c7cdb51e18f0b91ba27f500271f9f08是origin/main祖先，远端realtime目录存在",
@@ -18,10 +18,12 @@
     "操作时确认后删除bmt.news DNS区域和bmt.news/www.bmt.news/next.bmt.news三个Pages绑定，回读旧区不存在、生产绑定只剩xiyu.news；不删除注册",
     "旧Horizon已删除；bmtnews-standalone仅是同一主仓的旧别名，禁止据此删除主仓",
     "已复用原网站鉴权/API/缓存、调度和看门狗准备新入口xiyunews，默认无Cron且双开关关闭，不修改UI或实时规则",
-    "已准备固定出版SHA构建和默认关闭的自动发布工作流，补充真实静态构建CI与免AI部署恢复路径"
+    "已准备固定出版SHA构建和默认关闭的自动发布工作流，补充真实静态构建CI与免AI部署恢复路径",
+    "PR197的a7a4fe76全部可用远端检查通过：真实Jekyll渲染/资产校验/统一Worker dry-run、治理、主站和实时双版本；CodeQL跳过，未部署",
+    "GitHub主仓名xiyunews、描述统一稀有News及实时快讯、主页链接改为https://xiyu.news，private保持true"
   ],
   "unfinished": [
-    "本任务远端CI和真实Jekyll/dry-run验证；保留迁移基础PR与准确下一步",
+    "迁移基础PR保留Draft，最终域名/状态/Cron切换尚未实施，不能把全绿dry-run当成生产",
     "安全补齐新Worker配置、最小权限自动部署凭据及原可信SSH入口，取得对应部署/配置授权后完成切换",
     "停旧Cron、迁移原RecoveryGate归属、保持STATE KV、迁域、自然调度与后台验收；最终切换配置须另一个串行PR",
     "服务器按新仓完整SHA重新发布、三现货分片和自然message_id验收后退役旧fomobtc仓库",
@@ -47,11 +49,11 @@
     "verified_at": "2026-10-02，普通latest API与实时health回读；旧区和旧域绑定面板回读"
   },
   "blockers": [
-    "原可信SSH配置路径待提供；两个已知路径不存在不代表本机没有私钥，不猜用密钥或关闭指纹校验",
+    "原可信SSH配置路径待提供；两个已知路径不存在，默认ssh -G未解析fomobtc-tokyo主机，不能推断本机没有私钥，不猜用密钥或关闭指纹校验",
     "现有仓库没有Cloudflare自动部署Secrets和启用变量；旧Worker加密Secrets不可通过名称列表恢复，需运营者既有安全注入方式",
     "Worker部署/密钥/DNS和最终删资源需要对应授权；当前只完成明确确认的旧区与三绑定清理"
   ],
-  "next_action": "保存迁移基础PR并完成真实构建CI；安全配置与可信SSH恢复后，用串行切换PR迁移原状态和域名并做自然验收，最后删旧资源，不提前启用双Cron。",
+  "next_action": "迁移基础真实构建CI已通过，保留Draft等待安全配置与可信SSH；条件具备后再完成串行切换配置、迁移原状态与域名及自然验收，最后删旧资源，不双Cron。",
   "states": {
     "code": "pending",
     "tests": "pending",

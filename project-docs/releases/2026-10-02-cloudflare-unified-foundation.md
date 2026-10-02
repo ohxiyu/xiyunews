@@ -4,7 +4,7 @@ Task: https://github.com/ohxiyu/xiyunews/issues/196
 Source commit: 基线d6a9d3f29ef93c138842342c973b3049fb7bc252；最终head见本任务PR。
 Worker version: not changed；既有调度器9774435b-1c72-4dad-9552-0440e2ab574f，统一Worker未部署。
 Deployment: 本任务尚未部署；PR195合并不是服务器切换。
-Verification: 2026-10-02，旧历史祖先、区域/绑定面板、普通latest与实时health回读、离线回归；真实构建及远端CI随PR补齐。
+Verification: 2026-10-02，旧历史祖先、区域/绑定面板、普通latest与实时health回读、离线回归；a7a4fe76真实Jekyll/资产校验/统一Worker dry-run及全部可用远端CI通过，见36963560959。
 Rollback: 本任务无生产切换；保留现役服务，不擅自恢复第二Cron。
 
 ## 本轮证据
@@ -16,5 +16,7 @@ Rollback: 本任务无生产切换；保留现役服务，不擅自恢复第二C
 统一Worker基础默认不开Cron，复用原鉴权/公开路由/dispatcher/watchdog，原DO及KV不重置；准备固定出版SHA构建与默认关闭自动部署，恢复仅重建产物不用AI。94项边缘测试/tsc、看门狗3项、主站951项、原后台和路由51项、资产8项通过；实时3.11初次共享文档夹具缺两条链接导致60通过1失败，复制完整共享文档后61项/ruff/mypy/compileall/契约通过，未绕过检查。治理精确base/head通过；真实Jekyll/dry-run与双版本远端CI以[PR197](https://github.com/ohxiyu/xiyunews/pull/197)为准。
 
 ## 未完成
+
+远端[CI36963560959](https://github.com/ohxiyu/xiyunews/actions/runs/36963560959)核验a7a4fe76847dee984a0ad8439fc1f8ea8539deff：真实Jekyll构建和统一Worker dry-run、主站测试、实时3.11/3.12、治理全部成功，Pages预览89775190也成功；CodeQL因套餐跳过。GitHub主仓描述与主页已改为统一项目和https://xiyu.news，私有状态不变。最后普通首页/RSS/sitemap均200，缺口仍是实际安全配置与生产切换，不是测试失败。
 
 无新Worker/域名/Cron/DO/服务器切换、自然回执或统一生产证据。缺安全Secrets注入、自动部署配置和原可信SSH入口；未新增权限、密钥、收费服务或发送真实测试消息。原开发工具链audit有7项告警，未强制升级或屏蔽，需上线前另行修复并复测。准确切换与验收见 [单项目清单](../cloudflare-single-project.md)。
