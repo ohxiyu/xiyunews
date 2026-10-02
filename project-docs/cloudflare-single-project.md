@@ -6,7 +6,7 @@
 
 `ops/daily-dispatcher/src/unified.ts` 直接复用原网站、dispatcher 和 watchdog，未重做 UI。统一配置名为 `xiyunews`，所有请求先经原鉴权；默认两个开关关闭且 Cron 为空。RecoveryGate 暂时外部绑定原命名空间，STATE 复用原 KV，不能新建空状态代替。
 
-`cloudflare-unified.yml` 在出版工作流成功后串行读取最新 `gh-pages` 固定 SHA，Jekyll 渲染、校验资产后部署；不依靠 GITHUB_TOKEN 推送触发另一 push 工作流，不采集、不用 AI、不写状态分支。只有 `XIYUNEWS_EDGE_ENABLED=true` 才可部署，目前变量和自动部署凭据均未配置。新增 CI 真实构建出版快照并 dry-run，不以占位文件证明上线。
+`cloudflare-unified.yml` 在出版工作流成功后串行读取最新 `gh-pages` 固定 SHA，Jekyll 渲染、校验资产后部署；不依靠 GITHUB_TOKEN 推送触发另一 push 工作流，不采集、不用 AI、不写状态分支。只有 `XIYUNEWS_EDGE_ENABLED=true` 才可部署；2026-10-03两个仓库部署Secret已保存并回读名称/更新时间，变量仍未启用。新增CI真实构建出版快照并dry-run，不以占位文件证明上线。
 
 此配置只作过渡：自动部署启用前，最终切换 PR 必须把 DO 改为保留原 namespace 的本地绑定，并填写正式 Cron，否则后续发布会恢复过渡配置、移除 Cron。本阶段为 `check_coordinator` 增加同一 `XIYUNEWS_EDGE_ENABLED` 开关：精确 `true` 才切换至 `https://xiyu.news/publication/check`，迁移前默认旧端点，新端点失败不回退补发；两条自动调用工作流同时传递该变量。免 AI 的部署恢复已支持固定新工作流，不再使用旧 Pages hook。
 
@@ -16,7 +16,7 @@
 
 只读过 Secrets 名称，未读取值。新 Worker 需要运营者从原安全保管位置注入 GitHub dispatch、recovery、Admin 写权限凭据，以及原实时私聊的 Bot/目标 ID；不能用日报频道替代看门狗私聊。保持现有 Access issuer/AUD/单账号邮箱校验与新域六路径，不扩大白名单。旧 Worker 加密 Secrets 不能从名称列表恢复，本机 Wrangler OAuth 也不能复制成 Actions Token。
 
-GitHub 仓库级 Secrets 需要 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID`，持久权限新建与 Secret 修改需确认，不在聊天中发凭据。目前均未配置；本阶段取消基础工作流对不存在的 `xiyunews-production` 环境的硬依赖，保留 main / 可信源 / 成功状态 / 手动启用门槛。[GitHub 文档](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments)说明私有仓环境能力有套餐限制，本机 API 未提供账户 plan，因此不宣称当前套餐一定支持，也不购买升级；并未移除现役环境保护。不能把本机 OAuth 当成自动发布权限。
+GitHub仓库级 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID` 已按具体确认通过隐藏输入配置，不在聊天中发凭据，运行Secret仍未补齐。本阶段取消基础工作流对不存在的 `xiyunews-production` 环境的硬依赖，保留main/可信源/成功状态/手动启用门槛。[GitHub 文档](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments)说明私有仓环境能力有套餐限制，本机API未提供账户plan，因此不宣称当前套餐一定支持，也不购买升级；并未移除现役环境保护。不能把本机OAuth当成自动发布权限。
 
 服务器专用可信 SSH 已恢复并完成新仓 SHA 切换；新 Bot 为原群管理员，已有行情、公告和资金流向共 11 条自然发送成功回执。步骤与实际记录见 [服务器清单](realtime-server-migration.md) 和 [新 Bot 记录](../realtime/docs/releases/deploy-20261002-xiyunews-bot.md)，不再等待失效旧配置、重复 /start 或要求给旧 Bot 授权。
 

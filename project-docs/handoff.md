@@ -1,6 +1,6 @@
 # 当前交接
 
-项目统一名为 `xiyunews`，网页展示名为 `xiyu.news`。PR195 已保留完整实时历史，PR197 的迁移基础于 2026-10-02 23:09:10（上海时间）合并为 91fb5981；当前串行执行 Issue198 的生产接管，线上仍是原三个 Cloudflare 项目。实时服务器运行新仓 d6a9d3f 完整 SHA，@xiyunewsbot 在原话题 3/5/7 最新已有 18 条自然成功回执；23:22:48 已将群名按既有确认改为 xiyu.news 并回读，简介、权限、话题未改。API 回执、手机收件和看门狗私聊实际告警分别验收，不提前删除现役项目。
+项目统一名为 `xiyunews`，网页展示名为 `xiyu.news`。PR195 已保留完整实时历史，PR197 的迁移基础于 2026-10-02 23:09:10（上海时间）合并为 91fb5981；当前串行执行 Issue198 的生产接管，线上仍是原三个 Cloudflare 项目。2026-10-03 00:31已通过运营者隐藏输入保存两个仓库部署Secret并回读名称/更新时间，自动发布开关仍未启用。实时服务器运行新仓 d6a9d3f 完整 SHA，@xiyunewsbot 在原话题 3/5/7 最新已有30条自然成功回执，群名为xiyu.news。API回执、手机收件和看门狗私聊实际告警分别验收，不提前删除现役项目。
 
 <!-- execution-pointer -->
 ```json
@@ -9,7 +9,7 @@
   "issue": "https://github.com/ohxiyu/xiyunews/issues/198",
   "owner": "迁移唯一编辑及发布整合负责人",
   "branch": "agent/xiyunews-edge-cutover",
-  "last_verified_commit": "91fb5981cd09a51be7c3ef8c355eb6ee179f60fa",
+  "last_verified_commit": "4668f4d63437f95d445072bba38f63ce8663f35f",
   "pr": "https://github.com/ohxiyu/xiyunews/pull/199（Draft，生产配置与验收未完成；前序PR197已合并）",
   "completed": [
     "PR195以merge commit合并，旧实时main7807126d8c7cdb51e18f0b91ba27f500271f9f08是origin/main祖先，远端realtime目录存在",
@@ -30,19 +30,21 @@
     "运营者报告已向新Bot发送/start；21:24核验新Bot收到切换后私聊/start且私聊可读取，不再要求重复/start；没有发测试消息，未取得实际告警送达证明",
     "32a838fb的CI37012988502全部可用检查与Pages预览成功，CodeQL跳过；新Bot切换后11条自然事件sent、最新telegram_id1251，覆盖行情/公告/资金流向，原群话题和配置未改",
     "99d2465e的CI37024644728全部可用检查和Pages预览成功，CodeQL跳过；PR197正常merge为91fb5981并删除任务分支，Issue196基础任务关闭，生产接管转Issue198",
-    "运营者确认继续配置后，2026-10-03按原摘要提交Cloudflare令牌创建按钮：仅现役账户Workers Scripts编辑、2027-01-01到期，无DNS/Access/账单权限；创建后的页面及令牌值未读取。运营者隐藏输入脚本在GitHub只读校验停止，两个部署Secret名称仍不存在，未改生产",
+    "运营者确认继续配置后，2026-10-03按原摘要提交Cloudflare令牌创建按钮：仅现役账户Workers Scripts编辑、2027-01-01到期，无DNS/Access/账单权限，创建后的页面和令牌值未读取。初次GitHub校验失败，修订工具后运营者预检成功并隐藏输入配置；回读CLOUDFLARE_ACCOUNT_ID更新于2026-10-02T16:31:00Z、CLOUDFLARE_API_TOKEN更新于16:31:01Z，仅验证名称/时间，未启用自动发布",
     "已准备统一项目启用后使用正式域协调接口；迁移前默认旧端点，新端点失败不回退补发，两条自动调用工作流共享同一启用变量",
     "本阶段主站968项和治理通过，实时61项/契约与看门狗3项通过；用Ruby3.3构建233597f8出版快照并校验8364个资产，统一Wrangler dry-run成功，无实际部署",
     "按运营者既有Telegram名称确认，核对新Bot管理员及can_change_info权限后仅把原群xiyuNews改为xiyu.news；2026-10-02T15:22:48Z回读名称正确，简介和话题保持，没有改变权限/规则或手工发送测试消息"
   ],
   "unfinished": [
     "基础PR已合并；最终域名/状态/Cron切换尚未实施，不能把全绿dry-run当成生产",
-    "通过安全渠道补齐新Worker配置及最小权限自动部署凭据；可信SSH入口已恢复，不再等待旧配置路径",
+    "GitHub自动部署凭据已配置，仍须安全补齐统一Worker业务运行Secret；可信SSH入口已恢复，不再等待旧配置路径或重复创建部署Token",
     "停旧Cron、迁移原RecoveryGate归属、保持STATE KV、迁域、自然调度与后台验收；最终切换配置须另一个串行PR",
     "实时新仓版本及新Bot已部署并取得三类自然回执；手机收件和看门狗实际私聊告警仍未独立验收，不补发失败消息、不提前删除恢复资源",
     "完成本阶段回归并建立Draft PR；基础默认关闭，不能据代码合并启用新Cron或删除现役服务；评估新改名API仅是候选路径，实际身份及状态保留尚未验证"
   ],
   "validation": [
+    "4668f4d6本机完整980项/治理通过，CI37034229414全部可用检查及Pages预览40613c7a通过，CodeQL跳过；部署Secret只读名称/更新时间已确认，XIYUNEWS_EDGE_ENABLED不存在",
+    "2026-10-03只读核验：原dispatcher仍是9774435b-1c72-4dad-9552-0440e2ab574f，三运行Secret名称保留；第一次版本列表网络失败后只读重试成功，没有部署。主域latest仍2026-10-02共14条（此时未到新日07:26），服务器active/MainPID235825/NRestarts0、新Bot管理员、话题3/5/7和群名未变；自然事件30sent/14archived，最新资金1271、公告1270、行情1269，无切换后失败状态",
     "新入口与原dispatcher共94项边缘测试通过、tsc通过，看门狗3项Node通过",
     "本轮根完整953项Python测试通过、治理与实时契约通过；原后台及公开路由51项Node通过，资产及发布门槛10项单独通过；实时3.11的61项/ruff/mypy/compileall基线通过",
     "今日网页此前回读2026-10-02共14条；实时health现为2.6.0/d6a9d3f29ef93c138842342c973b3049fb7bc252，Telegram启用，三个spot分片live，既有Hyperliquid degraded未隐藏",
@@ -70,11 +72,11 @@
     "verified_at": "2026-10-02，普通latest API与实时health回读；旧区和旧域绑定面板回读"
   },
   "blockers": [
-    "现有仓库没有Cloudflare自动部署Secrets和启用变量；旧Worker加密Secrets不可通过名称列表恢复，需运营者既有安全注入方式",
+    "GitHub部署Secrets已完成，统一Worker业务运行凭据尚未补齐、自动发布变量未启用；旧Worker加密Secrets不能从名称列表恢复，需安全注入或经验证的保留路径",
     "旧Bot普通member问题已通过授权换为管理员@xiyunewsbot解决，私聊/start和三类自然回执已确认；看门狗实际私聊告警仍未验证，不人为制造故障或重放旧消息",
     "SSH新增持久访问已经操作时确认并完成；Cloudflare新增持久权限、秘密值注入及后续浏览器删除仍须各自安全流程，不从SSH确认扩大权限，不重复询问已完成旧区与三绑定删除"
   ],
-  "next_action": "在Issue198串行接管：已获部署Token创建及隐藏输入写入两个仓库Secret的具体确认。先由运营者在原终端运行configure_edge_deploy_token.py --check-github，安全定位只读失败后复用原令牌，不重复创建；助手终端同接口成功并有仓库admin权限，不据此猜测运营者终端原因。再补运行凭据，不复制CLI/OAuth Token；生产部署、主域、Cron、状态迁移与删除尚未实施。新Bot三类自然回执和/start已完成，不重复操作。",
+  "next_action": "在Issue198串行接管：两个GitHub部署Secret已完成，不再要求令牌输入。等待隔离预览Worker部署的具体确认：只部署现有出版内容、不绑定主域、不启Cron/推送/状态迁移、不删旧项目；之后安全补运行凭据并受控接管。不复制CLI/OAuth Token、不先改名或迁域；新Bot三类自然回执和/start已完成，不重复操作。",
   "states": {
     "code": "pending",
     "tests": "pending",
