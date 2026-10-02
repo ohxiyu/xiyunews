@@ -7,6 +7,7 @@ to curl/gh on stdin. Never accept credentials as command-line arguments.
 import getpass
 import json
 import re
+import shutil
 import subprocess
 import sys
 import warnings
@@ -21,14 +22,36 @@ class SetupError(Exception):
 
 
 def command(args, *, stdin=None):
+    is_github = args[0] == "gh"
+    if is_github:
+        # Interactive shells (for example Conda) can have a different PATH.
+        # Prefer their installed CLI, then the known Apple Silicon location.
+        args = [shutil.which("gh") or "/opt/homebrew/bin/gh", *args[1:]]
     try:
         result = subprocess.run(
             args, input=stdin, text=True, capture_output=True,
             timeout=45, check=False,
         )
-    except (OSError, subprocess.TimeoutExpired):
+    except FileNotFoundError:
+        raise SetupError("找不到 GitHub CLI（gh）；请安装或修复 PATH" if is_github
+                         else "命令不可用，未显示原始输出") from None
+    except subprocess.TimeoutExpired:
+        raise SetupError("GitHub 请求超时，请检查网络" if is_github
+                         else "命令超时，未显示原始输出") from None
+    except OSError:
         raise SetupError("命令不可用或超时，未显示原始输出") from None
     if result.returncode:
+        if is_github:
+            # Classify only; never print provider text, which can contain keys.
+            error = result.stderr.lower()
+            if any(value in error for value in ("gh auth login", "http 401", "bad credentials")):
+                raise SetupError("GitHub CLI 未登录或凭据失效；请运行 gh auth login")
+            if "rate limit" in error:
+                raise SetupError("GitHub API 请求限额已触发，请稍后重试")
+            if any(value in error for value in ("http 403", "http 404", "resource not accessible")):
+                raise SetupError("当前 GitHub 身份无法读取仓库变量，请核对账号及仓库权限")
+            if any(value in error for value in ("connection", "timeout", "resolve", "dial tcp", "tls")):
+                raise SetupError("GitHub 网络连接失败，请检查网络或代理")
         raise SetupError("命令失败，未显示原始输出")
     return result.stdout
 
@@ -53,19 +76,23 @@ def cloudflare_get(path, token):
     return data.get("result")
 
 
-def configure(token):
-    if not re.fullmatch(r"[A-Za-z0-9_-]{20,256}", token):
-        raise SetupError("输入格式无效，没有修改 Secrets")
+def check_github():
     # Do not alter live deployment credentials in an active rollout.
     try:
         enabled = command([
             "gh", "api", f"repos/{REPOSITORY}/actions/variables",
             "--jq", '.variables[] | select(.name=="XIYUNEWS_EDGE_ENABLED") | .value',
         ]).strip()
-    except SetupError:
-        raise SetupError("GitHub 只读校验失败，没有修改 Secrets") from None
+    except SetupError as error:
+        raise SetupError(f"GitHub 只读校验失败，没有修改 Secrets：{error}") from None
     if enabled == "true":
         raise SetupError("统一自动发布已启用；请由发布负责人另行安排凭据轮换")
+
+
+def configure(token):
+    if not re.fullmatch(r"[A-Za-z0-9_-]{20,256}", token):
+        raise SetupError("输入格式无效，没有修改 Secrets")
+    check_github()
     verified = cloudflare_get("user/tokens/verify", token)
     if not isinstance(verified, dict) or verified.get("status") != "active":
         raise SetupError("令牌未激活，没有修改 Secrets")
@@ -93,12 +120,17 @@ def configure(token):
         raise SetupError("名称回读不完整；请核对部分配置，不自动删除")
 
 
-def main():
+def main(*, check_only=False):
     print(f"仅校验已批准令牌并配置 {REPOSITORY} 的两个部署 Secrets。")
     print("不会启用自动部署、修改运行 Secrets、主域、Cron、状态或删除旧项目。")
     try:
+        if check_only:
+            check_github()
+            print("GitHub 只读预检通过；没有读取令牌或修改 Secrets。")
+            return 0
         if not sys.stdin.isatty():
             raise SetupError("请在交互终端运行，禁止管道或无回显保护的输入")
+        check_github()
         with warnings.catch_warnings():
             warnings.simplefilter("error", getpass.GetPassWarning)
             token = getpass.getpass("粘贴已批准的 Cloudflare API Token（不回显）：")
@@ -111,4 +143,7 @@ def main():
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    if sys.argv[1:] not in ([], ["--check-github"]):
+        print("仅接受 --check-github 只读预检选项，禁止通过参数传入凭据。")
+        raise SystemExit(2)
+    raise SystemExit(main(check_only=bool(sys.argv[1:])))

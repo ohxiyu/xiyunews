@@ -26,6 +26,8 @@ GitHub 仓库级 Secrets 需要 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_I
 
 此脚本只解决 GitHub 的 Cloudflare 自动发布权限，不补齐新 Worker 的 GitHub dispatch/Admin/Recovery/Telegram 运行 Secret，也不验证写权限或业务上线。它假定现役调度器尚未改名，须在改名前执行；原地改名后不要按旧名称重跑。需要轮换时另行审查，不能把读校验成功当部署成功。
 
+若提示 GitHub 只读失败，先在发生失败的同一终端运行 `python3 scripts/configure_edge_deploy_token.py --check-github`；该模式不要求令牌、不会写 Secret，也不会读取原值。脚本在隐藏输入前预检，并区分 CLI 缺失、登录失效、仓库权限、限额和网络错误，只输出固定提示，不显示上游正文。PATH 没有 gh 时尝试本机既有 `/opt/homebrew/bin/gh`，不自动安装、换账号或修改代理；需要登录时由运营者完成，不从其他会话复制认证凭据。修复后复用已经创建的 Cloudflare Token，不必再次创建。
+
 ## 切换与验收
 
 1. 基础 PR 全部可用 CI 通过后合并，再从新 main 建立串行生产切换 Issue/分支/PR。确认 Worker 部署授权后可先发布无 Secret、无 Cron、双开关关闭的暂停预览，验证静态资源/API/RSS/sitemap/历史页/404/PWA；此步骤不接管主域或推送，不关闭非正式 origin 的后台拒绝。
