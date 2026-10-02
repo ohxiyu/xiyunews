@@ -1,6 +1,6 @@
 # 稀有News 系统架构
 
-本文件描述当前实际架构，不把已写代码、已合并、已部署和已验收混为一谈。项目统一名为 xiyunews，主仓为私有 ohxiyu/xiyunews，网站为 https://xiyu.news；PR195 已保留完整历史并入 realtime/，旧 main 已核验为新 main 祖先，实时生产仍是原版本。当前 Cloudflare 还是三个现役项目，单项目入口仅在开发；最终待办见 [当前交接](handoff.md)，切换步骤见 [单项目清单](cloudflare-single-project.md)。
+本文件描述当前实际架构，不把已写代码、已合并、已部署和已验收混为一谈。项目统一名为 xiyunews，主仓为私有 ohxiyu/xiyunews，网站为 https://xiyu.news；PR195 已保留完整历史并入 realtime/，旧 main 已核验为新 main 祖先。实时服务器2026-10-02已切换到新仓合并d6a9d3f完整SHA，三个现货分片live，但Bot在只读群中仅为普通成员，自然推送被拒绝，业务验收尚未通过。当前 Cloudflare 还是三个现役项目，单项目入口仅在开发；最终待办见 [当前交接](handoff.md)，切换步骤见 [单项目清单](cloudflare-single-project.md)。
 
 ## 1. 总体结构
 
@@ -46,7 +46,7 @@ flowchart TD
 | 独立调度器 | ops/daily-dispatcher/src/ | Cloudflare Cron + 既有 RecoveryGate Durable Object | 检查日报缺失、受限补发、四小时采集和分发到期门控。 |
 | 人工编辑 | src/quick_posts.py、data/editorial.json、站点后台 | Access 保护的 /s/ 与 Pages Worker | 不调用 AI 的快速发布，保留人工编辑身份和原始内容。 |
 | 社交分发 | src/x_queue.py、src/services/x_delivery.py、src/square_plan.py、src/square_delivery.py | 独立 GitHub Actions | 持久化计划、到期发送、保留回执，未知结果不自动重发。 |
-| 实时提醒 | realtime/ | 东京 systemd 服务 fomobtc，尚待新仓版本发布 | 三个币安现货分片、公告与链上监测，输出到独立话题群。 |
+| 实时提醒 | realtime/ | 东京 systemd 服务 fomobtc，已部署新仓合并 SHA | 三个币安现货分片、公告与链上监测，输出到独立话题群；当前群Bot权限导致发送失败，需管理员恢复。 |
 
 前端仍是静态模板和原生 JavaScript/CSS，不是 React 应用，没有因为视觉调整引入一套前端组件服务。PWA 增加安装、离线阅读、阅读状态和更新提示，不新增服务器常驻进程；本站没有引入 D1、Redis、Kafka 或独立用户数据库。
 
@@ -101,8 +101,8 @@ PWA 的离线内容可能不是最新一期，必须显示保存状态并保留�
 ## 6. 尚未完成的迁移依赖
 
 1. 旧Token撤销已获运营者明确确认，完整历史已合并为PR195；不能继续把此项写成阻塞。Cloudflare单项目还缺安全配置、状态/域名切换与实际自然运行证据。
-2. 实时服务的新仓发布需提供原 SSH 配置入口，按原部署路径备份、切换、核对完整 source_commit、三个现货分片、自然推送回执和看门狗，再归档旧仓；不改数据库、systemd、规则或目标群。
-3. Telegram展示名为xiyu.news；运营者报告Bot已换、原频道改名且另行明确旧Token撤销。简介、实时群元数据与新Bot自然回执尚未独立验收，看门狗新品牌代码未部署，不重复询问已确认事项。
+2. 专用SSH已恢复，实时服务已按原路径备份并切换到新仓完整合并SHA；源码、单进程和三个现货分片已验证，但自然回执未通过。原release和备份保留，待业务验收后再退役旧仓；不改数据库、systemd、规则或目标群。
+3. 运营者报告日报Bot已换、原频道改名；只读实查实时群名为xiyuNews，@fomobtcbot凭据有效但在禁止普通成员发消息的群中只是member。需要群管理员恢复其管理员发消息权限，再观察新的自然message_id；不补发失败消息。看门狗未检查Bot群权限，其无告警不能当作送达证据，新品牌Worker代码未部署。
 4. 新域后台的匿名登录入口已恢复；验证码登录后的 Quick Post 读写仍须验收，不发布生产测试新闻或绕过认证。
 
-以上限制不是新的技术架构，只是尚未满足的安全与运营条件。逐条命令见 [实时服务器迁移清单](realtime-server-migration.md)，待确认文案见 [Telegram 品牌草案](telegram-brand-migration.md)；两份均为准备，不是执行记录。后续仍沿用这三个独立运行边界，不为了迁移引入额外系统。
+以上限制不是新的技术架构，只是尚未满足的安全与运营条件。逐条命令见 [实时服务器迁移清单](realtime-server-migration.md)，实际结果见 [服务器部署记录](../realtime/docs/releases/deploy-20261002-xiyunews-repository.md)，待确认文案见 [Telegram 品牌草案](telegram-brand-migration.md)；操作清单和品牌草案不是执行证据。后续仍沿用这三个独立运行边界，不为了迁移引入额外系统。

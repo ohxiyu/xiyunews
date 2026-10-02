@@ -47,3 +47,7 @@
 - [单机运行与看门狗](single-host-watchdog.md)
 
 - [2.6.0 行情异动单一规则](2.6.0.md) · [部署与线上验收](deploy-20260925-simple-moves.md)
+
+- [2026-10-02 专用 SSH 连接恢复验证（非应用部署）](ssh-access-20261002.md)
+
+- [2026-10-02 新仓实时部署（Telegram 业务验收未通过）](deploy-20261002-xiyunews-repository.md)

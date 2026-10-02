@@ -14,7 +14,7 @@
 
 只读过 Secrets 名称，未读取值。新 Worker 需要运营者从原安全保管位置注入 GitHub dispatch、recovery、Admin 写权限凭据，以及原实时私聊的 Bot/目标 ID；不能用日报频道替代看门狗私聊。保持现有 Access issuer/AUD/单账号邮箱校验与新域六路径，不扩大白名单。旧 Worker 加密 Secrets 不能从名称列表恢复，本机 Wrangler OAuth 也不能复制成 Actions Token。
 
-GitHub 环境 `xiyunews-production` 需要最小权限 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID`；持久权限新建与 Secret 修改需确认，不在聊天中发凭据。服务器需原可信 SSH 配置路径，步骤见 [服务器清单](realtime-server-migration.md)；不猜密钥或关闭指纹校验。
+GitHub 环境 `xiyunews-production` 需要最小权限 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID`；持久权限新建与 Secret 修改需确认，不在聊天中发凭据。服务器专用可信SSH已恢复并完成新仓SHA切换，但自然消息被原只读群中的Bot普通成员权限阻断；步骤与实际记录见 [服务器清单](realtime-server-migration.md)，不再等待失效旧配置路径，不关闭指纹校验。
 
 ## 切换与验收
 
@@ -32,4 +32,4 @@ GitHub 环境 `xiyunews-production` 需要最小权限 `CLOUDFLARE_API_TOKEN` �
 
 原锁定 Node 开发依赖 audit 报告 7 项（5 high、2 moderate，Wrangler/Miniflare/Undici/Sharp/Vitest 链）。本轮已锁定 Vitest 4.1.11、Wrangler 4.131.0 和配套 workers-types 5.20260910.1，并用 overrides 锁定 Undici 7.29.1、Sharp 0.35.4；保留测试池 0.22.0，不用 force/legacy-peer-deps。重新安装后完整 npm audit 为 0，94 项边缘测试、类型检查和原调度器 dry-run 通过。
 
-`npm run check` 与统一生产发布工作流均包含覆盖开发依赖的低级别审计门槛，不以 omit-dev 隐藏工具链问题。统一资产真实构建与新版本 dry-run 以本任务最终远端 CI 为准；这不是实际部署，也不据原告警宣称主站曾被攻击。没有新增收费服务或模型。运营者已要求一次执行此前提出的迁移步骤，但授权不会生成缺失的安全配置或可信 SSH 入口；现役服务保留至切换验收。
+`npm run check` 与统一生产发布工作流均包含覆盖开发依赖的低级别审计门槛，不以 omit-dev 隐藏工具链问题。统一资产真实构建与新版本 dry-run 以本任务最终远端 CI 为准；这不是实际部署，也不据原告警宣称主站曾被攻击。没有新增收费服务或模型。服务器连接已恢复、版本已切换；Cloudflare安全配置和实时群Bot权限仍未补齐，现役边缘服务保留至切换与自然验收。

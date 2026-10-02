@@ -5,12 +5,12 @@
 任务 Issue / 负责人：https://github.com/ohxiyu/xiyunews/issues/196；本轮唯一迁移整合负责人，根交接是唯一执行指针。
 工作分支 / 最后提交 / PR：agent/xiyunews-cloudflare，基线d6a9d3f29ef93c138842342c973b3049fb7bc252；前序PR195已merge commit，旧main7807126d8c7cdb51e18f0b91ba27f500271f9f08是origin/main祖先，不再等待历史上传。
 已经完成：原项目完整历史以 git subtree add 导入；根 CI 为 realtime 增加路径门控及 3.11/3.12 独立矩阵；治理兼容子目录；新部署从主仓完整 SHA 的 realtime 前缀打包。历史证据保留，提醒阈值、地址簿、信源、队列与目的地没有更改。
-尚未完成：阶段4原可信SSH入口、新仓部署和Cloudflare切换；本轮PR197基线a7a4fe76的真实静态构建/dry-run及双版本远端检查已通过，但保持Draft，未生产切换。原Token撤销已获确认，规则、私聊目的地和KV保留，新运维正文品牌代码未部署；旧仓退役仍等实际部署验收，不提前删除。
-已运行的验证及结果：2026-10-02 再次公网 health 回读仍为 2.6.0/b226b625cf3875b6693e0768d75d88d50b33c08d，Telegram 开启、三个 spot 分片 live；这是旧部署，不是本次迁移部署验收。统一入口工具链安全更新后完整audit为0、94项边缘与3项看门狗测试通过；本轮最终远端CI以PR197为准，离线验证执行结果见本阶段发布记录。
-尚未验证的内容：新仓合并 SHA 部署、自然推送 message_id、服务器进程与看门狗状态；历史手机回执不作为本次证据。
-线上版本 / 对应源码提交：后端 2.6.0 = b226b625cf3875b6693e0768d75d88d50b33c08d（上一版 2.5.1 = 8f1751ef7f7ce403007965ab136d039657420461，可回滚；2.5.0 = 1739fe3e97f077ed5d4e2dbe4ecb3cebbd55e7c6 仍在服务器）；nginx = scripts/deploy/nginx.conf；看门狗 Worker 版本 55671d87-29c2-4225-8bdf-176cb4712ed3。
-阻塞与所需权限：仅确认两个已知 fomobtc_tokyo_config 路径不存在，尚不能断言本机没有私钥；目标主机没有已验证的known_hosts条目，原配置路径待提供，不猜用密钥或关闭指纹验证。旧Token撤销已获运营者确认，不再作为上传阻塞；不生成替代访问权限、不修改密钥，不清理旧release。Cloudflare统一项目尚未切换，现役服务保留。
-下一步具体动作：运营者已要求一次执行此前讨论步骤；先核验本轮安全修复与发布门槛最终CI，原安全配置与可信SSH仍待补齐。条件具备后按deployment.md实际部署新仓，单调度切换自然验收后再删旧资源；不猜密钥或提前删除现役服务。上轮事项见releases，旧backlog不授权执行。
+尚未完成：阶段4自然Telegram送达与Cloudflare切换；专用SSH已恢复，服务器20:01:45已切换到新仓合并d6a9d3f完整SHA。PR197基线02600b04检查已通过但保持Draft，边缘未切换。原Token撤销已获确认，规则、私聊目的地和KV保留，Worker新运维正文品牌代码未部署；旧仓退役仍等实际业务验收，不提前删除。
+已运行的验证及结果：2026-10-02公网health为2.6.0/d6a9d3f29ef93c138842342c973b3049fb7bc252，三spot分片live，MainPID233683/NRestarts0；停机SQLite备份integrity_check=ok，除SOURCE_COMMIT外环境逐字节一致。首条自然消息telegram_rejected，getMe200，但Bot在只读话题群中仅为member；迁移前已有43条同类失败。主站953项、实时61项与ruff/mypy、治理及看门狗3项通过；最终远端CI以PR197当前head为准。
+尚未验证的内容：恢复Bot管理员发消息权限后新的自然message_id与手机收件、看门狗两轮自然检查；新仓SHA、进程和备份已验证。历史手机回执不作为本次证据，Telegram启用不证明送达。
+线上版本 / 对应源码提交：后端2.6.0 = 新仓d6a9d3f29ef93c138842342c973b3049fb7bc252；保留上一release b226b625cf3875b6693e0768d75d88d50b33c08d，回滚须单独授权；nginx未修改，看门狗Worker未部署，最近记录版本55671d87-29c2-4225-8bdf-176cb4712ed3。
+阻塞与所需权限：专用SSH已获操作时确认并验证；连接恢复时未重启，后续按此前部署授权完成一次服务器切换。自然发送被拒绝，需群管理员恢复@fomobtcbot在xiyuNews只读群的管理员发消息权限；不更换Bot/群/话题，不重发失败消息。Cloudflare安全注入与自动部署配置尚缺，现役服务和旧release保留，SSH授权不扩大为新Cloudflare或群权限。
+下一步具体动作：先由群管理员恢复@fomobtcbot在xiyuNews只读话题群中的管理员发消息权限，再观察新的自然回执，不重发失败/未知消息。使用新专用连接验收，Cloudflare安全配置就绪后再串行切换，全部自然验收后退役旧资源；上轮事项见releases，旧backlog不授权执行。
 
 ## 系统现状
 
@@ -30,7 +30,7 @@ Telegram 群组 fomobtc（`-1004364162227`，已开启话题，成员只读，�
 - 服务器 `/etc/fomobtc.env`（root 0600）：机器人 Token、群组 ID、三个话题 ID、币安公告只读 Key、SOURCE_COMMIT 等；历次修改前的备份为 `/etc/fomobtc.env.bak-*`（话题切换前的备份含运营者私聊 ID）。
 - Cloudflare Worker 密钥：`fomobtc-watchdog` 的 TELEGRAM_BOT_TOKEN、ALERT_CHAT_ID（由 `scripts/setup_watchdog.sh` 从服务器写入）。
 - 门槛与策略：`config/thresholds.yaml`；币安地址簿：`config/exchange_addresses.json`。
-- SSH：运营者电脑 `~/.ssh/fomobtc_tokyo_config`（主机 fomobtc-tokyo，私钥只在运营者电脑）。
+- SSH：运营者电脑 `/Users/minutesdr/.ssh/xiyunews_tokyo_config`（主机 xiyunews-tokyo，兼容 fomobtc-tokyo；专用私钥只在运营者电脑，严格指纹校验）。连接验证见 [记录](releases/ssh-access-20261002.md)。
 
 ## 部署与回退
 - 后端：从 ohxiyu/xiyunews 根目录 `git archive <完整合并 SHA> realtime`，服务器 `tar -x --strip-components=1 -C /opt/fomobtc/releases/<SHA>`；后续独立 venv、停服务、SQLite 备份、切换和回退方式保持不变。SOURCE_COMMIT 必须是新仓完整 SHA，不是旧项目 SHA；详见 deployment.md。
