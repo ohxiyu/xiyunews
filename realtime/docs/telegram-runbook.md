@@ -4,6 +4,8 @@
 systemd `fomobtc` → Python asyncio采集 → SQLite事件/发送队列 → Telegram Bot API。
 网页前端已下线，只保留只读API；关闭健康检查页面不影响服务。入口src/platform/app.py；发送src/platform/delivery.py；持久化src/platform/store.py；配置src/platform/settings.py。
 
+2026-10-03看门狗已并入统一Cloudflare项目xiyunews，旧独立Worker停用、Cron为空；原STATE和话题不变，初始凭据已补齐。当前发布/验收只跟随[根交接](../../project-docs/handoff.md)，下方带历史日期的初始化脚本不能作为再次执行授权，不重跑setup_watchdog或测试发送。证据见[统一边缘接管](releases/cloudflare-cutover-20261003.md)。
+
 ### 当前 Bot 与原话题（2026-10-02）
 
 运营者明确指定 `@xiyunewsbot` 并要求保留原群和话题，已通过本机隐藏输入更新实时服务与现役看门狗。21:03:05单服务重启，21:06只读核验运行Bot为xiyunewsbot、原群administrator，排除Token后全部环境配置与备份相同；行情/公告/资金流向仍使用话题3/5/7。不要重跑下面历史私聊或话题创建脚本，它们会修改目标或创建话题；自然消息回执与手机收件单独验收，详见 [切换证据](releases/deploy-20261002-xiyunews-bot.md)。
@@ -50,5 +52,5 @@ P2：自然事件延迟P95/P99、断线恢复与24小时稳定性。Binance/Hype
 ## 群组权限与入口（2026-09-25）
 成员只读：默认权限只保留表情回应，其余（发言、媒体、投票、邀请、置顶、管理话题）全部关闭；机器人为管理员不受影响。入口 https://fomobtc.com 302 跳转到机器人创建的邀请链接 https://t.me/+mdTufn9GK1UyODk0 （名称 fomobtc.com）。跳转由服务器 nginx 提供（scripts/deploy/nginx.conf）；若撤销该链接，需同步修改两处 return 302 并重新加载 nginx。
 
-## 看门狗提醒（2026-09-25）
-Cloudflare Worker `fomobtc-watchdog` 每 5 分钟检查一次 https://api.fomobtc.com/api/health，连续两次异常时通过同一个机器人私聊运营者（不发到群组）：🚨 服务异常 / ⚠️ 仍未恢复（每 2 小时）/ ✅ 已恢复正常。凭据由 `bash scripts/setup_watchdog.sh` 从服务器配置写入 Cloudflare 密钥，不显示内容。
+## 看门狗提醒（现行）
+统一Worker `xiyunews` 每5分钟检查 https://api.fomobtc.com/api/health，连续两次异常时通过同一机器人私聊运营者，不发到话题群；仍异常每2小时提醒，恢复后通知一次。原KV保留，新目的地来源和安全注入已有记录；实际私聊收件未证明时如实标注，不能靠制造故障或测试消息验收。旧 `fomobtc-watchdog` 已停用，不执行独立部署或setup_watchdog.sh；现行操作入口只维护在[根单项目清单](../../project-docs/cloudflare-single-project.md)。
