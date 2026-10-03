@@ -11,6 +11,7 @@ from src import schedule_watchdog as watchdog
 @pytest.fixture(autouse=True)
 def isolate_edge_cutover(monkeypatch):
     monkeypatch.delenv("XIYUNEWS_EDGE_ENABLED", raising=False)
+    monkeypatch.delenv("XIYUNEWS_RECOVERY_CHECK_TOKEN", raising=False)
 
 
 def response(status, state):
@@ -76,16 +77,20 @@ def test_missing_coordinator_secret_is_fail_closed(monkeypatch):
 ])
 def test_coordinator_switch_requires_exact_opt_in(monkeypatch, enabled, origin):
     monkeypatch.setenv("RECOVERY_CHECK_TOKEN", "test-secret")
+    monkeypatch.setenv("XIYUNEWS_RECOVERY_CHECK_TOKEN", "new-test-secret")
     monkeypatch.setenv("XIYUNEWS_EDGE_ENABLED", enabled)
     opener = Mock(return_value=response(200, "healthy"))
     monkeypatch.setattr(watchdog, "urlopen", opener)
     assert watchdog.check_coordinator() == 0
     assert opener.call_args.args[0].full_url == origin + "/publication/check"
+    expected = "new-test-secret" if enabled == "true" else "test-secret"
+    assert opener.call_args.args[0].get_header("Authorization") == "Bearer " + expected
     assert opener.call_count == 1
 
 
 def test_new_coordinator_failure_never_falls_back_to_legacy(monkeypatch):
     monkeypatch.setenv("RECOVERY_CHECK_TOKEN", "test-secret")
+    monkeypatch.setenv("XIYUNEWS_RECOVERY_CHECK_TOKEN", "new-test-secret")
     monkeypatch.setenv("XIYUNEWS_EDGE_ENABLED", "true")
     opener = Mock(side_effect=URLError("unreachable"))
     monkeypatch.setattr(watchdog, "urlopen", opener)
@@ -104,3 +109,13 @@ def test_both_automatic_callers_pass_the_same_cutover_flag():
     for name in ("schedule-watchdog.yml", "feed-collection.yml"):
         content = (root / ".github/workflows" / name).read_text()
         assert "XIYUNEWS_EDGE_ENABLED: ${{ vars.XIYUNEWS_EDGE_ENABLED }}" in content
+        assert "XIYUNEWS_RECOVERY_CHECK_TOKEN: ${{ secrets.XIYUNEWS_RECOVERY_CHECK_TOKEN }}" in content
+
+
+def test_enabled_edge_without_new_key_does_not_reuse_legacy_key(monkeypatch):
+    monkeypatch.setenv("XIYUNEWS_EDGE_ENABLED", "true")
+    monkeypatch.setenv("RECOVERY_CHECK_TOKEN", "old-test-secret")
+    opener = Mock()
+    monkeypatch.setattr(watchdog, "urlopen", opener)
+    assert watchdog.check_coordinator() == 1
+    opener.assert_not_called()

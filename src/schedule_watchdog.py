@@ -442,15 +442,17 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 def check_coordinator(*, success_on_recovery: bool = False) -> int:
     """All automatic dispatchers share an edition lock and retry budget."""
-    token = os.getenv("RECOVERY_CHECK_TOKEN", "")
+    edge_enabled = os.getenv("XIYUNEWS_EDGE_ENABLED") == "true"
+    token_name = "XIYUNEWS_RECOVERY_CHECK_TOKEN" if edge_enabled else "RECOVERY_CHECK_TOKEN"
+    token = os.getenv(token_name, "")
     if not token:
-        _emit_error("缺少 RECOVERY_CHECK_TOKEN；不会绕过共享锁补发")
+        _emit_error(f"缺少 {token_name}；不会绕过共享锁补发")
         return 1
     # Switch only after the reviewed edge cutover. Do not fail over between
     # coordinators: a failure must never bypass the shared retry budget.
     endpoint = (
         "https://xiyu.news/publication/check"
-        if os.getenv("XIYUNEWS_EDGE_ENABLED") == "true"
+        if edge_enabled
         else "https://bmtnews-daily-dispatcher.drminutes.workers.dev/publication/check"
     )
     request = Request(

@@ -1,8 +1,24 @@
 """Offline guards for the opt-in production deployment and its toolchain."""
 import json
 from pathlib import Path
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_final_cutover_preserves_namespace_by_transfer_not_creation():
+    text = (ROOT / "ops/daily-dispatcher/wrangler.unified.jsonc").read_text()
+    config = json.loads(re.sub(r"^\s*//.*$", "", text, flags=re.M))
+    assert config["name"] == "xiyunews"
+    assert config["durable_objects"]["bindings"] == [{"name": "RECOVERY_GATE", "class_name": "RecoveryGate"}]
+    assert config["migrations"] == [{"tag": "xiyunews-recovery-transfer-20261003",
+        "transferred_classes": [{"from": "RecoveryGate", "from_script": "bmtnews-daily-dispatcher", "to": "RecoveryGate"}]}]
+    assert "new_classes" not in text and "new_sqlite_classes" not in text and "deleted_classes" not in text
+    assert config["kv_namespaces"] == [{"binding": "STATE", "id": "469346950dfc4f36b8d9bf9997d960fa"}]
+    assert config["triggers"]["crons"] == ["26 23 * * *", "36,46,56 23 * * *", "*/5 * * * *"]
+    assert config["routes"] == [{"pattern": "xiyu.news", "custom_domain": True}]
+    assert config["vars"]["ENABLE_DISPATCHER"] == "true"
+    assert config["vars"]["ENABLE_REALTIME_WATCHDOG"] == "true"
 
 
 def test_edge_deployment_requires_main_and_audits_before_upload():

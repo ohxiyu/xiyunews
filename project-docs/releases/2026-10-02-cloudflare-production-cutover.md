@@ -3,8 +3,8 @@
 Task: https://github.com/ohxiyu/xiyunews/issues/198
 PR: https://github.com/ohxiyu/xiyunews/pull/199 （Draft，最终生产接管尚未实施）
 Source commit: 基线 91fb5981cd09a51be7c3ef8c355eb6ee179f60fa，PR197 的实际 merge SHA。
-Worker version: 暂停预览8b365058-fc4b-46db-9a52-0bc3e156f81b；现役调度器和看门狗版本见基础记录。
-Deployment: partial；2026-10-03两个仓库部署Secret已保存，随后部署统一暂停预览。生产主域/自然调度尚未接管，原项目未停。新项目无 Cron、双开关关闭、RecoveryGate仍外部绑定原namespace，STATE复用原KV，没有迁移DO归属或改服务器配置。
+Worker version: 暂停版本ae8f5365-8fa6-417e-9d43-0046e8219e94（运行Secret已补齐）；现役原项目版本切换前须再次回读。
+Deployment: partial；2026-10-03两个仓库部署Secret与8个Worker运行Secret已安全保存，暂停站点真实发布。生产主域/自然调度未接管，原项目未停。新项目线上无Cron、双开关关闭、RecoveryGate仍外部绑定原namespace，STATE复用原KV，没有迁移DO归属或改服务器配置；分支最终配置仅dry-run，未上传。
 Verification: 前序基础 99d2465e 的 CI37024644728 全部可用检查和 Pages 预览通过；CodeQL 跳过。当前阶段的新增回归结果随后追加，不沿用基础测试当本阶段全量验证。
 Rollback: 当前阶段未生产切换；保留现役项目与服务器备份，不双调度、不擅自回滚或覆盖发送数据库。
 
@@ -51,6 +51,20 @@ Safari 现役 Worker 设置提供名称字段，官方 Workers Beta PATCH 也支
 预览首页、/api/latest.json、/feed-zh.xml、/sitemap.xml、manifest及service-worker均200，随机不存在路径404；最新出版date2026-10-03共14条、generated_at2026-10-02T23:29:27.197755Z。/s/和/api/admin/quick-posts因缺运行/Access配置503闭锁，未绕过鉴权、扩大白名单或发表测试新闻。正式域接管及登录后台仍待后续步骤。
 
 新增scripts/configure_edge_runtime_token.py先校验固定目标、自动发布关闭和目标Secret尚不存在，getpass禁止回显降级，Token只经内存和curl/Wrangler stdin；只写ADMIN_GITHUB_TOKEN/GITHUB_DISPATCH_TOKEN，不用真实内容或dispatch探测写权限，不写凭据文件/命令参数/聊天/日志，错误固定脱敏，部分写入不重试。19项假Token离线测试通过，本机--check-only实际预检通过；真实运行Secrets仍待运营者隐藏输入。根全量999项、治理和diff检查通过；后续明确固定Wrangler --name=xiyunews避免配置文件改名造成错写，19项及治理再次通过。预览canonical为https://xiyu.news/、Secret名称列表为空，没有读取秘密值。前一docs提交2ebb1b9c的CI37036099831全部可用检查及Pages5cbda61a通过，CodeQL跳过；本次远端CI仍需核验，PR199保持Draft。
+
+## 运行凭据实际补齐与最终配置（2026-10-03 19:25）
+
+运营者报告隐藏输入GitHub运行Token配置成功；助手独立回读ADMIN_GITHUB_TOKEN/GITHUB_DISPATCH_TOKEN两个名称，/ready返回ready及Actions写/Contents读可访问，没有复制CLI认证。该运行Token对应的发布为e5b2ff37-038c-4ece-9e75-1638624226e7，Secret变更部署于2026-10-03T11:14:15.269159Z；创建后没有读取一次性Token页面/截图或值，不能根据ready声称已发布业务内容。
+
+新安全工具先核验目标暂停、两个已配置Secret、暂存恢复Key不存在。官方Wrangler pages download config读取原项目plaintext设置，只选ADMIN_ACCESS_ISSUER/AUD/ALLOWED_EMAIL，保持原单账号、文件在仓库外0700目录且toml0600，未导出Pages密文。严格主机校验SSH只读现役/root0600配置与进程，验证源码d6a9d3f和话题3/5/7不变、Bot=xiyunewsbot，全部话题切换前备份中唯一positive私聊ID且getChat为private；目标来源与历史setup_watchdog.sh一致，但原CF加密ALERT_CHAT_ID仍不能直接比对。
+
+依照生产配置授权，选定的Telegram字段只在受保护子进程内存/stdin传给新Worker；未改服务器、旧Worker、群、话题或白名单，未发送消息或读取Token给模型。新随机恢复密钥同时写新Worker RECOVERY_CHECK_TOKEN及仓库XIYUNEWS_RECOVERY_CHECK_TOKEN；旧仓库RECOVERY_CHECK_TOKEN保留，自动发布变量不变。8个Secret名称和新仓库Secret名称回读成功，暂停版本ae8f5365、source91fb5981/artifactaa09cbc8、双开关false独立health回读通过；/s/现在因预览wrong-origin403闭锁，不扩大Access。
+
+初次调用micromamba旧Python缺tomllib，在import阶段退出且未写任何配置；改用项目现有uv Python3.11+，没有安装额外依赖。18项安全来源工具/19项运行Token工具的模拟测试通过，实际inspect-only来源检查通过后才执行写入；工具失败不显示异常正文或自动重复轮换，存在初始Key时拒绝重跑。
+
+本分支补齐最终transfer migration/local binding、保留原STATE KV/三组Cron、正式Custom Domain及运行开关；源码为最终配置不代表线上已启用。两条恢复工作流同时传递旧/新Secret，Python仅精确true切换新端点/新Key，新Key缺失时不回退旧值、不派发。最终配置dry-run、根完整1019项/治理/diff、94项边缘/type/audit0通过，b3fcbb6c前一head的CI37101633052/Pages82bb422f全部可用检查通过，CodeQL跳过；本轮代码仍需新head远端CI后才合并。
+
+已请求运营者先把Safari切离一次性Token页面，电脑工具未激活前不能跳过get_app_state，因而未读取该页或进行浏览器域名变更。主域仍Pages、旧Cron仍运行，部署Secrets/8个业务Secret都已完成，不再等待重复输入。最终代码通过CI可按站立授权合并，但原域绑定解除需要操作时确认；生产切换和自然验收分别记录，旧资源不能先删。
 
 ## 群名称实际统一与验证
 
