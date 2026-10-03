@@ -30,7 +30,8 @@ jobs:
         github.event.workflow_run.head_repository.full_name == github.repository))
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    environment: xiyunews-production
+    # Repository secrets keep the private-repository path independent of paid
+    # environment features. Main/origin/opt-in guards above still apply.
     steps:
       - uses: actions/checkout@v6
         with:

@@ -28,6 +28,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RECOVERY_CHECK_TOKEN: ${{ secrets.RECOVERY_CHECK_TOKEN }}
+          XIYUNEWS_RECOVERY_CHECK_TOKEN: ${{ secrets.XIYUNEWS_RECOVERY_CHECK_TOKEN }}
+          XIYUNEWS_EDGE_ENABLED: ${{ vars.XIYUNEWS_EDGE_ENABLED }}
         run: >-
           python -m src.schedule_watchdog
           --coordinator

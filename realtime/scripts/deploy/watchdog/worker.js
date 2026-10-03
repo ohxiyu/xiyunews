@@ -73,6 +73,12 @@ async function notify(env, text) {
 
 export default {
   async scheduled(controller, env) {
+    // Empty Cron configuration can take up to 15 minutes to propagate. Disable
+    // callbacks explicitly on the old Worker before enabling the new owner.
+    if (env.XIYUNEWS_LEGACY_DISABLED === "true") {
+      console.log("xiyunews legacy watchdog disabled; cron ignored");
+      return;
+    }
     const now = Date.now();
     const found = problems(await readHealth(), now);
     const stored = await env.STATE.get("state", "json");
