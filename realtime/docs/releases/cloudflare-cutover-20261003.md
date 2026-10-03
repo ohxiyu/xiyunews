@@ -1,6 +1,7 @@
 # 实时看门狗并入 xiyunews：实际部署
 
 Task: https://github.com/ohxiyu/xiyunews/issues/201，父任务 Issue198。
+PR: https://github.com/ohxiyu/xiyunews/pull/202，部署后文档，不代表服务器重新发布。
 Source commit: 边缘 b2aeb97f8481bfad123277463c24bddac0895f8c；东京服务仍d6a9d3f29ef93c138842342c973b3049fb7bc252，不将边缘SHA当服务器重新发布。
 Worker version: 00b0f0f6-f6cf-4ba7-9b79-96644eb6c7dc（统一自动部署后公网回读）。
 Deployment: 2026-10-03统一Worker实际生产接管，首次[GitHub部署37122753609](https://github.com/ohxiyu/xiyunews/actions/runs/37122753609)成功；旧watchdog版本90b876b9-c47d-494b-afdc-9c3839be80a9已停用、无Cron。

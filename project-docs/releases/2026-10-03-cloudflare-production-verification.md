@@ -1,7 +1,7 @@
 # 统一 Cloudflare 生产接管与验收
 
 Task: https://github.com/ohxiyu/xiyunews/issues/201 （父任务 Issue198）。
-PR: 部署后文档 PR 待创建；业务 PR199 已合并，不继续编辑原分支。
+PR: https://github.com/ohxiyu/xiyunews/pull/202 （部署后文档）；业务PR199已合并，不继续编辑原分支。
 Source commit: b2aeb97f8481bfad123277463c24bddac0895f8c。
 Worker version: 00b0f0f6-f6cf-4ba7-9b79-96644eb6c7dc，首次GitHub自动部署后正式域和绑定回读；手动启用版本f8c394e3保留历史。
 Deployment: 实际生产接管已执行，https://xiyu.news 由 xiyunews Worker 提供；两个运行开关与原 Cron 已开启，首次 GitHub 部署工作流37122753609=success。

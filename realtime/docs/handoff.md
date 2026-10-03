@@ -6,7 +6,7 @@
 
 任务 Issue / 负责人：https://github.com/ohxiyu/xiyunews/issues/201，父任务Issue198；当前唯一迁移编辑及发布整合负责人，串行执行，无并行所有者。
 
-工作分支 / 最后提交 / PR：agent/xiyunews-cutover-verification，已核验业务合并SHA b2aeb97f8481bfad123277463c24bddac0895f8c；业务PR199已合并，当前部署后文档PR待创建，不继续编辑旧分支。
+工作分支 / 最后提交 / PR：agent/xiyunews-cutover-verification，已核验业务合并SHA b2aeb97f8481bfad123277463c24bddac0895f8c；业务PR199已合并，部署后文档[PR202](https://github.com/ohxiyu/xiyunews/pull/202)，不继续编辑旧分支。
 
 已经完成：统一Worker实际接管正式域、调度和实时看门狗，原RecoveryGate与STATE保持；旧dispatcher/watchdog停用、Cron为空，旧Pages解除主域。首次自动部署37122753609成功，版本00b0f0f6正式域和绑定回读，双开关true；首轮自然Cron计划12:30:51Z、outcome=ok、watchdog:ok、采集fresh、队列idle、无异常。原Bot/群/话题保持，不发送测试消息。
 
@@ -20,7 +20,7 @@
 
 阻塞与所需权限：后台由运营者自行用原Access账号/验证码登录，助手不代填或读取验证码。旧资源删除与Access显示名保存是新的具体UI动作，准备目标后须操作时确认；域名解绑确认不扩大到删除项目或改权限。
 
-下一步具体动作：按根唯一指针完成第二轮自然/后台只读验收并补录，文档PR治理/检查通过后按站立授权合并；核对旧仓全部分支/PR/独有工作后安排准确退役。保留原DO/KV、实时域/API/nginx、SQLite/env/备份/SSH，不重跑setup_watchdog、重复Token或/start。完整证据见[本次接管](releases/cloudflare-cutover-20261003.md)。
+下一步具体动作：两轮自然看门狗已通过，按根唯一指针完成后台只读验收及下次真正到期的dispatch；文档PR治理/检查通过后按站立授权合并。旧仓Git历史已核对，准确确认退役并保留非Git审计；保留原DO/KV、实时域/API/nginx、SQLite/env/备份/SSH，不重跑setup_watchdog、重复Token或/start。完整证据见[本次接管](releases/cloudflare-cutover-20261003.md)。
 
 ## 系统现状
 

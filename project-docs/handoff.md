@@ -10,7 +10,7 @@
   "owner": "迁移唯一编辑及发布整合负责人，串行执行父任务 Issue198",
   "branch": "agent/xiyunews-cutover-verification",
   "last_verified_commit": "b2aeb97f8481bfad123277463c24bddac0895f8c",
-  "pr": "部署后文档 PR 待创建；业务 PR199 已合并，父任务 Issue198 仍开放",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/202（部署后文档，业务PR199已合并；父任务Issue198仍开放）",
   "completed": [
     "PR195 完整实时历史已合并，旧 main 是主仓祖先；服务器已从新仓 d6a9d3f 发布，原路径、数据库、话题和规则不变",
     "GitHub 和 Cloudflare 运行凭据已隐藏配置，统一 Worker 8 个运行 Secret 名称独立回读；不再要求重复 Token 或 /start",
@@ -25,11 +25,11 @@
   "unfinished": [
     "首次自动部署和两轮自然Cron通过；仍需下一次真正到期的自然dispatch，不能用手动运行冒充",
     "Safari 的后台 Access 需要运营者用原账号自行登录后，核验 Quick Post 读取；不索取或代填验证码",
-    "旧 Pages/两个旧Worker/旧实时仓库仍保留，完成迁移验收并核对独有历史后再安排准确范围退役",
+    "旧Pages/两个停用Worker/旧实时仓仍保留；旧仓Git历史已核对，后台验收后具体确认退役并保留非Git审计",
     "Access 应用显示名仍为 BMTNews Admin，发现于登录页；仅名称待统一，不擅自改变权限或认证方式"
   ],
   "validation": [
-    "业务代码根完整1019项、边缘95项/type/audit0、watchdog4项及治理/dry-run通过；远端CI全部可用检查成功，私有套餐CodeQL跳过",
+    "业务PR199代码根完整1019项、边缘95项/type/audit0、watchdog4项及治理/dry-run通过；其远端CI全部可用检查成功，CodeQL跳过。本次文档5829097e本机治理/实时契约通过，PR202最新head远端检查另行核验",
     "transfer实际版本de359776回读RecoveryGate namespace与STATE KV ID均等于原值，8个Secret保留、双开关false",
     "域接管暂停版本559c5ce3；首页/API/latest/feed/sitemap/PWA/openapi/llms200、旧日报链接自动重定向后200、不存在路径404",
     "正式域/s、/s/、/admin、/api/admin和/api/admin/quick-posts匿名302至原Access；未打开权限或发布测试内容",
