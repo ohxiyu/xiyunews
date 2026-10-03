@@ -4461,23 +4461,33 @@
     },
     {
       "category": "crypto",
-      "confidence": 0.92,
+      "confidence": 0.75,
       "current_state_en": "Coinbase's tokenized US stocks product on Base has expanded with 26 additional stocks, available only in eligible jurisdictions outside the US.",
       "current_state_zh": "Coinbase 在 Base 上提供的代币化美股产品已扩展，新增 26 只股票，仅限美国以外合格司法管辖区。",
       "entities": [
+        "aave",
+        "adds",
+        "against",
         "alphabet",
         "apple",
         "base",
+        "borrowing",
         "chainlink",
         "coinbase",
+        "collateral",
         "feeds",
         "launches",
         "meta",
+        "morpho",
         "nvidia",
+        "opens",
         "price",
+        "stock",
         "stocks",
         "tokenized",
-        "tokenized-stocks"
+        "tokenized-stocks",
+        "tokens",
+        "usdc"
       ],
       "event_id": "evt_0655aad2257c6798",
       "event_type": "product_release",
@@ -4488,16 +4498,24 @@
       "legacy_thread_ids": [
         "t0b68bfec21"
       ],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_f2f495c2aee90d54",
+        "evt_068d879112855101",
+        "evt_627f5bb257031c8e"
+      ],
       "schema_version": 1,
       "status": "developing",
       "title_en": "Coinbase launches tokenized US stocks on Base",
-      "title_zh": "Coinbase 在 Base 推出代币化美股",
+      "title_zh": "Coinbase 在 Base 上线代币化美股并扩展至 DeFi 抵押",
       "topics": [
+        "aave",
         "base",
         "chainlink",
         "coinbase",
+        "collateral",
+        "defi-lending",
         "equities",
+        "morpho",
         "real-world-assets",
         "rwa",
         "tokenized-stocks"
@@ -4561,6 +4579,213 @@
           "update_type": "initial",
           "what_changed_en": "Coinbase launched tokenized US stocks on Base with Chainlink price data.",
           "what_changed_zh": "Coinbase 在 Base 上线代币化美股，并使用 Chainlink 提供价格数据。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Morpho now allows holders of five Coinbase tokenized stock tokens to pledge them as collateral for USDC loans on Base.",
+          "current_state_zh": "Morpho 现允许五种 Coinbase 代币化股票代币的持有者在 Base 上将其作为抵押品借入 USDC。",
+          "detailed_summary_en": "Morpho now allows holders of five Coinbase tokenized stock tokens to pledge them as collateral for USDC loans on Base.",
+          "detailed_summary_zh": "Morpho now allows holders of five Coinbase tokenized stock tokens to pledge them as collateral for USDC loans on Base.",
+          "event_id": "evt_0655aad2257c6798",
+          "first_seen_at": "2026-09-18T16:37:32.401713Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-09-18T14:24:02Z",
+          "published_at": "2026-09-18T14:24:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "The Defiant",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://thedefiant.io/news/defi/morpho-coinbase-tokenized-stocks-borrowing-base"
+            }
+          ],
+          "story_ids": [
+            "rss:thedefiant.io_api_feed:00c8c30d6b2468f8"
+          ],
+          "time_precision": "published",
+          "title_en": "Morpho Opens Borrowing Against Coinbase's Tokenized Stocks",
+          "title_zh": "Morpho 开放以 Coinbase 代币化股票为抵押的借贷",
+          "update_id": "upd_cd43242dcfaf5c12",
+          "update_type": "escalation",
+          "what_changed_en": "Morpho now allows holders of five Coinbase tokenized stock tokens to pledge them as collateral for USDC loans on Base.",
+          "what_changed_zh": "Morpho 现允许五种 Coinbase 代币化股票代币的持有者在 Base 上将其作为抵押品借入 USDC。"
+        },
+        {
+          "background_en": "Aave is a decentralized, non-custodial liquidity protocol where users supply assets to earn interest or borrow against collateral, and its governance token is AAVE. Tokenized securities — such as stocks, bonds or fund interests represented as a crypto asset on a blockchain — have become a growing part of onchain markets. USDC is a fully reserved stablecoin issued by Circle that is designed to maintain a value equivalent to the US dollar.",
+          "background_zh": "Aave 是一个去中心化、非托管的流动性协议，用户可存入资产赚取利息，或以抵押品借入资产，其治理代币为 AAVE。代币化证券——即以区块链上的加密资产形式表示的股票、债券或基金权益——在链上市场中的占比不断上升。USDC 是由 Circle 发行的全额储备稳定币，设计目标是维持与美元等值。",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Aave V4 on Base now accepts Coinbase-issued tokenized stocks — including Apple, Nvidia and Tesla — as collateral for USDC loans for non-U.S. users.",
+          "current_state_zh": "代币化的苹果与英伟达股票现可作为抵押品，在 Aave 借贷协议上借入 USDC。此举将现实世界资产（RWA）抵押品引入 DeFi 信贷市场，在 Aave 上形成了以股票为抵押的借贷产品。\n\n此举使一家主流 DeFi 借贷协议接受的抵押品范围从加密原生资产扩展到代币化股票，首次以这种形式将股票敞口与链上信贷连接起来。",
+          "detailed_summary_en": "Aave V4 on Base now accepts Coinbase-issued tokenized stocks — including Apple, Nvidia and Tesla — as collateral for USDC loans for non-U.S. users.",
+          "detailed_summary_zh": "Aave V4 on Base now accepts Coinbase-issued tokenized stocks — including Apple, Nvidia and Tesla — as collateral for USDC loans for non-U.S. users.",
+          "event_id": "evt_0655aad2257c6798",
+          "first_seen_at": "2026-09-25T17:25:15.548757Z",
+          "importance_score": 7.5,
+          "market_impact_en": "The change affects Aave's lending markets directly, adding tokenized equity exposure to the collateral set that supports USDC borrowing, and it touches the wider RWA and tokenized-equity segment through collateral eligibility and onchain credit channels. Any effect on AAVE governance token sentiment or on USDC borrowing demand depends on how much of these tokenized stocks is actually supplied as collateral.",
+          "market_impact_zh": "这一变化直接影响 Aave 的借贷市场：在支撑 USDC 借款的抵押品集合中新增了代币化股票敞口，并通过抵押品资格与链上信贷渠道，牵动更广泛的 RWA 与代币化股票板块。对 AAVE 治理代币情绪或 USDC 借款需求的实际影响，取决于这些代币化股票真正被用作抵押品的规模。",
+          "material_change": true,
+          "occurred_at": "2026-09-25T14:00:00Z",
+          "published_at": "2026-09-25T14:00:00Z",
+          "references": [
+            {
+              "title": "Aave Protocol: V4 Architecture, DeFi, and GHO Stablecoin",
+              "url": "https://volity.io/crypto/aave/"
+            },
+            {
+              "title": "Tokenized Securities | Investor.gov",
+              "url": "https://www.investor.gov/introduction-investing/investing-basics/investment-products/tokenized-securities"
+            },
+            {
+              "title": "USDC | Powering global finance. Issued by Circle.",
+              "url": "https://www.circle.com/usdc"
+            }
+          ],
+          "sources": [
+            {
+              "label": "The Block",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.theblock.co/news/defi/2026-09-25-aave-v4-on-base-adds-coinbase-tokenized-stocks-as-collateral-for-usdc-loans-416372"
+            },
+            {
+              "label": "TradingView",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNaFBUUkdwUVQ0NlB6TE16MUc0YTVUMDFiaEY3NWVja2liOXZaTk9CVGRReWJCekRveUxWWU80Sl9EeHQ1Ym10azNkejdVb1VIbmRYd0RlejVqVDNXN3VjN3B0V01zUDlDVWJNTVY5ZWNnc2VKUUwwYlp1eU51S1hCdzNPTnpnVjdlZ2RXWEFCY0dHbUx4akdSUHJrcUN1aEVSU1hwejdPc2JVXzlnWi11YVZuMkdaQVdGZEJHSWdoZDk?oc=5"
+            },
+            {
+              "label": "CryptoRank",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNT2ZhVG5LOXVYRVIzSTVFZkJtaVZSWVpBRThzOTZETXJMQXRwX1M5RE5HdlBBSFNaYTJQU1BWZ2JFQzl1MHBoZUhROENkWmVRcWs1Y3ExQm5YWHJzUFBTUnhPZHI5Unp0M2dxQlQtZVk2VUVqbkM2YUxUYTdObnJvZnRfZnMwTlpuWkIyV1pEcXl5WW5tU3BicXRlZ24tc1kzUU1XZ3Jn?oc=5"
+            }
+          ],
+          "story_ids": [
+            "rss:www.theblock.co_rss.xml:1618a38b33688856",
+            "google_news:article:9f9a0d20da51db93",
+            "google_news:article:34a5d38c78a9f7a2"
+          ],
+          "time_precision": "published",
+          "title_en": "Aave V4 on Base adds Coinbase tokenized stocks as collateral for USDC loans",
+          "title_zh": "苹果与英伟达的代币化股票现可在 Aave 上作为 USDC 贷款的抵押品",
+          "update_id": "upd_8719abc892c69ada",
+          "update_type": "confirmation",
+          "what_changed_en": "Aave V4 on Base now accepts Coinbase-issued tokenized stocks — including Apple, Nvidia and Tesla — as collateral for USDC loans for non-U.S. users.",
+          "what_changed_zh": "代币化的苹果与英伟达股票现可作为抵押品，在 Aave 借贷协议上借入 USDC。此举将现实世界资产（RWA）抵押品引入 DeFi 信贷市场，在 Aave 上形成了以股票为抵押的借贷产品。\n\n此举使一家主流 DeFi 借贷协议接受的抵押品范围从加密原生资产扩展到代币化股票，首次以这种形式将股票敞口与链上信贷连接起来。"
+        },
+        {
+          "background_en": "Aave is one of the largest DeFi lending protocols, and its V4 deployment has drawn deposits quickly since launch: deposits sat below $340 million at the start of August and climbed to roughly $577 million by early September before surpassing $1 billion. Base is a Coinbase-built Ethereum layer-2 that uses the OP Stack and settles on Ethereum. Tokenized stocks are blockchain-based digital assets designed to represent economic exposure to traditional shares.",
+          "background_zh": "Aave 是规模最大的 DeFi 借贷协议之一，其 V4 版本自上线以来存款增长迅速：8 月初存款不足 3.4 亿美元，到 9 月初升至约 5.77 亿美元，随后突破 10 亿美元。Base 是由 Coinbase 构建的以太坊二层网络，采用 OP Stack，并结算于以太坊主网。代币化股票是旨在代表传统股票经济敞口的区块链数字资产。",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "Aave V4 on Base accepts seven Coinbase stock tokens as collateral for USDC loans, with a 21 million USDC borrowing cap and access limited to eligible non-US investors.",
+          "current_state_zh": "Aave V4 在 Base 上接受七种 Coinbase 股票代币作为 USDC 贷款的抵押品，借款上限为 2100 万 USDC，且仅限符合条件的非美国投资者。",
+          "detailed_summary_en": "Aave has enabled seven Coinbase-issued stock tokens as collateral for USDC loans in a dedicated V4 market on Base, with a 21 million USDC borrowing cap and access restricted to eligible non-US investors.",
+          "detailed_summary_zh": "Aave has enabled seven Coinbase-issued stock tokens as collateral for USDC loans in a dedicated V4 market on Base, with a 21 million USDC borrowing cap and access restricted to eligible non-US investors.",
+          "event_id": "evt_0655aad2257c6798",
+          "first_seen_at": "2026-09-25T17:25:20.358888Z",
+          "importance_score": 7.5,
+          "market_impact_en": "The change creates a direct channel between Coinbase's tokenized-equity product and DeFi credit on Base: tokenized stock collateral can support new USDC borrowing demand and shift utilization in Aave V4's Base market, while also tying that market's risk profile to equity price moves. Because borrowing is capped at 21 million USDC and limited to non-US investors, the immediate footprint on DeFi liquidity is bounded.",
+          "market_impact_zh": "这一变化在 Coinbase 的代币化股票产品与 Base 上的 DeFi 信贷之间建立了直接通道：代币化股票抵押品可支撑新的 USDC 借款需求，并改变 Aave V4 的 Base 市场中的资金利用率，同时也使该市场的风险状况与股票价格波动挂钩。由于借款上限为 2100 万 USDC 且仅限非美国投资者，其对 DeFi 流动性的即时影响范围有限。",
+          "material_change": true,
+          "occurred_at": "2026-09-25T14:44:07Z",
+          "published_at": "2026-09-25T14:44:07Z",
+          "references": [
+            {
+              "title": "Aave V4 Lets Non-U.S. Users Borrow USDC... | The Currency analytics",
+              "url": "https://thecurrencyanalytics.com/defi/aave-v4-lets-non-u-s-users-borrow-usdc-against-apple-nvidia-and-tesla-shares-297153"
+            },
+            {
+              "title": "AAVE v4 deposits surpass $1B, doubling in a month",
+              "url": "https://cryptobriefing.com/aave-v4-deposits-surpass-1b/"
+            },
+            {
+              "title": "What Are Tokenized Stocks and How Do They Work? | Gemini",
+              "url": "https://www.gemini.com/cryptopedia/what-are-tokenized-stocks-and-how-do-they-work"
+            },
+            {
+              "title": "Coinbase Tokenized Stocks Now Live on Aave V4 | Aave",
+              "url": "https://aave.com/blog/coinbase-tokenized-stocks"
+            },
+            {
+              "title": "Coinbase Tokenized Stocks Explained",
+              "url": "https://www.bitrue.com/blog/coinbase-tokenized-stocks-explained"
+            }
+          ],
+          "sources": [
+            {
+              "label": "The Defiant",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://thedefiant.io/news/defi/aave-adds-coinbase-stock-tokens-as-collateral-on-base"
+            },
+            {
+              "label": "Crowdfund Insider",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://www.crowdfundinsider.com/2026/09/313183-coinbase-tokenized-stocks-become-collateral-on-aave-v4-base/"
+            }
+          ],
+          "story_ids": [
+            "rss:thedefiant.io_api_feed:58bc2a7386745d38",
+            "google_news:article:92c3db281cc9dbea"
+          ],
+          "time_precision": "published",
+          "title_en": "Aave Adds Coinbase Stock Tokens as Collateral on Base",
+          "title_zh": "Aave 在 Base 上新增 Coinbase 股票代币作为抵押品",
+          "update_id": "upd_9086d6fdc7fe8bfa",
+          "update_type": "confirmation",
+          "what_changed_en": "Added details: Aave V4 on Base enabled seven Coinbase-issued stock tokens as collateral, with a 21 million USDC borrowing cap, access limited to eligible non-US investors.",
+          "what_changed_zh": "新增细节：Aave V4 在 Base 上启用七种 Coinbase 发行的股票代币作为抵押品，USDC 借款上限为 2100 万，且访问仅限符合条件的非美国投资者。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Aave V4 has integrated Coinbase-tokenized U.S. stocks as collateral for USDC borrowing, expanding DeFi lending collateral to tokenized equities.",
+          "current_state_zh": "Aave V4 已整合 Coinbase 代币化的美国股票作为 USDC 借款的抵押品，将 DeFi 借贷抵押品范围扩展至代币化股票。",
+          "detailed_summary_en": "Aave V4 has integrated Coinbase-tokenized U.S. stocks as collateral for USDC borrowing, expanding DeFi lending collateral to tokenized equities.",
+          "detailed_summary_zh": "Aave V4 has integrated Coinbase-tokenized U.S. stocks as collateral for USDC borrowing, expanding DeFi lending collateral to tokenized equities.",
+          "event_id": "evt_0655aad2257c6798",
+          "first_seen_at": "2026-09-28T11:07:58.977094Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-09-28T06:23:54Z",
+          "published_at": "2026-09-28T06:23:54Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "tokenpost.com",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://www.tokenpost.com/news/technology/24764"
+            }
+          ],
+          "story_ids": [
+            "google_news:article:9932a5de719dc834"
+          ],
+          "time_precision": "published",
+          "title_en": "Aave V4 Adds Coinbase-Tokenized U.S. Stocks as USDC Collateral",
+          "title_zh": "Aave V4 将 Coinbase 代币化的美国股票添加为 USDC 抵押品",
+          "update_id": "upd_4220d26fe58e64b1",
+          "update_type": "confirmation",
+          "what_changed_en": "Aave V4 has integrated Coinbase-tokenized U.S. stocks as collateral for USDC borrowing, expanding DeFi lending collateral to tokenized equities.",
+          "what_changed_zh": "Aave V4 已整合 Coinbase 代币化的美国股票作为 USDC 借款的抵押品，将 DeFi 借贷抵押品范围扩展至代币化股票。"
         },
         {
           "background_en": "",
@@ -20274,7 +20499,7 @@
       "first_seen_at": "2026-09-04T16:32:09.585955Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-02T06:41:10.628790Z",
-      "last_updated_at": "2026-10-02T06:41:10.628790Z",
+      "last_updated_at": "2026-10-03T14:01:56.278234Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -20350,10 +20575,17 @@
               "official": false,
               "source_type": "rss",
               "url": "https://cointelegraph.com/news/south-korea-tokenized-securities-rules-2027?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            },
+            {
+              "label": "The Crypto Times",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://www.cryptotimes.io/2026/10/03/south-korea-proposes-rules-for-tokenized-stocks-bonds-and-funds/"
             }
           ],
           "story_ids": [
-            "rss:cointelegraph.com_rss:6edbdd818a1596b7"
+            "rss:cointelegraph.com_rss:6edbdd818a1596b7",
+            "google_news:article:add8afa396838c08"
           ],
           "time_precision": "published",
           "title_en": "South Korea advances tokenized securities rules ahead of 2027 rollout",
@@ -67732,264 +67964,6 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Aave V4 has integrated Coinbase-tokenized U.S. stocks as collateral for USDC borrowing, expanding DeFi lending collateral to tokenized equities.",
-      "current_state_zh": "Aave V4 已整合 Coinbase 代币化的美国股票作为 USDC 借款的抵押品，将 DeFi 借贷抵押品范围扩展至代币化股票。",
-      "entities": [
-        "aave",
-        "adds",
-        "against",
-        "base",
-        "borrowing",
-        "coinbase",
-        "collateral",
-        "morpho",
-        "opens",
-        "stock",
-        "stocks",
-        "tokenized",
-        "tokenized-stocks",
-        "tokens",
-        "usdc"
-      ],
-      "event_id": "evt_f2f495c2aee90d54",
-      "event_type": "other",
-      "first_seen_at": "2026-09-18T16:37:32.401713Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-09-28T11:07:58.977094Z",
-      "last_updated_at": "2026-09-28T19:47:00.063782Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [
-        "evt_068d879112855101",
-        "evt_627f5bb257031c8e"
-      ],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Aave V4 Integrates Coinbase-Tokenized U.S. Stocks as USDC Collateral",
-      "title_zh": "Aave V4 整合 Coinbase 代币化美股作为 USDC 抵押品",
-      "topics": [
-        "aave",
-        "base",
-        "coinbase",
-        "collateral",
-        "defi-lending",
-        "morpho",
-        "real-world-assets",
-        "rwa",
-        "tokenized-stocks"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Morpho now allows holders of five Coinbase tokenized stock tokens to pledge them as collateral for USDC loans on Base.",
-          "current_state_zh": "Morpho 现允许五种 Coinbase 代币化股票代币的持有者在 Base 上将其作为抵押品借入 USDC。",
-          "detailed_summary_en": "Morpho now allows holders of five Coinbase tokenized stock tokens to pledge them as collateral for USDC loans on Base.",
-          "detailed_summary_zh": "Morpho now allows holders of five Coinbase tokenized stock tokens to pledge them as collateral for USDC loans on Base.",
-          "event_id": "evt_f2f495c2aee90d54",
-          "first_seen_at": "2026-09-18T16:37:32.401713Z",
-          "importance_score": 7.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-09-18T14:24:02Z",
-          "published_at": "2026-09-18T14:24:02Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "The Defiant",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://thedefiant.io/news/defi/morpho-coinbase-tokenized-stocks-borrowing-base"
-            }
-          ],
-          "story_ids": [
-            "rss:thedefiant.io_api_feed:00c8c30d6b2468f8"
-          ],
-          "time_precision": "published",
-          "title_en": "Morpho Opens Borrowing Against Coinbase's Tokenized Stocks",
-          "title_zh": "Morpho 开放以 Coinbase 代币化股票为抵押的借贷",
-          "update_id": "upd_cd43242dcfaf5c12",
-          "update_type": "initial",
-          "what_changed_en": "Morpho now allows holders of five Coinbase tokenized stock tokens to pledge them as collateral for USDC loans on Base.",
-          "what_changed_zh": "Morpho 现允许五种 Coinbase 代币化股票代币的持有者在 Base 上将其作为抵押品借入 USDC。"
-        },
-        {
-          "background_en": "Aave is a decentralized, non-custodial liquidity protocol where users supply assets to earn interest or borrow against collateral, and its governance token is AAVE. Tokenized securities — such as stocks, bonds or fund interests represented as a crypto asset on a blockchain — have become a growing part of onchain markets. USDC is a fully reserved stablecoin issued by Circle that is designed to maintain a value equivalent to the US dollar.",
-          "background_zh": "Aave 是一个去中心化、非托管的流动性协议，用户可存入资产赚取利息，或以抵押品借入资产，其治理代币为 AAVE。代币化证券——即以区块链上的加密资产形式表示的股票、债券或基金权益——在链上市场中的占比不断上升。USDC 是由 Circle 发行的全额储备稳定币，设计目标是维持与美元等值。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Aave V4 on Base now accepts Coinbase-issued tokenized stocks — including Apple, Nvidia and Tesla — as collateral for USDC loans for non-U.S. users.",
-          "current_state_zh": "代币化的苹果与英伟达股票现可作为抵押品，在 Aave 借贷协议上借入 USDC。此举将现实世界资产（RWA）抵押品引入 DeFi 信贷市场，在 Aave 上形成了以股票为抵押的借贷产品。\n\n此举使一家主流 DeFi 借贷协议接受的抵押品范围从加密原生资产扩展到代币化股票，首次以这种形式将股票敞口与链上信贷连接起来。",
-          "detailed_summary_en": "Aave V4 on Base now accepts Coinbase-issued tokenized stocks — including Apple, Nvidia and Tesla — as collateral for USDC loans for non-U.S. users.",
-          "detailed_summary_zh": "Aave V4 on Base now accepts Coinbase-issued tokenized stocks — including Apple, Nvidia and Tesla — as collateral for USDC loans for non-U.S. users.",
-          "event_id": "evt_f2f495c2aee90d54",
-          "first_seen_at": "2026-09-25T17:25:15.548757Z",
-          "importance_score": 7.5,
-          "market_impact_en": "The change affects Aave's lending markets directly, adding tokenized equity exposure to the collateral set that supports USDC borrowing, and it touches the wider RWA and tokenized-equity segment through collateral eligibility and onchain credit channels. Any effect on AAVE governance token sentiment or on USDC borrowing demand depends on how much of these tokenized stocks is actually supplied as collateral.",
-          "market_impact_zh": "这一变化直接影响 Aave 的借贷市场：在支撑 USDC 借款的抵押品集合中新增了代币化股票敞口，并通过抵押品资格与链上信贷渠道，牵动更广泛的 RWA 与代币化股票板块。对 AAVE 治理代币情绪或 USDC 借款需求的实际影响，取决于这些代币化股票真正被用作抵押品的规模。",
-          "material_change": true,
-          "occurred_at": "2026-09-25T14:00:00Z",
-          "published_at": "2026-09-25T14:00:00Z",
-          "references": [
-            {
-              "title": "Aave Protocol: V4 Architecture, DeFi, and GHO Stablecoin",
-              "url": "https://volity.io/crypto/aave/"
-            },
-            {
-              "title": "Tokenized Securities | Investor.gov",
-              "url": "https://www.investor.gov/introduction-investing/investing-basics/investment-products/tokenized-securities"
-            },
-            {
-              "title": "USDC | Powering global finance. Issued by Circle.",
-              "url": "https://www.circle.com/usdc"
-            }
-          ],
-          "sources": [
-            {
-              "label": "The Block",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://www.theblock.co/news/defi/2026-09-25-aave-v4-on-base-adds-coinbase-tokenized-stocks-as-collateral-for-usdc-loans-416372"
-            },
-            {
-              "label": "TradingView",
-              "official": false,
-              "source_type": "google_news",
-              "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNaFBUUkdwUVQ0NlB6TE16MUc0YTVUMDFiaEY3NWVja2liOXZaTk9CVGRReWJCekRveUxWWU80Sl9EeHQ1Ym10azNkejdVb1VIbmRYd0RlejVqVDNXN3VjN3B0V01zUDlDVWJNTVY5ZWNnc2VKUUwwYlp1eU51S1hCdzNPTnpnVjdlZ2RXWEFCY0dHbUx4akdSUHJrcUN1aEVSU1hwejdPc2JVXzlnWi11YVZuMkdaQVdGZEJHSWdoZDk?oc=5"
-            },
-            {
-              "label": "CryptoRank",
-              "official": false,
-              "source_type": "google_news",
-              "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNT2ZhVG5LOXVYRVIzSTVFZkJtaVZSWVpBRThzOTZETXJMQXRwX1M5RE5HdlBBSFNaYTJQU1BWZ2JFQzl1MHBoZUhROENkWmVRcWs1Y3ExQm5YWHJzUFBTUnhPZHI5Unp0M2dxQlQtZVk2VUVqbkM2YUxUYTdObnJvZnRfZnMwTlpuWkIyV1pEcXl5WW5tU3BicXRlZ24tc1kzUU1XZ3Jn?oc=5"
-            }
-          ],
-          "story_ids": [
-            "rss:www.theblock.co_rss.xml:1618a38b33688856",
-            "google_news:article:9f9a0d20da51db93",
-            "google_news:article:34a5d38c78a9f7a2"
-          ],
-          "time_precision": "published",
-          "title_en": "Aave V4 on Base adds Coinbase tokenized stocks as collateral for USDC loans",
-          "title_zh": "苹果与英伟达的代币化股票现可在 Aave 上作为 USDC 贷款的抵押品",
-          "update_id": "upd_8719abc892c69ada",
-          "update_type": "confirmation",
-          "what_changed_en": "Aave V4 on Base now accepts Coinbase-issued tokenized stocks — including Apple, Nvidia and Tesla — as collateral for USDC loans for non-U.S. users.",
-          "what_changed_zh": "代币化的苹果与英伟达股票现可作为抵押品，在 Aave 借贷协议上借入 USDC。此举将现实世界资产（RWA）抵押品引入 DeFi 信贷市场，在 Aave 上形成了以股票为抵押的借贷产品。\n\n此举使一家主流 DeFi 借贷协议接受的抵押品范围从加密原生资产扩展到代币化股票，首次以这种形式将股票敞口与链上信贷连接起来。"
-        },
-        {
-          "background_en": "Aave is one of the largest DeFi lending protocols, and its V4 deployment has drawn deposits quickly since launch: deposits sat below $340 million at the start of August and climbed to roughly $577 million by early September before surpassing $1 billion. Base is a Coinbase-built Ethereum layer-2 that uses the OP Stack and settles on Ethereum. Tokenized stocks are blockchain-based digital assets designed to represent economic exposure to traditional shares.",
-          "background_zh": "Aave 是规模最大的 DeFi 借贷协议之一，其 V4 版本自上线以来存款增长迅速：8 月初存款不足 3.4 亿美元，到 9 月初升至约 5.77 亿美元，随后突破 10 亿美元。Base 是由 Coinbase 构建的以太坊二层网络，采用 OP Stack，并结算于以太坊主网。代币化股票是旨在代表传统股票经济敞口的区块链数字资产。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.95,
-          "current_state_en": "Aave V4 on Base accepts seven Coinbase stock tokens as collateral for USDC loans, with a 21 million USDC borrowing cap and access limited to eligible non-US investors.",
-          "current_state_zh": "Aave V4 在 Base 上接受七种 Coinbase 股票代币作为 USDC 贷款的抵押品，借款上限为 2100 万 USDC，且仅限符合条件的非美国投资者。",
-          "detailed_summary_en": "Aave has enabled seven Coinbase-issued stock tokens as collateral for USDC loans in a dedicated V4 market on Base, with a 21 million USDC borrowing cap and access restricted to eligible non-US investors.",
-          "detailed_summary_zh": "Aave has enabled seven Coinbase-issued stock tokens as collateral for USDC loans in a dedicated V4 market on Base, with a 21 million USDC borrowing cap and access restricted to eligible non-US investors.",
-          "event_id": "evt_f2f495c2aee90d54",
-          "first_seen_at": "2026-09-25T17:25:20.358888Z",
-          "importance_score": 7.5,
-          "market_impact_en": "The change creates a direct channel between Coinbase's tokenized-equity product and DeFi credit on Base: tokenized stock collateral can support new USDC borrowing demand and shift utilization in Aave V4's Base market, while also tying that market's risk profile to equity price moves. Because borrowing is capped at 21 million USDC and limited to non-US investors, the immediate footprint on DeFi liquidity is bounded.",
-          "market_impact_zh": "这一变化在 Coinbase 的代币化股票产品与 Base 上的 DeFi 信贷之间建立了直接通道：代币化股票抵押品可支撑新的 USDC 借款需求，并改变 Aave V4 的 Base 市场中的资金利用率，同时也使该市场的风险状况与股票价格波动挂钩。由于借款上限为 2100 万 USDC 且仅限非美国投资者，其对 DeFi 流动性的即时影响范围有限。",
-          "material_change": true,
-          "occurred_at": "2026-09-25T14:44:07Z",
-          "published_at": "2026-09-25T14:44:07Z",
-          "references": [
-            {
-              "title": "Aave V4 Lets Non-U.S. Users Borrow USDC... | The Currency analytics",
-              "url": "https://thecurrencyanalytics.com/defi/aave-v4-lets-non-u-s-users-borrow-usdc-against-apple-nvidia-and-tesla-shares-297153"
-            },
-            {
-              "title": "AAVE v4 deposits surpass $1B, doubling in a month",
-              "url": "https://cryptobriefing.com/aave-v4-deposits-surpass-1b/"
-            },
-            {
-              "title": "What Are Tokenized Stocks and How Do They Work? | Gemini",
-              "url": "https://www.gemini.com/cryptopedia/what-are-tokenized-stocks-and-how-do-they-work"
-            },
-            {
-              "title": "Coinbase Tokenized Stocks Now Live on Aave V4 | Aave",
-              "url": "https://aave.com/blog/coinbase-tokenized-stocks"
-            },
-            {
-              "title": "Coinbase Tokenized Stocks Explained",
-              "url": "https://www.bitrue.com/blog/coinbase-tokenized-stocks-explained"
-            }
-          ],
-          "sources": [
-            {
-              "label": "The Defiant",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://thedefiant.io/news/defi/aave-adds-coinbase-stock-tokens-as-collateral-on-base"
-            },
-            {
-              "label": "Crowdfund Insider",
-              "official": false,
-              "source_type": "google_news",
-              "url": "https://www.crowdfundinsider.com/2026/09/313183-coinbase-tokenized-stocks-become-collateral-on-aave-v4-base/"
-            }
-          ],
-          "story_ids": [
-            "rss:thedefiant.io_api_feed:58bc2a7386745d38",
-            "google_news:article:92c3db281cc9dbea"
-          ],
-          "time_precision": "published",
-          "title_en": "Aave Adds Coinbase Stock Tokens as Collateral on Base",
-          "title_zh": "Aave 在 Base 上新增 Coinbase 股票代币作为抵押品",
-          "update_id": "upd_9086d6fdc7fe8bfa",
-          "update_type": "confirmation",
-          "what_changed_en": "Added details: Aave V4 on Base enabled seven Coinbase-issued stock tokens as collateral, with a 21 million USDC borrowing cap, access limited to eligible non-US investors.",
-          "what_changed_zh": "新增细节：Aave V4 在 Base 上启用七种 Coinbase 发行的股票代币作为抵押品，USDC 借款上限为 2100 万，且访问仅限符合条件的非美国投资者。"
-        },
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Aave V4 has integrated Coinbase-tokenized U.S. stocks as collateral for USDC borrowing, expanding DeFi lending collateral to tokenized equities.",
-          "current_state_zh": "Aave V4 已整合 Coinbase 代币化的美国股票作为 USDC 借款的抵押品，将 DeFi 借贷抵押品范围扩展至代币化股票。",
-          "detailed_summary_en": "Aave V4 has integrated Coinbase-tokenized U.S. stocks as collateral for USDC borrowing, expanding DeFi lending collateral to tokenized equities.",
-          "detailed_summary_zh": "Aave V4 has integrated Coinbase-tokenized U.S. stocks as collateral for USDC borrowing, expanding DeFi lending collateral to tokenized equities.",
-          "event_id": "evt_f2f495c2aee90d54",
-          "first_seen_at": "2026-09-28T11:07:58.977094Z",
-          "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-09-28T06:23:54Z",
-          "published_at": "2026-09-28T06:23:54Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "tokenpost.com",
-              "official": false,
-              "source_type": "google_news",
-              "url": "https://www.tokenpost.com/news/technology/24764"
-            }
-          ],
-          "story_ids": [
-            "google_news:article:9932a5de719dc834"
-          ],
-          "time_precision": "published",
-          "title_en": "Aave V4 Adds Coinbase-Tokenized U.S. Stocks as USDC Collateral",
-          "title_zh": "Aave V4 将 Coinbase 代币化的美国股票添加为 USDC 抵押品",
-          "update_id": "upd_4220d26fe58e64b1",
-          "update_type": "confirmation",
-          "what_changed_en": "Aave V4 has integrated Coinbase-tokenized U.S. stocks as collateral for USDC borrowing, expanding DeFi lending collateral to tokenized equities.",
-          "what_changed_zh": "Aave V4 已整合 Coinbase 代币化的美国股票作为 USDC 借款的抵押品，将 DeFi 借贷抵押品范围扩展至代币化股票。"
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
       "current_state_en": "WisdomTree is opening its $1.23 billion tokenized Treasury fund WTGXX to MoonPay's 35 million accounts, with MoonPay holding the fund against its stablecoin reserves.",
       "current_state_zh": "WisdomTree is opening its $1.23 billion tokenized Treasury fund WTGXX to MoonPay's 35 million accounts, with MoonPay holding the fund against its stablecoin reserves.",
       "entities": [
@@ -92330,7 +92304,7 @@
       "first_seen_at": "2026-09-29T00:28:30.865823Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-01T15:11:04.559457Z",
-      "last_updated_at": "2026-10-03T09:59:21.181135Z",
+      "last_updated_at": "2026-10-03T14:01:56.276972Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_39ac0ac4ab88fc05",
@@ -92526,6 +92500,12 @@
               "official": false,
               "source_type": "google_news",
               "url": "https://en.bloomingbit.io/feed/news/121538"
+            },
+            {
+              "label": "tokenpost.com",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://www.tokenpost.com/news/regulation/26545"
             }
           ],
           "story_ids": [
@@ -92552,7 +92532,8 @@
             "google_news:article:bd0ef498cf65ef94",
             "google_news:article:91bec33e158ebc65",
             "google_news:article:fb6ec9ecd41ba81b",
-            "google_news:article:a27a0039a50e8ddc"
+            "google_news:article:a27a0039a50e8ddc",
+            "google_news:article:e292a4585440d09e"
           ],
           "time_precision": "published",
           "title_en": "CFTC Approves Coinbase Clearing as Derivatives Clearing Organization",
@@ -97262,8 +97243,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "The Abracadabra Snapshot vote to shut down the protocol and liquidate MIM is open from 2026-09-29 05:24 UTC to 2026-09-30 17:24 UTC; votes for and against have been cast; the proposal cites ~$21M bad debt, ~$900K executable collateral, sub-$0.04 effective MIM backing, and declares SPELL valueless.",
-      "current_state_zh": "Abracadabra 关停协议并清算 MIM 的 Snapshot 投票已开启，投票期为 2026-09-29 05:24 UTC 至 2026-09-30 17:24 UTC；已有赞成与反对票，提案称约 2100 万美元坏账、约 90 万美元可执行担保、MIM 有效支持低于 0.04 美元，并称 SPELL 价值清零。",
+      "current_state_en": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
+      "current_state_zh": "Abracadabra 已就“有序关停”协议发起治理投票，理由是一系列安全事件使其稳定币 Magic Internet Money（MIM）已“没有回到锚定价值的可行路径”。提案披露目前有 2200 万枚 MIM 未偿付，而“可动用抵押资产”仅约 90 万美元，隐含每枚 MIM 价值约 0.04 美元；截至发稿，投票约有 1 亿枚 SPELL 赞成、50 万枚反对，投票定于周三晚间结束。\n\n该投票将正式宣告一个锁仓总值曾达 60 亿美元的协议走向终结，其披露的资产缺口意味着仍持有 MIM 的用户将面临重大损失。DeFi 评论人、Trading Strategy 联合创始人 Mikko Ohtamaa 公开将此举称为“金库掠夺”，并指向此前的 DAO 资金转移。\n\n据文章称，该协议因 2024 年 1 月 650 万美元的黑客攻击，以及 2025 年 3 月和 10 月两起分别涉资 1300 万美元和 170 万美元的攻击，累计产生 2100 万美元坏账。Ohtamaa 指出，6 月 8 日和 11 日在 Curve 上出现了金库抛售 MIM 的操作，在“MIM 已经脱锚”的情况下为卖方换回约 50 万美元；随后的一个月又发生“金库提取”，逾 800 万美元被转入一个 Binance 充值地址和一个未标注地址。关停提案既未处理这些资金，也未在赎回计算中将其纳入。",
       "entities": [
         "abracadabra",
         "cents",
@@ -97278,18 +97259,24 @@
       "event_type": "governance",
       "first_seen_at": "2026-09-30T02:19:40.260270Z",
       "identifiers": [],
-      "last_material_change_at": "2026-09-30T10:38:05.142841Z",
-      "last_updated_at": "2026-09-30T10:38:05.142841Z",
+      "last_material_change_at": "2026-09-30T18:04:11.237715Z",
+      "last_updated_at": "2026-09-30T18:04:11.237715Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_9164c0c43a88bb60"
+      ],
       "schema_version": 1,
       "status": "developing",
       "title_en": "Abracadabra Proposes Winding Down MIM at Four Cents on the Dollar",
-      "title_zh": "Abracadabra提议以每美元四美分的价格清盘MIM",
+      "title_zh": "Abracadabra 因多次黑客攻击提议清算协议并关闭 MIM",
       "topics": [
         "abracadabra",
+        "dao-governance",
+        "defi-protocol-failure",
         "insolvency",
-        "mim"
+        "magic-internet-money",
+        "mim",
+        "stablecoin-depeg"
       ],
       "updates": [
         {
@@ -97367,6 +97354,57 @@
           "update_type": "escalation",
           "what_changed_en": "The Snapshot vote is now open: it began 2026-09-29 05:24 UTC and ends 2026-09-30 17:24 UTC; two addresses have voted, one staking ~100M SPELL in favor and one staking ~523K SPELL against; the proposal also declares SPELL valueless and subordinate to MIM debt.",
           "what_changed_zh": "Snapshot 投票已开启：投票于 2026-09-29 05:24 UTC 开始、2026-09-30 17:24 UTC 结束；已有两地址投票，一地址质押约 1 亿 SPELL 赞成，另一地址质押约 52.3 万 SPELL 反对；提案还称 SPELL 价值清零，MIM 债务优先级高于 SPELL。"
+        },
+        {
+          "background_en": "Abracadabra launched in 2021 as a lending protocol that mints MIM against interest-bearing tokens. Its reputation was hit in 2022 when Abracadabra-linked 0xSifu was unmasked as a longtime fraudster and co-founder of QuadrigaCX, and the same year its DegenBox looping product tied to UST wiped out roughly $1 billion of its TVL. MIM has been depegged since June, when the DAO approved a “strategic transition and stewardship” of assets to a group “led by Anubis”; that proposal passed with just two votes totalling over 5 billion SPELL and no opposition. In early July the project’s X account promised a roadmap to restore the MIM peg but has not posted since.",
+          "background_zh": "Abracadabra 于 2021 年上线，是一个以生息代币为抵押铸造 MIM 的借贷协议。2022 年，与 Abracadabra 有关联的 0xSifu 被揭露为长期诈骗者、QuadrigaCX 联合创始人，重创了项目声誉；同年，其与 UST 挂钩的 DegenBox 循环杠杆产品导致约 10 亿美元锁仓价值蒸发。MIM 自 6 月起便处于脱锚状态，当时 DAO 批准将由“Anubis 领导”的团队对资产进行“战略过渡与管理”。该提案仅有两票、合计逾 50 亿枚 SPELL 便获通过，无人反对。7 月初，项目 X 账号曾承诺发布恢复 MIM 锚定、改善协议健康状况的路线图，此后未再发帖。",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
+          "current_state_zh": "Abracadabra 已就“有序关停”协议发起治理投票，理由是一系列安全事件使其稳定币 Magic Internet Money（MIM）已“没有回到锚定价值的可行路径”。提案披露目前有 2200 万枚 MIM 未偿付，而“可动用抵押资产”仅约 90 万美元，隐含每枚 MIM 价值约 0.04 美元；截至发稿，投票约有 1 亿枚 SPELL 赞成、50 万枚反对，投票定于周三晚间结束。\n\n该投票将正式宣告一个锁仓总值曾达 60 亿美元的协议走向终结，其披露的资产缺口意味着仍持有 MIM 的用户将面临重大损失。DeFi 评论人、Trading Strategy 联合创始人 Mikko Ohtamaa 公开将此举称为“金库掠夺”，并指向此前的 DAO 资金转移。\n\n据文章称，该协议因 2024 年 1 月 650 万美元的黑客攻击，以及 2025 年 3 月和 10 月两起分别涉资 1300 万美元和 170 万美元的攻击，累计产生 2100 万美元坏账。Ohtamaa 指出，6 月 8 日和 11 日在 Curve 上出现了金库抛售 MIM 的操作，在“MIM 已经脱锚”的情况下为卖方换回约 50 万美元；随后的一个月又发生“金库提取”，逾 800 万美元被转入一个 Binance 充值地址和一个未标注地址。关停提案既未处理这些资金，也未在赎回计算中将其纳入。",
+          "detailed_summary_en": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
+          "detailed_summary_zh": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
+          "event_id": "evt_7240d43ce6617553",
+          "first_seen_at": "2026-09-30T18:04:11.237715Z",
+          "importance_score": 8.0,
+          "market_impact_en": "The exposure is concentrated in remaining MIM holders and the Curve pools where MIM trades, with redemption economics set by the ~$900,000 of actionable backing rather than the 22 million outstanding MIM; SPELL holders face the DAO wind-down process. The episode is a governance- and custody-risk signal for collateralised stablecoin and DAO-treasury designs, though the protocol’s shrunken size relative to its $6 billion peak limits any broader contagion channel.",
+          "market_impact_zh": "风险敞口集中在仍持有 MIM 的用户以及 MIM 交易的 Curve 资金池上，赎回经济性由约 90 万美元可动用抵押资产决定，而非 2200 万枚未偿付 MIM；SPELL 持有者则需面对 DAO 关停流程。这一事件对抵押型稳定币和 DAO 金库设计构成治理与托管风险信号，但协议规模相较其 60 亿美元峰值已大幅缩水，限制了更广泛传染渠道。",
+          "material_change": true,
+          "occurred_at": "2026-09-30T16:47:53Z",
+          "published_at": "2026-09-30T16:47:53Z",
+          "references": [
+            {
+              "title": "Abracadabra blames hacks for shutdown amid ‘looting’ claims",
+              "url": "https://protos.com/abracadabra-blames-hacks-for-shutdown-amid-looting-claims/"
+            },
+            {
+              "title": "Abracadabra TVL, Fees & Revenue - DefiLlama",
+              "url": "https://defillama.com/protocol/abracadabra"
+            },
+            {
+              "title": "Magic Internet Money price today, MIM to USD live price ...Magic Internet Money price today, MIM to USD live price ...Magic Internet Money Price Prediction, News, and Analysis (MIM)The Magic Internet Money (MIM) Stablecoin | Geminiabracadabra.moneyWhat is Magic Internet Money (MIM) Crypto Coin? DeFi ...Magic Internet Money (Ethereum) Price: MIM/USD Live Price ...",
+              "url": "https://coinmarketcap.com/currencies/magic-internet-money/"
+            }
+          ],
+          "sources": [
+            {
+              "label": "Protos",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://protos.com/abracadabra-blames-hacks-for-shutdown-amid-looting-claims/"
+            }
+          ],
+          "story_ids": [
+            "rss:protos.com_feed_:bc9e1e1feb14e052"
+          ],
+          "time_precision": "published",
+          "title_en": "Abracadabra blames hacks for shutdown amid ‘looting’ claims",
+          "title_zh": "Abracadabra 将关停归咎于多次黑客攻击，同时面临“金库掠夺”指控",
+          "update_id": "upd_9096836acf76b261",
+          "update_type": "escalation",
+          "what_changed_en": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
+          "what_changed_zh": "Abracadabra 已就“有序关停”协议发起治理投票，理由是一系列安全事件使其稳定币 Magic Internet Money（MIM）已“没有回到锚定价值的可行路径”。提案披露目前有 2200 万枚 MIM 未偿付，而“可动用抵押资产”仅约 90 万美元，隐含每枚 MIM 价值约 0.04 美元；截至发稿，投票约有 1 亿枚 SPELL 赞成、50 万枚反对，投票定于周三晚间结束。\n\n该投票将正式宣告一个锁仓总值曾达 60 亿美元的协议走向终结，其披露的资产缺口意味着仍持有 MIM 的用户将面临重大损失。DeFi 评论人、Trading Strategy 联合创始人 Mikko Ohtamaa 公开将此举称为“金库掠夺”，并指向此前的 DAO 资金转移。\n\n据文章称，该协议因 2024 年 1 月 650 万美元的黑客攻击，以及 2025 年 3 月和 10 月两起分别涉资 1300 万美元和 170 万美元的攻击，累计产生 2100 万美元坏账。Ohtamaa 指出，6 月 8 日和 11 日在 Curve 上出现了金库抛售 MIM 的操作，在“MIM 已经脱锚”的情况下为卖方换回约 50 万美元；随后的一个月又发生“金库提取”，逾 800 万美元被转入一个 Binance 充值地址和一个未标注地址。关停提案既未处理这些资金，也未在赎回计算中将其纳入。"
         }
       ]
     },
@@ -100839,87 +100877,6 @@
           "update_type": "initial",
           "what_changed_en": "Binance has ended direct on-chain crypto deposits into Funding Accounts and moved Binance Pay receipts and Convert settlements to Spot, with existing balances migrated and Pay spending from Funding phased out on a later schedule.",
           "what_changed_zh": "Binance has ended direct on-chain crypto deposits into Funding Accounts and moved Binance Pay receipts and Convert settlements to Spot, with existing balances migrated and Pay spending from Funding phased out on a later schedule."
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
-      "current_state_zh": "Abracadabra 已就“有序关停”协议发起治理投票，理由是一系列安全事件使其稳定币 Magic Internet Money（MIM）已“没有回到锚定价值的可行路径”。提案披露目前有 2200 万枚 MIM 未偿付，而“可动用抵押资产”仅约 90 万美元，隐含每枚 MIM 价值约 0.04 美元；截至发稿，投票约有 1 亿枚 SPELL 赞成、50 万枚反对，投票定于周三晚间结束。\n\n该投票将正式宣告一个锁仓总值曾达 60 亿美元的协议走向终结，其披露的资产缺口意味着仍持有 MIM 的用户将面临重大损失。DeFi 评论人、Trading Strategy 联合创始人 Mikko Ohtamaa 公开将此举称为“金库掠夺”，并指向此前的 DAO 资金转移。\n\n据文章称，该协议因 2024 年 1 月 650 万美元的黑客攻击，以及 2025 年 3 月和 10 月两起分别涉资 1300 万美元和 170 万美元的攻击，累计产生 2100 万美元坏账。Ohtamaa 指出，6 月 8 日和 11 日在 Curve 上出现了金库抛售 MIM 的操作，在“MIM 已经脱锚”的情况下为卖方换回约 50 万美元；随后的一个月又发生“金库提取”，逾 800 万美元被转入一个 Binance 充值地址和一个未标注地址。关停提案既未处理这些资金，也未在赎回计算中将其纳入。",
-      "entities": [
-        "abracadabra"
-      ],
-      "event_id": "evt_9164c0c43a88bb60",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-09-30T18:04:11.237715Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-09-30T18:04:11.237715Z",
-      "last_updated_at": "2026-09-30T18:04:11.237715Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Abracadabra blames hacks for shutdown amid ‘looting’ claims",
-      "title_zh": "Abracadabra 将关停归咎于多次黑客攻击，同时面临“金库掠夺”指控",
-      "topics": [
-        "abracadabra",
-        "dao-governance",
-        "defi-protocol-failure",
-        "magic-internet-money",
-        "stablecoin-depeg"
-      ],
-      "updates": [
-        {
-          "background_en": "Abracadabra launched in 2021 as a lending protocol that mints MIM against interest-bearing tokens. Its reputation was hit in 2022 when Abracadabra-linked 0xSifu was unmasked as a longtime fraudster and co-founder of QuadrigaCX, and the same year its DegenBox looping product tied to UST wiped out roughly $1 billion of its TVL. MIM has been depegged since June, when the DAO approved a “strategic transition and stewardship” of assets to a group “led by Anubis”; that proposal passed with just two votes totalling over 5 billion SPELL and no opposition. In early July the project’s X account promised a roadmap to restore the MIM peg but has not posted since.",
-          "background_zh": "Abracadabra 于 2021 年上线，是一个以生息代币为抵押铸造 MIM 的借贷协议。2022 年，与 Abracadabra 有关联的 0xSifu 被揭露为长期诈骗者、QuadrigaCX 联合创始人，重创了项目声誉；同年，其与 UST 挂钩的 DegenBox 循环杠杆产品导致约 10 亿美元锁仓价值蒸发。MIM 自 6 月起便处于脱锚状态，当时 DAO 批准将由“Anubis 领导”的团队对资产进行“战略过渡与管理”。该提案仅有两票、合计逾 50 亿枚 SPELL 便获通过，无人反对。7 月初，项目 X 账号曾承诺发布恢复 MIM 锚定、改善协议健康状况的路线图，此后未再发帖。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
-          "current_state_zh": "Abracadabra 已就“有序关停”协议发起治理投票，理由是一系列安全事件使其稳定币 Magic Internet Money（MIM）已“没有回到锚定价值的可行路径”。提案披露目前有 2200 万枚 MIM 未偿付，而“可动用抵押资产”仅约 90 万美元，隐含每枚 MIM 价值约 0.04 美元；截至发稿，投票约有 1 亿枚 SPELL 赞成、50 万枚反对，投票定于周三晚间结束。\n\n该投票将正式宣告一个锁仓总值曾达 60 亿美元的协议走向终结，其披露的资产缺口意味着仍持有 MIM 的用户将面临重大损失。DeFi 评论人、Trading Strategy 联合创始人 Mikko Ohtamaa 公开将此举称为“金库掠夺”，并指向此前的 DAO 资金转移。\n\n据文章称，该协议因 2024 年 1 月 650 万美元的黑客攻击，以及 2025 年 3 月和 10 月两起分别涉资 1300 万美元和 170 万美元的攻击，累计产生 2100 万美元坏账。Ohtamaa 指出，6 月 8 日和 11 日在 Curve 上出现了金库抛售 MIM 的操作，在“MIM 已经脱锚”的情况下为卖方换回约 50 万美元；随后的一个月又发生“金库提取”，逾 800 万美元被转入一个 Binance 充值地址和一个未标注地址。关停提案既未处理这些资金，也未在赎回计算中将其纳入。",
-          "detailed_summary_en": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
-          "detailed_summary_zh": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
-          "event_id": "evt_9164c0c43a88bb60",
-          "first_seen_at": "2026-09-30T18:04:11.237715Z",
-          "importance_score": 8.0,
-          "market_impact_en": "The exposure is concentrated in remaining MIM holders and the Curve pools where MIM trades, with redemption economics set by the ~$900,000 of actionable backing rather than the 22 million outstanding MIM; SPELL holders face the DAO wind-down process. The episode is a governance- and custody-risk signal for collateralised stablecoin and DAO-treasury designs, though the protocol’s shrunken size relative to its $6 billion peak limits any broader contagion channel.",
-          "market_impact_zh": "风险敞口集中在仍持有 MIM 的用户以及 MIM 交易的 Curve 资金池上，赎回经济性由约 90 万美元可动用抵押资产决定，而非 2200 万枚未偿付 MIM；SPELL 持有者则需面对 DAO 关停流程。这一事件对抵押型稳定币和 DAO 金库设计构成治理与托管风险信号，但协议规模相较其 60 亿美元峰值已大幅缩水，限制了更广泛传染渠道。",
-          "material_change": true,
-          "occurred_at": "2026-09-30T16:47:53Z",
-          "published_at": "2026-09-30T16:47:53Z",
-          "references": [
-            {
-              "title": "Abracadabra blames hacks for shutdown amid ‘looting’ claims",
-              "url": "https://protos.com/abracadabra-blames-hacks-for-shutdown-amid-looting-claims/"
-            },
-            {
-              "title": "Abracadabra TVL, Fees & Revenue - DefiLlama",
-              "url": "https://defillama.com/protocol/abracadabra"
-            },
-            {
-              "title": "Magic Internet Money price today, MIM to USD live price ...Magic Internet Money price today, MIM to USD live price ...Magic Internet Money Price Prediction, News, and Analysis (MIM)The Magic Internet Money (MIM) Stablecoin | Geminiabracadabra.moneyWhat is Magic Internet Money (MIM) Crypto Coin? DeFi ...Magic Internet Money (Ethereum) Price: MIM/USD Live Price ...",
-              "url": "https://coinmarketcap.com/currencies/magic-internet-money/"
-            }
-          ],
-          "sources": [
-            {
-              "label": "Protos",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://protos.com/abracadabra-blames-hacks-for-shutdown-amid-looting-claims/"
-            }
-          ],
-          "story_ids": [
-            "rss:protos.com_feed_:bc9e1e1feb14e052"
-          ],
-          "time_precision": "published",
-          "title_en": "Abracadabra blames hacks for shutdown amid ‘looting’ claims",
-          "title_zh": "Abracadabra 将关停归咎于多次黑客攻击，同时面临“金库掠夺”指控",
-          "update_id": "upd_9096836acf76b261",
-          "update_type": "initial",
-          "what_changed_en": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions.",
-          "what_changed_zh": "Abracadabra 已就“有序关停”协议发起治理投票，理由是一系列安全事件使其稳定币 Magic Internet Money（MIM）已“没有回到锚定价值的可行路径”。提案披露目前有 2200 万枚 MIM 未偿付，而“可动用抵押资产”仅约 90 万美元，隐含每枚 MIM 价值约 0.04 美元；截至发稿，投票约有 1 亿枚 SPELL 赞成、50 万枚反对，投票定于周三晚间结束。\n\n该投票将正式宣告一个锁仓总值曾达 60 亿美元的协议走向终结，其披露的资产缺口意味着仍持有 MIM 的用户将面临重大损失。DeFi 评论人、Trading Strategy 联合创始人 Mikko Ohtamaa 公开将此举称为“金库掠夺”，并指向此前的 DAO 资金转移。\n\n据文章称，该协议因 2024 年 1 月 650 万美元的黑客攻击，以及 2025 年 3 月和 10 月两起分别涉资 1300 万美元和 170 万美元的攻击，累计产生 2100 万美元坏账。Ohtamaa 指出，6 月 8 日和 11 日在 Curve 上出现了金库抛售 MIM 的操作，在“MIM 已经脱锚”的情况下为卖方换回约 50 万美元；随后的一个月又发生“金库提取”，逾 800 万美元被转入一个 Binance 充值地址和一个未标注地址。关停提案既未处理这些资金，也未在赎回计算中将其纳入。"
         }
       ]
     },
@@ -109398,7 +109355,7 @@
       "first_seen_at": "2026-10-02T22:01:57.893871Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-03T09:59:25.049917Z",
-      "last_updated_at": "2026-10-03T09:59:25.049917Z",
+      "last_updated_at": "2026-10-03T14:01:57.086790Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -109490,10 +109447,17 @@
               "official": false,
               "source_type": "rss",
               "url": "https://cryptoslate.com/arbitrum-pauses-new-stylus-activations-over-ai-assisted-attack-risks/"
+            },
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/114514"
             }
           ],
           "story_ids": [
-            "rss:cryptoslate.com_feed_:a1fa2fcc9ab6ee0e"
+            "rss:cryptoslate.com_feed_:a1fa2fcc9ab6ee0e",
+            "telegram:foresightnews:119685"
           ],
           "time_precision": "published",
           "title_en": "Arbitrum pauses new Stylus activations over AI-assisted attack risks",
@@ -110487,7 +110451,7 @@
       "first_seen_at": "2026-10-03T06:20:57.764078Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-03T06:20:57.764078Z",
-      "last_updated_at": "2026-10-03T06:20:57.764296Z",
+      "last_updated_at": "2026-10-03T14:01:56.277185Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -110512,7 +110476,7 @@
           "detailed_summary_zh": "Kraken parent Payward is exploring a crypto and payments partnership with custody banking giant BNY, signaling further institutional integration between crypto exchanges and traditional finance.",
           "event_id": "evt_aa9d508dd49b4f40",
           "first_seen_at": "2026-10-03T06:20:57.764078Z",
-          "importance_score": 7.0,
+          "importance_score": 7.5,
           "market_impact_en": "",
           "market_impact_zh": "",
           "material_change": true,
@@ -110531,11 +110495,18 @@
               "official": false,
               "source_type": "google_news",
               "url": "https://cryptonews.net/news/market/33531751/"
+            },
+            {
+              "label": "finance.biggo.com",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://finance.biggo.com/news/846710e0-7ccb-4db3-9bde-759d9956e57e"
             }
           ],
           "story_ids": [
             "google_news:article:dc8217d7a16bd4d5",
-            "google_news:article:da335e630d89fdfa"
+            "google_news:article:da335e630d89fdfa",
+            "google_news:article:d51db9cec002b733"
           ],
           "time_precision": "published",
           "title_en": "Kraken parent Payward explores crypto and payments partnership with BNY",
@@ -111316,6 +111287,13 @@
       "evt_8fca4d5c4b0173a2",
       "evt_f2f495c2aee90d54"
     ],
+    "abracadabra": [
+      "evt_7240d43ce6617553"
+    ],
+    "ai-safety": [
+      "evt_9807e7a6d948fadb",
+      "evt_eb423dfd6479e630"
+    ],
     "anthropic": [
       "evt_0e8a1f4abf831db4",
       "evt_20dba8ac6044ff20",
@@ -111448,21 +111426,21 @@
     ],
     "coinbase": [
       "evt_0002147175c620c0",
+      "evt_0655aad2257c6798",
       "evt_0851eb664f6d9755",
       "evt_0f5f310998ee2b2e",
-      "evt_34613c2e5084e46b",
       "evt_5b421e16299d26d3",
       "evt_6655595dc1e36e0b",
       "evt_67781f85819d83dc",
       "evt_6b6fcb873789c504",
       "evt_6ca3e3fb32b4ceff",
+      "evt_a63e3b36f1ef9123",
       "evt_a97d02e01cdbe43d",
       "evt_cc2ee6ed697c7f69",
       "evt_d286367b68ed9229",
       "evt_d918c8d1e6c25a31",
       "evt_e84fa252f80895fe",
       "evt_e95ba9ad10d8c64c",
-      "evt_f2f495c2aee90d54",
       "evt_fde3170925921bc2"
     ],
     "compliance": [
