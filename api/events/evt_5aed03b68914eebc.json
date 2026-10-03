@@ -7,22 +7,39 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Chainlink launches new version of its crypto bridge tech 'CCIP' to give apps more control over their security",
+    "zh": "Chainlink 发布 CCIP 2.0，支持自定义验证器与更快跨链转账",
     "en": "Chainlink launches new version of its crypto bridge tech 'CCIP' to give apps more control over their security"
   },
   "current_state": {
-    "zh": "Chainlink has released a new version of its Cross-Chain Interoperability Protocol (CCIP) that allows applications to add customizable security checks and configurations, aimed at preventing the class of bridge vulnerabilities that led to a $292 million hack.",
-    "en": "Chainlink has released a new version of its Cross-Chain Interoperability Protocol (CCIP) that allows applications to add customizable security checks and configurations, aimed at preventing the class of bridge vulnerabilities that led to a $292 million hack."
+    "zh": "Chainlink 于周一发布 CCIP 2.0，推出名为跨链验证器（CCV）的新功能，允许机构自行运行跨链转账验证器，或向 Infosys、Nethermind 等公司购买验证服务，而不再只能依赖 Chainlink 的默认网络。Chainlink 文档同时确认，“风险管理网络的自动化链下角色在当前 CCIP 部署中已不再运行”，但预计会在未来版本中作为可选的验证层提供。\n\n此次升级让机构可以通过可配置的方式，为跨链转账增加自有验证环节；这一发布出现在 2.92 亿美元 Kelp DAO 被盗事件五个月后，该事件促使多家机构转向 Chainlink。与此同时，不额外增加验证器的机构如今只依赖单一验证网络，而此前 CCIP 拥有两层验证。\n\nChainlink 的默认校验机制未变：由 16 家独立节点运营商组成的委员会必须对每一笔转账达成共识；自定义验证器的入门套件已在亚马逊云科技（AWS）和谷歌云上提供。风险管理网络的链上合约仅作为应急后备保留，Chainlink 表示同类的独立校验可由可选的 CCV 提供。",
+    "en": "Chainlink launched CCIP 2.0, allowing institutions to operate their own custom verifiers for cross-chain transfers instead of relying solely on Chainlink's default network, five months after the $292M Kelp DAO bridge hack pushed firms toward Chainlink."
   },
   "first_seen_at": "2026-09-28T19:47:00.063618+00:00",
-  "last_updated_at": "2026-09-28T19:47:00.063618+00:00",
-  "last_material_change_at": "2026-09-28T19:47:00.063618+00:00",
+  "last_updated_at": "2026-09-28T19:47:28.176861+00:00",
+  "last_material_change_at": "2026-09-28T19:47:28.176861+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 3,
   "entities": [
+    "add",
+    "after",
+    "bridge",
     "ccip",
-    "chainlink"
+    "chainlink",
+    "checks",
+    "custom",
+    "faster",
+    "hack",
+    "institutions",
+    "kelp",
+    "launches",
+    "lets",
+    "months",
+    "own",
+    "their",
+    "transfers",
+    "verifiers",
+    "with"
   ],
   "identifiers": [],
   "topics": [
@@ -30,7 +47,8 @@
     "ccip",
     "chainlink",
     "cross-chain",
-    "interoperability"
+    "interoperability",
+    "protocol-upgrade"
   ],
   "updates": [
     {
@@ -56,17 +74,44 @@
       "community_discussion_en": "",
       "market_impact_zh": "",
       "market_impact_en": "",
-      "importance_score": 7.0,
-      "references": [],
+      "importance_score": 7.5,
+      "references": [
+        {
+          "url": "https://chain.link/blog/introducing-ccip-2-0",
+          "title": "Introducing CCIP 2.0: The Interoperability Standard for... | Chainlink"
+        },
+        {
+          "url": "https://www.coindesk.com/tech/2026/04/19/2026-s-biggest-crypto-exploit-kelp-dao-hit-for-usd292-million-with-wrapped-ether-stranded-across-20-chains",
+          "title": "Kelp DAO exploited for $292 million with wrapped ether ..."
+        },
+        {
+          "url": "https://docs.chain.link/ccip/concepts/architecture/offchain/overview",
+          "title": "Offchain Architecture - Overview | Chainlink Documentation"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
-        "google_news:article:f96e96e241a4f3af"
+        "google_news:article:f96e96e241a4f3af",
+        "rss:thedefiant.io_api_feed:5c80c364e2cf3f4a",
+        "rss:decrypt.co_feed:e04c0517eb6051bf"
       ],
       "sources": [
         {
           "url": "https://www.coindesk.com/business/2026/09/28/chainlink-updates-its-crypto-bridge-tech-months-after-a-usd292-million-hack-shook-the-industry",
           "label": "CoinDesk",
           "source_type": "google_news",
+          "official": false
+        },
+        {
+          "url": "https://thedefiant.io/news/infrastructure/chainlink-launches-ccip-2-0-with-custom-verifiers-and-faster-transfers",
+          "label": "The Defiant",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://decrypt.co/379463/chainlink-institutions-add-bridge-checks-kelp-hack",
+          "label": "Decrypt",
+          "source_type": "rss",
           "official": false
         }
       ]
