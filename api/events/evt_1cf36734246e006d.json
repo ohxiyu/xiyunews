@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_1cf36734246e006d/",
   "json": "https://xiyu.news/api/events/evt_1cf36734246e006d.json",
   "type": "security_incident",
-  "status": "developing",
+  "status": "resolved",
   "category": "crypto",
   "title": {
     "zh": "NEAR Intents 遭攻击损失超380万美元并暂停服务",
     "en": "NEAR Intents exploited for over $3.8M and halts services"
   },
   "current_state": {
-    "zh": "NEAR Intents 攻击事件中，攻击者已通过链上转账留言表示愿意合作并请求 Signal 联系方式，项目方已确认收到并回复感谢合作；此前项目方已识别攻击者身份并发出 48 小时归还资金最后通牒，目前资金尚未全额归还，事件仍在处理中。",
-    "en": "In the NEAR Intents exploit, the attacker has sent on-chain messages offering cooperation and requesting a Signal contact, and the project has acknowledged and thanked them; previously the project identified the attacker and issued a 48-hour ultimatum to return funds; full funds have not yet been returned and the situation is ongoing."
+    "zh": "NEAR Intents 被盗资金已全额追回；团队称在攻击发生后不到 24 小时内锁定责任方、建立沟通，并归功于 AI 安全层 SHIELD。NEAR 表示将继续强化安全系统，事件由此进入资金追回完成后的收尾阶段。",
+    "en": "The stolen NEAR Intents funds have been fully recovered; the team says it identified and contacted the responsible party within 24 hours of the attack and credited the AI security layer SHIELD. NEAR says it will continue strengthening its security systems, and the incident has moved into post-recovery wrap-up."
   },
   "first_seen_at": "2026-10-01T15:11:04.403203+00:00",
-  "last_updated_at": "2026-10-02T14:41:08.884239+00:00",
-  "last_material_change_at": "2026-10-02T14:41:08.884239+00:00",
+  "last_updated_at": "2026-10-03T02:17:05.649754+00:00",
+  "last_material_change_at": "2026-10-03T02:17:05.649754+00:00",
   "confidence": 0.75,
-  "updates_count": 6,
-  "sources_count": 13,
+  "updates_count": 7,
+  "sources_count": 14,
   "entities": [
     "alert",
     "bsc",
@@ -36,18 +36,22 @@
     "near",
     "near-intents",
     "reports",
-    "services"
+    "services",
+    "shield"
   ],
   "identifiers": [],
   "topics": [
+    "ai-security",
     "bsc",
     "cross-chain",
     "crypto-protocols",
     "fund-laundering",
     "fund-recovery",
     "hack",
+    "hack-recovery",
     "hacks",
     "hot-wallet-compromise",
+    "intents",
     "lazarus-group",
     "money-laundering",
     "near",
@@ -344,6 +348,44 @@
         {
           "url": "https://foresightnews.pro/news/h5Detail/114474",
           "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_dca767695d0f206d",
+      "event_id": "evt_1cf36734246e006d",
+      "occurred_at": "2026-10-03T01:47:02Z",
+      "published_at": "2026-10-03T01:47:02Z",
+      "first_seen_at": "2026-10-03T02:17:05.649754Z",
+      "time_precision": "published",
+      "update_type": "resolution",
+      "material_change": true,
+      "title_zh": "NEAR联创谈追回被盗资金：Intents上AI安全层SHIELD锁定黑客",
+      "title_en": "NEAR联创谈追回被盗资金：Intents上AI安全层SHIELD锁定黑客",
+      "what_changed_zh": "NEAR 联创 Illia Polosukhin 表示，NEAR Intents 被盗资金已在不到 24 小时内锁定责任方、建立沟通，并于 UTC 时间 14:30 全额追回；追回归功于 Intents 上的 AI 安全层 SHIELD 及侦查工作。",
+      "what_changed_en": "NEAR co-founder Illia Polosukhin said the stolen NEAR Intents funds were fully recovered after the responsible party was identified and contacted within 24 hours, with full recovery completed at 14:30 UTC; he credited the AI security layer SHIELD on Intents and investigative work.",
+      "current_state_zh": "NEAR Intents 被盗资金已全额追回；团队称在攻击发生后不到 24 小时内锁定责任方、建立沟通，并归功于 AI 安全层 SHIELD。NEAR 表示将继续强化安全系统，事件由此进入资金追回完成后的收尾阶段。",
+      "current_state_en": "The stolen NEAR Intents funds have been fully recovered; the team says it identified and contacted the responsible party within 24 hours of the attack and credited the AI security layer SHIELD. NEAR says it will continue strengthening its security systems, and the incident has moved into post-recovery wrap-up.",
+      "detailed_summary_zh": "NEAR co-founder Illia Polosukhin said stolen NEAR Intents funds were fully recovered within 24 hours, crediting the protocol's AI security layer SHIELD and investigative work for identifying and recovering from the attacker.",
+      "detailed_summary_en": "NEAR co-founder Illia Polosukhin said stolen NEAR Intents funds were fully recovered within 24 hours, crediting the protocol's AI security layer SHIELD and investigative work for identifying and recovering from the attacker.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.96,
+      "story_ids": [
+        "telegram:theblockbeats:198802"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/370124?from=telegram",
+          "label": "theblockbeats",
           "source_type": "telegram",
           "official": false
         }
