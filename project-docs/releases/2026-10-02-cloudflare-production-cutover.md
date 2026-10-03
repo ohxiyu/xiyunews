@@ -3,8 +3,8 @@
 Task: https://github.com/ohxiyu/xiyunews/issues/198
 PR: https://github.com/ohxiyu/xiyunews/pull/199 （Draft，最终生产接管尚未实施）
 Source commit: 基线 91fb5981cd09a51be7c3ef8c355eb6ee179f60fa，PR197 的实际 merge SHA。
-Worker version: 统一项目未部署；现役调度器和看门狗版本见基础记录。
-Deployment: pending；2026-10-03按确认提交部署令牌创建按钮，未读取创建后的页面或令牌值；运营者初次只读校验失败，修订后预检成功并隐藏输入配置两个部署Secret，名称和更新时间已回读。统一Worker未部署，未改主域、Cron、DO/KV或服务器配置。
+Worker version: 暂停预览8b365058-fc4b-46db-9a52-0bc3e156f81b；现役调度器和看门狗版本见基础记录。
+Deployment: partial；2026-10-03两个仓库部署Secret已保存，随后部署统一暂停预览。生产主域/自然调度尚未接管，原项目未停。新项目无 Cron、双开关关闭、RecoveryGate仍外部绑定原namespace，STATE复用原KV，没有迁移DO归属或改服务器配置。
 Verification: 前序基础 99d2465e 的 CI37024644728 全部可用检查和 Pages 预览通过；CodeQL 跳过。当前阶段的新增回归结果随后追加，不沿用基础测试当本阶段全量验证。
 Rollback: 当前阶段未生产切换；保留现役项目与服务器备份，不双调度、不擅自回滚或覆盖发送数据库。
 
@@ -39,6 +39,18 @@ Safari 现役 Worker 设置提供名称字段，官方 Workers Beta PATCH 也支
 运营者随后明确要求直接在生产环境完成全部剩余工作，作为本阶段Worker部署、业务配置和受控切换的授权，不再把隔离预览部署确认列为阻塞。删除或创建持久访问的浏览器动作仍遵循操作时安全确认；不扩大到无关项目、付费服务或绕过身份认证。现役dispatcher版本的只读资源核验确认RECOVERY_GATE原namespace_id为d4f55a5a95624e7e9776bbf050cf1ee7，三个运行Secret名称存在；看门狗ALERT_CHAT_ID及TELEGRAM_BOT_TOKEN名称存在，未读值或迁移状态。
 
 统一后台需要私有仓Contents写权限，调度需要Actions写权限；Cloudflare上传令牌不能充当这类业务认证。已使用Safari打开GitHub单仓库运行令牌配置页，身份为@ohxiyu；进入设置前触发sudo模式再认证，已按页面发起GitHub Mobile安全验证，需运营者本人批准。没有创建新GitHub Token、读取密钥、保存新权限或改动生产域/Cron/Secrets；先补安全配置再接管，不以代理依赖旧项目冒充单项目。手机验证不是创建Token的最终确认，后续权限摘要还要核对。
+
+## GitHub 运行令牌与暂停预览（2026-10-03）
+
+运营者报告完成 GitHub Mobile 验证，随后在权限摘要具体确认：xiyunews-edge-runtime仅选ohxiyu/xiyunews，Contents和Actions读写、Metadata只读、账户权限0，2027-01-01到期；已解释Contents写不只限新闻。按确认点击Generate token一次，创建后的AX/截图和秘密值均未读取，因此记录为已提交创建动作，不能宣称令牌已存入Cloudflare。运营者须从GitHub页面自行复制到隐藏输入，不重复生成或从本机广权限认证替代。
+
+明确生产授权下，采用新项目受控transfer路径，原地改名候选未执行。基于已合并main91fb5981未改的统一入口和配置，固定新出版快照aa09cbc80c082bb83b519d578ac8b83db19d7ca1真实Jekyll渲染44.587秒，校验并上传8528个公开资产；本机生成的Gemfile.lock移至仓库外保留，不写gh-pages。Wrangler4.131.0实际上传统一入口，版本8b365058-fc4b-46db-9a52-0bc3e156f81b、预览https://xiyunews.drminutes.workers.dev，绑定原RecoveryGate外部类和同一STATE KV，无Cron、无主域、双开关false。
+
+独立公网/health回读project/service=xiyunews、repository=ohxiyu/xiyunews、两个固定source/artifact SHA及两个false开关，与部署版本一致。health中的schedule_crons_utc是代码声明的目标排程，不是已激活Cron证据；实际上传配置triggers为空。此步仅隔离部署，不把HTTP健康称为单项目生产验收，原Cron/网站/看门狗均未改。
+
+预览首页、/api/latest.json、/feed-zh.xml、/sitemap.xml、manifest及service-worker均200，随机不存在路径404；最新出版date2026-10-03共14条、generated_at2026-10-02T23:29:27.197755Z。/s/和/api/admin/quick-posts因缺运行/Access配置503闭锁，未绕过鉴权、扩大白名单或发表测试新闻。正式域接管及登录后台仍待后续步骤。
+
+新增scripts/configure_edge_runtime_token.py先校验固定目标、自动发布关闭和目标Secret尚不存在，getpass禁止回显降级，Token只经内存和curl/Wrangler stdin；只写ADMIN_GITHUB_TOKEN/GITHUB_DISPATCH_TOKEN，不用真实内容或dispatch探测写权限，不写凭据文件/命令参数/聊天/日志，错误固定脱敏，部分写入不重试。19项假Token离线测试通过，本机--check-only实际预检通过；真实运行Secrets仍待运营者隐藏输入。根全量999项、治理和diff检查通过；后续明确固定Wrangler --name=xiyunews避免配置文件改名造成错写，19项及治理再次通过。预览canonical为https://xiyu.news/、Secret名称列表为空，没有读取秘密值。前一docs提交2ebb1b9c的CI37036099831全部可用检查及Pages5cbda61a通过，CodeQL跳过；本次远端CI仍需核验，PR199保持Draft。
 
 ## 群名称实际统一与验证
 

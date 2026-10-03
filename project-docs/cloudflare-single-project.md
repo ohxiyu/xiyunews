@@ -10,7 +10,7 @@
 
 此配置只作过渡：自动部署启用前，最终切换 PR 必须把 DO 改为保留原 namespace 的本地绑定，并填写正式 Cron，否则后续发布会恢复过渡配置、移除 Cron。本阶段为 `check_coordinator` 增加同一 `XIYUNEWS_EDGE_ENABLED` 开关：精确 `true` 才切换至 `https://xiyu.news/publication/check`，迁移前默认旧端点，新端点失败不回退补发；两条自动调用工作流同时传递该变量。免 AI 的部署恢复已支持固定新工作流，不再使用旧 Pages hook。
 
-现役控制台出现 Worker 改名入口，[官方 PATCH API](https://developers.cloudflare.com/api/resources/workers/subresources/beta/subresources/workers/methods/edit/)说明未提交字段保持原值。优先评估原地扩展调度器后改名是否能保留同一 Worker/DO/Secret；名称编辑入口本身不是状态保留证据，不在未回读前改配置或抢占 xiyunews 名称。若无法验证，仍沿下述新项目 transfer 路径，不创建空目标状态。
+现役控制台与官方 PATCH API 的原地改名曾作为候选，但状态和秘密值保留未验证，未执行。2026-10-03已采用下述新项目 transfer 路径的第一步：实际部署独立、无 Cron、双开关关闭的 xiyunews 暂停预览，版本8b365058-fc4b-46db-9a52-0bc3e156f81b；原三个项目仍生产。不要再尝试把旧项目改为已占用的同名项目，或创建空目标 DO。
 
 ## 安全配置缺口
 
@@ -29,6 +29,14 @@ GitHub仓库级 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID` 已按具体�
 若提示 GitHub 只读失败，先在发生失败的同一终端运行 `python3 scripts/configure_edge_deploy_token.py --check-github`；该模式不要求令牌、不会写 Secret，也不会读取原值。脚本在隐藏输入前预检，并区分 CLI 缺失、登录失效、仓库权限、限额和网络错误，只输出固定提示，不显示上游正文。PATH 没有 gh 时尝试本机既有 `/opt/homebrew/bin/gh`，不自动安装、换账号或修改代理；需要登录时由运营者完成，不从其他会话复制认证凭据。修复后复用已经创建的 Cloudflare Token，不必再次创建。
 
 ## 切换与验收
+
+### GitHub 运行凭据的隐藏输入
+
+运营者已完成 GitHub Mobile 验证并在操作时确认创建单仓库运行 Token：仅 ohxiyu/xiyunews 的 Contents/Actions 读写、Metadata 只读，无账户权限，2027-01-01到期。已点击 Generate token，但没有读取创建后的页面或截图；令牌是否实际生成由运营者查看页面并复制，不把点击当配置完成。此令牌本身可改选中仓库的任意内容，不只是新闻文件；不使用本机广权限 gh/OAuth 凭据替代。
+
+在本机交互终端运行 `python3 scripts/configure_edge_runtime_token.py`，将新 GitHub Token 粘贴到禁止回显的提示。脚本先核对自动发布未启用、指定账户内 xiyunews 存在、公开健康标识与固定 SHA 完整、双开关关闭、两个目标 Secret 不存在，然后只读核对私有仓和 Actions 可访问；写前再次预检，通过 Wrangler stdin 一次提交 ADMIN_GITHUB_TOKEN/GITHUB_DISPATCH_TOKEN，回读只取名称。错误不输出上游正文，禁止参数/管道/输入回显降级，不写令牌文件，关闭 Wrangler 文件日志和遥测；部分成功不自动重试覆盖。
+
+`--check-only` 模式不读令牌、不写配置，本机已实际通过；19项离线回归均用假 Token。工具不启用 Cron/主域/Access/自动发布、不写测试新闻或派发任务、不触碰旧项目，也不补 Recovery/Telegram/Access 凭据。初始 Secrets 已存在时拒绝覆盖，轮换需发布负责人另行安排。保留新页面至运营者完成复制，不让助手读取一次性秘密值。
 
 1. 基础 PR 全部可用 CI 通过后合并，再从新 main 建立串行生产切换 Issue/分支/PR。确认 Worker 部署授权后可先发布无 Secret、无 Cron、双开关关闭的暂停预览，验证静态资源/API/RSS/sitemap/历史页/404/PWA；此步骤不接管主域或推送，不关闭非正式 origin 的后台拒绝。
 2. 保持新 Cron 暂停，核对 `/health` 项目与 source/artifact SHA、`/ready` 和免 AI 发布路径，内容须与现生产一致。

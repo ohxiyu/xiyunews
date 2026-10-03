@@ -1,6 +1,6 @@
 # 当前交接
 
-项目统一名为 `xiyunews`，网页展示名为 `xiyu.news`。PR195 已保留完整实时历史，PR197 的迁移基础于 2026-10-02 23:09:10（上海时间）合并为 91fb5981；当前串行执行 Issue198 的生产接管，线上仍是原三个 Cloudflare 项目。2026-10-03 00:31已通过运营者隐藏输入保存两个仓库部署Secret并回读名称/更新时间，自动发布开关仍未启用。实时服务器运行新仓 d6a9d3f 完整 SHA，@xiyunewsbot 在原话题 3/5/7 最新已有30条自然成功回执，群名为xiyu.news。API回执、手机收件和看门狗私聊实际告警分别验收，不提前删除现役项目。
+项目统一名为 `xiyunews`，网页展示名为 `xiyu.news`。PR195 已保留完整实时历史，PR197 的迁移基础于 2026-10-02 23:09:10（上海时间）合并为 91fb5981；当前串行执行 Issue198 的生产接管，生产仍由原三个 Cloudflare 项目承担，独立 xiyunews 暂停预览已部署为8b365058。2026-10-03 00:31已通过运营者隐藏输入保存两个仓库部署Secret并回读名称/更新时间，自动发布开关仍未启用；后续单仓库GitHub运行Token已按具体确认提交生成，秘密值未读，待隐藏输入保存。实时服务器运行新仓 d6a9d3f 完整 SHA，@xiyunewsbot 在原话题 3/5/7 最新已核验30条自然成功回执，群名为xiyu.news。API回执、手机收件和看门狗私聊实际告警分别验收，不提前删除现役项目。
 
 <!-- execution-pointer -->
 ```json
@@ -33,17 +33,20 @@
     "运营者确认继续配置后，2026-10-03按原摘要提交Cloudflare令牌创建按钮：仅现役账户Workers Scripts编辑、2027-01-01到期，无DNS/Access/账单权限，创建后的页面和令牌值未读取。初次GitHub校验失败，修订工具后运营者预检成功并隐藏输入配置；回读CLOUDFLARE_ACCOUNT_ID更新于2026-10-02T16:31:00Z、CLOUDFLARE_API_TOKEN更新于16:31:01Z，仅验证名称/时间，未启用自动发布",
     "已准备统一项目启用后使用正式域协调接口；迁移前默认旧端点，新端点失败不回退补发，两条自动调用工作流共享同一启用变量",
     "本阶段主站968项和治理通过，实时61项/契约与看门狗3项通过；用Ruby3.3构建233597f8出版快照并校验8364个资产，统一Wrangler dry-run成功，无实际部署",
-    "按运营者既有Telegram名称确认，核对新Bot管理员及can_change_info权限后仅把原群xiyuNews改为xiyu.news；2026-10-02T15:22:48Z回读名称正确，简介和话题保持，没有改变权限/规则或手工发送测试消息"
+    "按运营者既有Telegram名称确认，核对新Bot管理员及can_change_info权限后仅把原群xiyuNews改为xiyu.news；2026-10-02T15:22:48Z回读名称正确，简介和话题保持，没有改变权限/规则或手工发送测试消息",
+    "2026-10-03运营者完成GitHub Mobile并具体确认后提交单仓库运行Token生成，未读取秘密页面；隐藏输入工具19项离线回归和实际只读预检通过，真实配置待运营者执行",
+    "统一暂停预览8b365058-fc4b-46db-9a52-0bc3e156f81b实际部署，main91fb5981和出版aa09cbc8固定SHA、8528资产；公网health确认两个开关false，首页/API/RSS/sitemap/PWA200、404正常，后台缺配置503闭锁；不接管主域或启动Cron"
   ],
   "unfinished": [
-    "基础PR已合并；最终域名/状态/Cron切换尚未实施，不能把全绿dry-run当成生产",
+    "基础PR已合并，暂停预览8b365058已部署；最终域名/状态/Cron切换尚未实施，不能把预览健康当成生产",
     "GitHub自动部署凭据已配置，仍须安全补齐统一Worker业务运行Secret；可信SSH入口已恢复，不再等待旧配置路径或重复创建部署Token",
     "停旧Cron、迁移原RecoveryGate归属、保持STATE KV、迁域、自然调度与后台验收；最终切换配置须另一个串行PR",
     "实时新仓版本及新Bot已部署并取得三类自然回执；手机收件和看门狗实际私聊告警仍未独立验收，不补发失败消息、不提前删除恢复资源",
-    "完成本阶段回归并建立Draft PR；基础默认关闭，不能据代码合并启用新Cron或删除现役服务；评估新改名API仅是候选路径，实际身份及状态保留尚未验证"
+    "本阶段PR199仍Draft；已选择新项目受控transfer路径并部署独立暂停入口，不再把旧项目改为已占用的xiyunews同名；仍不能启用新Cron或删除现役服务"
   ],
   "validation": [
     "4668f4d6本机完整980项/治理通过，CI37034229414全部可用检查及Pages预览40613c7a通过，CodeQL跳过；部署Secret只读名称/更新时间已确认，XIYUNEWS_EDGE_ENABLED不存在",
+    "2ebb1b9c的CI37036099831全部可用检查及Pages5cbda61a通过，CodeQL跳过；新运行工具19项通过、根999项全量/治理/diff通过，--check-only实际通过；暂停预览latest为2026-10-03、14条、generated_at2026-10-02T23:29:27.197755Z，canonical为xiyu.news；本次远端CI结果待补",
     "2026-10-03只读核验：原dispatcher仍是9774435b-1c72-4dad-9552-0440e2ab574f，三运行Secret名称保留；第一次版本列表网络失败后只读重试成功，没有部署。主域latest仍2026-10-02共14条（此时未到新日07:26），服务器active/MainPID235825/NRestarts0、新Bot管理员、话题3/5/7和群名未变；自然事件30sent/14archived，最新资金1271、公告1270、行情1269，无切换后失败状态",
     "新入口与原dispatcher共94项边缘测试通过、tsc通过，看门狗3项Node通过",
     "本轮根完整953项Python测试通过、治理与实时契约通过；原后台及公开路由51项Node通过，资产及发布门槛10项单独通过；实时3.11的61项/ruff/mypy/compileall基线通过",
@@ -59,7 +62,7 @@
     "后续只读SQLite验收：切换后11条sent、6条按规则archived，无失败记录；最新自然行情1251、Bitget公告1250、资金流向1249；MainPID235825/NRestarts0、Token仅在服务器进程内使用，原话题3/5/7不变"
   ],
   "unverified": [
-    "统一Worker真实部署/流量切换/DO迁入及自然调度；当前配置为过渡状态而非最终单项目",
+    "统一Worker暂停预览已实际部署，生产流量切换/DO迁入及自然调度未验收；当前配置为过渡状态而非最终单项目",
     "新域Access登录后的Quick Post操作、实时群建议简介尚未确认，不擅自更改",
     "手机收件、看门狗实际告警送达；自然message_id已核验，私聊/start也已核验，但未把其chat.id与加密ALERT_CHAT_ID直接比对，未发送测试告警"
   ],
@@ -68,7 +71,7 @@
     "artifact_commit": "31a0cba37ae643962e26ee4c3d8497e88a0f2e1e",
     "edition": "2026-10-02",
     "generated_at": "2026-10-01T23:29:37.357545Z",
-    "worker_version": "调度器9774435b-1c72-4dad-9552-0440e2ab574f；既有Pages07cdba23-711f-4172-92da-1862a24f6e65；统一Worker未部署",
+    "worker_version": "现生产调度器9774435b-1c72-4dad-9552-0440e2ab574f；既有Pages版本待最新回读；统一暂停预览8b365058-fc4b-46db-9a52-0bc3e156f81b不是主域生产",
     "verified_at": "2026-10-02，普通latest API与实时health回读；旧区和旧域绑定面板回读"
   },
   "blockers": [
@@ -76,7 +79,7 @@
     "旧Bot普通member问题已通过授权换为管理员@xiyunewsbot解决，私聊/start和三类自然回执已确认；看门狗实际私聊告警仍未验证，不人为制造故障或重放旧消息",
     "SSH新增持久访问已经操作时确认并完成；Cloudflare新增持久权限、秘密值注入及后续浏览器删除仍须各自安全流程，不从SSH确认扩大权限，不重复询问已完成旧区与三绑定删除"
   ],
-  "next_action": "运营者2026-10-03明确授权直接完成生产环境全部剩余接管，不再等待隔离预览部署确认。先补运行凭据：Safari已登录@ohxiyu，单仓库GitHub令牌设置被sudo安全再验证拦截，已发起GitHub Mobile请求，需要运营者本人批准；不得绕过或要求聊天发送密码/验证码。最终持久令牌创建仍按技能在确切范围准备后操作时确认；之后安全注入、受控接管并自然验收。现役Cron/域/状态保持，部署Secrets不重复输入，旧项目仅在新生产验收后退役。",
+  "next_action": "GitHub Mobile已验证，运营者具体确认后已点击单仓库运行Token生成，未读取秘密页面/值。统一xiyunews暂停预览已实际部署，两个false开关与固定source/artifact SHA回读通过。运营者从GitHub页面复制Token到scripts/configure_edge_runtime_token.py交互隐藏输入（--check-only已实际通过），只写暂停Worker两个运行Secrets，助手不得读取页面或用广权限CLI凭据替代。剩余Recovery/Telegram/Access安全配置、停旧Cron、DO迁入、主域切换与自然验收继续串行；自动发布仍不启用，现役Cron/域保持，部署Token不重复输入，旧资源不能先删。",
   "states": {
     "code": "pending",
     "tests": "pending",
