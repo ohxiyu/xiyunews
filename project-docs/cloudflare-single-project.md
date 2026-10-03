@@ -40,7 +40,7 @@ GitHub仓库级 CLOUDFLARE_API_TOKEN 和 CLOUDFLARE_ACCOUNT_ID 已通过隐藏�
 
 1. 已完成基础合并、暂停预览和安全配置；最终配置与切换保护在同一串行 PR199 完成回归，合并后从确切 main SHA 部署。切换前的临时运行配置保持无 Cron/无主域/双开关 false，不关闭非正式 origin 的后台拒绝。
 2. 保持新 Cron 暂停，核对 `/health` 项目与 source/artifact SHA、`/ready` 和免 AI 发布路径，内容须与现生产一致。
-3. 选无活跃日报/分发任务窗口，先停旧 dispatcher/watchdog Cron，保留代码、Secrets 和状态并等回调结束，不双调度。
+3. 选无活跃日报/分发任务窗口，先给旧 dispatcher/watchdog 部署已验证的停用保护（XIYUNEWS_LEGACY_DISABLED=true）并清空旧Cron，保留业务实现/Secrets/状态/历史版本；等待在途调用结束并回读停用状态。Cron撤销有传播延迟，因此旧回调必须在任务入口no-op，不能只凭清空列表就启新Cron。
 4. 使用最终配置的 transfer migration 迁入 RecoveryGate，去掉 script_name；禁止先创建目标类。保持 STATE 同一 KV ID，回读 namespace_id/归属；源和目标代码相同，仅保留原状态，不为了测试写租约/预算或重置数据库。迁移阶段新 Cron 仍暂停。
 5. 经确认将新主域从 Pages 转入 Worker Custom Domain，保持同路径、查询参数与 Access；验收匿名拦截和登录 Quick Post 读取，不发布测试新闻。
 6. 最终统一配置填回原三组 Cron：`26 23 * * *`、`36,46,56 23 * * *`、`*/5 * * * *`。确认双开关开启后才启用自动部署变量，验证自然 workflow_dispatch 和至少两次自然 watchdog 检查。
@@ -51,6 +51,8 @@ GitHub仓库级 CLOUDFLARE_API_TOKEN 和 CLOUDFLARE_ACCOUNT_ID 已通过隐藏�
 ## 工具链安全验证
 
 ### 原设置复用的工具与边界
+
+[Cloudflare说明](https://developers.cloudflare.com/workers/configuration/cron-triggers/)Cron变更可能最多15分钟传播。本轮为旧dispatcher与watchdog增加精确true停用保护，默认未设置时原行为不变；旧Cron回调不请求API/写KV/通知，旧publication/check返回503 retired，health回读停用状态。此保护源代码准备并测试，尚未部署到旧项目；只在实际切换阶段启用，统一项目不设置该旧服务专用变量。新旧回调及自然发送验收仍分别核对，不把部署成功当传播完成。
 
 在生产配置授权下，scripts/configure_edge_preserved_settings.py（uv run python，Python3.11+）先检查暂停目标、已有两个 GitHub 运行 Secret、暂存恢复 Secret 未存在。--inspect-only 仅核验来源、不输出值或保存 Secrets；原 Pages 官方 download config 只导出 plaintext 设置，CLI生成文件位于仓库外0700临时目录，toml为0600，只选三个 Access 字段。服务器通过严格指纹 SSH/root0600配置读取现役 Bot，验证进程、源码及话题不变、备份只有唯一 positive 私聊 ID、getMe/getChat 正确；没有提取原 CF 密文或发送消息。
 

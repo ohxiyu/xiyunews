@@ -37,7 +37,8 @@
     "2026-10-03运营者完成GitHub Mobile并具体确认后提交单仓库运行Token生成，未读取秘密页面；隐藏输入工具19项离线回归和实际只读预检通过，真实配置待运营者执行",
     "统一暂停预览8b365058-fc4b-46db-9a52-0bc3e156f81b实际部署，main91fb5981和出版aa09cbc8固定SHA、8528资产；公网health确认两个开关false，首页/API/RSS/sitemap/PWA200、404正常，后台缺配置503闭锁；不接管主域或启动Cron",
     "运营者隐藏输入运行Token并报告成功，独立回读ADMIN_GITHUB_TOKEN/GITHUB_DISPATCH_TOKEN与ready=ready；原三个Pages plaintext Access设置及服务器Bot/原备份唯一私聊ID安全复用，新增独立暂存Recovery密钥，8个运行Secret及仓库XIYUNEWS_RECOVERY_CHECK_TOKEN名称回读通过，不覆盖旧密钥或发送消息",
-    "最终配置在同一PR199准备原namespace transfer/本地绑定、原KV、原三Cron和正式域；新密钥缺失时fail-closed，旧协调调用默认保留旧值；最终配置dry-run通过，尚未上传或激活"
+    "最终配置在同一PR199准备原namespace transfer/本地绑定、原KV、原三Cron和正式域；新密钥缺失时fail-closed，旧协调调用默认保留旧值；最终配置dry-run通过，尚未上传或激活",
+    "为Cron最长15分钟传播增加旧dispatcher/watchdog精确true停用入口，默认不影响原行为；当前只完成源码与离线测试，尚未部署旧项目或停止原Cron"
   ],
   "unfinished": [
     "基础已合并、暂停版本与8个运行Secret已部署；最终域名/状态/Cron切换尚未实施，不能把预览健康当成生产",
@@ -47,7 +48,7 @@
     "PR199最终代码本机回归已完成，推送后须重新核验当前head可用CI；通过并与main同步后可按站立授权合并代码，生产部署/正式域/自然验收分别记录，不能把合并称为接管完成"
   ],
   "validation": [
-    "b3fcbb6c的CI37101633052全部可用检查/Pages82bb422f通过，CodeQL跳过；本轮全量1019项、治理/diff、94项边缘/types/tsc及完整audit0通过，最终配置dry-run成功；本轮新head远端CI待核验",
+    "b3fcbb6c的CI37101633052全部可用检查/Pages82bb422f通过，CodeQL跳过；本轮全量1019项、治理/diff、加入停用保护后的95项边缘/types/tsc/audit0及看门狗4项通过，最终配置dry-run成功；最新head远端CI待核验",
     "2026-10-03 19:25只读回读暂停版本ae8f5365-8fa6-417e-9d43-0046e8219e94，source91fb5981/artifactaa09cbc8、双开关false；8个运行Secret名称存在，/s/因预览wrong-origin正确403，自动发布变量未启用",
     "4668f4d6本机完整980项/治理通过，CI37034229414全部可用检查及Pages预览40613c7a通过，CodeQL跳过；部署Secret只读名称/更新时间已确认，XIYUNEWS_EDGE_ENABLED不存在",
     "2ebb1b9c的CI37036099831全部可用检查及Pages5cbda61a通过，CodeQL跳过；新运行工具19项通过、根999项全量/治理/diff通过，--check-only实际通过；暂停预览latest为2026-10-03、14条、generated_at2026-10-02T23:29:27.197755Z，canonical为xiyu.news；本次远端CI结果待补",

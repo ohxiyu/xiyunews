@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { problems, step } from "./worker.js";
+import worker, { problems, step } from "./worker.js";
 
 const now = 1_800_000_000_000;
 const healthy = {
@@ -9,6 +9,17 @@ const healthy = {
   monitoring: { per_market: { spot: { last_received: now / 1000 - 3 } }, notification_counts: { sent: 9 } },
   events: { archived: 5 },
 };
+
+test("retired legacy cron performs no health request, KV mutation or notification", async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = () => assert.fail("retired Worker must not fetch");
+  try {
+    await worker.scheduled({}, {XIYUNEWS_LEGACY_DISABLED: "true", STATE: {
+      get: () => assert.fail("retired Worker must not read KV"),
+      put: () => assert.fail("retired Worker must not mutate KV"),
+    }});
+  } finally { globalThis.fetch = originalFetch; }
+});
 
 test("healthy, degraded and warming sources are not problems", () => {
   assert.deepEqual(problems(healthy, now), []);

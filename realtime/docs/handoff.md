@@ -14,6 +14,8 @@
 
 ## 系统现状
 
+迁移停用保护已准备：原watchdog仅在XIYUNEWS_LEGACY_DISABLED精确true时跳过整个回调，防止旧Cron撤销传播期间重复写KV/通知；当前旧生产尚未部署保护或设置该变量。单项目切换仍按根交接串行操作，不据新源代码断言实际定时任务已停。
+
 | 位置 | 内容 |
 | --- | --- |
 | 东京服务器 fomobtc-tokyo（47.79.36.171） | systemd `fomobtc`：全部采集、去重、推送；nginx：`api.fomobtc.com` 只读接口，`fomobtc.com`/`www` 302 到群组；certbot 定时续期两张证书 |

@@ -68,6 +68,21 @@ describe("edition scheduling", () => {
 
 describe("dispatcher behavior", () => {
 
+  it("retires delayed legacy cron and coordinator callbacks without external calls", async () => {
+    const fetchSpy = vi.fn();
+    vi.stubGlobal("fetch", fetchSpy);
+    const retired = {...ENV, XIYUNEWS_LEGACY_DISABLED: "true"};
+    await worker.scheduled({cron: "*/5 * * * *", scheduledTime: Date.now()} as ScheduledController, retired);
+    const response = await worker.fetch(new Request("https://dispatcher.example/publication/check", {
+      method: "POST", headers: {Authorization: "Bearer test-check-token"},
+    }), retired);
+    expect(response.status).toBe(503);
+    expect(await response.json()).toEqual({status: "coordinator_retired"});
+    const health = await worker.fetch(new Request("https://dispatcher.example/health"), retired);
+    expect(await health.json()).toMatchObject({legacy_scheduled_disabled: true});
+    expect(fetchSpy).not.toHaveBeenCalled();
+  });
+
   it("exposes only a read-only health endpoint", async () => {
     const health = await worker.fetch(
       new Request("https://dispatcher.example/health"),

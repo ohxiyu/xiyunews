@@ -66,6 +66,14 @@ Safari 现役 Worker 设置提供名称字段，官方 Workers Beta PATCH 也支
 
 已请求运营者先把Safari切离一次性Token页面，电脑工具未激活前不能跳过get_app_state，因而未读取该页或进行浏览器域名变更。主域仍Pages、旧Cron仍运行，部署Secrets/8个业务Secret都已完成，不再等待重复输入。最终代码通过CI可按站立授权合并，但原域绑定解除需要操作时确认；生产切换和自然验收分别记录，旧资源不能先删。
 
+## 旧 Cron 传播延迟的停用保护（准备，未部署）
+
+复查[官方Cron说明](https://developers.cloudflare.com/workers/configuration/cron-triggers/)发现撤销/变更最多15分钟传播，仅清空旧Cron不足以证明旧回调停止。为旧dispatcher和watchdog入口增加精确true的XIYUNEWS_LEGACY_DISABLED保护，默认未设置不改现生产；启用时scheduled不访问上游/KV、不推送，旧协调入口503 retired，health提供只读停用标识。该变量只用于旧项目，不注入新统一项目，不重写RecoveryGate逻辑或重置数据库。
+
+新增离线dispatcher及watchdog回归模拟旧回调，断言无网络/状态写入或通知；当前旧项目仍未部署保护、仍运行原Cron。实际切换时先发布经main核验的保护与旧停用变量并清空Cron，等在途调用结束和回读正确后才启新调度。新代码完成与旧服务已停止是两种状态，不以此提前宣布单项目接管。
+
+加入此保护后根完整1019项再次通过，边缘完整95项/tsc/types/audit0通过、原dispatcher dry-run通过；watchdog Node 4项通过，治理和diff通过。没有实际部署旧保护、暂停服务或发送消息，当前head新远端CI还需核验。
+
 ## 群名称实际统一与验证
 
 运营者此前明确确认 Telegram 名称为 xiyu.news，本次仅更正现役实时群实际大小写/格式。服务器进程 getMe 为 @xiyunewsbot，原群 administrator 且已有 can_change_info=true；核对新仓 SHA、原群/话题3/5/7之后调用 setChatTitle。2026-10-02T15:22:48.674197Z（上海23:22:48）getChat 回读为 xiyu.news，forum=true，简介逐值保持；不改成员权限、创建话题、重启服务、改 Token/配置或另发宣布/测试消息。Token始终留在服务器，不进入本机、Git 或日志；Telegram 自身可能生成改名服务记录，这不是业务测试推送。

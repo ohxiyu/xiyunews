@@ -10,10 +10,20 @@ import {
   type OAuthEnv,
 } from "./oauth";
 
+interface LifecycleEnv extends Env {
+  // Used only to retire the old Worker while cached Cron triggers propagate.
+  XIYUNEWS_LEGACY_DISABLED?: string;
+}
+
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
+  async fetch(request: Request, env: LifecycleEnv): Promise<Response> {
     const url = new URL(request.url);
     if (url.pathname === "/publication/check") {
+      if (env.XIYUNEWS_LEGACY_DISABLED === "true") {
+        return Response.json({status: "coordinator_retired"}, {
+          status: 503, headers: {"Cache-Control": "no-store"},
+        });
+      }
       if (request.method !== "POST") {
         return new Response(null, { status: 405, headers: { Allow: "POST" } });
       }
@@ -77,6 +87,7 @@ export default {
       version_id: env.CF_VERSION_METADATA?.id ?? null,
       publication_revision: "story-content-v1",
       status: "ok",
+      legacy_scheduled_disabled: env.XIYUNEWS_LEGACY_DISABLED === "true",
       primary_cron_utc: "26 23 * * *",
       schedule_crons_utc: CONFIGURED_CRONS,
       square_check_window_local: "09:00–23:30",
@@ -98,8 +109,12 @@ export default {
 
   async scheduled(
     controller: ScheduledController,
-    env: Env,
+    env: LifecycleEnv,
   ): Promise<void> {
+    if (env.XIYUNEWS_LEGACY_DISABLED === "true") {
+      console.log("xiyunews legacy dispatcher disabled; cron ignored");
+      return;
+    }
     await runCombinedSchedule(controller.cron, controller.scheduledTime, env);
   },
 } satisfies ExportedHandler<Env>;
