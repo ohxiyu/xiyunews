@@ -7,19 +7,19 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Arbitrum Pauses New Stylus Activations in Emergency Security Action",
+    "zh": "Arbitrum因紧急安全行动暂停新的Stylus激活",
     "en": "Arbitrum Pauses New Stylus Activations in Emergency Security Action"
   },
   "current_state": {
-    "zh": "Arbitrum paused new Stylus activations as an emergency security measure, while a new BoLD guard could delay unconfirmed withdrawals if contradictory proofs are accepted.",
-    "en": "Arbitrum paused new Stylus activations as an emergency security measure, while a new BoLD guard could delay unconfirmed withdrawals if contradictory proofs are accepted."
+    "zh": "Arbitrum已于10月2日通过安全委员会紧急暂停Arbitrum One和Nova上的新Stylus激活，原因是通过手写WebAssembly进行的AI辅助攻击风险上升。现有Stylus程序可继续运行并续期，普通Solidity合约不受影响；暂停通过提高激活Gas费实现，无需升级ArbOS。未发现可盗取用户资金的攻击。BoLD一步证明防护机制可在接受矛盾证明时延迟未确认的提款，但需满足冲突条件才会暂停结算。恢复激活的日期未定。",
+    "en": "Arbitrum paused new Stylus activations on Arbitrum One and Nova on October 2 via Security Council emergency action, citing rising risks from AI-assisted attacks via hand-crafted WebAssembly. Existing Stylus programs keep running and can be renewed; ordinary Solidity contracts unaffected. Pause implemented by raising activation gas to prohibitively expensive level, no ArbOS upgrade. No attack enabling theft of user funds discovered. BoLD one-step proof guard can delay unconfirmed withdrawals if conflicting proofs accepted, but pause of settlement depends on condition. No date for restoring activations."
   },
   "first_seen_at": "2026-10-02T22:01:57.893871+00:00",
-  "last_updated_at": "2026-10-02T22:01:57.893871+00:00",
-  "last_material_change_at": "2026-10-02T22:01:57.893871+00:00",
+  "last_updated_at": "2026-10-03T09:59:25.049917+00:00",
+  "last_material_change_at": "2026-10-03T09:59:25.049917+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "action",
     "activations",
@@ -34,7 +34,9 @@
     "arbitrum",
     "bold",
     "layer-2",
-    "stylus"
+    "protocol-security",
+    "stylus",
+    "wasm"
   ],
   "updates": [
     {
@@ -83,6 +85,44 @@
         {
           "url": "https://thedefiant.io/news/security/arbitrum-pauses-new-stylus-activations-in-emergency-security-action",
           "label": "The Defiant",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_9573d5efff2f95c1",
+      "event_id": "evt_33bf5aa7f506fb06",
+      "occurred_at": "2026-10-03T09:50:30Z",
+      "published_at": "2026-10-03T09:50:30Z",
+      "first_seen_at": "2026-10-03T09:59:25.049917Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Arbitrum因AI辅助攻击风险暂停新的Stylus激活",
+      "title_en": "Arbitrum pauses new Stylus activations over AI-assisted attack risks",
+      "what_changed_zh": "新报道补充了暂停范围（Arbitrum One和Nova）、原因（AI辅助攻击通过手写WebAssembly）、通过提高激活Gas费至天文数字实现暂停、无需升级ArbOS、现有Stylus程序可继续续期、未发现可盗取用户资金的攻击、BoLD防护条件等细节。",
+      "what_changed_en": "New report adds details: pause applies to Arbitrum One and Nova; attributed to AI-assisted attacks via hand-crafted WebAssembly; implemented by raising activation gas to prohibitively expensive level; no ArbOS upgrade; existing Stylus programs can use keepalive renewal; no attack enabling theft of user funds discovered; BoLD guard condition.",
+      "current_state_zh": "Arbitrum已于10月2日通过安全委员会紧急暂停Arbitrum One和Nova上的新Stylus激活，原因是通过手写WebAssembly进行的AI辅助攻击风险上升。现有Stylus程序可继续运行并续期，普通Solidity合约不受影响；暂停通过提高激活Gas费实现，无需升级ArbOS。未发现可盗取用户资金的攻击。BoLD一步证明防护机制可在接受矛盾证明时延迟未确认的提款，但需满足冲突条件才会暂停结算。恢复激活的日期未定。",
+      "current_state_en": "Arbitrum paused new Stylus activations on Arbitrum One and Nova on October 2 via Security Council emergency action, citing rising risks from AI-assisted attacks via hand-crafted WebAssembly. Existing Stylus programs keep running and can be renewed; ordinary Solidity contracts unaffected. Pause implemented by raising activation gas to prohibitively expensive level, no ArbOS upgrade. No attack enabling theft of user funds discovered. BoLD one-step proof guard can delay unconfirmed withdrawals if conflicting proofs accepted, but pause of settlement depends on condition. No date for restoring activations.",
+      "detailed_summary_zh": "Arbitrum's Security Council paused new Stylus contract activations across Arbitrum One and Nova on October 2, citing increasingly sophisticated AI-assisted attacks via hand-crafted WebAssembly, while already-active Stylus programs and ordinary Solidity contracts continue to operate.",
+      "detailed_summary_en": "Arbitrum's Security Council paused new Stylus contract activations across Arbitrum One and Nova on October 2, citing increasingly sophisticated AI-assisted attacks via hand-crafted WebAssembly, while already-active Stylus programs and ordinary Solidity contracts continue to operate.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "rss:cryptoslate.com_feed_:a1fa2fcc9ab6ee0e"
+      ],
+      "sources": [
+        {
+          "url": "https://cryptoslate.com/arbitrum-pauses-new-stylus-activations-over-ai-assisted-attack-risks/",
+          "label": "CryptoSlate",
           "source_type": "rss",
           "official": false
         }

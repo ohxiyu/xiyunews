@@ -7,30 +7,34 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "Supabase is acquiring Turso",
+    "zh": "Supabase将收购Turso",
     "en": "Supabase is acquiring Turso"
   },
   "current_state": {
-    "zh": "Supabase announced it is acquiring Turso, the company behind the libSQL/Turso SQLite-compatible database, prompting community debate about Turso's technical future, performance problems, and open-source self-hosting options.",
-    "en": "Supabase announced it is acquiring Turso, the company behind the libSQL/Turso SQLite-compatible database, prompting community debate about Turso's technical future, performance problems, and open-source self-hosting options."
+    "zh": "Supabase 宣布收购 Turso，理由是为 AI Agent 提供可即时按需创建的独立数据库；两家产品暂不合并，Turso 数据库继续开源，计划逐步打通（小任务用 Turso，规模变大后迁移到 Supabase 的 Postgres），Turso 创始人 Glauber Costa 将加入 Supabase 负责 Agent 服务，收购金额未公布。",
+    "en": "Supabase announced it is acquiring Turso to give every AI agent an instantly provisioned database; the products remain separate for now (Turso Database stays open source), with gradual integration planned (small agent tasks on Turso, scaling into Supabase's Postgres), Turso founder Glauber Costa joining Supabase to lead agent-related services, and the deal value undisclosed."
   },
   "first_seen_at": "2026-10-02T17:57:55.067297+00:00",
-  "last_updated_at": "2026-10-02T17:57:55.067297+00:00",
-  "last_material_change_at": "2026-10-02T17:57:55.067297+00:00",
+  "last_updated_at": "2026-10-03T06:21:00.668674+00:00",
+  "last_material_change_at": "2026-10-03T06:21:00.668674+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
+    "agent",
     "supabase",
     "turso"
   ],
   "identifiers": [],
   "topics": [
+    "acquisition",
     "acquisitions",
     "databases",
     "developer-tools",
     "open-source",
-    "sqlite"
+    "sqlite",
+    "supabase",
+    "turso"
   ],
   "updates": [
     {
@@ -42,11 +46,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Supabase is acquiring Turso",
+      "title_zh": "Supabase将收购Turso",
       "title_en": "Supabase is acquiring Turso",
-      "what_changed_zh": "Supabase announced it is acquiring Turso, the company behind the libSQL/Turso SQLite-compatible database, prompting community debate about Turso's technical future, performance problems, and open-source self-hosting options.",
+      "what_changed_zh": "Supabase宣布将收购Turso，即libSQL/Turso SQLite兼容数据库背后的公司，引发社区对Turso的技术前景、性能问题以及开源自托管选项的讨论。",
       "what_changed_en": "Supabase announced it is acquiring Turso, the company behind the libSQL/Turso SQLite-compatible database, prompting community debate about Turso's technical future, performance problems, and open-source self-hosting options.",
-      "current_state_zh": "Supabase announced it is acquiring Turso, the company behind the libSQL/Turso SQLite-compatible database, prompting community debate about Turso's technical future, performance problems, and open-source self-hosting options.",
+      "current_state_zh": "Supabase宣布将收购Turso，即libSQL/Turso SQLite兼容数据库背后的公司，引发社区对Turso的技术前景、性能问题以及开源自托管选项的讨论。",
       "current_state_en": "Supabase announced it is acquiring Turso, the company behind the libSQL/Turso SQLite-compatible database, prompting community debate about Turso's technical future, performance problems, and open-source self-hosting options.",
       "detailed_summary_zh": "Supabase announced it is acquiring Turso, the company behind the libSQL/Turso SQLite-compatible database, prompting community debate about Turso's technical future, performance problems, and open-source self-hosting options.",
       "detailed_summary_en": "Supabase announced it is acquiring Turso, the company behind the libSQL/Turso SQLite-compatible database, prompting community debate about Turso's technical future, performance problems, and open-source self-hosting options.",
@@ -72,6 +76,44 @@
           "url": "https://supabase.com/blog/supabase-is-acquiring-turso",
           "label": "cvburgess",
           "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_51e6e664677b71db",
+      "event_id": "evt_bf5f00beb3982bc5",
+      "occurred_at": "2026-10-03T02:45:02Z",
+      "published_at": "2026-10-03T02:45:02Z",
+      "first_seen_at": "2026-10-03T06:21:00.668674Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Supabase收购Turso：要让每个Agent都能随手开数据库",
+      "title_en": "Supabase收购Turso：要让每个Agent都能随手开数据库",
+      "what_changed_zh": "补充收购细节：收购意在服务 AI Agent（Supabase 每周新建超 100 万个数据库，约 70% 来自 Agent/AI 工具），Turso 的 Rust 版 SQLite 架构可单机管理数百万按需数据库；两家产品暂不合并（Supabase 继续做 Postgres，Turso 继续做 SQLite，现有数据库/API/工作流不变，Turso Database 继续开源），计划逐步打通；Turso 创始人 Glauber Costa 将加入 Supabase 负责 Agent 相关服务；收购金额未披露。",
+      "what_changed_en": "Added deal details: the acquisition targets AI-agent workloads (Supabase says over 1M databases are created weekly, ~70% from agents/AI tools), Turso's Rust SQLite architecture can manage millions of on-demand databases per server; the products will not be merged immediately (Supabase stays on Postgres, Turso stays on SQLite, existing databases/APIs/workflows unchanged, Turso Database remains open source) with gradual integration planned; Turso founder Glauber Costa will join Supabase to lead agent-related services; deal value undisclosed.",
+      "current_state_zh": "Supabase 宣布收购 Turso，理由是为 AI Agent 提供可即时按需创建的独立数据库；两家产品暂不合并，Turso 数据库继续开源，计划逐步打通（小任务用 Turso，规模变大后迁移到 Supabase 的 Postgres），Turso 创始人 Glauber Costa 将加入 Supabase 负责 Agent 服务，收购金额未公布。",
+      "current_state_en": "Supabase announced it is acquiring Turso to give every AI agent an instantly provisioned database; the products remain separate for now (Turso Database stays open source), with gradual integration planned (small agent tasks on Turso, scaling into Supabase's Postgres), Turso founder Glauber Costa joining Supabase to lead agent-related services, and the deal value undisclosed.",
+      "detailed_summary_zh": "Supabase acquired database company Turso, whose Rust-based SQLite implementation can spin up millions of on-demand cloud databases per server, to give every AI agent its own instantly provisioned database, with the two products kept separate for now (Supabase on Postgres, Turso on SQLite, still open source) and gradual integration planned.",
+      "detailed_summary_en": "Supabase acquired database company Turso, whose Rust-based SQLite implementation can spin up millions of on-demand cloud databases per server, to give every AI agent its own instantly provisioned database, with the two products kept separate for now (Supabase on Postgres, Turso on SQLite, still open source) and gradual integration planned.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.9,
+      "story_ids": [
+        "telegram:theblockbeats:198810"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/370131?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]
