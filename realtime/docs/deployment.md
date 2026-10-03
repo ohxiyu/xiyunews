@@ -1,4 +1,6 @@
-# FomoBTC deployment and rollback
+# xiyunews realtime deployment and rollback
+
+当前 Cloudflare 发布入口是根目录 [单项目清单](../../project-docs/cloudflare-single-project.md)，看门狗已并入统一 xiyunews Worker；旧独立配置仅历史保留，禁止在 watchdog 目录重新部署或重跑初始设置脚本。本页服务器路径、systemd 名称与 SQLite 保持不变。实际状态见[当前交接](handoff.md)与[边缘接管证据](releases/cloudflare-cutover-20261003.md)。
 
 ## Combined private repository packaging
 
@@ -23,12 +25,13 @@ for the validated tar stream. SOURCE_COMMIT is this full combined-repository SHA
 systemd unit, /etc/fomobtc.env path, database path or nginx redirect. The complete
 operator-only switch/backup/rollback checklist is below. The 2026-10-02 switch to
 the combined repository is recorded in docs/releases/deploy-20261002-xiyunews-repository.md;
-Telegram delivery remains blocked by the existing group's bot permissions.
+Telegram now uses administrator @xiyunewsbot in the original group/topics and has
+verified natural receipts; device delivery and actual private alerts remain separate.
 Do not rerun the packaging example over the already deployed release.
 
 ## 现有东京服务迁移清单（阶段 4）
 
-完整逐条命令仅维护在 [服务器迁移清单](../../project-docs/realtime-server-migration.md)，包括专用 SSH/可信主机指纹、完整 SHA、独立打包、备份、原子切换、健康与自然回执、看门狗及经授权回退。阶段3历史安全确认与PR195实际合并已完成，2026-10-02已用该合并SHA完成服务器版本切换；源码和三分片通过，Bot群权限导致自然送达尚未通过，见 [实际部署记录](releases/deploy-20261002-xiyunews-repository.md)。不把服务在线写成业务验收完成。
+完整逐条命令仅维护在 [服务器迁移清单](../../project-docs/realtime-server-migration.md)，包括专用 SSH/可信主机指纹、完整 SHA、独立打包、备份、原子切换、健康与自然回执及经授权回退。阶段3历史与服务器新仓切换已完成；@xiyunewsbot管理员和三类自然回执已通过，不再沿用旧Bot成员权限的阻塞。手机与私聊实际告警另验，服务器和边缘SHA分开记录；见[服务器记录](releases/deploy-20261002-xiyunews-repository.md)、[新Bot记录](releases/deploy-20261002-xiyunews-bot.md)与[统一接管](releases/cloudflare-cutover-20261003.md)。
 
 ## Backend: one Linux host, one sender
 
@@ -107,8 +110,9 @@ and acceptance state are recorded separately in the latest handoff.
 
 ## Single host, DNS and watchdog
 
-Everything that serves traffic runs on the Tokyo VPS. Cloudflare only hosts the DNS
-zone (all records DNS-only, grey cloud) and the off-server watchdog.
+The realtime service and its read-only API remain on the Tokyo VPS; its DNS
+records remain DNS-only. Cloudflare's unified xiyunews Worker now hosts the main
+publication site and the off-server watchdog together. Do not deploy another sender.
 
 - DNS: `fomobtc.com`, `www.fomobtc.com` and `api.fomobtc.com` are A records to
   47.79.36.171. Edit them in the Cloudflare dashboard (the wrangler login cannot).
@@ -116,10 +120,11 @@ zone (all records DNS-only, grey cloud) and the off-server watchdog.
   Telegram group invite link on every path. If the link is replaced, edit both
   `return 302` lines and reload nginx. Its certificate (`--cert-name fomobtc.com`)
   renews with the same certbot timer as the API certificate.
-- Watchdog: `scripts/deploy/watchdog` is a Cloudflare Worker (`fomobtc-watchdog`,
-  cron every 5 minutes, KV `STATE`) that reads `https://api.fomobtc.com/api/health`
+- Watchdog: `scripts/deploy/watchdog/worker.js` is reused by the unified
+  `xiyunews` Worker (cron every 5 minutes, original KV `STATE`) and reads `https://api.fomobtc.com/api/health`
   and privately messages the operator after two consecutive failing checks
   (no response, Telegram disabled, spot trades older than 5 minutes, a source in
   error/stale/blocked, or more than 30 queued notices), reminds every 2 hours and
-  announces recovery. Deploy with `npx wrangler deploy` in that directory; secrets
-  `TELEGRAM_BOT_TOKEN` and `ALERT_CHAT_ID` are set by `scripts/setup_watchdog.sh`.
+  announces recovery. Publish through the root cloudflare-unified.yml workflow;
+  credentials are already configured. Never deploy the old standalone config or
+  rerun setup_watchdog.sh, which can overwrite destinations and send test messages.

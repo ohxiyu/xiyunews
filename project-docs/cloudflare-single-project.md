@@ -1,63 +1,55 @@
-# xiyunews 单项目迁移
+# xiyunews 单项目运行清单
 
-基础对应已合并 PR197 / [Issue196](https://github.com/ohxiyu/xiyunews/issues/196)，生产接管对应串行 [Issue198](https://github.com/ohxiyu/xiyunews/issues/198)。最终只有一个 `xiyunews` Worker，提供网站、原后台和 API，以及日报调度和实时看门狗；东京服务仍独立运行，不合并 Python 依赖、数据库或目的地。当前三个边缘项目仍在生产，不可先删后迁。
+2026-10-03 已完成实际生产接管：单个 `xiyunews` Worker 提供 https://xiyu.news 的网站、后台/API、日报调度和实时看门狗；原 RecoveryGate 与 STATE KV 保留。业务代码 PR199 已合并，部署后证据串行回写 [Issue201](https://github.com/ohxiyu/xiyunews/issues/201)，父任务 [Issue198](https://github.com/ohxiyu/xiyunews/issues/198) 的剩余验收/退役仍开放。具体版本和未验证项以 [当前交接](handoff.md) 与 [上线记录](releases/2026-10-03-cloudflare-production-verification.md) 为准，不再执行旧的原地改名或初始Token流程。
 
-## 迁移基础与自动发布
+## 当前入口与状态
 
-`ops/daily-dispatcher/src/unified.ts` 直接复用原网站、dispatcher 和 watchdog，未重做 UI。当前线上暂停版本两个开关关闭且 Cron 为空，RecoveryGate 仍外部绑定原 namespace；本阶段最终配置准备了同 namespace 的 transfer、本地绑定、原三组 Cron 和正式域，STATE 仍复用原 KV。最终配置尚未实际上传，不要因为源码有 true 就认为线上已启用，也不能重建空状态。
+| 资源 | 当前职责与边界 |
+| --- | --- |
+| 私有 ohxiyu/xiyunews | main 管业务代码，realtime/ 保留完整原历史；依赖、数据库与目标分开。 |
+| Worker xiyunews | 正式域、静态 Assets、原后台 handler、调度和看门狗；源/出版完整SHA可由/health回读。 |
+| RECOVERY_GATE | 原 namespace d4f55a5a95624e7e9776bbf050cf1ee7，已transfer至xiyunews本地类；不创建空替代、不delete migration。 |
+| STATE | 原KV469346950dfc4f36b8d9bf9997d960fa；只读核验，不能清空failing/alerted或重置去重。 |
+| 旧 Pages bmtnews | 已解除xiyu.news及对应CNAME，仍暂时保留历史；不是当前主域生产。 |
+| 旧 dispatcher/watchdog | 已部署停用保护、XIYUNEWS_LEGACY_DISABLED=true、Cron为空；暂时保留，不能按旧创建配置重跑。 |
+| 东京systemd fomobtc | 新仓d6a9d3f部署保持，原目录、SQLite/env、话题3/5/7不变；实时域/API/nginx仍用，不清理。 |
 
-`cloudflare-unified.yml` 在出版工作流成功后串行读取最新 `gh-pages` 固定 SHA，Jekyll 渲染、校验资产后部署；不依靠 GITHUB_TOKEN 推送触发另一 push 工作流，不采集、不用 AI、不写状态分支。只有 `XIYUNEWS_EDGE_ENABLED=true` 才可部署；2026-10-03两个仓库部署Secret已保存并回读名称/更新时间，变量仍未启用。新增CI真实构建出版快照并dry-run，不以占位文件证明上线。
+## 自动发布
 
-最终配置现已在同一 Issue198/PR199 准备，不另开重叠任务：保留原 namespace 的本地绑定、transfer tag、正式域和原 Cron，避免后续自动发布恢复过渡状态。check_coordinator 的同一 XIYUNEWS_EDGE_ENABLED 开关精确 true 时才使用正式域和单独暂存的 XIYUNEWS_RECOVERY_CHECK_TOKEN，否则保留旧端点与旧 RECOVERY_CHECK_TOKEN。新密钥缺失时停止，不使用旧密钥/旧端点回退，也不绕过共享锁补发；两条工作流同步传递变量和两个秘密名。免 AI 恢复已支持统一发布工作流。
+`cloudflare-unified.yml` 的 `XIYUNEWS_EDGE_ENABLED` 已设为精确 `true`。只接受可信main上的成功出版事件或main手动派发；同一生产concurrency组串行发布，固定读取main/gh-pages完整SHA，Jekyll渲染、公开资产校验、完整npm audit后部署同一项目，不采集、不调用AI、不写gh-pages/缓存/发送队列。
 
-现役控制台与官方 PATCH API 的原地改名曾作为候选，但状态和秘密值保留未验证，未执行。2026-10-03已采用下述新项目 transfer 路径的第一步：实际部署独立、无 Cron、双开关关闭的 xiyunews 暂停预览，版本8b365058-fc4b-46db-9a52-0bc3e156f81b；原三个项目仍生产。不要再尝试把旧项目改为已占用的同名项目，或创建空目标 DO。
+通常让出版成功自动触发即可。纯部署排查时，已获发布授权的负责人可以运行：
 
-## 安全配置缺口
+```bash
+gh workflow run cloudflare-unified.yml --repo ohxiyu/xiyunews --ref main
+gh run list --repo ohxiyu/xiyunews --workflow cloudflare-unified.yml --limit 5
+curl -fsS https://xiyu.news/health
+```
 
-2026-10-03运营者已隐藏输入单仓库 GitHub 运行 Token，独立回读两个 Secret 名称和 /ready=ready。随后安全复用原 Pages 三个 plaintext Access 设置、服务器现役新 Bot 和话题切换前备份中的唯一私聊 ID，保存到暂停 Worker；当前共8个运行 Secret 名称已回读。原 Worker 的加密值没有导出，单账号邮箱/issuer/AUD原值保留，不进公开文档或 Git；原 CF ALERT_CHAT_ID 的密文仍无法读取直接比对，新的目标来源与原 setup_watchdog.sh 一致，不以此宣称实际告警收件已验证。
+工作流成功后仍需核对source/artifact完整SHA、普通首页/API/RSS/PWA和自然运行；CI/dry-run/预览200不能替代生产。不得用混有多个快照的本机Assets父目录手工上传。首次实际部署验证链接在上线记录中，失败时不盲目重轮换凭据或重跑AI。
 
-GitHub仓库级 CLOUDFLARE_API_TOKEN 和 CLOUDFLARE_ACCOUNT_ID 已通过隐藏输入配置，运行8个 Secret 也已补齐，自动发布仍未启用。本阶段取消对不存在的 xiyunews-production 环境的硬依赖，保留main/可信源/成功/手动启用门槛。[GitHub 文档](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments)说明私有仓环境能力有套餐限制，不购买升级或移除现役保护，不把本机OAuth复制为业务凭据。
+## 调度与恢复
 
-服务器专用可信 SSH 已恢复并完成新仓 SHA 切换；新 Bot 为原群管理员，已有行情、公告和资金流向共 11 条自然发送成功回执。步骤与实际记录见 [服务器清单](realtime-server-migration.md) 和 [新 Bot 记录](../realtime/docs/releases/deploy-20261002-xiyunews-bot.md)，不再等待失效旧配置、重复 /start 或要求给旧 Bot 授权。
+原UTC三组Cron保持：`26 23 * * *`、`36,46,56 23 * * *`、`*/5 * * * *`；上海每日07:26定稿、刊期边界07:00、四小时采集规则不变。两种定时组件由同一入口独立执行，publication失败不抑制实时看门狗；旧服务专用的XIYUNEWS_LEGACY_DISABLED不能设到新项目上。
 
-### 自动发布凭据的隐藏输入
+两条GitHub协调调用使用同一个精确true开关、`https://xiyu.news/publication/check` 与单独 `XIYUNEWS_RECOVERY_CHECK_TOKEN`，统一Worker中对应RECOVERY_CHECK_TOKEN。新Key缺失/接口失败必须停止，不使用旧端点/旧密钥回退或绕过共享锁。旧仓RECOVERY_CHECK_TOKEN没有覆盖；配置初始工具均拒绝覆盖已存在的Secrets，不重跑。
 
-操作时确认新建令牌及写入 GitHub Secrets 后，由运营者在本机交互终端执行 `python3 scripts/configure_edge_deploy_token.py`，粘贴到禁止回显的提示，不把 Token 放到命令参数、环境文件或聊天中。脚本只读校验 Token 状态、指定账户的现役调度器身份、统一发布尚未启用，再通过 stdin 调用 `gh secret set`，回读只取两个 Secret 名称；不修改 Cloudflare 运行配置、不启用变量或部署。需要已登录的 `gh` 和本机 `/usr/bin/curl`；HTTP 不跟随重定向，错误不回显上游输出。若中途失败，只报告部分配置可能存在，不擅自删除或重复轮换。
+[Cloudflare说明](https://developers.cloudflare.com/workers/configuration/cron-triggers/)Cron变更可能最多15分钟传播。旧dispatcher/watchdog已部署入口no-op保护，不能仅凭Cron列表为空就声称旧回调不会执行；读自然日志时区分旧no-op、统一scheduled与GitHub实际workflow_dispatch。不要人为制造故障、重放队列或手动发送测试消息作为验收。
 
-此脚本只解决 GitHub 的 Cloudflare 自动发布权限，不补齐新 Worker 的 GitHub dispatch/Admin/Recovery/Telegram 运行 Secret，也不验证写权限或业务上线。它假定现役调度器尚未改名，须在改名前执行；原地改名后不要按旧名称重跑。需要轮换时另行审查，不能把读校验成功当部署成功。
+## 状态迁移与域名
 
-若提示 GitHub 只读失败，先在发生失败的同一终端运行 `python3 scripts/configure_edge_deploy_token.py --check-github`；该模式不要求令牌、不会写 Secret，也不会读取原值。脚本在隐藏输入前预检，并区分 CLI 缺失、登录失效、仓库权限、限额和网络错误，只输出固定提示，不显示上游正文。PATH 没有 gh 时尝试本机既有 `/opt/homebrew/bin/gh`，不自动安装、换账号或修改代理；需要登录时由运营者完成，不从其他会话复制认证凭据。修复后复用已经创建的 Cloudflare Token，不必再次创建。
+已按 [transfer migration](https://developers.cloudflare.com/durable-objects/reference/durable-object-class-migrations-legacy/#transfer-migration) 将原RecoveryGate移至新Worker，namespace ID未变，STATE仍同一KV。先停旧调度、迁移暂停状态、核对原ID，再接主域和启新Cron；已完成的迁移不能当首次初始化重复执行，也不改服务器数据库或依赖。
 
-## 切换与验收
+xiyu.news已从Pages转为Worker Custom Domain，路径和查询参数由原网站handler/Assets继续处理；HTML旧链接可能由Assets规范化重定向，最终应200。bmt.news旧区/绑定已删除，不恢复旧域跳转，不触碰仍使用的fomobtc.com/API。Pages→Workers依据见[官方迁移说明](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)。
 
-### GitHub 运行凭据的隐藏输入
+## 后台与凭据
 
-运营者已完成 GitHub Mobile 验证并在操作时确认创建单仓库运行 Token：仅 ohxiyu/xiyunews 的 Contents/Actions 读写、Metadata 只读，无账户权限，2027-01-01到期。已点击 Generate token，但没有读取创建后的页面或截图；令牌是否实际生成由运营者查看页面并复制，不把点击当配置完成。此令牌本身可改选中仓库的任意内容，不只是新闻文件；不使用本机广权限 gh/OAuth 凭据替代。
+保留原Access单账号、六路径、issuer/AUD/允许邮箱，正式域匿名请求仍进入Access；预览后台wrong-origin403，不关闭该保护。Quick Post复用原handler，令牌只在Worker中，公共页面无业务密钥。登录后仅只读验收，不发表生产测试新闻；登录页仍有BMTNews Admin显示名，需要仅改名称、保持所有权限设置。
 
-在本机交互终端运行 `python3 scripts/configure_edge_runtime_token.py`，将新 GitHub Token 粘贴到禁止回显的提示。脚本先核对自动发布未启用、指定账户内 xiyunews 存在、公开健康标识与固定 SHA 完整、双开关关闭、两个目标 Secret 不存在，然后只读核对私有仓和 Actions 可访问；写前再次预检，通过 Wrangler stdin 一次提交 ADMIN_GITHUB_TOKEN/GITHUB_DISPATCH_TOKEN，回读只取名称。错误不输出上游正文，禁止参数/管道/输入回显降级，不写令牌文件，关闭 Wrangler 文件日志和遥测；部分成功不自动重试覆盖。
+运行8个Secret及GitHub两个部署Secret已通过隐藏输入/安全原设置复用补齐。Wrangler官方Pages下载仅取三个plaintext Access设置；服务器Bot与私聊目标仅在受保护进程内存/stdin传递，新恢复Key独立随机生成；未导出旧Cloudflare密文或复制CLI OAuth为业务Token。不要要求运营者重复Token或/start，不从截图、日志、剪贴板或聊天读取一次性秘密。
 
-`--check-only` 模式不读令牌、不写配置，本机已实际通过；19项离线回归均用假 Token。工具不启用 Cron/主域/Access/自动发布、不写测试新闻或派发任务、不触碰旧项目，也不补 Recovery/Telegram/Access 凭据。初始 Secrets 已存在时拒绝覆盖，轮换需发布负责人另行安排。保留新页面至运营者完成复制，不让助手读取一次性秘密值。
+## 退役与剩余验收
 
-1. 已完成基础合并、暂停预览和安全配置；最终配置与切换保护在同一串行 PR199 完成回归，合并后从确切 main SHA 部署。切换前的临时运行配置保持无 Cron/无主域/双开关 false，不关闭非正式 origin 的后台拒绝。
-2. 保持新 Cron 暂停，核对 `/health` 项目与 source/artifact SHA、`/ready` 和免 AI 发布路径，内容须与现生产一致。
-3. 选无活跃日报/分发任务窗口，先给旧 dispatcher/watchdog 部署已验证的停用保护（XIYUNEWS_LEGACY_DISABLED=true）并清空旧Cron，保留业务实现/Secrets/状态/历史版本；等待在途调用结束并回读停用状态。Cron撤销有传播延迟，因此旧回调必须在任务入口no-op，不能只凭清空列表就启新Cron。
-4. 使用最终配置的 transfer migration 迁入 RecoveryGate，去掉 script_name；禁止先创建目标类。保持 STATE 同一 KV ID，回读 namespace_id/归属；源和目标代码相同，仅保留原状态，不为了测试写租约/预算或重置数据库。迁移阶段新 Cron 仍暂停。
-5. 经确认将新主域从 Pages 转入 Worker Custom Domain，保持同路径、查询参数与 Access；验收匿名拦截和登录 Quick Post 读取，不发布测试新闻。
-6. 最终统一配置填回原三组 Cron：`26 23 * * *`、`36,46,56 23 * * *`、`*/5 * * * *`。确认双开关开启后才启用自动部署变量，验证自然 workflow_dispatch 和至少两次自然 watchdog 检查。
-7. 新主域公开输出与后台、服务器新仓完整 SHA/三现货分片/自然 message_id 全部核验后，才退役旧项目与旧仓。浏览器删除需操作时确认；保留仍使用的 DO/KV、实时域/API、SQLite、环境文件和备份。
+新主域和原状态已接管；自动部署、两轮自然watchdog、自然dispatch、后台登录读取须分别补录。手机收件/实际私聊告警未验收时如实注明，无告警不能代替收件证据。旧三个边缘项目及旧独立仓库仍暂保留，完成验收并核对旧仓所有分支/PR/独有历史后，再按具体范围退役；浏览器删除和Access保存按操作时确认，不能据域解绑确认扩大范围。
 
-状态迁移依据 [Cloudflare transfer migration](https://developers.cloudflare.com/durable-objects/reference/durable-object-class-migrations-legacy/#transfer-migration)，网站迁移依据 [Pages → Workers](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)。保留现役服务不等于迁移完成，HTTP 200 不等于自然推送；失败时不擅自回滚或启动第二发送者。
-
-## 工具链安全验证
-
-### 原设置复用的工具与边界
-
-[Cloudflare说明](https://developers.cloudflare.com/workers/configuration/cron-triggers/)Cron变更可能最多15分钟传播。本轮为旧dispatcher与watchdog增加精确true停用保护，默认未设置时原行为不变；旧Cron回调不请求API/写KV/通知，旧publication/check返回503 retired，health回读停用状态。此保护源代码准备并测试，尚未部署到旧项目；只在实际切换阶段启用，统一项目不设置该旧服务专用变量。新旧回调及自然发送验收仍分别核对，不把部署成功当传播完成。
-
-在生产配置授权下，scripts/configure_edge_preserved_settings.py（uv run python，Python3.11+）先检查暂停目标、已有两个 GitHub 运行 Secret、暂存恢复 Secret 未存在。--inspect-only 仅核验来源、不输出值或保存 Secrets；原 Pages 官方 download config 只导出 plaintext 设置，CLI生成文件位于仓库外0700临时目录，toml为0600，只选三个 Access 字段。服务器通过严格指纹 SSH/root0600配置读取现役 Bot，验证进程、源码及话题不变、备份只有唯一 positive 私聊 ID、getMe/getChat 正确；没有提取原 CF 密文或发送消息。
-
-实际配置只在内存和受保护子进程 stdin 传递选定字段，错误不转发上游正文、Wrangler文件日志/遥测关闭。新 Recovery 随机密钥保存到统一 Worker 的 RECOVERY_CHECK_TOKEN 和仓库 XIYUNEWS_RECOVERY_CHECK_TOKEN，旧仓库 Secret 不覆盖。所有初始字段存在时拒绝重跑，不自动删除或重复轮换；部分失败保留现场。工具18项与运行Token工具19项假数据测试、实际来源检查及名称回读通过，不等于正式域/自然Cron/手机收件验收。
-
-原锁定 Node 开发依赖 audit 报告 7 项（5 high、2 moderate，Wrangler/Miniflare/Undici/Sharp/Vitest 链）。本轮已锁定 Vitest 4.1.11、Wrangler 4.131.0 和配套 workers-types 5.20260910.1，并用 overrides 锁定 Undici 7.29.1、Sharp 0.35.4；保留测试池 0.22.0，不用 force/legacy-peer-deps。重新安装后完整 npm audit 为 0，94 项边缘测试、类型检查和原调度器 dry-run 通过。
-
-`npm run check` 与统一生产发布工作流均包含覆盖开发依赖的低级别审计门槛，不以 omit-dev 隐藏工具链问题。32a838fb 的 CI37012988502 已完成真实 Jekyll/资产构建及新版本 dry-run，全部可用检查成功；这不是实际部署，也不据原告警宣称主站曾被攻击。没有新增收费服务或模型。服务器连接、版本、Bot 管理员及三类自然回执已验证；Cloudflare 安全配置与生产切换仍未完成，现役边缘服务保留至接管和自然验收。
+必须保留现用DO/KV、实时域/API/DNS/nginx、服务器SQLite/env/备份、SSH和主仓。旧bmtnews-standalone是主仓重定向别名，不能按旧名删除；不影响其他产品或新增收费服务。实际结果回写独立文档PR，不直接提交main，不改历史release。

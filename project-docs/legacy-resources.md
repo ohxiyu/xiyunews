@@ -1,6 +1,6 @@
 # 旧品牌资源清理与保留边界
 
-本记录对应 [Issue193](https://github.com/ohxiyu/xiyunews/issues/193)，核验时间为 2026-10-02。运营者授权删除确实不再使用的 fomobtc/BMTNews 资源，不代表按旧名称批量删除；资源名称、仓库别名和实际运行依赖必须分别判断。后续状态以 [当前交接](handoff.md) 为准。
+早期清理对应 [Issue193](https://github.com/ohxiyu/xiyunews/issues/193)，本清单已按2026-10-03生产切换更新；当前证据任务为[Issue201](https://github.com/ohxiyu/xiyunews/issues/201)。运营者授权删除确实不再使用的旧资源，不代表按旧名称批量删除；资源名称、仓库别名和实际依赖分别判断。统一项目已接管，但下列旧资源未宣称已删除，后续状态以[当前交接](handoff.md)为准。
 
 ## 已删除
 
@@ -17,10 +17,10 @@ Cloudflare Pages 项目 `horizon-ohxiyu` 已删除，并由项目列表确认不
 | `ohxiyu/xiyunews` | 当前私有主仓，必须保留。 |
 | `ohxiyu/bmtnews-standalone` | GitHub 已重定向到主仓，不是独立副本；通过旧名字删除可能删除新主仓，禁止操作。 |
 | `ohxiyu/bmtnews` | 当前访问 404，未找到独立可清理仓库，不把 404 当作已执行删除。 |
-| Pages `bmtnews` | 实际承载 `xiyu.news`，必须保留；旧项目名不是闲置证明。 |
-| Worker `bmtnews-daily-dispatcher` | `/health` 指向 `ohxiyu/xiyunews` 和 `https://xiyu.news`，继续负责采集、日报恢复和分发派发，必须保留。 |
-| `ohxiyu/fomobtc` | PR195已保留完整历史进入主仓main的realtime/，服务器仍是旧2.6.0；等待新仓服务器验收，不提前删恢复入口。 |
-| Worker `fomobtc-watchdog` 及其 STATE KV | 当前五分钟定时看门狗仍运行；没有 HTTP 路由不等于无用，不删除 Worker、Cron 或状态。 |
+| Pages `bmtnews` | xiyu.news绑定及对应CNAME已解除，主域由统一Worker提供；旧项目/历史仍保留，验收后具体确认退役。 |
+| Worker `bmtnews-daily-dispatcher` | 已停用、无Cron、旧协调入口retired；原RecoveryGate已迁入xiyunews，同ID状态必须保留，不能随旧项目清理删除DO。 |
+| `ohxiyu/fomobtc` | PR195保留完整main历史，服务器已运行新仓d6a9d3f；删除/归档前仍须核对其他分支、PR和独有工作，不能用main祖先证明所有内容已合并。 |
+| Worker `fomobtc-watchdog` 及其 STATE KV | 旧Worker已停用、无Cron，统一Worker接管自然检查；STATE仍现用，旧Worker退役不代表KV可以删除。 |
 | `fomobtc.com` DNS 区域与 `api.fomobtc.com` | 原域仍转入既有话题群，只读 API 被看门狗使用；必须保留，不修改 nginx。 |
 | 东京 `fomobtc` 服务、SQLite、环境文件、备份 | 现役实时运行系统，不在清理目标中。 |
 
@@ -38,6 +38,8 @@ Cloudflare Pages 项目 `horizon-ohxiyu` 已删除，并由项目列表确认不
 
 运营者于 2026-10-02 报告 Bot 已更换，仍使用原频道且频道已改名。这是运营者报告，不是读取 Secrets、机器人身份或自然发送回执所得；本次未改 Token、目标 ID、话题、权限、信源或提醒规则，也不假设实时话题群和看门狗凭据同步更换。
 
-运营者本轮另行明确原Token已撤销；历史上传门槛已解除，PR195全绿后以merge commit完成完整历史导入，旧main祖先已核验。下一步仍需原可信SSH从新仓发布，核对完整SHA/三现货分片/自然message_id及看门狗，再退役旧仓；当前没有服务器新仓验收证据，不能提前删除恢复源。
+运营者明确原Token已撤销；PR195全绿后以merge commit完成完整main历史导入，旧main祖先已核验。服务器已按原路径发布新仓d6a9d3f、原Bot改为管理员@xiyunewsbot，三现货分片与三类自然message_id已核验，不再列为未部署；Cloudflare统一项目已接管，但后台登录/自然定时/旧仓独有工作仍分项核对后再退役。证据见[本次接管](releases/2026-10-03-cloudflare-production-verification.md)和[服务器记录](../realtime/docs/releases/deploy-20261002-xiyunews-repository.md)。
+
+2026-10-03进一步只读核验旧实时仓：private、未archive，仅main一个分支、无tags/开放PR，37个关闭PR均merged，旧main7807126d是origin/main祖先。Git历史保留不等于GitHub Issues/PR页面、设置、部署记录或资产完整备份；旧仓退役优先归档保留只读审计，永久删除须说明非Git内容丢失风险并确认，本次仍未执行。
 
 逐条部署步骤见 [服务器迁移清单](realtime-server-migration.md)，运行边界见 [系统架构](system-architecture.md)，Telegram 状态见 [品牌执行清单](telegram-brand-migration.md)。未经验证不归档或删除当前恢复源，不制造生产消息作为验收。
