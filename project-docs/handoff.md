@@ -1,40 +1,54 @@
 # 当前交接
 
-主仓为私有 `ohxiyu/xiyunews`，正式域 https://xiyu.news。10月4日日报调度故障已经修复，12条已上线；当前只处理 Telegram 明确403后的安全补推。原迁移 Issue203、后台 Access 和东京实时服务均不并入本任务。
+私有主仓 `ohxiyu/xiyunews`，正式域 https://xiyu.news。10月4日日报延迟故障已修复，网站12条上线，Telegram补推已有真实回执。当前仅补齐验收文档；原迁移、后台和东京实时服务不动。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "运营者确认机器人已加入频道后，核验日报频道权限并安全补推已发布的10月4日日报",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/208",
-  "owner": "当前 Codex 会话，唯一编辑和整合负责人",
-  "branch": "agent/telegram-daily-recovery",
-  "last_verified_commit": "97241d5c95eca4eb68a14b792f5721e963a3c5db",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/209",
+  "goal": "记录10月4日Telegram频道权限核验和已发布日报单次补推的真实回执",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/210",
+  "owner": "当前Codex会话，唯一文档编辑及整合负责人",
+  "branch": "agent/telegram-recovery-evidence",
+  "last_verified_commit": "f6ef027f2ddbf0ebcd17dd1138695a2a66ead7dd",
+  "pr": "待创建，目标main（仅验收文档）",
   "completed": [
-    "核验最新main、干净独立worktree、开放Issue/PR和正式域health；PR205/207已合并，生产仍为source71b3b168/artifactf9b9fb3f/Worker1b668bd4",
-    "确认普通publish遇已发布刊期会直接返回，force_publish重建也刻意不发Telegram；不能以重新出刊补推",
-    "新增Telegram-only main手动工作流，只读原始日报报告和gh-pages刊期，无AI、采集、出刊或队列写入",
-    "仅允许报告明确bot-not-member403且零发送、同刊期/同原始启动时间/同条目数，预检必须为频道和日报Bot管理员发帖权限",
-    "send默认关闭；按刊期串行；有任何历史send调用即拒绝再次发送，包含失败/超时和rerun；发送前写unknown检查点，成功保留message_id脱敏回执",
-    "保持既有每日自动Telegram发送与紧凑消息样式不变，不部署Worker、不修改Secret、权限、X或币安广场队列"
+    "PR209当前head82c48d15完整CI37176222309成功，test/edge/governance和Pages预览通过；CodeQL因私有套餐跳过，实时路径未变正确跳过",
+    "PR209于2026-10-04T04:13:01Z合并为f6ef027f；Telegram Recovery入口已可在main运行，无Worker或网站部署",
+    "只读权限检查37176359276成功；2026-10-04T04:13:21.294388Z permission_verified，Bot在配置日报频道为administrator且can_post_messages=true",
+    "单次补推37176397962成功，来源正常日报37174775715，刊期2026-10-04共12条；2026-10-04T04:14:06.724813Z receipt.status=sent/message_id1366/message_length1747",
+    "沿用前三条首句+其他标题紧凑HTML，最多10条标题、另外2条指向网站；没有AI/采集/重刊/其他渠道/队列/Secret/频道权限/实时服务变更",
+    "业务Issue208已按真实成功回执关闭，先前日报403作为历史记录保留，不改写原run-report"
   ],
-  "unfinished": ["远端PR检查与合并", "真实权限核验及一次安全补推"],
-  "validation": ["uv frozen dev通过；完整pytest1040项通过（1条既有google-genai/Python3.14弃用警告）；Telegram发送与恢复mock测试35项通过；治理及diff检查通过，不调用真实服务"],
-  "unverified": ["日报Bot真实频道管理员发帖权限尚待安全检查", "今日Telegram补推回执及手机收件尚未验收", "明日07:26自然主触发尚未发生"],
+  "unfinished": [
+    "验收文档PR检查与合并"
+  ],
+  "validation": [
+    "业务PR本地uv frozen dev、pytest1040项、35项Telegram mock、治理和diff通过；远端全部可用检查成功",
+    "真实Telegram getMe/getChat/getChatMember核验和sendMessage回执已完成，不使用测试消息"
+  ],
+  "unverified": [
+    "用户手机实际收件及显示效果尚待用户确认",
+    "明日07:26自然主触发尚未发生；原Crypto6/9不足和EN脉络缺失仍是独立质量事项"
+  ],
   "production": {
     "source_commit": "71b3b16881999fa3578dc988f0066c785c772252",
     "artifact_commit": "f9b9fb3fe6f8fbbd3f9a237bb39f3b2b672148aa",
     "edition": "2026-10-04",
     "generated_at": "2026-10-04T03:43:17.666677Z",
     "worker_version": "1b668bd4-ebfd-4bdb-b944-03a408a6a905",
-    "verified_at": "2026-10-04正式域health身份及既有部署版本回读；网站12条验收见前次发布记录"
+    "verified_at": "2026-10-04网站既有健康版本保持；Telegram恢复执行源码f6ef027f，04:13Z权限核验/04:14Z发送回执独立成功"
   },
-  "blockers": ["原Telegram失败明确403；运营者已报告加入频道，但代码不能将该报告视为权限验收"],
-  "next_action": "完整mock测试、治理及远端CI通过后按长期授权合并；在main执行Telegram Recovery send=false，权限通过再send=true一次补推2026-10-04，原始日报run37174775715。不触发日报/force_publish/Worker或其他渠道。记录安全回执，真实手机收件另由用户确认。Crypto6/9与EN脉络缺失仍是独立质量事项。",
-  "states": {"code": "complete", "tests": "complete", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
+  "blockers": [],
+  "next_action": "日报调度、网站正常补刊和Telegram安全补推已完成。当前仅验收文档CI通过后按长期授权合并；等待用户确认手机收件，不再派发今天的日报/Telegram恢复、force_publish或其他渠道。明日07:26自然主触发尚待自然发生，迁移Issue203/QuickPost/质量问题各自独立，不据本指针自动执行。",
+  "states": {
+    "code": "complete",
+    "tests": "complete",
+    "pr_merged": "pending",
+    "deployed": "not_required",
+    "production_verified": "not_required"
+  },
   "evidence": "project-docs/releases/2026-10-04-telegram-recovery.md"
 }
 ```
 
-本任务目录 `work/xiyunews-telegram-recovery`。前次调度修复和网站自然补刊证据见[10月4日恢复](releases/2026-10-04-daily-delay-recovery.md)；业务PR205和部署后文档PR207均已合并。不把网站成功等同于Telegram送达，不用历史任务作为新操作授权。
+五阶段状态属于当前文档PR；业务PR209已合并、Actions恢复入口已上线并真实投递成功。手机阅读效果仍需用户确认。网站与自然调度证据见[日报恢复记录](releases/2026-10-04-daily-delay-recovery.md)，Telegram证据见[安全补推记录](releases/2026-10-04-telegram-recovery.md)。本任务独立目录 `work/xiyunews-telegram-evidence`，不再重复发送或出刊。
