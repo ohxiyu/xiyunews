@@ -10,7 +10,7 @@
   "owner": "当前 Codex 会话，唯一编辑和生产整合负责人",
   "branch": "agent/daily-recovery-evidence",
   "last_verified_commit": "71b3b16881999fa3578dc988f0066c785c772252",
-  "pr": "待创建部署后文档 PR；业务 https://github.com/ohxiyu/xiyunews/pull/205 已合并",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/207（部署后文档；业务PR205已合并）",
   "completed": [
     "核验 main、开放任务与权限；今日无日报运行，生产仍为 2026-10-03",
     "触发既有共享检查并监听生产日志：publication_check_failed / Publication probe failed: HTTP 522；/ready 权限正常",
@@ -21,7 +21,8 @@
     "纯部署37174629571成功，正式域 source_commit=71b3b168，版本f61af910，ready正常，原双开关/Cron保持",
     "自然Cron计划03:40:51Z，于03:41:15Z执行跨分钟仍正确派发 Daily 2026-10-04 via cloudflare-morning-check；无公网522。运行37174775715成功",
     "自动出版部署37174881998成功，正式域版本1b668bd4、当期2026-10-04共12条；首页、中英正文及API与gh-pages精确载荷/revision匹配",
-    "共享检查37175060909成功，03:47:43Z日志healthy/HTTP200/raw_ready=true/public_ready=true/items12；X第1条已有HTTP201回执，第二条按既有计划等待"
+    "共享检查37175060909成功，03:47:43Z日志healthy/HTTP200/raw_ready=true/public_ready=true/items12；X第1条已有HTTP201回执，第二条按既有计划等待",
+    "自然03:50检查在03:50:15.577Z返回healthy/items12，scheduled outcome=ok、exceptions=[]，watchdog/x/square独立正常，无重复出刊"
   ],
   "unfinished": [
     "部署后文档PR检查与合并",
@@ -41,7 +42,7 @@
     "edition": "2026-10-04",
     "generated_at": "2026-10-04T03:43:17.666677Z",
     "worker_version": "1b668bd4-ebfd-4bdb-b944-03a408a6a905",
-    "verified_at": "2026-10-04T03:46Z正式域首页/中英详情/API一致；03:47Z共享恢复healthy"
+    "verified_at": "2026-10-04T03:46Z正式域内容一致；03:47Z共享恢复healthy；03:50Z自然Cron healthy/outcome ok"
   },
   "blockers": [
     "Telegram API明确403：bot is not a member of the channel chat；需要运营者核验日报Bot与目标日报频道关系，不改密钥或频道权限，不索取Token"

@@ -1,6 +1,7 @@
 # 日报延迟与统一 Worker 自探测修复
 
 Task: https://github.com/ohxiyu/xiyunews/issues/204。
+Evidence PR: https://github.com/ohxiyu/xiyunews/pull/207（Issue206部署后文档，五阶段指针为文档提交时快照；最终合并状态以GitHub为准，不循环开PR改自身状态）。
 Source commit: 71b3b16881999fa3578dc988f0066c785c772252，[PR205](https://github.com/ohxiyu/xiyunews/pull/205) 的合并提交；最终head d30fdf125d5faff1b51de5e64221d899e6ae36fb。
 Worker version: 当期自动部署 1b668bd4-ebfd-4bdb-b944-03a408a6a905；修复首次部署f61af910-85c3-4ecc-bac5-7f2222665735，修复前3f034d1a保留故障证据。
 Deployment: 用户明确授权，既有纯部署[37174629571](https://github.com/ohxiyu/xiyunews/actions/runs/37174629571)=success；源码71b3b168、初始资产1fefda76c1aea903871e0446055416c7d4b60b61，03:40Z正式域回读一致。
@@ -41,6 +42,8 @@ uv sync --frozen --extra dev 成功；完整 pytest 1021 项通过（仅依赖�
 既有共享恢复工作流[37175060909](https://github.com/ohxiyu/xiyunews/actions/runs/37175060909)=success，03:47:43Z普通日志healthy/HTTP200；Worker日志raw_ready/public_ready均true、items12，不创建额外日报。只读X队列首条sent/HTTP201，第二条planned，实际到期北京时间15:12:49；币安广场12条已有正常计划，当时无发送回执，不冒称全部发出。
 
 ## 剩余问题与权限边界
+
+自然03:50检查于2026-10-04T03:50:15.577Z再次publication_check healthy/items12/raw_ready=true/public_ready=true，scheduled outcome=ok、exceptions=[]；watchdog:ok、采集fresh、x/square idle。证明当前内容和定时链路已恢复，不只凭手动检查成功。明日晨间触发仍需另验。
 
 - 本次run-report.status=warning，而非全链路无警告。既有日报Telegram返回403：Forbidden: bot is not a member of the channel chat；目标日报频道成员/管理员关系需要运营者确认，非代码重试能修复。未修改Secret或频道权限，不重刊、不清队列、不反复发送。日报频道与东京实时话题群不能混用，手机收件未验收。
 - Crypto合格主轨6/9、AI4条、政策2条；现有生产配置AI上限5而数据契约仍写3，属于原有策略/文档偏差，本次不擅自改配额或降低评分凑数。
