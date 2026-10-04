@@ -31,6 +31,7 @@ class TelegramDeliveryResult:
     status: TelegramDeliveryStatus
     detail: str = ""
     message_length: int = 0
+    message_id: int | None = None
 
 
 _MARKDOWN_LINK = re.compile(r"\[([^]]+)]\([^)]*\)")
@@ -320,10 +321,13 @@ class TelegramEditionPublisher:
                     message_length=len(message),
                 )
             if response.is_success and data.get("ok") is True:
+                result = data.get("result")
+                message_id = result.get("message_id") if isinstance(result, dict) else None
                 self.console.print(f"[green]✈️ Telegram {label} sent.[/green]")
                 return TelegramDeliveryResult(
                     TelegramDeliveryStatus.SUCCESS,
                     message_length=len(message),
+                    message_id=message_id if type(message_id) is int and message_id > 0 else None,
                 )
             error_code = data.get("error_code", response.status_code)
             description = _redact(

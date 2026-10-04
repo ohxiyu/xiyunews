@@ -1,62 +1,40 @@
 # 当前交接
 
-主仓为私有 `ohxiyu/xiyunews`，正式域 https://xiyu.news。统一 Worker 接管已完成，原 DO/KV、后台 Access 和东京实时服务保持。当前任务是修复 10 月 4 日日报漏刊；迁移收尾另见 Issue203，不并入本次修复。
+主仓为私有 `ohxiyu/xiyunews`，正式域 https://xiyu.news。10月4日日报调度故障已经修复，12条已上线；当前只处理 Telegram 明确403后的安全补推。原迁移 Issue203、后台 Access 和东京实时服务均不并入本任务。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "记录 Issue204 日报延迟修复的真实部署、自然恢复和当期网站验收结果",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/206",
-  "owner": "当前 Codex 会话，唯一编辑和生产整合负责人",
-  "branch": "agent/daily-recovery-evidence",
-  "last_verified_commit": "71b3b16881999fa3578dc988f0066c785c772252",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/207（部署后文档；业务PR205已合并）",
+  "goal": "运营者确认机器人已加入频道后，核验日报频道权限并安全补推已发布的10月4日日报",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/208",
+  "owner": "当前 Codex 会话，唯一编辑和整合负责人",
+  "branch": "agent/telegram-daily-recovery",
+  "last_verified_commit": "97241d5c95eca4eb68a14b792f5721e963a3c5db",
+  "pr": "待创建，目标main",
   "completed": [
-    "核验 main、开放任务与权限；今日无日报运行，生产仍为 2026-10-03",
-    "触发既有共享检查并监听生产日志：publication_check_failed / Publication probe failed: HTTP 522；/ready 权限正常",
-    "统一 HTTP 和 Cron 恢复注入同一个网站处理器，避免 Worker 公网自请求；保留刊期/中英正文/内容版本检查和原锁预算",
-    "补充缺失/已发布/内容不一致的自请求故障回归测试；备用检查日志只输出白名单状态",
-    "用户明确授权通过既有部署工作流更新统一 Worker 并正常补刊，不改 Secret、不 force_publish、不手写队列",
-    "业务 PR205 最新 head d30fdf12 的全部可用 CI 和预览通过，合并为71b3b168；CodeQL按私有套餐跳过",
-    "纯部署37174629571成功，正式域 source_commit=71b3b168，版本f61af910，ready正常，原双开关/Cron保持",
-    "自然Cron计划03:40:51Z，于03:41:15Z执行跨分钟仍正确派发 Daily 2026-10-04 via cloudflare-morning-check；无公网522。运行37174775715成功",
-    "自动出版部署37174881998成功，正式域版本1b668bd4、当期2026-10-04共12条；首页、中英正文及API与gh-pages精确载荷/revision匹配",
-    "共享检查37175060909成功，03:47:43Z日志healthy/HTTP200/raw_ready=true/public_ready=true/items12；X第1条已有HTTP201回执，第二条按既有计划等待",
-    "自然03:50检查在03:50:15.577Z返回healthy/items12，scheduled outcome=ok、exceptions=[]，watchdog/x/square独立正常，无重复出刊"
+    "核验最新main、干净独立worktree、开放Issue/PR和正式域health；PR205/207已合并，生产仍为source71b3b168/artifactf9b9fb3f/Worker1b668bd4",
+    "确认普通publish遇已发布刊期会直接返回，force_publish重建也刻意不发Telegram；不能以重新出刊补推",
+    "新增Telegram-only main手动工作流，只读原始日报报告和gh-pages刊期，无AI、采集、出刊或队列写入",
+    "仅允许报告明确bot-not-member403且零发送、同刊期/同原始启动时间/同条目数，预检必须为频道和日报Bot管理员发帖权限",
+    "send默认关闭；按刊期串行；有任何历史send调用即拒绝再次发送，包含失败/超时和rerun；发送前写unknown检查点，成功保留message_id脱敏回执",
+    "保持既有每日自动Telegram发送与紧凑消息样式不变，不部署Worker、不修改Secret、权限、X或币安广场队列"
   ],
-  "unfinished": [
-    "部署后文档PR检查与合并",
-    "Telegram日报403：机器人不在目标频道，待运营者确认加入及管理员权限后另行安全补推；不重刊或反复重试",
-    "内容质量另有Crypto6/9不足和EN今日脉络缺失；未在本次调度修复改变评分、来源或配额"
-  ],
-  "validation": [
-    "uv frozen dev 成功；完整 pytest 1021 项通过；npm check 含类型/102 项/audit0/dry-run 通过；网站与后台 Node 测试 37 项通过；治理与 diff 检查通过"
-  ],
-  "unverified": [
-    "Telegram日报未送达，真实手机收件未确认；币安广场12条计划尚未到期，不能把计划视为发出",
-    "明日07:26自然主触发未发生，不以日内补跑证明精确晨间触发"
-  ],
+  "unfinished": ["远端PR检查与合并", "真实权限核验及一次安全补推"],
+  "validation": ["uv frozen dev通过；完整pytest1040项通过（1条既有google-genai/Python3.14弃用警告）；Telegram发送与恢复mock测试35项通过；治理及diff检查通过，不调用真实服务"],
+  "unverified": ["日报Bot真实频道管理员发帖权限尚待安全检查", "今日Telegram补推回执及手机收件尚未验收", "明日07:26自然主触发尚未发生"],
   "production": {
     "source_commit": "71b3b16881999fa3578dc988f0066c785c772252",
     "artifact_commit": "f9b9fb3fe6f8fbbd3f9a237bb39f3b2b672148aa",
     "edition": "2026-10-04",
     "generated_at": "2026-10-04T03:43:17.666677Z",
     "worker_version": "1b668bd4-ebfd-4bdb-b944-03a408a6a905",
-    "verified_at": "2026-10-04T03:46Z正式域内容一致；03:47Z共享恢复healthy；03:50Z自然Cron healthy/outcome ok"
+    "verified_at": "2026-10-04正式域health身份及既有部署版本回读；网站12条验收见前次发布记录"
   },
-  "blockers": [
-    "Telegram API明确403：bot is not a member of the channel chat；需要运营者核验日报Bot与目标日报频道关系，不改密钥或频道权限，不索取Token"
-  ],
-  "next_action": "日报调度修复、自然补刊和网站验收已完成，不重复出刊。文档PR治理/CI通过后按长期授权合并。若运营者确认Telegram频道权限，再按独立安全补推方案处理；当前不以force_publish重做AI或修改发送队列。Crypto6/9与EN脉络缺失作为后续质量事项，原Quick Post/迁移退役待办仍独立。明日07:26实际主触发另待自然发生。",
-  "states": {
-    "code": "complete",
-    "tests": "complete",
-    "pr_merged": "pending",
-    "deployed": "not_required",
-    "production_verified": "not_required"
-  },
-  "evidence": "project-docs/releases/2026-10-04-daily-delay-recovery.md"
+  "blockers": ["原Telegram失败明确403；运营者已报告加入频道，但代码不能将该报告视为权限验收"],
+  "next_action": "完整mock测试、治理及远端CI通过后按长期授权合并；在main执行Telegram Recovery send=false，权限通过再send=true一次补推2026-10-04，原始日报run37174775715。不触发日报/force_publish/Worker或其他渠道。记录安全回执，真实手机收件另由用户确认。Crypto6/9与EN脉络缺失仍是独立质量事项。",
+  "states": {"code": "complete", "tests": "complete", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
+  "evidence": "project-docs/releases/2026-10-04-telegram-recovery.md"
 }
 ```
 
-指针五阶段属于本次部署后文档 PR，不替代业务 PR205 已合并、修复已部署、今日网站验收已完成、Telegram权限待修复的事实。前次接管与原 DO/KV 保留证据见[10 月 3 日生产接管](releases/2026-10-03-cloudflare-production-verification.md)。登录后的 Quick Post、手机收件、旧资源退役依旧单独验收；不修改别的 worktree、实时服务或密钥。本任务独立目录 `work/xiyunews-daily-recovery-evidence`，与原迁移目录隔离。
+本任务目录 `work/xiyunews-telegram-recovery`。前次调度修复和网站自然补刊证据见[10月4日恢复](releases/2026-10-04-daily-delay-recovery.md)；业务PR205和部署后文档PR207均已合并。不把网站成功等同于Telegram送达，不用历史任务作为新操作授权。

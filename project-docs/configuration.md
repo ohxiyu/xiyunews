@@ -770,8 +770,19 @@ Online setup requires no local service:
    `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHANNEL_ID` repository secrets. The
    channel value may be `@channelname`, a plain username, a `t.me` URL, or the
    channel's `-100…` numeric ID.
-4. Run **xiyu.news Daily Edition** manually with `force_publish` enabled to verify
-   the first channel message. Normal 07:26 publication runs send automatically after generation completes.
+4. Normal 07:26 publication runs send automatically after generation completes.
+   Do not force-republish an existing edition to test delivery: rebuilt editions
+   deliberately skip Telegram. For a confirmed bot-not-member 403, use the
+   manual **xiyu.news Telegram Recovery** workflow on `main`, entering the published
+   date and original Daily Edition run ID. First leave `send=false` to verify
+   permissions without posting, then dispatch once with `send=true` after checking
+   the channel. It reuses the existing compact message, with no AI or publication
+   writes. Other failures (including timeouts), changed editions, send reruns and
+   any earlier send invocation for that date are refused. Inspect ambiguous
+   outcomes manually: Telegram provides no sendMessage idempotency key.
+   Sanitized receipts are kept as Actions artifacts for 90 days; the conservative
+   duplicate gate uses workflow history, not artifact retention. This is an
+   operator recovery tool, not a new automatic retry or queue service.
 
 The token is used only to call the official
 [`sendMessage`](https://core.telegram.org/bots/api#sendmessage) endpoint and is
