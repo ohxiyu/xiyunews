@@ -1,7 +1,7 @@
 # 日报延迟与统一 Worker 自探测修复
 
 Task: https://github.com/ohxiyu/xiyunews/issues/204。
-Source commit: 修复前 main d1b53f10d58a73fed70a5e746606363cf3f9c5b3；修复 PR head 待创建。
+Source commit: 修复业务提交 8adce5a677bc04c14fec3f4d7d5c92ba3fa802b2，[PR205](https://github.com/ohxiyu/xiyunews/pull/205)；合并 SHA 待核验。
 Worker version: 修复前 3f034d1a-1bb8-4d37-ac4f-9c70f42e8a65，修复尚未部署。
 Deployment: pending；用户本轮明确授权既有自动部署链路与正常补刊。
 Verification: 2026-10-04T03:23Z production latest=2026-10-03；今日无 daily-summary 运行；ready=ready。完整修复验收待补。

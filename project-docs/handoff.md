@@ -9,8 +9,8 @@
   "issue": "https://github.com/ohxiyu/xiyunews/issues/204",
   "owner": "当前 Codex 会话，唯一编辑和生产整合负责人",
   "branch": "agent/fix-daily-delay",
-  "last_verified_commit": "d1b53f10d58a73fed70a5e746606363cf3f9c5b3",
-  "pr": "待创建；Issue204 独立修复 PR，目标 main",
+  "last_verified_commit": "8adce5a677bc04c14fec3f4d7d5c92ba3fa802b2",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/205",
   "completed": [
     "核验 main、开放任务与权限；今日无日报运行，生产仍为 2026-10-03",
     "触发既有共享检查并监听生产日志：publication_check_failed / Publication probe failed: HTTP 522；/ready 权限正常",
