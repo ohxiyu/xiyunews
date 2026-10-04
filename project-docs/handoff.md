@@ -10,7 +10,7 @@
   "owner": "当前Codex会话，唯一文档编辑及整合负责人",
   "branch": "agent/telegram-recovery-evidence",
   "last_verified_commit": "f6ef027f2ddbf0ebcd17dd1138695a2a66ead7dd",
-  "pr": "待创建，目标main（仅验收文档）",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/211（仅验收文档；业务PR209已合并）",
   "completed": [
     "PR209当前head82c48d15完整CI37176222309成功，test/edge/governance和Pages预览通过；CodeQL因私有套餐跳过，实时路径未变正确跳过",
     "PR209于2026-10-04T04:13:01Z合并为f6ef027f；Telegram Recovery入口已可在main运行，无Worker或网站部署",
@@ -24,7 +24,8 @@
   ],
   "validation": [
     "业务PR本地uv frozen dev、pytest1040项、35项Telegram mock、治理和diff通过；远端全部可用检查成功",
-    "真实Telegram getMe/getChat/getChatMember核验和sendMessage回执已完成，不使用测试消息"
+    "真实Telegram getMe/getChat/getChatMember核验和sendMessage回执已完成，不使用测试消息",
+    "后续文档分支再次uv frozen dev、完整pytest1040项及治理/diff通过；正式域health回读版本/source/artifact均保持"
   ],
   "unverified": [
     "用户手机实际收件及显示效果尚待用户确认",

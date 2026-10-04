@@ -42,4 +42,4 @@ Deployment: Actions手动入口随PR209合并可用；运行 https://github.com/
 Verification: 2026-10-04T04:13Z权限核验成功、04:14Z平台投递回执1366/1747字符/12条刊期，已下载脱敏artifact独立回读；手机收件仍未验证
 Rollback: revert PR209停用入口，不删发送运行历史或既有消息；不得通过重复发送补做验收
 
-以上为业务投递验收，不将当前后续文档PR状态当成业务PR尚未合并；文档PR仅更新证据，不触发生产。
+以上为业务投递验收，不将当前后续文档PR状态当成业务PR尚未合并；[文档PR211](https://github.com/ohxiyu/xiyunews/pull/211)仅更新证据，不触发生产。文档分支再次uv frozen dev、完整pytest1040项、治理及diff通过；正式域health回读status=ok，版本/source/artifact保持，未重新部署。
