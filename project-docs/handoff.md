@@ -10,7 +10,7 @@
   "owner": "当前 Codex 会话，唯一编辑和整合负责人",
   "branch": "agent/telegram-daily-recovery",
   "last_verified_commit": "97241d5c95eca4eb68a14b792f5721e963a3c5db",
-  "pr": "待创建，目标main",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/209",
   "completed": [
     "核验最新main、干净独立worktree、开放Issue/PR和正式域health；PR205/207已合并，生产仍为source71b3b168/artifactf9b9fb3f/Worker1b668bd4",
     "确认普通publish遇已发布刊期会直接返回，force_publish重建也刻意不发Telegram；不能以重新出刊补推",
