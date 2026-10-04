@@ -10,7 +10,7 @@
   "owner": "当前Codex会话，唯一文档编辑及整合负责人",
   "branch": "agent/quick-post-batches-evidence",
   "last_verified_commit": "53af4f4f04926d210a0679515ab7800fe8bb27f1",
-  "pr": "pending（业务PR213已合并）",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/215（仅验收文档；业务PR213已合并部署）",
   "completed": [
     "业务PR213同步main后CI37180286568 test/edge-build/governance及Pages预览通过；CodeQL因现有私有套餐跳过，realtime路径未变跳过",
     "PR213于2026-10-04T05:37:43Z合并为53af4f4f；Deploy Docs37180445715和Cloudflare37180465863成功",

@@ -5,6 +5,8 @@ Issue: https://github.com/ohxiyu/xiyunews/issues/212
 PR: https://github.com/ohxiyu/xiyunews/pull/213
 Local validation source: 6398ceef4ec808ed6be7ec61edae58e4b4da6c0e
 
+Deployment evidence PR: https://github.com/ohxiyu/xiyunews/pull/215
+
 目标：仅处理新输入，人工核对AI预览后整组发布，共享刊期与稳定新闻ID锚点，保留组内输入顺序。不修改日报、评分、配额、翻译或渠道分发。旧单条、编辑、广告和屏蔽记录保留。无新收费服务、数据库或登录方式；模型调用仍消耗既有DeepSeek额度。
 
 用户已授权部署统一Worker；QUICK_POST_AI_API_KEY由用户设置后通知，不能从Actions复制密钥。QUICK_POST_AI_ENABLED=true且密钥存在才调用模型。未配置或失败不保存、不发布、不自动重试。已有STATE KV仅用于24小时精确输入缓存。
