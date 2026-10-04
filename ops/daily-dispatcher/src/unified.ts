@@ -1,4 +1,5 @@
 import dispatcher from "./index";
+import type { RecoveryEnv } from "./recovery";
 // Reuse the audited Pages handler; do not duplicate auth, caching or API routing.
 // @ts-expect-error The existing JavaScript module is validated by its Node tests.
 import website from "../../../docs/_worker.js";
@@ -23,6 +24,11 @@ export interface UnifiedEnv extends Env {
 }
 
 const OPERATIONS = new Set(["/health", "/ready", "/publication/check"]);
+
+function publicationEnv(env: UnifiedEnv, ctx?: ExecutionContext): RecoveryEnv {
+  return {...env, PUBLICATION_FETCH: (request: Request) => website.fetch(request, env, ctx)};
+}
+
 export default {
   async fetch(request: Request, env: UnifiedEnv, ctx: ExecutionContext): Promise<Response> {
     const path = new URL(request.url).pathname;
@@ -32,7 +38,7 @@ export default {
         status: 503, headers: {"Cache-Control": "no-store"},
       });
     }
-    const response = await dispatcher.fetch(request, env);
+    const response = await dispatcher.fetch(request, publicationEnv(env, ctx));
     if (path !== "/health" || !response.ok) return response;
     const health = await response.json() as Record<string, unknown>;
     return Response.json({...health, service: "xiyunews", project: "xiyunews",
@@ -46,7 +52,7 @@ export default {
   async scheduled(controller: ScheduledController, env: UnifiedEnv): Promise<void> {
     const tasks: Promise<void>[] = [];
     if (env.ENABLE_DISPATCHER === "true") {
-      tasks.push(Promise.resolve().then(() => dispatcher.scheduled(controller, env)));
+      tasks.push(Promise.resolve().then(() => dispatcher.scheduled(controller, publicationEnv(env))));
     }
     if (env.ENABLE_REALTIME_WATCHDOG === "true" && controller.cron === "*/5 * * * *") {
       tasks.push(Promise.resolve().then(() => watchdog.scheduled(controller, env)));

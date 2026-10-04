@@ -119,3 +119,16 @@ def test_enabled_edge_without_new_key_does_not_reuse_legacy_key(monkeypatch):
     monkeypatch.setattr(watchdog, "urlopen", opener)
     assert watchdog.check_coordinator() == 1
     opener.assert_not_called()
+
+
+@pytest.mark.parametrize("state,visible", [("check_failed", "check_failed"),
+                                        ("https://example.test/test-secret", "invalid_response")])
+def test_coordinator_logs_only_allowlisted_status(monkeypatch, capsys, state, visible):
+    monkeypatch.setenv("RECOVERY_CHECK_TOKEN", "test-secret")
+    monkeypatch.setattr(watchdog, "urlopen", Mock(return_value=response(503, state)))
+    monkeypatch.setattr(watchdog, "_append_summary", Mock())
+    assert watchdog.check_coordinator() == 1
+    output = capsys.readouterr().out
+    assert f"{visible}（HTTP 503）" in output
+    assert "test-secret" not in output
+    assert "https://" not in output

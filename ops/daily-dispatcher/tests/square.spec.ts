@@ -1,6 +1,7 @@
 import { env } from "cloudflare:test";
 import { afterEach, expect, it, vi } from "vitest";
 import { dispatchSquare, publicationCron, runCombinedSchedule, SQUARE_CRON } from "../src/square";
+import * as recovery from "../src/recovery";
 
 afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 const now = Date.parse("2026-09-12T03:35:00Z");
@@ -69,4 +70,24 @@ it("combined tick runs distribution even when publication is not due", async () 
   vi.stubGlobal("fetch", fetcher);
   await runCombinedSchedule(SQUARE_CRON, now, env);
   expect(fetcher).toHaveBeenCalledTimes(5);
+});
+
+it.each([
+  ["03:30:51", "03:31:23", true],
+  ["04:00:51", "04:01:23", true],
+  ["03:35:51", "03:40:23", false],
+])("preserves scheduled publication cadence when %s arrives at %s", async (scheduled, arrival, expected) => {
+  const time = Date.parse(`2026-10-04T${scheduled}Z`);
+  vi.spyOn(Date, "now").mockReturnValue(Date.parse(`2026-10-04T${arrival}Z`));
+  const check = vi.spyOn(recovery, "runSchedule").mockResolvedValue();
+  vi.stubGlobal("fetch", vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+    if (init?.method === "POST") return new Response(null, {status: 204});
+    const url = String(input);
+    if (url.includes("config.github.json")) return Response.json({x_delivery: {enabled: false, mode: "drip"}});
+    if (url.includes("queue.json")) return Response.json({version: 1, editions: {}, plans: {}});
+    return Response.json({workflow_runs: []});
+  }));
+  await runCombinedSchedule(SQUARE_CRON, time, env);
+  expect(check).toHaveBeenCalledTimes(expected ? 1 : 0);
+  if (expected) expect(check.mock.calls[0]?.[1]).toBe(Date.now());
 });

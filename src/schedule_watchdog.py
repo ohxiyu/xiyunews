@@ -479,6 +479,15 @@ def check_coordinator(*, success_on_recovery: bool = False) -> int:
         state = result.get("status") if isinstance(result, dict) else None
         if not isinstance(state, str):
             raise ValueError("invalid coordinator response")
+        # Log only known states, never arbitrary response text or private URLs.
+        safe_states = {
+            "healthy", "not_due", "check_failed", "check_in_progress",
+            "publication_active", "publication_stuck", "pages_waiting",
+            *{f"{kind}_{outcome}" for kind in ("daily", "pages")
+              for outcome in ("dispatched", "cooldown", "retry_limit", "lock_lost")},
+        }
+        safe_state = state if state in safe_states else "invalid_response"
+        print(f"刊期协调状态：{safe_state}（HTTP {status_code}）")
         _append_summary(
             "## xiyu.news 生产刊期检查\n\n"
             + json.dumps(result, ensure_ascii=False, indent=2) + "\n"

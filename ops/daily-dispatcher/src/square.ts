@@ -27,7 +27,10 @@ export async function runCombinedSchedule(cron: string, scheduledTime: number, e
   if (cron !== SQUARE_CRON && !LEGACY_COMBINED_CRONS.has(cron)) return runSchedule(cron, scheduledTime, env);
   const now = Math.max(scheduledTime, Date.now());
   // Publication, distribution and collection must not block one another.
-  const publication = publicationCron(now);
+  // Select the scheduled cadence, not the minute of eventual delivery. A
+  // 10-minute tick arriving one minute late must still perform its check.
+  // runSchedule separately uses current time for edition/window decisions.
+  const publication = publicationCron(scheduledTime);
   const results = await Promise.allSettled([
     dispatchSquare(env, now).then(status => console.log(JSON.stringify({ event: "square_dispatch", status }))),
     dispatchDistribution(env, "x", now).then(status => console.log(JSON.stringify({ event: "x_dispatch", status }))),
