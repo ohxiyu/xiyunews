@@ -39,7 +39,7 @@
     "/api/quick-posts.json": {
       "get": {
         "summary": "Read the manual Quick Post stream",
-        "description": "Reads the current Git registry at request time with no-store. Defaults to today and yesterday in Asia/Shanghai; repeated date parameters select historical editions. Future dates and drafts are never public. An upstream failure returns 503, never stale generated data. Separate from AI-ranked stories; position is the number of daily stories before the post (0 or null means first, values beyond the current story count mean last). Ties sort by pin, created_at and id descending.",
+        "description": "Reads the current Git registry at request time with no-store. Defaults to today and yesterday in Asia/Shanghai; repeated date parameters select historical editions. Future dates and drafts are never public. An upstream failure returns 503, never stale generated data. Separate from AI-ranked stories. Batch items have a shared batch_id, date and anchor_id (stable edition story ID, null means first), remain contiguous in batch_index order and are not scored or automatically translated. Missing anchors place the entire group last with a visible warning. Legacy single posts use position as the number of daily stories before them. Groups sort by date, pin, created_at and batch ID descending. Raw input, generation provenance and internal notes are never public.",
         "parameters": [{"name":"date","in":"query","description":"Optional edition dates; repeat the parameter up to ten times. Future posts are excluded.","required":false,"style":"form","explode":true,"schema":{"type":"array","maxItems":10,"items":{"type":"string","format":"date"}}}],
         "operationId": "getQuickPosts",
         "responses": {
@@ -84,6 +84,15 @@
                           "updated_at"
                         ],
                         "properties": {
+                          "title": {"type":"string","maxLength":200},
+                          "background": {"type":"string","maxLength":2000},
+                          "market_impact": {"type":"string","maxLength":2000},
+                          "tags": {"type":"array","maxItems":10,"items":{"type":"string","maxLength":50}},
+                          "sources": {"type":"array","maxItems":10,"items":{"type":"object","additionalProperties":false,"required":["title","url"],"properties":{"title":{"type":"string","maxLength":200},"url":{"type":"string","format":"uri"}}}},
+                          "batch_id": {"type":"string","pattern":"^[a-f0-9-]{36}$"},
+                          "batch_index": {"type":"integer","minimum":0,"maximum":7},
+                          "batch_size": {"type":"integer","minimum":1,"maximum":8},
+                          "anchor_id": {"type":["string","null"],"description":"Stable edition story ID, not a rank or ordinal."},
                           "position": {"type":["integer","null"],"minimum":0,"maximum":1000},
                           "id": {
                             "type": "string",
