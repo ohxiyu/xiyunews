@@ -89,6 +89,7 @@ def test_render_web_feed_outputs_final_cards_and_top_level_filters() -> None:
         for article in page.select(".digest-item")
     ] == ["crypto", "technology", "policy", "crypto"]
     assert page.select_one("#zh-2026-07-31-item-1")
+    assert [row["data-story-id"] for row in page.select(".digest-item")] == ["market", "ai", "policy", "protocol"]
     assert "7月31日 00:30" in page.select_one(".source-line").get_text(" ", strip=True)
     assert "本期从 42 条候选中展示 4 条" in markup
     assert len(page.select('.story-share-button[data-story-share="card"]')) == 4

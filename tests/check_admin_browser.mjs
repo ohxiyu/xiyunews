@@ -11,7 +11,7 @@ const browser=await chromium.launch({headless:true});
 let writes=0, failSave=false;
 for(const viewport of [{width:390,height:844},{width:1280,height:900}]) {
  const context=await browser.newContext({viewport,deviceScaleFactor:1});
- let items=[],sha='a'.repeat(40);
+ let items=baseline?[]:[{type:'quick_post',id:'12345678-1234-1234-1234-123456789abc',body:'旧内容',date:'2026-10-04',enabled:false}],sha='a'.repeat(40);
  await context.route(origin+'/**',async route=>{
   const url=new URL(route.request().url());
   if(url.pathname==='/api/admin/state') return route.fulfill({json:{sha,items}});
@@ -31,6 +31,7 @@ for(const viewport of [{width:390,height:844},{width:1280,height:900}]) {
  await page.goto(origin+'/s/');
  await page.locator('#body').waitFor({state:'visible'});
  await page.waitForFunction(()=>!document.getElementById('body').disabled);
+ if(!baseline){await page.getByRole('button',{name:'编辑',exact:true}).first().click();await page.locator('#post-settings').evaluate(node=>node.open=true);}
  if(!baseline){await page.waitForFunction(()=>document.querySelectorAll('#position option').length===3);
  await page.locator('#position').selectOption('1');}
  await page.locator('#body').fill('这是一条编辑手动发布的信息。\n\n第二段包含时间、地点和关键主体。🚀');
@@ -40,6 +41,7 @@ for(const viewport of [{width:390,height:844},{width:1280,height:900}]) {
  assert.match(await page.locator('#body').inputValue(),/第二段/);
  if(!baseline)await page.waitForFunction(()=>document.getElementById('position').value==='1');
  if(!baseline){
+  await page.locator('#post-settings').evaluate(node=>node.open=true);
   await page.locator('#date').fill('2026-09-17');await page.locator('#date').blur();
   await page.waitForFunction(()=>JSON.parse(sessionStorage.getItem('bmt-quick-post-draft-v1')).position===null);
   await page.reload();await page.waitForFunction(()=>!document.getElementById('body').disabled);
@@ -51,7 +53,7 @@ for(const viewport of [{width:390,height:844},{width:1280,height:900}]) {
  failSave=false;await page.locator('#save-draft').click();await page.locator('#entries .entry').waitFor();
  assert.match(await page.locator('#entries').innerText(),/草稿/);
  await page.locator('#publish').click();await page.waitForFunction(()=>document.getElementById('entries').innerText.includes('已保存'));
- assert.match(await page.locator('#entries').innerText(),baseline?/待核实上线/:/未出现在公开流/);
+ assert.match(await page.locator('#entries').innerText(),/未出现在公开流/);
  assert.equal(errors.length,0,errors.join('\n'));
  if(process.env.BROWSER_EVIDENCE_DIR){
   await mkdir(process.env.BROWSER_EVIDENCE_DIR,{recursive:true});

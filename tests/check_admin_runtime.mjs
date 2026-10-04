@@ -4,7 +4,7 @@ import {createRequire} from 'node:module';
 import {readFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const require=createRequire(import.meta.url);
-const {Miniflare}=require(process.env.MINIFLARE_MODULE || 'miniflare');
+const {Miniflare,convertV4MiniflareOptions}=require(process.env.MINIFLARE_MODULE || 'miniflare');
 const keys=await crypto.subtle.generateKey({name:'RSASSA-PKCS1-v1_5',modulusLength:2048,publicExponent:new Uint8Array([1,0,1]),hash:'SHA-256'},true,['sign','verify']);
 const jwk={...await crypto.subtle.exportKey('jwk',keys.publicKey),kid:'test'};
 const env={ADMIN_ACCESS_ISSUER:'https://example.cloudflareaccess.com',ADMIN_ACCESS_AUD:'test',ADMIN_ALLOWED_EMAIL:'test@example.com'};
@@ -18,8 +18,9 @@ export default {async fetch(req,env){
  catch(e){return new Response(e.code,{status:401});}
 }}`;
 let redirect=false;
-const mf=new Miniflare({modules:true,compatibilityDate:'2026-07-29',script,bindings:env,
- outboundService:()=>redirect ? new Response(null,{status:302,headers:{Location:'https://untrusted.example'}}) : Response.json({keys:[jwk]})});
+const options={modules:true,compatibilityDate:'2026-07-29',script,bindings:env,
+ outboundService:()=>redirect ? new Response(null,{status:302,headers:{Location:'https://untrusted.example'}}) : Response.json({keys:[jwk]})};
+const mf=new Miniflare(convertV4MiniflareOptions?convertV4MiniflareOptions(options):options);
 try {
  const headers={'Cf-Access-Jwt-Assertion':token};
  assert.equal((await mf.dispatchFetch('http://localhost/',{headers})).status,200);

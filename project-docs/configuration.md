@@ -5,6 +5,22 @@ title: Configuration Guide
 
 # Configuration Guide
 
+## Quick Post AI preview (unified Worker)
+
+The authenticated /s/ desk reads the existing provider and model from
+data/config.github.json. It does not alter the daily model or quota.
+Set QUICK_POST_AI_API_KEY as a Cloudflare Worker **Secret**, and
+QUICK_POST_AI_ENABLED=true as a Worker variable after the owner confirms the
+secret is ready. Both are required. Never copy the key into Git, browser storage,
+logs or chat; do not copy it from Actions. Missing configuration returns a clear
+503 without model calls, and manual drafts/legacy records remain usable.
+
+No new database or service: existing STATE KV stores validated previews for
+24 hours, keyed by exact normalized input, model and prompt version. Only an
+explicit generate action invokes AI; publishing and viewing do not. Existing
+DeepSeek usage is billable under the owner's current plan; this is not a free
+model-call guarantee. No automatic retries, web searches or channel sends.
+
 xiyu.news is configured through two files: a `.env` file for API keys and a `data/config.json` file for sources, AI provider, and filtering options.
 
 ## AI Providers
