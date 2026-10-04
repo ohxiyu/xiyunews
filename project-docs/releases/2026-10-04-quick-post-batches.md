@@ -13,6 +13,25 @@ Local validation source: 6398ceef4ec808ed6be7ec61edae58e4b4da6c0e
 
 PR、合并、部署、线上验收pending。真实AI、Access登录和真实内容发布尚未验证；等待用户确认Secret及准备真实输入，不用假新闻进行生产验收。模型整理不具备独立来源核验，生成内容仍须人工核对。
 
+以上为合并前快照。业务PR213已于2026-10-04T05:37:43Z合并；代码/测试/合并/部署完成，公共只读验收通过，真实AI和用户Access操作仍未验收。验收文档Issue214，独立文档分支，不再触发生产部署。
+
+Source commit: 53af4f4f04926d210a0679515ab7800fe8bb27f1
+
+Worker version: 9407da2b-307e-47e1-b600-003457c0a24f
+
+Deployment: [Deploy Docs37180445715](https://github.com/ohxiyu/xiyunews/actions/runs/37180445715)成功生成产物3b1aa2a5af7f1388d9f2d0ee4816a126698462e5；
+[Cloudflare37180465863](https://github.com/ohxiyu/xiyunews/actions/runs/37180465863)成功，05:39:39Z部署同名统一Worker，版本ID与health一致。既有变量由keep-vars保留，未修改Secret或启用开关。
+
+Verification: 2026-10-04T05:41:12Z，https://xiyu.news/health健康、源码/产物/Worker版本均匹配；
+/api/latest.json日期2026-10-04、generated_at03:43:17.666677Z、12条保持不变。
+/assets/js/quick-posts.js的SHA256为43e55615260b215010497ef61574b7998a9a9248fa47390f25e9ce327c668bf9，与合并源码字节一致。
+/openapi.json为3.1.1并含batch_id/anchor_id/title/tags/sources；/api/quick-posts.json返回version1、当日日期、Git revision912af7a8275608917f807725b69e4b62ed56e65b、0条（没有新增测试内容）。
+非法日期返回结构化invalid_date错误；/s/和/api/admin/generate匿名均302转邮箱验证，生成接口并未对外开放。没有真实AI或渠道调用。
+
+Remaining acceptance: 等待用户确认在Cloudflare统一Worker xiyunews设置QUICK_POST_AI_API_KEY Secret和QUICK_POST_AI_ENABLED=true变量，随后使用用户真实材料生成预览。未登录Access操作、不验证/发布假新闻；不把公开验收当成AI质量证明。
+
+CI: [37180286568](https://github.com/ohxiyu/xiyunews/actions/runs/37180286568)最终head115fe216成功，test/edge-build/governance及Cloudflare Pages预览通过；CodeQL因现有私有套餐跳过，realtime路径未修改跳过，不宣称完整安全分析已执行。
+
 额外runtime模拟：现有认证测试通过workerd（有效JWT接受、重定向JWKS拒绝），测试脚本使用已安装Miniflare的V4选项转换器兼容新版本，不新增依赖。统一Worker的完整静态资产构建仍由远端edge-build确认。
 
 ## 视觉证据（模拟内容，无生产写入）
