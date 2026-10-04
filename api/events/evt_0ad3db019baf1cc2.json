@@ -43,20 +43,25 @@
       "material_change": true,
       "title_zh": "【PeckShield：Base 上金库攻击事件损失扩大至约 600 万美元】",
       "title_en": "【PeckShield：Base 上金库攻击事件损失扩大至约 600 万美元】",
-      "what_changed_zh": "PeckShield reports that losses from an attack on an unnamed Base vault have grown to approximately $6 million, or about 1,783 wstETH, after an attacker contract was whitelisted and drained aBaswstETH/aTokens across a handful of transactions.",
+      "what_changed_zh": "据 PeckShield 监测，Base 上一未命名金库遭攻击的损失已扩大至约 600 万美元，约合 1783 枚 wstETH。这一数字较此前 Blockaid 就该事件监测到的约 202 万美元有所上升。\n\n据 Foresight News 此前援引 Blockaid 的消息，一个新合约被添加进该金库的白名单，攻击者从金库借出 aBaswstETH 并将 aTokens 发送至该合约，在约 4 笔交易中抽走约 202 万美元。PeckShield 最新给出的约 600 万美元（约 1783 枚 wstETH）显示损失规模已超过最初统计；该金库目前未被公开点名。",
       "what_changed_en": "PeckShield reports that losses from an attack on an unnamed Base vault have grown to approximately $6 million, or about 1,783 wstETH, after an attacker contract was whitelisted and drained aBaswstETH/aTokens across a handful of transactions.",
-      "current_state_zh": "PeckShield reports that losses from an attack on an unnamed Base vault have grown to approximately $6 million, or about 1,783 wstETH, after an attacker contract was whitelisted and drained aBaswstETH/aTokens across a handful of transactions.",
+      "current_state_zh": "据 PeckShield 监测，Base 上一未命名金库遭攻击的损失已扩大至约 600 万美元，约合 1783 枚 wstETH。这一数字较此前 Blockaid 就该事件监测到的约 202 万美元有所上升。\n\n据 Foresight News 此前援引 Blockaid 的消息，一个新合约被添加进该金库的白名单，攻击者从金库借出 aBaswstETH 并将 aTokens 发送至该合约，在约 4 笔交易中抽走约 202 万美元。PeckShield 最新给出的约 600 万美元（约 1783 枚 wstETH）显示损失规模已超过最初统计；该金库目前未被公开点名。",
       "current_state_en": "PeckShield reports that losses from an attack on an unnamed Base vault have grown to approximately $6 million, or about 1,783 wstETH, after an attacker contract was whitelisted and drained aBaswstETH/aTokens across a handful of transactions.",
       "detailed_summary_zh": "PeckShield reports that losses from an attack on an unnamed Base vault have grown to approximately $6 million, or about 1,783 wstETH, after an attacker contract was whitelisted and drained aBaswstETH/aTokens across a handful of transactions.",
       "detailed_summary_en": "PeckShield reports that losses from an attack on an unnamed Base vault have grown to approximately $6 million, or about 1,783 wstETH, after an attacker contract was whitelisted and drained aBaswstETH/aTokens across a handful of transactions.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "wstETH 是 Lido 发行的包装版流动性质押代币，是 stETH 的 DeFi 兼容版本，被广泛集成进借贷等各类协议。根据公开的代币信息，aBaswstETH 是与 Base 上 Aave 相关的 wstETH 代币。Base 是 Coinbase 推出的以太坊二层网络，其上的金库与借贷头寸常通过许可或白名单合约进行管理。",
+      "background_en": "wstETH is Lido's wrapped liquid staking token, a DeFi-compatible version of stETH that is widely integrated across lending and other protocols. aBaswstETH is a wstETH-related token associated with Aave on Base, according to public token listings. Base is Coinbase's Ethereum layer-2 network, where vaults and lending positions are commonly managed through permissioned or whitelisted contracts.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "该事件集中于 Base 上一个持有 wstETH 相关头寸的未命名金库，因此直接风险传导路径是该金库存户及其白名单合约的交易对手方，而非 wstETH 本身。事件会影响市场对 Base 上 DeFi 金库白名单与访问控制风险的观感，并可能引发对其他采用类似许可合约设计的金库的关注。",
+      "market_impact_en": "The incident concentrates on a single unnamed vault holding a wstETH-related position on Base, so the direct exposure runs through that vault's depositors and any counterparties to its whitelisted contracts, rather than through wstETH itself. It feeds sentiment around whitelist and access-control risk in Base DeFi vaults and could draw scrutiny to other vaults using similar permissioned-contract designs.",
       "importance_score": 7.0,
-      "references": [],
+      "references": [
+        {
+          "url": "https://birdeye.so/base/token/0x99CBC45ea5bb7eF3a5BC08FB1B7E56bB2442Ef0D",
+          "title": "ABASWSTETH Price on base | Birdeye"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:foresightnews:119717"
