@@ -80,3 +80,52 @@ def test_all_publication_workflows_regenerate_stream():
     page = (root / "docs/_includes/feed-home.html").read_text()
     assert 'data-quick-post-status' in page
     assert "site.data.quick_posts.html" not in page
+
+
+def batch():
+    return {**ROW, "type": "quick_batch", "raw": "第一条。\n---\n第二条。",
+            "pin": False, "breaking": False, "anchor_id": "story-42",
+            "generation": {"model": "private"}, "image": "",
+            "items": [{"id": char * 36, "title": "新闻 " + char, "body": "正文\n\n第二段",
+                       "background": "背景", "market_impact": "可能影响", "category": "crypto-markets",
+                       "tags": ["crypto"], "sources": [{"title": "材料", "url": "https://example.com/" + char}]}
+                      for char in ("a", "b")]}
+
+
+def test_batch_is_contiguous_and_never_enters_ranked_editorial():
+    group = batch()
+    result = public_posts({"items": [group, {**ROW, "id": "f" * 36}]}, DAY)
+    assert [row["id"] for row in result] == ["f" * 36, "a" * 36, "b" * 36]
+    assert [row["batch_index"] for row in result[1:]] == [0, 1]
+    assert result[1]["anchor_id"] == "story-42"
+    assert not set(result[1]) & {"raw", "generation", "request_hash", "note", "score"}
+    assert not affects_today({"items": []}, {"items": [group]}, DAY)
+    edited = deepcopy(group)
+    edited["items"][0]["body"] = "修改正文"
+    assert not affects_today({"items": [group]}, {"items": [edited]}, DAY)
+    rendered = render_posts(result)
+    assert "<h2>新闻 a</h2>" in rendered and "市场影响" in rendered and "#crypto" in rendered
+    assert "private" not in rendered
+
+
+def test_invalid_or_disabled_group_is_not_partially_published():
+    for mutate in (
+        lambda row: row.update(enabled=False),
+        lambda row: row.update(date="2026-09-11"),
+        lambda row: row.update(anchor_id="<script>"),
+        lambda row: row["items"][1].update(title=""),
+        lambda row: row["items"][1].update(id="a" * 36),
+        lambda row: row["items"][0]["sources"][0].update(url="javascript:bad"),
+        lambda row: row["items"][0].update(tags=["x" * 51]),
+    ):
+        group = batch()
+        mutate(group)
+        assert public_posts({"items": [group]}, DAY) == []
+
+
+def test_batch_escapes_all_generated_fields():
+    group = batch()
+    group["items"][0].update(title="<script>bad</script>", background="<img onerror=x>", tags=["<tag>"])
+    rendered = render_posts(public_posts({"items": [group]}, DAY))
+    assert "<script>" not in rendered and "<img onerror" not in rendered
+    assert "&lt;tag&gt;" in rendered

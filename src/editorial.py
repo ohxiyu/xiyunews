@@ -123,7 +123,7 @@ def editorial_plan_from_payload(payload: object, edition_date: date_type) -> Edi
 
     for index, row in enumerate(rows):
         # Quick Post has a separate public stream, not a fabricated AI-ranked story.
-        if isinstance(row, dict) and row.get("type") == "quick_post":
+        if isinstance(row, dict) and row.get("type") in {"quick_post", "quick_batch"}:
             continue
         try:
             entry = EditorialEntry.model_validate(row)

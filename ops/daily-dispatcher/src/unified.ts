@@ -21,6 +21,8 @@ export interface UnifiedEnv extends Env {
   ADMIN_ACCESS_ISSUER?: string;
   ADMIN_ACCESS_AUD?: string;
   ADMIN_ALLOWED_EMAIL?: string;
+  QUICK_POST_AI_API_KEY?: string;
+  QUICK_POST_AI_ENABLED?: string;
 }
 
 const OPERATIONS = new Set(["/health", "/ready", "/publication/check"]);

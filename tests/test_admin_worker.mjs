@@ -93,7 +93,9 @@ test.beforeEach(()=>{
   return Response.json({sha,content:Buffer.from(JSON.stringify(registry)).toString('base64')});
  };
 });
-test.afterEach(()=>{globalThis.fetch=original;delete globalThis.caches;});
+test.afterEach(()=>{globalThis.fetch=original;delete globalThis.caches;
+ delete env.QUICK_POST_AI_ENABLED;delete env.QUICK_POST_AI_API_KEY;delete env.STATE;
+ env.ASSETS={fetch:async()=>new Response('admin html')};});
 async function request(path='/api/admin/state',body,overrides={}) {
  const headers={'Cf-Access-Jwt-Assertion':await token(),...(body?{'Origin':'https://xiyu.news','X-BMT-Admin':'1','Content-Type':'application/json'}:{}),...overrides};
  return worker.handleRequest(new Request('https://xiyu.news'+path,{method:body?'POST':'GET',headers,body:body?JSON.stringify(body):undefined}),env);
@@ -210,4 +212,135 @@ test('uploaded image is readable immediately and content hash is verified', asyn
  assert.equal(response.status,200);assert.equal(response.headers.get('Content-Type'),'image/png');
  assert.deepEqual(Buffer.from(await response.arrayBuffer()),bytes);
  assert.equal((await worker.handleRequest(new Request('https://xiyu.news/assets/uploads/quick-'+'a'.repeat(64)+'.png'),env)).status,503);
+});
+function batchInput(changes={}) {
+ return {...post(),body:undefined,raw:'第一条原始材料。\n---\n第二条原始材料。',reviewed:true,anchor_id:null,
+  items:['b','c'].map((char,index)=>({id:char.repeat(36),title:'新闻'+index,body:'正文\n\n第二段',category:'crypto-markets',
+  background:'背景',market_impact:'可能影响',tags:['crypto'],sources:[]})),...changes};
+}
+function mockAI(raw, {status=200,finish='stop',content,model='deepseek-flash',wait}={}) {
+ const previous=globalThis.fetch;let calls=0;const requests=[];const cache=new Map();
+ env.QUICK_POST_AI_ENABLED='true';env.QUICK_POST_AI_API_KEY='fake-test-key';
+ env.STATE={get:async key=>cache.get(key),put:async(key,value)=>cache.set(key,JSON.parse(value))};
+ globalThis.fetch=async(url,init)=>{
+  if(url.endsWith('/contents/data/config.github.json?ref=main'))return Response.json({content:Buffer.from(JSON.stringify({ai:{provider:'deepseek',base_url:'https://api.deepseek.com',model}})).toString('base64')});
+  if(url==='https://api.deepseek.com/chat/completions'){
+   calls++;assert.equal(init.redirect,'manual');assert.equal(init.headers.Authorization,'Bearer fake-test-key');
+   requests.push(JSON.parse(init.body));if(wait)await wait;
+   return Response.json({choices:[{finish_reason:finish,message:{content:content??JSON.stringify({items:raw.split(/\n---\n/).map(source=>({source_text:source,title:'新闻标题',body:source,category:'crypto-markets',background:'',market_impact:'',tags:['crypto'],sources:[{title:'AI invented',url:'https://invented.example/'}]}))})}}],usage:{prompt_tokens:100,completion_tokens:40,total_tokens:140}}, {status});
+  }
+  return previous(url,init);
+ };
+ return {requests,cache,calls:()=>calls};
+}
+test('AI missing configuration fails closed without model or registry writes',async()=>{
+ const r=await request('/api/admin/generate',{raw:'配置缺失'});
+ assert.equal(r.status,503);assert.equal((await r.json()).error.code,'ai_not_configured');
+ assert.equal(writes,0);assert.equal(dispatches,0);
+});
+test('AI only sees new input; exact-input cache and grounded input links',async()=>{
+ const raw='材料 https://example.com/source\n---\n另一条材料。';
+ const ai=mockAI(raw);
+ let r=await request('/api/admin/generate',{raw});assert.equal(r.status,200);
+ const first=await r.json();assert.equal(first.items.length,2);assert.equal(first.cache_hit,false);
+ assert.deepEqual(first.items[0].sources,[{title:'原文 1',url:'https://example.com/source'}]);
+ assert.deepEqual(first.items[1].sources,[]);
+ assert.deepEqual(JSON.parse(ai.requests[0].messages[1].content),{raw});
+ assert.equal(ai.requests[0].thinking.type,'disabled');
+ assert.equal(ai.requests[0].model,'deepseek-flash');
+ assert.equal(ai.requests[0].response_format.type,'json_object');
+ assert.equal(ai.calls(),1);assert.equal(writes,0);assert.equal(dispatches,0);
+ r=await request('/api/admin/generate',{raw});const second=await r.json();
+ assert.equal(second.cache_hit,true);assert.equal(ai.calls(),1);assert.equal(second.expires_at,undefined);
+ const changed=raw+' 新进展';mockAI(changed);assert.equal((await request('/api/admin/generate',{raw:changed})).status,200);
+ assert.equal(ai.calls(),1);
+});
+test('AI refuses omission, reordering, malformed JSON, truncation, errors and redirects without retries',async()=>{
+ for(const [n,options] of [
+  [0,{content:'not JSON'}],[1,{finish:'length'}],[2,{status:429}],[3,{status:503}],[4,{status:302}],
+  [5,{content:JSON.stringify({items:[{source_text:'遗漏第一条。',title:'x',body:'x',category:'',tags:[]}]})}],
+  [6,{content:JSON.stringify({items:[{source_text:'第一条6',title:'x',body:'x',category:'not-real',tags:[],sources:[]}]})}],
+ ]) {
+  const raw='第一条'+n+'\n---\n第二条'+n;const ai=mockAI(raw,options);
+  const r=await request('/api/admin/generate',{raw});assert.equal(r.status,502);
+  assert.doesNotMatch(await r.text(),/fake-test-key|not JSON|AI invented/);
+  assert.equal(ai.calls(),1);assert.equal(writes,0);assert.equal(ai.cache.size,0);
+ }
+ assert.throws(()=>worker.validateQuickGeneration({items:[]},'材料'));
+ assert.throws(()=>worker.validateQuickGeneration({items:[{source_text:'第二条'}]},'第一条\n---\n第二条'));
+});
+test('concurrent identical generation shares one provider call',async()=>{
+ let release;const raw='并行材料';const ai=mockAI(raw,{wait:new Promise(resolve=>release=resolve)});
+ const a=request('/api/admin/generate',{raw}),b=request('/api/admin/generate',{raw});
+ while(!ai.calls())await new Promise(resolve=>setTimeout(resolve,1));
+ release();const results=await Promise.all([a,b]);
+ assert.ok(results.every(r=>r.status===200));assert.equal(ai.calls(),1);
+});
+test('provider timeout is sanitized and two distinct in-flight previews bound concurrency',async()=>{
+ let release;const pending=new Promise(resolve=>release=resolve);
+ const ai=mockAI('并发限额一',{wait:pending});
+ const a=request('/api/admin/generate',{raw:'并发限额一'});
+ const b=request('/api/admin/generate',{raw:'并发限额二'});
+ while(ai.calls()<2)await new Promise(resolve=>setTimeout(resolve,1));
+ assert.equal((await request('/api/admin/generate',{raw:'并发限额三'})).status,429);
+ release();await Promise.all([a,b]);assert.equal(ai.calls(),2);
+ const previous=globalThis.fetch;let attempts=0;
+ globalThis.fetch=async(url,init)=>{if(url==='https://api.deepseek.com/chat/completions'){attempts++;throw new DOMException('secret fake-test-key upstream','TimeoutError');}return previous(url,init);};
+ const timeout=await request('/api/admin/generate',{raw:'真实超时模拟材料'});
+ assert.equal(timeout.status,502);assert.doesNotMatch(await timeout.text(),/fake-test-key|secret/);assert.equal(attempts,1);
+});
+test('batch saves once, retains legacy records, provenance and idempotent retry',async()=>{
+ const raw='整组材料';const ai=mockAI(raw);const preview=await (await request('/api/admin/generate',{raw})).json();
+ const input=batchInput({raw,items:preview.items,...{model:preview.model,prompt_version:preview.prompt_version,input_hash:preview.input_hash}});
+ let r=await request('/api/admin/batches',input);assert.equal(r.status,200);
+ assert.equal(writes,1);assert.equal(dispatches,0);assert.equal(ai.calls(),1);
+ assert.equal(registry.items[0].extra,'preserved');assert.equal(registry.items[1].generation.edited,false);
+ r=await request('/api/admin/batches',input);assert.equal(r.status,200);assert.equal(writes,1);
+ r=await request('/api/admin/batches',{...input,items:input.items.map(row=>({...row,body:'改了'}))});
+ assert.equal(r.status,409);assert.equal(writes,1);
+});
+test('batch requires review, valid unique IDs, unchanged revision and existing stable anchor',async()=>{
+ const input=batchInput();
+ for(const changes of [{reviewed:false},{anchor_id:'<bad>'},{items:[]},{items:[input.items[0],input.items[0]]},
+  {items:[{...input.items[0],id:input.id}]},{items:[{...input.items[0],sources:[{title:'bad',url:'javascript:bad'}]}]}]){
+  assert.equal((await request('/api/admin/batches',{...input,...changes})).status,400);
+ }
+ env.ASSETS={fetch:async()=>Response.json({items:[{id:'story-42'}]})};
+ assert.equal((await request('/api/admin/batches',{...input,anchor_id:'missing'})).status,409);
+ assert.equal((await request('/api/admin/batches',{...input,anchor_id:'story-42'})).status,200);
+ assert.equal(registry.items[1].anchor_id,'story-42');assert.equal(writes,1);assert.equal(dispatches,0);
+ assert.equal((await request('/api/admin/entry-state',{sha,index:1,enabled:true})).status,400);
+ assert.equal((await request('/api/admin/entry-state',{sha,index:1,enabled:false})).status,200);
+ assert.equal(registry.items[1].enabled,false);
+});
+test('root or child ID collision never overwrites another batch or single',async()=>{
+ const input=batchInput();assert.equal((await request('/api/admin/batches',input)).status,200);
+ assert.equal((await request('/api/admin/batches',batchInput({id:'d'.repeat(36),items:input.items}))).status,409);
+ assert.equal(writes,1);
+ assert.equal((await request('/api/admin/posts',post({id:'e'.repeat(36)}))).status,200);
+ assert.equal((await request('/api/admin/batches',batchInput({id:'e'.repeat(36),items:[{...input.items[0],id:'f'.repeat(36)}]}))).status,409);
+});
+test('raw-only batch draft is supported; public output is ordered whitelist and excludes invalid groups',()=>{
+ const input=batchInput({type:'quick_batch',date:'2026-09-10',created_at:'time',updated_at:'update',note:'private',generation:{model:'private'}});
+ const rows=worker.publicQuickPosts({items:[input]},'2026-09-10');
+ assert.deepEqual(rows.map(row=>row.batch_index),[0,1]);assert.equal(rows[0].anchor_id,null);
+ assert.equal(rows[0].title,'新闻0');assert.equal(rows[0].batch_size,2);
+ for(const key of ['raw','note','generation','request_hash','enabled','score'])assert.equal(rows[0][key],undefined);
+ for(const changes of [{enabled:false},{date:'2026-09-11'},{items:[{...input.items[0],title:''}]}]){
+  assert.deepEqual(worker.publicQuickPosts({items:[{...input,...changes}]},'2026-09-10'),[]);
+ }
+ assert.equal(worker.validateQuickBatch({...input,enabled:false,items:[]}).items.length,0);
+});
+test('AI prompt cache changes with model and invalid cache is rejected',async()=>{
+ const raw='模型切换的独立材料';const ai=mockAI(raw);
+ await request('/api/admin/generate',{raw});assert.equal(ai.calls(),1);
+ const second=mockAI(raw,{model:'deepseek-other'});
+ const r=await request('/api/admin/generate',{raw});assert.equal((await r.json()).model,'deepseek-other');
+ assert.equal(second.calls(),1);
+ const badRaw='缓存损坏的独立材料';const third=mockAI(badRaw);
+ const good=await (await request('/api/admin/generate',{raw:badRaw})).json();
+ third.cache.set('quickpost-preview:'+good.input_hash,{...good,items:[{title:'invalid'}]});
+ // A cached malformed payload must never become a preview.
+ const retry=await (await request('/api/admin/generate',{raw:badRaw})).json();
+ assert.equal(retry.items[0].body,badRaw);assert.equal(third.calls(),2);
 });

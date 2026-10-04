@@ -1,55 +1,33 @@
 # 当前交接
 
-私有主仓 `ohxiyu/xiyunews`，正式域 https://xiyu.news。10月4日日报延迟故障已修复，网站12条上线，Telegram补推已有真实回执。当前仅补齐验收文档；原迁移、后台和东京实时服务不动。
+私有主仓 ohxiyu/xiyunews，正式域 https://xiyu.news。当前任务为 Quick Post 整组预览与插入；日报、评分、采集、分发和 realtime 均不改。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "记录10月4日Telegram频道权限核验和已发布日报单次补推的真实回执",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/210",
-  "owner": "当前Codex会话，唯一文档编辑及整合负责人",
-  "branch": "agent/telegram-recovery-evidence",
-  "last_verified_commit": "f6ef027f2ddbf0ebcd17dd1138695a2a66ead7dd",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/211（仅验收文档；业务PR209已合并）",
-  "completed": [
-    "PR209当前head82c48d15完整CI37176222309成功，test/edge/governance和Pages预览通过；CodeQL因私有套餐跳过，实时路径未变正确跳过",
-    "PR209于2026-10-04T04:13:01Z合并为f6ef027f；Telegram Recovery入口已可在main运行，无Worker或网站部署",
-    "只读权限检查37176359276成功；2026-10-04T04:13:21.294388Z permission_verified，Bot在配置日报频道为administrator且can_post_messages=true",
-    "单次补推37176397962成功，来源正常日报37174775715，刊期2026-10-04共12条；2026-10-04T04:14:06.724813Z receipt.status=sent/message_id1366/message_length1747",
-    "沿用前三条首句+其他标题紧凑HTML，最多10条标题、另外2条指向网站；没有AI/采集/重刊/其他渠道/队列/Secret/频道权限/实时服务变更",
-    "业务Issue208已按真实成功回执关闭，先前日报403作为历史记录保留，不改写原run-report"
-  ],
-  "unfinished": [
-    "验收文档PR检查与合并"
-  ],
-  "validation": [
-    "业务PR本地uv frozen dev、pytest1040项、35项Telegram mock、治理和diff通过；远端全部可用检查成功",
-    "真实Telegram getMe/getChat/getChatMember核验和sendMessage回执已完成，不使用测试消息",
-    "后续文档分支再次uv frozen dev、完整pytest1040项及治理/diff通过；正式域health回读版本/source/artifact均保持"
-  ],
-  "unverified": [
-    "用户手机实际收件及显示效果尚待用户确认",
-    "明日07:26自然主触发尚未发生；原Crypto6/9不足和EN脉络缺失仍是独立质量事项"
-  ],
+  "goal": "Quick Post：只输入新内容，AI整理预览，人工确认后整组定点插入，不重新评分排序日报",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/212",
+  "owner": "当前Codex会话，唯一编辑及整合负责人",
+  "branch": "agent/quick-post-batches",
+  "last_verified_commit": "0939f4dcdae456b1c3fb284eea54a50e7d6ac734",
+  "pr": "pending",
+  "completed": ["核验最新main、Issue认领、独立worktree及线上健康状态", "用户授权部署统一Worker；密钥由用户在Cloudflare设置，不读取或复制密钥"],
+  "unfinished": ["PR与CI、授权部署、线上只读验收", "等待用户配置密钥通知后启用真实AI"],
+  "validation": ["uv frozen dev、完整pytest1043项、治理、Node及Worker测试和构建通过", "390×844/1280×900浅色深色整组后台和前台、旧单条浏览器模拟通过，无真实AI或生产写入"],
+  "unverified": ["真实AI生成：等待用户确认QUICK_POST_AI_API_KEY已配置", "Access登录后的浏览器操作及真实内容发布尚未验收"],
   "production": {
     "source_commit": "71b3b16881999fa3578dc988f0066c785c772252",
     "artifact_commit": "f9b9fb3fe6f8fbbd3f9a237bb39f3b2b672148aa",
+    "worker_version": "1b668bd4-ebfd-4bdb-b944-03a408a6a905",
     "edition": "2026-10-04",
     "generated_at": "2026-10-04T03:43:17.666677Z",
-    "worker_version": "1b668bd4-ebfd-4bdb-b944-03a408a6a905",
-    "verified_at": "2026-10-04网站既有健康版本保持；Telegram恢复执行源码f6ef027f，04:13Z权限核验/04:14Z发送回执独立成功"
+    "verified_at": "2026-10-04任务开始时health只读核验正常；本任务尚未部署"
   },
-  "blockers": [],
-  "next_action": "日报调度、网站正常补刊和Telegram安全补推已完成。当前仅验收文档CI通过后按长期授权合并；等待用户确认手机收件，不再派发今天的日报/Telegram恢复、force_publish或其他渠道。明日07:26自然主触发尚待自然发生，迁移Issue203/QuickPost/质量问题各自独立，不据本指针自动执行。",
-  "states": {
-    "code": "complete",
-    "tests": "complete",
-    "pr_merged": "pending",
-    "deployed": "not_required",
-    "production_verified": "not_required"
-  },
-  "evidence": "project-docs/releases/2026-10-04-telegram-recovery.md"
+  "blockers": ["真实AI启用等待用户设置密钥后通知"],
+  "next_action": "先完成代码与mock测试、浏览器验收，同步main后提交PR；CI通过按长期授权合并。Worker部署已单独授权，真实AI启用等待用户确认密钥，不发布测试新闻或触发任何渠道。",
+  "states": {"code":"complete","tests":"complete","pr_merged":"pending","deployed":"pending","production_verified":"pending"},
+  "evidence": "project-docs/releases/2026-10-04-quick-post-batches.md"
 }
 ```
 
-五阶段状态属于当前文档PR；业务PR209已合并、Actions恢复入口已上线并真实投递成功。手机阅读效果仍需用户确认。网站与自然调度证据见[日报恢复记录](releases/2026-10-04-daily-delay-recovery.md)，Telegram证据见[安全补推记录](releases/2026-10-04-telegram-recovery.md)。本任务独立目录 `work/xiyunews-telegram-evidence`，不再重复发送或出刊。
+本任务目录 work/xiyunews-quick-post-batches。历史恢复证据见[日报](releases/2026-10-04-daily-delay-recovery.md)和[Telegram](releases/2026-10-04-telegram-recovery.md)，不得重复补刊或补推。
