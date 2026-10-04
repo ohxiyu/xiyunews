@@ -14,6 +14,12 @@ export interface RecoveryResult {
   active_run_url?: string | null;
 }
 
+export type RecoveryEnv = Env & {
+  // The unified Worker cannot probe its own origin with a public subrequest.
+  // Inject the exact website handler, not raw assets or a readiness shortcut.
+  PUBLICATION_FETCH?: (request: Request) => Promise<Response>;
+};
+
 // Bound response bodies, including chunked responses, before parsing.
 async function readBounded(response: Response, limit = 2_000_000): Promise<string> {
   const reader = response.body?.getReader();
@@ -37,13 +43,16 @@ async function readBounded(response: Response, limit = 2_000_000): Promise<strin
   return new TextDecoder().decode(bytes);
 }
 
-async function getText(url: string): Promise<string | null> {
+async function getText(env: RecoveryEnv, url: string): Promise<string | null> {
   let target = new URL(url);
   for (let redirects = 0; redirects <= 3; redirects++) {
-    const response = await fetch(target, {
+    const request = new Request(target, {
       headers: { "Cache-Control": "no-cache", Accept: "text/html, application/json" },
       redirect: "manual", signal: AbortSignal.timeout(10_000),
     });
+    const response = env.PUBLICATION_FETCH
+      ? await env.PUBLICATION_FETCH(request)
+      : await fetch(request);
     if ([301, 302, 303, 307, 308].includes(response.status)) {
       const location = response.headers.get("Location");
       if (!location) throw new Error("Publication redirect lacks Location");
@@ -123,7 +132,7 @@ function renderedRevisionsMatch(html: string, expected: string[] | null): boolea
     expected.every((revision, index) => actual[index] === revision);
 }
 
-export async function inspectPublication(env: Env, date: string, now: number) {
+export async function inspectPublication(env: RecoveryEnv, date: string, now: number) {
   const base = env.PUBLIC_SITE_URL.replace(/\/+$/, "");
   const nonce = "?publication_check=" + now;
   const rawBase = "https://api.github.com/repos/" +
@@ -133,8 +142,8 @@ export async function inspectPublication(env: Env, date: string, now: number) {
     getRepositoryText(env, rawBase + "/api/latest.json?ref=gh-pages&publication_check=" + now),
     Promise.all(urls.raw.map(async (url) =>
       (await getRepositoryText(env, url)) !== null)),
-    getText(base + "/api/latest.json" + nonce),
-    getText(base + "/" + nonce),
+    getText(env, base + "/api/latest.json" + nonce),
+    getText(env, base + "/" + nonce),
   ]);
   const items = editionItems(rawJson, date);
   const publicItems = editionItems(publicJson, date);
@@ -157,7 +166,7 @@ export async function inspectPublication(env: Env, date: string, now: number) {
     renderedRevisionsMatch(firstDay, revisions.zh);
   const rendered = rawReady && publicItems === items && samePayload && homeReady
     ? await Promise.all(urls.rendered.map(async (url, index) => {
-        const html = await getText(url + nonce);
+        const html = await getText(env, url + nonce);
         return Boolean(html?.includes('data-date="' + date + '"') &&
           (html.match(/<article class="digest-item(?:\s|")/g) ?? []).length >= items &&
           renderedRevisionsMatch(html, index === 0 ? revisions.zh : revisions.en));
@@ -167,7 +176,7 @@ export async function inspectPublication(env: Env, date: string, now: number) {
 }
 
 export async function runRecovery(
-  env: Env, now: number, source: string,
+  env: RecoveryEnv, now: number, source: string,
 ): Promise<RecoveryResult> {
   const context = editionContextFor(now, env.EDITION_TIMEZONE, Number(env.EDITION_CUTOFF_HOUR));
   const elapsed = now - context.cutoffUtc.getTime();
