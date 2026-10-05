@@ -176,14 +176,27 @@
       "current_state_en": "NU7 is now live on the Zcash testnet (activation height 4,465,026, block mined Oct. 4 at 18:21:45 UTC); developers will decide on Oct. 20 whether to proceed to mainnet and set the activation height, with mainnet activation still targeted for Nov. 5, when disabling version 4 transactions would make ZEC in the legacy Sprout shielded pool unspendable unless holders migrate in time.",
       "detailed_summary_zh": "Zcash activated its NU7 upgrade on testnet at block height 4,465,026, testing a 25-second target block interval, disabling version 4 transactions, and introducing a fee-redirecting sustainability mechanism ahead of a planned November 5 mainnet activation that developers will confirm on October 20.",
       "detailed_summary_en": "Zcash activated its NU7 upgrade on testnet at block height 4,465,026, testing a 25-second target block interval, disabling version 4 transactions, and introducing a fee-redirecting sustainability mechanism ahead of a planned November 5 mainnet activation that developers will confirm on October 20.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "NU7 是 Zcash 的第七次网络升级。若如其预期包含重大共识变更，zcashd 将不支持该升级，运营方需要迁移至 Zcash 基金会开发的 Zebra 共识节点。Sprout 是 Zcash 最早的隐私支付系统，而「网络可持续性机制」针对的是 Zcash 在 2100 万枚供应上限下依赖区块奖励维持网络安全这一问题。",
+      "background_en": "NU7 is Zcash's seventh network upgrade. If it includes major consensus changes as expected, it will not be supported by zcashd, so operators need to upgrade to the Zebra consensus node developed by the Zcash Foundation. Sprout is Zcash's oldest private-payment system, and the Network Sustainability Mechanism is aimed at the fact that Zcash's network security is funded by block rewards under a 21 million coin supply cap.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "ZEC 是直接受影响的资产，传导路径主要通过交易平台入账与钱包基础设施——目标出块间隔缩短会改变上币与结算平台的确认等待时间。Sprout 池停用以及 60% 手续费转入储备，也会影响流通供应与矿工收入结构；仍运行 zcashd 相关软件的运营方需要兼容节点才能跟随升级后的链。",
+      "market_impact_en": "ZEC is the directly exposed asset, with transmission running through exchange deposit-crediting and wallet infrastructure, since a shorter target block interval changes confirmation waits for venues that list and settle the coin. The Sprout cut-off and the redirection of 60% of transaction fees into a reserve also alter circulating-supply and miner-revenue mechanics, and operators running zcashd-based software would need compatible nodes to follow the upgraded chain.",
       "importance_score": 7.0,
-      "references": [],
+      "references": [
+        {
+          "url": "https://z.cash/upgrade/nu7/",
+          "title": "Network Upgrade 7 - Z.Cash"
+        },
+        {
+          "url": "https://cryptonews.com/news/zcash-news-nu7-upgrade-250second-blocks-testnet-zec/",
+          "title": "Zcash News: NU7 Upgrade Targets 25-Second Blocks for ZEC"
+        },
+        {
+          "url": "https://zips.z.cash/zip-0234",
+          "title": "ZIP 234: Network Sustainability Mechanism: Issuance Smoothing"
+        }
+      ],
       "confidence": 0.93,
       "story_ids": [
         "telegram:theblockbeats:198958"

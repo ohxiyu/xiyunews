@@ -4,28 +4,34 @@
   "url": "https://xiyu.news/events/evt_0ad3db019baf1cc2/",
   "json": "https://xiyu.news/api/events/evt_0ad3db019baf1cc2.json",
   "type": "security_incident",
-  "status": "developing",
+  "status": "closed",
   "category": "crypto",
   "title": {
     "zh": "Base 上金库遭攻击，约 1783 枚 wstETH 被盗",
     "en": "Base vault attacked, ~1,783 wstETH drained"
   },
   "current_state": {
-    "zh": "Base 上一未认领金库合约遭攻击，损失约 600 万美元（约 1783 枚 wstETH），攻击涉及 Safe 多签白名单机制与 Aave V3 赎回；截至最新报道，该金库内仍有约 3170 万美元资产处于风险中，Aave 核心合约和 Base 链本身未受影响。",
-    "en": "An unclaimed vault contract on Base was attacked, causing ~$6M in losses (~1,783 wstETH) via a Safe multisig whitelist mechanism and Aave V3 redemption; as of the latest report, ~$31.7M in assets remain at risk in the vault, while Aave core contracts and Base itself were unaffected."
+    "zh": "Base 上一未认领金库合约遭攻击，约 600 万美元（约 1783 枚 wstETH）通过 Safe 多签白名单机制与 Aave V3 赎回被盗；攻击者通过六笔资金流出完成抽资，部分资金已跨链桥转向以太坊；该金库内仍有约 3170 万美元资产处于风险中，Aave 核心合约和 Base 链本身未受影响。",
+    "en": "An unclaimed vault contract on Base was attacked, with ~$6M (~1,783 wstETH) drained via a Safe multisig whitelist mechanism and Aave V3 redemption; the attacker executed six outflows and some funds were bridged toward Ethereum; ~$31.7M in assets remain at risk in the vault, while Aave core contracts and Base itself were unaffected."
   },
   "first_seen_at": "2026-10-04T10:42:09.161969+00:00",
-  "last_updated_at": "2026-10-05T02:20:20.416195+00:00",
-  "last_material_change_at": "2026-10-05T02:20:20.416195+00:00",
+  "last_updated_at": "2026-10-05T23:27:22.359570+00:00",
+  "last_material_change_at": "2026-10-05T23:27:22.359570+00:00",
   "confidence": 0.75,
-  "updates_count": 3,
-  "sources_count": 4,
+  "updates_count": 4,
+  "sources_count": 5,
   "entities": [
+    "aave",
+    "about",
     "base",
+    "deposit",
     "drained",
     "goplus",
+    "million",
     "peckshield",
     "peckshieldalert",
+    "tokens",
+    "vault",
     "wsteth"
   ],
   "identifiers": [],
@@ -162,6 +168,57 @@
           "url": "https://foresightnews.pro/news/h5Detail/114556",
           "label": "foresightnews",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_bd31f3c1d698e384",
+      "event_id": "evt_0ad3db019baf1cc2",
+      "occurred_at": "2026-10-05T18:44:11Z",
+      "published_at": "2026-10-05T18:44:11Z",
+      "first_seen_at": "2026-10-05T23:27:22.359570Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "Base 上一金库被抽走约 600 万美元 Aave 存款代币",
+      "title_en": "Base Vault Drained of About $6 Million in Aave Deposit Tokens",
+      "what_changed_zh": "链上数据显示，攻击者先将新部署的合约移出金库借款方白名单，约一分钟后重新加入，随后发生六笔未经授权的资金流出；部分被盗资金经跨链桥转向以太坊。",
+      "what_changed_en": "On-chain data shows the attacker removed a newly deployed contract from the vault's borrower whitelist, added it back about one minute later, then executed six unauthorized outflows; some stolen funds were bridged toward Ethereum.",
+      "current_state_zh": "Base 上一未认领金库合约遭攻击，约 600 万美元（约 1783 枚 wstETH）通过 Safe 多签白名单机制与 Aave V3 赎回被盗；攻击者通过六笔资金流出完成抽资，部分资金已跨链桥转向以太坊；该金库内仍有约 3170 万美元资产处于风险中，Aave 核心合约和 Base 链本身未受影响。",
+      "current_state_en": "An unclaimed vault contract on Base was attacked, with ~$6M (~1,783 wstETH) drained via a Safe multisig whitelist mechanism and Aave V3 redemption; the attacker executed six outflows and some funds were bridged toward Ethereum; ~$31.7M in assets remain at risk in the vault, while Aave core contracts and Base itself were unaffected.",
+      "detailed_summary_zh": "Base 网络上的一个金库在借款方白名单被修改后，通过六笔资金流出被抽走约 600 万美元的 Aave 存款代币。所得资金被兑换为 wstETH，其中一部分随后进入跨链桥提款流程，转向以太坊。\n\n链上报道指出，问题并非源自智能合约漏洞，而是金库的借款方白名单被改动，其中一个恶意合约被加入——这凸显了访问控制配置是 Base 上 DeFi 金库用户面临的一类攻击面。\n\n报道援引的链上数据显示，新部署的合约先被移出白名单，约一分钟后又被重新加入，随后未经授权的借款行为开始出现；六笔资金流出及后续跨链桥操作表明这是蓄意执行，而非意外配置错误。有报道称损失规模约为 1,783 枚 wstETH。",
+      "detailed_summary_en": "A vault on Base was drained of roughly $6 million in Aave deposit tokens through six outflows that followed a change to the vault's borrower whitelist. The proceeds were redeemed for wstETH, and some of those funds subsequently entered bridge withdrawals toward Ethereum.\n\nOn-chain reporting indicates the cause was not a smart contract bug but a change to the vault's borrower whitelist, where a malicious contract was added — highlighting access-control configuration as an attack surface for DeFi vault users on Base.\n\nOn-chain data cited in reports shows the newly deployed contract was removed from the whitelist and added back about one minute later, after which the unauthorized borrowing began; the six outflows and the later bridging suggest deliberate execution rather than accidental misconfiguration. One report put the amount lost at roughly 1,783 wstETH.",
+      "background_zh": "Aave 是一个链上借贷协议，其存款代币相当于计息收据，证明用户曾完成存款，并可赎回对应的底层资产——此次即为存入 Base 上 Aave 的 wstETH。wstETH 是 Lido 的封装质押 ETH，而 Base 是由 Coinbase 开发的以太坊二层网络。",
+      "background_en": "Aave is an onchain lending protocol where deposit tokens act as interest-bearing receipts proving a deposit was made, redeemable for the underlying asset — in this case wstETH deposited into Aave on Base. wstETH is Lido's wrapped staked ETH, and Base is a Coinbase-developed Ethereum layer-2 network.",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "此次损失集中在一个持有 Aave 存款代币的 Base 金库，所得资金被换成 wstETH，其中一部分跨链桥转入以太坊，因此事件的影响路径主要涉及 wstETH 二级市场流动性和 Base 与以太坊之间的跨链桥资金流，而非协议层面的偿付能力问题。",
+      "market_impact_en": "The loss is concentrated in a single Base vault holding Aave deposit tokens, and the proceeds were converted into wstETH with part bridged toward Ethereum, linking the incident to wstETH secondary-market liquidity and Base–Ethereum bridge flows rather than to any protocol-wide solvency issue.",
+      "importance_score": 7.5,
+      "references": [
+        {
+          "url": "https://cryptobriefing.com/base-vault-drained-6m-aave-whitelist/",
+          "title": "Base vault drained of $6M in Aave deposit tokens after whitelist change"
+        },
+        {
+          "url": "https://crypto2community.com/crypto-news/base-defi-vault-loses-over-6m-after-suspicious-whitelist-change",
+          "title": "Base DeFi Vault Loses Over $6M After Suspicious Whitelist Change"
+        },
+        {
+          "url": "https://blockchainacademics.com/news/base-vault-loses-dollar6m-in-aave-tokens-after-whitelist-change",
+          "title": "Base Vault Loses $6M in Aave Tokens After Whitelist Change"
+        }
+      ],
+      "confidence": 0.92,
+      "story_ids": [
+        "rss:thedefiant.io_api_feed:877ff7bffc0aa39a"
+      ],
+      "sources": [
+        {
+          "url": "https://thedefiant.io/news/hacks/base-vault-drained-of-about-6-million-in-aave-deposit-tokens",
+          "label": "The Defiant",
+          "source_type": "rss",
           "official": false
         }
       ]

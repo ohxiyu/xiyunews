@@ -2,6 +2,25 @@
   "version": 1,
   "events": [
     {
+      "event_id": "evt_0ad3db019baf1cc2",
+      "url": "https://xiyu.news/events/evt_0ad3db019baf1cc2/",
+      "json": "https://xiyu.news/api/events/evt_0ad3db019baf1cc2.json",
+      "status": "closed",
+      "type": "security_incident",
+      "title": {
+        "zh": "Base 上金库遭攻击，约 1783 枚 wstETH 被盗",
+        "en": "Base vault attacked, ~1,783 wstETH drained"
+      },
+      "current_state": {
+        "zh": "Base 上一未认领金库合约遭攻击，约 600 万美元（约 1783 枚 wstETH）通过 Safe 多签白名单机制与 Aave V3 赎回被盗；攻击者通过六笔资金流出完成抽资，部分资金已跨链桥转向以太坊；该金库内仍有约 3170 万美元资产处于风险中，Aave 核心合约和 Base 链本身未受影响。",
+        "en": "An unclaimed vault contract on Base was attacked, with ~$6M (~1,783 wstETH) drained via a Safe multisig whitelist mechanism and Aave V3 redemption; the attacker executed six outflows and some funds were bridged toward Ethereum; ~$31.7M in assets remain at risk in the vault, while Aave core contracts and Base itself were unaffected."
+      },
+      "first_seen_at": "2026-10-04T10:42:09.161969+00:00",
+      "last_material_change_at": "2026-10-05T23:27:22.359570+00:00",
+      "updates_count": 4,
+      "sources_count": 5
+    },
+    {
       "event_id": "evt_554c09b8c4f576cb",
       "url": "https://xiyu.news/events/evt_554c09b8c4f576cb/",
       "json": "https://xiyu.news/api/events/evt_554c09b8c4f576cb.json",
@@ -40,23 +59,42 @@
       "sources_count": 7
     },
     {
+      "event_id": "evt_95a4eb08490a7c14",
+      "url": "https://xiyu.news/events/evt_95a4eb08490a7c14/",
+      "json": "https://xiyu.news/api/events/evt_95a4eb08490a7c14.json",
+      "status": "monitoring",
+      "type": "exchange_operation",
+      "title": {
+        "zh": "【币安推出 AI 产品栈 Binance Intelligence，包含 AI Pro 与 Agent OS 等】",
+        "en": "【币安推出 AI 产品栈 Binance Intelligence，包含 AI Pro 与 Agent OS 等】"
+      },
+      "current_state": {
+        "zh": "币安宣布 Binance Intelligence AI 产品栈，包含免费消费者版 Binance AI、可将自然语言转化为可执行策略的 Binance AI Pro，以及面向开发者的 Binance Agent OS，自 10 月 5 日起推出；Agent OS 自 8 月上线以来日调用量已超过 28 万次。",
+        "en": "Binance announced Binance Intelligence, a three-part AI product stack comprising a free consumer Binance AI, Binance AI Pro that converts natural language into executable strategies, and Binance Agent OS for developers, rolling out starting October 5; Agent OS has surpassed 280,000 daily calls since its August launch."
+      },
+      "first_seen_at": "2026-10-05T15:51:12.292720+00:00",
+      "last_material_change_at": "2026-10-05T15:51:12.292720+00:00",
+      "updates_count": 2,
+      "sources_count": 2
+    },
+    {
       "event_id": "evt_cc2ee6ed697c7f69",
       "url": "https://xiyu.news/events/evt_cc2ee6ed697c7f69/",
       "json": "https://xiyu.news/api/events/evt_cc2ee6ed697c7f69.json",
       "status": "developing",
       "type": "legal_case",
       "title": {
-        "zh": "OKX与ICE合资公司向SEC提交代币化股票交易计划",
+        "zh": "OKX与NYSE/ICE合资方向SEC提交24/7代币化美股交易申请",
         "en": "OKX-ICE Joint Venture Files with SEC for Tokenized Stock Trading"
       },
       "current_state": {
-        "zh": "OKXICE已通知SEC，计划依据SEC创新豁免推出24/7代币化美股交易场所，初期覆盖60多家美国上市公司；文件列出Nvidia、Tesla、Apple、Microsoft、SpaceX等标的，并说明代币与USDC、USDG或USDT组成交易对，通过XLayer上的许可制Uniswap v4池和灵魂绑定代币钱包交易；Cerebras Systems已提交发行人反对通知，若反对成立其股票将不能在该场所交易。启动仍取决于30天发行人反对期等监管步骤。",
-        "en": "OKXICE has notified the SEC of plans to launch a 24/7 tokenized U.S. stock trading venue initially covering more than 60 U.S.-listed companies under the SEC's Innovation Exemption; the notice lists names including Nvidia, Tesla, Apple, Microsoft, and SpaceX, and says tokens will trade in pairs with USDC, USDG, or USDT through permissioned Uniswap v4 pools on XLayer using soulbound-token-gated wallets; Cerebras Systems has lodged an issuer objection, meaning its shares could not trade there if the objection stands. Launch remains subject to regulatory steps including the 30-day issuer objection period."
+        "zh": "OKX 已向美国 SEC 提交申请，计划推出代币化股票交易平台，此举标志着交易所在代币化股票领域的推进，尚待监管审查。",
+        "en": "OKX has filed with the U.S. SEC to launch a tokenized stock trading platform, signaling an exchange push into tokenized equities pending regulatory review."
       },
       "first_seen_at": "2026-09-10T22:42:59.603645+00:00",
-      "last_material_change_at": "2026-10-05T11:44:27.712786+00:00",
-      "updates_count": 11,
-      "sources_count": 44
+      "last_material_change_at": "2026-10-05T15:51:09.902516+00:00",
+      "updates_count": 12,
+      "sources_count": 46
     },
     {
       "event_id": "evt_8fca4d5c4b0173a2",
@@ -133,25 +171,6 @@
       "last_material_change_at": "2026-10-05T06:20:42.009163+00:00",
       "updates_count": 3,
       "sources_count": 5
-    },
-    {
-      "event_id": "evt_0ad3db019baf1cc2",
-      "url": "https://xiyu.news/events/evt_0ad3db019baf1cc2/",
-      "json": "https://xiyu.news/api/events/evt_0ad3db019baf1cc2.json",
-      "status": "developing",
-      "type": "security_incident",
-      "title": {
-        "zh": "Base 上金库遭攻击，约 1783 枚 wstETH 被盗",
-        "en": "Base vault attacked, ~1,783 wstETH drained"
-      },
-      "current_state": {
-        "zh": "Base 上一未认领金库合约遭攻击，损失约 600 万美元（约 1783 枚 wstETH），攻击涉及 Safe 多签白名单机制与 Aave V3 赎回；截至最新报道，该金库内仍有约 3170 万美元资产处于风险中，Aave 核心合约和 Base 链本身未受影响。",
-        "en": "An unclaimed vault contract on Base was attacked, causing ~$6M in losses (~1,783 wstETH) via a Safe multisig whitelist mechanism and Aave V3 redemption; as of the latest report, ~$31.7M in assets remain at risk in the vault, while Aave core contracts and Base itself were unaffected."
-      },
-      "first_seen_at": "2026-10-04T10:42:09.161969+00:00",
-      "last_material_change_at": "2026-10-05T02:20:20.416195+00:00",
-      "updates_count": 3,
-      "sources_count": 4
     },
     {
       "event_id": "evt_7f495c46d92c8be5",
