@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_8fca4d5c4b0173a2/",
   "json": "https://xiyu.news/api/events/evt_8fca4d5c4b0173a2.json",
   "type": "security_incident",
-  "status": "developing",
+  "status": "closed",
   "category": "crypto",
   "title": {
     "zh": "MetaMask基础设施安全事件：主动退出受影响验证者",
     "en": "MetaMask Infrastructure Security Incident: Proactive Exit of Affected Validators"
   },
   "current_state": {
-    "zh": "Consensys 创始人 Joseph Lubin 公开表示，MetaMask 钱包和客户资金未受该基础设施安全事件影响，相关方已预防性轮换验证者密钥，且提款密钥由客户独立持有，因此未发生未经授权的质押 ETH 转移。",
-    "en": "Consensys founder Joseph Lubin publicly stated that MetaMask wallets and customer funds were not affected by the infrastructure security incident; validator keys have been rotated as a precaution, and withdrawal keys remain separately held by clients, so no unauthorized transfers of staked ETH occurred."
+    "zh": "MetaMask 基础设施安全事件引发的预防性验证者退出已把以太坊退出队列推高至 2026 年峰值约 851,000 ETH（10 月 2 日），10 月 5 日仍有约 786,000 ETH 排队，等待接近 14 天；Lido 预计相关 ETH 将逐步重新质押，过程可能长达约 45 天，最后一批受影响 MetaMask 验证者预计 10 月 7 日前退出质押。MetaMask 表示未发现钱包或客户资金受影响，客户提款密钥不受其控制。",
+    "en": "The precautionary validator exits tied to MetaMask’s infrastructure security incident pushed Ethereum’s exit queue to a 2026 peak of about 851,000 ETH on Oct. 2; about 786,000 ETH remained queued on Oct. 5 with an estimated wait of nearly 14 days. Lido expects the affected ETH to be gradually restaked over a process that could take up to about 45 days, with the last affected MetaMask validators expected to stop staking by Oct. 7. MetaMask said it found no indication wallets or customer funds were affected, and client withdrawal keys remain outside its control."
   },
   "first_seen_at": "2026-10-01T00:03:16.761779+00:00",
-  "last_updated_at": "2026-10-03T02:17:04.613089+00:00",
-  "last_material_change_at": "2026-10-03T02:17:04.262527+00:00",
+  "last_updated_at": "2026-10-05T10:21:06.444492+00:00",
+  "last_material_change_at": "2026-10-05T10:21:06.444492+00:00",
   "confidence": 0.75,
-  "updates_count": 10,
-  "sources_count": 21,
+  "updates_count": 11,
+  "sources_count": 22,
   "entities": [
     "aave",
     "affected",
@@ -34,6 +34,7 @@
     "ethereum-staking",
     "exits",
     "funds",
+    "here",
     "immediate",
     "incident",
     "indication",
@@ -79,7 +80,8 @@
     "tornado-cash",
     "validator-keys",
     "validators",
-    "vault-outflows"
+    "vault-outflows",
+    "withdrawal-queue"
   ],
   "updates": [
     {
@@ -573,6 +575,44 @@
           "url": "https://foresightnews.pro/news/h5Detail/114491",
           "label": "foresightnews",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_6148a4f1bec27d10",
+      "event_id": "evt_8fca4d5c4b0173a2",
+      "occurred_at": "2026-10-05T06:40:29Z",
+      "published_at": "2026-10-05T06:40:29Z",
+      "first_seen_at": "2026-10-05T10:21:06.444492Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "以太坊投资者被困在为期两周的质押退出队列中。原因如下。",
+      "title_en": "Ethereum investors are stuck in a two-week staking exit line. Here's why.",
+      "what_changed_zh": "以太坊验证者退出队列在 MetaMask 预防性退出验证者后升至 2026 年最长：10 月 2 日约 851,000 ETH，10 月 5 日仍有约 786,000 ETH 排队，等待约 14 天；Lido 预计受影响 ETH 将逐步重新质押，整个过程可能长达约 45 天，最后一批受影响的 MetaMask 验证者预计在 10 月 7 日前停止质押。同时进入质押队列降至约 150 万 ETH、等待约 25 天，较 9 月初约 200 万 ETH/35 天降温。",
+      "what_changed_en": "Ethereum’s validator exit queue became the longest of 2026 after MetaMask’s precautionary validator exits: about 851,000 ETH on Oct. 2, with about 786,000 ETH still queued on Oct. 5 and an estimated nearly 14-day wait; Lido expects the affected ETH to be gradually restaked over a process that could take up to about 45 days, with the last affected MetaMask validators expected to stop staking by Oct. 7. The entry queue separately fell to about 1.5 million ETH/25 days, down from about 2 million ETH/35 days in early September.",
+      "current_state_zh": "MetaMask 基础设施安全事件引发的预防性验证者退出已把以太坊退出队列推高至 2026 年峰值约 851,000 ETH（10 月 2 日），10 月 5 日仍有约 786,000 ETH 排队，等待接近 14 天；Lido 预计相关 ETH 将逐步重新质押，过程可能长达约 45 天，最后一批受影响 MetaMask 验证者预计 10 月 7 日前退出质押。MetaMask 表示未发现钱包或客户资金受影响，客户提款密钥不受其控制。",
+      "current_state_en": "The precautionary validator exits tied to MetaMask’s infrastructure security incident pushed Ethereum’s exit queue to a 2026 peak of about 851,000 ETH on Oct. 2; about 786,000 ETH remained queued on Oct. 5 with an estimated wait of nearly 14 days. Lido expects the affected ETH to be gradually restaked over a process that could take up to about 45 days, with the last affected MetaMask validators expected to stop staking by Oct. 7. MetaMask said it found no indication wallets or customer funds were affected, and client withdrawal keys remain outside its control.",
+      "detailed_summary_zh": "Ethereum's validator exit queue reached its longest of 2026 with about 786,000 ETH (~$2 billion) awaiting withdrawal and a nearly 14-day wait, after MetaMask began pulling validators as a precaution following a security incident, while entry queues fell over a quarter since early September.",
+      "detailed_summary_en": "Ethereum's validator exit queue reached its longest of 2026 with about 786,000 ETH (~$2 billion) awaiting withdrawal and a nearly 14-day wait, after MetaMask began pulling validators as a precaution following a security incident, while entry queues fell over a quarter since early September.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.94,
+      "story_ids": [
+        "rss:www.coindesk.com_arc_outboundfeeds_rss_:0020f06829596c3c"
+      ],
+      "sources": [
+        {
+          "url": "https://www.coindesk.com/tech/2026/10/05/ethereum-has-a-25-day-wait-to-start-staking-with-nearly-1-5-million-eth-in-line",
+          "label": "CoinDesk",
+          "source_type": "rss",
           "official": false
         }
       ]
