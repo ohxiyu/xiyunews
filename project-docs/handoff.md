@@ -10,7 +10,7 @@
   "owner": "当前 Codex 会话，唯一编辑和生产整合负责人；串行部署",
   "branch": "agent/realtime-api-evidence",
   "last_verified_commit": "4e3862117671db962798fc305622a476f07e5ec7",
-  "pr": "本次仅验收文档PR待创建；业务PR217已合并且完成部署",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/219（仅验收文档；业务PR217已合并且完成部署）",
   "completed": [
     "业务PR217所有必需检查成功后合并为4e3862117671db962798fc305622a476f07e5ec7；CodeQL analyze因现有私有授权跳过，未绕过失败检查",
     "专用api.xiyu.news DNS-only A到47.79.36.171，独立证书已签发且原certbot timer active/enabled",

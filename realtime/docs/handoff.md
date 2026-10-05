@@ -6,7 +6,7 @@
 
 任务 Issue / 负责人：https://github.com/ohxiyu/xiyunews/issues/218；父任务216/业务PR217已完成，当前Codex会话为唯一文档编辑与整合负责人。
 
-工作分支 / 最后提交 / PR：agent/realtime-api-evidence，基于4e3862117671db962798fc305622a476f07e5ec7；本次仅文档PR待创建。
+工作分支 / 最后提交 / PR：agent/realtime-api-evidence，基于4e3862117671db962798fc305622a476f07e5ec7；本次仅文档[PR219](https://github.com/ohxiyu/xiyunews/pull/219)，业务PR217已合并。
 
 已经完成：业务PR217全绿合并；新DNS-only记录与独立证书、reviewed新旧接口共存nginx（备份/t/reload）上线；新旧health200/ready503/POST403/未知404/HTTP308/no-store通过。统一Worker部署37329563017成功，新版本fb50c31c在15:05:32Z自然Cron outcome ok/watchdog:ok。STATE只读健康0；三spot live/队列0，应用未重启。
 
