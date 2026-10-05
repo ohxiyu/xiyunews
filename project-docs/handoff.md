@@ -1,39 +1,56 @@
 # 当前交接
 
-私有主仓 ohxiyu/xiyunews，正式域 https://xiyu.news。Quick Post业务PR213已合并部署；当前只补齐发布证据，不改代码或再次部署。真实AI及用户Access操作等待用户设置密钥通知，不发布假新闻验收。
+本次仅迁移实时 API 域名及看门狗目标。主站 https://xiyu.news 已迁入统一 Worker；此前实时接口仍用旧域，这是品牌迁移遗漏，不是采集停服。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "记录Quick Post整组预览实际部署、公共只读验收与真实AI待启用边界",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/214",
-  "owner": "当前Codex会话，唯一文档编辑及整合负责人",
-  "branch": "agent/quick-post-batches-evidence",
-  "last_verified_commit": "53af4f4f04926d210a0679515ab7800fe8bb27f1",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/215（仅验收文档；业务PR213已合并部署）",
+  "goal": "将实时 API 迁到 api.xiyu.news，保留旧接口并更新统一看门狗",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/216",
+  "owner": "当前 Codex 会话，唯一编辑和生产整合负责人；串行部署",
+  "branch": "agent/realtime-api-domain",
+  "last_verified_commit": "744791f5f6eab5dddc5a6f0ccd62aaa682018fe3",
+  "pr": "待创建；独立任务分支已建立，不编辑旧工作区",
   "completed": [
-    "业务PR213同步main后CI37180286568 test/edge-build/governance及Pages预览通过；CodeQL因现有私有套餐跳过，realtime路径未变跳过",
-    "PR213于2026-10-04T05:37:43Z合并为53af4f4f；Deploy Docs37180445715和Cloudflare37180465863成功",
-    "2026-10-04T05:41:12Z health健康，源码53af4f4f、产物3b1aa2a5、Worker9407da2b对应；日报日期/生成时间/12条保持不变",
-    "公开Quick Post JS字节与源码一致；OpenAPI有batch字段，非法日期结构化JSON错误，后台及生成API匿名均302邮箱验证",
-    "本任务未读写密钥、未真实AI调用、未发布测试内容、未派发日报或任何渠道；部署复用现有STATE并保留操作员变量"
+    "确认原监控和 nginx 仍使用 api.fomobtc.com；新域原来命中通配符且健康522",
+    "用户明确授权 DNS、证书、nginx 和监控 Worker 部署，旧接口过渡保留",
+    "新增 api.xiyu.news A 47.79.36.171 DNS-only；Google/Cloudflare DoH 已回读",
+    "mock 监控新URL/异常路径7项、根pytest1044项、Worker102项、typecheck/audit0已通过"
   ],
-  "unfinished": ["验收文档PR检查与合并", "真实AI启用和用户操作验收等待用户配置密钥通知"],
-  "validation": ["业务pytest1043项、Node89项、Worker102项、npm audit/typecheck/build、workerd认证及390×844/1280×900浅色深色浏览器模拟通过", "此文档分支再次uv frozen dev、完整pytest1043项、治理和diff检查通过"],
-  "unverified": ["用户尚未确认QUICK_POST_AI_API_KEY和QUICK_POST_AI_ENABLED=true已配置", "未登录真实Access会话执行AI生成/真实内容发布，公共验证不等于完整产品验收"],
+  "unfinished": [
+    "新域 TLS/只读边界与旧接口验证",
+    "业务PR检查合并、现有统一Worker流程部署及自然Cron核验",
+    "上线后通过文档PR更新最终证据"
+  ],
+  "validation": [
+    "uv sync --frozen --extra dev 成功",
+    "uv run pytest：1044 passed，1条既有依赖弃用warning",
+    "Node watchdog：7 passed；Worker：102 passed；npm typecheck/audit0成功"
+  ],
+  "unverified": [
+    "证书与新HTTPS尚在迁移中",
+    "新代码尚未合并或部署；自然watchdog和Telegram恢复通知尚未核验",
+    "先前 Quick Post 真实AI/Access验收仍未执行，不因本任务补做"
+  ],
   "production": {
-    "source_commit": "53af4f4f04926d210a0679515ab7800fe8bb27f1",
-    "artifact_commit": "3b1aa2a5af7f1388d9f2d0ee4816a126698462e5",
-    "worker_version": "9407da2b-307e-47e1-b600-003457c0a24f",
-    "edition": "2026-10-04",
-    "generated_at": "2026-10-04T03:43:17.666677Z",
-    "verified_at": "2026-10-04T05:41:12Z公共health/API/JS及Access匿名边界只读核验"
+    "source_commit": "744791f5f6eab5dddc5a6f0ccd62aaa682018fe3",
+    "artifact_commit": "3670b9beeba36078fe0b47343070e6f073da76c0",
+    "edition": "not changed：本任务不出刊",
+    "generated_at": "not changed：本任务不重建内容",
+    "worker_version": "496f3131-144e-4a25-ae59-44f5b47b6b34",
+    "verified_at": "2026-10-05 迁移前公开 /health 与东京 systemd 只读核对"
   },
-  "blockers": ["真实AI验收等待用户完成统一Worker的Secret和启用开关配置；不要从Actions复制密钥"],
-  "next_action": "验收文档CI通过后按长期授权合并；不再次部署或派发任何日报/渠道。等用户通知密钥已配置，再核对同一Worker的启用状态，并用用户真实输入预览验收；未经人工确认不发布。模型、套餐、额度及自然调度不变。",
-  "states": {"code":"complete","tests":"complete","pr_merged":"pending","deployed":"not_required","production_verified":"not_required"},
-  "evidence": "project-docs/releases/2026-10-04-quick-post-batches.md"
+  "blockers": [],
+  "next_action": "先完成独立证书与只读TLS新接口，再同步main、重跑验证、提交PR并待CI全绿合并；按本次明确授权部署统一Worker，观察自然Cron，不重置STATE或制造Telegram测试消息。已授权仅此DNS/接口/监控迁移；不改主域/www/通配符、发送服务/env/数据库/队列、费用和旧资源。",
+  "states": {
+    "code": "complete",
+    "tests": "complete",
+    "pr_merged": "pending",
+    "deployed": "pending",
+    "production_verified": "pending"
+  },
+  "evidence": "project-docs/releases/2026-10-05-realtime-api-domain.md"
 }
 ```
 
-五阶段状态属于当前文档PR；业务PR213代码、测试、合并、部署已完成，公共只读验收通过，真实AI与用户操作验收未完成。本任务目录work/xiyunews-quick-post-batches-evidence。历史恢复见[日报](releases/2026-10-04-daily-delay-recovery.md)和[Telegram](releases/2026-10-04-telegram-recovery.md)，不得重复补刊/补推。
+代码、测试、合并、部署、线上验收分开记录。原东京应用 d6a9d3f29ef93c138842342c973b3049fb7bc252/systemd fomobtc 不重启，密钥/SQLite/Telegram 话题和自然发送保持。旧 api.fomobtc.com 作为过渡接口，未获删除授权。此前 Quick Post 的部署及未验证边界见[原记录](releases/2026-10-04-quick-post-batches.md)，不继续旧任务或补刊。

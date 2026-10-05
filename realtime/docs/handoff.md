@@ -2,25 +2,25 @@
 
 ## Current execution pointer
 
-当前目标：完成xiyunews统一Cloudflare部署后验收；根[交接](../../project-docs/handoff.md)是唯一执行指针，服务器运行方式、数据库、规则和目的地不变。
+当前目标：实时 API 从旧域迁到 api.xiyu.news；唯一执行指针为根[交接](../../project-docs/handoff.md)。
 
-任务 Issue / 负责人：https://github.com/ohxiyu/xiyunews/issues/201，父任务Issue198；当前唯一迁移编辑及发布整合负责人，串行执行，无并行所有者。
+任务 Issue / 负责人：https://github.com/ohxiyu/xiyunews/issues/216；当前 Codex 会话为唯一编辑和生产整合负责人。
 
-工作分支 / 最后提交 / PR：agent/xiyunews-cutover-verification，已核验业务合并SHA b2aeb97f8481bfad123277463c24bddac0895f8c；业务PR199已合并，部署后文档[PR202](https://github.com/ohxiyu/xiyunews/pull/202)，不继续编辑旧分支。
+工作分支 / 最后提交 / PR：agent/realtime-api-domain，基于744791f5f6eab5dddc5a6f0ccd62aaa682018fe3；PR待创建，不编辑此前旧分支。
 
-已经完成：统一Worker实际接管正式域、调度和实时看门狗，原RecoveryGate与STATE保持；旧dispatcher/watchdog停用、Cron为空，旧Pages解除主域。首次自动部署37122753609成功，版本00b0f0f6正式域和绑定回读，双开关true；首轮自然Cron计划12:30:51Z、outcome=ok、watchdog:ok、采集fresh、队列idle、无异常。原Bot/群/话题保持，不发送测试消息。
+已经完成：确认旧监控/API未迁移；新增专用DNS-only A到47.79.36.171，独立api.xiyu.news证书签发（到期2027-01-03）；nginx完整配置备份。根1044项、Worker102项、watchdog7项和typecheck/audit0通过，无真实AI/测试消息。
 
-尚未完成：下次真正到期的自然dispatch、后台登录后Quick Post只读验收和旧资源退役；两轮自然watchdog已通过，旧项目仍保留，不据主域200提前删除现用状态或恢复资源。
+尚未完成：新TLS配置安装及边界验证、业务PR合并、统一Worker部署与自然Cron核验、上线证据文档PR。
 
-已运行的验证及结果：根完整1019项通过，业务边缘95项/type/audit0、watchdog4项及远端CI已通过。东京active/MainPID235825/NRestarts0、current=d6a9d3f、三spot分片live、队列0；切换Bot后只读SQLite125条sent、78条archived，无失败状态，最新自然行情1364、公告1352、流入1361。既有Hyperliquid degraded保留；服务器配置/进程未修改。
+已运行的验证及结果：Google/Cloudflare新域A回读正确；nginx-t及HTTP-only ACME404通过，证书签发成功。旧服务MainPID235825/NRestarts0保持，没有重启、切换源码或数据库。
 
-尚未验证的内容：手机收件、看门狗实际私聊告警、登录后的Quick Post以及下次真正到期的dispatch；两轮自然Cron已通过。新Bot管理员和/start已核验，不要求重复；目的地沿用原备份来源，未导出旧CF密文直接比对，不人为造告警。
+尚未验证的内容：新域HTTPS/ready/POST/未知路径、Worker新URL部署、自然Cron和手机告警收件；不因健康200宣称全部来源ready。
 
-线上版本 / 对应源码提交：东京2.6.0/d6a9d3f29ef93c138842342c973b3049fb7bc252未再部署；统一边缘00b0f0f6-f6cf-4ba7-9b79-96644eb6c7dc，源码b2aeb97f8481bfad123277463c24bddac0895f8c、出版4f87497ecf068324e0a6211e9f4a38a7047f797e。旧watchdog90b876b9已停用，不把边缘SHA当服务器发布SHA。
+线上版本 / 对应源码提交：发送应用2.6.0/d6a9d3f29ef93c138842342c973b3049fb7bc252不变；Worker仍496f3131-144e-4a25-ae59-44f5b47b6b34/744791f5，未部署本次变更。
 
-阻塞与所需权限：后台由运营者自行用原Access账号/验证码登录，助手不代填或读取验证码。旧资源删除与Access显示名保存是新的具体UI动作，准备目标后须操作时确认；域名解绑确认不扩大到删除项目或改权限。
+阻塞与所需权限：本次明确授权已覆盖DNS、证书、nginx及监控Worker部署；不包含旧域删除、密钥/发送目标修改或回滚，不再询问同一授权。
 
-下一步具体动作：两轮自然看门狗已通过，按根唯一指针完成后台只读验收及下次真正到期的dispatch；文档PR治理/检查通过后按站立授权合并。旧仓Git历史已核对，准确确认退役并保留非Git审计；保留原DO/KV、实时域/API/nginx、SQLite/env/备份/SSH，不重跑setup_watchdog、重复Token或/start。完整证据见[本次接管](releases/cloudflare-cutover-20261003.md)。
+下一步具体动作：PR同步main全绿后合并，安装新旧API共存配置并nginx-t/reload（不重启fomobtc），新API正常后用根现有cloudflare-unified.yml发布；自然Cron/STATE只读核验，不重置KV或造故障。详见[本次记录](../../project-docs/releases/2026-10-05-realtime-api-domain.md)。
 
 ## 系统现状
 
@@ -28,8 +28,8 @@
 
 | 位置 | 内容 |
 | --- | --- |
-| 东京服务器 fomobtc-tokyo（47.79.36.171） | systemd `fomobtc`：全部采集、去重、推送；nginx：`api.fomobtc.com` 只读接口，`fomobtc.com`/`www` 302 到群组；certbot 定时续期两张证书 |
-| Cloudflare（账号 Drminutes） | DNS：A `@`、`www`、`api` → 47.79.36.171，全部 DNS only；统一 Worker `xiyunews` 的看门狗组件（每 5 分钟，原 KV `STATE`）；旧watchdog停用待退役 |
+| 东京服务器 fomobtc-tokyo（47.79.36.171） | systemd `fomobtc`：全部采集、去重、推送；新主API `api.xiyu.news` 与旧 `api.fomobtc.com` 过渡共存；独立证书由原certbot timer续期。TLS安装阶段见根交接。 |
+| Cloudflare（账号 Drminutes） | 专用A api.xiyu.news→47.79.36.171 DNS-only；主站由统一Worker提供，其他DNS保持。统一Worker看门狗每5分钟/原STATE，业务变更后目标为新API，实际部署阶段见根交接；旧watchdog停用。 |
 | 私有 `ohxiyu/xiyunews/realtime/` | 原历史及独立测试通过 PR195 进入 main；服务器新仓 SHA、新 Bot 管理员和三类自然回执已核验，Cloudflare 接管已完成，自然运行/后台读取与旧仓退役继续验收 |
 
 Telegram 原群保留（话题开启、成员只读；2026-10-02 23:22:48 getChat 回读已更名为 `xiyu.news`，简介未改），机器人为管理员 `@xiyunewsbot`，不合并到日报频道：

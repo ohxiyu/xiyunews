@@ -1,7 +1,7 @@
 // FomoBTC watchdog: runs on Cloudflare (outside the server) every 5 minutes, reads the
 // public health endpoint and messages the operator privately when the service is down
 // or degraded. It never posts to the public group.
-const HEALTH_URL = "https://api.fomobtc.com/api/health";
+const HEALTH_URL = "https://api.xiyu.news/api/health";
 const CONFIRM_CHECKS = 2; // Alert only after two consecutive failing checks (10 minutes).
 const REMIND_MS = 2 * 60 * 60 * 1000;
 

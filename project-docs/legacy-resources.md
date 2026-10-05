@@ -21,7 +21,7 @@ Cloudflare Pages 项目 `horizon-ohxiyu` 已删除，并由项目列表确认不
 | Worker `bmtnews-daily-dispatcher` | 已停用、无Cron、旧协调入口retired；原RecoveryGate已迁入xiyunews，同ID状态必须保留，不能随旧项目清理删除DO。 |
 | `ohxiyu/fomobtc` | PR195保留完整main历史，服务器已运行新仓d6a9d3f；删除/归档前仍须核对其他分支、PR和独有工作，不能用main祖先证明所有内容已合并。 |
 | Worker `fomobtc-watchdog` 及其 STATE KV | 旧Worker已停用、无Cron，统一Worker接管自然检查；STATE仍现用，旧Worker退役不代表KV可以删除。 |
-| `fomobtc.com` DNS 区域与 `api.fomobtc.com` | 原域仍转入既有话题群，只读 API 被看门狗使用；必须保留，不修改 nginx。 |
+| `fomobtc.com` DNS 区域与 `api.fomobtc.com` | 原域入口保持；旧 API 在迁移期间保留，新看门狗目标为 api.xiyu.news。完成切换不代表获准删除旧区或旧证书；见[迁移记录](releases/2026-10-05-realtime-api-domain.md)。 |
 | 东京 `fomobtc` 服务、SQLite、环境文件、备份 | 现役实时运行系统，不在清理目标中。 |
 
 旧 Worker `fomobtc` 的退役已记载在原项目 2026-09-25 发布记录，本次账户列表没有该 Worker；本次没有再次删除。其他产品的 Cloudflare 项目、DNS 区域与资源不在授权范围内。

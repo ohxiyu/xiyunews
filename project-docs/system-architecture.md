@@ -32,12 +32,14 @@ flowchart TD
     Editorial --> Published
     Realtime[东京 systemd：独立实时监测] --> SQLite[SQLite：状态、去重与发送队列]
     SQLite --> TopicTG[实时 Telegram 话题群]
-    Realtime --> ReadAPI[api.fomobtc.com：只读健康接口]
+    Realtime --> ReadAPI[api.xiyu.news：只读健康接口]
     Edge --> Watchdog[同一 Worker：实时看门狗 + 原 STATE KV]
     Watchdog --> ReadAPI
 ```
 
 图中是当前部署结构。Cloudflare 的同一个项目合并静态资产、边缘后台、Clock 和 Watchdog；realtime/ 仅整合代码管理与独立 CI，不合并运行进程、Python 依赖、数据库或 Telegram 目标。东京服务仍是独立单实例，网站没有增加实时行情前端。
+
+实时 API 的新主域为 `api.xiyu.news`，DNS-only 直连东京；`api.fomobtc.com` 仅保留过渡，不再是看门狗目标。主站 `/health` 描述边缘服务，不能替代实时 `/api/health`。迁移实际阶段与验证见[接口迁移记录](releases/2026-10-05-realtime-api-domain.md)。
 
 ## 2. 模块与部署边界
 

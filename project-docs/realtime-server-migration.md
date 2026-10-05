@@ -109,14 +109,14 @@ systemctl show fomobtc --property=MainPID --value
 现货连接需要至少 180 秒自然预热，期间 warming 不算完成；不要靠改状态或阈值绕过。运营者电脑检查完整 SHA 和三分片：
 
 ```bash
-curl --max-time 20 -fsS https://api.fomobtc.com/api/health | \
+curl --max-time 20 -fsS https://api.xiyu.news/api/health | \
   jq -e --arg expected "$SOURCE_SHA" \
   '.source_commit == $expected and \
    .sources.spot_stream_0.state == "live" and \
    .sources.spot_stream_1.state == "live" and \
    .sources.spot_stream_2.state == "live"'
 curl --max-time 20 -sS -o /dev/null -w 'Readiness HTTP: %{http_code}\n' \
-  https://api.fomobtc.com/api/ready
+  https://api.xiyu.news/api/ready
 ```
 
 额外比较采集进度、队列和所有来源与迁移前基线。既有 Hyperliquid degraded 会导致 ready 503，必须如实记录：满足迁移的 SHA/现货要求不等于全来源 ready，也不因这次改名改变信源或监控规则。
