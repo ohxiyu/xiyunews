@@ -13,13 +13,23 @@
 - uv frozen dev成功；根 pytest1044 passed（1条现有依赖弃用warning）。
 - Node watchdog7 passed，新增 mocked 新域请求、503与网络失败、告警新链接；无真实AI或渠道调用。
 - Worker102 passed、typecheck、npm audit0通过；部署模板测试核对新旧域TLS、ACME、GET/OPTIONS、限速、no-store和未知路径404。
-- DNS保存回读及Google/Cloudflare DoH均为47.79.36.171；HTTP ACME bootstrap 已安装，nginx-t通过；证书/TLS、PR合并、Worker部署和自然Cron仍待后续验收。
+- DNS保存回读及Google/Cloudflare DoH均为47.79.36.171；HTTP ACME bootstrap nginx-t通过。独立新证书签发成功，到期2027-01-03，原certbot timer为enabled/active；未注册新服务或修改密钥。
 - 东京迁移前MainPID235825/NRestarts0，应用源码d6a9d3f29ef93c138842342c973b3049fb7bc252。保留独立服务器SHA，不将新WorkerSHA当应用重部署。
 
-Source commit: pending：基于744791f5f6eab5dddc5a6f0ccd62aaa682018fe3，业务PR合并后记录实际SHA。
-Worker version: not changed，目前496f3131-144e-4a25-ae59-44f5b47b6b34；新URL尚未部署。
-Deployment: pending；仅按现有cloudflare-unified.yml部署，禁止恢复旧独立watchdog。
-Verification: 2026-10-05，DNS确认；TLS、自然Cron与实际Telegram收件尚未验证。既有Hyperliquid degraded/ready503不因域名迁移消失。
+Source commit: 4e3862117671db962798fc305622a476f07e5ec7（业务[PR217](https://github.com/ohxiyu/xiyunews/pull/217)，15:01:31Z合并）；发送应用仍d6a9d3f29ef93c138842342c973b3049fb7bc252，不混淆两种SHA。
+Worker version: fb50c31c-7ca6-4339-b1f6-9929bd12ae74；之前496f3131-144e-4a25-ae59-44f5b47b6b34。静态产物3670b9beeba36078fe0b47343070e6f073da76c0不变。
+Deployment: 已完成，[现有统一部署37329563017](https://github.com/ohxiyu/xiyunews/actions/runs/37329563017)成功，15:04:23Z回读Worker ID、原三组Cron、--keep-vars。没有恢复旧独立watchdog、手改gh-pages或任何缓存/队列分支。
+Verification: 2026-10-05T15:05:32Z新版本自然*/5 Cron outcome=ok、exceptions=[]、watchdog:ok；collection not_due，X/Square idle。随后STATE只读仍failing0/alertedfalse/lastAlert0，未重置；实际Telegram手机收件尚未独立验证。既有Hyperliquid degraded/ready503不因域名迁移消失。
 Rollback: 东京原nginx完整备份/opt/fomobtc/backups/api-domain-20261005-GtQ56kQj/nginx-fomobtc.conf；旧API保留。需要明确回退授权后，恢复原代理配置、nginx-t/reload，并通过reviewed PR把监控目标改回旧API及原统一Worker部署流程；不回滚发送应用、不动env/SQLite/STATE。
 
-服务器和自然Cron最终证据在生产完成后通过独立文档PR追加，不把本记录的pending称为上线完成。
+## 生产验收补录（Issue218，仅文档）
+
+业务[CI37329100332](https://github.com/ohxiyu/xiyunews/actions/runs/37329100332)全绿：test、edge-build、governance、realtime两版本（各61 passed、ruff/mypy/契约/Node）及Pages通过；CodeQL analyze由于原私有套餐授权被跳过，不称为已完成扫描。
+
+原nginx备份SHA256为2da5dbc26a72eb35e5363999db81e6dee28d9a345300c21269d3e502cef64c73；安装的reviewed新配置SHA256为f8a93aaa4bc8341ff8110cf762fa2af3ea4f6b434790200619b9eb9697942ef3，与业务PR文件逐字节一致。临时ACME vhost已移动到上述备份目录，nginx-t成功后仅reload nginx。发送应用MainPID235825/NRestarts0未变；新旧域都返回同一应用SHA。
+
+公网DNS两家DoH一致；东京按正常域名且严格TLS验证：新旧health200、no-store、三spot分片live、ingestion_queue0，HTTP308保留路径，未知路径404，POST health403，ready503保留既有来源限制。运营者电脑另以新域SNI/Host固定源IP严格校验证书成功（不使用-k，避免本机Shadowrocket假IP缓存干扰）。这些验收不等于每条历史失败事件已修复或手机通知已收件。
+
+迁移期间STATE首次CLI只读受本机已有Cloudflare凭据环境影响返回401；仅对只读CLI进程移除覆盖变量、使用现有OAuth后回读成功，未读取/修改任何凭据值。全部回读都是健康零故障状态；没有通过清KV伪造恢复。
+
+本次没有发送测试消息、制造故障、调用真实AI、触发出刊/重刊/编辑重建或人工渠道工作流。保留旧域/旧证书过渡，删除属于新的具体授权；没有新增付费套餐。文档PR自身不需要部署，合并文档不能误触发第二次生产发布。
