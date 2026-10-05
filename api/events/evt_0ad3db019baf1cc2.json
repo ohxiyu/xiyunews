@@ -4,34 +4,80 @@
   "url": "https://xiyu.news/events/evt_0ad3db019baf1cc2/",
   "json": "https://xiyu.news/api/events/evt_0ad3db019baf1cc2.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "【PeckShield：Base 上金库攻击事件损失扩大至约 600 万美元】",
-    "en": "【PeckShield：Base 上金库攻击事件损失扩大至约 600 万美元】"
+    "zh": "Base 上金库遭攻击，约 1783 枚 wstETH 被盗",
+    "en": "Base vault attacked, ~1,783 wstETH drained"
   },
   "current_state": {
-    "zh": "据 PeckShield 监测，Base 上一未命名金库遭攻击的损失已扩大至约 600 万美元，约合 1783 枚 wstETH。这一数字较此前 Blockaid 就该事件监测到的约 202 万美元有所上升。\n\n据 Foresight News 此前援引 Blockaid 的消息，一个新合约被添加进该金库的白名单，攻击者从金库借出 aBaswstETH 并将 aTokens 发送至该合约，在约 4 笔交易中抽走约 202 万美元。PeckShield 最新给出的约 600 万美元（约 1783 枚 wstETH）显示损失规模已超过最初统计；该金库目前未被公开点名。",
-    "en": "PeckShield reports that losses from an attack on an unnamed Base vault have grown to approximately $6 million, or about 1,783 wstETH, after an attacker contract was whitelisted and drained aBaswstETH/aTokens across a handful of transactions."
+    "zh": "Base 上一未认领金库合约遭攻击，损失约 600 万美元（约 1783 枚 wstETH），攻击涉及 Safe 多签白名单机制与 Aave V3 赎回；截至最新报道，该金库内仍有约 3170 万美元资产处于风险中，Aave 核心合约和 Base 链本身未受影响。",
+    "en": "An unclaimed vault contract on Base was attacked, causing ~$6M in losses (~1,783 wstETH) via a Safe multisig whitelist mechanism and Aave V3 redemption; as of the latest report, ~$31.7M in assets remain at risk in the vault, while Aave core contracts and Base itself were unaffected."
   },
   "first_seen_at": "2026-10-04T10:42:09.161969+00:00",
-  "last_updated_at": "2026-10-04T10:42:09.161969+00:00",
-  "last_material_change_at": "2026-10-04T10:42:09.161969+00:00",
+  "last_updated_at": "2026-10-05T02:20:20.416195+00:00",
+  "last_material_change_at": "2026-10-05T02:20:20.416195+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 3,
+  "sources_count": 4,
   "entities": [
     "base",
-    "peckshield"
+    "drained",
+    "goplus",
+    "peckshield",
+    "peckshieldalert",
+    "wsteth"
   ],
   "identifiers": [],
   "topics": [
+    "aave",
     "base",
     "defi-exploit",
+    "defi-governance",
     "peckshield",
+    "safe-multisig",
+    "security-exploit",
     "wsteth"
   ],
   "updates": [
+    {
+      "update_id": "upd_cee6281a3e9ab219",
+      "event_id": "evt_0ad3db019baf1cc2",
+      "occurred_at": "2026-10-04T01:56:00Z",
+      "published_at": "2026-10-04T01:56:00Z",
+      "first_seen_at": "2026-10-04T14:51:12.758742Z",
+      "time_precision": "published",
+      "update_type": "initial",
+      "material_change": true,
+      "title_zh": "PeckShieldAlert：Base 网络上 1,783 枚 wstETH 被抽走",
+      "title_en": "PeckShieldAlert: 1,783 wstETH Drained on Base",
+      "what_changed_zh": "PeckShieldAlert 报告称，Base 网络上一协议有 1,783 枚 wstETH 被抽走，表明已确认发生安全漏洞利用。",
+      "what_changed_en": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
+      "current_state_zh": "PeckShieldAlert 报告称，Base 网络上一协议有 1,783 枚 wstETH 被抽走，表明已确认发生安全漏洞利用。",
+      "current_state_en": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
+      "detailed_summary_zh": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
+      "detailed_summary_en": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "google_news:article:7bd8c8a59bc84ecb"
+      ],
+      "sources": [
+        {
+          "url": "https://blockchain.news/flashnews/peckshieldalert-1-783-wsteth-drained-base",
+          "label": "blockchain.news",
+          "source_type": "google_news",
+          "official": false
+        }
+      ]
+    },
     {
       "update_id": "upd_5b0a5cffb9551a05",
       "event_id": "evt_0ad3db019baf1cc2",
@@ -39,7 +85,7 @@
       "published_at": "2026-10-04T10:02:41Z",
       "first_seen_at": "2026-10-04T10:42:09.161969Z",
       "time_precision": "published",
-      "update_type": "initial",
+      "update_type": "escalation",
       "material_change": true,
       "title_zh": "【PeckShield：Base 上金库攻击事件损失扩大至约 600 万美元】",
       "title_en": "【PeckShield：Base 上金库攻击事件损失扩大至约 600 万美元】",
@@ -69,6 +115,51 @@
       "sources": [
         {
           "url": "https://foresightnews.pro/news/h5Detail/114545",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_f4bfc7cd7708356b",
+      "event_id": "evt_0ad3db019baf1cc2",
+      "occurred_at": "2026-10-05T00:14:02Z",
+      "published_at": "2026-10-05T00:14:02Z",
+      "first_seen_at": "2026-10-05T02:20:20.416195Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "GoPlus：Base链某金库合约遭攻击，损失约600万美元，仍有3170万美元资产处于风险",
+      "title_en": "GoPlus：Base链某金库合约遭攻击，损失约600万美元，仍有3170万美元资产处于风险",
+      "what_changed_zh": "GoPlus 披露攻击源于 Safe 多签将恶意合约加入借贷白名单，攻击者提取 1783 枚 aBaswstETH 并在 Aave V3 赎回约 1783 枚 wstETH，损失约 600 万美元；同时指出该金库内仍有约 3170 万美元资产处于风险中，团队在攻击前 25 天未执行 Safe 交易，可能遭社会工程学攻击或内部勾结。",
+      "what_changed_en": "GoPlus reports the attack stemmed from a Safe multisig whitelisting a malicious contract into the lending whitelist, with the attacker withdrawing 1,783 aBaswstETH and redeeming roughly 1,783 wstETH on Aave V3 for ~$6M in losses; it adds that ~$31.7M in assets remain at risk and that the team had not executed a Safe transaction for 25 days before the attack, possibly due to social engineering or insider collusion.",
+      "current_state_zh": "Base 上一未认领金库合约遭攻击，损失约 600 万美元（约 1783 枚 wstETH），攻击涉及 Safe 多签白名单机制与 Aave V3 赎回；截至最新报道，该金库内仍有约 3170 万美元资产处于风险中，Aave 核心合约和 Base 链本身未受影响。",
+      "current_state_en": "An unclaimed vault contract on Base was attacked, causing ~$6M in losses (~1,783 wstETH) via a Safe multisig whitelist mechanism and Aave V3 redemption; as of the latest report, ~$31.7M in assets remain at risk in the vault, while Aave core contracts and Base itself were unaffected.",
+      "detailed_summary_zh": "GoPlus reports that an unclaimed vault contract on Base was attacked after a Safe multisig whitelisted a malicious contract, draining ~1,783 aBaswstETH and redeeming roughly 1,783 wstETH on Aave V3 for ~$6M in losses, with ~$31.7M in assets still at risk.",
+      "detailed_summary_en": "GoPlus reports that an unclaimed vault contract on Base was attacked after a Safe multisig whitelisted a malicious contract, draining ~1,783 aBaswstETH and redeeming roughly 1,783 wstETH on Aave V3 for ~$6M in losses, with ~$31.7M in assets still at risk.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "telegram:theblockbeats:198925",
+        "telegram:foresightnews:119728"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/370247?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/114556",
           "label": "foresightnews",
           "source_type": "telegram",
           "official": false

@@ -111176,31 +111176,79 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "PeckShield reports that losses from an attack on an unnamed Base vault have grown to approximately $6 million, or about 1,783 wstETH, after an attacker contract was whitelisted and drained aBaswstETH/aTokens across a handful of transactions.",
-      "current_state_zh": "据 PeckShield 监测，Base 上一未命名金库遭攻击的损失已扩大至约 600 万美元，约合 1783 枚 wstETH。这一数字较此前 Blockaid 就该事件监测到的约 202 万美元有所上升。\n\n据 Foresight News 此前援引 Blockaid 的消息，一个新合约被添加进该金库的白名单，攻击者从金库借出 aBaswstETH 并将 aTokens 发送至该合约，在约 4 笔交易中抽走约 202 万美元。PeckShield 最新给出的约 600 万美元（约 1783 枚 wstETH）显示损失规模已超过最初统计；该金库目前未被公开点名。",
+      "current_state_en": "An unclaimed vault contract on Base was attacked, causing ~$6M in losses (~1,783 wstETH) via a Safe multisig whitelist mechanism and Aave V3 redemption; as of the latest report, ~$31.7M in assets remain at risk in the vault, while Aave core contracts and Base itself were unaffected.",
+      "current_state_zh": "Base 上一未认领金库合约遭攻击，损失约 600 万美元（约 1783 枚 wstETH），攻击涉及 Safe 多签白名单机制与 Aave V3 赎回；截至最新报道，该金库内仍有约 3170 万美元资产处于风险中，Aave 核心合约和 Base 链本身未受影响。",
       "entities": [
         "base",
-        "peckshield"
+        "drained",
+        "goplus",
+        "peckshield",
+        "peckshieldalert",
+        "wsteth"
       ],
       "event_id": "evt_0ad3db019baf1cc2",
       "event_type": "security_incident",
       "first_seen_at": "2026-10-04T10:42:09.161969Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-04T10:42:09.161969Z",
-      "last_updated_at": "2026-10-04T10:42:09.161969Z",
+      "last_material_change_at": "2026-10-05T02:20:20.416195Z",
+      "last_updated_at": "2026-10-05T02:20:20.416195Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_d2bc385cc388876d"
+      ],
       "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "【PeckShield：Base 上金库攻击事件损失扩大至约 600 万美元】",
-      "title_zh": "【PeckShield：Base 上金库攻击事件损失扩大至约 600 万美元】",
+      "status": "developing",
+      "title_en": "Base vault attacked, ~1,783 wstETH drained",
+      "title_zh": "Base 上金库遭攻击，约 1783 枚 wstETH 被盗",
       "topics": [
+        "aave",
         "base",
         "defi-exploit",
+        "defi-governance",
         "peckshield",
+        "safe-multisig",
+        "security-exploit",
         "wsteth"
       ],
       "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
+          "current_state_zh": "PeckShieldAlert 报告称，Base 网络上一协议有 1,783 枚 wstETH 被抽走，表明已确认发生安全漏洞利用。",
+          "detailed_summary_en": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
+          "detailed_summary_zh": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
+          "event_id": "evt_0ad3db019baf1cc2",
+          "first_seen_at": "2026-10-04T14:51:12.758742Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-04T01:56:00Z",
+          "published_at": "2026-10-04T01:56:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "blockchain.news",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://blockchain.news/flashnews/peckshieldalert-1-783-wsteth-drained-base"
+            }
+          ],
+          "story_ids": [
+            "google_news:article:7bd8c8a59bc84ecb"
+          ],
+          "time_precision": "published",
+          "title_en": "PeckShieldAlert: 1,783 wstETH Drained on Base",
+          "title_zh": "PeckShieldAlert：Base 网络上 1,783 枚 wstETH 被抽走",
+          "update_id": "upd_cee6281a3e9ab219",
+          "update_type": "initial",
+          "what_changed_en": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
+          "what_changed_zh": "PeckShieldAlert 报告称，Base 网络上一协议有 1,783 枚 wstETH 被抽走，表明已确认发生安全漏洞利用。"
+        },
         {
           "background_en": "wstETH is Lido's wrapped liquid staking token, a DeFi-compatible version of stETH that is widely integrated across lending and other protocols. aBaswstETH is a wstETH-related token associated with Aave on Base, according to public token listings. Base is Coinbase's Ethereum layer-2 network, where vaults and lending positions are commonly managed through permissioned or whitelisted contracts.",
           "background_zh": "wstETH 是 Lido 发行的包装版流动性质押代币，是 stETH 的 DeFi 兼容版本，被广泛集成进借贷等各类协议。根据公开的代币信息，aBaswstETH 是与 Base 上 Aave 相关的 wstETH 代币。Base 是 Coinbase 推出的以太坊二层网络，其上的金库与借贷头寸常通过许可或白名单合约进行管理。",
@@ -111240,9 +111288,54 @@
           "title_en": "【PeckShield：Base 上金库攻击事件损失扩大至约 600 万美元】",
           "title_zh": "【PeckShield：Base 上金库攻击事件损失扩大至约 600 万美元】",
           "update_id": "upd_5b0a5cffb9551a05",
-          "update_type": "initial",
+          "update_type": "escalation",
           "what_changed_en": "PeckShield reports that losses from an attack on an unnamed Base vault have grown to approximately $6 million, or about 1,783 wstETH, after an attacker contract was whitelisted and drained aBaswstETH/aTokens across a handful of transactions.",
           "what_changed_zh": "据 PeckShield 监测，Base 上一未命名金库遭攻击的损失已扩大至约 600 万美元，约合 1783 枚 wstETH。这一数字较此前 Blockaid 就该事件监测到的约 202 万美元有所上升。\n\n据 Foresight News 此前援引 Blockaid 的消息，一个新合约被添加进该金库的白名单，攻击者从金库借出 aBaswstETH 并将 aTokens 发送至该合约，在约 4 笔交易中抽走约 202 万美元。PeckShield 最新给出的约 600 万美元（约 1783 枚 wstETH）显示损失规模已超过最初统计；该金库目前未被公开点名。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "An unclaimed vault contract on Base was attacked, causing ~$6M in losses (~1,783 wstETH) via a Safe multisig whitelist mechanism and Aave V3 redemption; as of the latest report, ~$31.7M in assets remain at risk in the vault, while Aave core contracts and Base itself were unaffected.",
+          "current_state_zh": "Base 上一未认领金库合约遭攻击，损失约 600 万美元（约 1783 枚 wstETH），攻击涉及 Safe 多签白名单机制与 Aave V3 赎回；截至最新报道，该金库内仍有约 3170 万美元资产处于风险中，Aave 核心合约和 Base 链本身未受影响。",
+          "detailed_summary_en": "GoPlus reports that an unclaimed vault contract on Base was attacked after a Safe multisig whitelisted a malicious contract, draining ~1,783 aBaswstETH and redeeming roughly 1,783 wstETH on Aave V3 for ~$6M in losses, with ~$31.7M in assets still at risk.",
+          "detailed_summary_zh": "GoPlus reports that an unclaimed vault contract on Base was attacked after a Safe multisig whitelisted a malicious contract, draining ~1,783 aBaswstETH and redeeming roughly 1,783 wstETH on Aave V3 for ~$6M in losses, with ~$31.7M in assets still at risk.",
+          "event_id": "evt_0ad3db019baf1cc2",
+          "first_seen_at": "2026-10-05T02:20:20.416195Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-05T00:14:02Z",
+          "published_at": "2026-10-05T00:14:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/370247?from=telegram"
+            },
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/114556"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:198925",
+            "telegram:foresightnews:119728"
+          ],
+          "time_precision": "published",
+          "title_en": "GoPlus：Base链某金库合约遭攻击，损失约600万美元，仍有3170万美元资产处于风险",
+          "title_zh": "GoPlus：Base链某金库合约遭攻击，损失约600万美元，仍有3170万美元资产处于风险",
+          "update_id": "upd_f4bfc7cd7708356b",
+          "update_type": "escalation",
+          "what_changed_en": "GoPlus reports the attack stemmed from a Safe multisig whitelisting a malicious contract into the lending whitelist, with the attacker withdrawing 1,783 aBaswstETH and redeeming roughly 1,783 wstETH on Aave V3 for ~$6M in losses; it adds that ~$31.7M in assets remain at risk and that the team had not executed a Safe transaction for 25 days before the attack, possibly due to social engineering or insider collusion.",
+          "what_changed_zh": "GoPlus 披露攻击源于 Safe 多签将恶意合约加入借贷白名单，攻击者提取 1783 枚 aBaswstETH 并在 Aave V3 赎回约 1783 枚 wstETH，损失约 600 万美元；同时指出该金库内仍有约 3170 万美元资产处于风险中，团队在攻击前 25 天未执行 Safe 交易，可能遭社会工程学攻击或内部勾结。"
         }
       ]
     },
@@ -111354,24 +111447,32 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Binance will begin requiring Brazilian users to explain the purpose and counterparty of cross-border crypto transfers from Nov. 1, reporting the transactions monthly to Brazil's central bank under Resolution BCB 521/2025.",
-      "current_state_zh": "Binance will begin requiring Brazilian users to explain the purpose and counterparty of cross-border crypto transfers from Nov. 1, reporting the transactions monthly to Brazil's central bank under Resolution BCB 521/2025.",
+      "current_state_en": "From Nov. 1, Binance will require Brazilian users to declare the purpose and counterparty of cross-border crypto transfers, block withdrawals without the questionnaire, potentially return incomplete deposits, report transactions monthly to Brazil's central bank, and cap some transfers at $100,000 where the counterparty is not FX-authorized in Brazil.",
+      "current_state_zh": "自11月1日起，币安将要求巴西用户申报跨境加密转账的用途和交易对手，未完成问卷的提款将被阻止，信息不完整的存款可能被退回，并向巴西央行按月报告；部分转账若对手方未获巴西外汇授权，上限为10万美元。",
       "entities": [
         "binance",
-        "brazil"
+        "block",
+        "border",
+        "brazil",
+        "cross",
+        "from",
+        "nov",
+        "purpos",
+        "transfers",
+        "without"
       ],
       "event_id": "evt_7f495c46d92c8be5",
       "event_type": "regulatory_action",
       "first_seen_at": "2026-10-04T14:51:12.757805Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-04T14:51:19.083655Z",
-      "last_updated_at": "2026-10-04T14:51:19.083655Z",
+      "last_material_change_at": "2026-10-05T02:20:18.445152Z",
+      "last_updated_at": "2026-10-05T02:20:18.445152Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_d480f0498753416b"
       ],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "developing",
       "title_en": "Binance will hold some Brazil crypto deposits until users explain where the money came from",
       "title_zh": "币安因巴西跨境加密转账新规将暂扣部分存款",
       "topics": [
@@ -111392,7 +111493,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Binance will withhold certain Brazilian crypto deposits until users document the origin of the funds, tightening AML/source-of-funds checks on inbound transfers in that market.",
-          "current_state_zh": "Binance will withhold certain Brazilian crypto deposits until users document the origin of the funds, tightening AML/source-of-funds checks on inbound transfers in that market.",
+          "current_state_zh": "币安将暂扣部分巴西加密存款，直至用户提供资金 origin 证明文件，从而在该市场加强对入账转账的 AML/资金来源审查。",
           "detailed_summary_en": "Binance will withhold certain Brazilian crypto deposits until users document the origin of the funds, tightening AML/source-of-funds checks on inbound transfers in that market.",
           "detailed_summary_zh": "Binance will withhold certain Brazilian crypto deposits until users document the origin of the funds, tightening AML/source-of-funds checks on inbound transfers in that market.",
           "event_id": "evt_7f495c46d92c8be5",
@@ -111424,79 +111525,49 @@
           ],
           "time_precision": "published",
           "title_en": "Binance will hold some Brazil crypto deposits until users explain where the money came from",
-          "title_zh": "Binance will hold some Brazil crypto deposits until users explain where the money came from",
+          "title_zh": "币安将暂扣部分巴西加密存款，直至用户说明资金来源",
           "update_id": "upd_2bc2f098fe9f3fed",
           "update_type": "initial",
           "what_changed_en": "Binance will withhold certain Brazilian crypto deposits until users document the origin of the funds, tightening AML/source-of-funds checks on inbound transfers in that market.",
-          "what_changed_zh": "Binance will withhold certain Brazilian crypto deposits until users document the origin of the funds, tightening AML/source-of-funds checks on inbound transfers in that market."
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
-      "current_state_zh": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
-      "entities": [
-        "base",
-        "drained",
-        "peckshieldalert",
-        "wsteth"
-      ],
-      "event_id": "evt_d2bc385cc388876d",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-10-04T14:51:12.758742Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-04T14:51:12.758742Z",
-      "last_updated_at": "2026-10-04T14:51:12.758742Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "PeckShieldAlert: 1,783 wstETH Drained on Base",
-      "title_zh": "PeckShieldAlert: 1,783 wstETH Drained on Base",
-      "topics": [
-        "base",
-        "wsteth"
-      ],
-      "updates": [
+          "what_changed_zh": "币安将暂扣部分巴西加密存款，直至用户提供资金 origin 证明文件，从而在该市场加强对入账转账的 AML/资金来源审查。"
+        },
         {
           "background_en": "",
           "background_zh": "",
           "community_discussion_en": "",
           "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
-          "current_state_zh": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
-          "detailed_summary_en": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
-          "detailed_summary_zh": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
-          "event_id": "evt_d2bc385cc388876d",
-          "first_seen_at": "2026-10-04T14:51:12.758742Z",
-          "importance_score": 7.0,
+          "confidence": 0.95,
+          "current_state_en": "From Nov. 1, Binance will require Brazilian users to declare the purpose and counterparty of cross-border crypto transfers, block withdrawals without the questionnaire, potentially return incomplete deposits, report transactions monthly to Brazil's central bank, and cap some transfers at $100,000 where the counterparty is not FX-authorized in Brazil.",
+          "current_state_zh": "自11月1日起，币安将要求巴西用户申报跨境加密转账的用途和交易对手，未完成问卷的提款将被阻止，信息不完整的存款可能被退回，并向巴西央行按月报告；部分转账若对手方未获巴西外汇授权，上限为10万美元。",
+          "detailed_summary_en": "Binance will require Brazilian users to declare the purpose and counterparty of cross-border crypto transfers starting Nov. 1, blocking withdrawals without the questionnaire, potentially returning incomplete deposits, and reporting the transactions monthly to Brazil's central bank under Resolution BCB No. 521/2025, which caps some transfers at $100,000 where the counterparty is not FX-authorized in Brazil.",
+          "detailed_summary_zh": "Binance will require Brazilian users to declare the purpose and counterparty of cross-border crypto transfers starting Nov. 1, blocking withdrawals without the questionnaire, potentially returning incomplete deposits, and reporting the transactions monthly to Brazil's central bank under Resolution BCB No. 521/2025, which caps some transfers at $100,000 where the counterparty is not FX-authorized in Brazil.",
+          "event_id": "evt_7f495c46d92c8be5",
+          "first_seen_at": "2026-10-05T02:20:18.445152Z",
+          "importance_score": 7.5,
           "market_impact_en": "",
           "market_impact_zh": "",
           "material_change": true,
-          "occurred_at": "2026-10-04T01:56:00Z",
-          "published_at": "2026-10-04T01:56:00Z",
+          "occurred_at": "2026-10-05T01:32:40Z",
+          "published_at": "2026-10-05T01:32:40Z",
           "references": [],
           "sources": [
             {
-              "label": "blockchain.news",
+              "label": "wublockchainenglish",
               "official": false,
-              "source_type": "google_news",
-              "url": "https://blockchain.news/flashnews/peckshieldalert-1-783-wsteth-drained-base"
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/news-21107"
             }
           ],
           "story_ids": [
-            "google_news:article:7bd8c8a59bc84ecb"
+            "telegram:wublockchainenglish:26279"
           ],
           "time_precision": "published",
-          "title_en": "PeckShieldAlert: 1,783 wstETH Drained on Base",
-          "title_zh": "PeckShieldAlert: 1,783 wstETH Drained on Base",
-          "update_id": "upd_cee6281a3e9ab219",
-          "update_type": "initial",
-          "what_changed_en": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit.",
-          "what_changed_zh": "PeckShieldAlert reports that 1,783 wstETH were drained from a protocol on the Base network, indicating a confirmed security exploit."
+          "title_en": "Binance to Block Brazil Cross-Border Crypto Transfers From Nov. 1 Without Purpos",
+          "title_zh": "币安将从 11 月 1 日起阻止无用途的巴西跨境加密转账",
+          "update_id": "upd_00377448fa8787e7",
+          "update_type": "escalation",
+          "what_changed_en": "Added: withdrawals will be blocked without the completed questionnaire; incomplete deposits may remain pending or be returned; transfers up to $50,000 use a 10-purpose list while larger ones require one of 96 classifications; some transfers are capped at $100,000 if the counterparty is not FX-authorized in Brazil; transfers between Brazilian residents are unaffected.",
+          "what_changed_zh": "新增：未完成问卷的提款将被阻止；信息不完整的存款可能保持待处理或被退回；5万美元以下转账使用10类用途列表，以上需从96种分类中选择；对手方未获巴西外汇市场授权时部分转账上限为10万美元；巴西居民间转账不受影响。"
         }
       ]
     },
@@ -112202,6 +112273,230 @@
           "what_changed_zh": "据 CryptoTicker 报道，Kraken 已封锁 VANRY 代币的提现，直至 12 月 10 日。报道同时称，VANRY 在 Kraken 上处于“仅可撤单”（cancel only）的交易状态，价格显示为零。\n\n据 CryptoTicker 称，“仅可撤单”是交易所在下架某个代币之前设定的交易状态，这意味着 Kraken 上的 VANRY 持有者在 12 月 10 日之前无法将该代币提出交易所。\n\nCryptoTicker 将 VANRY 在 Kraken 上的状态描述为“仅可撤单、价格为零、提现被封锁”。此次限制仅针对 VANRY，报道给出的结束日期为 12 月 10 日。"
         }
       ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "OKX has submitted a filing to the US SEC seeking approval to offer tokenized-stock trading to US customers, advancing its push into tokenized equities.",
+      "current_state_zh": "OKX has submitted a filing to the US SEC seeking approval to offer tokenized-stock trading to US customers, advancing its push into tokenized equities.",
+      "entities": [
+        "ice",
+        "nyse",
+        "okx",
+        "parent",
+        "platform",
+        "sec",
+        "seek",
+        "shares",
+        "starting",
+        "stock",
+        "tokenized",
+        "trading",
+        "with"
+      ],
+      "event_id": "evt_41259ed62aa6df81",
+      "event_type": "market_structure",
+      "first_seen_at": "2026-10-05T02:20:17.505824Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-05T02:20:17.508035Z",
+      "last_updated_at": "2026-10-05T02:20:17.508035Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [
+        "evt_566e6d1c0414fec4"
+      ],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "OKX Files with SEC to Bring Tokenized-Stock Trading to the US",
+      "title_zh": "OKX 向美国 SEC 提交申请，拟推出代币化股票交易",
+      "topics": [
+        "ice-nyse",
+        "okx",
+        "sec",
+        "tokenized-stocks",
+        "us-regulation"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "OKX and Intercontinental Exchange, the NYSE's parent company, are pursuing a US tokenized stock trading platform that would initially cover 63 equities.",
+          "current_state_zh": "OKX and Intercontinental Exchange, the NYSE's parent company, are pursuing a US tokenized stock trading platform that would initially cover 63 equities.",
+          "detailed_summary_en": "OKX and Intercontinental Exchange, the NYSE's parent company, are pursuing a US tokenized stock trading platform that would initially cover 63 equities.",
+          "detailed_summary_zh": "OKX and Intercontinental Exchange, the NYSE's parent company, are pursuing a US tokenized stock trading platform that would initially cover 63 equities.",
+          "event_id": "evt_41259ed62aa6df81",
+          "first_seen_at": "2026-10-05T02:20:17.505824Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-05T02:05:06Z",
+          "published_at": "2026-10-05T02:05:06Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "bloomingbit",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://en.bloomingbit.io/feed/news/121584"
+            },
+            {
+              "label": "Crypto Briefing",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://cryptobriefing.com/okx-sec-filing-tokenized-stock-platform/"
+            }
+          ],
+          "story_ids": [
+            "google_news:article:ccee2f9cc89f1f5d",
+            "google_news:article:0825c232651977de"
+          ],
+          "time_precision": "published",
+          "title_en": "OKX, NYSE Parent ICE Seek US Tokenized Stock Trading Platform, Starting With 63 Shares",
+          "title_zh": "OKX, NYSE Parent ICE Seek US Tokenized Stock Trading Platform, Starting With 63 Shares",
+          "update_id": "upd_0d00b2f32a18c671",
+          "update_type": "initial",
+          "what_changed_en": "OKX and Intercontinental Exchange, the NYSE's parent company, are pursuing a US tokenized stock trading platform that would initially cover 63 equities.",
+          "what_changed_zh": "OKX and Intercontinental Exchange, the NYSE's parent company, are pursuing a US tokenized stock trading platform that would initially cover 63 equities."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "S&P Global Ratings introduced its Vault Risk Assessment (VRA) framework, a new rating system using symbols such as AAA(v) to evaluate on-chain lending vaults that provide liquidity against crypto assets and tokenized RWA collateral, assessing underlying asset credit risk, protocol and blockchain risk, vault manager risk, and liquidity.",
+      "current_state_zh": "S&P Global Ratings introduced its Vault Risk Assessment (VRA) framework, a new rating system using symbols such as AAA(v) to evaluate on-chain lending vaults that provide liquidity against crypto assets and tokenized RWA collateral, assessing underlying asset credit risk, protocol and blockchain risk, vault manager risk, and liquidity.",
+      "entities": [
+        "vault"
+      ],
+      "event_id": "evt_ef74d7852fd3ff46",
+      "event_type": "product_release",
+      "first_seen_at": "2026-10-05T02:20:20.417024Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-05T02:20:20.417024Z",
+      "last_updated_at": "2026-10-05T02:20:20.417024Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "标普全球评级发布链上借贷Vault风险评估体系",
+      "title_zh": "标普全球评级发布链上借贷Vault风险评估体系",
+      "topics": [
+        "defi-risk",
+        "on-chain-lending",
+        "sp-global-ratings",
+        "tokenized-rwa"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "S&P Global Ratings introduced its Vault Risk Assessment (VRA) framework, a new rating system using symbols such as AAA(v) to evaluate on-chain lending vaults that provide liquidity against crypto assets and tokenized RWA collateral, assessing underlying asset credit risk, protocol and blockchain risk, vault manager risk, and liquidity.",
+          "current_state_zh": "S&P Global Ratings introduced its Vault Risk Assessment (VRA) framework, a new rating system using symbols such as AAA(v) to evaluate on-chain lending vaults that provide liquidity against crypto assets and tokenized RWA collateral, assessing underlying asset credit risk, protocol and blockchain risk, vault manager risk, and liquidity.",
+          "detailed_summary_en": "S&P Global Ratings introduced its Vault Risk Assessment (VRA) framework, a new rating system using symbols such as AAA(v) to evaluate on-chain lending vaults that provide liquidity against crypto assets and tokenized RWA collateral, assessing underlying asset credit risk, protocol and blockchain risk, vault manager risk, and liquidity.",
+          "detailed_summary_zh": "S&P Global Ratings introduced its Vault Risk Assessment (VRA) framework, a new rating system using symbols such as AAA(v) to evaluate on-chain lending vaults that provide liquidity against crypto assets and tokenized RWA collateral, assessing underlying asset credit risk, protocol and blockchain risk, vault manager risk, and liquidity.",
+          "event_id": "evt_ef74d7852fd3ff46",
+          "first_seen_at": "2026-10-05T02:20:20.417024Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-05T00:19:02Z",
+          "published_at": "2026-10-05T00:19:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/370248?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:198928"
+          ],
+          "time_precision": "published",
+          "title_en": "标普全球评级发布链上借贷Vault风险评估体系",
+          "title_zh": "标普全球评级发布链上借贷Vault风险评估体系",
+          "update_id": "upd_d7f1773ee5b90009",
+          "update_type": "initial",
+          "what_changed_en": "S&P Global Ratings introduced its Vault Risk Assessment (VRA) framework, a new rating system using symbols such as AAA(v) to evaluate on-chain lending vaults that provide liquidity against crypto assets and tokenized RWA collateral, assessing underlying asset credit risk, protocol and blockchain risk, vault manager risk, and liquidity.",
+          "what_changed_zh": "S&P Global Ratings introduced its Vault Risk Assessment (VRA) framework, a new rating system using symbols such as AAA(v) to evaluate on-chain lending vaults that provide liquidity against crypto assets and tokenized RWA collateral, assessing underlying asset credit risk, protocol and blockchain risk, vault manager risk, and liquidity."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Security firm Salus reports that Revenue is tied to a malicious-approval scheme in which attackers submit users' permit signatures to grant unlimited USDG spending rights and immediately call transferFrom, draining wallets in a single transaction and splitting proceeds 20/80 between two hacker addresses.",
+      "current_state_zh": "Security firm Salus reports that Revenue is tied to a malicious-approval scheme in which attackers submit users' permit signatures to grant unlimited USDG spending rights and immediately call transferFrom, draining wallets in a single transaction and splitting proceeds 20/80 between two hacker addresses.",
+      "entities": [
+        "revenue",
+        "salus"
+      ],
+      "event_id": "evt_49b2da741c6348f2",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-05T02:20:20.417704Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-05T02:20:20.417704Z",
+      "last_updated_at": "2026-10-05T02:20:20.417704Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "⚡️安全机构Salus：Revenue涉恶意授权，攻击者利用permit签名盗取资产",
+      "title_zh": "⚡️安全机构Salus：Revenue涉恶意授权，攻击者利用permit签名盗取资产",
+      "topics": [
+        "permit-signature",
+        "security-exploit",
+        "usdg",
+        "wallet-drainer"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Security firm Salus reports that Revenue is tied to a malicious-approval scheme in which attackers submit users' permit signatures to grant unlimited USDG spending rights and immediately call transferFrom, draining wallets in a single transaction and splitting proceeds 20/80 between two hacker addresses.",
+          "current_state_zh": "Security firm Salus reports that Revenue is tied to a malicious-approval scheme in which attackers submit users' permit signatures to grant unlimited USDG spending rights and immediately call transferFrom, draining wallets in a single transaction and splitting proceeds 20/80 between two hacker addresses.",
+          "detailed_summary_en": "Security firm Salus reports that Revenue is tied to a malicious-approval scheme in which attackers submit users' permit signatures to grant unlimited USDG spending rights and immediately call transferFrom, draining wallets in a single transaction and splitting proceeds 20/80 between two hacker addresses.",
+          "detailed_summary_zh": "Security firm Salus reports that Revenue is tied to a malicious-approval scheme in which attackers submit users' permit signatures to grant unlimited USDG spending rights and immediately call transferFrom, draining wallets in a single transaction and splitting proceeds 20/80 between two hacker addresses.",
+          "event_id": "evt_49b2da741c6348f2",
+          "first_seen_at": "2026-10-05T02:20:20.417704Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-05T00:40:02Z",
+          "published_at": "2026-10-05T00:40:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/370252?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:198930"
+          ],
+          "time_precision": "published",
+          "title_en": "⚡️安全机构Salus：Revenue涉恶意授权，攻击者利用permit签名盗取资产",
+          "title_zh": "⚡️安全机构Salus：Revenue涉恶意授权，攻击者利用permit签名盗取资产",
+          "update_id": "upd_4c8d7876ce287294",
+          "update_type": "initial",
+          "what_changed_en": "Security firm Salus reports that Revenue is tied to a malicious-approval scheme in which attackers submit users' permit signatures to grant unlimited USDG spending rights and immediately call transferFrom, draining wallets in a single transaction and splitting proceeds 20/80 between two hacker addresses.",
+          "what_changed_zh": "Security firm Salus reports that Revenue is tied to a malicious-approval scheme in which attackers submit users' permit signatures to grant unlimited USDG spending rights and immediately call transferFrom, draining wallets in a single transaction and splitting proceeds 20/80 between two hacker addresses."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -112248,10 +112543,10 @@
     ],
     "base": [
       "evt_0655aad2257c6798",
+      "evt_0ad3db019baf1cc2",
       "evt_48a0c8d3f286d821",
       "evt_691a1efee48b1cbe",
-      "evt_6b6fcb873789c504",
-      "evt_f2f495c2aee90d54"
+      "evt_6b6fcb873789c504"
     ],
     "binance": [
       "evt_1851f7d38a8f886b",
@@ -112265,6 +112560,10 @@
       "evt_d8ae999be9e6a399",
       "evt_eb3236420974e8d8",
       "evt_f5ff06cfd602a477"
+    ],
+    "bitbank": [
+      "evt_d034de03d227aa9f",
+      "evt_f28ee03d3060fa04"
     ],
     "bitcoin-etf": [
       "evt_a2704a893b13e69b",
@@ -112558,6 +112857,11 @@
     ],
     "occ": [
       "evt_48fe865f97e3959a"
+    ],
+    "okx": [
+      "evt_41259ed62aa6df81",
+      "evt_5df8d604741f9991",
+      "evt_f7858700f7736284"
     ],
     "ondo": [
       "evt_34a5da8e60611291",
