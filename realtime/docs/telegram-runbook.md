@@ -53,4 +53,4 @@ P2：自然事件延迟P95/P99、断线恢复与24小时稳定性。Binance/Hype
 成员只读：默认权限只保留表情回应，其余（发言、媒体、投票、邀请、置顶、管理话题）全部关闭；机器人为管理员不受影响。入口 https://fomobtc.com 302 跳转到机器人创建的邀请链接 https://t.me/+mdTufn9GK1UyODk0 （名称 fomobtc.com）。跳转由服务器 nginx 提供（scripts/deploy/nginx.conf）；若撤销该链接，需同步修改两处 return 302 并重新加载 nginx。
 
 ## 看门狗提醒（现行）
-统一Worker `xiyunews` 每5分钟检查 https://api.fomobtc.com/api/health，连续两次异常时通过同一机器人私聊运营者，不发到话题群；仍异常每2小时提醒，恢复后通知一次。原KV保留，新目的地来源和安全注入已有记录；实际私聊收件未证明时如实标注，不能靠制造故障或测试消息验收。旧 `fomobtc-watchdog` 已停用，不执行独立部署或setup_watchdog.sh；现行操作入口只维护在[根单项目清单](../../project-docs/cloudflare-single-project.md)。
+统一Worker `xiyunews` 每5分钟检查 https://api.xiyu.news/api/health，连续两次异常时通过同一机器人私聊运营者，不发到话题群；仍异常每2小时提醒，恢复后通知一次。旧 api.fomobtc.com 仅过渡保留；原KV保留，新目的地来源和安全注入已有记录；实际私聊收件未证明时如实标注，不能靠制造故障或测试消息验收。旧 `fomobtc-watchdog` 已停用，不执行独立部署或setup_watchdog.sh；现行操作入口只维护在[根单项目清单](../../project-docs/cloudflare-single-project.md)。

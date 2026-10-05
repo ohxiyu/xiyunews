@@ -12,7 +12,7 @@
 | STATE | 原KV469346950dfc4f36b8d9bf9997d960fa；只读核验，不能清空failing/alerted或重置去重。 |
 | 旧 Pages bmtnews | 已解除xiyu.news及对应CNAME，仍暂时保留历史；不是当前主域生产。 |
 | 旧 dispatcher/watchdog | 已部署停用保护、XIYUNEWS_LEGACY_DISABLED=true、Cron为空；暂时保留，不能按旧创建配置重跑。 |
-| 东京systemd fomobtc | 新仓d6a9d3f部署保持，原目录、SQLite/env、话题3/5/7不变；实时域/API/nginx仍用，不清理。 |
+| 东京systemd fomobtc | 新仓d6a9d3f部署保持，原目录、SQLite/env、话题3/5/7不变；实时 API 主域 api.xiyu.news，旧 api.fomobtc.com 过渡保留。 |
 
 ## 自动发布
 
@@ -41,6 +41,8 @@ curl -fsS https://xiyu.news/health
 已按 [transfer migration](https://developers.cloudflare.com/durable-objects/reference/durable-object-class-migrations-legacy/#transfer-migration) 将原RecoveryGate移至新Worker，namespace ID未变，STATE仍同一KV。先停旧调度、迁移暂停状态、核对原ID，再接主域和启新Cron；已完成的迁移不能当首次初始化重复执行，也不改服务器数据库或依赖。
 
 xiyu.news已从Pages转为Worker Custom Domain，路径和查询参数由原网站handler/Assets继续处理；HTML旧链接可能由Assets规范化重定向，最终应200。bmt.news旧区/绑定已删除，不恢复旧域跳转，不触碰仍使用的fomobtc.com/API。Pages→Workers依据见[官方迁移说明](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)。
+
+2026-10-05 接口迁移任务：新增专用 DNS-only A `api.xiyu.news` → 47.79.36.171，东京 nginx/独立证书提供 `/api/*`，统一看门狗改读 `https://api.xiyu.news/api/health`。旧域仅过渡保留；不修改主站、www 或通配符记录，不修改 STATE、Telegram 或发送服务。证书与 nginx 发布不等于 Worker 已发布，实际阶段以[迁移证据](releases/2026-10-05-realtime-api-domain.md)为准。
 
 ## 后台与凭据
 

@@ -48,6 +48,8 @@ test("alert after two failing checks, remind every two hours, announce recovery"
   assert.equal(r.message, null); // One transient failure is ignored.
   r = step(r.state, found, now + 300_000);
   assert.match(r.message, /^🚨 xiyu.news 实时服务异常\n• 服务无响应/);
+  assert.match(r.message, /https:\/\/api\.xiyu\.news\/api\/health$/);
+  assert.ok(!r.message.includes("api.fomobtc.com"));
   r = step(r.state, found, now + 600_000);
   assert.equal(r.message, null); // No repeat within two hours.
   r = step(r.state, found, now + 300_000 + 2 * 3600_000);
@@ -55,4 +57,70 @@ test("alert after two failing checks, remind every two hours, announce recovery"
   r = step(r.state, [], now + 3 * 3600_000);
   assert.equal(r.message, "✅ xiyu.news 实时服务已恢复正常");
   assert.deepEqual(step(r.state, [], now).message, null); // Quiet when nothing was alerted.
+});
+
+test("active watchdog fetches the new realtime API, not the publication health", async () => {
+  const originalFetch = globalThis.fetch;
+  const calls = [];
+  const stored = { failing: 0, alerted: false, lastAlert: 0 };
+  globalThis.fetch = async (url, options) => {
+    calls.push(url);
+    assert.ok(options.signal instanceof AbortSignal);
+    return Response.json({ ...healthy, monitoring: {
+      per_market: { spot: { last_received: Date.now() / 1000 } },
+    }});
+  };
+  try {
+    await worker.scheduled({}, { STATE: {
+      get: async (key, format) => {
+        assert.equal(key, "state"); assert.equal(format, "json"); return stored;
+      },
+      put: () => assert.fail("healthy unchanged state must not be rewritten"),
+    }});
+    assert.deepEqual(calls, ["https://api.xiyu.news/api/health"]);
+  } finally { globalThis.fetch = originalFetch; }
+});
+
+test("new API HTTP failures keep the existing confirmation and notification behavior", async () => {
+  const originalFetch = globalThis.fetch;
+  const calls = [];
+  let written;
+  globalThis.fetch = async (url, options) => {
+    calls.push(url);
+    if (url === "https://api.xiyu.news/api/health") return new Response("unavailable", { status: 503 });
+    assert.equal(url, "https://api.telegram.org/bottest-only/sendMessage");
+    const body = JSON.parse(options.body);
+    assert.equal(body.chat_id, "test-operator");
+    assert.match(body.text, /^🚨 xiyu.news 实时服务异常/);
+    assert.match(body.text, /https:\/\/api\.xiyu\.news\/api\/health$/);
+    return Response.json({ ok: true });
+  };
+  try {
+    await worker.scheduled({}, { TELEGRAM_BOT_TOKEN: "test-only", ALERT_CHAT_ID: "test-operator", STATE: {
+      get: async () => ({ failing: 1, alerted: false, lastAlert: 0 }),
+      put: async (key, value) => { assert.equal(key, "state"); written = JSON.parse(value); },
+    }});
+    assert.equal(written.failing, 2);
+    assert.equal(written.alerted, true);
+    assert.equal(calls.length, 2);
+  } finally { globalThis.fetch = originalFetch; }
+});
+
+test("new API network failure is one transient failure, without fallback or sending", async () => {
+  const originalFetch = globalThis.fetch;
+  let written;
+  let calls = 0;
+  globalThis.fetch = async (url) => {
+    calls++;
+    assert.equal(url, "https://api.xiyu.news/api/health");
+    throw new Error("mock network failure");
+  };
+  try {
+    await worker.scheduled({}, { STATE: {
+      get: async () => null,
+      put: async (_key, value) => { written = JSON.parse(value); },
+    }});
+    assert.equal(calls, 1);
+    assert.deepEqual(written, { failing: 1, alerted: false, lastAlert: 0 });
+  } finally { globalThis.fetch = originalFetch; }
 });

@@ -86,7 +86,7 @@ Add an actual deploy-* evidence record only after a real deployment.
 
 ## Tokyo production host and domain
 
-The production layout is the DNS-only backend `https://api.fomobtc.com` on the
+The primary API is the DNS-only backend `https://api.xiyu.news` on the
 Tokyo VPS; the web frontend at `fomobtc.com` was retired on 2026-09-25. Domain configuration
 and acceptance state are recorded separately in the latest handoff.
 
@@ -96,7 +96,7 @@ and acceptance state are recorded separately in the latest handoff.
 - Bootstrap nginx on port 80 with only `/.well-known/acme-challenge/` served from
   `/var/www/fomobtc-acme`. Point the API A record at the VPS; wait for public DNS.
 - Certbot is isolated in `/opt/fomobtc-certbot`. Issue with `certbot certonly
-  --webroot -w /var/www/fomobtc-acme -d api.fomobtc.com`; only then install the TLS
+  --webroot -w /var/www/fomobtc-acme --cert-name api.xiyu.news -d api.xiyu.news`; only then install the TLS
   nginx configuration. Check `nginx -t` before every reload.
 - Install the certificate service/timer from scripts/deploy and enable
   `fomobtc-certbot.timer`. Verify a staging renewal with `certbot renew --dry-run`.
@@ -114,17 +114,36 @@ The realtime service and its read-only API remain on the Tokyo VPS; its DNS
 records remain DNS-only. Cloudflare's unified xiyunews Worker now hosts the main
 publication site and the off-server watchdog together. Do not deploy another sender.
 
-- DNS: `fomobtc.com`, `www.fomobtc.com` and `api.fomobtc.com` are A records to
-  47.79.36.171. Edit them in the Cloudflare dashboard (the wrangler login cannot).
+- DNS: the new dedicated `api.xiyu.news` A record is 47.79.36.171, DNS-only;
+  old `api.fomobtc.com` remains available during transition. Do not change apex,
+  www, wildcard records or the original redirect while migrating the API.
+  Edit only authorized records in the Cloudflare dashboard (wrangler OAuth has no DNS write scope).
 - `fomobtc.com` / `www` serve no page: nginx (see nginx.conf) returns a 302 to the
   Telegram group invite link on every path. If the link is replaced, edit both
   `return 302` lines and reload nginx. Its certificate (`--cert-name fomobtc.com`)
   renews with the same certbot timer as the API certificate.
 - Watchdog: `scripts/deploy/watchdog/worker.js` is reused by the unified
-  `xiyunews` Worker (cron every 5 minutes, original KV `STATE`) and reads `https://api.fomobtc.com/api/health`
+  `xiyunews` Worker (cron every 5 minutes, original KV `STATE`) and reads `https://api.xiyu.news/api/health`
   and privately messages the operator after two consecutive failing checks
   (no response, Telegram disabled, spot trades older than 5 minutes, a source in
   error/stale/blocked, or more than 30 queued notices), reminds every 2 hours and
   announces recovery. Publish through the root cloudflare-unified.yml workflow;
   credentials are already configured. Never deploy the old standalone config or
   rerun setup_watchdog.sh, which can overwrite destinations and send test messages.
+
+## API domain cutover without restarting the sender
+
+For an existing host, back up nginx first. Add an HTTP-only ACME vhost for
+api.xiyu.news, validate with nginx -t and reload nginx, then add the dedicated
+DNS-only record and verify public DNS. Issue the independent certificate with
+the existing certbot account; install the reviewed nginx template only after the
+certificate exists. Remove the temporary vhost by moving it into the backup,
+test and reload nginx again. Do not stop/restart systemd fomobtc, copy env/SQLite,
+or switch its application release for this proxy-only change.
+
+Verify new and old TLS health, /api/ready, HTTP redirect, unknown-path 404 and
+POST rejection. Publish the watchdog URL through a reviewed PR and the existing
+root cloudflare-unified.yml workflow only after the new API works. Observe natural
+cron logs and STATE read-only; do not reset KV or trigger fake alerts. API 200
+does not prove every source ready or Telegram device delivery. The [cutover record](../../project-docs/releases/2026-10-05-realtime-api-domain.md)
+tracks exact backup, server/source and Worker identities and authorized rollback.
