@@ -11,15 +11,15 @@
     "en": "Reflection debuts Beam, an open-weight AI model to rival Chinese models at lower compute cost"
   },
   "current_state": {
-    "zh": "2026 年 10 月 5 日（周一），Reflection AI 发布了其首个前沿开源权重模型 Beam。据该公司博客介绍，Beam 是一个稀疏混合专家（MoE）模型，总参数 5010 亿、激活参数 230 亿，面向编程、推理与智能体（agentic）任务。\n\n此次发布使一家美国实验室在编程及相关任务上，直接与 DeepSeek、月之暗面 Kimi 等低成本中国开源权重模型展开竞争，而这一领域此前由中国模型的成本水平树立标杆。\n\nReflection 由英伟达（Nvidia）投资，并以“AI 工厂”（AI factories）产品向企业和主权国家推销 Beam 及后续模型，允许机构用自有专有数据训练这些模型。目前公开报道中未包含独立的基准测试结果或授权条款。",
-    "en": "Reflection AI unveiled Beam on Monday, October 5, 2026, its first frontier open-weight model. According to the company's blog, Beam is a sparse Mixture-of-Experts model with 501 billion total parameters and 23 billion active, built for coding, reasoning and agentic workloads.\n\nThe launch puts a US lab in direct competition with lower-cost Chinese open-weight models such as DeepSeek and Moonshot AI's Kimi in coding and related tasks, a segment where Chinese releases have set the cost benchmark.\n\nReflection is Nvidia-backed and is pitching Beam and future models at enterprises and sovereign nations through an \"AI factories\" offering that would let institutions train the models on their own proprietary data. The available coverage does not include independent benchmark results or licensing terms."
+    "zh": "Reflection AI 于 2026 年 10 月 5 日发布其首个前沿开源权重模型 Beam，这是一个总参数 5010 亿、激活参数 230 亿的稀疏 MoE 模型，面向编程、推理和智能体任务。新报道显示，Reflection 自行公布的基准测试中 Beam 在 DeepSWE 上得分 44.4，接近 GLM-5.2 但落后于最新的中国头部开源模型。Beam 仍在最后安全测试阶段，仅少量用户可提前使用；完整权重、技术报告和模型卡计划 2026 年 10 月晚些时候以 Apache 2.0 协议发布。训练使用 6144 块 GB300 预训练不到 4 周处理 23.8 万亿 token，再用 1.05 万块 GB300 进行 4 周强化学习，生成超过 1 亿条训练轨迹。",
+    "en": "Reflection AI unveiled Beam on October 5, 2026, its first frontier open-weight sparse MoE model with 501B total and 23B active parameters for coding, reasoning and agentic tasks. New coverage shows Reflection's own benchmarks place Beam at 44.4 on DeepSWE, close to GLM-5.2 but behind the newest Chinese open-weight models. Beam is still in final safety testing with limited early access; full weights, technical report and model card are planned for later in October 2026 under Apache 2.0. Training used 6,144 GB300 GPUs for pretraining under 4 weeks on 23.8 trillion tokens, followed by 4 weeks of reinforcement learning on 10,500 GB300 GPUs generating over 100 million rollouts."
   },
   "first_seen_at": "2026-10-05T23:27:29.704060+00:00",
-  "last_updated_at": "2026-10-05T23:27:29.704060+00:00",
-  "last_material_change_at": "2026-10-05T23:27:29.704060+00:00",
+  "last_updated_at": "2026-10-06T15:31:14.145306+00:00",
+  "last_material_change_at": "2026-10-06T15:31:14.145306+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "beam",
     "chinese",
@@ -28,10 +28,12 @@
   "identifiers": [],
   "topics": [
     "ai-models",
+    "benchmarks",
     "enterprise-ai",
     "mixture-of-experts",
     "open-weights",
     "reflection",
+    "reinforcement-learning",
     "sovereign-ai"
   ],
   "updates": [
@@ -82,6 +84,44 @@
           "url": "https://techcrunch.com/2026/10/05/reflection-debuts-beam-a-open-weight-ai-model-to-rival-chinese-models-at-lower-compute-cost/",
           "label": "TechCrunch AI",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_a68e4f668cb793b2",
+      "event_id": "evt_8d32783c978fc24d",
+      "occurred_at": "2026-10-06T13:05:02Z",
+      "published_at": "2026-10-06T13:05:02Z",
+      "first_seen_at": "2026-10-06T15:31:14.145306Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Reflection终于交卷：501B模型Beam亮相，仍落后最新中国头部开源模型",
+      "title_en": "Reflection终于交卷：501B模型Beam亮相，仍落后最新中国头部开源模型",
+      "what_changed_zh": "新报道补充了 Reflection 自行公布的基准测试结果，显示 Beam 在 DeepSWE 上得分 44.4，接近 GLM-5.2（44.0），但落后于 Qwen 3.8-Max、GLM-5.3、Kimi K3 和 DeepSeek V4.1 Flash。训练方面，预训练使用 6144 块 GB300，不到 4 周处理 23.8 万亿 token；随后用 1.05 万块 GB300 进行 4 周强化学习，生成超过 1 亿条训练轨迹。Beam 仍在最后安全测试阶段，仅少量用户可提前使用；完整权重、技术报告和模型卡计划本月晚些时候以 Apache 2.0 协议发布。",
+      "what_changed_en": "New coverage adds Reflection's own benchmark results showing Beam scoring 44.4 on DeepSWE, close to GLM-5.2's 44.0 but behind Qwen 3.8-Max, GLM-5.3, Kimi K3 and DeepSeek V4.1 Flash. Training details: pretraining on 6,144 GB300 GPUs processing 23.8 trillion tokens in under 4 weeks, followed by 4 weeks of reinforcement learning on 10,500 GB300 GPUs generating over 100 million rollouts. Beam is still in final safety testing with limited early access; full weights, technical report and model card are planned for later this month under Apache 2.0.",
+      "current_state_zh": "Reflection AI 于 2026 年 10 月 5 日发布其首个前沿开源权重模型 Beam，这是一个总参数 5010 亿、激活参数 230 亿的稀疏 MoE 模型，面向编程、推理和智能体任务。新报道显示，Reflection 自行公布的基准测试中 Beam 在 DeepSWE 上得分 44.4，接近 GLM-5.2 但落后于最新的中国头部开源模型。Beam 仍在最后安全测试阶段，仅少量用户可提前使用；完整权重、技术报告和模型卡计划 2026 年 10 月晚些时候以 Apache 2.0 协议发布。训练使用 6144 块 GB300 预训练不到 4 周处理 23.8 万亿 token，再用 1.05 万块 GB300 进行 4 周强化学习，生成超过 1 亿条训练轨迹。",
+      "current_state_en": "Reflection AI unveiled Beam on October 5, 2026, its first frontier open-weight sparse MoE model with 501B total and 23B active parameters for coding, reasoning and agentic tasks. New coverage shows Reflection's own benchmarks place Beam at 44.4 on DeepSWE, close to GLM-5.2 but behind the newest Chinese open-weight models. Beam is still in final safety testing with limited early access; full weights, technical report and model card are planned for later in October 2026 under Apache 2.0. Training used 6,144 GB300 GPUs for pretraining under 4 weeks on 23.8 trillion tokens, followed by 4 weeks of reinforcement learning on 10,500 GB300 GPUs generating over 100 million rollouts.",
+      "detailed_summary_zh": "Nvidia-backed Reflection announced Beam, a 501B-parameter MoE open-weights model (23B active) for code, reasoning and agent tasks trained on thousands of GB300 GPUs, though its own benchmarks place it behind the newest Chinese open-source models and full weights are only due later this month under Apache 2.0.",
+      "detailed_summary_en": "Nvidia-backed Reflection announced Beam, a 501B-parameter MoE open-weights model (23B active) for code, reasoning and agent tasks trained on thousands of GB300 GPUs, though its own benchmarks place it behind the newest Chinese open-source models and full weights are only due later this month under Apache 2.0.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "telegram:theblockbeats:199137"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/370455?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]
