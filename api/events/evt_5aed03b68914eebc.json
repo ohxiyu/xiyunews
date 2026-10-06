@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_5aed03b68914eebc/",
   "json": "https://xiyu.news/api/events/evt_5aed03b68914eebc.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "Chainlink 发布 CCIP 2.0，支持自定义验证器与更快跨链转账",
+    "zh": "Chainlink 发布 CCIP 新版本并集成以太坊快速确认规则",
     "en": "Chainlink launches new version of its crypto bridge tech 'CCIP' to give apps more control over their security"
   },
   "current_state": {
-    "zh": "Chainlink 于周一发布 CCIP 2.0，推出名为跨链验证器（CCV）的新功能，允许机构自行运行跨链转账验证器，或向 Infosys、Nethermind 等公司购买验证服务，而不再只能依赖 Chainlink 的默认网络。Chainlink 文档同时确认，“风险管理网络的自动化链下角色在当前 CCIP 部署中已不再运行”，但预计会在未来版本中作为可选的验证层提供。\n\n此次升级让机构可以通过可配置的方式，为跨链转账增加自有验证环节；这一发布出现在 2.92 亿美元 Kelp DAO 被盗事件五个月后，该事件促使多家机构转向 Chainlink。与此同时，不额外增加验证器的机构如今只依赖单一验证网络，而此前 CCIP 拥有两层验证。\n\nChainlink 的默认校验机制未变：由 16 家独立节点运营商组成的委员会必须对每一笔转账达成共识；自定义验证器的入门套件已在亚马逊云科技（AWS）和谷歌云上提供。风险管理网络的链上合约仅作为应急后备保留，Chainlink 表示同类的独立校验可由可选的 CCV 提供。",
-    "en": "Chainlink launched CCIP 2.0, allowing institutions to operate their own custom verifiers for cross-chain transfers instead of relying solely on Chainlink's default network, five months after the $292M Kelp DAO bridge hack pushed firms toward Chainlink."
+    "zh": "Ethlabs已将以太坊快速确认规则集成到Chainlink CCIP 2.0中，启用一条可选的更快速跨链路径，在相关场景下可将以太坊确认时间从约13分钟缩短至12至24秒，且无需硬分叉。",
+    "en": "Ethlabs has integrated Ethereum Fast Confirmation Rules into Chainlink CCIP 2.0, enabling an optional faster cross-chain path that can reduce Ethereum confirmations in relevant scenarios from about 13 minutes to 12–24 seconds without a hard fork."
   },
   "first_seen_at": "2026-09-28T19:47:00.063618+00:00",
-  "last_updated_at": "2026-09-28T19:47:28.176861+00:00",
-  "last_material_change_at": "2026-09-28T19:47:28.176861+00:00",
+  "last_updated_at": "2026-09-29T10:50:19.320007+00:00",
+  "last_material_change_at": "2026-09-29T10:50:19.320007+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 3,
+  "updates_count": 2,
+  "sources_count": 4,
   "entities": [
     "add",
     "after",
@@ -28,13 +28,17 @@
     "chainlink",
     "checks",
     "custom",
+    "ethlabs",
     "faster",
+    "fcr",
+    "foresight",
     "hack",
     "institutions",
     "kelp",
     "launches",
     "lets",
     "months",
+    "news",
     "own",
     "their",
     "transfers",
@@ -47,6 +51,7 @@
     "ccip",
     "chainlink",
     "cross-chain",
+    "infrastructure",
     "interoperability",
     "protocol-upgrade"
   ],
@@ -112,6 +117,44 @@
           "url": "https://decrypt.co/379463/chainlink-institutions-add-bridge-checks-kelp-hack",
           "label": "Decrypt",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_b3526d107786cb6a",
+      "event_id": "evt_5aed03b68914eebc",
+      "occurred_at": "2026-09-29T06:48:55Z",
+      "published_at": "2026-09-29T06:48:55Z",
+      "first_seen_at": "2026-09-29T10:50:19.320007Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "【Ethlabs：FCR 集成 Chainlink CCIP 2.0，相关跨链场景中以太坊确认可降至 12–24 秒】 Foresight News 消息，非营",
+      "title_en": "【Ethlabs：FCR 集成 Chainlink CCIP 2.0，相关跨链场景中以太坊确认可降至 12–24 秒】 Foresight News 消息，非营",
+      "what_changed_zh": "Ethlabs已将以太坊快速确认规则集成到Chainlink CCIP 2.0中，启用一条可选的更快速跨链路径，在相关场景下可将以太坊确认时间从约13分钟缩短至12至24秒，且无需硬分叉。",
+      "what_changed_en": "Ethlabs has integrated Ethereum Fast Confirmation Rules into Chainlink CCIP 2.0, enabling an optional faster cross-chain path that can reduce Ethereum confirmations in relevant scenarios from about 13 minutes to 12–24 seconds without a hard fork.",
+      "current_state_zh": "Ethlabs已将以太坊快速确认规则集成到Chainlink CCIP 2.0中，启用一条可选的更快速跨链路径，在相关场景下可将以太坊确认时间从约13分钟缩短至12至24秒，且无需硬分叉。",
+      "current_state_en": "Ethlabs has integrated Ethereum Fast Confirmation Rules into Chainlink CCIP 2.0, enabling an optional faster cross-chain path that can reduce Ethereum confirmations in relevant scenarios from about 13 minutes to 12–24 seconds without a hard fork.",
+      "detailed_summary_zh": "Ethlabs has integrated Ethereum Fast Confirmation Rules into Chainlink CCIP 2.0, enabling an optional faster cross-chain path that can reduce Ethereum confirmations in relevant scenarios from about 13 minutes to 12–24 seconds without a hard fork.",
+      "detailed_summary_en": "Ethlabs has integrated Ethereum Fast Confirmation Rules into Chainlink CCIP 2.0, enabling an optional faster cross-chain path that can reduce Ethereum confirmations in relevant scenarios from about 13 minutes to 12–24 seconds without a hard fork.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:119378"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/114226",
+          "label": "foresightnews",
+          "source_type": "telegram",
           "official": false
         }
       ]
