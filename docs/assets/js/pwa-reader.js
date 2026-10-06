@@ -1,4 +1,13 @@
 /* Device-local reading tools; intentionally no account, analytics or AI calls. */
+export function applyReadingSize(style, value) {
+  const size = readingSize(value);
+  // Default is responsive CSS (16px desktop / 15px mobile), not a fixed inline
+  // override. Explicit smaller/larger choices still persist across this device's tabs.
+  if (size === '15') style.removeProperty('--reading-size');
+  else style.setProperty('--reading-size', `${size}px`);
+  return size;
+}
+
 export function canonicalURL(value, base) {
   try {
     const url = new URL(value, base);
@@ -198,8 +207,7 @@ function initReader() {
   let fontSize = '15';
   try { fontSize = readingSize(storage?.getItem('bmtnews-reading-size')); } catch { /* Optional preference. */ }
   function applyFont(value, persist = false) {
-    fontSize = readingSize(value);
-    document.documentElement.style.setProperty('--reading-size', `${fontSize}px`);
+    fontSize = applyReadingSize(document.documentElement.style, value);
     fontControls.querySelectorAll('button').forEach(node => node.setAttribute('aria-pressed', String(node.dataset.size === fontSize)));
     if (persist) {
       try { storage.setItem('bmtnews-reading-size', fontSize); }
@@ -209,7 +217,9 @@ function initReader() {
   for (const [value, label] of [['14', 'A−'], ['15', tr('默认', 'Default')], ['17', 'A＋']]) {
     const control = button(label, () => applyFont(value, true));
     control.dataset.size = value;
-    control.setAttribute('aria-label', `${tr('正文字号', 'Text size')} ${value}px`);
+    control.setAttribute('aria-label', value === '15'
+      ? tr('默认正文字号：桌面 16px，手机 15px', 'Default text size: desktop 16px, mobile 15px')
+      : `${tr('正文字号', 'Text size')} ${value}px`);
     fontControls.append(control);
   }
   applyFont(fontSize);

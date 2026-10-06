@@ -3,12 +3,21 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 
 const source = await readFile(new URL('../docs/assets/js/pwa-reader.js', import.meta.url), 'utf8');
-const {canonicalURL, storyKey, createReaderStore, isRead, installedMode, waitingUpdate, readingSize} = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
+const {canonicalURL, storyKey, createReaderStore, isRead, installedMode, waitingUpdate, readingSize, applyReadingSize} = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
 test('reading size accepts only the shared supported presets', () => {
   for (const size of [14, 15, 17, '14', '15', '17']) assert.equal(readingSize(size), String(size));
   for (const size of [null, undefined, '', '99', '17px', 'initial', {}]) assert.equal(readingSize(size), '15');
   assert.match(source, /setProperty\('--reading-size'/);
   assert.match(source, /bmtnews-reading-size/);
+});
+test('default size follows responsive CSS; explicit reader sizes remain overrides', () => {
+  const calls = [];
+  const style = {removeProperty: key => calls.push(['remove',key]),
+    setProperty: (key,value) => calls.push(['set',key,value])};
+  for (const value of [null,'15','99']) assert.equal(applyReadingSize(style,value), '15');
+  assert.deepEqual(calls, Array(3).fill(['remove','--reading-size']));
+  applyReadingSize(style,'14'); applyReadingSize(style,'17');
+  assert.deepEqual(calls.slice(3), [['set','--reading-size','14px'],['set','--reading-size','17px']]);
 });
 function storage() {
   const data = new Map();

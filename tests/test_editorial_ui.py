@@ -32,3 +32,31 @@ def test_production_templates_keep_evidence_and_details():
     assert 'item.evidence' in weekly
     assert 'section-index-body' in archive and 'section-index-body' in weekly
     assert 'entity_background | escape' in archive
+
+
+def test_beautiful_surface_preserves_reading_and_responsive_boundaries():
+    css = (ROOT / 'docs/assets/css/editorial-ui.css').read_text()
+    for token in ['--bg: #f5f6f8', '--surface: #ffffff', '--radius: 12px',
+                  '--reading-size: 16px', '--detail-size: 13px',
+                  '--reading-size: 15px', '--detail-size: 12.8px']:
+        assert token in css
+    for selector in ['.event-update', '.entity-card', '.weekly-history-list',
+                     '.archive-row', '.story-more', '.share-card-preview canvas']:
+        assert selector in css
+    assert ':root[data-theme="dark"]' in css
+    assert ':root:not([data-theme="light"])' in css
+    assert '.story-summary-body { max-width: none; }' in css
+    assert 'var(--control-radius)' in css
+    assert ':focus-visible' in css
+    assert '.event-update-rail time { white-space: nowrap; }' in css
+    assert '.event-feed-compact .digest-item { padding: 9px 14px; }' in css
+    reader = (ROOT / 'docs/assets/js/pwa-reader.js').read_text()
+    assert 'Default text size: desktop 16px, mobile 15px' in reader
+    assert '@import' not in css and 'url(' not in css
+    # CSS cannot hide full news text, alter two-edition semantics or expose /s.
+    assert '-webkit-line-clamp' not in css.split('/* One surface vocabulary', 1)[1]
+    feed = (ROOT / 'docs/_includes/feed-home.html').read_text()
+    assert 'for post in feed_posts limit:2' in feed
+    layout = (ROOT / 'docs/_layouts/default.html').read_text()
+    nav = layout.split('<nav\n          class="site-nav"', 1)[1].split('</nav>', 1)[0]
+    assert '/s/' not in nav

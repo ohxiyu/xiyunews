@@ -5,16 +5,26 @@ const X_COMPOSE_URL = 'https://x.com/compose/post';
 const SANS_FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif';
 const MONO_FONT = 'ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, monospace';
 
-const COLORS = {
-  background: '#faf9f7', border: '#e4e2dc', text: '#1b1b18', soft: '#4e4c47',
-  muted: '#83807a', accent: '#1d4c96', up: '#0e7a4f', warn: '#a05a12', high: '#b33c3c'
+const DEFAULT_COLORS = {
+  background: '#f5f6f8', surface: '#ffffff', detail: '#f6f7f9', border: '#e6e9ee',
+  text: '#202329', soft: '#3d4550', muted: '#69717d', accent: '#3555a2',
+  up: '#278167', warn: '#a05a12', high: '#b33c3c'
 };
 
+// Use the site's current light/dark tokens, not a separately drifting palette.
+export function cardPalette(styles) {
+  const tokens = {background: 'bg', surface: 'surface', detail: 'surface-soft',
+    border: 'border', text: 'text', soft: 'text-soft', muted: 'text-muted',
+    accent: 'accent', up: 'up', warn: 'warn', high: 'tier-high'};
+  return Object.fromEntries(Object.entries(tokens).map(([key, token]) =>
+    [key, styles?.getPropertyValue(`--${token}`).trim() || DEFAULT_COLORS[key]]));
+}
+
 const METRICS = {
-  left: 14, right: 14, headerHeight: 47, railY: 57, metaY: 81,
-  titleY: 114,
-  xs: 11.5, small: 12.8, body: 15, title: 17,
-  xsLine: 17.25, smallLine: 21.76, bodyLine: 25.5, titleLine: 24.65
+  left: 26, right: 26, headerHeight: 47, railY: 70, metaY: 94,
+  titleY: 122,
+  xs: 11.5, small: 12.8, body: 15, title: 18,
+  xsLine: 17.25, smallLine: 23.04, bodyLine: 27.75, titleLine: 28.8
 };
 
 const LABELS = {
@@ -284,7 +294,7 @@ function drawLines(context, lines, x, y, lineHeight) {
   return y + lines.length * lineHeight;
 }
 
-function sourceSegments(story) {
+function sourceSegments(story, COLORS) {
   const parts = story.sourceParts || {};
   const result = [];
   const append = (text, color, weight) => {
@@ -306,14 +316,20 @@ function layoutInlineRows(context, segments, maxWidth) {
   let rowWidth = 0;
   segments.forEach((segment) => {
     setFont(context, METRICS.small, segment.weight, false);
-    const width = context.measureText(segment.text).width;
-    if (rowWidth && rowWidth + width > maxWidth && segment.text.trim() !== '·') {
-      rows.push([]);
-      rowWidth = 0;
-    }
-    if (!rowWidth && segment.text.trim() === '·') return;
-    rows[rows.length - 1].push({...segment, width: width});
-    rowWidth += width;
+    // An unusually long outlet/source must wrap, never overflow the panel.
+    const separator = segment.text.trim() === '·';
+    const pieces = separator ? [segment.text] : wrapText(context, segment.text, maxWidth, 'en');
+    pieces.forEach((text, index) => {
+      const width = context.measureText(text).width;
+      if (rowWidth && rowWidth + width > maxWidth) {
+        rows.push([]);
+        rowWidth = 0;
+      }
+      if (!rowWidth && separator) return;
+      rows[rows.length - 1].push({...segment, text, width: width});
+      rowWidth += width;
+      if (index < pieces.length - 1) { rows.push([]); rowWidth = 0; }
+    });
   });
   return rows.filter((row) => row.length);
 }
@@ -330,24 +346,24 @@ function drawInlineRows(context, rows, x, y) {
   });
 }
 
-function categoryColor(category) {
+function categoryColor(category, COLORS) {
   if (['crypto', 'exchange', 'protocol'].includes(category)) return COLORS.accent;
   if (category === 'technology') return COLORS.up;
   if (['policy', 'regulation', 'security'].includes(category)) return COLORS.warn;
   return COLORS.muted;
 }
 
-function scoreColor(tier) {
+function scoreColor(tier, COLORS) {
   if (tier === 'high') return COLORS.high;
   if (tier === 'good') return COLORS.accent;
   return COLORS.muted;
 }
 
-function buildLayout(context, story) {
+function buildLayout(context, story, COLORS) {
   const contentX = METRICS.left;
   const contentWidth = CARD_CSS_WIDTH - METRICS.left - METRICS.right;
   const detailsX = contentX + 14;
-  const detailsWidth = contentWidth - 14;
+  const detailsWidth = contentWidth - 28;
 
   setFont(context, METRICS.title, 700, false);
   const titleLines = wrapBalancedText(context, story.title, contentWidth, story.language);
@@ -360,7 +376,7 @@ function buildLayout(context, story) {
     lines: wrapText(context, paragraph, contentWidth, story.language),
     y: 0
   }));
-  const sourceRows = layoutInlineRows(context, sourceSegments(story), contentWidth);
+  const sourceRows = layoutInlineRows(context, sourceSegments(story, COLORS), contentWidth);
 
   const titleY = METRICS.titleY;
   let y = titleY;
@@ -386,6 +402,7 @@ function buildLayout(context, story) {
   let tagLines = [];
 
   if (hasDetails) {
+    y += 12;
     detailsTitleY = y;
     y += METRICS.smallLine + 8;
     story.sections.forEach((section) => {
@@ -419,20 +436,20 @@ function buildLayout(context, story) {
   }
 
   return {
-    height: Math.ceil(Math.max(y + 8, 250)), contentX, contentWidth, detailsX, detailsWidth,
+    height: Math.ceil(Math.max(y + 28, 250)), contentX, contentWidth, detailsX, detailsWidth,
     titleY, titleLines, summaryY, summaryParagraphs, sourceY, sourceRows, hasDetails, detailsTop,
     detailsTitleY, sections, references, referencesTitleY, tagsTitleY, tagsY, tagLines,
-    detailsBottom: hasDetails ? y - 8 : detailsTop
+    detailsBottom: hasDetails ? y + 4 : detailsTop
   };
 }
 
-function drawHeader(context) {
+function drawHeader(context, COLORS) {
   // Reuse the inline master path, without a network request or raster resampling.
   const marks = document.querySelectorAll('.site-brand .site-brand-mark path');
   const markWidth = marks.length && typeof Path2D !== 'undefined' ? 30 : 0;
   if (markWidth) {
     context.save();
-    context.translate(METRICS.left, 11);
+    context.translate(14, 11);
     context.scale(24 / 512, 24 / 512);
     marks.forEach((mark) => {
       const fill = mark.getAttribute('fill');
@@ -442,23 +459,34 @@ function drawHeader(context) {
     });
     context.restore();
   }
-  setFont(context, 16, 750, false, 0.6);
+  setFont(context, 18, 750, false, -0.4);
   context.fillStyle = COLORS.text;
-  context.fillText('xiyu.news', METRICS.left + markWidth, 17);
-  const brandWidth = context.measureText('xiyu.news').width;
-  setFont(context, METRICS.small, 450, true, 0.7);
-  context.fillStyle = COLORS.muted;
-  context.fillText('xiyu.news', METRICS.left + markWidth + brandWidth + 12, 20);
+  context.fillText('xiyu.news', 14 + markWidth, 16);
 
   context.fillStyle = COLORS.border;
   context.fillRect(0, METRICS.headerHeight - 1, CARD_CSS_WIDTH, 1);
 }
 
-function drawCard(context, story, layout) {
+function drawPanel(context, x, y, width, height, radius, fill, border) {
+  context.beginPath();
+  if (context.roundRect) context.roundRect(x, y, width, height, radius);
+  else context.rect(x, y, width, height);
+  context.fillStyle = fill;
+  context.fill();
+  context.strokeStyle = border;
+  context.lineWidth = 1;
+  context.stroke();
+}
+
+function drawCard(context, story, layout, COLORS) {
   context.fillStyle = COLORS.background;
   context.fillRect(0, 0, CARD_CSS_WIDTH, layout.height);
   context.textBaseline = 'top';
-  drawHeader(context);
+  context.fillStyle = COLORS.surface;
+  context.fillRect(0, 0, CARD_CSS_WIDTH, METRICS.headerHeight);
+  drawHeader(context, COLORS);
+  drawPanel(context, 12, 56, CARD_CSS_WIDTH - 24, layout.height - 68,
+    12, COLORS.surface, COLORS.border);
 
   setFont(context, METRICS.title, 750, false, 0.35);
   context.fillStyle = story.priority ? COLORS.text : COLORS.muted;
@@ -470,7 +498,7 @@ function drawCard(context, story, layout) {
 
   let metaX = METRICS.left;
   setFont(context, METRICS.xs, 700, false, 1.15);
-  context.fillStyle = categoryColor(story.categoryKey);
+  context.fillStyle = categoryColor(story.categoryKey, COLORS);
   context.fillText(story.category, metaX, METRICS.metaY);
   metaX += context.measureText(story.category).width + 10;
   if (story.priority) {
@@ -480,7 +508,7 @@ function drawCard(context, story, layout) {
   }
 
   setFont(context, METRICS.small, 700, true);
-  context.fillStyle = scoreColor(story.scoreTier);
+  context.fillStyle = scoreColor(story.scoreTier, COLORS);
   context.textAlign = 'right';
   context.fillText(story.score, CARD_CSS_WIDTH - METRICS.right, METRICS.metaY + 1);
   context.textAlign = 'left';
@@ -499,8 +527,8 @@ function drawCard(context, story, layout) {
   if (!layout.hasDetails) {
     return;
   }
-  context.fillStyle = COLORS.border;
-  context.fillRect(layout.contentX, layout.detailsTop, 2, layout.detailsBottom - layout.detailsTop);
+  drawPanel(context, layout.contentX, layout.detailsTop, layout.contentWidth,
+    layout.detailsBottom - layout.detailsTop, 9, COLORS.detail, COLORS.border);
 
   setFont(context, METRICS.small, 400, false);
   context.fillStyle = COLORS.accent;
@@ -508,7 +536,7 @@ function drawCard(context, story, layout) {
   context.fillText(`${detailsTitle} −`, layout.detailsX, layout.detailsTitleY);
 
   layout.sections.forEach((section) => {
-    setFont(context, METRICS.xs, 700, false, 1.15);
+    setFont(context, METRICS.xs, 600, false);
     context.fillStyle = COLORS.muted;
     context.fillText(section.title, layout.detailsX, section.titleY);
     setFont(context, METRICS.small, 400, false);
@@ -517,7 +545,7 @@ function drawCard(context, story, layout) {
   });
 
   if (layout.references.length) {
-    setFont(context, METRICS.xs, 700, false, 1.15);
+    setFont(context, METRICS.xs, 600, false);
     context.fillStyle = COLORS.muted;
     context.fillText(LABELS[story.language].references, layout.detailsX, layout.referencesTitleY);
     layout.references.forEach((reference) => {
@@ -530,7 +558,7 @@ function drawCard(context, story, layout) {
   }
 
   if (layout.tagLines.length) {
-    setFont(context, METRICS.xs, 700, false, 1.15);
+    setFont(context, METRICS.xs, 600, false);
     context.fillStyle = COLORS.muted;
     context.fillText(LABELS[story.language].tags, layout.detailsX, layout.tagsTitleY);
     setFont(context, METRICS.xs, 450, true);
@@ -549,7 +577,9 @@ export async function renderStoryCard(story) {
   const measuringCanvas = document.createElement('canvas');
   const measuringContext = measuringCanvas.getContext('2d');
   if (!measuringContext) throw new Error('Canvas is not supported');
-  const layout = buildLayout(measuringContext, story);
+  const COLORS = cardPalette(typeof getComputedStyle === 'function'
+    ? getComputedStyle(document.documentElement) : undefined);
+  const layout = buildLayout(measuringContext, story, COLORS);
   const rasterHeight = layout.height * CARD_SCALE;
   if (rasterHeight > CARD_MAX_HEIGHT) {
     throw new Error(story.language === 'zh' ? '内容过长，无法生成单张卡片' : 'This story is too long for one card');
@@ -562,7 +592,7 @@ export async function renderStoryCard(story) {
   const context = canvas.getContext('2d');
   if (!context) throw new Error('Canvas is not supported');
   context.scale(CARD_SCALE, CARD_SCALE);
-  drawCard(context, story, layout);
+  drawCard(context, story, layout, COLORS);
   return canvas;
 }
 

@@ -51,3 +51,18 @@ def test_dependency_audit_includes_the_locked_development_toolchain():
                     if path.endswith(f"node_modules/{name}")]
         assert resolved, f"override {name} must resolve in the lockfile"
         assert all(item["version"] == version for item in resolved)
+
+
+def test_sharp_security_floor_includes_platform_binaries():
+    # GHSA-wq5f-xc86-pv6w: sharp 0.35.5 bundles patched librsvg 2.63.2.
+    dispatcher = ROOT / "ops/daily-dispatcher"
+    package = json.loads((dispatcher / "package.json").read_text())
+    lock = json.loads((dispatcher / "package-lock.json").read_text())
+    assert tuple(map(int, package["overrides"]["sharp"].split("."))) >= (0, 35, 5)
+    sharp = lock["packages"]["node_modules/sharp"]
+    assert sharp["version"] == package["overrides"]["sharp"]
+    for name, version in sharp["optionalDependencies"].items():
+        assert name.startswith("@img/sharp-")
+        assert lock["packages"][f"node_modules/{name}"]["version"] == version
+        floor = (1, 3, 4) if name.startswith("@img/sharp-libvips-") else (0, 35, 5)
+        assert tuple(map(int, version.split("."))) >= floor
