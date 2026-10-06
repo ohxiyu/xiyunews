@@ -56,6 +56,7 @@ packages = ["src"]
 [tool.uv]
 # Security floors for transitive dependencies; do not override parent constraints.
 constraint-dependencies = [
+    "multidict>=6.9.1,<7",
     "PyJWT>=2.15.1,<3",
     "urllib3>=2.8.0,<3",
 ]

@@ -1,9 +1,10 @@
-"""Regression checks for the dependency fixes in Issue #164 (offline)."""
+"""Offline regression checks for dependency security floors (Issues #164/#220)."""
 from datetime import datetime, timedelta, timezone
 from http.client import HTTPResponse as StdlibResponse
 from io import BytesIO
 from pathlib import Path
 import tomllib
+import sys
 
 import jwt
 import pytest
@@ -15,14 +16,40 @@ ROOT = Path(__file__).resolve().parents[1]
 KEY = "dependency-regression-test-key-not-a-production-secret-64-characters"
 
 
-@pytest.mark.parametrize("name,floor", [("pyjwt", (2, 15, 1)), ("urllib3", (2, 8, 0))])
-def test_security_floor_in_lock_and_constraints(name, floor):
+@pytest.mark.parametrize("name,floor,upper", [
+    ("pyjwt", (2, 15, 1), 3),
+    ("urllib3", (2, 8, 0), 3),
+    ("multidict", (6, 9, 1), 7),
+])
+def test_security_floor_in_lock_and_constraints(name, floor, upper):
     project = tomllib.loads((ROOT / "pyproject.toml").read_text())
     lock = tomllib.loads((ROOT / "uv.lock").read_text())
     package = next(p for p in lock["package"] if p["name"] == name)
-    assert floor <= tuple(int(n) for n in package["version"].split(".")) < (3,)
-    requirement = f"{'PyJWT' if name == 'pyjwt' else name}>={'.'.join(map(str, floor))},<3"
+    assert floor <= tuple(int(n) for n in package["version"].split(".")) < (upper,)
+    specifier = f">={'.'.join(map(str, floor))},<{upper}"
+    requirement = f"{'PyJWT' if name == 'pyjwt' else name}{specifier}"
     assert requirement in project["tool"]["uv"]["constraint-dependencies"]
+    assert {"name": name, "specifier": specifier} in lock["manifest"]["constraints"]
+
+
+@pytest.mark.parametrize("dictionary_name", ["MultiDict", "CIMultiDict"])
+@pytest.mark.parametrize("operation", ["reflected_union", "subtraction"])
+def test_multidict_items_operations_release_operand_references(dictionary_name, operation):
+    # GHSA-54p9-h82j-f925 / CVE-2026-104874: keep the probe small and offline.
+    # CPython reference counts verify release, without memory/RSS heuristics.
+    if sys.implementation.name != "cpython":
+        pytest.skip("Reference counts are specific to CPython")
+    # multidict belongs to optional extras, not the base/dev environment.
+    multidict = pytest.importorskip("multidict")
+    dictionary = getattr(multidict, dictionary_name)
+    data = dictionary({"seed": "initial"})
+    value = object()
+    operand = [(f"key-{index}", value) for index in range(32)]
+    before = sys.getrefcount(value)
+    result = operand | data.items() if operation == "reflected_union" else data.items() - operand
+    assert result
+    del result
+    assert sys.getrefcount(value) == before
 
 
 def test_jwt_valid_token_still_decodes():
