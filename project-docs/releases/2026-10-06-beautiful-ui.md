@@ -129,6 +129,6 @@ Rollback: 需维护者授权，通过独立分支/PR 回退视觉改动并保留
 
 应用PR221：代码完成、测试通过、PR已合并、部署成功、限定范围生产验收完成。Issue222证据另走文档PR，不把文档合并当成新的Worker发布。
 
-文档证据分支从最新源码665a956独立建立；再次fetch/merge为Already up to date，uv sync --frozen --extra dev成功，uv run pytest为1047 passed /4 skipped /1条既有弃用警告（22.88s），治理及diff检查通过。
+文档证据分支从最新源码665a956独立建立；再次fetch/merge为Already up to date，uv sync --frozen --extra dev成功，uv run pytest为1047 passed /4 skipped /1条既有弃用警告（22.88s），治理及diff检查通过。证据PR为 [PR223](https://github.com/ohxiyu/xiyunews/pull/223)，其检查与合并状态以GitHub精确head记录为准，不据文档预先宣称通过。
 
 未验证：CodeQL私有许可跳过；实体手机PWA安装/离线、剪贴板权限、X实际发帖、后台真实Access登录/发布、真实AI/渠道调用。本次不引入收费服务，不把浏览器模拟等同实体设备。
