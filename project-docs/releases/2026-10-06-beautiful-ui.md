@@ -36,10 +36,16 @@ Baseline: 91c9c14b9cb5ca06735a5af2c21fa2a0d184e55b
 
 未验证：本机无可用 Jekyll 环境，未声称本地完整站点构建成功；浏览器检查复用已公开 HTML，模板未改动。CI edge-build 现有流程构建 gh-pages，不能当成本任务新样式上线证据。真实手机 PWA 安装/离线、剪贴板权限、X 发帖和生产效果需合并部署后按原流程另验。
 
+### GitHub 检查与自动预览
+
+PR head b66b053329170ca6e2f4ebdcc2f46df4fb3e8c80 的 [CI 37481253270](https://github.com/ohxiyu/xiyunews/actions/runs/37481253270)：governance 成功，pytest 成功，但 test job 在既有依赖扫描被拦截。前一个同 head 的 [扫描日志](https://github.com/ohxiyu/xiyunews/actions/runs/37481214065/job/112329503389) 明确报告 multidict 6.7.1 / CVE-2026-104874，建议修复版本 6.9.1。本 PR 未更改依赖；需独立依赖安全修复后更新 main 并重新核对检查，不绕过扫描。CodeQL analyze 按仓库既有私有扫描许可条件跳过，不称其通过。
+
+既有 Cloudflare Git 集成自动构建出 implementation commit 884ef081 的 [分支预览](https://3dc2df38.bmtnews.pages.dev/about/)，不是生产发布。已在浏览器核对新 asset_version sha256-94e4e835f53d、关于页样式与 1280×720 [截图](images/2026-10-06-beautiful-ui/pages-preview-about.jpg)。预览没有 gh-pages 日报归档，因此首页是诚实空态，不能用它冒充真实日报/分享图片验收；有内容的浏览器/PNG 检查仍以上述本地真实公开 HTML 方法为准。没有手动部署 Worker 或触发生产流程。
+
 ## 五阶段
 
 - 代码：完成。
-- 测试：本地通过，GitHub CI 待 PR 创建后检查。
+- 测试：本地通过；GitHub pytest/governance 通过，但依赖安全扫描阻塞，全部 required checks 未通过。
 - PR 合并：未执行。
 - 部署：未执行。
 - 生产验收：未执行。

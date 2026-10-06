@@ -12,7 +12,7 @@
   "last_verified_commit": "884ef081921e9739495f66cf1c032578df247c95",
   "pr": "https://github.com/ohxiyu/xiyunews/pull/221",
   "completed": ["核验账号/仓库/main/开放任务；创建 Issue220 与独立 worktree", "确认真实新闻预览方向，完成共享视觉层与分享图片修改"],
-  "unfinished": ["核对 PR221 最新 head 的 GitHub CI；本次不合并部署"],
+  "unfinished": ["独立修复既有 multidict 安全告警后，再同步 main 并核对 PR221 最新 head 全部 CI；本次不合并部署"],
   "validation": ["uv sync --frozen --extra dev 成功；pytest 1045 passed，1 条既有弃用警告", "Node 40 passed；治理与 diff 检查通过", "本地公开真实 HTML + 任务 CSS/JS：1280/390/320 响应式、中英、浅深色、筛选/展开/键盘核对；分享浅/深 PNG 实际生成保存并检查"],
   "unverified": ["本次生产页面与 PNG 尚未上线", "本地没有 Jekyll 环境，未运行完整站点构建；视觉验证复用已公开 HTML", "真实手机 PWA 安装、剪贴板与 X 发帖不在本地仿真验收范围"],
   "production": {
@@ -23,9 +23,9 @@
     "worker_version": "not changed；此前记录为fb50c31c-7ca6-4339-b1f6-9929bd12ae74",
     "verified_at": "2026-10-06：主站只读；pwa-version build2026-10-06T11:29:29+00:00"
   },
-  "blockers": [],
-  "next_action": "核对 PR221 最新 head 的 CI，等待维护者确认合并上线。本次仅 PR，不得运行真实 AI、渠道推送或手改生产队列；部署后另验真实手机 PWA、剪贴板/X 与线上样式。",
-  "states": {"code": "complete", "tests": "complete", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
+  "blockers": ["CI 依赖扫描报告既有 multidict 6.7.1 / CVE-2026-104874，建议修复版本 6.9.1；本视觉 PR 没有改变依赖或绕过检查", "CodeQL analyze 按既有私有扫描许可条件跳过，不是扫描通过"],
+  "next_action": "维护者先授权独立依赖安全修复，再同步 main、重跑 PR221 CI；全部通过后另行确认合并上线。本次仅 PR，不运行真实 AI/渠道推送或手改队列；真实手机 PWA、剪贴板/X 与生产样式仍待上线后验收。",
+  "states": {"code": "complete", "tests": "pending", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
   "evidence": "project-docs/releases/2026-10-06-beautiful-ui.md"
 }
 ```
