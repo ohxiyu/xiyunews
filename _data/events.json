@@ -65429,17 +65429,19 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Ethereum's Glamsterdam upgrade cleared a key rehearsal milestone, with Nethermind passing all 2,302 performance tests and the test network raising its block gas limit toward 200 million ahead of a proposed October 6 Sepolia deployment.",
-      "current_state_zh": "以太坊 Glamsterdam 升级在新的区块构建规则下于 Devnet-11 测试网持续出块，Nethermind 执行客户端通过了全部 2,302 项性能测试，在 3 分 15 秒内处理了 5,707 亿 Gas（约每秒 29 亿 Gas）。测试网上线约一小时后，区块 Gas 上限从 6,000 万提高到 2 亿，为拟定的 10 月 6 日 Sepolia 公共测试网部署做准备。\n\nGlamsterdam 引入的区块级访问列表让客户端可以并行地预取数据、同时校验互不相关的交易，而不再按顺序处理，这有望让以太坊在每个区块中容纳更多支付、代币兑换等活动，并在网络拥堵时缓手续费尖峰。该升级还把构建者与验证者之间的交接及其支付纳入以太坊自身的协议规则，从而减少对外部中继服务的依赖。\n\n2 亿 Gas 上限目前仅是测试设置，尚未成为以太坊主网的承诺，而 Devnet-11 被设计为不包含故意攻击的受控演练；10 月 6 日的 Sepolia 部署日期仍需正式确认。Glamsterdam 还将区块数据在网络中传播的时间窗口从约 2 秒延长到 9 秒，使验证者有更充裕的时间接收并校验该升级所支持的大区块；此外，Nethermind 的基准测试衡量的是客户端执行速度，而非整个网络的性能。",
+      "current_state_en": "Ethereum's Glamsterdam upgrade activates on Sepolia testnet on October 6, raising the block gas limit from ~60M to 200M; validators need clients like Prysm 7.2.1 with updated gas limit settings to automatically propose larger blocks. The 200M gas setting currently applies only to Sepolia testnet; Glamsterdam is not yet activated on Ethereum mainnet.",
+      "current_state_zh": "以太坊 Glamsterdam 升级于 10 月 6 日在 Sepolia 测试网激活，区块 Gas 上限从约 6000 万提升至 2 亿；验证者需升级至 Prysm 7.2.1 等包含新 Gas 上限设置的客户端才能自动生成更大区块。2 亿 Gas 设置目前仅适用于 Sepolia 测试网，Glamsterdam 尚未在以太坊主网激活。",
       "entities": [
-        "glamsterdam"
+        "gas",
+        "glamsterdam",
+        "sepolia"
       ],
       "event_id": "evt_0f8b132b10a6f10f",
       "event_type": "protocol_change",
       "first_seen_at": "2026-09-17T17:11:45.183417Z",
       "identifiers": [],
-      "last_material_change_at": "2026-09-17T17:11:45.183417Z",
-      "last_updated_at": "2026-09-17T22:58:14.544381Z",
+      "last_material_change_at": "2026-10-06T07:22:05.372385Z",
+      "last_updated_at": "2026-10-06T07:22:05.372385Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -65450,7 +65452,9 @@
         "gas-limit",
         "glamsterdam",
         "protocol-upgrade",
-        "scaling"
+        "prysm",
+        "scaling",
+        "sepolia"
       ],
       "updates": [
         {
@@ -65510,6 +65514,51 @@
           "update_type": "initial",
           "what_changed_en": "Ethereum's Glamsterdam upgrade cleared a key rehearsal milestone, with Nethermind passing all 2,302 performance tests and the test network raising its block gas limit toward 200 million ahead of a proposed October 6 Sepolia deployment.",
           "what_changed_zh": "以太坊 Glamsterdam 升级在新的区块构建规则下于 Devnet-11 测试网持续出块，Nethermind 执行客户端通过了全部 2,302 项性能测试，在 3 分 15 秒内处理了 5,707 亿 Gas（约每秒 29 亿 Gas）。测试网上线约一小时后，区块 Gas 上限从 6,000 万提高到 2 亿，为拟定的 10 月 6 日 Sepolia 公共测试网部署做准备。\n\nGlamsterdam 引入的区块级访问列表让客户端可以并行地预取数据、同时校验互不相关的交易，而不再按顺序处理，这有望让以太坊在每个区块中容纳更多支付、代币兑换等活动，并在网络拥堵时缓手续费尖峰。该升级还把构建者与验证者之间的交接及其支付纳入以太坊自身的协议规则，从而减少对外部中继服务的依赖。\n\n2 亿 Gas 上限目前仅是测试设置，尚未成为以太坊主网的承诺，而 Devnet-11 被设计为不包含故意攻击的受控演练；10 月 6 日的 Sepolia 部署日期仍需正式确认。Glamsterdam 还将区块数据在网络中传播的时间窗口从约 2 秒延长到 9 秒，使验证者有更充裕的时间接收并校验该升级所支持的大区块；此外，Nethermind 的基准测试衡量的是客户端执行速度，而非整个网络的性能。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "Ethereum's Glamsterdam upgrade activates on Sepolia testnet on October 6, raising the block gas limit from ~60M to 200M; validators need clients like Prysm 7.2.1 with updated gas limit settings to automatically propose larger blocks. The 200M gas setting currently applies only to Sepolia testnet; Glamsterdam is not yet activated on Ethereum mainnet.",
+          "current_state_zh": "以太坊 Glamsterdam 升级于 10 月 6 日在 Sepolia 测试网激活，区块 Gas 上限从约 6000 万提升至 2 亿；验证者需升级至 Prysm 7.2.1 等包含新 Gas 上限设置的客户端才能自动生成更大区块。2 亿 Gas 设置目前仅适用于 Sepolia 测试网，Glamsterdam 尚未在以太坊主网激活。",
+          "detailed_summary_en": "Ethereum's Glamsterdam upgrade activates on the Sepolia testnet with the block gas limit raised from roughly 60 million to 200 million, prompting an emergency Prysm 7.2.1 validator client release so nodes can automatically propose the larger blocks.",
+          "detailed_summary_zh": "Ethereum's Glamsterdam upgrade activates on the Sepolia testnet with the block gas limit raised from roughly 60 million to 200 million, prompting an emergency Prysm 7.2.1 validator client release so nodes can automatically propose the larger blocks.",
+          "event_id": "evt_0f8b132b10a6f10f",
+          "first_seen_at": "2026-10-06T07:22:05.372385Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-06T04:58:02Z",
+          "published_at": "2026-10-06T04:58:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/370389?from=telegram"
+            },
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/114612"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:199071",
+            "telegram:foresightnews:119783"
+          ],
+          "time_precision": "published",
+          "title_en": "以太坊Glamsterdam升级今晚将在Sepolia测试，区块Gas上限拟提升至2亿",
+          "title_zh": "以太坊Glamsterdam升级今晚将在Sepolia测试，区块Gas上限拟提升至2亿",
+          "update_id": "upd_3011479d7a70afec",
+          "update_type": "confirmation",
+          "what_changed_en": "Ethereum's Glamsterdam upgrade activates on Sepolia testnet on October 6 at 13:53 UTC, raising the block gas limit from roughly 60 million to 200 million; an emergency Prysm 7.2.1 validator client release fixes gas limit configuration to ensure validators automatically propose 200M gas blocks.",
+          "what_changed_zh": "以太坊 Glamsterdam 升级于 10 月 6 日 13:53 UTC 在 Sepolia 测试网激活，区块 Gas 上限从约 6000 万提升至 2 亿；开发者紧急发布 Prysm 7.2.1 验证者客户端，修复区块 Gas 上限设置问题，确保验证者自动生成 2 亿 Gas 区块。"
         }
       ]
     },
@@ -113769,8 +113818,8 @@
     {
       "category": "policy",
       "confidence": 0.75,
-      "current_state_en": "Polymarket is filing a lawsuit against the Dutch regulator Ksa's order barring it from operating in the Netherlands, arguing its product should instead be supervised by financial markets authority AFM.",
-      "current_state_zh": "Polymarket is filing a lawsuit against the Dutch regulator Ksa's order barring it from operating in the Netherlands, arguing its product should instead be supervised by financial markets authority AFM.",
+      "current_state_en": "Polymarket has sued at The Hague District Court to annul Ksa's Dutch ban and restore market access, arguing its event contracts should be supervised by AFM rather than Ksa; Ksa has collected €420k in fines.",
+      "current_state_zh": "Polymarket 已向海牙地区法院提起诉讼，要求撤销 Ksa 的荷兰禁令并恢复市场准入，主张其事件合约应由 AFM 而非 Ksa 监管；Ksa 已收取 42 万欧元罚款。",
       "entities": [
         "polymarket"
       ],
@@ -113778,12 +113827,12 @@
       "event_type": "legal_case",
       "first_seen_at": "2026-10-05T10:21:04.834183Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-05T10:21:04.834183Z",
-      "last_updated_at": "2026-10-05T10:21:04.834183Z",
+      "last_material_change_at": "2026-10-06T07:22:04.762102Z",
+      "last_updated_at": "2026-10-06T07:22:05.374855Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "developing",
       "title_en": "Polymarket将就荷兰禁令提起诉讼",
       "title_zh": "Polymarket将就荷兰禁令提起诉讼",
       "topics": [
@@ -113801,7 +113850,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Polymarket is filing a lawsuit against the Dutch regulator Ksa's order barring it from operating in the Netherlands, arguing its product should instead be supervised by financial markets authority AFM.",
-          "current_state_zh": "Polymarket is filing a lawsuit against the Dutch regulator Ksa's order barring it from operating in the Netherlands, arguing its product should instead be supervised by financial markets authority AFM.",
+          "current_state_zh": "Polymarket正就荷兰监管机构Ksa禁止其在荷兰运营的命令提起诉讼，主张其产品应由金融市场管理局AFM监管。",
           "detailed_summary_en": "Polymarket is filing a lawsuit against the Dutch regulator Ksa's order barring it from operating in the Netherlands, arguing its product should instead be supervised by financial markets authority AFM.",
           "detailed_summary_zh": "Polymarket is filing a lawsuit against the Dutch regulator Ksa's order barring it from operating in the Netherlands, arguing its product should instead be supervised by financial markets authority AFM.",
           "event_id": "evt_9033f39ccff62e41",
@@ -113830,7 +113879,52 @@
           "update_id": "upd_eeb29e5885e2ec82",
           "update_type": "initial",
           "what_changed_en": "Polymarket is filing a lawsuit against the Dutch regulator Ksa's order barring it from operating in the Netherlands, arguing its product should instead be supervised by financial markets authority AFM.",
-          "what_changed_zh": "Polymarket is filing a lawsuit against the Dutch regulator Ksa's order barring it from operating in the Netherlands, arguing its product should instead be supervised by financial markets authority AFM."
+          "what_changed_zh": "Polymarket正就荷兰监管机构Ksa禁止其在荷兰运营的命令提起诉讼，主张其产品应由金融市场管理局AFM监管。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "Polymarket has sued at The Hague District Court to annul Ksa's Dutch ban and restore market access, arguing its event contracts should be supervised by AFM rather than Ksa; Ksa has collected €420k in fines.",
+          "current_state_zh": "Polymarket 已向海牙地区法院提起诉讼，要求撤销 Ksa 的荷兰禁令并恢复市场准入，主张其事件合约应由 AFM 而非 Ksa 监管；Ksa 已收取 42 万欧元罚款。",
+          "detailed_summary_en": "Polymarket has sued at The Hague District Court to annul the Dutch gambling regulator's ban, arguing its event contracts are financial products that should be supervised by the financial markets authority rather than classified as unlicensed gambling that already drew €420k in fines.",
+          "detailed_summary_zh": "Polymarket has sued at The Hague District Court to annul the Dutch gambling regulator's ban, arguing its event contracts are financial products that should be supervised by the financial markets authority rather than classified as unlicensed gambling that already drew €420k in fines.",
+          "event_id": "evt_9033f39ccff62e41",
+          "first_seen_at": "2026-10-06T07:22:04.762102Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-06T05:50:46Z",
+          "published_at": "2026-10-06T05:50:46Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/114616"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/370396?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:119787",
+            "telegram:theblockbeats:199078"
+          ],
+          "time_precision": "published",
+          "title_en": "【Polymarket 向海牙法院起诉要求撤销荷兰禁令】",
+          "title_zh": "【Polymarket 向海牙法院起诉要求撤销荷兰禁令】",
+          "update_id": "upd_a8116b205f8fba71",
+          "update_type": "escalation",
+          "what_changed_en": "Polymarket has formally filed suit at The Hague District Court seeking annulment of the Dutch ban and restoration of market access; Ksa has collected €420k in fines because service stopped after the deadline.",
+          "what_changed_zh": "Polymarket 已正式向海牙地区法院起诉，要求撤销荷兰禁令并恢复市场准入；Ksa 已因停服晚于期限收取 42 万欧元罚款。"
         }
       ]
     },
@@ -114759,7 +114853,7 @@
       "first_seen_at": "2026-10-05T15:51:20.014504Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-05T15:51:20.014504Z",
-      "last_updated_at": "2026-10-05T15:51:20.014504Z",
+      "last_updated_at": "2026-10-06T07:22:05.577841Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -114799,10 +114893,17 @@
               "official": false,
               "source_type": "rss",
               "url": "https://thedefiant.io/news/regulation/treasury-drops-crypto-wallet-surveillance-rules"
+            },
+            {
+              "label": "CoinDesk",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.coindesk.com/policy/2026/10/06/u-s-scraps-proposed-usd10-000-reporting-rule-for-for-crypto-sent-to-private-wallets"
             }
           ],
           "story_ids": [
-            "rss:thedefiant.io_api_feed:4f87241f17f8ccbb"
+            "rss:thedefiant.io_api_feed:4f87241f17f8ccbb",
+            "rss:www.coindesk.com_arc_outboundfeeds_rss_:054e679e2a487243"
           ],
           "time_precision": "published",
           "title_en": "Treasury Drops Crypto Wallet Surveillance Rules",
@@ -115444,36 +115545,54 @@
     {
       "category": "policy",
       "confidence": 0.75,
-      "current_state_en": "CFTC staff granted relief permitting index futures to be converted into true perpetual contracts with continuous funding, easing the way for US-compliant perpetual-style derivatives.",
-      "current_state_zh": "CFTC staff granted relief permitting index futures to be converted into true perpetual contracts with continuous funding, easing the way for US-compliant perpetual-style derivatives.",
+      "current_state_en": "The CFTC has cleared the way for true perpetual futures contracts to be offered in regulated US derivatives markets, opening the door for the dominant global crypto derivative product to be traded onshore under US oversight.",
+      "current_state_zh": "The CFTC has cleared the way for true perpetual futures contracts to be offered in regulated US derivatives markets, opening the door for the dominant global crypto derivative product to be traded onshore under US oversight.",
       "entities": [
         "cftc",
+        "clears",
         "convert",
+        "exchanges",
         "futures",
         "grants",
         "index",
         "into",
+        "launch",
+        "leveraged",
+        "path",
+        "perpetual",
+        "perpetual-futures",
         "perpetuals",
+        "proposes",
         "relief",
+        "rules",
         "staff",
+        "trading",
         "true"
       ],
       "event_id": "evt_108847309d8bc70c",
       "event_type": "regulatory_action",
       "first_seen_at": "2026-10-06T00:41:32.764910Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-06T00:41:32.764910Z",
-      "last_updated_at": "2026-10-06T00:41:32.764910Z",
+      "last_material_change_at": "2026-10-06T07:22:02.716544Z",
+      "last_updated_at": "2026-10-06T07:22:02.716544Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_372fdd7662ae9a39",
+        "evt_8f7dc357c6bf98c5",
+        "evt_f5425a062fa1ac95"
+      ],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "CFTC Staff Grants Relief to Convert Index Futures Into True Perpetuals",
-      "title_zh": "CFTC Staff Grants Relief to Convert Index Futures Into True Perpetuals",
+      "title_zh": "CFTC 为美国受监管市场推出永续期货及杠杆加密交易规则",
       "topics": [
         "cftc",
         "crypto-derivatives",
+        "crypto-regulation",
+        "derivatives",
+        "leveraged-trading",
         "perpetual-futures",
+        "us-policy",
         "us-regulation"
       ],
       "updates": [
@@ -115489,7 +115608,7 @@
           "detailed_summary_zh": "CFTC staff granted relief permitting index futures to be converted into true perpetual contracts with continuous funding, easing the way for US-compliant perpetual-style derivatives.",
           "event_id": "evt_108847309d8bc70c",
           "first_seen_at": "2026-10-06T00:41:32.764910Z",
-          "importance_score": 7.5,
+          "importance_score": 8.5,
           "market_impact_en": "",
           "market_impact_zh": "",
           "material_change": true,
@@ -115502,10 +115621,31 @@
               "official": false,
               "source_type": "google_news",
               "url": "https://www.securities.io/cftc-staff-grants-relief-to-convert-index-futures-into-true-perpetuals/"
+            },
+            {
+              "label": "CryptoRank",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://cryptorank.io/news/feed/8b103-cftc-clears-path-for-us-exchanges-to-launch-perpetual"
+            },
+            {
+              "label": "CryptoRank",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://cryptorank.io/news/feed/4c3ad-cftc-proposes-leveraged-crypto-trading-rules"
+            },
+            {
+              "label": "Cryptopolitan",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://www.cryptopolitan.com/cftc-clears-path-for-true-perpetuals-in-regulated-us-derivatives-markets/"
             }
           ],
           "story_ids": [
-            "google_news:article:ce39024037e41b4f"
+            "google_news:article:ce39024037e41b4f",
+            "google_news:article:b864d4a35755cede",
+            "google_news:article:48116a9154c98138",
+            "google_news:article:b83be87281b9d817"
           ],
           "time_precision": "published",
           "title_en": "CFTC Staff Grants Relief to Convert Index Futures Into True Perpetuals",
@@ -115747,7 +115887,7 @@
       "first_seen_at": "2026-10-06T03:17:37.002609Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-06T03:17:37.002609Z",
-      "last_updated_at": "2026-10-06T03:17:37.002609Z",
+      "last_updated_at": "2026-10-06T07:22:06.675529Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -115786,10 +115926,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://m.theblockbeats.info/flash/370369?from=telegram"
+            },
+            {
+              "label": "CoinDesk",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.coindesk.com/markets/2026/10/06/solana-foundation-unveils-a-program-to-settle-institutional-trades-in-seconds-with-jpmorgan-s-inputs"
             }
           ],
           "story_ids": [
-            "telegram:theblockbeats:199050"
+            "telegram:theblockbeats:199050",
+            "rss:www.coindesk.com_arc_outboundfeeds_rss_:87bfb36356dbe125"
           ],
           "time_precision": "published",
           "title_en": "Solana基金会推出机构级结算标准Solana DvP，获摩根大通参与设计",
@@ -115815,7 +115962,7 @@
       "first_seen_at": "2026-10-06T03:17:37.003223Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-06T03:17:37.003223Z",
-      "last_updated_at": "2026-10-06T03:17:37.003223Z",
+      "last_updated_at": "2026-10-06T07:22:04.760027Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -115855,10 +116002,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://m.theblockbeats.info/flash/370373?from=telegram"
+            },
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/114604"
             }
           ],
           "story_ids": [
-            "telegram:theblockbeats:199054"
+            "telegram:theblockbeats:199054",
+            "telegram:foresightnews:119775"
           ],
           "time_precision": "published",
           "title_en": "月之暗面（Kimi）完成IPO前最终一轮融资，估值约500亿美元",
@@ -116010,6 +116164,390 @@
           "update_type": "initial",
           "what_changed_en": "Blockchain investigator ZachXBT revealed he infiltrated a Chinese organized crime money-laundering network that washed over $1 billion in stolen crypto for North Korea's Lazarus Group, yielding tracing data and USDT freezes tied to the $1.5 billion Bybit hack.",
           "what_changed_zh": "Blockchain investigator ZachXBT revealed he infiltrated a Chinese organized crime money-laundering network that washed over $1 billion in stolen crypto for North Korea's Lazarus Group, yielding tracing data and USDT freezes tied to the $1.5 billion Bybit hack."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "OKX has launched OKX Money in selected emerging markets for stablecoin savings and payments, supporting conversion from 50+ currencies into USDG, USDC or USDT, offering up to 10% APY on eligible USDG balances and virtual or physical spending cards, with a market-by-market rollout.",
+      "current_state_zh": "OKX 已推出 OKX Money，在部分新兴市场提供稳定币储蓄和支付服务，支持 50 多种货币兑换为 USDG、USDC 或 USDT，符合条件的 USDG 余额最高可获 10% APY，并提供虚拟或实体消费卡，按市场逐步推广。",
+      "entities": [
+        "emerging-markets",
+        "okx",
+        "stablecoins",
+        "yield"
+      ],
+      "event_id": "evt_610c8389cee974d4",
+      "event_type": "exchange_operation",
+      "first_seen_at": "2026-10-06T07:22:02.713839Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-06T07:22:15.330507Z",
+      "last_updated_at": "2026-10-06T07:22:15.330507Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "OKX debuts a platform that turns 50 currencies into digital dollars, betting emerging market investors want stablecoins",
+      "title_zh": "OKX推出将50种货币兑换为数字美元的平台，押注新兴市场投资者想要稳定币",
+      "topics": [
+        "emerging-markets",
+        "exchange-product",
+        "okx",
+        "stablecoins",
+        "yield"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "OKX has launched a platform that converts 50 local currencies into digital dollars, betting that emerging-market investors will adopt stablecoins for savings and cross-border payments.",
+          "current_state_zh": "OKX已推出一个将50种当地货币兑换为数字美元的平台，押注新兴市场投资者将采用稳定币进行储蓄和跨境支付。",
+          "detailed_summary_en": "OKX has launched a platform that converts 50 local currencies into digital dollars, betting that emerging-market investors will adopt stablecoins for savings and cross-border payments.",
+          "detailed_summary_zh": "OKX has launched a platform that converts 50 local currencies into digital dollars, betting that emerging-market investors will adopt stablecoins for savings and cross-border payments.",
+          "event_id": "evt_610c8389cee974d4",
+          "first_seen_at": "2026-10-06T07:22:02.713839Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-06T03:40:00Z",
+          "published_at": "2026-10-06T03:40:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Fortune",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://fortune.com/2026/10/05/okx-money-us-dollar-stablecoins-launch/"
+            }
+          ],
+          "story_ids": [
+            "google_news:article:0594b36da4db4af2"
+          ],
+          "time_precision": "published",
+          "title_en": "OKX debuts a platform that turns 50 currencies into digital dollars, betting emerging market investors want stablecoins",
+          "title_zh": "OKX推出将50种货币兑换为数字美元的平台，押注新兴市场投资者想要稳定币",
+          "update_id": "upd_4a1e7646daff628b",
+          "update_type": "initial",
+          "what_changed_en": "OKX has launched a platform that converts 50 local currencies into digital dollars, betting that emerging-market investors will adopt stablecoins for savings and cross-border payments.",
+          "what_changed_zh": "OKX已推出一个将50种当地货币兑换为数字美元的平台，押注新兴市场投资者将采用稳定币进行储蓄和跨境支付。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.91,
+          "current_state_en": "OKX has launched OKX Money in selected emerging markets for stablecoin savings and payments, supporting conversion from 50+ currencies into USDG, USDC or USDT, offering up to 10% APY on eligible USDG balances and virtual or physical spending cards, with a market-by-market rollout.",
+          "current_state_zh": "OKX 已推出 OKX Money，在部分新兴市场提供稳定币储蓄和支付服务，支持 50 多种货币兑换为 USDG、USDC 或 USDT，符合条件的 USDG 余额最高可获 10% APY，并提供虚拟或实体消费卡，按市场逐步推广。",
+          "detailed_summary_en": "OKX launched OKX Money, a stablecoin savings and payments app in Latin America, Africa, South Asia and the Middle East that converts deposits from 50+ currencies into USDG, USDC or USDT and pays up to 10% APY on eligible USDG balances with virtual or physical spending cards.",
+          "detailed_summary_zh": "OKX launched OKX Money, a stablecoin savings and payments app in Latin America, Africa, South Asia and the Middle East that converts deposits from 50+ currencies into USDG, USDC or USDT and pays up to 10% APY on eligible USDG balances with virtual or physical spending cards.",
+          "event_id": "evt_610c8389cee974d4",
+          "first_seen_at": "2026-10-06T07:22:15.330507Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-06T03:40:00Z",
+          "published_at": "2026-10-06T03:40:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/okx-money-stablecoin-savings-payments-emerging-markets?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:cc5f67ef7aca00a5"
+          ],
+          "time_precision": "published",
+          "title_en": "OKX eyes emerging markets with yield-offering stablecoin savings and payments app",
+          "title_zh": "OKX以提供收益的稳定币储蓄和支付应用瞄准新兴市场",
+          "update_id": "upd_b69b4e57ee9b7d98",
+          "update_type": "confirmation",
+          "what_changed_en": "The story confirms the platform is OKX Money and adds: deposits from 50+ currencies convert into USDG, USDC or USDT; eligible USDG balances can earn up to 10% APY; virtual or physical spending cards are offered; rollout is market-by-market in Latin America, Africa, South Asia and the Middle East.",
+          "what_changed_zh": "新报道确认该平台名为 OKX Money，并补充：用户可将 50 多种货币存入并转换为 USDG、USDC 或 USDT；符合条件的 USDG 余额可获最高 10% APY；提供虚拟或实体消费卡；在拉丁美洲、非洲、南亚和中东按市场逐步推出。"
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "Tornado Cash co-founder Roman Storm says the US Treasury acknowledged its mixer rules were flawed and caused a chilling effect on legitimate activity, while the DOJ continues to press for his conviction with a new filing in SDNY.",
+      "current_state_zh": "Tornado Cash co-founder Roman Storm says the US Treasury acknowledged its mixer rules were flawed and caused a chilling effect on legitimate activity, while the DOJ continues to press for his conviction with a new filing in SDNY.",
+      "entities": [
+        "cash",
+        "tornado",
+        "tornado-cash"
+      ],
+      "event_id": "evt_29962740cd39e1c7",
+      "event_type": "legal_case",
+      "first_seen_at": "2026-10-06T07:22:05.370360Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-06T07:22:05.370360Z",
+      "last_updated_at": "2026-10-06T07:22:05.370360Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Tornado Cash联创：美国财政部承认混币器规则存在错误",
+      "title_zh": "Tornado Cash联创：美国财政部承认混币器规则存在错误",
+      "topics": [
+        "crypto-regulation",
+        "developer-liability",
+        "legal",
+        "tornado-cash"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Tornado Cash co-founder Roman Storm says the US Treasury acknowledged its mixer rules were flawed and caused a chilling effect on legitimate activity, while the DOJ continues to press for his conviction with a new filing in SDNY.",
+          "current_state_zh": "Tornado Cash co-founder Roman Storm says the US Treasury acknowledged its mixer rules were flawed and caused a chilling effect on legitimate activity, while the DOJ continues to press for his conviction with a new filing in SDNY.",
+          "detailed_summary_en": "Tornado Cash co-founder Roman Storm says the US Treasury acknowledged its mixer rules were flawed and caused a chilling effect on legitimate activity, while the DOJ continues to press for his conviction with a new filing in SDNY.",
+          "detailed_summary_zh": "Tornado Cash co-founder Roman Storm says the US Treasury acknowledged its mixer rules were flawed and caused a chilling effect on legitimate activity, while the DOJ continues to press for his conviction with a new filing in SDNY.",
+          "event_id": "evt_29962740cd39e1c7",
+          "first_seen_at": "2026-10-06T07:22:05.370360Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-06T04:07:02Z",
+          "published_at": "2026-10-06T04:07:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/370384?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:199065"
+          ],
+          "time_precision": "published",
+          "title_en": "Tornado Cash联创：美国财政部承认混币器规则存在错误",
+          "title_zh": "Tornado Cash联创：美国财政部承认混币器规则存在错误",
+          "update_id": "upd_885d9bf10b1d3a13",
+          "update_type": "initial",
+          "what_changed_en": "Tornado Cash co-founder Roman Storm says the US Treasury acknowledged its mixer rules were flawed and caused a chilling effect on legitimate activity, while the DOJ continues to press for his conviction with a new filing in SDNY.",
+          "what_changed_zh": "Tornado Cash co-founder Roman Storm says the US Treasury acknowledged its mixer rules were flawed and caused a chilling effect on legitimate activity, while the DOJ continues to press for his conviction with a new filing in SDNY."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "DeepSeek is reportedly closing a funding round of at least ¥80B (~$12B), well above its earlier ¥50B target, with Tencent and CATL committing significant portions as demand and investor interest surge following its latest model release.",
+      "current_state_zh": "DeepSeek is reportedly closing a funding round of at least ¥80B (~$12B), well above its earlier ¥50B target, with Tencent and CATL committing significant portions as demand and investor interest surge following its latest model release.",
+      "entities": [
+        "deepseek"
+      ],
+      "event_id": "evt_c01a27d5703acbbd",
+      "event_type": "other",
+      "first_seen_at": "2026-10-06T07:22:05.373892Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-06T07:22:05.373892Z",
+      "last_updated_at": "2026-10-06T07:22:05.373892Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "DeepSeek或将完成约120亿美元融资，腾讯和宁德时代或参投",
+      "title_zh": "DeepSeek或将完成约120亿美元融资，腾讯和宁德时代或参投",
+      "topics": [
+        "ai-funding",
+        "catl",
+        "deepseek",
+        "frontier-models",
+        "tencent"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "DeepSeek is reportedly closing a funding round of at least ¥80B (~$12B), well above its earlier ¥50B target, with Tencent and CATL committing significant portions as demand and investor interest surge following its latest model release.",
+          "current_state_zh": "DeepSeek is reportedly closing a funding round of at least ¥80B (~$12B), well above its earlier ¥50B target, with Tencent and CATL committing significant portions as demand and investor interest surge following its latest model release.",
+          "detailed_summary_en": "DeepSeek is reportedly closing a funding round of at least ¥80B (~$12B), well above its earlier ¥50B target, with Tencent and CATL committing significant portions as demand and investor interest surge following its latest model release.",
+          "detailed_summary_zh": "DeepSeek is reportedly closing a funding round of at least ¥80B (~$12B), well above its earlier ¥50B target, with Tencent and CATL committing significant portions as demand and investor interest surge following its latest model release.",
+          "event_id": "evt_c01a27d5703acbbd",
+          "first_seen_at": "2026-10-06T07:22:05.373892Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-06T05:28:02Z",
+          "published_at": "2026-10-06T05:28:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/370393?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:199075"
+          ],
+          "time_precision": "published",
+          "title_en": "DeepSeek或将完成约120亿美元融资，腾讯和宁德时代或参投",
+          "title_zh": "DeepSeek或将完成约120亿美元融资，腾讯和宁德时代或参投",
+          "update_id": "upd_bb1ac0e6d592521c",
+          "update_type": "initial",
+          "what_changed_en": "DeepSeek is reportedly closing a funding round of at least ¥80B (~$12B), well above its earlier ¥50B target, with Tencent and CATL committing significant portions as demand and investor interest surge following its latest model release.",
+          "what_changed_zh": "DeepSeek is reportedly closing a funding round of at least ¥80B (~$12B), well above its earlier ¥50B target, with Tencent and CATL committing significant portions as demand and investor interest surge following its latest model release."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Ondo Finance launched Ondo Private Markets, a tokenized-notes product offering on-chain economic exposure to top private companies, beginning with an AI-sector Pre-IPO firm expected to start secondary trading this week.",
+      "current_state_zh": "Ondo Finance launched Ondo Private Markets, a tokenized-notes product offering on-chain economic exposure to top private companies, beginning with an AI-sector Pre-IPO firm expected to start secondary trading this week.",
+      "entities": [
+        "ipo",
+        "ondo",
+        "ondo-finance",
+        "pre"
+      ],
+      "event_id": "evt_801464a75516459f",
+      "event_type": "market_structure",
+      "first_seen_at": "2026-10-06T07:22:05.375575Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-06T07:22:05.375575Z",
+      "last_updated_at": "2026-10-06T07:22:05.375575Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Ondo Finance推出私募市场链上代币化产品，首个标的为AI领域Pre-IPO公司",
+      "title_zh": "Ondo Finance推出私募市场链上代币化产品，首个标的为AI领域Pre-IPO公司",
+      "topics": [
+        "ondo-finance",
+        "private-markets",
+        "rwa"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Ondo Finance launched Ondo Private Markets, a tokenized-notes product offering on-chain economic exposure to top private companies, beginning with an AI-sector Pre-IPO firm expected to start secondary trading this week.",
+          "current_state_zh": "Ondo Finance launched Ondo Private Markets, a tokenized-notes product offering on-chain economic exposure to top private companies, beginning with an AI-sector Pre-IPO firm expected to start secondary trading this week.",
+          "detailed_summary_en": "Ondo Finance launched Ondo Private Markets, a tokenized-notes product offering on-chain economic exposure to top private companies, beginning with an AI-sector Pre-IPO firm expected to start secondary trading this week.",
+          "detailed_summary_zh": "Ondo Finance launched Ondo Private Markets, a tokenized-notes product offering on-chain economic exposure to top private companies, beginning with an AI-sector Pre-IPO firm expected to start secondary trading this week.",
+          "event_id": "evt_801464a75516459f",
+          "first_seen_at": "2026-10-06T07:22:05.375575Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-06T06:06:02Z",
+          "published_at": "2026-10-06T06:06:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/370398?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:199080"
+          ],
+          "time_precision": "published",
+          "title_en": "Ondo Finance推出私募市场链上代币化产品，首个标的为AI领域Pre-IPO公司",
+          "title_zh": "Ondo Finance推出私募市场链上代币化产品，首个标的为AI领域Pre-IPO公司",
+          "update_id": "upd_20e191961aeb56e4",
+          "update_type": "initial",
+          "what_changed_en": "Ondo Finance launched Ondo Private Markets, a tokenized-notes product offering on-chain economic exposure to top private companies, beginning with an AI-sector Pre-IPO firm expected to start secondary trading this week.",
+          "what_changed_zh": "Ondo Finance launched Ondo Private Markets, a tokenized-notes product offering on-chain economic exposure to top private companies, beginning with an AI-sector Pre-IPO firm expected to start secondary trading this week."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "At the OKX NOW summit in Singapore, OKX Web3 detailed ExchangeOS modular trading components and the XIP-Exchange OS proposal to open X Layer's shared liquidity to developers, with on-chain spot and perpetual markets set to enter public beta.",
+      "current_state_zh": "At the OKX NOW summit in Singapore, OKX Web3 detailed ExchangeOS modular trading components and the XIP-Exchange OS proposal to open X Layer's shared liquidity to developers, with on-chain spot and perpetual markets set to enter public beta.",
+      "entities": [
+        "okx",
+        "web3",
+        "xip"
+      ],
+      "event_id": "evt_4f7327e1098e60c0",
+      "event_type": "market_structure",
+      "first_seen_at": "2026-10-06T07:22:05.376925Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-06T07:22:05.376925Z",
+      "last_updated_at": "2026-10-06T07:22:05.376925Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "OKX Web3将通过XIP开放交易基础设施与共享流动性，链上市场即将开启公测",
+      "title_zh": "OKX Web3将通过XIP开放交易基础设施与共享流动性，链上市场即将开启公测",
+      "topics": [
+        "okx",
+        "on-chain-trading",
+        "x-layer",
+        "xip"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "At the OKX NOW summit in Singapore, OKX Web3 detailed ExchangeOS modular trading components and the XIP-Exchange OS proposal to open X Layer's shared liquidity to developers, with on-chain spot and perpetual markets set to enter public beta.",
+          "current_state_zh": "At the OKX NOW summit in Singapore, OKX Web3 detailed ExchangeOS modular trading components and the XIP-Exchange OS proposal to open X Layer's shared liquidity to developers, with on-chain spot and perpetual markets set to enter public beta.",
+          "detailed_summary_en": "At the OKX NOW summit in Singapore, OKX Web3 detailed ExchangeOS modular trading components and the XIP-Exchange OS proposal to open X Layer's shared liquidity to developers, with on-chain spot and perpetual markets set to enter public beta.",
+          "detailed_summary_zh": "At the OKX NOW summit in Singapore, OKX Web3 detailed ExchangeOS modular trading components and the XIP-Exchange OS proposal to open X Layer's shared liquidity to developers, with on-chain spot and perpetual markets set to enter public beta.",
+          "event_id": "evt_4f7327e1098e60c0",
+          "first_seen_at": "2026-10-06T07:22:05.376925Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-06T06:53:02Z",
+          "published_at": "2026-10-06T06:53:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/370404?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:199086"
+          ],
+          "time_precision": "published",
+          "title_en": "OKX Web3将通过XIP开放交易基础设施与共享流动性，链上市场即将开启公测",
+          "title_zh": "OKX Web3将通过XIP开放交易基础设施与共享流动性，链上市场即将开启公测",
+          "update_id": "upd_035678de22a7c412",
+          "update_type": "initial",
+          "what_changed_en": "At the OKX NOW summit in Singapore, OKX Web3 detailed ExchangeOS modular trading components and the XIP-Exchange OS proposal to open X Layer's shared liquidity to developers, with on-chain spot and perpetual markets set to enter public beta.",
+          "what_changed_zh": "At the OKX NOW summit in Singapore, OKX Web3 detailed ExchangeOS modular trading components and the XIP-Exchange OS proposal to open X Layer's shared liquidity to developers, with on-chain spot and perpetual markets set to enter public beta."
         }
       ]
     }
@@ -116184,16 +116722,16 @@
       "evt_0655aad2257c6798",
       "evt_0851eb664f6d9755",
       "evt_0f5f310998ee2b2e",
-      "evt_5b421e16299d26d3",
       "evt_6655595dc1e36e0b",
       "evt_67781f85819d83dc",
       "evt_6b6fcb873789c504",
       "evt_6ca3e3fb32b4ceff",
+      "evt_8e0d65e20ef25a3e",
+      "evt_9e0786a9461278ff",
       "evt_a63e3b36f1ef9123",
       "evt_a97d02e01cdbe43d",
       "evt_cc2ee6ed697c7f69",
       "evt_d286367b68ed9229",
-      "evt_d918c8d1e6c25a31",
       "evt_e84fa252f80895fe",
       "evt_e95ba9ad10d8c64c",
       "evt_fde3170925921bc2"
@@ -116215,7 +116753,8 @@
     "deepseek": [
       "evt_0587fa9ad652dd83",
       "evt_9b7aa620b298b0f3",
-      "evt_aae947871b667555"
+      "evt_aae947871b667555",
+      "evt_c01a27d5703acbbd"
     ],
     "derivatives": [
       "evt_5b421e16299d26d3",
@@ -118378,6 +118917,39 @@
         "source_type": "google_news",
         "title": "EU Regulators Probe Crypto Exchange Binance’s Use of Reverse Solicitation to Keep Serving Customers without MiCA License",
         "url": "https://www.crowdfundinsider.com/2026/10/315530-eu-regulators-probe-crypto-exchange-binances-use-of-reverse-solicitation-to-keep-serving-customers-without-mica-license/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A CFTC decision that lets Coinbase Derivatives convert its long-dated index futures into perpetual, never-expiring contracts — a material US market-structure and regulatory development, since perpetual futures have historically been unavailable in the regulated US derivatives market. It carries clear implications for how Coinbase and other venues structure listed products, though it affects a specific product line rather than reshaping market access industry-wide. No comments/discussion provided to weigh.",
+        "ai_score": 7.5,
+        "ai_summary": "The CFTC has allowed Coinbase to convert its 25-year index futures into perpetual, never-expiring contracts, opening the door for crypto-style perpetual futures in the US regulated derivatives market.",
+        "ai_tags": [
+          "CFTC",
+          "Coinbase",
+          "perpetual-futures",
+          "derivatives-regulation",
+          "market-structure"
+        ],
+        "author": "Finance Magnates",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxOMFEzNTRieHBuMnlfcEZnZnVORFc1VWlFM1cyT3llNDV1LTE0ZmZzSEowNFhycnpsMFpnb1lMeXRvcmJYbWZtdUdKckFjaXRYUXYzRG8zTjYtYkpHb1BLMi05OVBySi1BZENTTDluN25uVUhNY2Jta0hSLVp3YmkyM21oTXhnTXpKVDdEU0l6a2ZKUXRfM09ldEowVzFGRVBPU3o2cnNfNEZzUTNLRVFQR1JBYzJRNWFzenRHdlFqQXk4Nkh4X2RN?oc=5\" target=\"_blank\">CFTC Lets Coinbase Turn 25-Year Index Futures Into Contracts That Never Expire</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Finance Magnates</font>",
+        "fetched_at": "2026-10-06T07:22:02.714016Z",
+        "id": "google_news:article:1a77f5fe574d099b",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.financemagnates.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Finance Magnates"
+        },
+        "published_at": "2026-10-06T06:11:00Z",
+        "source_type": "google_news",
+        "title": "CFTC Lets Coinbase Turn 25-Year Index Futures Into Contracts That Never Expire",
+        "url": "https://www.financemagnates.com/forex/regulation/cftc-lets-coinbase-turn-25-year-index-futures-into-contracts-that-never-expire/"
       }
     }
   ],
