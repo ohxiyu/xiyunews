@@ -1,31 +1,31 @@
 # 当前交接
 
-当前任务是维护者已确认的 Beautiful UI 风格公开站点与分享 PNG 改版，以及维护者随后授权的最小依赖安全修复，以解除此 PR 的 multidict / sharp 扫描阻塞。继续同一 Issue220 / PR221 / 单一负责人，只交付 PR，不合并或部署，不继续此前 Quick Post、DNS 或渠道发送任务。
+维护者最新“上线”授权已执行：PR221 已合并，公开页面、分享 PNG 与定向依赖安全修复已通过现有自动流程发布。当前仅整理 Issue222 的生产证据，不继续此前 Quick Post、DNS、AI 或渠道发送任务，不额外部署 Worker。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "统一公开页面与分享 PNG 风格，并定向修复影响 PR 检查的 multidict / sharp 安全告警",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/220",
-  "owner": "当前 Codex 会话，唯一编辑负责人；本次仅交付 PR",
-  "branch": "agent/beautiful-ui",
-  "last_verified_commit": "bfd644940a567566aaf3d872ca6ca224250f0565",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/221",
-  "completed": ["核验账号/仓库/main/开放任务；创建 Issue220 与独立 worktree", "确认真实新闻预览方向，完成共享视觉层与分享图片修改", "按维护者后续授权核对官方告警，加入 multidict>=6.9.1,<7 传递依赖下限并仅定向升级锁定包 6.7.1→6.9.1；加入版本与引用释放回归测试", "继后 CI 发现既有 sharp 0.35.4 告警，仅将 Worker 开发工具链现有 override/关联二进制提升到 0.35.5 / libvips 1.3.4；无业务或配置修改，新增跨平台锁项版本下限检查"],
-  "unfinished": ["等待维护者确认合并上线；本次 PR-only，生产视觉/设备验收未执行"],
-  "validation": ["uv sync --frozen --extra dev 成功；默认 pytest 1047 passed / 4 skipped（可选 multidict 不在基础环境）", "显式载入锁定 multidict 6.9.1 后完整 pytest 1051 passed，1 条既有弃用警告；安全模块 13 passed", "CI 同参数 pip-audit 2.10.1 / PyPI 对全部 extras 导出依赖扫描：No known vulnerabilities found", "Worker npm ci / npm run check 成功：npm audit 0 vulnerabilities、类型校验、102 项测试与打包 dry-run；无部署", "Node 40 passed；治理与 diff 检查通过；Python 锁只升级 multidict，其他 162 个包不变；npm 锁只更新 sharp 及其平台二进制", "本地公开真实 HTML + 任务 CSS/JS：1280/390/320 响应式、中英、浅深色、筛选/展开/键盘核对；分享浅/深 PNG 实际生成保存并检查"],
-  "unverified": ["本次生产页面与 PNG 尚未上线", "本地没有 Jekyll 环境，未运行完整站点构建；CI edge-build 通过但使用既有 gh-pages，视觉验证复用已公开 HTML", "CodeQL analyze 按既有私有许可条件跳过，不算通过；未启用付费扫描", "真实手机 PWA 安装、剪贴板与 X 发帖不在本地仿真验收范围"],
+  "goal": "记录 PR221 已完成的生产发布与只读验收，保留准确版本和回退边界",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/222",
+  "owner": "当前 Codex 会话，唯一编辑负责人与整合者",
+  "branch": "agent/beautiful-ui-release",
+  "last_verified_commit": "665a956235d73541e7289f242eec7913f13c3e6c",
+  "pr": "pending：Issue222 证据 PR；应用 https://github.com/ohxiyu/xiyunews/pull/221 已合并",
+  "completed": ["PR221 精确 head12f95ba3f5b2271ca4b76659bb560b97f3514d1c 检查通过后合并，源码665a956235d73541e7289f242eec7913f13c3e6c", "共享视觉层、分享图片与 multidict6.9.1/sharp0.35.5 最小安全修复已通过现有自动流程发布", "Deploy Docs37490743603、Cloudflare37490823390 成功，正式域名版本与资源字节一致", "生产响应式页面、主动PWA更新、浅深PNG实际保存检查完成；日报14条发布前后API哈希不变；匿名/s仍受Access保护"],
+  "unfinished": ["合并 Issue222 文档证据 PR，再清理本会话已合并的任务分支/worktree"],
+  "validation": ["上线前 frozen dev 安装成功，pytest1047 passed/4 skipped/1条既有弃用警告，治理通过；文档阶段同套检查结果见发布记录", "PR221最新CI37489761507 attempt2的test/governance/edge-build/realtime-paths成功，审计通过；CodeQL许可跳过不算通过", "正式桌面1280/手机390/英文320无横向溢出；正文16px/15px、分析12.8px与最大740px阅读宽度符合设计", "实际浅深分享PNG1320×4074包含全文/来源/分析/参考/标签；无按钮、本地URL或重复品牌", "正式资产sha256-94e4e835f53d与源码字节一致；日报API SHA256 ac44a36a88ce4861cec58169d912b46f301c5d4a80731ee6583fc0808b068411 发布前后相同"],
+  "unverified": ["CodeQL analyze 按既有私有许可条件跳过，不算通过；未启用付费扫描", "真实手机 PWA 安装/离线、剪贴板与 X 发帖未执行，浏览器模拟手机不等于实体设备验收", "未运行真实 AI、日报重刊、渠道补发或后台真实 Access 登录/发布；不在本次范围"],
   "production": {
-    "source_commit": "not changed；此前记录为4e3862117671db962798fc305622a476f07e5ec7",
-    "artifact_commit": "unknown：刊期产物自然更新，本次没有发布",
-    "edition": "2026-10-06；只读用于视觉预览",
-    "generated_at": "not changed：本任务不运行日报",
-    "worker_version": "not changed；此前记录为fb50c31c-7ca6-4339-b1f6-9929bd12ae74",
-    "verified_at": "2026-10-06：主站只读；pwa-version build2026-10-06T11:29:29+00:00"
+    "source_commit": "665a956235d73541e7289f242eec7913f13c3e6c",
+    "artifact_commit": "f85da0836e4927104cd3119a30ebda2ecf916020",
+    "edition": "2026-10-06；14条；跨午夜后按既有规则显示10月7日准备中",
+    "generated_at": "2026-10-05T23:30:40.478217Z",
+    "worker_version": "e9285050-ac06-4dcc-97c9-1b8470c6d147",
+    "verified_at": "2026-10-06T16:00:55Z；上海2026-10-07 00:00:55"
   },
   "blockers": [],
-  "next_action": "代码 bfd644940a567566aaf3d872ca6ca224250f0565 的 CI37489270867 已通过 test/governance/edge-build；证据文档提交后仍核对其最新 head 的检查，再等待维护者确认合并上线。不可忽略漏洞或关闭扫描；CodeQL 私有许可跳过不算安全扫描通过。本次仅 PR，不运行真实 AI/渠道推送或手改队列；真实手机 PWA、剪贴板/X 与生产样式仍待上线后验收。",
-  "states": {"code": "complete", "tests": "complete", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
+  "next_action": "应用 PR221 的五阶段已完成。只读核对发布证据，文档 PR 通过检查后按既有整合授权合并；不因文档更新额外部署。只清理本会话 agent/beautiful-ui 与 agent/beautiful-ui-release 的已合并干净分支/worktree，保留其他 Codex 工作。",
+  "states": {"code": "complete", "tests": "complete", "pr_merged": "complete", "deployed": "complete", "production_verified": "complete"},
   "evidence": "project-docs/releases/2026-10-06-beautiful-ui.md"
 }
 ```
