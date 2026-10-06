@@ -124,14 +124,27 @@
       "current_state_en": "Mistral has released flagship model Mistral Large 4 (internally nicknamed Le Chonk), an MoE model with 1.05T total parameters and 49B active parameters, multimodal support and 1M-token context; API preview is available, open weights are planned for October 27, and Mistral claims it is the strongest open-weights model from the US or Europe with self-reported benchmarks.",
       "detailed_summary_zh": "Mistral released its flagship Mistral Large 4, a 1.05T-parameter MoE model activating 49B parameters per inference with multimodal input and 1M-token context, available now via API preview with open weights slated for October 27 and self-reported benchmarks claiming the strongest open-weights model from the US or Europe.",
       "detailed_summary_en": "Mistral released its flagship Mistral Large 4, a 1.05T-parameter MoE model activating 49B parameters per inference with multimodal input and 1M-token context, available now via API preview with open weights slated for October 27 and self-reported benchmarks claiming the strongest open-weights model from the US or Europe.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "background_zh": "Mistral 主打“主权 AI”，即一个国家或企业可以自行拥有和运行、无需将数据交给外部公司的模型；沙特国家支持的 HUMAIN 于 8 月与该公司签署了价值数亿欧元的协议。9 月，Mistral 完成由三星领投的 30 亿欧元（33.7 亿美元）D 轮融资，估值超过 210 亿欧元（236 亿美元），公司称 Large 4 是这笔资金所支持路线图上的第一个里程碑。“Le Chonk”这一昵称源自 6 月：在 Mistral 将其 Le Chat 助手更名为 Vibe 后，Reddit 和 X 上的粉丝虚构了一个名为 Le Chaton Fat 的模型；CEO Arthur Mensch 顺势回应，如今 Mistral 的发布帖将该模型“非常正式地”列为 le Chonk。",
+      "background_en": "Mistral markets \"sovereign AI\" — models a country or company can own and run without handing data to outside firms — and Saudi Arabia's state-backed HUMAIN signed a deal worth hundreds of millions of euros with the lab in August. In September Mistral raised a €3 billion ($3.37 billion) Series D led by Samsung at a valuation above €21 billion ($23.6 billion), and says Large 4 is the first milestone on the roadmap that money funds. The \"Le Chonk\" nickname traces back to June, when fans on Reddit and X invented a fictional model called Le Chaton Fat after Mistral renamed its Le Chat assistant to Vibe; CEO Arthur Mensch played along, and Mistral's launch post now lists the model as, \"very officially,\" le Chonk.",
+      "community_discussion_zh": "评论者总体持正面看法，但更关注局限。Simon Willison 指出，该模型只支持 “none” 或 “high” 两档推理设置，且差异似乎不大，“high” 产生的输出 token 甚至少于 “none”。有评论者追问：一个在 Mistral 欧洲自有数据中心、约 3800 块 NVIDIA Grace Blackwell GPU 上训练的 1T 参数模型，性能接近 Kimi K3，这意味着什么；也有人称赞其视觉与网络安全基准表现。一位 Plotly 员工表示，该模型比 4 月的 Mistral Medium 3.5 便宜 10 倍，在其数据分析基准上从 58% 提升到 74%。",
+      "community_discussion_en": "Commenters were broadly positive but focused on caveats. Simon Willison noted that the model only supports reasoning settings of \"none\" or \"high,\" and that the difference appeared minor, with \"high\" producing fewer output tokens than \"none.\" One commenter questioned what it means that a 1T-parameter model trained on roughly 3,800 NVIDIA Grace Blackwell GPUs in Mistral's European datacenters can approach Kimi K3's performance, while another praised its vision and cybersecurity benchmarks; a Plotly staffer said it was 10x cheaper than Mistral Medium 3.5 from April and improved from 58% to 74% on their data analytics benchmark.",
+      "market_impact_zh": "Mistral AI 为私人持股公司，没有发行代币，因此对加密市场的传导是间接的、由情绪驱动的：每百万 token 1.36 美元／4.18 美元的低价前沿推理拉高了竞争门槛，对去中心化算力与推理市场等 AI 相关加密叙事构成参照压力，因为这些项目争夺同样的开发者与企业预算。就现有证据而言，此次发布并不对应任何加密资产的直接敞口。",
+      "market_impact_en": "Mistral AI is privately held and has no token, so any read-through to crypto markets is indirect and sentiment-driven: cheaper frontier inference at $1.36/$4.18 per million tokens raises the competitive bar for AI-related crypto narratives such as decentralized compute and inference markets, which compete for the same developer and enterprise budgets. There is no direct exposure to the launch through any listed crypto asset on the evidence available.",
       "importance_score": 8.0,
-      "references": [],
+      "references": [
+        {
+          "url": "https://localaimaster.com/blog/mixture-of-experts-explained",
+          "title": "Mixture of Experts Explained: How DeepSeek V3 + Llama 4 Work"
+        },
+        {
+          "url": "https://dev.to/max_quimby/gemini-4-argon-wins-12-of-18-benchmarks-code-isnt-one-2h70",
+          "title": "Gemini 4 Argon Wins 12 of 18 Benchmarks. - DEV Community"
+        },
+        {
+          "url": "https://benchmarklist.com/models/inclusionai-ling-3.1-flash/",
+          "title": "Ling 3.1 Flash Benchmark Scores & Evals | BenchmarkList"
+        }
+      ],
       "confidence": 0.93,
       "story_ids": [
         "telegram:theblockbeats:199154",

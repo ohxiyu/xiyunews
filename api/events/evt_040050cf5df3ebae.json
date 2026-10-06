@@ -42,25 +42,37 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "EmbeddingGemma 2: An open, lightweight multimodal embedding model",
+      "title_zh": "EmbeddingGemma 2：一个开放、轻量的多模态嵌入模型",
       "title_en": "EmbeddingGemma 2: An open, lightweight multimodal embedding model",
-      "what_changed_zh": "Google released EmbeddingGemma 2, an Apache 2.0-licensed lightweight multimodal embedding model for on-device and local use, prompting technical discussion about its license, MRL-based training and comparisons to rival embedding models.",
+      "what_changed_zh": "Google 发布了 EmbeddingGemma 2，这是一个以 Apache 2.0 许可证开源的开放权重嵌入模型，提供 270M 纯文本版本和 440M 文本+视觉版本。该模型面向本地与端侧嵌入向量生成场景。\n\nHacker News 上的评论者认为该发布填补了缺少优质中等规模嵌入模型的空白；simonw 指出，嵌入模型尤其不应采用封闭且仅限托管的模式，因为应用会把向量长期存储用于后续比对，而厂商有朝一日可能停止提供该模型。\n\n评论者 aabhay 指出，与此前的端侧嵌入模型不同，EmbeddingGemma 2 似乎是使用 MRL 而非 MatFormers 训练的，因此无法在降低嵌入维度的同时同步缩小模型权重。另一位评论者 Nautman 则提到它可通过 MediaPipe 用于文本与图像任务。",
       "what_changed_en": "Google released EmbeddingGemma 2, an Apache 2.0-licensed lightweight multimodal embedding model for on-device and local use, prompting technical discussion about its license, MRL-based training and comparisons to rival embedding models.",
-      "current_state_zh": "Google released EmbeddingGemma 2, an Apache 2.0-licensed lightweight multimodal embedding model for on-device and local use, prompting technical discussion about its license, MRL-based training and comparisons to rival embedding models.",
+      "current_state_zh": "Google 发布了 EmbeddingGemma 2，这是一个以 Apache 2.0 许可证开源的开放权重嵌入模型，提供 270M 纯文本版本和 440M 文本+视觉版本。该模型面向本地与端侧嵌入向量生成场景。\n\nHacker News 上的评论者认为该发布填补了缺少优质中等规模嵌入模型的空白；simonw 指出，嵌入模型尤其不应采用封闭且仅限托管的模式，因为应用会把向量长期存储用于后续比对，而厂商有朝一日可能停止提供该模型。\n\n评论者 aabhay 指出，与此前的端侧嵌入模型不同，EmbeddingGemma 2 似乎是使用 MRL 而非 MatFormers 训练的，因此无法在降低嵌入维度的同时同步缩小模型权重。另一位评论者 Nautman 则提到它可通过 MediaPipe 用于文本与图像任务。",
       "current_state_en": "Google released EmbeddingGemma 2, an Apache 2.0-licensed lightweight multimodal embedding model for on-device and local use, prompting technical discussion about its license, MRL-based training and comparisons to rival embedding models.",
       "detailed_summary_zh": "Google released EmbeddingGemma 2, an Apache 2.0-licensed lightweight multimodal embedding model for on-device and local use, prompting technical discussion about its license, MRL-based training and comparisons to rival embedding models.",
       "detailed_summary_en": "Google released EmbeddingGemma 2, an Apache 2.0-licensed lightweight multimodal embedding model for on-device and local use, prompting technical discussion about its license, MRL-based training and comparisons to rival embedding models.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
+      "background_zh": "Google 此前发布了 EmbeddingGemma，这是一个专为端侧 AI 设计的 3.08 亿参数模型，使检索增强生成（RAG）和语义搜索等技术可以直接在本地硬件上运行。开放权重发布的是模型训练后的参数，而许可证决定模型能否被修改、微调或再分发。多模态嵌入模型则把来自多种模态的非结构化数据映射到同一个向量空间。",
+      "background_en": "Google previously released EmbeddingGemma, a 308-million-parameter model designed specifically for on-device AI, enabling techniques such as retrieval augmented generation (RAG) and semantic search to run directly on local hardware. Open-weights releases publish a model's learned parameters, while the license determines whether the model may be modified, fine-tuned or redistributed. Multimodal embedding models map unstructured data from more than one modality into a shared vector space.",
+      "community_discussion_zh": "Hacker News 讨论帖获得约 184 分和 25 条评论，simonw、minimaxir 等从业者总体持正面态度，称赞其 Apache 2.0 许可证与多模态能力；minimaxir 表示此前一直没有好用的中等规模嵌入模型，令人困扰。最主要的保留意见是关于采用 MRL 而非 MatFormers 训练，导致无法随嵌入维度降低而同步压缩权重。",
+      "community_discussion_en": "The Hacker News thread drew roughly 184 points and 25 comments, with practitioners such as simonw and minimaxir broadly positive: the Apache 2.0 license and multimodal capability were praised, with minimaxir saying the lack of a good moderate-size embedding model had been an annoyance. The main caveat raised was the MRL-versus-MatFormers training choice, which prevents shrinking weights with lower-dimensional embeddings.",
       "market_impact_zh": "",
       "market_impact_en": "",
-      "importance_score": 7.0,
+      "importance_score": 7.5,
       "references": [
         {
           "url": "https://news.ycombinator.com/item?id=49980487",
           "title": "Community discussion"
+        },
+        {
+          "url": "https://developers.googleblog.com/en/introducing-embeddinggemma/?linkId=16610513",
+          "title": "Introducing EmbeddingGemma: The Best-in-Class Open Model for..."
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Open-weight_model",
+          "title": "Open-weight model"
+        },
+        {
+          "url": "https://docs.voyageai.com/docs/multimodal-embeddings",
+          "title": "Multimodal Embeddings"
         }
       ],
       "confidence": 0.75,

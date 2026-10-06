@@ -44,20 +44,33 @@
       "material_change": true,
       "title_zh": "Polymarket推出Protocol V2，重构现有协议底层架构",
       "title_en": "Polymarket推出Protocol V2，重构现有协议底层架构",
-      "what_changed_zh": "Polymarket unveiled Protocol V2, a rebuilt modular smart-contract system using a unified ERC1155 position token, pUSD collateral, an OracleAggregator for UMA/Chainlink, and native cross-chain settlement, with a staged migration to new markets beginning November 2 after multi-firm audits and formal verification.",
+      "what_changed_zh": "Polymarket 推出下一代预测市场智能合约系统 Protocol V2，由协议负责人 Rajath Alex 对外公布。新架构不再为每种市场类型单独部署适配器，而是统一采用一个 ERC1155 仓位代币合约、pUSD 抵押资产、一个交易平台合约和路由器；在 10 月 5 日至 30 日灰度市场测试后，新增市场暂定 11 月 2 日起切换至 V2。\n\nV2 将 Polymarket 的基础设施整合为模块化系统，官方称其首批支持二元、原子负风险、增量负风险及组合型市场，并原生支持仓位、抵押资产及结算结果跨链，为后续多链部署预留基础。全部合约可在安全治理流程下升级，减少为新增功能而反复部署合约的需要。\n\nPolymarket 表示 V2 已接受 Cantina、Certora、Quantstamp、SigmaPrime、Zellic 及 Pashov 审计，并由 Certora 完成形式化验证，关键漏洞赏金最高达 500 万美元。现有仓位不会转换为 V2，应用和网站用户无需执行技术迁移步骤，但交易时可能被要求授权新合约；同时推出基于 Rust 和内部链上索引器构建的 Data API V2。",
       "what_changed_en": "Polymarket unveiled Protocol V2, a rebuilt modular smart-contract system using a unified ERC1155 position token, pUSD collateral, an OracleAggregator for UMA/Chainlink, and native cross-chain settlement, with a staged migration to new markets beginning November 2 after multi-firm audits and formal verification.",
-      "current_state_zh": "Polymarket unveiled Protocol V2, a rebuilt modular smart-contract system using a unified ERC1155 position token, pUSD collateral, an OracleAggregator for UMA/Chainlink, and native cross-chain settlement, with a staged migration to new markets beginning November 2 after multi-firm audits and formal verification.",
+      "current_state_zh": "Polymarket 推出下一代预测市场智能合约系统 Protocol V2，由协议负责人 Rajath Alex 对外公布。新架构不再为每种市场类型单独部署适配器，而是统一采用一个 ERC1155 仓位代币合约、pUSD 抵押资产、一个交易平台合约和路由器；在 10 月 5 日至 30 日灰度市场测试后，新增市场暂定 11 月 2 日起切换至 V2。\n\nV2 将 Polymarket 的基础设施整合为模块化系统，官方称其首批支持二元、原子负风险、增量负风险及组合型市场，并原生支持仓位、抵押资产及结算结果跨链，为后续多链部署预留基础。全部合约可在安全治理流程下升级，减少为新增功能而反复部署合约的需要。\n\nPolymarket 表示 V2 已接受 Cantina、Certora、Quantstamp、SigmaPrime、Zellic 及 Pashov 审计，并由 Certora 完成形式化验证，关键漏洞赏金最高达 500 万美元。现有仓位不会转换为 V2，应用和网站用户无需执行技术迁移步骤，但交易时可能被要求授权新合约；同时推出基于 Rust 和内部链上索引器构建的 Data API V2。",
       "current_state_en": "Polymarket unveiled Protocol V2, a rebuilt modular smart-contract system using a unified ERC1155 position token, pUSD collateral, an OracleAggregator for UMA/Chainlink, and native cross-chain settlement, with a staged migration to new markets beginning November 2 after multi-firm audits and formal verification.",
       "detailed_summary_zh": "Polymarket unveiled Protocol V2, a rebuilt modular smart-contract system using a unified ERC1155 position token, pUSD collateral, an OracleAggregator for UMA/Chainlink, and native cross-chain settlement, with a staged migration to new markets beginning November 2 after multi-firm audits and formal verification.",
       "detailed_summary_en": "Polymarket unveiled Protocol V2, a rebuilt modular smart-contract system using a unified ERC1155 position token, pUSD collateral, an OracleAggregator for UMA/Chainlink, and native cross-chain settlement, with a staged migration to new markets beginning November 2 after multi-firm audits and formal verification.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "Polymarket 现行协议基于 2019 年的 Gnosis Conditional Tokens Framework，这是一套把是非题或 1/N 结果转化为可交易 ERC1155 代币的通用合约；在该架构下，每增加一种市场类型都需部署额外适配器、交易合约及授权流程。V2 通过新的 OracleAggregator 连接 UMA、Chainlink 及未来其他预言机来确定市场结果；UMA 是乐观预言机，Polymarket 的托管乐观预言机合约此前已上线。Polymarket 目前在 Polygon 上运营预测市场，其抵押代币 pUSD（由 Circle 的 USDC 1:1 支持）也在该网络发行；跨链功能的上线时间及支持网络尚未公布。",
+      "background_en": "Polymarket's existing contracts are based on the 2019 Gnosis Conditional Tokens Framework, a general-purpose contract that turns a yes/no or 1-of-N question into tradeable ERC1155 tokens; under that design, each additional market type required extra adapters, trading contracts and authorization flows. V2 introduces OracleAggregator to connect to UMA, Chainlink and future oracles for determining market outcomes; UMA is an optimistic oracle, and Polymarket's managed optimistic oracle contracts are already live on it. Polymarket currently runs its markets on Polygon, where its collateral token pUSD — backed 1:1 by Circle's USDC — is also issued; the company has not announced when cross-chain functionality will launch or which networks it will support.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "此次变更影响的是预测市场基础设施而非代币供应：市场结算方式与抵押资产存放位置的变化，将通过 pUSD 与 USDC 的流动性和托管、Polymarket 在 Polygon 上的部署，以及新 OracleAggregator 中列名的预言机合作方 UMA 与 Chainlink 传导。由于现有仓位仍留在当前系统、新增市场仅暂定自 11 月 2 日起迁移，对市场结构的影响是分阶段而非即时的，跨链上线时间与支持网络也尚未公布。",
+      "market_impact_en": "The change touches prediction-market infrastructure rather than token supply: any shift in how Polymarket markets settle and where collateral sits would flow through pUSD and USDC liquidity and custody, through Polymarket's Polygon deployment, and through its oracle partners UMA and Chainlink, which are named in the new OracleAggregator. Because existing positions stay on the current system and new markets only tentatively migrate from November 2, any market-structure effect is staged rather than immediate, and cross-chain timing and supported networks remain unannounced.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://ethereum.org/en/developers/docs/standards/tokens/erc-1155/?ref=blog.bitfinity.network",
+          "title": "ERC-1155 Multi-Token Standard"
+        },
+        {
+          "url": "https://tierzero.dev/blog/gnosis-conditional-tokens-framework-explained",
+          "title": "Gnosis Conditional Tokens Framework: The Engine Behind..."
+        },
+        {
+          "url": "https://docs.uma.xyz/protocol-overview/how-does-umas-oracle-work",
+          "title": "How does UMA work? | UMA Documentation"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:theblockbeats:199035",
