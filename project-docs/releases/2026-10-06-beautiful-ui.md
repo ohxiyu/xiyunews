@@ -2,6 +2,8 @@
 
 Issue: https://github.com/ohxiyu/xiyunews/issues/220
 Branch: agent/beautiful-ui
+PR: https://github.com/ohxiyu/xiyunews/pull/221
+Implementation commit: 884ef081921e9739495f66cf1c032578df247c95
 Baseline: 91c9c14b9cb5ca06735a5af2c21fa2a0d184e55b
 
 ## 范围与授权
