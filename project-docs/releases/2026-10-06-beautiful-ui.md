@@ -12,7 +12,7 @@ Baseline: 91c9c14b9cb5ca06735a5af2c21fa2a0d184e55b
 
 公开首页、日报归档、追踪、事件与实体详情、周报和说明页共享浅灰/炭灰、白色/深灰轻面板与品牌蓝。保留实际导航、默认两期、证据、完整正文/分段、折叠、排行、阅读/PWA 和分享流程。分享 PNG 同步配色与面板、较小分析字号，从 CSS 令牌读取当前主题；不显示重复品牌、交互按钮、页面 URL。长来源换行，原有画布高度保护保留。
 
-独立后台 /s、AI、评分、去重、分发、数据与生产 Worker 均不变。初始视觉提交未改依赖；维护者随后授权解除依赖告警，定向修复见下节。没有模型/套餐/鉴权变化。既有版本仍为 0.2.0。本次是共享视觉层变化，不复制第三方组件代码。
+独立后台 /s、AI、评分、去重、分发、数据与生产 Worker 均不变。初始视觉提交未改依赖；维护者随后授权解除依赖告警，Python 与 Worker 开发工具链定向修复见下节。Worker 业务源码、工作流和运行配置不改。没有模型/套餐/鉴权变化。既有版本仍为 0.2.0。本次是共享视觉层变化，不复制第三方组件代码。
 
 ## 验证
 
@@ -50,15 +50,27 @@ PR head b66b053329170ca6e2f4ebdcc2f46df4fb3e8c80 的 [CI 37481253270](https://gi
 
 新增安全版本下限/manifest 回归及 MultiDict/CIMultiDict 两种操作释放引用的离线检查。小规模隔离验证旧 6.7.1 四个路径各残留 32 个 value 引用，新 6.9.1 四个路径测试均通过；测试不调用业务外部服务，不进行高内存负载。
 
-- uv sync --frozen --extra dev：成功；默认 uv run pytest：1046 passed / 4 skipped / 1 条既有弃用警告。四个 skip 是基础环境未安装可选 multidict；版本下限检查仍执行。
-- uv run --frozen --with multidict==6.9.1 pytest：完整 1050 passed / 1 条既有弃用警告，无 skip；安全模块单独 13 passed。
+- uv sync --frozen --extra dev：成功；sharp 下限测试加入后默认 uv run pytest：1047 passed / 4 skipped / 1 条既有弃用警告。四个 skip 是基础环境未安装可选 multidict；版本下限检查仍执行。
+- uv run --frozen --with multidict==6.9.1 pytest：完整 1051 passed / 1 条既有弃用警告，无 skip；安全模块单独 13 passed。
 - Node 分享/PWA/站点 Worker 测试：40 passed；治理、diff 检查通过。资产/前端代码和指纹未再修改。
-- 对全部 extras 导出的依赖执行与 CI 同版本/同参数 pip-audit 2.10.1 / PyPI 扫描：No known vulnerabilities found。没有忽略 CVE、关闭检查或批量升级其他包。推送后最新 head CI 待核对，不触发生产工作流。
+- 对全部 extras 导出的依赖执行与 CI 同版本/同参数 pip-audit 2.10.1 / PyPI 扫描：No known vulnerabilities found。没有忽略 CVE、关闭检查或批量升级其他包。不触发生产工作流。
+
+### 同一检查暴露的 Worker 工具链告警
+
+multidict 修复提交 835985ee94214631e3b961bd0b1a88ee3a710aee 的 [CI 37488488287](https://github.com/ohxiyu/xiyunews/actions/runs/37488488287) 中 Python 测试/审计与 edge-build 已通过，但 [npm check 日志](https://github.com/ohxiyu/xiyunews/actions/runs/37488488287/job/112354676278) 报告既有 sharp 0.35.4 / GHSA-wq5f-xc86-pv6w。在 [同一 Issue 追加文件范围](https://github.com/ohxiyu/xiyunews/issues/220#issuecomment-6019805066) 后继续处理，不忽略漏洞，也不执行 npm audit fix --force 所推荐的不兼容工具链降级。
+
+[sharp 官方公告](https://github.com/lovell/sharp/security/advisories/GHSA-wq5f-xc86-pv6w) 指出 0.35.5 的预构建二进制修复了 librsvg 漏洞，携带 librsvg 2.63.2。提交 bfd644940a567566aaf3d872ca6ca224250f0565 将已有 sharp override 0.35.4→0.35.5，并重新生成仅涉及 sharp 与 @img/sharp-* 平台包的锁项（关联 libvips 1.3.3→1.3.4），Wrangler、Vitest、Miniflare 与其他依赖条目均不变。新增离线跨平台锁版本下限/对应关系检查，防止仅更新当前平台而遗漏 Linux 构建二进制。
+
+npm ci / npm run check 本地通过：npm audit 0 vulnerabilities；配置类型与 TypeScript 校验通过；6 个文件 / 102 项 mock 测试通过；wrangler deploy --dry-run 只打包，没有上传部署。无需密钥或真实渠道/AI 调用。默认 pytest 1047 passed / 4 skipped；载入可选 multidict 后 1051 passed。
+
+### 修复后远端证据
+
+代码提交 bfd644940a567566aaf3d872ca6ca224250f0565 的 [CI37489270867](https://github.com/ohxiyu/xiyunews/actions/runs/37489270867) 全部适用检查成功：test（包含 1047 passed / 4 skipped、pip-audit PyPI 无已知漏洞、npm audit 零告警、Worker 102 项测试及所有 Node 检查）、governance、edge-build、realtime-paths。realtime 因未修改相关路径按既有规则跳过；[CodeQL analyze](https://github.com/ohxiyu/xiyunews/actions/runs/37489270820) 按既有私有许可条件跳过，不标为通过，也没有开启付费扫描。Cloudflare 既有 Git 集成的分支预览检查成功，但不是生产部署。证据文档后续提交仍需核对最新 head 检查，不能直接沿用代码提交的 checks；没有授权合并/上线。
 
 ## 五阶段
 
 - 代码：完成。
-- 测试：定向修复后本地测试与完整依赖审计通过；最新修复 head 的 CI 尚待核对，不能沿用旧 head 结果或宣称全部 required checks 已通过。
+- 测试：定向修复后本地测试、两套依赖审计通过；上述精确代码提交的适用 CI 检查通过，证据文档后的最新 head 另行核对。CodeQL 许可跳过保留为未验证事项。
 - PR 合并：未执行。
 - 部署：未执行。
 - 生产验收：未执行。
