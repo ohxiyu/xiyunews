@@ -2435,10 +2435,11 @@
         "post_id": "374667365364956"
       },
       "7d06572a9904b9b6d2a168199ca12599add2c7c811564227e689ff306728010c": {
-        "status": "pending",
+        "status": "sent",
         "rank": 9,
         "text_hash": "83a6eb25977f2c9101fc4466cbffaadd6ce347d7387b705e5b5bcaa365010632",
-        "attempted_at": "2026-10-07T17:40:26.886038+08:00"
+        "attempted_at": "2026-10-07T17:40:26.886038+08:00",
+        "post_id": "374680902765749"
       }
     }
   },
@@ -2617,12 +2618,6 @@
     "2026-10-07": {
       "revision": "abe006613f6d285cd8b3f1df15bee552f4ff5b5c2f05b90e8a13081dc05ac083",
       "jobs": [
-        {
-          "id": "7d06572a9904b9b6d2a168199ca12599add2c7c811564227e689ff306728010c",
-          "text": "有人抓取了56亿条TikTok视频数据，并免费发布在Hugging Face上\n\n一位网名为hashfunction的开发者以datasocial账号在Hugging Face上发布了约56亿条公开TikTok视频的元数据，采用非商业许可（CC BY-NC 4.0）免费下载。该数据集时间跨度为2014年7月至2026年10月，由460 GB的Parquet文件构成，每月一个文件；Hugging Face的计数显示目前已有1181次下载。\n\n这类数据是AI开发者所需要的，而TikTok的官方获取渠道——其Research Tools——仅向符合条件的学术机构和非营利机构研究人员开放，并且需要申请与审批。TikTok美国服务条款禁止未经书面批准使用自动化软件抓取平台数据，而开发者自己的说明称这些数据来自TikTok的私有移动端API，且无需登录。\n\n此次发布的是元数据而非视频画面：每一行包含视频文案、话题标签、音乐ID、屏幕文字、TikTok Shop商品与卖家ID，以及观看、点赞、评论、分享、收藏和下载次数；部分字段为TikTok自有的标记，例如视频是否被标记为AI生成，或被排除在“为你推荐”页面之外。该数据集未设置访问门槛。DataSocial的说明称，该系统通过伪造可冒充安卓手机的设备身份、逆向工程请求签名以及伪造TLS握手，访问了TikTok的私有移动端API，在三周内采集了32.3亿个创作者资料、59.4亿条视频和28亿条评论，全程无需登录；商业用途、创作者资料和每日更新被引导至datasocial.ai，该网站还以1699美元的价格出售抓取工具源代码。\n\n来源：https://decrypt.co/380229/someone-scraped-5-billion-tiktok-videos-posted-data-hugging-face\nxiyu.news · 2026-10-07 · https://xiyu.news",
-          "rank": 9,
-          "due_at": "2026-10-07T17:36:00+08:00"
-        },
         {
           "id": "e6e1d2a9f0a4e91a5d1f21293d000a332328749f1021874c1f91d3dd98cf960b",
           "text": "EmbeddingGemma 2：一个开放、轻量的多模态嵌入模型\n\nGoogle 发布了 EmbeddingGemma 2，这是一个以 Apache 2.0 许可证开源的开放权重嵌入模型，提供 270M 纯文本版本和 440M 文本+视觉版本。该模型面向本地与端侧嵌入向量生成场景。\n\nHacker News 上的评论者认为该发布填补了缺少优质中等规模嵌入模型的空白；simonw 指出，嵌入模型尤其不应采用封闭且仅限托管的模式，因为应用会把向量长期存储用于后续比对，而厂商有朝一日可能停止提供该模型。\n\n评论者 aabhay 指出，与此前的端侧嵌入模型不同，EmbeddingGemma 2 似乎是使用 MRL 而非 MatFormers 训练的，因此无法在降低嵌入维度的同时同步缩小模型权重。另一位评论者 Nautman 则提到它可通过 MediaPipe 用于文本与图像任务。\n\n来源：https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/\nxiyu.news · 2026-10-07 · https://xiyu.news",
