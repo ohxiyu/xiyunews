@@ -2,6 +2,7 @@
 
 Issue: https://github.com/ohxiyu/xiyunews/issues/224
 Branch: agent/llms-discovery
+PR: https://github.com/ohxiyu/xiyunews/pull/225
 Baseline: f5499e869a3a910ecaae8d7cb6246c74796759ee
 
 ## 方案与授权
@@ -25,6 +26,7 @@ Baseline: f5499e869a3a910ecaae8d7cb6246c74796759ee
 - 定向agent readiness/edge/private-public测试26 passed；完整uv run pytest为1050 passed /4 skipped /1条既有Google SDK弃用警告，19.23s。四项skip为基础环境未装可选multidict，与任务无关。
 - 治理与git diff --check通过；格式/6KB上限、HTTPS公开目标、优先顺序、时效/证据/整组边界均离线测试。构建fixture验证缺失拒绝与原字节保留。
 - 新文件5785 UTF-8字节；18条完整链接全部只读GET200，JSON/Markdown/XML/HTML/plain类型符合。正式文件本身仍为旧版，不能用链接200代替新文件上线；新版本与字节哈希待发布后验证。
+- 发布前最新日报API完整字节SHA256为d5cd3df385773b104cdbcf3043f485b0103a6accdda472358d6133452a8a1353，发布后再比对；不因文档任务重跑新闻。
 
 待记录：精确head CI、合并及生产新文件验收。测试不联网，使用现有schema/源码/临时构建fixture；公开URL另用只读GET验证。
 

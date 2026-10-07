@@ -10,7 +10,7 @@
   "owner": "当前 Codex 会话，唯一编辑负责人与整合者",
   "branch": "agent/llms-discovery",
   "last_verified_commit": "f5499e869a3a910ecaae8d7cb6246c74796759ee",
-  "pr": "pending：Issue224 的独立 main PR",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/225",
   "completed": ["核验账号ohxiyu/仓库与最新main，Issue224独立认领；正式llms.txt已存在且200", "按llms.txt提案完善小型导航，纠正时效/Quick Post/来源数与非独立事实核验说明；保留公共法律链接", "增加格式/公开目标/语义边界与构建保留、缺失拒绝回归；不新增全历史导出或服务"],
   "unfinished": ["完成本地验证与精确head CI，合并发布并验收正式文件和每条链接；通过后另开文档PR记录生产证据"],
   "validation": ["uv sync --frozen --extra dev成功；定向26 passed；完整pytest1050 passed/4 skipped/1条既有弃用警告，治理与diff通过", "llms.txt 5785 UTF-8字节，全部18条完整链接只读GET均200、类型符合JSON/Markdown/XML/HTML/plain；公开索引字段与代码核对", "开工最新日报2026-10-07/14条，未重跑AI或发送消息"],
