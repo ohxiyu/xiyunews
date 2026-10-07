@@ -7,32 +7,52 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Magic Eden legacy approvals leave $5.7 million in NFTs exposed to exploit before rescue",
-    "en": "Magic Eden legacy approvals leave $5.7 million in NFTs exposed to exploit before rescue"
+    "zh": "Magic Eden 遗留授权漏洞致 NFT 面临风险，白帽救援数千枚 NFT",
+    "en": "Magic Eden legacy approvals expose NFTs to exploit, whitehats rescue thousands"
   },
   "current_state": {
-    "zh": "Legacy token approvals on Magic Eden left roughly $5.7 million worth of NFTs vulnerable to exploitation until whitehats intervened and rescued 23,155 tokens.",
-    "en": "Legacy token approvals on Magic Eden left roughly $5.7 million worth of NFTs vulnerable to exploitation until whitehats intervened and rescued 23,155 tokens."
+    "zh": "针对 Magic Eden 相关授权的安全事件中，Magic Eden 警告其已关闭的 EVM 市场（2024 年 2 月至 10 月）上架的 NFT 曾暴露于 Limit Break Payment Processor V2 漏洞；白帽行动已保护 23,155 枚 NFT，价值超过 570 万美元，但 660 WETH 未能追回；攻击者盗走指定 NFT；Limit Break 已暂停存在相同缺陷的 V3，而 V2 无法暂停；持有人仍被要求撤销以太坊、Polygon 和 Base 上的易受攻击授权。",
+    "en": "In the Magic Eden-related approvals security incident, Magic Eden warned that NFTs listed on its closed EVM marketplace (February–October 2024) were exposed to a Limit Break Payment Processor V2 exploit; a whitehat operation rescued 23,155 NFTs worth more than $5.7 million, but 660 WETH was not recovered; the attacker stole specified NFTs; Limit Break paused the similarly flawed V3 while V2 could not be paused; holders are still urged to revoke vulnerable approvals on Ethereum, Polygon, and Base."
   },
   "first_seen_at": "2026-09-25T17:25:15.508205+00:00",
-  "last_updated_at": "2026-09-25T17:25:15.508205+00:00",
-  "last_material_change_at": "2026-09-25T17:25:15.508205+00:00",
+  "last_updated_at": "2026-09-25T17:25:28.582355+00:00",
+  "last_material_change_at": "2026-09-25T17:25:28.582355+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 4,
   "entities": [
     "approvals",
+    "are",
     "eden",
+    "exploit",
+    "exploited",
+    "exposed",
+    "hats",
+    "legacy",
+    "listings",
     "magic",
     "magic-eden",
     "nft",
-    "nfts"
+    "nfts",
+    "old",
+    "payment",
+    "processor",
+    "rescue",
+    "warns",
+    "white",
+    "white-hat",
+    "whitehat"
   ],
   "identifiers": [],
   "topics": [
     "approvals",
+    "limit-break",
     "magic-eden",
-    "nft"
+    "nft",
+    "security-exploit",
+    "vulnerability",
+    "white-hat",
+    "whitehat"
   ],
   "updates": [
     {
@@ -58,16 +78,50 @@
       "community_discussion_en": "",
       "market_impact_zh": "",
       "market_impact_en": "",
-      "importance_score": 7.0,
-      "references": [],
+      "importance_score": 7.5,
+      "references": [
+        {
+          "url": "https://x.com/MagicEden/status/2103435423389241569",
+          "title": "Magic Eden 🪄 on X: \"We are sharing an interim update regarding an exploit identified with @limitbreak Payment Processor V2, a NFT trading protocol maintained by the company Limit Break and which Magic Eden adopted to settle trades on EVM in 2024. Magic Eden stopped using Payment Processor V2 in O… / X"
+        },
+        {
+          "url": "https://github.com/limitbreakinc/payment-processor-v2",
+          "title": "GitHub - limitbreakinc/payment-processor-v2"
+        },
+        {
+          "url": "https://revoke.cash/",
+          "title": "Revoke Your Token Approvals on Over 100 Networks | Revoke.cash"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
-        "rss:www.theblock.co_rss.xml:1b9ba35ded464b50"
+        "rss:www.theblock.co_rss.xml:1b9ba35ded464b50",
+        "rss:cointelegraph.com_rss:19750724d2a64b18",
+        "rss:thedefiant.io_api_feed:2c726c79c7b5480b",
+        "rss:decrypt.co_feed:4e5de8224eeeb3e7"
       ],
       "sources": [
         {
           "url": "https://www.theblock.co/news/web3/2026-09-25-magic-eden-legacy-approvals-leave-5-7-million-in-nfts-exposed-to-exploit-before-rescue-416874",
           "label": "The Block",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://cointelegraph.com/news/magic-eden-nft-whitehat-vulnerability?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://thedefiant.io/news/hacks/legacy-magic-eden-approvals-exploited-as-white-hats-rescue-nfts",
+          "label": "The Defiant",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://decrypt.co/379342/magic-eden-old-ethereum-nft-listings-exposed-exploit",
+          "label": "Decrypt",
           "source_type": "rss",
           "official": false
         }

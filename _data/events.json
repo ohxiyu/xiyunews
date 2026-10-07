@@ -26902,7 +26902,7 @@
       "first_seen_at": "2026-09-07T09:34:01.565581Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-07T10:50:40.714922Z",
-      "last_updated_at": "2026-10-07T10:50:40.714922Z",
+      "last_updated_at": "2026-10-07T11:15:03.154178Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_31bb1dc667f98306",
@@ -27134,11 +27134,18 @@
               "official": false,
               "source_type": "google_news",
               "url": "https://www.digitaltoday.co.kr/en/view/111955/coinbase-to-revive-coinbase-pro-by-year-end-launches-global-exchange-platform"
+            },
+            {
+              "label": "TOKENPOST",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://www.tokenpost.com/news/business/27204"
             }
           ],
           "story_ids": [
             "telegram:theblockbeats:199217",
-            "google_news:article:9e3f26a6489fc51b"
+            "google_news:article:9e3f26a6489fc51b",
+            "google_news:article:8ee1a92741cb17ba"
           ],
           "time_precision": "published",
           "title_en": "Coinbase将于年底重启Coinbase Pro，并完成Deribit整合",
@@ -87863,32 +87870,54 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Legacy token approvals on Magic Eden left roughly $5.7 million worth of NFTs vulnerable to exploitation until whitehats intervened and rescued 23,155 tokens.",
-      "current_state_zh": "Legacy token approvals on Magic Eden left roughly $5.7 million worth of NFTs vulnerable to exploitation until whitehats intervened and rescued 23,155 tokens.",
+      "current_state_en": "In the Magic Eden-related approvals security incident, Magic Eden warned that NFTs listed on its closed EVM marketplace (February–October 2024) were exposed to a Limit Break Payment Processor V2 exploit; a whitehat operation rescued 23,155 NFTs worth more than $5.7 million, but 660 WETH was not recovered; the attacker stole specified NFTs; Limit Break paused the similarly flawed V3 while V2 could not be paused; holders are still urged to revoke vulnerable approvals on Ethereum, Polygon, and Base.",
+      "current_state_zh": "针对 Magic Eden 相关授权的安全事件中，Magic Eden 警告其已关闭的 EVM 市场（2024 年 2 月至 10 月）上架的 NFT 曾暴露于 Limit Break Payment Processor V2 漏洞；白帽行动已保护 23,155 枚 NFT，价值超过 570 万美元，但 660 WETH 未能追回；攻击者盗走指定 NFT；Limit Break 已暂停存在相同缺陷的 V3，而 V2 无法暂停；持有人仍被要求撤销以太坊、Polygon 和 Base 上的易受攻击授权。",
       "entities": [
         "approvals",
+        "are",
         "eden",
+        "exploit",
+        "exploited",
+        "exposed",
+        "hats",
+        "legacy",
+        "listings",
         "magic",
         "magic-eden",
         "nft",
-        "nfts"
+        "nfts",
+        "old",
+        "payment",
+        "processor",
+        "rescue",
+        "warns",
+        "white",
+        "white-hat",
+        "whitehat"
       ],
       "event_id": "evt_3c4c4f20ab63b475",
       "event_type": "security_incident",
       "first_seen_at": "2026-09-25T17:25:15.508205Z",
       "identifiers": [],
-      "last_material_change_at": "2026-09-25T17:25:15.508205Z",
-      "last_updated_at": "2026-09-25T17:25:15.508205Z",
+      "last_material_change_at": "2026-09-25T17:25:28.582355Z",
+      "last_updated_at": "2026-09-25T17:25:28.582355Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_2a6de81fa1f354d2"
+      ],
       "schema_version": 1,
       "status": "monitoring",
-      "title_en": "Magic Eden legacy approvals leave $5.7 million in NFTs exposed to exploit before rescue",
-      "title_zh": "Magic Eden legacy approvals leave $5.7 million in NFTs exposed to exploit before rescue",
+      "title_en": "Magic Eden legacy approvals expose NFTs to exploit, whitehats rescue thousands",
+      "title_zh": "Magic Eden 遗留授权漏洞致 NFT 面临风险，白帽救援数千枚 NFT",
       "topics": [
         "approvals",
+        "limit-break",
         "magic-eden",
-        "nft"
+        "nft",
+        "security-exploit",
+        "vulnerability",
+        "white-hat",
+        "whitehat"
       ],
       "updates": [
         {
@@ -87903,23 +87932,57 @@
           "detailed_summary_zh": "Legacy token approvals on Magic Eden left roughly $5.7 million worth of NFTs vulnerable to exploitation until whitehats intervened and rescued 23,155 tokens.",
           "event_id": "evt_3c4c4f20ab63b475",
           "first_seen_at": "2026-09-25T17:25:15.508205Z",
-          "importance_score": 7.0,
+          "importance_score": 7.5,
           "market_impact_en": "",
           "market_impact_zh": "",
           "material_change": true,
           "occurred_at": "2026-09-25T14:09:15Z",
           "published_at": "2026-09-25T14:09:15Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Magic Eden 🪄 on X: \"We are sharing an interim update regarding an exploit identified with @limitbreak Payment Processor V2, a NFT trading protocol maintained by the company Limit Break and which Magic Eden adopted to settle trades on EVM in 2024. Magic Eden stopped using Payment Processor V2 in O… / X",
+              "url": "https://x.com/MagicEden/status/2103435423389241569"
+            },
+            {
+              "title": "GitHub - limitbreakinc/payment-processor-v2",
+              "url": "https://github.com/limitbreakinc/payment-processor-v2"
+            },
+            {
+              "title": "Revoke Your Token Approvals on Over 100 Networks | Revoke.cash",
+              "url": "https://revoke.cash/"
+            }
+          ],
           "sources": [
             {
               "label": "The Block",
               "official": false,
               "source_type": "rss",
               "url": "https://www.theblock.co/news/web3/2026-09-25-magic-eden-legacy-approvals-leave-5-7-million-in-nfts-exposed-to-exploit-before-rescue-416874"
+            },
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/magic-eden-nft-whitehat-vulnerability?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            },
+            {
+              "label": "The Defiant",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://thedefiant.io/news/hacks/legacy-magic-eden-approvals-exploited-as-white-hats-rescue-nfts"
+            },
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/379342/magic-eden-old-ethereum-nft-listings-exposed-exploit"
             }
           ],
           "story_ids": [
-            "rss:www.theblock.co_rss.xml:1b9ba35ded464b50"
+            "rss:www.theblock.co_rss.xml:1b9ba35ded464b50",
+            "rss:cointelegraph.com_rss:19750724d2a64b18",
+            "rss:thedefiant.io_api_feed:2c726c79c7b5480b",
+            "rss:decrypt.co_feed:4e5de8224eeeb3e7"
           ],
           "time_precision": "published",
           "title_en": "Magic Eden legacy approvals leave $5.7 million in NFTs exposed to exploit before rescue",
@@ -88160,185 +88223,6 @@
           "update_type": "initial",
           "what_changed_en": "Three DeFi projects — Payy Network, Duelbits, and Meter — were exploited on the same day for a combined loss of more than $11 million, with Payy's Ethereum bridge completely drained and its operations paused.",
           "what_changed_zh": "Three DeFi projects — Payy Network, Duelbits, and Meter — were exploited on the same day for a combined loss of more than $11 million, with Payy's Ethereum bridge completely drained and its operations paused."
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "In the Magic Eden-related approvals security incident, Magic Eden warned that NFTs listed on its closed EVM marketplace (February–October 2024) were exposed to a Limit Break Payment Processor V2 exploit; a whitehat operation rescued 23,155 NFTs worth more than $5.7 million, but 660 WETH was not recovered; the attacker stole specified NFTs; Limit Break paused the similarly flawed V3 while V2 could not be paused; holders are still urged to revoke vulnerable approvals on Ethereum, Polygon, and Base.",
-      "current_state_zh": "针对 Magic Eden 相关授权的安全事件中，Magic Eden 警告其已关闭的 EVM 市场（2024 年 2 月至 10 月）上架的 NFT 曾暴露于 Limit Break Payment Processor V2 漏洞；白帽行动已保护 23,155 枚 NFT，价值超过 570 万美元，但 660 WETH 未能追回；攻击者盗走指定 NFT；Limit Break 已暂停存在相同缺陷的 V3，而 V2 无法暂停；持有人仍被要求撤销以太坊、Polygon 和 Base 上的易受攻击授权。",
-      "entities": [
-        "approvals",
-        "are",
-        "eden",
-        "exploit",
-        "exploited",
-        "exposed",
-        "hats",
-        "legacy",
-        "listings",
-        "magic",
-        "magic-eden",
-        "nft",
-        "nfts",
-        "old",
-        "payment",
-        "processor",
-        "rescue",
-        "warns",
-        "white",
-        "white-hat",
-        "whitehat"
-      ],
-      "event_id": "evt_2a6de81fa1f354d2",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-09-25T17:25:28.582355Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-09-25T17:25:28.582355Z",
-      "last_updated_at": "2026-09-25T17:25:28.582355Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "developing",
-      "title_en": "Magic Eden scare puts 3,832 NFTs in whitehat protective custody",
-      "title_zh": "Magic Eden 警告旧的以太坊 NFT 挂单面临支付处理器漏洞风险",
-      "topics": [
-        "limit-break",
-        "magic-eden",
-        "nft",
-        "security-exploit",
-        "vulnerability",
-        "white-hat",
-        "whitehat"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "A whitehat operation moved 3,832 NFTs from hundreds of wallets into protective custody amid concerns over a vulnerability tied to Magic Eden, with holders advised to revoke NFT permissions while the NFTs are held pending resolution.",
-          "current_state_zh": "在一次白帽行动中，3,832 枚 NFT 从数百个钱包被转移至保护性托管，原因是市场对与 Magic Eden 相关的漏洞感到担忧；持有者被建议撤销 NFT 权限，这些 NFT 将在问题解决前继续被托管。",
-          "detailed_summary_en": "A whitehat operation moved 3,832 NFTs from hundreds of wallets into protective custody amid concerns over a vulnerability tied to Magic Eden, with holders advised to revoke NFT permissions while the NFTs are held pending resolution.",
-          "detailed_summary_zh": "A whitehat operation moved 3,832 NFTs from hundreds of wallets into protective custody amid concerns over a vulnerability tied to Magic Eden, with holders advised to revoke NFT permissions while the NFTs are held pending resolution.",
-          "event_id": "evt_2a6de81fa1f354d2",
-          "first_seen_at": "2026-09-25T17:25:28.582355Z",
-          "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-09-25T09:48:53Z",
-          "published_at": "2026-09-25T09:48:53Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "Cointelegraph",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://cointelegraph.com/news/magic-eden-nft-whitehat-vulnerability?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
-            }
-          ],
-          "story_ids": [
-            "rss:cointelegraph.com_rss:19750724d2a64b18"
-          ],
-          "time_precision": "published",
-          "title_en": "Magic Eden scare puts 3,832 NFTs in whitehat protective custody",
-          "title_zh": "Magic Eden受惊事件将3832枚NFT置于白帽保护性托管之下",
-          "update_id": "upd_b30f50f7ce1e0bde",
-          "update_type": "initial",
-          "what_changed_en": "A whitehat operation moved 3,832 NFTs from hundreds of wallets into protective custody amid concerns over a vulnerability tied to Magic Eden, with holders advised to revoke NFT permissions while the NFTs are held pending resolution.",
-          "what_changed_zh": "在一次白帽行动中，3,832 枚 NFT 从数百个钱包被转移至保护性托管，原因是市场对与 Magic Eden 相关的漏洞感到担忧；持有者被建议撤销 NFT 权限，这些 NFT 将在问题解决前继续被托管。"
-        },
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.92,
-          "current_state_en": "In the Magic Eden-related approvals security incident, a whitehat operation has secured 23,155 NFTs worth more than $5.7 million; holders are still required to revoke vulnerable NFT and token approvals.",
-          "current_state_zh": "针对 Magic Eden 相关授权的安全事件中，白帽行动已保护 23,155 枚 NFT，价值超过 570 万美元；持有人仍被要求撤销易受攻击的 NFT 和代币授权。",
-          "detailed_summary_en": "Exploits of legacy Magic Eden NFT/token approvals led white hats to secure 23,155 NFTs worth more than $5.7 million, with holders still required to revoke vulnerable approvals.",
-          "detailed_summary_zh": "Exploits of legacy Magic Eden NFT/token approvals led white hats to secure 23,155 NFTs worth more than $5.7 million, with holders still required to revoke vulnerable approvals.",
-          "event_id": "evt_2a6de81fa1f354d2",
-          "first_seen_at": "2026-09-25T17:25:20.190155Z",
-          "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-09-25T16:12:07Z",
-          "published_at": "2026-09-25T16:12:07Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "The Defiant",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://thedefiant.io/news/hacks/legacy-magic-eden-approvals-exploited-as-white-hats-rescue-nfts"
-            }
-          ],
-          "story_ids": [
-            "rss:thedefiant.io_api_feed:2c726c79c7b5480b"
-          ],
-          "time_precision": "published",
-          "title_en": "Legacy Magic Eden Approvals Exploited as White Hats Rescue NFTs",
-          "title_zh": "Magic Eden 旧版授权遭利用，白帽救援 NFT",
-          "update_id": "upd_821968309060cede",
-          "update_type": "escalation",
-          "what_changed_en": "White hats secured 23,155 NFTs worth more than $5.7 million, up from the 3,832 previously reported; the incident is described as exploits of legacy Magic Eden approvals, and holders still need to revoke vulnerable NFT and token approvals.",
-          "what_changed_zh": "白帽行动已保护 23,155 枚 NFT，价值超过 570 万美元，较此前报告的 3,832 枚大幅增加；事件被描述为遗留的 Magic Eden 授权被利用，持有人仍需撤销易受攻击的 NFT 和代币授权。"
-        },
-        {
-          "background_en": "Magic Eden adopted Payment Processor V2, an NFT trading protocol built and maintained by Limit Break, to settle trades on EVM in 2024, stopped using it that October and shut its EVM marketplace entirely in early 2026. The company dropped Ethereum and Bitcoin support in February to focus on Solana and its crypto casino Dicey, and later wound down its multichain wallet. The disclosure lands one day after unknown hackers took more than $380 million in Ethereum and other crypto assets from the Bitget exchange.",
-          "background_zh": "Payment Processor V2 是由 Limit Break 开发和维护的 NFT 交易协议，Magic Eden 于 2024 年采用其在 EVM 上结算交易，当年 10 月停止使用，并在 2026 年初彻底关闭其 EVM 市场。该公司于 2 月放弃对以太坊和比特币的支持，转而聚焦 Solana 及其加密赌场 Dicey，随后又关停了其多链钱包。此次披露的前一天，不明黑客从 Bitget 交易所盗走了超过 3.8 亿美元的以太坊及其他加密资产。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.92,
-          "current_state_en": "In the Magic Eden-related approvals security incident, Magic Eden warned that NFTs listed on its closed EVM marketplace (February–October 2024) were exposed to a Limit Break Payment Processor V2 exploit; a whitehat operation rescued 23,155 NFTs worth more than $5.7 million, but 660 WETH was not recovered; the attacker stole specified NFTs; Limit Break paused the similarly flawed V3 while V2 could not be paused; holders are still urged to revoke vulnerable approvals on Ethereum, Polygon, and Base.",
-          "current_state_zh": "针对 Magic Eden 相关授权的安全事件中，Magic Eden 警告其已关闭的 EVM 市场（2024 年 2 月至 10 月）上架的 NFT 曾暴露于 Limit Break Payment Processor V2 漏洞；白帽行动已保护 23,155 枚 NFT，价值超过 570 万美元，但 660 WETH 未能追回；攻击者盗走指定 NFT；Limit Break 已暂停存在相同缺陷的 V3，而 V2 无法暂停；持有人仍被要求撤销以太坊、Polygon 和 Base 上的易受攻击授权。",
-          "detailed_summary_en": "Magic Eden warned that NFTs listed on its closed EVM marketplace between roughly February and October 2024 are exposed to an exploit in Limit Break's Payment Processor V2, after a whitehat operation rescued 23,155 NFTs worth more than $5.7 million while 660 WETH could not be recovered, urging users to revoke contract approvals.",
-          "detailed_summary_zh": "Magic Eden warned that NFTs listed on its closed EVM marketplace between roughly February and October 2024 are exposed to an exploit in Limit Break's Payment Processor V2, after a whitehat operation rescued 23,155 NFTs worth more than $5.7 million while 660 WETH could not be recovered, urging users to revoke contract approvals.",
-          "event_id": "evt_2a6de81fa1f354d2",
-          "first_seen_at": "2026-09-25T17:25:26.658957Z",
-          "importance_score": 7.5,
-          "market_impact_en": "The exposure runs through lingering on-chain approvals: wallets that granted setApprovalForAll to Payment Processor V2 on Ethereum, Polygon or Base still carry custody risk until those permissions are revoked, and the 660 WETH that could not be recovered represents a realized loss. The incident also adds to near-term security sentiment pressure following the Bitget hack.",
-          "market_impact_zh": "风险通过链上残留授权传导：凡是在以太坊、Polygon 或 Base 上向 Payment Processor V2 授予过 setApprovalForAll 权限的钱包，在撤销前仍存在资产被转移的托管风险，而未追回的 660 枚 WETH 则构成已实现损失。此次事件也在 Bitget 被盗之后，进一步加重了市场对安全问题的情绪压力。",
-          "material_change": true,
-          "occurred_at": "2026-09-25T16:17:19Z",
-          "published_at": "2026-09-25T16:17:19Z",
-          "references": [
-            {
-              "title": "Magic Eden 🪄 on X: \"We are sharing an interim update regarding an exploit identified with @limitbreak Payment Processor V2, a NFT trading protocol maintained by the company Limit Break and which Magic Eden adopted to settle trades on EVM in 2024. Magic Eden stopped using Payment Processor V2 in O… / X",
-              "url": "https://x.com/MagicEden/status/2103435423389241569"
-            },
-            {
-              "title": "GitHub - limitbreakinc/payment-processor-v2",
-              "url": "https://github.com/limitbreakinc/payment-processor-v2"
-            },
-            {
-              "title": "Revoke Your Token Approvals on Over 100 Networks | Revoke.cash",
-              "url": "https://revoke.cash/"
-            }
-          ],
-          "sources": [
-            {
-              "label": "Decrypt",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://decrypt.co/379342/magic-eden-old-ethereum-nft-listings-exposed-exploit"
-            }
-          ],
-          "story_ids": [
-            "rss:decrypt.co_feed:4e5de8224eeeb3e7"
-          ],
-          "time_precision": "published",
-          "title_en": "Magic Eden Warns Old Ethereum NFT Listings Are Exposed to Payment Processor Exploit",
-          "title_zh": "Magic Eden 警告旧的以太坊 NFT 挂单面临支付处理器漏洞风险",
-          "update_id": "upd_0dbbafb99b0eb8b9",
-          "update_type": "escalation",
-          "what_changed_en": "The new report reveals the exploit stemmed from Limit Break's Payment Processor V2 and affected NFTs listed on Magic Eden's EVM marketplace between roughly February and October 2024; beyond the 23,155 NFTs rescued, 660 WETH was not recovered; the attacker stole 10 Meebits, 50 Otherdeeds, 10 World of Women, and 235 Desperate ApeWives; Limit Break paused the similarly flawed V3, but V2 could not be paused; users are advised to revoke contract approvals on Ethereum, Polygon, and Base.",
-          "what_changed_zh": "新报道披露漏洞源于 Limit Break 的 Payment Processor V2，Magic Eden 于 2024 年 2 月至 10 月关闭的 EVM 市场上架的 NFT 受影响；除已救援的 23,155 枚 NFT 外，另有 660 WETH 未能追回；攻击者盗走 10 枚 Meebits、50 枚 Otherdeeds、10 枚 World of Women 和 235 枚 Desperate ApeWives；Limit Break 已暂停存在相同缺陷的 V3，但 V2 无法暂停；用户被建议在以太坊、Polygon 和 Base 上撤销合约授权。"
         }
       ]
     },
@@ -117604,8 +117488,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "OKX completed a funding round that values the exchange at $25 billion, marking a major capital raise for one of the largest global crypto trading platforms.",
-      "current_state_zh": "OKX完成一轮融资，估值达250亿美元，这标志着全球最大加密货币交易平台之一完成了一次重大融资。",
+      "current_state_en": "OKX announced a strategic investment from Circle, Ripple, QRT and Standard Chartered's SC Ventures at a $25 billion pre-money valuation, positioning the exchange alongside major stablecoin, payments and banking institutions.",
+      "current_state_zh": "OKX宣布获得Circle、Ripple、QRT以及渣打银行旗下SC Ventures的战略投资，投前估值为250亿美元，使该交易所与主要稳定币、支付和银行机构并肩。",
       "entities": [
         "announces",
         "back",
@@ -117633,25 +117517,27 @@
         "standard-chartered",
         "strategic",
         "valuation",
+        "ventur",
         "ventures"
       ],
       "event_id": "evt_0e8a68a8b363e6bf",
       "event_type": "exchange_operation",
       "first_seen_at": "2026-10-06T15:31:10.666617Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-06T22:40:54.582451Z",
-      "last_updated_at": "2026-10-06T22:40:54.582451Z",
+      "last_material_change_at": "2026-10-07T06:42:00.774459Z",
+      "last_updated_at": "2026-10-07T06:42:00.774459Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_41479aea5f5dc449",
         "evt_e6789a8a378954d1",
         "evt_6732f46eb56017ae",
-        "evt_fa03f9d43a36f827"
+        "evt_fa03f9d43a36f827",
+        "evt_f15d739d6f45d8f1"
       ],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "OKX Raises Fresh Funding at $25 Billion Valuation; Circle, Ripple and SC Ventures Join",
-      "title_zh": "OKX完成250亿美元估值融资，Circle、Ripple、QRT与渣打SC Ventures参投",
+      "title_zh": "OKX 完成 250 亿美元估值融资，Circle、Ripple 与 SC Ventures 参投",
       "topics": [
         "circle",
         "exchange-funding",
@@ -117842,6 +117728,44 @@
           "update_type": "confirmation",
           "what_changed_en": "OKX's new round is an extension of its March funding round, and the investor list also includes quant hedge fund Qube Research & Technologies.",
           "what_changed_zh": "OKX 本轮融资为 3 月融资的延伸轮，参投方还包括量化对冲基金 Qube Research & Technologies。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "OKX announced a strategic investment from Circle, Ripple, QRT and Standard Chartered's SC Ventures at a $25 billion pre-money valuation, positioning the exchange alongside major stablecoin, payments and banking institutions.",
+          "current_state_zh": "OKX宣布获得Circle、Ripple、QRT以及渣打银行旗下SC Ventures的战略投资，投前估值为250亿美元，使该交易所与主要稳定币、支付和银行机构并肩。",
+          "detailed_summary_en": "OKX announced a strategic investment from Circle, Ripple, QRT and Standard Chartered's SC Ventures at a $25 billion pre-money valuation, positioning the exchange alongside major stablecoin, payments and banking institutions.",
+          "detailed_summary_zh": "OKX announced a strategic investment from Circle, Ripple, QRT and Standard Chartered's SC Ventures at a $25 billion pre-money valuation, positioning the exchange alongside major stablecoin, payments and banking institutions.",
+          "event_id": "evt_0e8a68a8b363e6bf",
+          "first_seen_at": "2026-10-07T06:42:00.774459Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-07T04:00:14Z",
+          "published_at": "2026-10-07T04:00:14Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "OKXAnnouncements",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://www.okx.com/learn/strategic-investment-oct-2026?channelid=ACE505900"
+            }
+          ],
+          "story_ids": [
+            "telegram:OKXAnnouncements:7265"
+          ],
+          "time_precision": "published",
+          "title_en": "We're announcing a strategic investment from @Circle, QRT, @Ripple and SC Ventur",
+          "title_zh": "我们宣布获得@Circle、QRT、@Ripple和SC Ventur的战略投资",
+          "update_id": "upd_4480518ecac8218b",
+          "update_type": "confirmation",
+          "what_changed_en": "OKX announced a strategic investment from Circle, Ripple, QRT and Standard Chartered's SC Ventures at a $25 billion pre-money valuation, positioning the exchange alongside major stablecoin, payments and banking institutions.",
+          "what_changed_zh": "OKX宣布获得Circle、Ripple、QRT以及渣打银行旗下SC Ventures的战略投资，投前估值为250亿美元，使该交易所与主要稳定币、支付和银行机构并肩。"
         }
       ]
     },
@@ -121554,76 +121478,6 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "OKX announced a strategic investment from Circle, Ripple, QRT and Standard Chartered's SC Ventures at a $25 billion pre-money valuation, positioning the exchange alongside major stablecoin, payments and banking institutions.",
-      "current_state_zh": "OKX announced a strategic investment from Circle, Ripple, QRT and Standard Chartered's SC Ventures at a $25 billion pre-money valuation, positioning the exchange alongside major stablecoin, payments and banking institutions.",
-      "entities": [
-        "circle",
-        "qrt",
-        "ripple",
-        "ventur"
-      ],
-      "event_id": "evt_f15d739d6f45d8f1",
-      "event_type": "other",
-      "first_seen_at": "2026-10-07T06:42:00.774459Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-07T06:42:00.774459Z",
-      "last_updated_at": "2026-10-07T06:42:00.774459Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "We're announcing a strategic investment from @Circle, QRT, @Ripple and SC Ventur",
-      "title_zh": "We're announcing a strategic investment from @Circle, QRT, @Ripple and SC Ventur",
-      "topics": [
-        "circle",
-        "funding",
-        "okx",
-        "ripple"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "OKX announced a strategic investment from Circle, Ripple, QRT and Standard Chartered's SC Ventures at a $25 billion pre-money valuation, positioning the exchange alongside major stablecoin, payments and banking institutions.",
-          "current_state_zh": "OKX announced a strategic investment from Circle, Ripple, QRT and Standard Chartered's SC Ventures at a $25 billion pre-money valuation, positioning the exchange alongside major stablecoin, payments and banking institutions.",
-          "detailed_summary_en": "OKX announced a strategic investment from Circle, Ripple, QRT and Standard Chartered's SC Ventures at a $25 billion pre-money valuation, positioning the exchange alongside major stablecoin, payments and banking institutions.",
-          "detailed_summary_zh": "OKX announced a strategic investment from Circle, Ripple, QRT and Standard Chartered's SC Ventures at a $25 billion pre-money valuation, positioning the exchange alongside major stablecoin, payments and banking institutions.",
-          "event_id": "evt_f15d739d6f45d8f1",
-          "first_seen_at": "2026-10-07T06:42:00.774459Z",
-          "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-07T04:00:14Z",
-          "published_at": "2026-10-07T04:00:14Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "OKXAnnouncements",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://www.okx.com/learn/strategic-investment-oct-2026?channelid=ACE505900"
-            }
-          ],
-          "story_ids": [
-            "telegram:OKXAnnouncements:7265"
-          ],
-          "time_precision": "published",
-          "title_en": "We're announcing a strategic investment from @Circle, QRT, @Ripple and SC Ventur",
-          "title_zh": "We're announcing a strategic investment from @Circle, QRT, @Ripple and SC Ventur",
-          "update_id": "upd_4480518ecac8218b",
-          "update_type": "initial",
-          "what_changed_en": "OKX announced a strategic investment from Circle, Ripple, QRT and Standard Chartered's SC Ventures at a $25 billion pre-money valuation, positioning the exchange alongside major stablecoin, payments and banking institutions.",
-          "what_changed_zh": "OKX announced a strategic investment from Circle, Ripple, QRT and Standard Chartered's SC Ventures at a $25 billion pre-money valuation, positioning the exchange alongside major stablecoin, payments and banking institutions."
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
       "current_state_en": "Binance is adding four Securitize-issued bStocks tokenized securities (SECZB, USDEB, JPMB, LLYB) as eligible collateral across Cross Margin, Portfolio Margin and Portfolio Margin Pro, with corresponding margin trading pairs enabled at 2026-10-07 12:00 UTC.",
       "current_state_zh": "Binance is adding four Securitize-issued bStocks tokenized securities (SECZB, USDEB, JPMB, LLYB) as eligible collateral across Cross Margin, Portfolio Margin and Portfolio Margin Pro, with corresponding margin trading pairs enabled at 2026-10-07 12:00 UTC.",
       "entities": [
@@ -123017,6 +122871,147 @@
           "what_changed_zh": "The Bank of Russia published its first registers of licensed crypto exchange operators (T-Invest Lab, Zefir, Sistema-Crypto, VTB) and digital custodians (Sberbank, Atomyze, Voltari, Cloud Infrastructure, VTB), with Sberbank planning to launch Bitcoin, Ether and USDT products on Dec. 1."
         }
       ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Coinbase has launched an ultra-short-term betting market that lets users wager on whether bitcoin will rise or fall within a 15-minute window.",
+      "current_state_zh": "Coinbase has launched an ultra-short-term betting market that lets users wager on whether bitcoin will rise or fall within a 15-minute window.",
+      "entities": [
+        "coinbase"
+      ],
+      "event_id": "evt_ad529adf4fa7a159",
+      "event_type": "exchange_operation",
+      "first_seen_at": "2026-10-07T11:15:03.153176Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-07T11:15:03.153176Z",
+      "last_updated_at": "2026-10-07T11:15:03.153176Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Coinbase launches ultra-short-term betting market: will bitcoin rise or fall in 15 minutes",
+      "title_zh": "Coinbase launches ultra-short-term betting market: will bitcoin rise or fall in 15 minutes",
+      "topics": [
+        "coinbase",
+        "derivatives",
+        "exchange-products",
+        "prediction-markets"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Coinbase has launched an ultra-short-term betting market that lets users wager on whether bitcoin will rise or fall within a 15-minute window.",
+          "current_state_zh": "Coinbase has launched an ultra-short-term betting market that lets users wager on whether bitcoin will rise or fall within a 15-minute window.",
+          "detailed_summary_en": "Coinbase has launched an ultra-short-term betting market that lets users wager on whether bitcoin will rise or fall within a 15-minute window.",
+          "detailed_summary_zh": "Coinbase has launched an ultra-short-term betting market that lets users wager on whether bitcoin will rise or fall within a 15-minute window.",
+          "event_id": "evt_ad529adf4fa7a159",
+          "first_seen_at": "2026-10-07T11:15:03.153176Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-06T23:47:38Z",
+          "published_at": "2026-10-06T23:47:38Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "디지털투데이",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://www.digitaltoday.co.kr/en/view/111471/coinbase-launches-ultra-short-term-betting-market-will-bitcoin-rise-or-fall-in-15-minutes"
+            }
+          ],
+          "story_ids": [
+            "google_news:article:ebf089aaa19b1888"
+          ],
+          "time_precision": "published",
+          "title_en": "Coinbase launches ultra-short-term betting market: will bitcoin rise or fall in 15 minutes",
+          "title_zh": "Coinbase launches ultra-short-term betting market: will bitcoin rise or fall in 15 minutes",
+          "update_id": "upd_9be99ff1e7122ca7",
+          "update_type": "initial",
+          "what_changed_en": "Coinbase has launched an ultra-short-term betting market that lets users wager on whether bitcoin will rise or fall within a 15-minute window.",
+          "what_changed_zh": "Coinbase has launched an ultra-short-term betting market that lets users wager on whether bitcoin will rise or fall within a 15-minute window."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "OKX has filed with the SEC to outline a 24/7 trading framework for 63 tokenized stocks on its platform, advancing its push into tokenized equity products.",
+      "current_state_zh": "OKX has filed with the SEC to outline a 24/7 trading framework for 63 tokenized stocks on its platform, advancing its push into tokenized equity products.",
+      "entities": [
+        "filing",
+        "okx",
+        "outlines",
+        "plan",
+        "sec",
+        "sec-filing",
+        "stocks",
+        "tokenized",
+        "tokenized-stocks"
+      ],
+      "event_id": "evt_e506132f0beed4b1",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-07T11:15:03.153857Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-07T11:15:03.153857Z",
+      "last_updated_at": "2026-10-07T11:15:03.153857Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "SEC Filing Outlines 24/7 Plan for 63 OKX Tokenized Stocks",
+      "title_zh": "SEC Filing Outlines 24/7 Plan for 63 OKX Tokenized Stocks",
+      "topics": [
+        "okx",
+        "sec-filing",
+        "tokenized-stocks"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "OKX has filed with the SEC to outline a 24/7 trading framework for 63 tokenized stocks on its platform, advancing its push into tokenized equity products.",
+          "current_state_zh": "OKX has filed with the SEC to outline a 24/7 trading framework for 63 tokenized stocks on its platform, advancing its push into tokenized equity products.",
+          "detailed_summary_en": "OKX has filed with the SEC to outline a 24/7 trading framework for 63 tokenized stocks on its platform, advancing its push into tokenized equity products.",
+          "detailed_summary_zh": "OKX has filed with the SEC to outline a 24/7 trading framework for 63 tokenized stocks on its platform, advancing its push into tokenized equity products.",
+          "event_id": "evt_e506132f0beed4b1",
+          "first_seen_at": "2026-10-07T11:15:03.153857Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-07T11:07:50Z",
+          "published_at": "2026-10-07T11:07:50Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Tokenist",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://tokenist.com/okx-tokenized-stocks-okxice-filing/"
+            }
+          ],
+          "story_ids": [
+            "google_news:article:d3fe092455b36590"
+          ],
+          "time_precision": "published",
+          "title_en": "SEC Filing Outlines 24/7 Plan for 63 OKX Tokenized Stocks",
+          "title_zh": "SEC Filing Outlines 24/7 Plan for 63 OKX Tokenized Stocks",
+          "update_id": "upd_aa0f2377f5c14777",
+          "update_type": "initial",
+          "what_changed_en": "OKX has filed with the SEC to outline a 24/7 trading framework for 63 tokenized stocks on its platform, advancing its push into tokenized equity products.",
+          "what_changed_zh": "OKX has filed with the SEC to outline a 24/7 trading framework for 63 tokenized stocks on its platform, advancing its push into tokenized equity products."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -123235,8 +123230,8 @@
       "evt_c01a27d5703acbbd"
     ],
     "derivatives": [
-      "evt_5b421e16299d26d3",
-      "evt_67781f85819d83dc"
+      "evt_67781f85819d83dc",
+      "evt_6ca3e3fb32b4ceff"
     ],
     "dprk": [
       "evt_6655595dc1e36e0b"
@@ -123428,6 +123423,10 @@
     "neutron": [
       "evt_30c06aaf6dbebbc2"
     ],
+    "nft": [
+      "evt_3c4c4f20ab63b475",
+      "evt_f8abfe1cabbeae51"
+    ],
     "north-korea": [
       "evt_0698c7a5520034f1",
       "evt_6655595dc1e36e0b",
@@ -123503,6 +123502,7 @@
       "evt_f8abfe1cabbeae51"
     ],
     "ripple": [
+      "evt_0e8a68a8b363e6bf",
       "evt_1a381a7fee0b9556",
       "evt_69af6084e1b78250"
     ],
