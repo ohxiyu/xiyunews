@@ -1,31 +1,31 @@
 # 当前交接
 
-当前任务是补齐现有 llms.txt 的新闻站导航、时效与可信度边界。维护者已授权检查通过后合并并沿用现有流程发布静态文件。只处理 Issue224，不继续此前 UI、Quick Post、DNS 或渠道任务，不改业务 Worker、密钥、调度、依赖、队列或真实 AI 调用。
+PR225 的 llms.txt 补齐已获授权合并上线并通过只读生产验收。当前 Issue226 仅归档其发布证据，不再改公开文件或额外部署；不继续此前UI、Quick Post、DNS、AI或渠道任务。第三方AI是否采纳此导航仍未验证。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "完善 llms.txt 的机器优先导航、日报时效与证据边界，并防止构建遗漏该文件",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/224",
+  "goal": "归档 PR225 的 llms.txt 生产发布、完整链接与日报不变证据",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/226",
   "owner": "当前 Codex 会话，唯一编辑负责人与整合者",
-  "branch": "agent/llms-discovery",
-  "last_verified_commit": "f5499e869a3a910ecaae8d7cb6246c74796759ee",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/225",
-  "completed": ["核验账号ohxiyu/仓库与最新main，Issue224独立认领；正式llms.txt已存在且200", "按llms.txt提案完善小型导航，纠正时效/Quick Post/来源数与非独立事实核验说明；保留公共法律链接", "增加格式/公开目标/语义边界与构建保留、缺失拒绝回归；不新增全历史导出或服务"],
-  "unfinished": ["完成本地验证与精确head CI，合并发布并验收正式文件和每条链接；通过后另开文档PR记录生产证据"],
-  "validation": ["uv sync --frozen --extra dev成功；定向26 passed；完整pytest1050 passed/4 skipped/1条既有弃用警告，治理与diff通过", "llms.txt 5785 UTF-8字节，全部18条完整链接只读GET均200、类型符合JSON/Markdown/XML/HTML/plain；公开索引字段与代码核对", "开工最新日报2026-10-07/14条，未重跑AI或发送消息"],
-  "unverified": ["任务新文件尚未发布；不保证第三方AI提供商读取或排名提高", "真实AI、渠道、后台发布及设备功能不在本次验收范围；CodeQL既有私有许可跳过不算通过"],
+  "branch": "agent/llms-release",
+  "last_verified_commit": "5367b824412681e41d327af7e2cc19fe145fd1a1",
+  "pr": "pending：Issue226 文档PR；应用PR225已合并上线",
+  "completed": ["PR225精确head23b7c77017a93885747de5bcef6b6658d182312c检查通过并合并5367b824412681e41d327af7e2cc19fe145fd1a1", "Deploy Docs37566027437与统一Worker37566072103成功，正式source/artifact/Worker版本吻合", "llms.txt正式200/text/plain UTF-8、5785字节，与源码字节完全一致；18条链接类型与JSON/XML结构验证通过", "最新2026-10-07日报仍14条，发布前后完整API哈希相同；没有真实AI/消息运行"],
+  "unfinished": ["文档证据PR的检查及合并状态以GitHub精确head记录为准"],
+  "validation": ["实现阶段定向26 passed，完整pytest1050 passed/4 skipped/1既有警告；治理/diff通过", "生产2026-10-07T03:20:04Z验收llms与18链接；llms SHA256 ca1bb2ff1c33f44c3237b13050acce56de84d245dc491f26221d94d6915f3ff4", "日报API SHA256 d5cd3df385773b104cdbcf3043f485b0103a6accdda472358d6133452a8a1353发布前后不变；Markdown协商与来源引用入口保持", "文档阶段frozen dev成功，pytest1050 passed/4 skipped/1既有警告20.37s，治理通过"],
+  "unverified": ["不保证第三方AI提供商读取、遵循说明或搜索排名提高；llms.txt不是认证/训练授权", "CodeQL既有私有许可跳过不算通过；真实AI/渠道/后台发布/设备功能不在本次范围"],
   "production": {
-    "source_commit": "not changed：开工实查f5499e869a3a910ecaae8d7cb6246c74796759ee",
-    "artifact_commit": "开工实查6c53108e0af414c5fd6e08ab4c131fca78a0fe4d；可由正常采集自然更新",
-    "edition": "2026-10-07；14条；只读",
+    "source_commit": "5367b824412681e41d327af7e2cc19fe145fd1a1",
+    "artifact_commit": "6a096b7261d5ca9b278b5a5a76493fdaf19fdf91",
+    "edition": "2026-10-07；14条；发布前后字节哈希相同",
     "generated_at": "2026-10-06T23:30:18.069638Z",
-    "worker_version": "not changed：开工实查5961e838-9999-4736-a5d3-df39e1dc8a00",
-    "verified_at": "2026-10-07T03:07:48Z；上海11:07:48开工只读"
+    "worker_version": "214e2228-7caf-4be4-884e-9087175d25ca",
+    "verified_at": "2026-10-07T03:20:04.490229Z；上海11:20:04只读验收"
   },
   "blockers": [],
-  "next_action": "完成frozen dev、pytest、治理、同步main和精确head CI后，按本次明确授权合并并让Deploy Docs→统一Worker自动发布，仅只读验收，不触发AI/渠道。结果通过后续文档PR回写，不直接提交main。",
-  "states": {"code": "complete", "tests": "complete", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
+  "next_action": "应用PR225五阶段完成，证据文档PR只改project-docs，不额外部署。没有待续业务开发授权；新任务先认领Issue，从最新origin/main开独立分支。不得为了证明AI采纳而重跑新闻/渠道或扩大权限。",
+  "states": {"code": "complete", "tests": "complete", "pr_merged": "complete", "deployed": "complete", "production_verified": "complete"},
   "evidence": "project-docs/releases/2026-10-07-llms-discovery.md"
 }
 ```
