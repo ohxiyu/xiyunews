@@ -12,6 +12,7 @@ def fixture(tmp_path: Path) -> Path:
         "index.html": '<div data-latest-edition-date="2026-10-02"></div>',
         "api/latest.json": json.dumps({"date": "2026-10-02", "items": [{"id": "one"}]}),
         "s/index.html": "admin", "feed-zh.xml": "rss", "sitemap.xml": "sitemap",
+        "llms.txt": "# xiyu.news\n\n> Daily briefing.\n",
         "_worker.js": "private implementation", "CNAME": "xiyu.news",
     }.items():
         path = source / name
@@ -27,6 +28,14 @@ def test_stage_public_rendered_assets_only(tmp_path):
     assert (destination / "s/index.html").read_text() == "admin"
     assert not (destination / "_worker.js").exists()
     assert not (destination / "CNAME").exists()
+    assert (destination / "llms.txt").read_bytes() == (source / "llms.txt").read_bytes()
+
+
+def test_refuse_output_missing_agent_discovery(tmp_path):
+    source = fixture(tmp_path)
+    (source / "llms.txt").unlink()
+    with pytest.raises(ValueError, match="missing rendered public output: llms.txt"):
+        prepare(source, tmp_path / "assets")
 
 
 @pytest.mark.parametrize("private", [".env", ".env.production", ".dev.vars", "nested/.git/config", "node_modules/package.json"])
