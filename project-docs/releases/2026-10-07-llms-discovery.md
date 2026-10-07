@@ -62,6 +62,6 @@ developer新增时效/证据说明通过带校验query的原站GET确认。无qu
 
 ### 文档验证与当前状态
 
-独立证据worktree基于最新已合并源码5367b824。frozen dev成功；pytest1050 passed/4 skipped/1既有弃用警告，20.37s；治理通过。文档最终head检查/合并状态看其PR记录，不预先宣称通过。
+独立证据worktree基于最新已合并源码5367b824。frozen dev成功；pytest1050 passed/4 skipped/1既有弃用警告，20.37s；治理通过。文档最终head检查/合并状态看 [PR227](https://github.com/ohxiyu/xiyunews/pull/227)，不预先宣称通过。
 
 应用PR225：代码完成、测试通过、已合并、已部署、限定范围生产验收完成。剩余未验证是第三方AI是否采纳/排名变化，及原有CodeQL许可跳过、真实AI/渠道/后台/实体设备边界；不将文件可访问等同AI实际采用。

@@ -10,7 +10,7 @@ PR225 的 llms.txt 补齐已获授权合并上线并通过只读生产验收。�
   "owner": "当前 Codex 会话，唯一编辑负责人与整合者",
   "branch": "agent/llms-release",
   "last_verified_commit": "5367b824412681e41d327af7e2cc19fe145fd1a1",
-  "pr": "pending：Issue226 文档PR；应用PR225已合并上线",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/227；应用PR225已合并上线",
   "completed": ["PR225精确head23b7c77017a93885747de5bcef6b6658d182312c检查通过并合并5367b824412681e41d327af7e2cc19fe145fd1a1", "Deploy Docs37566027437与统一Worker37566072103成功，正式source/artifact/Worker版本吻合", "llms.txt正式200/text/plain UTF-8、5785字节，与源码字节完全一致；18条链接类型与JSON/XML结构验证通过", "最新2026-10-07日报仍14条，发布前后完整API哈希相同；没有真实AI/消息运行"],
   "unfinished": ["文档证据PR的检查及合并状态以GitHub精确head记录为准"],
   "validation": ["实现阶段定向26 passed，完整pytest1050 passed/4 skipped/1既有警告；治理/diff通过", "生产2026-10-07T03:20:04Z验收llms与18链接；llms SHA256 ca1bb2ff1c33f44c3237b13050acce56de84d245dc491f26221d94d6915f3ff4", "日报API SHA256 d5cd3df385773b104cdbcf3043f485b0103a6accdda472358d6133452a8a1353发布前后不变；Markdown协商与来源引用入口保持", "文档阶段frozen dev成功，pytest1050 passed/4 skipped/1既有警告20.37s，治理通过"],
