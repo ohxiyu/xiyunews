@@ -1,33 +1,33 @@
 # 当前交接
 
-维护者最新“上线”授权已执行：PR221 已合并，公开页面、分享 PNG 与定向依赖安全修复已通过现有自动流程发布。当前仅整理 Issue222 的生产证据，不继续此前 Quick Post、DNS、AI 或渠道发送任务，不额外部署 Worker。
+当前任务是补齐现有 llms.txt 的新闻站导航、时效与可信度边界。维护者已授权检查通过后合并并沿用现有流程发布静态文件。只处理 Issue224，不继续此前 UI、Quick Post、DNS 或渠道任务，不改业务 Worker、密钥、调度、依赖、队列或真实 AI 调用。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "记录 PR221 已完成的生产发布与只读验收，保留准确版本和回退边界",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/222",
+  "goal": "完善 llms.txt 的机器优先导航、日报时效与证据边界，并防止构建遗漏该文件",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/224",
   "owner": "当前 Codex 会话，唯一编辑负责人与整合者",
-  "branch": "agent/beautiful-ui-release",
-  "last_verified_commit": "665a956235d73541e7289f242eec7913f13c3e6c",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/223；应用 PR221 已合并上线",
-  "completed": ["PR221 精确 head12f95ba3f5b2271ca4b76659bb560b97f3514d1c 检查通过后合并，源码665a956235d73541e7289f242eec7913f13c3e6c", "共享视觉层、分享图片与 multidict6.9.1/sharp0.35.5 最小安全修复已通过现有自动流程发布", "Deploy Docs37490743603、Cloudflare37490823390 成功，正式域名版本与资源字节一致", "生产响应式页面、主动PWA更新、浅深PNG实际保存检查完成；日报14条发布前后API哈希不变；匿名/s仍受Access保护"],
-  "unfinished": ["实体手机PWA安装/离线及剪贴板/X实际发帖仍待设备验收，本次不执行"],
-  "validation": ["上线前 frozen dev 安装成功，pytest1047 passed/4 skipped/1条既有弃用警告，治理通过；文档阶段同套检查结果见发布记录", "PR221最新CI37489761507 attempt2的test/governance/edge-build/realtime-paths成功，审计通过；CodeQL许可跳过不算通过", "正式桌面1280/手机390/英文320无横向溢出；正文16px/15px、分析12.8px与最大740px阅读宽度符合设计", "实际浅深分享PNG1320×4074包含全文/来源/分析/参考/标签；无按钮、本地URL或重复品牌", "正式资产sha256-94e4e835f53d与源码字节一致；日报API SHA256 ac44a36a88ce4861cec58169d912b46f301c5d4a80731ee6583fc0808b068411 发布前后相同"],
-  "unverified": ["CodeQL analyze 按既有私有许可条件跳过，不算通过；未启用付费扫描", "真实手机 PWA 安装/离线、剪贴板与 X 发帖未执行，浏览器模拟手机不等于实体设备验收", "未运行真实 AI、日报重刊、渠道补发或后台真实 Access 登录/发布；不在本次范围"],
+  "branch": "agent/llms-discovery",
+  "last_verified_commit": "f5499e869a3a910ecaae8d7cb6246c74796759ee",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/225",
+  "completed": ["核验账号ohxiyu/仓库与最新main，Issue224独立认领；正式llms.txt已存在且200", "按llms.txt提案完善小型导航，纠正时效/Quick Post/来源数与非独立事实核验说明；保留公共法律链接", "增加格式/公开目标/语义边界与构建保留、缺失拒绝回归；不新增全历史导出或服务"],
+  "unfinished": ["完成本地验证与精确head CI，合并发布并验收正式文件和每条链接；通过后另开文档PR记录生产证据"],
+  "validation": ["uv sync --frozen --extra dev成功；定向26 passed；完整pytest1050 passed/4 skipped/1条既有弃用警告，治理与diff通过", "llms.txt 5785 UTF-8字节，全部18条完整链接只读GET均200、类型符合JSON/Markdown/XML/HTML/plain；公开索引字段与代码核对", "开工最新日报2026-10-07/14条，未重跑AI或发送消息"],
+  "unverified": ["任务新文件尚未发布；不保证第三方AI提供商读取或排名提高", "真实AI、渠道、后台发布及设备功能不在本次验收范围；CodeQL既有私有许可跳过不算通过"],
   "production": {
-    "source_commit": "665a956235d73541e7289f242eec7913f13c3e6c",
-    "artifact_commit": "f85da0836e4927104cd3119a30ebda2ecf916020",
-    "edition": "2026-10-06；14条；跨午夜后按既有规则显示10月7日准备中",
-    "generated_at": "2026-10-05T23:30:40.478217Z",
-    "worker_version": "e9285050-ac06-4dcc-97c9-1b8470c6d147",
-    "verified_at": "2026-10-06T16:00:55Z；上海2026-10-07 00:00:55"
+    "source_commit": "not changed：开工实查f5499e869a3a910ecaae8d7cb6246c74796759ee",
+    "artifact_commit": "开工实查6c53108e0af414c5fd6e08ab4c131fca78a0fe4d；可由正常采集自然更新",
+    "edition": "2026-10-07；14条；只读",
+    "generated_at": "2026-10-06T23:30:18.069638Z",
+    "worker_version": "not changed：开工实查5961e838-9999-4736-a5d3-df39e1dc8a00",
+    "verified_at": "2026-10-07T03:07:48Z；上海11:07:48开工只读"
   },
   "blockers": [],
-  "next_action": "应用 PR221 的五阶段已完成；证据PR223另行查看精确head检查与合并状态，不因文档更新额外部署。没有待续业务开发授权，新任务先认领Issue，从最新origin/main开独立分支；不得续做此前Quick Post/DNS/渠道任务。",
-  "states": {"code": "complete", "tests": "complete", "pr_merged": "complete", "deployed": "complete", "production_verified": "complete"},
-  "evidence": "project-docs/releases/2026-10-06-beautiful-ui.md"
+  "next_action": "完成frozen dev、pytest、治理、同步main和精确head CI后，按本次明确授权合并并让Deploy Docs→统一Worker自动发布，仅只读验收，不触发AI/渠道。结果通过后续文档PR回写，不直接提交main。",
+  "states": {"code": "complete", "tests": "complete", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
+  "evidence": "project-docs/releases/2026-10-07-llms-discovery.md"
 }
 ```
 
-此前实时 API/DNS/watchdog 迁移与五阶段验证保留在 [历史发布证据](releases/2026-10-05-realtime-api-domain.md)，不重复部署。既有 Hyperliquid degraded、Telegram 手机实际收件、Quick Post 真实 AI/Access 验收边界仍沿用原记录。
+此前UI发布/设备未验证项保留在 [发布证据](releases/2026-10-06-beautiful-ui.md)；实时迁移在 [对应记录](releases/2026-10-05-realtime-api-domain.md)。不重复这些历史任务。

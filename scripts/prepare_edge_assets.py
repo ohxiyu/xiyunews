@@ -11,7 +11,7 @@ def prepare(source: Path, destination: Path) -> None:
         raise ValueError("source and destination must be separate directories")
     if destination.exists():
         raise ValueError("destination must not already exist")
-    for required in ("index.html", "api/latest.json", "s/index.html", "feed-zh.xml", "sitemap.xml"):
+    for required in ("index.html", "api/latest.json", "s/index.html", "feed-zh.xml", "sitemap.xml", "llms.txt"):
         if not (source / required).is_file():
             raise ValueError(f"missing rendered public output: {required}")
     latest = json.loads((source / "api/latest.json").read_text())

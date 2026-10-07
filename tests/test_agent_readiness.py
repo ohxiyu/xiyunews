@@ -5,6 +5,7 @@ import json
 import re
 import struct
 from pathlib import Path
+from urllib.parse import urlsplit
 from xml.etree import ElementTree
 
 from bs4 import BeautifulSoup
@@ -96,6 +97,55 @@ def test_llms_txt_follows_the_required_discovery_shape() -> None:
     assert "## When to use xiyu.news" in body
     assert "[OpenAPI specification](https://xiyu.news/openapi.json)" in body
     assert "[xiyu.news API and agent documentation]" in body
+    assert len(body.encode("utf-8")) <= 6_000
+    assert len(re.findall(r"^# ", body, re.M)) == 1
+    assert "## Optional" in body
+    assert not any(token in body for token in ("---", "{{", "{%", "<script", "```"))
+    # After the overview, every H2 section is a machine-parseable link list.
+    sections = re.split(r"^## ", body, flags=re.M)[1:]
+    for section in sections:
+        _, entries = section.split("\n", 1)
+        for entry in entries.splitlines():
+            if entry.strip():
+                assert re.fullmatch(r"- \[[^\]]+\]\(https://[^)]+\): .+", entry)
+
+
+def test_llms_links_are_public_machine_first_and_resolvable_offline() -> None:
+    body = (DOCS / "llms.txt").read_text(encoding="utf-8")
+    urls = re.findall(r"\[[^\]]+\]\(([^)]+)\)", body)
+    assert len(urls) == len(set(urls))
+    assert [urlsplit(url).path for url in urls[:4]] == [
+        "/api/latest.json", "/api/editions.json", "/api/events.json",
+        "/api/quick-posts.json",
+    ]
+    spec = json.loads((DOCS / "openapi.json").read_text(encoding="utf-8"))
+    generated = {"/sitemap.xml", *(f"/feeds/{category}-en.xml" for category in ("crypto", "technology", "policy"))}
+    for url in urls:
+        parsed = urlsplit(url)
+        assert parsed.scheme == "https" and parsed.netloc == "xiyu.news"
+        assert not parsed.query and not parsed.fragment
+        assert not parsed.path.startswith(("/s/", "/admin/", "/api/admin/"))
+        if parsed.path in spec["paths"] or parsed.path in generated:
+            continue
+        target = DOCS / parsed.path.lstrip("/")
+        assert target.is_file() or (target / "index.md").is_file(), url
+
+
+def test_llms_guidance_preserves_freshness_and_evidence_boundaries() -> None:
+    body = (DOCS / "llms.txt").read_text(encoding="utf-8")
+    for required in (
+        "Asia/Shanghai", "previous day 07:00", "edition day 07:00", "07:26",
+        "latest published edition", "generated_at", "not the event's occurrence time",
+        "not independently fact-checked", "not proof of independent confirmation",
+        "no AI importance score", "batch_index", "anchor_id", "503",
+        "not an access-control or training-permission policy",
+    ):
+        assert required in body
+    assert "verified material updates" not in body
+    headers = (DOCS / "_headers").read_text(encoding="utf-8")
+    llms_rule = headers.split("\n/llms.txt\n", 1)[1].split("\n\n", 1)[0]
+    assert "Content-Type: text/plain; charset=utf-8" in llms_rule
+    assert "Access-Control-Allow-Origin: *" in llms_rule
 
 
 def test_home_template_and_metadata_are_present_without_javascript() -> None:
