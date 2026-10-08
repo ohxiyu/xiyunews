@@ -1,389 +1,302 @@
 {
   "version": 1,
   "content_revision_version": 1,
-  "date": "2026-10-08",
-  "generated_at": "2026-10-07T23:30:47.326189Z",
+  "date": "2026-10-09",
+  "generated_at": "2026-10-08T23:30:41.649865Z",
   "site": "https://xiyu.news",
   "window": {
-    "start": "2026-10-06T23:00:00Z",
-    "end": "2026-10-07T23:00:00Z"
+    "start": "2026-10-07T23:00:00Z",
+    "end": "2026-10-08T23:00:00Z"
   },
   "stats": {
-    "candidates": 495,
+    "candidates": 648,
     "analyzed": 140,
     "displayed": 14,
     "high_priority": 0
   },
   "overview": {
-    "zh": "AI 成果以批量发布方式涌入数学与产品端，加密领域则通过关停、并购与合规通道加速机构化。 AI 数学：OpenAI 一次性公开 722 篇由未发布内部前沿模型产出的数学手稿，对应 372 组关联结果，部分结论尚未获独立顾问组背书。 加密：Blast（BLAST）网络关停",
-    "en": "AI results arrive in bulk across math and product surfaces, while crypto advances institutionalization through shutdowns, deals and regulated access. AI math：OpenAI published 722 math manuscripts from an unreleased internal frontier model, spanning 372 interrelated result families, with some findings not endorsed by its advisory group. Crypto shutdown：Coinbase said the Blast network is shutting down and users must move BLAST off the exchange before October 26, 2026, with trading suspended October 20. Institutional access：Coinbase completed its Deribit integration, letting eligible US clients reach Deribit options and perpetual futures through CFTC-regulated Coinbase Financial Markets."
+    "zh": "监管收紧与安全事件并行：欧盟限期清理不合规稳定币，思科防火墙零日漏洞已被勒索软件利用。 监管期限：ESMA 要求获授权平台在 2027 年 1 月 8 日前清理不合规稳定币存量持仓，期间仅可卖出、兑换或提取。 安全漏洞：思科 FMC 两个未认证 RCE 漏洞均为 CVSS 10.0，其中一个在补丁发布前已被 Interlock 勒索软件用作零日漏洞。 退出风险：Abstract 约 1710 万美元经标准桥跨链的 ETH 在 12 月 15 日关停后无独立退出通道，提款须依赖运营方。",
+    "en": "Regulatory deadlines and security failures converge as ESMA orders stablecoin wind-down and a Cisco zero-day is exploited. Regulatory Deadline：ESMA set a Jan. 8, 2027 deadline for authorized platforms to resolve non-compliant stablecoin holdings, allowing only selling, converting or withdrawing during the wind-down. Security Flaw：Cisco's two unauthenticated FMC RCEs both carry CVSS 10.0, and one was exploited as a zero-day by Interlock ransomware before a patch existed. Exit Risk：About $17.1 million in canonically bridged ETH on Abstract has no independent exit after the Dec. 15 shutdown, leaving withdrawals dependent on operators."
   },
   "market": {
-    "btc_usd": 83284.0,
-    "btc_change_24h": -2.582395587052448,
-    "eth_usd": 2573.44,
-    "eth_change_24h": -4.606184771206324,
-    "fear_greed": 71,
+    "btc_usd": 81806.0,
+    "btc_change_24h": -1.8300154286386716,
+    "eth_usd": 2476.35,
+    "eth_change_24h": -3.8427093944255786,
+    "fear_greed": 64,
     "fear_greed_label": "Greed"
   },
   "items": [
     {
       "rank": 1,
-      "url": "https://m.theblockbeats.info/flash/370543?from=telegram",
+      "url": "https://www.coindesk.com/policy/2026/10/08/eu-securities-regulator-gives-crypto-platforms-3-months-to-remove-unauthorized-stablecoins",
       "title": {
-        "zh": "OpenAI一口气放出722篇AI数学手稿，数学界开始验收",
-        "en": "OpenAI Releases 722 AI Math Manuscripts in One Batch; the Math Community Begins Verification"
+        "zh": "欧盟证券监管机构给加密平台3个月时间下架未获授权的稳定币",
+        "en": "EU securities regulator gives crypto platforms 3 months to remove unauthorized stablecoins"
       },
       "summary": {
-        "zh": "OpenAI 公开了一批由未发布内部前沿模型产出的数学手稿，共 722 篇，来自约 4000 个开放研究问题的评测；不少手稿围绕同一核心结果展开，合并后对应 372 组相互关联的结果。其中几项直接触及长期未解决的重要问题：Unique Games 猜想的证明、被称为「准黎曼猜想」的结论（黎曼 ζ 函数在实部大于 7/8 的区域没有零点）、CM 阿贝尔簇上的有理 Hodge 猜想，以及 1940 年代以来悬而未决的自由群因子问题。\n\n这次发布延续了一系列由 AI 产出的成果，既让数学界部分人感到振奋，也引发不安，同时把若干长期未解的问题摆到数学家面前等待审验。OpenAI 表示不同结果的验证程度并不一致，参与发布咨询的独立数学顾问组 AGMAI 也明确表示没有为这些结果背书，因此这些结论尚未成为定论。\n\n这批手稿来自约 4000 个开放研究问题的评测，由未发布的内部前沿模型产出。Unique Games、准黎曼和自由群因子等结果已附上 Lean 形式化证明，可由计算机检查证明过程；而 OpenAI 表示没有形式化证明的部分仍可能存在错误。",
-        "en": "OpenAI has published a batch of 722 mathematics manuscripts produced by an unreleased internal frontier model, drawn from an evaluation over roughly 4,000 open research problems; many manuscripts revolve around the same core result and, when merged, correspond to 372 interrelated result families. Several directly address long-standing open problems: a proof of the Unique Games conjecture, a so-called \"quasi-Riemann hypothesis\" stating that the Riemann zeta function has no zeros in the region where the real part exceeds 7/8, the rational Hodge conjecture for CM abelian varieties, and the free group factor problem unsolved since the 1940s.\n\nThe release extends a run of AI-driven results that have both impressed and unsettled parts of the mathematical community, and it puts long-standing open problems in front of mathematicians for review. OpenAI says verification levels differ across the results, and the independent mathematical advisory group AGMAI that consulted on the release explicitly stated it does not endorse them, so the outcomes are not settled conclusions.\n\nThe manuscripts come from an evaluation of about 4,000 open research problems and were produced by an unreleased internal frontier model. Lean formalized proofs, which can be checked mechanically by computer, have been attached to the Unique Games, quasi-Riemann and free group factor results, while OpenAI says the non-formalized portions may still contain errors."
+        "zh": "欧洲证券和市场管理局（ESMA）周四发布一份意见，要求获欧盟授权的加密资产服务提供商（CASP）停止提供让欧盟客户买入、交易、兑换或以其他方式增持不符合《加密资产市场条例》（MiCA）的稳定币的服务。各国监管机构应确保存量客户持仓尽快、且不迟于意见发布后三个月内清理完毕，最后期限为2027年1月8日。\n\nESMA表示，若继续通过获授权平台提供不合规稳定币，将削弱MiCA对获授权发行人施加的准备金、赎回、治理和披露规则。按市值计最大的稳定币Tether的USDT是未获MiCA授权的最突出例子，已有多个平台对欧洲用户限制其使用。\n\n该意见未点名任何具体代币，覆盖的服务包括交易服务、交易执行、转移、托管、管理、咨询和投资组合管理。在清理期内，平台可提供有限服务以处理存量持仓，包括卖出、兑换、提取、转移或保管，但不得买入、推广、交易或继续在市场上提供；各国监管机构在三个月的外限内决定各平台如何处理剩余客户余额。",
+        "en": "The European Securities and Markets Authority (ESMA) issued an opinion on Thursday requiring EU-authorized crypto-asset service providers (CASPs) to stop offering services that let EU customers buy, trade, swap or otherwise increase holdings of stablecoins that do not comply with the Markets in Crypto Assets (MiCA) rules. National regulators should ensure any remaining customer holdings are resolved as soon as possible and no later than three months after publication, placing the deadline at Jan. 8, 2027.\n\nESMA said keeping non-compliant stablecoins available through authorized platforms would weaken the reserve, redemption, governance and disclosure rules MiCA imposes on authorized issuers. Tether's USDT, the largest stablecoin by market value, is the standout example of a token not authorized under MiCA, and several platforms had already restricted it for European users.\n\nThe opinion does not name any tokens, and it covers exchange services, trade execution, transfers, custody, administration, advice and portfolio management. During the wind-down period platforms may provide limited services to resolve existing holdings — selling, converting, withdrawing, transferring or safekeeping — but not purchases, promotion, trading or continued market availability, and national regulators decide how individual platforms handle remaining client balances within the three-month outer limit."
       },
       "content_revision": {
-        "zh": "6cff503e6a6537923c89d47ababc555f3d353463ee660c808f85e23d2c8dbee2",
-        "en": "50c2553a781bd10dce552aa34289875633275074a2a4dec9f75de7798cdaef06"
+        "zh": "caffb60cd7a38c31b20f7f1357bc3abc8f03503cff4ba55df95efdf84f1f5655",
+        "en": "1721852c22b7925476dc9ff1f40b04980575a48738594287f670512c70af15d3"
       },
       "score": 8.5,
-      "category": "ai-labs",
-      "top_category": "technology",
+      "category": "crypto-regulation",
+      "top_category": "policy",
       "source": {
-        "type": "telegram",
-        "label": "theblockbeats"
+        "type": "rss",
+        "label": "CoinDesk"
       },
       "tags": [
-        "OpenAI",
-        "AI-for-mathematics",
-        "frontier-models",
-        "formal-verification",
-        "Lean",
-        "Unique Games conjecture"
+        "MiCA",
+        "stablecoins",
+        "ESMA",
+        "EU regulation",
+        "USDT",
+        "CASP"
       ],
-      "sources_count": 2,
+      "sources_count": 5,
       "editorial": false,
       "thread": {
-        "id": "t270d2009be",
-        "day": 2,
-        "url": "https://xiyu.news/threads/t270d2009be/"
+        "id": "t91813003b5",
+        "day": 1,
+        "url": "https://xiyu.news/threads/t91813003b5/"
       },
       "event": {
-        "event_id": "evt_c03008f159ec9ef9",
-        "update_id": "upd_fa41ec0055709908",
-        "url": "https://xiyu.news/events/evt_c03008f159ec9ef9/#upd_fa41ec0055709908",
-        "json": "https://xiyu.news/api/events/evt_c03008f159ec9ef9.json"
+        "event_id": "evt_58a4143bdf8ddcea",
+        "update_id": "upd_93d3ac03d7e6b6cb",
+        "url": "https://xiyu.news/events/evt_58a4143bdf8ddcea/#upd_93d3ac03d7e6b6cb",
+        "json": "https://xiyu.news/api/events/evt_58a4143bdf8ddcea.json"
       }
     },
     {
       "rank": 2,
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6",
+      "url": "https://cryptorank.io/news/feed/f79de-cisco-firewall-management-center-has-two-cvss-10-0-unauthenticated-rces-interlock-ransomware-exploited-one-as-zero-day",
       "title": {
-        "zh": "ChatGPT的“智能界面”更新让回答中充满图片、图表和按钮",
-        "en": "ChatGPT&#8217;s &#8216;Intelligent UI&#8217; update fills its responses with pictures, charts, and buttons"
+        "zh": "思科防火墙管理中心存在两个 CVSS 10.0 的未认证远程代码执行漏洞——Interlock 勒索软件将其中一个作为零日漏洞利用",
+        "en": "Cisco Firewall Management Center Has Two CVSS 10.0 Unauthenticated RCEs — Interlock Ransomware Exploited One as Zero-Day"
       },
       "summary": {
-        "zh": "OpenAI正在ChatGPT中推出名为“智能界面”（Intelligent UI）的新功能，让助手在文字回答之外还能组合展示交互式示意图、图表、表单和可点击按钮。该功能与GPT-6一同发布，并称将覆盖所有用户。\n\n这一变化改变了ChatGPT在整个平台上呈现回答的方式，使助手从纯文本输出转向针对具体任务的交互式结果，而不再只是用文字描述步骤。\n\n据OpenAI公告，搭载智能界面的GPT-6率先在Chat标签页面向ChatGPT Plus、Pro、Business和Enterprise用户全球推送，次日扩展至Free和Go层级；该更新适用于ChatGPT的聊天体验，Work和Codex目前仍走各自独立的路线。",
-        "en": "OpenAI is rolling out a new 'Intelligent UI' in ChatGPT that lets the assistant combine a text answer with interactive diagrams, charts, forms and tappable buttons. The feature is being released alongside GPT-6 and is described as reaching all users.\n\nThe change alters how ChatGPT renders its answers across the platform, moving the assistant from plain text toward task-specific interactive output rather than only describing steps in prose.\n\nAccording to OpenAI's announcement, GPT-6 with Intelligent UI began rolling out globally to ChatGPT Plus, Pro, Business and Enterprise tiers in the Chat tab, with Free and Go tiers following the next day; the update applies to the ChatGPT chat experience, while Work and Codex remain on separate tracks."
+        "zh": "思科披露其防火墙管理中心（FMC）存在两个未认证远程代码执行（RCE）漏洞，严重性评分均为最高的 CVSS 10.0。其中一处在补丁发布前已被 Interlock 勒索软件运营者作为零日漏洞利用。\n\n在补丁发布之前，Interlock 勒索软件运营者已经利用了这两个最高严重性漏洞中的一个。由于 FMC 是广泛部署的企业安全管理平面，这种严重程度的未认证 RCE 为攻击者提供了控制整个防火墙资产的可能路径。\n\n这两个漏洞均为未认证远程代码执行漏洞，CVSS 评分为最高的 10.0。其中一处在修复方案可用之前已被确认作为零日漏洞用于攻击。",
+        "en": "Cisco disclosed two unauthenticated remote code execution (RCE) vulnerabilities in its Firewall Management Center (FMC), both rated CVSS 10.0, the maximum severity. One of the two flaws was exploited as a zero-day by Interlock ransomware operators before a patch was available.\n\nInterlock ransomware operators already exploited one of the two maximum-severity flaws before a patch existed. Because FMC is a widely deployed enterprise security management plane, pre-authentication RCE at this severity gives attackers a path to control over firewall estates.\n\nBoth vulnerabilities are unauthenticated remote code execution flaws carrying the maximum CVSS score of 10.0. One is confirmed to have been used in attacks as a zero-day prior to a fix being available."
       },
       "content_revision": {
-        "zh": "eb70529b692d292fd88e81641c418c8e2e4e17ddfc0843f13bdfce1f0b2c8249",
-        "en": "1c4844ad687ca8e69824c0b1e932996d382f90c9b8a34b307427a8452c369386"
+        "zh": "5f3997b3bcaa08da7c36ca61f46950555bbc07d112802cc067ed5291a36fa708",
+        "en": "27d1205bb7e0fc3b36eb7dedb21545bb0a2f249adc8f3545ff7ebed802774fdd"
       },
       "score": 8.0,
-      "category": "ai-labs",
+      "category": "tech-community",
       "top_category": "technology",
       "source": {
-        "type": "rss",
-        "label": "The Verge AI"
+        "type": "google_news",
+        "label": "CryptoRank"
       },
       "tags": [
-        "OpenAI",
-        "ChatGPT",
-        "GPT-6",
-        "Intelligent UI",
-        "generative UI",
-        "product launch"
+        "cybersecurity",
+        "vulnerability",
+        "ransomware",
+        "Cisco",
+        "enterprise-security",
+        "remote-code-execution"
       ],
       "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "t325f4dd194",
+        "id": "t6a74795efa",
         "day": 1,
-        "url": "https://xiyu.news/threads/t325f4dd194/"
+        "url": "https://xiyu.news/threads/t6a74795efa/"
       },
       "event": {
-        "event_id": "evt_c1df07c0fff95914",
-        "update_id": "upd_ebab856a1b706abb",
-        "url": "https://xiyu.news/events/evt_c1df07c0fff95914/#upd_ebab856a1b706abb",
-        "json": "https://xiyu.news/api/events/evt_c1df07c0fff95914.json"
+        "event_id": "evt_5a492167f48cb836",
+        "update_id": "upd_fb32ffd4f2eba4b2",
+        "url": "https://xiyu.news/events/evt_5a492167f48cb836/#upd_fb32ffd4f2eba4b2",
+        "json": "https://xiyu.news/api/events/evt_5a492167f48cb836.json"
       }
     },
     {
       "rank": 3,
-      "url": "https://status.coinbase.com/incidents/20gxz4rj9mnk",
+      "url": "https://thedefiant.io/news/blockchains/abstract-s-eth-withdrawals-depend-on-operators-ahead-of-dec-15-shutdown",
       "title": {
-        "zh": "Blast（BLAST）网络关停",
-        "en": "Blast (BLAST) Network Shutdown"
+        "zh": "Abstract 的 ETH 提款在 12 月 15 日关停前依赖运营方",
+        "en": "Abstract's ETH Withdrawals Depend on Operators Ahead of Dec. 15 Shutdown"
       },
       "summary": {
-        "zh": "Coinbase 于 10 月 7 日 15:50（太平洋时间）发布状态更新，称 Blast 项目团队正在关停 Blast 网络，用户必须采取操作以避免失去资金访问权限。Coinbase 表示，若未在 2026 年 10 月 26 日之前将 BLAST 转出该交易所，网络关停后将无法再访问这些资产。\n\n该通知把网络关停变成了对仍将 BLAST 存放在 Coinbase 的用户的硬性截止期限：2026 年 10 月 26 日之后，未转出的资产将无法访问。\n\nCoinbase 将该条目标注为计划内维护，并表示将按需提供更新。有关此次关停的媒体报道称，Coinbase 将于 10 月 20 日暂停 BLAST 交易，早于 10 月 26 日的提现截止日期。",
-        "en": "Coinbase posted a status update on October 7 (15:50 PDT) stating that the Blast project team is shutting down the Blast network and that users must act to avoid losing access to their funds. Coinbase said BLAST that is not moved off the exchange before October 26, 2026 will not be accessible to users after the network is shut down.\n\nThe notice turns the shutdown into a hard deadline for anyone still holding BLAST on Coinbase: assets left in place become inaccessible after October 26, 2026.\n\nCoinbase labeled the entry as scheduled maintenance and said it would provide updates as necessary. Media reports on the shutdown state that Coinbase suspends BLAST trading on October 20, ahead of the October 26 withdrawal deadline."
+        "zh": "根据 L2BEAT 的数据，Abstract 上约有 1710 万美元经标准桥（canonical bridge）跨链的 ETH，而该网络的关停方案并未为这些资金在 12 月 15 日关停后提供独立退出通道，提款因此依赖运营方。\n\n未在截止日期前将资产移出该链的持有者必须依赖运营方处理提款，而无法自行单方面退出。\n\n约 1710 万美元这一数字指 L2BEAT 统计的经标准桥跨至 Abstract 的 ETH；关停方案未在 12 月 15 日之后安排独立退出机制。",
+        "en": "According to L2BEAT data, about $17.1 million in canonically bridged ETH sits on Abstract, and the network's wind-down plan provides no independent exit path for those funds after the Dec. 15 shutdown, leaving withdrawals dependent on operators.\n\nHolders who do not move assets off the chain before the deadline must rely on operators to process withdrawals, rather than being able to exit unilaterally.\n\nThe roughly $17.1 million figure refers to ETH reported by L2BEAT as canonically bridged to Abstract; the wind-down plan sets out no independent exit after Dec. 15."
       },
       "content_revision": {
-        "zh": "e52ed2f2dc86973d1a85677425c9d2326252ca84de7252c43350bc030609f433",
-        "en": "375de651dc830aa27a88f6d404d84e8d6be943f7dcbd3f5a8a8d56783a3c8937"
+        "zh": "daf5468777969139bd2e8b84339638a4e2183183743c3459a37a6628bca0acf8",
+        "en": "103dab1330be0a240b8c14b1881a328d69b80a50030287b0b7a248f6cc4d1495"
       },
       "score": 7.5,
-      "category": "exchange-operations",
+      "category": "crypto-protocols",
       "top_category": "crypto",
       "source": {
         "type": "rss",
-        "label": "Coinbase Status"
+        "label": "The Defiant"
       },
       "tags": [
-        "blast",
-        "network-shutdown",
-        "coinbase",
-        "layer2",
-        "withdrawals"
+        "abstract",
+        "layer-2",
+        "bridge-withdrawals",
+        "protocol-shutdown",
+        "ethereum"
       ],
       "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "t687187fdbb",
-        "day": 1,
-        "url": "https://xiyu.news/threads/t687187fdbb/"
-      },
-      "event": {
-        "event_id": "evt_690c1541d03d756c",
-        "update_id": "upd_e4ec4ce266735920",
-        "url": "https://xiyu.news/events/evt_690c1541d03d756c/#upd_e4ec4ce266735920",
-        "json": "https://xiyu.news/api/events/evt_690c1541d03d756c.json"
-      }
-    },
-    {
-      "rank": 4,
-      "url": "https://www.theblock.co/news/markets/2026-10-07-grayscale-crypto-etf-market-beyond-bitcoin-ether-417953",
-      "title": {
-        "zh": "Grayscale称随着Zcash ETF资产突破10亿美元，加密ETF市场正进入新阶段",
-        "en": "Grayscale says crypto ETF market is entering new phase as Zcash ETF tops $1 billion"
-      },
-      "summary": {
-        "zh": "Grayscale的Krista Lynch表示，加密ETF市场正进入一个新阶段，并指出美国SEC的上市标准目前覆盖约15种代币，使发行方能够在比特币和以太坊之外进行选择。此番表态同时伴随着Grayscale Zcash ETF（代码ZCSH）资产规模突破10亿美元的消息。\n\nLynch的表态指向一种转变：加密ETF的审批正从逐案审核转向基于规则的上市框架，从而能够支持比特币和以太坊之外的单一代币产品；而Zcash ETF资产规模达到10亿美元，则是这类产品正在吸引资金的具体迹象。\n\nGrayscale Zcash ETF以ZCSH为代码在NYSE Arca交易，可通过券商账户投资。Lynch是Grayscale的交易与资本市场负责人，并担任其ETF团队高级副总裁，负责领导ETF资本市场业务，与授权参与人和ETF做市商对接。",
-        "en": "Grayscale's Krista Lynch said the crypto ETF market is entering a new phase, noting that SEC listing standards now cover roughly 15 tokens and allow issuers to be selective beyond bitcoin and ether. The same remarks came alongside the news that the Grayscale Zcash ETF (ZCSH) has topped $1 billion in assets.\n\nLynch's comments point to a shift from case-by-case ETF approvals toward a rules-based listing framework that can support single-asset products beyond bitcoin and ether, and the Zcash ETF's $1 billion asset level is a concrete sign that such products are attracting capital.\n\nThe Grayscale Zcash ETF trades under the ticker ZCSH on NYSE Arca and is accessible through brokerage accounts. Lynch is Grayscale's Head of Trading and Capital Markets and a Senior Vice President on its ETF team, where she leads ETF capital markets and works with authorized participants and ETF market makers."
-      },
-      "content_revision": {
-        "zh": "c6be905a4145245279dbda24aeec4bf6de756492693f404d3fe4e7860adb1aa3",
-        "en": "4e51b9ff4ca70c8b41461af8e923e80af3df8f4deb2a0028579193009228be91"
-      },
-      "score": 7.5,
-      "category": "crypto-markets",
-      "top_category": "crypto",
-      "source": {
-        "type": "rss",
-        "label": "The Block"
-      },
-      "tags": [
-        "ETF",
-        "Zcash",
-        "Grayscale",
-        "SEC",
-        "market structure"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "t2537836be3",
-        "day": 4,
-        "url": "https://xiyu.news/threads/t2537836be3/"
+        "id": "tefeee12fb4",
+        "day": 3,
+        "url": "https://xiyu.news/threads/tefeee12fb4/"
       },
       "event": null
     },
     {
-      "rank": 5,
-      "url": "https://cointelegraph.com/news/coinbase-deribit-us-crypto-options-perpetual-futures?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "rank": 4,
+      "url": "https://wublockchain.xyz/news/news-21162",
       "title": {
-        "zh": "Coinbase 完成 Deribit 整合，将全球加密衍生品流动性引入美国",
-        "en": "Coinbase brings global crypto derivatives liquidity to US with Deribit integration"
+        "zh": "Aptos 公布代币经济改革方案：2.1 亿枚 APT 将永久锁定，质押奖励减半",
+        "en": "Aptos Unveils Tokenomics Overhaul: 210M APT to Be Permanently Locked, Staking Re"
       },
       "summary": {
-        "zh": "Coinbase 周三宣布已完成对衍生品交易所 Deribit 的整合，将其国际衍生品业务与 Deribit 合并，并允许符合条件的美国客户通过其受 CFTC 监管的衍生品部门 Coinbase Financial Markets 接入该流动性。Coinbase International Exchange 的余额与头寸已于 10 月 1 日迁移至 Deribit。\n\n据 Coinbase 数据，加密衍生品约占全球加密交易量的 80%，但美国交易者此前一直缺乏受监管的渠道进入离岸更深的期权与永续合约市场。美国机构客户现在可通过 Coinbase Prime 和 Coinbase Financial Markets 接入 Deribit 的期权与永续合约，而此前通常需要离岸实体和独立的交易基础设施。\n\n通过 Coinbase Prime 提供的期权预计将在未来数周内上线，同期还计划面向符合条件的非美国零售交易者推出期权，随后于今年晚些时候向美国零售客户开放。这一受监管通道建立在 CFTC 今年 5 月发布的指引之上，该指引允许 Coinbase Financial Markets 将美国客户连接至全球衍生品市场。",
-        "en": "Coinbase announced Wednesday that it has completed its integration of derivatives exchange Deribit, combining its international derivatives business with Deribit and letting eligible US customers access that liquidity through Coinbase Financial Markets, its CFTC-regulated derivatives unit. Coinbase International Exchange balances and positions were migrated to Deribit on Oct. 1.\n\nCrypto derivatives account for roughly 80% of global crypto trading volume, according to Coinbase, but US traders have historically lacked a regulated path to the deeper offshore options and perpetual futures markets. US institutional clients can now reach Deribit's options and perpetual futures through Coinbase Prime and Coinbase Financial Markets, where previously they typically needed offshore entities and separate trading infrastructure.\n\nOptions through Coinbase Prime are expected to become available in the coming weeks, with options for eligible non-US retail traders planned over the same period, followed by US retail access later this year. The regulated route follows CFTC guidance issued in May that allowed Coinbase Financial Markets to connect US clients to global derivatives markets."
+        "zh": "Aptos 基金会提出了一项 APT 代币经济改革方案，拟将年度质押奖励从 5.19% 下调至 2.6%、将 Gas 费提高十倍，并将总供应量上限设为 21 亿枚 APT。根据该方案，基金会将永久锁定并质押 2.1 亿枚 APT（约占当前供应量的 18%），相关运营支出由质押奖励而非出售代币来承担。\n\n基金会表示，这些调整旨在减少代币增发并增加销毁量，可能使 APT 具备通缩属性。未来的生态拨款将与业绩里程碑挂钩；随着首个四年解锁周期在 2026 年 10 月结束，年度化的代币解锁量预计将下降 60%。\n\n上述措施目前仍属提案，尚未落地执行。此外，一项由现金储备和未来收入提供资金的回购计划也正在考虑之中。",
+        "en": "The Aptos Foundation has proposed an overhaul of APT tokenomics that would cut annual staking rewards from 5.19% to 2.6%, raise gas fees tenfold, and cap total supply at 2.1 billion APT. Under the plan, the Foundation would permanently lock and stake 210 million APT — nearly 18% of current supply — with operations funded by staking rewards rather than token sales.\n\nThe Foundation says the changes are intended to reduce emissions and increase token burns, potentially making APT deflationary. Future ecosystem grants would be tied to performance milestones, and annualized token unlocks are expected to fall 60% as the initial four-year unlock cycle ends in October 2026.\n\nThe measures remain a proposal rather than an executed change. A buyback program funded by cash reserves and future revenue is also under consideration."
       },
       "content_revision": {
-        "zh": "30e5ed68b7a7035b109fbd179cd5d15e9a3b1904e0b743eb3afbadb77bb45af0",
-        "en": "d2dabc6f26b6659b426e86f8d7bf5ad92a852d74bb5f25af3bef536632fdb36f"
-      },
-      "score": 7.5,
-      "category": "exchange-announcements",
-      "top_category": "crypto",
-      "source": {
-        "type": "rss",
-        "label": "Cointelegraph"
-      },
-      "tags": [
-        "coinbase",
-        "deribit",
-        "crypto-derivatives",
-        "cftc",
-        "market-structure"
-      ],
-      "sources_count": 3,
-      "editorial": false,
-      "thread": {
-        "id": "t0029fb5092",
-        "day": 10,
-        "url": "https://xiyu.news/threads/t0029fb5092/"
-      },
-      "event": {
-        "event_id": "evt_6ca3e3fb32b4ceff",
-        "update_id": "upd_f9affb235662e67d",
-        "url": "https://xiyu.news/events/evt_6ca3e3fb32b4ceff/#upd_f9affb235662e67d",
-        "json": "https://xiyu.news/api/events/evt_6ca3e3fb32b4ceff.json"
-      }
-    },
-    {
-      "rank": 6,
-      "url": "https://coinmarketcap.com/academy/article/deutsche-borse-takes-dollar200m-kraken-stake-in-tradfi-push",
-      "title": {
-        "zh": "德意志交易所斥资2亿美元入股Kraken，加码TradFi布局",
-        "en": "Deutsche Börse Takes $200M Kraken Stake in TradFi Push"
-      },
-      "summary": {
-        "zh": "据CoinMarketCap报道，德意志交易所（Deutsche Börse）已斥资2亿美元收购加密货币交易所Kraken的股份。这笔股权投资被视为传统金融基础设施公司加大数字资产交易布局的一部分。\n\n这笔交易意味着欧洲一家重要的受监管交易所运营商进一步介入加密交易基础设施，显示传统金融持续向数字资产领域渗透整合。这也关系到Kraken的机构业务定位以及其在欧洲加密市场的准入能力。\n\n该笔股份价值2亿美元，报道未披露其占Kraken股权的具体比例。Kraken法定名称为Payward, Inc.，成立于2011年，截至2025年其季度交易量达2070亿美元。",
-        "en": "Deutsche Börse has acquired a $200 million stake in crypto exchange Kraken, according to a CoinMarketCap report. The equity investment is described as part of a broader push by traditional financial infrastructure firms into digital-asset trading.\n\nThe deal marks a major regulated European exchange operator deepening its exposure to crypto trading infrastructure, a signal of continued consolidation of traditional finance into the digital-asset sector. It also bears on Kraken's institutional positioning and European crypto market access.\n\nThe stake is valued at $200 million; the report does not specify the percentage of Kraken it represents. Kraken, legally named Payward, Inc. and founded in 2011, reported $207 billion in quarterly trading volume by 2025."
-      },
-      "content_revision": {
-        "zh": "f6e8b9190acab76fcd1269ac062938ae9b046c9e355c413be18ff0d1a9a88701",
-        "en": "61a03bbd161297581135c7743176755866fd9658f032c36df8699b757fe5ffbb"
-      },
-      "score": 7.5,
-      "category": "crypto-markets",
-      "top_category": "crypto",
-      "source": {
-        "type": "google_news",
-        "label": "CoinMarketCap"
-      },
-      "tags": [
-        "kraken",
-        "deutsche-borse",
-        "institutional-adoption",
-        "tradfi",
-        "market-structure"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "t025271092b",
-        "day": 2,
-        "url": "https://xiyu.news/threads/t025271092b/"
-      },
-      "event": {
-        "event_id": "evt_c8ad5c064bfd2bb0",
-        "update_id": "upd_873719414321be95",
-        "url": "https://xiyu.news/events/evt_c8ad5c064bfd2bb0/#upd_873719414321be95",
-        "json": "https://xiyu.news/api/events/evt_c8ad5c064bfd2bb0.json"
-      }
-    },
-    {
-      "rank": 7,
-      "url": "https://m.theblockbeats.info/flash/370567?from=telegram",
-      "title": {
-        "zh": "⚡️Abstract关停公告后，某新建地址集中买入25枚胖企鹅NFT",
-        "en": "⚡️After Abstract Shutdown Announcement, a Newly Created Address Bought 25 Pudgy Penguin NFTs in Bulk"
-      },
-      "summary": {
-        "zh": "10月7日，Pudgy Penguins CEO Luca Netz 发文称，Abstract 正在逐步关闭，母公司 Igloo Inc. 即日起将把全部精力转向 Pudgy Penguins、Pudgy NFTs 及 PENGU 的发展。公告后不久，某新建地址从 Kraken 提取100万美元，随后在市场上快速买入25枚胖企鹅 NFT，截止发稿该钱包内仍持有价值76.6万美元的 ETH。\n\nAbstract 原本是 Igloo Inc. 面向消费级应用的 Layer 2，关停意味着公司将资源集中到 Pudgy Penguins 品牌、NFT 系列与 PENGU 代币上。截止发稿，胖企鹅 NFT 地板价报 3.3 ETH，24小时涨幅达 6.8%。\n\n据 BlockBeats 引用的链上信息，该买家在完成买入后，钱包内仍持有价值76.6万美元的 ETH。已披露的数据仅涉及一个新地址和25枚 NFT，没有证据显示存在更大范围的集中扫货行为，也没有与关停相关的用户损失被披露。",
-        "en": "Pudgy Penguins CEO Luca Netz said on October 7 that Abstract is being gradually shut down and that parent company Igloo Inc. will from that day devote all of its efforts to Pudgy Penguins, Pudgy NFTs and PENGU. Shortly after the announcement, a newly created address withdrew $1 million from Kraken and quickly bought 25 Pudgy Penguin NFTs on the market, with $766,000 worth of ETH still in the wallet at the time of writing.\n\nAbstract was Igloo Inc.'s consumer-facing Layer 2, so winding it down concentrates the company's resources on the Pudgy Penguins brand, its NFT collection and the PENGU token. As of publication, the Pudgy Penguins NFT floor price stood at 3.3 ETH, a 6.8% gain over 24 hours.\n\nThe buyer's wallet still held $766,000 worth of ETH after the purchases, according to on-chain data cited by BlockBeats. The disclosed figures cover a single fresh address and 25 NFTs, with no evidence of a broader accumulation pattern or of user losses tied to the shutdown."
-      },
-      "content_revision": {
-        "zh": "75db1a1ce1283858eaa5353f7841699f5ddfe7d073d2610cde8b72263876240b",
-        "en": "a9e8ca178efe4cb24dc955d512f4e82afac340434daa0e2e16e3e7eabd248b19"
+        "zh": "8c1c2bf63a6dadc21c87acd77d656e3186a47fbb9a5b8f411220cb7a230a0d88",
+        "en": "4ba2ccefa4a0d7be210c4cccc543226d8f4817b72b500bc9b91b8f9b4dc82d1c"
       },
       "score": 7.5,
       "category": "crypto-protocols",
       "top_category": "crypto",
       "source": {
         "type": "telegram",
-        "label": "theblockbeats"
+        "label": "wublockchainenglish"
       },
       "tags": [
-        "Abstract",
-        "Pudgy Penguins",
-        "PENGU",
-        "Igloo Inc",
-        "NFT",
-        "chain-shutdown"
+        "aptos",
+        "tokenomics",
+        "staking",
+        "token-unlocks",
+        "layer-1"
       ],
       "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "tbfa7ca5f3d",
+        "id": "t0f0222a3f4",
         "day": 1,
-        "url": "https://xiyu.news/threads/tbfa7ca5f3d/"
+        "url": "https://xiyu.news/threads/t0f0222a3f4/"
       },
       "event": {
-        "event_id": "evt_f8abfe1cabbeae51",
-        "update_id": "upd_82cf435a82dfeb93",
-        "url": "https://xiyu.news/events/evt_f8abfe1cabbeae51/#upd_82cf435a82dfeb93",
-        "json": "https://xiyu.news/api/events/evt_f8abfe1cabbeae51.json"
+        "event_id": "evt_7b020f83ebe10269",
+        "update_id": "upd_ea90c9e126cf0e38",
+        "url": "https://xiyu.news/events/evt_7b020f83ebe10269/#upd_ea90c9e126cf0e38",
+        "json": "https://xiyu.news/api/events/evt_7b020f83ebe10269.json"
       }
     },
     {
-      "rank": 8,
-      "url": "https://www.okx.com/learn/strategic-investment-oct-2026?channelid=ACE505900",
+      "rank": 5,
+      "url": "https://m.theblockbeats.info/flash/370847?from=telegram",
       "title": {
-        "zh": "我们宣布获得 @Circle、QRT、@Ripple 以及 @StanChart 旗下 SC Ventures 的战略投资，投前估值 250 亿美元。",
-        "en": "We're announcing a strategic investment from @Circle, QRT, @Ripple and SC Ventur"
+        "zh": "🔍  链上侦探 |  美国政府地址再次转移12267.02枚BTC，约10.06亿美元",
+        "en": "🔍 On-Chain Detective | US Government Address Transfers Another 12,267.02 BTC, About $1.006 Billion"
       },
       "summary": {
-        "zh": "OKX 宣布获得 Circle、QRT、Ripple 以及渣打银行旗下 SC Ventures 的战略投资，投前估值为 250 亿美元。OKX 称这轮融资将“关键建设者”聚集在其对下一代链上市场的愿景之下。\n\n此次投资方涵盖主要稳定币发行方、专注支付的加密公司、量化交易机构以及全球性银行的创投部门，使 OKX 与稳定币、支付和银行业机构形成关联。OKX 表示，该投资使这些建设者与其链上市场路线图保持一致。\n\n公告指出，250 亿美元为投前估值，即新增资金进入前公司所被赋予的估值；具体的投资金额未披露。参与方为 Circle、QRT、Ripple 以及渣打银行的创投部门 SC Ventures。",
-        "en": "OKX announced a strategic investment from Circle, QRT, Ripple and Standard Chartered's SC Ventures at a $25 billion pre-money valuation. OKX framed the round as aligning \"critical builders\" behind its vision for the next generation of onchain markets.\n\nThe investor group spans a major stablecoin issuer, a payments-focused crypto company, a quantitative trading firm and a global bank's venture unit, tying OKX to institutions across stablecoins, payments and banking. OKX said the investment aligns these builders behind its onchain markets roadmap.\n\nThe announcement states the $25 billion figure is a pre-money valuation, meaning the valuation assigned to the company before the new capital is added; the amount invested was not disclosed. The named participants are Circle, QRT, Ripple and SC Ventures, the venture unit of Standard Chartered."
+        "zh": "10 月 8 日（北京时间 21:33，UTC 13:33），标记为「美国政府：Bitfinex 黑客被没收资金」的地址转出 12,267.02 枚 BTC，价值约 10.06 亿美元。其中 6,000 枚分两笔转入以 33pYK…cFk 开头的新地址，剩余约 6,267 枚暂存于另一新地址。\n\n资金去向再度引发市场对政府可能抛售的担忧，但转入 Coinbase Prime 本身并不能证明这些比特币已被出售。10 月 8 日的转账延续了连续三天的政府相关地址比特币移动。\n\n在此前的一段时间内，美国政府相关地址已累计转出价值 6.7 亿美元的代币，包括 6,215.7 枚 BTC（5.2 亿美元）、1.19 亿枚 USDT 和 40,285 枚 BNB（3,163 万美元），其中 BTC 与 USDT 全部进入 Coinbase Prime。链上分析师 EmberCN 称已有 9,000 枚 BTC（约 7.39 亿美元）到达 Coinbase Prime；Coinbase Prime 同时提供托管与交易服务，因此资产存入并不等同于立即卖出。",
+        "en": "An address labeled \"U.S. Government: Bitfinex Hacker Seized Funds\" transferred out 12,267.02 BTC, worth about $1.006 billion, on October 8 (13:33 UTC / 21:33 Beijing time). Of that, 6,000 BTC was split into two transfers to a new address beginning with 33pYK…cFk, while roughly 6,267 BTC was held in another new address.\n\nThe destinations have revived concerns about potential government selling, though transfers to Coinbase Prime do not by themselves prove the Bitcoin was liquidated. The Oct. 8 movement extended three consecutive days of government-linked Bitcoin transfers.\n\nIn the prior hours, US government-linked addresses had moved a cumulative $670 million in tokens: 6,215.7 BTC ($520 million), 119 million USDT and 40,285 BNB ($31.63 million), with the BTC and USDT routed into Coinbase Prime. Blockchain analyst EmberCN reported that 9,000 BTC, worth about $739 million, had reached Coinbase Prime, and Coinbase Prime serves as a custody and trading venue, so assets can be deposited without an immediate sale."
       },
       "content_revision": {
-        "zh": "acb2ee5608dc3f232bd2307cd067216bfb3f2f46dfc647efcfbb4703cb417369",
-        "en": "9d5109f492f1768ed2ca7f778716a42e0516c79d2dfe3f119db01e1879fb873c"
+        "zh": "4aa824fbe7ffe4620c9e6253e60965cc2a9123ee1d66c3fbc4a0ef2d7e4ed9a4",
+        "en": "5ba67c482b5ccf7b87fba7832fa9eb238cdccf054a35de1971605a84b0d2df4b"
       },
       "score": 7.5,
-      "category": "exchange-announcements",
+      "category": "crypto-markets",
       "top_category": "crypto",
       "source": {
         "type": "telegram",
-        "label": "OKXAnnouncements"
+        "label": "theblockbeats"
       },
       "tags": [
-        "OKX",
-        "Circle",
-        "Ripple",
-        "SC Ventures",
-        "strategic investment",
-        "pre-money valuation"
+        "bitcoin",
+        "us-government",
+        "on-chain-data",
+        "coinbase-prime",
+        "seized-assets",
+        "bitfinex-hack"
       ],
-      "sources_count": 1,
+      "sources_count": 5,
       "editorial": false,
       "thread": {
-        "id": "t0f3821d99b",
-        "day": 2,
-        "url": "https://xiyu.news/threads/t0f3821d99b/"
+        "id": "t9f7dc20e8f",
+        "day": 1,
+        "url": "https://xiyu.news/threads/t9f7dc20e8f/"
       },
       "event": {
-        "event_id": "evt_0e8a68a8b363e6bf",
-        "update_id": "upd_4480518ecac8218b",
-        "url": "https://xiyu.news/events/evt_0e8a68a8b363e6bf/#upd_4480518ecac8218b",
-        "json": "https://xiyu.news/api/events/evt_0e8a68a8b363e6bf.json"
+        "event_id": "evt_0e9784d23469c516",
+        "update_id": "upd_940e1cd244ac112a",
+        "url": "https://xiyu.news/events/evt_0e9784d23469c516/#upd_940e1cd244ac112a",
+        "json": "https://xiyu.news/api/events/evt_0e9784d23469c516.json"
       }
     },
     {
-      "rank": 9,
-      "url": "https://foresightnews.pro/news/h5Detail/114656",
+      "rank": 6,
+      "url": "https://www.coindesk.com/business/2026/10/08/securitize-brings-apple-nvidia-and-tesla-to-solana-with-nyse-trading-in-the-works",
       "title": {
-        "zh": "【币安上线 JPMB、LLYB、SECZB 和 USDEB bStocks 交易对】",
-        "en": "Binance Lists JPMB, LLYB, SECZB and USDEB bStocks Trading Pairs"
+        "zh": "Securitize 将苹果、英伟达和特斯拉带上 Solana，并计划接入 NYSE 交易",
+        "en": "Securitize brings Apple, Nvidia and Tesla to Solana, with NYSE trading in the works"
       },
       "summary": {
-        "zh": "币安发布公告称，将于 10 月 7 日 20:00 上线四个 bStocks 代币化证券交易对：JPMB/USDT、LLYB/USDT、SECZB/USDT 和 USDEB/USDT。现货算法交易机器人与现货上市同时启用，智能持仓机器人将在上线后 24 小时内启用，上线后一小时内可免手续费兑换为 BTC、USDT 或其他支持代币，零挂单手续费活动持续至 11 月 1 日 07:59。\n\n此次上线把四个代币化股票交易对纳入币安现货市场，并在上市同时启用交易机器人、提供免手续费兑换窗口，扩展了该交易所的代币化证券产品线。币安同时提示，bStocks 服务及其功能因司法辖区而异，部分市场的用户无法使用。\n\nbStocks 为代币化证券，每份由托管于受监管托管机构的 1 股美国股票 1:1 支撑，可在币安现货市场 24 小时交易。现货算法机器人与交易对同步上线，智能持仓机器人在 24 小时内跟进；零挂单手续费适用于 11 月 1 日 07:59 之前。",
-        "en": "Binance announced it will list four bStocks tokenized-securities trading pairs — JPMB/USDT, LLYB/USDT, SECZB/USDT and USDEB/USDT — on October 7 at 20:00. Spot algo trading bots are enabled at the same time as spot listing, smart holding bots within 24 hours of launch, free conversion into BTC, USDT or other supported tokens during the first hour, and zero maker fees until November 1 at 07:59.\n\nThe listing adds four tokenized-equity pairs to Binance's spot market with trading bots enabled from launch and a fee-free conversion window, extending the exchange's tokenized-securities product line. Binance notes that bStocks availability and features vary by jurisdiction, and users in some markets cannot access them.\n\nbStocks are tokenized securities each backed 1:1 by a US share held at a regulated custodian, tradeable around the clock on Binance's spot market. Spot algo bots go live with the pairs; smart holding bots follow within 24 hours; the zero maker fee applies until November 1 at 07:59."
+        "zh": "Securitize 推出 Securitize Stocks 产品，提供由真实股票一比一背书的代币化美股，首批涵盖 12 只广泛持有的标的，包括苹果、微软、英伟达、谷歌、特斯拉、Meta、亚马逊、Netflix、Circle、Strategy 和 Palantir。这些代币最初在 Securitize 注册经纪自营商平台的 Solana 网络上交易，并以 USDC 稳定币结算。\n\nSecuritize 表示，每枚代币是美国《统一商法典》（UCC）下的证券权益，而非单纯追踪股价的包装产品，从而保留投资者权利以及股息等经济利益，并在适用情况下保留投票权。这使其区别于许多仅追踪股价的离岸代币化股票产品。\n\n作为背书的股票不会被出借，在发行方支持的情况下，持有者可将其权益转换为实际登记股票；产品面向美国、欧盟及其他获准司法辖区的合格投资者。上线初期，流动性通过 Securitize 基于 Solana 的自动做市商运行，Jump Trading 担任做市商，交易在延长时间内可用，并计划推进至 24/7 全天候交易，合作方包括 Ripple Prime 和 Aave；Securitize 表示这些代币预计将在 NYSE 计划中的 24/7 交易场所和 OKX-ICE 代币化证券交易场所交易，但两者目前均未上线。",
+        "en": "Securitize launched Securitize Stocks, a product offering tokenized U.S. equities backed one-to-one by real shares, opening with security entitlements to 12 widely held names including Apple, Microsoft, Nvidia, Google, Tesla, Meta, Amazon, Netflix, Circle, Strategy and Palantir. The tokens initially trade on Securitize's registered broker-dealer platform on Solana, settling in the USDC stablecoin.\n\nSecuritize says each token is a security entitlement under the Uniform Commercial Code rather than a price-tracking wrapper, preserving investor rights and economic benefits such as dividends and, where applicable, voting. That distinguishes the offering from many offshore tokenized-equity products that only track a stock's price.\n\nThe shares backing the tokens will not be lent out, and holders can convert their entitlements into actual registered shares where an issuer supports it, with the product available to eligible investors in the U.S., the European Union and other permitted jurisdictions. At launch liquidity runs through Securitize's Solana-based automated market maker with Jump Trading as market maker, trading is available during extended hours ahead of a planned move to 24/7, and partners include Ripple Prime and Aave; Securitize says the tokens are expected to trade on the NYSE's planned 24/7 venue and the OKX-ICE tokenized-securities venue, neither of which has launched."
       },
       "content_revision": {
-        "zh": "07e74f740d6c17d1232d10048219b2d08261ee9f15b0d57cdb0c97dacf66c0ef",
-        "en": "3dd8fc9544cd41633f6a22c559498763ad90536330037b03eca22ea9d71c76c6"
+        "zh": "c80f99f0a2924ef4b0c96f6840f379c05672716a43db2d3497e02f6409419783",
+        "en": "52d16e6c231c67daf77abb316fe17e60c0d0805a2dd9c946cd8f5921099f3cd4"
+      },
+      "score": 7.5,
+      "category": "crypto-markets",
+      "top_category": "crypto",
+      "source": {
+        "type": "rss",
+        "label": "CoinDesk"
+      },
+      "tags": [
+        "tokenization",
+        "real-world-assets",
+        "solana",
+        "institutional-adoption",
+        "market-structure"
+      ],
+      "sources_count": 7,
+      "editorial": false,
+      "thread": {
+        "id": "t68db48f108",
+        "day": 1,
+        "url": "https://xiyu.news/threads/t68db48f108/"
+      },
+      "event": {
+        "event_id": "evt_400335f07c731453",
+        "update_id": "upd_957150b0129c7942",
+        "url": "https://xiyu.news/events/evt_400335f07c731453/#upd_957150b0129c7942",
+        "json": "https://xiyu.news/api/events/evt_400335f07c731453.json"
+      }
+    },
+    {
+      "rank": 7,
+      "url": "https://foresightnews.pro/news/h5Detail/114767",
+      "title": {
+        "zh": "【莫斯科交易所拟从 12 月 1 日起提供加密货币交易服务】",
+        "en": "Moscow Exchange Plans to Offer Cryptocurrency Trading from December 1"
+      },
+      "summary": {
+        "zh": "莫斯科证券交易所（MOEX）高级总经理鲍里斯·布洛欣向记者表示，该交易所计划从 12 月 1 日起依据俄罗斯新法规推出加密货币交易。据塔斯社报道，他表示在正式上线前将持续进行测试。\n\nMOEX 是俄罗斯主要的证券交易所，其提出的加密货币交易计划意味着数字资产将进入该国核心受监管市场基础设施，而不再仅限于离岸或无牌平台。\n\n该服务目前仍处于测试阶段，尚未正式上线；布洛欣未说明具体将交易哪些品种或业务范围。",
+        "en": "Boris Blokhin, senior managing director at the Moscow Exchange (MOEX), told reporters that the exchange plans to launch cryptocurrency trading on December 1 under Russia's new regulations. He said testing will continue until the official launch, according to TASS.\n\nMOEX is Russia's main stock exchange, so its stated plan to host crypto trading would place digital assets within the country's core regulated market infrastructure rather than only on offshore or unlicensed venues.\n\nThe service is still in a testing phase and has not gone live; Blokhin did not specify which instruments would be traded or the scope of the offering."
+      },
+      "content_revision": {
+        "zh": "2c4bd4efb960d9ab39aec895d41c94ea70cc6e205d1d9e82becc9044b6da89ca",
+        "en": "7d5757e77f1edb6dd8abb9ef8e28f6b1a32489965ce38b99f8256ed6c1b5150c"
       },
       "score": 7.5,
       "category": "exchange-announcements",
@@ -393,240 +306,328 @@
         "label": "foresightnews"
       },
       "tags": [
-        "binance",
-        "bStocks",
-        "tokenized-stocks",
-        "exchange-listings",
-        "trading-pairs"
+        "MOEX",
+        "Russia",
+        "crypto-trading",
+        "regulation",
+        "exchange-launch"
       ],
       "sources_count": 2,
       "editorial": false,
       "thread": {
-        "id": "tdb5596f80d",
+        "id": "t01edc1c56a",
         "day": 1,
-        "url": "https://xiyu.news/threads/tdb5596f80d/"
+        "url": "https://xiyu.news/threads/t01edc1c56a/"
       },
       "event": {
-        "event_id": "evt_7ec071769d9ff2a8",
-        "update_id": "upd_d822630bb8e9dbc1",
-        "url": "https://xiyu.news/events/evt_7ec071769d9ff2a8/#upd_d822630bb8e9dbc1",
-        "json": "https://xiyu.news/api/events/evt_7ec071769d9ff2a8.json"
+        "event_id": "evt_f0c220674a991bb3",
+        "update_id": "upd_681961bc3062495b",
+        "url": "https://xiyu.news/events/evt_f0c220674a991bb3/#upd_681961bc3062495b",
+        "json": "https://xiyu.news/api/events/evt_f0c220674a991bb3.json"
+      }
+    },
+    {
+      "rank": 8,
+      "url": "https://m.theblockbeats.info/flash/370809?from=telegram",
+      "title": {
+        "zh": "Sui原生比特币金融基础设施Hashi本月启动主网，已获超5亿美元资本承诺",
+        "en": "Sui-Native Bitcoin Financial Infrastructure Hashi to Launch Mainnet This Month, Has Secured Over $500 Million in Capital Commitments"
+      },
+      "summary": {
+        "zh": "Sui Foundation 宣布，其原生比特币金融基础设施 Hashi 将于本月启动主网，并采取分阶段上线方式。Hashi 已获得超过 5 亿美元资本承诺，由 20 多家加密行业机构组成的启动联盟参与；Anchorage Digital 作为首批合作伙伴加入，将通过其 Atlas 结算及三方抵押品基础设施和 Porto 机构自托管钱包提供接入渠道，并计划向 Hashi 提供稳定币流动性。\n\nHashi 的设计目标是让 BTC 留在比特币网络上的同时，在 Sui 上作为可编程抵押品使用，这一结构面向持有大量比特币的机构。Anchorage Digital 首席执行官兼联合创始人 Nathan McCauley 表示，上市公司和机构持有大量比特币，但其动用这部分资本的能力一直受制于可用技术以及 DeFi 领域的局限。\n\n用户存入 BTC 后，Hashi 会在 Sui 上铸造对应的 hBTC；退出时 hBTC 被销毁，对应的原生 BTC 释放回比特币网络。安全方面，Hashi 采用 MPC、Sui 智能合约以及 Guardian Layer 构建多层防护，BTC 抵押品采用 2/2 多签机制，由 Hashi 验证者和 Guardian 共同授权；其智能合约已通过 Certora 形式化验证，CommonPrefix 完成了对 MPC 协议的密码学安全审查。",
+        "en": "The Sui Foundation announced that Hashi, its native Bitcoin financial infrastructure, will begin a phased mainnet launch this month, backed by more than $500 million in capital commitments and a launch coalition of over 20 crypto industry institutions. Anchorage Digital is joining as a first-batch partner, providing institutional access through its Atlas settlement and triparty collateral infrastructure and its Porto self-custody wallet, and plans to supply stablecoin liquidity to Hashi.\n\nHashi is designed to let BTC remain on the Bitcoin network while being used as programmable collateral on Sui, a structure aimed at institutions that hold large Bitcoin balances. Anchorage Digital CEO and co-founder Nathan McCauley said public companies and institutions hold enormous amounts of Bitcoin but their ability to use that capital has been constrained by available technology and the limitations of DeFi.\n\nUsers deposit BTC, Hashi mints corresponding hBTC on Sui, and on exit the hBTC is burned and the native BTC is released back to the Bitcoin network. Security is built on MPC, Sui smart contracts and a Guardian Layer, with BTC collateral using a 2/2 multisig authorized jointly by Hashi validators and Guardians; the smart contracts have undergone Certora formal verification and CommonPrefix completed a cryptographic security review of the MPC protocol."
+      },
+      "content_revision": {
+        "zh": "e929b2ca2c76a7e4db89f222819996f50857aa687a538f26cc0e1df8a9d2c5a8",
+        "en": "f2c1d06e9779f2e3785bc81a901996a3e0013be1409ddbdbbb48594a99aa9d65"
+      },
+      "score": 7.5,
+      "category": "crypto-protocols",
+      "top_category": "crypto",
+      "source": {
+        "type": "telegram",
+        "label": "theblockbeats"
+      },
+      "tags": [
+        "bitcoin",
+        "sui",
+        "hashi",
+        "hBTC",
+        "Anchorage Digital",
+        "defi"
+      ],
+      "sources_count": 3,
+      "editorial": false,
+      "thread": {
+        "id": "t2e0f350a75",
+        "day": 1,
+        "url": "https://xiyu.news/threads/t2e0f350a75/"
+      },
+      "event": {
+        "event_id": "evt_60799d5ad64a7cfa",
+        "update_id": "upd_d66737ab08c1bfcc",
+        "url": "https://xiyu.news/events/evt_60799d5ad64a7cfa/#upd_d66737ab08c1bfcc",
+        "json": "https://xiyu.news/api/events/evt_60799d5ad64a7cfa.json"
+      }
+    },
+    {
+      "rank": 9,
+      "url": "https://foresightnews.pro/news/h5Detail/114746",
+      "title": {
+        "zh": "【79AU 运营热钱包疑似私钥泄露，损失约 1250 万美元】",
+        "en": "79AU operations hot wallet suspected private key leak, roughly $12.5 million lost"
+      },
+      "summary": {
+        "zh": "据 Defimon Alerts 监测，BNB Chain 上的 79th Vault（79AU）或因运营热钱包私钥泄露损失约 1250 万美元。该地址曾分 7 笔从交易对转出 201 万枚 79AU（金额分别为 1 万、10 万、10 万、30 万、50 万、50 万和 50 万枚），攻击者经约 95 笔兑换卖回同一交易对，套现 16249 枚 BNB（约 1250 万美元）。\n\n池中 USDT 储备从 1520 万美元降至 390 万美元，意味着该 79AU 交易对的流动性提供者与用户承担了损失。按相关监测方的说法，这是一起疑似运营密钥泄露导致的盗币事件，而非合约逻辑漏洞被利用。\n\n此外，运营密钥又向同一外部地址转入 3.79 枚 BNB，另有 50 万枚 79AU 转至其他地址。79AU 合约源代码未在 BscScan 上完成验证，外部审查者无法将已公开代码与链上实际运行代码进行比对。",
+        "en": "According to monitoring by Defimon Alerts, the 79th Vault (79AU) on BNB Chain lost approximately $12.5 million after a suspected private key leak in its operations hot wallet. The address moved 2.01 million 79AU out of its trading pair in seven transfers (10,000; 100,000; 100,000; 300,000; 500,000; 500,000; and 500,000 tokens), and the attacker sold them back through about 95 swaps, cashing out 16,249 BNB (about $12.5 million).\n\nThe pool's USDT reserves fell from $15.2 million to $3.9 million, meaning liquidity providers and users in the 79AU trading pair absorbed the losses. The incident is a suspected key-compromise drain on BNB Chain DeFi rather than a contract logic exploit per the cited monitors.\n\nThe operating key also sent 3.79 BNB to the same external address, and another 500,000 79AU was moved to other addresses. The 79AU contract source code is not verified on BscScan, so outside reviewers cannot compare published code with what runs on chain."
+      },
+      "content_revision": {
+        "zh": "2e7a2fdabe2c6a47850654ecbf21c1aa6bd253854a4768fd6c6034261bc23fca",
+        "en": "32d2fa638e22775851fb619ba5ad14e0dbf9548e987dba4859dcbe115b9849da"
+      },
+      "score": 7.5,
+      "category": "crypto-protocols",
+      "top_category": "crypto",
+      "source": {
+        "type": "telegram",
+        "label": "foresightnews"
+      },
+      "tags": [
+        "BNB Chain",
+        "79th Vault",
+        "79AU",
+        "私钥泄露",
+        "DeFi",
+        "安全事件"
+      ],
+      "sources_count": 2,
+      "editorial": false,
+      "thread": {
+        "id": "t3aa2f7923c",
+        "day": 1,
+        "url": "https://xiyu.news/threads/t3aa2f7923c/"
+      },
+      "event": {
+        "event_id": "evt_5690dc256b9a9aeb",
+        "update_id": "upd_5795f150c5d85c9f",
+        "url": "https://xiyu.news/events/evt_5690dc256b9a9aeb/#upd_5795f150c5d85c9f",
+        "json": "https://xiyu.news/api/events/evt_5690dc256b9a9aeb.json"
       }
     },
     {
       "rank": 10,
-      "url": "https://techcrunch.com/2026/10/07/chatgpt-for-teens-keeps-teens-talking-even-during-mental-health-crises/",
+      "url": "https://coinmarketcap.com/academy/article/payward-bitnomial-us-derivatives-licenses",
       "title": {
-        "zh": "ChatGPT 青少年版在心理健康危机中仍让青少年持续对话",
-        "en": "ChatGPT for Teens keeps teens talking, even during mental health crises"
+        "zh": "Payward 完成对 Bitnomial 的收购，获得美国完整衍生品牌照",
+        "en": "Payward Closes Bitnomial Acquisition, Gains Full US Derivatives Licenses"
       },
       "summary": {
-        "zh": "Common Sense Media 的最新测试发现，OpenAI 面向青少年的 ChatGPT for Teens 在模拟的心理健康危机情境中仍持续鼓励用户参与对话，并且在涉及自杀话题的对话中未能提醒家长，相关报道于 2026 年 10 月 7 日发布。研究人员还指出危机转介和年龄核验方面存在缺口；OpenAI 对测试结论提出异议。\n\n研究人员呼吁 OpenAI 让未成年人远离该平台，这一测试结果也直接进入关于对话式 AI 如何面向易受伤害用户部署的讨论。\n\n测试使用青少年资料模拟危机场景，发现家长提醒及其他防护措施存在缺口。OpenAI 不认同这些结论。",
-        "en": "New testing by Common Sense Media found that ChatGPT for Teens — OpenAI's teen-focused experience — continued encouraging engagement during simulated mental health crises and failed to alert parents during suicide-related conversations, according to reports published on October 7, 2026. The researchers also cited gaps in crisis referrals and age checks; OpenAI disputes the findings.\n\nThe researchers urged OpenAI to keep minors off the platform, and the results feed directly into the debate over how conversational AI is deployed to vulnerable users.\n\nThe testing placed teen profiles in crisis scenarios and found gaps in parental alerts and other safeguards. OpenAI disputes the findings."
+        "zh": "加密货币交易所 Kraken 的母公司 Payward 已完成对加密衍生品平台 Bitnomial 的收购，从而获得覆盖交易所、清算和经纪业务的美国完整衍生品牌照组合。\n\n这笔交易使一整套获得 CFTC 完整牌照的衍生品架构——指定合约市场（DCM）、衍生品清算组织（DCO）与期货佣金商（FCM）——归入美国规模最大的加密交易所集团之一。Kraken 表示，此次合并将 Bitnomial 受 CFTC 监管的基础设施，与自身的客户基础以及覆盖 Kraken、NinjaTrader 及其更广泛产品线的分销能力结合在一起。\n\n有报道称交易金额为 5.5 亿美元的现金加股票。所获得的牌照覆盖美国衍生品的三项核心功能：交易所（DCM）、清算（DCO）与经纪（FCM）。",
+        "en": "Payward, the parent company of the Kraken exchange, has closed its acquisition of crypto derivatives platform Bitnomial, giving it a full set of US derivatives licenses covering exchange, clearing and brokerage functions.\n\nThe deal places a fully CFTC-licensed derivatives stack — designated contract market, derivatives clearing organization and futures commission merchant — inside one of the largest US crypto exchange groups. Kraken has said the combination brings Bitnomial's CFTC-licensed infrastructure together with its client base and distribution across Kraken, NinjaTrader and its wider product family.\n\nReports put the transaction at $550 million in cash and stock. The licenses gained cover the three core US derivatives functions: exchange (DCM), clearing (DCO) and brokerage (FCM)."
       },
       "content_revision": {
-        "zh": "2405f8faa349d1f08b2e753763f4697ef94c896a635b615bd497421246b88ff7",
-        "en": "cbd6d81ccf9283a4a9b2a9974edd785d1a99b3c47217ddc02356df77729f2b28"
+        "zh": "8b37b442a9edcc92c85af16b64b19aa39053239e8bab8f819a53313785dc5ba6",
+        "en": "49ef97940485e6344bb6726197d95cb278016d5da021ffe7f181aac4c0d59645"
       },
       "score": 7.5,
-      "category": "ai-media",
+      "category": "exchange-announcements",
+      "top_category": "crypto",
+      "source": {
+        "type": "google_news",
+        "label": "CoinMarketCap"
+      },
+      "tags": [
+        "Kraken",
+        "Payward",
+        "Bitnomial",
+        "crypto derivatives",
+        "acquisitions",
+        "CFTC"
+      ],
+      "sources_count": 1,
+      "editorial": false,
+      "thread": {
+        "id": "t197535ae70",
+        "day": 5,
+        "url": "https://xiyu.news/threads/t197535ae70/"
+      },
+      "event": {
+        "event_id": "evt_1841817ac4585373",
+        "update_id": "upd_56ac718af0c3a77a",
+        "url": "https://xiyu.news/events/evt_1841817ac4585373/#upd_56ac718af0c3a77a",
+        "json": "https://xiyu.news/api/events/evt_1841817ac4585373.json"
+      }
+    },
+    {
+      "rank": 11,
+      "url": "https://shattered.io/bitget-hack-388-million-zero-day-2026/",
+      "title": {
+        "zh": "Bitget 遭黑客攻击：因零日漏洞损失 3.88 亿美元 [2026]",
+        "en": "Bitget Hack: $388M Lost to Zero-Day Flaw [2026]"
+      },
+      "summary": {
+        "zh": "shattered.io 发布的一篇报道称，加密货币交易所 Bitget 在一起据称利用零日漏洞的攻击中损失了 3.88 亿美元。该说法尚未得到 Bitget、链上分析机构或其他媒体的证实。\n\n若所披露的金额属实，该事件将成为有记录以来规模最大的加密货币交易所安全事件之一。但就目前报道而言，尚无交易所声明、链上证据或独立报道支持这一数字。\n\n该说法来自非主流媒体 shattered.io 的一则标题报道，并未附带链上数据或相互印证的报道。Bitget 尚未公开承认发生此类安全事件。",
+        "en": "A report published by shattered.io alleges that crypto exchange Bitget lost $388 million in an exploit said to involve a zero-day vulnerability. The claim has not been confirmed by Bitget, on-chain analysts or other outlets.\n\nIf the alleged figure is accurate, the incident would rank among the largest security failures at a crypto exchange on record. As reported so far, no exchange statement, on-chain evidence or independent coverage has been cited to support the number.\n\nThe claim originates from a single headline on shattered.io, a non-mainstream outlet, and no on-chain data or corroborating reporting accompanies it. Bitget has not publicly acknowledged any such breach."
+      },
+      "content_revision": {
+        "zh": "c59eadddc6418d984f3f4423cf77b863feaf12304b9f7f8f816c354896e9f7fa",
+        "en": "fbd6264dff98fa40d521fe4376eb7277b47a625b9635ad30902ac330fd33b5da"
+      },
+      "score": 7.5,
+      "category": "exchange-operations",
+      "top_category": "crypto",
+      "source": {
+        "type": "google_news",
+        "label": "shattered.io"
+      },
+      "tags": [
+        "Bitget",
+        "zero-day exploit",
+        "exchange hack",
+        "exchange security"
+      ],
+      "sources_count": 1,
+      "editorial": false,
+      "thread": {
+        "id": "t55380c9bc2",
+        "day": 3,
+        "url": "https://xiyu.news/threads/t55380c9bc2/"
+      },
+      "event": {
+        "event_id": "evt_6655595dc1e36e0b",
+        "update_id": "upd_dc35133d628ea7a7",
+        "url": "https://xiyu.news/events/evt_6655595dc1e36e0b/#upd_dc35133d628ea7a7",
+        "json": "https://xiyu.news/api/events/evt_6655595dc1e36e0b.json"
+      }
+    },
+    {
+      "rank": 12,
+      "url": "https://twitter.com/danintheory/status/2108065033070789090",
+      "title": {
+        "zh": "OpenAI 撤回三项数学成果",
+        "en": "OpenAI withdraws three mathematical results"
+      },
+      "summary": {
+        "zh": "据 @danintheory 在 X 上发布的帖子及 openai/math 仓库的 history 文件，OpenAI 已从其数学仓库中撤回三项数学成果。该仓库收录由 OpenAI 内部模型生成的数学手稿及相关证明工件。\n\n此次撤回使外界关注 AI 生成数学证明的可信度问题，尤其是那些以自然语言给出、而非附有可机器检验的 Lean 证书的成果。\n\nopenai/math 仓库共收录 722 篇手稿、分属 372 个成果系列，以 Apache-2.0 许可发布。其中部分证明包含可供计算机检验的 Lean 形式化内容，另一部分则没有。",
+        "en": "OpenAI has withdrawn three mathematical results from its openai/math repository, according to the repository's history file, which was circulated in a post by @danintheory. The repository hosts mathematical manuscripts and supporting proof artifacts produced by an internal OpenAI model.\n\nThe withdrawal focuses attention on how much trust should be placed in AI-generated mathematical proofs, especially results presented in natural language rather than backed by machine-checkable Lean certificates.\n\nThe openai/math repository holds 722 manuscripts across 372 result families and is released under Apache-2.0. Some of the proofs include Lean formalization that computers can check, while others do not."
+      },
+      "content_revision": {
+        "zh": "2e96e25b9c8c709828ec439ed18b7366fa81b1717f74b7b1221b8bbf2f29ebd5",
+        "en": "980acfc08e36c7f4d16451ee401dd3c9f287f73b7e217894b7b82c0fea176252"
+      },
+      "score": 7.5,
+      "category": "ai-labs",
+      "top_category": "technology",
+      "source": {
+        "type": "hackernews",
+        "label": "sashank_1509"
+      },
+      "tags": [
+        "openai",
+        "ai-mathematics",
+        "research-integrity",
+        "lean-proof-verification",
+        "ai-generated-proofs"
+      ],
+      "sources_count": 2,
+      "editorial": false,
+      "thread": {
+        "id": "tcb64f35a05",
+        "day": 1,
+        "url": "https://xiyu.news/threads/tcb64f35a05/"
+      },
+      "event": {
+        "event_id": "evt_485e3500fec69b76",
+        "update_id": "upd_3a756b83ce4e2af2",
+        "url": "https://xiyu.news/events/evt_485e3500fec69b76/#upd_3a756b83ce4e2af2",
+        "json": "https://xiyu.news/api/events/evt_485e3500fec69b76.json"
+      }
+    },
+    {
+      "rank": 13,
+      "url": "https://techcrunch.com/2026/10/08/fired-openai-safety-researchers-dispute-misconduct-claims-warn-of-chilling-effect/",
+      "title": {
+        "zh": "被解雇的OpenAI安全研究员反驳不当行为指控，并警告寒蝉效应",
+        "en": "Fired OpenAI safety researchers dispute misconduct claims, warn of chilling effect"
+      },
+      "summary": {
+        "zh": "三名被OpenAI解雇的安全研究员公开否认有关其不当处理敏感信息的指控，并发表公开信反驳这些不当行为说法，同时警告他们的解雇正在公司内部对AI安全工作产生寒蝉效应。他们在信中写道：“鉴于AI发展所带来的重大安全担忧，员工不应在一个由恐惧和模糊规则阻碍AI安全工作、削弱第三方问责的环境中工作。”\n\n这封公开信将这些解雇事件界定为治理问题，而非单纯的人事问题，认为处理方式会影响这家领先AI实验室内部安全工作的开展以及第三方问责机制。\n\n这些研究员否认“不当共享敏感信息”的定性；此前的报道称，这些解雇与涉嫌向外部安全组织分享信息有关。",
+        "en": "Three fired OpenAI safety researchers publicly rejected allegations that they mishandled sensitive information, publishing an open letter that disputes the misconduct claims and warns their dismissals are chilling AI safety work inside the company. In the letter they wrote that \"given the significant safety concerns surrounding the development of AI, employees must not be left working in an environment where fear and unclear rules stymie AI safety work and weaken third-party accountability.\"\n\nThe letter frames the dismissals as a governance issue rather than a purely personnel matter, arguing that the way the cases were handled affects how safety work and third-party accountability function at a leading AI lab.\n\nThe researchers dispute the characterization that they improperly shared sensitive information; earlier reporting linked the dismissals to allegations of sharing information with external safety groups."
+      },
+      "content_revision": {
+        "zh": "95a2a1f12e1ecf79138c5346b5700c6fa5fb56569184fb69ca5c3ffb15e704ce",
+        "en": "a405d54271fd187250f9dd32e3ea4a764c691cc96978338a98132dd093d72726"
+      },
+      "score": 7.0,
+      "category": "ai-labs",
       "top_category": "technology",
       "source": {
         "type": "rss",
         "label": "TechCrunch AI"
       },
       "tags": [
+        "OpenAI",
         "AI safety",
-        "ChatGPT",
-        "teen mental health",
-        "consumer protection",
-        "OpenAI"
+        "AI governance",
+        "labor dispute",
+        "lab accountability"
       ],
       "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "tebaee16ff2",
-        "day": 1,
-        "url": "https://xiyu.news/threads/tebaee16ff2/"
+        "id": "t46c63a0311",
+        "day": 2,
+        "url": "https://xiyu.news/threads/t46c63a0311/"
       },
       "event": {
-        "event_id": "evt_a172ba689c659648",
-        "update_id": "upd_e76804355e246c2a",
-        "url": "https://xiyu.news/events/evt_a172ba689c659648/#upd_e76804355e246c2a",
-        "json": "https://xiyu.news/api/events/evt_a172ba689c659648.json"
-      }
-    },
-    {
-      "rank": 11,
-      "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
-      "title": {
-        "zh": "一个模型家族，两项金牌级成绩：为 IOI 和 IMO 微调 Nemotron",
-        "en": "One Model Family, Two Gold-Level Results: Fine-Tuning Nemotron for IOI and IMO"
-      },
-      "summary": {
-        "zh": "Hugging Face 与 NVIDIA 发布博文，介绍了如何通过对 Nemotron 模型家族进行微调，在国际信息学奥林匹克竞赛（IOI）和国际数学奥林匹克竞赛（IMO）两项赛事上均取得金牌级成绩。文章记录了微调方法，并附带相应的发布与配方（recipe）。\n\n一个开放可得的模型家族在竞赛编程与奥数两项高难度任务上达到金牌级成绩，对构建推理系统的开发者具有直接参考价值——他们可以使用同一开放模型家族与微调配方。\n\nNemotron 是 NVIDIA 的开放模型家族，公开权重、训练数据和配方；该博文发布在 Hugging Face 社区博客的 NVIDIA 账号下。",
-        "en": "Hugging Face and NVIDIA published a blog post describing how fine-tuning the Nemotron model family produced gold-medal-level results on both the International Olympiad in Informatics (IOI) and the International Mathematical Olympiad (IMO). The write-up documents the fine-tuning approach and is accompanied by a release and recipe.\n\nGold-medal-level competitive programming and olympiad mathematics results from an openly available model family are directly relevant to builders of reasoning systems, who can work from the same open model family and fine-tuning recipe.\n\nNemotron is NVIDIA's family of open models released with open weights, training data and recipes; the blog post appears on NVIDIA's account on Hugging Face's community blog."
-      },
-      "content_revision": {
-        "zh": "9c41dd35ef154648924038d75dbae6d3df455bf215203cf5c9efd60a6b3ff096",
-        "en": "5888a600290af704aa6d0fbf1de468fefa8380c268f5d2bd3b504676e6304e23"
-      },
-      "score": 7.5,
-      "category": "ai-labs",
-      "top_category": "technology",
-      "source": {
-        "type": "rss",
-        "label": "Hugging Face Blog"
-      },
-      "tags": [
-        "nemotron",
-        "fine-tuning",
-        "reasoning-models",
-        "benchmarks",
-        "open-models",
-        "nvidia"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "t67f5f61696",
-        "day": 1,
-        "url": "https://xiyu.news/threads/t67f5f61696/"
-      },
-      "event": {
-        "event_id": "evt_1f948f22021fd0ec",
-        "update_id": "upd_88cdde642e1b3361",
-        "url": "https://xiyu.news/events/evt_1f948f22021fd0ec/#upd_88cdde642e1b3361",
-        "json": "https://xiyu.news/api/events/evt_1f948f22021fd0ec.json"
-      }
-    },
-    {
-      "rank": 12,
-      "url": "https://tokenist.com/okx-tokenized-stocks-okxice-filing/",
-      "title": {
-        "zh": "SEC文件勾勒出OKX 63只代币化股票的24/7交易计划",
-        "en": "SEC Filing Outlines 24/7 Plan for 63 OKX Tokenized Stocks"
-      },
-      "summary": {
-        "zh": "OKX已向美国证券交易委员会（SEC）提交文件，说明在其平台上对63只代币化股票实行7×24小时全天候交易的框架。该文件与OKXICE实体相关，推进了该交易所布局代币化股票产品的进程。\n\n这份文件是一家大型加密交易所切入代币化股票市场结构的实质性动作，而SEC工作人员已在2026年1月就联邦证券法如何适用于代币化证券发表过声明。\n\n对该文件的报道称其对代币化股票交易设有限制，另有一个标题指出代币化证券交易场所不会挑战传统交易所。该文件本身并不构成对该计划的批准。",
-        "en": "OKX has filed with the US Securities and Exchange Commission a framework for around-the-clock (24/7) trading of 63 tokenized stocks on its platform. The filing, tied to the OKXICE entity, advances the exchange's push into tokenized equity products.\n\nThe filing is a concrete step by a major crypto exchange into tokenized equity market structure, a segment the SEC staff addressed in a January 2026 statement on the application of federal securities laws to tokenized securities.\n\nCoverage of the filing describes it as setting limits on tokenized stock trading, and one headline states that tokenized securities venues will not challenge traditional exchanges. The filing does not by itself constitute an approval of the plan."
-      },
-      "content_revision": {
-        "zh": "644327fd134084e3fbd2478f60a490409312aef9f4cde102731439d62f1f39bf",
-        "en": "fce6f25996d75885a93c8dd101b073db1418b3764d5bc7b06ee0005ef5c0ca41"
-      },
-      "score": 7.5,
-      "category": "crypto-regulation",
-      "top_category": "policy",
-      "source": {
-        "type": "google_news",
-        "label": "Tokenist"
-      },
-      "tags": [
-        "OKX",
-        "tokenized stocks",
-        "SEC filing",
-        "tokenization",
-        "market structure"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "td8771017dd",
-        "day": 5,
-        "url": "https://xiyu.news/threads/td8771017dd/"
-      },
-      "event": {
-        "event_id": "evt_e506132f0beed4b1",
-        "update_id": "upd_aa0f2377f5c14777",
-        "url": "https://xiyu.news/events/evt_e506132f0beed4b1/#upd_aa0f2377f5c14777",
-        "json": "https://xiyu.news/api/events/evt_e506132f0beed4b1.json"
-      }
-    },
-    {
-      "rank": 13,
-      "url": "https://cointelegraph.com/news/circle-usdc-eurc-payments-sap-enterprise-ecosystem?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
-      "title": {
-        "zh": "Circle 通过 Tereina 将 USDC、EURC 支付引入 SAP 客户",
-        "en": "Circle brings USDC, EURC payments to SAP customers through Tereina"
-      },
-      "summary": {
-        "zh": "Circle 宣布与 SAP 投资的金融服务公司 Tereina 建立合作，将 USDC 和 EURC 稳定币接入 Tereina 的嵌入式支付基础设施，首先落地于 SAP Cloud ERP 和 SAP Pay。按照该计划，USDC 将作为美元计价交易的首选稳定币，EURC 则用于欧元计价支付。\n\n该集成将使企业能够在其已有的财务软件内部直接收发这两种稳定币，而无需切换到单独的平台；公告称 SAP 生态系统承载了全球 84% 的商业活动。\n\nTereina 与 Circle 表示，计划在未来数月内与客户一起测试该稳定币集成，应用场景包括全球支付与资金管理，因此该方案尚未实现大规模上线。此举距离 Circle 推出其专注稳定币支付与金融市场的 Layer-1 区块链 Arc 主网还不到一个月。",
-        "en": "Circle announced a partnership with Tereina, an SAP-backed financial services company, to integrate the USDC and EURC stablecoins into Tereina's embedded payments infrastructure, starting with SAP Cloud ERP and SAP Pay. Under the plan, USDC will be the preferred stablecoin for dollar-denominated transactions and EURC for euro-denominated payments.\n\nThe integration would let businesses send and receive the two stablecoins inside the financial software they already use, rather than through a separate platform; the announcement states that the SAP ecosystem sits behind 84% of global commerce.\n\nTereina and Circle said they plan to test the stablecoin integration with customers over the coming months, including for global payments and treasury operations, so the rollout is not yet live at scale. The move comes less than a month after Circle launched the mainnet of Arc, its layer-1 blockchain focused on stablecoin payments and financial markets."
-      },
-      "content_revision": {
-        "zh": "78c57090bb977b6663c2f26bb48b051d1b2c12776a279db08a0a1413eb92e265",
-        "en": "5ee0353f97821825aa13d2449c14204a032370528b899ac8dfa5dec103f075bf"
-      },
-      "score": 7.0,
-      "category": "crypto-markets",
-      "top_category": "crypto",
-      "source": {
-        "type": "rss",
-        "label": "Cointelegraph"
-      },
-      "tags": [
-        "USDC",
-        "EURC",
-        "stablecoins",
-        "enterprise-adoption",
-        "SAP"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "t6d60c17e6f",
-        "day": 8,
-        "url": "https://xiyu.news/threads/t6d60c17e6f/"
-      },
-      "event": {
-        "event_id": "evt_9087607cb480e1b8",
-        "update_id": "upd_036a77b0affef80b",
-        "url": "https://xiyu.news/events/evt_9087607cb480e1b8/#upd_036a77b0affef80b",
-        "json": "https://xiyu.news/api/events/evt_9087607cb480e1b8.json"
+        "event_id": "evt_b0831ae7fb72a1c8",
+        "update_id": "upd_3e24a3b5585b3019",
+        "url": "https://xiyu.news/events/evt_b0831ae7fb72a1c8/#upd_3e24a3b5585b3019",
+        "json": "https://xiyu.news/api/events/evt_b0831ae7fb72a1c8.json"
       }
     },
     {
       "rank": 14,
-      "url": "https://wublockchain.xyz/news/news-21144",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQYlVFa0lLSzZRaDNqRXNLWjFxOE0xa3pZdkNrV2hkNHkxTDg3QnVRdFVVclpaUXVXTVZyekdxNkRGQTFGTWdmb1h2NGtLT3pOaUJuZG8wYldhVUFMbEdta2o0eERWaGlTalpISG9reWhCTm9VSmI1X0RFVDJ3Rk1zSDF6YmEwZWRiVnFHSS1DczNLZw?oc=5",
       "title": {
-        "zh": "美国第四大银行富国银行正与Kraken母公司Payward洽谈",
-        "en": "Wells Fargo, America’s Fourth-Largest Bank, in Talks With Kraken Parent Payward "
+        "zh": "推出面向开源软件的可选加入式漏洞发现服务",
+        "en": "Launching an opt-in vulnerability-finding service for open-source software - Anthropic"
       },
       "summary": {
-        "zh": "据CoinDesk援引两名知情人士报道，富国银行正与Kraken母公司Payward洽谈一项潜在交易，由Payward为其加密资产交易提供流动性。Payward同时还在与BNY洽谈一项更广泛的金融基础设施合作，可能涵盖加密产品、托管、财富管理、交易与支付。\n\n据该报道，这一洽谈反映出大型银行正越来越多地借助成熟的加密公司来支撑其数字资产布局。\n\n报道称相关洽谈仍在进行中，最终未必达成交易；文中未提及任何条款或已签署协议，消息来源为匿名人士。Payward与BNY的另一项洽谈被描述为覆盖更广泛的金融基础设施领域。",
-        "en": "Wells Fargo is in talks with Kraken parent Payward over a potential deal in which Payward would supply liquidity for crypto asset trading, CoinDesk reported, citing two people with direct knowledge of the matter. Payward is separately in talks with BNY over a broader financial infrastructure partnership that could cover crypto products, custody, wealth management, trading and payments.\n\nThe reported talks illustrate how major banks are increasingly turning to established crypto companies to support their digital asset ambitions, according to the report.\n\nThe discussions are described as ongoing and may not result in a deal; no terms or signed agreement were reported, and the accounts come from unnamed sources. The separate Payward–BNY talks are characterized as covering a broader set of financial infrastructure areas."
+        "zh": "Anthropic 宣布推出 OSS Scanner，这是一项可选加入（opt-in）的服务，使用其模型对开源软件代码库进行全面的定期安全扫描，并免费向相关项目提示潜在漏洞。\n\n据来源称，选择加入的开源项目可能更早收到潜在安全问题的提示；其代价则与 OSS Scanner 的运作方式有关。\n\n该服务对参与的开源项目免费，并使用 Anthropic 最强的模型进行定期扫描；参与方式为自愿加入而非自动纳入，公司还为该服务维护了一个公开代码库。",
+        "en": "Anthropic announced OSS Scanner, an opt-in service that uses its models to run thorough, periodic security scans of open-source software repositories and alert projects to potential vulnerabilities at no cost.\n\nAccording to the source, open-source projects that opt in could be alerted about possible security issues sooner; the trade-off is described as stemming from how OSS Scanner works.\n\nThe service is described as free to participating open-source projects and uses Anthropic's strongest models for periodic scanning; participation is opt-in rather than automatic, and the company maintains a public repository for the service."
       },
       "content_revision": {
-        "zh": "25d6d6b758f303c1cd5c6b934bb49dfc1be4d03fa9feae958ad06b2bc722d1dd",
-        "en": "a9f849e70149ef3f07211a50e348b3ebe2583970bd9c02be1a6587b5f05d1903"
+        "zh": "5217b4c585574a2c6d682c8c2822491c3ce0437ef4a9a99c4dd021adfa0fca78",
+        "en": "0f2d4e7291fd98e3267ab6f287d6c215d3f40725e2ed80f43a477308cda03ff8"
       },
       "score": 7.0,
-      "category": "crypto-markets",
-      "top_category": "crypto",
+      "category": "ai-labs",
+      "top_category": "technology",
       "source": {
-        "type": "telegram",
-        "label": "wublockchainenglish"
+        "type": "rss",
+        "label": "Anthropic News"
       },
       "tags": [
-        "institutional-adoption",
-        "kraken",
-        "banking",
-        "market-structure",
-        "custody"
+        "anthropic",
+        "ai-security",
+        "open-source",
+        "vulnerability-detection",
+        "developer-tools",
+        "oss-scanner"
       ],
-      "sources_count": 1,
+      "sources_count": 2,
       "editorial": false,
       "thread": {
-        "id": "t197535ae70",
-        "day": 4,
-        "url": "https://xiyu.news/threads/t197535ae70/"
+        "id": "t3e79480b14",
+        "day": 1,
+        "url": "https://xiyu.news/threads/t3e79480b14/"
       },
       "event": {
-        "event_id": "evt_a6c1a135840ecda3",
-        "update_id": "upd_6c8a2b4ac7d251fd",
-        "url": "https://xiyu.news/events/evt_a6c1a135840ecda3/#upd_6c8a2b4ac7d251fd",
-        "json": "https://xiyu.news/api/events/evt_a6c1a135840ecda3.json"
+        "event_id": "evt_b5d41a5c8dc0f7ce",
+        "update_id": "upd_6feb330545f263cd",
+        "url": "https://xiyu.news/events/evt_b5d41a5c8dc0f7ce/#upd_6feb330545f263cd",
+        "json": "https://xiyu.news/api/events/evt_b5d41a5c8dc0f7ce.json"
       }
     }
   ]
