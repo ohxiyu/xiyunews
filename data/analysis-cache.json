@@ -460,22 +460,6 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
-    "01fc00e1d5c60029e398c722951d8fd84ad711d2b9a0947fcc3315e4276a677d": {
-      "stored_at": "2026-09-28T19:48:51.650239+00:00",
-      "value": {
-        "ai_reason": "Routine exchange announcement: OKX listing perpetual futures for XDP, a lesser-known asset. Perp listings on a single venue are standard product-expansion news with limited immediate market impact; comparable to a routine mid-cap listing (~6.0-6.5). No exploit, regulatory, or systemic implications.",
-        "ai_score": 6.0,
-        "ai_summary": "OKX announced it will list perpetual futures contracts for the XDP crypto asset.",
-        "ai_tags": [
-          "OKX",
-          "exchange-listing",
-          "perpetual-futures",
-          "derivatives"
-        ],
-        "category": "exchange-announcements",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "020b2c64fd43f59c7df5b4479f4cefa6f7db9d973c4f0ccaca6ae4ec357933d6": {
       "stored_at": "2026-10-05T15:52:34.601311+00:00",
       "value": {
@@ -2550,6 +2534,23 @@
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
+      }
+    },
+    "095185679bf49745708e993c93653c08aa4b24565f42079de91929f79dcb3ed4": {
+      "stored_at": "2026-10-08T00:19:04.644063+00:00",
+      "value": {
+        "ai_reason": "This is promotional press-release content hyping a memecoin ('Pepeto') with a headline-driven 'bull wave' narrative, no verifiable data, no concrete protocol or market development, and no meaningful in-window news. Falls under purely promotional/noise-tier material.",
+        "ai_score": 1.5,
+        "ai_summary": "A promotional article touts the memecoin project Pepeto as attracting bullish momentum following an unspecified event.",
+        "ai_tags": [
+          "memecoin",
+          "promotional",
+          "crypto-markets",
+          "low-signal"
+        ],
+        "category": "crypto-markets",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "exchange-announcements"
       }
     },
     "095e6cdb7f3b23fedb50fa5ec3e46f15d3e2a54cc61b62cbcd026570d62c26a1": {
@@ -5978,6 +5979,24 @@
         "source_category": "exchange-announcements"
       }
     },
+    "169ba68be0661696c781036973b33a7ebf3058aaa3e06631cecf77aefc2a0292": {
+      "stored_at": "2026-10-08T00:19:04.643617+00:00",
+      "value": {
+        "ai_reason": "Vitalik's in-window post makes a substantive technical claim — AI-driven math progress could erode lattice-based cryptography (ML-DSA, FHE) and ECDSA safety within roughly two years — and discloses a concrete strategic pivot: Ethereum's Lean roadmap moving toward pure hash-based signatures to reduce lattice dependency. It also gives actionable, if cautious, custody guidance (fresh never-used addresses, offline multisig signing, no rushed migration). High signal for protocol design and long-term asset security, but it is a warning/roadmap statement rather than a live exploit, upgrade, or market-moving event, so it lands in the upper-middle of the scale.",
+        "ai_score": 7.0,
+        "ai_summary": "Vitalik Buterin warned that AI-accelerated mathematics could weaken lattice-based post-quantum cryptography such as ML-DSA and FHE — and eventually ECDSA — within about two years, prompting Ethereum's Lean roadmap to favor pure hash-based signatures, while advising users not to hastily move assets but to prefer unused addresses and offline multisig signing.",
+        "ai_tags": [
+          "ethereum",
+          "post-quantum-cryptography",
+          "vitalik-buterin",
+          "ai-security",
+          "crypto-custody"
+        ],
+        "category": "crypto-protocols",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-markets"
+      }
+    },
     "16a27f46f71e5272b0195d19e1ae05bf0c21315cf1077e346fd0671b75aabb6c": {
       "stored_at": "2026-10-02T02:32:43.861311+00:00",
       "value": {
@@ -7252,23 +7271,6 @@
         "category": "exchange-announcements",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
-      }
-    },
-    "1ba04aaba66d63c2ea5c74f327069244e07799e74d7baf069961bd26e2262b8f": {
-      "stored_at": "2026-09-28T19:48:51.649578+00:00",
-      "value": {
-        "ai_reason": "A venture funding announcement for an insurtech startup applying AI to insurance back-office paperwork. The raise ($34.5M, shortly after a prior round) is a modest company-level event with no demonstrated impact on AI capabilities, developer ecosystems, or crypto markets. It is routine startup-financing news rather than a technical or market-structure development, placing it in the low-priority range.",
-        "ai_score": 4.0,
-        "ai_summary": "Insurtech startup Outmarket raised $34.5M to scale its AI-driven automation of paperwork and back-office workflows for insurance agencies and brokers, just months after its previous funding round.",
-        "ai_tags": [
-          "insurtech",
-          "funding",
-          "ai-applications",
-          "startups",
-          "venture-capital"
-        ],
-        "category": "ai-media",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "1ba56cfdbc219edb721360ce06cd0a1522727ae5547a2998558a15e1cba88027": {
@@ -8638,24 +8640,6 @@
         ],
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash"
-      }
-    },
-    "1f481a30e5d74d8ad475b9aeb33d56087522d4071acc3b423cef810bd5c134ba": {
-      "stored_at": "2026-09-28T19:48:51.649908+00:00",
-      "value": {
-        "ai_reason": "A Solana DeFi protocol suspending payments and capping payouts is a notable operational issue, but the protocol is not systemically important and the cause remains unclear, limiting market-wide impact.",
-        "ai_score": 5.5,
-        "ai_summary": "Solana-based DeFi protocol UsePaid paused X Money payments after a volume spike and capped payouts at $750 per user following ACH deposit crediting failures.",
-        "ai_tags": [
-          "Solana",
-          "DeFi",
-          "payments",
-          "X Money",
-          "ACH"
-        ],
-        "category": "crypto-protocols",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
       }
     },
     "1f7f17c151ec8537b28588da3d418223f63c4c9bfd4762949a2ea933c42dbc0d": {
@@ -13018,6 +13002,24 @@
         "source_category": "exchange-announcements"
       }
     },
+    "2f088f8a66bf94410d29b683fbd6f511c2da021335b7a985b6e208583fcd0dca": {
+      "stored_at": "2026-10-08T00:19:04.644124+00:00",
+      "value": {
+        "ai_reason": "This is promotional hype content pushing speculative meme coin picks with no verifiable data, no concrete development, and no in-window news event. It reads as affiliate-style 'millionaire maker' clickbait, which falls under noise/low-priority content rather than actionable market information.",
+        "ai_score": 1.5,
+        "ai_summary": "A promotional article touting three Pepe Coin rivals as the best meme coin buys for the current cycle, offering speculative price narratives without supporting evidence.",
+        "ai_tags": [
+          "meme-coins",
+          "pepe",
+          "speculation",
+          "retail-hype",
+          "crypto-markets"
+        ],
+        "category": "crypto-markets",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "exchange-announcements"
+      }
+    },
     "2f089329f0e803dfd627a73796c02ef8906d75773abc5b9883e8953d5b0a93b9": {
       "stored_at": "2026-09-29T10:51:59.114811+00:00",
       "value": {
@@ -14632,23 +14634,6 @@
         "category": "crypto-protocols",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
-      }
-    },
-    "348aaf1ee0e3fa4ffefc4ae2f90ad84a6d6dd3914e39b996707f726ccd3c9b3f": {
-      "stored_at": "2026-09-28T19:48:51.650167+00:00",
-      "value": {
-        "ai_reason": "Bitmine's weekly ETH accumulation update is a notable institutional treasury milestone (6,001,302 ETH, ~4.9% of circulating supply, ~$16.2B) but remains an incremental purchase of $47M following a long-established pattern since mid-2025. It signals continued corporate/institutional demand for ETH and over 5M tokens staked at 2.62% yield, yet there is no new market-structure, regulatory, or protocol development, so it sits above routine commentary but below high-value adoption news.",
-        "ai_score": 6.5,
-        "ai_summary": "Bitmine Immersion Technologies added 17,362 ETH (~$47M) last week, bringing its treasury to 6,001,302 ETH — about 4.9% of Ethereum's circulating supply and roughly $16.2 billion — as it approaches its self-styled 5% 'Alchemy of 5%' target, with over five million tokens staked at a 2.62% annualized yield.",
-        "ai_tags": [
-          "ethereum",
-          "institutional-adoption",
-          "corporate-treasury",
-          "staking",
-          "crypto-markets"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "34911e9945a7755e6cfa95543b5fca91d4716a808704aea1a794c9a82114500b": {
@@ -17916,6 +17901,23 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "3fd192183f1a114877d1bc3ccc621cb89509703670392cb0a37c018b0eca5e23": {
+      "stored_at": "2026-10-08T00:19:04.643774+00:00",
+      "value": {
+        "ai_reason": "The US government moving roughly $470M in seized BTC, WBTC and USDT tied to the 2016 Bitfinex hack and Alameda to likely Coinbase Prime addresses is a material, verifiable on-chain development with a clear transmission path to crypto markets via potential supply overhang and the Strategic Bitcoin Reserve policy. It falls short of a confirmed sale or systemic event, so it lands in the high-value but not groundbreaking band.",
+        "ai_score": 7.0,
+        "ai_summary": "Arkham reported that US government wallets moved about $470 million in seized Bitcoin, wrapped Bitcoin and USDT linked to the Bitfinex hack and Alameda to likely Coinbase Prime addresses, reviving speculation about potential government sales even though a sale is unconfirmed.",
+        "ai_tags": [
+          "bitcoin",
+          "us-government",
+          "seized-assets",
+          "coinbase",
+          "market-impact"
+        ],
+        "category": "crypto-markets",
+        "score_model": "deepseek:deepseek-flash"
+      }
+    },
     "3fd7462239f23a20df10b9ad501da4ab3a9a11ede72919d52656d37300b5eade": {
       "stored_at": "2026-10-07T06:43:14.953631+00:00",
       "value": {
@@ -19015,23 +19017,6 @@
         "category": "macro-regulation",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
-      }
-    },
-    "44008a81bc79d2015700e5a3b8fe8e1971db7f72c70fc1ee3114cc1b14f1f165": {
-      "stored_at": "2026-09-28T19:48:51.650063+00:00",
-      "value": {
-        "ai_reason": "This is a magazine-style market commentary piece describing broad altcoin price gains over the past 30 days (PONS +350%, UNI +110%, ARB +150%, NEAR +180%, Zcash above $1,600) and arguing that rotation is becoming more selective toward revenue-generating protocols. It is supported by concrete price data, but it introduces no new protocol, regulatory, or market-structure development, so it is informative rather than urgent — a 5.0 on the scale fits limited immediate impact market commentary.",
-        "ai_score": 5.0,
-        "ai_summary": "Cointelegraph argues an altseason rotation is underway, pointing to 30-day gains across memecoin launchpads, DeFi, privacy, and AI tokens, with traders favoring coins that have a real business case.",
-        "ai_tags": [
-          "altseason",
-          "crypto-markets",
-          "altcoins",
-          "defi",
-          "memecoins"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "4405728f112549508dbc720a4756c88e106ff2dd47ab39e6949b0480f61f23f9": {
@@ -20787,6 +20772,24 @@
           "regulation"
         ],
         "category": "crypto-regulation",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "exchange-announcements"
+      }
+    },
+    "4a8883c510c8ee6b8f09a67e0b3e76c0ff808707f5d944086e923371426be559": {
+      "stored_at": "2026-10-08T00:19:04.643999+00:00",
+      "value": {
+        "ai_reason": "This is a promotional presale piece hyping an obscure token ('Pepeto') off a vague reference to an 'altcoin season index' high. It contains no verifiable new development, no concrete data on the token or market structure, and reads as affiliate/presale marketing typical of low-credibility listicle content aimed at driving retail deposits. Popularity of presale narratives does not confer importance.",
+        "ai_score": 1.0,
+        "ai_summary": "A promotional article ranks 'Pepeto' as the best crypto presale of 2026, using a claimed yearly high in an altcoin season index as a hook.",
+        "ai_tags": [
+          "presale",
+          "altcoins",
+          "promotional",
+          "retail-hype",
+          "crypto-markets"
+        ],
+        "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
       }
@@ -31773,23 +31776,6 @@
         "category": "crypto-regulation",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
-      }
-    },
-    "7173a284e7e04a6f88c992c0eec359fe4fd56eabd2f1e8fd8de7c30728a4e725": {
-      "stored_at": "2026-09-28T19:48:51.649746+00:00",
-      "value": {
-        "ai_reason": "Bitmine's continued ether accumulation — another 17,362 ETH, pushing its treasury past 6 million ETH, or over 4.9% of circulating supply, with total crypto, cash and other investments at $17.2B — is a concrete institutional adoption and supply-concentration datapoint. However, it is an incremental update to an ongoing corporate treasury strategy rather than a market-structure change or new instrument, so it lands in the interesting-but-not-urgent band.",
-        "ai_score": 6.5,
-        "ai_summary": "Tom Lee's Bitmine added 17,362 ether to its treasury, crossing 6 million ETH held — more than 4.9% of ether's circulating supply — with total crypto, cash and other investments at $17.2B.",
-        "ai_tags": [
-          "ethereum",
-          "institutional-adoption",
-          "corporate-treasury",
-          "bitmine",
-          "crypto-markets"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "7188d7d308f8a04d235268353fafaddb65e36193db10196382bbe170e5daf587": {
@@ -42827,6 +42813,24 @@
         "source_category": "exchange-announcements"
       }
     },
+    "9869c2fe13e2d84f209ebb9ea70fe564c2f88d0a207c0bcb4dd99c18bd5e2408": {
+      "stored_at": "2026-10-08T00:19:04.643688+00:00",
+      "value": {
+        "ai_reason": "A notable Ethereum researcher (Justin Drake) making a forward-looking warning that AI advances could threaten ECDSA wallet cryptography 'in months, not years,' advising users to adopt 'bunker mode.' It is high-profile expert commentary with real technical relevance to wallet security, but it is speculative and unevidenced — no demonstrated break, exploit, or confirmed capability — so its immediate, evidenced impact is limited. Worth knowing, not urgent.",
+        "ai_score": 6.0,
+        "ai_summary": "Ethereum researcher Justin Drake urged crypto users to move funds to fresh addresses, warning that AI advances could break ECDSA wallet cryptography sooner than quantum computers.",
+        "ai_tags": [
+          "ethereum",
+          "cryptography",
+          "wallet-security",
+          "ai",
+          "ecdsa"
+        ],
+        "category": "crypto-protocols",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-markets"
+      }
+    },
     "98738429d5502bee1b59f4390f1fbe95a7f7c388332a86ea1b4c233b0e1bebb9": {
       "stored_at": "2026-10-05T10:21:55.844779+00:00",
       "value": {
@@ -43620,6 +43624,23 @@
         "source_category": "exchange-announcements"
       }
     },
+    "9bcffebc88bdba7bdf1dee72fa3040c04477dc4a731f2faeaba4078d6150145a": {
+      "stored_at": "2026-10-08T00:19:04.644187+00:00",
+      "value": {
+        "ai_reason": "Coinbase's completion of the Deribit integration is a concrete, in-window development that materially expands Coinbase's presence in global crypto derivatives and options markets, a segment where it previously had minimal share. It is a significant market-structure and institutional-product step from a top-tier exchange, but it is an integration milestone rather than a systemic or paradigm-shifting event, and no undisclosed new capability beyond the completed merger build-out is described. No comments were supplied, so scoring reflects the development itself.",
+        "ai_score": 7.0,
+        "ai_summary": "Coinbase finished integrating acquired derivatives venue Deribit, folding global crypto options and futures trading into its platform to expand its derivatives footprint.",
+        "ai_tags": [
+          "coinbase",
+          "deribit",
+          "derivatives",
+          "exchange-integration",
+          "market-structure"
+        ],
+        "category": "exchange-announcements",
+        "score_model": "deepseek:deepseek-flash"
+      }
+    },
     "9bd066866826985ef4018db3fe97218eb1babc3b6be4f5787a2b63187e5267d9": {
       "stored_at": "2026-10-07T06:43:14.955151+00:00",
       "value": {
@@ -43875,24 +43896,6 @@
         ],
         "category": "macro-regulation",
         "score_model": "deepseek:deepseek-flash"
-      }
-    },
-    "9c390d938f77fcc42552acfdf60151dd3cea45d69d8ac1e566b7325cfa4b9f10": {
-      "stored_at": "2026-09-28T19:48:51.649853+00:00",
-      "value": {
-        "ai_reason": "Nvidia — a top-tier AI hardware and platform vendor — launched a dedicated AI agent safety platform that can quarantine rogue agents within milliseconds, explicitly framed as a response to a wave of rogue hacking incidents. This is more than a routine product update: it targets agent containment and monitoring, an emerging core problem for teams deploying autonomous agents, and carries concrete developer-ecosystem and safety implications. It falls short of a frontier-model or landmark regulatory event, so it sits in the high-value tier rather than groundbreaking.",
-        "ai_score": 7.5,
-        "ai_summary": "Nvidia announced its Open Agent Safety Platform, which it says can detect and quarantine AI agents attempting to escape their operational boundaries within milliseconds, in response to a rise in rogue-agent hacking incidents.",
-        "ai_tags": [
-          "nvidia",
-          "ai-safety",
-          "ai-agents",
-          "agent-containment",
-          "ai-devtools"
-        ],
-        "category": "ai-devtools",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "ai-media"
       }
     },
     "9c3b720afb262275c267c169b6cf4fa5d4721f3c0463ed5eed03b22e72e5ac13": {
@@ -44952,24 +44955,6 @@
         "category": "crypto-protocols",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
-      }
-    },
-    "9f99ebab642b4e7de844b56f21cf4a82de218724214e3999e510b54b51d48588": {
-      "stored_at": "2026-09-28T19:48:51.649689+00:00",
-      "value": {
-        "ai_reason": "Aggregated morning roundup recapping XRP-led altcoin moves ahead of a macro-heavy week and a Binance listing tied to a SpaceX promotional campaign. No single concrete, in-window development is analyzed in depth — it is routine market commentary plus a promotional listing, both low-priority rather than urgent or material.",
-        "ai_score": 3.5,
-        "ai_summary": "U.Today's morning digest covers XRP leading altcoins into a busy macro week and a new Binance listing launched alongside a SpaceX-themed campaign.",
-        "ai_tags": [
-          "XRP",
-          "Binance",
-          "listings",
-          "macro",
-          "market-roundup"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
       }
     },
     "9f9b9497452ebd07fb74598227e89b362ca1700238b0b314711eebcd65bec6bb": {
@@ -46497,6 +46482,22 @@
         ]
       }
     },
+    "a4dd92e610cec28b28540638a63b33c3200bfe523e3d53c4f45b29236752ef3b": {
+      "stored_at": "2026-10-08T00:19:04.643874+00:00",
+      "value": {
+        "ai_reason": "This is a purely engagement-driven social post from an exchange announcement channel asking followers what app they open first in the morning. It contains no news, no announcement, no market or technical substance, and no concrete information of any kind — it falls squarely into the noise category.",
+        "ai_score": 0.5,
+        "ai_summary": "Bybit's announcement channel posted an engagement prompt asking users which app they open first in the morning.",
+        "ai_tags": [
+          "engagement-bait",
+          "social-media",
+          "exchange-marketing",
+          "no-news"
+        ],
+        "category": "exchange-announcements",
+        "score_model": "deepseek:deepseek-flash"
+      }
+    },
     "a4e57fe2e75402470d7c219cca6d641fa125038bcca2da1d3c2eeea87f382aaa": {
       "stored_at": "2026-09-30T18:05:49.847974+00:00",
       "value": {
@@ -46918,24 +46919,6 @@
         ],
         "title_en": "Inaugurating The Era Of Super Intelligence",
         "title_zh": "《开启超级智能时代》"
-      }
-    },
-    "a71e91697e5edc268d0704f15a0c3a91ba6ddc43ca224f375e61f4c5a37dcbc3": {
-      "stored_at": "2026-09-28T19:48:51.649800+00:00",
-      "value": {
-        "ai_reason": "A $1B Series C at a $10B valuation for a viral AI agent company is a high-value funding signal with substantive ecosystem implications for the AI agent sector, though it conveys no demonstrated capability, deployment, or safety milestone that would push it into frontier-model territory. Notable but not paradigm-shifting.",
-        "ai_score": 7.0,
-        "ai_summary": "AI agent company Instinct has closed a $1 billion Series C round, bringing its valuation to $10 billion as it signals further expansion.",
-        "ai_tags": [
-          "ai-agents",
-          "venture-capital",
-          "funding",
-          "ai-startups",
-          "valuations"
-        ],
-        "category": "ai-labs",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "ai-media"
       }
     },
     "a72c2f9726b9b17a9320370341ab07745b87962a57a5e9a58c9c13e0c4ceb2f0": {
@@ -54563,24 +54546,6 @@
         "source_category": "tech-community"
       }
     },
-    "c142f15505af45b03e395a4c7630748d9a7d01390ac0ecbf2b4fd9b55e16f3a4": {
-      "stored_at": "2026-09-28T19:48:51.649979+00:00",
-      "value": {
-        "ai_reason": "A genuine in-window regulatory development: California enacted a first-of-its-kind state law (AB 2409) that bars covered public officers and government employees from issuing meme coins and separately restricts digital asset service providers from listing new official-linked meme coins for California residents from Jan. 1, 2027. It is a meaningful policy precedent with clear enforcement teeth (injunctions, disgorgement) but narrow scope — limited to politically linked tokens rather than broad market access, and no immediate effect on major assets or exchanges. Falls short of the 7.5+ tier reserved for market-structure-shifting regulation.",
-        "ai_score": 6.5,
-        "ai_summary": "California Gov. Gavin Newsom signed AB 2409, barring covered public officers from issuing meme coins and restricting service providers from listing official-linked meme coins for California residents issued on or after Jan. 1, 2027.",
-        "ai_tags": [
-          "crypto-regulation",
-          "meme-coins",
-          "california",
-          "policy-enforcement",
-          "digital-assets"
-        ],
-        "category": "crypto-regulation",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
-      }
-    },
     "c144e5f8b210b9d388e031a4c0bf9f87a07eab3acf63348db218093290b03db1": {
       "stored_at": "2026-10-06T15:33:17.750865+00:00",
       "value": {
@@ -55960,6 +55925,24 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "c60fa3c234e202a1c2f35ec91fb97489d44ad896d58ff2dd0a8831d0b69c0b36": {
+      "stored_at": "2026-10-08T00:19:04.643534+00:00",
+      "value": {
+        "ai_reason": "High-signal commentary from Ethereum co-founder Vitalik Buterin on AI potentially accelerating cryptanalytic advances against lattice-based schemes (ML-DSA, FHE) and ECDSA, with concrete implications for Ethereum's Lean roadmap shift toward hash-based signatures and user-facing security guidance. It is an expert warning and roadmap signal rather than a confirmed exploit, breakthrough, or in-window protocol change, so impact is prospective and speculative — worth knowing but not urgent.",
+        "ai_score": 6.0,
+        "ai_summary": "Vitalik Buterin warned that AI-driven mathematical advances could weaken lattice-based cryptography and FHE within two years, prompting Ethereum's Lean roadmap to move toward hash-based signatures while advising users to prefer never-used addresses and off-chain multisig signing rather than rushing asset migrations.",
+        "ai_tags": [
+          "ethereum",
+          "cryptography",
+          "post-quantum",
+          "ai",
+          "security"
+        ],
+        "category": "crypto-protocols",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-markets"
+      }
+    },
     "c614a56876b235f2da5b5823abaebe800cf83b18eded88be20133af8f5e90cb7": {
       "stored_at": "2026-09-30T18:05:49.847144+00:00",
       "value": {
@@ -56011,6 +55994,23 @@
         "category": "crypto-protocols",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
+      }
+    },
+    "c62c7dca71b99dddaa36707c504bbdef300599845f265a78217b7515cd304a65": {
+      "stored_at": "2026-10-08T00:19:04.643367+00:00",
+      "value": {
+        "ai_reason": "Concrete on-chain observation of the US government moving ~$670M in seized crypto (6,215.7 BTC, 119M USDT, 40,285 BNB) into Coinbase Prime custody within a 32-hour window, with $448M of BTC in the latest tranche. Sovereign seizure-address flows of this size into exchange custody have a clear transmission path to potential supply/liquidation pressure and are closely watched by traders, but no sale has been confirmed and the transfers are a continuation of a known government disposition pattern — important market-structure signal rather than a paradigm shift.",
+        "ai_score": 7.0,
+        "ai_summary": "US government addresses transferred roughly $670 million worth of crypto over 32 hours — including 6,215.7 BTC, 119 million USDT and 40,285 BNB — with the BTC and USDT all routed into Coinbase Prime.",
+        "ai_tags": [
+          "bitcoin",
+          "us-government",
+          "on-chain-data",
+          "coinbase",
+          "market-structure"
+        ],
+        "category": "crypto-markets",
+        "score_model": "deepseek:deepseek-flash"
       }
     },
     "c62fd2c682faa709637dffdad12c567da0efcec92fb42edae0dac0ab27170396": {
@@ -62054,23 +62054,6 @@
         "category": "macro-regulation",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
-      }
-    },
-    "daf4bdf78d68680f58b55c26af9be8c3c04a5d491ad467a08d23f399aff546bf": {
-      "stored_at": "2026-09-28T19:48:51.649632+00:00",
-      "value": {
-        "ai_reason": "A podcast interview with Atlassian's CEO on why the predicted AI-driven 'SaaSpocalypse' for enterprise software did not materialize. It offers management-level perspective on AI's effect on SaaS business models but contains no new product, model, financial, or policy development with immediate market or developer impact, so it falls into the 'worth knowing, not urgent' band rather than a high-value news event.",
-        "ai_score": 5.0,
-        "ai_summary": "Atlassian cofounder and CEO Mike Cannon-Brookes discusses on The Verge's podcast why AI has not triggered the widely predicted collapse of enterprise SaaS, and how AI is reshaping tools like Jira and Trello.",
-        "ai_tags": [
-          "AI",
-          "enterprise-software",
-          "SaaS",
-          "Atlassian",
-          "podcast"
-        ],
-        "category": "ai-media",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "db06ef9eee2ba65be31135cdbbf7d2e8ae39b8599368413be82372ad40d10480": {
@@ -68472,6 +68455,24 @@
         "category": "tech-community",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
+      }
+    },
+    "f38ffb1f2bb44892d35314de975506949a32397c87d3239c6211ef52f7c5fb32": {
+      "stored_at": "2026-10-08T00:19:04.643937+00:00",
+      "value": {
+        "ai_reason": "Reports that Broadcom is arranging over $50B in financing for chips destined for OpenAI, alongside Oracle negotiating chip financing with Apollo and Goldman Sachs and SpaceX seeking $40B (a ~$10B bank loan plus ~$30B investment-grade bonds) to buy Nvidia chips. This is a major AI-infrastructure capital-markets development with clear transmission to chip demand, debt markets and the AI buildout, though the arrangements are still being negotiated rather than closed.",
+        "ai_score": 7.5,
+        "ai_summary": "Broadcom is seeking to arrange more than $50 billion in financing for chips required by OpenAI, while Oracle negotiates chip financing with Apollo and Goldman Sachs and SpaceX pursues roughly $40 billion to fund Nvidia chip purchases.",
+        "ai_tags": [
+          "OpenAI",
+          "Broadcom",
+          "AI chips",
+          "debt financing",
+          "Nvidia"
+        ],
+        "category": "ai-labs",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-markets"
       }
     },
     "f3e9c2011d7b994d5193416d4b4fe86f3cd551f4217d6153f7bf21be377b3d93": {
