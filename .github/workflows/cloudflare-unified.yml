@@ -33,11 +33,11 @@ jobs:
     # Repository secrets keep the private-repository path independent of paid
     # environment features. Main/origin/opt-in guards above still apply.
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: main
           persist-credentials: false
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: gh-pages
           path: .edge-source
