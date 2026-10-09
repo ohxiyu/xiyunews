@@ -4,30 +4,33 @@
   "url": "https://xiyu.news/events/evt_26c20c3ff003cb29/",
   "json": "https://xiyu.news/api/events/evt_26c20c3ff003cb29.json",
   "type": "governance",
-  "status": "developing",
+  "status": "resolved",
   "category": "crypto",
   "title": {
     "zh": "XRP Ledger距离启动下一次重大支付升级仅差一票",
     "en": "XRP Ledger is one vote away from starting its next big payments upgrade"
   },
   "current_state": {
-    "zh": "XRP Ledger 的修正版 PermissionDelegationV1_1 升级正处于14天激活倒计时中，若验证者支持维持在28/35以上，预计10月5日激活。",
-    "en": "The XRP Ledger's revised PermissionDelegationV1_1 upgrade is in a 14-day activation countdown, expected to activate Oct. 5 if validator support remains at or above 28/35."
+    "zh": "PermissionDelegationV1_1 已于2026年10月8日激活并生效；PaymentBurn 权限的修复提案周五获27/35验证者支持，距离启动14天倒计时所需的29票仍有差距，警告继续有效。",
+    "en": "PermissionDelegationV1_1 activated on Oct. 8, 2026 and is live; the PaymentBurn fix had 27/35 validator votes on Friday, short of the 29 needed to start the two-week countdown, so the warning remains in effect."
   },
   "first_seen_at": "2026-09-15T09:31:52.491034+00:00",
-  "last_updated_at": "2026-09-23T09:26:02.144227+00:00",
-  "last_material_change_at": "2026-09-23T09:26:02.144227+00:00",
+  "last_updated_at": "2026-10-09T07:11:50.246478+00:00",
+  "last_material_change_at": "2026-10-09T07:11:50.246478+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 2,
+  "updates_count": 3,
+  "sources_count": 3,
   "entities": [
     "ledger",
+    "stablecoins",
     "xrp",
     "xrp-ledger"
   ],
   "identifiers": [],
   "topics": [
+    "custody",
     "protocol-upgrade",
+    "stablecoins",
     "validators",
     "xrp-ledger"
   ],
@@ -102,6 +105,44 @@
       "sources": [
         {
           "url": "https://www.coindesk.com/tech/2026/09/23/xrp-ledger-retries-upgrade-that-lets-banks-split-payment-and-compliance-duties",
+          "label": "CoinDesk",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_4f2bda4c8b7140ce",
+      "event_id": "evt_26c20c3ff003cb29",
+      "occurred_at": "2026-10-09T04:21:36Z",
+      "published_at": "2026-10-09T04:21:36Z",
+      "first_seen_at": "2026-10-09T07:11:50.246478Z",
+      "time_precision": "published",
+      "update_type": "resolution",
+      "material_change": true,
+      "title_zh": "XRP Ledger 为银行、稳定币和代币化基金新增控制功能",
+      "title_en": "XRP Ledger adds new controls for banks, stablecoins and tokenized funds",
+      "what_changed_zh": "PermissionDelegationV1_1 修正案已于10月8日激活上线，账户可将支付、合规审批等限定权限授予独立账户而无需交出主密钥；官方同时警告在相关修复激活前不要委派 PaymentBurn 权限，另有关于验证者投票计数服务器缺陷的补丁仍在审议中。",
+      "what_changed_en": "The PermissionDelegationV1_1 amendment activated on Oct. 8, letting account owners delegate scoped powers such as payments and compliance approvals to separate accounts without sharing primary keys; users are warned not to delegate PaymentBurn until a related fix activates, and a separate server vote-counting patch remains under review.",
+      "current_state_zh": "PermissionDelegationV1_1 已于2026年10月8日激活并生效；PaymentBurn 权限的修复提案周五获27/35验证者支持，距离启动14天倒计时所需的29票仍有差距，警告继续有效。",
+      "current_state_en": "PermissionDelegationV1_1 activated on Oct. 8, 2026 and is live; the PaymentBurn fix had 27/35 validator votes on Friday, short of the 29 needed to start the two-week countdown, so the warning remains in effect.",
+      "detailed_summary_zh": "The XRP Ledger activated the PermissionDelegationV1_1 amendment, letting businesses delegate scoped actions such as payments and compliance approvals to separate accounts while keeping primary keys offline, with a warning not to delegate PaymentBurn until a related flaw is fixed.",
+      "detailed_summary_en": "The XRP Ledger activated the PermissionDelegationV1_1 amendment, letting businesses delegate scoped actions such as payments and compliance approvals to separate accounts while keeping primary keys offline, with a warning not to delegate PaymentBurn until a related flaw is fixed.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "rss:www.coindesk.com_arc_outboundfeeds_rss_:5f54bea5c08245c5"
+      ],
+      "sources": [
+        {
+          "url": "https://www.coindesk.com/tech/2026/10/09/xrp-ledger-adds-new-controls-for-banks-stablecoins-and-tokenized-funds",
           "label": "CoinDesk",
           "source_type": "rss",
           "official": false
