@@ -467,14 +467,27 @@
       "current_state_en": "The Ledger-related supply-chain attack has confirmed losses approaching $90 million, with MistTrack tracking funds and Tether freezing substantial USDT; latest on-chain monitoring shows suspects moved 430.2 ETH (~$1.07M) to Tornado Cash and converted USDT to USDD via SUN.io and the USDD PSM, with some funds routed to a Binance hot wallet, while suspect wallets still hold ~$70.6M; device tampering and attacker identity remain unconfirmed.",
       "detailed_summary_zh": "Suspects in the ~$90M Ledger distributor theft moved 430.2 ETH (~$1.07M) into Tornado Cash and, after Tether froze assets, converted USDT to USDD via SUN.io and the USDD PSM, with part of the funds routed to a Binance hot wallet while roughly $70.6M in traced assets reportedly remains in suspect wallets.",
       "detailed_summary_en": "Suspects in the ~$90M Ledger distributor theft moved 430.2 ETH (~$1.07M) into Tornado Cash and, after Tether froze assets, converted USDT to USDD via SUN.io and the USDD PSM, with part of the funds routed to a Binance hot wallet while roughly $70.6M in traced assets reportedly remains in suspect wallets.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "Tornado Cash 是一个开源、非托管的混币协议，运行于兼容以太坊虚拟机（EVM）的网络之上，用于切断资金来源与去向地址之间的链上关联；美国财政部曾于 2022 年 8 月将其列入黑名单，2024 年 11 月美国联邦上诉法院推翻了这一裁定。USDD 的 PSM（锚定稳定模块）是 USDD 内置的固定汇率兑换功能，可在 USDD 与支持的稳定币之间按 1:1 比例兑换。",
+      "background_en": "Tornado Cash is an open-source, non-custodial mixer on Ethereum Virtual Machine-compatible networks that obscures the link between source and destination addresses; the U.S. Treasury blacklisted it in August 2022, and a U.S. federal appeals court overturned that ruling in November 2024. The USDD PSM (Peg Stability Module) is USDD's built-in fixed-rate swap feature that converts between USDD and supported stablecoins at a 1:1 rate.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "此事显示出稳定币发行方的冻结权会推动被盗资金转向 USDD 等替代稳定币以及 Tornado Cash 等混币工具，这一路径涉及 USDT/USDD 兑换流动性以及流入 Binance 等中心化交易所热钱包的资金。据称仍留在嫌疑钱包中的约 7060 万美元资产，是后续链上资金传导的主要观察点。",
+      "market_impact_en": "The episode illustrates how stablecoin issuer freeze powers can push stolen funds toward alternative stablecoins such as USDD and toward mixers like Tornado Cash, a channel that touches USDT/USDD swap liquidity and deposits into centralized-exchange hot wallets such as Binance's. The reported ~$70.6 million still sitting in suspect wallets is the main on-chain transmission point to watch.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Tornado_Cash",
+          "title": "Tornado Cash"
+        },
+        {
+          "url": "https://docs.usdd.io/psm/the-psm",
+          "title": "The PSM | USDD Docs"
+        },
+        {
+          "url": "https://docs.usdd.io/user-guide/psm-peg-stability-module",
+          "title": "PSM | USDD Docs"
+        }
+      ],
       "confidence": 0.95,
       "story_ids": [
         "telegram:theblockbeats:199759"

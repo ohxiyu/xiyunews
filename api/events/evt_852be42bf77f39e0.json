@@ -50,7 +50,7 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Tether Blacklists Four THORChain Vaults Holding 1.45 Million USDT",
+      "title_zh": "Tether 将 145 万枚 USDT 列入黑名单三小时后，解冻四个 THORChain 金库",
       "title_en": "Tether Blacklists Four THORChain Vaults Holding 1.45 Million USDT",
       "what_changed_zh": "Tether 将四个持有 145 万 USDT 的 THORChain 金库列入黑名单，促使 THORChain 在未事先通知的情况下暂停 Tron 兑换和流动性提供者操作。",
       "what_changed_en": "Tether blacklisted four THORChain vaults holding 1.45 million USDT, prompting THORChain to halt Tron swaps and liquidity-provider operations without prior notice.",
@@ -58,14 +58,27 @@
       "current_state_en": "Tether blacklisted four THORChain vaults holding 1.45 million USDT, prompting THORChain to halt Tron swaps and liquidity-provider operations without prior notice.",
       "detailed_summary_zh": "Tether blacklisted four THORChain vaults holding 1.45 million USDT, prompting THORChain to halt Tron swaps and liquidity-provider operations without prior notice.",
       "detailed_summary_en": "Tether blacklisted four THORChain vaults holding 1.45 million USDT, prompting THORChain to halt Tron swaps and liquidity-provider operations without prior notice.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "据 Valken 介绍，Tether 的黑名单在智能合约层面通过只有 Tether 可调用的 addBlackList 函数执行，该发行方已冻结逾 44 亿美元、涉及 1200 多个地址的 USDT。THORChain 通过原生金库而非桥接合约结算 Tron 资产。本周早些时候，跨境支付平台 Conduit Technology 起诉 Tether，指其冻结了一个与巴西当局 2024 年调查相关钱包中价值 276 万美元的 USDT；两名泰国公民也在 8 月起诉 Tether，称其在美国国土安全调查局（HSI）的「非正式请求」下冻结了 4240 万美元的 USDT。",
+      "background_en": "Tether's blacklist is enforced at the smart contract level through an addBlackList function that only Tether can call, and the issuer has frozen over $4.4 billion in USDT across more than 1,200 addresses, according to Valken. THORChain settles Tron assets through native vaults rather than bridge contracts. Earlier this week, cross-border payments platform Conduit Technology sued Tether, alleging it froze $2.76 million in USDT in a wallet tied to a 2024 investigation by Brazilian authorities, and two Thai nationals sued in August over an alleged freeze of $42.4 million following an \"informal request\" from US Homeland Security Investigations.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "THORChain 的 Tron 金库持有原生 USDT-TRC20，不经桥接合约结算，因此发行方层面的冻结会在解除前直接阻断该板块的兑换、充值与签名，表明 Tether 发行的流动性带有发行方可控的「开关」。该事件使依赖 Tron 上 USDT 的 DeFi 协议与交易场所继续承受审查风险，也波及通过 RUNE 暴露于 THORChain 跨链流动性的市场参与者。",
+      "market_impact_en": "THORChain's Tron vaults hold native USDT-TRC20 settled without bridge contracts, so an issuer-level freeze directly blocks swaps, deposits and signing for that segment until it is reversed, showing that Tether-issued liquidity carries an issuer-controlled kill switch. The episode leaves a censorship-risk overhang on DeFi protocols and venues that depend on USDT on Tron, and on RUNE exposure to THORChain's cross-chain liquidity.",
       "importance_score": 7.0,
-      "references": [],
+      "references": [
+        {
+          "url": "https://thedefiant.io/news/defi/tether-blacklists-four-thorchain-vaults-holding-1-45-million-usdt",
+          "title": "Tether Unfreezes Four THORChain Vaults Three Hours... | The Defiant"
+        },
+        {
+          "url": "https://cryptobriefing.com/tether-blacklists-thorchain-vaults-tron/",
+          "title": "Tether freezes four THORChain vaults, halting Tron swaps"
+        },
+        {
+          "url": "https://valken.legal/insights/tether-usdt-blacklist-explained",
+          "title": "Tether USDT Blacklist: What It Means | Valken"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "rss:thedefiant.io_api_feed:daedfe42122b78f5",
