@@ -3,7 +3,7 @@
 Issue: https://github.com/ohxiyu/xiyunews/issues/228
 Branch: agent/focused-tracking
 Baseline: d1b430e9d8a563f81892a4109a360b64a1180d1b
-PR: https://github.com/ohxiyu/xiyunews/pull/229；CI、合并及部署待完成，不宣称已上线。
+PR: https://github.com/ohxiyu/xiyunews/pull/229，2026-10-09 已合并、部署及生产验收完成。后续证据归档 Issue230，文档分支 agent/focused-tracking-evidence，不重新发布应用。
 
 ## 范围与规则
 
@@ -25,14 +25,15 @@ Deploy Docs 从当前 gh-pages 还原事件目录后，只通过 [tracking_repub
 
 桌面验收截图（1280×720）：[首页改前](images/2026-10-09-focused-tracking/feed-before.jpg)、[首页改后](images/2026-10-09-focused-tracking/feed-after.jpg)、[追踪改前](images/2026-10-09-focused-tracking/tracking-before.jpg)、[追踪改后](images/2026-10-09-focused-tracking/tracking-after.jpg)、[完整事件卡](images/2026-10-09-focused-tracking/event-card-after.jpg)。改前为当时正式页面，改后为生产快照配本次真实模板渲染。
 
-- 代码完成；本地测试与浏览器验收完成，远程精确 head CI 待完成。
-- PR 合并、部署及生产验收待完成。
+- 代码完成；本地与精确 head CI 检查通过，PR 已合并，自动部署成功。
+- 源站与不带查询参数的普通地址生产验收通过；没有清空全站缓存或更改缓存配置。
 - 不验证真实设备安装、剪贴板权限、X/Telegram 发送或 Quick Post。
 
 ## 发布与回退
 
-Source commit: 待本 PR 精确合并 SHA。
-Worker version: 修改前只读为 bc9eb588-e01e-4c48-b134-caaeade597eb，本次发布待完成。
-Deployment: 授权沿用现有 Deploy Docs → xiyunews Cloudflare；待成功运行链接。
-Verification: 修改前主站及追踪 200；修改后须核对新指纹、最多 6 卡/3 节点、背景/讨论/参考操作、日期链接和正常 API，不以 CI 替代现场验收。
+Source commit: 1c7caf713c2bea6a5222bf9135d07ed6d6e47057；应用 head 7e5a1c4eec5160ce34c6d03f1fb2b5e056e2f237。
+Worker version: 6344056a-04b6-465e-884c-d97e03bd07a0，修改前 bc9eb588-e01e-4c48-b134-caaeade597eb。
+Deployment: [CI](https://github.com/ohxiyu/xiyunews/actions/runs/37880044755) 通过主测试、治理、edge-build、realtime 3.11/3.12；CodeQL 私有仓库跳过不算通过。[Deploy Docs](https://github.com/ohxiyu/xiyunews/actions/runs/37880293083) 和 [统一 Worker 发布](https://github.com/ohxiyu/xiyunews/actions/runs/37880338598) 成功；artifact a1875472160bc8cf86cd296472b0796aaf6c06a6。
+Verification: 2026-10-09 11:42–11:48（上海），health 新版本与 source/artifact 匹配，Cron、启用状态和 4 小时采集配置不变。发布后普通追踪路径曾命中旧 HTML；11:48 经原缓存自然刷新后，不带查询参数的首页、中英文追踪、旧日报、详情、API、RSS、sitemap 都 200，首页与追踪为新指纹 sha256-45be953e1aef。追踪 6 卡/每卡最多 3 节点，正式浏览器参考/背景标签及全卡排版已验证；JS 与仓库字节一致。PWA 出现更新提示且用户动作更新可用，不清理阅读数据。现场 [正式事件卡截图](images/2026-10-09-focused-tracking/production-event-card.jpg)，1280×720，不再以临时预览或绕过缓存的查询参数替代普通访问验收。
+原始事件目录 SHA256: 48c06cb82226456e18d056d6fe6653c7355a4166732b8b75cf951c41ce7c4de9，发布前后相同；日报 API SHA256: 3a3dced9cc0ec7829fbc7cd8443978744423b63c819354cc23301fc2bf9de799，发布前后相同。
 Rollback: 需授权通过独立 revert PR 回退本次变化，再走同一自动发布；已知良好基线 d1b430e9d8a563f81892a4109a360b64a1180d1b。不手改 gh-pages 或状态分支，不撤销现有依赖安全修复。
