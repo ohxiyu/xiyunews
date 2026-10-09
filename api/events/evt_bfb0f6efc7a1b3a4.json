@@ -4,34 +4,40 @@
   "url": "https://xiyu.news/events/evt_bfb0f6efc7a1b3a4/",
   "json": "https://xiyu.news/api/events/evt_bfb0f6efc7a1b3a4.json",
   "type": "other",
-  "status": "monitoring",
+  "status": "developing",
   "category": "technology",
   "title": {
-    "zh": "分享人工智能在数学领域的进展",
+    "zh": "OpenAI发布数学证明成果并引发数学研究文化讨论",
     "en": "Sharing AI Progress in Mathematics"
   },
   "current_state": {
-    "zh": "OpenAI 在 GitHub 上公开了名为 openai/math 的代码仓库，其中包含由 OpenAI 内部模型生成的数学手稿及配套证明材料，并附有 Lean 形式化证明。内容涉及多个长期未解的开放问题，例如 Barnette 猜想和 Unique Games 猜想。\n\nHacker News 的评论者认为此次发布意义重大：有人指出 Unique Games 猜想是“计算复杂性理论中的奠基性猜想”，也是许多不可近似性结果所依赖的假设，若证明成立“是件大事”。另一位评论者表示，自己几个月前曾花大量时间用当时最先进的模型尝试攻克 Barnette 猜想，但未能成功。\n\n一位评论者引用 proofatlas.ai 称，该清单声称完整解决了数学领域前 500 个开放问题中的 90 个，其中排名最高的包括有理数域上的希尔伯特第十问题、Unique Games、Anderson 模型扩展态、时空 Penrose 不等式以及 Landau–Siegel 零点不存在性。另一位评论者特别提到三台机器单位作业调度的多项式时间算法，该问题自 1979 年 Garey 与 Johnson 的书出版以来一直未解。上述细节均来自社区讨论，并非对证明的独立验证。",
-    "en": "OpenAI published a public GitHub repository (openai/math) containing mathematical manuscripts and supporting proof artifacts, including Lean proof formalizations, produced by an internal OpenAI model. The material covers long-standing open problems such as Barnette's Conjecture and the Unique Games Conjecture.\n\nHacker News commenters framed the release as significant: one wrote that the Unique Games Conjecture is \"a seminal conjecture in Complexity Theory\" and an underlying assumption for many inapproximability results, calling a valid proof \"a big deal\". Another commenter said he had spent considerable time attacking Barnette's Conjecture with state-of-the-art models a few months earlier and failed.\n\nOne commenter, citing proofatlas.ai, said the list claims to fully solve 90 of the top 500 open problems in mathematics, with the highest-ranked among them listed as Hilbert's tenth problem over ℚ, Unique Games, Anderson-model extended states, the spacetime Penrose inequality and the nonexistence of Landau–Siegel zeros. Another commenter highlighted a polynomial-time algorithm for three-machine unit-job scheduling, an open problem since Garey and Johnson's 1979 book. These specifics come from the discussion and are not independent verification of the proofs."
+    "zh": "Asaf Karagila的一篇博客文章批评OpenAI的数学发布及其对数学研究文化的影响，引发Hacker News上关于AI生成证明和数学家责任的辩论。",
+    "en": "A blog post by Asaf Karagila critiques OpenAI's mathematical releases and their effect on mathematical research culture, sparking a Hacker News debate about AI-generated proofs and the responsibilities of mathematicians."
   },
   "first_seen_at": "2026-10-06T23:27:33.996282+00:00",
-  "last_updated_at": "2026-10-06T23:27:33.996282+00:00",
-  "last_material_change_at": "2026-10-06T23:27:33.996282+00:00",
+  "last_updated_at": "2026-10-09T11:20:50.588350+00:00",
+  "last_material_change_at": "2026-10-09T11:20:50.588350+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "mathematics",
+    "openai",
+    "partition",
+    "principle",
     "progress",
     "sharing"
   ],
   "identifiers": [],
   "topics": [
+    "academic-culture",
+    "ai-research",
     "barnettes-conjecture",
     "lean",
     "mathematics",
     "openai",
     "proof-generation",
+    "set-theory",
     "unique-games-conjecture"
   ],
   "updates": [
@@ -85,6 +91,49 @@
         {
           "url": "https://openai.com/index/sharing-ai-progress-in-mathematics/",
           "label": "OpenAI Blog",
+          "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_f96d38ea1ed7e867",
+      "event_id": "evt_bfb0f6efc7a1b3a4",
+      "occurred_at": "2026-10-08T23:29:43Z",
+      "published_at": "2026-10-08T23:29:43Z",
+      "first_seen_at": "2026-10-09T11:20:50.588350Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "OpenAI、分拆原理与数学",
+      "title_en": "OpenAI, the Partition Principle, and Mathematics",
+      "what_changed_zh": "Asaf Karagila的一篇博客文章批评OpenAI的数学发布及其对数学研究文化的影响，引发Hacker News上关于AI生成证明和数学家责任的辩论。",
+      "what_changed_en": "A blog post by Asaf Karagila critiques OpenAI's mathematical releases and their effect on mathematical research culture, sparking a Hacker News debate about AI-generated proofs and the responsibilities of mathematicians.",
+      "current_state_zh": "Asaf Karagila的一篇博客文章批评OpenAI的数学发布及其对数学研究文化的影响，引发Hacker News上关于AI生成证明和数学家责任的辩论。",
+      "current_state_en": "A blog post by Asaf Karagila critiques OpenAI's mathematical releases and their effect on mathematical research culture, sparking a Hacker News debate about AI-generated proofs and the responsibilities of mathematicians.",
+      "detailed_summary_zh": "A blog post by Asaf Karagila critiques OpenAI's mathematical releases and their effect on mathematical research culture, sparking a Hacker News debate about AI-generated proofs and the responsibilities of mathematicians.",
+      "detailed_summary_en": "A blog post by Asaf Karagila critiques OpenAI's mathematical releases and their effect on mathematical research culture, sparking a Hacker News debate about AI-generated proofs and the responsibilities of mathematicians.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [
+        {
+          "url": "https://news.ycombinator.com/item?id=50013902",
+          "title": "Community discussion"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "hackernews:story:50013902"
+      ],
+      "sources": [
+        {
+          "url": "https://karagila.org/2026/openai-pp/",
+          "label": "md224",
           "source_type": "hackernews",
           "official": false
         }
