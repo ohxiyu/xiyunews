@@ -4,43 +4,53 @@
   "url": "https://xiyu.news/events/evt_c594d0e29e7b400b/",
   "json": "https://xiyu.news/api/events/evt_c594d0e29e7b400b.json",
   "type": "security_incident",
-  "status": "developing",
+  "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Ledger 调查 CryptoBilis 经销商相关钱包被盗事件，损失估计超 8600 万美元",
+    "zh": "Ledger 授权经销商渠道遭攻击，数百用户钱包被盗约 8600 万美元",
     "en": "【Specter：数百个 Ledger 用户钱包疑似被盗，损失超 8600 万美元】"
   },
   "current_state": {
-    "zh": "Ledger 正在调查与东南亚授权经销商 CryptoBilis 相关的用户资金损失事件；Ledger 已要求 CryptoBilis 暂停销售和发货，并对过去90天内购买设备的客户发出警示。链上研究人员估计相关损失约为7200万至8600万美元，但 Ledger 尚未确认损失规模、受影响用户数量或设备是否被篡改，调查仍在进行中。",
-    "en": "Ledger is investigating reported fund losses tied to Southeast Asian authorized reseller CryptoBilis; Ledger has asked CryptoBilis to suspend sales and shipments and has warned customers who bought devices in the past 90 days. Onchain researchers estimate losses at roughly $72 million to $86 million, but Ledger has not confirmed the loss amount, number of affected customers, or whether devices were compromised, and its investigation is ongoing."
+    "zh": "Ledger 正在调查与东南亚授权经销商 CryptoBilis 相关的用户资金损失事件；Ledger 已要求 CryptoBilis 暂停销售和发货，并对过去90天内购买设备的客户发出警示。链上研究人员估计相关损失约为7200万至9000万美元，Tether 已冻结相关 USDT。赵长鹏等业内人士公开评论并呼吁行业协助追踪资金，Mark Karpelès 正调查设备是否植入恶意硬件组件，但攻击方式、设备是否被篡改及攻击者身份仍未确认，调查仍在进行中。",
+    "en": "Ledger is investigating reported fund losses tied to Southeast Asian authorized reseller CryptoBilis; Ledger has asked CryptoBilis to suspend sales and shipments and warned customers who bought devices in the past 90 days. Onchain researchers estimate losses at roughly $72 million to $90 million, and Tether has frozen related USDT. Industry figures including Changpeng Zhao have publicly commented and called for industry help tracing funds, while Mark Karpelès is investigating whether malicious hardware components were implanted; the attack method, device tampering and attacker identity remain unconfirmed, and the investigation is ongoing."
   },
   "first_seen_at": "2026-10-09T15:30:47.822838+00:00",
-  "last_updated_at": "2026-10-09T18:27:43.733200+00:00",
-  "last_material_change_at": "2026-10-09T18:27:43.733200+00:00",
+  "last_updated_at": "2026-10-09T22:30:50.383722+00:00",
+  "last_material_change_at": "2026-10-09T22:30:50.383722+00:00",
   "confidence": 0.75,
-  "updates_count": 8,
-  "sources_count": 21,
+  "updates_count": 10,
+  "sources_count": 25,
   "entities": [
+    "after",
     "asia",
     "asian",
     "binance",
     "cash",
+    "ceo",
     "cryptobilis",
     "cryptobillis",
     "draining",
+    "founder",
+    "gox",
+    "hack",
     "hardware",
     "investigates",
     "largest",
     "ledger",
+    "lte",
     "maker",
     "many",
+    "million",
+    "quarantine",
     "report",
+    "reseller",
     "southeast",
     "southeast-asia",
     "specter",
     "tether",
     "tornado",
     "tornado-cash",
+    "urges",
     "usdt",
     "wallet",
     "world"
@@ -55,7 +65,9 @@
     "hacks-exploits",
     "ledger",
     "on-chain-analysis",
+    "security-breach",
     "security-incident",
+    "self-custody",
     "southeast-asia",
     "supply-chain",
     "supply-chain-attack",
@@ -97,7 +109,8 @@
         "telegram:foresightnews:120050",
         "telegram:theblockbeats:199711",
         "rss:www.theblock.co_rss.xml:26f3cdd1777d905d",
-        "rss:cointelegraph.com_rss:6368221780010688"
+        "rss:cointelegraph.com_rss:6368221780010688",
+        "google_news:article:b949392d4e1fa6fe"
       ],
       "sources": [
         {
@@ -122,6 +135,12 @@
           "url": "https://cointelegraph.com/news/ledger-investigates-fund-losses-linked-to-southeast-asian-reseller-warns-users?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
           "label": "Cointelegraph",
           "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://u.today/binance-founder-cz-urges-wallet-quarantine-after-86-million-ledger-reseller-hack?amp",
+          "label": "U.Today",
+          "source_type": "google_news",
           "official": false
         }
       ]
@@ -371,15 +390,60 @@
       "community_discussion_en": "",
       "market_impact_zh": "",
       "market_impact_en": "",
-      "importance_score": 7.0,
+      "importance_score": 7.5,
       "references": [],
       "confidence": 0.96,
       "story_ids": [
-        "telegram:theblockbeats:199756"
+        "telegram:theblockbeats:199756",
+        "telegram:lookonchainchannel:10564"
       ],
       "sources": [
         {
           "url": "https://m.theblockbeats.info/flash/371076?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://arkm.com/explorer/address/bc1q9r0jxknrtlc96dankvgkwa0347569rc6dn53fs",
+          "label": "lookonchainchannel",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_3c47b16f0e93d4b8",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-09T16:10:02Z",
+      "published_at": "2026-10-09T16:10:02Z",
+      "first_seen_at": "2026-10-09T18:27:27.032555Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "Mt.Gox前CEO称发现被植入间谍模块的Ledger硬件钱包，可通过LTE发送助记词信息",
+      "title_en": "Mt.Gox前CEO称发现被植入间谍模块的Ledger硬件钱包，可通过LTE发送助记词信息",
+      "what_changed_zh": "Mt. Gox 前 CEO Mark Karpelès 披露，他从马来西亚收到的一台 Ledger 硬件钱包内含隐藏间谍模块，配备 LTE、天线、eSIM 以及连接到设备 SPI 总线的微控制器，能够捕获显示的字符并在设置后窃取助记词，并敦促用户遵循 Ledger 的官方设备验证指引。",
+      "what_changed_en": "Mt. Gox ex-CEO Mark Karpelès disclosed that a Ledger hardware wallet he received from Malaysia contained a hidden spy module with LTE, antenna, eSIM and a microcontroller wired to the device's SPI bus, capable of capturing displayed characters and exfiltrating seed phrases after setup, and urged users to follow Ledger's official device-verification guidance.",
+      "current_state_zh": "Mt. Gox 前 CEO Mark Karpelès 披露，他从马来西亚收到的一台 Ledger 硬件钱包内含隐藏间谍模块，配备 LTE、天线、eSIM 以及连接到设备 SPI 总线的微控制器，能够捕获显示的字符并在设置后窃取助记词，并敦促用户遵循 Ledger 的官方设备验证指引。",
+      "current_state_en": "Mt. Gox ex-CEO Mark Karpelès disclosed that a Ledger hardware wallet he received from Malaysia contained a hidden spy module with LTE, antenna, eSIM and a microcontroller wired to the device's SPI bus, capable of capturing displayed characters and exfiltrating seed phrases after setup, and urged users to follow Ledger's official device-verification guidance.",
+      "detailed_summary_zh": "Mt. Gox ex-CEO Mark Karpelès disclosed that a Ledger hardware wallet he received from Malaysia contained a hidden spy module with LTE, antenna, eSIM and a microcontroller wired to the device's SPI bus, capable of capturing displayed characters and exfiltrating seed phrases after setup, and urged users to follow Ledger's official device-verification guidance.",
+      "detailed_summary_en": "Mt. Gox ex-CEO Mark Karpelès disclosed that a Ledger hardware wallet he received from Malaysia contained a hidden spy module with LTE, antenna, eSIM and a microcontroller wired to the device's SPI bus, capable of capturing displayed characters and exfiltrating seed phrases after setup, and urged users to follow Ledger's official device-verification guidance.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:theblockbeats:199757"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/371077?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
           "official": false
@@ -457,6 +521,44 @@
         {
           "url": "https://protos.com/ledger-says-southeast-asia-reseller-linked-to-86m-draining/",
           "label": "Protos",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_3f0d1f28ed46e4fb",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-09T21:10:39Z",
+      "published_at": "2026-10-09T21:10:39Z",
+      "first_seen_at": "2026-10-09T22:30:50.383722Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Ledger 黑客恐慌规模接近 9000 万美元，Tether 着手冻结被盗 USDT",
+      "title_en": "Ledger hack scare nears $90 million as Tether moves to freeze stolen USDT",
+      "what_changed_zh": "行业人士开始公开介入调查：币安创始人赵长鹏警告用户谨慎，称事件似乎局限于单一供应商的供应链攻击；前 Mt. Gox CEO Mark Karpelès 正在调查是否有恶意硬件组件被植入发给客户的设备，并要求 CryptoBilis 打开部分未售出的 Ledger 钱包检查内部电路板。此外，报道指出 Ledger 的 Genuine Check 只能验证安全芯片，可能无法发现硬件其他部位的物理篡改。",
+      "what_changed_en": "Industry figures publicly intervened: Binance founder Changpeng Zhao warned users and said the incident appears localized to a single-vendor supply-chain attack; former Mt. Gox CEO Mark Karpelès is investigating whether malicious hardware components were implanted in customer devices and asked CryptoBilis to open some unsold Ledger wallets for circuit-board inspection. Reports also note Ledger's Genuine Check verifies the Secure Element but may not detect physical modifications elsewhere in the hardware.",
+      "current_state_zh": "Ledger 正在调查与东南亚授权经销商 CryptoBilis 相关的用户资金损失事件；Ledger 已要求 CryptoBilis 暂停销售和发货，并对过去90天内购买设备的客户发出警示。链上研究人员估计相关损失约为7200万至9000万美元，Tether 已冻结相关 USDT。赵长鹏等业内人士公开评论并呼吁行业协助追踪资金，Mark Karpelès 正调查设备是否植入恶意硬件组件，但攻击方式、设备是否被篡改及攻击者身份仍未确认，调查仍在进行中。",
+      "current_state_en": "Ledger is investigating reported fund losses tied to Southeast Asian authorized reseller CryptoBilis; Ledger has asked CryptoBilis to suspend sales and shipments and warned customers who bought devices in the past 90 days. Onchain researchers estimate losses at roughly $72 million to $90 million, and Tether has frozen related USDT. Industry figures including Changpeng Zhao have publicly commented and called for industry help tracing funds, while Mark Karpelès is investigating whether malicious hardware components were implanted; the attack method, device tampering and attacker identity remain unconfirmed, and the investigation is ongoing.",
+      "detailed_summary_zh": "Ledger suspended sales and shipments through Southeast Asian reseller CryptoBilis and urged recent buyers to move funds to fresh wallets, while Tether froze USDT tied to suspected thefts from Ledger customers that investigators estimate at nearly $90 million.",
+      "detailed_summary_en": "Ledger suspended sales and shipments through Southeast Asian reseller CryptoBilis and urged recent buyers to move funds to fresh wallets, while Tether froze USDT tied to suspected thefts from Ledger customers that investigators estimate at nearly $90 million.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "rss:cryptoslate.com_feed_:b3e002b0e69feb53"
+      ],
+      "sources": [
+        {
+          "url": "https://cryptoslate.com/ledger-hack-scare-nears-90-million-as-tether-moves-to-freeze-stolen-usdt/",
+          "label": "CryptoSlate",
           "source_type": "rss",
           "official": false
         }
