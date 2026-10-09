@@ -446,7 +446,7 @@ def _details_html(item: ContentItem, language: str) -> str:
     if not sections:
         return ""
     return (
-        '<details class="story-more">'
+        '<details class="story-more" open>'
         f"<summary>{labels['more']}</summary>"
         f'<div class="story-more-content">{"".join(sections)}</div>'
         "</details>"
@@ -524,11 +524,11 @@ def _render_article(
         f"{share_actions}"
         "</div>"
         f"<h2>{title_html}</h2>"
+        f"{_details_html(item, language)}"
         f"{_summary_html(summary, language)}"
         f'<p class="source-line">'
         f"{_source_html(item, language=language, display_timezone=display_timezone)}"
         f" · {_provenance_html(item, language)}</p>"
-        f"{_details_html(item, language)}"
         "</div>"
         "</article>"
     )

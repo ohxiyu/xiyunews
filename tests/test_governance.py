@@ -18,6 +18,7 @@ def tree(tmp_path):
     paths += [str(p.relative_to(ROOT)) for p in (ROOT / "project-docs").rglob("*") if p.is_file()]
     # Handoff/release records may link the authoritative brand specification.
     paths += ["docs/openapi.json", "brand/logo-spec.md"]
+    paths += ["data/tracking-focus.json", "src/tracking_republish.py"]
     # Combined-repository handoff links the independent realtime entry docs.
     paths += [str(p.relative_to(ROOT)) for p in (ROOT / "realtime/docs").rglob("*")
               if p.is_file()]

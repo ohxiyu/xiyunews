@@ -10,6 +10,8 @@ on:
       - 'src/entity_republish.py'
       - 'src/brand_republish.py'
       - 'src/site_pages.py'
+      - 'src/tracking_republish.py'
+      - 'data/tracking-focus.json'
       - 'src/threads.py'
       - '.github/workflows/deploy-docs.yml'
   workflow_dispatch:
@@ -83,6 +85,10 @@ jobs:
           test -d current-site/_data/archive
           mkdir -p docs/_data/archive
           cp -a current-site/_data/archive/. docs/_data/archive/
+          # Rebuild only the reader index from the live, validated catalog.
+          # Never replace it with the old checked-in migration fixture.
+          test -f current-site/_data/events.json
+          cp current-site/_data/events.json docs/_data/events.json
           # Preserve generated API/history and migrate only owned URL prefixes.
           for directory in api editions feeds; do
             if [ -d "current-site/$directory" ]; then
@@ -143,6 +149,9 @@ jobs:
           --archive-root docs/_data/archive
           --entity-root docs/entity
           --data-root docs/_data
+
+      - name: Rebuild focused tracking without AI
+        run: uv run python -m src.tracking_republish --root docs
 
       - name: Render Quick Post without AI
         run: uv run python -m src.quick_posts

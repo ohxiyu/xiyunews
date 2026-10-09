@@ -14,7 +14,7 @@ Parameters: kind ("threads" | "entities" | "weekly"), language ("zh" | "en").
 {% if is_en %}{% assign prefix = "/en" %}{% endif %}
 
 {% if include.kind == "threads" or include.kind == "entities" %}
-  {% assign section_rows = site.data.threads.threads %}
+  {% assign section_rows = site.data.threads.focus %}
   {% assign section_description = page.description %}
   {% if include.kind == "entities" %}
     {% assign section_rows = site.data.entities.entities %}
@@ -27,109 +27,37 @@ Parameters: kind ("threads" | "entities" | "weekly"), language ("zh" | "en").
       <span class="day-state">{% if is_en %}Latest update{% else %}最近更新{% endif %}</span>
       {% if section_latest %}<time datetime="{{ section_latest | escape }}">{{ section_latest | date: "%Y.%m.%d" | escape }}</time>{% else %}<span class="day-window">{% if is_en %}Awaiting coverage{% else %}暂无更新{% endif %}</span>{% endif %}
     </div>
-    <div class="day-divider-stats"><span>{{ section_rows.size | default: 0 | escape }} {% if include.kind == "threads" %}{% if is_en %}active events{% else %}个活跃事件{% endif %}{% else %}{% if is_en %}entities{% else %}个实体{% endif %}{% endif %}</span></div>
+    <div class="day-divider-stats"><span>{{ section_rows.size | default: 0 | escape }} {% if include.kind == "threads" %}{% if is_en %}focus events{% else %}个重点事件{% endif %}{% else %}{% if is_en %}entities{% else %}个实体{% endif %}{% endif %}</span></div>
   {% endcapture %}
   {% include section-divider.html content=section_metadata %}
 {% endif %}
 
 {% if include.kind == "threads" %}
-  {% comment %}
-  Lifecycle (src/site_pages.py): active = material change within 7 days,
-  hottest first; dormant = 7-30 days quiet; archived = older, or resolved
-  more than 7 days ago. Featured = up to three comparably hot active events.
-  {% endcomment %}
-  {% assign rows = site.data.threads.threads %}
-  {% assign featured = site.data.threads.featured %}
-  {% assign dormant = site.data.threads.dormant %}
-  {% assign archived = site.data.threads.archived %}
+  {% assign rows = site.data.threads.focus %}
   {% assign row_count = rows.size | default: 0 %}
-  {% assign featured_count = featured.size | default: 0 %}
-  {% assign dormant_count = dormant.size | default: 0 %}
-  {% assign archived_count = archived.size | default: 0 %}
-  {% if row_count > 0 or dormant_count > 0 or archived_count > 0 %}
-    {% assign crypto_rows = rows | where: "category", "crypto" %}
-    {% assign technology_rows = rows | where: "category", "technology" %}
-    {% assign policy_rows = rows | where: "category", "policy" %}
-    <div class="section-index-body">
-    {% if featured_count > 0 %}
-    <section class="event-context event-spotlight" aria-labelledby="event-spotlight-title">
-      <header class="event-context-heading">
-        <p id="event-spotlight-title" class="edition-overview-title">{% if is_en %}TOP STORY{% else %}重点追踪{% endif %}</p>
-      </header>
-      {% for row in featured %}
-        {% assign title = row.title_zh | default: row.title_en %}
-        {% assign state = row.summary_zh | default: row.summary_en %}
-        {% if is_en %}
-          {% assign title = row.title_en | default: row.title_zh %}
-          {% assign state = row.summary_en | default: row.summary_zh %}
-        {% endif %}
-        <article class="event-spotlight-card{% if forloop.first %} is-lead{% endif %}" data-category="{{ row.category | escape }}">
-          <div class="digest-item-meta"><div>
-            {% if row.category and row.category != "" %}<span class="category-pill" data-category="{{ row.category | escape }}">{% include category-label.html category=row.category language=include.language %}</span>{% endif %}
-            <span class="event-status" data-status="{{ row.status | escape }}">{% if is_en %}{{ row.status_en | escape }}{% else %}{{ row.status_zh | escape }}{% endif %}</span>
-          </div>{% if row.score %}<span class="score-badge" data-tier="{% if row.score >= 9 %}high{% elsif row.score >= 7 %}good{% else %}mid{% endif %}">{{ row.score | escape }}</span>{% endif %}</div>
-          <h2><a href="{{ prefix | escape }}/events/{{ row.event_id | escape }}/">{{ title | escape }}</a></h2>
-          {% if state and state != "" %}<p class="event-spotlight-state">{{ state | escape }}</p>{% endif %}
-          {% if forloop.first %}
-            {% assign background = row.background_zh %}
-            {% assign discussion = row.discussion_zh %}
-            {% assign market_impact = row.market_impact_zh %}
-            {% if is_en %}
-              {% assign background = row.background_en %}
-              {% assign discussion = row.discussion_en %}
-              {% assign market_impact = row.market_impact_en %}
-            {% endif %}
-            <div class="event-brief-grid">
-              {% if row.timeline.size > 0 %}
-                <section class="event-brief-block event-brief-latest">
-                  <h3>{% if is_en %}Latest{% else %}最新进展{% endif %}</h3>
-                  <ol class="event-spotlight-timeline">
-                    {% for step in row.timeline %}
-                      {% assign step_text = step.text_zh | default: step.text_en %}
-                      {% if is_en %}{% assign step_text = step.text_en | default: step.text_zh %}{% endif %}
-                      <li><time datetime="{{ step.date | escape }}">{{ step.date | date: "%m.%d" | escape }}</time><span class="event-spotlight-type">{% if is_en %}{{ step.type_en | escape }}{% else %}{{ step.type_zh | escape }}{% endif %}</span><p>{{ step_text | escape }}</p></li>
-                    {% endfor %}
-                  </ol>
-                </section>
-              {% endif %}
-              {% if background and background != "" %}
-                <section class="event-brief-block event-brief-background">
-                  <h3>{% if is_en %}Background{% else %}事件背景{% endif %}</h3>
-                  <p>{{ background | escape }}</p>
-                </section>
-              {% endif %}
-              {% if discussion and discussion != "" %}
-                <section class="event-brief-block event-brief-discussion">
-                  <h3>{% if is_en %}Discussion{% else %}讨论焦点{% endif %}</h3>
-                  <p>{{ discussion | escape }}</p>
-                </section>
-              {% elsif market_impact and market_impact != "" %}
-                <section class="event-brief-block event-brief-discussion">
-                  <h3>{% if is_en %}Why it matters{% else %}影响判断{% endif %}</h3>
-                  <p>{{ market_impact | escape }}</p>
-                </section>
-              {% endif %}
-            </div>
-            {% if row.source_links.size > 0 or row.reference_links.size > 0 %}
-              <p class="event-brief-references">
-                <strong>{% if is_en %}References{% else %}参考资料{% endif %}</strong>
-                {% for reference in row.source_links limit: 3 %}{% include external-reference.html url=reference.url title=reference.title %}{% unless forloop.last and row.reference_links.size == 0 %}<span aria-hidden="true">·</span>{% endunless %}{% endfor %}
-                {% for reference in row.reference_links limit: 3 %}{% include external-reference.html url=reference.url title=reference.title %}{% unless forloop.last %}<span aria-hidden="true">·</span>{% endunless %}{% endfor %}
-              </p>
-            {% endif %}
-          {% endif %}
-          <p class="source-line event-feed-meta">
-            {% if is_en %}{{ row.updates_count | escape }} updates · {{ row.sources_count | escape }} sources · since {{ row.first_date | escape }}{% else %}{{ row.updates_count | escape }} 次实质进展 · {{ row.sources_count | escape }} 个来源 · 始于 {{ row.first_date | escape }}{% endif %}
-            <a class="event-detail-link" href="{{ prefix | escape }}/events/{{ row.event_id | escape }}/">{% if is_en %}Full timeline{% else %}查看完整时间线{% endif %} →</a>
-          </p>
-        </article>
-      {% endfor %}
+  {% assign featured = site.data.threads.featured %}
+  {% assign counts = site.data.threads.counts %}
+  <div class="section-index-body focused-tracking">
+    {% if row_count > 0 %}
+    <section class="event-context" aria-labelledby="event-context-title">
+      <header class="event-context-heading"><p id="event-context-title" class="edition-overview-title">{% if is_en %}RECENT DEVELOPMENTS{% else %}近期脉络{% endif %}</p></header>
+      <ol class="event-context-list">
+        {% for row in featured limit: 3 %}
+        <li><span class="event-context-rank">0{{ forloop.index | escape }}</span><div>
+          <h3><a href="#focus-{{ row.event_id | escape }}">{% if is_en %}{{ row.title_en | default: row.title_zh | escape }}{% else %}{{ row.title_zh | default: row.title_en | escape }}{% endif %}</a></h3>
+          <p>{% if is_en %}{{ row.latest_update_en | default: row.latest_update_zh | escape }}{% else %}{{ row.latest_update_zh | default: row.latest_update_en | escape }}{% endif %}</p>
+        </div><time datetime="{{ row.latest_date | escape }}">{{ row.latest_date | date: "%m.%d" | escape }}</time></li>
+        {% endfor %}
+      </ol>
     </section>
     {% endif %}
     <div class="event-index-layout">
-      <section class="event-index-stream" aria-label="{% if is_en %}Active events{% else %}持续关注{% endif %}">
+      <section class="event-index-stream" aria-label="{% if is_en %}Focus events{% else %}重点追踪{% endif %}">
         <div class="event-index-orientation">
-          <p class="archive-lede">{% if is_en %}Events with a verified change in the past 7 days, hottest first.{% else %}7 天内有确认进展的事件，按热度排序。{% endif %}</p>
+          <p class="archive-lede">{% if is_en %}Up to six important, unfinished events. Latest three distinct developments shown; full history retained.{% else %}聚焦最多 6 个重要且未结束的事件，直接展示最近 3 条有效进展，完整历史保留。{% endif %}</p>
+          {% assign crypto_rows = rows | where: "category", "crypto" %}
+          {% assign technology_rows = rows | where: "category", "technology" %}
+          {% assign policy_rows = rows | where: "category", "policy" %}
           <div class="category-filters" data-event-filters>
             <button class="active" type="button" data-category="all" aria-pressed="true">{% if is_en %}All{% else %}全部{% endif %}<span>{{ row_count | escape }}</span></button>
             {% if crypto_rows.size > 0 %}<button type="button" data-category="crypto" aria-pressed="false">Crypto<span>{{ crypto_rows.size | escape }}</span></button>{% endif %}
@@ -137,77 +65,80 @@ Parameters: kind ("threads" | "entities" | "weekly"), language ("zh" | "en").
             {% if policy_rows.size > 0 %}<button type="button" data-category="policy" aria-pressed="false">{% if is_en %}Policy{% else %}政策{% endif %}<span>{{ policy_rows.size | escape }}</span></button>{% endif %}
           </div>
         </div>
-        {% if row_count > featured_count %}
-        <ol class="event-feed event-feed-compact" data-event-stream>
-          {% for row in rows offset: featured_count %}
-            {% assign title = row.title_zh | default: row.title_en %}
-            {% assign latest_update = row.latest_update_zh | default: row.latest_update_en %}
-            {% if is_en %}
-              {% assign title = row.title_en | default: row.title_zh %}
-              {% assign latest_update = row.latest_update_en | default: row.latest_update_zh %}
-            {% endif %}
-            <li class="digest-item event-feed-item" data-category="{{ row.category | escape }}">
-              <div class="digest-item-rail">
-                <strong>#{% assign position = forloop.index | plus: featured_count %}{% if position < 10 %}0{% endif %}{{ position | escape }}</strong>
-                <time datetime="{{ row.latest_date | escape }}">{{ row.latest_date | date: "%m.%d" | escape }}</time>
-              </div>
-              <div class="digest-item-content">
-                <div class="digest-item-meta"><div>
-                  {% if row.category and row.category != "" %}<span class="category-pill" data-category="{{ row.category | escape }}">{% include category-label.html category=row.category language=include.language %}</span>{% endif %}
-                  <span class="event-status" data-status="{{ row.status | escape }}">{% if is_en %}{{ row.status_en | escape }}{% else %}{{ row.status_zh | escape }}{% endif %}</span>
-                </div>{% if row.score %}<span class="score-badge" data-tier="{% if row.score >= 9 %}high{% elsif row.score >= 7 %}good{% else %}mid{% endif %}">{{ row.score | escape }}</span>{% endif %}</div>
-                <h2><a href="{{ prefix | escape }}/events/{{ row.event_id | escape }}/">{{ title | escape }}</a></h2>
-                {% if latest_update and latest_update != "" %}<p class="event-feed-latest">{{ latest_update | escape }}</p>{% endif %}
-                <p class="source-line event-feed-meta">{% if is_en %}{{ row.updates_count | escape }} updates · {{ row.sources_count | escape }} sources{% else %}{{ row.updates_count | escape }} 次进展 · {{ row.sources_count | escape }} 个来源{% endif %}</p>
-              </div>
-            </li>
-          {% endfor %}
+        {% if row_count > 0 %}
+        <ol class="event-feed event-focus-feed" data-event-stream>
+        {% for row in rows %}
+          {% assign title = row.title_zh | default: row.title_en %}
+          {% assign state = row.summary_zh | default: row.summary_en %}
+          {% assign watch = row.watch_zh %}
+          {% if is_en %}{% assign title = row.title_en | default: row.title_zh %}{% assign state = row.summary_en | default: row.summary_zh %}{% assign watch = row.watch_en %}{% endif %}
+          <li class="digest-item event-feed-item" id="focus-{{ row.event_id | escape }}" data-category="{{ row.category | escape }}">
+            <div class="digest-item-rail"><strong>#{% if forloop.index < 10 %}0{% endif %}{{ forloop.index | escape }}</strong><time datetime="{{ row.latest_date | escape }}">{{ row.latest_date | date: "%m.%d" | escape }}</time></div>
+            <div class="digest-item-content">
+              <div class="digest-item-meta"><div>
+                {% if row.category and row.category != "" %}<span class="category-pill" data-category="{{ row.category | escape }}">{% include category-label.html category=row.category language=include.language %}</span>{% endif %}
+                <span class="event-status" data-status="{{ row.status | escape }}">{% if is_en %}{{ row.status_en | escape }}{% else %}{{ row.status_zh | escape }}{% endif %}</span>
+              </div>{% if row.score %}<span class="score-badge" data-tier="{% if row.score >= 9 %}high{% elsif row.score >= 7 %}good{% else %}mid{% endif %}">{{ row.score | escape }}</span>{% endif %}</div>
+              <h2><a href="{{ prefix | escape }}/events/{{ row.event_id | escape }}/">{{ title | escape }}</a></h2>
+              {% if state and state != "" %}<p class="event-focus-state">{{ state | escape }}</p>{% endif %}
+              {% include event-reading-context.html row=row language=include.language %}
+              <section class="event-focus-developments">
+                <h3>{% if is_en %}Latest developments{% else %}最新进展{% endif %}</h3>
+                <ol class="event-spotlight-timeline">
+                {% for step in row.timeline limit: 3 %}
+                  {% assign step_text = step.text_zh | default: step.text_en %}
+                  {% if is_en %}{% assign step_text = step.text_en | default: step.text_zh %}{% endif %}
+                  <li><time datetime="{{ step.date | escape }}">{{ step.date | date: "%m.%d" | escape }}{% if step.time_precision == "edition" %}<small>{% if is_en %}edition{% else %}刊期{% endif %}</small>{% endif %}</time><span class="event-spotlight-type">{% if is_en %}{{ step.type_en | escape }}{% else %}{{ step.type_zh | escape }}{% endif %}</span><div><p>{{ step_text | escape }}</p><a class="event-node-evidence" href="{{ prefix | escape }}/events/{{ row.event_id | escape }}/#{{ step.update_id | escape }}">{% if is_en %}Source evidence{% else %}来源依据{% endif %} →</a></div></li>
+                {% endfor %}
+                </ol>
+              </section>
+              {% if watch and watch != "" %}<p class="event-next-watch"><span>{% if is_en %}Watch next{% else %}下一关注点{% endif %}</span> {{ watch | escape }} {% include external-reference.html url=row.watch_source title="↗" %}</p>{% endif %}
+              <p class="source-line event-feed-meta">{% if is_en %}{{ row.updates_count | escape }} recorded updates · {{ row.sources_count | escape }} source links · since {{ row.first_date | escape }}{% else %}{{ row.updates_count | escape }} 条进展记录 · {{ row.sources_count | escape }} 个来源链接 · 始于 {{ row.first_date | escape }}{% endif %}
+                <a class="event-detail-link" href="{{ prefix | escape }}/events/{{ row.event_id | escape }}/">{% if is_en %}Full timeline{% else %}完整时间线{% endif %} →</a>
+              </p>
+            </div>
+          </li>
+        {% endfor %}
         </ol>
-        {% elsif row_count == 0 %}
-          <p class="empty-state">{% if is_en %}No event changed in the past 7 days.{% else %}最近 7 天没有事件出现新的确认进展。{% endif %}</p>
-        {% endif %}
-        {% if dormant_count > 0 %}
-        <details class="event-quiet-list">
-          <summary>{% if is_en %}Gone quiet ({{ dormant_count | escape }}) · no change for 7-30 days{% else %}近期沉寂（{{ dormant_count | escape }}）· 7-30 天无新进展{% endif %}</summary>
-          <ol>
-            {% for row in dormant %}
-              <li><a href="{{ prefix | escape }}/events/{{ row.event_id | escape }}/">{% if is_en %}{{ row.title_en | default: row.title_zh | escape }}{% else %}{{ row.title_zh | default: row.title_en | escape }}{% endif %}</a><time datetime="{{ row.latest_date | escape }}">{{ row.latest_date | date: "%m.%d" | escape }}</time></li>
+        {% else %}<p class="empty-state">{% if is_en %}No unfinished event currently meets the focus criteria. Previous coverage remains below.{% else %}当前没有符合重点标准的未结束事件，历史内容仍保留在下方。{% endif %}</p>{% endif %}
+        {% assign group_names = "other,dormant,completed,archived" | split: "," %}
+        {% for group in group_names %}
+          {% assign group_rows = site.data.threads[group] %}
+          {% if group_rows.size > 0 %}
+          <details class="event-quiet-list"><summary>
+            {% case group %}
+              {% when "other" %}{% if is_en %}Other recent events{% else %}其他近期事件{% endif %}
+              {% when "dormant" %}{% if is_en %}Quiet events{% else %}近期沉寂{% endif %}
+              {% when "completed" %}{% if is_en %}Completed events{% else %}已完成{% endif %}
+              {% when "archived" %}{% if is_en %}Archive{% else %}历史归档{% endif %}
+            {% endcase %}（{{ group_rows.size | escape }}）
+          </summary><ol>
+            {% for row in group_rows %}
+            <li><a href="{{ prefix | escape }}/events/{{ row.event_id | escape }}/">{% if is_en %}{{ row.title_en | default: row.title_zh | escape }}{% else %}{{ row.title_zh | default: row.title_en | escape }}{% endif %}</a><time datetime="{{ row.latest_date | escape }}">{{ row.latest_date | date: "%m.%d" | escape }}</time></li>
             {% endfor %}
-          </ol>
-        </details>
-        {% endif %}
-        {% if archived_count > 0 %}
-        <details class="event-quiet-list">
-          <summary>{% if is_en %}Archive ({{ archived_count | escape }}){% else %}已归档（{{ archived_count | escape }}）{% endif %}</summary>
-          <ol>
-            {% for row in archived %}
-              <li><a href="{{ prefix | escape }}/events/{{ row.event_id | escape }}/">{% if is_en %}{{ row.title_en | default: row.title_zh | escape }}{% else %}{{ row.title_zh | default: row.title_en | escape }}{% endif %}</a><time datetime="{{ row.latest_date | escape }}">{{ row.latest_date | date: "%Y.%m.%d" | escape }}</time></li>
-            {% endfor %}
-          </ol>
-        </details>
-        {% endif %}
+          </ol></details>
+          {% endif %}
+        {% endfor %}
       </section>
       <aside class="headline-rail event-overview-rail" aria-label="{% if is_en %}Event overview{% else %}事件概览{% endif %}">
-        <details class="headline-index" open>
-          <summary><span>{% if is_en %}Event overview{% else %}事件概览{% endif %}</span></summary>
+        <details class="headline-index event-ranking" open>
+          <summary><span>{% if is_en %}Focus events{% else %}重点事件{% endif %}</span><span>{{ row_count | escape }}</span></summary>
+          <ol class="event-ranking-list">
+            {% for row in rows %}<li data-category="{{ row.category | escape }}"><span>{% if forloop.index < 10 %}0{% endif %}{{ forloop.index | escape }}</span><a href="#focus-{{ row.event_id | escape }}">{% if is_en %}{{ row.title_en | default: row.title_zh | escape }}{% else %}{{ row.title_zh | default: row.title_en | escape }}{% endif %}</a><span class="score-badge">{{ row.score | escape }}</span></li>{% endfor %}
+          </ol>
+        </details>
+        <details class="headline-index" open><summary><span>{% if is_en %}Event overview{% else %}事件概览{% endif %}</span></summary>
           <dl class="event-overview-stats">
-            <div><dt>{% if is_en %}Active{% else %}活跃{% endif %}</dt><dd>{{ row_count | escape }}</dd></div>
-            <div><dt>{% if is_en %}Gone quiet{% else %}沉寂{% endif %}</dt><dd>{{ dormant_count | escape }}</dd></div>
-            <div><dt>{% if is_en %}Archived{% else %}归档{% endif %}</dt><dd>{{ archived_count | escape }}</dd></div>
+            <div><dt>{% if is_en %}In focus{% else %}重点{% endif %}</dt><dd>{{ row_count | escape }}</dd></div>
+            <div><dt>{% if is_en %}Recently updated{% else %}近期更新{% endif %}</dt><dd>{{ counts.active | default: 0 | escape }}</dd></div>
+            <div><dt>{% if is_en %}Quiet{% else %}沉寂{% endif %}</dt><dd>{{ counts.dormant | default: 0 | escape }}</dd></div>
+            <div><dt>{% if is_en %}Archived{% else %}归档{% endif %}</dt><dd>{{ counts.archived | default: 0 | escape }}</dd></div>
           </dl>
         </details>
-        <div class="event-index-rule">
-          <strong>{% if is_en %}Display rule{% else %}展示规则{% endif %}</strong>
-          <p>{% if is_en %}An event is tracked after two verified material changes. It stays active for 7 days after its latest change, goes quiet after that, and is archived after 30 days (7 days once resolved). Hotness combines importance, developments, sources and recency.{% else %}事件出现两次已确认的实质变化后开始追踪。最近一次变化后 7 天内为活跃，之后转入沉寂，30 天后归档（已解决的事件 7 天后归档）。热度综合重要性、进展次数、来源数与新近程度。{% endif %}</p>
-        </div>
+        <div class="event-index-rule"><strong>{% if is_en %}Selection{% else %}展示规则{% endif %}</strong><p>{% if is_en %}Important, unfinished events with at least two distinct updates and a high-confidence latest attachment. Crypto is prioritized; coverage volume does not determine rank. An explicitly sourced pending deadline can keep a quiet event eligible. Other events and complete evidence remain accessible.{% else %}优先重要、未结束、有至少两条不同进展且最新归属置信度较高的事件，以加密为主，不按转载数量排名。已有来源的待办期限可保留沉寂事件的候选资格；其他事件与完整证据不删除。{% endif %}</p></div>
       </aside>
     </div>
-    </div>
-  {% else %}
-    <p class="empty-state">
-      {% if is_en %}No event has two verified material updates yet.{% else %}暂时没有出现两次已确认实质变化的事件。{% endif %}
-    </p>
-  {% endif %}
+  </div>
 
 {% elsif include.kind == "entities" %}
   {% assign rows = site.data.entities.entities %}

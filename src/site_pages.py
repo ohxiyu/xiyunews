@@ -10,7 +10,10 @@ from __future__ import annotations
 
 import json
 import logging
+import re
+import unicodedata
 from collections import Counter
+from difflib import SequenceMatcher
 from datetime import date as date_type, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Iterable, List, Mapping, Optional, Sequence
@@ -691,6 +694,10 @@ HEAT_HALF_LIFE_HOURS = 72
 SPOTLIGHT_MIN_SCORE = 9.0
 SPOTLIGHT_MIN_UPDATES = 3
 SPOTLIGHT_MAX_AGE_DAYS = 3
+FOCUS_LIMIT = 6
+FOCUS_MIN_SCORE = 7.0
+FOCUS_MIN_CONFIDENCE = 0.90
+FOCUS_POLICY_PATH = Path("data/tracking-focus.json")
 
 
 def event_lifecycle(status: str, age_days: float) -> str:
@@ -712,25 +719,68 @@ def event_heat(
     return round(importance * recency * development * coverage, 3)
 
 
-def _timeline(material: Sequence[EventUpdate], limit: int = 5) -> list[dict]:
+def _distinct_developments(material: Sequence[EventUpdate]) -> list[EventUpdate]:
+    """Conservative display-only dedup; never rewrite evidence or update IDs.
+
+    Similar prose is collapsed only on the same occurrence date, with identical
+    numeric facts. Corrections remain visible even if they quote old wording.
+    """
+    def signature(update: EventUpdate) -> str:
+        value = update.what_changed_en or update.what_changed_zh
+        return re.sub(r"\W+", "", unicodedata.normalize("NFKC", value).casefold())
+
+    def facts(update: EventUpdate) -> tuple:
+        value = f"{update.what_changed_zh} {update.what_changed_en}".casefold()
+        return (re.findall(r"\d+(?:\.\d+)?", value),
+                re.findall(r"\b(?:not|no|denied|approved|proposed|cancelled)\b|尚未|否认|批准|提案|取消|不", value))
+
+    kept: list[EventUpdate] = []
+    for update in reversed(material):
+        text = signature(update)
+        duplicate = False
+        for newer in kept:
+            other = signature(newer)
+            if not text or not other or update.update_type.value == "correction" or newer.update_type.value == "correction":
+                continue
+            if text == other and facts(update) == facts(newer):
+                duplicate = True
+            elif (update.occurred_at.date() == newer.occurred_at.date()
+                  and update.update_type == newer.update_type
+                  and facts(update) == facts(newer)
+                  and {source.url for source in update.sources} & {source.url for source in newer.sources}
+                  and min(len(text), len(other)) >= 60
+                  and SequenceMatcher(None, text, other, autojunk=False).ratio() >= 0.94):
+                duplicate = True
+            if duplicate:
+                break
+        if not duplicate:
+            kept.append(update)
+    return list(reversed(kept))
+
+
+def _timeline(material: Sequence[EventUpdate], limit: int = 3) -> list[dict]:
     """The newest developments, newest first, for the featured cards."""
     local_zone = ZoneInfo("Asia/Shanghai")
     rows = []
-    for update in list(material)[-limit:][::-1]:
+    for update in _distinct_developments(material)[-limit:][::-1]:
         rows.append(
             {
-                "date": update.first_seen_at.astimezone(local_zone).date().isoformat(),
+                "update_id": update.update_id,
+                "date": update.occurred_at.astimezone(local_zone).date().isoformat(),
+                "time_precision": update.time_precision.value,
                 "type_zh": _UPDATE_LABELS[update.update_type.value]["zh"],
                 "type_en": _UPDATE_LABELS[update.update_type.value]["en"],
                 "text_zh": _event_update_value(update, "what_changed", "zh"),
                 "text_en": _event_update_value(update, "what_changed", "en"),
+                "sources": [source.model_dump() for source in update.sources],
             }
         )
     return rows
 
 
 def build_event_index_data(
-    events: Sequence[TrackedEvent], *, now: datetime | None = None
+    events: Sequence[TrackedEvent], *, now: datetime | None = None,
+    focus_policy: Mapping | None = None,
 ) -> dict:
     """Tracking page data: featured, active, dormant and archived events.
 
@@ -738,6 +788,9 @@ def build_event_index_data(
     events, hottest first.
     """
     now = now or datetime.now(timezone.utc)
+    if focus_policy is None:
+        focus_policy = json.loads(FOCUS_POLICY_PATH.read_text()) if FOCUS_POLICY_PATH.exists() else {}
+    policies = focus_policy.get("events", {})
     rows = []
     for event in events:
         material = [update for update in event.updates if update.material_change]
@@ -751,7 +804,6 @@ def build_event_index_data(
                 update.update_id,
             ),
         )
-        first_update = ordered_material[0]
         latest_update = ordered_material[-1]
 
         def localized_brief(field: str, language: str, *, newest: bool) -> str:
@@ -762,16 +814,10 @@ def build_event_index_data(
                     return value
             return ""
 
-        background_zh = localized_brief("background", "zh", newest=False)
-        background_en = localized_brief("background", "en", newest=False)
-        if not background_zh:
-            background_zh = _event_update_value(
-                first_update, "detailed_summary", "zh"
-            ).split("\n\n", 1)[0]
-        if not background_en:
-            background_en = _event_update_value(
-                first_update, "detailed_summary", "en"
-            ).split("\n\n", 1)[0]
+        # The oldest enrichment may belong to an early, narrower report. Use
+        # the most recent retained background, not a fabricated synopsis.
+        background_zh = localized_brief("background", "zh", newest=True)
+        background_en = localized_brief("background", "en", newest=True)
         latest_summary_zh = (
             _event_update_value(latest_update, "detailed_summary", "zh")
             or _event_update_value(latest_update, "what_changed", "zh")
@@ -788,20 +834,6 @@ def build_event_index_data(
         )
         market_impact_zh = localized_brief("market_impact", "zh", newest=True)
         market_impact_en = localized_brief("market_impact", "en", newest=True)
-        if not discussion_zh:
-            latest_paragraphs_zh = latest_summary_zh.split("\n\n")
-            discussion_zh = (
-                latest_paragraphs_zh[1]
-                if len(latest_paragraphs_zh) > 1
-                else market_impact_zh
-            )
-        if not discussion_en:
-            latest_paragraphs_en = latest_summary_en.split("\n\n")
-            discussion_en = (
-                latest_paragraphs_en[1]
-                if len(latest_paragraphs_en) > 1
-                else market_impact_en
-            )
         score_values = [
             update.importance_score
             for update in ordered_material
@@ -811,7 +843,7 @@ def build_event_index_data(
         source_urls: set[str] = set()
         reference_links = []
         reference_urls: set[str] = set()
-        for update in ordered_material:
+        for update in reversed(ordered_material):
             for source in update.sources:
                 if source.url in source_urls:
                     continue
@@ -823,7 +855,13 @@ def build_event_index_data(
                         "official": source.official,
                     }
                 )
-        for update in ordered_material:
+        # References follow the current background rather than accumulating
+        # search results from every old report (including unrelated context).
+        background_updates = [u for u in ordered_material if u.background_zh or u.background_en]
+        reference_updates = [latest_update]
+        if background_updates and background_updates[-1] != latest_update:
+            reference_updates.append(background_updates[-1])
+        for update in reference_updates:
             for reference in update.references:
                 if reference.url in reference_urls or reference.url in source_urls:
                     continue
@@ -831,8 +869,9 @@ def build_event_index_data(
                 reference_links.append(
                     {"url": reference.url, "title": reference.title or reference.url}
                 )
+        source_links.sort(key=lambda source: not source["official"])
         local_zone = ZoneInfo("Asia/Shanghai")
-        first = min(update.first_seen_at for update in material).astimezone(local_zone).date().isoformat()
+        first = min(update.occurred_at for update in material).astimezone(local_zone).date().isoformat()
         # A late-discovered historical node must not bump a continuing event.
         latest_at = event.last_material_change_at.astimezone(local_zone)
         latest = latest_at.date().isoformat()
@@ -882,6 +921,8 @@ def build_event_index_data(
                 "source_links": source_links,
                 "reference_links": reference_links,
                 "timeline": _timeline(ordered_material),
+                "effective_updates_count": len(_distinct_developments(ordered_material)),
+                "latest_confidence": latest_update.confidence,
             }
         )
         row = rows[-1]
@@ -891,6 +932,17 @@ def build_event_index_data(
         row["heat"] = event_heat(
             row["score"], age_hours, row["updates_count"], row["sources_count"]
         )
+        policy = policies.get(event.event_id, {})
+        watch_until = _as_date(policy.get("watch_until", ""))
+        watch_source = safe_url(policy.get("source_url", ""))
+        watch_text = policy.get("watch_zh", "") or policy.get("watch_en", "")
+        row["watch_pending"] = bool(watch_source and watch_text and watch_until
+                                    and watch_until >= now.astimezone(local_zone).date()
+                                    and row["status"] not in {"resolved", "closed"})
+        row["watch_zh"] = policy.get("watch_zh", "") if row["watch_pending"] else ""
+        row["watch_en"] = policy.get("watch_en", "") if row["watch_pending"] else ""
+        row["watch_source"] = policy.get("source_url", "") if row["watch_pending"] else ""
+        row["focus_excluded"] = bool(policy.get("exclude", False))
 
     def hottest(row: dict):
         return (-row["heat"], row["latest_at"], row["event_id"])
@@ -901,12 +953,23 @@ def build_event_index_data(
     active = sorted((r for r in rows if r["lifecycle"] == "active"), key=hottest)
     dormant = sorted((r for r in rows if r["lifecycle"] == "dormant"), key=newest, reverse=True)
     archived = sorted((r for r in rows if r["lifecycle"] == "archived"), key=newest, reverse=True)
-    featured = [
-        row
-        for row in active[:FEATURED_MAX]
-        if row["heat"] >= FEATURED_RELATIVE_HEAT * active[0]["heat"]
-    ]
-    top = active[0] if active else None
+    # Keep all catalog/history rows. Focus is a separate bounded editorial view:
+    # importance first, then latest material timestamp; raw coverage cannot win.
+    candidates = [r for r in rows if (r["lifecycle"] == "active" or r["watch_pending"])
+                  and r["status"] not in {"resolved", "closed"}
+                  and not r["focus_excluded"]
+                  and (r["score"] or 0) >= FOCUS_MIN_SCORE
+                  and r["latest_confidence"] >= FOCUS_MIN_CONFIDENCE
+                  and r["effective_updates_count"] >= 2]
+    candidates.sort(key=newest, reverse=True)
+    candidates.sort(key=lambda r: -((r["score"] or 0) - min(max(r["age_days"], 0) * 0.15, 1.5)))
+    preferred = [r for r in candidates if r["category"] == "crypto"][:3]
+    preferred_ids = {r["event_id"] for r in preferred}
+    selected = preferred + [r for r in candidates if r["event_id"] not in preferred_ids][:FOCUS_LIMIT - len(preferred)]
+    selected_ids = {r["event_id"] for r in selected}
+    focus = [r for r in candidates if r["event_id"] in selected_ids]
+    featured = focus[:FEATURED_MAX]
+    top = focus[0] if focus else None
     spotlight = (
         top
         if top
@@ -920,17 +983,25 @@ def build_event_index_data(
                "latest_update_zh", "latest_update_en")
     return {
         "threads": active,
-        "ranking": active,
+        "focus": focus,
+        "ranking": focus,
         "featured": featured,
         "spotlight": spotlight,
-        "dormant": [{key: row[key] for key in compact} for row in dormant],
-        "archived": [{key: row[key] for key in compact} for row in archived],
+        "dormant": [{key: row[key] for key in compact} for row in dormant if row["event_id"] not in selected_ids],
+        "archived": [{key: row[key] for key in compact} for row in archived
+                     if row["status"] not in {"resolved", "closed"}],
+        "other": [{key: row[key] for key in compact} for row in active
+                  if row["event_id"] not in selected_ids and row["status"] not in {"resolved", "closed"}],
+        "completed": [{key: row[key] for key in compact} for row in rows
+                      if row["status"] in {"resolved", "closed"}],
         "counts": {
             "active": len(active),
             "dormant": len(dormant),
             "archived": len(archived),
+            "focus": len(focus),
         },
-        "rules": {"active_days": ACTIVE_DAYS, "dormant_days": DORMANT_DAYS},
+        "rules": {"active_days": ACTIVE_DAYS, "dormant_days": DORMANT_DAYS,
+                  "focus_limit": FOCUS_LIMIT, "timeline_limit": 3},
     }
 
 

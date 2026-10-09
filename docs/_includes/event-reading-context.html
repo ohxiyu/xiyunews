@@ -1,0 +1,35 @@
+{% assign background = include.row.background_zh %}
+{% assign discussion = include.row.discussion_zh %}
+{% assign impact = include.row.market_impact_zh %}
+{% if include.language == "en" %}
+  {% assign background = include.row.background_en %}
+  {% assign discussion = include.row.discussion_en %}
+  {% assign impact = include.row.market_impact_en %}
+{% endif %}
+{% assign has_context = false %}
+{% if background and background != "" %}{% assign has_context = true %}{% endif %}
+{% if discussion and discussion != "" %}{% assign has_context = true %}{% endif %}
+{% if impact and impact != "" %}{% assign has_context = true %}{% endif %}
+{% if include.row.source_links.size > 0 or include.row.reference_links.size > 0 %}{% assign has_context = true %}{% endif %}
+{% if has_context %}
+<details class="story-more event-reading-context" open>
+  <summary>{% if include.language == "en" %}Background, discussion and references{% else %}背景、讨论与参考资料{% endif %}</summary>
+  <div class="story-more-content">
+    {% if background and background != "" %}
+      <section data-context-kind="background"><h3>{% if include.language == "en" %}Background{% else %}事件背景{% endif %}</h3><p>{{ background | escape }}</p></section>
+    {% endif %}
+    {% if discussion and discussion != "" %}
+      <section data-context-kind="discussion"><h3>{% if include.language == "en" %}Discussion{% else %}讨论焦点{% endif %}</h3><p>{{ discussion | escape }}</p></section>
+    {% endif %}
+    {% if impact and impact != "" %}
+      <section data-context-kind="discussion" data-context-impact><h3>{% if include.language == "en" %}Impact analysis{% else %}影响分析{% endif %}</h3><p>{{ impact | escape }}</p></section>
+    {% endif %}
+    {% if include.row.source_links.size > 0 or include.row.reference_links.size > 0 %}
+      <section data-context-kind="references"><h3>{% if include.language == "en" %}References{% else %}参考资料{% endif %}</h3><ul>
+        {% for reference in include.row.source_links limit: 3 %}<li>{% include external-reference.html url=reference.url title=reference.title %}{% if reference.official %}<span class="reference-kind">{% if include.language == "en" %} · official{% else %} · 官方{% endif %}</span>{% endif %}</li>{% endfor %}
+        {% for reference in include.row.reference_links limit: 3 %}<li>{% include external-reference.html url=reference.url title=reference.title %}</li>{% endfor %}
+      </ul></section>
+    {% endif %}
+  </div>
+</details>
+{% endif %}
