@@ -3,7 +3,7 @@
 Issue: https://github.com/ohxiyu/xiyunews/issues/228
 Branch: agent/focused-tracking
 Baseline: d1b430e9d8a563f81892a4109a360b64a1180d1b
-PR: 待创建；当前只有本地代码，不宣称已上线。
+PR: https://github.com/ohxiyu/xiyunews/pull/229；CI、合并及部署待完成，不宣称已上线。
 
 ## 范围与规则
 

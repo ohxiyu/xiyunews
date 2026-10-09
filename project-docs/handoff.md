@@ -10,7 +10,7 @@
   "owner": "当前 Codex 会话，唯一编辑与发布整合负责人",
   "branch": "agent/focused-tracking",
   "last_verified_commit": "d1b430e9d8a563f81892a4109a360b64a1180d1b",
-  "pr": "待创建",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/229",
   "completed": ["从最新 origin/main 开独立 worktree，保留原工作区未提交文件", "首页与旧刊期的背景/真实讨论/影响分析/参考前置标签页，完整文本和分享保留", "追踪统一完整事件卡、最多 6 个、最近 3 个节点、右侧概览及重点导航；完整历史和 URL 不删除", "保守展示去重，最近背景替代早期混入资料；影响不冒充讨论；明确来源的待办期限可保留候选资格", "只重建读者索引的无 AI 发布步骤，不改事件目录、日报 API 或消息队列"],
   "unfinished": ["精确 head CI", "同步 main、PR 合并与现有自动发布", "生产版本及页面现场验收"],
   "validation": ["完整 Python 1056 项通过、4 项跳过", "真实内容 Jekyll 构建、桌面1280和手机390、英文暗色320、键盘标签切换验收通过；分享完整长卡1320×3972生成", "Node 分享/PWA/Worker/阅读辅助共 45 项通过；治理和 diff 检查通过"],
