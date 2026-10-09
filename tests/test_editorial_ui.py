@@ -23,7 +23,7 @@ def test_shared_reading_size_covers_lists_details_and_backgrounds():
 
 
 def test_production_templates_keep_evidence_and_details():
-    archive = (ROOT / 'docs/_includes/archive-index.html').read_text()
+    archive = (ROOT / 'docs/_includes/archive-index.html').read_text() + (ROOT / 'docs/_includes/event-reading-context.html').read_text()
     weekly = (ROOT / 'docs/_includes/weekly-edition.html').read_text()
     for field in ['row.background_zh', 'row.discussion_zh', 'row.reference_links',
                   'row.recent_items', 'row.event_id']:
@@ -54,7 +54,14 @@ def test_beautiful_surface_preserves_reading_and_responsive_boundaries():
     assert 'Default text size: desktop 16px, mobile 15px' in reader
     assert '@import' not in css and 'url(' not in css
     # CSS cannot hide full news text, alter two-edition semantics or expose /s.
-    assert '-webkit-line-clamp' not in css.split('/* One surface vocabulary', 1)[1]
+    # Only optional background is previewed, with an explicit expand control;
+    # full news prose is never clamped and no-JS keeps all context readable.
+    for rule in css.split('}'):
+        if '-webkit-line-clamp:' in rule and '-webkit-line-clamp: unset' not in rule:
+            assert '.story-summary-body' not in rule
+    assert '.reading-context.is-enhanced [data-context-kind="background"]:not(.is-expanded)' in css
+    controller = (ROOT / 'docs/assets/js/bmtnews-ui.js').read_text()
+    assert '展开完整背景' in controller and "aria-expanded" in controller
     feed = (ROOT / 'docs/_includes/feed-home.html').read_text()
     assert 'for post in feed_posts limit:2' in feed
     layout = (ROOT / 'docs/_layouts/default.html').read_text()

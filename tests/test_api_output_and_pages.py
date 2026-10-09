@@ -597,7 +597,8 @@ def test_event_index_contains_progressions_not_single_updates() -> None:
     assert rows[0]["score"] == 8.5
     assert len(rows[0]["source_links"]) == 2
     assert len(rows[0]["reference_links"]) == 2
-    assert [row["event_id"] for row in payload["ranking"]] == ["evt_progress1"]
+    assert payload["ranking"] == []  # completed history is not a focus event
+    assert payload["completed"][0]["event_id"] == "evt_progress1"
 
 
 def test_event_index_ranks_active_events_by_heat() -> None:
@@ -619,7 +620,7 @@ def test_event_index_ranks_active_events_by_heat() -> None:
         "evt_newer001",
         "evt_higher01",
     ]
-    assert payload["threads"] == payload["ranking"]
+    assert payload["ranking"] == payload["focus"] == []
     # Same age: the more important event is hotter.
     same_age = build_event_index_data(
         [important_old, make_event("evt_plain001", updates=2)], now=INDEX_NOW
@@ -644,12 +645,13 @@ def test_event_lifecycle_moves_quiet_events_out_of_the_list() -> None:
     assert [row["event_id"] for row in dormant["dormant"]] == ["evt_quiet001"]
     archived = build_event_index_data([event], now=base + timedelta(days=40))
     assert [row["event_id"] for row in archived["archived"]] == ["evt_quiet001"]
-    assert archived["counts"] == {"active": 0, "dormant": 0, "archived": 1}
+    assert archived["counts"] == {"active": 0, "dormant": 0, "archived": 1, "focus": 0}
 
 
 def test_featured_and_spotlight_pick_only_major_developing_stories() -> None:
     major = make_event("evt_major001", updates=3)
     minor = make_event("evt_minor001", updates=2)
+    major.status = minor.status = EventStatus.DEVELOPING
     major.updates[-1].importance_score = 9.5
     for update in minor.updates:
         update.importance_score = 5.0
@@ -676,12 +678,13 @@ def test_event_index_uses_local_material_timestamp_not_late_discovery() -> None:
     assert row["latest_at"] == event.last_material_change_at.astimezone(ZoneInfo("Asia/Shanghai")).isoformat()
 
 
-def test_context_is_recent_and_latest_precedes_background() -> None:
+def test_context_is_recent_and_background_precedes_developments() -> None:
     template = Path("docs/_includes/archive-index.html").read_text()
     context = template.split('<div class="event-index-layout">')[0]
-    # The lead is chosen by heat (importance and recency), not by recency alone.
     assert "for row in featured" in context
-    assert template.index('event-brief-latest') < template.index('event-brief-background')
+    assert template.index('include event-reading-context.html') < template.index('event-focus-developments')
+    assert "for step in row.timeline limit: 3" in template
+    assert "if forloop.first" not in template.split('{% elsif include.kind == "entities" %}')[0]
     for section in ("threads", "entity"):
         assert f"alternate_url: /en/{section}/" in Path(f"docs/{section}.html").read_text()
         assert f"alternate_url: /{section}/" in Path(f"docs/en/{section}.html").read_text()
@@ -702,14 +705,13 @@ def test_event_index_template_reuses_feed_layout_and_filters() -> None:
     assert 'class="digest-item event-feed-item"' in template
     assert "data-event-filters" in template
     assert 'class="headline-rail event-overview-rail"' in template
-    assert 'class="event-context event-spotlight"' in template
-    assert 'class="event-brief-grid"' in template
-    # The active list is itself ordered by heat; no second ranking rail.
-    assert 'class="headline-index event-ranking"' not in template.split('{% elsif include.kind == "entities" %}')[0]
-    assert "事件背景" in template
+    assert 'class="event-context"' in template
+    assert 'class="headline-index event-ranking"' in template
+    context = Path("docs/_includes/event-reading-context.html").read_text()
+    assert "事件背景" in context
     assert "最新进展" in template
-    assert "讨论焦点" in template
-    assert "参考资料" in template
+    assert "讨论焦点" in context
+    assert "参考资料" in context
     assert 'class="event-feed-summary"' not in template
     assert "当前状态" not in template
     assert "page.page_class" in layout
