@@ -7,26 +7,28 @@
   "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "Ledger 授权经销商渠道遭攻击，数百用户钱包被盗约 8600 万美元",
+    "zh": "Ledger 用户钱包疑遭供应链攻击被盗，损失近 9000 万美元",
     "en": "【Specter：数百个 Ledger 用户钱包疑似被盗，损失超 8600 万美元】"
   },
   "current_state": {
-    "zh": "Ledger 正在调查与东南亚授权经销商 CryptoBilis 相关的用户资金损失事件；CryptoBilis 已实际暂停马来西亚、菲律宾和印度尼西亚所有门店及线上渠道的全部品牌硬件钱包销售，并暂时关闭实体门店，正在配合 Ledger 调查并由独立专家审查内部流程。Ledger 此前已要求 CryptoBilis 暂停销售和发货，并警示过去90天内购买设备的客户；链上研究人员估计相关损失约为7200万至9000万美元，Tether 已冻结相关 USDT。攻击方式、设备是否被篡改及攻击者身份仍未确认，调查仍在进行中。",
-    "en": "Ledger is investigating reported fund losses tied to Southeast Asian authorized reseller CryptoBilis; CryptoBilis has now suspended all brand hardware-wallet sales in its physical stores and online channels in Malaysia, the Philippines and Indonesia, temporarily closed physical stores, and is cooperating with Ledger’s investigation while independent experts review its processes. Ledger had already asked CryptoBilis to suspend sales and shipments and warned customers who bought devices in the past 90 days. Onchain researchers estimate losses at roughly $72 million to $90 million, and Tether has frozen related USDT. The attack method, device tampering and attacker identity remain unconfirmed, and the investigation is ongoing."
+    "zh": "一份报告将一起1亿美元盗窃案与Ledger联系起来，而此时其安全硬件产品线已不再是该公司最大的收入来源。",
+    "en": "A report ties a $100 million theft to Ledger at a time when its secure hardware line is no longer the company's largest revenue source."
   },
   "first_seen_at": "2026-10-09T15:30:47.822838+00:00",
-  "last_updated_at": "2026-10-10T02:39:25.792121+00:00",
-  "last_material_change_at": "2026-10-10T02:39:24.921336+00:00",
+  "last_updated_at": "2026-10-10T06:40:40.620597+00:00",
+  "last_material_change_at": "2026-10-10T06:40:40.292387+00:00",
   "confidence": 0.75,
-  "updates_count": 11,
-  "sources_count": 27,
+  "updates_count": 13,
+  "sources_count": 32,
   "entities": [
     "after",
     "asia",
     "asian",
     "binance",
+    "blockbeats",
     "cash",
     "ceo",
+    "ciso",
     "cryptobilis",
     "cryptobillis",
     "draining",
@@ -58,8 +60,11 @@
   "identifiers": [],
   "topics": [
     "asset-theft",
+    "cfcft",
     "consumer-protection",
+    "crypto-security",
     "crypto-theft",
+    "cryptobilis",
     "fund-losses",
     "fund-theft",
     "fund-tracing",
@@ -436,12 +441,13 @@
       "community_discussion_en": "",
       "market_impact_zh": "",
       "market_impact_en": "",
-      "importance_score": 7.5,
+      "importance_score": 8.5,
       "references": [],
       "confidence": 0.75,
       "story_ids": [
         "telegram:theblockbeats:199757",
-        "telegram:theblockbeats:199769"
+        "telegram:theblockbeats:199769",
+        "telegram:foresightnews:120090"
       ],
       "sources": [
         {
@@ -453,6 +459,12 @@
         {
           "url": "https://m.theblockbeats.info/flash/371089?from=telegram",
           "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/article/detail/100813",
+          "label": "foresightnews",
           "source_type": "telegram",
           "official": false
         }
@@ -586,6 +598,51 @@
       ]
     },
     {
+      "update_id": "upd_43f44af694b0ab71",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-10T01:28:02Z",
+      "published_at": "2026-10-10T01:28:02Z",
+      "first_seen_at": "2026-10-10T02:39:24.921155Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "【慢雾 CISO 推测 Ledger 设备被攻击路径：旁路录屏助记词后再外传】",
+      "title_en": "【慢雾 CISO 推测 Ledger 设备被攻击路径：旁路录屏助记词后再外传】",
+      "what_changed_zh": "在Mark Karpelès报告收到一台内置隐藏间谍模块的Ledger之后，SlowMist的首席信息安全官概述了一台被篡改的Ledger设备如何从屏幕的SPI数据线记录助记词，并通过嵌入式LTE/eSIM模块将其外泄。",
+      "what_changed_en": "SlowMist's CISO outlined how a tampered Ledger device could record the mnemonic words from the screen's SPI data lines and exfiltrate them via an embedded LTE/eSIM module, following Mark Karpelès' report of receiving a Ledger with a hidden spy module.",
+      "current_state_zh": "在Mark Karpelès报告收到一台内置隐藏间谍模块的Ledger之后，SlowMist的首席信息安全官概述了一台被篡改的Ledger设备如何从屏幕的SPI数据线记录助记词，并通过嵌入式LTE/eSIM模块将其外泄。",
+      "current_state_en": "SlowMist's CISO outlined how a tampered Ledger device could record the mnemonic words from the screen's SPI data lines and exfiltrate them via an embedded LTE/eSIM module, following Mark Karpelès' report of receiving a Ledger with a hidden spy module.",
+      "detailed_summary_zh": "SlowMist's CISO outlined how a tampered Ledger device could record the mnemonic words from the screen's SPI data lines and exfiltrate them via an embedded LTE/eSIM module, following Mark Karpelès' report of receiving a Ledger with a hidden spy module.",
+      "detailed_summary_en": "SlowMist's CISO outlined how a tampered Ledger device could record the mnemonic words from the screen's SPI data lines and exfiltrate them via an embedded LTE/eSIM module, following Mark Karpelès' report of receiving a Ledger with a hidden spy module.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:120070",
+        "telegram:theblockbeats:199770"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/114883",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://m.theblockbeats.info/flash/371090?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
       "update_id": "upd_81baf56b6cf38449",
       "event_id": "evt_c594d0e29e7b400b",
       "occurred_at": "2026-10-10T01:42:43Z",
@@ -618,6 +675,51 @@
         {
           "url": "https://foresightnews.pro/news/h5Detail/114884",
           "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_20d76fa8c70416f1",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-10T02:57:40Z",
+      "published_at": "2026-10-10T02:57:40Z",
+      "first_seen_at": "2026-10-10T06:40:40.288581Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "BlockBeats pinned «📌律动10.10焦点关注 🔴Ledger安全事件损失接近9000万美元，Tether正冻结涉事地址中的大量USDT 🟠Le",
+      "title_en": "BlockBeats pinned «📌律动10.10焦点关注 🔴Ledger安全事件损失接近9000万美元，Tether正冻结涉事地址中的大量USDT 🟠Le",
+      "what_changed_zh": "一起损失接近9000万美元的Ledger硬件钱包被攻破事件正浮现出新的取证细节——疑似供应商一侧的硬件植入被用于提取助记词、经销商CryptoBilis在3月发生所有权变更，以及Tether冻结了与攻击者相关地址中的大量USDT。",
+      "what_changed_en": "A Ledger hardware-wallet compromise with losses near $90 million is drawing new forensic detail — a suspected supplier-side hardware implant used to extract seed phrases, distributor CryptoBilis's March ownership change, and Tether freezing substantial USDT in attacker-linked addresses.",
+      "current_state_zh": "一起损失接近9000万美元的Ledger硬件钱包被攻破事件正浮现出新的取证细节——疑似供应商一侧的硬件植入被用于提取助记词、经销商CryptoBilis在3月发生所有权变更，以及Tether冻结了与攻击者相关地址中的大量USDT。",
+      "current_state_en": "A Ledger hardware-wallet compromise with losses near $90 million is drawing new forensic detail — a suspected supplier-side hardware implant used to extract seed phrases, distributor CryptoBilis's March ownership change, and Tether freezing substantial USDT in attacker-linked addresses.",
+      "detailed_summary_zh": "A Ledger hardware-wallet compromise with losses near $90 million is drawing new forensic detail — a suspected supplier-side hardware implant used to extract seed phrases, distributor CryptoBilis's March ownership change, and Tether freezing substantial USDT in attacker-linked addresses.",
+      "detailed_summary_en": "A Ledger hardware-wallet compromise with losses near $90 million is drawing new forensic detail — a suspected supplier-side hardware implant used to extract seed phrases, distributor CryptoBilis's March ownership change, and Tether freezing substantial USDT in attacker-linked addresses.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:theblockbeats:199783",
+        "telegram:theblockbeats:199802"
+      ],
+      "sources": [
+        {
+          "url": "https://telegram.me/theblockbeats/199783",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://m.theblockbeats.info/news/63863?from=telegram",
+          "label": "theblockbeats",
           "source_type": "telegram",
           "official": false
         }
