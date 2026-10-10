@@ -43,20 +43,33 @@
       "material_change": true,
       "title_zh": "【Ripple 披露两项漏洞修复：支付引擎整数溢出可凭空铸造 XRP，批量交易封装校验亦存共识风险】",
       "title_en": "【Ripple 披露两项漏洞修复：支付引擎整数溢出可凭空铸造 XRP，批量交易封装校验亦存共识风险】",
-      "what_changed_zh": "Ripple's xrpld 3.4.1 disclosure details a critical payment-engine integer overflow that could have minted spendable XRP from thin air (patched 25 September, no exploitation found) and a batch-transaction encapsulation validation flaw addressed by the fixBatchV1_2 amendment, activated on mainnet on 9 October.",
+      "what_changed_zh": "Ripple 发布 xrpld 3.4.1 漏洞披露报告，涵盖两项问题。支付引擎中的严重级别整数溢出影响 3.4.0 及更早版本，可凭空铸造可花费的 XRP，该问题随 9 月 25 日发布的 xrpld 3.4.1 修复生效。另一项为批量交易内部封装校验漏洞（fixBatchV1_2 修正案），影响 3.3.0 与 3.4.0，已在 3.4.1 中修复，并于 10 月 9 日在主网激活。\n\n报告称，未发现支付引擎漏洞在任何公开网络被利用的证据，批量交易问题也未造成资金损失或私钥泄露。但报告警告，若在未修复情况下激活 BatchV1_1，存在网络活性中断或账本中留下畸形记录的风险。\n\n报告称，支付引擎在汇总跨多个挂单的金额时使用 64 位整数且缺少溢出检查，当求和超过上限时会回绕，向挂单方贷记全额、仅向买方收取回绕后的金额。利用该问题需构造数百笔恶意挂单，成本约数百枚 XRP 的储备与手续费，普通支付无法触发该路径。",
       "what_changed_en": "Ripple's xrpld 3.4.1 disclosure details a critical payment-engine integer overflow that could have minted spendable XRP from thin air (patched 25 September, no exploitation found) and a batch-transaction encapsulation validation flaw addressed by the fixBatchV1_2 amendment, activated on mainnet on 9 October.",
-      "current_state_zh": "Ripple's xrpld 3.4.1 disclosure details a critical payment-engine integer overflow that could have minted spendable XRP from thin air (patched 25 September, no exploitation found) and a batch-transaction encapsulation validation flaw addressed by the fixBatchV1_2 amendment, activated on mainnet on 9 October.",
+      "current_state_zh": "Ripple 发布 xrpld 3.4.1 漏洞披露报告，涵盖两项问题。支付引擎中的严重级别整数溢出影响 3.4.0 及更早版本，可凭空铸造可花费的 XRP，该问题随 9 月 25 日发布的 xrpld 3.4.1 修复生效。另一项为批量交易内部封装校验漏洞（fixBatchV1_2 修正案），影响 3.3.0 与 3.4.0，已在 3.4.1 中修复，并于 10 月 9 日在主网激活。\n\n报告称，未发现支付引擎漏洞在任何公开网络被利用的证据，批量交易问题也未造成资金损失或私钥泄露。但报告警告，若在未修复情况下激活 BatchV1_1，存在网络活性中断或账本中留下畸形记录的风险。\n\n报告称，支付引擎在汇总跨多个挂单的金额时使用 64 位整数且缺少溢出检查，当求和超过上限时会回绕，向挂单方贷记全额、仅向买方收取回绕后的金额。利用该问题需构造数百笔恶意挂单，成本约数百枚 XRP 的储备与手续费，普通支付无法触发该路径。",
       "current_state_en": "Ripple's xrpld 3.4.1 disclosure details a critical payment-engine integer overflow that could have minted spendable XRP from thin air (patched 25 September, no exploitation found) and a batch-transaction encapsulation validation flaw addressed by the fixBatchV1_2 amendment, activated on mainnet on 9 October.",
       "detailed_summary_zh": "Ripple's xrpld 3.4.1 disclosure details a critical payment-engine integer overflow that could have minted spendable XRP from thin air (patched 25 September, no exploitation found) and a batch-transaction encapsulation validation flaw addressed by the fixBatchV1_2 amendment, activated on mainnet on 9 October.",
       "detailed_summary_en": "Ripple's xrpld 3.4.1 disclosure details a critical payment-engine integer overflow that could have minted spendable XRP from thin air (patched 25 September, no exploitation found) and a batch-transaction encapsulation validation flaw addressed by the fixBatchV1_2 amendment, activated on mainnet on 9 October.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "XLS-56 批量交易允许最多 8 笔内部交易通过一个“外层”封装原子化执行，整组交易只需支付一笔网络手续费。一份独立报告称，公开主网 Amendments 账本条目在已验证账本 107541231 中同时包含 BatchV1_1 与 fixBatchV1_2。支付引擎问题由 Cayden Liao 与 Veria AI 通过 XRPL 漏洞赏金计划提交，并提供了概念验证。",
+      "background_en": "XLS-56 batch transactions let a group of up to eight transactions be applied atomically in a single \"outer\" wrapper, with one network fee paid for the whole group. An independent report said the public mainnet Amendments ledger entry at validated ledger 107541231 contained both BatchV1_1 and fixBatchV1_2. The payment engine issue was submitted by Cayden Liao and Veria AI through the XRPL bug bounty program, with a proof of concept.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "传导路径主要经由 XRP 的供应完整性与市场情绪：若该铸造路径未被修复，将动摇支撑 XRP 定价与交易所托管的固定供应假设，尽管报告称未发现被利用、也无资金损失。批量交易修复则关系到计划依赖 XLS-56 原子化执行的场所与应用，因为未修复的缺陷存在活性中断风险。",
+      "market_impact_en": "The transmission path runs through XRP supply integrity and sentiment: an unpatched mint path on the XRP Ledger would have called into question the fixed supply assumptions that underpin XRP pricing and custody on exchanges, even though the report found no exploitation and no fund loss. The batch-transaction fix matters for the venues and applications planning to rely on XLS-56 atomic execution, since an unfixed flaw risked liveness interruption.",
       "importance_score": 8.0,
-      "references": [],
+      "references": [
+        {
+          "url": "https://xrpl.org/blog/2026/vulnerabilitydisclosurereport-bug-20261009",
+          "title": "Vulnerability Disclosure Report for xrpld 3.4.1"
+        },
+        {
+          "url": "https://xls.xrpl.org/xls/XLS-0056-batch.html",
+          "title": "XLS-0056: Atomic/Batch Transactions"
+        },
+        {
+          "url": "https://www.homannsoftware.com/2026/10/09/xrpl-batch-live-atomic-transactions-completion-evidence/",
+          "title": "XRPL Batch Is Live: Atomic Transactions Need... - Homann Software"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:foresightnews:120087"

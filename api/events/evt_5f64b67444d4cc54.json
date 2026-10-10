@@ -43,20 +43,33 @@
       "material_change": true,
       "title_zh": "杨立坤4年前的构想交卷：H-JEPA迷宫成功率从18%升至73%",
       "title_en": "杨立坤4年前的构想交卷：H-JEPA迷宫成功率从18%升至73%",
-      "what_changed_zh": "LeCun's AMI Labs and academic collaborators released H-JEPA, a hierarchical world model in which each planning level learns its own environment features, raising maze-navigation success from 18.0% to 73.3% over a single-layer baseline with less planning compute, with paper, code, and pretrained weights made public.",
+      "what_changed_zh": "杨立坤创办的 AMI Labs 联合多所高校公布 H-JEPA，一种分层预测未来、规划动作的世界模型：高层负责远期目标，低层将其细化为具体动作，且每个层级学习自己的环境特征。论文、代码和预训练权重均已公开；在 Visual AntMaze 仿真迷宫中，三个规划层级的 H-JEPA 成功率达到 73.3%，单层 LeWorldModel 为 18.0%，且前者所需的规划计算量更少。\n\n这一发布把杨立坤早在 2022 年提出的构想变成了可以端到端训练的实现方案，而 Visual AntMaze 上的成功率为 73.3%，明显高于单层基线且规划计算量更少。与此前各层共用同一套特征的 HWM 不同，H-JEPA 让每个层级学习自己的环境特征。\n\n规划层级并非越多越好：在模拟推物体的 Push-T 任务中，三层模型反而不如两层。团队还用真实机器人录像数据集 DROID 进行了离线测试，预测动作轨迹比单层模型更接近专家示范。",
       "what_changed_en": "LeCun's AMI Labs and academic collaborators released H-JEPA, a hierarchical world model in which each planning level learns its own environment features, raising maze-navigation success from 18.0% to 73.3% over a single-layer baseline with less planning compute, with paper, code, and pretrained weights made public.",
-      "current_state_zh": "LeCun's AMI Labs and academic collaborators released H-JEPA, a hierarchical world model in which each planning level learns its own environment features, raising maze-navigation success from 18.0% to 73.3% over a single-layer baseline with less planning compute, with paper, code, and pretrained weights made public.",
+      "current_state_zh": "杨立坤创办的 AMI Labs 联合多所高校公布 H-JEPA，一种分层预测未来、规划动作的世界模型：高层负责远期目标，低层将其细化为具体动作，且每个层级学习自己的环境特征。论文、代码和预训练权重均已公开；在 Visual AntMaze 仿真迷宫中，三个规划层级的 H-JEPA 成功率达到 73.3%，单层 LeWorldModel 为 18.0%，且前者所需的规划计算量更少。\n\n这一发布把杨立坤早在 2022 年提出的构想变成了可以端到端训练的实现方案，而 Visual AntMaze 上的成功率为 73.3%，明显高于单层基线且规划计算量更少。与此前各层共用同一套特征的 HWM 不同，H-JEPA 让每个层级学习自己的环境特征。\n\n规划层级并非越多越好：在模拟推物体的 Push-T 任务中，三层模型反而不如两层。团队还用真实机器人录像数据集 DROID 进行了离线测试，预测动作轨迹比单层模型更接近专家示范。",
       "current_state_en": "LeCun's AMI Labs and academic collaborators released H-JEPA, a hierarchical world model in which each planning level learns its own environment features, raising maze-navigation success from 18.0% to 73.3% over a single-layer baseline with less planning compute, with paper, code, and pretrained weights made public.",
       "detailed_summary_zh": "LeCun's AMI Labs and academic collaborators released H-JEPA, a hierarchical world model in which each planning level learns its own environment features, raising maze-navigation success from 18.0% to 73.3% over a single-layer baseline with less planning compute, with paper, code, and pretrained weights made public.",
       "detailed_summary_en": "LeCun's AMI Labs and academic collaborators released H-JEPA, a hierarchical world model in which each planning level learns its own environment features, raising maze-navigation success from 18.0% to 73.3% over a single-layer baseline with less planning compute, with paper, code, and pretrained weights made public.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "JEPA（联合嵌入预测架构）是一种自监督学习思路，通过预测输入的抽象表征来学习，而不必重建原始像素或生成 token。H-JEPA 延续了这一方向：先把画面转成抽象的环境特征，再结合动作预测未来状态，不必逐帧生成视频。此前的 HWM 同样使用多个预测视野，并把高层预测作为子目标下传，但所有层级共用同一套潜在空间。",
+      "background_en": "JEPA, or Joint Embedding Predictive Architecture, is a self-supervised approach that learns by predicting abstract representations of inputs instead of reconstructing raw pixels or generating tokens. H-JEPA extends this line: it first converts images into abstract environment features and combines them with actions to predict future states without frame-by-frame video generation. The closest prior method is HWM, which also uses multiple prediction horizons and passes upper-level predictions down as subgoals but keeps all levels in one shared latent space.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
       "market_impact_zh": "",
       "market_impact_en": "",
       "importance_score": 7.0,
-      "references": [],
+      "references": [
+        {
+          "url": "https://h-jepa.com/",
+          "title": "H-JEPA: End-to-End Learning of Hierarchical World Models for Visual..."
+        },
+        {
+          "url": "https://www.alphaxiv.org/abs/2610.06805",
+          "title": "H-JEPA: End-to-End Learning of Hierarchical World Models for..."
+        },
+        {
+          "url": "https://www.turingpost.com/p/jepa",
+          "title": "JEPA: Joint Embedding Predictive Architecture Explained"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:theblockbeats:199831"

@@ -41,25 +41,37 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Telegram Desktop vulnerability allowed any user's file to be stolen",
+      "title_zh": "Telegram Desktop 漏洞可窃取任意用户的文件",
       "title_en": "Telegram Desktop vulnerability allowed any user's file to be stolen",
-      "what_changed_zh": "A public disclosure details a Telegram Desktop vulnerability that let a single click exfiltrate a user's files and potentially take over their account, fixed on September 16 roughly three months after the June 25 report.",
+      "what_changed_zh": "一名安全研究员发布文章，详述 Telegram Desktop 的一个漏洞：攻击者可将“任意文件读取”串联为“一键接管账号”，窃取 SSH 私钥、浏览器凭据存储以及云服务/API 令牌等本地文件。整个利用链的核心原语不变——始终是任意文件读取，变化的只是读取的目标。\n\n该漏洞影响一款用户规模约十亿的即时通讯软件的桌面客户端，而一条只需一次点击的客户端利用链，可以把本地保存的凭据转化为账号接管。目前尚无与该披露相关的已证实大规模窃取事件被报道。\n\n对该披露的报道指出，用户点击 Telegram 链接时 Telegram Desktop 可能已在运行，利用链涉及进程间通信（IPC）与 tg:// URL scheme。公开的概念验证演示了通过 Telegram 本身窃取文件，而被窃取的会话文件可能被攻击者用于复用受害者已登录的账号。",
       "what_changed_en": "A public disclosure details a Telegram Desktop vulnerability that let a single click exfiltrate a user's files and potentially take over their account, fixed on September 16 roughly three months after the June 25 report.",
-      "current_state_zh": "A public disclosure details a Telegram Desktop vulnerability that let a single click exfiltrate a user's files and potentially take over their account, fixed on September 16 roughly three months after the June 25 report.",
+      "current_state_zh": "一名安全研究员发布文章，详述 Telegram Desktop 的一个漏洞：攻击者可将“任意文件读取”串联为“一键接管账号”，窃取 SSH 私钥、浏览器凭据存储以及云服务/API 令牌等本地文件。整个利用链的核心原语不变——始终是任意文件读取，变化的只是读取的目标。\n\n该漏洞影响一款用户规模约十亿的即时通讯软件的桌面客户端，而一条只需一次点击的客户端利用链，可以把本地保存的凭据转化为账号接管。目前尚无与该披露相关的已证实大规模窃取事件被报道。\n\n对该披露的报道指出，用户点击 Telegram 链接时 Telegram Desktop 可能已在运行，利用链涉及进程间通信（IPC）与 tg:// URL scheme。公开的概念验证演示了通过 Telegram 本身窃取文件，而被窃取的会话文件可能被攻击者用于复用受害者已登录的账号。",
       "current_state_en": "A public disclosure details a Telegram Desktop vulnerability that let a single click exfiltrate a user's files and potentially take over their account, fixed on September 16 roughly three months after the June 25 report.",
       "detailed_summary_zh": "A public disclosure details a Telegram Desktop vulnerability that let a single click exfiltrate a user's files and potentially take over their account, fixed on September 16 roughly three months after the June 25 report.",
       "detailed_summary_en": "A public disclosure details a Telegram Desktop vulnerability that let a single click exfiltrate a user's files and potentially take over their account, fixed on September 16 roughly three months after the June 25 report.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
-      "importance_score": 7.0,
+      "background_zh": "Telegram Desktop 此前已多次出现安全公告，其中包括 2023 年同一 HTML 导出功能中允许任意文件读取的问题；有报道称该问题已在 Desktop Beta 6.9.4 和 Stable 7.0.1 中修复，但由更早版本生成的 HTML 导出文件可能仍不安全。此前的报道还记录过通过另一条语音信箱路径劫持 Telegram 账号的方法。",
+      "background_en": "Telegram Desktop has drawn security advisories before, including a 2023 issue in the same HTML export feature that allowed arbitrary file reads; reporting says that issue was fixed in Desktop Beta 6.9.4 and Stable 7.0.1, though HTML exports created with older versions may remain unsafe. Earlier reporting also documented Telegram account hijacking via a separate voicemail route.",
+      "community_discussion_zh": "评论区普遍将其视为更深层设计问题的例证：有人引用“任何足够复杂的输入格式都与字节码无异”的说法，也有人主张软件不应默认获得全部文件访问权和不受限制的联网能力。常见的抱怨是 Telegram 会定期重新开启用户已关闭的应用内或账号设置，令用户无法确认自身的暴露面；另一些人表示已将 Telegram 放入沙箱且不存放 SSH 密钥与令牌，或干脆不注册 tg:// scheme，还有人宁愿使用网页版而不安装桌面软件。",
+      "community_discussion_en": "Commenters broadly treated the case as an illustration of a deeper design problem: one quoted the maxim that any sufficiently complex input format is indistinguishable from bytecode, and another argued software should not by default get access to all files and unrestricted internet access. A recurring complaint was that Telegram regularly re-enables in-app or account settings users had disabled, leaving users unsure of their exposure; others said they sandbox Telegram without SSH keys and tokens or avoid registering the tg:// scheme, and some prefer web versions over installing desktop software.",
+      "market_impact_zh": "Telegram 被加密社区和交易者广泛使用，而这条可一键抓取浏览器凭据存储与 API 令牌的利用链，涉及使用桌面客户端用户的资产托管与密钥管理风险。其传导途径是本地凭据窃取，而非协议或交易所机制；由于尚无已证实的窃取事件，目前还看不到可观察到的市场影响。",
+      "market_impact_en": "Telegram is widely used by crypto communities and traders, and a one-click chain that harvests browser credential stores and API tokens touches custody and key-management risk for crypto users running the desktop client. The exposure runs through local credential theft rather than protocol or exchange mechanics, and with no confirmed theft reported there is no observable market effect yet.",
+      "importance_score": 7.5,
       "references": [
         {
           "url": "https://news.ycombinator.com/item?id=50029123",
           "title": "Community discussion"
+        },
+        {
+          "url": "https://cybersecuritynews.com/poc-released-for-telegram-desktop-flaw/",
+          "title": "PoC Released for Telegram Desktop Flaw Enabling One-Click File..."
+        },
+        {
+          "url": "https://dev.to/asyncinnovator/how-a-single-click-could-take-over-a-telegram-desktop-account-5dn7",
+          "title": "How a Single Click Could Take Over a Telegram Desktop Account"
+        },
+        {
+          "url": "https://cybersecuritynews.com/telegram-desktop-flaw/",
+          "title": "Telegram Desktop Flaw Lets Attackers Steal Chat Messages Through..."
         }
       ],
       "confidence": 0.75,
