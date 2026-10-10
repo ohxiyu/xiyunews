@@ -7,47 +7,64 @@
   "status": "developing",
   "category": "policy",
   "title": {
-    "zh": "CFTC 提出 CTX 与 CAM 规则并推进预测市场事件合约定义",
+    "zh": "CFTC 发布规则将事件合约纳入掉期定义并主张联邦专属管辖权",
     "en": "CFTC Proposes CTX and CAM Rules to Establish Federal Crypto Exchange Framework"
   },
   "current_state": {
-    "zh": "CFTC已发布立即生效的临时最终规则及一项新规提案，将预测市场事件合约纳入掉期监管框架，从而升级与各州之间的管辖权争端。",
-    "en": "The CFTC has issued an immediately effective interim final rule and a proposed rule to bring prediction-market event contracts under its swaps regulatory framework, escalating its jurisdiction dispute with states."
+    "zh": "CFTC发布拟议规则，扩大“掉期”定义以涵盖事件合约，同时一项临时最终规则将赌场式赌博排除在外，并声称对预测市场拥有专属联邦管辖权，目前正面临各州的法律挑战。",
+    "en": "The CFTC issued a proposed rule expanding the 'swap' definition to cover event contracts while an interim final rule carves out casino-style gambling, asserting exclusive federal jurisdiction over prediction markets amid state legal challenges."
   },
   "first_seen_at": "2026-08-22T08:00:00+08:00",
-  "last_updated_at": "2026-10-10T02:39:25.791416+00:00",
-  "last_material_change_at": "2026-10-10T02:39:25.791416+00:00",
+  "last_updated_at": "2026-10-10T17:25:38.320917+00:00",
+  "last_material_change_at": "2026-10-10T17:25:38.320917+00:00",
   "confidence": 0.75,
-  "updates_count": 7,
-  "sources_count": 18,
+  "updates_count": 10,
+  "sources_count": 25,
   "entities": [
     "advance",
     "agency",
     "all",
+    "between",
     "blockchain-records",
+    "casino",
     "cftc",
     "chair",
     "clarity",
     "congress",
+    "contracts",
     "crypto-regulation",
     "defeat",
+    "definition",
+    "draws",
+    "event",
+    "event-contracts",
     "exchange",
     "exchanges",
+    "excludes",
+    "explicit",
     "fcm",
     "federal",
     "framework",
+    "from",
+    "gambling",
     "goes",
     "handed",
     "how",
     "learned",
+    "line",
     "love",
+    "markets",
     "minute",
     "morning",
     "new",
     "news",
+    "nfl",
     "opens",
     "outlines",
     "plan",
+    "prediction",
+    "prediction-markets",
+    "proposes",
     "regulate",
     "regulation",
     "regulators",
@@ -56,10 +73,15 @@
     "says",
     "sec",
     "selig",
+    "status",
     "stopped",
+    "style",
+    "swap",
+    "swaps",
     "time",
     "trump",
     "vision",
+    "wagers",
     "waiting",
     "washington",
     "wheel"
@@ -76,11 +98,13 @@
     "crypto-regulation",
     "custody",
     "derivatives",
+    "derivatives-regulation",
     "digital-commodities",
     "event-contracts",
     "exchange-licensing",
     "fcm",
     "kalshi",
+    "leverage",
     "leverage-trading",
     "leveraged-etfs",
     "offshore-exchanges",
@@ -89,6 +113,9 @@
     "prediction-markets",
     "public-comment",
     "sec",
+    "supreme-court",
+    "swap-regulation",
+    "swaps",
     "united-states",
     "us-market-access",
     "us-policy",
@@ -142,7 +169,11 @@
         "google_news:article:7f47af0aafb32b29",
         "telegram:foresightnews:119763",
         "google_news:article:44108eeed0d2c3b2",
-        "telegram:theblockbeats:199039"
+        "telegram:theblockbeats:199039",
+        "rss:www.coindesk.com_arc_outboundfeeds_rss_:6df0290b8ebf5dfd",
+        "rss:thedefiant.io_api_feed:4d67ff304572fdc2",
+        "rss:thedefiant.io_api_feed:804184ae7939132f",
+        "rss:decrypt.co_feed:b15d6b5b579949fc"
       ],
       "sources": [
         {
@@ -185,6 +216,30 @@
           "url": "https://m.theblockbeats.info/flash/370360?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://www.coindesk.com/policy/2026/10/09/u-s-cftc-moves-to-fold-event-contracts-into-swaps-regulations-as-legal-fight-rages",
+          "label": "CoinDesk",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://thedefiant.io/converge/regulation/cftc-proposes-explicit-swap-status-for-event-contracts",
+          "label": "The Defiant",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://thedefiant.io/converge/regulation/cftc-excludes-casino-style-wagers-from-swap-definition",
+          "label": "The Defiant",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://decrypt.co/380635/cftc-draws-line-prediction-markets-and-gambling-new-rules",
+          "label": "Decrypt",
+          "source_type": "rss",
           "official": false
         }
       ]
@@ -428,6 +483,82 @@
       ]
     },
     {
+      "update_id": "upd_d81ffa7789f8f6ef",
+      "event_id": "evt_583f52deb63823c7",
+      "occurred_at": "2026-10-07T07:40:01Z",
+      "published_at": "2026-10-07T07:40:01Z",
+      "first_seen_at": "2026-10-07T10:50:43.285911Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "【CFTC 主席解读新规：只有联邦监管的加密交易平台才能提供杠杆交易，但百倍杠杆不会被允许】",
+      "title_en": "【CFTC 主席解读新规：只有联邦监管的加密交易平台才能提供杠杆交易，但百倍杠杆不会被允许】",
+      "what_changed_zh": "CFTC主席Michael Selig表示，根据该机构的拟议规则，只有受联邦监管的加密交易平台才能提供杠杆交易，各州的权限将仅限于货币传输，且100倍杠杆在美国仍将被禁止。",
+      "what_changed_en": "CFTC Chair Michael Selig said under the agency's proposed rules only federally regulated crypto trading platforms could offer leveraged trading, that states would be limited to money transmission, and that 100x leverage would remain prohibited in the US.",
+      "current_state_zh": "CFTC主席Michael Selig表示，根据该机构的拟议规则，只有受联邦监管的加密交易平台才能提供杠杆交易，各州的权限将仅限于货币传输，且100倍杠杆在美国仍将被禁止。",
+      "current_state_en": "CFTC Chair Michael Selig said under the agency's proposed rules only federally regulated crypto trading platforms could offer leveraged trading, that states would be limited to money transmission, and that 100x leverage would remain prohibited in the US.",
+      "detailed_summary_zh": "CFTC Chair Michael Selig said under the agency's proposed rules only federally regulated crypto trading platforms could offer leveraged trading, that states would be limited to money transmission, and that 100x leverage would remain prohibited in the US.",
+      "detailed_summary_en": "CFTC Chair Michael Selig said under the agency's proposed rules only federally regulated crypto trading platforms could offer leveraged trading, that states would be limited to money transmission, and that 100x leverage would remain prohibited in the US.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:119843"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/114668",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_979a465cc4b7e226",
+      "event_id": "evt_583f52deb63823c7",
+      "occurred_at": "2026-10-09T00:57:50Z",
+      "published_at": "2026-10-09T00:57:50Z",
+      "first_seen_at": "2026-10-09T03:03:27.882398Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "【NFL 支持各州监管预测市场体育合约，反对 CFTC 独占管辖权】",
+      "title_en": "【NFL 支持各州监管预测市场体育合约，反对 CFTC 独占管辖权】",
+      "what_changed_zh": "NFL向最高法院提交法庭意见书，支持新泽西州在Kalshi案中的调卷令申请，主张各州可对预测市场的体育事件合约施加赌博监管，并对CFTC声称拥有专属联邦管辖权提出异议，指出Kalshi未遵守操纵防范措施、内部人员投注限制和21岁年龄要求。",
+      "what_changed_en": "The NFL filed an amicus brief with the Supreme Court supporting New Jersey's cert petition in the Kalshi case, arguing states may impose gambling regulation on prediction-market sports event contracts and disputing the CFTC's claim of exclusive federal jurisdiction, citing unmet manipulation safeguards, insider-betting limits, and age-21 requirements that Kalshi does not follow.",
+      "current_state_zh": "NFL向最高法院提交法庭意见书，支持新泽西州在Kalshi案中的调卷令申请，主张各州可对预测市场的体育事件合约施加赌博监管，并对CFTC声称拥有专属联邦管辖权提出异议，指出Kalshi未遵守操纵防范措施、内部人员投注限制和21岁年龄要求。",
+      "current_state_en": "The NFL filed an amicus brief with the Supreme Court supporting New Jersey's cert petition in the Kalshi case, arguing states may impose gambling regulation on prediction-market sports event contracts and disputing the CFTC's claim of exclusive federal jurisdiction, citing unmet manipulation safeguards, insider-betting limits, and age-21 requirements that Kalshi does not follow.",
+      "detailed_summary_zh": "The NFL filed an amicus brief with the Supreme Court supporting New Jersey's cert petition in the Kalshi case, arguing states may impose gambling regulation on prediction-market sports event contracts and disputing the CFTC's claim of exclusive federal jurisdiction, citing unmet manipulation safeguards, insider-betting limits, and age-21 requirements that Kalshi does not follow.",
+      "detailed_summary_en": "The NFL filed an amicus brief with the Supreme Court supporting New Jersey's cert petition in the Kalshi case, arguing states may impose gambling regulation on prediction-market sports event contracts and disputing the CFTC's claim of exclusive federal jurisdiction, citing unmet manipulation safeguards, insider-betting limits, and age-21 requirements that Kalshi does not follow.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:119982"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/114805",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
       "update_id": "upd_0cea4b2cab8ff30f",
       "event_id": "evt_583f52deb63823c7",
       "occurred_at": "2026-10-10T00:53:02Z",
@@ -461,6 +592,44 @@
           "url": "https://m.theblockbeats.info/flash/371086?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_ee4a0818db2a9b1e",
+      "event_id": "evt_583f52deb63823c7",
+      "occurred_at": "2026-10-10T16:00:40Z",
+      "published_at": "2026-10-10T16:00:40Z",
+      "first_seen_at": "2026-10-10T17:25:32.785463Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "CFTC提议区分预测合约与体育博彩投注",
+      "title_en": "CFTC proposes a divide between prediction contracts and sportsbook wagers",
+      "what_changed_zh": "CFTC提案明确将体育、政治、文化和天气事件合约纳入掉期定义，并发布临时最终规则排除体育博彩和赌场赌注，进一步划定预测市场与赌博的联邦界限。",
+      "what_changed_en": "The CFTC proposed expressly including sports, political, cultural and weather event contracts in the swap definition and issued an interim final rule excluding sportsbook and casino wagers, further drawing the federal line between prediction markets and gambling.",
+      "current_state_zh": "CFTC已提出规则将体育、政治、文化和天气事件合约纳入掉期定义，并发布立即生效的临时最终规则排除体育博彩和赌场赌注，意见征询期分别为30天，持续与各州管辖权冲突。",
+      "current_state_en": "The CFTC has proposed including sports, political, cultural and weather event contracts in the swap definition and issued an immediately effective interim final rule excluding sportsbook and casino wagers, each with a 30-day comment period, continuing its jurisdiction conflict with states.",
+      "detailed_summary_zh": "The CFTC proposed including sports, political, cultural and weather event contracts in the swap definition while issuing an interim final rule excluding sportsbook and casino wagers, drawing a federal line between prediction markets and gambling.",
+      "detailed_summary_en": "The CFTC proposed including sports, political, cultural and weather event contracts in the swap definition while issuing an interim final rule excluding sportsbook and casino wagers, drawing a federal line between prediction markets and gambling.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.9,
+      "story_ids": [
+        "rss:cryptoslate.com_feed_:229c966a67c1d12e"
+      ],
+      "sources": [
+        {
+          "url": "https://cryptoslate.com/cftc-proposes-new-divide-between-prediction-contracts-and-sportsbook-wagers/",
+          "label": "CryptoSlate",
+          "source_type": "rss",
           "official": false
         }
       ]

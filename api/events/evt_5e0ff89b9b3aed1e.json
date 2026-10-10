@@ -7,19 +7,19 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "XRP Ledger修复存在近11年重大漏洞，攻击者曾可利用其凭空生成XRP",
-    "en": "XRP Ledger修复存在近11年重大漏洞，攻击者曾可利用其凭空生成XRP"
+    "zh": "XRP Ledger 修复可凭空生成 XRP 的旧漏洞",
+    "en": "XRP Ledger patched old flaw that could create XRP from nothing"
   },
   "current_state": {
-    "zh": "XRP Ledger developers disclosed a critical payment-path vulnerability dating to 2015 that could have let attackers mint and spend XRP beyond the 100 billion supply cap, which they reproduced and fixed in xrpld 3.4.1 with no evidence of exploitation in the wild.",
-    "en": "XRP Ledger developers disclosed a critical payment-path vulnerability dating to 2015 that could have let attackers mint and spend XRP beyond the 100 billion supply cap, which they reproduced and fixed in xrpld 3.4.1 with no evidence of exploitation in the wild."
+    "zh": "Security researchers disclosed a flaw dating to 2015 in the XRP Ledger's internal exchange that could have allowed an attacker to create and spend XRP from nothing, which RippleX fixed in the xrpld 3.4.1 release with no evidence of exploitation on public networks.",
+    "en": "Security researchers disclosed a flaw dating to 2015 in the XRP Ledger's internal exchange that could have allowed an attacker to create and spend XRP from nothing, which RippleX fixed in the xrpld 3.4.1 release with no evidence of exploitation on public networks."
   },
   "first_seen_at": "2026-10-10T06:40:40.291436+00:00",
-  "last_updated_at": "2026-10-10T06:40:40.291436+00:00",
-  "last_material_change_at": "2026-10-10T06:40:40.291436+00:00",
+  "last_updated_at": "2026-10-10T06:40:45.685963+00:00",
+  "last_material_change_at": "2026-10-10T06:40:45.685963+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 2,
   "entities": [
     "ledger",
     "xrp",
@@ -27,7 +27,9 @@
   ],
   "identifiers": [],
   "topics": [
+    "bug-disclosure",
     "patch",
+    "protocol-security",
     "protocol-vulnerability",
     "ripple",
     "xrp-ledger"
@@ -60,13 +62,20 @@
       "references": [],
       "confidence": 0.75,
       "story_ids": [
-        "telegram:theblockbeats:199797"
+        "telegram:theblockbeats:199797",
+        "rss:www.coindesk.com_arc_outboundfeeds_rss_:22c5ef50138e0f13"
       ],
       "sources": [
         {
           "url": "https://m.theblockbeats.info/flash/371119?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://www.coindesk.com/tech/2026/10/10/xrp-ledger-patched-decade-old-bug-that-could-create-billions-of-dollars-in-xrp-from-nothing",
+          "label": "CoinDesk",
+          "source_type": "rss",
           "official": false
         }
       ]
