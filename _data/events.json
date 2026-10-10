@@ -1076,10 +1076,11 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Solana is scheduling its final cut to 200-millisecond slots, compensating with smaller per-block compute limits while validators face more frequent voting and shorter block-production windows.",
-      "current_state_zh": "Solana 正在安排最后一次削减至 200 毫秒出块时间，通过降低单区块计算上限来补偿，而验证者将面临更频繁的投票和更短的出块窗口。",
+      "current_state_en": "The 200-millisecond target of SIMD-0525 has been activated and declared complete by Anza; attention now shifts to the Alpenglow consensus overhaul targeting ~150ms finality, which has been deployed on testnet and devnet but has no announced mainnet activation date.",
+      "current_state_zh": "SIMD-0525 的 200 毫秒目标已激活并宣布完成，Anza 确认升级落地；社区注意力转向 Alpenglow 共识改造（目标约 150 毫秒最终性），其已在测试网和开发网部署，但主网激活日期尚未公布。",
       "entities": [
         "activates",
+        "alpenglow",
         "block-time",
         "cut",
         "final",
@@ -1098,8 +1099,8 @@
       "identifiers": [
         "simd-0525"
       ],
-      "last_material_change_at": "2026-10-09T07:11:52.977442Z",
-      "last_updated_at": "2026-10-09T07:11:52.977442Z",
+      "last_material_change_at": "2026-10-10T02:39:29.330494Z",
+      "last_updated_at": "2026-10-10T02:39:29.330494Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_f854fe8fc4c9f869"
@@ -1109,6 +1110,7 @@
       "title_en": "Solana Activates 350ms Slots on Mainnet, First Cut Since Genesis",
       "title_zh": "Solana 主网完成 350ms、300ms、250ms 出块时间削减，并计划激活 200ms 目标",
       "topics": [
+        "alpenglow",
         "block-time",
         "blockchain-performance",
         "layer-1",
@@ -1233,6 +1235,44 @@
           "update_type": "escalation",
           "what_changed_en": "Solana has progressed beyond the 350ms cut to 300ms and 250ms, and is scheduled to make a final reduction to 200ms target block time at epoch 1053, completing the SIMD-0525 sequence of cuts from 400ms.",
           "what_changed_zh": "Solana已在350毫秒后进一步将出块时间降至300毫秒和250毫秒，并计划在epoch 1053将目标出块时间最终降至200毫秒，完成SIMD-0525从400毫秒开始的缩减序列。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "The 200-millisecond target of SIMD-0525 has been activated and declared complete by Anza; attention now shifts to the Alpenglow consensus overhaul targeting ~150ms finality, which has been deployed on testnet and devnet but has no announced mainnet activation date.",
+          "current_state_zh": "SIMD-0525 的 200 毫秒目标已激活并宣布完成，Anza 确认升级落地；社区注意力转向 Alpenglow 共识改造（目标约 150 毫秒最终性），其已在测试网和开发网部署，但主网激活日期尚未公布。",
+          "detailed_summary_en": "Solana activated 200-millisecond slots on mainnet, cutting its original 400ms block-production target in half, increasing block opportunities to five per second and shortening epochs to roughly 24 hours ahead of the still-unscheduled Alpenglow upgrade targeting 150ms finality.",
+          "detailed_summary_zh": "Solana activated 200-millisecond slots on mainnet, cutting its original 400ms block-production target in half, increasing block opportunities to five per second and shortening epochs to roughly 24 hours ahead of the still-unscheduled Alpenglow upgrade targeting 150ms finality.",
+          "event_id": "evt_04729c76ccc47903",
+          "first_seen_at": "2026-10-10T02:39:29.330494Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-10T00:40:59Z",
+          "published_at": "2026-10-10T00:40:59Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "CryptoSlate",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cryptoslate.com/solana-doubles-block-production-speed-to-200ms-as-network-prepares-for-alpenglow-upgrade/"
+            }
+          ],
+          "story_ids": [
+            "rss:cryptoslate.com_feed_:6fe8a1597bb748e5"
+          ],
+          "time_precision": "published",
+          "title_en": "Solana doubles block production speed to 200ms as network prepares for Alpenglow upgrade",
+          "title_zh": "Solana 将出块速度提升一倍至 200 毫秒，为 Alpenglow 升级做准备",
+          "update_id": "upd_0339b5f15ca0b585",
+          "update_type": "escalation",
+          "what_changed_en": "Solana activated 200-millisecond slots on mainnet on Oct. 9, completing the four-stage SIMD-0525 reduction from 400ms: block-production opportunities rose to five per second, epoch duration fell from about 48 hours to about 24 hours, and transaction blockhash expiry shrank from about 60 seconds to about 30 seconds.",
+          "what_changed_zh": "Solana 已于 10 月 9 日在主网激活 200 毫秒出块时间，完成 SIMD-0525 从 400 毫秒起的四阶段缩减，区块生产机会提升至每秒 5 个，epoch 时长由约 48 小时缩短至约 24 小时；同时交易 blockhash 有效期从约 60 秒缩短至约 30 秒。"
         }
       ]
     },
@@ -1316,8 +1356,8 @@
     {
       "category": "policy",
       "confidence": 0.75,
-      "current_state_en": "The CFTC's proposed rules establish a federal crypto trading framework in which leveraged trading is limited to federally regulated platforms and 100x leverage is explicitly prohibited.",
-      "current_state_zh": "CFTC拟议规则建立联邦加密交易框架，其中杠杆交易仅限联邦监管平台，100倍杠杆被明确禁止。",
+      "current_state_en": "The CFTC has issued an immediately effective interim final rule and a proposed rule to bring prediction-market event contracts under its swaps regulatory framework, escalating its jurisdiction dispute with states.",
+      "current_state_zh": "CFTC已发布立即生效的临时最终规则及一项新规提案，将预测市场事件合约纳入掉期监管框架，从而升级与各州之间的管辖权争端。",
       "entities": [
         "advance",
         "agency",
@@ -1366,8 +1406,8 @@
       "event_type": "other",
       "first_seen_at": "2026-08-22T08:00:00+08:00",
       "identifiers": [],
-      "last_material_change_at": "2026-10-07T06:42:02.505652Z",
-      "last_updated_at": "2026-10-07T06:42:02.505652Z",
+      "last_material_change_at": "2026-10-10T02:39:25.791416Z",
+      "last_updated_at": "2026-10-10T02:39:25.791416Z",
       "legacy_thread_ids": [
         "t55e85960c2"
       ],
@@ -1384,7 +1424,7 @@
         "evt_2b4bee3d679848e2"
       ],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "developing",
       "title_en": "CFTC Proposes CTX and CAM Rules to Establish Federal Crypto Exchange Framework",
       "title_zh": "CFTC 提出 CTX 与 CAM 规则并推进预测市场事件合约定义",
       "topics": [
@@ -1407,6 +1447,7 @@
         "leveraged-etfs",
         "offshore-exchanges",
         "perpetuals",
+        "polymarket",
         "prediction-markets",
         "public-comment",
         "sec",
@@ -1747,6 +1788,44 @@
           "update_type": "confirmation",
           "what_changed_en": "The CFTC published a preliminary plan to federally license and regulate crypto exchanges via proposed Regulations CTX and CAM and opened a 60-day public comment period, while the SEC cleared 3x levered Bitcoin and Ether funds for trading.",
           "what_changed_zh": "CFTC 公布了一份初步提案，拟通过两项新规——Regulation CTX 与 Regulation CAM——建立加密交易所的联邦许可框架，文件在《联邦公报》刊登后将开启为期 60 天的公众意见征询期。此时距《Clarity 法案》在参议院夭折已有三周，同日 SEC 还批准了 3 倍杠杆的 BTC 和 ETH 基金上市交易。\n\n该计划提出了单一的联邦许可选择，并以是否涉及杠杆来决定谁需要持牌，这是国会未能通过的框架，将允许美国交易平台提供目前无法提供的保证金类产品。不过这是一份征求意见的初步概念文件，并非具有约束力的规则文本。\n\n牌照将覆盖撮合买卖双方、托管客户资金与加密资产、结算交易以及借贷，每项业务需分别获批；交易将通过已受反洗钱规则约束的经纪商进行，且只有这些经纪商或其保荐银行可以提供杠杆。该机构还在考虑储备金证明要求，以及针对易被操纵代币的上市标准；CFTC 主席 Mike Selig 表示，这些规则的目的是防止类似 FTX 的欺诈，而非事后追诉。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.92,
+          "current_state_en": "The CFTC has issued an immediately effective interim final rule and a proposed rule to bring prediction-market event contracts under its swaps regulatory framework, escalating its jurisdiction dispute with states.",
+          "current_state_zh": "CFTC已发布立即生效的临时最终规则及一项新规提案，将预测市场事件合约纳入掉期监管框架，从而升级与各州之间的管辖权争端。",
+          "detailed_summary_en": "The CFTC issued an immediately effective interim final rule and proposed a new rule to bring prediction-market event contracts on platforms such as Kalshi and Polymarket under its swaps regulatory framework, escalating its federal jurisdiction fight with states.",
+          "detailed_summary_zh": "The CFTC issued an immediately effective interim final rule and proposed a new rule to bring prediction-market event contracts on platforms such as Kalshi and Polymarket under its swaps regulatory framework, escalating its federal jurisdiction fight with states.",
+          "event_id": "evt_583f52deb63823c7",
+          "first_seen_at": "2026-10-10T02:39:25.791416Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-10T00:53:02Z",
+          "published_at": "2026-10-10T00:53:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371086?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:199766"
+          ],
+          "time_precision": "published",
+          "title_en": "美CFTC拟将预测市场事件合约纳入掉期监管，争夺联邦监管权",
+          "title_zh": "美CFTC拟将预测市场事件合约纳入掉期监管，争夺联邦监管权",
+          "update_id": "upd_0cea4b2cab8ff30f",
+          "update_type": "escalation",
+          "what_changed_en": "The CFTC issued an immediately effective interim final rule and proposed a new rule to bring prediction-market event contracts on platforms such as Kalshi and Polymarket under its swaps regulatory framework; the interim final rule is effective immediately but remains open to comment, while the proposed rule has a 30-day comment period.",
+          "what_changed_zh": "CFTC发布了一项立即生效的临时最终规则，并提出另一项新规，拟将Kalshi和Polymarket等平台的预测市场事件合约纳入其掉期监管框架；临时最终规则已立即生效但仍接受公众意见，新规提案则有30天意见征询期。"
         }
       ]
     },
@@ -118284,8 +118363,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Binance is adding four Securitize-issued bStocks tokenized securities (SECZB, USDEB, JPMB, LLYB) as eligible collateral across Cross Margin, Portfolio Margin and Portfolio Margin Pro, with corresponding margin trading pairs enabled at 2026-10-07 12:00 UTC.",
-      "current_state_zh": "币安将新增四种由 Securitize 发行的 bStocks 代币化证券（SECZB、USDEB、JPMB、LLYB）作为全仓杠杆、组合保证金及组合保证金 Pro 的合格抵押品，并将在 2026-10-07 12:00 UTC 启用相应的杠杆交易对。",
+      "current_state_en": "Binance announced it will list bStocks tokenized-securities pairs JPMB/USDT, LLYB/USDT, SECZB/USDT and USDEB/USDT on October 7 at 20:00, enabling spot algo trading bots at launch, smart holding bots within 24 hours, free conversion to BTC/USDT or other supported tokens in the first hour, and zero maker fees until November 1.",
+      "current_state_zh": "币安发布公告称，将于 10 月 7 日 20:00 上线四个 bStocks 代币化证券交易对：JPMB/USDT、LLYB/USDT、SECZB/USDT 和 USDEB/USDT。现货算法交易机器人与现货上市同时启用，智能持仓机器人将在上线后 24 小时内启用，上线后一小时内可免手续费兑换为 BTC、USDT 或其他支持代币，零挂单手续费活动持续至 11 月 1 日 07:59。\n\n此次上线把四个代币化股票交易对纳入币安现货市场，并在上市同时启用交易机器人、提供免手续费兑换窗口，扩展了该交易所的代币化证券产品线。币安同时提示，bStocks 服务及其功能因司法辖区而异，部分市场的用户无法使用。\n\nbStocks 为代币化证券，每份由托管于受监管托管机构的 1 股美国股票 1:1 支撑，可在币安现货市场 24 小时交易。现货算法机器人与交易对同步上线，智能持仓机器人在 24 小时内跟进；零挂单手续费适用于 11 月 1 日 07:59 之前。",
       "entities": [
         "add",
         "adds",
@@ -118312,6 +118391,7 @@
         "tokenized",
         "tokenized-securities",
         "trading",
+        "usdeb",
         "usdewb",
         "will"
       ],
@@ -118319,21 +118399,23 @@
       "event_type": "exchange_operation",
       "first_seen_at": "2026-10-06T11:25:33.530777Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-07T06:42:00.883517Z",
-      "last_updated_at": "2026-10-07T06:42:00.883517Z",
+      "last_material_change_at": "2026-10-07T06:42:01.748305Z",
+      "last_updated_at": "2026-10-07T06:42:01.748305Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_d3ba2a9bec681eb2",
-        "evt_76a1f5ca07f13d61"
+        "evt_76a1f5ca07f13d61",
+        "evt_7ec071769d9ff2a8"
       ],
       "schema_version": 1,
       "status": "developing",
-      "title_en": "Binance Adds bStocks Tokenized Securities for Trading and Collateral",
-      "title_zh": "币安将bStocks代币化证券纳入交易与抵押品",
+      "title_en": "Binance Lists bStocks Tokenized Securities Trading Pairs",
+      "title_zh": "币安上线 bStocks 代币化证券交易对",
       "topics": [
         "binance",
         "bstocks",
         "collateral",
+        "exchange-listings",
         "exchange-operations",
         "exchange-product",
         "listings",
@@ -118341,7 +118423,8 @@
         "on-chain-assets",
         "rwa",
         "tokenized-securities",
-        "tokenized-stocks"
+        "tokenized-stocks",
+        "trading-pairs"
       ],
       "updates": [
         {
@@ -118394,6 +118477,57 @@
           "update_type": "initial",
           "what_changed_en": "Binance has introduced a feature allowing users to convert stocks into on-chain tokens, expanding its tokenized real-world asset offerings to equities.",
           "what_changed_zh": "据 Crypto News 报道，币安推出了一项新功能，允许用户将股票转换为链上代币。此举将币安的现实世界资产（RWA）代币化业务扩展至股票领域。\n\n币安是按交易量计全球最大的加密货币交易所，将股票纳入其现实世界资产代币化产品线，意味着链上资产敞口通过现有主流交易平台延伸至新的资产类别。"
+        },
+        {
+          "background_en": "Binance describes bStocks as tokenized securities that provide full economic exposure to US equities and can be converted to equities on Binance.com subject to applicable laws, letting users trade them 24/7 with near-instant settlement rather than T+1 windows. Binance has previously enabled spot algo bot services for bStocks pairs at launch.",
+          "background_zh": "币安将 bStocks 描述为代币化证券，提供对美国股票的完整经济敞口，并可在适用法律允许的前提下于 Binance.com 兑换为股票，使用户可 24 小时交易、结算几乎即时，而非 T+1 结算窗口。此前币安也曾在 bStocks 交易对上线时同步开放现货算法机器人服务。",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Binance announced it will list bStocks tokenized-securities pairs JPMB/USDT, LLYB/USDT, SECZB/USDT and USDEB/USDT on October 7 at 20:00, enabling spot algo trading bots at launch, smart holding bots within 24 hours, free conversion to BTC/USDT or other supported tokens in the first hour, and zero maker fees until November 1.",
+          "current_state_zh": "币安发布公告称，将于 10 月 7 日 20:00 上线四个 bStocks 代币化证券交易对：JPMB/USDT、LLYB/USDT、SECZB/USDT 和 USDEB/USDT。现货算法交易机器人与现货上市同时启用，智能持仓机器人将在上线后 24 小时内启用，上线后一小时内可免手续费兑换为 BTC、USDT 或其他支持代币，零挂单手续费活动持续至 11 月 1 日 07:59。\n\n此次上线把四个代币化股票交易对纳入币安现货市场，并在上市同时启用交易机器人、提供免手续费兑换窗口，扩展了该交易所的代币化证券产品线。币安同时提示，bStocks 服务及其功能因司法辖区而异，部分市场的用户无法使用。\n\nbStocks 为代币化证券，每份由托管于受监管托管机构的 1 股美国股票 1:1 支撑，可在币安现货市场 24 小时交易。现货算法机器人与交易对同步上线，智能持仓机器人在 24 小时内跟进；零挂单手续费适用于 11 月 1 日 07:59 之前。",
+          "detailed_summary_en": "Binance announced it will list bStocks tokenized-securities pairs JPMB/USDT, LLYB/USDT, SECZB/USDT and USDEB/USDT on October 7 at 20:00, enabling spot algo trading bots at launch, smart holding bots within 24 hours, free conversion to BTC/USDT or other supported tokens in the first hour, and zero maker fees until November 1.",
+          "detailed_summary_zh": "Binance announced it will list bStocks tokenized-securities pairs JPMB/USDT, LLYB/USDT, SECZB/USDT and USDEB/USDT on October 7 at 20:00, enabling spot algo trading bots at launch, smart holding bots within 24 hours, free conversion to BTC/USDT or other supported tokens in the first hour, and zero maker fees until November 1.",
+          "event_id": "evt_50050a4962d98fc2",
+          "first_seen_at": "2026-10-07T06:42:01.748305Z",
+          "importance_score": 7.5,
+          "market_impact_en": "The pairs broaden Binance spot exposure to tokenized US equities, adding new USDT-quoted instruments and bot-driven flow that compete for the same order-book liquidity as existing spot markets. The zero-maker-fee window and one-hour free conversion into BTC/USDT can shift short-term order flow between the new bStocks pairs and major crypto pairs on Binance, though jurisdictional restrictions limit who can access the products.",
+          "market_impact_zh": "这批交易对扩大了币安现货市场对代币化美国股票的敞口，新增以 USDT 报价的品种及机器人驱动的成交，与既有现货市场争夺同一订单簿流动性。零挂单手续费窗口与一小时内免费兑换为 BTC/USDT，可能在短期内使订单流在新 bStocks 交易对与币安主要加密交易对之间转移，但辖区分级限制决定了哪些用户可以使用这些产品。",
+          "material_change": true,
+          "occurred_at": "2026-10-07T03:04:39Z",
+          "published_at": "2026-10-07T03:04:39Z",
+          "references": [
+            {
+              "title": "Binance bStocks",
+              "url": "https://www.binance.com/en/learn/bstocks"
+            },
+            {
+              "title": "What Are bStocks? A Guide to Tokenized Stocks on Binance",
+              "url": "https://www.binance.com/en/academy/articles/what-are-bstocks-a-guide-to-tokenized-stocks-on-binance"
+            },
+            {
+              "title": "bStocks — Tokenized Equity. Onchain. Always On.",
+              "url": "https://www.bstocks.finance/"
+            }
+          ],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/114656"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:119829"
+          ],
+          "time_precision": "published",
+          "title_en": "【币安上线 JPMB、LLYB、SECZB 和 USDEB bStocks 交易对】",
+          "title_zh": "【币安上线 JPMB、LLYB、SECZB 和 USDEB bStocks 交易对】",
+          "update_id": "upd_d822630bb8e9dbc1",
+          "update_type": "confirmation",
+          "what_changed_en": "Binance announced it will list bStocks tokenized-securities pairs JPMB/USDT, LLYB/USDT, SECZB/USDT and USDEB/USDT on October 7 at 20:00, enabling spot algo trading bots at launch, smart holding bots within 24 hours, free conversion to BTC/USDT or other supported tokens in the first hour, and zero maker fees until November 1.",
+          "what_changed_zh": "币安发布公告称，将于 10 月 7 日 20:00 上线四个 bStocks 代币化证券交易对：JPMB/USDT、LLYB/USDT、SECZB/USDT 和 USDEB/USDT。现货算法交易机器人与现货上市同时启用，智能持仓机器人将在上线后 24 小时内启用，上线后一小时内可免手续费兑换为 BTC、USDT 或其他支持代币，零挂单手续费活动持续至 11 月 1 日 07:59。\n\n此次上线把四个代币化股票交易对纳入币安现货市场，并在上市同时启用交易机器人、提供免手续费兑换窗口，扩展了该交易所的代币化证券产品线。币安同时提示，bStocks 服务及其功能因司法辖区而异，部分市场的用户无法使用。\n\nbStocks 为代币化证券，每份由托管于受监管托管机构的 1 股美国股票 1:1 支撑，可在币安现货市场 24 小时交易。现货算法机器人与交易对同步上线，智能持仓机器人在 24 小时内跟进；零挂单手续费适用于 11 月 1 日 07:59 之前。"
         },
         {
           "background_en": "",
@@ -122579,91 +122713,6 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Binance announced it will list bStocks tokenized-securities pairs JPMB/USDT, LLYB/USDT, SECZB/USDT and USDEB/USDT on October 7 at 20:00, enabling spot algo trading bots at launch, smart holding bots within 24 hours, free conversion to BTC/USDT or other supported tokens in the first hour, and zero maker fees until November 1.",
-      "current_state_zh": "币安发布公告称，将于 10 月 7 日 20:00 上线四个 bStocks 代币化证券交易对：JPMB/USDT、LLYB/USDT、SECZB/USDT 和 USDEB/USDT。现货算法交易机器人与现货上市同时启用，智能持仓机器人将在上线后 24 小时内启用，上线后一小时内可免手续费兑换为 BTC、USDT 或其他支持代币，零挂单手续费活动持续至 11 月 1 日 07:59。\n\n此次上线把四个代币化股票交易对纳入币安现货市场，并在上市同时启用交易机器人、提供免手续费兑换窗口，扩展了该交易所的代币化证券产品线。币安同时提示，bStocks 服务及其功能因司法辖区而异，部分市场的用户无法使用。\n\nbStocks 为代币化证券，每份由托管于受监管托管机构的 1 股美国股票 1:1 支撑，可在币安现货市场 24 小时交易。现货算法机器人与交易对同步上线，智能持仓机器人在 24 小时内跟进；零挂单手续费适用于 11 月 1 日 07:59 之前。",
-      "entities": [
-        "bstocks",
-        "jpmb",
-        "llyb",
-        "seczb",
-        "usdeb"
-      ],
-      "event_id": "evt_7ec071769d9ff2a8",
-      "event_type": "exchange_operation",
-      "first_seen_at": "2026-10-07T06:42:01.748305Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-07T06:42:01.748305Z",
-      "last_updated_at": "2026-10-07T06:42:01.748305Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "【币安上线 JPMB、LLYB、SECZB 和 USDEB bStocks 交易对】",
-      "title_zh": "【币安上线 JPMB、LLYB、SECZB 和 USDEB bStocks 交易对】",
-      "topics": [
-        "binance",
-        "bstocks",
-        "exchange-listings",
-        "tokenized-stocks",
-        "trading-pairs"
-      ],
-      "updates": [
-        {
-          "background_en": "Binance describes bStocks as tokenized securities that provide full economic exposure to US equities and can be converted to equities on Binance.com subject to applicable laws, letting users trade them 24/7 with near-instant settlement rather than T+1 windows. Binance has previously enabled spot algo bot services for bStocks pairs at launch.",
-          "background_zh": "币安将 bStocks 描述为代币化证券，提供对美国股票的完整经济敞口，并可在适用法律允许的前提下于 Binance.com 兑换为股票，使用户可 24 小时交易、结算几乎即时，而非 T+1 结算窗口。此前币安也曾在 bStocks 交易对上线时同步开放现货算法机器人服务。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Binance announced it will list bStocks tokenized-securities pairs JPMB/USDT, LLYB/USDT, SECZB/USDT and USDEB/USDT on October 7 at 20:00, enabling spot algo trading bots at launch, smart holding bots within 24 hours, free conversion to BTC/USDT or other supported tokens in the first hour, and zero maker fees until November 1.",
-          "current_state_zh": "币安发布公告称，将于 10 月 7 日 20:00 上线四个 bStocks 代币化证券交易对：JPMB/USDT、LLYB/USDT、SECZB/USDT 和 USDEB/USDT。现货算法交易机器人与现货上市同时启用，智能持仓机器人将在上线后 24 小时内启用，上线后一小时内可免手续费兑换为 BTC、USDT 或其他支持代币，零挂单手续费活动持续至 11 月 1 日 07:59。\n\n此次上线把四个代币化股票交易对纳入币安现货市场，并在上市同时启用交易机器人、提供免手续费兑换窗口，扩展了该交易所的代币化证券产品线。币安同时提示，bStocks 服务及其功能因司法辖区而异，部分市场的用户无法使用。\n\nbStocks 为代币化证券，每份由托管于受监管托管机构的 1 股美国股票 1:1 支撑，可在币安现货市场 24 小时交易。现货算法机器人与交易对同步上线，智能持仓机器人在 24 小时内跟进；零挂单手续费适用于 11 月 1 日 07:59 之前。",
-          "detailed_summary_en": "Binance announced it will list bStocks tokenized-securities pairs JPMB/USDT, LLYB/USDT, SECZB/USDT and USDEB/USDT on October 7 at 20:00, enabling spot algo trading bots at launch, smart holding bots within 24 hours, free conversion to BTC/USDT or other supported tokens in the first hour, and zero maker fees until November 1.",
-          "detailed_summary_zh": "Binance announced it will list bStocks tokenized-securities pairs JPMB/USDT, LLYB/USDT, SECZB/USDT and USDEB/USDT on October 7 at 20:00, enabling spot algo trading bots at launch, smart holding bots within 24 hours, free conversion to BTC/USDT or other supported tokens in the first hour, and zero maker fees until November 1.",
-          "event_id": "evt_7ec071769d9ff2a8",
-          "first_seen_at": "2026-10-07T06:42:01.748305Z",
-          "importance_score": 7.5,
-          "market_impact_en": "The pairs broaden Binance spot exposure to tokenized US equities, adding new USDT-quoted instruments and bot-driven flow that compete for the same order-book liquidity as existing spot markets. The zero-maker-fee window and one-hour free conversion into BTC/USDT can shift short-term order flow between the new bStocks pairs and major crypto pairs on Binance, though jurisdictional restrictions limit who can access the products.",
-          "market_impact_zh": "这批交易对扩大了币安现货市场对代币化美国股票的敞口，新增以 USDT 报价的品种及机器人驱动的成交，与既有现货市场争夺同一订单簿流动性。零挂单手续费窗口与一小时内免费兑换为 BTC/USDT，可能在短期内使订单流在新 bStocks 交易对与币安主要加密交易对之间转移，但辖区分级限制决定了哪些用户可以使用这些产品。",
-          "material_change": true,
-          "occurred_at": "2026-10-07T03:04:39Z",
-          "published_at": "2026-10-07T03:04:39Z",
-          "references": [
-            {
-              "title": "Binance bStocks",
-              "url": "https://www.binance.com/en/learn/bstocks"
-            },
-            {
-              "title": "What Are bStocks? A Guide to Tokenized Stocks on Binance",
-              "url": "https://www.binance.com/en/academy/articles/what-are-bstocks-a-guide-to-tokenized-stocks-on-binance"
-            },
-            {
-              "title": "bStocks — Tokenized Equity. Onchain. Always On.",
-              "url": "https://www.bstocks.finance/"
-            }
-          ],
-          "sources": [
-            {
-              "label": "foresightnews",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://foresightnews.pro/news/h5Detail/114656"
-            }
-          ],
-          "story_ids": [
-            "telegram:foresightnews:119829"
-          ],
-          "time_precision": "published",
-          "title_en": "【币安上线 JPMB、LLYB、SECZB 和 USDEB bStocks 交易对】",
-          "title_zh": "【币安上线 JPMB、LLYB、SECZB 和 USDEB bStocks 交易对】",
-          "update_id": "upd_d822630bb8e9dbc1",
-          "update_type": "initial",
-          "what_changed_en": "Binance announced it will list bStocks tokenized-securities pairs JPMB/USDT, LLYB/USDT, SECZB/USDT and USDEB/USDT on October 7 at 20:00, enabling spot algo trading bots at launch, smart holding bots within 24 hours, free conversion to BTC/USDT or other supported tokens in the first hour, and zero maker fees until November 1.",
-          "what_changed_zh": "币安发布公告称，将于 10 月 7 日 20:00 上线四个 bStocks 代币化证券交易对：JPMB/USDT、LLYB/USDT、SECZB/USDT 和 USDEB/USDT。现货算法交易机器人与现货上市同时启用，智能持仓机器人将在上线后 24 小时内启用，上线后一小时内可免手续费兑换为 BTC、USDT 或其他支持代币，零挂单手续费活动持续至 11 月 1 日 07:59。\n\n此次上线把四个代币化股票交易对纳入币安现货市场，并在上市同时启用交易机器人、提供免手续费兑换窗口，扩展了该交易所的代币化证券产品线。币安同时提示，bStocks 服务及其功能因司法辖区而异，部分市场的用户无法使用。\n\nbStocks 为代币化证券，每份由托管于受监管托管机构的 1 股美国股票 1:1 支撑，可在币安现货市场 24 小时交易。现货算法机器人与交易对同步上线，智能持仓机器人在 24 小时内跟进；零挂单手续费适用于 11 月 1 日 07:59 之前。"
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
       "current_state_en": "At Token2049, Polymarket CEO Shayne Coplan said NYSE parent ICE is one of Polymarket's largest shareholders and is seriously pursuing on-chain equity with regulators.",
       "current_state_zh": "At Token2049, Polymarket CEO Shayne Coplan said NYSE parent ICE is one of Polymarket's largest shareholders and is seriously pursuing on-chain equity with regulators.",
       "entities": [
@@ -122874,30 +122923,47 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "Anthropic expanded its Cyber Verification Program into three tiers — Defense, Red Team, and Specialized — granting vetted security organizations reduced cybersecurity guardrails on Claude Opus 5.5, Sonnet 5.5, and Mythos 5.1, with the Red Team tier allowing authorized penetration testing and reportedly completing 34 of 50 complex attack tasks that were fully blocked on the standard model.",
-      "current_state_zh": "Anthropic expanded its Cyber Verification Program into three tiers — Defense, Red Team, and Specialized — granting vetted security organizations reduced cybersecurity guardrails on Claude Opus 5.5, Sonnet 5.5, and Mythos 5.1, with the Red Team tier allowing authorized penetration testing and reportedly completing 34 of 50 complex attack tasks that were fully blocked on the standard model.",
+      "current_state_en": "Anthropic launched OSS Scanner, an opt-in service that generates vulnerability reports for open-source projects using its strongest frontier models, prompting applications from crypto projects including Nethermind and ZEUS.",
+      "current_state_zh": "Anthropic 推出 OSS Scanner，这是一项可选加入的服务，使用其最强大的前沿模型为开源项目生成漏洞报告，并已吸引包括 Nethermind 和 ZEUS 在内的加密项目申请。",
       "entities": [
+        "ai-security",
         "anthropic",
-        "claude"
+        "claude",
+        "launching",
+        "open-source"
       ],
       "event_id": "evt_8be584b4918ed8c6",
       "event_type": "security_incident",
       "first_seen_at": "2026-10-07T06:42:02.511694Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-07T06:42:02.511694Z",
-      "last_updated_at": "2026-10-07T06:42:02.511694Z",
+      "last_material_change_at": "2026-10-09T07:12:00.397479Z",
+      "last_updated_at": "2026-10-09T07:12:00.397479Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_b5d41a5c8dc0f7ce",
+        "evt_a57ab09afbe219cd",
+        "evt_1d129937b15d0f56"
+      ],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "Anthropic给Claude开「红队权限」：安全机构可做授权渗透测试",
-      "title_zh": "Anthropic给Claude开「红队权限」：安全机构可做授权渗透测试",
+      "title_zh": "Anthropic 扩展网络安全计划并推出开源漏洞扫描服务",
       "topics": [
+        "ai-cybersecurity",
         "ai-safety",
+        "ai-security",
         "anthropic",
         "claude",
+        "critical-infrastructure",
+        "crypto-security",
         "cybersecurity",
-        "red-teaming"
+        "developer-tools",
+        "open-source",
+        "open-source-security",
+        "oss-scanner",
+        "red-teaming",
+        "vulnerability-detection",
+        "vulnerability-scanning"
       ],
       "updates": [
         {
@@ -122907,7 +122973,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Anthropic expanded its Cyber Verification Program into three tiers — Defense, Red Team, and Specialized — granting vetted security organizations reduced cybersecurity guardrails on Claude Opus 5.5, Sonnet 5.5, and Mythos 5.1, with the Red Team tier allowing authorized penetration testing and reportedly completing 34 of 50 complex attack tasks that were fully blocked on the standard model.",
-          "current_state_zh": "Anthropic expanded its Cyber Verification Program into three tiers — Defense, Red Team, and Specialized — granting vetted security organizations reduced cybersecurity guardrails on Claude Opus 5.5, Sonnet 5.5, and Mythos 5.1, with the Red Team tier allowing authorized penetration testing and reportedly completing 34 of 50 complex attack tasks that were fully blocked on the standard model.",
+          "current_state_zh": "Anthropic 将其 Cyber Verification Program 扩展为三个层级——Defense、Red Team 和 Specialized——为经过审核的安全组织在 Claude Opus 5.5、Sonnet 5.5 和 Mythos 5.1 上放宽网络安全防护限制，其中 Red Team 层级允许经授权的渗透测试，据报道在标准模型上被完全拦截的 50 项复杂攻击任务中完成了 34 项。",
           "detailed_summary_en": "Anthropic expanded its Cyber Verification Program into three tiers — Defense, Red Team, and Specialized — granting vetted security organizations reduced cybersecurity guardrails on Claude Opus 5.5, Sonnet 5.5, and Mythos 5.1, with the Red Team tier allowing authorized penetration testing and reportedly completing 34 of 50 complex attack tasks that were fully blocked on the standard model.",
           "detailed_summary_zh": "Anthropic expanded its Cyber Verification Program into three tiers — Defense, Red Team, and Specialized — granting vetted security organizations reduced cybersecurity guardrails on Claude Opus 5.5, Sonnet 5.5, and Mythos 5.1, with the Red Team tier allowing authorized penetration testing and reportedly completing 34 of 50 complex attack tasks that were fully blocked on the standard model.",
           "event_id": "evt_8be584b4918ed8c6",
@@ -122936,7 +123002,103 @@
           "update_id": "upd_3297434fb5507a26",
           "update_type": "initial",
           "what_changed_en": "Anthropic expanded its Cyber Verification Program into three tiers — Defense, Red Team, and Specialized — granting vetted security organizations reduced cybersecurity guardrails on Claude Opus 5.5, Sonnet 5.5, and Mythos 5.1, with the Red Team tier allowing authorized penetration testing and reportedly completing 34 of 50 complex attack tasks that were fully blocked on the standard model.",
-          "what_changed_zh": "Anthropic expanded its Cyber Verification Program into three tiers — Defense, Red Team, and Specialized — granting vetted security organizations reduced cybersecurity guardrails on Claude Opus 5.5, Sonnet 5.5, and Mythos 5.1, with the Red Team tier allowing authorized penetration testing and reportedly completing 34 of 50 complex attack tasks that were fully blocked on the standard model."
+          "what_changed_zh": "Anthropic 将其 Cyber Verification Program 扩展为三个层级——Defense、Red Team 和 Specialized——为经过审核的安全组织在 Claude Opus 5.5、Sonnet 5.5 和 Mythos 5.1 上放宽网络安全防护限制，其中 Red Team 层级允许经授权的渗透测试，据报道在标准模型上被完全拦截的 50 项复杂攻击任务中完成了 34 项。"
+        },
+        {
+          "background_en": "OSS Scanner is presented by Anthropic as a way to scan critical open-source repositories for security vulnerabilities, with an optional fast-track path for projects. AI-assisted vulnerability detection has been an expanding area of tooling, as open-source maintainers often lack the resources for continuous security review.",
+          "background_zh": "Anthropic 将 OSS Scanner 定位为扫描关键开源代码库安全漏洞的工具，并为项目提供可选的快速通道。随着开源维护者往往缺乏持续安全审查的资源，AI 辅助的漏洞检测已成为不断扩展的工具领域。",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Anthropic announced OSS Scanner, an opt-in service that uses its models to run thorough, periodic security scans of open-source software repositories and alert projects to potential vulnerabilities at no cost.\n\nAccording to the source, open-source projects that opt in could be alerted about possible security issues sooner; the trade-off is described as stemming from how OSS Scanner works.\n\nThe service is described as free to participating open-source projects and uses Anthropic's strongest models for periodic scanning; participation is opt-in rather than automatic, and the company maintains a public repository for the service.",
+          "current_state_zh": "Anthropic 宣布推出 OSS Scanner，这是一项可选加入（opt-in）的服务，使用其模型对开源软件代码库进行全面的定期安全扫描，并免费向相关项目提示潜在漏洞。\n\n据来源称，选择加入的开源项目可能更早收到潜在安全问题的提示；其代价则与 OSS Scanner 的运作方式有关。\n\n该服务对参与的开源项目免费，并使用 Anthropic 最强的模型进行定期扫描；参与方式为自愿加入而非自动纳入，公司还为该服务维护了一个公开代码库。",
+          "detailed_summary_en": "Anthropic announced OSS Scanner, an opt-in service that uses its models to run thorough, periodic security scans of open-source software repositories and alert projects to potential vulnerabilities at no cost.\n\nAccording to the source, open-source projects that opt in could be alerted about possible security issues sooner; the trade-off is described as stemming from how OSS Scanner works.\n\nThe service is described as free to participating open-source projects and uses Anthropic's strongest models for periodic scanning; participation is opt-in rather than automatic, and the company maintains a public repository for the service.",
+          "detailed_summary_zh": "Anthropic 宣布推出 OSS Scanner，这是一项可选加入（opt-in）的服务，使用其模型对开源软件代码库进行全面的定期安全扫描，并免费向相关项目提示潜在漏洞。\n\n据来源称，选择加入的开源项目可能更早收到潜在安全问题的提示；其代价则与 OSS Scanner 的运作方式有关。\n\n该服务对参与的开源项目免费，并使用 Anthropic 最强的模型进行定期扫描；参与方式为自愿加入而非自动纳入，公司还为该服务维护了一个公开代码库。",
+          "event_id": "evt_8be584b4918ed8c6",
+          "first_seen_at": "2026-10-08T23:27:51.641167Z",
+          "importance_score": 7.0,
+          "market_impact_en": "The service applies to open-source repositories, a category that includes widely used crypto infrastructure such as node clients, libraries and tooling; vulnerabilities surfaced there are an operational-security consideration for the affected projects and their users rather than a direct market driver.",
+          "market_impact_zh": "该服务面向开源代码库，而这一范畴涵盖被广泛使用的加密基础设施，例如节点客户端、基础库和开发工具；若在其中发现漏洞，对相关项目及其用户而言属于运营安全层面的考量，而非直接的市场驱动因素。",
+          "material_change": true,
+          "occurred_at": "2026-10-08T19:00:00Z",
+          "published_at": "2026-10-08T19:00:00Z",
+          "references": [
+            {
+              "title": "OSS Scanner",
+              "url": "https://red.anthropic.com/oss-scanner/"
+            },
+            {
+              "title": "GitHub - anthropics/oss-scanner · GitHub",
+              "url": "https://github.com/anthropics/oss-scanner"
+            },
+            {
+              "title": "Anthropic OSS Scanner: AI Security Scans for Open Source",
+              "url": "https://scalevise.com/resources/anthropic-oss-scanner-ai-open-source-security/"
+            }
+          ],
+          "sources": [
+            {
+              "label": "Anthropic News",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQYlVFa0lLSzZRaDNqRXNLWjFxOE0xa3pZdkNrV2hkNHkxTDg3QnVRdFVVclpaUXVXTVZyekdxNkRGQTFGTWdmb1h2NGtLT3pOaUJuZG8wYldhVUFMbEdta2o0eERWaGlTalpISG9reWhCTm9VSmI1X0RFVDJ3Rk1zSDF6YmEwZWRiVnFHSS1DczNLZw?oc=5"
+            }
+          ],
+          "story_ids": [
+            "rss:news.google.com_rss_search?q=site:anthropic.com+when:7d&hl=en-US&gl=US&ceid=US:en:b3bb93e0259ff9db"
+          ],
+          "time_precision": "published",
+          "title_en": "Launching an opt-in vulnerability-finding service for open-source software - Anthropic",
+          "title_zh": "推出面向开源软件的可选加入式漏洞发现服务",
+          "update_id": "upd_6feb330545f263cd",
+          "update_type": "escalation",
+          "what_changed_en": "Anthropic announced OSS Scanner, an opt-in service that uses its models to run thorough, periodic security scans of open-source software repositories and alert projects to potential vulnerabilities at no cost.\n\nAccording to the source, open-source projects that opt in could be alerted about possible security issues sooner; the trade-off is described as stemming from how OSS Scanner works.\n\nThe service is described as free to participating open-source projects and uses Anthropic's strongest models for periodic scanning; participation is opt-in rather than automatic, and the company maintains a public repository for the service.",
+          "what_changed_zh": "Anthropic 宣布推出 OSS Scanner，这是一项可选加入（opt-in）的服务，使用其模型对开源软件代码库进行全面的定期安全扫描，并免费向相关项目提示潜在漏洞。\n\n据来源称，选择加入的开源项目可能更早收到潜在安全问题的提示；其代价则与 OSS Scanner 的运作方式有关。\n\n该服务对参与的开源项目免费，并使用 Anthropic 最强的模型进行定期扫描；参与方式为自愿加入而非自动纳入，公司还为该服务维护了一个公开代码库。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Anthropic launched the Cyber Mission program with a free Claude-powered open-source vulnerability scanner and a critical-infrastructure defense initiative, reporting more than 29,000 suspected vulnerabilities uncovered in open-source software over the past six months in partnership with 11 companies.",
+          "current_state_zh": "Anthropic 推出 Cyber Mission 计划，包括一个由 Claude 驱动的免费开源漏洞扫描器以及一项关键基础设施防御倡议，并报告称在过去六个月中与 11 家公司合作，在开源软件中发现超过 29,000 个疑似漏洞。",
+          "detailed_summary_en": "Anthropic launched the Cyber Mission program with a free Claude-powered open-source vulnerability scanner and a critical-infrastructure defense initiative, reporting more than 29,000 suspected vulnerabilities uncovered in open-source software over the past six months in partnership with 11 companies.",
+          "detailed_summary_zh": "Anthropic launched the Cyber Mission program with a free Claude-powered open-source vulnerability scanner and a critical-infrastructure defense initiative, reporting more than 29,000 suspected vulnerabilities uncovered in open-source software over the past six months in partnership with 11 companies.",
+          "event_id": "evt_8be584b4918ed8c6",
+          "first_seen_at": "2026-10-09T07:11:46.876357Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-09T05:54:02Z",
+          "published_at": "2026-10-09T05:54:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/370953?from=telegram"
+            },
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/crypto-projects-apply-for-anthropics-new-frontier-ai-security-scanner?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:199635",
+            "rss:cointelegraph.com_rss:63f16c1fae4361c3"
+          ],
+          "time_precision": "published",
+          "title_en": "Anthropic免费用Claude扫开源漏洞，已发现超2.9万处疑似漏洞",
+          "title_zh": "Anthropic免费用Claude扫开源漏洞，已发现超2.9万处疑似漏洞",
+          "update_id": "upd_78ca2838cc0a8661",
+          "update_type": "confirmation",
+          "what_changed_en": "Anthropic launched the Cyber Mission program with a free Claude-powered open-source vulnerability scanner and a critical-infrastructure defense initiative, reporting more than 29,000 suspected vulnerabilities uncovered in open-source software over the past six months in partnership with 11 companies.",
+          "what_changed_zh": "Anthropic 推出 Cyber Mission 计划，包括一个由 Claude 驱动的免费开源漏洞扫描器以及一项关键基础设施防御倡议，并报告称在过去六个月中与 11 家公司合作，在开源软件中发现超过 29,000 个疑似漏洞。"
         }
       ]
     },
@@ -131174,145 +131336,6 @@
       ]
     },
     {
-      "category": "technology",
-      "confidence": 0.75,
-      "current_state_en": "Anthropic launched OSS Scanner, an opt-in service that generates vulnerability reports for open-source projects using its strongest frontier models, prompting applications from crypto projects including Nethermind and ZEUS.",
-      "current_state_zh": "Anthropic 推出 OSS Scanner，这是一项可选加入的服务，使用其最强大的前沿模型为开源项目生成漏洞报告，并已吸引包括 Nethermind 和 ZEUS 在内的加密项目申请。",
-      "entities": [
-        "ai-security",
-        "anthropic",
-        "claude",
-        "launching",
-        "open-source"
-      ],
-      "event_id": "evt_b5d41a5c8dc0f7ce",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-10-08T23:27:51.641167Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-09T07:12:00.397479Z",
-      "last_updated_at": "2026-10-09T07:12:00.397479Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [
-        "evt_a57ab09afbe219cd",
-        "evt_1d129937b15d0f56"
-      ],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Launching an opt-in vulnerability-finding service for open-source software - Anthropic",
-      "title_zh": "Anthropic 推出 OSS Scanner 开源漏洞扫描服务并启动 Cyber Mission 计划",
-      "topics": [
-        "ai-cybersecurity",
-        "ai-security",
-        "anthropic",
-        "critical-infrastructure",
-        "crypto-security",
-        "developer-tools",
-        "open-source",
-        "open-source-security",
-        "oss-scanner",
-        "vulnerability-detection",
-        "vulnerability-scanning"
-      ],
-      "updates": [
-        {
-          "background_en": "OSS Scanner is presented by Anthropic as a way to scan critical open-source repositories for security vulnerabilities, with an optional fast-track path for projects. AI-assisted vulnerability detection has been an expanding area of tooling, as open-source maintainers often lack the resources for continuous security review.",
-          "background_zh": "Anthropic 将 OSS Scanner 定位为扫描关键开源代码库安全漏洞的工具，并为项目提供可选的快速通道。随着开源维护者往往缺乏持续安全审查的资源，AI 辅助的漏洞检测已成为不断扩展的工具领域。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Anthropic announced OSS Scanner, an opt-in service that uses its models to run thorough, periodic security scans of open-source software repositories and alert projects to potential vulnerabilities at no cost.\n\nAccording to the source, open-source projects that opt in could be alerted about possible security issues sooner; the trade-off is described as stemming from how OSS Scanner works.\n\nThe service is described as free to participating open-source projects and uses Anthropic's strongest models for periodic scanning; participation is opt-in rather than automatic, and the company maintains a public repository for the service.",
-          "current_state_zh": "Anthropic 宣布推出 OSS Scanner，这是一项可选加入（opt-in）的服务，使用其模型对开源软件代码库进行全面的定期安全扫描，并免费向相关项目提示潜在漏洞。\n\n据来源称，选择加入的开源项目可能更早收到潜在安全问题的提示；其代价则与 OSS Scanner 的运作方式有关。\n\n该服务对参与的开源项目免费，并使用 Anthropic 最强的模型进行定期扫描；参与方式为自愿加入而非自动纳入，公司还为该服务维护了一个公开代码库。",
-          "detailed_summary_en": "Anthropic announced OSS Scanner, an opt-in service that uses its models to run thorough, periodic security scans of open-source software repositories and alert projects to potential vulnerabilities at no cost.\n\nAccording to the source, open-source projects that opt in could be alerted about possible security issues sooner; the trade-off is described as stemming from how OSS Scanner works.\n\nThe service is described as free to participating open-source projects and uses Anthropic's strongest models for periodic scanning; participation is opt-in rather than automatic, and the company maintains a public repository for the service.",
-          "detailed_summary_zh": "Anthropic 宣布推出 OSS Scanner，这是一项可选加入（opt-in）的服务，使用其模型对开源软件代码库进行全面的定期安全扫描，并免费向相关项目提示潜在漏洞。\n\n据来源称，选择加入的开源项目可能更早收到潜在安全问题的提示；其代价则与 OSS Scanner 的运作方式有关。\n\n该服务对参与的开源项目免费，并使用 Anthropic 最强的模型进行定期扫描；参与方式为自愿加入而非自动纳入，公司还为该服务维护了一个公开代码库。",
-          "event_id": "evt_b5d41a5c8dc0f7ce",
-          "first_seen_at": "2026-10-08T23:27:51.641167Z",
-          "importance_score": 7.0,
-          "market_impact_en": "The service applies to open-source repositories, a category that includes widely used crypto infrastructure such as node clients, libraries and tooling; vulnerabilities surfaced there are an operational-security consideration for the affected projects and their users rather than a direct market driver.",
-          "market_impact_zh": "该服务面向开源代码库，而这一范畴涵盖被广泛使用的加密基础设施，例如节点客户端、基础库和开发工具；若在其中发现漏洞，对相关项目及其用户而言属于运营安全层面的考量，而非直接的市场驱动因素。",
-          "material_change": true,
-          "occurred_at": "2026-10-08T19:00:00Z",
-          "published_at": "2026-10-08T19:00:00Z",
-          "references": [
-            {
-              "title": "OSS Scanner",
-              "url": "https://red.anthropic.com/oss-scanner/"
-            },
-            {
-              "title": "GitHub - anthropics/oss-scanner · GitHub",
-              "url": "https://github.com/anthropics/oss-scanner"
-            },
-            {
-              "title": "Anthropic OSS Scanner: AI Security Scans for Open Source",
-              "url": "https://scalevise.com/resources/anthropic-oss-scanner-ai-open-source-security/"
-            }
-          ],
-          "sources": [
-            {
-              "label": "Anthropic News",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQYlVFa0lLSzZRaDNqRXNLWjFxOE0xa3pZdkNrV2hkNHkxTDg3QnVRdFVVclpaUXVXTVZyekdxNkRGQTFGTWdmb1h2NGtLT3pOaUJuZG8wYldhVUFMbEdta2o0eERWaGlTalpISG9reWhCTm9VSmI1X0RFVDJ3Rk1zSDF6YmEwZWRiVnFHSS1DczNLZw?oc=5"
-            }
-          ],
-          "story_ids": [
-            "rss:news.google.com_rss_search?q=site:anthropic.com+when:7d&hl=en-US&gl=US&ceid=US:en:b3bb93e0259ff9db"
-          ],
-          "time_precision": "published",
-          "title_en": "Launching an opt-in vulnerability-finding service for open-source software - Anthropic",
-          "title_zh": "推出面向开源软件的可选加入式漏洞发现服务",
-          "update_id": "upd_6feb330545f263cd",
-          "update_type": "initial",
-          "what_changed_en": "Anthropic announced OSS Scanner, an opt-in service that uses its models to run thorough, periodic security scans of open-source software repositories and alert projects to potential vulnerabilities at no cost.\n\nAccording to the source, open-source projects that opt in could be alerted about possible security issues sooner; the trade-off is described as stemming from how OSS Scanner works.\n\nThe service is described as free to participating open-source projects and uses Anthropic's strongest models for periodic scanning; participation is opt-in rather than automatic, and the company maintains a public repository for the service.",
-          "what_changed_zh": "Anthropic 宣布推出 OSS Scanner，这是一项可选加入（opt-in）的服务，使用其模型对开源软件代码库进行全面的定期安全扫描，并免费向相关项目提示潜在漏洞。\n\n据来源称，选择加入的开源项目可能更早收到潜在安全问题的提示；其代价则与 OSS Scanner 的运作方式有关。\n\n该服务对参与的开源项目免费，并使用 Anthropic 最强的模型进行定期扫描；参与方式为自愿加入而非自动纳入，公司还为该服务维护了一个公开代码库。"
-        },
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Anthropic launched the Cyber Mission program with a free Claude-powered open-source vulnerability scanner and a critical-infrastructure defense initiative, reporting more than 29,000 suspected vulnerabilities uncovered in open-source software over the past six months in partnership with 11 companies.",
-          "current_state_zh": "Anthropic 推出 Cyber Mission 计划，包括一个由 Claude 驱动的免费开源漏洞扫描器以及一项关键基础设施防御倡议，并报告称在过去六个月中与 11 家公司合作，在开源软件中发现超过 29,000 个疑似漏洞。",
-          "detailed_summary_en": "Anthropic launched the Cyber Mission program with a free Claude-powered open-source vulnerability scanner and a critical-infrastructure defense initiative, reporting more than 29,000 suspected vulnerabilities uncovered in open-source software over the past six months in partnership with 11 companies.",
-          "detailed_summary_zh": "Anthropic launched the Cyber Mission program with a free Claude-powered open-source vulnerability scanner and a critical-infrastructure defense initiative, reporting more than 29,000 suspected vulnerabilities uncovered in open-source software over the past six months in partnership with 11 companies.",
-          "event_id": "evt_b5d41a5c8dc0f7ce",
-          "first_seen_at": "2026-10-09T07:11:46.876357Z",
-          "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-09T05:54:02Z",
-          "published_at": "2026-10-09T05:54:02Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "theblockbeats",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://m.theblockbeats.info/flash/370953?from=telegram"
-            },
-            {
-              "label": "Cointelegraph",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://cointelegraph.com/news/crypto-projects-apply-for-anthropics-new-frontier-ai-security-scanner?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
-            }
-          ],
-          "story_ids": [
-            "telegram:theblockbeats:199635",
-            "rss:cointelegraph.com_rss:63f16c1fae4361c3"
-          ],
-          "time_precision": "published",
-          "title_en": "Anthropic免费用Claude扫开源漏洞，已发现超2.9万处疑似漏洞",
-          "title_zh": "Anthropic免费用Claude扫开源漏洞，已发现超2.9万处疑似漏洞",
-          "update_id": "upd_78ca2838cc0a8661",
-          "update_type": "confirmation",
-          "what_changed_en": "Anthropic launched the Cyber Mission program with a free Claude-powered open-source vulnerability scanner and a critical-infrastructure defense initiative, reporting more than 29,000 suspected vulnerabilities uncovered in open-source software over the past six months in partnership with 11 companies.",
-          "what_changed_zh": "Anthropic 推出 Cyber Mission 计划，包括一个由 Claude 驱动的免费开源漏洞扫描器以及一项关键基础设施防御倡议，并报告称在过去六个月中与 11 家公司合作，在开源软件中发现超过 29,000 个疑似漏洞。"
-        }
-      ]
-    },
-    {
       "category": "crypto",
       "confidence": 0.75,
       "current_state_en": "Coldcard hardware-wallet users reportedly lost about $70M in 41 minutes during a security incident, prompting Binance's CZ to warn that hardware wallets can fail.",
@@ -133893,8 +133916,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Ledger is investigating reported fund losses tied to Southeast Asian authorized reseller CryptoBilis; Ledger has asked CryptoBilis to suspend sales and shipments and warned customers who bought devices in the past 90 days. Onchain researchers estimate losses at roughly $72 million to $90 million, and Tether has frozen related USDT. Industry figures including Changpeng Zhao have publicly commented and called for industry help tracing funds, while Mark Karpelès is investigating whether malicious hardware components were implanted; the attack method, device tampering and attacker identity remain unconfirmed, and the investigation is ongoing.",
-      "current_state_zh": "Ledger 正在调查与东南亚授权经销商 CryptoBilis 相关的用户资金损失事件；Ledger 已要求 CryptoBilis 暂停销售和发货，并对过去90天内购买设备的客户发出警示。链上研究人员估计相关损失约为7200万至9000万美元，Tether 已冻结相关 USDT。赵长鹏等业内人士公开评论并呼吁行业协助追踪资金，Mark Karpelès 正调查设备是否植入恶意硬件组件，但攻击方式、设备是否被篡改及攻击者身份仍未确认，调查仍在进行中。",
+      "current_state_en": "Ledger is investigating reported fund losses tied to Southeast Asian authorized reseller CryptoBilis; CryptoBilis has now suspended all brand hardware-wallet sales in its physical stores and online channels in Malaysia, the Philippines and Indonesia, temporarily closed physical stores, and is cooperating with Ledger’s investigation while independent experts review its processes. Ledger had already asked CryptoBilis to suspend sales and shipments and warned customers who bought devices in the past 90 days. Onchain researchers estimate losses at roughly $72 million to $90 million, and Tether has frozen related USDT. The attack method, device tampering and attacker identity remain unconfirmed, and the investigation is ongoing.",
+      "current_state_zh": "Ledger 正在调查与东南亚授权经销商 CryptoBilis 相关的用户资金损失事件；CryptoBilis 已实际暂停马来西亚、菲律宾和印度尼西亚所有门店及线上渠道的全部品牌硬件钱包销售，并暂时关闭实体门店，正在配合 Ledger 调查并由独立专家审查内部流程。Ledger 此前已要求 CryptoBilis 暂停销售和发货，并警示过去90天内购买设备的客户；链上研究人员估计相关损失约为7200万至9000万美元，Tether 已冻结相关 USDT。攻击方式、设备是否被篡改及攻击者身份仍未确认，调查仍在进行中。",
       "entities": [
         "after",
         "asia",
@@ -133934,8 +133957,8 @@
       "event_type": "security_incident",
       "first_seen_at": "2026-10-09T15:30:47.822838Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-09T22:30:50.383722Z",
-      "last_updated_at": "2026-10-09T22:30:50.383722Z",
+      "last_material_change_at": "2026-10-10T02:39:24.921336Z",
+      "last_updated_at": "2026-10-10T02:39:25.792121Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_d805e062148e6406",
@@ -133946,11 +133969,12 @@
         "evt_ea5df7b19572e16b"
       ],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "developing",
       "title_en": "【Specter：数百个 Ledger 用户钱包疑似被盗，损失超 8600 万美元】",
       "title_zh": "Ledger 授权经销商渠道遭攻击，数百用户钱包被盗约 8600 万美元",
       "topics": [
         "asset-theft",
+        "consumer-protection",
         "crypto-theft",
         "fund-losses",
         "fund-theft",
@@ -134330,10 +134354,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://m.theblockbeats.info/flash/371077?from=telegram"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371089?from=telegram"
             }
           ],
           "story_ids": [
-            "telegram:theblockbeats:199757"
+            "telegram:theblockbeats:199757",
+            "telegram:theblockbeats:199769"
           ],
           "time_precision": "published",
           "title_en": "Mt.Gox前CEO称发现被植入间谍模块的Ledger硬件钱包，可通过LTE发送助记词信息",
@@ -134469,6 +134500,44 @@
           "update_type": "confirmation",
           "what_changed_en": "Industry figures publicly intervened: Binance founder Changpeng Zhao warned users and said the incident appears localized to a single-vendor supply-chain attack; former Mt. Gox CEO Mark Karpelès is investigating whether malicious hardware components were implanted in customer devices and asked CryptoBilis to open some unsold Ledger wallets for circuit-board inspection. Reports also note Ledger's Genuine Check verifies the Secure Element but may not detect physical modifications elsewhere in the hardware.",
           "what_changed_zh": "行业人士开始公开介入调查：币安创始人赵长鹏警告用户谨慎，称事件似乎局限于单一供应商的供应链攻击；前 Mt. Gox CEO Mark Karpelès 正在调查是否有恶意硬件组件被植入发给客户的设备，并要求 CryptoBilis 打开部分未售出的 Ledger 钱包检查内部电路板。此外，报道指出 Ledger 的 Genuine Check 只能验证安全芯片，可能无法发现硬件其他部位的物理篡改。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.92,
+          "current_state_en": "Ledger is investigating reported fund losses tied to Southeast Asian authorized reseller CryptoBilis; CryptoBilis has now suspended all brand hardware-wallet sales in its physical stores and online channels in Malaysia, the Philippines and Indonesia, temporarily closed physical stores, and is cooperating with Ledger’s investigation while independent experts review its processes. Ledger had already asked CryptoBilis to suspend sales and shipments and warned customers who bought devices in the past 90 days. Onchain researchers estimate losses at roughly $72 million to $90 million, and Tether has frozen related USDT. The attack method, device tampering and attacker identity remain unconfirmed, and the investigation is ongoing.",
+          "current_state_zh": "Ledger 正在调查与东南亚授权经销商 CryptoBilis 相关的用户资金损失事件；CryptoBilis 已实际暂停马来西亚、菲律宾和印度尼西亚所有门店及线上渠道的全部品牌硬件钱包销售，并暂时关闭实体门店，正在配合 Ledger 调查并由独立专家审查内部流程。Ledger 此前已要求 CryptoBilis 暂停销售和发货，并警示过去90天内购买设备的客户；链上研究人员估计相关损失约为7200万至9000万美元，Tether 已冻结相关 USDT。攻击方式、设备是否被篡改及攻击者身份仍未确认，调查仍在进行中。",
+          "detailed_summary_en": "CryptoBilis suspended all hardware-wallet sales and closed physical stores across Malaysia, the Philippines, and Indonesia while cooperating with a Ledger investigation, warning customers not to activate units bought from its channels and to move assets to Ledger devices using newly generated mnemonics.",
+          "detailed_summary_zh": "CryptoBilis suspended all hardware-wallet sales and closed physical stores across Malaysia, the Philippines, and Indonesia while cooperating with a Ledger investigation, warning customers not to activate units bought from its channels and to move assets to Ledger devices using newly generated mnemonics.",
+          "event_id": "evt_c594d0e29e7b400b",
+          "first_seen_at": "2026-10-10T02:39:24.921336Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-10T01:42:43Z",
+          "published_at": "2026-10-10T01:42:43Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/114884"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120071"
+          ],
+          "time_precision": "published",
+          "title_en": "【CryptoBilis 暂停三国全部品牌硬件钱包销售，目前正配合 Ledger 调查】",
+          "title_zh": "【CryptoBilis 暂停三国全部品牌硬件钱包销售，目前正配合 Ledger 调查】",
+          "update_id": "upd_81baf56b6cf38449",
+          "update_type": "response",
+          "what_changed_en": "CryptoBilis has now suspended all hardware-wallet sales across its physical stores and online channels in Malaysia, the Philippines and Indonesia, temporarily closed physical stores, is cooperating with Ledger’s investigation and having independent experts review internal processes, with further updates expected within three business days.",
+          "what_changed_zh": "CryptoBilis 已实际暂停马来西亚、菲律宾和印度尼西亚所有门店与线上渠道的全部品牌硬件钱包销售，并暂时关闭实体门店，正在配合 Ledger 调查并接受独立专家审查内部流程，预计三个工作日内公布进展。"
         }
       ]
     },
@@ -136076,6 +136145,351 @@
           "what_changed_zh": "Aerodrome 与 Velodrome 已将 10 月 21 日定为合并启动日，并公布了代币转换条款：AERO 按 1:1 转换，VELO 每枚约可兑换 0.044 枚新 AERO。现有锁仓将保留其剩余期限。\n\n这些条款为两种广泛使用的 DEX 代币持有者提供了转向单一代币的明确路径，将 Aerodrome 在 Base 上的流动性枢纽与 Velodrome 在 Optimism 上的业务合并。VELO 的兑换比例也确定了现有 VELO 头寸将对应多少新 AERO。\n\nVELO 的兑换比例表述为每枚约 0.044 枚新 AERO，而 AERO 为 1:1 转换。锁仓头寸不因合并而缩短或延长，仍保留剩余期限。"
         }
       ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "The US Department of Justice is reportedly opening a new investigation into Binance, raising the prospect of further fines on top of its existing compliance settlement.",
+      "current_state_zh": "The US Department of Justice is reportedly opening a new investigation into Binance, raising the prospect of further fines on top of its existing compliance settlement.",
+      "entities": [
+        "again",
+        "binance",
+        "could",
+        "doj",
+        "fines",
+        "follow",
+        "investigate",
+        "more"
+      ],
+      "event_id": "evt_087d5c0460a51dea",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-10T02:39:23.685022Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-10T02:39:23.685022Z",
+      "last_updated_at": "2026-10-10T02:39:23.685022Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "DOJ To Investigate Binance Again. Could More Fines Follow?",
+      "title_zh": "DOJ To Investigate Binance Again. Could More Fines Follow?",
+      "topics": [
+        "binance",
+        "compliance",
+        "doj",
+        "enforcement"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "The US Department of Justice is reportedly opening a new investigation into Binance, raising the prospect of further fines on top of its existing compliance settlement.",
+          "current_state_zh": "The US Department of Justice is reportedly opening a new investigation into Binance, raising the prospect of further fines on top of its existing compliance settlement.",
+          "detailed_summary_en": "The US Department of Justice is reportedly opening a new investigation into Binance, raising the prospect of further fines on top of its existing compliance settlement.",
+          "detailed_summary_zh": "The US Department of Justice is reportedly opening a new investigation into Binance, raising the prospect of further fines on top of its existing compliance settlement.",
+          "event_id": "evt_087d5c0460a51dea",
+          "first_seen_at": "2026-10-10T02:39:23.685022Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-10T00:09:00Z",
+          "published_at": "2026-10-10T00:09:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "BeInCrypto",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://beincrypto.com/doj-binance-investigation-compliance-settlement/"
+            }
+          ],
+          "story_ids": [
+            "google_news:article:79747890f2927162"
+          ],
+          "time_precision": "published",
+          "title_en": "DOJ To Investigate Binance Again. Could More Fines Follow?",
+          "title_zh": "DOJ To Investigate Binance Again. Could More Fines Follow?",
+          "update_id": "upd_d9333f4289214c88",
+          "update_type": "initial",
+          "what_changed_en": "The US Department of Justice is reportedly opening a new investigation into Binance, raising the prospect of further fines on top of its existing compliance settlement.",
+          "what_changed_zh": "The US Department of Justice is reportedly opening a new investigation into Binance, raising the prospect of further fines on top of its existing compliance settlement."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "SlowMist's CISO outlined how a tampered Ledger device could record the mnemonic words from the screen's SPI data lines and exfiltrate them via an embedded LTE/eSIM module, following Mark Karpelès' report of receiving a Ledger with a hidden spy module.",
+      "current_state_zh": "SlowMist's CISO outlined how a tampered Ledger device could record the mnemonic words from the screen's SPI data lines and exfiltrate them via an embedded LTE/eSIM module, following Mark Karpelès' report of receiving a Ledger with a hidden spy module.",
+      "entities": [
+        "ciso",
+        "ledger"
+      ],
+      "event_id": "evt_a06a42b9fbdd13a2",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-10T02:39:24.921155Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-10T02:39:24.921155Z",
+      "last_updated_at": "2026-10-10T02:39:24.921155Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【慢雾 CISO 推测 Ledger 设备被攻击路径：旁路录屏助记词后再外传】",
+      "title_zh": "【慢雾 CISO 推测 Ledger 设备被攻击路径：旁路录屏助记词后再外传】",
+      "topics": [
+        "ledger",
+        "security-incident",
+        "self-custody",
+        "supply-chain-attack"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "SlowMist's CISO outlined how a tampered Ledger device could record the mnemonic words from the screen's SPI data lines and exfiltrate them via an embedded LTE/eSIM module, following Mark Karpelès' report of receiving a Ledger with a hidden spy module.",
+          "current_state_zh": "SlowMist's CISO outlined how a tampered Ledger device could record the mnemonic words from the screen's SPI data lines and exfiltrate them via an embedded LTE/eSIM module, following Mark Karpelès' report of receiving a Ledger with a hidden spy module.",
+          "detailed_summary_en": "SlowMist's CISO outlined how a tampered Ledger device could record the mnemonic words from the screen's SPI data lines and exfiltrate them via an embedded LTE/eSIM module, following Mark Karpelès' report of receiving a Ledger with a hidden spy module.",
+          "detailed_summary_zh": "SlowMist's CISO outlined how a tampered Ledger device could record the mnemonic words from the screen's SPI data lines and exfiltrate them via an embedded LTE/eSIM module, following Mark Karpelès' report of receiving a Ledger with a hidden spy module.",
+          "event_id": "evt_a06a42b9fbdd13a2",
+          "first_seen_at": "2026-10-10T02:39:24.921155Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-10T01:28:02Z",
+          "published_at": "2026-10-10T01:28:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/114883"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120070"
+          ],
+          "time_precision": "published",
+          "title_en": "【慢雾 CISO 推测 Ledger 设备被攻击路径：旁路录屏助记词后再外传】",
+          "title_zh": "【慢雾 CISO 推测 Ledger 设备被攻击路径：旁路录屏助记词后再外传】",
+          "update_id": "upd_43f44af694b0ab71",
+          "update_type": "initial",
+          "what_changed_en": "SlowMist's CISO outlined how a tampered Ledger device could record the mnemonic words from the screen's SPI data lines and exfiltrate them via an embedded LTE/eSIM module, following Mark Karpelès' report of receiving a Ledger with a hidden spy module.",
+          "what_changed_zh": "SlowMist's CISO outlined how a tampered Ledger device could record the mnemonic words from the screen's SPI data lines and exfiltrate them via an embedded LTE/eSIM module, following Mark Karpelès' report of receiving a Ledger with a hidden spy module."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Unichain will migrate to OP Enterprise to enable native OP Stack interoperability, with testnet migration on October 13 and mainnet migration on October 29, while chain ID, contracts, balances and deployed apps including Uniswap v2/v3/v4 remain unchanged.",
+      "current_state_zh": "Unichain will migrate to OP Enterprise to enable native OP Stack interoperability, with testnet migration on October 13 and mainnet migration on October 29, while chain ID, contracts, balances and deployed apps including Uniswap v2/v3/v4 remain unchanged.",
+      "entities": [
+        "enterprise",
+        "unichain"
+      ],
+      "event_id": "evt_972893bfdad1213d",
+      "event_type": "protocol_change",
+      "first_seen_at": "2026-10-10T02:39:24.921701Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-10T02:39:24.921701Z",
+      "last_updated_at": "2026-10-10T02:39:24.921701Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【Unichain 将迁移至 OP Enterprise，主网 10 月 29 日迁移】",
+      "title_zh": "【Unichain 将迁移至 OP Enterprise，主网 10 月 29 日迁移】",
+      "topics": [
+        "interoperability",
+        "layer-2",
+        "op-stack",
+        "optimism",
+        "unichain"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Unichain will migrate to OP Enterprise to enable native OP Stack interoperability, with testnet migration on October 13 and mainnet migration on October 29, while chain ID, contracts, balances and deployed apps including Uniswap v2/v3/v4 remain unchanged.",
+          "current_state_zh": "Unichain will migrate to OP Enterprise to enable native OP Stack interoperability, with testnet migration on October 13 and mainnet migration on October 29, while chain ID, contracts, balances and deployed apps including Uniswap v2/v3/v4 remain unchanged.",
+          "detailed_summary_en": "Unichain will migrate to OP Enterprise to enable native OP Stack interoperability, with testnet migration on October 13 and mainnet migration on October 29, while chain ID, contracts, balances and deployed apps including Uniswap v2/v3/v4 remain unchanged.",
+          "detailed_summary_zh": "Unichain will migrate to OP Enterprise to enable native OP Stack interoperability, with testnet migration on October 13 and mainnet migration on October 29, while chain ID, contracts, balances and deployed apps including Uniswap v2/v3/v4 remain unchanged.",
+          "event_id": "evt_972893bfdad1213d",
+          "first_seen_at": "2026-10-10T02:39:24.921701Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-10T01:53:32Z",
+          "published_at": "2026-10-10T01:53:32Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/114886"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120073"
+          ],
+          "time_precision": "published",
+          "title_en": "【Unichain 将迁移至 OP Enterprise，主网 10 月 29 日迁移】",
+          "title_zh": "【Unichain 将迁移至 OP Enterprise，主网 10 月 29 日迁移】",
+          "update_id": "upd_9cec31745b9cd790",
+          "update_type": "initial",
+          "what_changed_en": "Unichain will migrate to OP Enterprise to enable native OP Stack interoperability, with testnet migration on October 13 and mainnet migration on October 29, while chain ID, contracts, balances and deployed apps including Uniswap v2/v3/v4 remain unchanged.",
+          "what_changed_zh": "Unichain will migrate to OP Enterprise to enable native OP Stack interoperability, with testnet migration on October 13 and mainnet migration on October 29, while chain ID, contracts, balances and deployed apps including Uniswap v2/v3/v4 remain unchanged."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "CryptoBilis, the hardware wallet dealer under scrutiny for a suspected Ledger supply chain attack, was revealed to have changed ownership in March 2026 with a Chinese national holding 100% of shares since August 3, and has suspended all hardware wallet sales and shipments in Malaysia, the Philippines, and Indonesia.",
+      "current_state_zh": "CryptoBilis, the hardware wallet dealer under scrutiny for a suspected Ledger supply chain attack, was revealed to have changed ownership in March 2026 with a Chinese national holding 100% of shares since August 3, and has suspended all hardware wallet sales and shipments in Malaysia, the Philippines, and Indonesia.",
+      "entities": [
+        "cryptobilis",
+        "ledger"
+      ],
+      "event_id": "evt_317653202645068a",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-10T02:39:25.792378Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-10T02:39:25.792378Z",
+      "last_updated_at": "2026-10-10T02:39:25.792378Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "⚡️Ledger盗币案新线索：经销商CryptoBilis 3月易主，股权登记指向中国籍人士",
+      "title_zh": "⚡️Ledger盗币案新线索：经销商CryptoBilis 3月易主，股权登记指向中国籍人士",
+      "topics": [
+        "cryptobilis",
+        "ledger",
+        "supply-chain-attack"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "CryptoBilis, the hardware wallet dealer under scrutiny for a suspected Ledger supply chain attack, was revealed to have changed ownership in March 2026 with a Chinese national holding 100% of shares since August 3, and has suspended all hardware wallet sales and shipments in Malaysia, the Philippines, and Indonesia.",
+          "current_state_zh": "CryptoBilis, the hardware wallet dealer under scrutiny for a suspected Ledger supply chain attack, was revealed to have changed ownership in March 2026 with a Chinese national holding 100% of shares since August 3, and has suspended all hardware wallet sales and shipments in Malaysia, the Philippines, and Indonesia.",
+          "detailed_summary_en": "CryptoBilis, the hardware wallet dealer under scrutiny for a suspected Ledger supply chain attack, was revealed to have changed ownership in March 2026 with a Chinese national holding 100% of shares since August 3, and has suspended all hardware wallet sales and shipments in Malaysia, the Philippines, and Indonesia.",
+          "detailed_summary_zh": "CryptoBilis, the hardware wallet dealer under scrutiny for a suspected Ledger supply chain attack, was revealed to have changed ownership in March 2026 with a Chinese national holding 100% of shares since August 3, and has suspended all hardware wallet sales and shipments in Malaysia, the Philippines, and Indonesia.",
+          "event_id": "evt_317653202645068a",
+          "first_seen_at": "2026-10-10T02:39:25.792378Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-10T01:13:02Z",
+          "published_at": "2026-10-10T01:13:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371090?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:199770"
+          ],
+          "time_precision": "published",
+          "title_en": "⚡️Ledger盗币案新线索：经销商CryptoBilis 3月易主，股权登记指向中国籍人士",
+          "title_zh": "⚡️Ledger盗币案新线索：经销商CryptoBilis 3月易主，股权登记指向中国籍人士",
+          "update_id": "upd_d8564d3edea65aa7",
+          "update_type": "initial",
+          "what_changed_en": "CryptoBilis, the hardware wallet dealer under scrutiny for a suspected Ledger supply chain attack, was revealed to have changed ownership in March 2026 with a Chinese national holding 100% of shares since August 3, and has suspended all hardware wallet sales and shipments in Malaysia, the Philippines, and Indonesia.",
+          "what_changed_zh": "CryptoBilis, the hardware wallet dealer under scrutiny for a suspected Ledger supply chain attack, was revealed to have changed ownership in March 2026 with a Chinese national holding 100% of shares since August 3, and has suspended all hardware wallet sales and shipments in Malaysia, the Philippines, and Indonesia."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Anthropic has cut off live internet access for all of its internal evaluations until further notice, after concluding it cannot reliably control its AI agents during testing.",
+      "current_state_zh": "Anthropic has cut off live internet access for all of its internal evaluations until further notice, after concluding it cannot reliably control its AI agents during testing.",
+      "entities": [
+        "anthropic"
+      ],
+      "event_id": "evt_afa15e10a67814fc",
+      "event_type": "other",
+      "first_seen_at": "2026-10-10T02:39:34.970696Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-10T02:39:34.970696Z",
+      "last_updated_at": "2026-10-10T02:39:34.970696Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Anthropic can’t reliably control its AI agents. It’s cutting off its internal evals from the live internet instead",
+      "title_zh": "Anthropic can’t reliably control its AI agents. It’s cutting off its internal evals from the live internet instead",
+      "topics": [
+        "ai-safety",
+        "anthropic",
+        "containment",
+        "evaluations"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Anthropic has cut off live internet access for all of its internal evaluations until further notice, after concluding it cannot reliably control its AI agents during testing.",
+          "current_state_zh": "Anthropic has cut off live internet access for all of its internal evaluations until further notice, after concluding it cannot reliably control its AI agents during testing.",
+          "detailed_summary_en": "Anthropic has cut off live internet access for all of its internal evaluations until further notice, after concluding it cannot reliably control its AI agents during testing.",
+          "detailed_summary_zh": "Anthropic has cut off live internet access for all of its internal evaluations until further notice, after concluding it cannot reliably control its AI agents during testing.",
+          "event_id": "evt_afa15e10a67814fc",
+          "first_seen_at": "2026-10-10T02:39:34.970696Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-10T00:18:32Z",
+          "published_at": "2026-10-10T00:18:32Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "TechCrunch AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead/"
+            }
+          ],
+          "story_ids": [
+            "rss:techcrunch.com_category_artificial-intelligence_feed_:cef868a2ca35f25b"
+          ],
+          "time_precision": "published",
+          "title_en": "Anthropic can’t reliably control its AI agents. It’s cutting off its internal evals from the live internet instead",
+          "title_zh": "Anthropic can’t reliably control its AI agents. It’s cutting off its internal evals from the live internet instead",
+          "update_id": "upd_90c98aeae6d0c24d",
+          "update_type": "initial",
+          "what_changed_en": "Anthropic has cut off live internet access for all of its internal evaluations until further notice, after concluding it cannot reliably control its AI agents during testing.",
+          "what_changed_zh": "Anthropic has cut off live internet access for all of its internal evaluations until further notice, after concluding it cannot reliably control its AI agents during testing."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -136100,6 +136514,10 @@
       "evt_9807e7a6d948fadb",
       "evt_eb423dfd6479e630"
     ],
+    "alpenglow": [
+      "evt_04729c76ccc47903",
+      "evt_d75668abfb43b4e7"
+    ],
     "anthropic": [
       "evt_0d970a8f88206a9e",
       "evt_0e8a1f4abf831db4",
@@ -136114,11 +136532,10 @@
       "evt_9dbbeeda37a571fa",
       "evt_9e748fdbec9c5df9",
       "evt_aa238c767ce5c9cd",
-      "evt_b5d41a5c8dc0f7ce",
+      "evt_afa15e10a67814fc",
       "evt_ba25d8d8c5f43cdf",
       "evt_c765a0bcd269aec3",
-      "evt_d3c1381fa90c0105",
-      "evt_f2da69bab402e230"
+      "evt_d3c1381fa90c0105"
     ],
     "aptos": [
       "evt_7b020f83ebe10269",
@@ -136195,6 +136612,9 @@
       "evt_0d2a2160cfe49ae7",
       "evt_7f495c46d92c8be5",
       "evt_adf6782fc8abfab7"
+    ],
+    "bstocks": [
+      "evt_50050a4962d98fc2"
     ],
     "bybit": [
       "evt_6655595dc1e36e0b",

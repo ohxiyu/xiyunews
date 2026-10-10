@@ -11,17 +11,18 @@
     "en": "Solana Activates 350ms Slots on Mainnet, First Cut Since Genesis"
   },
   "current_state": {
-    "zh": "Solana 正在安排最后一次削减至 200 毫秒出块时间，通过降低单区块计算上限来补偿，而验证者将面临更频繁的投票和更短的出块窗口。",
-    "en": "Solana is scheduling its final cut to 200-millisecond slots, compensating with smaller per-block compute limits while validators face more frequent voting and shorter block-production windows."
+    "zh": "SIMD-0525 的 200 毫秒目标已激活并宣布完成，Anza 确认升级落地；社区注意力转向 Alpenglow 共识改造（目标约 150 毫秒最终性），其已在测试网和开发网部署，但主网激活日期尚未公布。",
+    "en": "The 200-millisecond target of SIMD-0525 has been activated and declared complete by Anza; attention now shifts to the Alpenglow consensus overhaul targeting ~150ms finality, which has been deployed on testnet and devnet but has no announced mainnet activation date."
   },
   "first_seen_at": "2026-08-22T08:00:00+08:00",
-  "last_updated_at": "2026-10-09T07:11:52.977442+00:00",
-  "last_material_change_at": "2026-10-09T07:11:52.977442+00:00",
+  "last_updated_at": "2026-10-10T02:39:29.330494+00:00",
+  "last_material_change_at": "2026-10-10T02:39:29.330494+00:00",
   "confidence": 0.75,
-  "updates_count": 3,
-  "sources_count": 3,
+  "updates_count": 4,
+  "sources_count": 4,
   "entities": [
     "activates",
+    "alpenglow",
     "block-time",
     "cut",
     "final",
@@ -38,6 +39,7 @@
     "simd-0525"
   ],
   "topics": [
+    "alpenglow",
     "block-time",
     "blockchain-performance",
     "layer-1",
@@ -158,6 +160,44 @@
         {
           "url": "https://www.coindesk.com/tech/2026/10/09/solana-is-about-to-halve-its-block-times-as-final-200-millisecond-upgrade-nears",
           "label": "CoinDesk",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_0339b5f15ca0b585",
+      "event_id": "evt_04729c76ccc47903",
+      "occurred_at": "2026-10-10T00:40:59Z",
+      "published_at": "2026-10-10T00:40:59Z",
+      "first_seen_at": "2026-10-10T02:39:29.330494Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "Solana 将出块速度提升一倍至 200 毫秒，为 Alpenglow 升级做准备",
+      "title_en": "Solana doubles block production speed to 200ms as network prepares for Alpenglow upgrade",
+      "what_changed_zh": "Solana 已于 10 月 9 日在主网激活 200 毫秒出块时间，完成 SIMD-0525 从 400 毫秒起的四阶段缩减，区块生产机会提升至每秒 5 个，epoch 时长由约 48 小时缩短至约 24 小时；同时交易 blockhash 有效期从约 60 秒缩短至约 30 秒。",
+      "what_changed_en": "Solana activated 200-millisecond slots on mainnet on Oct. 9, completing the four-stage SIMD-0525 reduction from 400ms: block-production opportunities rose to five per second, epoch duration fell from about 48 hours to about 24 hours, and transaction blockhash expiry shrank from about 60 seconds to about 30 seconds.",
+      "current_state_zh": "SIMD-0525 的 200 毫秒目标已激活并宣布完成，Anza 确认升级落地；社区注意力转向 Alpenglow 共识改造（目标约 150 毫秒最终性），其已在测试网和开发网部署，但主网激活日期尚未公布。",
+      "current_state_en": "The 200-millisecond target of SIMD-0525 has been activated and declared complete by Anza; attention now shifts to the Alpenglow consensus overhaul targeting ~150ms finality, which has been deployed on testnet and devnet but has no announced mainnet activation date.",
+      "detailed_summary_zh": "Solana activated 200-millisecond slots on mainnet, cutting its original 400ms block-production target in half, increasing block opportunities to five per second and shortening epochs to roughly 24 hours ahead of the still-unscheduled Alpenglow upgrade targeting 150ms finality.",
+      "detailed_summary_en": "Solana activated 200-millisecond slots on mainnet, cutting its original 400ms block-production target in half, increasing block opportunities to five per second and shortening epochs to roughly 24 hours ahead of the still-unscheduled Alpenglow upgrade targeting 150ms finality.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "rss:cryptoslate.com_feed_:6fe8a1597bb748e5"
+      ],
+      "sources": [
+        {
+          "url": "https://cryptoslate.com/solana-doubles-block-production-speed-to-200ms-as-network-prepares-for-alpenglow-upgrade/",
+          "label": "CryptoSlate",
           "source_type": "rss",
           "official": false
         }
