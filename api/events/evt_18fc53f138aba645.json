@@ -164,14 +164,23 @@
       "current_state_en": "L-BTC peg-out redemptions remain frozen; reserves cover ~85.8% of supply, a ~603 BTC shortfall, and full backing plus completed security reviews are required before redemptions resume.",
       "detailed_summary_zh": "Liquid Network's bitcoin peg-out redemptions stay frozen with reserves covering just 85.8% of issued L-BTC, a shortfall of roughly 603 BTC that must be closed and security reviews completed before redemptions resume.",
       "detailed_summary_en": "Liquid Network's bitcoin peg-out redemptions stay frozen with reserves covering just 85.8% of issued L-BTC, a shortfall of roughly 603 BTC that must be closed and security reviews completed before redemptions resume.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "Liquid Network 是一条与比特币保持 1:1 锚定的比特币二层侧链，允许 BTC 在比特币主链（peg-in，转入）与侧链（peg-out，转出）之间流转。在一次安全事件后，peg-out 被暂停；Blockstream 表示，随着恢复推进以及相关整改措施被正式采纳，将继续发布技术更新。",
+      "background_en": "Liquid Network is a Bitcoin layer-2 sidechain that maintains a 1:1 peg with bitcoin, letting BTC move between the Bitcoin mainchain (peg-in) and the sidechain (peg-out). Peg-outs were halted following a security incident, and Blockstream has said it will continue publishing technical updates as recovery progresses and corrective actions are formally adopted.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "此次冻结直接切断了 L-BTC 的赎回路径，而 L-BTC 被多家交易所和托管机构持有与支持，因此在锚定通道关闭期间，这些场所上 L-BTC 交易对的流动性与价格可能与主链 BTC 出现偏离。同时，这也使市场重新审视联合锚定（federated peg）的信任假设，可能影响对其他比特币侧链及跨链 BTC 设计的人气。",
+      "market_impact_en": "The freeze directly restricts the redemption path for L-BTC, an asset held and supported by exchanges and custody providers, so liquidity and pricing for L-BTC pairs on those venues can diverge from mainchain BTC while the peg is closed. It also puts a spotlight on the trust assumptions of federated pegs, which can affect sentiment toward other Bitcoin sidechain and bridged-BTC designs.",
       "importance_score": 8.0,
-      "references": [],
+      "references": [
+        {
+          "url": "https://blog.liquid.net/liquid-network-security-incident-assessment/",
+          "title": "Liquid Network Security Incident Assessment"
+        },
+        {
+          "url": "https://help.blockstream.com/liquid-network/faqs/what-is-a-liquid-peg-out",
+          "title": "Blockstream Help Center | What is a Liquid peg-out?"
+        }
+      ],
       "confidence": 0.95,
       "story_ids": [
         "rss:thedefiant.io_api_feed:611073f227bb6929"

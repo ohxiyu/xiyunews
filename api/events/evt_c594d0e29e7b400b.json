@@ -7,7 +7,7 @@
   "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "Ledger 硬件钱包供应链植入装置事件",
+    "zh": "Ledger硬件钱包供应链植入事件：用户资金被盗，Ledger称与CryptoBilis所售设备有关",
     "en": "Ledger Hardware Wallet Supply Chain Implant Incident"
   },
   "current_state": {
@@ -18,24 +18,28 @@
   "last_updated_at": "2026-10-11T21:51:26.911556+00:00",
   "last_material_change_at": "2026-10-11T21:51:26.911556+00:00",
   "confidence": 0.75,
-  "updates_count": 22,
-  "sources_count": 46,
+  "updates_count": 23,
+  "sources_count": 47,
   "entities": [
     "affected",
     "after",
+    "all",
     "asia",
     "asian",
     "binance",
     "blockbeats",
     "bought",
+    "cases",
     "cash",
     "ceo",
     "ciso",
+    "confirmed",
     "confirms",
     "contained",
     "cryptobilis",
     "cryptobillis",
     "device",
+    "devices",
     "draining",
     "europe",
     "former",
@@ -48,6 +52,7 @@
     "impacted",
     "implant",
     "investigates",
+    "involve",
     "largest",
     "ledger",
     "lte",
@@ -66,6 +71,7 @@
     "says",
     "self",
     "self-custody",
+    "sold",
     "southeast",
     "southeast-asia",
     "specter",
@@ -1115,14 +1121,27 @@
       "current_state_en": "A Ledger hardware wallet bought weeks earlier from an official European reseller was found to contain an unauthorized spy implant with suspicious wiring not present in genuine units, indicating physical tampering before sale, with suspected cases now reported across Asia, South America and Europe and no funds stolen so far.",
       "detailed_summary_zh": "A Ledger hardware wallet bought weeks earlier from an official European reseller was found to contain an unauthorized spy implant with suspicious wiring not present in genuine units, indicating physical tampering before sale, with suspected cases now reported across Asia, South America and Europe and no funds stolen so far.",
       "detailed_summary_en": "A Ledger hardware wallet bought weeks earlier from an official European reseller was found to contain an unauthorized spy implant with suspicious wiring not present in genuine units, indicating physical tampering before sale, with suspected cases now reported across Asia, South America and Europe and no funds stolen so far.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "10 月 9 日，Ledger 表示正在调查与东南亚经销商所售设备相关的资金被盗报告，同期分析机构追踪到数千万美元规模的疑似资金流出，Ledger 要求 CryptoBilis 暂停所有销售和发货。CryptoBilis 被列为 Ledger 在印度尼西亚、马来西亚和菲律宾的官方经销商。",
+      "background_en": "On October 9, Ledger said it was investigating reports of stolen funds linked to devices sold through a Southeast Asian reseller, while analysts tracked tens of millions of dollars in suspected drains and Ledger asked CryptoBilis to pause all sales and shipments. CryptoBilis is listed as an official Ledger reseller for Indonesia, Malaysia and the Philippines.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "该事件影响自托管硬件钱包这一细分领域：若通过第三方经销商购买的设备可能携带可绕过标准验证的植入装置，风险认知将转向官方直购渠道，并可能影响经销商渠道的硬件钱包需求，进而波及更广泛的自托管安全叙事。",
+      "market_impact_en": "The report bears on the self-custody hardware-wallet segment: if devices bought through third-party resellers can carry implants that defeat standard attestation checks, risk perception shifts toward direct-from-vendor purchasing and can affect demand for wallets distributed through reseller channels, feeding into the broader self-custody security narrative.",
       "importance_score": 8.0,
-      "references": [],
+      "references": [
+        {
+          "url": "https://www.coindesk.com/business/2026/10/09/ledger-investigates-potential-wallet-tampering-after-reports-of-usd86-million-in-crypto-stolen",
+          "title": "Ledger investigates potential wallet tampering after reports of $86..."
+        },
+        {
+          "url": "https://bitquery.io/investigations/ledger-cryptobilis-hack",
+          "title": "Ledger CryptoBilis Hack: $92.9M Drained, Where It Went - Bitquery"
+        },
+        {
+          "url": "https://www.ledger.com/academy/topics/ledgersolutions/best-practices-to-securely-buy-ledger-signer",
+          "title": "Best Practices To Securely Buy Your Ledger Signer | Ledger"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:foresightnews:120136",
@@ -1137,6 +1156,44 @@
         },
         {
           "url": "https://thedefiant.io/news/security/ledger-user-reports-hardware-implant-in-wallet-bought-in-europe",
+          "label": "The Defiant",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_a21821131784c650",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-11T17:18:19Z",
+      "published_at": "2026-10-11T17:18:19Z",
+      "first_seen_at": "2026-10-11T17:44:43.308972Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "Ledger称所有已确认的盗取案件均涉及CryptoBilis销售的设备",
+      "title_en": "Ledger Says All Confirmed Draining Cases Involve CryptoBilis-Sold Devices",
+      "what_changed_zh": "Ledger表示，所有已确认的钱包盗取案件均可追溯到经销商CryptoBilis销售的设备，并称其自有直销渠道未受影响，同时警告经销商切勿将退回的产品重新上架。",
+      "what_changed_en": "Ledger says every confirmed wallet-draining case traces back to devices sold by reseller CryptoBilis, stating its own direct sales channels are unaffected and warning resellers never to restock returned products.",
+      "current_state_zh": "Ledger表示，所有已确认的钱包盗取案件均可追溯到经销商CryptoBilis销售的设备，并称其自有直销渠道未受影响，同时警告经销商切勿将退回的产品重新上架。",
+      "current_state_en": "Ledger says every confirmed wallet-draining case traces back to devices sold by reseller CryptoBilis, stating its own direct sales channels are unaffected and warning resellers never to restock returned products.",
+      "detailed_summary_zh": "Ledger says every confirmed wallet-draining case traces back to devices sold by reseller CryptoBilis, stating its own direct sales channels are unaffected and warning resellers never to restock returned products.",
+      "detailed_summary_en": "Ledger says every confirmed wallet-draining case traces back to devices sold by reseller CryptoBilis, stating its own direct sales channels are unaffected and warning resellers never to restock returned products.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "rss:thedefiant.io_api_feed:6e29208a71aacf0f"
+      ],
+      "sources": [
+        {
+          "url": "https://thedefiant.io/news/hacks/ledger-says-all-confirmed-draining-cases-involve-cryptobilis-sold-devices",
           "label": "The Defiant",
           "source_type": "rss",
           "official": false
