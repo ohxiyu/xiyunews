@@ -11,7 +11,7 @@
     "en": "【Ripple 披露两项漏洞修复：支付引擎整数溢出可凭空铸造 XRP，批量交易封装校验亦存共识风险】"
   },
   "current_state": {
-    "zh": "Ripple's xrpld 3.4.1 disclosure details a critical payment-engine integer overflow that could have minted spendable XRP from thin air (patched 25 September, no exploitation found) and a batch-transaction encapsulation validation flaw addressed by the fixBatchV1_2 amendment, activated on mainnet on 9 October.",
+    "zh": "Ripple 发布 xrpld 3.4.1 漏洞披露报告，涵盖两项问题。支付引擎中的严重级别整数溢出影响 3.4.0 及更早版本，可凭空铸造可花费的 XRP，该问题随 9 月 25 日发布的 xrpld 3.4.1 修复生效。另一项为批量交易内部封装校验漏洞（fixBatchV1_2 修正案），影响 3.3.0 与 3.4.0，已在 3.4.1 中修复，并于 10 月 9 日在主网激活。\n\n报告称，未发现支付引擎漏洞在任何公开网络被利用的证据，批量交易问题也未造成资金损失或私钥泄露。但报告警告，若在未修复情况下激活 BatchV1_1，存在网络活性中断或账本中留下畸形记录的风险。\n\n报告称，支付引擎在汇总跨多个挂单的金额时使用 64 位整数且缺少溢出检查，当求和超过上限时会回绕，向挂单方贷记全额、仅向买方收取回绕后的金额。利用该问题需构造数百笔恶意挂单，成本约数百枚 XRP 的储备与手续费，普通支付无法触发该路径。",
     "en": "Ripple's xrpld 3.4.1 disclosure details a critical payment-engine integer overflow that could have minted spendable XRP from thin air (patched 25 September, no exploitation found) and a batch-transaction encapsulation validation flaw addressed by the fixBatchV1_2 amendment, activated on mainnet on 9 October."
   },
   "first_seen_at": "2026-10-10T06:40:40.620089+00:00",

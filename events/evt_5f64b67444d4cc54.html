@@ -3,14 +3,18 @@ layout: default
 title: "杨立坤4年前的构想交卷：H-JEPA迷宫成功率从18%升至73%"
 permalink: /events/evt_5f64b67444d4cc54/
 interface_language: zh
-description: "LeCun's AMI Labs and academic collaborators released H-JEPA, a hierarchical world model in which each planning level learns its own environment features, raising maze-navigation su"
+description: "杨立坤创办的 AMI Labs 联合多所高校公布 H-JEPA，一种分层预测未来、规划动作的世界模型：高层负责远期目标，低层将其细化为具体动作，且每个层级学习自己的环境特征。论文、代码和预训练权重均已公开；在 Visual AntMaze 仿真迷宫中，三个规划层级的 H-JEPA 成功率达到 73.3%，单层 LeWorldModel 为 18.0%，且前者"
 page_type: archive
 alternate_url: /en/events/evt_5f64b67444d4cc54/
 page_class: event-detail-page
 noindex: true
 ---
 
-<div class="event-detail-layout"><article class="event-detail-stream"><div class="event-detail-orientation"><div class="event-status-line"><span class="event-status" data-status="monitoring">持续观察</span><span class="category-pill" data-category="technology">AI 科技</span><span>其他事件</span><span>首次追踪 2026.10.10</span><span>最近变化 2026.10.10</span></div><section class="event-current-state"><h2>目前结论</h2><p>LeCun&#x27;s AMI Labs and academic collaborators released H-JEPA, a hierarchical world model in which each planning level learns its own environment features, raising maze-navigation success from 18.0% to 73.3% over a single-layer baseline with less planning compute, with paper, code, and pretrained weights made public.</p></section></div><div class="event-timeline-heading"><h2>进展时间线</h2><span>1 次实质进展</span></div><ol class="event-timeline"><li class="event-update event-stream-item" id="upd_8ac323e9bad8e1ee"><div class="event-update-rail"><strong>#01</strong><time datetime="2026-10-10T09:57:02+00:00">10.10</time><span class="event-update-marker" aria-hidden="true"></span></div><div class="event-update-content"><div class="digest-item-meta"><div><span class="event-update-type">首次出现</span><span class="event-update-precision">2026.10.10 09:57 · 报道时间</span></div></div><h3>杨立坤4年前的构想交卷：H-JEPA迷宫成功率从18%升至73%</h3><p class="event-update-change">杨立坤创办的 AMI Labs 联合多所高校公布 H-JEPA，一种分层预测未来、规划动作的世界模型：高层负责远期目标，低层将其细化为具体动作，且每个层级学习自己的环境特征。论文、代码和预训练权重均已公开；在 Visual AntMaze 仿真迷宫中，三个规划层级的 H-JEPA 成功率达到 73.3%，单层 LeWorldModel 为 18.0%，且前者所需的规划计算量更少。
+<div class="event-detail-layout"><article class="event-detail-stream"><div class="event-detail-orientation"><div class="event-status-line"><span class="event-status" data-status="monitoring">持续观察</span><span class="category-pill" data-category="technology">AI 科技</span><span>其他事件</span><span>首次追踪 2026.10.10</span><span>最近变化 2026.10.10</span></div><section class="event-current-state"><h2>目前结论</h2><p>杨立坤创办的 AMI Labs 联合多所高校公布 H-JEPA，一种分层预测未来、规划动作的世界模型：高层负责远期目标，低层将其细化为具体动作，且每个层级学习自己的环境特征。论文、代码和预训练权重均已公开；在 Visual AntMaze 仿真迷宫中，三个规划层级的 H-JEPA 成功率达到 73.3%，单层 LeWorldModel 为 18.0%，且前者所需的规划计算量更少。
+
+这一发布把杨立坤早在 2022 年提出的构想变成了可以端到端训练的实现方案，而 Visual AntMaze 上的成功率为 73.3%，明显高于单层基线且规划计算量更少。与此前各层共用同一套特征的 HWM 不同，H-JEPA 让每个层级学习自己的环境特征。
+
+规划层级并非越多越好：在模拟推物体的 Push-T 任务中，三层模型反而不如两层。团队还用真实机器人录像数据集 DROID 进行了离线测试，预测动作轨迹比单层模型更接近专家示范。</p></section></div><div class="event-timeline-heading"><h2>进展时间线</h2><span>1 次实质进展</span></div><ol class="event-timeline"><li class="event-update event-stream-item" id="upd_8ac323e9bad8e1ee"><div class="event-update-rail"><strong>#01</strong><time datetime="2026-10-10T09:57:02+00:00">10.10</time><span class="event-update-marker" aria-hidden="true"></span></div><div class="event-update-content"><div class="digest-item-meta"><div><span class="event-update-type">首次出现</span><span class="event-update-precision">2026.10.10 09:57 · 报道时间</span></div></div><h3>杨立坤4年前的构想交卷：H-JEPA迷宫成功率从18%升至73%</h3><p class="event-update-change">杨立坤创办的 AMI Labs 联合多所高校公布 H-JEPA，一种分层预测未来、规划动作的世界模型：高层负责远期目标，低层将其细化为具体动作，且每个层级学习自己的环境特征。论文、代码和预训练权重均已公开；在 Visual AntMaze 仿真迷宫中，三个规划层级的 H-JEPA 成功率达到 73.3%，单层 LeWorldModel 为 18.0%，且前者所需的规划计算量更少。
 
 这一发布把杨立坤早在 2022 年提出的构想变成了可以端到端训练的实现方案，而 Visual AntMaze 上的成功率为 73.3%，明显高于单层基线且规划计算量更少。与此前各层共用同一套特征的 HWM 不同，H-JEPA 让每个层级学习自己的环境特征。
 

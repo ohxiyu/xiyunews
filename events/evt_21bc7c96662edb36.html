@@ -3,14 +3,18 @@ layout: default
 title: "【Ripple 披露两项漏洞修复：支付引擎整数溢出可凭空铸造 XRP，批量交易封装校验亦存共识风险】"
 permalink: /events/evt_21bc7c96662edb36/
 interface_language: zh
-description: "Ripple's xrpld 3.4.1 disclosure details a critical payment-engine integer overflow that could have minted spendable XRP from thin air (patched 25 September, no exploitation found) "
+description: "Ripple 发布 xrpld 3.4.1 漏洞披露报告，涵盖两项问题。支付引擎中的严重级别整数溢出影响 3.4.0 及更早版本，可凭空铸造可花费的 XRP，该问题随 9 月 25 日发布的 xrpld 3.4.1 修复生效。另一项为批量交易内部封装校验漏洞（fixBatchV1_2 修正案），影响 3.3.0 与 3.4.0，已在 3.4.1 中修复，并于"
 page_type: archive
 alternate_url: /en/events/evt_21bc7c96662edb36/
 page_class: event-detail-page
 noindex: true
 ---
 
-<div class="event-detail-layout"><article class="event-detail-stream"><div class="event-detail-orientation"><div class="event-status-line"><span class="event-status" data-status="monitoring">持续观察</span><span class="category-pill" data-category="crypto">Crypto</span><span>安全事件</span><span>首次追踪 2026.10.10</span><span>最近变化 2026.10.10</span></div><section class="event-current-state"><h2>目前结论</h2><p>Ripple&#x27;s xrpld 3.4.1 disclosure details a critical payment-engine integer overflow that could have minted spendable XRP from thin air (patched 25 September, no exploitation found) and a batch-transaction encapsulation validation flaw addressed by the fixBatchV1_2 amendment, activated on mainnet on 9 October.</p></section></div><div class="event-timeline-heading"><h2>进展时间线</h2><span>1 次实质进展</span></div><ol class="event-timeline"><li class="event-update event-stream-item" id="upd_ae03149c8fc79f70"><div class="event-update-rail"><strong>#01</strong><time datetime="2026-10-10T04:56:03+00:00">10.10</time><span class="event-update-marker" aria-hidden="true"></span></div><div class="event-update-content"><div class="digest-item-meta"><div><span class="event-update-type">首次出现</span><span class="event-update-precision">2026.10.10 04:56 · 报道时间</span></div></div><h3>【Ripple 披露两项漏洞修复：支付引擎整数溢出可凭空铸造 XRP，批量交易封装校验亦存共识风险】</h3><p class="event-update-change">Ripple 发布 xrpld 3.4.1 漏洞披露报告，涵盖两项问题。支付引擎中的严重级别整数溢出影响 3.4.0 及更早版本，可凭空铸造可花费的 XRP，该问题随 9 月 25 日发布的 xrpld 3.4.1 修复生效。另一项为批量交易内部封装校验漏洞（fixBatchV1_2 修正案），影响 3.3.0 与 3.4.0，已在 3.4.1 中修复，并于 10 月 9 日在主网激活。
+<div class="event-detail-layout"><article class="event-detail-stream"><div class="event-detail-orientation"><div class="event-status-line"><span class="event-status" data-status="monitoring">持续观察</span><span class="category-pill" data-category="crypto">Crypto</span><span>安全事件</span><span>首次追踪 2026.10.10</span><span>最近变化 2026.10.10</span></div><section class="event-current-state"><h2>目前结论</h2><p>Ripple 发布 xrpld 3.4.1 漏洞披露报告，涵盖两项问题。支付引擎中的严重级别整数溢出影响 3.4.0 及更早版本，可凭空铸造可花费的 XRP，该问题随 9 月 25 日发布的 xrpld 3.4.1 修复生效。另一项为批量交易内部封装校验漏洞（fixBatchV1_2 修正案），影响 3.3.0 与 3.4.0，已在 3.4.1 中修复，并于 10 月 9 日在主网激活。
+
+报告称，未发现支付引擎漏洞在任何公开网络被利用的证据，批量交易问题也未造成资金损失或私钥泄露。但报告警告，若在未修复情况下激活 BatchV1_1，存在网络活性中断或账本中留下畸形记录的风险。
+
+报告称，支付引擎在汇总跨多个挂单的金额时使用 64 位整数且缺少溢出检查，当求和超过上限时会回绕，向挂单方贷记全额、仅向买方收取回绕后的金额。利用该问题需构造数百笔恶意挂单，成本约数百枚 XRP 的储备与手续费，普通支付无法触发该路径。</p></section></div><div class="event-timeline-heading"><h2>进展时间线</h2><span>1 次实质进展</span></div><ol class="event-timeline"><li class="event-update event-stream-item" id="upd_ae03149c8fc79f70"><div class="event-update-rail"><strong>#01</strong><time datetime="2026-10-10T04:56:03+00:00">10.10</time><span class="event-update-marker" aria-hidden="true"></span></div><div class="event-update-content"><div class="digest-item-meta"><div><span class="event-update-type">首次出现</span><span class="event-update-precision">2026.10.10 04:56 · 报道时间</span></div></div><h3>【Ripple 披露两项漏洞修复：支付引擎整数溢出可凭空铸造 XRP，批量交易封装校验亦存共识风险】</h3><p class="event-update-change">Ripple 发布 xrpld 3.4.1 漏洞披露报告，涵盖两项问题。支付引擎中的严重级别整数溢出影响 3.4.0 及更早版本，可凭空铸造可花费的 XRP，该问题随 9 月 25 日发布的 xrpld 3.4.1 修复生效。另一项为批量交易内部封装校验漏洞（fixBatchV1_2 修正案），影响 3.3.0 与 3.4.0，已在 3.4.1 中修复，并于 10 月 9 日在主网激活。
 
 报告称，未发现支付引擎漏洞在任何公开网络被利用的证据，批量交易问题也未造成资金损失或私钥泄露。但报告警告，若在未修复情况下激活 BatchV1_1，存在网络活性中断或账本中留下畸形记录的风险。
 
