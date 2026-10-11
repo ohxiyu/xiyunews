@@ -103052,29 +103052,40 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Ostium 上线 OLP 恢复门户，在 7 月 15 日约 2375 万美元流动性池攻击后，共识别 3666 个受影响钱包，其中 90.59%（3321 个）可在第一阶段获得已核实损失的 100% 补偿，超额部分可选择 1000 USDC 一次性封顶赔付或加入第二阶段按比例恢复计划。",
-      "current_state_zh": "Ostium 上线 OLP 恢复门户，在 7 月 15 日约 2375 万美元流动性池攻击后，共识别 3666 个受影响钱包，其中 90.59%（3321 个）可在第一阶段获得已核实损失的 100% 补偿，超额部分可选择 1000 USDC 一次性封顶赔付或加入第二阶段按比例恢复计划。",
+      "current_state_en": "Ostium's recovery plan fully repays 3,321 wallets with losses of $1,000 or less, while 345 wallets carrying at least 86% of the $23.8 million loss must choose between a $1,000 payment and a pro-rata claim on still-unrecovered funds.",
+      "current_state_zh": "Ostium 的恢复门户将于周三开放，届时将向损失不超过 1,000 美元的 3,321 个钱包全额赔付。其余 345 个钱包承担了 2,380 万美元总损失中至少 86% 的部分，需在 1,000 美元定额赔付与对尚未追回资金的按比例索赔之间二选一。\n\n该方案一次性解决了损失较小的大多数用户，但最大额损失仍未结清：多数受影响用户获得全额补偿，而敞口最大的钱包只能在定额赔付与等待未追回资金之间做选择。\n\n这 345 个钱包占 2,380 万美元总损失中的至少 86%。除 1,000 美元定额赔付外，它们可选择按比例索赔，即依据各自损失占比、就 Ostium 尚未追回的资金获得相应份额。",
       "entities": [
+        "choose",
+        "full",
+        "leaves",
         "olp",
-        "ostium"
+        "ostium",
+        "plan",
+        "recovery",
+        "repays",
+        "wallets"
       ],
       "event_id": "evt_43c9b0dc16eeaf4e",
       "event_type": "security_incident",
       "first_seen_at": "2026-09-30T18:03:55.356265Z",
       "identifiers": [],
-      "last_material_change_at": "2026-09-30T18:03:55.356265Z",
-      "last_updated_at": "2026-09-30T18:03:55.356265Z",
+      "last_material_change_at": "2026-09-30T18:04:05.792288Z",
+      "last_updated_at": "2026-09-30T18:04:05.792288Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_9ebdd26bdcbc569d"
+      ],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "Ostium上线OLP恢复门户，90.59%受影响钱包可获全额补偿",
-      "title_zh": "Ostium上线OLP恢复门户，90.59%受影响钱包可获全额补偿",
+      "title_zh": "Ostium 在 7 月流动性池攻击后上线 OLP 恢复门户并公布补偿方案",
       "topics": [
         "exploit-recovery",
         "olp",
         "ostium",
-        "user-compensation"
+        "reimbursement",
+        "user-compensation",
+        "user-funds"
       ],
       "updates": [
         {
@@ -103089,23 +103100,43 @@
           "detailed_summary_zh": "Ostium 上线 OLP 恢复门户，在 7 月 15 日约 2375 万美元流动性池攻击后，共识别 3666 个受影响钱包，其中 90.59%（3321 个）可在第一阶段获得已核实损失的 100% 补偿，超额部分可选择 1000 USDC 一次性封顶赔付或加入第二阶段按比例恢复计划。",
           "event_id": "evt_43c9b0dc16eeaf4e",
           "first_seen_at": "2026-09-30T18:03:55.356265Z",
-          "importance_score": 7.0,
+          "importance_score": 7.5,
           "market_impact_en": "",
           "market_impact_zh": "",
           "material_change": true,
           "occurred_at": "2026-09-30T15:28:02Z",
           "published_at": "2026-09-30T15:28:02Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Ostium loses $18 million in oracle attack that gamed its own ...",
+              "url": "https://www.coindesk.com/business/2026/07/15/ostium-suffers-usd18-million-exploit-as-oracle-attack-wave-continues-to-hit-defi"
+            },
+            {
+              "title": "Compromised Oracle Key Drains $18M From Ostium, Exposing DeFi ...",
+              "url": "https://www.techtimes.com/articles/320708/20260716/compromised-oracle-key-drains-18m-ostium-exposing-defis-off-chain-blind-spot.htm"
+            },
+            {
+              "title": "Smart Contract Audits - Ostium",
+              "url": "https://docs.ostium.com/protocol/security/audits"
+            }
+          ],
           "sources": [
             {
               "label": "theblockbeats",
               "official": false,
               "source_type": "telegram",
               "url": "https://m.theblockbeats.info/flash/369816?from=telegram"
+            },
+            {
+              "label": "The Defiant",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://thedefiant.io/news/hacks/ostium-recovery-plan-repays-3321-wallets-in-full-leaves-345-to-choose"
             }
           ],
           "story_ids": [
-            "telegram:theblockbeats:198498"
+            "telegram:theblockbeats:198498",
+            "rss:thedefiant.io_api_feed:29574ed238e3ec8e"
           ],
           "time_precision": "published",
           "title_en": "Ostium上线OLP恢复门户，90.59%受影响钱包可获全额补偿",
@@ -103927,93 +103958,6 @@
           "update_type": "escalation",
           "what_changed_en": "ESMA issued an opinion requiring national regulators to force MiCA-authorized firms to remediate EU clients' exposure to non-compliant stablecoins within three months, with only narrowly supervised liquidation, conversion, withdrawal, transfer or safekeeping allowed in the interim.",
           "what_changed_zh": "ESMA发布意见，要求各国监管机构强制MiCA授权公司在三个月内处理欧盟客户对不合规稳定币的风险敞口，在此期间仅允许在严格监管下进行清算、转换、提现、转移或保管。"
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "Ostium's recovery plan fully repays 3,321 wallets with losses of $1,000 or less, while 345 wallets carrying at least 86% of the $23.8 million loss must choose between a $1,000 payment and a pro-rata claim on still-unrecovered funds.",
-      "current_state_zh": "Ostium 的恢复门户将于周三开放，届时将向损失不超过 1,000 美元的 3,321 个钱包全额赔付。其余 345 个钱包承担了 2,380 万美元总损失中至少 86% 的部分，需在 1,000 美元定额赔付与对尚未追回资金的按比例索赔之间二选一。\n\n该方案一次性解决了损失较小的大多数用户，但最大额损失仍未结清：多数受影响用户获得全额补偿，而敞口最大的钱包只能在定额赔付与等待未追回资金之间做选择。\n\n这 345 个钱包占 2,380 万美元总损失中的至少 86%。除 1,000 美元定额赔付外，它们可选择按比例索赔，即依据各自损失占比、就 Ostium 尚未追回的资金获得相应份额。",
-      "entities": [
-        "choose",
-        "full",
-        "leaves",
-        "ostium",
-        "plan",
-        "recovery",
-        "repays",
-        "wallets"
-      ],
-      "event_id": "evt_9ebdd26bdcbc569d",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-09-30T18:04:05.792288Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-09-30T18:04:05.792288Z",
-      "last_updated_at": "2026-09-30T18:04:05.792288Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Ostium Recovery Plan Repays 3,321 Wallets In Full, Leaves 345 To Choose",
-      "title_zh": "Ostium 恢复方案全额赔付 3,321 个钱包，另有 345 个钱包需二选一",
-      "topics": [
-        "exploit-recovery",
-        "ostium",
-        "reimbursement",
-        "user-funds"
-      ],
-      "updates": [
-        {
-          "background_en": "Ostium is an Arbitrum-based real-world asset perpetuals exchange. In July 2026 it was hit by an oracle-related exploit in which, per press reports, a compromised oracle signer key was used to submit falsified future-dated price reports, with reporting at the time describing up to $18 million in USDC drained. Ostium's audits page lists an initial February 2024 audit with Zellic and a follow-up in November 2025 covering upgraded trading contracts.",
-          "background_zh": "Ostium 是一个基于 Arbitrum 的现实世界资产（RWA）永续合约交易所。2026 年 7 月，该协议遭遇与预言机相关的漏洞攻击：据媒体报道，攻击者利用被攻破的预言机签名密钥提交了伪造的、日期在未来的价格报告，当时报道称最多有 1,800 万美元 USDC 被转出。Ostium 的审计页面列出由 Zellic 于 2024 年 2 月进行的首次审计，以及 2025 年 11 月针对升级后交易合约的后续审计。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Ostium's recovery plan fully repays 3,321 wallets with losses of $1,000 or less, while 345 wallets carrying at least 86% of the $23.8 million loss must choose between a $1,000 payment and a pro-rata claim on still-unrecovered funds.",
-          "current_state_zh": "Ostium 的恢复门户将于周三开放，届时将向损失不超过 1,000 美元的 3,321 个钱包全额赔付。其余 345 个钱包承担了 2,380 万美元总损失中至少 86% 的部分，需在 1,000 美元定额赔付与对尚未追回资金的按比例索赔之间二选一。\n\n该方案一次性解决了损失较小的大多数用户，但最大额损失仍未结清：多数受影响用户获得全额补偿，而敞口最大的钱包只能在定额赔付与等待未追回资金之间做选择。\n\n这 345 个钱包占 2,380 万美元总损失中的至少 86%。除 1,000 美元定额赔付外，它们可选择按比例索赔，即依据各自损失占比、就 Ostium 尚未追回的资金获得相应份额。",
-          "detailed_summary_en": "Ostium's recovery plan fully repays 3,321 wallets with losses of $1,000 or less, while 345 wallets carrying at least 86% of the $23.8 million loss must choose between a $1,000 payment and a pro-rata claim on still-unrecovered funds.",
-          "detailed_summary_zh": "Ostium's recovery plan fully repays 3,321 wallets with losses of $1,000 or less, while 345 wallets carrying at least 86% of the $23.8 million loss must choose between a $1,000 payment and a pro-rata claim on still-unrecovered funds.",
-          "event_id": "evt_9ebdd26bdcbc569d",
-          "first_seen_at": "2026-09-30T18:04:05.792288Z",
-          "importance_score": 7.5,
-          "market_impact_en": "The recovery structure matters mainly to Arbitrum-based DeFi users and protocols dependent on oracle price feeds, since it sets a precedent for how unrecovered exploit funds are allocated among victims and how small-loss cohorts are treated first. It does not itself alter liquidity, custody or supply conditions on major venues.",
-          "market_impact_zh": "该恢复方案主要影响 Arbitrum 生态的 DeFi 用户以及依赖预言机价格源的协议，因为它为未追回的攻击资金如何在受害者之间分配、以及为何优先处理小额损失群体提供了先例。方案本身并不改变主流交易平台的流动性、托管或供给状况。",
-          "material_change": true,
-          "occurred_at": "2026-09-30T15:00:00Z",
-          "published_at": "2026-09-30T15:00:00Z",
-          "references": [
-            {
-              "title": "Ostium loses $18 million in oracle attack that gamed its own ...",
-              "url": "https://www.coindesk.com/business/2026/07/15/ostium-suffers-usd18-million-exploit-as-oracle-attack-wave-continues-to-hit-defi"
-            },
-            {
-              "title": "Compromised Oracle Key Drains $18M From Ostium, Exposing DeFi ...",
-              "url": "https://www.techtimes.com/articles/320708/20260716/compromised-oracle-key-drains-18m-ostium-exposing-defis-off-chain-blind-spot.htm"
-            },
-            {
-              "title": "Smart Contract Audits - Ostium",
-              "url": "https://docs.ostium.com/protocol/security/audits"
-            }
-          ],
-          "sources": [
-            {
-              "label": "The Defiant",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://thedefiant.io/news/hacks/ostium-recovery-plan-repays-3321-wallets-in-full-leaves-345-to-choose"
-            }
-          ],
-          "story_ids": [
-            "rss:thedefiant.io_api_feed:29574ed238e3ec8e"
-          ],
-          "time_precision": "published",
-          "title_en": "Ostium Recovery Plan Repays 3,321 Wallets In Full, Leaves 345 To Choose",
-          "title_zh": "Ostium 恢复方案全额赔付 3,321 个钱包，另有 345 个钱包需二选一",
-          "update_id": "upd_3d7d18eec10ff99d",
-          "update_type": "initial",
-          "what_changed_en": "Ostium's recovery plan fully repays 3,321 wallets with losses of $1,000 or less, while 345 wallets carrying at least 86% of the $23.8 million loss must choose between a $1,000 payment and a pro-rata claim on still-unrecovered funds.",
-          "what_changed_zh": "Ostium 的恢复门户将于周三开放，届时将向损失不超过 1,000 美元的 3,321 个钱包全额赔付。其余 345 个钱包承担了 2,380 万美元总损失中至少 86% 的部分，需在 1,000 美元定额赔付与对尚未追回资金的按比例索赔之间二选一。\n\n该方案一次性解决了损失较小的大多数用户，但最大额损失仍未结清：多数受影响用户获得全额补偿，而敞口最大的钱包只能在定额赔付与等待未追回资金之间做选择。\n\n这 345 个钱包占 2,380 万美元总损失中的至少 86%。除 1,000 美元定额赔付外，它们可选择按比例索赔，即依据各自损失占比、就 Ostium 尚未追回的资金获得相应份额。"
         }
       ]
     },
@@ -115832,19 +115776,22 @@
       "last_updated_at": "2026-10-06T00:41:38.084500Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
-        "evt_ec515467178b9e2d"
+        "evt_ec515467178b9e2d",
+        "evt_608c8c9b7d0f4a6b"
       ],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "Kraken parent Payward partners with Singapore Gulf Bank for 24/7 USD settlement",
-      "title_zh": "Kraken 母公司 Payward 与新加坡海湾银行合作提供 24/7 美元结算",
+      "title_zh": "Payward与新加坡海湾银行合作为亚洲机构提供全天候美元结算",
       "topics": [
         "banking-partnership",
         "institutional-settlement",
         "kraken",
         "market-infrastructure",
         "payward",
-        "settlement"
+        "settlement",
+        "singapore",
+        "usd-settlement"
       ],
       "updates": [
         {
@@ -115915,6 +115862,12 @@
               "official": false,
               "source_type": "rss",
               "url": "https://cryptoslate.com/kraken-parent-joins-singapore-gulf-bank-opening-24-7-institutional-dollar-rails/"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/370302?from=telegram"
             }
           ],
           "story_ids": [
@@ -115923,7 +115876,8 @@
             "google_news:article:6810465ccfb4c809",
             "rss:cointelegraph.com_rss:a6d07b376da29df7",
             "rss:www.coindesk.com_arc_outboundfeeds_rss_:e0d32ba97a2c6ee8",
-            "rss:cryptoslate.com_feed_:96128da6917b2c21"
+            "rss:cryptoslate.com_feed_:96128da6917b2c21",
+            "telegram:theblockbeats:198981"
           ],
           "time_precision": "published",
           "title_en": "Kraken Parent Payward Partners with Singapore Gulf Bank to Offer 24/7 Settlement",
@@ -116288,73 +116242,6 @@
           "update_type": "initial",
           "what_changed_en": "Hong Kong's Treasury Bureau plans to table a legislative amendment within the year establishing a licensing regime for virtual asset trading, custody, advisory and management services, while coordinating with the HKMA on legal framework improvements for detecting and removing fraud content, including AI-generated material.",
           "what_changed_zh": "Hong Kong's Treasury Bureau plans to table a legislative amendment within the year establishing a licensing regime for virtual asset trading, custody, advisory and management services, while coordinating with the HKMA on legal framework improvements for detecting and removing fraud content, including AI-generated material."
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "Payward, Kraken's parent company, has partnered with Singapore Gulf Bank to provide round-the-clock USD settlement services for institutional clients in Asia.",
-      "current_state_zh": "Payward, Kraken's parent company, has partnered with Singapore Gulf Bank to provide round-the-clock USD settlement services for institutional clients in Asia.",
-      "entities": [
-        "payward"
-      ],
-      "event_id": "evt_608c8c9b7d0f4a6b",
-      "event_type": "other",
-      "first_seen_at": "2026-10-05T10:21:04.833295Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-05T10:21:04.833295Z",
-      "last_updated_at": "2026-10-05T10:21:04.833295Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Payward与新加坡海湾银行达成合作，为亚洲机构客户提供全天候美元结算服务",
-      "title_zh": "Payward与新加坡海湾银行达成合作，为亚洲机构客户提供全天候美元结算服务",
-      "topics": [
-        "kraken",
-        "payward",
-        "singapore",
-        "usd-settlement"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Payward, Kraken's parent company, has partnered with Singapore Gulf Bank to provide round-the-clock USD settlement services for institutional clients in Asia.",
-          "current_state_zh": "Payward, Kraken's parent company, has partnered with Singapore Gulf Bank to provide round-the-clock USD settlement services for institutional clients in Asia.",
-          "detailed_summary_en": "Payward, Kraken's parent company, has partnered with Singapore Gulf Bank to provide round-the-clock USD settlement services for institutional clients in Asia.",
-          "detailed_summary_zh": "Payward, Kraken's parent company, has partnered with Singapore Gulf Bank to provide round-the-clock USD settlement services for institutional clients in Asia.",
-          "event_id": "evt_608c8c9b7d0f4a6b",
-          "first_seen_at": "2026-10-05T10:21:04.833295Z",
-          "importance_score": 7.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-05T09:01:02Z",
-          "published_at": "2026-10-05T09:01:02Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "theblockbeats",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://m.theblockbeats.info/flash/370302?from=telegram"
-            }
-          ],
-          "story_ids": [
-            "telegram:theblockbeats:198981"
-          ],
-          "time_precision": "published",
-          "title_en": "Payward与新加坡海湾银行达成合作，为亚洲机构客户提供全天候美元结算服务",
-          "title_zh": "Payward与新加坡海湾银行达成合作，为亚洲机构客户提供全天候美元结算服务",
-          "update_id": "upd_186cccbf5926f357",
-          "update_type": "initial",
-          "what_changed_en": "Payward, Kraken's parent company, has partnered with Singapore Gulf Bank to provide round-the-clock USD settlement services for institutional clients in Asia.",
-          "what_changed_zh": "Payward, Kraken's parent company, has partnered with Singapore Gulf Bank to provide round-the-clock USD settlement services for institutional clients in Asia."
         }
       ]
     },
@@ -140335,6 +140222,73 @@
           "what_changed_zh": "据报道，一名交易者通过新上线、提供最高 1000 倍杠杆的交易所 Papertrade 推高 Hyperliquid 的 ETH 价格，净赚 128 万美元。同一钱包随后在周六夜间损失 45 万美元，原因是 30 个空头头寸在被持有超过三小时后遭到清算。\n\n该报道将此事描述为一条具体涉及 Hyperliquid 的跨平台价格操纵路径，而 Hyperliquid 是规模最大的永续合约 DEX 之一，因此并非一次普通的交易亏损。\n\n这 30 个空头头寸在周六夜间被清算，当时距其开仓已超过三个小时。"
         }
       ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "An analysis of the SEC's tokenized-stock exemption finds that tokenized equities can confer the same ownership rights as conventional shares while lacking the same trading protections, since venues control key price-feed decisions.",
+      "current_state_zh": "An analysis of the SEC's tokenized-stock exemption finds that tokenized equities can confer the same ownership rights as conventional shares while lacking the same trading protections, since venues control key price-feed decisions.",
+      "entities": [
+        "tokenized",
+        "tokenized-stocks"
+      ],
+      "event_id": "evt_53180ed001fb6a04",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-11T23:49:40.771306Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-11T23:49:40.771306Z",
+      "last_updated_at": "2026-10-11T23:49:40.771306Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Tokenized stocks can carry the same rights without the same trading protections",
+      "title_zh": "Tokenized stocks can carry the same rights without the same trading protections",
+      "topics": [
+        "crypto-regulation",
+        "sec",
+        "tokenized-stocks"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "An analysis of the SEC's tokenized-stock exemption finds that tokenized equities can confer the same ownership rights as conventional shares while lacking the same trading protections, since venues control key price-feed decisions.",
+          "current_state_zh": "An analysis of the SEC's tokenized-stock exemption finds that tokenized equities can confer the same ownership rights as conventional shares while lacking the same trading protections, since venues control key price-feed decisions.",
+          "detailed_summary_en": "An analysis of the SEC's tokenized-stock exemption finds that tokenized equities can confer the same ownership rights as conventional shares while lacking the same trading protections, since venues control key price-feed decisions.",
+          "detailed_summary_zh": "An analysis of the SEC's tokenized-stock exemption finds that tokenized equities can confer the same ownership rights as conventional shares while lacking the same trading protections, since venues control key price-feed decisions.",
+          "event_id": "evt_53180ed001fb6a04",
+          "first_seen_at": "2026-10-11T23:49:40.771306Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-11T16:05:37Z",
+          "published_at": "2026-10-11T16:05:37Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "CryptoRank",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://cryptorank.io/news/feed/f9bb6-secs-tokenized-stock-exemption-leaves-key-price-feed-choices-to-venues"
+            }
+          ],
+          "story_ids": [
+            "google_news:article:a9524b554cd6ffa1"
+          ],
+          "time_precision": "published",
+          "title_en": "Tokenized stocks can carry the same rights without the same trading protections",
+          "title_zh": "Tokenized stocks can carry the same rights without the same trading protections",
+          "update_id": "upd_d5b24fb6dd547714",
+          "update_type": "initial",
+          "what_changed_en": "An analysis of the SEC's tokenized-stock exemption finds that tokenized equities can confer the same ownership rights as conventional shares while lacking the same trading protections, since venues control key price-feed decisions.",
+          "what_changed_zh": "An analysis of the SEC's tokenized-stock exemption finds that tokenized equities can confer the same ownership rights as conventional shares while lacking the same trading protections, since venues control key price-feed decisions."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -140888,6 +140842,10 @@
       "evt_9d9ab3068c61f333",
       "evt_f31d7a60fdee3272"
     ],
+    "open-source": [
+      "evt_4e07ec85e4034e43",
+      "evt_8be584b4918ed8c6"
+    ],
     "openai": [
       "evt_0d970a8f88206a9e",
       "evt_1db396d58f0e3736",
@@ -140910,10 +140868,11 @@
       "evt_f7bb636b6764e9f4",
       "evt_f90e7e488826e7d6"
     ],
+    "ostium": [
+      "evt_43c9b0dc16eeaf4e"
+    ],
     "payward": [
-      "evt_255b91a99cb1fba6",
-      "evt_5be906a11201616b",
-      "evt_b1bd896852f8ffe1"
+      "evt_54ed410a645cee54"
     ],
     "polymarket": [
       "evt_1f2b6fadaa0a74a3",

@@ -7,29 +7,38 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Ostium上线OLP恢复门户，90.59%受影响钱包可获全额补偿",
+    "zh": "Ostium 在 7 月流动性池攻击后上线 OLP 恢复门户并公布补偿方案",
     "en": "Ostium上线OLP恢复门户，90.59%受影响钱包可获全额补偿"
   },
   "current_state": {
-    "zh": "Ostium 上线 OLP 恢复门户，在 7 月 15 日约 2375 万美元流动性池攻击后，共识别 3666 个受影响钱包，其中 90.59%（3321 个）可在第一阶段获得已核实损失的 100% 补偿，超额部分可选择 1000 USDC 一次性封顶赔付或加入第二阶段按比例恢复计划。",
-    "en": "Ostium 上线 OLP 恢复门户，在 7 月 15 日约 2375 万美元流动性池攻击后，共识别 3666 个受影响钱包，其中 90.59%（3321 个）可在第一阶段获得已核实损失的 100% 补偿，超额部分可选择 1000 USDC 一次性封顶赔付或加入第二阶段按比例恢复计划。"
+    "zh": "Ostium 的恢复门户将于周三开放，届时将向损失不超过 1,000 美元的 3,321 个钱包全额赔付。其余 345 个钱包承担了 2,380 万美元总损失中至少 86% 的部分，需在 1,000 美元定额赔付与对尚未追回资金的按比例索赔之间二选一。\n\n该方案一次性解决了损失较小的大多数用户，但最大额损失仍未结清：多数受影响用户获得全额补偿，而敞口最大的钱包只能在定额赔付与等待未追回资金之间做选择。\n\n这 345 个钱包占 2,380 万美元总损失中的至少 86%。除 1,000 美元定额赔付外，它们可选择按比例索赔，即依据各自损失占比、就 Ostium 尚未追回的资金获得相应份额。",
+    "en": "Ostium's recovery plan fully repays 3,321 wallets with losses of $1,000 or less, while 345 wallets carrying at least 86% of the $23.8 million loss must choose between a $1,000 payment and a pro-rata claim on still-unrecovered funds."
   },
   "first_seen_at": "2026-09-30T18:03:55.356265+00:00",
-  "last_updated_at": "2026-09-30T18:03:55.356265+00:00",
-  "last_material_change_at": "2026-09-30T18:03:55.356265+00:00",
+  "last_updated_at": "2026-09-30T18:04:05.792288+00:00",
+  "last_material_change_at": "2026-09-30T18:04:05.792288+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 2,
   "entities": [
+    "choose",
+    "full",
+    "leaves",
     "olp",
-    "ostium"
+    "ostium",
+    "plan",
+    "recovery",
+    "repays",
+    "wallets"
   ],
   "identifiers": [],
   "topics": [
     "exploit-recovery",
     "olp",
     "ostium",
-    "user-compensation"
+    "reimbursement",
+    "user-compensation",
+    "user-funds"
   ],
   "updates": [
     {
@@ -55,17 +64,37 @@
       "community_discussion_en": "",
       "market_impact_zh": "",
       "market_impact_en": "",
-      "importance_score": 7.0,
-      "references": [],
+      "importance_score": 7.5,
+      "references": [
+        {
+          "url": "https://www.coindesk.com/business/2026/07/15/ostium-suffers-usd18-million-exploit-as-oracle-attack-wave-continues-to-hit-defi",
+          "title": "Ostium loses $18 million in oracle attack that gamed its own ..."
+        },
+        {
+          "url": "https://www.techtimes.com/articles/320708/20260716/compromised-oracle-key-drains-18m-ostium-exposing-defis-off-chain-blind-spot.htm",
+          "title": "Compromised Oracle Key Drains $18M From Ostium, Exposing DeFi ..."
+        },
+        {
+          "url": "https://docs.ostium.com/protocol/security/audits",
+          "title": "Smart Contract Audits - Ostium"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
-        "telegram:theblockbeats:198498"
+        "telegram:theblockbeats:198498",
+        "rss:thedefiant.io_api_feed:29574ed238e3ec8e"
       ],
       "sources": [
         {
           "url": "https://m.theblockbeats.info/flash/369816?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://thedefiant.io/news/hacks/ostium-recovery-plan-repays-3321-wallets-in-full-leaves-345-to-choose",
+          "label": "The Defiant",
+          "source_type": "rss",
           "official": false
         }
       ]
