@@ -46828,20 +46828,26 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Liquid Network has resumed block production and SideSwap reopened L-BTC trading, but federation peg-outs remain suspended; reserves cover only ~85% of L-BTC supply, a ~627 BTC shortfall, and recovery is ongoing.",
-      "current_state_zh": "Liquid Network 已恢复区块生产，SideSwap 重新开放 L-BTC 交易，但联邦锚定退出仍暂停；储备仅覆盖约85%的 L-BTC 供应，缺口约627 BTC，恢复仍在进行中。",
+      "current_state_en": "L-BTC peg-out redemptions remain frozen; reserves cover ~85.8% of supply, a ~603 BTC shortfall, and full backing plus completed security reviews are required before redemptions resume.",
+      "current_state_zh": "L-BTC 锚定退出仍冻结，储备仅覆盖约85.8%的供应，缺口约603 BTC，需完全背书并完成安全审查后才能恢复赎回。",
       "entities": [
+        "coverage",
+        "frozen",
         "l-btc",
         "liquid",
         "liquid-network",
-        "reserves"
+        "redemptions",
+        "remain",
+        "reserve",
+        "reserves",
+        "with"
       ],
       "event_id": "evt_18fc53f138aba645",
       "event_type": "security_incident",
       "first_seen_at": "2026-09-10T22:43:07.725464Z",
       "identifiers": [],
-      "last_material_change_at": "2026-09-12T04:55:43.358323Z",
-      "last_updated_at": "2026-09-12T04:55:43.358323Z",
+      "last_material_change_at": "2026-10-11T17:44:43.309027Z",
+      "last_updated_at": "2026-10-11T17:44:43.309027Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -46853,7 +46859,9 @@
         "blockchain-recovery",
         "l-btc",
         "liquid-network",
+        "peg",
         "peg-out-suspension",
+        "redemptions",
         "reserves",
         "security-incident"
       ],
@@ -46959,6 +46967,44 @@
           "update_type": "aftermath",
           "what_changed_en": "SideSwap reopened L-BTC markets after Liquid resumed block production, but federation peg-outs remain suspended; Sept. 10 data shows reserves cover only ~85.15% of L-BTC supply, a ~627 BTC shortfall.",
           "what_changed_zh": "SideSwap 在 Liquid 恢复区块生产后重新开放了 L-BTC 市场，但联邦锚定退出仍暂停；9月10日数据显示储备仅覆盖约85.15%的L-BTC供应，缺口约627 BTC。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "L-BTC peg-out redemptions remain frozen; reserves cover ~85.8% of supply, a ~603 BTC shortfall, and full backing plus completed security reviews are required before redemptions resume.",
+          "current_state_zh": "L-BTC 锚定退出仍冻结，储备仅覆盖约85.8%的供应，缺口约603 BTC，需完全背书并完成安全审查后才能恢复赎回。",
+          "detailed_summary_en": "Liquid Network's bitcoin peg-out redemptions stay frozen with reserves covering just 85.8% of issued L-BTC, a shortfall of roughly 603 BTC that must be closed and security reviews completed before redemptions resume.",
+          "detailed_summary_zh": "Liquid Network's bitcoin peg-out redemptions stay frozen with reserves covering just 85.8% of issued L-BTC, a shortfall of roughly 603 BTC that must be closed and security reviews completed before redemptions resume.",
+          "event_id": "evt_18fc53f138aba645",
+          "first_seen_at": "2026-10-11T17:44:43.309027Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-11T15:59:08Z",
+          "published_at": "2026-10-11T15:59:08Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "The Defiant",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://thedefiant.io/news/security/liquid-bitcoin-redemptions-remain-frozen-with-85-8-reserve-coverage"
+            }
+          ],
+          "story_ids": [
+            "rss:thedefiant.io_api_feed:611073f227bb6929"
+          ],
+          "time_precision": "published",
+          "title_en": "Liquid Bitcoin Redemptions Remain Frozen With 85.8% Reserve Coverage",
+          "title_zh": "Liquid Bitcoin 赎回仍处冻结状态，储备覆盖率 85.8%",
+          "update_id": "upd_079eacf50bc108e8",
+          "update_type": "aftermath",
+          "what_changed_en": "Reserve coverage updated to 85.8%, shortfall ~603 BTC; Liquid says peg-outs require full backing and completed security reviews before restart.",
+          "what_changed_zh": "储备覆盖率更新为85.8%，缺口约603 BTC；Liquid 表示锚定退出需完全背书并完成安全审查后方可重启。"
         }
       ]
     },
@@ -107652,7 +107698,7 @@
       "first_seen_at": "2026-10-01T18:31:31.239757Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-10T10:44:34.608125Z",
-      "last_updated_at": "2026-10-10T10:44:34.608125Z",
+      "last_updated_at": "2026-10-11T17:44:38.217287Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -107790,11 +107836,18 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://foresightnews.pro/news/h5Detail/114905"
+            },
+            {
+              "label": "Coinpaper",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://coinpaper.com/37090/ripple-backed-evernorth-to-begin-nasdaq-trading-with-473m-xrp"
             }
           ],
           "story_ids": [
             "telegram:theblockbeats:199818",
-            "telegram:foresightnews:120095"
+            "telegram:foresightnews:120095",
+            "google_news:article:aeb96307eabe32cb"
           ],
           "time_precision": "published",
           "title_en": "XRP财库公司Evernorth完成与SPAC合并，10月12日登陆纳斯达克，持有4.73亿枚XRP",
@@ -124682,28 +124735,32 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "Nous Research closed a $90M Series B at a $1.5B valuation led by Robot Ventures with Nvidia, Microsoft M12, Samsung and USV participating, to push its open-source Hermes agent—downloaded 22.7M times and running at about $36M annualized revenue—into the enterprise market with SSO, permissions, audit and workspace-isolation features while keeping the agent free under MIT license.",
-      "current_state_zh": "Nous Research closed a $90M Series B at a $1.5B valuation led by Robot Ventures with Nvidia, Microsoft M12, Samsung and USV participating, to push its open-source Hermes agent—downloaded 22.7M times and running at about $36M annualized revenue—into the enterprise market with SSO, permissions, audit and workspace-isolation features while keeping the agent free under MIT license.",
+      "current_state_en": "Open-source AI assistant company Nous Research raised a $90M Series B led by Robot Ventures at a $1.5B valuation, with Nvidia, Microsoft M12, Samsung, Union Square Ventures and Menlo Ventures participating, to bring its open-source Hermes agent to enterprise customers.",
+      "current_state_zh": "开源 AI 助手公司 Nous Research 完成 9000 万美元 B 轮融资，由 Robot Ventures 领投，估值 15 亿美元，Nvidia、Microsoft M12、Samsung、Union Square Ventures 和 Menlo Ventures 参投，旨在将其开源 Hermes 智能体推向企业客户。",
       "entities": [
         "agent",
         "hermes",
         "hermes-agent",
         "nous",
         "nous-research",
-        "research"
+        "research",
+        "robot",
+        "ventures"
       ],
       "event_id": "evt_9d370ee195881f54",
       "event_type": "other",
       "first_seen_at": "2026-10-07T15:20:55.100535Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-07T15:20:55.100535Z",
-      "last_updated_at": "2026-10-07T15:20:55.100535Z",
+      "last_material_change_at": "2026-10-08T07:02:03.704053Z",
+      "last_updated_at": "2026-10-08T07:02:03.704053Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_d031c65a3e2de329"
+      ],
       "schema_version": 1,
       "status": "monitoring",
-      "title_en": "开源Hermes Agent下载2270万次，Nous Research融资9000万美元做企业生意",
-      "title_zh": "开源Hermes Agent下载2270万次，Nous Research融资9000万美元做企业生意",
+      "title_en": "Nous Research Raises $90M Series B",
+      "title_zh": "Nous Research 完成 9000 万美元 B 轮融资",
       "topics": [
         "ai-funding",
         "enterprise-ai",
@@ -124719,7 +124776,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Nous Research closed a $90M Series B at a $1.5B valuation led by Robot Ventures with Nvidia, Microsoft M12, Samsung and USV participating, to push its open-source Hermes agent—downloaded 22.7M times and running at about $36M annualized revenue—into the enterprise market with SSO, permissions, audit and workspace-isolation features while keeping the agent free under MIT license.",
-          "current_state_zh": "Nous Research closed a $90M Series B at a $1.5B valuation led by Robot Ventures with Nvidia, Microsoft M12, Samsung and USV participating, to push its open-source Hermes agent—downloaded 22.7M times and running at about $36M annualized revenue—into the enterprise market with SSO, permissions, audit and workspace-isolation features while keeping the agent free under MIT license.",
+          "current_state_zh": "Nous Research 以 15 亿美元估值完成 9000 万美元 B 轮融资，由 Robot Ventures 领投，Nvidia、Microsoft M12、Samsung 和 USV 参投，旨在将其开源 Hermes 智能体推向企业市场，提供 SSO、权限、审计和工作区隔离功能，同时该智能体仍以 MIT 许可证免费提供；该智能体下载量达 2270 万次，年化收入约 3600 万美元。",
           "detailed_summary_en": "Nous Research closed a $90M Series B at a $1.5B valuation led by Robot Ventures with Nvidia, Microsoft M12, Samsung and USV participating, to push its open-source Hermes agent—downloaded 22.7M times and running at about $36M annualized revenue—into the enterprise market with SSO, permissions, audit and workspace-isolation features while keeping the agent free under MIT license.",
           "detailed_summary_zh": "Nous Research closed a $90M Series B at a $1.5B valuation led by Robot Ventures with Nvidia, Microsoft M12, Samsung and USV participating, to push its open-source Hermes agent—downloaded 22.7M times and running at about $36M annualized revenue—into the enterprise market with SSO, permissions, audit and workspace-isolation features while keeping the agent free under MIT license.",
           "event_id": "evt_9d370ee195881f54",
@@ -124748,7 +124805,45 @@
           "update_id": "upd_c37ef4783ee53e85",
           "update_type": "initial",
           "what_changed_en": "Nous Research closed a $90M Series B at a $1.5B valuation led by Robot Ventures with Nvidia, Microsoft M12, Samsung and USV participating, to push its open-source Hermes agent—downloaded 22.7M times and running at about $36M annualized revenue—into the enterprise market with SSO, permissions, audit and workspace-isolation features while keeping the agent free under MIT license.",
-          "what_changed_zh": "Nous Research closed a $90M Series B at a $1.5B valuation led by Robot Ventures with Nvidia, Microsoft M12, Samsung and USV participating, to push its open-source Hermes agent—downloaded 22.7M times and running at about $36M annualized revenue—into the enterprise market with SSO, permissions, audit and workspace-isolation features while keeping the agent free under MIT license."
+          "what_changed_zh": "Nous Research 以 15 亿美元估值完成 9000 万美元 B 轮融资，由 Robot Ventures 领投，Nvidia、Microsoft M12、Samsung 和 USV 参投，旨在将其开源 Hermes 智能体推向企业市场，提供 SSO、权限、审计和工作区隔离功能，同时该智能体仍以 MIT 许可证免费提供；该智能体下载量达 2270 万次，年化收入约 3600 万美元。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Open-source AI assistant company Nous Research raised a $90M Series B led by Robot Ventures at a $1.5B valuation, with Nvidia, Microsoft M12, Samsung, Union Square Ventures and Menlo Ventures participating, to bring its open-source Hermes agent to enterprise customers.",
+          "current_state_zh": "开源 AI 助手公司 Nous Research 完成 9000 万美元 B 轮融资，由 Robot Ventures 领投，估值 15 亿美元，Nvidia、Microsoft M12、Samsung、Union Square Ventures 和 Menlo Ventures 参投，旨在将其开源 Hermes 智能体推向企业客户。",
+          "detailed_summary_en": "Open-source AI assistant company Nous Research raised a $90M Series B led by Robot Ventures at a $1.5B valuation, with Nvidia, Microsoft M12, Samsung, Union Square Ventures and Menlo Ventures participating, to bring its open-source Hermes agent to enterprise customers.",
+          "detailed_summary_zh": "Open-source AI assistant company Nous Research raised a $90M Series B led by Robot Ventures at a $1.5B valuation, with Nvidia, Microsoft M12, Samsung, Union Square Ventures and Menlo Ventures participating, to bring its open-source Hermes agent to enterprise customers.",
+          "event_id": "evt_9d370ee195881f54",
+          "first_seen_at": "2026-10-08T07:02:03.704053Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-08T03:09:07Z",
+          "published_at": "2026-10-08T03:09:07Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/114709"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:119886"
+          ],
+          "time_precision": "published",
+          "title_en": "【Nous Research 完成 9000 万美元 B 轮融资，Robot Ventures 领投】",
+          "title_zh": "【Nous Research 完成 9000 万美元 B 轮融资，Robot Ventures 领投】",
+          "update_id": "upd_6325524da1a64695",
+          "update_type": "confirmation",
+          "what_changed_en": "Open-source AI assistant company Nous Research raised a $90M Series B led by Robot Ventures at a $1.5B valuation, with Nvidia, Microsoft M12, Samsung, Union Square Ventures and Menlo Ventures participating, to bring its open-source Hermes agent to enterprise customers.",
+          "what_changed_zh": "开源 AI 助手公司 Nous Research 完成 9000 万美元 B 轮融资，由 Robot Ventures 领投，估值 15 亿美元，Nvidia、Microsoft M12、Samsung、Union Square Ventures 和 Menlo Ventures 参投，旨在将其开源 Hermes 智能体推向企业客户。"
         }
       ]
     },
@@ -128159,78 +128254,6 @@
           "update_type": "initial",
           "what_changed_en": "Standard Chartered plans to launch crypto asset custody services for institutional investors in Singapore, with segregated client holdings and traditional-asset-like legal protections, before expanding to the UAE, Luxembourg and Hong Kong from mid-2026.",
           "what_changed_zh": "Standard Chartered plans to launch crypto asset custody services for institutional investors in Singapore, with segregated client holdings and traditional-asset-like legal protections, before expanding to the UAE, Luxembourg and Hong Kong from mid-2026."
-        }
-      ]
-    },
-    {
-      "category": "technology",
-      "confidence": 0.75,
-      "current_state_en": "Open-source AI assistant company Nous Research raised a $90M Series B led by Robot Ventures at a $1.5B valuation, with Nvidia, Microsoft M12, Samsung, Union Square Ventures and Menlo Ventures participating, to bring its open-source Hermes agent to enterprise customers.",
-      "current_state_zh": "Open-source AI assistant company Nous Research raised a $90M Series B led by Robot Ventures at a $1.5B valuation, with Nvidia, Microsoft M12, Samsung, Union Square Ventures and Menlo Ventures participating, to bring its open-source Hermes agent to enterprise customers.",
-      "entities": [
-        "nous",
-        "nous-research",
-        "research",
-        "robot",
-        "ventures"
-      ],
-      "event_id": "evt_d031c65a3e2de329",
-      "event_type": "other",
-      "first_seen_at": "2026-10-08T07:02:03.704053Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-08T07:02:03.704053Z",
-      "last_updated_at": "2026-10-08T07:02:03.704053Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "【Nous Research 完成 9000 万美元 B 轮融资，Robot Ventures 领投】",
-      "title_zh": "【Nous Research 完成 9000 万美元 B 轮融资，Robot Ventures 领投】",
-      "topics": [
-        "ai-funding",
-        "enterprise-ai",
-        "hermes-agent",
-        "nous-research",
-        "open-source-ai"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Open-source AI assistant company Nous Research raised a $90M Series B led by Robot Ventures at a $1.5B valuation, with Nvidia, Microsoft M12, Samsung, Union Square Ventures and Menlo Ventures participating, to bring its open-source Hermes agent to enterprise customers.",
-          "current_state_zh": "Open-source AI assistant company Nous Research raised a $90M Series B led by Robot Ventures at a $1.5B valuation, with Nvidia, Microsoft M12, Samsung, Union Square Ventures and Menlo Ventures participating, to bring its open-source Hermes agent to enterprise customers.",
-          "detailed_summary_en": "Open-source AI assistant company Nous Research raised a $90M Series B led by Robot Ventures at a $1.5B valuation, with Nvidia, Microsoft M12, Samsung, Union Square Ventures and Menlo Ventures participating, to bring its open-source Hermes agent to enterprise customers.",
-          "detailed_summary_zh": "Open-source AI assistant company Nous Research raised a $90M Series B led by Robot Ventures at a $1.5B valuation, with Nvidia, Microsoft M12, Samsung, Union Square Ventures and Menlo Ventures participating, to bring its open-source Hermes agent to enterprise customers.",
-          "event_id": "evt_d031c65a3e2de329",
-          "first_seen_at": "2026-10-08T07:02:03.704053Z",
-          "importance_score": 7.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-08T03:09:07Z",
-          "published_at": "2026-10-08T03:09:07Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "foresightnews",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://foresightnews.pro/news/h5Detail/114709"
-            }
-          ],
-          "story_ids": [
-            "telegram:foresightnews:119886"
-          ],
-          "time_precision": "published",
-          "title_en": "【Nous Research 完成 9000 万美元 B 轮融资，Robot Ventures 领投】",
-          "title_zh": "【Nous Research 完成 9000 万美元 B 轮融资，Robot Ventures 领投】",
-          "update_id": "upd_6325524da1a64695",
-          "update_type": "initial",
-          "what_changed_en": "Open-source AI assistant company Nous Research raised a $90M Series B led by Robot Ventures at a $1.5B valuation, with Nvidia, Microsoft M12, Samsung, Union Square Ventures and Menlo Ventures participating, to bring its open-source Hermes agent to enterprise customers.",
-          "what_changed_zh": "Open-source AI assistant company Nous Research raised a $90M Series B led by Robot Ventures at a $1.5B valuation, with Nvidia, Microsoft M12, Samsung, Union Square Ventures and Menlo Ventures participating, to bring its open-source Hermes agent to enterprise customers."
         }
       ]
     },
@@ -139592,6 +139615,288 @@
           "what_changed_zh": "President Trump announced an immediately effective 'energy ceasefire' between Russia and Ukraine, with both sides agreeing not to damage energy infrastructure."
         }
       ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "An AI-assisted security review uncovered a flaw in the XRP Ledger that, in a worst case, could allow the creation of 18 trillion tokens and threaten the roughly $94 billion XRP market.",
+      "current_state_zh": "An AI-assisted security review uncovered a flaw in the XRP Ledger that, in a worst case, could allow the creation of 18 trillion tokens and threaten the roughly $94 billion XRP market.",
+      "entities": [
+        "ledger",
+        "xrp",
+        "xrp-ledger"
+      ],
+      "event_id": "evt_30a59a255f70175c",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-11T17:44:38.214068Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-11T17:44:38.214068Z",
+      "last_updated_at": "2026-10-11T17:44:38.214068Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "AI discovers XRP Ledger flaw that could mint 18 trillion tokens and put $94 billion market at risk",
+      "title_zh": "AI discovers XRP Ledger flaw that could mint 18 trillion tokens and put $94 billion market at risk",
+      "topics": [
+        "ai-security",
+        "bug-bounty",
+        "crypto-protocols",
+        "xrp-ledger"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "An AI-assisted security review uncovered a flaw in the XRP Ledger that, in a worst case, could allow the creation of 18 trillion tokens and threaten the roughly $94 billion XRP market.",
+          "current_state_zh": "An AI-assisted security review uncovered a flaw in the XRP Ledger that, in a worst case, could allow the creation of 18 trillion tokens and threaten the roughly $94 billion XRP market.",
+          "detailed_summary_en": "An AI-assisted security review uncovered a flaw in the XRP Ledger that, in a worst case, could allow the creation of 18 trillion tokens and threaten the roughly $94 billion XRP market.",
+          "detailed_summary_zh": "An AI-assisted security review uncovered a flaw in the XRP Ledger that, in a worst case, could allow the creation of 18 trillion tokens and threaten the roughly $94 billion XRP market.",
+          "event_id": "evt_30a59a255f70175c",
+          "first_seen_at": "2026-10-11T17:44:38.214068Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-11T15:45:15Z",
+          "published_at": "2026-10-11T15:45:15Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "CryptoRank",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://cryptorank.io/news/feed/74f15-ai-discovers-xrp-ledger-flaw-that-could-mint-18-trillion-tokens-and-put-94-billion-market-at-risk"
+            }
+          ],
+          "story_ids": [
+            "google_news:article:31c7632ab314da02"
+          ],
+          "time_precision": "published",
+          "title_en": "AI discovers XRP Ledger flaw that could mint 18 trillion tokens and put $94 billion market at risk",
+          "title_zh": "AI discovers XRP Ledger flaw that could mint 18 trillion tokens and put $94 billion market at risk",
+          "update_id": "upd_e8a8f1043121e2ea",
+          "update_type": "initial",
+          "what_changed_en": "An AI-assisted security review uncovered a flaw in the XRP Ledger that, in a worst case, could allow the creation of 18 trillion tokens and threaten the roughly $94 billion XRP market.",
+          "what_changed_zh": "An AI-assisted security review uncovered a flaw in the XRP Ledger that, in a worst case, could allow the creation of 18 trillion tokens and threaten the roughly $94 billion XRP market."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "A tariff threat from Trump against China triggered the largest liquidation event ever recorded in crypto markets, as leveraged positions were wiped out across exchanges.",
+      "current_state_zh": "A tariff threat from Trump against China triggered the largest liquidation event ever recorded in crypto markets, as leveraged positions were wiped out across exchanges.",
+      "entities": [
+        "china",
+        "trump"
+      ],
+      "event_id": "evt_2568e6afc85681c2",
+      "event_type": "market_structure",
+      "first_seen_at": "2026-10-11T17:44:38.215565Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-11T17:44:38.215565Z",
+      "last_updated_at": "2026-10-11T17:44:38.215565Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Trump's China tariff threat triggered crypto's largest liquidation ever",
+      "title_zh": "Trump's China tariff threat triggered crypto's largest liquidation ever",
+      "topics": [
+        "crypto-liquidation",
+        "derivatives",
+        "macro",
+        "market-crash",
+        "tariffs"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "A tariff threat from Trump against China triggered the largest liquidation event ever recorded in crypto markets, as leveraged positions were wiped out across exchanges.",
+          "current_state_zh": "A tariff threat from Trump against China triggered the largest liquidation event ever recorded in crypto markets, as leveraged positions were wiped out across exchanges.",
+          "detailed_summary_en": "A tariff threat from Trump against China triggered the largest liquidation event ever recorded in crypto markets, as leveraged positions were wiped out across exchanges.",
+          "detailed_summary_zh": "A tariff threat from Trump against China triggered the largest liquidation event ever recorded in crypto markets, as leveraged positions were wiped out across exchanges.",
+          "event_id": "evt_2568e6afc85681c2",
+          "first_seen_at": "2026-10-11T17:44:38.215565Z",
+          "importance_score": 8.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-11T13:33:43Z",
+          "published_at": "2026-10-11T13:33:43Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Startup Fortune",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://startupfortune.com/trumps-china-tariff-threat-triggered-cryptos-largest-liquidation-ever/"
+            }
+          ],
+          "story_ids": [
+            "google_news:article:9ea0aea5c2b563a1"
+          ],
+          "time_precision": "published",
+          "title_en": "Trump's China tariff threat triggered crypto's largest liquidation ever",
+          "title_zh": "Trump's China tariff threat triggered crypto's largest liquidation ever",
+          "update_id": "upd_5fc6c1c505e52128",
+          "update_type": "initial",
+          "what_changed_en": "A tariff threat from Trump against China triggered the largest liquidation event ever recorded in crypto markets, as leveraged positions were wiped out across exchanges.",
+          "what_changed_zh": "A tariff threat from Trump against China triggered the largest liquidation event ever recorded in crypto markets, as leveraged positions were wiped out across exchanges."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "A Ledger hardware wallet bought weeks earlier from an official European reseller was found to contain an unauthorized spy implant with suspicious wiring not present in genuine units, indicating physical tampering before sale, with suspected cases now reported across Asia, South America and Europe and no funds stolen so far.",
+      "current_state_zh": "A Ledger hardware wallet bought weeks earlier from an official European reseller was found to contain an unauthorized spy implant with suspicious wiring not present in genuine units, indicating physical tampering before sale, with suspected cases now reported across Asia, South America and Europe and no funds stolen so far.",
+      "entities": [
+        "ledger"
+      ],
+      "event_id": "evt_6908403733552759",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-11T17:44:38.636010Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-11T17:44:38.636010Z",
+      "last_updated_at": "2026-10-11T17:44:38.636010Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【Ledger 供应链攻击据报扩展至欧洲，官方经销商售出硬件钱包发现间谍植入装置】",
+      "title_zh": "【Ledger 供应链攻击据报扩展至欧洲，官方经销商售出硬件钱包发现间谍植入装置】",
+      "topics": [
+        "custody",
+        "ledger",
+        "supply-chain-attack"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "A Ledger hardware wallet bought weeks earlier from an official European reseller was found to contain an unauthorized spy implant with suspicious wiring not present in genuine units, indicating physical tampering before sale, with suspected cases now reported across Asia, South America and Europe and no funds stolen so far.",
+          "current_state_zh": "A Ledger hardware wallet bought weeks earlier from an official European reseller was found to contain an unauthorized spy implant with suspicious wiring not present in genuine units, indicating physical tampering before sale, with suspected cases now reported across Asia, South America and Europe and no funds stolen so far.",
+          "detailed_summary_en": "A Ledger hardware wallet bought weeks earlier from an official European reseller was found to contain an unauthorized spy implant with suspicious wiring not present in genuine units, indicating physical tampering before sale, with suspected cases now reported across Asia, South America and Europe and no funds stolen so far.",
+          "detailed_summary_zh": "A Ledger hardware wallet bought weeks earlier from an official European reseller was found to contain an unauthorized spy implant with suspicious wiring not present in genuine units, indicating physical tampering before sale, with suspected cases now reported across Asia, South America and Europe and no funds stolen so far.",
+          "event_id": "evt_6908403733552759",
+          "first_seen_at": "2026-10-11T17:44:38.636010Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-11T15:10:38Z",
+          "published_at": "2026-10-11T15:10:38Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/114942"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120136"
+          ],
+          "time_precision": "published",
+          "title_en": "【Ledger 供应链攻击据报扩展至欧洲，官方经销商售出硬件钱包发现间谍植入装置】",
+          "title_zh": "【Ledger 供应链攻击据报扩展至欧洲，官方经销商售出硬件钱包发现间谍植入装置】",
+          "update_id": "upd_b29b3a36e49d2089",
+          "update_type": "initial",
+          "what_changed_en": "A Ledger hardware wallet bought weeks earlier from an official European reseller was found to contain an unauthorized spy implant with suspicious wiring not present in genuine units, indicating physical tampering before sale, with suspected cases now reported across Asia, South America and Europe and no funds stolen so far.",
+          "what_changed_zh": "A Ledger hardware wallet bought weeks earlier from an official European reseller was found to contain an unauthorized spy implant with suspicious wiring not present in genuine units, indicating physical tampering before sale, with suspected cases now reported across Asia, South America and Europe and no funds stolen so far."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "The IMF's latest Global Financial Stability Report finds that tokenized stocks see genuine retail demand — most trading happens outside U.S. market hours and in fractional amounts — but these tokens are about 1.5 times more volatile and less liquid than the underlying equities, with systemic risk still contained and regulators urged to consider circuit breakers for 24/7 trading.",
+      "current_state_zh": "The IMF's latest Global Financial Stability Report finds that tokenized stocks see genuine retail demand — most trading happens outside U.S. market hours and in fractional amounts — but these tokens are about 1.5 times more volatile and less liquid than the underlying equities, with systemic risk still contained and regulators urged to consider circuit breakers for 24/7 trading.",
+      "entities": [
+        "but",
+        "demand",
+        "finds",
+        "illiquid",
+        "imf",
+        "real",
+        "remain",
+        "show",
+        "stocks",
+        "tokenized",
+        "tokenized-stocks",
+        "volatile"
+      ],
+      "event_id": "evt_33ec1f710070538f",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-11T17:44:49.334559Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-11T17:44:49.334559Z",
+      "last_updated_at": "2026-10-11T17:44:49.334559Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Tokenized Stocks Show Real Demand But Remain Volatile and Illiquid, IMF Finds",
+      "title_zh": "Tokenized Stocks Show Real Demand But Remain Volatile and Illiquid, IMF Finds",
+      "topics": [
+        "crypto-regulation",
+        "imf",
+        "real-world-assets",
+        "tokenized-stocks"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "The IMF's latest Global Financial Stability Report finds that tokenized stocks see genuine retail demand — most trading happens outside U.S. market hours and in fractional amounts — but these tokens are about 1.5 times more volatile and less liquid than the underlying equities, with systemic risk still contained and regulators urged to consider circuit breakers for 24/7 trading.",
+          "current_state_zh": "The IMF's latest Global Financial Stability Report finds that tokenized stocks see genuine retail demand — most trading happens outside U.S. market hours and in fractional amounts — but these tokens are about 1.5 times more volatile and less liquid than the underlying equities, with systemic risk still contained and regulators urged to consider circuit breakers for 24/7 trading.",
+          "detailed_summary_en": "The IMF's latest Global Financial Stability Report finds that tokenized stocks see genuine retail demand — most trading happens outside U.S. market hours and in fractional amounts — but these tokens are about 1.5 times more volatile and less liquid than the underlying equities, with systemic risk still contained and regulators urged to consider circuit breakers for 24/7 trading.",
+          "detailed_summary_zh": "The IMF's latest Global Financial Stability Report finds that tokenized stocks see genuine retail demand — most trading happens outside U.S. market hours and in fractional amounts — but these tokens are about 1.5 times more volatile and less liquid than the underlying equities, with systemic risk still contained and regulators urged to consider circuit breakers for 24/7 trading.",
+          "event_id": "evt_33ec1f710070538f",
+          "first_seen_at": "2026-10-11T17:44:49.334559Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-11T17:11:03Z",
+          "published_at": "2026-10-11T17:11:03Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/380653/tokenized-stocks-show-real-demand-but-remain-volatile-and-illiquid-imf-finds"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:6307103a28a482e0"
+          ],
+          "time_precision": "published",
+          "title_en": "Tokenized Stocks Show Real Demand But Remain Volatile and Illiquid, IMF Finds",
+          "title_zh": "Tokenized Stocks Show Real Demand But Remain Volatile and Illiquid, IMF Finds",
+          "update_id": "upd_3458fb9a09f19db7",
+          "update_type": "initial",
+          "what_changed_en": "The IMF's latest Global Financial Stability Report finds that tokenized stocks see genuine retail demand — most trading happens outside U.S. market hours and in fractional amounts — but these tokens are about 1.5 times more volatile and less liquid than the underlying equities, with systemic risk still contained and regulators urged to consider circuit breakers for 24/7 trading.",
+          "what_changed_zh": "The IMF's latest Global Financial Stability Report finds that tokenized stocks see genuine retail demand — most trading happens outside U.S. market hours and in fractional amounts — but these tokens are about 1.5 times more volatile and less liquid than the underlying equities, with systemic risk still contained and regulators urged to consider circuit breakers for 24/7 trading."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -140084,6 +140389,14 @@
       "evt_6b6fcb873789c504",
       "evt_8fca4d5c4b0173a2"
     ],
+    "multimodal": [
+      "evt_040050cf5df3ebae",
+      "evt_3f659987ac11af3c"
+    ],
+    "nasdaq": [
+      "evt_6a4d8d35a9494c04",
+      "evt_6a61743061902c3f"
+    ],
     "near": [
       "evt_1cf36734246e006d",
       "evt_aae9fd93741e8eb8"
@@ -140103,6 +140416,9 @@
       "evt_0698c7a5520034f1",
       "evt_6655595dc1e36e0b",
       "evt_6a38061ef4d7656a"
+    ],
+    "nous-research": [
+      "evt_9d370ee195881f54"
     ],
     "nvidia": [
       "evt_9807e7a6d948fadb",
@@ -142390,6 +142706,36 @@
         "source_type": "rss",
         "title": "Abstract's ETH Withdrawals Depend on Operators Ahead of Dec. 15 Shutdown",
         "url": "https://thedefiant.io/news/blockchains/abstract-s-eth-withdrawals-depend-on-operators-ahead-of-dec-15-shutdown"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A confirmed hardware-wallet security incident in which user funds are being drained, with Ledger attributing all confirmed cases to devices sold through the reseller CryptoBilis — a supply-chain compromise vector affecting real user funds. This is a high-value, actionable security development for hardware wallet holders and resellers, though impact is scoped to a single reseller channel rather than all Ledger devices, keeping it below systemic 9+ territory.",
+        "ai_score": 8.0,
+        "ai_summary": "Ledger says every confirmed wallet-draining case traces back to devices sold by reseller CryptoBilis, stating its own direct sales channels are unaffected and warning resellers never to restock returned products.",
+        "ai_tags": [
+          "ledger",
+          "hardware-wallet",
+          "security-incident",
+          "supply-chain",
+          "exploit"
+        ],
+        "author": "The Defiant Team",
+        "content": "The company says its direct sales channels are unaffected and reminds resellers never to restock returned products.",
+        "fetched_at": "2026-10-11T17:44:43.308972Z",
+        "id": "rss:thedefiant.io_api_feed:6e29208a71aacf0f",
+        "metadata": {
+          "category": "crypto-protocols",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "score_model": "deepseek:deepseek-flash",
+          "tags": []
+        },
+        "published_at": "2026-10-11T17:18:19Z",
+        "source_type": "rss",
+        "title": "Ledger Says All Confirmed Draining Cases Involve CryptoBilis-Sold Devices",
+        "url": "https://thedefiant.io/news/hacks/ledger-says-all-confirmed-draining-cases-involve-cryptobilis-sold-devices"
       }
     }
   ],
