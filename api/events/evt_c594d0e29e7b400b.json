@@ -11,15 +11,15 @@
     "en": "Ledger user wallet theft and CryptoBilis hardware implant incident"
   },
   "current_state": {
-    "zh": "Ledger 确认，从东南亚经销商 CryptoBilis 处购买的一台设备含有未经授权的硬件植入物，这是对用户损失估计超过 8600 万美元的调查的一部分，该经销商已暂停所有硬件钱包销售。",
-    "en": "Ledger confirmed that a device bought from Southeast Asian reseller CryptoBilis contained an unauthorized hardware implant, part of an investigation into user losses estimated at over $86 million, with the reseller suspending all hardware wallet sales."
+    "zh": "Ledger 确认受影响设备含未经授权的硬件植入物（物理篡改），称自身系统未被入侵；经销商 CryptoBilis 已暂停硬件钱包销售，Ledger 建议受影响用户不要初始化未使用设备并将资产转移到新恢复短语钱包，链上损失估计超过 8600 万美元。",
+    "en": "Ledger confirmed an affected device contained an unauthorized hardware implant from physical tampering and said its own systems were not breached; reseller CryptoBilis has suspended hardware wallet sales, and Ledger advised affected users not to initialize unused devices and to move assets to wallets with new recovery phrases, with on-chain losses estimated above $86 million."
   },
   "first_seen_at": "2026-10-09T15:30:47.822838+00:00",
-  "last_updated_at": "2026-10-11T10:20:51.336296+00:00",
-  "last_material_change_at": "2026-10-11T10:20:51.336296+00:00",
+  "last_updated_at": "2026-10-11T10:57:28.832136+00:00",
+  "last_material_change_at": "2026-10-11T10:57:28.832136+00:00",
   "confidence": 0.75,
-  "updates_count": 19,
-  "sources_count": 42,
+  "updates_count": 20,
+  "sources_count": 43,
   "entities": [
     "affected",
     "after",
@@ -80,6 +80,7 @@
     "crypto-security",
     "crypto-theft",
     "cryptobilis",
+    "custody",
     "fund-losses",
     "fund-theft",
     "fund-tracing",
@@ -1008,6 +1009,44 @@
         {
           "url": "https://m.theblockbeats.info/flash/371226?from=telegram",
           "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_3d60bff6fb0e278b",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-11T10:20:43Z",
+      "published_at": "2026-10-11T10:20:43Z",
+      "first_seen_at": "2026-10-11T10:57:28.832136Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "Ledger 确认存在硬件植入攻击，称系统未被入侵",
+      "title_en": "Ledger confirms hardware implant attack, says systems not breached",
+      "what_changed_zh": "Ledger 表示其自身系统未被入侵，植入物来自物理篡改；并建议受影响用户不要初始化未使用设备，将资产转移到使用新恢复短语创建的钱包。",
+      "what_changed_en": "Ledger said its own systems were not breached and the implant resulted from physical tampering; it advised affected users not to initialize unused devices and to move assets to wallets created with new recovery phrases.",
+      "current_state_zh": "Ledger 确认受影响设备含未经授权的硬件植入物（物理篡改），称自身系统未被入侵；经销商 CryptoBilis 已暂停硬件钱包销售，Ledger 建议受影响用户不要初始化未使用设备并将资产转移到新恢复短语钱包，链上损失估计超过 8600 万美元。",
+      "current_state_en": "Ledger confirmed an affected device contained an unauthorized hardware implant from physical tampering and said its own systems were not breached; reseller CryptoBilis has suspended hardware wallet sales, and Ledger advised affected users not to initialize unused devices and to move assets to wallets with new recovery phrases, with on-chain losses estimated above $86 million.",
+      "detailed_summary_zh": "Ledger confirmed that an affected device contained an unauthorized hardware implant from physical tampering, while saying its own systems were not breached, prompting distributor CryptoBilis to suspend hardware wallet sales and Ledger to advise affected users against initializing unused devices and to migrate assets to wallets with new recovery phrases, with on-chain losses from the incident estimated above $86 million.",
+      "detailed_summary_en": "Ledger confirmed that an affected device contained an unauthorized hardware implant from physical tampering, while saying its own systems were not breached, prompting distributor CryptoBilis to suspend hardware wallet sales and Ledger to advise affected users against initializing unused devices and to migrate assets to wallets with new recovery phrases, with on-chain losses from the incident estimated above $86 million.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.93,
+      "story_ids": [
+        "telegram:wublockchainenglish:26365"
+      ],
+      "sources": [
+        {
+          "url": "https://wublockchain.xyz/news/ledger-confirms-hardware-implant-attack-systems-not-breached-21192",
+          "label": "wublockchainenglish",
           "source_type": "telegram",
           "official": false
         }

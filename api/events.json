@@ -2,6 +2,25 @@
   "version": 1,
   "events": [
     {
+      "event_id": "evt_5e0ff89b9b3aed1e",
+      "url": "https://xiyu.news/events/evt_5e0ff89b9b3aed1e/",
+      "json": "https://xiyu.news/api/events/evt_5e0ff89b9b3aed1e.json",
+      "status": "closed",
+      "type": "security_incident",
+      "title": {
+        "zh": "XRP Ledger 修复可凭空生成 XRP 的旧漏洞",
+        "en": "XRP Ledger patched old flaw that could create XRP from nothing"
+      },
+      "current_state": {
+        "zh": "XRP Ledger 的十年旧支付引擎漏洞由 AI 代理发现，可能凭空生成约 18 万亿 XRP，RippleX 绕过常规修订流程紧急修复；未产生未授权 XRP，无资金损失。",
+        "en": "XRP Ledger's decade-old payment-engine flaw was discovered by an AI agent, could have minted ~18 trillion XRP, and was emergency-patched by RippleX outside the usual amendment process; no unauthorized XRP was created and no funds were lost."
+      },
+      "first_seen_at": "2026-10-10T06:40:40.291436+00:00",
+      "last_material_change_at": "2026-10-11T10:57:32.064494+00:00",
+      "updates_count": 2,
+      "sources_count": 5
+    },
+    {
       "event_id": "evt_c594d0e29e7b400b",
       "url": "https://xiyu.news/events/evt_c594d0e29e7b400b/",
       "json": "https://xiyu.news/api/events/evt_c594d0e29e7b400b.json",
@@ -12,13 +31,13 @@
         "en": "Ledger user wallet theft and CryptoBilis hardware implant incident"
       },
       "current_state": {
-        "zh": "Ledger 确认，从东南亚经销商 CryptoBilis 处购买的一台设备含有未经授权的硬件植入物，这是对用户损失估计超过 8600 万美元的调查的一部分，该经销商已暂停所有硬件钱包销售。",
-        "en": "Ledger confirmed that a device bought from Southeast Asian reseller CryptoBilis contained an unauthorized hardware implant, part of an investigation into user losses estimated at over $86 million, with the reseller suspending all hardware wallet sales."
+        "zh": "Ledger 确认受影响设备含未经授权的硬件植入物（物理篡改），称自身系统未被入侵；经销商 CryptoBilis 已暂停硬件钱包销售，Ledger 建议受影响用户不要初始化未使用设备并将资产转移到新恢复短语钱包，链上损失估计超过 8600 万美元。",
+        "en": "Ledger confirmed an affected device contained an unauthorized hardware implant from physical tampering and said its own systems were not breached; reseller CryptoBilis has suspended hardware wallet sales, and Ledger advised affected users not to initialize unused devices and to move assets to wallets with new recovery phrases, with on-chain losses estimated above $86 million."
       },
       "first_seen_at": "2026-10-09T15:30:47.822838+00:00",
-      "last_material_change_at": "2026-10-11T10:20:51.336296+00:00",
-      "updates_count": 19,
-      "sources_count": 42
+      "last_material_change_at": "2026-10-11T10:57:28.832136+00:00",
+      "updates_count": 20,
+      "sources_count": 43
     },
     {
       "event_id": "evt_a76b620bffc87779",
@@ -591,6 +610,25 @@
       "sources_count": 23
     },
     {
+      "event_id": "evt_0f8b132b10a6f10f",
+      "url": "https://xiyu.news/events/evt_0f8b132b10a6f10f/",
+      "json": "https://xiyu.news/api/events/evt_0f8b132b10a6f10f.json",
+      "status": "developing",
+      "type": "protocol_change",
+      "title": {
+        "zh": "以太坊Glamsterdam升级在Sepolia测试网激活并提升区块Gas上限",
+        "en": "Ethereum’s upcoming Glamsterdam upgrade clears rehearsal for a big jump in capacity"
+      },
+      "current_state": {
+        "zh": "以太坊的 Glamsterdam 升级已在 Sepolia 测试网上线，将测试网区块 gas 上限从约 6000 万提高到约 2 亿，开发者正于主网部署前测试容量改进。",
+        "en": "Ethereum's Glamsterdam upgrade went live on the Sepolia testnet, raising the testnet block gas limit from roughly 60 million to about 200 million as developers test capacity improvements ahead of mainnet deployment."
+      },
+      "first_seen_at": "2026-09-17T17:11:45.183417+00:00",
+      "last_material_change_at": "2026-10-09T03:03:28.944936+00:00",
+      "updates_count": 7,
+      "sources_count": 13
+    },
+    {
       "event_id": "evt_d1cc5b69d264d895",
       "url": "https://xiyu.news/events/evt_d1cc5b69d264d895/",
       "json": "https://xiyu.news/api/events/evt_d1cc5b69d264d895.json",
@@ -779,25 +817,6 @@
       "last_material_change_at": "2026-10-08T11:11:04.067059+00:00",
       "updates_count": 7,
       "sources_count": 7
-    },
-    {
-      "event_id": "evt_0f8b132b10a6f10f",
-      "url": "https://xiyu.news/events/evt_0f8b132b10a6f10f/",
-      "json": "https://xiyu.news/api/events/evt_0f8b132b10a6f10f.json",
-      "status": "closed",
-      "type": "protocol_change",
-      "title": {
-        "zh": "以太坊Glamsterdam升级通过排练里程碑并确认测试网日期",
-        "en": "Ethereum’s upcoming Glamsterdam upgrade clears rehearsal for a big jump in capacity"
-      },
-      "current_state": {
-        "zh": "以太坊 Glamsterdam 升级已在 Sepolia 测试网激活，区块 Gas 上限从约 6000 万提升至近 2 亿；早期区块实际使用率在 26% 至 46% 之间，网络最终性表现稳定。Hoodi 测试网暂定于 2026 年 10 月 27 日进行，主网激活日期未定。",
-        "en": "Ethereum's Glamsterdam upgrade is active on the Sepolia testnet, raising the block gas limit from ~60M to nearly 200M; early blocks used 26% to 46% of capacity, and finality performed well. The Hoodi testnet is tentatively set for October 27, 2026, with no mainnet activation date set."
-      },
-      "first_seen_at": "2026-09-17T17:11:45.183417+00:00",
-      "last_material_change_at": "2026-10-08T07:02:05.300634+00:00",
-      "updates_count": 5,
-      "sources_count": 10
     },
     {
       "event_id": "evt_3f51363aa7485f50",
