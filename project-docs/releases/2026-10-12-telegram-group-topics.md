@@ -58,6 +58,8 @@ PR235 五阶段：code complete；tests complete；PR merged complete；deployed
 
 ## 运行时兼容性修正
 
+修正版 PR: https://github.com/ohxiyu/xiyunews/pull/237。
+
 定位证据：项目安装的 workerd 二进制明确报错，redirect 只实现 follow/manual，error 未实现。原网络 mock 未构造真实 Request，掩盖了请求在发出前就被运行时拒绝的差异；不据此更换 Token、重建话题或增加权限。修正为 manual，显式拒绝 3xx，既不跟随跳转也不泄露 Token 到跳转目的地。所有模拟 Bot API 先构造真实 workerd Request，再替换网络响应，并补重定向拒绝测试。修正版沿用原已批准功能部署，真实自然回执仍需当天出版后确认。
 
 修正版本地验证：124 项 Worker 测试、audit 无漏洞、types/tsc、dispatcher dry-run 通过。Python 未修改，沿用同源完整 1,063 passed、4 skipped，并由 CI 再次回归；治理/diff 在提交前再次校验。修正版 PR/部署/自然身份核验 pending。
