@@ -42,25 +42,37 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Zod 4.6.6 compromised by malware?",
+      "title_zh": "Zod 4.6.6 被恶意软件入侵？",
       "title_en": "Zod 4.6.6 compromised by malware?",
-      "what_changed_zh": "Developers flagged that Zod's GitHub release tag v4.6.6 still points at a malicious commit (d821685) pushed with stolen maintainer credentials, part of a supply-chain campaign that used an Ethereum smart contract to deliver its JS payload and also hit standard-schema and nub — but which was caught, reverted, and never published to npm.",
+      "what_changed_zh": "开发者指出，Zod 的 GitHub 发布标签 v4.6.6 目前仍指向一个恶意提交（d821685）。该提交于 2026 年 9 月 21 日使用窃取的维护者凭据被推入仓库，并于当天被回滚。相关报道称该代码从未发布到 npm，同一攻击活动还针对了 standard-schema 和 nub 两个包。\n\nZod 是最广泛使用的 TypeScript 优先模式校验库之一，因此即使已回滚，恶意提交仍带着标签留在 GitHub 上可供下载，感染代码依然可被获取。报道称该攻击活动通过 Ethereum 智能合约下发 JS 载荷，这一手法意在规避注册表与安全扫描器的检查。\n\n该提交的说明为“Fix bugs and improve performance”，改动涉及 packages/mini/meta.test.mjs；据讨论，注入代码被设计为在 Zod 安装时执行，并从 Ethereum 智能合约获取下一阶段载荷。评论者称恶意代码进入了 Zod 的主分支但未进入 npm，维护者 Colin Hicks 当天通过 PR #6620 回滚，随后于 2026 年 10 月 11 日发布了不含恶意代码的 4.6.6 版本。在 nub 的案例中，同一攻击者的代码据称进入了注册表。",
       "what_changed_en": "Developers flagged that Zod's GitHub release tag v4.6.6 still points at a malicious commit (d821685) pushed with stolen maintainer credentials, part of a supply-chain campaign that used an Ethereum smart contract to deliver its JS payload and also hit standard-schema and nub — but which was caught, reverted, and never published to npm.",
-      "current_state_zh": "Developers flagged that Zod's GitHub release tag v4.6.6 still points at a malicious commit (d821685) pushed with stolen maintainer credentials, part of a supply-chain campaign that used an Ethereum smart contract to deliver its JS payload and also hit standard-schema and nub — but which was caught, reverted, and never published to npm.",
+      "current_state_zh": "开发者指出，Zod 的 GitHub 发布标签 v4.6.6 目前仍指向一个恶意提交（d821685）。该提交于 2026 年 9 月 21 日使用窃取的维护者凭据被推入仓库，并于当天被回滚。相关报道称该代码从未发布到 npm，同一攻击活动还针对了 standard-schema 和 nub 两个包。\n\nZod 是最广泛使用的 TypeScript 优先模式校验库之一，因此即使已回滚，恶意提交仍带着标签留在 GitHub 上可供下载，感染代码依然可被获取。报道称该攻击活动通过 Ethereum 智能合约下发 JS 载荷，这一手法意在规避注册表与安全扫描器的检查。\n\n该提交的说明为“Fix bugs and improve performance”，改动涉及 packages/mini/meta.test.mjs；据讨论，注入代码被设计为在 Zod 安装时执行，并从 Ethereum 智能合约获取下一阶段载荷。评论者称恶意代码进入了 Zod 的主分支但未进入 npm，维护者 Colin Hicks 当天通过 PR #6620 回滚，随后于 2026 年 10 月 11 日发布了不含恶意代码的 4.6.6 版本。在 nub 的案例中，同一攻击者的代码据称进入了注册表。",
       "current_state_en": "Developers flagged that Zod's GitHub release tag v4.6.6 still points at a malicious commit (d821685) pushed with stolen maintainer credentials, part of a supply-chain campaign that used an Ethereum smart contract to deliver its JS payload and also hit standard-schema and nub — but which was caught, reverted, and never published to npm.",
       "detailed_summary_zh": "Developers flagged that Zod's GitHub release tag v4.6.6 still points at a malicious commit (d821685) pushed with stolen maintainer credentials, part of a supply-chain campaign that used an Ethereum smart contract to deliver its JS payload and also hit standard-schema and nub — but which was caught, reverted, and never published to npm.",
       "detailed_summary_en": "Developers flagged that Zod's GitHub release tag v4.6.6 still points at a malicious commit (d821685) pushed with stolen maintainer credentials, part of a supply-chain campaign that used an Ethereum smart contract to deliver its JS payload and also hit standard-schema and nub — but which was caught, reverted, and never published to npm.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "background_zh": "Zod 是由 Colin McDonnell（@colinhacks）创建的 TypeScript 优先模式校验库。2025 年 9 月，研究人员曾记录过一种相关投递手法：恶意 npm 包将下一阶段恶意软件的 URL 藏入 Ethereum 智能合约，以绕过安全扫描。",
+      "background_en": "Zod is a TypeScript-first schema validation library created by Colin McDonnell (@colinhacks). Researchers documented a related delivery technique in September 2025, when malicious npm packages hid URLs to secondary malware payloads inside Ethereum smart contracts to bypass security scans.",
+      "community_discussion_zh": "评论者普遍认为仓库确实遭到入侵，但恶意代码并未进入 npm，并纠正了原标题的表述；有人指出截至 2026 年 10 月 12 日，被污染的代码在 GitHub 上仍带有标签。也有人强调通过 Ethereum 智能合约下发载荷是值得注意的技术新点，还有评论者指出 packages/mini/meta.test.mjs 中的可疑改动。",
+      "community_discussion_en": "Commenters broadly agreed the repository was genuinely compromised but that the malware never reached npm, correcting the framing of the original headline; one noted the compromised code was still tagged on GitHub as of 2026-10-12. Others highlighted the Ethereum-smart-contract payload delivery as the notable technical wrinkle, and one pointed to the suspicious commit contents in packages/mini/meta.test.mjs.",
+      "market_impact_zh": "对加密市场的直接传导有限：风险主要经由使用 Zod 的开发团队所面临的软件供应链敞口，以及 Ethereum 智能合约被用作恶意软件命令控制基础设施所引发的再度审视——这一渠道关系到基础设施与合规相关方对不可篡改性和链上数据存储的讨论。报道中没有任何已上市加密资产或交易场所被提及因此次攻击活动而受到影响。",
+      "market_impact_en": "The direct crypto-market transmission is limited: the exposure runs through developer supply-chain risk for teams building on Zod and through renewed scrutiny of Ethereum smart contracts being used as malware command-and-control infrastructure, a channel relevant to how immutability and on-chain data storage are discussed by infrastructure and compliance stakeholders. No listed crypto asset or venue is reported as affected by the campaign itself.",
       "importance_score": 7.5,
       "references": [
         {
           "url": "https://news.ycombinator.com/item?id=50052814",
           "title": "Community discussion"
+        },
+        {
+          "url": "https://zod.dev/",
+          "title": "Introduction to Zod - TypeScript-first schema validation library with..."
+        },
+        {
+          "url": "https://www.csoonline.com/article/4050956/malicious-npm-packages-use-ethereum-blockchain-for-malware-delivery.html",
+          "title": "Malicious npm packages use Ethereum blockchain for malware ..."
+        },
+        {
+          "url": "https://cointelegraph.com/news/new-malware-discovered-targeting-ethereum-smart-contracts-devs",
+          "title": "Hackers Use Ethereum Smart Contracts To Hide Malware Attacks"
         }
       ],
       "confidence": 0.75,

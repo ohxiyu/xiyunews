@@ -45,20 +45,33 @@
       "material_change": true,
       "title_zh": "【Aptos 主网上线加密内存池，交易内容在区块最终确认前保持加密】",
       "title_en": "【Aptos 主网上线加密内存池，交易内容在区块最终确认前保持加密】",
-      "what_changed_zh": "Aptos launched an encrypted mempool on mainnet under AIP-144, letting users opt per-transaction to have calldata encrypted client-side and only collectively decrypted by validators once a block is finalized, with Petra wallet and Decibel already adopting it.",
+      "what_changed_zh": "Aptos 已按照 AIP-144 提案在主网上线加密内存池。用户可按笔选择是否启用加密，启用后交易内容（所调用的函数及参数）在客户端加密后再提交，区块提议者在看不到交易内容的情况下完成排序，待区块最终确认后由验证者集体解密并执行。\n\n解密所需达到的质押权重门槛与出块相同，因此单个验证者或不足三分之二质押权重的验证者子集都无法解密待处理交易，这一设计旨在限制针对待处理订单流的抢跑与 MEV 提取。\n\n即使在开启加密的情况下，发送方地址和 Gas 费用仍然可见。Aptos 表示该方案在 50 节点基准测试中每个区块约增加 20 毫秒延迟，并已通过 ZKSecurity 的安全审查；目前 Petra 钱包已支持该功能，Aptos 上的永续合约交易所 Decibel 将使用加密内存池保护订单隐私。",
       "what_changed_en": "Aptos launched an encrypted mempool on mainnet under AIP-144, letting users opt per-transaction to have calldata encrypted client-side and only collectively decrypted by validators once a block is finalized, with Petra wallet and Decibel already adopting it.",
-      "current_state_zh": "Aptos launched an encrypted mempool on mainnet under AIP-144, letting users opt per-transaction to have calldata encrypted client-side and only collectively decrypted by validators once a block is finalized, with Petra wallet and Decibel already adopting it.",
+      "current_state_zh": "Aptos 已按照 AIP-144 提案在主网上线加密内存池。用户可按笔选择是否启用加密，启用后交易内容（所调用的函数及参数）在客户端加密后再提交，区块提议者在看不到交易内容的情况下完成排序，待区块最终确认后由验证者集体解密并执行。\n\n解密所需达到的质押权重门槛与出块相同，因此单个验证者或不足三分之二质押权重的验证者子集都无法解密待处理交易，这一设计旨在限制针对待处理订单流的抢跑与 MEV 提取。\n\n即使在开启加密的情况下，发送方地址和 Gas 费用仍然可见。Aptos 表示该方案在 50 节点基准测试中每个区块约增加 20 毫秒延迟，并已通过 ZKSecurity 的安全审查；目前 Petra 钱包已支持该功能，Aptos 上的永续合约交易所 Decibel 将使用加密内存池保护订单隐私。",
       "current_state_en": "Aptos launched an encrypted mempool on mainnet under AIP-144, letting users opt per-transaction to have calldata encrypted client-side and only collectively decrypted by validators once a block is finalized, with Petra wallet and Decibel already adopting it.",
       "detailed_summary_zh": "Aptos launched an encrypted mempool on mainnet under AIP-144, letting users opt per-transaction to have calldata encrypted client-side and only collectively decrypted by validators once a block is finalized, with Petra wallet and Decibel already adopting it.",
       "detailed_summary_en": "Aptos launched an encrypted mempool on mainnet under AIP-144, letting users opt per-transaction to have calldata encrypted client-side and only collectively decrypted by validators once a block is finalized, with Petra wallet and Decibel already adopting it.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "AIP-144 是这一功能背后的 Aptos 提案，Aptos 官方文档中也将其称为encrypted pending transactions（加密待处理交易）；据市场信息平台记录，该提案经过了链上治理投票。加密内存池是近年来用于缓解 MEV 与抢跑问题的一类方案，其做法是在区块最终确认前对验证者隐藏交易数据，并依靠阈值密码学确保任何单一参与方都无法单独解密。",
+      "background_en": "AIP-144 is the Aptos proposal behind the feature, which Aptos documentation also refers to as encrypted pending transactions; per market trackers, the proposal went to an onchain governance vote. Encrypted mempools are an emerging approach to mitigating MEV and front-running, concealing transaction data from validators until a block is finalized while relying on threshold cryptography so that no single party can decrypt alone.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "该变更仅作用于 Aptos 网络，改变了待处理订单流对验证者和搜索者的可见性，可能影响 Decibel 永续合约市场等 Aptos 生态交易场所的 MEV 格局；对更大范围市场的影响主要通过围绕 APT 以及隐私型 L1 基础设施的情绪传导，而非跨链流动性渠道。",
+      "market_impact_en": "The change is specific to the Aptos network, where it alters how pending order flow is exposed to validators and searchers, potentially affecting MEV dynamics on Aptos-based venues such as Decibel's perpetuals market; any read-through to the wider market would run through sentiment around APT and privacy-oriented L1 infrastructure rather than through cross-chain liquidity channels.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://aptos.dev/build/sdks/ts-sdk/building-transactions/encrypted-pending-transactions",
+          "title": "Encrypted Mempool | Aptos Documentation"
+        },
+        {
+          "url": "https://www.tradingview.com/news/coinmarketcal:9d6aa97ca094b:0-aptos-aip-144-encrypted-mempool-goes-to-an-onchain-governance-vote-05-oct-2026/",
+          "title": "Aptos: AIP-144 Encrypted Mempool goes to... — TradingView News"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/encrypted-mempools-a-solution-to-mev-and-front-running-in-blockchain",
+          "title": "Encrypted Mempools: A Solution to MEV and Front-Running... | KuCoin"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:foresightnews:120217"

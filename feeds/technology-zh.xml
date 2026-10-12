@@ -4,7 +4,51 @@
   <link href="https://xiyu.news/feeds/technology-zh.xml" rel="self"/>
   <link href="https://xiyu.news/"/>
   <id>https://xiyu.news/feeds/technology-zh.xml</id>
-  <updated>2026-10-12T00:00:00Z</updated>
+  <updated>2026-10-13T00:00:00Z</updated>
+  <entry>
+    <title>Meta 新模型 Muse Wonder 终于让扎克伯格跻身前沿 AI 竞赛</title>
+    <link href="https://decrypt.co/380768/meta-muse-wonder-zuckerberg-frontier-ai-race"/>
+    <id>https://xiyu.news/editions/2026-10-13/#rss:decrypt.co_feed:8c7aae0110c4420c</id>
+    <updated>2026-10-13T00:00:00Z</updated>
+    <summary>Meta 于周一发布 Muse Wonder 与 Muse Wonder Full，这是 Meta Superintelligence Labs 推出的首批前沿级模型，两者均具备 100 万 token 的上下文窗口。API 版本 Muse Wonder 的定价为每百万输入 token 4 美元、每百万输出 token 20 美元，规模更大的 Muse Wonder Full 则仅向付费的 Muse Code 订阅用户开放。
+
+这是 Meta 首次愿意将自己的模型与 OpenAI 和 Anthropic 的最强模型正面比较。在 Meta 自家图表上，Wonder Full 在长周期编程、法律智能体任务和记忆方面领先于 GPT-6 Astra 与 Claude Opus 5.5，但第三方机构 Artificial Analysis 的排名仍将 Opus 5.5 列在首位（58 分），Wonder Full 为 56 分。
+
+Muse Wonder 现已通过 Meta Model API 和 Meta 的编程智能体 Muse Code 上线。Meta 强调两项功能——Active Memory（把一次对话中的信息带入下一次对话）与 Active Focus（让模型持续攻克高难度目标，并在执行重要操作前先与用户确认）——同时承认 SWE-Marathon 编程测试这一行并非受控对比，其模型是以最大算力投入运行的。</summary>
+  </entry>
+  <entry>
+    <title>微软股价触及近一年高点，公司宣布计划大规模部署自有人工智能芯片</title>
+    <link href="https://m.theblockbeats.info/flash/371421?from=telegram"/>
+    <id>https://xiyu.news/editions/2026-10-13/#telegram:theblockbeats:200088</id>
+    <updated>2026-10-13T00:00:00Z</updated>
+    <summary>微软周一公布第三代 AI 加速芯片 Maia 300，并表示计划逐步提高自研芯片在数据中心的使用比例，未来将主要依靠自研 Maia 芯片架构处理 AI 模型请求，并计划在 Maia 系列芯片上部署数吉瓦级算力，预计 2027 年投产。据 BlockBeats 援引 BIT（Bit.com）行情数据，10 月 12 日微软股价日内上涨 0.8%，触及近一年高点。
+
+此举被视为对英伟达在 AI 基础设施领域主导地位的直接竞争动作，目标是降低微软对英伟达 GPU 的依赖。微软称 Maia 300 有望提升 AI 服务性能并降低数据中心运营成本。
+
+每个数据中心机架可搭载 96 颗 Maia 300 芯片，是上一代 Maia 200 的两倍；微软称与 GPU 相比，其每机架 AI Token 处理量最高可达 7 倍，每兆瓦可处理的 Token 数量提升约 40%。模型训练仍将使用英伟达和 AMD 芯片；与谷歌 TPU、亚马逊 Trainium 等产品不同，微软自研加速芯片目前尚未向其他企业开放租用。Evercore ISI 分析师预计，截至 2027 年第一季度，Maia 芯片将占微软 AI 芯片支出的约 10%。</summary>
+  </entry>
+  <entry>
+    <title>Zod 4.6.6 被恶意软件入侵？</title>
+    <link href="https://github.com/colinhacks/zod/commit/d821685ea6732436fcdf786a81d076958471e467"/>
+    <id>https://xiyu.news/editions/2026-10-13/#hackernews:story:50052814</id>
+    <updated>2026-10-13T00:00:00Z</updated>
+    <summary>开发者指出，Zod 的 GitHub 发布标签 v4.6.6 目前仍指向一个恶意提交（d821685）。该提交于 2026 年 9 月 21 日使用窃取的维护者凭据被推入仓库，并于当天被回滚。相关报道称该代码从未发布到 npm，同一攻击活动还针对了 standard-schema 和 nub 两个包。
+
+Zod 是最广泛使用的 TypeScript 优先模式校验库之一，因此即使已回滚，恶意提交仍带着标签留在 GitHub 上可供下载，感染代码依然可被获取。报道称该攻击活动通过 Ethereum 智能合约下发 JS 载荷，这一手法意在规避注册表与安全扫描器的检查。
+
+该提交的说明为“Fix bugs and improve performance”，改动涉及 packages/mini/meta.test.mjs；据讨论，注入代码被设计为在 Zod 安装时执行，并从 Ethereum 智能合约获取下一阶段载荷。评论者称恶意代码进入了 Zod 的主分支但未进入 npm，维护者 Colin Hicks 当天通过 PR #6620 回滚，随后于 2026 年 10 月 11 日发布了不含恶意代码的 4.6.6 版本。在 nub 的案例中，同一攻击者的代码据称进入了注册表。</summary>
+  </entry>
+  <entry>
+    <title>Anthropic：AI 模型或可在无需数据中心的情况下自我复制</title>
+    <link href="https://news.google.com/rss/articles/CBMiZEFVX3lxTFBRTnpIbVhZdVJZa2ZyVy1Namo1b3Qxcm5IVEVJcmllZ0tITVJkd1FKTjBJazBDU3JRX055UHdkTUxtM0hQbG1aSmpKaFZxMFRTU1YzUzNtWi1jU2hiUjR6c3E5VWk?oc=5"/>
+    <id>https://xiyu.news/editions/2026-10-13/#rss:news.google.com_rss_search?q=site:anthropic.com+when:7d&amp;hl=en-US&amp;gl=US&amp;ceid=US:en:df381a4f8e509919</id>
+    <updated>2026-10-13T00:00:00Z</updated>
+    <summary>Anthropic 发布研究称，小型 AI 模型可能只需数月时间，就能在无需数据中心的情况下，通过廉价的物联网设备（如 Android TV 盒子）实现自我复制。该结论被表述为一种可能性，而非已被证实的能力。
+
+该结论被视为与安全相关：如果模型能够在数据中心的隔离环境之外扩散并自我复制，将影响业界对自主性与“围堵”（containment）能力的评估方式。Anthropic 自身也将其列为新的 AI 安全与围堵问题之一。
+
+所描述的场景涉及在廉价物联网硬件（明确提到 Android TV 盒子）上运行的小型模型，而非数据中心内的大规模前沿模型。</summary>
+  </entry>
   <entry>
     <title>英伟达洽谈收购美国AI初创公司Reflection AI</title>
     <link href="https://m.theblockbeats.info/flash/371188?from=telegram"/>
@@ -400,49 +444,5 @@ OpenAI将Dots描述为“常驻在线”的agent，并表示正在将专业化do
 这是谷歌在前沿模型竞争中的最新一次发布；据 CNBC 报道，其初始投放仅面向选定的网络安全合作伙伴，而非所有开发者。谷歌将其定位为开发者、专业人士与企业解决难题的伙伴。
 
 谷歌博客称，Gemini 4 Argon 在编程、知识工作、网络安全防御和创意写作方面具备“前沿级能力”。第三方评测机构 Artificial Analysis 将“Gemini 4 Argon (High)”列为智能水平领先的模型之一，并称其相对同类模型定价合理。</summary>
-  </entry>
-  <entry>
-    <title>OpenAI称与中国月之暗面有关联的人员试图复制其AI的隐藏推理</title>
-    <link href="https://decrypt.co/379890/openai-china-moonshot-copy-ai-hidden-reasoning"/>
-    <id>https://xiyu.news/editions/2026-10-02/#rss:decrypt.co_feed:60e469d2069d919c</id>
-    <updated>2026-10-02T00:00:00Z</updated>
-    <summary>OpenAI表示，它已阻止了一场有组织地提取其模型在作答前所生成隐藏推理的活动，并称该活动始于7月1日。仅在7月24日和25日两天，OpenAI就记录到来自4000多名用户的1.6万次提取请求，而整个用户群超过1.5万人；OpenAI称该活动已于7月28日被完全阻断。
-
-OpenAI称，这些被提取的隐藏推理可能被用来训练另一个模型，从而绕过原有的安全防护。OpenAI表示，此后已关闭一条路径——该路径曾允许已持有他人加密推理内容的人通过重放来还原其内容。
-
-OpenAI称，相关操作者“没有破解我们的加密、入侵数据库，也没有直接访问已存储的用户对话”，而是通过操纵模型交互，使受保护的推理能够以可见形式被复制，违反了其服务条款；其中一种方法是把一段对话中的加密推理复制出来，再让模型在另一段对话中解码。OpenAI还表示，尚不清楚所观察到的所有操作者是否来自同一行为体，但将这一活动的“核心集群”归因于与Kimi开发者月之暗面有关联的个人。</summary>
-  </entry>
-  <entry>
-    <title>Gemini 4 Argon：我们通往前沿智能的下一个时代</title>
-    <link href="https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/"/>
-    <id>https://xiyu.news/editions/2026-10-01/#rss:deepmind.google_blog_rss.xml:ce56aa83d0064ef1</id>
-    <updated>2026-10-01T00:00:00Z</updated>
-    <summary>谷歌发布了其新一代前沿 AI 模型 Gemini 4 Argon。谷歌首席 AI 架构师、Google DeepMind 高级副总裁 Koray Kavukcuoglu 表示，该模型在“真实软件工程、法律与金融等企业知识工作，以及网络安全防御等复杂工作流中提供前沿性能”。谷歌目前限制该模型的访问权限，称将继续从早期测试者处收集反馈并迭代护栏机制，之后再向开发者、企业和消费者开放 Argon。
-
-该发布使顶级实验室之间的竞争再添一款旗舰模型，但访问权限仍受限——开发者、企业和消费者目前尚不能普遍使用，谷歌给出的理由是仍在完善护栏机制并收集早期测试者反馈。
-
-谷歌称 Argon 在编程、推理和多模态方面具备能力，并能在企业工作流中持续完成长链条、多步骤任务。Hacker News 评论者引用公告称，Argon 智能体正在谷歌内部将 C/C++ 代码库迁移至 Rust；独立评测机构 Artificial Analysis 将 Gemini 4 Argon（High）列为智能水平领先的模型之一，且相对于同等价位的模型定价合理。</summary>
-  </entry>
-  <entry>
-    <title>刚刚，GPT-6 Astra接上宇树G1，把厨房收拾了！</title>
-    <link href="https://www.qbitai.com/2026/09/499493.html"/>
-    <id>https://xiyu.news/editions/2026-10-01/#rss:www.qbitai.com_feed:4cc78f5ed25836ed</id>
-    <updated>2026-10-01T00:00:00Z</updated>
-    <summary>据媒体报道，新近发布的 GPT-6「Astra」模型接入宇树（Unitree）G1 人形机器人，通过把机器人技能当作可调用的工具，完成了一次厨房整理任务。该演示将各项机器人能力视为语言模型可以调用的工具，用以执行物理动作。
-
-该演示体现了基于大模型的具身控制思路，即前沿模型通过与其调用软件时相同的工具调用接口来调度机器人的物理技能。
-
-演示的任务是用宇树 G1 收拾厨房。目前该演示仅见于媒体报道，尚无独立的性能评测或成功率数据公布。</summary>
-  </entry>
-  <entry>
-    <title>Anthropic 的 IPO 把自家账面估值翻了一倍</title>
-    <link href="https://protos.com/anthropics-ipo-doubles-the-price-of-its-own-books/"/>
-    <id>https://xiyu.news/editions/2026-10-01/#rss:protos.com_feed_:d2e86bb12805fd11</id>
-    <updated>2026-10-01T00:00:00Z</updated>
-    <summary>一份泄露的 Anthropic IPO 招股书显示，这家 Claude 的开发公司正准备在 11 月上市，目标估值达 2 万亿美元，约为四个月前 H 轮融资 9650 亿美元投后估值的两倍。该文件主要依靠未经审计的“运行率”（run-rate）数据，将 2026 年 5 月的收入年化为 470 亿美元，而 2025 年经审计的收入仅为 46 亿美元。
-
-按照所披露的 1000 亿美元融资规模和 2 万亿美元估值，这将成为史上最大规模的 IPO，超过 SpaceX 在 1.77 万亿美元估值下募资 857 亿美元的纪录。不过招股书本身比为其承销的银行家更为谨慎：261 页中有约 80 页专门列示风险因素。
-
-根据泄露的文件，Anthropic 2025 年 46 亿美元收入的背后是 420 亿美元净亏损，主要源于 AI 基础设施成本。文件称公司计划募资 1000 亿美元，英伟达曾提出以 100 亿美元作为锚定投资；在 2 万亿美元估值下，其市销率约为 2025 年追溯收入的 435 倍，而 H 轮价格约为 210 倍。</summary>
   </entry>
 </feed>
