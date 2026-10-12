@@ -12,6 +12,8 @@ export type Snapshot = {version: number; date: string; artifact: string; feed_pa
 type Known = {status: string; state: string; latest_at: string; ids: string[]; tracked: boolean;
   delivered_state?: string; delivered_status?: string};
 type Baseline = Record<string, Known>;
+type BotCheck = {checked_at:number; status:"verified"|"mismatch"|"rejected"|"unavailable"|"invalid_response";
+  http_status?:number; username?:string};
 type Receipt = {status: "pending" | "sending" | "sent" | "unknown" | "failed";
   attempts: number; next_at?: number; message_id?: number; sent_at?: number; code?: number};
 type Job = {date: string; parts: string[]; receipts: Receipt[]; baseline?: Baseline;
@@ -113,6 +115,20 @@ async function botCall(env: UnifiedEnv, method: string, payload: unknown): Promi
   return response;
 }
 
+async function verifyBot(gate:Gate,owner:string,env:UnifiedEnv,c:Config):Promise<void> {
+  const check:BotCheck={checked_at:Date.now(),status:"unavailable"};
+  try {
+    const response=await botCall(env,"getMe",{});check.http_status=response.status;
+    const me=await response.json() as {ok?:boolean;result?:{username?:string}};
+    const username=me.result?.username;
+    if(typeof username==="string" && /^[a-zA-Z0-9_]{1,64}$/.test(username)) check.username=username;
+    check.status=!me.ok || !response.ok ? "rejected" : username===c.expected_bot ? "verified" : "mismatch";
+  } catch {check.status=check.http_status ? "invalid_response" : "unavailable";}
+  // Only fixed categories, HTTP status and a public bot handle; never token/URL/body/exception.
+  await write(gate,owner,"tg:bot-check",check,Date.now());
+  if(check.status!=="verified") throw new Error("group bot check failed");
+}
+
 async function deliver(gate: Gate, owner: string, env: UnifiedEnv, c: Config,
   kind: "feed" | "events", job: Job, now: number): Promise<void> {
   const key = `tg:${job.date}:${kind}`;
@@ -166,8 +182,7 @@ export async function runGroupNews(env: UnifiedEnv, now=Date.now(),
     const identityKey=env.SITE_SOURCE_COMMIT ?? env.SITE_ARTIFACT_COMMIT;
     if (!identityKey || !/^[a-f0-9]{40}$/.test(identityKey)) throw new Error("missing group build identity");
     if (await gate.groupRead("tg:bot-verified")!==JSON.stringify(identityKey)) {
-      const me=await (await botCall(env,"getMe",{})).json() as {ok?:boolean;result?:{username?:string}};
-      if (!me.ok || me.result?.username!==c.expected_bot) throw new Error("group bot mismatch");
+      await verifyBot(gate,owner,env,c);
       await write(gate,owner,"tg:bot-verified",identityKey,now);
     }
     let feed=await read<Job>(gate,`tg:${today}:feed`), events=await read<Job>(gate,`tg:${today}:events`);
@@ -214,8 +229,7 @@ export async function runGroupNews(env: UnifiedEnv, now=Date.now(),
       }
     }
     if (feed.status==="pending" || events.status==="pending") {
-      const result=await (await botCall(env,"getMe",{})).json() as {ok?:boolean;result?:{username?:string}};
-      if (!result.ok || result.result?.username!==c.expected_bot) throw new Error("group bot mismatch");
+      await verifyBot(gate,owner,env,c);
       // Bounded, spaced parts; 429 waits for a later EXISTING Cron, not a new scheduler.
       let attempted=false;
       for (const [kind,job] of [["feed",feed],["events",events]] as const) {
@@ -256,5 +270,6 @@ export async function groupStatus(env: UnifiedEnv, date: string): Promise<unknow
       ...(job.reason ? {reason:job.reason} : {})} : {status:"not_prepared"};
   }
   const identityKey=env.SITE_SOURCE_COMMIT ?? env.SITE_ARTIFACT_COMMIT;
-  return {enabled:true,date,bot_verified:await gate.groupRead("tg:bot-verified")===JSON.stringify(identityKey),...jobs};
+  return {enabled:true,date,bot_verified:await gate.groupRead("tg:bot-verified")===JSON.stringify(identityKey),
+    bot_check:await read<BotCheck>(gate,"tg:bot-check"),...jobs};
 }

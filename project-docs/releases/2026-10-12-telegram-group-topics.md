@@ -63,3 +63,18 @@ PR235 五阶段：code complete；tests complete；PR merged complete；deployed
 定位证据：项目安装的 workerd 二进制明确报错，redirect 只实现 follow/manual，error 未实现。原网络 mock 未构造真实 Request，掩盖了请求在发出前就被运行时拒绝的差异；不据此更换 Token、重建话题或增加权限。修正为 manual，显式拒绝 3xx，既不跟随跳转也不泄露 Token 到跳转目的地。所有模拟 Bot API 先构造真实 workerd Request，再替换网络响应，并补重定向拒绝测试。修正版沿用原已批准功能部署，真实自然回执仍需当天出版后确认。
 
 修正版本地验证：124 项 Worker 测试、audit 无漏洞、types/tsc、dispatcher dry-run 通过。Python 未修改，沿用同源完整 1,063 passed、4 skipped，并由 CI 再次回归；治理/diff 在提交前再次校验。修正版 PR/部署/自然身份核验 pending。
+
+## 修正版合并及最终证据跟进
+
+PR237 CI [38277156574](https://github.com/ohxiyu/xiyunews/actions/runs/38277156574) 的主项目（含 Python 全量、Worker、页面 Node 回归）、治理、edge-build、Pages 全部适用检查通过，realtime 因无相关路径变更 skipped，CodeQL 依原条件 skipped。同步 main 后合并为 b7924ec6a0d9f520fafeb39d0d920a285ba7430c，派发已批准统一部署 [38277520439](https://github.com/ohxiyu/xiyunews/actions/runs/38277520439)。此时既有 Feed Collection 自然更新 gh-pages，自动部署 38277469231 在先，同一部署 concurrency 序列之后才执行修正版；不取消/篡改正常发布，最终以修正版完成后的 health 回读为准。
+
+文档验收 Issue: https://github.com/ohxiyu/xiyunews/issues/238；branch agent/telegram-group-verification-record，当前会话唯一 owner；范围仅本记录和 handoff。不追加配置、发送、部署或代码修改。修正版生产版本与自然 Cron 身份状态待补；13 日真实消息回执与客户端展示仍 pending。
+
+00:35 自然 Cron 的身份状态仍 false，Issue238 范围已改为发送模块/测试/交接/本记录的脱敏诊断：仅保留 checked_at、固定状态类别、HTTP 状态及格式校验过的公开 username，不输出凭据、URL、原始响应/异常。依既有授权部署同功能诊断，若证据指向凭据，先请求运行 Secret 的单独批准；不自动复制、更换或轮换。初始文档限定不再用于授权范围解释，以上述更新后的 Issue 为准。
+
+Source commit: b7924ec6a0d9f520fafeb39d0d920a285ba7430c（PR237 合并）。
+Artifact commit: 7945b6a4121f1e93d4fd395913655a3792b913ed（既有采集自然生成，没有人工写 gh-pages）。
+Worker version: 1775d384-2231-4a59-acf8-820ca161f20a。
+Deployment: 38277520439 success，串行等待原自然部署后完成，没有取消或修改其他发布。
+Verification: 2026-10-13 00:32 Asia/Shanghai，/health source/artifact/version 对应且 status=ok、双运行开关 true、原 Cron 不变；首页/API/threads 均 200、内部消息快照 404。原实时 /api/health 为 200，telegram_enabled=true，spot.last_received 距回读仅数秒、行情继续接收；源码保持原现役 d6a9d3f29ef93c138842342c973b3049fb7bc252，没有部署或重启服务器。修正版自然 Cron 身份状态下一轮回读，未宣称消息送达。
+Rollback: 仍仅在授权后停用本功能配置；不自动回滚、清状态或盲目重发 unknown。
