@@ -4,23 +4,24 @@
   "url": "https://xiyu.news/events/evt_5e0ff89b9b3aed1e/",
   "json": "https://xiyu.news/api/events/evt_5e0ff89b9b3aed1e.json",
   "type": "security_incident",
-  "status": "closed",
+  "status": "developing",
   "category": "crypto",
   "title": {
     "zh": "XRP Ledger 修复可凭空生成 XRP 的旧漏洞",
     "en": "XRP Ledger patched old flaw that could create XRP from nothing"
   },
   "current_state": {
-    "zh": "XRP Ledger 的十年旧支付引擎漏洞由 AI 代理发现，可能凭空生成约 18 万亿 XRP，RippleX 绕过常规修订流程紧急修复；未产生未授权 XRP，无资金损失。",
-    "en": "XRP Ledger's decade-old payment-engine flaw was discovered by an AI agent, could have minted ~18 trillion XRP, and was emergency-patched by RippleX outside the usual amendment process; no unauthorized XRP was created and no funds were lost."
+    "zh": "XRP Ledger 的旧支付引擎漏洞已在 xrpld 3.4.1 中修复，3.4.1 已通过正常修正案投票成为必需版本；基金会与开发者正公开回应关于紧急补丁绕过常规治理和网络中心化程度的质疑，确认无未授权 XRP 铸造或资金损失。",
+    "en": "The old XRP Ledger payment-engine vulnerability is fixed in xrpld 3.4.1, which became a required version through a normal amendment vote; the Foundation and developers are publicly responding to questions about the emergency patch bypassing normal governance and XRPL's decentralization, with no unauthorized XRP minting or fund loss confirmed."
   },
   "first_seen_at": "2026-10-10T06:40:40.291436+00:00",
-  "last_updated_at": "2026-10-11T21:51:26.009686+00:00",
-  "last_material_change_at": "2026-10-11T10:57:32.064494+00:00",
+  "last_updated_at": "2026-10-12T02:37:38.234529+00:00",
+  "last_material_change_at": "2026-10-12T02:37:38.234529+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 7,
+  "updates_count": 4,
+  "sources_count": 9,
   "entities": [
+    "emergency-patch",
     "ledger",
     "xrp",
     "xrp-ledger"
@@ -29,12 +30,16 @@
   "topics": [
     "ai-security-agent",
     "bug-disclosure",
+    "decentralization",
     "emergency-patch",
     "patch",
     "protocol-exploit",
     "protocol-security",
+    "protocol-upgrade",
     "protocol-vulnerability",
     "ripple",
+    "vulnerability-disclosure",
+    "xrp",
     "xrp-ledger"
   ],
   "updates": [
@@ -144,6 +149,82 @@
         {
           "url": "https://www.theblock.co/news/ecosystems/2026-10-11-xrp-ledger-patches-decade-old-bug-that-could-have-minted-trillions-of-xrp-418230",
           "label": "The Block",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_bf000cf475a3d5ca",
+      "event_id": "evt_5e0ff89b9b3aed1e",
+      "occurred_at": "2026-10-12T00:35:02Z",
+      "published_at": "2026-10-12T00:35:02Z",
+      "first_seen_at": "2026-10-12T02:37:17.603887Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "XRP Ledger基金会澄清安全修复疑问：未增发XRP，供应量仍固定",
+      "title_en": "XRP Ledger基金会澄清安全修复疑问：未增发XRP，供应量仍固定",
+      "what_changed_zh": "XRP Ledger 基金会澄清 xrpld 3.4.1 修复的是需数百次刻意构造操作才能触发的规则绕过漏洞，而非 XRP 增发；XRP 总供应量固定为 1000 亿枚，当前流通约 999.86 亿枚。基金会还说明该漏洞由 Cayden Liao 与 Veria AI 负责任披露，并于 9 月 25 日发布公开二进制文件，后续通过超过 80% 支持持续两周的正常修正案投票使 3.4.1 成为必要版本。",
+      "what_changed_en": "The XRP Ledger Foundation clarified that the xrpld 3.4.1 fix addressed a rule-bypass vulnerability requiring hundreds of deliberately crafted operations, not XRP inflation; total supply remains fixed at 100 billion, with about 99.986 billion currently circulating. It also said the flaw was responsibly disclosed by Cayden Liao and Veria AI, public binaries were released on September 25, and 3.4.1 later became a required version through a normal amendment vote with over 80% support sustained for two weeks.",
+      "current_state_zh": "XRP Ledger 的旧支付引擎漏洞已在 xrpld 3.4.1 中修复，基金会确认修复不涉及增发，XRP 供应量仍固定为 1000 亿枚；漏洞由 Cayden Liao 与 Veria AI 发现并负责任披露，修复经紧急协调分发后已通过正常修正案投票正式生效，未发生未授权 XRP 铸造或资金损失。",
+      "current_state_en": "The old XRP Ledger payment-engine vulnerability was fixed in xrpld 3.4.1; the Foundation confirmed the fix did not involve inflation and XRP supply remains fixed at 100 billion. The flaw was discovered and responsibly disclosed by Cayden Liao and Veria AI, the fix was distributed via emergency coordination and later ratified through the normal amendment vote, with no unauthorized XRP minting or fund loss.",
+      "detailed_summary_zh": "The XRP Ledger Foundation clarified that the xrpld 3.4.1 security fix addressed a hard-to-trigger rule-bypass vulnerability rather than any XRP inflation, affirming the 100 billion fixed supply and outlining its coordinated disclosure and amendment ratification process.",
+      "detailed_summary_en": "The XRP Ledger Foundation clarified that the xrpld 3.4.1 security fix addressed a hard-to-trigger rule-bypass vulnerability rather than any XRP inflation, affirming the 100 billion fixed supply and outlining its coordinated disclosure and amendment ratification process.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.93,
+      "story_ids": [
+        "telegram:theblockbeats:199929"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/371255?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_2caf2e492616c267",
+      "event_id": "evt_5e0ff89b9b3aed1e",
+      "occurred_at": "2026-10-12T01:21:29Z",
+      "published_at": "2026-10-12T01:21:29Z",
+      "first_seen_at": "2026-10-12T02:37:38.234529Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "XRP Ledger 为无限 XRP 漏洞的紧急补丁进行辩护",
+      "title_en": "XRP Ledger defends emergency patch for unlimited XRP bug",
+      "what_changed_zh": "XRP Ledger 基金会与开发者公开为 9 月 25 日紧急补丁辩护，称若等待常规两周验证者投票会提前暴露漏洞；他们否认中心化指控，强调决定由基金会、RippleX、核心开发者和验证者共同做出，且 3.4.1 后来通过正常修正案投票以超过 80% 支持持续两周成为必需版本。",
+      "what_changed_en": "The XRP Ledger Foundation and developers publicly defended the Sept. 25 emergency patch, saying waiting for the usual two-week validator vote would have exposed the flaw; they rejected centralization claims, stressing the decision was joint among the Foundation, RippleX, core developers and validators, and that 3.4.1 later became required via a normal amendment vote with over 80% support sustained for two weeks.",
+      "current_state_zh": "XRP Ledger 的旧支付引擎漏洞已在 xrpld 3.4.1 中修复，3.4.1 已通过正常修正案投票成为必需版本；基金会与开发者正公开回应关于紧急补丁绕过常规治理和网络中心化程度的质疑，确认无未授权 XRP 铸造或资金损失。",
+      "current_state_en": "The old XRP Ledger payment-engine vulnerability is fixed in xrpld 3.4.1, which became a required version through a normal amendment vote; the Foundation and developers are publicly responding to questions about the emergency patch bypassing normal governance and XRPL's decentralization, with no unauthorized XRP minting or fund loss confirmed.",
+      "detailed_summary_zh": "XRP Ledger developers defended their Sept. 25 emergency patch for a bug that could have created XRP beyond the network's fixed supply, saying they bypassed the usual two-week validator vote because publishing the fix first would have exposed the flaw to attackers, a move that has raised questions about how decentralized XRPL really is.",
+      "detailed_summary_en": "XRP Ledger developers defended their Sept. 25 emergency patch for a bug that could have created XRP beyond the network's fixed supply, saying they bypassed the usual two-week validator vote because publishing the fix first would have exposed the flaw to attackers, a move that has raised questions about how decentralized XRPL really is.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:32ec4b80a3d517e7"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/xrp-ledger-defends-emergency-patch-for-unlimited-xrp-bug?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
           "source_type": "rss",
           "official": false
         }
