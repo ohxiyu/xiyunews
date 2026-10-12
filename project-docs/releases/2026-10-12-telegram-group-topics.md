@@ -39,6 +39,25 @@ Rollback: 无生产变更，无需回退；准备分支不能直接用于生产�
 
 离线验证：实际出版数据快照成功生成；123 项 Worker 测试、audit、类型检查、dispatcher dry-run 通过，覆盖幂等、限流、暂停、未知结果、崩溃恢复、跨日、事件排版失败及来源转义。主项目全量 pytest 1,063 passed、4 skipped，治理与 diff 检查通过，CI 另补。未真实调用 AI、Telegram sendMessage 或生成新闻。
 
-当前五阶段：code complete；tests pending（全量/CI）；PR merged pending；deployed pending；production verified pending。此刻网站最新日报为 2026-10-12，启用日已是 2026-10-13，不会补发 12 日内容。部署后先核验自然 Cron 只读身份状态，今日自然出版之后再核验两话题 message_id 和客户端展示；不能将 created/deployed 当作 sent。
+实现阶段记录时五阶段仍待 CI/合并/部署；下节记录已完成结果。网站最新日报为 2026-10-12，启用日已是 2026-10-13，不会补发 12 日内容。今日自然出版之后再核验两话题 message_id 和客户端展示；不能将 created/deployed 当作 sent。
 
 运维：只读使用 wrangler kv key get telegram-group:v1:last-status --remote 和既有命名空间读取日期、bot_verified、各任务状态及回执；不公开发送接口。若结果 unknown，先由运营者核对群内是否已到达，不删除记录或盲目重发。停用本功能可在批准后仅将该配置 enabled 改为 false；不暂停统一 Worker，不影响旧频道/实时服务。回滚代码仍须运营者授权。
+
+## 合并与生产部署证据
+
+跟进 Issue: https://github.com/ohxiyu/xiyunews/issues/236；branch agent/telegram-group-deployment-record，当前会话唯一 owner。初始文档范围在发现运行时缺陷后已更新为群发送模块及测试、本记录和 handoff；不改运行配置或密钥。应用 PR235 在同步 origin/main 后于 2026-10-13 00:15:42（Asia/Shanghai）合并。CI [38275854964](https://github.com/ohxiyu/xiyunews/actions/runs/38275854964) 的 test、governance、edge-build、realtime 3.11/3.12 和 Pages 全部通过，CodeQL 按既有私有仓库条件 skipped。
+
+Source commit: ed6211c53b15467e72e92eb9f6c28fd90d326f53。
+Artifact commit: d5a1b6da90305d132dcf7157183d082d2f60169a（未生成/改写新闻）。
+Worker version: 313f00fb-1f53-4d3a-ab5f-ea1b30bc8273。
+Deployment: [38276156648](https://github.com/ohxiyu/xiyunews/actions/runs/38276156648)，已批准 workflow_dispatch、可信 main、既有 keep-vars 部署成功，没有直接 CLI 部署/改 Cron/密钥。
+Verification: 2026-10-13 00:18 Asia/Shanghai，/health source/artifact/version 匹配且 status=ok，dispatcher/watchdog 仍 true、原 Cron 列表不变；首页、/api/latest.json、/threads/ 均 200，/api/_telegram-group.json 为 404。新 KV 配置已回读匹配，start_date=2026-10-13。自然 Cron 身份状态和两话题当日自然送达尚待后续回读。
+Rollback: 无自动回滚；需要批准时仅停用群配置，不暂停旧功能，未知发送先查群内回执再决定处理。
+
+PR235 五阶段：code complete；tests complete；PR merged complete；deployed complete；production verified pending。2026-10-13 00:20 自然 Cron 回读 enabled=true、date=2026-10-13、bot_verified=false、两个任务 not_prepared，未发送任何新闻。没有把 Cron 已运行称为机器人身份或自动推送可用。
+
+## 运行时兼容性修正
+
+定位证据：项目安装的 workerd 二进制明确报错，redirect 只实现 follow/manual，error 未实现。原网络 mock 未构造真实 Request，掩盖了请求在发出前就被运行时拒绝的差异；不据此更换 Token、重建话题或增加权限。修正为 manual，显式拒绝 3xx，既不跟随跳转也不泄露 Token 到跳转目的地。所有模拟 Bot API 先构造真实 workerd Request，再替换网络响应，并补重定向拒绝测试。修正版沿用原已批准功能部署，真实自然回执仍需当天出版后确认。
+
+修正版本地验证：124 项 Worker 测试、audit 无漏洞、types/tsc、dispatcher dry-run 通过。Python 未修改，沿用同源完整 1,063 passed、4 skipped，并由 CI 再次回归；治理/diff 在提交前再次校验。修正版 PR/部署/自然身份核验 pending。

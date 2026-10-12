@@ -104,10 +104,13 @@ function validSnapshot(value: Snapshot, env: UnifiedEnv, today: string): boolean
 }
 
 async function botCall(env: UnifiedEnv, method: string, payload: unknown): Promise<Response> {
-  return fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/${method}`, {
+  const response = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/${method}`, {
     method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(payload),
-    redirect: "error", signal: AbortSignal.timeout(10_000),
+    // workerd only implements manual/follow. Never forward a bot token on redirect.
+    redirect: "manual", signal: AbortSignal.timeout(10_000),
   });
+  if (response.status >= 300 && response.status < 400) throw new Error("Telegram redirect rejected");
+  return response;
 }
 
 async function deliver(gate: Gate, owner: string, env: UnifiedEnv, c: Config,

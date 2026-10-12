@@ -23,8 +23,13 @@ function fixture(snapshot=snap()) {
       return new Response(`<div data-latest-edition-date="${snapshot.date}"></div>`);
     })}} as unknown as UnifiedEnv;
   const sends:Record<string,unknown>[]=[];
-  let behaviour:"ok"|"timeout"|"event-timeout"|"429"|"403"|"invalid"|"wrong-bot"="ok";
+  let behaviour:"ok"|"timeout"|"event-timeout"|"429"|"403"|"invalid"|"wrong-bot"|"redirect"="ok";
   vi.stubGlobal("fetch",vi.fn(async(input:RequestInfo|URL,init?:RequestInit)=>{
+    // Validate real workerd Request semantics before replacing network I/O.
+    // A plain JS fetch stub previously hid its unsupported redirect:error mode.
+    new Request(input,init);
+    expect(init?.redirect).toBe("manual");
+    if(behaviour==="redirect") return new Response(null,{status:302,headers:{Location:"https://example.com/"}});
     if(String(input).endsWith("getMe")) return Response.json({ok:true,result:{username:behaviour==="wrong-bot"?"wrongbot":"xiyunewsbot"}});
     const body=JSON.parse(String(init?.body)); sends.push(body);
     if(behaviour==="timeout" && body.message_thread_id===100) throw new Error("test-group-token must not leak");
@@ -90,6 +95,11 @@ describe("isolated daily group delivery",()=>{
     vi.spyOn(Date,"now").mockReturnValue(NOW);const warn=vi.spyOn(console,"warn").mockImplementation(()=>{});
     const f=fixture();f.set("wrong-bot");await tick(f.e);expect(f.sends).toHaveLength(0);
     expect(JSON.stringify(warn.mock.calls)).not.toContain("test-group-token");
+  });
+  it("rejects redirects without following or preparing any message",async()=>{
+    vi.spyOn(Date,"now").mockReturnValue(NOW);const f=fixture();f.set("redirect");await tick(f.e);
+    expect(f.sends).toHaveLength(0);expect(fetch).toHaveBeenCalledOnce();
+    expect(await groupStatus(f.e,TODAY)).toMatchObject({bot_verified:false,feed:{status:"not_prepared"}});
   });
   it("freezes multipart content and sends at most two parts per topic each tick",async()=>{
     vi.spyOn(Date,"now").mockReturnValue(NOW);const f=fixture();f.snapshot.feed_parts=["one","two","three"];
