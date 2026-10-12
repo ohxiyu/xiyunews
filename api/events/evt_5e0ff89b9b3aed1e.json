@@ -7,32 +7,45 @@
   "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "XRP Ledger 修复可凭空生成 XRP 的旧漏洞",
+    "zh": "XRP Ledger 披露并修复可无限铸造 XRP 的支付路径漏洞",
     "en": "XRP Ledger patched old flaw that could create XRP from nothing"
   },
   "current_state": {
-    "zh": "XRP Ledger 的旧支付引擎漏洞已在 xrpld 3.4.1 中修复，3.4.1 已通过正常修正案投票成为必需版本；基金会与开发者正公开回应关于紧急补丁绕过常规治理和网络中心化程度的质疑，确认无未授权 XRP 铸造或资金损失。",
-    "en": "The old XRP Ledger payment-engine vulnerability is fixed in xrpld 3.4.1, which became a required version through a normal amendment vote; the Foundation and developers are publicly responding to questions about the emergency patch bypassing normal governance and XRPL's decentralization, with no unauthorized XRP minting or fund loss confirmed."
+    "zh": "XRP Ledger 披露了一个严重漏洞，可能允许无限量创建 XRP，其严重程度足以威胁该网络供应量的完整性。",
+    "en": "The XRP Ledger disclosed a critical bug that could have allowed unlimited XRP to be created, a flaw serious enough to threaten the integrity of the network's supply."
   },
   "first_seen_at": "2026-10-10T06:40:40.291436+00:00",
-  "last_updated_at": "2026-10-12T02:37:38.234529+00:00",
-  "last_material_change_at": "2026-10-12T02:37:38.234529+00:00",
+  "last_updated_at": "2026-10-12T06:40:35.423708+00:00",
+  "last_material_change_at": "2026-10-12T06:40:35.423708+00:00",
   "confidence": 0.75,
-  "updates_count": 4,
-  "sources_count": 9,
+  "updates_count": 6,
+  "sources_count": 11,
   "entities": [
+    "bug",
+    "could",
+    "created",
+    "critical",
     "emergency-patch",
+    "have",
     "ledger",
+    "reveals",
+    "that",
+    "unlimited",
     "xrp",
     "xrp-ledger"
   ],
   "identifiers": [],
   "topics": [
+    "ai-security",
     "ai-security-agent",
+    "blockchain-security",
+    "bug-bounty",
     "bug-disclosure",
+    "crypto-protocols",
     "decentralization",
     "emergency-patch",
     "patch",
+    "protocol-bug",
     "protocol-exploit",
     "protocol-security",
     "protocol-upgrade",
@@ -150,6 +163,82 @@
           "url": "https://www.theblock.co/news/ecosystems/2026-10-11-xrp-ledger-patches-decade-old-bug-that-could-have-minted-trillions-of-xrp-418230",
           "label": "The Block",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_e8a8f1043121e2ea",
+      "event_id": "evt_5e0ff89b9b3aed1e",
+      "occurred_at": "2026-10-11T15:45:15Z",
+      "published_at": "2026-10-11T15:45:15Z",
+      "first_seen_at": "2026-10-11T17:44:38.214068Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "AI 发现 XRP Ledger 漏洞，可能凭空铸造 18 万亿枚代币，危及 940 亿美元市场",
+      "title_en": "AI discovers XRP Ledger flaw that could mint 18 trillion tokens and put $94 billion market at risk",
+      "what_changed_zh": "一次 AI 辅助安全审查发现 XRP Ledger 存在一个漏洞，在最坏情况下可能允许创建 18 万亿枚代币，并威胁约 940 亿美元的 XRP 市场。",
+      "what_changed_en": "An AI-assisted security review uncovered a flaw in the XRP Ledger that, in a worst case, could allow the creation of 18 trillion tokens and threaten the roughly $94 billion XRP market.",
+      "current_state_zh": "一次 AI 辅助安全审查发现 XRP Ledger 存在一个漏洞，在最坏情况下可能允许创建 18 万亿枚代币，并威胁约 940 亿美元的 XRP 市场。",
+      "current_state_en": "An AI-assisted security review uncovered a flaw in the XRP Ledger that, in a worst case, could allow the creation of 18 trillion tokens and threaten the roughly $94 billion XRP market.",
+      "detailed_summary_zh": "An AI-assisted security review uncovered a flaw in the XRP Ledger that, in a worst case, could allow the creation of 18 trillion tokens and threaten the roughly $94 billion XRP market.",
+      "detailed_summary_en": "An AI-assisted security review uncovered a flaw in the XRP Ledger that, in a worst case, could allow the creation of 18 trillion tokens and threaten the roughly $94 billion XRP market.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "google_news:article:31c7632ab314da02"
+      ],
+      "sources": [
+        {
+          "url": "https://cryptorank.io/news/feed/74f15-ai-discovers-xrp-ledger-flaw-that-could-mint-18-trillion-tokens-and-put-94-billion-market-at-risk",
+          "label": "CryptoRank",
+          "source_type": "google_news",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_40df1472a2cadd08",
+      "event_id": "evt_5e0ff89b9b3aed1e",
+      "occurred_at": "2026-10-11T23:45:06Z",
+      "published_at": "2026-10-11T23:45:06Z",
+      "first_seen_at": "2026-10-12T06:40:35.423708Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "XRP Ledger 披露可能凭空创建无限量 XRP 的严重漏洞",
+      "title_en": "XRP Ledger Reveals Critical Bug That Could Have Created Unlimited XRP",
+      "what_changed_zh": "XRP Ledger 披露了一个严重漏洞，可能允许无限量创建 XRP，其严重程度足以威胁该网络供应量的完整性。",
+      "what_changed_en": "The XRP Ledger disclosed a critical bug that could have allowed unlimited XRP to be created, a flaw serious enough to threaten the integrity of the network's supply.",
+      "current_state_zh": "XRP Ledger 披露了一个严重漏洞，可能允许无限量创建 XRP，其严重程度足以威胁该网络供应量的完整性。",
+      "current_state_en": "The XRP Ledger disclosed a critical bug that could have allowed unlimited XRP to be created, a flaw serious enough to threaten the integrity of the network's supply.",
+      "detailed_summary_zh": "The XRP Ledger disclosed a critical bug that could have allowed unlimited XRP to be created, a flaw serious enough to threaten the integrity of the network's supply.",
+      "detailed_summary_en": "The XRP Ledger disclosed a critical bug that could have allowed unlimited XRP to be created, a flaw serious enough to threaten the integrity of the network's supply.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "google_news:article:85d5636c4d489cda"
+      ],
+      "sources": [
+        {
+          "url": "https://cryptorank.io/news/feed/80247-xrp-ledger-reveals-critical-bug-that-could-have-created-unlimited-xrp",
+          "label": "CryptoRank",
+          "source_type": "google_news",
           "official": false
         }
       ]
