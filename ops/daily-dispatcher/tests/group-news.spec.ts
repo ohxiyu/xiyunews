@@ -23,15 +23,13 @@ function fixture(snapshot=snap()) {
       return new Response(`<div data-latest-edition-date="${snapshot.date}"></div>`);
     })}} as unknown as UnifiedEnv;
   const sends:Record<string,unknown>[]=[];
-  let behaviour:"ok"|"timeout"|"event-timeout"|"429"|"403"|"invalid"|"wrong-bot"|"redirect"|"identity-401"|"identity-timeout"="ok";
+  let behaviour:"ok"|"timeout"|"event-timeout"|"429"|"403"|"invalid"|"wrong-bot"|"redirect"="ok";
   vi.stubGlobal("fetch",vi.fn(async(input:RequestInfo|URL,init?:RequestInit)=>{
     // Validate real workerd Request semantics before replacing network I/O.
     // A plain JS fetch stub previously hid its unsupported redirect:error mode.
     new Request(input,init);
     expect(init?.redirect).toBe("manual");
     if(behaviour==="redirect") return new Response(null,{status:302,headers:{Location:"https://example.com/"}});
-    if(String(input).endsWith("getMe") && behaviour==="identity-401") return Response.json({ok:false,error_code:401,description:"test-group-token"},{status:401});
-    if(String(input).endsWith("getMe") && behaviour==="identity-timeout") throw new Error("test-group-token");
     if(String(input).endsWith("getMe")) return Response.json({ok:true,result:{username:behaviour==="wrong-bot"?"wrongbot":"xiyunewsbot"}});
     const body=JSON.parse(String(init?.body)); sends.push(body);
     if(behaviour==="timeout" && body.message_thread_id===100) throw new Error("test-group-token must not leak");
@@ -97,14 +95,6 @@ describe("isolated daily group delivery",()=>{
     vi.spyOn(Date,"now").mockReturnValue(NOW);const warn=vi.spyOn(console,"warn").mockImplementation(()=>{});
     const f=fixture();f.set("wrong-bot");await tick(f.e);expect(f.sends).toHaveLength(0);
     expect(JSON.stringify(warn.mock.calls)).not.toContain("test-group-token");
-    expect(await groupStatus(f.e,TODAY)).toMatchObject({bot_check:{status:"mismatch",http_status:200,username:"wrongbot"}});
-  });
-  it.each(["identity-401","identity-timeout"] as const)("records only safe diagnosis for %s",async(mode)=>{
-    vi.spyOn(Date,"now").mockReturnValue(NOW);const f=fixture();f.set(mode);await tick(f.e);
-    const status=await groupStatus(f.e,TODAY);
-    expect(status).toMatchObject({bot_verified:false,bot_check:{status:mode==="identity-401"?"rejected":"unavailable",checked_at:NOW}});
-    expect(JSON.stringify(status)).not.toContain("test-group-token");expect(f.sends).toHaveLength(0);
-    expect(f.e.ASSETS.fetch).not.toHaveBeenCalled();
   });
   it("rejects redirects without following or preparing any message",async()=>{
     vi.spyOn(Date,"now").mockReturnValue(NOW);const f=fixture();f.set("redirect");await tick(f.e);

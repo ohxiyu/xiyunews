@@ -1,16 +1,16 @@
 # 当前交接
 
-当前 Issue238：诊断双话题线上身份核验并补记验收。PR237 已部署且线上版本匹配，00:35 自然 Cron 仍为 bot_verified=false；新增只记录固定类别、响应状态、公开机器人名称及时间的脱敏诊断，不猜测修改密钥。两个话题和绑定保留，不补历史、不发测试，原频道、实时话题、服务、来源和 Cron 未改动。若诊断确认需要更改运行 Secret，须单独获运营者批准。
+当前 Issue238：双话题已创建、绑定、上线；修正版自然 Cron 最新回读 bot_verified=true，两个任务等待 2026-10-13 出版。仅补记上线证据，未部署的额外诊断已撤下，最终无代码差异、不再部署、不改密钥。原频道、实时话题、服务、来源和 Cron 保持不变。只剩今日自然消息回执及客户端展示待验收，不补历史、不发测试。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "安全诊断 Worker 身份核验并保留真实消息与凭据授权边界",
+  "goal": "补记双话题上线及正确 Bot 自然 Cron 状态，保留自然消息验收待办",
   "issue": "https://github.com/ohxiyu/xiyunews/issues/238",
   "owner": "当前 Codex 会话，唯一编辑与发布整合负责人",
   "branch": "agent/telegram-group-verification-record",
   "last_verified_commit": "b7924ec6a0d9f520fafeb39d0d920a285ba7430c",
-  "pr": "诊断 PR 待创建；应用 PR235、修正 PR237 已合并",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/239；应用 PR235、修正 PR237 已合并",
   "completed": [
     "独立 worktree，保留原工作区未提交文件",
     "基于出版数据的只读消息准备：固定日期、完整条目拆分、同一重点事件索引及原证据",
@@ -21,10 +21,12 @@
     "私有 KV 绑定回读通过，启用日 2026-10-13；应用 PR235 CI 全通过并合并",
     "统一 Worker 部署 38276156648 成功；线上 source/artifact/版本匹配，首页/API/追踪均 200，内部快照 404",
     "PR237 修正不支持的请求模式，124 项 Worker 与真实 Request 语义检查通过，CI 全部适用检查通过且已合并",
-    "修正版部署 38277520439 成功，health 匹配 b7924ec6/7945b6a4/1775d384；公开页面 200、内部快照 404，原实时接口 200/推送开启/行情接收新鲜"
+    "修正版部署 38277520439 成功，health 匹配 b7924ec6/7945b6a4/1775d384；公开页面 200、内部快照 404，原实时接口 200/推送开启/行情接收新鲜",
+    "自然 Cron 最新私有状态 enabled=true/date=2026-10-13/bot_verified=true；两个任务 not_prepared，与网站仍为 12 日一致，无需改凭据",
+    "未发布的额外诊断撤下，PR239 最终仅交接和发布文档，无代码或配置变更"
   ],
   "unfinished": [
-    "脱敏诊断 CI、合并、同功能部署与自然 Cron 回读；如需更改运行凭据先获批准",
+    "PR239 证据文档 CI、同步 main 后合并",
     "2026-10-13 自然日报发布后两话题真实消息回执与客户端展示"
   ],
   "validation": [
@@ -35,7 +37,6 @@
     "实际 gh-pages 消息离线准备通过；历史退役 URL 桩不伪造状态/时间；UTF-16 安全拆分测试通过"
   ],
   "unverified": [
-    "PR237 自然 Cron bot_verified=false；尚不能区分凭据拒绝、身份不匹配或网络失败",
     "没有真实消息发送回执；不把话题创建与离线测试算作消息送达"
   ],
   "production": {
@@ -44,15 +45,15 @@
     "edition": "2026-10-12",
     "generated_at": "本任务未生成新闻，仅读取已出版内容",
     "worker_version": "1775d384-2231-4a59-acf8-820ca161f20a",
-    "verified_at": "2026-10-13 00:32 Asia/Shanghai，health、公开 URL、原实时健康回读"
+    "verified_at": "2026-10-13 00:32 health/实时健康；00:38 自然 Cron 私有身份状态 true（Asia/Shanghai）"
   },
   "blockers": [],
-  "next_action": "通过 CI、同步 main 后发布脱敏诊断并回读自然 Cron；如果需要运行 Secret 变更，停止并请求批准。不得在身份失败时发送消息或替换凭据。",
+  "next_action": "合并文档 PR239（无额外部署）；2026-10-13 自然日报发布后只读核验私有 last-status 中两话题 sent/message_id，并检查客户端日期、链接、分段与事件概览。保持 Issue238 待验收，不主动测试/补发。",
   "states": {
     "code": "complete",
     "tests": "complete",
-    "pr_merged": "pending",
-    "deployed": "pending",
+    "pr_merged": "complete",
+    "deployed": "complete",
     "production_verified": "pending"
   },
   "evidence": "project-docs/releases/2026-10-12-telegram-group-topics.md"

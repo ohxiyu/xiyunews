@@ -78,3 +78,11 @@ Worker version: 1775d384-2231-4a59-acf8-820ca161f20a。
 Deployment: 38277520439 success，串行等待原自然部署后完成，没有取消或修改其他发布。
 Verification: 2026-10-13 00:32 Asia/Shanghai，/health source/artifact/version 对应且 status=ok、双运行开关 true、原 Cron 不变；首页/API/threads 均 200、内部消息快照 404。原实时 /api/health 为 200，telegram_enabled=true，spot.last_received 距回读仅数秒、行情继续接收；源码保持原现役 d6a9d3f29ef93c138842342c973b3049fb7bc252，没有部署或重启服务器。修正版自然 Cron 身份状态下一轮回读，未宣称消息送达。
 Rollback: 仍仅在授权后停用本功能配置；不自动回滚、清状态或盲目重发 unknown。
+
+## 最终自然 Cron 回读与未发布诊断撤下
+
+2026-10-13 00:38 Asia/Shanghai 再次读取 telegram-group:v1:last-status，返回 enabled=true、date=2026-10-13、bot_verified=true、feed/events 均 not_prepared。网站同一时刻最新仍为 2026-10-12（13 条资讯），因此不准备/补发旧日报是正确等待状态。这是实际自然 Cron 的只读 Bot 身份证据，不是测试发送或真实新闻送达；此前 false 读数不再代表最新状态，也不能据此轮换密钥。KV 镜像回读与运行存在时间差，原因未额外猜测。
+
+暂存的额外诊断虽完成 126 项离线测试，但没有合并、没有部署；获得 true 状态后使用普通追加提交撤下，最终相对 main 的代码差异为空，PR [239](https://github.com/ohxiyu/xiyunews/pull/239) 只补 handoff/本记录，不额外 Worker 部署。生产仍是 PR237 的 124 项 Worker 测试版本，不将未上线测试数量写作生产功能证据。没有读取/替换 Token、修改权限或发送新闻。
+
+最终五阶段（应用）：code complete；tests complete；PR merged complete；deployed complete；production verified pending，仅待今日自然消息 message_id 及客户端展示。Issue238 保留验收待办；待今日日报自然发布后只读回读 feed/events sent 与逐段 message_id，核验全标题/固定日期链接、首次概览和真实进展差分。结果 unknown 仍先核对群内，不自动重发。此轮不增加新的监控/通知服务。
