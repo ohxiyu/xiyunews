@@ -2,23 +2,99 @@
   "version": 1,
   "events": [
     {
+      "event_id": "evt_5e0ff89b9b3aed1e",
+      "url": "https://xiyu.news/events/evt_5e0ff89b9b3aed1e/",
+      "json": "https://xiyu.news/api/events/evt_5e0ff89b9b3aed1e.json",
+      "status": "closed",
+      "type": "security_incident",
+      "title": {
+        "zh": "XRP Ledger 披露并修复可无限铸造 XRP 的支付路径漏洞",
+        "en": "XRP Ledger patched old flaw that could create XRP from nothing"
+      },
+      "current_state": {
+        "zh": "XRP Ledger 已披露并修复支付引擎中的整数溢出漏洞，该漏洞自 2015 年起潜伏且普通支付不会触发；3.4.1 补丁于 9 月 25 日发布，超过 80% 可信验证者当日已运行该补丁；无证据表明漏洞曾被利用。",
+        "en": "The XRP Ledger disclosed and patched an integer overflow in the payment engine that had been dormant since 2015 and is not triggered by normal payments; the 3.4.1 fix shipped on Sept. 25, and more than 80% of trusted validators were running it that day; there is no evidence the bug was ever exploited."
+      },
+      "first_seen_at": "2026-10-10T06:40:40.291436+00:00",
+      "last_material_change_at": "2026-10-12T16:21:16.629913+00:00",
+      "updates_count": 8,
+      "sources_count": 13
+    },
+    {
+      "event_id": "evt_26e5b0cda31c1ae7",
+      "url": "https://xiyu.news/events/evt_26e5b0cda31c1ae7/",
+      "json": "https://xiyu.news/api/events/evt_26e5b0cda31c1ae7.json",
+      "status": "monitoring",
+      "type": "other",
+      "title": {
+        "zh": "微软新AI芯片降低对英伟达GPU的依赖",
+        "en": "Microsoft’s new AI chip makes it less reliant on Nvidia’s GPUs"
+      },
+      "current_state": {
+        "zh": "微软发布第三代Maia 300 AI芯片，定位为自家产品和服务的主要推理系统，具备更优的成本效益，并支持推理和智能体工作负载，从而减少对英伟达GPU的依赖；目标于2027年投产，并计划进行数吉瓦级的内部部署，模型训练则继续使用英伟达和AMD。",
+        "en": "Microsoft announced its third-generation Maia 300 AI chip, positioned as the primary inference system for its own products and services with improved cost efficiency and support for reasoning and agentic workloads, reducing its reliance on Nvidia GPUs; production targeted for 2027 and multi-gigawatt internal deployment planned, with model training continuing on Nvidia and AMD."
+      },
+      "first_seen_at": "2026-10-12T16:21:16.038890+00:00",
+      "last_material_change_at": "2026-10-12T16:21:16.038890+00:00",
+      "updates_count": 2,
+      "sources_count": 2
+    },
+    {
       "event_id": "evt_c594d0e29e7b400b",
       "url": "https://xiyu.news/events/evt_c594d0e29e7b400b/",
       "json": "https://xiyu.news/api/events/evt_c594d0e29e7b400b.json",
       "status": "developing",
       "type": "security_incident",
       "title": {
-        "zh": "OneKey因CryptoBilis渠道篡改Ledger设备事件停止新增经销商并免费更换硬件钱包",
-        "en": "Ledger Hardware Wallet Supply Chain Implant Incident"
+        "zh": "Ledger硬件钱包供应链植入与盗币事件",
+        "en": "Ledger Hardware Wallet Supply Chain Implant and Theft Incident"
       },
       "current_state": {
-        "zh": "Ledger硬件钱包供应链植入与盗取事件仍在调查中：Ledger确认至少一台设备存在未经授权的硬件植入，并称已确认案件均限于CryptoBilis销售的设备；独立估计在约9320万美元（315个钱包、六条链）至9450万美元（521个地址、七条链）之间，Tether已冻结1000万美元USDT，约8100万美元仍可在链上追踪，部分资金经Tornado Cash和Zcash转移；Ledger建议CryptoBilis客户不要初始化未使用设备，已使用设备的用户应转移到使用新恢复短语的新设备。",
-        "en": "The Ledger hardware-wallet supply-chain implant and theft incident remains under investigation: Ledger confirmed an unauthorized hardware implant in at least one device and says all confirmed cases involve devices sold by CryptoBilis; independent estimates range from about $93.2 million across 315 wallets on six chains to $94.5 million across 521 addresses on seven chains, Tether has frozen $10 million in USDT, about $81 million remains traceable onchain, and some funds moved through Tornado Cash and Zcash; Ledger advised CryptoBilis customers not to set up unused devices and told those already using one to move assets to a new device with a newly generated recovery phrase."
+        "zh": "CryptoBilis 相关 Ledger 钱包盗取事件已涉及多地区，间谍软件篡改设备在亚洲、欧洲和南美被指认；Ledger 确认 10 月 9 日事件影响有限数量的 CryptoBilis 设备，损失超过 8600 万美元（Bitquery 此前估计 9320 万美元，约 1000 万美元被冻结），Ledger 仍在调查且未向受影响买家提供赔偿计划；CryptoBilis 前 CEO 称公司已被收购并已卸任；一名买家报告从 MediaMarkt 发现第二台被篡改的 Ledger 设备，点名经销商 Aqipa，呼吁召回，并将设备送交 Ledger 分析。",
+        "en": "The CryptoBilis-linked Ledger wallet drain incident now spans multiple regions, with spyware-tampered devices alleged in Asia, Europe, and South America; Ledger confirmed the October 9 incident affected a limited number of CryptoBilis devices, losses exceed $86 million (Bitquery previously estimated $93.2 million with about $10 million frozen), Ledger continues to investigate and offers no repayment plan to affected buyers; former CryptoBilis CEO says the firm was acquired and he stepped down; a buyer reports a second tampered Ledger device from MediaMarkt, names distributor Aqipa, calls for a recall, and sends the device to Ledger for analysis."
       },
       "first_seen_at": "2026-10-09T15:30:47.822838+00:00",
-      "last_material_change_at": "2026-10-12T12:18:08.156818+00:00",
-      "updates_count": 26,
-      "sources_count": 54
+      "last_material_change_at": "2026-10-12T16:21:10.414753+00:00",
+      "updates_count": 32,
+      "sources_count": 60
+    },
+    {
+      "event_id": "evt_c5d7cfc109bef6ba",
+      "url": "https://xiyu.news/events/evt_c5d7cfc109bef6ba/",
+      "json": "https://xiyu.news/api/events/evt_c5d7cfc109bef6ba.json",
+      "status": "monitoring",
+      "type": "market_structure",
+      "title": {
+        "zh": "香港将于10月13日上市第二只现货Solana ETF（Pando Solana ETF）",
+        "en": "Hong Kong to list second spot Solana ETF (Pando Solana ETF) on Oct. 13"
+      },
+      "current_state": {
+        "zh": "Pando 将其现货 Solana ETF 的香港上市日期定在 10 月 13 日，收取 0.60% 的年度管理费，与华夏基金现有的 Solana ETF 展开竞争，后者截至 8 月底持有 858 万美元。",
+        "en": "Pando set an Oct. 13 Hong Kong listing date for its spot Solana ETF, charging a 0.60% annual management fee and competing with ChinaAMC's existing Solana ETF, which held $8.58 million at the end of August."
+      },
+      "first_seen_at": "2026-10-12T06:40:38.466994+00:00",
+      "last_material_change_at": "2026-10-12T16:21:01.980372+00:00",
+      "updates_count": 2,
+      "sources_count": 3
+    },
+    {
+      "event_id": "evt_329f780e584ce312",
+      "url": "https://xiyu.news/events/evt_329f780e584ce312/",
+      "json": "https://xiyu.news/api/events/evt_329f780e584ce312.json",
+      "status": "monitoring",
+      "type": "governance",
+      "title": {
+        "zh": "ENSv2 激活提案将停止新的 ENSv1 注册",
+        "en": "ENSv2 Activation Proposal Would Halt New ENSv1 Registrations"
+      },
+      "current_state": {
+        "zh": "ENS 创始人 Nick Johnson 已在 ENS DAO 治理论坛提交可执行草案提案，拟在以太坊主网激活 ENSv2；提案将冻结新 v1 .eth 注册，把解析迁移至 v2，将宽限期从 90 天缩短为 28 天，并把 v2 合约管理权限全部移交 DAO，现有 .eth 持有人无需操作，提案仍处于草案阶段。",
+        "en": "ENS founder Nick Johnson has submitted a draft executable proposal to the ENS DAO forum to activate ENSv2 on Ethereum mainnet; it would freeze new v1 .eth registrations, migrate resolution to v2, shorten the grace period from 90 to 28 days, and transfer all v2 contract admin control to the DAO, with existing .eth holders needing no action; the proposal remains in draft stage."
+      },
+      "first_seen_at": "2026-10-12T10:40:57.621813+00:00",
+      "last_material_change_at": "2026-10-12T16:20:55.625075+00:00",
+      "updates_count": 2,
+      "sources_count": 2
     },
     {
       "event_id": "evt_043c845e3db17c0a",
@@ -37,7 +113,7 @@
       "first_seen_at": "2026-10-12T10:41:03.826505+00:00",
       "last_material_change_at": "2026-10-12T12:18:07.514936+00:00",
       "updates_count": 2,
-      "sources_count": 5
+      "sources_count": 6
     },
     {
       "event_id": "evt_87303fb81e0ba571",
@@ -97,25 +173,6 @@
       "sources_count": 4
     },
     {
-      "event_id": "evt_5e0ff89b9b3aed1e",
-      "url": "https://xiyu.news/events/evt_5e0ff89b9b3aed1e/",
-      "json": "https://xiyu.news/api/events/evt_5e0ff89b9b3aed1e.json",
-      "status": "closed",
-      "type": "security_incident",
-      "title": {
-        "zh": "XRP Ledger 披露并修复可无限铸造 XRP 的支付路径漏洞",
-        "en": "XRP Ledger patched old flaw that could create XRP from nothing"
-      },
-      "current_state": {
-        "zh": "XRP Ledger 基金会继续披露该供应上限相关漏洞的细节，说明其因正常账本参数从未触发而多年未被发现；XRP 供应上限未被破坏，也未发生利用。",
-        "en": "The XRP Ledger Foundation continued disclosing details of the supply-cap-related bug, explaining it stayed hidden for years because normal ledger parameters never triggered it; the XRP supply cap was not broken and no exploitation occurred."
-      },
-      "first_seen_at": "2026-10-10T06:40:40.291436+00:00",
-      "last_material_change_at": "2026-10-12T10:40:56.257779+00:00",
-      "updates_count": 7,
-      "sources_count": 12
-    },
-    {
       "event_id": "evt_11561e2c26d31516",
       "url": "https://xiyu.news/events/evt_11561e2c26d31516/",
       "json": "https://xiyu.news/api/events/evt_11561e2c26d31516.json",
@@ -151,7 +208,7 @@
       "first_seen_at": "2026-10-12T10:40:54.508266+00:00",
       "last_material_change_at": "2026-10-12T10:40:54.508266+00:00",
       "updates_count": 2,
-      "sources_count": 4
+      "sources_count": 5
     },
     {
       "event_id": "evt_4de9a2fd28e6ef10",
@@ -170,26 +227,7 @@
       "first_seen_at": "2026-10-12T10:40:52.191065+00:00",
       "last_material_change_at": "2026-10-12T10:40:54.506711+00:00",
       "updates_count": 2,
-      "sources_count": 5
-    },
-    {
-      "event_id": "evt_c5d7cfc109bef6ba",
-      "url": "https://xiyu.news/events/evt_c5d7cfc109bef6ba/",
-      "json": "https://xiyu.news/api/events/evt_c5d7cfc109bef6ba.json",
-      "status": "monitoring",
-      "type": "market_structure",
-      "title": {
-        "zh": "中国香港将于10月13日上市第二只现货Solana ETF",
-        "en": "中国香港将于10月13日上市第二只现货Solana ETF"
-      },
-      "current_state": {
-        "zh": "中国香港计划于10月13日在港交所上市第二只现货Solana ETF，即Pando Solana ETF（2831.HK）；该ETF预计年费率为1.6%，将通过HashKey持有SOL，且不进行质押、不使用杠杆、不派发股息。",
-        "en": "Hong Kong is set to list its second spot Solana ETF, Pando Solana ETF (2831.HK), on the Hong Kong Stock Exchange on October 13; the ETF is expected to have a 1.6% annual fee, hold SOL through HashKey, and not engage in staking, use leverage, or pay dividends."
-      },
-      "first_seen_at": "2026-10-12T06:40:38.466994+00:00",
-      "last_material_change_at": "2026-10-12T10:40:54.505642+00:00",
-      "updates_count": 2,
-      "sources_count": 2
+      "sources_count": 6
     },
     {
       "event_id": "evt_21bc7c96662edb36",
@@ -265,7 +303,7 @@
       "first_seen_at": "2026-10-12T02:37:19.715686+00:00",
       "last_material_change_at": "2026-10-12T02:37:19.715686+00:00",
       "updates_count": 2,
-      "sources_count": 3
+      "sources_count": 4
     },
     {
       "event_id": "evt_68a5eca0f2df1205",

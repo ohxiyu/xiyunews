@@ -11,24 +11,30 @@
     "en": "XRP Ledger patched old flaw that could create XRP from nothing"
   },
   "current_state": {
-    "zh": "XRP Ledger 基金会继续披露该供应上限相关漏洞的细节，说明其因正常账本参数从未触发而多年未被发现；XRP 供应上限未被破坏，也未发生利用。",
-    "en": "The XRP Ledger Foundation continued disclosing details of the supply-cap-related bug, explaining it stayed hidden for years because normal ledger parameters never triggered it; the XRP supply cap was not broken and no exploitation occurred."
+    "zh": "XRP Ledger 已披露并修复支付引擎中的整数溢出漏洞，该漏洞自 2015 年起潜伏且普通支付不会触发；3.4.1 补丁于 9 月 25 日发布，超过 80% 可信验证者当日已运行该补丁；无证据表明漏洞曾被利用。",
+    "en": "The XRP Ledger disclosed and patched an integer overflow in the payment engine that had been dormant since 2015 and is not triggered by normal payments; the 3.4.1 fix shipped on Sept. 25, and more than 80% of trusted validators were running it that day; there is no evidence the bug was ever exploited."
   },
   "first_seen_at": "2026-10-10T06:40:40.291436+00:00",
-  "last_updated_at": "2026-10-12T10:40:56.257779+00:00",
-  "last_material_change_at": "2026-10-12T10:40:56.257779+00:00",
+  "last_updated_at": "2026-10-12T16:21:16.629913+00:00",
+  "last_material_change_at": "2026-10-12T16:21:16.629913+00:00",
   "confidence": 0.75,
-  "updates_count": 7,
-  "sources_count": 12,
+  "updates_count": 8,
+  "sources_count": 13,
   "entities": [
     "bug",
     "could",
+    "counterfeiting",
     "created",
     "critical",
     "emergency-patch",
+    "engine",
+    "had",
     "have",
+    "hiding",
     "ledger",
+    "payment",
     "reveals",
+    "since",
     "supply-cap",
     "that",
     "unlimited",
@@ -46,9 +52,11 @@
     "crypto-protocols",
     "decentralization",
     "emergency-patch",
+    "integer-overflow",
     "patch",
     "protocol-bug",
     "protocol-exploit",
+    "protocol-patch",
     "protocol-security",
     "protocol-upgrade",
     "protocol-vulnerability",
@@ -355,6 +363,44 @@
         {
           "url": "https://www.coindesk.com/tech/2026/10/12/why-a-bug-that-could-have-threatened-xrp-s-100-billion-supply-cap-stayed-hidden-for-years",
           "label": "CoinDesk",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_b0d7b562a23d2670",
+      "event_id": "evt_5e0ff89b9b3aed1e",
+      "occurred_at": "2026-10-12T15:56:35Z",
+      "published_at": "2026-10-12T15:56:35Z",
+      "first_seen_at": "2026-10-12T16:21:16.629913Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "XRP账本支付引擎藏有自2015年以来的伪造漏洞",
+      "title_en": "XRP Ledger’s Payment Engine Had a Counterfeiting Bug Hiding Since 2015",
+      "what_changed_zh": "新披露该漏洞是支付引擎中的整数溢出，自 2015 年支付引擎编写以来一直存在；攻击者通过消耗数百个特制订单簿报价可使买方应付款项溢出并少付，而账本内置的“未创建 XRP”安全检查使用同样的错误算术，因此无法拦截。漏洞由 XRPL 漏洞赏金计划于 9 月报告。",
+      "what_changed_en": "Newly disclosed that the flaw was an integer overflow in the payment engine, present since the engine was written in 2015; an attacker could consume hundreds of specially crafted order-book offers to overflow the buyer's owed amount and underpay, while the ledger's built-in 'no XRP created' safety check used the same broken arithmetic and failed to catch it. The bug was reported through the XRPL bug bounty program in September.",
+      "current_state_zh": "XRP Ledger 已披露并修复支付引擎中的整数溢出漏洞，该漏洞自 2015 年起潜伏且普通支付不会触发；3.4.1 补丁于 9 月 25 日发布，超过 80% 可信验证者当日已运行该补丁；无证据表明漏洞曾被利用。",
+      "current_state_en": "The XRP Ledger disclosed and patched an integer overflow in the payment engine that had been dormant since 2015 and is not triggered by normal payments; the 3.4.1 fix shipped on Sept. 25, and more than 80% of trusted validators were running it that day; there is no evidence the bug was ever exploited.",
+      "detailed_summary_zh": "XRP Ledger maintainers disclosed and patched a decade-old integer overflow in the payment engine that could have let an attacker mint counterfeit XRP, with no evidence the bug was ever exploited.",
+      "detailed_summary_en": "XRP Ledger maintainers disclosed and patched a decade-old integer overflow in the payment engine that could have let an attacker mint counterfeit XRP, with no evidence the bug was ever exploited.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "rss:decrypt.co_feed:2002debfe73d4a80"
+      ],
+      "sources": [
+        {
+          "url": "https://decrypt.co/380693/xrp-ledger-payment-engine-counterfeiting-bug-hiding",
+          "label": "Decrypt",
           "source_type": "rss",
           "official": false
         }
