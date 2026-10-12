@@ -21,11 +21,12 @@ def brief(value):
 
 
 def pack(entries, header, footer, limit=3600):
+    size = lambda value: len(value.encode("utf-16-le")) // 2
     parts, current = [], header
     for entry in entries:
-        if len(header + "\n\n" + entry + footer) > limit:
+        if size(header + "\n\n" + entry + footer) > limit:
             raise ValueError("one entry exceeds the safe message size")
-        if len(current + "\n\n" + entry + footer) > limit:
+        if size(current + "\n\n" + entry + footer) > limit:
             parts.append(current + footer)
             current = header
         current += "\n\n" + entry
@@ -64,12 +65,17 @@ def build_snapshot(edition, index, artifact):
     feed = pack(entries, header, footer)
     focused = {row["event_id"] for row in index.get("focus", [])[:6]}
     rows = {}
-    for key in ("threads", "dormant", "archived", "other", "completed", "focus"):
+    for key in ("focus", "threads", "dormant", "archived", "other", "completed"):
         for row in index.get(key, []):
             rows[row["event_id"]] = row
     events = []
     for event_id, row in rows.items():
         if not re.fullmatch(r"evt_[a-z0-9]+", event_id):
+            continue
+        # Retired URL stubs are not live TrackedEvents. Do not invent dates.
+        if not row.get("latest_at") or not row.get("status"):
+            if event_id in focused:
+                raise ValueError("focus event has no material timestamp/status")
             continue
         updates = []
         for update in row.get("timeline", [])[:3]:

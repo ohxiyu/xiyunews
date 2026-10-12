@@ -53,6 +53,14 @@ jobs:
           bundler-cache: true
       - name: Render published snapshot without collection or AI
         run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.11.32"
+      - run: uv sync --frozen
+      - name: Prepare bounded group messages from this published artifact without AI
+        run: >-
+          uv run python -m src.services.telegram_group_snapshot
+          .edge-source .edge-rendered --artifact "${{ steps.source.outputs.artifact }}"
       - name: Validate and stage public assets
         run: python3 scripts/prepare_edge_assets.py .edge-rendered .edge-site
       - uses: actions/setup-node@v6

@@ -56,3 +56,15 @@ def test_invalid_snapshot_stops(date, artifact):
     source["date"] = date
     with pytest.raises(ValueError):
         build_snapshot(source, {}, artifact)
+
+
+def test_retired_stub_is_skipped_without_inventing_a_timestamp():
+    retired = {"event_id": "evt_retired01", "status": "retired", "title_zh": "退役线"}
+    assert build_snapshot(edition(), {"archived": [retired]}, "a"*40)["events"] == []
+    with pytest.raises(ValueError):
+        build_snapshot(edition(), {"focus": [retired]}, "a"*40)
+
+
+def test_packing_reserves_utf16_space_for_emoji():
+    parts = pack(["📰"*120]*5, "标题", "结尾", limit=500)
+    assert all(len(part.encode("utf-16-le"))//2 <= 500 for part in parts)

@@ -41,6 +41,30 @@ export class RecoveryGate extends DurableObject<Env> {
     return now;
   }
 
+  // Group delivery uses a DIFFERENT named object, not any publication lease.
+  // No public HTTP handler exposes these trusted binding-only RPC methods.
+  groupRead(key: string): string | null {
+    if (!/^tg:[a-z0-9:.-]{1,100}$/.test(key)) throw new Error("invalid group key");
+    return this.read(key);
+  }
+
+  groupRenew(token: string, now: number): void {
+    if (this.read("owner") !== token || Number(this.read("lease_until")) <= now) {
+      throw new Error("group lock lost");
+    }
+    this.write("lease_until", String(now + 120_000));
+  }
+
+  groupWrite(token: string, key: string, value: string, now: number): void {
+    if (this.read("owner") !== token || Number(this.read("lease_until")) <= now) {
+      throw new Error("group lock lost");
+    }
+    if (!/^tg:[a-z0-9:.-]{1,100}$/.test(key) || value.length > 500_000) {
+      throw new Error("invalid group record");
+    }
+    this.write(key, value);
+  }
+
   claimAction(token: string, kind: "daily" | "pages", now: number): string {
     if (this.read("owner") !== token ||
         Number(this.read("lease_until")) <= now) return "lock_lost";

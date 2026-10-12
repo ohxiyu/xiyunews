@@ -1,8 +1,8 @@
-# 群内信息流与事件追踪：准备与权限阻塞
+# 群内信息流与事件追踪
 
 Issue: https://github.com/ohxiyu/xiyunews/issues/234
 Branch: agent/telegram-group-topics
-Draft PR: https://github.com/ohxiyu/xiyunews/pull/235
+PR: https://github.com/ohxiyu/xiyunews/pull/235
 Baseline: 9d051a9d7c06cd3166217ce9203f4c524d013b21
 
 运营者确认每日信息流＋每日事件进展两个话题的方案，并同意执行。当前会话为唯一 owner，只新增两个目的地，不改原频道、三个实时话题、Bot Token、源配置或服务器服务；不新增 AI 调用、不补历史。原工作区 tests/test_entity_profiles 2.py 未触碰。
@@ -17,7 +17,7 @@ Baseline: 9d051a9d7c06cd3166217ce9203f4c524d013b21
 
 阻塞：必须由运营者决定，只为现有 Bot 开启管理话题权限，或由管理员手动创建两个话题后提供话题链接。不能把“已经是管理员”当作具备所有管理权限。
 
-## 状态与下一步
+## 准备阶段记录（已解除权限阻塞）
 
 代码仅准备完成，发送与去重状态机、Worker 接入、配置绑定及自然回执均未完成。准备模块的离线测试另记录；PR 保持 Draft，不合并、不部署。获权限方向后先回读权限/话题，完成独立持久化发送记录、未知结果保护和自然发送验收。
 
@@ -28,3 +28,17 @@ Worker version: not changed；现役只读核验 2431d2dd-5e7e-49f0-8226-6492698
 Deployment: not performed；没有派发真实采集、AI、测试发送或部署工作流。
 Verification: 仅配置存在、身份/群组/权限只读核验及离线消息准备测试，两个话题不存在创建成功回执，自动推送未配置。
 Rollback: 无生产变更，无需回退；准备分支不能直接用于生产。
+
+## 权限恢复与完整实现（2026-10-13）
+
+运营者报告「现在有权限了」，严格主机校验重新读取权限确认 can_manage_topics=true。仅调用专用两话题脚本创建「📰 每日信息流」及「🧭 事件追踪」，返回两个不同的新话题 ID，服务器保留 mode 0600 私有回执；没有修改服务器环境或服务、没有发送新闻。绑定仅写入既有 KV 的 telegram-group:v1:config，启用日期为 2026-10-13；聊天/话题 ID 不提交仓库。
+
+统一 Worker 使用独立命名 RecoveryGate 对象持久化每日任务与逐段回执。发送前记录 sending，明确成功记录 message_id，超时/非 JSON/回执不匹配保留 unknown，不自动重发；明确限流/暂时拒绝最多重试三次，遵循 retry_after。两个话题发送与排版失败隔离。仅复用既有五分钟 Cron，不修改调度、实时规则或任何密钥。
+
+部署流水线在 Jekyll 渲染后从同一不可变 gh-pages 构建内部消息快照（公开 URL 返回 404）。快照、API 与首页当日日期必须一致，不发送昨日/未来/混合构建。日报保留全部标题、前三条事实首句和固定日期链接；事件初次标明当前概览，后续只发送新增实质节点及既有追踪的结束状态，最多六个重点事件，排名/改写/来源重复不算进展。观测节点与确认送达状态分开，未知首次送达不会在次日重复旧节点。
+
+离线验证：实际出版数据快照成功生成；123 项 Worker 测试、audit、类型检查、dispatcher dry-run 通过，覆盖幂等、限流、暂停、未知结果、崩溃恢复、跨日、事件排版失败及来源转义。主项目全量 pytest 1,063 passed、4 skipped，治理与 diff 检查通过，CI 另补。未真实调用 AI、Telegram sendMessage 或生成新闻。
+
+当前五阶段：code complete；tests pending（全量/CI）；PR merged pending；deployed pending；production verified pending。此刻网站最新日报为 2026-10-12，启用日已是 2026-10-13，不会补发 12 日内容。部署后先核验自然 Cron 只读身份状态，今日自然出版之后再核验两话题 message_id 和客户端展示；不能将 created/deployed 当作 sent。
+
+运维：只读使用 wrangler kv key get telegram-group:v1:last-status --remote 和既有命名空间读取日期、bot_verified、各任务状态及回执；不公开发送接口。若结果 unknown，先由运营者核对群内是否已到达，不删除记录或盲目重发。停用本功能可在批准后仅将该配置 enabled 改为 false；不暂停统一 Worker，不影响旧频道/实时服务。回滚代码仍须运营者授权。

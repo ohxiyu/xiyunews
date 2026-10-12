@@ -1,5 +1,6 @@
 import dispatcher from "./index";
 import type { RecoveryEnv } from "./recovery";
+import {runGroupNews} from "./group-news";
 // Reuse the audited Pages handler; do not duplicate auth, caching or API routing.
 // @ts-expect-error The existing JavaScript module is validated by its Node tests.
 import website from "../../../docs/_worker.js";
@@ -34,6 +35,9 @@ function publicationEnv(env: UnifiedEnv, ctx?: ExecutionContext): RecoveryEnv {
 export default {
   async fetch(request: Request, env: UnifiedEnv, ctx: ExecutionContext): Promise<Response> {
     const path = new URL(request.url).pathname;
+    if (path === "/api/_telegram-group.json") {
+      return new Response(null,{status:404,headers:{"Cache-Control":"no-store"}});
+    }
     if (!OPERATIONS.has(path)) return website.fetch(request, env, ctx);
     if (path === "/publication/check" && env.ENABLE_DISPATCHER !== "true") {
       return Response.json({error: "scheduler_paused"}, {
@@ -58,6 +62,9 @@ export default {
     }
     if (env.ENABLE_REALTIME_WATCHDOG === "true" && controller.cron === "*/5 * * * *") {
       tasks.push(Promise.resolve().then(() => watchdog.scheduled(controller, env)));
+    }
+    if (env.ENABLE_DISPATCHER === "true" && controller.cron === "*/5 * * * *") {
+      tasks.push(Promise.resolve().then(() => runGroupNews(env)));
     }
     // A publication error must not suppress the independent server watchdog.
     const results = await Promise.allSettled(tasks);
