@@ -10,7 +10,7 @@
   "owner": "当前 Codex 会话，唯一编辑与发布整合负责人",
   "branch": "agent/telegram-group-topics",
   "last_verified_commit": "9d051a9d7c06cd3166217ce9203f4c524d013b21",
-  "pr": "待建立 Draft PR，不合并",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/235 (Draft，不合并)",
   "completed": [
     "独立 worktree，保留原工作区未提交文件",
     "基于出版数据的只读消息准备：固定日期、完整条目拆分、同一重点事件索引及原证据",

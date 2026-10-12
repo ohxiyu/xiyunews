@@ -2,6 +2,7 @@
 
 Issue: https://github.com/ohxiyu/xiyunews/issues/234
 Branch: agent/telegram-group-topics
+Draft PR: https://github.com/ohxiyu/xiyunews/pull/235
 Baseline: 9d051a9d7c06cd3166217ce9203f4c524d013b21
 
 运营者确认每日信息流＋每日事件进展两个话题的方案，并同意执行。当前会话为唯一 owner，只新增两个目的地，不改原频道、三个实时话题、Bot Token、源配置或服务器服务；不新增 AI 调用、不补历史。原工作区 tests/test_entity_profiles 2.py 未触碰。
