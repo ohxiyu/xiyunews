@@ -7,24 +7,27 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Notice on the Closure of Binance Pool Services",
-    "en": "Notice on the Closure of Binance Pool Services"
+    "zh": "币安宣布将于2026年11月10日停止Binance Pool及相关服务",
+    "en": "Binance to Discontinue Binance Pool and Related Services on November 10, 2026"
   },
   "current_state": {
-    "zh": "Binance announced it will discontinue Binance Pool and related services — including Pool Savings, Cloud Mining, Transaction Accelerator, Telegram/email hashrate alerts, and mining pool APIs — on 2026-11-10.",
-    "en": "Binance announced it will discontinue Binance Pool and related services — including Pool Savings, Cloud Mining, Transaction Accelerator, Telegram/email hashrate alerts, and mining pool APIs — on 2026-11-10."
+    "zh": "Binance announced it will discontinue Binance Pool and all related services on November 10, 2026, terminating mining-pool connections and Stratum addresses, requiring miners to migrate to other pools and settle Pool Savings positions, with historical data pages closing November 24, 2026.",
+    "en": "Binance announced it will discontinue Binance Pool and all related services on November 10, 2026, terminating mining-pool connections and Stratum addresses, requiring miners to migrate to other pools and settle Pool Savings positions, with historical data pages closing November 24, 2026."
   },
   "first_seen_at": "2026-10-13T03:47:29.164348+00:00",
-  "last_updated_at": "2026-10-13T03:47:29.164348+00:00",
-  "last_material_change_at": "2026-10-13T03:47:29.164348+00:00",
+  "last_updated_at": "2026-10-13T06:34:03.577245+00:00",
+  "last_material_change_at": "2026-10-13T06:33:46.205199+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 3,
   "entities": [
     "binance",
     "closure",
+    "discontinue",
     "notice",
+    "november",
     "pool",
+    "related",
     "services"
   ],
   "identifiers": [],
@@ -32,8 +35,10 @@
     "binance",
     "cloud-mining",
     "exchange-operations",
+    "hashrate",
     "mining-pool",
-    "service-closure"
+    "service-closure",
+    "service-shutdown"
   ],
   "updates": [
     {
@@ -59,17 +64,31 @@
       "community_discussion_en": "",
       "market_impact_zh": "",
       "market_impact_en": "",
-      "importance_score": 7.0,
+      "importance_score": 7.5,
       "references": [],
       "confidence": 0.75,
       "story_ids": [
-        "telegram:binance_announcements:9043"
+        "telegram:binance_announcements:9043",
+        "telegram:wublockchainenglish:26389",
+        "rss:cointelegraph.com_rss:6e06212efbcebd19"
       ],
       "sources": [
         {
           "url": "https://www.binance.com/en/support/announcement/detail/2b45800173fd44f48b4517f25f941434?utm_source=EnglishTelegram&amp;utm_medium=GlobalCommunity&amp;utm_campaign=AnnouncementBot",
           "label": "binance_announcements",
           "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://wublockchain.xyz/news/news-21215",
+          "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://cointelegraph.com/news/binance-shut-down-crypto-mining-pool-november?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
           "official": false
         }
       ]
