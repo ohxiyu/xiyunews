@@ -53,6 +53,7 @@ def item(
         id=f"rss:{name}",
         source_type=SourceType.RSS,
         title=title,
+        content=(title + ". Confirmed source report describing this protocol's security incident. ") * 5,
         url=url or f"https://example.com/{name}",
         published_at=NOW,
         fetched_at=NOW + timedelta(minutes=5),
@@ -389,8 +390,8 @@ def test_pending_relations_survive_restart_and_have_retry_budget(tmp_path, monke
         calls += 1
         raise TimeoutError("temporary")
 
-    async def failed_update(items, events, *, client):
-        return await update_events(items, events, client=client, classifier=fail)
+    async def failed_update(items, events, *, client, relation_cache=None):
+        return await update_events(items, events, client=client, classifier=fail, relation_cache=relation_cache)
 
     monkeypatch.setattr("src.orchestrator.create_ai_client", lambda config: object())
     monkeypatch.setattr("src.orchestrator.update_events", failed_update)
@@ -411,7 +412,9 @@ def test_headline_only_cannot_confirm_material_event_change():
 
     class Client:
         async def complete(self, **kwargs):
-            assert '"evidence_quality": "headline_only"' in kwargs["user"]
+            import json
+            context = kwargs["user"].split("New story:\n", 1)[1].split("\n\nReturn exactly", 1)[0]
+            assert json.loads(context)["evidence_quality"] == "headline_only"
             return decision(EventRelation.SAME_EVENT_UPDATE, update_type=EventUpdateType.RESOLUTION).model_dump_json()
 
     with pytest.raises(EventRelationError, match="headline-only"):

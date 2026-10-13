@@ -227,6 +227,7 @@ def test_story_matching_several_events_joins_the_main_one() -> None:
         id="rss:new-story",
         source_type=SourceType.RSS,
         title="Bitget hacker launders stolen bitcoin",
+        content="The source report confirms the hacker began laundering the stolen Bitget funds, with transaction evidence. " * 5,
         url="https://example.com/new-story",
         published_at=NOW,
         fetched_at=NOW + timedelta(minutes=5),

@@ -46,6 +46,9 @@ _LEGACY_METRIC_LABELS = (
 )
 
 _STAGING_METRIC_LABELS = (
+    ("event_evidence_deferred", "等待完整来源证据（未调用AI）"),
+    ("event_relation_cache_hits", "事件关系缓存命中"),
+    ("event_relation_cache_misses", "新增事件关系判断"),
     ("fetched_raw", "本次采集"),
     ("unique_after_url_dedup", "URL 去重后"),
     ("staged_added", "新增暂存"),
@@ -55,6 +58,9 @@ _STAGING_METRIC_LABELS = (
 )
 
 _DAILY_METRIC_LABELS = (
+    ("event_evidence_deferred", "等待完整来源证据（未调用AI）"),
+    ("event_relation_cache_hits", "事件关系缓存命中"),
+    ("event_relation_cache_misses", "新增事件关系判断"),
     ("fetched_raw", "最终补采"),
     ("unique_after_url_dedup", "补采 URL 去重后"),
     ("staging_items_before", "出刊前暂存"),

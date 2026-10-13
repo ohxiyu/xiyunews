@@ -321,6 +321,8 @@ class BMTNewsOrchestrator:
             cache.save()
             report.set_metric("comparison_cache_hits", cache.comparison_hits)
             report.set_metric("comparison_cache_misses", cache.comparison_misses)
+            report.set_metric("event_relation_cache_hits", cache.relation_hits)
+            report.set_metric("event_relation_cache_misses", cache.relation_misses)
         report.finish()
         return save_run_report(report)
 
@@ -2615,7 +2617,7 @@ class BMTNewsOrchestrator:
             if any(item.id not in known for item in work)
             else None
         )
-        updated, result = await update_events(work, events, client=client)
+        updated, result = await update_events(work, events, client=client, relation_cache=self._result_cache())
         for item in work:
             if item.metadata.get("event_retry_pending"):
                 previous = pending.get(item.id, {})
@@ -2642,6 +2644,7 @@ class BMTNewsOrchestrator:
             "event_duplicate_sources": result.duplicate_sources,
             "event_new_events": result.new_events,
             "event_classifier_errors": result.classifier_errors,
+            "event_evidence_deferred": result.evidence_deferred,
             "event_briefs_enriched": result.briefs_enriched,
         }.items():
             run_report.set_metric(
