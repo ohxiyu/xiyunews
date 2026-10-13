@@ -10,7 +10,7 @@
   "owner": "当前会话，唯一编辑与发布整合负责人",
   "branch": "agent/www-entry-fix",
   "last_verified_commit": "6a1b99b0f1c0d742e624d994d49853a999076c89",
-  "pr": "PR 待创建",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/241",
   "completed": [
     "独立 worktree，原工作区未提交文件保留",
     "www 统一 301 处理先于私有接口/资产/缓存与运维路由",
