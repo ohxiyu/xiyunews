@@ -389,14 +389,27 @@
       "current_state_en": "Alpenglow is live on devnet and testnet, and Anza has now scheduled Mainnet-beta activation for around Oct 21, 2026 at 22:50 with a single-slot migration. Mainnet activation is now scheduled but not yet executed.",
       "detailed_summary_zh": "Solana's Anza announced that the Alpenglow consensus upgrade, which replaces TowerBFT and Proof-of-History and reduces finality to about 150 milliseconds, will activate on Mainnet-beta around October 21 at 22:50 with a single-slot migration.",
       "detailed_summary_en": "Solana's Anza announced that the Alpenglow consensus upgrade, which replaces TowerBFT and Proof-of-History and reduces finality to about 150 milliseconds, will activate on Mainnet-beta around October 21 at 22:50 with a single-slot migration.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "TowerBFT 自 Solana 主网上线以来一直是其共识机制，并与历史证明（PoH）配合运行，后者作为一种为事件排序的密码学时钟。Anza 与 Solana 均称 Alpenglow 是迄今对 Solana 核心协议最重大的重构；新的投票协议 Votor 随 Agave 4.3 发布。",
+      "background_en": "TowerBFT has been Solana's consensus mechanism since mainnet launch, working alongside Proof of History (PoH), a cryptographic clock that orders events. Anza and Solana describe Alpenglow as the most significant overhaul of Solana's core protocol to date; the new voting protocol Votor ships in Agave 4.3.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "该升级直接关系到 SOL 质押者与验证者以及在 Solana 上结算的应用，因为亚秒级最终确认可能改变交易所、托管机构和支付处理方对链上结算的处理方式。由于验证者投票移至链下，被广泛引用的 Solana 交易量指标可能发生变化，从而影响数据服务商和市场观察者对网络活跃度的判断。",
+      "market_impact_en": "The upgrade directly concerns SOL stakers and validators and the applications settling on Solana, since sub-second finality could change how exchanges, custodians and payment processors treat on-chain settlement. Because validator votes move off-chain, widely cited Solana transaction-count metrics may shift, affecting how data providers and market observers read network activity.",
       "importance_score": 8.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://solana.com/upgrades/alpenglow",
+          "title": "Alpenglow | Solana Media"
+        },
+        {
+          "url": "https://www.anza.xyz/blog/alpenglow-a-new-consensus-for-solana",
+          "title": "Alpenglow: A New Consensus for Solana - Anza"
+        },
+        {
+          "url": "https://www.helius.dev/blog/alpenglow",
+          "title": "Alpenglow: Solana's Great Consensus Rewrite"
+        }
+      ],
       "confidence": 0.95,
       "story_ids": [
         "telegram:foresightnews:120331",
