@@ -26,7 +26,9 @@ def deployment_manifest():
         ("realtime", "https://api.xiyu.news/api/health", ("source_commit", "version")),
     ):
         try:
-            with urllib.request.urlopen(url, timeout=10) as response:
+            request = urllib.request.Request(url, headers={"Accept": "application/json",
+                "User-Agent": "xiyunews-publication-validator/1.0"})
+            with urllib.request.urlopen(request, timeout=10) as response:
                 body = response.read(64001)
             if len(body) > 64000:
                 raise ValueError("health response too large")

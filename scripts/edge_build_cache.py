@@ -67,7 +67,8 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 
 def public_health():
     try:
-        request = urllib.request.Request("https://xiyu.news/health", headers={"Cache-Control": "no-cache"})
+        request = urllib.request.Request("https://xiyu.news/health", headers={"Cache-Control": "no-cache",
+            "Accept": "application/json", "User-Agent": "xiyunews-publication-validator/1.0"})
         with urllib.request.build_opener(NoRedirect).open(request, timeout=8) as response:
             body = response.read(64001)
         return json.loads(body) if len(body) <= 64000 else {}

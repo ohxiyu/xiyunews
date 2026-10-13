@@ -71,6 +71,24 @@ jobs:
         env:
           BUILD_KEY: ${{ steps.plan.outputs.key }}
         run: python3 scripts/edge_build_cache.py verify --key "$BUILD_KEY"
+      - uses: actions/setup-node@v6
+        if: steps.plan.outputs.skip != 'true'
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: ops/daily-dispatcher/package-lock.json
+      - name: Use the validated npm version on the bounded runner
+        if: steps.plan.outputs.skip != 'true' && runner.environment == 'self-hosted'
+        run: |
+          if [ "$(npm --version)" != "11.11.1" ]; then
+            npm install --global npm@11.11.1 --maxsockets=2
+          fi
+      - run: npm ci
+        if: steps.plan.outputs.skip != 'true'
+        working-directory: ops/daily-dispatcher
+      - run: npm run audit
+        if: steps.plan.outputs.skip != 'true'
+        working-directory: ops/daily-dispatcher
       - uses: ruby/setup-ruby@v1
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         with:
@@ -97,6 +115,7 @@ jobs:
           BUILD_KEY: ${{ steps.plan.outputs.key }}
           GH_TOKEN: ${{ github.token }}
         run: |
+          node scripts/minify_edge_assets.mjs .edge-rendered
           python3 scripts/prepare_edge_assets.py .edge-rendered .edge-site
           python3 scripts/edge_build_cache.py record --key "$BUILD_KEY"
           usage=$(gh api repos/ohxiyu/xiyunews/actions/cache/usage --jq '.active_caches_size_in_bytes' 2>/dev/null || echo 9999999999)
@@ -111,24 +130,6 @@ jobs:
       - name: Validate and stage public assets
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid == 'true'
         run: python3 scripts/prepare_edge_assets.py .edge-rendered .edge-site
-      - uses: actions/setup-node@v6
-        if: steps.plan.outputs.skip != 'true'
-        with:
-          node-version: '24'
-          cache: npm
-          cache-dependency-path: ops/daily-dispatcher/package-lock.json
-      - name: Use the validated npm version on the bounded runner
-        if: steps.plan.outputs.skip != 'true' && runner.environment == 'self-hosted'
-        run: |
-          if [ "$(npm --version)" != "11.11.1" ]; then
-            npm install --global npm@11.11.1 --maxsockets=2
-          fi
-      - run: npm ci
-        if: steps.plan.outputs.skip != 'true'
-        working-directory: ops/daily-dispatcher
-      - run: npm run audit
-        if: steps.plan.outputs.skip != 'true'
-        working-directory: ops/daily-dispatcher
       - name: Deploy the single existing project without replacing operator vars
         if: steps.plan.outputs.skip != 'true'
         working-directory: ops/daily-dispatcher
