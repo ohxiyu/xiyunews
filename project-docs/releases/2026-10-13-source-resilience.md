@@ -17,3 +17,11 @@ Rollback: 先获批准，不重刊日报、清缓存、改发送状态、强推�
 最终head97da5503e00229824e75e84d9e7b60ce5c7b4b2b的CI38381934730全部适用检查通过（应用3m1s、整站3m57s、治理/路径14s）；PR259于上海18:22:19同步main后合并23192f361256f53823fd6617850286ca1e3f1901。东京同代码独立受限无AI检查成功：72h四源分别20/20/20/6、合计66项，四替代status success、全部headline-only；20.264秒/15.5MiB峰值，无原进程重启或发送。首次审查归档缺README导致本地editable安装失败，补齐原README/LICENSE后通过，应用代码没有因此变更。原RSS四个403仍正确degraded，未宣称原站解除限制。
 
 正式正常采集38382903277已启动，源码读取新main；缓存、产物及出版验收待回读。后续第2项开始时补本记录，不再留旧未合并指针。
+
+正常采集38382903277 success，取回261条/130新增暂存/3个实质事件更新；本次12h替代The Block7/The Defiant14/CryptoSlate3/Tether0（合法空窗口），原403及替代状态全部报告，不把Tether当前无索引条目伪造成新闻。正常AI总tokens476288，既有预算/模型不变，后续第5项在此基线上优化，不为验收重复采集。
+
+Source commit: 23192f361256f53823fd6617850286ca1e3f1901。
+Worker version: 18caa7c0-ee7c-4daf-a50d-8f2cb7744457。
+Deployment: 统一发布38384017892 success，产物cd1b66613bd72f3a51622425565bc1b9775c34f1；正常源恢复/缓存/出版链路完成。
+Verification: 上海约18:40正式/health回读source/artifact/version一致、status=ok，原实时PID235825/NRestarts0，原RSS四源仍degraded，本次替代成功恢复24条内容；不声称原站解封或所有信源完全健康。
+Rollback: 先获批准，不改既有发送历史或手工写产物分支；后续3–9继续。
