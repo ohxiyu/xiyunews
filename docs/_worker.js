@@ -1,5 +1,16 @@
 const SITE_ORIGIN = 'https://xiyu.news';
 
+export function primaryHostRedirect(request) {
+  const url = new URL(request.url);
+  if (url.hostname !== 'www.xiyu.news') return null;
+  url.protocol = 'https:';
+  url.hostname = 'xiyu.news';
+  url.port = '';
+  return new Response(null, {status: 301, headers: {
+    'Location': url.href, 'Cache-Control': 'public, max-age=3600'
+  }});
+}
+
 // Admin requests are authenticated before ANY asset or cache lookup.
 // No browser-held GitHub credentials, public write proxy, or configurable file paths.
 const ADMIN_REPO = 'ohxiyu/xiyunews';
@@ -863,6 +874,8 @@ function cachedResponse(response, status, policy) {
 }
 
 export async function handleRequest(request, env, ctx) {
+  const redirect = primaryHostRedirect(request);
+  if (redirect) return redirect;
   const url = new URL(request.url);
   // Operator decision (2026-10-01): retire old entries WITHOUT a redirect.
   // Keep DNS/TLS resources intact; stop before auth, assets or private APIs.
