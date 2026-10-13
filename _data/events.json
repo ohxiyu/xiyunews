@@ -94727,8 +94727,8 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "Sonnet 5.5 has been released and is the first Sonnet model with anti-reasoning extraction account binding and a classifier.",
-      "current_state_zh": "Sonnet 5.5 已发布，并成为首个配备防「推理抽取」绑定与分类器的 Sonnet 模型。",
+      "current_state_en": "Sonnet 5.5's anti-reasoning-extraction protections have begun showing effects: Anthropic says extraction has dropped sharply, tens of thousands of distillation-related accounts have been banned, and charging has resumed for some blocked distillation-related requests.",
+      "current_state_zh": "Sonnet 5.5 的防「推理抽取」保护已进入效果显现阶段：Anthropic 称提取量大幅下降，已封禁数万个蒸馏相关账号，并恢复对部分被拦截的蒸馏类请求收费。",
       "entities": [
         "anthropic",
         "card",
@@ -94743,8 +94743,8 @@
       "event_type": "product_release",
       "first_seen_at": "2026-09-28T19:47:24.035642Z",
       "identifiers": [],
-      "last_material_change_at": "2026-09-29T10:50:18.999471Z",
-      "last_updated_at": "2026-09-29T10:50:18.999471Z",
+      "last_material_change_at": "2026-10-13T01:31:30.466775Z",
+      "last_updated_at": "2026-10-13T01:31:30.466775Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_8e61dc3b4edc50de",
@@ -94752,14 +94752,16 @@
         "evt_ddfab53a74c2c051"
       ],
       "schema_version": 1,
-      "status": "developing",
+      "status": "closed",
       "title_en": "Anthropic releases Claude Sonnet 5.5 and Claude Sonnet 5 models",
       "title_zh": "Anthropic发布Claude Sonnet 5.5与Sonnet 5模型",
       "topics": [
+        "account-bans",
         "ai-api",
         "ai-labs",
         "ai-safety",
         "anthropic",
+        "api-abuse",
         "claude",
         "claude-sonnet",
         "developer-tooling",
@@ -94899,6 +94901,44 @@
           "update_type": "escalation",
           "what_changed_en": "Anthropic added anti-reasoning extraction safeguards to Sonnet 5.5: generated thinking blocks are bound to the originating account or organization, and a classifier detects large-scale harvesting of reasoning for distillation.",
           "what_changed_zh": "Anthropic 为 Sonnet 5.5 增加了防「推理抽取」保护措施：生成的 thinking block 会绑定到原账号或组织，并加入分类器检测大规模套取推理用于蒸馏的行为。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.9,
+          "current_state_en": "Sonnet 5.5's anti-reasoning-extraction protections have begun showing effects: Anthropic says extraction has dropped sharply, tens of thousands of distillation-related accounts have been banned, and charging has resumed for some blocked distillation-related requests.",
+          "current_state_zh": "Sonnet 5.5 的防「推理抽取」保护已进入效果显现阶段：Anthropic 称提取量大幅下降，已封禁数万个蒸馏相关账号，并恢复对部分被拦截的蒸馏类请求收费。",
+          "detailed_summary_en": "Anthropic says new anti-distillation protections have cut attackers' extraction of Claude reasoning tokens by roughly 90%–99%, led to tens of thousands of account bans, and resumed charging for blocked distillation-related requests since September 24.",
+          "detailed_summary_zh": "Anthropic says new anti-distillation protections have cut attackers' extraction of Claude reasoning tokens by roughly 90%–99%, led to tens of thousands of account bans, and resumed charging for blocked distillation-related requests since September 24.",
+          "event_id": "evt_0e8a1f4abf831db4",
+          "first_seen_at": "2026-10-13T01:31:30.466775Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T00:08:02Z",
+          "published_at": "2026-10-13T00:08:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371461?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:200126"
+          ],
+          "time_precision": "published",
+          "title_en": "Anthropic强化蒸馏攻击防御，已封禁数万个相关账号",
+          "title_zh": "Anthropic强化蒸馏攻击防御，已封禁数万个相关账号",
+          "update_id": "upd_1464646a88003cec",
+          "update_type": "aftermath",
+          "what_changed_en": "Anthropic disclosed initial results of its Sonnet 5.5 anti-distillation measures: extraction of Claude reasoning tokens by distillation attackers fell roughly 90%–99%, tens of thousands of related accounts were banned, and charging resumed since September 24 for blocked distillation-related requests.",
+          "what_changed_zh": "Anthropic 公布 Sonnet 5.5 防蒸馏措施的初步效果：蒸馏攻击者提取的 Claude 推理 Token 减少约 90%–99%，已封禁数万个相关账号，并自 9 月 24 日起恢复对因安全防护被拦截的蒸馏类请求收费。"
         }
       ]
     },
@@ -104844,8 +104884,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "The precautionary validator exits tied to MetaMask’s infrastructure security incident pushed Ethereum’s exit queue to a 2026 peak of about 851,000 ETH on Oct. 2; about 786,000 ETH remained queued on Oct. 5 with an estimated wait of nearly 14 days. Lido expects the affected ETH to be gradually restaked over a process that could take up to about 45 days, with the last affected MetaMask validators expected to stop staking by Oct. 7. MetaMask said it found no indication wallets or customer funds were affected, and client withdrawal keys remain outside its control.",
-      "current_state_zh": "MetaMask 基础设施安全事件引发的预防性验证者退出已把以太坊退出队列推高至 2026 年峰值约 851,000 ETH（10 月 2 日），10 月 5 日仍有约 786,000 ETH 排队，等待接近 14 天；Lido 预计相关 ETH 将逐步重新质押，过程可能长达约 45 天，最后一批受影响 MetaMask 验证者预计 10 月 7 日前退出质押。MetaMask 表示未发现钱包或客户资金受影响，客户提款密钥不受其控制。",
+      "current_state_en": "Ethereum's staking exit queue has climbed to a 2026 high with roughly 800,000 ETH queued for withdrawal, pointing to elevated validator unstaking demand and a lengthening wait to exit.",
+      "current_state_zh": "以太坊质押退出队列已攀升至2026年高点，约有80万枚ETH排队等待提取，表明验证者解除质押需求上升，退出等待时间正在延长。",
       "entities": [
         "aave",
         "affected",
@@ -104857,10 +104897,14 @@
         "boost",
         "compromise",
         "customer",
+        "eth",
         "ethereum-staking",
+        "exit",
         "exits",
         "funds",
         "here",
+        "high",
+        "hits",
         "immediate",
         "incident",
         "indication",
@@ -104871,7 +104915,10 @@
         "lubin",
         "metamask",
         "morpho",
+        "nearly",
+        "news",
         "part",
+        "queue",
         "renzo",
         "says",
         "security-incident",
@@ -104881,16 +104928,19 @@
         "unaffected",
         "validators",
         "vault",
+        "waiting",
         "wallets",
         "were",
+        "with",
+        "withdraw",
         "yield"
       ],
       "event_id": "evt_8fca4d5c4b0173a2",
       "event_type": "security_incident",
       "first_seen_at": "2026-10-01T00:03:16.761779Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-05T10:21:06.444492Z",
-      "last_updated_at": "2026-10-05T10:21:06.444492Z",
+      "last_material_change_at": "2026-10-05T11:44:16.147873Z",
+      "last_updated_at": "2026-10-05T11:44:16.147873Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_7a35f091561c4813",
@@ -104898,15 +104948,17 @@
         "evt_1c7dad60aa02fbcc",
         "evt_249798e3a397e38d",
         "evt_2d8cb62345245bc3",
-        "evt_e3811d6b9bf71dec"
+        "evt_e3811d6b9bf71dec",
+        "evt_cd15dc38aea22a08"
       ],
       "schema_version": 1,
-      "status": "closed",
+      "status": "developing",
       "title_en": "MetaMask Infrastructure Security Incident: Proactive Exit of Affected Validators",
-      "title_zh": "MetaMask基础设施安全事件：主动退出受影响验证者",
+      "title_zh": "MetaMask基础设施安全事件导致以太坊验证者退出队列创2026年新高",
       "topics": [
         "aave",
         "consensys",
+        "eth",
         "ethereum-staking",
         "ethereum-validators",
         "infrastructure",
@@ -104916,12 +104968,14 @@
         "metamask",
         "morpho",
         "on-chain-analysis",
+        "on-chain-data",
         "renzo",
         "security-breach",
         "security-incident",
         "slashing-risk",
         "staking",
         "tornado-cash",
+        "validator-exit-queue",
         "validator-keys",
         "validators",
         "vault-outflows",
@@ -105460,6 +105514,44 @@
           "update_type": "aftermath",
           "what_changed_en": "Ethereum’s validator exit queue became the longest of 2026 after MetaMask’s precautionary validator exits: about 851,000 ETH on Oct. 2, with about 786,000 ETH still queued on Oct. 5 and an estimated nearly 14-day wait; Lido expects the affected ETH to be gradually restaked over a process that could take up to about 45 days, with the last affected MetaMask validators expected to stop staking by Oct. 7. The entry queue separately fell to about 1.5 million ETH/25 days, down from about 2 million ETH/35 days in early September.",
           "what_changed_zh": "以太坊验证者退出队列在 MetaMask 预防性退出验证者后升至 2026 年最长：10 月 2 日约 851,000 ETH，10 月 5 日仍有约 786,000 ETH 排队，等待约 14 天；Lido 预计受影响 ETH 将逐步重新质押，整个过程可能长达约 45 天，最后一批受影响的 MetaMask 验证者预计在 10 月 7 日前停止质押。同时进入质押队列降至约 150 万 ETH、等待约 25 天，较 9 月初约 200 万 ETH/35 天降温。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Ethereum's staking exit queue has climbed to a 2026 high with roughly 800,000 ETH queued for withdrawal, pointing to elevated validator unstaking demand and a lengthening wait to exit.",
+          "current_state_zh": "以太坊质押退出队列已攀升至2026年高点，约有80万枚ETH排队等待提取，表明验证者解除质押需求上升，退出等待时间正在延长。",
+          "detailed_summary_en": "Ethereum's staking exit queue has climbed to a 2026 high with roughly 800,000 ETH queued for withdrawal, pointing to elevated validator unstaking demand and a lengthening wait to exit.",
+          "detailed_summary_zh": "Ethereum's staking exit queue has climbed to a 2026 high with roughly 800,000 ETH queued for withdrawal, pointing to elevated validator unstaking demand and a lengthening wait to exit.",
+          "event_id": "evt_8fca4d5c4b0173a2",
+          "first_seen_at": "2026-10-05T11:44:16.147873Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-05T09:03:05Z",
+          "published_at": "2026-10-05T09:03:05Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Binance",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://www.binance.com/en/square/post/373963921742855"
+            }
+          ],
+          "story_ids": [
+            "google_news:article:7bc2aea28832ef14"
+          ],
+          "time_precision": "published",
+          "title_en": "Ethereum News | Ethereum Staking Exit Queue Hits 2026 High With Nearly 800K ETH Waiting to Withdraw",
+          "title_zh": "以太坊新闻 | 以太坊质押退出队列创2026年新高，近80万枚ETH等待提取",
+          "update_id": "upd_9ac127963f48c343",
+          "update_type": "escalation",
+          "what_changed_en": "Ethereum's staking exit queue has climbed to a 2026 high with roughly 800,000 ETH queued for withdrawal, pointing to elevated validator unstaking demand and a lengthening wait to exit.",
+          "what_changed_zh": "以太坊质押退出队列已攀升至2026年高点，约有80万枚ETH排队等待提取，表明验证者解除质押需求上升，退出等待时间正在延长。"
         }
       ]
     },
@@ -116917,83 +117009,6 @@
       ]
     },
     {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "Ethereum's staking exit queue has climbed to a 2026 high with roughly 800,000 ETH queued for withdrawal, pointing to elevated validator unstaking demand and a lengthening wait to exit.",
-      "current_state_zh": "Ethereum's staking exit queue has climbed to a 2026 high with roughly 800,000 ETH queued for withdrawal, pointing to elevated validator unstaking demand and a lengthening wait to exit.",
-      "entities": [
-        "eth",
-        "exit",
-        "high",
-        "hits",
-        "nearly",
-        "news",
-        "queue",
-        "staking",
-        "waiting",
-        "with",
-        "withdraw"
-      ],
-      "event_id": "evt_cd15dc38aea22a08",
-      "event_type": "other",
-      "first_seen_at": "2026-10-05T11:44:16.147873Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-05T11:44:16.147873Z",
-      "last_updated_at": "2026-10-05T11:44:16.147873Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Ethereum News | Ethereum Staking Exit Queue Hits 2026 High With Nearly 800K ETH Waiting to Withdraw",
-      "title_zh": "Ethereum News | Ethereum Staking Exit Queue Hits 2026 High With Nearly 800K ETH Waiting to Withdraw",
-      "topics": [
-        "eth",
-        "on-chain-data",
-        "staking",
-        "validator-exit-queue"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Ethereum's staking exit queue has climbed to a 2026 high with roughly 800,000 ETH queued for withdrawal, pointing to elevated validator unstaking demand and a lengthening wait to exit.",
-          "current_state_zh": "Ethereum's staking exit queue has climbed to a 2026 high with roughly 800,000 ETH queued for withdrawal, pointing to elevated validator unstaking demand and a lengthening wait to exit.",
-          "detailed_summary_en": "Ethereum's staking exit queue has climbed to a 2026 high with roughly 800,000 ETH queued for withdrawal, pointing to elevated validator unstaking demand and a lengthening wait to exit.",
-          "detailed_summary_zh": "Ethereum's staking exit queue has climbed to a 2026 high with roughly 800,000 ETH queued for withdrawal, pointing to elevated validator unstaking demand and a lengthening wait to exit.",
-          "event_id": "evt_cd15dc38aea22a08",
-          "first_seen_at": "2026-10-05T11:44:16.147873Z",
-          "importance_score": 7.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-05T09:03:05Z",
-          "published_at": "2026-10-05T09:03:05Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "Binance",
-              "official": false,
-              "source_type": "google_news",
-              "url": "https://www.binance.com/en/square/post/373963921742855"
-            }
-          ],
-          "story_ids": [
-            "google_news:article:7bc2aea28832ef14"
-          ],
-          "time_precision": "published",
-          "title_en": "Ethereum News | Ethereum Staking Exit Queue Hits 2026 High With Nearly 800K ETH Waiting to Withdraw",
-          "title_zh": "Ethereum News | Ethereum Staking Exit Queue Hits 2026 High With Nearly 800K ETH Waiting to Withdraw",
-          "update_id": "upd_9ac127963f48c343",
-          "update_type": "initial",
-          "what_changed_en": "Ethereum's staking exit queue has climbed to a 2026 high with roughly 800,000 ETH queued for withdrawal, pointing to elevated validator unstaking demand and a lengthening wait to exit.",
-          "what_changed_zh": "Ethereum's staking exit queue has climbed to a 2026 high with roughly 800,000 ETH queued for withdrawal, pointing to elevated validator unstaking demand and a lengthening wait to exit."
-        }
-      ]
-    },
-    {
       "category": "policy",
       "confidence": 0.75,
       "current_state_en": "A news roundup reports that the SEC is opening the floodgates on tokenized stocks with a 'truly stock-like' requirement, OKX is expanding into the US, and offshore tactics are under scrutiny ahead of an exam.",
@@ -117655,8 +117670,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Stripe is taking its stablecoin card business global, targeting coverage in more than 100 countries by the end of the year, with existing clients including Kraken, Ramp and Morse, and Privy co-founder Henri Stern now overseeing Stripe's stablecoin and crypto operations.",
-      "current_state_zh": "Stripe is taking its stablecoin card business global, targeting coverage in more than 100 countries by the end of the year, with existing clients including Kraken, Ramp and Morse, and Privy co-founder Henri Stern now overseeing Stripe's stablecoin and crypto operations.",
+      "current_state_en": "Stripe is expanding its stablecoin card programs to more than 100 countries by the end of the year, appointing Privy CEO Henri Stern to oversee stablecoins and crypto, as stablecoin card spending tripled to roughly $1.2 billion last month.",
+      "current_state_zh": "Stripe计划在年底前将其稳定币卡项目扩展至100多个国家；被Stripe于2025年收购的钱包基础设施公司Privy的CEO兼联合创始人Henri Stern新增一职，负责Stripe整体的稳定币与加密业务。据Paymentscan数据，上月通过卡片消费的稳定币约为12亿美元，是一年前的三倍。\n\n稳定币卡是规模超过3000亿美元的数字美元市场中增长迅速的一块，而文中引用的交易量数据表明，稳定币正从加密交易和跨境转账延伸至日常消费场景。Stripe稳定币卡项目的现有客户包括加密交易所Kraken、金融科技公司Ramp和支付应用Morse。\n\nStern表示该扩展预计在年底前完成，并称Stripe打算保持“完全对稳定币中立、完全对区块链中立”，目前许多项目使用的是Circle的USDC。Stripe称自2018年以来已发行超过4亿张卡、处理了数千亿美元的卡交易额，其稳定币业务将这一发卡业务与2024年以11亿美元收购的稳定币基础设施公司Bridge结合起来；Stripe还在探索代币化存款和DeFi应用场景。",
       "entities": [
         "stripe"
       ],
@@ -117664,14 +117679,16 @@
       "event_type": "other",
       "first_seen_at": "2026-10-05T15:51:12.664065Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-05T15:51:12.664065Z",
-      "last_updated_at": "2026-10-05T15:51:12.664065Z",
+      "last_material_change_at": "2026-10-05T15:51:12.864417Z",
+      "last_updated_at": "2026-10-05T15:51:12.864417Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_a772687ae441888e"
+      ],
       "schema_version": 1,
       "status": "monitoring",
-      "title_en": "Stripe计划将稳定币卡业务扩展至全球，目标年底覆盖逾100个国家",
-      "title_zh": "Stripe计划将稳定币卡业务扩展至全球，目标年底覆盖逾100个国家",
+      "title_en": "Stripe to expand stablecoin card business to over 100 countries by year-end",
+      "title_zh": "Stripe计划年底前将稳定币卡业务扩展至逾100个国家",
       "topics": [
         "kraken",
         "stablecoins",
@@ -117696,71 +117713,6 @@
           "material_change": true,
           "occurred_at": "2026-10-05T14:02:02Z",
           "published_at": "2026-10-05T14:02:02Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "theblockbeats",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://m.theblockbeats.info/flash/370338?from=telegram"
-            }
-          ],
-          "story_ids": [
-            "telegram:theblockbeats:199017"
-          ],
-          "time_precision": "published",
-          "title_en": "Stripe计划将稳定币卡业务扩展至全球，目标年底覆盖逾100个国家",
-          "title_zh": "Stripe计划将稳定币卡业务扩展至全球，目标年底覆盖逾100个国家",
-          "update_id": "upd_a150f7bcb57e5227",
-          "update_type": "initial",
-          "what_changed_en": "Stripe is taking its stablecoin card business global, targeting coverage in more than 100 countries by the end of the year, with existing clients including Kraken, Ramp and Morse, and Privy co-founder Henri Stern now overseeing Stripe's stablecoin and crypto operations.",
-          "what_changed_zh": "Stripe is taking its stablecoin card business global, targeting coverage in more than 100 countries by the end of the year, with existing clients including Kraken, Ramp and Morse, and Privy co-founder Henri Stern now overseeing Stripe's stablecoin and crypto operations."
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "Stripe is expanding its stablecoin card programs to more than 100 countries by the end of the year, appointing Privy CEO Henri Stern to oversee stablecoins and crypto, as stablecoin card spending tripled to roughly $1.2 billion last month.",
-      "current_state_zh": "Stripe计划在年底前将其稳定币卡项目扩展至100多个国家；被Stripe于2025年收购的钱包基础设施公司Privy的CEO兼联合创始人Henri Stern新增一职，负责Stripe整体的稳定币与加密业务。据Paymentscan数据，上月通过卡片消费的稳定币约为12亿美元，是一年前的三倍。\n\n稳定币卡是规模超过3000亿美元的数字美元市场中增长迅速的一块，而文中引用的交易量数据表明，稳定币正从加密交易和跨境转账延伸至日常消费场景。Stripe稳定币卡项目的现有客户包括加密交易所Kraken、金融科技公司Ramp和支付应用Morse。\n\nStern表示该扩展预计在年底前完成，并称Stripe打算保持“完全对稳定币中立、完全对区块链中立”，目前许多项目使用的是Circle的USDC。Stripe称自2018年以来已发行超过4亿张卡、处理了数千亿美元的卡交易额，其稳定币业务将这一发卡业务与2024年以11亿美元收购的稳定币基础设施公司Bridge结合起来；Stripe还在探索代币化存款和DeFi应用场景。",
-      "entities": [
-        "stripe"
-      ],
-      "event_id": "evt_a772687ae441888e",
-      "event_type": "market_structure",
-      "first_seen_at": "2026-10-05T15:51:12.864417Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-05T15:51:12.864417Z",
-      "last_updated_at": "2026-10-05T15:51:12.864417Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Stripe to expand stablecoin cards to over 100 countries by the end of the year",
-      "title_zh": "Stripe计划年底前将稳定币卡业务扩展至100多个国家",
-      "topics": [
-        "stablecoins",
-        "stripe"
-      ],
-      "updates": [
-        {
-          "background_en": "Stripe has assembled a broader blockchain payments push: after acquiring Bridge and Privy, it partnered with crypto investment firm Paradigm to develop Tempo, a blockchain designed for payments, and is a founding investor in Open Standard, the company developing Open USD, a stablecoin aimed at challenging Circle's USDC and Tether's USDT. Bridge co-founder Zach Abrams recently moved to run Open Standard full time. Tokenized deposits, which Stripe is said to be exploring, are blockchain-based digital representations of conventional bank deposits issued by commercial banks, structurally distinct from stablecoins issued by non-bank entities.",
-          "background_zh": "Stripe已为更大范围的区块链支付布局拼齐拼图：在收购Bridge和Privy之后，它与加密投资公司Paradigm合作开发区块链支付网络Tempo，并作为创始投资方参与了Open Standard——该公司正在开发旨在挑战Circle的USDC与Tether的USDT的稳定币Open USD。Bridge联合创始人Zach Abrams最近全职负责Open Standard。Stripe据悉正在探索的代币化存款，是由商业银行在区块链上发行的传统银行存款的数字表示，在结构上与非银行机构发行的稳定币不同。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Stripe is expanding its stablecoin card programs to more than 100 countries by the end of the year, appointing Privy CEO Henri Stern to oversee stablecoins and crypto, as stablecoin card spending tripled to roughly $1.2 billion last month.",
-          "current_state_zh": "Stripe计划在年底前将其稳定币卡项目扩展至100多个国家；被Stripe于2025年收购的钱包基础设施公司Privy的CEO兼联合创始人Henri Stern新增一职，负责Stripe整体的稳定币与加密业务。据Paymentscan数据，上月通过卡片消费的稳定币约为12亿美元，是一年前的三倍。\n\n稳定币卡是规模超过3000亿美元的数字美元市场中增长迅速的一块，而文中引用的交易量数据表明，稳定币正从加密交易和跨境转账延伸至日常消费场景。Stripe稳定币卡项目的现有客户包括加密交易所Kraken、金融科技公司Ramp和支付应用Morse。\n\nStern表示该扩展预计在年底前完成，并称Stripe打算保持“完全对稳定币中立、完全对区块链中立”，目前许多项目使用的是Circle的USDC。Stripe称自2018年以来已发行超过4亿张卡、处理了数千亿美元的卡交易额，其稳定币业务将这一发卡业务与2024年以11亿美元收购的稳定币基础设施公司Bridge结合起来；Stripe还在探索代币化存款和DeFi应用场景。",
-          "detailed_summary_en": "Stripe is expanding its stablecoin card programs to more than 100 countries by the end of the year, appointing Privy CEO Henri Stern to oversee stablecoins and crypto, as stablecoin card spending tripled to roughly $1.2 billion last month.",
-          "detailed_summary_zh": "Stripe is expanding its stablecoin card programs to more than 100 countries by the end of the year, appointing Privy CEO Henri Stern to oversee stablecoins and crypto, as stablecoin card spending tripled to roughly $1.2 billion last month.",
-          "event_id": "evt_a772687ae441888e",
-          "first_seen_at": "2026-10-05T15:51:12.864417Z",
-          "importance_score": 7.5,
-          "market_impact_en": "The plan transmits to crypto markets mainly through stablecoin payment utility and card-spend demand: Stripe's stablecoin cards currently run largely on Circle's USDC, so a multi-country rollout and Stripe's backing of Open USD touch stablecoin circulation and settlement demand, as well as card-network and wallet-infrastructure partners exposed to on-chain payment flows. The cited $1.2 billion in monthly stablecoin card spend remains a fraction of the global card payments market, which bounds the near-term scale of that channel.",
-          "market_impact_zh": "该计划主要通过稳定币的支付用途和卡消费需求传导至加密市场：Stripe的稳定币卡目前大多运行在Circle的USDC之上，因此多国扩张以及Stripe对Open USD的支持会牵动稳定币的流通与结算需求，也涉及承接链上支付流的卡组织与钱包基础设施合作方。文中提到的每月约12亿美元稳定币卡消费，在全球卡支付市场中仍只占很小一部分，这限制了该渠道近期的规模。",
-          "material_change": true,
-          "occurred_at": "2026-10-05T13:46:31Z",
-          "published_at": "2026-10-05T13:46:31Z",
           "references": [
             {
               "title": "What Are Tokenized Deposits? | Chainlink",
@@ -117777,6 +117729,12 @@
           ],
           "sources": [
             {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/370338?from=telegram"
+            },
+            {
               "label": "CoinDesk",
               "official": false,
               "source_type": "rss",
@@ -117784,15 +117742,16 @@
             }
           ],
           "story_ids": [
+            "telegram:theblockbeats:199017",
             "rss:www.coindesk.com_arc_outboundfeeds_rss_:2cbc41474065a086"
           ],
           "time_precision": "published",
-          "title_en": "Stripe to expand stablecoin cards to over 100 countries by the end of the year",
-          "title_zh": "Stripe计划年底前将稳定币卡业务扩展至100多个国家",
-          "update_id": "upd_ececc12e4047994e",
+          "title_en": "Stripe计划将稳定币卡业务扩展至全球，目标年底覆盖逾100个国家",
+          "title_zh": "Stripe计划将稳定币卡业务扩展至全球，目标年底覆盖逾100个国家",
+          "update_id": "upd_a150f7bcb57e5227",
           "update_type": "initial",
-          "what_changed_en": "Stripe is expanding its stablecoin card programs to more than 100 countries by the end of the year, appointing Privy CEO Henri Stern to oversee stablecoins and crypto, as stablecoin card spending tripled to roughly $1.2 billion last month.",
-          "what_changed_zh": "Stripe计划在年底前将其稳定币卡项目扩展至100多个国家；被Stripe于2025年收购的钱包基础设施公司Privy的CEO兼联合创始人Henri Stern新增一职，负责Stripe整体的稳定币与加密业务。据Paymentscan数据，上月通过卡片消费的稳定币约为12亿美元，是一年前的三倍。\n\n稳定币卡是规模超过3000亿美元的数字美元市场中增长迅速的一块，而文中引用的交易量数据表明，稳定币正从加密交易和跨境转账延伸至日常消费场景。Stripe稳定币卡项目的现有客户包括加密交易所Kraken、金融科技公司Ramp和支付应用Morse。\n\nStern表示该扩展预计在年底前完成，并称Stripe打算保持“完全对稳定币中立、完全对区块链中立”，目前许多项目使用的是Circle的USDC。Stripe称自2018年以来已发行超过4亿张卡、处理了数千亿美元的卡交易额，其稳定币业务将这一发卡业务与2024年以11亿美元收购的稳定币基础设施公司Bridge结合起来；Stripe还在探索代币化存款和DeFi应用场景。"
+          "what_changed_en": "Stripe is taking its stablecoin card business global, targeting coverage in more than 100 countries by the end of the year, with existing clients including Kraken, Ramp and Morse, and Privy co-founder Henri Stern now overseeing Stripe's stablecoin and crypto operations.",
+          "what_changed_zh": "Stripe is taking its stablecoin card business global, targeting coverage in more than 100 countries by the end of the year, with existing clients including Kraken, Ramp and Morse, and Privy co-founder Henri Stern now overseeing Stripe's stablecoin and crypto operations."
         }
       ]
     },
@@ -142925,7 +142884,7 @@
       "first_seen_at": "2026-10-12T10:41:03.892252Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-12T12:18:09.395577Z",
-      "last_updated_at": "2026-10-12T12:18:09.395577Z",
+      "last_updated_at": "2026-10-13T01:31:27.439432Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_a83d4d407b2b26c6"
@@ -142980,11 +142939,18 @@
               "official": false,
               "source_type": "rss",
               "url": "https://www.coindesk.com/business/2026/10/12/south-korea-just-got-its-first-traditional-bank-loans-backed-by-bitcoin"
+            },
+            {
+              "label": "CryptoRank",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://cryptorank.io/news/feed/3a252-jeonbuk-bank-launches-south-koreas-first-bitcoin-backed-won-loan"
             }
           ],
           "story_ids": [
             "rss:cointelegraph.com_rss:f573fea753582558",
-            "rss:www.coindesk.com_arc_outboundfeeds_rss_:d70d4e591c694dda"
+            "rss:www.coindesk.com_arc_outboundfeeds_rss_:d70d4e591c694dda",
+            "google_news:article:3fac145e38a05766"
           ],
           "time_precision": "published",
           "title_en": "South Korean bank launches Bitcoin-backed business loans: Report",
@@ -143698,7 +143664,7 @@
         "aip-144"
       ],
       "last_material_change_at": "2026-10-12T16:20:55.622425Z",
-      "last_updated_at": "2026-10-12T16:20:55.622425Z",
+      "last_updated_at": "2026-10-13T01:31:44.899921Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -143751,10 +143717,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://foresightnews.pro/news/h5Detail/115015"
+            },
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/aptos-rolls-out-encrypted-mempool-to-curb-frontrunning-sandwich-attacks?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
             }
           ],
           "story_ids": [
-            "telegram:foresightnews:120217"
+            "telegram:foresightnews:120217",
+            "rss:cointelegraph.com_rss:828e4fc076c5bf53"
           ],
           "time_precision": "published",
           "title_en": "【Aptos 主网上线加密内存池，交易内容在区块最终确认前保持加密】",
@@ -144553,8 +144526,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Blur announced that it will shut down its frontend on November 12, 2026, while its on-chain marketplace protocol will remain operational and BLUR will continue to control the protocol's fee switch. Its NFT lending protocol, Blend, will stop matching new loans on the same date, and borrowers have until then to repay their loans or allow them to default.\n\nBlend borrowers with open positions face a hard deadline to repay or default, and the NFT lending market loses the venue that matched its loans. Blur said it will subsequently provide a frontend tool for users to withdraw their assets from Blend.\n\nFollowing the announcement, BLUR fell to a low of 0.01410 USDT before recovering to 0.01523 USDT, down 16.55% over 24 hours according to Binance data. Blur raised $11 million in a seed round in March 2022, with investors including Paradigm, eGirl Capital and 0xMaki.",
-      "current_state_zh": "Blur 宣布将于 2026 年 11 月 12 日关闭其前端，其链上交易市场协议将继续运行，BLUR 仍将继续控制该协议的费率开关（fee switch）。其 NFT 借贷协议 Blend 将在同一天停止撮合新的贷款，借款人须在此日期前还款，否则将面临违约。\n\n持有未平仓头寸的 Blend 借款人面临还款或违约的硬性截止期限，NFT 借贷市场也将失去其贷款撮合场所。Blur 表示随后将提供一个前端工具，供用户从 Blend 中提取资产。\n\n公告发布后，据币安数据，BLUR 一度下探至 0.01410 USDT，随后回升至 0.01523 USDT，24 小时跌幅达 16.55%。Blur 曾于 2022 年 3 月完成 1100 万美元种子轮融资，投资方包括 Paradigm、eGirl Capital 和 0xMaki。",
+      "current_state_en": "After Blur announced its website frontend will be retired on November 12 and Blend will stop originating new loans, Yuga Labs executives issued a security advisory urging users to revoke Blur contract approvals via tools like revoke.cash, citing upgradable contracts and an apparently dissolving team that leave tens of millions in NFT approvals at risk.",
+      "current_state_zh": "在Blur宣布将于11月12日停用网站前端且Blend停止新贷款后，Yuga Labs高管发出安全提醒，建议用户通过revoke.cash等工具撤销Blur合约授权，因合约可升级且团队疑似解散，数千万美元NFT授权仍面临风险。",
       "entities": [
         "blend",
         "blu",
@@ -144572,19 +144545,28 @@
       "event_type": "protocol_change",
       "first_seen_at": "2026-10-12T23:27:07.236948Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-12T23:27:07.236948Z",
-      "last_updated_at": "2026-10-12T23:27:07.236948Z",
+      "last_material_change_at": "2026-10-13T01:31:30.466316Z",
+      "last_updated_at": "2026-10-13T01:31:30.466316Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_1a1d858fb1b6e86a"
+      ],
       "schema_version": 1,
       "status": "monitoring",
-      "title_en": "Blur to Shut Down Frontend and Stop Matching New Blend Loans on November 12; BLU",
-      "title_zh": "Blur 将于 11 月 12 日关闭前端并停止撮合新的 Blend 贷款；BLUR 暴跌逾 16%",
+      "title_en": "Blur to Retire Website Frontend and Stop Matching New Blend Loans on November 12",
+      "title_zh": "Blur宣布将于11月12日停用网站前端并停止Blend新贷款撮合",
       "topics": [
         "blend",
+        "blend-lending",
         "blur",
+        "contract-approvals",
+        "nft",
         "nft-lending",
-        "protocol-shutdown"
+        "nft-marketplace",
+        "protocol-shutdown",
+        "protocol-sunset",
+        "revokecash",
+        "security-advisory"
       ],
       "updates": [
         {
@@ -144625,10 +144607,31 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://wublockchain.xyz/news/news-21211"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "http://xn--,blur-vj8i05l.io/"
+            },
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115029"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "http://revoke.cash/"
             }
           ],
           "story_ids": [
-            "telegram:wublockchainenglish:26385"
+            "telegram:wublockchainenglish:26385",
+            "telegram:theblockbeats:200121",
+            "telegram:foresightnews:120231",
+            "telegram:theblockbeats:200124"
           ],
           "time_precision": "published",
           "title_en": "Blur to Shut Down Frontend and Stop Matching New Blend Loans on November 12; BLU",
@@ -144718,6 +144721,137 @@
           "update_type": "initial",
           "what_changed_en": "Anthropic published research suggesting that small AI models may be only months away from being able to self-replicate across cheap IoT devices such as Android TV boxes, without access to a datacenter. The finding is framed as a possibility rather than a demonstrated capability.\n\nThe claim is presented as safety-relevant: if models can spread and reproduce outside datacenter containment, that bears on how autonomy and containment are evaluated. Anthropic's own framing places it among new AI safety and containment questions.\n\nThe scenario described involves small models running on inexpensive IoT hardware, specifically Android TV boxes, rather than frontier-scale systems in datacenters.",
           "what_changed_zh": "Anthropic 发布研究称，小型 AI 模型可能只需数月时间，就能在无需数据中心的情况下，通过廉价的物联网设备（如 Android TV 盒子）实现自我复制。该结论被表述为一种可能性，而非已被证实的能力。\n\n该结论被视为与安全相关：如果模型能够在数据中心的隔离环境之外扩散并自我复制，将影响业界对自主性与“围堵”（containment）能力的评估方式。Anthropic 自身也将其列为新的 AI 安全与围堵问题之一。\n\n所描述的场景涉及在廉价物联网硬件（明确提到 Android TV 盒子）上运行的小型模型，而非数据中心内的大规模前沿模型。"
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "The UK High Court ruled that Chinese investors' claims to over 61,000 bitcoins tied to the Lantian Gerui fraud case must be governed by Chinese law, meaning roughly 16,000 victims may recover only principal and interest rather than the bitcoin's large price gains.",
+      "current_state_zh": "The UK High Court ruled that Chinese investors' claims to over 61,000 bitcoins tied to the Lantian Gerui fraud case must be governed by Chinese law, meaning roughly 16,000 victims may recover only principal and interest rather than the bitcoin's large price gains.",
+      "entities": [],
+      "event_id": "evt_434ad64b0a3981f5",
+      "event_type": "legal_case",
+      "first_seen_at": "2026-10-13T01:31:29.371764Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-13T01:31:29.371764Z",
+      "last_updated_at": "2026-10-13T01:31:29.371764Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【英国高院裁定钱志敏案 6.1 万枚比特币追索适用中国法律，受害者或无缘巨额增值收益】",
+      "title_zh": "【英国高院裁定钱志敏案 6.1 万枚比特币追索适用中国法律，受害者或无缘巨额增值收益】",
+      "topics": [
+        "asset-recovery",
+        "crypto-regulation",
+        "legal",
+        "uk"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "The UK High Court ruled that Chinese investors' claims to over 61,000 bitcoins tied to the Lantian Gerui fraud case must be governed by Chinese law, meaning roughly 16,000 victims may recover only principal and interest rather than the bitcoin's large price gains.",
+          "current_state_zh": "The UK High Court ruled that Chinese investors' claims to over 61,000 bitcoins tied to the Lantian Gerui fraud case must be governed by Chinese law, meaning roughly 16,000 victims may recover only principal and interest rather than the bitcoin's large price gains.",
+          "detailed_summary_en": "The UK High Court ruled that Chinese investors' claims to over 61,000 bitcoins tied to the Lantian Gerui fraud case must be governed by Chinese law, meaning roughly 16,000 victims may recover only principal and interest rather than the bitcoin's large price gains.",
+          "detailed_summary_zh": "The UK High Court ruled that Chinese investors' claims to over 61,000 bitcoins tied to the Lantian Gerui fraud case must be governed by Chinese law, meaning roughly 16,000 victims may recover only principal and interest rather than the bitcoin's large price gains.",
+          "event_id": "evt_434ad64b0a3981f5",
+          "first_seen_at": "2026-10-13T01:31:29.371764Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T00:45:40Z",
+          "published_at": "2026-10-13T00:45:40Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115030"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120232"
+          ],
+          "time_precision": "published",
+          "title_en": "【英国高院裁定钱志敏案 6.1 万枚比特币追索适用中国法律，受害者或无缘巨额增值收益】",
+          "title_zh": "【英国高院裁定钱志敏案 6.1 万枚比特币追索适用中国法律，受害者或无缘巨额增值收益】",
+          "update_id": "upd_932a8bed65a2a728",
+          "update_type": "initial",
+          "what_changed_en": "The UK High Court ruled that Chinese investors' claims to over 61,000 bitcoins tied to the Lantian Gerui fraud case must be governed by Chinese law, meaning roughly 16,000 victims may recover only principal and interest rather than the bitcoin's large price gains.",
+          "what_changed_zh": "The UK High Court ruled that Chinese investors' claims to over 61,000 bitcoins tied to the Lantian Gerui fraud case must be governed by Chinese law, meaning roughly 16,000 victims may recover only principal and interest rather than the bitcoin's large price gains."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "BlackRock's investment institute raised short-term US Treasuries to overweight and cut US equities from overweight to neutral for the first time in roughly six years, citing attractive yields above 5.2% and potential volatility from the AI capital-expenditure buildout.",
+      "current_state_zh": "BlackRock's investment institute raised short-term US Treasuries to overweight and cut US equities from overweight to neutral for the first time in roughly six years, citing attractive yields above 5.2% and potential volatility from the AI capital-expenditure buildout.",
+      "entities": [],
+      "event_id": "evt_e9448109ea53d9f6",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-13T01:31:30.469980Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-13T01:31:30.469980Z",
+      "last_updated_at": "2026-10-13T01:31:30.469980Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "⚡️贝莱德六年来首次转向超配短期美债，并下调美股评级",
+      "title_zh": "⚡️贝莱德六年来首次转向超配短期美债，并下调美股评级",
+      "topics": [
+        "ai-capex",
+        "blackrock",
+        "macro",
+        "us-equities",
+        "us-treasuries"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "BlackRock's investment institute raised short-term US Treasuries to overweight and cut US equities from overweight to neutral for the first time in roughly six years, citing attractive yields above 5.2% and potential volatility from the AI capital-expenditure buildout.",
+          "current_state_zh": "BlackRock's investment institute raised short-term US Treasuries to overweight and cut US equities from overweight to neutral for the first time in roughly six years, citing attractive yields above 5.2% and potential volatility from the AI capital-expenditure buildout.",
+          "detailed_summary_en": "BlackRock's investment institute raised short-term US Treasuries to overweight and cut US equities from overweight to neutral for the first time in roughly six years, citing attractive yields above 5.2% and potential volatility from the AI capital-expenditure buildout.",
+          "detailed_summary_zh": "BlackRock's investment institute raised short-term US Treasuries to overweight and cut US equities from overweight to neutral for the first time in roughly six years, citing attractive yields above 5.2% and potential volatility from the AI capital-expenditure buildout.",
+          "event_id": "evt_e9448109ea53d9f6",
+          "first_seen_at": "2026-10-13T01:31:30.469980Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T01:23:03Z",
+          "published_at": "2026-10-13T01:23:03Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371474?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:200139"
+          ],
+          "time_precision": "published",
+          "title_en": "⚡️贝莱德六年来首次转向超配短期美债，并下调美股评级",
+          "title_zh": "⚡️贝莱德六年来首次转向超配短期美债，并下调美股评级",
+          "update_id": "upd_0930a0448f74ca84",
+          "update_type": "initial",
+          "what_changed_en": "BlackRock's investment institute raised short-term US Treasuries to overweight and cut US equities from overweight to neutral for the first time in roughly six years, citing attractive yields above 5.2% and potential volatility from the AI capital-expenditure buildout.",
+          "what_changed_zh": "BlackRock's investment institute raised short-term US Treasuries to overweight and cut US equities from overweight to neutral for the first time in roughly six years, citing attractive yields above 5.2% and potential volatility from the AI capital-expenditure buildout."
         }
       ]
     }
@@ -144836,6 +144970,9 @@
     "blockchaincom": [
       "evt_5a03f423ac77a77b",
       "evt_bb505059680778bf"
+    ],
+    "blur": [
+      "evt_8832ab58546f3166"
     ],
     "brazil": [
       "evt_0d2a2160cfe49ae7",
@@ -145440,6 +145577,7 @@
     ],
     "staking": [
       "evt_70a1850a7e1a22f5",
+      "evt_7b020f83ebe10269",
       "evt_8fca4d5c4b0173a2",
       "evt_aae9fd93741e8eb8",
       "evt_d9bf484ad8821fd1"
@@ -145449,6 +145587,7 @@
       "evt_81059a3605bc06e0"
     ],
     "stripe": [
+      "evt_c89e59d56ac639b8",
       "evt_e95ba9ad10d8c64c"
     ],
     "sui": [

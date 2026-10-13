@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_0e8a1f4abf831db4/",
   "json": "https://xiyu.news/api/events/evt_0e8a1f4abf831db4.json",
   "type": "product_release",
-  "status": "developing",
+  "status": "closed",
   "category": "technology",
   "title": {
     "zh": "Anthropic发布Claude Sonnet 5.5与Sonnet 5模型",
     "en": "Anthropic releases Claude Sonnet 5.5 and Claude Sonnet 5 models"
   },
   "current_state": {
-    "zh": "Sonnet 5.5 已发布，并成为首个配备防「推理抽取」绑定与分类器的 Sonnet 模型。",
-    "en": "Sonnet 5.5 has been released and is the first Sonnet model with anti-reasoning extraction account binding and a classifier."
+    "zh": "Sonnet 5.5 的防「推理抽取」保护已进入效果显现阶段：Anthropic 称提取量大幅下降，已封禁数万个蒸馏相关账号，并恢复对部分被拦截的蒸馏类请求收费。",
+    "en": "Sonnet 5.5's anti-reasoning-extraction protections have begun showing effects: Anthropic says extraction has dropped sharply, tens of thousands of distillation-related accounts have been banned, and charging has resumed for some blocked distillation-related requests."
   },
   "first_seen_at": "2026-09-28T19:47:24.035642+00:00",
-  "last_updated_at": "2026-09-29T10:50:18.999471+00:00",
-  "last_material_change_at": "2026-09-29T10:50:18.999471+00:00",
+  "last_updated_at": "2026-10-13T01:31:30.466775+00:00",
+  "last_material_change_at": "2026-10-13T01:31:30.466775+00:00",
   "confidence": 0.75,
-  "updates_count": 3,
-  "sources_count": 5,
+  "updates_count": 4,
+  "sources_count": 6,
   "entities": [
     "anthropic",
     "card",
@@ -32,10 +32,12 @@
   ],
   "identifiers": [],
   "topics": [
+    "account-bans",
     "ai-api",
     "ai-labs",
     "ai-safety",
     "anthropic",
+    "api-abuse",
     "claude",
     "claude-sonnet",
     "developer-tooling",
@@ -170,6 +172,44 @@
       "sources": [
         {
           "url": "https://m.theblockbeats.info/flash/369512?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_1464646a88003cec",
+      "event_id": "evt_0e8a1f4abf831db4",
+      "occurred_at": "2026-10-13T00:08:02Z",
+      "published_at": "2026-10-13T00:08:02Z",
+      "first_seen_at": "2026-10-13T01:31:30.466775Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "Anthropic强化蒸馏攻击防御，已封禁数万个相关账号",
+      "title_en": "Anthropic强化蒸馏攻击防御，已封禁数万个相关账号",
+      "what_changed_zh": "Anthropic 公布 Sonnet 5.5 防蒸馏措施的初步效果：蒸馏攻击者提取的 Claude 推理 Token 减少约 90%–99%，已封禁数万个相关账号，并自 9 月 24 日起恢复对因安全防护被拦截的蒸馏类请求收费。",
+      "what_changed_en": "Anthropic disclosed initial results of its Sonnet 5.5 anti-distillation measures: extraction of Claude reasoning tokens by distillation attackers fell roughly 90%–99%, tens of thousands of related accounts were banned, and charging resumed since September 24 for blocked distillation-related requests.",
+      "current_state_zh": "Sonnet 5.5 的防「推理抽取」保护已进入效果显现阶段：Anthropic 称提取量大幅下降，已封禁数万个蒸馏相关账号，并恢复对部分被拦截的蒸馏类请求收费。",
+      "current_state_en": "Sonnet 5.5's anti-reasoning-extraction protections have begun showing effects: Anthropic says extraction has dropped sharply, tens of thousands of distillation-related accounts have been banned, and charging has resumed for some blocked distillation-related requests.",
+      "detailed_summary_zh": "Anthropic says new anti-distillation protections have cut attackers' extraction of Claude reasoning tokens by roughly 90%–99%, led to tens of thousands of account bans, and resumed charging for blocked distillation-related requests since September 24.",
+      "detailed_summary_en": "Anthropic says new anti-distillation protections have cut attackers' extraction of Claude reasoning tokens by roughly 90%–99%, led to tens of thousands of account bans, and resumed charging for blocked distillation-related requests since September 24.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.9,
+      "story_ids": [
+        "telegram:theblockbeats:200126"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/371461?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
           "official": false

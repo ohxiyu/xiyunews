@@ -7,19 +7,19 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Blur 将于 11 月 12 日关闭前端并停止撮合新的 Blend 贷款；BLUR 暴跌逾 16%",
-    "en": "Blur to Shut Down Frontend and Stop Matching New Blend Loans on November 12; BLU"
+    "zh": "Blur宣布将于11月12日停用网站前端并停止Blend新贷款撮合",
+    "en": "Blur to Retire Website Frontend and Stop Matching New Blend Loans on November 12"
   },
   "current_state": {
-    "zh": "Blur 宣布将于 2026 年 11 月 12 日关闭其前端，其链上交易市场协议将继续运行，BLUR 仍将继续控制该协议的费率开关（fee switch）。其 NFT 借贷协议 Blend 将在同一天停止撮合新的贷款，借款人须在此日期前还款，否则将面临违约。\n\n持有未平仓头寸的 Blend 借款人面临还款或违约的硬性截止期限，NFT 借贷市场也将失去其贷款撮合场所。Blur 表示随后将提供一个前端工具，供用户从 Blend 中提取资产。\n\n公告发布后，据币安数据，BLUR 一度下探至 0.01410 USDT，随后回升至 0.01523 USDT，24 小时跌幅达 16.55%。Blur 曾于 2022 年 3 月完成 1100 万美元种子轮融资，投资方包括 Paradigm、eGirl Capital 和 0xMaki。",
-    "en": "Blur announced that it will shut down its frontend on November 12, 2026, while its on-chain marketplace protocol will remain operational and BLUR will continue to control the protocol's fee switch. Its NFT lending protocol, Blend, will stop matching new loans on the same date, and borrowers have until then to repay their loans or allow them to default.\n\nBlend borrowers with open positions face a hard deadline to repay or default, and the NFT lending market loses the venue that matched its loans. Blur said it will subsequently provide a frontend tool for users to withdraw their assets from Blend.\n\nFollowing the announcement, BLUR fell to a low of 0.01410 USDT before recovering to 0.01523 USDT, down 16.55% over 24 hours according to Binance data. Blur raised $11 million in a seed round in March 2022, with investors including Paradigm, eGirl Capital and 0xMaki."
+    "zh": "在Blur宣布将于11月12日停用网站前端且Blend停止新贷款后，Yuga Labs高管发出安全提醒，建议用户通过revoke.cash等工具撤销Blur合约授权，因合约可升级且团队疑似解散，数千万美元NFT授权仍面临风险。",
+    "en": "After Blur announced its website frontend will be retired on November 12 and Blend will stop originating new loans, Yuga Labs executives issued a security advisory urging users to revoke Blur contract approvals via tools like revoke.cash, citing upgradable contracts and an apparently dissolving team that leave tens of millions in NFT approvals at risk."
   },
   "first_seen_at": "2026-10-12T23:27:07.236948+00:00",
-  "last_updated_at": "2026-10-12T23:27:07.236948+00:00",
-  "last_material_change_at": "2026-10-12T23:27:07.236948+00:00",
+  "last_updated_at": "2026-10-13T01:31:30.466316+00:00",
+  "last_material_change_at": "2026-10-13T01:31:30.466316+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 4,
   "entities": [
     "blend",
     "blu",
@@ -36,9 +36,16 @@
   "identifiers": [],
   "topics": [
     "blend",
+    "blend-lending",
     "blur",
+    "contract-approvals",
+    "nft",
     "nft-lending",
-    "protocol-shutdown"
+    "nft-marketplace",
+    "protocol-shutdown",
+    "protocol-sunset",
+    "revokecash",
+    "security-advisory"
   ],
   "updates": [
     {
@@ -81,12 +88,33 @@
       ],
       "confidence": 0.75,
       "story_ids": [
-        "telegram:wublockchainenglish:26385"
+        "telegram:wublockchainenglish:26385",
+        "telegram:theblockbeats:200121",
+        "telegram:foresightnews:120231",
+        "telegram:theblockbeats:200124"
       ],
       "sources": [
         {
           "url": "https://wublockchain.xyz/news/news-21211",
           "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "http://xn--,blur-vj8i05l.io/",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/115029",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "http://revoke.cash/",
+          "label": "theblockbeats",
           "source_type": "telegram",
           "official": false
         }
