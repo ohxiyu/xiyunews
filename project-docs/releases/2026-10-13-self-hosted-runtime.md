@@ -2,6 +2,8 @@
 
 Issue: https://github.com/ohxiyu/xiyunews/issues/250。当前会话唯一编辑/整合负责人，agent/self-hosted-runtime，基于main36cc79258b196146fcf74e23137ff076db7c7515；当前UI PR249保持独立，随后需同步新main、回归与合并，不能丢弃。
 
+PR: https://github.com/ohxiyu/xiyunews/pull/251（Draft）。
+
 运营者要求网站每天运行并避免GitHub托管分钟限制。已在Safari实时核对Free/2000分钟全部用完、Actions实际费用0、预算0且达限停止；不存在已确认的14.27美元欠款，它是已抵扣用量。官方当前说明self-hosted执行免费，不升级预算、套餐或新购主机。选用现有东京Ubuntu24.04、2CPU/1613MiB、磁盘34GB可用、MemAvailable846MiB，实时MemoryCurrent304132096/NRestarts0。来源和成本不以这次运行位置迁移改变。
 
 ## 实现与权限
@@ -15,3 +17,5 @@ Verification: 仅完成严格SSH只读主机/容量/原进程检查及GitHub私�
 Rollback: 先获批准；只恢复runner变量或停新服务，原实时服务与状态不变，不自动回滚/删资源。
 
 本地完整Python1064passed/4skipped；串行Worker130passed，npm audit0、types/tsc/dry-run和治理/diff通过，脚本bash语法及Python编译通过。服务器只读确认所需Ubuntu包可用，目标路径不存在，原fomobtc仍active。本轮没有改前端/模板，不重复其视觉测试；下一步实际runner安装/注册和资源峰值不能由本地通过代替。
+
+已验证SHA256的actionlint1.7.12对全部工作流检查通过。GitHub托管CI38348135782仍在步骤前因账户额度失败，旧非生产Pages预览通过；未将其当实际runner验收。已向运营者请求新服务器常驻服务及仓库机器运行凭据注册/部署的确认（根AGENTS.md要求凭据/新增外部认证先批准），未收到答案，尚未安装或注册，不以任务代码准备或时间经过当授权。

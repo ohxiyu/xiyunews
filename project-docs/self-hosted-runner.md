@@ -20,12 +20,12 @@
 
 运维者核对 [SSH身份](../realtime/docs/releases/ssh-access-20261002.md) 和待部署 PR 的准确 SHA；不得因连接错误关闭严格指纹校验。安装脚本只准备新执行器，遇到已注册或其他用户占有的目录会停止；SHA256来自GitHub当前下载接口，依赖使用Ubuntu官方包，不在配置中放业务秘密。
 
-以下步骤在运营者确认部署/注册授权后，由唯一整合负责人执行。示例中的安装资料临时目录由mktemp产生并记录，不从不可信输入拼命令：
+以下步骤在运营者确认部署/注册授权后，由唯一整合负责人执行。专用暂存目录必须此前不存在，只存无秘密的已审核脚本；下载归档另用mktemp创建新目录。不从不可信输入拼命令：
 
 ```bash
 ssh -F /Users/minutesdr/.ssh/xiyunews_tokyo_config -o BatchMode=yes \
   -o StrictHostKeyChecking=yes xiyunews-tokyo \
-  'mkdir -p /home/admin/xiyunews-runner-install'
+  'test ! -e /home/admin/xiyunews-runner-install && mkdir /home/admin/xiyunews-runner-install'
 scp -F /Users/minutesdr/.ssh/xiyunews_tokyo_config ops/runner/provision.sh \
   ops/runner/xiyunews-runner.service ops/runner/register.py \
   xiyunews-tokyo:/home/admin/xiyunews-runner-install/
