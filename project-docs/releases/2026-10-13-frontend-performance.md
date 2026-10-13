@@ -12,7 +12,7 @@ Rollback: 已知Worker71758451，任何真正回退另行授权；新fingerprint
 
 | 改前桌面1440×1000 | 改后本地桌面1440×1000 |
 | --- | --- |
-| ![改前](../ui-proof/server-optimization-20261013/before-desktop.jpg) | ![改后](../ui-proof/server-optimization-20261013/after-local-desktop-dark.jpg) |
+| ![改前](../ui-proof/server-optimization-20261013/before-desktop.jpg) | ![改后](../ui-proof/server-optimization-20261013/after-local-desktop-top.jpg) |
 
 手机390×844：[暗色稿](../ui-proof/server-optimization-20261013/after-local-mobile-dark.jpg)。这些是本地视觉证据，不能冒充生产已部署或真机安装。
 
