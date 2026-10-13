@@ -1,63 +1,54 @@
 # 当前交接
 
-当前 Issue238：双话题已创建、绑定、上线；修正版自然 Cron 最新回读 bot_verified=true，两个任务等待 2026-10-13 出版。仅补记上线证据，未部署的额外诊断已撤下，最终无代码差异、不再部署、不改密钥。原频道、实时话题、服务、来源和 Cron 保持不变。只剩今日自然消息回执及客户端展示待验收，不补历史、不发测试。
+当前 Issue240：修复运营者报告的 www.xiyu.news 入口故障，代码已准备，尚待 CI/合并/部署。用户明确要求修复，授权仅覆盖 www 必要绑定/DNS 和同功能发布，不改主域、API、Access、Cron、密钥及实时服务。后续阅读层次 UI 使用独立串行 PR；不继续旧的消息验收任务。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "补记双话题上线及正确 Bot 自然 Cron 状态，保留自然消息验收待办",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/238",
-  "owner": "当前 Codex 会话，唯一编辑与发布整合负责人",
-  "branch": "agent/telegram-group-verification-record",
-  "last_verified_commit": "b7924ec6a0d9f520fafeb39d0d920a285ba7430c",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/239；应用 PR235、修正 PR237 已合并",
+  "goal": "修复 www 入口并保留路径查询统一 301 到主域",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/240",
+  "owner": "当前会话，唯一编辑与发布整合负责人",
+  "branch": "agent/www-entry-fix",
+  "last_verified_commit": "6a1b99b0f1c0d742e624d994d49853a999076c89",
+  "pr": "PR 待创建",
   "completed": [
-    "独立 worktree，保留原工作区未提交文件",
-    "基于出版数据的只读消息准备：固定日期、完整条目拆分、同一重点事件索引及原证据",
-    "专用初始化脚本已仅创建两个批准话题，服务器私有回执不含 Token",
-    "严格 SSH 主机核验与 Bot/群/权限回读通过，can_manage_topics=true",
-    "复用现有 Worker、KV 与独立命名 Durable Object；持久化回执、未知结果不自动重发、两个目的地故障隔离",
-    "同日 API/首页/不可变快照一致后才准备一次每日任务；初次概览及后续实质节点增量",
-    "私有 KV 绑定回读通过，启用日 2026-10-13；应用 PR235 CI 全通过并合并",
-    "统一 Worker 部署 38276156648 成功；线上 source/artifact/版本匹配，首页/API/追踪均 200，内部快照 404",
-    "PR237 修正不支持的请求模式，124 项 Worker 与真实 Request 语义检查通过，CI 全部适用检查通过且已合并",
-    "修正版部署 38277520439 成功，health 匹配 b7924ec6/7945b6a4/1775d384；公开页面 200、内部快照 404，原实时接口 200/推送开启/行情接收新鲜",
-    "自然 Cron 最新私有状态 enabled=true/date=2026-10-13/bot_verified=true；两个任务 not_prepared，与网站仍为 12 日一致，无需改凭据",
-    "未发布的额外诊断撤下，PR239 最终仅交接和发布文档，无代码或配置变更"
+    "独立 worktree，原工作区未提交文件保留",
+    "www 统一 301 处理先于私有接口/资产/缓存与运维路由",
+    "现有 Worker 声明新增 www Custom Domain，主域/DO/KV/Cron 不变",
+    "29 项主机 Node 跳转测试及 130 项 Worker/type/audit/dry-run 通过"
   ],
   "unfinished": [
-    "PR239 证据文档 CI、同步 main 后合并",
-    "2026-10-13 自然日报发布后两话题真实消息回执与客户端展示"
+    "完成 Python 全量/CI、同步 main 后合并、授权部署与 www 自然 DNS/TLS/301 验收",
+    "随后独立 PR 调整背景、正文、影响分析及参考资料阅读层次"
   ],
   "validation": [
-    "身份、群与管理话题权限只读核验及两个创建回执通过",
-    "Worker audit 无漏洞、类型检查及 123 项测试、dispatcher dry-run 通过",
-    "主项目完整 pytest 1063 passed、4 skipped；治理与 diff 检查通过",
-    "兼容性修正版 audit/typecheck/124 项 Worker 测试与 dry-run 通过，mock 先构造真实 Request",
-    "实际 gh-pages 消息离线准备通过；历史退役 URL 桩不伪造状态/时间；UTF-16 安全拆分测试通过"
+    "主域首页 200、health ok；www 证书覆盖但 HTTP520/HTTPS522",
+    "Cloudflare 只读实际 Custom Domains 仅 xiyu.news→xiyunews；没有另一个同名 www Worker",
+    "新增/旧域/相似域/运维/后台/查询参数转义跳转测试通过"
   ],
   "unverified": [
-    "没有真实消息发送回执；不把话题创建与离线测试算作消息送达"
+    "www 新绑定与最终 301 尚未部署",
+    "其他阅读层次 UI 尚未实施"
   ],
   "production": {
-    "source_commit": "b7924ec6a0d9f520fafeb39d0d920a285ba7430c",
-    "artifact_commit": "7945b6a4121f1e93d4fd395913655a3792b913ed",
-    "edition": "2026-10-12",
-    "generated_at": "本任务未生成新闻，仅读取已出版内容",
-    "worker_version": "1775d384-2231-4a59-acf8-820ca161f20a",
-    "verified_at": "2026-10-13 00:32 health/实时健康；00:38 自然 Cron 私有身份状态 true（Asia/Shanghai）"
+    "source_commit": "6a1b99b0f1c0d742e624d994d49853a999076c89",
+    "artifact_commit": "39457be860c590f21b1de4983af1470b795759f3",
+    "edition": "2026-10-13",
+    "generated_at": "本任务不采集或生成新闻，仅读取既有出版",
+    "worker_version": "d18c6c94-0120-4523-9ab4-15f1c0d4a134",
+    "verified_at": "2026-10-13 11:07 Asia/Shanghai，HTTP/health 与 www 入口诊断"
   },
   "blockers": [],
-  "next_action": "合并文档 PR239（无额外部署）；2026-10-13 自然日报发布后只读核验私有 last-status 中两话题 sent/message_id，并检查客户端日期、链接、分段与事件概览。保持 Issue238 待验收，不主动测试/补发。",
+  "next_action": "完成只读 changeset 检查、全量/CI，同步 main 后合并并经统一流水线部署；只改 www 必要绑定/DNS。不改变 Access/Cron/密钥/主域/API/旧品牌。",
   "states": {
     "code": "complete",
-    "tests": "complete",
-    "pr_merged": "complete",
-    "deployed": "complete",
+    "tests": "pending",
+    "pr_merged": "pending",
+    "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-10-12-telegram-group-topics.md"
+  "evidence": "project-docs/releases/2026-10-13-www-entry.md"
 }
 ```
 
-上一项重点事件 UI 发布与验收已完成，见 [发布记录](releases/2026-10-09-focused-tracking.md)；网页版式保持不变。现行数据规则见 [数据契约](data-contract.md)，原频道与实时群继续独立。
+上轮双话题已上线，真实消息验收仍保留在 [原发布记录](releases/2026-10-12-telegram-group-topics.md) / Issue238；它不是本轮补发或通知授权。

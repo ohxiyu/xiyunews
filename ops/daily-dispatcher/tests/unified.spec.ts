@@ -14,6 +14,13 @@ const fiveMinutes = {cron: "*/5 * * * *", scheduledTime: Date.now()} as Schedule
 afterEach(() => {vi.restoreAllMocks(); vi.unstubAllGlobals();});
 
 describe("single xiyunews project", () => {
+  it.each(["/", "/health", "/publication/check", "/api/_telegram-group.json", "/s/", "/api/latest.json?x=1&x=2"])("canonicalizes www before any routing: %s", async (path) => {
+    const e=fixture(),call=vi.spyOn(dispatcher,"fetch");
+    const response=await unified.fetch(new Request("https://www.xiyu.news"+path),e,context);
+    expect(response.status).toBe(301);
+    expect(response.headers.get("Location")).toBe("https://xiyu.news"+path);
+    expect(e.ASSETS.fetch).not.toHaveBeenCalled();expect(call).not.toHaveBeenCalled();
+  });
   it("identifies one project and reports paused state and immutable build sources", async () => {
     const response = await unified.fetch(new Request("https://xiyu.news/health"),
       fixture({SITE_ARTIFACT_COMMIT: "a".repeat(40)}), context);

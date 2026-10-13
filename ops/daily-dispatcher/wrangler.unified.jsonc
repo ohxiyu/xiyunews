@@ -40,6 +40,9 @@
   ],
   // Deploy only after the old schedulers are stopped and transfer is verified.
   "triggers": {"crons": ["26 23 * * *", "36,46,56 23 * * *", "*/5 * * * *"]},
-  "routes": [{"pattern": "xiyu.news", "custom_domain": true}],
+  "routes": [
+    {"pattern": "xiyu.news", "custom_domain": true},
+    {"pattern": "www.xiyu.news", "custom_domain": true}
+  ],
   "observability": {"enabled": true}
 }

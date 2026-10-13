@@ -3,7 +3,7 @@ import type { RecoveryEnv } from "./recovery";
 import {runGroupNews} from "./group-news";
 // Reuse the audited Pages handler; do not duplicate auth, caching or API routing.
 // @ts-expect-error The existing JavaScript module is validated by its Node tests.
-import website from "../../../docs/_worker.js";
+import website, {primaryHostRedirect} from "../../../docs/_worker.js";
 // @ts-expect-error The standalone watchdog remains independently Node-tested.
 import watchdog from "../../../realtime/scripts/deploy/watchdog/worker.js";
 export { RecoveryGate } from "./gate";
@@ -34,6 +34,8 @@ function publicationEnv(env: UnifiedEnv, ctx?: ExecutionContext): RecoveryEnv {
 
 export default {
   async fetch(request: Request, env: UnifiedEnv, ctx: ExecutionContext): Promise<Response> {
+    const redirect = primaryHostRedirect(request);
+    if (redirect) return redirect;
     const path = new URL(request.url).pathname;
     if (path === "/api/_telegram-group.json") {
       return new Response(null,{status:404,headers:{"Cache-Control":"no-store"}});
