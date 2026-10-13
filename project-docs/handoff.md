@@ -5,12 +5,12 @@
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "归档已完成的九项服务器优化生产验收",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/280",
+  "goal": "1–9已全部部署验收，归档最终生产版本",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/282",
   "owner": "当前会话唯一编辑与生产整合负责人",
-  "branch": "agent/server-optimization-final-evidence",
-  "last_verified_commit": "ebc92b4597e7e17446b1e65b0eb1573e80a3d8b1",
-  "pr": "最终文档PR关联Issue280；应用PR259/261/265/267/269/271/273/275/277/279均已合并",
+  "branch": "agent/server-optimization-production-evidence",
+  "last_verified_commit": "4c75f689fd06116743380dfb04fa738e22bfd37b",
+  "pr": "应用与收尾PR均已合并，PR281/4c75f689全CI通过，总任务257已关闭；本版本证据PR关联282",
   "completed": [
     "1 来源失败才公开同发布者索引替代，保留失败/headline-only证据，正常采集通过",
     "2 按路径CI，未知跨模块完整检查；文档治理14s/范围11s，其他正确跳过",
@@ -23,10 +23,9 @@
     "9 PR277/757e44be；38411818537原样迁移4050缓存/6文档，正常采集38412051393与发布38412824060成功",
     "PR279/ebc92b45备份去重/副本整理/关闭连接/xz；受限单元6820048B/68秒成功，异机38417087420与本机双库恢复通过，明文清理"
   ],
-  "unfinished": [
-    "PR281最终归档检查遇到完整历史下载5分钟超时，CI改为保留完整提交图/blob:none按需历史内容与10分钟预算；全检查通过后合并，关闭257/280并清理自有分支"
-  ],
+  "unfinished": [],
   "validation": [
+    "CI38429026111所有适用检查通过，PR281合并4c75f689；最终无AI发布38436305179成功，普通主域source4c75f689/Worker276b4f03/statusok回读",
     "1111 passed / 4既有条件跳过，CI38414738476适用检查全部通过；PR277 CI38408646325全部通过",
     "迁移：4000分析/47关系/3预筛选/6文档原样核对，不调用AI不发送",
     "正常采集300/82新增/1320staging、3实质进展/3关系命中/23miss/9证据延后，218652tokens，分类失败1不缓存",
@@ -41,21 +40,21 @@
     "Token收益随新增与输入变化，不承诺固定降费；系统仍依赖GitHub控制面和单台服务器"
   ],
   "production": {
-    "source_commit": "757e44bea5ba377e447d8f7e0e6add74821cd34c",
+    "source_commit": "4c75f689fd06116743380dfb04fa738e22bfd37b",
     "artifact_commit": "01a728b7269e743a96dcf9aa0202d3eada0f5691",
     "edition": "2026-10-13",
     "generated_at": "38412051393更新暂存与事件，固定刊期保持",
-    "worker_version": "81129031-ed6a-44bf-870a-ad1913c3336f",
-    "verified_at": "2026-10-13约22:55上海，备份ebc92b45部署与异机恢复完成"
+    "worker_version": "276b4f03-5d9b-435d-b23f-5850dd1432fe",
+    "verified_at": "2026-10-14约01:15上海，38436305179成功与普通主域精确版本；备份ebc92b45/异机恢复保持通过"
   },
   "blockers": [],
-  "next_action": "最终文档PR与main同步/CI通过后合并并关闭257/280；1–9无剩余实施部署。下一项只按运营者新任务执行，不重试旧消息/重启实时服务或接管Quick Post。",
+  "next_action": "1–9无剩余实施部署或生产验收，总任务257已关闭。最终版本证据按文档检查合并，不再触发生产改动；下一项只按运营者新任务执行。",
   "states": {
     "code": "complete",
     "tests": "complete",
-    "pr_merged": "pending",
-    "deployed": "pending",
-    "production_verified": "pending"
+    "pr_merged": "complete",
+    "deployed": "complete",
+    "production_verified": "complete"
   },
   "evidence": "project-docs/releases/2026-10-13-server-optimization-complete.md"
 }
