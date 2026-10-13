@@ -2,23 +2,99 @@
   "version": 1,
   "events": [
     {
+      "event_id": "evt_d5ac35167714910c",
+      "url": "https://xiyu.news/events/evt_d5ac35167714910c/",
+      "json": "https://xiyu.news/api/events/evt_d5ac35167714910c.json",
+      "status": "monitoring",
+      "type": "other",
+      "title": {
+        "zh": "【Metaplanet 拟发行约 3.33 亿美元零息可转债，用于还款及回购股票】",
+        "en": "【Metaplanet 拟发行约 3.33 亿美元零息可转债，用于还款及回购股票】"
+      },
+      "current_state": {
+        "zh": "Metaplanet 拟发行约3.29亿美元（520亿日元）2031年到期的零息可转债，净收益中约1.49亿美元用于偿还比特币抵押贷款、约1.79亿美元用于股票回购，并启动最高3.8亿美元的回购计划；不会出售BTC，贷款与BTCNAV比率约17.7%，仍高于10%目标。",
+        "en": "Metaplanet is issuing ~$329M (¥52B) of 2031-maturity zero-coupon convertible bonds, with ~$149M of net proceeds to repay Bitcoin-collateralized loans and ~$179M for share buybacks under a new up to $380M repurchase program; no BTC holdings will be sold, and its loan-to-BTCNAV ratio of ~17.7% remains above its 10% target."
+      },
+      "first_seen_at": "2026-10-13T10:23:16.603991+00:00",
+      "last_material_change_at": "2026-10-13T12:13:30.400438+00:00",
+      "updates_count": 2,
+      "sources_count": 2
+    },
+    {
+      "event_id": "evt_329f780e584ce312",
+      "url": "https://xiyu.news/events/evt_329f780e584ce312/",
+      "json": "https://xiyu.news/api/events/evt_329f780e584ce312.json",
+      "status": "monitoring",
+      "type": "governance",
+      "title": {
+        "zh": "ENSv2 激活提案将停止新的 ENSv1 注册",
+        "en": "ENSv2 Activation Proposal Would Halt New ENSv1 Registrations"
+      },
+      "current_state": {
+        "zh": "ENS 创始人 Nick Johnson 已提交可执行草案提案，拟在以太坊主网激活 ENSv2；若获批准，新 v1 .eth 注册将冻结，解析迁移至 v2，宽限期从 90 天缩短为 28 天，v2 合约管理权限全部移交 DAO，现有 .eth 持有人无需迁移即可续期，过渡期间新注册可能暂停数小时；提案仍处于草案阶段，须经链上 DAO 投票，投票日期未公布。",
+        "en": "ENS founder Nick Johnson has submitted a draft executable proposal to activate ENSv2 on Ethereum mainnet; if approved, new v1 .eth registrations would freeze, resolution would migrate to v2, the grace period would shorten from 90 to 28 days, all v2 contract admin control would transfer to the DAO, existing .eth holders could renew without migrating, and new registrations could pause for several hours during the transition; the proposal remains in draft stage and must advance to an onchain DAO vote, with no voting date announced."
+      },
+      "first_seen_at": "2026-10-12T10:40:57.621813+00:00",
+      "last_material_change_at": "2026-10-13T12:13:30.317437+00:00",
+      "updates_count": 3,
+      "sources_count": 3
+    },
+    {
+      "event_id": "evt_91e864acdb3febda",
+      "url": "https://xiyu.news/events/evt_91e864acdb3febda/",
+      "json": "https://xiyu.news/api/events/evt_91e864acdb3febda.json",
+      "status": "monitoring",
+      "type": "legal_case",
+      "title": {
+        "zh": "英国高等法院裁决后，英国保留38亿英镑比特币查获资产的可能性上升",
+        "en": "UK chances of keeping £3.8bn bitcoin haul rise after High Court ruling"
+      },
+      "current_state": {
+        "zh": "英国高等法院裁定中国法律适用于受害者对 61,000 BTC 的索赔，英国政府保留这批比特币的可能性上升，但所有权仍未解决，受害者律师计划上诉。",
+        "en": "The UK High Court ruled Chinese law applies to victims' claims over 61,000 BTC, improving the UK government's chances of keeping the haul, but ownership remains unresolved and victims' lawyers plan to appeal."
+      },
+      "first_seen_at": "2026-10-13T06:33:47.212763+00:00",
+      "last_material_change_at": "2026-10-13T12:13:27.295462+00:00",
+      "updates_count": 2,
+      "sources_count": 2
+    },
+    {
       "event_id": "evt_c594d0e29e7b400b",
       "url": "https://xiyu.news/events/evt_c594d0e29e7b400b/",
       "json": "https://xiyu.news/api/events/evt_c594d0e29e7b400b.json",
-      "status": "developing",
+      "status": "monitoring",
       "type": "security_incident",
       "title": {
-        "zh": "Ledger硬件钱包供应链植入模块窃取助记词事件",
+        "zh": "Ledger硬件钱包供应链植入物窃取助记词事件",
         "en": "Ledger Hardware Wallet Supply Chain Implant Seed Theft Incident"
       },
       "current_state": {
-        "zh": "Ledger详细说明了经销商CryptoBilis所售Ledger硬件钱包中被植入的、支持LTE的恶意植入物如何通过eSIM捕获用户的24词助记词并通过蜂窝网络传输，促使CryptoBilis停止销售，Trezor和OneKey也与该经销商断绝关系。",
-        "en": "Ledger detailed how malicious LTE-enabled implants embedded in Ledger hardware wallets sold by reseller CryptoBilis captured users' 24-word recovery phrases via an eSIM and transmitted them over cellular networks, prompting CryptoBilis to halt sales and Trezor and OneKey to cut ties with the reseller."
+        "zh": "Ledger的Donjon安全团队确认，东南亚经销商CryptoBilis销售的钱包中存在未经授权的硬件植入物，该植入物会在设置过程中从设备屏幕读取24词恢复短语，并通过预置eSIM经LTE传输，所有已确认的损失均与通过该经销商购买的设备有关，疑似被盗资金达8600万美元。",
+        "en": "Ledger's Donjon security team confirmed an unauthorized hardware implant in wallets sold by Southeast Asian reseller CryptoBilis that reads the 24-word recovery phrase from the device screen during setup and transmits it over LTE via a provisioned eSIM, with all confirmed losses from the suspected $86M drain tied to devices bought through that reseller."
       },
       "first_seen_at": "2026-10-09T15:30:47.822838+00:00",
-      "last_material_change_at": "2026-10-13T10:23:41.082489+00:00",
-      "updates_count": 37,
-      "sources_count": 69
+      "last_material_change_at": "2026-10-13T12:13:24.371450+00:00",
+      "updates_count": 39,
+      "sources_count": 73
+    },
+    {
+      "event_id": "evt_e37f95e1cb818c7d",
+      "url": "https://xiyu.news/events/evt_e37f95e1cb818c7d/",
+      "json": "https://xiyu.news/api/events/evt_e37f95e1cb818c7d.json",
+      "status": "developing",
+      "type": "regulatory_action",
+      "title": {
+        "zh": "俄罗斯根据新法律批准首批加密货币交易所和托管机构",
+        "en": "Russia clears first crypto exchanges, custodians under new law"
+      },
+      "current_state": {
+        "zh": "Sberbank已同时获得数字存管机构和数字货币兑换机构资质，可提供加密货币兑换及存管服务，首批产品计划于12月1日上线。",
+        "en": "Sberbank is now licensed both as a digital custodian and a digital-currency exchange operator, enabling crypto conversion and custody services, with first products planned for Dec. 1."
+      },
+      "first_seen_at": "2026-10-07T10:50:55.157265+00:00",
+      "last_material_change_at": "2026-10-13T12:08:58.268558+00:00",
+      "updates_count": 2,
+      "sources_count": 4
     },
     {
       "event_id": "evt_71cf34d51bae55e8",
@@ -151,7 +227,7 @@
       "first_seen_at": "2026-10-13T03:47:28.913975+00:00",
       "last_material_change_at": "2026-10-13T03:47:41.127222+00:00",
       "updates_count": 2,
-      "sources_count": 2
+      "sources_count": 4
     },
     {
       "event_id": "evt_26e5b0cda31c1ae7",
@@ -342,25 +418,6 @@
       "last_material_change_at": "2026-10-12T16:21:01.980372+00:00",
       "updates_count": 2,
       "sources_count": 3
-    },
-    {
-      "event_id": "evt_329f780e584ce312",
-      "url": "https://xiyu.news/events/evt_329f780e584ce312/",
-      "json": "https://xiyu.news/api/events/evt_329f780e584ce312.json",
-      "status": "monitoring",
-      "type": "governance",
-      "title": {
-        "zh": "ENSv2 激活提案将停止新的 ENSv1 注册",
-        "en": "ENSv2 Activation Proposal Would Halt New ENSv1 Registrations"
-      },
-      "current_state": {
-        "zh": "ENS 创始人 Nick Johnson 已在 ENS DAO 治理论坛提交可执行草案提案，拟在以太坊主网激活 ENSv2；提案将冻结新 v1 .eth 注册，把解析迁移至 v2，将宽限期从 90 天缩短为 28 天，并把 v2 合约管理权限全部移交 DAO，现有 .eth 持有人无需操作，提案仍处于草案阶段。",
-        "en": "ENS founder Nick Johnson has submitted a draft executable proposal to the ENS DAO forum to activate ENSv2 on Ethereum mainnet; it would freeze new v1 .eth registrations, migrate resolution to v2, shorten the grace period from 90 to 28 days, and transfer all v2 contract admin control to the DAO, with existing .eth holders needing no action; the proposal remains in draft stage."
-      },
-      "first_seen_at": "2026-10-12T10:40:57.621813+00:00",
-      "last_material_change_at": "2026-10-12T16:20:55.625075+00:00",
-      "updates_count": 2,
-      "sources_count": 2
     },
     {
       "event_id": "evt_043c845e3db17c0a",

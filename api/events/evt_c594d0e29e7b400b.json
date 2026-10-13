@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_c594d0e29e7b400b/",
   "json": "https://xiyu.news/api/events/evt_c594d0e29e7b400b.json",
   "type": "security_incident",
-  "status": "developing",
+  "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Ledger硬件钱包供应链植入模块窃取助记词事件",
+    "zh": "Ledger硬件钱包供应链植入物窃取助记词事件",
     "en": "Ledger Hardware Wallet Supply Chain Implant Seed Theft Incident"
   },
   "current_state": {
-    "zh": "Ledger详细说明了经销商CryptoBilis所售Ledger硬件钱包中被植入的、支持LTE的恶意植入物如何通过eSIM捕获用户的24词助记词并通过蜂窝网络传输，促使CryptoBilis停止销售，Trezor和OneKey也与该经销商断绝关系。",
-    "en": "Ledger detailed how malicious LTE-enabled implants embedded in Ledger hardware wallets sold by reseller CryptoBilis captured users' 24-word recovery phrases via an eSIM and transmitted them over cellular networks, prompting CryptoBilis to halt sales and Trezor and OneKey to cut ties with the reseller."
+    "zh": "Ledger的Donjon安全团队确认，东南亚经销商CryptoBilis销售的钱包中存在未经授权的硬件植入物，该植入物会在设置过程中从设备屏幕读取24词恢复短语，并通过预置eSIM经LTE传输，所有已确认的损失均与通过该经销商购买的设备有关，疑似被盗资金达8600万美元。",
+    "en": "Ledger's Donjon security team confirmed an unauthorized hardware implant in wallets sold by Southeast Asian reseller CryptoBilis that reads the 24-word recovery phrase from the device screen during setup and transmits it over LTE via a provisioned eSIM, with all confirmed losses from the suspected $86M drain tied to devices bought through that reseller."
   },
   "first_seen_at": "2026-10-09T15:30:47.822838+00:00",
-  "last_updated_at": "2026-10-13T10:23:41.082489+00:00",
-  "last_material_change_at": "2026-10-13T10:23:41.082489+00:00",
+  "last_updated_at": "2026-10-13T12:13:24.371450+00:00",
+  "last_material_change_at": "2026-10-13T12:13:24.371450+00:00",
   "confidence": 0.75,
-  "updates_count": 37,
-  "sources_count": 69,
+  "updates_count": 39,
+  "sources_count": 73,
   "entities": [
     "affected",
     "after",
@@ -51,6 +51,7 @@
     "draining",
     "drains",
     "europe",
+    "finds",
     "flags",
     "flex",
     "former",
@@ -83,10 +84,12 @@
     "off",
     "offers",
     "onekey",
+    "phrases",
     "probes",
     "purchased",
     "quarantine",
     "recall",
+    "recovery",
     "replacements",
     "report",
     "reports",
@@ -102,9 +105,11 @@
     "specter",
     "spy",
     "spyware",
+    "stole",
     "suspected",
     "tampered",
     "tether",
+    "that",
     "tied",
     "tornado",
     "tornado-cash",
@@ -1728,16 +1733,23 @@
       "community_discussion_en": "",
       "market_impact_zh": "",
       "market_impact_en": "",
-      "importance_score": 8.0,
+      "importance_score": 8.5,
       "references": [],
       "confidence": 0.75,
       "story_ids": [
-        "rss:cointelegraph.com_rss:29737ebe1c663511"
+        "rss:cointelegraph.com_rss:29737ebe1c663511",
+        "rss:www.coindesk.com_arc_outboundfeeds_rss_:2ec948d13bc81c58"
       ],
       "sources": [
         {
           "url": "https://cointelegraph.com/news/ledger-cellular-implants-wallets-sold-cryptobilis?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
           "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://www.coindesk.com/tech/2026/10/13/ledger-says-spy-chip-inside-cryptobilis-ledger-devices-transmitted-wallet-keys-over-mobile-network",
+          "label": "CoinDesk",
           "source_type": "rss",
           "official": false
         }
@@ -1809,7 +1821,8 @@
       "confidence": 0.93,
       "story_ids": [
         "rss:cointelegraph.com_rss:e9d8561a2b280af5",
-        "telegram:foresightnews:120298"
+        "telegram:foresightnews:120298",
+        "telegram:theblockbeats:200246"
       ],
       "sources": [
         {
@@ -1822,6 +1835,88 @@
           "url": "https://foresightnews.pro/news/h5Detail/115089",
           "label": "foresightnews",
           "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://m.theblockbeats.info/flash/371576?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_04644a024ed3367a",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-13T11:38:02Z",
+      "published_at": "2026-10-13T11:38:02Z",
+      "first_seen_at": "2026-10-13T12:08:57.536538Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "Ledger审查设备销售政策和流程，评估设备防篡改保护措施",
+      "title_en": "Ledger审查设备销售政策和流程，评估设备防篡改保护措施",
+      "what_changed_zh": "Ledger首席技术官Charles Guillemet表示，公司正在审查面向消费者的设备销售政策和流程，并评估设备的防篡改保护措施；同时提醒用户不要自行拆开可疑硬件钱包，而应寄送Ledger检查。报道还提及此次植入间谍软件事件造成约9000万美元加密货币被盗。",
+      "what_changed_en": "Ledger CTO Charles Guillemet said the company is reviewing its consumer device sales policies and processes and assessing device tamper-resistance protections; it also urged users not to open suspicious hardware wallets themselves but to send them to Ledger for inspection. The report also mentioned an estimated $90 million in crypto stolen in the spyware-planting incident.",
+      "current_state_zh": "Ledger正在审查其消费者设备销售政策与流程并评估防篡改保护措施，CTO建议用户不要自行拆开可疑钱包；调查已扩展至MediaMarktSaturn等渠道，CryptoBilis停止销售，Trezor和OneKey断绝关系，估计损失约9000万美元。",
+      "current_state_en": "Ledger is reviewing its consumer device sales policies and processes and assessing tamper-resistance protections, with its CTO advising users not to open suspicious wallets; the investigation has widened to channels such as MediaMarktSaturn, CryptoBilis halted sales, Trezor and OneKey cut ties, and estimated losses are around $90 million.",
+      "detailed_summary_zh": "Ledger is reviewing its consumer device sales policies and assessment of tamper-resistance protections, and urging users not to open suspicious hardware wallets, after spyware-planted devices led to an estimated $90M in stolen crypto.",
+      "detailed_summary_en": "Ledger is reviewing its consumer device sales policies and assessment of tamper-resistance protections, and urging users not to open suspicious hardware wallets, after spyware-planted devices led to an estimated $90M in stolen crypto.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "telegram:theblockbeats:200257"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/371590?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_8b159f967322dcb9",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-13T11:53:15Z",
+      "published_at": "2026-10-13T11:53:15Z",
+      "first_seen_at": "2026-10-13T12:13:24.371450Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Ledger发现LTE植入物在疑似8600万美元盗取事件中窃取恢复短语",
+      "title_en": "Ledger Finds LTE Implant That Stole Recovery Phrases in Suspected $86M Drain",
+      "what_changed_zh": "Ledger的Donjon安全团队确认，东南亚经销商CryptoBilis销售的钱包中存在未经授权的硬件植入物，该植入物会在设置过程中从设备屏幕读取24词恢复短语，并通过预置eSIM经LTE传输，所有已确认的损失均与通过该经销商购买的设备有关，疑似被盗资金达8600万美元。",
+      "what_changed_en": "Ledger's Donjon security team confirmed an unauthorized hardware implant in wallets sold by Southeast Asian reseller CryptoBilis that reads the 24-word recovery phrase from the device screen during setup and transmits it over LTE via a provisioned eSIM, with all confirmed losses from the suspected $86M drain tied to devices bought through that reseller.",
+      "current_state_zh": "Ledger的Donjon安全团队确认，东南亚经销商CryptoBilis销售的钱包中存在未经授权的硬件植入物，该植入物会在设置过程中从设备屏幕读取24词恢复短语，并通过预置eSIM经LTE传输，所有已确认的损失均与通过该经销商购买的设备有关，疑似被盗资金达8600万美元。",
+      "current_state_en": "Ledger's Donjon security team confirmed an unauthorized hardware implant in wallets sold by Southeast Asian reseller CryptoBilis that reads the 24-word recovery phrase from the device screen during setup and transmits it over LTE via a provisioned eSIM, with all confirmed losses from the suspected $86M drain tied to devices bought through that reseller.",
+      "detailed_summary_zh": "Ledger's Donjon security team confirmed an unauthorized hardware implant in wallets sold by Southeast Asian reseller CryptoBilis that reads the 24-word recovery phrase from the device screen during setup and transmits it over LTE via a provisioned eSIM, with all confirmed losses from the suspected $86M drain tied to devices bought through that reseller.",
+      "detailed_summary_en": "Ledger's Donjon security team confirmed an unauthorized hardware implant in wallets sold by Southeast Asian reseller CryptoBilis that reads the 24-word recovery phrase from the device screen during setup and transmits it over LTE via a provisioned eSIM, with all confirmed losses from the suspected $86M drain tied to devices bought through that reseller.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "rss:decrypt.co_feed:a6f8e29de19765d8"
+      ],
+      "sources": [
+        {
+          "url": "https://decrypt.co/380826/ledger-finds-lte-implant-that-stole-recovery-phrases-in-suspected-86m-drain",
+          "label": "Decrypt",
+          "source_type": "rss",
           "official": false
         }
       ]
