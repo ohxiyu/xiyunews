@@ -42,7 +42,7 @@
   "triggers": {"crons": ["26 23 * * *", "36,46,56 23 * * *", "*/5 * * * *"]},
   "routes": [
     {"pattern": "xiyu.news", "custom_domain": true},
-    {"pattern": "www.xiyu.news", "custom_domain": true}
+    {"pattern": "www.xiyu.news/*", "zone_name": "xiyu.news"}
   ],
   "observability": {"enabled": true}
 }

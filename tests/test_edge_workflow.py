@@ -18,7 +18,7 @@ def test_final_cutover_preserves_namespace_by_transfer_not_creation():
     assert config["triggers"]["crons"] == ["26 23 * * *", "36,46,56 23 * * *", "*/5 * * * *"]
     assert config["routes"] == [
         {"pattern": "xiyu.news", "custom_domain": True},
-        {"pattern": "www.xiyu.news", "custom_domain": True},
+        {"pattern": "www.xiyu.news/*", "zone_name": "xiyu.news"},
     ]
     assert config["vars"]["ENABLE_DISPATCHER"] == "true"
     assert config["vars"]["ENABLE_REALTIME_WATCHDOG"] == "true"
