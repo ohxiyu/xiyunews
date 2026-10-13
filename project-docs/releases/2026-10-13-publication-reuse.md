@@ -13,3 +13,5 @@ build key包含实际gh-pages完整SHA与公开源码、构建程序、配置、
 新增独立生成的Ruby Gemfile.lock，平台覆盖Linux/macOS并包含依赖校验和，原工作区用户未跟踪Gemfile.lock未动；代码依赖与构建键保持精确。Ruby3.3/uv0.11.32/Node24/npm11.11.1既有运行边界保留。完整UI/刊期、主题、推送回执无变更。
 
 实际进度：PR271合并eeb9a4641c0a6a7333a92adb6855bed26b8998d4，完整CI38392618155成功。首生产38393741292success，Worker a553648b-755f-4c92-aefc-26fa2573cc9b/source eeb9a464/artifact cd1b66613bd72f3a51622425565bc1b9775c34f1/build key a2df60e249201d799165410ba8d8cc6d36a4a701742db91a1a5d02587f4dac0c已回读。相同版本快跳过38394412431在验证，强制缓存修复随后单独验收。
+
+实际补充：自然采集产生新artifact ea0290e49ffbb7ce4be298fd171292ea1e51c1fd，38394412431因此执行完整构建252s，不能冒充快跳过。force_deploy=true的38394828460success，逐文件验证命中后Ruby/渲染/uv/群快照步骤全部跳过，真正部署完成96s。Worker71758451-e70a-401b-beb1-74015e1a029c/build459e2581d8ec0581b52e65ca2cf71b5684da4768471db9713116dd429d9a7983回读。重复38398902186也复用，但快跳过仍因默认urllib自站403未成立；明确validator UA已东京实测200，随第8项修复上线再验收，不隐藏未通过项。
