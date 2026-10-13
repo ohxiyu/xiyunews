@@ -80,12 +80,15 @@ function fixture({event=false, background=true, discussion=true, impact=true, re
   return {host,content,details};
 }
 
-test('legacy combined context splits around complete report and keeps all evidence visible',()=>{
+test('legacy context keeps full evidence in a closed native disclosure after the report',()=>{
   const {host}=fixture();context.enhance(host,'zh');
   assert.deepEqual(host.children.map(n=>n.className||n.tagName),
     ['H2','reading-context reading-context-background is-enhanced','story-summary-body','source-line','reading-context reading-context-after is-enhanced']);
   assert.equal(host.querySelector('.reading-context-tabs'),null);
   const after=host.querySelector('.reading-context-after');
+  assert.equal(after.tagName,'DETAILS');
+  assert.equal(after.hasAttribute('open'),false);
+  assert.equal(after.querySelector('summary').textContent,'影响分析 · 讨论焦点 · 参考资料');
   assert.deepEqual(after.querySelectorAll('h3').map(h=>h.textContent),['影响分析','讨论焦点','参考资料']);
   assert.ok(after.querySelectorAll('section').every(s=>!s.hidden));
   for(const text of ['长背景'.repeat(100),'完整新闻事实','完整影响内容','真实讨论内容','完整参考标题']) assert.ok(host.textContent.includes(text));
@@ -103,6 +106,7 @@ test('missing fields do not create empty panels or label impact as community dis
   const {host}=fixture({background:false,discussion:false});context.enhance(host,'en');
   assert.equal(host.querySelector('.reading-context-background'),null);
   assert.deepEqual(host.querySelectorAll('h3').map(h=>h.textContent),['Impact analysis','References']);
+  assert.equal(host.querySelector('summary').textContent,'Impact analysis · References');
 });
 test('event background precedes state while analysis and evidence follow full developments',()=>{
   const {host}=fixture({event:true});context.enhance(host,'zh');

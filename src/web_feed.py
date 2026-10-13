@@ -450,7 +450,7 @@ def _details_html(item: ContentItem, language: str, *, placement: str = "after")
     if not sections:
         return ""
     return (
-        '<details class="story-more" data-context-placement="after" open>'
+        '<details class="story-more" data-context-placement="after">'
         f'<summary>{"Analysis and references" if language == "en" else "分析与资料"}</summary>'
         f'<div class="story-more-content">{"".join(sections)}</div>'
         "</details>"

@@ -16,7 +16,7 @@
 {% if include.row.source_links.size > 0 or include.row.reference_links.size > 0 %}{% assign has_context = true %}{% endif %}
 {% endif %}
 {% if has_context %}
-<details class="story-more event-reading-context" data-context-placement="{{ context_placement | escape }}" open>
+<details class="story-more event-reading-context" data-context-placement="{{ context_placement | escape }}"{% if context_placement == "background" %} open{% endif %}>
   <summary>{% if context_placement == "background" %}{% if include.language == "en" %}Background{% else %}背景{% endif %}{% else %}{% if include.language == "en" %}Analysis and references{% else %}分析与资料{% endif %}{% endif %}</summary>
   <div class="story-more-content">
     {% if context_placement == "background" %}
