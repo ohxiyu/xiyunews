@@ -72,8 +72,19 @@ def create_snapshot(destination, databases=DATABASES, state=Path("/home/xiyunews
             continue
         info = snapshot_database(source, destination / (name + ".sqlite3"))
         manifest["databases"][name] = info
+    redundant = set()
+    publication = destination / "publication.sqlite3"
+    if publication.exists():
+        with sqlite3.connect(f"file:{publication}?mode=ro", uri=True) as db:
+            tables = {row[0] for row in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+            if "publication_meta" in tables and db.execute("SELECT 1 FROM publication_meta WHERE key='cache_initialized' AND value='1'").fetchone():
+                redundant.add("analysis-cache.json")
+            if "publication_documents" in tables and db.execute("SELECT 1 FROM publication_documents WHERE name='staging'").fetchone():
+                redundant.add("staging-items.json")
     # Only owned checkpoint snapshots, never .env/config/private keys/logs.
     for source in state.glob("*.json") if state.exists() else []:
+        if source.name in redundant:
+            continue  # Primary SQLite snapshot already owns these complete values.
         if source.is_symlink():
             raise ValueError("symlink in state snapshots")
         data = source.read_bytes()

@@ -39,6 +39,7 @@ from typing import Awaitable, Callable, Optional
 from zoneinfo import ZoneInfo
 
 from ._file_utils import _atomic_write_text
+from .publication_state import read_document, write_document
 
 DEFAULT_STATE_PATH = Path("data/x-queue.json")
 QUEUE_RELATIVE_PATH = Path("data/x-queue.json")
@@ -301,10 +302,10 @@ def validate(state: object) -> dict:
 
 def load(path: Path, now: Optional[datetime] = None) -> dict:
     """Missing means new. Anything unreadable stops delivery."""
-    if not path.exists():
-        return empty_state()
     try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
+        payload = read_document(path, name="x_queue")
+        if payload is None:
+            return empty_state()
     except (OSError, ValueError) as exc:
         raise QueueError("unreadable X queue; refusing to reset sent history") from exc
     if isinstance(payload, dict) and payload.get("version") == 1:
@@ -320,7 +321,7 @@ def save(state: dict, path: Path) -> Path:
     """Local persistence; production uses :func:`git_checkpoint`."""
     validate(state)
     path.parent.mkdir(parents=True, exist_ok=True)
-    _atomic_write_text(path, dumps(state))
+    write_document(path, state, name="x_queue")
     return path
 
 

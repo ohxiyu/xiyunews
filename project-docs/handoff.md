@@ -5,12 +5,12 @@
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "完成服务器架构1–9优化并部署；当前前端性能",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/274",
+  "goal": "完成服务器架构1–9优化并部署；当前独立出版SQLite",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/276",
   "owner": "当前会话唯一编辑与生产整合负责人",
-  "branch": "agent/frontend-performance",
-  "last_verified_commit": "d910e1a771816ad71db0ff818c7058186668b09e",
-  "pr": "本分支PR关联Issue274；总任务Issue257",
+  "branch": "agent/publication-sqlite",
+  "last_verified_commit": "8f241bfe63198355a791b2f89381d3362c60a669",
+  "pr": "本分支PR关联Issue276；总任务Issue257",
   "completed": [
     "1–4 来源/CI/自愈/加密异机恢复均生产验收",
     "5 自然采集38394296399成功，62新增/5进展/4证据延后/261026tokens，首轮缓存建立49miss/0hit",
@@ -19,7 +19,7 @@
     "8 构建生成副本压缩9文件229472B->154435B、首屏后内容延迟布局、fingerprint同步、同主题桌面/手机暗色/英文/日期/27详情折叠及完整1320×4176分享本地验收"
   ],
   "unfinished": [
-    "8 当前PR CI/合并/正常DeployDocs和统一发布、生产视觉验收；一起回读修复后的快跳过与备份部署清单",
+    "8 PR275已合并8f241bfe，Deploy Docs38405955076成功，统一发布38406095471正在进行；生产视觉与快跳过随后验收",
     "9 日报业务状态和分析缓存接入独立SQLite，正常采集与双数据库真实恢复",
     "最终证据归档、总Issue关闭与自有分支清理"
   ],
@@ -42,7 +42,7 @@
     "verified_at": "2026-10-13约20:30上海回读；服务器hook d910e1a7已独立安装"
   },
   "blockers": [],
-  "next_action": "本PR与main同步、CI通过后合并，正常Deploy Docs->统一发布压缩资产与fingerprint，不手改gh-pages；实际生产浏览器验证并回读快跳过，再更新backup.py合理UA。继续9 SQLite，完成正式采集与双库备份恢复再最终交付，不能停在UI阶段。",
+  "next_action": "完成9 SQLite的全回归和PR检查，串行合并；先在线备份再空闲启用环境，正常维护工作流只读迁移，正常采集与统一发布；双数据库异机解密恢复通过后补最终证据。不重复采集历史或发送测试。",
   "states": {
     "code": "complete",
     "tests": "pending",
@@ -50,6 +50,6 @@
     "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-10-13-frontend-performance.md"
+  "evidence": "project-docs/releases/2026-10-13-publication-sqlite.md"
 }
 ```

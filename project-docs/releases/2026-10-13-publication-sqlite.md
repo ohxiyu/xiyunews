@@ -1,0 +1,23 @@
+# 第9项：独立出版状态 SQLite
+
+Source commit: 当前 agent/publication-sqlite，前置 8f241bfe63198355a791b2f89381d3362c60a669
+Worker version: 沿正常工作流发布后回读
+Deployment: CI 通过与 main 同步后合并；空闲时启用可信主分支生产者的 SQLite 环境，运行 publication-state.yml 原样迁移，正常采集和统一发布验收。
+Verification: 1108 passed / 4 skipped（既有条件跳过）；治理、actionlint、安装脚本语法与 diff 检查通过。缓存原样迁移、双写冲突保护、unknown/sent 回执保留、事务回滚、CI 隔离、工作目录清空后缓存与 staging 保留和双库备份均覆盖；真实迁移证据随后补充。
+Rollback: Git 审计快照保留，启用前在线加密备份；实际回退另行授权，不重置投递回执或补发历史。
+
+## 数据与发送边界
+
+主应用使用 `/home/xiyunews-runner/state/publication.sqlite3`，与实时服务的 SQLite、进程、依赖和目的地完全分离。任务账本继续使用现有 job_runs；业务文档、三类 AI 缓存和最近 200 个采集运行报告使用独立表。只有 main 上明确列出的生产工作流启用业务数据库，CI、PR 和预览不读写业务状态。
+
+缓存与 staging 由本地数据库持久化，JSON 是正常 Actions 生成的审计/出版快照。事件、日报和投递队列对比当前值、最后已知 Git 值的内容哈希；未出版状态与新的 Git 修改发生冲突时保留双方并停止，不静默覆盖。未知投递状态和已有回执保持，原先发送前 Git 检查点顺序不变。每对付费事件判断只落库，任务结束统一导出缓存，减少全量 JSON 重写。
+
+## 部署顺序
+
+1. 用合并版本的 ops/backup/backup.py 更新已存在的备份服务，保留加密接收者与定时器并制作启用前备份。
+2. 确认执行器空闲，运行 ops/runner/enable-publication-state.sh；仅增加主应用环境，不重启实时服务、不修改密钥。
+3. 手动运行 publication-state.yml：只读取四个审计分支，校验完整模型与投递历史，事务性导入缺失状态并逐项证明哈希一致；再次运行不会覆盖主状态，不采集、不使用 AI、不发送消息。
+4. 正常运行一次 Feed Collection，确认新增分析、SQLite 缓存、运行记录和正常导出的审计快照；正常统一发布核对 source/artifact。
+5. 重新在线备份两个 SQLite，并通过原私有 artifact 流程取到异机，在隔离目录解密检查完整性、SHA 和所有表计数；不启动第二个发送者。
+
+加密备份只在数据库已确认拥有主缓存/staging 时省略这两个重复 JSON；其他检查点保留。继续每次 8 MiB、7 个本地版本、3 天异机保留的现有预算，超限停止，不提高付费额度。

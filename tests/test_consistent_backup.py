@@ -3,6 +3,20 @@ from pathlib import Path
 import sqlite3
 import pytest
 from ops.backup.backup import create_snapshot, verify_restore
+from src.publication_state import PublicationState
+
+
+def test_sqlite_primary_backup_omits_only_redundant_cache_mirrors(tmp_path):
+    state = PublicationState(tmp_path / 'state')
+    state.bootstrap({'version': 1, 'entries': {'a': {'value': {'ai_score': 8}}}}, {'staging': {'items': []}})
+    for name in ('analysis-cache.json', 'staging-items.json', 'events.json'):
+        (tmp_path / 'state' / name).write_text('{}')
+    target = tmp_path / 'snapshot'
+    target.mkdir()
+    manifest = create_snapshot(target, {'publication': state.path}, state=tmp_path / 'state')
+    assert set(manifest['state_files']) == {'state-events.json'}
+    assert manifest['databases']['publication']['tables']['ai_cache'] == 1
+    assert verify_restore(target)['verified']
 
 
 def test_backup_preserves_wal_pending_and_sent_receipts(tmp_path):

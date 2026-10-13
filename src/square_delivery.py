@@ -17,6 +17,7 @@ from zoneinfo import ZoneInfo
 import httpx
 
 from ._file_utils import _atomic_write_text
+from .publication_state import write_document
 
 ENDPOINT = "https://www.binance.com/bapi/composite/v1/public/pgc/openApi/content/add"
 SHANGHAI = ZoneInfo("Asia/Shanghai")
@@ -49,7 +50,7 @@ def read_state(path: Path) -> dict:
 
 
 def git_checkpoint(directory: Path, state: dict) -> None:
-    _atomic_write_text(directory / "queue.json", json.dumps(state, ensure_ascii=False, indent=2) + "\n")
+    write_document(directory / "queue.json", state, name="square_queue")
     def git(*args: str) -> None:
         subprocess.run(["git", "-C", str(directory), *args], check=True, capture_output=True)
     git("add", "queue.json")

@@ -35,7 +35,7 @@ def test_persistent_fetch_reads_latest_without_remote_write(tmp_path, workflow, 
     state.write_text('{"edition":"old"}\n')
     git(publisher, "add", ".")
     git(publisher, "commit", "-m", "initial")
-    git(publisher, "push", "origin", "HEAD:main", "HEAD:gh-pages")
+    git(publisher, "push", "origin", "HEAD:main", "HEAD:gh-pages", "HEAD:staging-cache", "HEAD:x-queue", "HEAD:square-queue")
 
     runner = tmp_path / "runner"
     git(tmp_path, "init", str(runner))
