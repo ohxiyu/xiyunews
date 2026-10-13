@@ -48,5 +48,7 @@ else
   [[ "$(stat -c %s /var/lib/xiyunews-runner.swap)" == 536870912 ]]
 fi
 systemctl daemon-reload
+install -m 0644 "$(dirname "$0")/99-xiyunews-runner.conf" /etc/sysctl.d/99-xiyunews-runner.conf
+sysctl -p /etc/sysctl.d/99-xiyunews-runner.conf
 systemctl is-active --quiet fomobtc
 echo "Isolated runner installed, not enrolled or started. Verified package retained at $runner_download."

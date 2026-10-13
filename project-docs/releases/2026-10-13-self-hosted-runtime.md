@@ -27,3 +27,5 @@ Rollback: 先获批准；只恢复runner变量或停新服务，原实时服务�
 调优仍单任务串行、内存硬768MiB，软704MiB、CPU1核、Node堆256MiB；每个Worker测试文件用新进程，保留全部130项。不调整模型/来源或生产规则。原fomobtc MainPID235825/NRestarts0始终不变，无OOM，峰值741068800字节；维护timer每周日上海04:10加最多20分钟，仅旧执行日志/uv无用包缓存，dry-run0、实际Resultsuccess。优化后全量CI与业务验收尚待完成。
 
 第二轮38350259461治理通过，Python/审计完成，缓存命中后的npm11.19依赖安装触及768MiB硬线并持续回收，主动取消该自有CI调优。重启新runner释放内存（一次服务stop90秒后SIGKILL清理取消测试，原fomobtc PID235825/NRestarts0及三分片/Telegram/队列不变），GitHub旧session短时冲突待重连，不宣称CI通过。加入原生解压单线程/npm连接2、固定npm11.11.1及专用512MiB磁盘缓冲，root0600、独立开机服务，执行器swap上限512MiB，物理内存硬上限不增；不购买升级或停原提醒。Ubuntu官方gh2.45已补齐，安装脚本/完整重建手册同步。仍需优化后全量CI和生产验证。
+
+服务器原vm.swappiness=0，缓冲启用后仍不换页；已按本轮优化授权改20并保存专用sysctl.d配置，原值保留证据。第三轮38351366705整站构建success（Jekyll120.716秒，缓存依赖安装2分钟，npm11.11.1），治理/路径success；完整应用/Worker步骤已通过、正在post缓存，实时两套环境尚待完成。物理峰值741953536、缓冲一度约229MiB后回落；原PID235825/NRestarts0。最终完整配置补入仓库后重新核对实际head CI，未经全通过不合并。

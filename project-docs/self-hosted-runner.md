@@ -31,7 +31,7 @@ ssh -F /Users/minutesdr/.ssh/xiyunews_tokyo_config -o BatchMode=yes \
 scp -F /Users/minutesdr/.ssh/xiyunews_tokyo_config ops/runner/provision.sh \
   ops/runner/xiyunews-runner.service ops/runner/register.py ops/runner/maintenance.sh \
   ops/runner/xiyunews-runner-maintenance.service ops/runner/xiyunews-runner-maintenance.timer \
-  ops/runner/xiyunews-runner-swap.service \
+  ops/runner/xiyunews-runner-swap.service ops/runner/99-xiyunews-runner.conf \
   xiyunews-tokyo:/home/admin/xiyunews-runner-install/
 ssh -F /Users/minutesdr/.ssh/xiyunews_tokyo_config -o BatchMode=yes \
   -o StrictHostKeyChecking=yes xiyunews-tokyo \
@@ -55,6 +55,8 @@ gh variable set XIYUNEWS_RUNNER_LABELS --repo ohxiyu/xiyunews \
 注册Token仅通过管道stdin传送，register.py设置runner的ACTIONS_RUNNER_INPUT_TOKEN环境输入，命令参数/文件/报告不包含它。Token一小时失效；注册后的runner机器凭据为专用用户持有，不能读取或打印到聊天。现有GitHub业务Secrets继续在原工作流步骤短时注入，不迁移到服务器业务env，安装目录只存无秘密的审查脚本。
 
 服务器无swap时创建一个专用512MiB、root0600交换文件，按独立服务开机启用；执行器MemorySwapMax限制512MiB，物理内存硬上限仍768MiB。不是新增磁盘/套餐，不停止原服务、不改fstab，也不自动删除/交换停用。必要时经批准退役前先确认缓冲已释放。Node原生解压线程单线程、npm下载最多2连接，自托管构建固定npm11.11.1，与已验证环境一致，安全审计仍运行；从Ubuntu仓安装gh以支持来源管理和正常调度脚本。
+
+原服务器vm.swappiness=0导致磁盘缓冲虽启用但不换页，2026-10-13按服务器优化授权改为20，优先保留活跃页面于内存，在压力下允许不活跃页面进入缓冲。配置仅维护在ops/runner/99-xiyunews-runner.conf并安装到同名sysctl.d文件；旧值0记在记录中，不自动回滚。实际峰值、swap和原实时PID/连接均核对，不能将新增swap当无限内存或高可用承诺。
 
 ## 验收与交接
 
