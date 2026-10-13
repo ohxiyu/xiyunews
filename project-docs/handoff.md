@@ -1,45 +1,45 @@
 # 当前交接
 
-当前 Issue240：修复运营者报告的 www.xiyu.news 入口故障，代码已准备，尚待 CI/合并/部署。用户明确要求修复，授权仅覆盖 www 必要绑定/DNS 和同功能发布，不改主域、API、Access、Cron、密钥及实时服务。后续阅读层次 UI 使用独立串行 PR；不继续旧的消息验收任务。
+当前 Issue243：修正 www 外部托管 DNS 与 Custom Domain 的冲突，改用精确 Worker 路由复用现有记录。不删除 DNS、不改凭据/主域/Access/Cron/API/实时服务。UI242 自有更改已精确 stash，当前只编辑域路由及证据，完成后恢复 UI。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "修复 www 入口并保留路径查询统一 301 到主域",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/240",
+  "goal": "保留 www 外部托管 DNS，添加精确 Worker 路由完成 301",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/243",
   "owner": "当前会话，唯一编辑与发布整合负责人",
-  "branch": "agent/www-entry-fix",
-  "last_verified_commit": "6a1b99b0f1c0d742e624d994d49853a999076c89",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/241",
+  "branch": "agent/www-proxied-route",
+  "last_verified_commit": "c1595aa900e5fc77ba85e2ad5d189c5883f9d7c0",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/244",
   "completed": [
-    "独立 worktree，原工作区未提交文件保留",
-    "www 统一 301 处理先于私有接口/资产/缓存与运维路由",
-    "现有 Worker 声明新增 www Custom Domain，主域/DO/KV/Cron 不变",
-    "29 项主机 Node 跳转测试及 130 项 Worker/type/audit/dry-run 通过"
+    "PR241 已合并，主域 Worker 跳转代码已上传且健康正常",
+    "已定位实际绑定错误100117：www 的 DNS externally managed，未删除或覆盖任何记录",
+    "将 www 改为精确同区 Worker 路由，原主域 Custom Domain/DO/KV/Cron 不变",
+    "UI242 未发布改动保存在自有 stash，未丢弃"
   ],
   "unfinished": [
-    "完成 Python 全量/CI、同步 main 后合并、授权部署与 www 自然 DNS/TLS/301 验收",
-    "随后独立 PR 调整背景、正文、影响分析及参考资料阅读层次"
+    "路由 CI/同步 main/合并/授权部署并验收 www 301",
+    "随后恢复 UI242 自有 stash 并完成预览、CI、上线"
   ],
   "validation": [
-    "主域首页 200、health ok；www 证书覆盖但 HTTP520/HTTPS522",
-    "Cloudflare 只读实际 Custom Domains 仅 xiyu.news→xiyunews；没有另一个同名 www Worker",
-    "新增/旧域/相似域/运维/后台/查询参数转义跳转测试通过"
+    "PR241 的 1063 passed/4 skipped、130 Worker、29 主机跳转与 CI 全通过",
+    "changeset 预览显示 conflicting=[]，实际部署却100117；记录两者，不将预检当成功",
+    "主域 health=ok/source=c1595aa9，www仍未验收"
   ],
   "unverified": [
-    "www 新绑定与最终 301 尚未部署",
-    "其他阅读层次 UI 尚未实施"
+    "精确 www 路由未部署；不声称已经修复",
+    "UI242尚未上线"
   ],
   "production": {
-    "source_commit": "6a1b99b0f1c0d742e624d994d49853a999076c89",
-    "artifact_commit": "39457be860c590f21b1de4983af1470b795759f3",
+    "source_commit": "c1595aa900e5fc77ba85e2ad5d189c5883f9d7c0",
+    "artifact_commit": "f45d2392d6e654906ea0c4bbee706241ed9c74cc",
     "edition": "2026-10-13",
     "generated_at": "本任务不采集或生成新闻，仅读取既有出版",
-    "worker_version": "d18c6c94-0120-4523-9ab4-15f1c0d4a134",
-    "verified_at": "2026-10-13 11:07 Asia/Shanghai，HTTP/health 与 www 入口诊断"
+    "worker_version": "9358c8e3-9103-46f0-a7db-0fd2c2d7ea98",
+    "verified_at": "2026-10-13，部署日志100117与主域health只读回读"
   },
   "blockers": [],
-  "next_action": "完成只读 changeset 检查、全量/CI，同步 main 后合并并经统一流水线部署；只改 www 必要绑定/DNS。不改变 Access/Cron/密钥/主域/API/旧品牌。",
+  "next_action": "核验精确路由无已有其他 Worker，完成测试/CI/main 同步后部署，不删除 DNS、不改权限或密钥；成功后回到 UI242。",
   "states": {
     "code": "complete",
     "tests": "pending",
@@ -50,5 +50,3 @@
   "evidence": "project-docs/releases/2026-10-13-www-entry.md"
 }
 ```
-
-上轮双话题已上线，真实消息验收仍保留在 [原发布记录](releases/2026-10-12-telegram-group-topics.md) / Issue238；它不是本轮补发或通知授权。
