@@ -11,7 +11,7 @@
     "en": "【Aptos 主网上线加密内存池，交易内容在区块最终确认前保持加密】"
   },
   "current_state": {
-    "zh": "Aptos launched an encrypted mempool on mainnet under AIP-144, letting users opt per-transaction to have calldata encrypted client-side and only collectively decrypted by validators once a block is finalized, with Petra wallet and Decibel already adopting it.",
+    "zh": "Aptos 已按照 AIP-144 提案在主网上线加密内存池。用户可按笔选择是否启用加密，启用后交易内容（所调用的函数及参数）在客户端加密后再提交，区块提议者在看不到交易内容的情况下完成排序，待区块最终确认后由验证者集体解密并执行。\n\n解密所需达到的质押权重门槛与出块相同，因此单个验证者或不足三分之二质押权重的验证者子集都无法解密待处理交易，这一设计旨在限制针对待处理订单流的抢跑与 MEV 提取。\n\n即使在开启加密的情况下，发送方地址和 Gas 费用仍然可见。Aptos 表示该方案在 50 节点基准测试中每个区块约增加 20 毫秒延迟，并已通过 ZKSecurity 的安全审查；目前 Petra 钱包已支持该功能，Aptos 上的永续合约交易所 Decibel 将使用加密内存池保护订单隐私。",
     "en": "Aptos launched an encrypted mempool on mainnet under AIP-144, letting users opt per-transaction to have calldata encrypted client-side and only collectively decrypted by validators once a block is finalized, with Petra wallet and Decibel already adopting it."
   },
   "first_seen_at": "2026-10-12T16:20:55.622425+00:00",

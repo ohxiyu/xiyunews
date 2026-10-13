@@ -7,11 +7,11 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "Zod 4.6.6 compromised by malware?",
+    "zh": "Zod 4.6.6 被恶意软件入侵？",
     "en": "Zod 4.6.6 compromised by malware?"
   },
   "current_state": {
-    "zh": "Developers flagged that Zod's GitHub release tag v4.6.6 still points at a malicious commit (d821685) pushed with stolen maintainer credentials, part of a supply-chain campaign that used an Ethereum smart contract to deliver its JS payload and also hit standard-schema and nub — but which was caught, reverted, and never published to npm.",
+    "zh": "开发者指出，Zod 的 GitHub 发布标签 v4.6.6 目前仍指向一个恶意提交（d821685）。该提交于 2026 年 9 月 21 日使用窃取的维护者凭据被推入仓库，并于当天被回滚。相关报道称该代码从未发布到 npm，同一攻击活动还针对了 standard-schema 和 nub 两个包。\n\nZod 是最广泛使用的 TypeScript 优先模式校验库之一，因此即使已回滚，恶意提交仍带着标签留在 GitHub 上可供下载，感染代码依然可被获取。报道称该攻击活动通过 Ethereum 智能合约下发 JS 载荷，这一手法意在规避注册表与安全扫描器的检查。\n\n该提交的说明为“Fix bugs and improve performance”，改动涉及 packages/mini/meta.test.mjs；据讨论，注入代码被设计为在 Zod 安装时执行，并从 Ethereum 智能合约获取下一阶段载荷。评论者称恶意代码进入了 Zod 的主分支但未进入 npm，维护者 Colin Hicks 当天通过 PR #6620 回滚，随后于 2026 年 10 月 11 日发布了不含恶意代码的 4.6.6 版本。在 nub 的案例中，同一攻击者的代码据称进入了注册表。",
     "en": "Developers flagged that Zod's GitHub release tag v4.6.6 still points at a malicious commit (d821685) pushed with stolen maintainer credentials, part of a supply-chain campaign that used an Ethereum smart contract to deliver its JS payload and also hit standard-schema and nub — but which was caught, reverted, and never published to npm."
   },
   "first_seen_at": "2026-10-12T10:40:52.555969+00:00",
