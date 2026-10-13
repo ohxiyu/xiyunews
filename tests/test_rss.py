@@ -110,3 +110,55 @@ def test_unknown_extractor_name_ignored() -> None:
 
     assert len(items) == 1
     assert items[0].content == "Short summary from feed."
+
+
+def test_same_publisher_fallback_preserves_failure_and_headline_quality():
+    import httpx
+    from unittest.mock import patch
+    from src.event_pipeline import story_evidence
+    source = RSSSourceConfig(name="Test", url="https://example.com/feed.xml", fallback_google_news=True)
+    primary = httpx.Response(403, request=httpx.Request("GET", str(source.url)))
+    fallback_item = asyncio.run(RSSScraper([RSSSourceConfig(name="Test", url=source.url)], _make_feed_client(_FEED)).fetch(_SINCE))[0]
+    fallback_item.content = "Indexed headline, not full source evidence. " * 20
+    client = AsyncMock()
+    client.get.return_value = primary
+    with patch("src.scrapers.rss.GoogleNewsScraper") as fallback:
+        fallback.return_value.fetch = AsyncMock(return_value=[fallback_item])
+        scraper = RSSScraper([source], client)
+        items = asyncio.run(scraper.fetch(_SINCE))
+        config = fallback.call_args.args[0]
+        assert config.allowed_domains == ["example.com"]
+        assert config.query == "site:example.com"
+    assert items[0].metadata["collection_method"] == "google_news_fallback"
+    assert story_evidence(items[0]).evidence_quality == "headline_only"
+    assert scraper.feed_results[0]["status"] == "degraded"
+    assert scraper.feed_results[0]["error"] == "HTTP 403"
+    assert scraper.feed_results[0]["fallback_items"] == 1
+
+
+def test_successful_original_feed_never_requests_fallback():
+    from unittest.mock import patch
+    source = RSSSourceConfig(name="Test", url="https://example.com/feed.xml", fallback_google_news=True)
+    with patch("src.scrapers.rss.GoogleNewsScraper") as fallback:
+        items = asyncio.run(RSSScraper([source], _make_feed_client(_FEED)).fetch(_SINCE))
+        assert len(items) == 1
+        fallback.assert_not_called()
+
+
+def test_empty_fallback_does_not_claim_primary_recovered():
+    import httpx
+    from unittest.mock import patch
+    source = RSSSourceConfig(name="Test", url="https://example.com/feed.xml", fallback_google_news=True)
+    client = AsyncMock()
+    client.get.return_value = httpx.Response(403, request=httpx.Request("GET", str(source.url)))
+    with patch("src.scrapers.rss.GoogleNewsScraper") as fallback:
+        fallback.return_value.fetch = AsyncMock(return_value=[])
+        scraper = RSSScraper([source], client)
+        assert asyncio.run(scraper.fetch(_SINCE)) == []
+        assert scraper.feed_results[0]["status"] == "failure"
+
+
+def test_html_response_is_not_a_successful_empty_feed():
+    scraper = RSSScraper([RSSSourceConfig(name="Test", url="https://example.com/feed.xml")], _make_feed_client("<html>blocked</html>"))
+    assert asyncio.run(scraper.fetch(_SINCE)) == []
+    assert scraper.feed_results[0]["status"] == "failure"

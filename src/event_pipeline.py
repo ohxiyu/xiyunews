@@ -174,7 +174,7 @@ def story_evidence(item: ContentItem) -> StoryEvidence:
     summary_en = _localized(item, "detailed_summary", "en")
     fallback_summary = str(item.ai_summary or "").strip()
     excerpt = BeautifulSoup(item.content or "", "html.parser").get_text(" ", strip=True)
-    headline_only = len(excerpt) < max(120, len(item.title) + 60)
+    headline_only = bool(item.metadata.get("headline_only")) or len(excerpt) < max(120, len(item.title) + 60)
     return StoryEvidence(
         story_id=item.id,
         url=str(item.url),

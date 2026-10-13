@@ -63,6 +63,16 @@ class StubScraper:
         return self.result
 
 
+def test_all_primary_rss_degraded_with_recovered_items_is_not_all_failed():
+    orchestrator = make_orchestrator()
+    scraper = StubScraper([make_item("recovered")])
+    scraper.feed_results = [{"name": "Publisher", "status": "degraded", "error": "HTTP 403", "fallback": "google_news", "fallback_items": 1}]
+    outcome = asyncio.run(orchestrator._fetch_with_progress("RSS Feeds", scraper, SINCE))
+    assert outcome.status == "partial_failure"
+    assert not FetchReport([outcome]).all_failed
+    assert outcome.to_dict()["feeds"][0]["fallback_items"] == 1
+
+
 def test_all_success_empty_has_normal_success_report(monkeypatch) -> None:
     orchestrator = make_orchestrator()
     orchestrator.config = SimpleNamespace(  # type: ignore[assignment]

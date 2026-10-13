@@ -65,6 +65,7 @@ class GoogleNewsScraper(BaseScraper):
         """
         super().__init__({"google_news": config}, http_client)
         self.gn_config = config
+        self.query_reports: list[dict] = []
 
     async def fetch(self, since: datetime) -> List[ContentItem]:
         """Fetch articles from the Google News RSS search endpoint.
@@ -78,6 +79,7 @@ class GoogleNewsScraper(BaseScraper):
         """
         if not self.gn_config.enabled:
             return []
+        self.query_reports = []
 
         searches = [
             GoogleNewsQuery(
@@ -143,13 +145,17 @@ class GoogleNewsScraper(BaseScraper):
                 items.append(item)
             if dropped:
                 logger.info("Google News: dropped %d items by domain filter", dropped)
+            self.query_reports.append({"status": "success" if items else "empty", "items": len(items)})
             return items
 
         except httpx.HTTPError as exc:
             logger.warning("Error fetching Google News feed: %s", exc)
+            response = getattr(exc, "response", None)
+            self.query_reports.append({"status": "failure", "items": 0, "error": f"HTTP {response.status_code}" if response is not None else type(exc).__name__})
             return []
         except Exception as exc:
             logger.warning("Error parsing Google News feed: %s", exc)
+            self.query_reports.append({"status": "failure", "items": 0, "error": type(exc).__name__})
             return []
 
     async def _resolve_links(self, items: List[ContentItem]) -> None:
