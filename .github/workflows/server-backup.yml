@@ -1,0 +1,44 @@
+name: xiyunews Encrypted Backup
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '45 3 * * *'
+      timezone: Asia/Shanghai
+permissions:
+  contents: read
+concurrency:
+  group: xiyunews-encrypted-backup
+  cancel-in-progress: false
+jobs:
+  upload:
+    if: github.ref == 'refs/heads/main' && vars.XIYUNEWS_RUNNER_LABELS != ''
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    timeout-minutes: 5
+    steps:
+      - name: Verify fresh bounded encrypted export without plaintext
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import datetime, hashlib, json
+          root = Path('/home/xiyunews-runner/backup-export')
+          archive = root / 'latest.tar.gz.age'
+          info = json.loads((root / 'manifest.json').read_text())
+          created = datetime.datetime.strptime(info['created_at'], '%Y%m%dT%H%M%SZ').replace(tzinfo=datetime.timezone.utc)
+          age = (datetime.datetime.now(datetime.timezone.utc) - created).total_seconds()
+          assert 0 <= age < 86400, 'backup stale or future'
+          assert not archive.is_symlink() and 0 < archive.stat().st_size <= 8 * 1024 * 1024
+          with archive.open('rb') as handle:
+              assert handle.read(22) == b'age-encryption.org/v1\n', 'not age ciphertext'
+              handle.seek(0)
+              assert hashlib.file_digest(handle, 'sha256').hexdigest() == info['sha256']
+          print('Fresh encrypted backup verified; no plaintext accessed.')
+          PY
+      - uses: actions/upload-artifact@v6
+        with:
+          name: xiyunews-encrypted-backup-${{ github.run_id }}
+          path: |
+            /home/xiyunews-runner/backup-export/latest.tar.gz.age
+            /home/xiyunews-runner/backup-export/manifest.json
+          compression-level: 0
+          retention-days: 3
+          if-no-files-found: error
