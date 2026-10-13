@@ -24,7 +24,7 @@
     "PR279/ebc92b45备份去重/副本整理/关闭连接/xz；受限单元6820048B/68秒成功，异机38417087420与本机双库恢复通过，明文清理"
   ],
   "unfinished": [
-    "最终文档PR检查合并，关闭257/280并清理自有工作分支"
+    "PR281最终归档检查遇到完整历史下载5分钟超时，CI改为保留完整提交图/blob:none按需历史内容与10分钟预算；全检查通过后合并，关闭257/280并清理自有分支"
   ],
   "validation": [
     "1111 passed / 4既有条件跳过，CI38414738476适用检查全部通过；PR277 CI38408646325全部通过",
@@ -53,9 +53,9 @@
   "states": {
     "code": "complete",
     "tests": "complete",
-    "pr_merged": "complete",
-    "deployed": "complete",
-    "production_verified": "complete"
+    "pr_merged": "pending",
+    "deployed": "pending",
+    "production_verified": "pending"
   },
   "evidence": "project-docs/releases/2026-10-13-server-optimization-complete.md"
 }
