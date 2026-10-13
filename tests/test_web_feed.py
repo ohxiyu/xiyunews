@@ -61,6 +61,9 @@ def test_background_precedes_report_and_analysis_references_follow_source():
     children = list(article.select_one(".digest-item-content").children)
     background = article.select_one('[data-context-placement="background"]')
     after = article.select_one('[data-context-placement="after"]')
+    assert background.has_attr("open")
+    assert not after.has_attr("open")
+    assert after.find("summary") is not None
     assert children.index(background) < children.index(article.select_one(".story-summary-body"))
     assert children.index(after) > children.index(article.select_one(".source-line"))
     assert "背景事实" in background.get_text() and "明确的分析判断" not in background.get_text()
