@@ -7,47 +7,63 @@
   "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "Solana 主网完成 350ms、300ms、250ms 出块时间削减，并计划激活 200ms 目标",
+    "zh": "Solana 主网连续缩短出块时间：先激活 350 毫秒槽位，再推进 Alpenglow 共识升级",
     "en": "Solana Activates 350ms Slots on Mainnet, First Cut Since Genesis"
   },
   "current_state": {
-    "zh": "SIMD-0525 的 200 毫秒目标已激活并宣布完成，Anza 确认升级落地；社区注意力转向 Alpenglow 共识改造（目标约 150 毫秒最终性），其已在测试网和开发网部署，但主网激活日期尚未公布。",
-    "en": "The 200-millisecond target of SIMD-0525 has been activated and declared complete by Anza; attention now shifts to the Alpenglow consensus overhaul targeting ~150ms finality, which has been deployed on testnet and devnet but has no announced mainnet activation date."
+    "zh": "Alpenglow 已在 devnet 和 testnet 上线，Anza 现已公布主网激活时间：计划于 2026 年 10 月 21 日 22:50 左右在 Mainnet-beta 上线，迁移在一个 slot 内完成。主网激活目前仍是已排期、尚未执行的状态。",
+    "en": "Alpenglow is live on devnet and testnet, and Anza has now scheduled Mainnet-beta activation for around Oct 21, 2026 at 22:50 with a single-slot migration. Mainnet activation is now scheduled but not yet executed."
   },
   "first_seen_at": "2026-08-22T08:00:00+08:00",
-  "last_updated_at": "2026-10-10T02:39:29.330494+00:00",
-  "last_material_change_at": "2026-10-10T02:39:29.330494+00:00",
+  "last_updated_at": "2026-10-13T18:21:42.450097+00:00",
+  "last_material_change_at": "2026-10-13T18:21:42.450097+00:00",
   "confidence": 0.75,
-  "updates_count": 4,
-  "sources_count": 4,
+  "updates_count": 8,
+  "sources_count": 10,
   "entities": [
     "activates",
+    "ahead",
     "alpenglow",
     "block-time",
     "cut",
+    "devnet",
     "final",
     "first",
     "genesis",
+    "goes",
+    "january",
+    "live",
     "mainnet",
+    "migration",
     "millisecond",
     "schedules",
     "since",
     "slots",
-    "solana"
+    "sol",
+    "solana",
+    "testnet"
   ],
   "identifiers": [
     "simd-0525"
   ],
   "topics": [
     "alpenglow",
+    "anza",
     "block-time",
+    "blockchain-infrastructure",
     "blockchain-performance",
+    "consensus",
+    "consensus-upgrade",
+    "devnet",
+    "finality",
     "layer-1",
     "mainnet",
+    "mainnet-launch",
     "network-performance",
     "protocol-upgrade",
     "scalability",
     "solana",
+    "testnet",
     "validators"
   ],
   "updates": [
@@ -83,6 +99,146 @@
       "sources": [
         {
           "url": "https://thedefiant.io/news/blockchains/solana-activates-350-millisecond-slots-on-mainnet",
+          "label": "The Defiant",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_d6cb1d552d63ee1c",
+      "event_id": "evt_04729c76ccc47903",
+      "occurred_at": "2026-09-23T14:40:54Z",
+      "published_at": "2026-09-23T14:40:54Z",
+      "first_seen_at": "2026-09-23T17:21:30.707301Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "Solana 将 Alpenglow 推进至测试网，SOL 逼近 1 月高点",
+      "title_en": "Solana moves Alpenglow into testnet as SOL nears January highs",
+      "what_changed_zh": "Solana 已开始将 Alpenglow 共识改造推进至测试网，这是该升级首次公开部署，其内容是以 Votor 投票机制取代 TowerBFT。Solana Agave 验证者客户端的开发方 Anza 表示，测试网正在进入部署流程，之后将依次推进至 devnet，最终到 mainnet-beta。\n\n这是验证者与基础设施服务商在 Alpenglow 推进至 devnet 与主网之前，首次可以在大范围环境中运行该升级。此次迁移要求这些运营方调整其区块流传输、投票跟踪或依赖 Solana 现有确认层级的系统。\n\n该升级的目标是将最终确认时间从 TowerBFT 下约 12.8 秒降至约 150 毫秒，同时不改变 Solana 虚拟机、交易、程序与费用。其第一阶段引入 Votor，把验证者当前上链的投票交易改为直接在验证者之间发送，并汇总为凭证，使区块可在一到两轮投票内完成最终确认，把等待不可逆交易的时间缩短约 99%；取代 Turbine 区块数据分发系统的 Rotor 则另行安排。",
+      "what_changed_en": "Solana began rolling its Alpenglow consensus upgrade onto testnet, the first public deployment of the TowerBFT replacement targeting roughly 150-millisecond finality while leaving the SVM, transactions, programs and fees unchanged.",
+      "current_state_zh": "Solana 已开始将 Alpenglow 共识改造推进至测试网，这是该升级首次公开部署，其内容是以 Votor 投票机制取代 TowerBFT。Solana Agave 验证者客户端的开发方 Anza 表示，测试网正在进入部署流程，之后将依次推进至 devnet，最终到 mainnet-beta。\n\n这是验证者与基础设施服务商在 Alpenglow 推进至 devnet 与主网之前，首次可以在大范围环境中运行该升级。此次迁移要求这些运营方调整其区块流传输、投票跟踪或依赖 Solana 现有确认层级的系统。\n\n该升级的目标是将最终确认时间从 TowerBFT 下约 12.8 秒降至约 150 毫秒，同时不改变 Solana 虚拟机、交易、程序与费用。其第一阶段引入 Votor，把验证者当前上链的投票交易改为直接在验证者之间发送，并汇总为凭证，使区块可在一到两轮投票内完成最终确认，把等待不可逆交易的时间缩短约 99%；取代 Turbine 区块数据分发系统的 Rotor 则另行安排。",
+      "current_state_en": "Solana began rolling its Alpenglow consensus upgrade onto testnet, the first public deployment of the TowerBFT replacement targeting roughly 150-millisecond finality while leaving the SVM, transactions, programs and fees unchanged.",
+      "detailed_summary_zh": "Solana began rolling its Alpenglow consensus upgrade onto testnet, the first public deployment of the TowerBFT replacement targeting roughly 150-millisecond finality while leaving the SVM, transactions, programs and fees unchanged.",
+      "detailed_summary_en": "Solana began rolling its Alpenglow consensus upgrade onto testnet, the first public deployment of the TowerBFT replacement targeting roughly 150-millisecond finality while leaving the SVM, transactions, programs and fees unchanged.",
+      "background_zh": "Alpenglow 是 Solana 自 TowerBFT 以来首次重大共识层替换，由 Anza 于 2025 年 5 月提出。它延续了此前的性能升级：Solana 本月激活 Transaction V1，将最大交易大小从 1,232 字节提升至 4,096 字节，其 slot 时间路线图也逐步把目标从 400 毫秒压缩至 200 毫秒。",
+      "background_en": "Alpenglow is Solana's first major consensus replacement since TowerBFT and was presented by Anza in May 2025. It follows other performance work: Solana activated Transaction V1 this month, lifting maximum transaction size to 4,096 bytes from 1,232, and its slot-time roadmap has progressively cut the target from 400 milliseconds toward 200 milliseconds.",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "Alpenglow 对市场的传导路径主要体现在结算延迟上：更快的最终确认可能影响 Solana 上 DEX 与代币化现实世界资产等场所的市场结构，以及验证者和基础设施服务商承担的运营要求。报道指出，SOL 在本周接近 120 美元后于发稿时报约 117 美元，过去一个月上涨约 25%，而网络上的现实世界资产规模在 9 月初达到约 46 亿美元。",
+      "market_impact_en": "Alpenglow's transmission path to markets runs mainly through settlement latency: faster finality could affect market structure for Solana-based venues such as DEXs and tokenized real-world assets, as well as the operational requirements placed on validators and infrastructure providers. The article notes SOL traded around $117 after nearing $120 this week, up roughly 25% over the past month, and that real-world assets on the network reached about $4.6 billion in early September.",
+      "importance_score": 7.5,
+      "references": [
+        {
+          "url": "https://solana.com/upgrades/alpenglow",
+          "title": "Alpenglow | Solana Media"
+        },
+        {
+          "url": "https://chainstack.com/solana-alpenglow-votor-towerbft/",
+          "title": "Solana Alpenglow: how Votor replaces TowerBFT | Chainstack Blog"
+        },
+        {
+          "url": "https://solanacompass.com/learn/accelerate-25/scale-or-die-at-accelerate-2025-introducing-alpenglow-solanas-new-consensus",
+          "title": "Solana Alpenglow: New Consensus Protocol with... | Solana Compass"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "rss:cryptoslate.com_feed_:9a77b20c784ee587"
+      ],
+      "sources": [
+        {
+          "url": "https://cryptoslate.com/solana-moves-alpenglow-into-testnet-as-sol-nears-january-highs/",
+          "label": "CryptoSlate",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_7881ac881d2b9160",
+      "event_id": "evt_04729c76ccc47903",
+      "occurred_at": "2026-09-26T05:00:00Z",
+      "published_at": "2026-09-26T05:00:00Z",
+      "first_seen_at": "2026-09-26T09:27:48.982228Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Solana的150毫秒结算升级进入第二个公共测试网络",
+      "title_en": "Solana’s 150-millisecond settlement upgrade reaches second public test network",
+      "what_changed_zh": "Alpenglow 现已同时在 devnet 和 testnet 上运行；devnet 切换于 9 月 25 日宣布，testnet 在前一日完成过渡，主网启动尚未排期。",
+      "what_changed_en": "Alpenglow is now running on both devnet and testnet; the devnet switch was announced Sept. 25, and the testnet transition completed the day before, with mainnet launch still unscheduled.",
+      "current_state_zh": "Solana 的 Alpenglow 共识升级已在 devnet 和 testnet 两个公共测试网络上运行，供开发者测试，主网启动尚未排期。",
+      "current_state_en": "Solana's Alpenglow consensus upgrade is running on both public test networks, devnet and testnet, for developer testing, with mainnet launch not yet scheduled.",
+      "detailed_summary_zh": "Solana's Alpenglow upgrade, targeting roughly 150-millisecond transaction finality, is now running on both devnet and testnet, allowing developers to test ahead of an unscheduled mainnet launch.",
+      "detailed_summary_en": "Solana's Alpenglow upgrade, targeting roughly 150-millisecond transaction finality, is now running on both devnet and testnet, allowing developers to test ahead of an unscheduled mainnet launch.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "rss:www.coindesk.com_arc_outboundfeeds_rss_:f69f7a6c27eb72c6"
+      ],
+      "sources": [
+        {
+          "url": "https://www.coindesk.com/tech/2026/09/26/solana-s-150-millisecond-settlement-upgrade-reaches-second-public-test-network",
+          "label": "CoinDesk",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_76d3a5de5d4e3708",
+      "event_id": "evt_04729c76ccc47903",
+      "occurred_at": "2026-09-26T14:37:38Z",
+      "published_at": "2026-09-26T14:37:38Z",
+      "first_seen_at": "2026-09-26T16:34:46.702009Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Solana 的 Alpenglow 已在 Devnet 上线，主网迁移仍待进行",
+      "title_en": "Solana’s Alpenglow Goes Live on Devnet Ahead of Mainnet Migration",
+      "what_changed_zh": "Anza 于 9 月 25 日宣布，其针对 Solana 的共识改造 Alpenglow 已在 devnet 上线；此前一天，独立的 testnet 已完成切换，Solana 基金会的升级页面显示该升级在两个网络上均已激活。主网激活仍未有时间表。\n\nAlpenglow 的目标是将最终确认时间从现行系统的大约 12.8 秒缩短到约 150 毫秒，这可能缩短交易所释放存款或支付应用向商户确认交易完成所需的时间。由于验证者投票移出区块，即使用户活动不变，报告的交易总量也会下降。\n\n验证者将直接交换投票，而不再把投票作为交易记录在区块内，从而使共识在一到两轮投票内完成；Solana 基金会已要求数据服务商调整其对比口径。150 毫秒这一数字来自模拟结果，而非真实市场条件下的实测；钱包处理和交易所自身的入金审核还可能增加额外等待时间；仅发送交易和读取账户余额的应用无需迁移。",
+      "what_changed_en": "Anza's Alpenglow consensus upgrade for Solana is now live on devnet, with developers asked to test programs and integrations while mainnet activation remains pending.",
+      "current_state_zh": "Anza 于 9 月 25 日宣布，其针对 Solana 的共识改造 Alpenglow 已在 devnet 上线；此前一天，独立的 testnet 已完成切换，Solana 基金会的升级页面显示该升级在两个网络上均已激活。主网激活仍未有时间表。\n\nAlpenglow 的目标是将最终确认时间从现行系统的大约 12.8 秒缩短到约 150 毫秒，这可能缩短交易所释放存款或支付应用向商户确认交易完成所需的时间。由于验证者投票移出区块，即使用户活动不变，报告的交易总量也会下降。\n\n验证者将直接交换投票，而不再把投票作为交易记录在区块内，从而使共识在一到两轮投票内完成；Solana 基金会已要求数据服务商调整其对比口径。150 毫秒这一数字来自模拟结果，而非真实市场条件下的实测；钱包处理和交易所自身的入金审核还可能增加额外等待时间；仅发送交易和读取账户余额的应用无需迁移。",
+      "current_state_en": "Anza's Alpenglow consensus upgrade for Solana is now live on devnet, with developers asked to test programs and integrations while mainnet activation remains pending.",
+      "detailed_summary_zh": "Anza's Alpenglow consensus upgrade for Solana is now live on devnet, with developers asked to test programs and integrations while mainnet activation remains pending.",
+      "detailed_summary_en": "Anza's Alpenglow consensus upgrade for Solana is now live on devnet, with developers asked to test programs and integrations while mainnet activation remains pending.",
+      "background_zh": "根据 Anza 与 Solana 的升级资料，Alpenglow 是 Anza 提出的方案，用于取代 Solana 现行的 TowerBFT 共识，并引入 Votor 与 Rotor 设计。Devnet 是开发者网络，使用没有真实价值的代币测试应用；独立的 testnet 则主要用于对网络软件和验证者运维进行压力测试。",
+      "background_en": "Alpenglow is Anza’s proposed replacement for Solana’s current TowerBFT consensus, introducing the Votor and Rotor design, per Anza’s and Solana’s upgrade materials. Devnet is the developer network where applications are tested with tokens of no real value, while the separate testnet is used mainly to stress-test network software and validator operations.",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "传导路径主要通过 SOL 以及基于 Solana 的资产，包括在该网络上结算的稳定币支付流：更快的最终确认针对的是交易所入金确认和支付受理时间，这属于基础设施与情绪渠道，而非供应或托管层面的变化。由于移除验证者投票会降低报告的交易总量，数据服务商必须调整对比口径，这会影响用于 Solana 市场分析的链上活动指标。",
+      "market_impact_en": "The transmission path runs through SOL and Solana-based assets, including stablecoin payment flows that settle on the network: faster finality aims at exchange deposit confirmation and payment acceptance times, an infrastructure and sentiment channel rather than a supply or custody change. Because removing validator votes lowers reported transaction counts, data providers must adjust comparisons, which affects the on-chain activity metrics used in Solana market analysis.",
+      "importance_score": 7.5,
+      "references": [
+        {
+          "url": "https://solana.com/upgrades/alpenglow",
+          "title": "Alpenglow | Solana Media"
+        },
+        {
+          "url": "https://www.coindesk.com/tech/2026/05/11/the-biggest-consensus-overhaul-in-solana-history-is-officially-live-for-testing",
+          "title": "Solana news (SOL): Biggest consensus overhaul in blockchain's history is live for testing"
+        },
+        {
+          "url": "https://www.alchemy.com/blog/solana-alpenglow",
+          "title": "What is Solana Alpenglow? Consensus upgrade explained | Alchemy"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "rss:thedefiant.io_api_feed:ed5208d84523c298"
+      ],
+      "sources": [
+        {
+          "url": "https://thedefiant.io/news/blockchains/solana-s-alpenglow-goes-live-on-devnet-ahead-of-mainnet-migration",
           "label": "The Defiant",
           "source_type": "rss",
           "official": false
@@ -212,6 +368,58 @@
           "url": "https://cryptoslate.com/solana-doubles-block-production-speed-to-200ms-as-network-prepares-for-alpenglow-upgrade/",
           "label": "CryptoSlate",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_4b19d44979058861",
+      "event_id": "evt_04729c76ccc47903",
+      "occurred_at": "2026-10-13T15:14:55Z",
+      "published_at": "2026-10-13T15:14:55Z",
+      "first_seen_at": "2026-10-13T18:21:42.450097Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "【Solana 共识升级 Alpenglow 将于 10 月 21 日上线主网，最终确认时间降至约 150 毫秒】",
+      "title_en": "【Solana 共识升级 Alpenglow 将于 10 月 21 日上线主网，最终确认时间降至约 150 毫秒】",
+      "what_changed_zh": "Anza 宣布 Alpenglow 计划于 2026 年 10 月 21 日 22:50 左右在 Solana 主网 Mainnet-beta 激活，迁移将在单个 slot 内完成；此前主网激活时间未定。",
+      "what_changed_en": "Anza announced that Alpenglow is scheduled to activate on Solana Mainnet-beta around Oct 21, 2026 at 22:50, with a single-slot migration; the mainnet activation was previously unscheduled.",
+      "current_state_zh": "Alpenglow 已在 devnet 和 testnet 上线，Anza 现已公布主网激活时间：计划于 2026 年 10 月 21 日 22:50 左右在 Mainnet-beta 上线，迁移在一个 slot 内完成。主网激活目前仍是已排期、尚未执行的状态。",
+      "current_state_en": "Alpenglow is live on devnet and testnet, and Anza has now scheduled Mainnet-beta activation for around Oct 21, 2026 at 22:50 with a single-slot migration. Mainnet activation is now scheduled but not yet executed.",
+      "detailed_summary_zh": "Solana's Anza announced that the Alpenglow consensus upgrade, which replaces TowerBFT and Proof-of-History and reduces finality to about 150 milliseconds, will activate on Mainnet-beta around October 21 at 22:50 with a single-slot migration.",
+      "detailed_summary_en": "Solana's Anza announced that the Alpenglow consensus upgrade, which replaces TowerBFT and Proof-of-History and reduces finality to about 150 milliseconds, will activate on Mainnet-beta around October 21 at 22:50 with a single-slot migration.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "telegram:foresightnews:120331",
+        "telegram:theblockbeats:200299",
+        "telegram:wublockchainenglish:26397"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/115120",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://m.theblockbeats.info/flash/371633?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://wublockchain.xyz/news/news-21224",
+          "label": "wublockchainenglish",
+          "source_type": "telegram",
           "official": false
         }
       ]

@@ -4,23 +4,24 @@
   "url": "https://xiyu.news/events/evt_d5ced273c2ef0a66/",
   "json": "https://xiyu.news/api/events/evt_d5ced273c2ef0a66.json",
   "type": "product_release",
-  "status": "monitoring",
+  "status": "developing",
   "category": "technology",
   "title": {
     "zh": "Gemini 4 Argon：我们通往前沿智能的下一个时代",
     "en": "Gemini 4 Argon: our next era of frontier intelligence"
   },
   "current_state": {
-    "zh": "谷歌发布了 Gemini 4 Argon，并将其作为新一代旗舰长程模型。单次输出上限从此前 64K tokens 提高到 100 万 tokens。模型暂不向普通用户开放，首批仅通过 Fairwind Program 提供给可信网络安全团队，后续再逐步开放给付费 API 客户和 Google AI Ultra 用户。API 定价初期为每百万输入 tokens 2 美元、输出 10 美元，之后翻倍至 4 美元和 20 美元。官方评测中，Argon 在 DeepSWE v1.1 得 77.9%，高于 GPT-6 Astra 和 Claude Opus 5.5，但在 FrontierSWE、Terminal-Bench 4.0 及部分科学任务上仍落后。谷歌重点强化了网络安全能力，可信防御团队版本甚至会取消部分网络安全限制；正式开放前，谷歌仍在测试滥用、提示词注入和 Agent 越界等风险。",
-    "en": "Google released Gemini 4 Argon as its next flagship long-horizon model. Its single-pass output limit jumps from 64K tokens to 1 million tokens. The model is not yet open to ordinary users; initial access is only through the Fairwind Program to trusted cybersecurity teams, with later rollout to paid API customers and Google AI Ultra users. API pricing starts at $2 per million input tokens and $10 per million output tokens, later doubling to $4 and $20. In official evaluations, Argon scores 77.9% on DeepSWE v1.1, ahead of GPT-6 Astra and Claude Opus 5.5, but still trails on FrontierSWE, Terminal-Bench 4.0 and some scientific tasks. Google emphasized cybersecurity capabilities, with trusted defender versions even removing some cyber restrictions; before formal opening, Google is still testing abuse, prompt injection and agent boundary risks."
+    "zh": "Gemini 4 Argon 已从仅限可信网络安全团队的 Fairwind Program 阶段扩展到通过付费版 Gemini API 向全球开发者和企业开放，并可通过 Google AI Ultra 订阅使用；此前公布的 100 万 tokens 输出上限、定价与评测数据仍然有效。",
+    "en": "Gemini 4 Argon has moved from the Fairwind Program-only phase for trusted cybersecurity teams to broad availability for developers and enterprises worldwide via the paid Gemini API and the Google AI Ultra subscription; previously reported details (1M token output limit, pricing, benchmark scores) remain in effect."
   },
   "first_seen_at": "2026-09-30T23:26:56.671688+00:00",
-  "last_updated_at": "2026-10-01T00:03:18.016338+00:00",
-  "last_material_change_at": "2026-10-01T00:03:18.016338+00:00",
+  "last_updated_at": "2026-10-13T18:21:41.711420+00:00",
+  "last_material_change_at": "2026-10-13T18:21:41.711420+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 2,
+  "updates_count": 3,
+  "sources_count": 3,
   "entities": [
+    "api",
     "argon",
     "gemini",
     "gemini-4-argon",
@@ -31,10 +32,14 @@
     "ai-labs",
     "ai-model-release",
     "ai-safety",
+    "developer-api",
+    "frontier-model",
     "frontier-models",
     "gemini-4-argon",
+    "google",
     "google-deepmind",
     "koray-kavukcuoglu",
+    "llm",
     "long-context"
   ],
   "updates": [
@@ -121,6 +126,44 @@
       "sources": [
         {
           "url": "https://m.theblockbeats.info/flash/369826?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_f370f4d2ca3d8362",
+      "event_id": "evt_d5ced273c2ef0a66",
+      "occurred_at": "2026-10-13T16:12:02Z",
+      "published_at": "2026-10-13T16:12:02Z",
+      "first_seen_at": "2026-10-13T18:21:41.711420Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "谷歌：通过Gemini API向全球开发者和企业推出Gemini 4 Argon",
+      "title_en": "谷歌：通过Gemini API向全球开发者和企业推出Gemini 4 Argon",
+      "what_changed_zh": "谷歌宣布通过付费版 Gemini API 向全球开发者和企业正式推出 Gemini 4 Argon，并同时开放 Google AI Ultra 订阅使用。这标志着此前受限的 Fairwind Program 首发阶段结束，进入面向开发者/企业的普遍可用阶段。",
+      "what_changed_en": "Google announced the general availability of Gemini 4 Argon through the paid Gemini API for developers and enterprises worldwide, as well as via the Google AI Ultra subscription. This marks the end of the earlier restricted Fairwind Program-only phase and the start of broad developer/enterprise access.",
+      "current_state_zh": "Gemini 4 Argon 已从仅限可信网络安全团队的 Fairwind Program 阶段扩展到通过付费版 Gemini API 向全球开发者和企业开放，并可通过 Google AI Ultra 订阅使用；此前公布的 100 万 tokens 输出上限、定价与评测数据仍然有效。",
+      "current_state_en": "Gemini 4 Argon has moved from the Fairwind Program-only phase for trusted cybersecurity teams to broad availability for developers and enterprises worldwide via the paid Gemini API and the Google AI Ultra subscription; previously reported details (1M token output limit, pricing, benchmark scores) remain in effect.",
+      "detailed_summary_zh": "Google launched Gemini 4 Argon globally through the paid Gemini API and its Google AI Ultra subscription, making the new frontier model available to developers and enterprises.",
+      "detailed_summary_en": "Google launched Gemini 4 Argon globally through the paid Gemini API and its Google AI Ultra subscription, making the new frontier model available to developers and enterprises.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.9,
+      "story_ids": [
+        "telegram:theblockbeats:200304"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/371638?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
           "official": false

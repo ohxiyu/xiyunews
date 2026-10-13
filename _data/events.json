@@ -1076,22 +1076,30 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "The 200-millisecond target of SIMD-0525 has been activated and declared complete by Anza; attention now shifts to the Alpenglow consensus overhaul targeting ~150ms finality, which has been deployed on testnet and devnet but has no announced mainnet activation date.",
-      "current_state_zh": "SIMD-0525 的 200 毫秒目标已激活并宣布完成，Anza 确认升级落地；社区注意力转向 Alpenglow 共识改造（目标约 150 毫秒最终性），其已在测试网和开发网部署，但主网激活日期尚未公布。",
+      "current_state_en": "Alpenglow is live on devnet and testnet, and Anza has now scheduled Mainnet-beta activation for around Oct 21, 2026 at 22:50 with a single-slot migration. Mainnet activation is now scheduled but not yet executed.",
+      "current_state_zh": "Alpenglow 已在 devnet 和 testnet 上线，Anza 现已公布主网激活时间：计划于 2026 年 10 月 21 日 22:50 左右在 Mainnet-beta 上线，迁移在一个 slot 内完成。主网激活目前仍是已排期、尚未执行的状态。",
       "entities": [
         "activates",
+        "ahead",
         "alpenglow",
         "block-time",
         "cut",
+        "devnet",
         "final",
         "first",
         "genesis",
+        "goes",
+        "january",
+        "live",
         "mainnet",
+        "migration",
         "millisecond",
         "schedules",
         "since",
         "slots",
-        "solana"
+        "sol",
+        "solana",
+        "testnet"
       ],
       "event_id": "evt_04729c76ccc47903",
       "event_type": "other",
@@ -1099,26 +1107,36 @@
       "identifiers": [
         "simd-0525"
       ],
-      "last_material_change_at": "2026-10-10T02:39:29.330494Z",
-      "last_updated_at": "2026-10-10T02:39:29.330494Z",
+      "last_material_change_at": "2026-10-13T18:21:42.450097Z",
+      "last_updated_at": "2026-10-13T18:21:42.450097Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
-        "evt_f854fe8fc4c9f869"
+        "evt_f854fe8fc4c9f869",
+        "evt_d75668abfb43b4e7",
+        "evt_248d603a601b94c7"
       ],
       "schema_version": 1,
       "status": "developing",
       "title_en": "Solana Activates 350ms Slots on Mainnet, First Cut Since Genesis",
-      "title_zh": "Solana 主网完成 350ms、300ms、250ms 出块时间削减，并计划激活 200ms 目标",
+      "title_zh": "Solana 主网连续缩短出块时间：先激活 350 毫秒槽位，再推进 Alpenglow 共识升级",
       "topics": [
         "alpenglow",
+        "anza",
         "block-time",
+        "blockchain-infrastructure",
         "blockchain-performance",
+        "consensus",
+        "consensus-upgrade",
+        "devnet",
+        "finality",
         "layer-1",
         "mainnet",
+        "mainnet-launch",
         "network-performance",
         "protocol-upgrade",
         "scalability",
         "solana",
+        "testnet",
         "validators"
       ],
       "updates": [
@@ -1159,6 +1177,146 @@
           "update_type": "initial",
           "what_changed_en": "Solana Activates 350ms Slots on Mainnet, First Cut Since Genesis",
           "what_changed_zh": "Solana主网激活350毫秒时隙，创世以来首次缩减"
+        },
+        {
+          "background_en": "Alpenglow is Solana's first major consensus replacement since TowerBFT and was presented by Anza in May 2025. It follows other performance work: Solana activated Transaction V1 this month, lifting maximum transaction size to 4,096 bytes from 1,232, and its slot-time roadmap has progressively cut the target from 400 milliseconds toward 200 milliseconds.",
+          "background_zh": "Alpenglow 是 Solana 自 TowerBFT 以来首次重大共识层替换，由 Anza 于 2025 年 5 月提出。它延续了此前的性能升级：Solana 本月激活 Transaction V1，将最大交易大小从 1,232 字节提升至 4,096 字节，其 slot 时间路线图也逐步把目标从 400 毫秒压缩至 200 毫秒。",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Solana began rolling its Alpenglow consensus upgrade onto testnet, the first public deployment of the TowerBFT replacement targeting roughly 150-millisecond finality while leaving the SVM, transactions, programs and fees unchanged.",
+          "current_state_zh": "Solana 已开始将 Alpenglow 共识改造推进至测试网，这是该升级首次公开部署，其内容是以 Votor 投票机制取代 TowerBFT。Solana Agave 验证者客户端的开发方 Anza 表示，测试网正在进入部署流程，之后将依次推进至 devnet，最终到 mainnet-beta。\n\n这是验证者与基础设施服务商在 Alpenglow 推进至 devnet 与主网之前，首次可以在大范围环境中运行该升级。此次迁移要求这些运营方调整其区块流传输、投票跟踪或依赖 Solana 现有确认层级的系统。\n\n该升级的目标是将最终确认时间从 TowerBFT 下约 12.8 秒降至约 150 毫秒，同时不改变 Solana 虚拟机、交易、程序与费用。其第一阶段引入 Votor，把验证者当前上链的投票交易改为直接在验证者之间发送，并汇总为凭证，使区块可在一到两轮投票内完成最终确认，把等待不可逆交易的时间缩短约 99%；取代 Turbine 区块数据分发系统的 Rotor 则另行安排。",
+          "detailed_summary_en": "Solana began rolling its Alpenglow consensus upgrade onto testnet, the first public deployment of the TowerBFT replacement targeting roughly 150-millisecond finality while leaving the SVM, transactions, programs and fees unchanged.",
+          "detailed_summary_zh": "Solana began rolling its Alpenglow consensus upgrade onto testnet, the first public deployment of the TowerBFT replacement targeting roughly 150-millisecond finality while leaving the SVM, transactions, programs and fees unchanged.",
+          "event_id": "evt_04729c76ccc47903",
+          "first_seen_at": "2026-09-23T17:21:30.707301Z",
+          "importance_score": 7.5,
+          "market_impact_en": "Alpenglow's transmission path to markets runs mainly through settlement latency: faster finality could affect market structure for Solana-based venues such as DEXs and tokenized real-world assets, as well as the operational requirements placed on validators and infrastructure providers. The article notes SOL traded around $117 after nearing $120 this week, up roughly 25% over the past month, and that real-world assets on the network reached about $4.6 billion in early September.",
+          "market_impact_zh": "Alpenglow 对市场的传导路径主要体现在结算延迟上：更快的最终确认可能影响 Solana 上 DEX 与代币化现实世界资产等场所的市场结构，以及验证者和基础设施服务商承担的运营要求。报道指出，SOL 在本周接近 120 美元后于发稿时报约 117 美元，过去一个月上涨约 25%，而网络上的现实世界资产规模在 9 月初达到约 46 亿美元。",
+          "material_change": true,
+          "occurred_at": "2026-09-23T14:40:54Z",
+          "published_at": "2026-09-23T14:40:54Z",
+          "references": [
+            {
+              "title": "Alpenglow | Solana Media",
+              "url": "https://solana.com/upgrades/alpenglow"
+            },
+            {
+              "title": "Solana Alpenglow: how Votor replaces TowerBFT | Chainstack Blog",
+              "url": "https://chainstack.com/solana-alpenglow-votor-towerbft/"
+            },
+            {
+              "title": "Solana Alpenglow: New Consensus Protocol with... | Solana Compass",
+              "url": "https://solanacompass.com/learn/accelerate-25/scale-or-die-at-accelerate-2025-introducing-alpenglow-solanas-new-consensus"
+            }
+          ],
+          "sources": [
+            {
+              "label": "CryptoSlate",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cryptoslate.com/solana-moves-alpenglow-into-testnet-as-sol-nears-january-highs/"
+            }
+          ],
+          "story_ids": [
+            "rss:cryptoslate.com_feed_:9a77b20c784ee587"
+          ],
+          "time_precision": "published",
+          "title_en": "Solana moves Alpenglow into testnet as SOL nears January highs",
+          "title_zh": "Solana 将 Alpenglow 推进至测试网，SOL 逼近 1 月高点",
+          "update_id": "upd_d6cb1d552d63ee1c",
+          "update_type": "escalation",
+          "what_changed_en": "Solana began rolling its Alpenglow consensus upgrade onto testnet, the first public deployment of the TowerBFT replacement targeting roughly 150-millisecond finality while leaving the SVM, transactions, programs and fees unchanged.",
+          "what_changed_zh": "Solana 已开始将 Alpenglow 共识改造推进至测试网，这是该升级首次公开部署，其内容是以 Votor 投票机制取代 TowerBFT。Solana Agave 验证者客户端的开发方 Anza 表示，测试网正在进入部署流程，之后将依次推进至 devnet，最终到 mainnet-beta。\n\n这是验证者与基础设施服务商在 Alpenglow 推进至 devnet 与主网之前，首次可以在大范围环境中运行该升级。此次迁移要求这些运营方调整其区块流传输、投票跟踪或依赖 Solana 现有确认层级的系统。\n\n该升级的目标是将最终确认时间从 TowerBFT 下约 12.8 秒降至约 150 毫秒，同时不改变 Solana 虚拟机、交易、程序与费用。其第一阶段引入 Votor，把验证者当前上链的投票交易改为直接在验证者之间发送，并汇总为凭证，使区块可在一到两轮投票内完成最终确认，把等待不可逆交易的时间缩短约 99%；取代 Turbine 区块数据分发系统的 Rotor 则另行安排。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "Solana's Alpenglow consensus upgrade is running on both public test networks, devnet and testnet, for developer testing, with mainnet launch not yet scheduled.",
+          "current_state_zh": "Solana 的 Alpenglow 共识升级已在 devnet 和 testnet 两个公共测试网络上运行，供开发者测试，主网启动尚未排期。",
+          "detailed_summary_en": "Solana's Alpenglow upgrade, targeting roughly 150-millisecond transaction finality, is now running on both devnet and testnet, allowing developers to test ahead of an unscheduled mainnet launch.",
+          "detailed_summary_zh": "Solana's Alpenglow upgrade, targeting roughly 150-millisecond transaction finality, is now running on both devnet and testnet, allowing developers to test ahead of an unscheduled mainnet launch.",
+          "event_id": "evt_04729c76ccc47903",
+          "first_seen_at": "2026-09-26T09:27:48.982228Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-09-26T05:00:00Z",
+          "published_at": "2026-09-26T05:00:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "CoinDesk",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.coindesk.com/tech/2026/09/26/solana-s-150-millisecond-settlement-upgrade-reaches-second-public-test-network"
+            }
+          ],
+          "story_ids": [
+            "rss:www.coindesk.com_arc_outboundfeeds_rss_:f69f7a6c27eb72c6"
+          ],
+          "time_precision": "published",
+          "title_en": "Solana’s 150-millisecond settlement upgrade reaches second public test network",
+          "title_zh": "Solana的150毫秒结算升级进入第二个公共测试网络",
+          "update_id": "upd_7881ac881d2b9160",
+          "update_type": "confirmation",
+          "what_changed_en": "Alpenglow is now running on both devnet and testnet; the devnet switch was announced Sept. 25, and the testnet transition completed the day before, with mainnet launch still unscheduled.",
+          "what_changed_zh": "Alpenglow 现已同时在 devnet 和 testnet 上运行；devnet 切换于 9 月 25 日宣布，testnet 在前一日完成过渡，主网启动尚未排期。"
+        },
+        {
+          "background_en": "Alpenglow is Anza’s proposed replacement for Solana’s current TowerBFT consensus, introducing the Votor and Rotor design, per Anza’s and Solana’s upgrade materials. Devnet is the developer network where applications are tested with tokens of no real value, while the separate testnet is used mainly to stress-test network software and validator operations.",
+          "background_zh": "根据 Anza 与 Solana 的升级资料，Alpenglow 是 Anza 提出的方案，用于取代 Solana 现行的 TowerBFT 共识，并引入 Votor 与 Rotor 设计。Devnet 是开发者网络，使用没有真实价值的代币测试应用；独立的 testnet 则主要用于对网络软件和验证者运维进行压力测试。",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Anza's Alpenglow consensus upgrade for Solana is now live on devnet, with developers asked to test programs and integrations while mainnet activation remains pending.",
+          "current_state_zh": "Anza 于 9 月 25 日宣布，其针对 Solana 的共识改造 Alpenglow 已在 devnet 上线；此前一天，独立的 testnet 已完成切换，Solana 基金会的升级页面显示该升级在两个网络上均已激活。主网激活仍未有时间表。\n\nAlpenglow 的目标是将最终确认时间从现行系统的大约 12.8 秒缩短到约 150 毫秒，这可能缩短交易所释放存款或支付应用向商户确认交易完成所需的时间。由于验证者投票移出区块，即使用户活动不变，报告的交易总量也会下降。\n\n验证者将直接交换投票，而不再把投票作为交易记录在区块内，从而使共识在一到两轮投票内完成；Solana 基金会已要求数据服务商调整其对比口径。150 毫秒这一数字来自模拟结果，而非真实市场条件下的实测；钱包处理和交易所自身的入金审核还可能增加额外等待时间；仅发送交易和读取账户余额的应用无需迁移。",
+          "detailed_summary_en": "Anza's Alpenglow consensus upgrade for Solana is now live on devnet, with developers asked to test programs and integrations while mainnet activation remains pending.",
+          "detailed_summary_zh": "Anza's Alpenglow consensus upgrade for Solana is now live on devnet, with developers asked to test programs and integrations while mainnet activation remains pending.",
+          "event_id": "evt_04729c76ccc47903",
+          "first_seen_at": "2026-09-26T16:34:46.702009Z",
+          "importance_score": 7.5,
+          "market_impact_en": "The transmission path runs through SOL and Solana-based assets, including stablecoin payment flows that settle on the network: faster finality aims at exchange deposit confirmation and payment acceptance times, an infrastructure and sentiment channel rather than a supply or custody change. Because removing validator votes lowers reported transaction counts, data providers must adjust comparisons, which affects the on-chain activity metrics used in Solana market analysis.",
+          "market_impact_zh": "传导路径主要通过 SOL 以及基于 Solana 的资产，包括在该网络上结算的稳定币支付流：更快的最终确认针对的是交易所入金确认和支付受理时间，这属于基础设施与情绪渠道，而非供应或托管层面的变化。由于移除验证者投票会降低报告的交易总量，数据服务商必须调整对比口径，这会影响用于 Solana 市场分析的链上活动指标。",
+          "material_change": true,
+          "occurred_at": "2026-09-26T14:37:38Z",
+          "published_at": "2026-09-26T14:37:38Z",
+          "references": [
+            {
+              "title": "Alpenglow | Solana Media",
+              "url": "https://solana.com/upgrades/alpenglow"
+            },
+            {
+              "title": "Solana news (SOL): Biggest consensus overhaul in blockchain's history is live for testing",
+              "url": "https://www.coindesk.com/tech/2026/05/11/the-biggest-consensus-overhaul-in-solana-history-is-officially-live-for-testing"
+            },
+            {
+              "title": "What is Solana Alpenglow? Consensus upgrade explained | Alchemy",
+              "url": "https://www.alchemy.com/blog/solana-alpenglow"
+            }
+          ],
+          "sources": [
+            {
+              "label": "The Defiant",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://thedefiant.io/news/blockchains/solana-s-alpenglow-goes-live-on-devnet-ahead-of-mainnet-migration"
+            }
+          ],
+          "story_ids": [
+            "rss:thedefiant.io_api_feed:ed5208d84523c298"
+          ],
+          "time_precision": "published",
+          "title_en": "Solana’s Alpenglow Goes Live on Devnet Ahead of Mainnet Migration",
+          "title_zh": "Solana 的 Alpenglow 已在 Devnet 上线，主网迁移仍待进行",
+          "update_id": "upd_76d3a5de5d4e3708",
+          "update_type": "confirmation",
+          "what_changed_en": "Anza's Alpenglow consensus upgrade for Solana is now live on devnet, with developers asked to test programs and integrations while mainnet activation remains pending.",
+          "what_changed_zh": "Anza 于 9 月 25 日宣布，其针对 Solana 的共识改造 Alpenglow 已在 devnet 上线；此前一天，独立的 testnet 已完成切换，Solana 基金会的升级页面显示该升级在两个网络上均已激活。主网激活仍未有时间表。\n\nAlpenglow 的目标是将最终确认时间从现行系统的大约 12.8 秒缩短到约 150 毫秒，这可能缩短交易所释放存款或支付应用向商户确认交易完成所需的时间。由于验证者投票移出区块，即使用户活动不变，报告的交易总量也会下降。\n\n验证者将直接交换投票，而不再把投票作为交易记录在区块内，从而使共识在一到两轮投票内完成；Solana 基金会已要求数据服务商调整其对比口径。150 毫秒这一数字来自模拟结果，而非真实市场条件下的实测；钱包处理和交易所自身的入金审核还可能增加额外等待时间；仅发送交易和读取账户余额的应用无需迁移。"
         },
         {
           "background_en": "",
@@ -1286,6 +1444,58 @@
           "update_type": "escalation",
           "what_changed_en": "Solana activated 200-millisecond slots on mainnet on Oct. 9, completing the four-stage SIMD-0525 reduction from 400ms: block-production opportunities rose to five per second, epoch duration fell from about 48 hours to about 24 hours, and transaction blockhash expiry shrank from about 60 seconds to about 30 seconds.",
           "what_changed_zh": "Solana 已于 10 月 9 日在主网激活 200 毫秒出块时间，完成 SIMD-0525 从 400 毫秒起的四阶段缩减，区块生产机会提升至每秒 5 个，epoch 时长由约 48 小时缩短至约 24 小时；同时交易 blockhash 有效期从约 60 秒缩短至约 30 秒。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "Alpenglow is live on devnet and testnet, and Anza has now scheduled Mainnet-beta activation for around Oct 21, 2026 at 22:50 with a single-slot migration. Mainnet activation is now scheduled but not yet executed.",
+          "current_state_zh": "Alpenglow 已在 devnet 和 testnet 上线，Anza 现已公布主网激活时间：计划于 2026 年 10 月 21 日 22:50 左右在 Mainnet-beta 上线，迁移在一个 slot 内完成。主网激活目前仍是已排期、尚未执行的状态。",
+          "detailed_summary_en": "Solana's Anza announced that the Alpenglow consensus upgrade, which replaces TowerBFT and Proof-of-History and reduces finality to about 150 milliseconds, will activate on Mainnet-beta around October 21 at 22:50 with a single-slot migration.",
+          "detailed_summary_zh": "Solana's Anza announced that the Alpenglow consensus upgrade, which replaces TowerBFT and Proof-of-History and reduces finality to about 150 milliseconds, will activate on Mainnet-beta around October 21 at 22:50 with a single-slot migration.",
+          "event_id": "evt_04729c76ccc47903",
+          "first_seen_at": "2026-10-13T18:21:42.450097Z",
+          "importance_score": 8.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T15:14:55Z",
+          "published_at": "2026-10-13T15:14:55Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115120"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371633?from=telegram"
+            },
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/news-21224"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120331",
+            "telegram:theblockbeats:200299",
+            "telegram:wublockchainenglish:26397"
+          ],
+          "time_precision": "published",
+          "title_en": "【Solana 共识升级 Alpenglow 将于 10 月 21 日上线主网，最终确认时间降至约 150 毫秒】",
+          "title_zh": "【Solana 共识升级 Alpenglow 将于 10 月 21 日上线主网，最终确认时间降至约 150 毫秒】",
+          "update_id": "upd_4b19d44979058861",
+          "update_type": "escalation",
+          "what_changed_en": "Anza announced that Alpenglow is scheduled to activate on Solana Mainnet-beta around Oct 21, 2026 at 22:50, with a single-slot migration; the mainnet activation was previously unscheduled.",
+          "what_changed_zh": "Anza 宣布 Alpenglow 计划于 2026 年 10 月 21 日 22:50 左右在 Solana 主网 Mainnet-beta 激活，迁移将在单个 slot 内完成；此前主网激活时间未定。"
         }
       ]
     },
@@ -81975,190 +82185,6 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Anza's Alpenglow consensus upgrade for Solana is now live on devnet, with developers asked to test programs and integrations while mainnet activation remains pending.",
-      "current_state_zh": "Anza 于 9 月 25 日宣布，其针对 Solana 的共识改造 Alpenglow 已在 devnet 上线；此前一天，独立的 testnet 已完成切换，Solana 基金会的升级页面显示该升级在两个网络上均已激活。主网激活仍未有时间表。\n\nAlpenglow 的目标是将最终确认时间从现行系统的大约 12.8 秒缩短到约 150 毫秒，这可能缩短交易所释放存款或支付应用向商户确认交易完成所需的时间。由于验证者投票移出区块，即使用户活动不变，报告的交易总量也会下降。\n\n验证者将直接交换投票，而不再把投票作为交易记录在区块内，从而使共识在一到两轮投票内完成；Solana 基金会已要求数据服务商调整其对比口径。150 毫秒这一数字来自模拟结果，而非真实市场条件下的实测；钱包处理和交易所自身的入金审核还可能增加额外等待时间；仅发送交易和读取账户余额的应用无需迁移。",
-      "entities": [
-        "ahead",
-        "alpenglow",
-        "devnet",
-        "goes",
-        "january",
-        "live",
-        "migration",
-        "sol",
-        "solana",
-        "testnet"
-      ],
-      "event_id": "evt_d75668abfb43b4e7",
-      "event_type": "protocol_change",
-      "first_seen_at": "2026-09-23T17:21:30.707301Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-09-26T16:34:46.702009Z",
-      "last_updated_at": "2026-09-26T16:34:46.702009Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [
-        "evt_248d603a601b94c7"
-      ],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Solana Alpenglow consensus upgrade goes live on testnets",
-      "title_zh": "Solana Alpenglow 共识升级在测试网上线",
-      "topics": [
-        "alpenglow",
-        "anza",
-        "consensus",
-        "devnet",
-        "finality",
-        "protocol-upgrade",
-        "solana",
-        "testnet"
-      ],
-      "updates": [
-        {
-          "background_en": "Alpenglow is Solana's first major consensus replacement since TowerBFT and was presented by Anza in May 2025. It follows other performance work: Solana activated Transaction V1 this month, lifting maximum transaction size to 4,096 bytes from 1,232, and its slot-time roadmap has progressively cut the target from 400 milliseconds toward 200 milliseconds.",
-          "background_zh": "Alpenglow 是 Solana 自 TowerBFT 以来首次重大共识层替换，由 Anza 于 2025 年 5 月提出。它延续了此前的性能升级：Solana 本月激活 Transaction V1，将最大交易大小从 1,232 字节提升至 4,096 字节，其 slot 时间路线图也逐步把目标从 400 毫秒压缩至 200 毫秒。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Solana began rolling its Alpenglow consensus upgrade onto testnet, the first public deployment of the TowerBFT replacement targeting roughly 150-millisecond finality while leaving the SVM, transactions, programs and fees unchanged.",
-          "current_state_zh": "Solana 已开始将 Alpenglow 共识改造推进至测试网，这是该升级首次公开部署，其内容是以 Votor 投票机制取代 TowerBFT。Solana Agave 验证者客户端的开发方 Anza 表示，测试网正在进入部署流程，之后将依次推进至 devnet，最终到 mainnet-beta。\n\n这是验证者与基础设施服务商在 Alpenglow 推进至 devnet 与主网之前，首次可以在大范围环境中运行该升级。此次迁移要求这些运营方调整其区块流传输、投票跟踪或依赖 Solana 现有确认层级的系统。\n\n该升级的目标是将最终确认时间从 TowerBFT 下约 12.8 秒降至约 150 毫秒，同时不改变 Solana 虚拟机、交易、程序与费用。其第一阶段引入 Votor，把验证者当前上链的投票交易改为直接在验证者之间发送，并汇总为凭证，使区块可在一到两轮投票内完成最终确认，把等待不可逆交易的时间缩短约 99%；取代 Turbine 区块数据分发系统的 Rotor 则另行安排。",
-          "detailed_summary_en": "Solana began rolling its Alpenglow consensus upgrade onto testnet, the first public deployment of the TowerBFT replacement targeting roughly 150-millisecond finality while leaving the SVM, transactions, programs and fees unchanged.",
-          "detailed_summary_zh": "Solana began rolling its Alpenglow consensus upgrade onto testnet, the first public deployment of the TowerBFT replacement targeting roughly 150-millisecond finality while leaving the SVM, transactions, programs and fees unchanged.",
-          "event_id": "evt_d75668abfb43b4e7",
-          "first_seen_at": "2026-09-23T17:21:30.707301Z",
-          "importance_score": 7.5,
-          "market_impact_en": "Alpenglow's transmission path to markets runs mainly through settlement latency: faster finality could affect market structure for Solana-based venues such as DEXs and tokenized real-world assets, as well as the operational requirements placed on validators and infrastructure providers. The article notes SOL traded around $117 after nearing $120 this week, up roughly 25% over the past month, and that real-world assets on the network reached about $4.6 billion in early September.",
-          "market_impact_zh": "Alpenglow 对市场的传导路径主要体现在结算延迟上：更快的最终确认可能影响 Solana 上 DEX 与代币化现实世界资产等场所的市场结构，以及验证者和基础设施服务商承担的运营要求。报道指出，SOL 在本周接近 120 美元后于发稿时报约 117 美元，过去一个月上涨约 25%，而网络上的现实世界资产规模在 9 月初达到约 46 亿美元。",
-          "material_change": true,
-          "occurred_at": "2026-09-23T14:40:54Z",
-          "published_at": "2026-09-23T14:40:54Z",
-          "references": [
-            {
-              "title": "Alpenglow | Solana Media",
-              "url": "https://solana.com/upgrades/alpenglow"
-            },
-            {
-              "title": "Solana Alpenglow: how Votor replaces TowerBFT | Chainstack Blog",
-              "url": "https://chainstack.com/solana-alpenglow-votor-towerbft/"
-            },
-            {
-              "title": "Solana Alpenglow: New Consensus Protocol with... | Solana Compass",
-              "url": "https://solanacompass.com/learn/accelerate-25/scale-or-die-at-accelerate-2025-introducing-alpenglow-solanas-new-consensus"
-            }
-          ],
-          "sources": [
-            {
-              "label": "CryptoSlate",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://cryptoslate.com/solana-moves-alpenglow-into-testnet-as-sol-nears-january-highs/"
-            }
-          ],
-          "story_ids": [
-            "rss:cryptoslate.com_feed_:9a77b20c784ee587"
-          ],
-          "time_precision": "published",
-          "title_en": "Solana moves Alpenglow into testnet as SOL nears January highs",
-          "title_zh": "Solana 将 Alpenglow 推进至测试网，SOL 逼近 1 月高点",
-          "update_id": "upd_d6cb1d552d63ee1c",
-          "update_type": "initial",
-          "what_changed_en": "Solana began rolling its Alpenglow consensus upgrade onto testnet, the first public deployment of the TowerBFT replacement targeting roughly 150-millisecond finality while leaving the SVM, transactions, programs and fees unchanged.",
-          "what_changed_zh": "Solana 已开始将 Alpenglow 共识改造推进至测试网，这是该升级首次公开部署，其内容是以 Votor 投票机制取代 TowerBFT。Solana Agave 验证者客户端的开发方 Anza 表示，测试网正在进入部署流程，之后将依次推进至 devnet，最终到 mainnet-beta。\n\n这是验证者与基础设施服务商在 Alpenglow 推进至 devnet 与主网之前，首次可以在大范围环境中运行该升级。此次迁移要求这些运营方调整其区块流传输、投票跟踪或依赖 Solana 现有确认层级的系统。\n\n该升级的目标是将最终确认时间从 TowerBFT 下约 12.8 秒降至约 150 毫秒，同时不改变 Solana 虚拟机、交易、程序与费用。其第一阶段引入 Votor，把验证者当前上链的投票交易改为直接在验证者之间发送，并汇总为凭证，使区块可在一到两轮投票内完成最终确认，把等待不可逆交易的时间缩短约 99%；取代 Turbine 区块数据分发系统的 Rotor 则另行安排。"
-        },
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.95,
-          "current_state_en": "Solana's Alpenglow consensus upgrade is running on both public test networks, devnet and testnet, for developer testing, with mainnet launch not yet scheduled.",
-          "current_state_zh": "Solana 的 Alpenglow 共识升级已在 devnet 和 testnet 两个公共测试网络上运行，供开发者测试，主网启动尚未排期。",
-          "detailed_summary_en": "Solana's Alpenglow upgrade, targeting roughly 150-millisecond transaction finality, is now running on both devnet and testnet, allowing developers to test ahead of an unscheduled mainnet launch.",
-          "detailed_summary_zh": "Solana's Alpenglow upgrade, targeting roughly 150-millisecond transaction finality, is now running on both devnet and testnet, allowing developers to test ahead of an unscheduled mainnet launch.",
-          "event_id": "evt_d75668abfb43b4e7",
-          "first_seen_at": "2026-09-26T09:27:48.982228Z",
-          "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-09-26T05:00:00Z",
-          "published_at": "2026-09-26T05:00:00Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "CoinDesk",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://www.coindesk.com/tech/2026/09/26/solana-s-150-millisecond-settlement-upgrade-reaches-second-public-test-network"
-            }
-          ],
-          "story_ids": [
-            "rss:www.coindesk.com_arc_outboundfeeds_rss_:f69f7a6c27eb72c6"
-          ],
-          "time_precision": "published",
-          "title_en": "Solana’s 150-millisecond settlement upgrade reaches second public test network",
-          "title_zh": "Solana的150毫秒结算升级进入第二个公共测试网络",
-          "update_id": "upd_7881ac881d2b9160",
-          "update_type": "confirmation",
-          "what_changed_en": "Alpenglow is now running on both devnet and testnet; the devnet switch was announced Sept. 25, and the testnet transition completed the day before, with mainnet launch still unscheduled.",
-          "what_changed_zh": "Alpenglow 现已同时在 devnet 和 testnet 上运行；devnet 切换于 9 月 25 日宣布，testnet 在前一日完成过渡，主网启动尚未排期。"
-        },
-        {
-          "background_en": "Alpenglow is Anza’s proposed replacement for Solana’s current TowerBFT consensus, introducing the Votor and Rotor design, per Anza’s and Solana’s upgrade materials. Devnet is the developer network where applications are tested with tokens of no real value, while the separate testnet is used mainly to stress-test network software and validator operations.",
-          "background_zh": "根据 Anza 与 Solana 的升级资料，Alpenglow 是 Anza 提出的方案，用于取代 Solana 现行的 TowerBFT 共识，并引入 Votor 与 Rotor 设计。Devnet 是开发者网络，使用没有真实价值的代币测试应用；独立的 testnet 则主要用于对网络软件和验证者运维进行压力测试。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Anza's Alpenglow consensus upgrade for Solana is now live on devnet, with developers asked to test programs and integrations while mainnet activation remains pending.",
-          "current_state_zh": "Anza 于 9 月 25 日宣布，其针对 Solana 的共识改造 Alpenglow 已在 devnet 上线；此前一天，独立的 testnet 已完成切换，Solana 基金会的升级页面显示该升级在两个网络上均已激活。主网激活仍未有时间表。\n\nAlpenglow 的目标是将最终确认时间从现行系统的大约 12.8 秒缩短到约 150 毫秒，这可能缩短交易所释放存款或支付应用向商户确认交易完成所需的时间。由于验证者投票移出区块，即使用户活动不变，报告的交易总量也会下降。\n\n验证者将直接交换投票，而不再把投票作为交易记录在区块内，从而使共识在一到两轮投票内完成；Solana 基金会已要求数据服务商调整其对比口径。150 毫秒这一数字来自模拟结果，而非真实市场条件下的实测；钱包处理和交易所自身的入金审核还可能增加额外等待时间；仅发送交易和读取账户余额的应用无需迁移。",
-          "detailed_summary_en": "Anza's Alpenglow consensus upgrade for Solana is now live on devnet, with developers asked to test programs and integrations while mainnet activation remains pending.",
-          "detailed_summary_zh": "Anza's Alpenglow consensus upgrade for Solana is now live on devnet, with developers asked to test programs and integrations while mainnet activation remains pending.",
-          "event_id": "evt_d75668abfb43b4e7",
-          "first_seen_at": "2026-09-26T16:34:46.702009Z",
-          "importance_score": 7.5,
-          "market_impact_en": "The transmission path runs through SOL and Solana-based assets, including stablecoin payment flows that settle on the network: faster finality aims at exchange deposit confirmation and payment acceptance times, an infrastructure and sentiment channel rather than a supply or custody change. Because removing validator votes lowers reported transaction counts, data providers must adjust comparisons, which affects the on-chain activity metrics used in Solana market analysis.",
-          "market_impact_zh": "传导路径主要通过 SOL 以及基于 Solana 的资产，包括在该网络上结算的稳定币支付流：更快的最终确认针对的是交易所入金确认和支付受理时间，这属于基础设施与情绪渠道，而非供应或托管层面的变化。由于移除验证者投票会降低报告的交易总量，数据服务商必须调整对比口径，这会影响用于 Solana 市场分析的链上活动指标。",
-          "material_change": true,
-          "occurred_at": "2026-09-26T14:37:38Z",
-          "published_at": "2026-09-26T14:37:38Z",
-          "references": [
-            {
-              "title": "Alpenglow | Solana Media",
-              "url": "https://solana.com/upgrades/alpenglow"
-            },
-            {
-              "title": "Solana news (SOL): Biggest consensus overhaul in blockchain's history is live for testing",
-              "url": "https://www.coindesk.com/tech/2026/05/11/the-biggest-consensus-overhaul-in-solana-history-is-officially-live-for-testing"
-            },
-            {
-              "title": "What is Solana Alpenglow? Consensus upgrade explained | Alchemy",
-              "url": "https://www.alchemy.com/blog/solana-alpenglow"
-            }
-          ],
-          "sources": [
-            {
-              "label": "The Defiant",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://thedefiant.io/news/blockchains/solana-s-alpenglow-goes-live-on-devnet-ahead-of-mainnet-migration"
-            }
-          ],
-          "story_ids": [
-            "rss:thedefiant.io_api_feed:ed5208d84523c298"
-          ],
-          "time_precision": "published",
-          "title_en": "Solana’s Alpenglow Goes Live on Devnet Ahead of Mainnet Migration",
-          "title_zh": "Solana 的 Alpenglow 已在 Devnet 上线，主网迁移仍待进行",
-          "update_id": "upd_76d3a5de5d4e3708",
-          "update_type": "confirmation",
-          "what_changed_en": "Anza's Alpenglow consensus upgrade for Solana is now live on devnet, with developers asked to test programs and integrations while mainnet activation remains pending.",
-          "what_changed_zh": "Anza 于 9 月 25 日宣布，其针对 Solana 的共识改造 Alpenglow 已在 devnet 上线；此前一天，独立的 testnet 已完成切换，Solana 基金会的升级页面显示该升级在两个网络上均已激活。主网激活仍未有时间表。\n\nAlpenglow 的目标是将最终确认时间从现行系统的大约 12.8 秒缩短到约 150 毫秒，这可能缩短交易所释放存款或支付应用向商户确认交易完成所需的时间。由于验证者投票移出区块，即使用户活动不变，报告的交易总量也会下降。\n\n验证者将直接交换投票，而不再把投票作为交易记录在区块内，从而使共识在一到两轮投票内完成；Solana 基金会已要求数据服务商调整其对比口径。150 毫秒这一数字来自模拟结果，而非真实市场条件下的实测；钱包处理和交易所自身的入金审核还可能增加额外等待时间；仅发送交易和读取账户余额的应用无需迁移。"
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
       "current_state_en": "SoFi Bank and Mastercard have launched live SoFiUSD settlement for SoFi's debit and credit card program, letting participating merchants receive bank-account dollars without holding the token, backed by a projected $25B+ in annualized card volume that has not been matched with disclosed actual settled amounts.",
       "current_state_zh": "SoFi Bank and Mastercard have launched live SoFiUSD settlement for SoFi's debit and credit card program, letting participating merchants receive bank-account dollars without holding the token, backed by a projected $25B+ in annualized card volume that has not been matched with disclosed actual settled amounts.",
       "entities": [
@@ -104664,9 +104690,10 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "Google released Gemini 4 Argon as its next flagship long-horizon model. Its single-pass output limit jumps from 64K tokens to 1 million tokens. The model is not yet open to ordinary users; initial access is only through the Fairwind Program to trusted cybersecurity teams, with later rollout to paid API customers and Google AI Ultra users. API pricing starts at $2 per million input tokens and $10 per million output tokens, later doubling to $4 and $20. In official evaluations, Argon scores 77.9% on DeepSWE v1.1, ahead of GPT-6 Astra and Claude Opus 5.5, but still trails on FrontierSWE, Terminal-Bench 4.0 and some scientific tasks. Google emphasized cybersecurity capabilities, with trusted defender versions even removing some cyber restrictions; before formal opening, Google is still testing abuse, prompt injection and agent boundary risks.",
-      "current_state_zh": "谷歌发布了 Gemini 4 Argon，并将其作为新一代旗舰长程模型。单次输出上限从此前 64K tokens 提高到 100 万 tokens。模型暂不向普通用户开放，首批仅通过 Fairwind Program 提供给可信网络安全团队，后续再逐步开放给付费 API 客户和 Google AI Ultra 用户。API 定价初期为每百万输入 tokens 2 美元、输出 10 美元，之后翻倍至 4 美元和 20 美元。官方评测中，Argon 在 DeepSWE v1.1 得 77.9%，高于 GPT-6 Astra 和 Claude Opus 5.5，但在 FrontierSWE、Terminal-Bench 4.0 及部分科学任务上仍落后。谷歌重点强化了网络安全能力，可信防御团队版本甚至会取消部分网络安全限制；正式开放前，谷歌仍在测试滥用、提示词注入和 Agent 越界等风险。",
+      "current_state_en": "Gemini 4 Argon has moved from the Fairwind Program-only phase for trusted cybersecurity teams to broad availability for developers and enterprises worldwide via the paid Gemini API and the Google AI Ultra subscription; previously reported details (1M token output limit, pricing, benchmark scores) remain in effect.",
+      "current_state_zh": "Gemini 4 Argon 已从仅限可信网络安全团队的 Fairwind Program 阶段扩展到通过付费版 Gemini API 向全球开发者和企业开放，并可通过 Google AI Ultra 订阅使用；此前公布的 100 万 tokens 输出上限、定价与评测数据仍然有效。",
       "entities": [
+        "api",
         "argon",
         "gemini",
         "gemini-4-argon",
@@ -104676,22 +104703,26 @@
       "event_type": "product_release",
       "first_seen_at": "2026-09-30T23:26:56.671688Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-01T00:03:18.016338Z",
-      "last_updated_at": "2026-10-01T00:03:18.016338Z",
+      "last_material_change_at": "2026-10-13T18:21:41.711420Z",
+      "last_updated_at": "2026-10-13T18:21:41.711420Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "developing",
       "title_en": "Gemini 4 Argon: our next era of frontier intelligence",
       "title_zh": "Gemini 4 Argon：我们通往前沿智能的下一个时代",
       "topics": [
         "ai-labs",
         "ai-model-release",
         "ai-safety",
+        "developer-api",
+        "frontier-model",
         "frontier-models",
         "gemini-4-argon",
+        "google",
         "google-deepmind",
         "koray-kavukcuoglu",
+        "llm",
         "long-context"
       ],
       "updates": [
@@ -104783,6 +104814,44 @@
           "update_type": "confirmation",
           "what_changed_en": "The new report adds key details about Gemini 4 Argon: its single-pass output limit jumps from 64K tokens to 1 million tokens; initial access is only through the Fairwind Program to trusted cybersecurity teams, with later rollout to paid API customers and Google AI Ultra users; API pricing starts at $2 per million input tokens and $10 per million output tokens, later doubling to $4 and $20; it scores 77.9% on DeepSWE v1.1, ahead of GPT-6 Astra's 74.1% and Claude Opus 5.5's 74.2%, but still trails on FrontierSWE, Terminal-Bench 4.0 and some scientific tasks; cybersecurity capabilities are emphasized, with trusted defender versions removing some cyber restrictions, while Google continues testing abuse, prompt injection and agent boundary risks.",
           "what_changed_zh": "新报道补充了 Gemini 4 Argon 的关键细节：单次输出上限从 64K tokens 提升至 100 万 tokens；首批仅通过 Fairwind Program 向可信网络安全团队开放，后续再逐步开放给付费 API 客户和 Google AI Ultra 用户；API 上线初期按每百万输入 tokens 2 美元、输出 10 美元收费，之后价格翻倍至 4 美元和 20 美元；在 DeepSWE v1.1 得 77.9%，领先 GPT-6 Astra 的 74.1% 和 Claude Opus 5.5 的 74.2%，但在 FrontierSWE、Terminal-Bench 4.0 和部分科学任务上仍落后；网络安全能力被重点强化，可信防御团队版本会取消部分网络安全限制，同时谷歌仍在测试滥用、提示词注入和 Agent 越界等风险。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.9,
+          "current_state_en": "Gemini 4 Argon has moved from the Fairwind Program-only phase for trusted cybersecurity teams to broad availability for developers and enterprises worldwide via the paid Gemini API and the Google AI Ultra subscription; previously reported details (1M token output limit, pricing, benchmark scores) remain in effect.",
+          "current_state_zh": "Gemini 4 Argon 已从仅限可信网络安全团队的 Fairwind Program 阶段扩展到通过付费版 Gemini API 向全球开发者和企业开放，并可通过 Google AI Ultra 订阅使用；此前公布的 100 万 tokens 输出上限、定价与评测数据仍然有效。",
+          "detailed_summary_en": "Google launched Gemini 4 Argon globally through the paid Gemini API and its Google AI Ultra subscription, making the new frontier model available to developers and enterprises.",
+          "detailed_summary_zh": "Google launched Gemini 4 Argon globally through the paid Gemini API and its Google AI Ultra subscription, making the new frontier model available to developers and enterprises.",
+          "event_id": "evt_d5ced273c2ef0a66",
+          "first_seen_at": "2026-10-13T18:21:41.711420Z",
+          "importance_score": 8.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T16:12:02Z",
+          "published_at": "2026-10-13T16:12:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371638?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:200304"
+          ],
+          "time_precision": "published",
+          "title_en": "谷歌：通过Gemini API向全球开发者和企业推出Gemini 4 Argon",
+          "title_zh": "谷歌：通过Gemini API向全球开发者和企业推出Gemini 4 Argon",
+          "update_id": "upd_f370f4d2ca3d8362",
+          "update_type": "escalation",
+          "what_changed_en": "Google announced the general availability of Gemini 4 Argon through the paid Gemini API for developers and enterprises worldwide, as well as via the Google AI Ultra subscription. This marks the end of the earlier restricted Fairwind Program-only phase and the start of broad developer/enterprise access.",
+          "what_changed_zh": "谷歌宣布通过付费版 Gemini API 向全球开发者和企业正式推出 Gemini 4 Argon，并同时开放 Google AI Ultra 订阅使用。这标志着此前受限的 Fairwind Program 首发阶段结束，进入面向开发者/企业的普遍可用阶段。"
         }
       ]
     },
@@ -105577,7 +105646,7 @@
         "gpt-6"
       ],
       "last_material_change_at": "2026-10-01T18:31:40.561261Z",
-      "last_updated_at": "2026-10-01T18:31:40.561261Z",
+      "last_updated_at": "2026-10-13T18:22:01.928610Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_4f79ef2973377fac",
@@ -105613,7 +105682,7 @@
           "detailed_summary_zh": "Google released Gemini 4 'Argon', which it markets as its most powerful model to date and pitches as a workhorse for coding and cybersecurity tasks.",
           "event_id": "evt_48dd263d7b649072",
           "first_seen_at": "2026-10-01T00:03:28.262995Z",
-          "importance_score": 8.0,
+          "importance_score": 8.5,
           "market_impact_en": "The release has no direct on-chain, custody or token-supply linkage; any crypto read-through runs through sentiment in AI-narrative assets such as decentralized-compute and AI-agent tokens, which have historically reacted to frontier-model announcements from major labs. Because availability is initially gated to select partners, no immediate developer-demand shift is established.",
           "market_impact_zh": "该发布与链上资产、托管或代币供给没有直接关联；对加密市场的可能传导渠道是情绪面，即去中心化算力、AI 代理等 AI 叙事类资产历来会对头部实验室的前沿模型发布作出反应。由于模型初期仅面向选定合作伙伴开放，目前尚不能确立开发者需求层面的即时变化。",
           "material_change": true,
@@ -105645,11 +105714,18 @@
               "official": false,
               "source_type": "rss",
               "url": "https://www.qbitai.com/2026/10/499663.html"
+            },
+            {
+              "label": "The Verge AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.theverge.com/ai-artificial-intelligence/1009862/google-releases-gemini-4-argon"
             }
           ],
           "story_ids": [
             "rss:techcrunch.com_category_artificial-intelligence_feed_:5e1da0f6c91bb863",
-            "rss:www.qbitai.com_feed:394c1f5a0233310a"
+            "rss:www.qbitai.com_feed:394c1f5a0233310a",
+            "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:f0f70ba2683a866f"
           ],
           "time_precision": "published",
           "title_en": "Google releases Gemini 4 Argon, called its most powerful model yet",
@@ -134496,8 +134572,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "The incident remains under monitoring; the confirmed implant and suspected $86M drain remain tied to devices sold by CryptoBilis, which is not selling wallets during the investigation; MediaMarkt Saturn has suspended online and in-store Ledger sales in Germany; Karpelès’s teardowns also point to wallets sold by MediaMarkt, Singapore’s Metapod, and official Philippine reseller LazMall; Ledger says it has not verified a drain linked to devices bought elsewhere and is reviewing implant reports from other resellers and locations.",
-      "current_state_zh": "事件仍处于监控中；已确认的植入物和疑似8600万美元资金流出仍与CryptoBilis销售的设备相关，CryptoBilis在调查期间停售；MediaMarkt Saturn已暂停德国线上及线下门店的Ledger销售；Karpelès的拆解分析还指向MediaMarkt、新加坡Metapod及菲律宾官方经销商LazMall销售的钱包；Ledger表示尚未核实其他渠道购买设备相关的资金流出，并正在审查其他经销商和地点的植入物报告。",
+      "current_state_en": "After Ledger's Donjon team confirmed a spy implant in hardware wallets sold via reseller CryptoBilis that captures seed phrases and exfiltrates them over LTE — with $86M in suspected thefts traced onchain — Trezor moved to cut its own authorized reseller network by January 1, 2027 as a precaution.",
+      "current_state_zh": "在Ledger的Donjon团队确认，通过经销商CryptoBilis售出的硬件钱包中被植入间谍程序，可捕获助记词并通过LTE外传——链上追踪到疑似被盗资金达8600万美元——之后，Trezor出于预防考虑，决定在2027年1月1日前削减其自有授权经销商网络。",
       "entities": [
         "affected",
         "after",
@@ -134547,6 +134623,7 @@
         "implant",
         "investigates",
         "involve",
+        "its",
         "karpel",
         "keeps",
         "largest",
@@ -134573,6 +134650,7 @@
         "report",
         "reports",
         "reseller",
+        "resellers",
         "sales",
         "says",
         "second",
@@ -134592,12 +134670,14 @@
         "tied",
         "tornado",
         "tornado-cash",
+        "trezor",
         "unauthorized",
         "urges",
         "usdt",
         "user",
         "wallet",
         "wallet-drain",
+        "wallets",
         "warning",
         "world"
       ],
@@ -134605,8 +134685,8 @@
       "event_type": "security_incident",
       "first_seen_at": "2026-10-09T15:30:47.822838Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-13T14:18:27.572470Z",
-      "last_updated_at": "2026-10-13T14:18:27.572470Z",
+      "last_material_change_at": "2026-10-13T18:22:02.941035Z",
+      "last_updated_at": "2026-10-13T18:22:02.941035Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_d805e062148e6406",
@@ -134635,12 +134715,13 @@
         "evt_8722d80009c71a6b",
         "evt_e5109a836bf96b69",
         "evt_7eb0fdb31dd08e5d",
-        "evt_7d511557d1391182"
+        "evt_7d511557d1391182",
+        "evt_74c8d0e1857b1314"
       ],
       "schema_version": 1,
       "status": "developing",
       "title_en": "Ledger Hardware Wallet Supply Chain Implant Seed Theft Incident",
-      "title_zh": "Ledger硬件钱包供应链植入物窃取助记词事件",
+      "title_zh": "Ledger硬件钱包供应链植入间谍芯片窃取助记词事件",
       "topics": [
         "asset-theft",
         "cfcft",
@@ -134656,6 +134737,7 @@
         "funds-theft",
         "germany",
         "hacks-exploits",
+        "hardware-wallets",
         "ledger",
         "on-chain-analysis",
         "onekey",
@@ -134675,6 +134757,7 @@
         "tether-freeze",
         "theft",
         "tornado-cash",
+        "trezor",
         "usdt-freeze",
         "wallet-drain",
         "wallet-security",
@@ -136515,6 +136598,44 @@
           "update_type": "escalation",
           "what_changed_en": "The new report says Mark Karpelès has also found spyware in Ledger wallets sold by official Philippine reseller LazMall, further widening the affected-reseller scope; Ledger’s latest statement says it has not verified a drain linked to a signer bought elsewhere and is reviewing reports of implants in other signers and locations, while CryptoBilis remains not selling wallets during the investigation.",
           "what_changed_zh": "新报道称，Mark Karpelès 已在菲律宾官方经销商 LazMall 销售的 Ledger 钱包中也发现间谍软件，使受影响经销商范围进一步扩大；Ledger 最新声明称尚未核实来自其他渠道购买签名器的资金流出，并正在审查其他签名器和地点的植入物报告，同时 CryptoBilis 在调查期间继续停售。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "After Ledger's Donjon team confirmed a spy implant in hardware wallets sold via reseller CryptoBilis that captures seed phrases and exfiltrates them over LTE — with $86M in suspected thefts traced onchain — Trezor moved to cut its own authorized reseller network by January 1, 2027 as a precaution.",
+          "current_state_zh": "在Ledger的Donjon团队确认，通过经销商CryptoBilis售出的硬件钱包中被植入间谍程序，可捕获助记词并通过LTE外传——链上追踪到疑似被盗资金达8600万美元——之后，Trezor出于预防考虑，决定在2027年1月1日前削减其自有授权经销商网络。",
+          "detailed_summary_en": "After Ledger's Donjon team confirmed a spy implant in hardware wallets sold via reseller CryptoBilis that captures seed phrases and exfiltrates them over LTE — with $86M in suspected thefts traced onchain — Trezor moved to cut its own authorized reseller network by January 1, 2027 as a precaution.",
+          "detailed_summary_zh": "After Ledger's Donjon team confirmed a spy implant in hardware wallets sold via reseller CryptoBilis that captures seed phrases and exfiltrates them over LTE — with $86M in suspected thefts traced onchain — Trezor moved to cut its own authorized reseller network by January 1, 2027 as a precaution.",
+          "event_id": "evt_c594d0e29e7b400b",
+          "first_seen_at": "2026-10-13T18:22:02.941035Z",
+          "importance_score": 8.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T16:14:50Z",
+          "published_at": "2026-10-13T16:14:50Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/380848/trezor-cuts-resellers-ledger-finds-spy-implant-crypto-wallets"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:f6300edabf1b69b6"
+          ],
+          "time_precision": "published",
+          "title_en": "Trezor Cuts Its Resellers After Ledger Finds Spy Implant in Crypto Wallets",
+          "title_zh": "Ledger发现加密钱包被植入间谍程序后，Trezor削减经销商",
+          "update_id": "upd_d0960af8b61516b8",
+          "update_type": "escalation",
+          "what_changed_en": "After Ledger's Donjon team confirmed a spy implant in hardware wallets sold via reseller CryptoBilis that captures seed phrases and exfiltrates them over LTE — with $86M in suspected thefts traced onchain — Trezor moved to cut its own authorized reseller network by January 1, 2027 as a precaution.",
+          "what_changed_zh": "在Ledger的Donjon团队确认，通过经销商CryptoBilis售出的硬件钱包中被植入间谍程序，可捕获助记词并通过LTE外传——链上追踪到疑似被盗资金达8600万美元——之后，Trezor出于预防考虑，决定在2027年1月1日前削减其自有授权经销商网络。"
         }
       ]
     },
@@ -140827,8 +140948,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "The IMF's latest Global Financial Stability Report finds that tokenized stocks see genuine retail demand — most trading happens outside U.S. market hours and in fractional amounts — but these tokens are about 1.5 times more volatile and less liquid than the underlying equities, with systemic risk still contained and regulators urged to consider circuit breakers for 24/7 trading.",
-      "current_state_zh": "国际货币基金组织（IMF）最新《全球金融稳定报告》发现，超过50%的代币化股票交易发生在美国常规交易时段之外，约80%的交易不足一整股；同时代币化股票的波动率约为标的股票的1.5倍，流动性也明显更差。该报告覆盖了11个交易平台、365天内流动性最好的五只代币化美股，认为目前系统性风险仍然有限，并敦促监管机构考虑为24/7交易设置熔断机制。\n\nIMF表示已敦促监管机构考虑为24/7交易引入熔断机制，并更密切地监测代币化市场与传统市场之间的联系，同时指出目前系统性风险仍然有限。鉴于该市场仍处于早期阶段，IMF还称其结论“应谨慎解读”。\n\n代币化股票市场规模约23亿美元且高度集中，Ondo Finance与Backed Finance的xStocks合计占据逾70%份额；两者发行的均为合成代币，提供价格敞口但不涉及直接持股。传统市场重新开盘时，常规股票吸收了其代币化对应资产隔夜价格波动的87%至99%，而去中心化交易所上的代币化价格偏离传统市场更大。",
+      "current_state_en": "The IMF’s October GFSR now includes a dedicated tokenization chapter, adding overall tokenized RWA market size (~$65B), tokenized repo volumes (~$303B daily) and warnings that tokenization could become a new channel for leverage and maturity/liquidity mismatches, while still assessing systemic risk as limited.",
+      "current_state_zh": "IMF 10月《全球金融稳定报告》以专门章节覆盖代币化市场，除此前代币化股票的波动性、流动性及交易时段发现外，新增整体代币化RWA市场规模约650亿美元、代币化回购日交易量约3030亿美元等数据，并警告代币化可能成为杠杆与期限错配的新渠道；报告同时指出系统性风险目前仍然有限。",
       "entities": [
         "but",
         "demand",
@@ -140837,6 +140958,7 @@
         "imf",
         "real",
         "remain",
+        "rwa",
         "show",
         "stocks",
         "tokenized",
@@ -140847,18 +140969,21 @@
       "event_type": "regulatory_action",
       "first_seen_at": "2026-10-11T17:44:49.334559Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-11T17:44:49.334559Z",
-      "last_updated_at": "2026-10-11T17:44:49.334559Z",
+      "last_material_change_at": "2026-10-13T18:21:42.450551Z",
+      "last_updated_at": "2026-10-13T18:21:42.450551Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "developing",
       "title_en": "Tokenized Stocks Show Real Demand But Remain Volatile and Illiquid, IMF Finds",
       "title_zh": "IMF发现：代币化股票需求真实，但仍波动剧烈且流动性不足",
       "topics": [
         "crypto-regulation",
+        "financial-stability",
         "imf",
         "real-world-assets",
+        "stablecoins",
+        "tokenized-rwa",
         "tokenized-stocks"
       ],
       "updates": [
@@ -140912,6 +141037,44 @@
           "update_type": "initial",
           "what_changed_en": "The IMF's latest Global Financial Stability Report finds that tokenized stocks see genuine retail demand — most trading happens outside U.S. market hours and in fractional amounts — but these tokens are about 1.5 times more volatile and less liquid than the underlying equities, with systemic risk still contained and regulators urged to consider circuit breakers for 24/7 trading.",
           "what_changed_zh": "国际货币基金组织（IMF）最新《全球金融稳定报告》发现，超过50%的代币化股票交易发生在美国常规交易时段之外，约80%的交易不足一整股；同时代币化股票的波动率约为标的股票的1.5倍，流动性也明显更差。该报告覆盖了11个交易平台、365天内流动性最好的五只代币化美股，认为目前系统性风险仍然有限，并敦促监管机构考虑为24/7交易设置熔断机制。\n\nIMF表示已敦促监管机构考虑为24/7交易引入熔断机制，并更密切地监测代币化市场与传统市场之间的联系，同时指出目前系统性风险仍然有限。鉴于该市场仍处于早期阶段，IMF还称其结论“应谨慎解读”。\n\n代币化股票市场规模约23亿美元且高度集中，Ondo Finance与Backed Finance的xStocks合计占据逾70%份额；两者发行的均为合成代币，提供价格敞口但不涉及直接持股。传统市场重新开盘时，常规股票吸收了其代币化对应资产隔夜价格波动的87%至99%，而去中心化交易所上的代币化价格偏离传统市场更大。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.96,
+          "current_state_en": "The IMF’s October GFSR now includes a dedicated tokenization chapter, adding overall tokenized RWA market size (~$65B), tokenized repo volumes (~$303B daily) and warnings that tokenization could become a new channel for leverage and maturity/liquidity mismatches, while still assessing systemic risk as limited.",
+          "current_state_zh": "IMF 10月《全球金融稳定报告》以专门章节覆盖代币化市场，除此前代币化股票的波动性、流动性及交易时段发现外，新增整体代币化RWA市场规模约650亿美元、代币化回购日交易量约3030亿美元等数据，并警告代币化可能成为杠杆与期限错配的新渠道；报告同时指出系统性风险目前仍然有限。",
+          "detailed_summary_en": "The IMF's October Global Financial Stability Report dedicates its first special chapter to tokenization, sizing the tokenized RWA market at roughly $65B (credit $30.4B, MMFs $17.5B, equities $2.3B) alongside $303B in average daily tokenized repo volume, flagging concentrated equity issuance, thin liquidity and 1.5x volatility, and warning that tokenized assets could become a new channel for leverage and liquidity/maturity mismatches.",
+          "detailed_summary_zh": "The IMF's October Global Financial Stability Report dedicates its first special chapter to tokenization, sizing the tokenized RWA market at roughly $65B (credit $30.4B, MMFs $17.5B, equities $2.3B) alongside $303B in average daily tokenized repo volume, flagging concentrated equity issuance, thin liquidity and 1.5x volatility, and warning that tokenized assets could become a new channel for leverage and liquidity/maturity mismatches.",
+          "event_id": "evt_33ec1f710070538f",
+          "first_seen_at": "2026-10-13T18:21:42.450551Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T15:19:04Z",
+          "published_at": "2026-10-13T15:19:04Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115121"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120332"
+          ],
+          "time_precision": "published",
+          "title_en": "【IMF：代币化 RWA 市场规模约 650 亿美元，或成杠杆与流动性风险新渠道】",
+          "title_zh": "【IMF：代币化 RWA 市场规模约 650 亿美元，或成杠杆与流动性风险新渠道】",
+          "update_id": "upd_bf1426dcbc5e788d",
+          "update_type": "escalation",
+          "what_changed_en": "The IMF’s October GFSR dedicates its first special chapter to tokenization: tokenized RWA public market (ex repo/stablecoins) was ~$65B as of end-July (credit ~$30.4B, MMFs ~$17.5B, equities ~$2.3B) with tokenized repo 30-day average daily volume at $303B; it warns tokenized assets could become a new channel for leverage and liquidity/maturity mismatches, and flags stablecoin/tokenized-deposit settlement concentration/credit risks.",
+          "what_changed_zh": "IMF 10月《全球金融稳定报告》首次用专门章节讨论代币化市场：截至7月底，不含回购和稳定币的代币化RWA公开市场规模约650亿美元（信贷约304亿、货币市场基金约175亿、股票约23亿），代币化回购30日平均日交易量达3030亿美元；并警告代币化资产可能成为杠杆积累及流动性与期限错配的新渠道，以及稳定币/代币化存款作为主要结算工具带来的发行方信用风险和集中度风险。"
         }
       ]
     },
@@ -147869,8 +148032,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027.",
-      "current_state_zh": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027.",
+      "current_state_en": "Sui Devnet has added ML-DSA-65 as a native account signature scheme (reported as protocol version 139) and processed its first native post-quantum transaction; Testnet is targeted for end-2026 and Mainnet for Q1 2027, subject to independent audits and Testnet feedback.",
+      "current_state_zh": "Sui Devnet 已在 v1.82.0（报道称为协议版本 139）中加入 ML-DSA-65 原生账户签名方案，并完成首笔原生抗量子交易；测试网目标为 2026 年底，主网目标为 2027 年 Q1，以独立审计和测试网反馈为准。",
       "entities": [
         "adds",
         "devnet",
@@ -147889,19 +148052,20 @@
       "identifiers": [
         "dsa-65"
       ],
-      "last_material_change_at": "2026-10-13T14:18:08.239360Z",
-      "last_updated_at": "2026-10-13T14:18:08.239360Z",
+      "last_material_change_at": "2026-10-13T18:21:42.448997Z",
+      "last_updated_at": "2026-10-13T18:21:42.448997Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "Sui Devnet Adds Post-Quantum Signature Support, Targets Mainnet Rollout in Q1 20",
-      "title_zh": "Sui Devnet Adds Post-Quantum Signature Support, Targets Mainnet Rollout in Q1 20",
+      "title_zh": "Sui Devnet新增后量子签名支持，目标2027年一季度主网上线",
       "topics": [
         "cryptography",
         "layer-1",
         "ml-dsa-65",
         "post-quantum",
+        "protocol-upgrade",
         "sui"
       ],
       "updates": [
@@ -147912,7 +148076,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027.",
-          "current_state_zh": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027.",
+          "current_state_zh": "Mysten Labs为Sui Devnet v1.82.0添加了ML-DSA-65后量子签名支持，通过其ExecuteTransaction和VerifySignature API处理了该网络的首笔量子安全交易，测试网预计在2026年底上线，原生主网账户认证目标为2027年一季度。",
           "detailed_summary_en": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027.",
           "detailed_summary_zh": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027.",
           "event_id": "evt_b3a221aa544aae9b",
@@ -147937,11 +148101,49 @@
           ],
           "time_precision": "published",
           "title_en": "Sui Devnet Adds Post-Quantum Signature Support, Targets Mainnet Rollout in Q1 20",
-          "title_zh": "Sui Devnet Adds Post-Quantum Signature Support, Targets Mainnet Rollout in Q1 20",
+          "title_zh": "Sui Devnet新增后量子签名支持，目标2027年一季度主网上线",
           "update_id": "upd_257e1ed1dc637393",
           "update_type": "initial",
           "what_changed_en": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027.",
-          "what_changed_zh": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027."
+          "what_changed_zh": "Mysten Labs为Sui Devnet v1.82.0添加了ML-DSA-65后量子签名支持，通过其ExecuteTransaction和VerifySignature API处理了该网络的首笔量子安全交易，测试网预计在2026年底上线，原生主网账户认证目标为2027年一季度。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.9,
+          "current_state_en": "Sui Devnet has added ML-DSA-65 as a native account signature scheme (reported as protocol version 139) and processed its first native post-quantum transaction; Testnet is targeted for end-2026 and Mainnet for Q1 2027, subject to independent audits and Testnet feedback.",
+          "current_state_zh": "Sui Devnet 已在 v1.82.0（报道称为协议版本 139）中加入 ML-DSA-65 原生账户签名方案，并完成首笔原生抗量子交易；测试网目标为 2026 年底，主网目标为 2027 年 Q1，以独立审计和测试网反馈为准。",
+          "detailed_summary_en": "Mysten Labs' Kostas Chalkias said Sui Devnet has processed the first native post-quantum transaction after ML-DSA-65 was added as a native account signature scheme in protocol version 139, ahead of a testnet target by end-2026 and mainnet in Q1 2027 subject to audits.",
+          "detailed_summary_zh": "Mysten Labs' Kostas Chalkias said Sui Devnet has processed the first native post-quantum transaction after ML-DSA-65 was added as a native account signature scheme in protocol version 139, ahead of a testnet target by end-2026 and mainnet in Q1 2027 subject to audits.",
+          "event_id": "evt_b3a221aa544aae9b",
+          "first_seen_at": "2026-10-13T18:21:42.448997Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T14:56:22Z",
+          "published_at": "2026-10-13T14:56:22Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115117"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120328"
+          ],
+          "time_precision": "published",
+          "title_en": "【Sui Devnet 完成首笔原生抗量子交易，目标 2027 年 Q1 上线主网】",
+          "title_zh": "【Sui Devnet 完成首笔原生抗量子交易，目标 2027 年 Q1 上线主网】",
+          "update_id": "upd_04fcedce4a59d839",
+          "update_type": "confirmation",
+          "what_changed_en": "Follow-up reporting confirms ML-DSA-65 was added as a native account signature scheme in Devnet protocol version 139, supporting single- and multi-signature accounts, with validators able to verify transactions authorized by post-quantum keys; Testnet and Mainnet still do not accept such signatures, and Mainnet timing depends on independent audits and Testnet feedback.",
+          "what_changed_zh": "后续报道确认 ML-DSA-65 在 Devnet 协议版本 139 中作为原生账户签名方案加入，单签和多签账户均支持，验证者可验证后量子密钥授权交易；测试网和主网目前仍不接受此类签名，主网时间取决于独立审计和测试网反馈。"
         }
       ]
     },
@@ -148220,6 +148422,608 @@
           "what_changed_zh": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off."
         }
       ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "Russia's central bank authorized Sberbank (alongside VTB and other firms) as a licensed crypto exchange operator and custodian, with the lender preparing to offer BTC, ETH and USDT trading through its platforms starting Dec. 1, 2026.",
+      "current_state_zh": "Russia's central bank authorized Sberbank (alongside VTB and other firms) as a licensed crypto exchange operator and custodian, with the lender preparing to offer BTC, ETH and USDT trading through its platforms starting Dec. 1, 2026.",
+      "entities": [
+        "december",
+        "russia",
+        "sberbank"
+      ],
+      "event_id": "evt_5d0fe804d906d59b",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-13T14:18:36.197067Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-13T14:18:36.197067Z",
+      "last_updated_at": "2026-10-13T14:18:36.197067Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Russia clears Sberbank for crypto trading ahead of December launch",
+      "title_zh": "Russia clears Sberbank for crypto trading ahead of December launch",
+      "topics": [
+        "crypto-adoption",
+        "crypto-regulation",
+        "russia",
+        "sberbank"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Russia's central bank authorized Sberbank (alongside VTB and other firms) as a licensed crypto exchange operator and custodian, with the lender preparing to offer BTC, ETH and USDT trading through its platforms starting Dec. 1, 2026.",
+          "current_state_zh": "Russia's central bank authorized Sberbank (alongside VTB and other firms) as a licensed crypto exchange operator and custodian, with the lender preparing to offer BTC, ETH and USDT trading through its platforms starting Dec. 1, 2026.",
+          "detailed_summary_en": "Russia's central bank authorized Sberbank (alongside VTB and other firms) as a licensed crypto exchange operator and custodian, with the lender preparing to offer BTC, ETH and USDT trading through its platforms starting Dec. 1, 2026.",
+          "detailed_summary_zh": "Russia's central bank authorized Sberbank (alongside VTB and other firms) as a licensed crypto exchange operator and custodian, with the lender preparing to offer BTC, ETH and USDT trading through its platforms starting Dec. 1, 2026.",
+          "event_id": "evt_5d0fe804d906d59b",
+          "first_seen_at": "2026-10-13T14:18:36.197067Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T12:22:24Z",
+          "published_at": "2026-10-13T12:22:24Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/sberbank-russia-crypto-trading-approval?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:c89fdd1163858ac0"
+          ],
+          "time_precision": "published",
+          "title_en": "Russia clears Sberbank for crypto trading ahead of December launch",
+          "title_zh": "Russia clears Sberbank for crypto trading ahead of December launch",
+          "update_id": "upd_19759e3d81aa23b4",
+          "update_type": "initial",
+          "what_changed_en": "Russia's central bank authorized Sberbank (alongside VTB and other firms) as a licensed crypto exchange operator and custodian, with the lender preparing to offer BTC, ETH and USDT trading through its platforms starting Dec. 1, 2026.",
+          "what_changed_zh": "Russia's central bank authorized Sberbank (alongside VTB and other firms) as a licensed crypto exchange operator and custodian, with the lender preparing to offer BTC, ETH and USDT trading through its platforms starting Dec. 1, 2026."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Interactive Brokers launched ETH staking for eligible clients, powered by digital asset infrastructure provider zerohash, with a staking dashboard for submitting staking/unstaking requests and rewards that auto-compound.",
+      "current_state_zh": "Interactive Brokers launched ETH staking for eligible clients, powered by digital asset infrastructure provider zerohash, with a staking dashboard for submitting staking/unstaking requests and rewards that auto-compound.",
+      "entities": [
+        "broker",
+        "brokers",
+        "global",
+        "interactive",
+        "interactive-brokers",
+        "launches",
+        "leading",
+        "online",
+        "powered",
+        "staking"
+      ],
+      "event_id": "evt_dd9056c3f0ed124e",
+      "event_type": "product_release",
+      "first_seen_at": "2026-10-13T18:21:37.020138Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-13T18:21:37.020138Z",
+      "last_updated_at": "2026-10-13T18:21:37.020138Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Leading Global Online Broker Interactive Brokers Launches ETH Staking Powered by",
+      "title_zh": "Leading Global Online Broker Interactive Brokers Launches ETH Staking Powered by",
+      "topics": [
+        "interactive-brokers",
+        "staking",
+        "zerohash"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Interactive Brokers launched ETH staking for eligible clients, powered by digital asset infrastructure provider zerohash, with a staking dashboard for submitting staking/unstaking requests and rewards that auto-compound.",
+          "current_state_zh": "Interactive Brokers launched ETH staking for eligible clients, powered by digital asset infrastructure provider zerohash, with a staking dashboard for submitting staking/unstaking requests and rewards that auto-compound.",
+          "detailed_summary_en": "Interactive Brokers launched ETH staking for eligible clients, powered by digital asset infrastructure provider zerohash, with a staking dashboard for submitting staking/unstaking requests and rewards that auto-compound.",
+          "detailed_summary_zh": "Interactive Brokers launched ETH staking for eligible clients, powered by digital asset infrastructure provider zerohash, with a staking dashboard for submitting staking/unstaking requests and rewards that auto-compound.",
+          "event_id": "evt_dd9056c3f0ed124e",
+          "first_seen_at": "2026-10-13T18:21:37.020138Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T17:01:16Z",
+          "published_at": "2026-10-13T17:01:16Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/news-21223"
+            }
+          ],
+          "story_ids": [
+            "telegram:wublockchainenglish:26396"
+          ],
+          "time_precision": "published",
+          "title_en": "Leading Global Online Broker Interactive Brokers Launches ETH Staking Powered by",
+          "title_zh": "Leading Global Online Broker Interactive Brokers Launches ETH Staking Powered by",
+          "update_id": "upd_2ec3dc4e09182fac",
+          "update_type": "initial",
+          "what_changed_en": "Interactive Brokers launched ETH staking for eligible clients, powered by digital asset infrastructure provider zerohash, with a staking dashboard for submitting staking/unstaking requests and rewards that auto-compound.",
+          "what_changed_zh": "Interactive Brokers launched ETH staking for eligible clients, powered by digital asset infrastructure provider zerohash, with a staking dashboard for submitting staking/unstaking requests and rewards that auto-compound."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "StepFun's STEPX brand unveiled the STEPX Neo agent phone — a 3,999 RMB Android 16-based device running the Amoo personal agent with Alipay/WeChat/Ctrip/Didi integrations and a Step Studio toolchain for building and monetizing AI apps via natural language — going on sale October 16.",
+      "current_state_zh": "StepFun's STEPX brand unveiled the STEPX Neo agent phone — a 3,999 RMB Android 16-based device running the Amoo personal agent with Alipay/WeChat/Ctrip/Didi integrations and a Step Studio toolchain for building and monetizing AI apps via natural language — going on sale October 16.",
+      "entities": [
+        "app"
+      ],
+      "event_id": "evt_b77a9d06f7b1fda4",
+      "event_type": "product_release",
+      "first_seen_at": "2026-10-13T18:21:41.707134Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-13T18:21:41.707134Z",
+      "last_updated_at": "2026-10-13T18:21:41.707134Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "阶跃3999元智能体手机发布：一句话造App，还能接入支付宝收款",
+      "title_zh": "阶跃3999元智能体手机发布：一句话造App，还能接入支付宝收款",
+      "topics": [
+        "ai-hardware",
+        "developer-tools",
+        "mobile-os",
+        "stepfun"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "StepFun's STEPX brand unveiled the STEPX Neo agent phone — a 3,999 RMB Android 16-based device running the Amoo personal agent with Alipay/WeChat/Ctrip/Didi integrations and a Step Studio toolchain for building and monetizing AI apps via natural language — going on sale October 16.",
+          "current_state_zh": "StepFun's STEPX brand unveiled the STEPX Neo agent phone — a 3,999 RMB Android 16-based device running the Amoo personal agent with Alipay/WeChat/Ctrip/Didi integrations and a Step Studio toolchain for building and monetizing AI apps via natural language — going on sale October 16.",
+          "detailed_summary_en": "StepFun's STEPX brand unveiled the STEPX Neo agent phone — a 3,999 RMB Android 16-based device running the Amoo personal agent with Alipay/WeChat/Ctrip/Didi integrations and a Step Studio toolchain for building and monetizing AI apps via natural language — going on sale October 16.",
+          "detailed_summary_zh": "StepFun's STEPX brand unveiled the STEPX Neo agent phone — a 3,999 RMB Android 16-based device running the Amoo personal agent with Alipay/WeChat/Ctrip/Didi integrations and a Step Studio toolchain for building and monetizing AI apps via natural language — going on sale October 16.",
+          "event_id": "evt_b77a9d06f7b1fda4",
+          "first_seen_at": "2026-10-13T18:21:41.707134Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T14:43:02Z",
+          "published_at": "2026-10-13T14:43:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371628?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:200294"
+          ],
+          "time_precision": "published",
+          "title_en": "阶跃3999元智能体手机发布：一句话造App，还能接入支付宝收款",
+          "title_zh": "阶跃3999元智能体手机发布：一句话造App，还能接入支付宝收款",
+          "update_id": "upd_d82d84094fe8b56a",
+          "update_type": "initial",
+          "what_changed_en": "StepFun's STEPX brand unveiled the STEPX Neo agent phone — a 3,999 RMB Android 16-based device running the Amoo personal agent with Alipay/WeChat/Ctrip/Didi integrations and a Step Studio toolchain for building and monetizing AI apps via natural language — going on sale October 16.",
+          "what_changed_zh": "StepFun's STEPX brand unveiled the STEPX Neo agent phone — a 3,999 RMB Android 16-based device running the Amoo personal agent with Alipay/WeChat/Ctrip/Didi integrations and a Step Studio toolchain for building and monetizing AI apps via natural language — going on sale October 16."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Ripple partnered with Stripe-owned Privy to add XRP Ledger support to Privy's developer platform, enabling embedded XRPL wallets with wallet creation, management and transaction signing for XRP, RLUSD and other XRPL assets.",
+      "current_state_zh": "Ripple partnered with Stripe-owned Privy to add XRP Ledger support to Privy's developer platform, enabling embedded XRPL wallets with wallet creation, management and transaction signing for XRP, RLUSD and other XRPL assets.",
+      "entities": [
+        "ledger",
+        "privy",
+        "ripple",
+        "stripe",
+        "xrp",
+        "xrp-ledger"
+      ],
+      "event_id": "evt_2bd375cc491e9b78",
+      "event_type": "other",
+      "first_seen_at": "2026-10-13T18:21:41.711012Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-13T18:21:41.711012Z",
+      "last_updated_at": "2026-10-13T18:21:41.711012Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Ripple与Stripe旗下Privy合作，将为XRP Ledger引入嵌入式钱包功能",
+      "title_zh": "Ripple与Stripe旗下Privy合作，将为XRP Ledger引入嵌入式钱包功能",
+      "topics": [
+        "embedded-wallets",
+        "privy",
+        "ripple",
+        "rlusd",
+        "stripe",
+        "xrp-ledger"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Ripple partnered with Stripe-owned Privy to add XRP Ledger support to Privy's developer platform, enabling embedded XRPL wallets with wallet creation, management and transaction signing for XRP, RLUSD and other XRPL assets.",
+          "current_state_zh": "Ripple partnered with Stripe-owned Privy to add XRP Ledger support to Privy's developer platform, enabling embedded XRPL wallets with wallet creation, management and transaction signing for XRP, RLUSD and other XRPL assets.",
+          "detailed_summary_en": "Ripple partnered with Stripe-owned Privy to add XRP Ledger support to Privy's developer platform, enabling embedded XRPL wallets with wallet creation, management and transaction signing for XRP, RLUSD and other XRPL assets.",
+          "detailed_summary_zh": "Ripple partnered with Stripe-owned Privy to add XRP Ledger support to Privy's developer platform, enabling embedded XRPL wallets with wallet creation, management and transaction signing for XRP, RLUSD and other XRPL assets.",
+          "event_id": "evt_2bd375cc491e9b78",
+          "first_seen_at": "2026-10-13T18:21:41.711012Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T16:02:02Z",
+          "published_at": "2026-10-13T16:02:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371637?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:200303"
+          ],
+          "time_precision": "published",
+          "title_en": "Ripple与Stripe旗下Privy合作，将为XRP Ledger引入嵌入式钱包功能",
+          "title_zh": "Ripple与Stripe旗下Privy合作，将为XRP Ledger引入嵌入式钱包功能",
+          "update_id": "upd_1188f88e6fbdb216",
+          "update_type": "initial",
+          "what_changed_en": "Ripple partnered with Stripe-owned Privy to add XRP Ledger support to Privy's developer platform, enabling embedded XRPL wallets with wallet creation, management and transaction signing for XRP, RLUSD and other XRPL assets.",
+          "what_changed_zh": "Ripple partnered with Stripe-owned Privy to add XRP Ledger support to Privy's developer platform, enabling embedded XRPL wallets with wallet creation, management and transaction signing for XRP, RLUSD and other XRPL assets."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Starknet has launched Shadow Accounts; they are pseudonymous addresses funded from shielded STRK20 balances, enabling public DeFi activity while concealing the link to the main wallet, with the first integration expected the next day.",
+      "current_state_zh": "Starknet 已推出影子账户/Shadow Accounts 隐私原语；影子账户为受 STRK20 余额注资的伪名地址，可使用户开展公开 DeFi 活动并隐藏其与主钱包的关联，首个集成预计次日上线。",
+      "entities": [
+        "accounts",
+        "shadow",
+        "starknet"
+      ],
+      "event_id": "evt_d6c542c658d3bbee",
+      "event_type": "other",
+      "first_seen_at": "2026-10-13T18:21:42.448637Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-13T18:21:42.448637Z",
+      "last_updated_at": "2026-10-13T18:21:42.448637Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "developing",
+      "title_en": "【Starknet 推出隐私原语 Shadow Accounts，应用可提供隐私模式切换】",
+      "title_zh": "【Starknet 推出隐私原语 Shadow Accounts，应用可提供隐私模式切换】",
+      "topics": [
+        "developer-tools",
+        "l2",
+        "layer2",
+        "onchain-anonymity",
+        "privacy",
+        "starknet",
+        "wallet-api"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "StarkWare launched Shadow Accounts, a STRK20 privacy primitive on Starknet that lets users toggle per-app anonymous identities and lets developers add privacy to existing apps through the Starknet Wallet API without rebuilding them.",
+          "current_state_zh": "StarkWare推出Shadow Accounts，这是Starknet上的STRK20隐私原语，允许用户按应用切换匿名身份，并让开发者通过Starknet Wallet API为现有应用添加隐私功能，而无需重建这些应用。",
+          "detailed_summary_en": "StarkWare launched Shadow Accounts, a STRK20 privacy primitive on Starknet that lets users toggle per-app anonymous identities and lets developers add privacy to existing apps through the Starknet Wallet API without rebuilding them.",
+          "detailed_summary_zh": "StarkWare launched Shadow Accounts, a STRK20 privacy primitive on Starknet that lets users toggle per-app anonymous identities and lets developers add privacy to existing apps through the Starknet Wallet API without rebuilding them.",
+          "event_id": "evt_d6c542c658d3bbee",
+          "first_seen_at": "2026-10-13T18:21:42.448637Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T14:37:00Z",
+          "published_at": "2026-10-13T14:37:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115116"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120327"
+          ],
+          "time_precision": "published",
+          "title_en": "【Starknet 推出隐私原语 Shadow Accounts，应用可提供隐私模式切换】",
+          "title_zh": "【Starknet 推出隐私原语 Shadow Accounts，应用可提供隐私模式切换】",
+          "update_id": "upd_87fe3ba740110b9a",
+          "update_type": "initial",
+          "what_changed_en": "StarkWare launched Shadow Accounts, a STRK20 privacy primitive on Starknet that lets users toggle per-app anonymous identities and lets developers add privacy to existing apps through the Starknet Wallet API without rebuilding them.",
+          "what_changed_zh": "StarkWare推出Shadow Accounts，这是Starknet上的STRK20隐私原语，允许用户按应用切换匿名身份，并让开发者通过Starknet Wallet API为现有应用添加隐私功能，而无需重建这些应用。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.9,
+          "current_state_en": "Starknet has launched Shadow Accounts; they are pseudonymous addresses funded from shielded STRK20 balances, enabling public DeFi activity while concealing the link to the main wallet, with the first integration expected the next day.",
+          "current_state_zh": "Starknet 已推出影子账户/Shadow Accounts 隐私原语；影子账户为受 STRK20 余额注资的伪名地址，可使用户开展公开 DeFi 活动并隐藏其与主钱包的关联，首个集成预计次日上线。",
+          "detailed_summary_en": "Starknet has introduced shadow accounts, pseudonymous Starknet addresses funded from shielded STRK20 balances that let users engage in public DeFi activity while concealing the link between that activity and their main wallet, with the first integration launching the following day.",
+          "detailed_summary_zh": "Starknet has introduced shadow accounts, pseudonymous Starknet addresses funded from shielded STRK20 balances that let users engage in public DeFi activity while concealing the link between that activity and their main wallet, with the first integration launching the following day.",
+          "event_id": "evt_d6c542c658d3bbee",
+          "first_seen_at": "2026-10-13T18:21:41.712665Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T16:48:02Z",
+          "published_at": "2026-10-13T16:48:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371641?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:200307"
+          ],
+          "time_precision": "published",
+          "title_en": "Starknet推出影子账户，支持用户匿名关联主钱包与DeFi活动",
+          "title_zh": "Starknet推出影子账户，支持用户匿名关联主钱包与DeFi活动",
+          "update_id": "upd_6609b4093dcf7d65",
+          "update_type": "escalation",
+          "what_changed_en": "Added that Shadow Accounts are pseudonymous Starknet addresses funded from shielded STRK20 balances for public DeFi activity while concealing the link to the main wallet; the first integration is scheduled for the next day.",
+          "what_changed_zh": "补充说明影子账户是由受保护 STRK20 余额注资的独立伪名 Starknet 地址，用于在隐藏与主钱包关联的前提下参与公开 DeFi 活动；首个集成计划于次日上线。"
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Backpack disclosed on an investor call that its tokenized-stock offering has surpassed $5 billion in cumulative trading volume across 73 listed tokenized stocks, while prediction markets and a payment card have completed internal testing and a second securities market is in product preparation, alongside expansion plans in Japan and a pending partnership in South Korea.",
+      "current_state_zh": "Backpack disclosed on an investor call that its tokenized-stock offering has surpassed $5 billion in cumulative trading volume across 73 listed tokenized stocks, while prediction markets and a payment card have completed internal testing and a second securities market is in product preparation, alongside expansion plans in Japan and a pending partnership in South Korea.",
+      "entities": [
+        "backpack"
+      ],
+      "event_id": "evt_ca373bc6c24a3d8d",
+      "event_type": "exchange_operation",
+      "first_seen_at": "2026-10-13T18:21:42.449355Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-13T18:21:42.449355Z",
+      "last_updated_at": "2026-10-13T18:21:42.449355Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【Backpack：代币化股票累计交易额超 50 亿美元，预测市场和支付卡已完成内测】",
+      "title_zh": "【Backpack：代币化股票累计交易额超 50 亿美元，预测市场和支付卡已完成内测】",
+      "topics": [
+        "backpack",
+        "exchange-expansion",
+        "prediction-markets",
+        "tokenized-securities",
+        "tokenized-stocks"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Backpack disclosed on an investor call that its tokenized-stock offering has surpassed $5 billion in cumulative trading volume across 73 listed tokenized stocks, while prediction markets and a payment card have completed internal testing and a second securities market is in product preparation, alongside expansion plans in Japan and a pending partnership in South Korea.",
+          "current_state_zh": "Backpack disclosed on an investor call that its tokenized-stock offering has surpassed $5 billion in cumulative trading volume across 73 listed tokenized stocks, while prediction markets and a payment card have completed internal testing and a second securities market is in product preparation, alongside expansion plans in Japan and a pending partnership in South Korea.",
+          "detailed_summary_en": "Backpack disclosed on an investor call that its tokenized-stock offering has surpassed $5 billion in cumulative trading volume across 73 listed tokenized stocks, while prediction markets and a payment card have completed internal testing and a second securities market is in product preparation, alongside expansion plans in Japan and a pending partnership in South Korea.",
+          "detailed_summary_zh": "Backpack disclosed on an investor call that its tokenized-stock offering has surpassed $5 billion in cumulative trading volume across 73 listed tokenized stocks, while prediction markets and a payment card have completed internal testing and a second securities market is in product preparation, alongside expansion plans in Japan and a pending partnership in South Korea.",
+          "event_id": "evt_ca373bc6c24a3d8d",
+          "first_seen_at": "2026-10-13T18:21:42.449355Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T14:58:57Z",
+          "published_at": "2026-10-13T14:58:57Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115118"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120329"
+          ],
+          "time_precision": "published",
+          "title_en": "【Backpack：代币化股票累计交易额超 50 亿美元，预测市场和支付卡已完成内测】",
+          "title_zh": "【Backpack：代币化股票累计交易额超 50 亿美元，预测市场和支付卡已完成内测】",
+          "update_id": "upd_cd7e24fe71a00704",
+          "update_type": "initial",
+          "what_changed_en": "Backpack disclosed on an investor call that its tokenized-stock offering has surpassed $5 billion in cumulative trading volume across 73 listed tokenized stocks, while prediction markets and a payment card have completed internal testing and a second securities market is in product preparation, alongside expansion plans in Japan and a pending partnership in South Korea.",
+          "what_changed_zh": "Backpack disclosed on an investor call that its tokenized-stock offering has surpassed $5 billion in cumulative trading volume across 73 listed tokenized stocks, while prediction markets and a payment card have completed internal testing and a second securities market is in product preparation, alongside expansion plans in Japan and a pending partnership in South Korea."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "A newly surfaced XRP Ledger base-layer bug could have let attackers mint trillions of new XRP for nearly nothing, and shareholders of the Ripple/Arrington-backed XRP treasury vehicle Evernorth voted on their deal without being told about it.",
+      "current_state_zh": "A newly surfaced XRP Ledger base-layer bug could have let attackers mint trillions of new XRP for nearly nothing, and shareholders of the Ripple/Arrington-backed XRP treasury vehicle Evernorth voted on their deal without being told about it.",
+      "entities": [
+        "xrp",
+        "xrpn"
+      ],
+      "event_id": "evt_fb5764d144a69fc4",
+      "event_type": "governance",
+      "first_seen_at": "2026-10-13T18:21:56.556929Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-13T18:21:56.556929Z",
+      "last_updated_at": "2026-10-13T18:21:56.556929Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "XRPN took shareholder vote with no knowledge of XRP inflation bug",
+      "title_zh": "XRPN took shareholder vote with no knowledge of XRP inflation bug",
+      "topics": [
+        "evernorth-xrpn",
+        "governance-disclosure",
+        "protocol-vulnerability",
+        "token-supply",
+        "xrp-ledger"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "A newly surfaced XRP Ledger base-layer bug could have let attackers mint trillions of new XRP for nearly nothing, and shareholders of the Ripple/Arrington-backed XRP treasury vehicle Evernorth voted on their deal without being told about it.",
+          "current_state_zh": "A newly surfaced XRP Ledger base-layer bug could have let attackers mint trillions of new XRP for nearly nothing, and shareholders of the Ripple/Arrington-backed XRP treasury vehicle Evernorth voted on their deal without being told about it.",
+          "detailed_summary_en": "A newly surfaced XRP Ledger base-layer bug could have let attackers mint trillions of new XRP for nearly nothing, and shareholders of the Ripple/Arrington-backed XRP treasury vehicle Evernorth voted on their deal without being told about it.",
+          "detailed_summary_zh": "A newly surfaced XRP Ledger base-layer bug could have let attackers mint trillions of new XRP for nearly nothing, and shareholders of the Ripple/Arrington-backed XRP treasury vehicle Evernorth voted on their deal without being told about it.",
+          "event_id": "evt_fb5764d144a69fc4",
+          "first_seen_at": "2026-10-13T18:21:56.556929Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T17:33:53Z",
+          "published_at": "2026-10-13T17:33:53Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Protos",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://protos.com/xrpn-took-shareholder-vote-with-no-knowledge-of-xrp-inflation-bug/"
+            }
+          ],
+          "story_ids": [
+            "rss:protos.com_feed_:18e59979352f2422"
+          ],
+          "time_precision": "published",
+          "title_en": "XRPN took shareholder vote with no knowledge of XRP inflation bug",
+          "title_zh": "XRPN took shareholder vote with no knowledge of XRP inflation bug",
+          "update_id": "upd_d9bf84ad2f4613ee",
+          "update_type": "initial",
+          "what_changed_en": "A newly surfaced XRP Ledger base-layer bug could have let attackers mint trillions of new XRP for nearly nothing, and shareholders of the Ripple/Arrington-backed XRP treasury vehicle Evernorth voted on their deal without being told about it.",
+          "what_changed_zh": "A newly surfaced XRP Ledger base-layer bug could have let attackers mint trillions of new XRP for nearly nothing, and shareholders of the Ripple/Arrington-backed XRP treasury vehicle Evernorth voted on their deal without being told about it."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "Victims and families of 9/11 victims filed a statement of interest claiming a share of the 127,271 BTC the US government seized from the LuBian mining pool, arguing the pool is an instrumentality of Iran.",
+      "current_state_zh": "Victims and families of 9/11 victims filed a statement of interest claiming a share of the 127,271 BTC the US government seized from the LuBian mining pool, arguing the pool is an instrumentality of Iran.",
+      "entities": [
+        "chinese",
+        "iran",
+        "iranian",
+        "mining-pool"
+      ],
+      "event_id": "evt_b7a5cc05711071f8",
+      "event_type": "legal_case",
+      "first_seen_at": "2026-10-13T18:21:56.611202Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-13T18:21:56.611202Z",
+      "last_updated_at": "2026-10-13T18:21:56.611202Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "9/11 victims claim bitcoins seized from Chinese-Iranian mining pool",
+      "title_zh": "9/11 victims claim bitcoins seized from Chinese-Iranian mining pool",
+      "topics": [
+        "asset-seizure",
+        "iran",
+        "legal",
+        "mining-pool"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Victims and families of 9/11 victims filed a statement of interest claiming a share of the 127,271 BTC the US government seized from the LuBian mining pool, arguing the pool is an instrumentality of Iran.",
+          "current_state_zh": "Victims and families of 9/11 victims filed a statement of interest claiming a share of the 127,271 BTC the US government seized from the LuBian mining pool, arguing the pool is an instrumentality of Iran.",
+          "detailed_summary_en": "Victims and families of 9/11 victims filed a statement of interest claiming a share of the 127,271 BTC the US government seized from the LuBian mining pool, arguing the pool is an instrumentality of Iran.",
+          "detailed_summary_zh": "Victims and families of 9/11 victims filed a statement of interest claiming a share of the 127,271 BTC the US government seized from the LuBian mining pool, arguing the pool is an instrumentality of Iran.",
+          "event_id": "evt_b7a5cc05711071f8",
+          "first_seen_at": "2026-10-13T18:21:56.611202Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T17:18:36Z",
+          "published_at": "2026-10-13T17:18:36Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Protos",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://protos.com/9-11-victims-claim-bitcoins-seized-from-chinese-iranian-mining-pool/"
+            }
+          ],
+          "story_ids": [
+            "rss:protos.com_feed_:ef047e326cf7907d"
+          ],
+          "time_precision": "published",
+          "title_en": "9/11 victims claim bitcoins seized from Chinese-Iranian mining pool",
+          "title_zh": "9/11 victims claim bitcoins seized from Chinese-Iranian mining pool",
+          "update_id": "upd_c53f00fd982b3ccc",
+          "update_type": "initial",
+          "what_changed_en": "Victims and families of 9/11 victims filed a statement of interest claiming a share of the 127,271 BTC the US government seized from the LuBian mining pool, arguing the pool is an instrumentality of Iran.",
+          "what_changed_zh": "Victims and families of 9/11 victims filed a statement of interest claiming a share of the 127,271 BTC the US government seized from the LuBian mining pool, arguing the pool is an instrumentality of Iran."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -148270,7 +149074,8 @@
     ],
     "aptos": [
       "evt_7b020f83ebe10269",
-      "evt_8879d449f27110d4"
+      "evt_8879d449f27110d4",
+      "evt_a08ae6c86ba18224"
     ],
     "arbitrum": [
       "evt_33bf5aa7f506fb06",
@@ -151135,7 +151940,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A UK High Court ruling on which jurisdiction's law governs claims to roughly $5 billion in seized bitcoin is a substantive legal precedent for cross-border crypto asset ownership and enforcement, with clear implications for how confiscated digital assets are adjudicated. It is a high-value regulatory/legal development rather than a market-moving event, so it lands below the systemic threshold.",
         "ai_score": 7.5,
@@ -151173,7 +151978,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A concrete regulatory/legal development: South Korea formalizing rules that let courts seize and sell Bitcoin and other crypto held by debtors, effective November. This expands enforcement powers and creates a clear pathway for forced liquidation of domestic crypto holdings, a meaningful structural/market-access development for Korean crypto users and exchanges, though it is an incremental extension of existing asset-forfeiture frameworks rather than a landmark market-reshaping decision. No discussion or commentary was provided.",
         "ai_score": 7.0,
@@ -151211,7 +152016,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Blur, a leading NFT marketplace, announced it will shut down its frontend on November 12 due to collapsing volume. This is a material operational change for a widely-used platform and signals continued contraction in the NFT sector, though it lacks systemic market impact.",
         "ai_score": 7.0,
@@ -151243,7 +152048,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Bankruptcy filing by a once-high-profile consumer AI platform, coupled with a $20M asset sale to Disney, is a major industry event signaling consolidation and financial distress among standalone consumer AI chatbot companies. It is a substantial structural/competitive development rather than a routine product update, though it falls short of a frontier-lab collapse that would reshape AI capability or safety landscapes, warranting a high but not top-tier score.",
         "ai_score": 8.5,
@@ -151280,7 +152085,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A major traditional brokerage (Interactive Brokers) adding Ethereum staking via Zerohash is a meaningful institutional adoption and market-structure development, giving mainstream brokerage clients direct access to ETH staking yield. It is not a ground-breaking regulatory or systemic event, but it is a substantive step in TradFi distribution of crypto yield products, warranting high-value attention.",
         "ai_score": 7.5,
@@ -151318,40 +152123,7 @@
       }
     },
     {
-      "attempts": 1,
-      "item": {
-        "ai_reason": "A concrete regulatory development within the news window: Russia's central bank expanded its authorized operator register, adding Sberbank and VTB to crypto trading and custody roles ahead of a planned Dec. 1, 2026 launch of BTC, ETH and USDT products. Clearing the country's largest lender materially expands retail and institutional crypto access in a major market, a clear transmission path from regulation to market structure, though its impact is largely domestic rather than systemic.",
-        "ai_score": 7.5,
-        "ai_summary": "Russia's central bank authorized Sberbank (alongside VTB and other firms) as a licensed crypto exchange operator and custodian, with the lender preparing to offer BTC, ETH and USDT trading through its platforms starting Dec. 1, 2026.",
-        "ai_tags": [
-          "russia",
-          "sberbank",
-          "crypto-regulation",
-          "banking",
-          "crypto-adoption"
-        ],
-        "author": "Cointelegraph by Helen Partz",
-        "content": "Russia clears Sberbank for crypto trading ahead of December launch\nRussia’s largest bank, Sberbank, has secured crypto exchange authorization as it prepares to offer Bitcoin, Ether and Tether USDt trading.\nSberbank, Russia’s largest lender, has secured the central bank’s approval to trade cryptocurrencies, including Bitcoin, ahead of a planned December launch.\nThe Bank of Russia’s updated register, dated Tuesday, lists 10 authorized crypto exchange operators and six digital custodians, up from four and five, respectively, a week earlier. The lists include major lenders Sberbank and VTB alongside nonbank companies such as T-Invest Lab and Atomyze.\nSberbank previously said it plans to launch crypto products supporting Bitcoin (BTC), Ether (ETH) and Tether’s USDt (USDT) on Dec. 1, 2026, through its existing SberBank Online, SberInvestments and SberBusiness platforms.\nSberbank has already begun testing crypto purchases, sales, deposits and withdrawals through its SberBank Online app, Russian business newspaper Vedomosti reported on Thursday, citing the bank’s press office. The bank said the final launch timeline depends on additional central bank regulations.\nThe registrations follow the Sept. 1 entry into force of Russia’s new crypto rules, which placed exchange operators and custodians under central bank oversight. The country still prohibits using cryptocurrencies to pay for goods and services.\nSberbank was among the first companies to secure digital custodian status last Tuesday.\nRelated: UK sanctions three crypto exchanges tied to Russian illicit funds",
-        "fetched_at": "2026-10-13T14:18:36.197067Z",
-        "id": "rss:cointelegraph.com_rss:c89fdd1163858ac0",
-        "metadata": {
-          "category": "crypto-regulation",
-          "event_retry_pending": true,
-          "feed_name": "Cointelegraph",
-          "score_model": "deepseek:deepseek-flash",
-          "source_category": "crypto-markets",
-          "tags": [
-            "Latest News"
-          ]
-        },
-        "published_at": "2026-10-13T12:22:24Z",
-        "source_type": "rss",
-        "title": "Russia clears Sberbank for crypto trading ahead of December launch",
-        "url": "https://cointelegraph.com/news/sberbank-russia-crypto-trading-approval?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
-      }
-    },
-    {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Thailand's clearance of Bitcoin and Ether ETFs represents a concrete regulatory step that opens a new national market to spot crypto ETF products, with a defined launch date of October 16 — a genuine market-access development worth attention, though Thailand's market size limits systemic impact. The article's value is diluted by promotional content about 'Pepeto buyers chasing 100x listing gains,' which is speculative hype rather than substantive news.",
         "ai_score": 7.0,
@@ -151384,7 +152156,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "This is a concrete institutional/TradFi blockchain milestone: two regulated trading firms (DRW and Marex) executing a bond-index swap natively on the Canton Network. It demonstrates real derivatives activity — not just a pilot announcement — on a privacy-focused institutional protocol, which is a meaningful market-structure data point for tokenized traditional finance. It lacks the scale of a systemic event or a top-tier protocol upgrade, so it lands in the high-value rather than groundbreaking tier.",
         "ai_score": 7.0,
@@ -151421,7 +152193,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Binance is discontinuing an entire product line — its mining pool, cloud mining, and related services — which forces affected miners to migrate hashrate and withdraw funds before deadlines. This is a material exchange service/operations change rather than a routine listing or marketing item, but it is not systemic: Binance Pool holds a modest share of global hashrate and no broader market access or solvency implications are signaled. Score sits above routine maintenance/product updates but below platform-wide fee or top-asset listing changes.",
         "ai_score": 7.0,
@@ -151456,6 +152228,385 @@
         "source_type": "google_news",
         "title": "Binance to shut down mining pool, cloud mining and related services",
         "url": "https://www.theblock.co/news/business/2026-10-13-binance-to-shut-down-mining-pool-cloud-mining-and-related-services-418410?utm_source=tradingview&utm_medium=rss"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Gemini 4 'Argon' is a new frontier model release from a leading AI lab (Google DeepMind), which lands at the high end of the AI calibration band for major lab releases with substantive capability and developer-ecosystem implications. The Hacker News thread (481 points, 365 comments) is high-signal: commenters discuss its SVG/pelican generation capabilities (noting Google is the only lab publicly training specifically for SVG output), report hands-on API experience praising prose quality over viral image benchmarks, and criticize the opaque introductory pricing ($2/M input, $10/M output, 95% cached-input discount) buried in marketing copy. Not a paradigm shift or safety incident, so it falls short of the 9.0+ tier.",
+        "ai_score": 8.5,
+        "ai_summary": "Google DeepMind released Gemini 4 'Argon', a new frontier model available via API at introductory pricing of $2 per million input tokens and $10 per million output tokens (95% off cached input), drawing attention for its SVG generation and natural-language writing quality.",
+        "ai_tags": [
+          "ai-labs",
+          "google-deepmind",
+          "gemini",
+          "foundation-models",
+          "model-release"
+        ],
+        "author": "737max",
+        "content": "\n--- Top Comments ---\n\n[simonw]: Unsurprisingly, the pelicans are excellent. Google are the only lab who have publicly shared that they have specifically trained for SVG output -  https:&#x2F;&#x2F;twitter.com&#x2F;sunjiao123sun_&#x2F;status&#x2F;202455551655137292...  - and they&#x27;ve had great pelican results in the past too (which they have shown off themselves -  https:&#x2F;&#x2F;twitter.com&#x2F;JeffDean&#x2F;status&#x2F;2024525132266688757 ). Here&#x27;s low, medium, high. Even low is better than pelicans from any o...\n\n[damsta]: &gt; The model launches today at an introductory price of $2 per million input tokens and $10 per million output tokens (with cached input tokens at 95% off). Couldn&#x27;t you just say what the price will be after the introductory period and when it&#x27;ll take effect? Do they have some SKILL.md for these blog posts that requires the most important information to always be buried ten levels deep and hidden behind a login page?\n\n[postalcoder]: I&#x27;m using this model via API. I am most excited about its ability to write the english language (or any language). My least favorite trend on twitter has been people posting 2D illustrations&#x2F;3D renders as a proxy for model capability. Well-written prose is far less likely to go viral but far outstrips the importance rendering a fantasy world in one shot. I&#x27;ve been trying it out via the API and the model has been a delight so far. Clear in the head, not RL-fried, distinct writin...\n\n[mridulmalpani]: Gemini 4 Argon is a new leader in Pareto-frontier. Looks like, Google is back in the race.  https:&#x2F;&#x2F;arena.ai&#x2F;leaderboard&#x2F;agent&#x2F;chat&#x2F;pareto  For almost same intelligence (+15.56%, +15.18%), drastic difference in cost&#x2F;task ($3.51 vs $0.41)\n\n[jjcm]: Image-&gt;html test for Argon. I&#x27;d put it at B tier, just under gpt 6.1 sol. It isn&#x27;t A tier like Opus 5.5 or Astra. Argon build:  https:&#x2F;&#x2F;html.non.io&#x2F;lcars-argon&#x2F;  GPT 6.1 sol:  https:&#x2F;&#x2F;html.non.io&#x2F;lcars-gpt-6.1-sol&#x2F;  Opus 5.5 (currently SOTA for this):  https:&#x2F;&#x2F;html.non.io&#x2F;lcars-opus-5.5&#x2F;  Original designs:  https:&#x2F;&#x2F;diffui.ai&#x2F;app&#x2F;canvas&#x2F;5093e689-1e74-4f26-b632-2a4500f...",
+        "fetched_at": "2026-10-13T18:21:39.928148Z",
+        "id": "hackernews:story:50073879",
+        "metadata": {
+          "category": "ai-labs",
+          "comment_count": 5,
+          "descendants": 365,
+          "discussion_url": "https://news.ycombinator.com/item?id=50073879",
+          "event_retry_pending": true,
+          "score": 481,
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "tech-community",
+          "type": "story"
+        },
+        "published_at": "2026-10-13T16:03:16Z",
+        "source_type": "hackernews",
+        "title": "Gemini 4 Argon",
+        "url": "https://deepmind.google/models/gemini/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A new frontier model release from Google DeepMind (Gemini 4 'Argon') is a major lab announcement with substantive capability and developer-ecosystem implications, matching the 8.0-8.5 calibration anchor for a new frontier model from a leading lab. It is not merely a version bump or benchmark claim, but the model family's next generational release marketed for the hardest problem classes; absent evidence of an industry-reshaping capability jump or safety incident, it sits at the upper end of that band rather than 9.0+.",
+        "ai_score": 8.5,
+        "ai_summary": "Google DeepMind introduced Gemini 4 Argon, its next-generation frontier model positioned for solving the hardest problem classes.",
+        "ai_tags": [
+          "google-deepmind",
+          "gemini-4",
+          "frontier-models",
+          "model-release",
+          "ai-research"
+        ],
+        "author": "Google DeepMind Blog",
+        "content": "",
+        "fetched_at": "2026-10-13T18:22:01.877232Z",
+        "id": "rss:deepmind.google_blog_rss.xml:851107eacfc8ba0f",
+        "metadata": {
+          "category": "ai-labs",
+          "event_retry_pending": true,
+          "feed_name": "Google DeepMind Blog",
+          "score_model": "deepseek:deepseek-flash",
+          "tags": []
+        },
+        "published_at": "2026-10-13T16:01:52Z",
+        "source_type": "rss",
+        "title": "Gemini 4 Argon: Built to solve your hardest problems",
+        "url": "https://deepmind.google/blog/introducing-gemini-4-argon/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Confirmed malicious hardware implant in Ledger devices distributed through reseller CryptoBilis is a supply-chain compromise of a widely used hardware wallet, directly threatening user funds; MediaMarkt suspending sales across Europe signals material distribution and trust impact. This is a verified security incident with tangible user exposure, falling short of systemic (>$500M theft or exchange insolvency) severity only because losses and scope remain bounded to reseller-purchased units.",
+        "ai_score": 8.5,
+        "ai_summary": "Ledger has confirmed that units sold through reseller CryptoBilis contained a hardware implant, prompting MediaMarkt to suspend Ledger sales across Europe.",
+        "ai_tags": [
+          "ledger",
+          "hardware-wallet",
+          "supply-chain-attack",
+          "security-incident",
+          "retail-distribution"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi4gFBVV95cUxQT09vMGtGcUFNdGJUODhBWmhZWTFRcms4UUF6V2dPQkhDOEpOaDZIQVZseklORWlyeUpKTi1jNW1DbDJvY1oyamhVR0dXWFR2dVVmZlpRei1rdHZPNm5PZzB5SFBNYVZOalJTR1BWY3dTMkw0VzRpOHNDd3kxT3RUaXI1R3h6Y2VwVlJFUmpnUVp5VnNKUk1tWFg3eDBEQ2RWTm9tczg1RmxNZFFGYmhGSkg2RXZRd015SjRRbWViSkY0MGo4Vm9MR1ptSGJQbEs0WjNhM2xFYTFoTkYtTzVCSV9B?oc=5\" target=\"_blank\">Ledger confirms hardware implant in CryptoBilis reseller units as MediaMarkt suspends sales in Europe</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-10-13T18:21:48.849606Z",
+        "id": "google_news:article:ac43e1ff26656a98",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-10-13T14:45:00Z",
+        "source_type": "google_news",
+        "title": "Ledger confirms hardware implant in CryptoBilis reseller units as MediaMarkt suspends sales in Europe",
+        "url": "https://www.theblock.co/news/business/2026-10-13-ledger-confirms-hardware-implant-cryptobilis-reseller-units-mediamarkt-suspends-sales-europe-418442"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A new frontier model release from a leading lab (Google DeepMind) — Gemini 4 Argon targeted at robotics — fits the 'major AI lab release with substantive capability and deployment implications' anchor (8.0-8.5). It represents a new generation of a widely-used model family extended to embodied/robotics applications, which has direct implications for developers and the broader AI ecosystem. Scored at 8.0 rather than higher because it is a domain-specialized variant rather than a demonstrated industry-reshaping capability jump.",
+        "ai_score": 8.0,
+        "ai_summary": "Google DeepMind announced Gemini 4 Argon for Robotics, a new generation of its Gemini model family adapted for robotics and embodied AI applications.",
+        "ai_tags": [
+          "ai",
+          "google-deepmind",
+          "robotics",
+          "foundation-models",
+          "embodied-ai"
+        ],
+        "author": "Google DeepMind Blog",
+        "content": "",
+        "fetched_at": "2026-10-13T18:22:01.877155Z",
+        "id": "rss:deepmind.google_blog_rss.xml:94cc08977f17740f",
+        "metadata": {
+          "category": "ai-labs",
+          "event_retry_pending": true,
+          "feed_name": "Google DeepMind Blog",
+          "score_model": "deepseek:deepseek-flash",
+          "tags": []
+        },
+        "published_at": "2026-10-13T16:01:58Z",
+        "source_type": "rss",
+        "title": "Gemini 4 Argon for Robotics",
+        "url": "https://deepmind.google/blog/gemini-4-argon-for-robotics/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Gemini 4 Argon is a next-generation frontier model announcement from Google DeepMind, one of the leading AI labs; a new flagship model from a top lab carries substantial capability, deployment, and developer-ecosystem implications, placing it in the 8.0-8.5 band. It is scored at the lower end of that band because the supplied body is placeholder text, so no benchmark, capability, or safety specifics are available to evidence a larger paradigm shift, and no third-party discussion is included.",
+        "ai_score": 8.0,
+        "ai_summary": "Google DeepMind announced Gemini 4 Argon, a new flagship Gemini model positioned for the hardest reasoning and problem-solving workloads.",
+        "ai_tags": [
+          "google-deepmind",
+          "gemini",
+          "frontier-models",
+          "model-release",
+          "ai-labs"
+        ],
+        "author": "Koray Kavukcuoglu",
+        "content": "TBD",
+        "fetched_at": "2026-10-13T18:21:59.537285Z",
+        "id": "rss:blog.google_technology_ai_rss_:74c9e10c02543c49",
+        "metadata": {
+          "category": "ai-labs",
+          "event_retry_pending": true,
+          "feed_name": "Google AI Blog",
+          "score_model": "deepseek:deepseek-flash",
+          "tags": [
+            "Gemini models",
+            "AI"
+          ]
+        },
+        "published_at": "2026-10-13T16:00:00Z",
+        "source_type": "rss",
+        "title": "Gemini 4 Argon: Built to solve your hardest problems",
+        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Alpenglow is a substantial consensus-layer overhaul for Solana, replacing TowerBFT with the Votor/Rotor design to cut finality to roughly 100-150ms. Setting a firm mainnet date of Oct. 21 is a concrete, forward-looking development for one of the largest smart-contract networks, with implications for validators, dApp latency-sensitive use cases, and MEV/pricing dynamics. It is an upgrade schedule announcement rather than the activation itself, so it sits below network-failure or systemic-event territory.",
+        "ai_score": 7.5,
+        "ai_summary": "Anza has scheduled Solana's Alpenglow consensus upgrade for mainnet activation on Oct. 21, bringing drastically faster finality to the network.",
+        "ai_tags": [
+          "solana",
+          "alpenglow",
+          "protocol-upgrade",
+          "consensus",
+          "mainnet"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxOM05QR2VrdXBVUVhId0tETkRvZ0szaW9uTGJwWnJsVnV3eklZQ1BrYzh3MVp0ZzczczB6R3V1UmJIRmJjaWt4TEMzZlpfV0JvTkp4cjlxQWxKbGF4N3JfcG8zQWtULWRicmo0Y19IcVljX0lrelFjRmxPODJ2N24tQlhOTFpVNVhFVnhDTUFqWHJ3UEh0SmZudEhR?oc=5\" target=\"_blank\">Anza Sets Oct. 21 for Solana’s Alpenglow Mainnet Upgrade</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-13T18:21:51.681886Z",
+        "id": "google_news:article:94baed3e01666f55",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-13T15:09:59Z",
+        "source_type": "google_news",
+        "title": "Anza Sets Oct. 21 for Solana’s Alpenglow Mainnet Upgrade",
+        "url": "https://thedefiant.io/news/blockchains/anza-sets-oct-21-for-solana-s-alpenglow-mainnet-upgrade"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Binance, the largest exchange by volume, tightening requirements for market makers and token issuers is a platform-wide market-structure and listing-standard change with a clear transmission path to liquidity, token projects, and listing economics. It is more consequential than a routine listing or maintenance note but falls short of a systemic event, so it sits at the high-value tier.",
+        "ai_score": 7.5,
+        "ai_summary": "Binance introduced stricter rules governing market makers and token issuers, tightening the standards these parties must meet to operate and list on the platform.",
+        "ai_tags": [
+          "binance",
+          "market-makers",
+          "token-listings",
+          "exchange-policy",
+          "market-structure"
+        ],
+        "author": "CoinMarketCap",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxPclc3M01hbDJuQ0lhb3BmaWhOX1pfel9nQlNNN3Npek5sc1lxb0hCZlBiNFRXbzFsT2c3Z3pjNXByTHQ0RmpwVm5vZ1pfU09XeGVDMzJRR1IyN3Iwb2NvXzlMMXVCRVBfbXUwQnRsTkZJblpJSDNQTmJpRV9LSXpXMzBUSDhjOG9IWXpBU2NSYjNhdkVudWdFWXpZUE5sNmNacWV0WE5OcDg?oc=5\" target=\"_blank\">Binance Sets Stricter Rules for Market Makers and Token Issuers</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CoinMarketCap</font>",
+        "fetched_at": "2026-10-13T18:21:37.144985Z",
+        "id": "google_news:article:e11a7a07490e8e8e",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://coinmarketcap.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "CoinMarketCap"
+        },
+        "published_at": "2026-10-13T10:26:20Z",
+        "source_type": "google_news",
+        "title": "Binance Sets Stricter Rules for Market Makers and Token Issuers",
+        "url": "https://coinmarketcap.com/academy/article/binance-sets-stricter-rules-for-market-makers-and-token-issuers"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A UK court ruling in a dispute over a $5 billion Bitcoin fortune sets a meaningful precedent on how victims of crypto fraud can (or cannot) assert proprietary claims over traced on-chain assets. The high value at stake and the creation of a binding legal test give it real weight for recovery litigation and custody/claims strategy, but it is a case-specific judgment rather than a market-wide regulatory shift or an event with direct price/access impact, so it sits below the 8+ tier.",
+        "ai_score": 7.0,
+        "ai_summary": "A UK court held that proving one was defrauded is not by itself sufficient to claim a $5 billion Bitcoin fortune, narrowing how fraud victims can establish ownership of traced crypto assets under English law.",
+        "ai_tags": [
+          "bitcoin",
+          "crypto-regulation",
+          "uk-courts",
+          "asset-recovery",
+          "legal-precedent"
+        ],
+        "author": "CryptoSlate",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxPMW50SjgtMDBlUEtxc0txZjZMZ3NLMEY0ZWxrYkQzWVVHT3lpSTZENkdtdGtKU18xRThNSl9aQ0xDWVNheUNicFg1UExjWG5XWmhTREx2Y0JIcmhUOXY1QUpDWHNGQkIzZlZ1cm5scjZoTm8zeC1EcHUyNXpoYW5IUi1mMDByRUd0b3Jia3ZlZjhHdGZJTkNVa3pZM2F1Z2VrckVKLVdpS2lBNGM0VGl0aEpSNG9LMXdHcjQ3dTVVaw?oc=5\" target=\"_blank\">A $5 billion Bitcoin fortune is at stake, but UK court says being defrauded isn't enough to claim it</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoSlate</font>",
+        "fetched_at": "2026-10-13T18:21:54.887977Z",
+        "id": "google_news:article:6e3e9a4c381c3941",
+        "metadata": {
+          "category": "crypto-regulation",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "CryptoSlate",
+          "gn_query": "site:cryptoslate.com",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://cryptoslate.com/feed/",
+          "publisher_url": "https://cryptoslate.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "CryptoSlate"
+        },
+        "published_at": "2026-10-13T15:40:44Z",
+        "source_type": "google_news",
+        "title": "A $5 billion Bitcoin fortune is at stake, but UK court says being defrauded isn't enough to claim it",
+        "url": "https://cryptoslate.com/a-5-billion-bitcoin-fortune-is-at-stake-but-uk-court-says-being-defrauded-isnt-enough-to-claim-it/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Interactive Brokers is a large, publicly traded retail brokerage, and extending its crypto offering to include Ethereum staking through Zerohash is a concrete institutional adoption and market-structure development rather than a routine listing. It broadens regulated staking access for mainstream brokerage clients, which has a clear transmission path to staking participation and custody flows. It is nonetheless a product expansion within an existing crypto service, not a systemic or paradigm-shifting event, so it sits below the high-value anchor of a top exchange changing platform-wide terms or a landmark regulatory decision.",
+        "ai_score": 7.0,
+        "ai_summary": "Interactive Brokers expanded its crypto offering by adding Ethereum staking for clients through infrastructure provider Zerohash, extending its existing digital-asset brokerage service into regulated staking.",
+        "ai_tags": [
+          "ethereum",
+          "staking",
+          "institutional-adoption",
+          "interactive-brokers",
+          "custody"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxPc3FBMEdKSWxMNGRLeEFSUXpYd3huVjN0TGQ5VnpQOWh3YkhoMzZ3ZVNOX2JNWVNYbmRpNWFXNGhhNGo2T2REd09CZkZLeHFsbHJGZlpTVk9yT0lIY1BXVVZaaDhDRkhIWXU1a3JPYVhVZ2ROZnF3R1pLQTFiRUczQk11N05zSXZHUk5mOFhLcTd5SDZYY1VRTE53eGFzekpUWFJQS2J3?oc=5\" target=\"_blank\">Interactive Brokers expands crypto services with Ethereum staking via Zerohash</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-10-13T18:21:48.850242Z",
+        "id": "google_news:article:41f035cec8abcc68",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-10-13T15:24:00Z",
+        "source_type": "google_news",
+        "title": "Interactive Brokers expands crypto services with Ethereum staking via Zerohash",
+        "url": "https://www.theblock.co/news/ecosystems/2026-10-13-interactive-brokers-ethereum-staking-zerohash-418457"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Binance adding four tokenized stock tokens is a material exchange listing and market-structure development from the largest global exchange, expanding its product line into tokenized equities — relevant to traders and worth immediate attention. It sits below top-tier significance because the listings are incremental (no fee or platform-wide rule change), and the accompanying LINK/DOGE price commentary and Pepeto buyer hype are promotional filler with no supporting data.",
+        "ai_score": 7.0,
+        "ai_summary": "Binance listed four tokenized stock tokens, a product expansion accompanied by LINK and DOGE price gains and promotional chatter around early Pepeto buyers.",
+        "ai_tags": [
+          "binance",
+          "tokenized-stocks",
+          "exchange-listings",
+          "link",
+          "dogecoin"
+        ],
+        "author": "Coin Gabbar",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMijwFBVV95cUxQZGlXVk9ZZ1RMb2lIV0p0TUY0TXRRMXdlbXlfUTlaazBVWXVUTHNmWUZzSHpwbl91ODFCN2RVWnRucEE0em0ydzVETmF2bms1UVRqbEV2OVF4SGtPRFFKcW1idzU1ZlZta1JBcEJPZnl4REdYekZwblpNU1YzQjZjMUZpWkh5UkxfVjZCSTJESQ?oc=5\" target=\"_blank\">Binance New Listing: 4 Stock Tokens Arrive as LINK and DOGE Rise, Early Pepeto Buyers Eye Gains</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Coin Gabbar</font>",
+        "fetched_at": "2026-10-13T18:21:37.146551Z",
+        "id": "google_news:article:62c14c3934b5fd53",
+        "metadata": {
+          "category": "exchange-announcements",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.coingabbar.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "Coin Gabbar"
+        },
+        "published_at": "2026-10-13T15:20:00Z",
+        "source_type": "google_news",
+        "title": "Binance New Listing: 4 Stock Tokens Arrive as LINK and DOGE Rise, Early Pepeto Buyers Eye Gains",
+        "url": "https://www.coingabbar.com/en/binance-new-listing-4-stock-tokens-arrive-link-doge-rise"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A first-of-its-kind OTC derivatives trade between two established institutional firms (DRW and Marex) settling a swap referencing a tokenized version of the S&P iBoxx index on the Canton Network. This is a concrete market-structure milestone for tokenized real-world assets moving from pilots into actual OTC derivatives execution, with clear institutional adoption implications, though it is a single bilateral trade rather than a systemic or protocol-level event.",
+        "ai_score": 7.0,
+        "ai_summary": "DRW and Marex executed the first OTC swap referencing a tokenized S&P iBoxx index, settling on the Canton Network and marking a step forward for tokenized traditional-finance derivatives in institutional markets.",
+        "ai_tags": [
+          "tokenization",
+          "otc-derivatives",
+          "institutional-adoption",
+          "canton-network",
+          "market-structure"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxPM3hNUmRJZXAybWFDUWQtV2J4T2kzRDdkb3VMZWNCb2EtNW53dmkzSDZ6NFZPYTJCWVZ6TXM1Q2JZaEtKMF8tUTRlNVZWOE1ubTQ0TTI5V0FzaXJxNk1Wd2RqNkpuNEhkOF9xZ3hwSUY1a0E0OUVNZ0RMU2tsbmpOX2VhZmVtNzgzNzJRQi1xWTRpZG0wM2RhdVkzbEFFbFEzZUtUMHNabGZ2NXMzY0FWTUZNN0pjcDNuRXNz?oc=5\" target=\"_blank\">DRW and Marex complete OTC swap referencing tokenized S&amp;P iBoxx Index</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-10-13T18:21:48.850060Z",
+        "id": "google_news:article:5f80366e7602ac00",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-10-13T15:00:00Z",
+        "source_type": "google_news",
+        "title": "DRW and Marex complete OTC swap referencing tokenized S&P iBoxx Index",
+        "url": "https://www.theblock.co/news/markets/2026-10-13-drw-marex-first-otc-swap-tokenized-sp-iboxx-index-canton-network-418440"
       }
     }
   ],

@@ -8,17 +8,112 @@
       "status": "developing",
       "type": "security_incident",
       "title": {
-        "zh": "Ledger硬件钱包供应链植入物窃取助记词事件",
+        "zh": "Ledger硬件钱包供应链植入间谍芯片窃取助记词事件",
         "en": "Ledger Hardware Wallet Supply Chain Implant Seed Theft Incident"
       },
       "current_state": {
-        "zh": "事件仍处于监控中；已确认的植入物和疑似8600万美元资金流出仍与CryptoBilis销售的设备相关，CryptoBilis在调查期间停售；MediaMarkt Saturn已暂停德国线上及线下门店的Ledger销售；Karpelès的拆解分析还指向MediaMarkt、新加坡Metapod及菲律宾官方经销商LazMall销售的钱包；Ledger表示尚未核实其他渠道购买设备相关的资金流出，并正在审查其他经销商和地点的植入物报告。",
-        "en": "The incident remains under monitoring; the confirmed implant and suspected $86M drain remain tied to devices sold by CryptoBilis, which is not selling wallets during the investigation; MediaMarkt Saturn has suspended online and in-store Ledger sales in Germany; Karpelès’s teardowns also point to wallets sold by MediaMarkt, Singapore’s Metapod, and official Philippine reseller LazMall; Ledger says it has not verified a drain linked to devices bought elsewhere and is reviewing implant reports from other resellers and locations."
+        "zh": "在Ledger的Donjon团队确认，通过经销商CryptoBilis售出的硬件钱包中被植入间谍程序，可捕获助记词并通过LTE外传——链上追踪到疑似被盗资金达8600万美元——之后，Trezor出于预防考虑，决定在2027年1月1日前削减其自有授权经销商网络。",
+        "en": "After Ledger's Donjon team confirmed a spy implant in hardware wallets sold via reseller CryptoBilis that captures seed phrases and exfiltrates them over LTE — with $86M in suspected thefts traced onchain — Trezor moved to cut its own authorized reseller network by January 1, 2027 as a precaution."
       },
       "first_seen_at": "2026-10-09T15:30:47.822838+00:00",
-      "last_material_change_at": "2026-10-13T14:18:27.572470+00:00",
-      "updates_count": 41,
-      "sources_count": 75
+      "last_material_change_at": "2026-10-13T18:22:02.941035+00:00",
+      "updates_count": 42,
+      "sources_count": 76
+    },
+    {
+      "event_id": "evt_33ec1f710070538f",
+      "url": "https://xiyu.news/events/evt_33ec1f710070538f/",
+      "json": "https://xiyu.news/api/events/evt_33ec1f710070538f.json",
+      "status": "developing",
+      "type": "regulatory_action",
+      "title": {
+        "zh": "IMF发现：代币化股票需求真实，但仍波动剧烈且流动性不足",
+        "en": "Tokenized Stocks Show Real Demand But Remain Volatile and Illiquid, IMF Finds"
+      },
+      "current_state": {
+        "zh": "IMF 10月《全球金融稳定报告》以专门章节覆盖代币化市场，除此前代币化股票的波动性、流动性及交易时段发现外，新增整体代币化RWA市场规模约650亿美元、代币化回购日交易量约3030亿美元等数据，并警告代币化可能成为杠杆与期限错配的新渠道；报告同时指出系统性风险目前仍然有限。",
+        "en": "The IMF’s October GFSR now includes a dedicated tokenization chapter, adding overall tokenized RWA market size (~$65B), tokenized repo volumes (~$303B daily) and warnings that tokenization could become a new channel for leverage and maturity/liquidity mismatches, while still assessing systemic risk as limited."
+      },
+      "first_seen_at": "2026-10-11T17:44:49.334559+00:00",
+      "last_material_change_at": "2026-10-13T18:21:42.450551+00:00",
+      "updates_count": 2,
+      "sources_count": 2
+    },
+    {
+      "event_id": "evt_04729c76ccc47903",
+      "url": "https://xiyu.news/events/evt_04729c76ccc47903/",
+      "json": "https://xiyu.news/api/events/evt_04729c76ccc47903.json",
+      "status": "developing",
+      "type": "other",
+      "title": {
+        "zh": "Solana 主网连续缩短出块时间：先激活 350 毫秒槽位，再推进 Alpenglow 共识升级",
+        "en": "Solana Activates 350ms Slots on Mainnet, First Cut Since Genesis"
+      },
+      "current_state": {
+        "zh": "Alpenglow 已在 devnet 和 testnet 上线，Anza 现已公布主网激活时间：计划于 2026 年 10 月 21 日 22:50 左右在 Mainnet-beta 上线，迁移在一个 slot 内完成。主网激活目前仍是已排期、尚未执行的状态。",
+        "en": "Alpenglow is live on devnet and testnet, and Anza has now scheduled Mainnet-beta activation for around Oct 21, 2026 at 22:50 with a single-slot migration. Mainnet activation is now scheduled but not yet executed."
+      },
+      "first_seen_at": "2026-08-22T08:00:00+08:00",
+      "last_material_change_at": "2026-10-13T18:21:42.450097+00:00",
+      "updates_count": 8,
+      "sources_count": 10
+    },
+    {
+      "event_id": "evt_b3a221aa544aae9b",
+      "url": "https://xiyu.news/events/evt_b3a221aa544aae9b/",
+      "json": "https://xiyu.news/api/events/evt_b3a221aa544aae9b.json",
+      "status": "monitoring",
+      "type": "other",
+      "title": {
+        "zh": "Sui Devnet新增后量子签名支持，目标2027年一季度主网上线",
+        "en": "Sui Devnet Adds Post-Quantum Signature Support, Targets Mainnet Rollout in Q1 20"
+      },
+      "current_state": {
+        "zh": "Sui Devnet 已在 v1.82.0（报道称为协议版本 139）中加入 ML-DSA-65 原生账户签名方案，并完成首笔原生抗量子交易；测试网目标为 2026 年底，主网目标为 2027 年 Q1，以独立审计和测试网反馈为准。",
+        "en": "Sui Devnet has added ML-DSA-65 as a native account signature scheme (reported as protocol version 139) and processed its first native post-quantum transaction; Testnet is targeted for end-2026 and Mainnet for Q1 2027, subject to independent audits and Testnet feedback."
+      },
+      "first_seen_at": "2026-10-13T14:18:08.239360+00:00",
+      "last_material_change_at": "2026-10-13T18:21:42.448997+00:00",
+      "updates_count": 2,
+      "sources_count": 2
+    },
+    {
+      "event_id": "evt_d6c542c658d3bbee",
+      "url": "https://xiyu.news/events/evt_d6c542c658d3bbee/",
+      "json": "https://xiyu.news/api/events/evt_d6c542c658d3bbee.json",
+      "status": "developing",
+      "type": "other",
+      "title": {
+        "zh": "【Starknet 推出隐私原语 Shadow Accounts，应用可提供隐私模式切换】",
+        "en": "【Starknet 推出隐私原语 Shadow Accounts，应用可提供隐私模式切换】"
+      },
+      "current_state": {
+        "zh": "Starknet 已推出影子账户/Shadow Accounts 隐私原语；影子账户为受 STRK20 余额注资的伪名地址，可使用户开展公开 DeFi 活动并隐藏其与主钱包的关联，首个集成预计次日上线。",
+        "en": "Starknet has launched Shadow Accounts; they are pseudonymous addresses funded from shielded STRK20 balances, enabling public DeFi activity while concealing the link to the main wallet, with the first integration expected the next day."
+      },
+      "first_seen_at": "2026-10-13T18:21:42.448637+00:00",
+      "last_material_change_at": "2026-10-13T18:21:42.448637+00:00",
+      "updates_count": 2,
+      "sources_count": 2
+    },
+    {
+      "event_id": "evt_d5ced273c2ef0a66",
+      "url": "https://xiyu.news/events/evt_d5ced273c2ef0a66/",
+      "json": "https://xiyu.news/api/events/evt_d5ced273c2ef0a66.json",
+      "status": "developing",
+      "type": "product_release",
+      "title": {
+        "zh": "Gemini 4 Argon：我们通往前沿智能的下一个时代",
+        "en": "Gemini 4 Argon: our next era of frontier intelligence"
+      },
+      "current_state": {
+        "zh": "Gemini 4 Argon 已从仅限可信网络安全团队的 Fairwind Program 阶段扩展到通过付费版 Gemini API 向全球开发者和企业开放，并可通过 Google AI Ultra 订阅使用；此前公布的 100 万 tokens 输出上限、定价与评测数据仍然有效。",
+        "en": "Gemini 4 Argon has moved from the Fairwind Program-only phase for trusted cybersecurity teams to broad availability for developers and enterprises worldwide via the paid Gemini API and the Google AI Ultra subscription; previously reported details (1M token output limit, pricing, benchmark scores) remain in effect."
+      },
+      "first_seen_at": "2026-09-30T23:26:56.671688+00:00",
+      "last_material_change_at": "2026-10-13T18:21:41.711420+00:00",
+      "updates_count": 3,
+      "sources_count": 3
     },
     {
       "event_id": "evt_d5ac35167714910c",
@@ -722,25 +817,6 @@
       "last_material_change_at": "2026-10-10T10:44:34.607982+00:00",
       "updates_count": 2,
       "sources_count": 2
-    },
-    {
-      "event_id": "evt_04729c76ccc47903",
-      "url": "https://xiyu.news/events/evt_04729c76ccc47903/",
-      "json": "https://xiyu.news/api/events/evt_04729c76ccc47903.json",
-      "status": "developing",
-      "type": "other",
-      "title": {
-        "zh": "Solana 主网完成 350ms、300ms、250ms 出块时间削减，并计划激活 200ms 目标",
-        "en": "Solana Activates 350ms Slots on Mainnet, First Cut Since Genesis"
-      },
-      "current_state": {
-        "zh": "SIMD-0525 的 200 毫秒目标已激活并宣布完成，Anza 确认升级落地；社区注意力转向 Alpenglow 共识改造（目标约 150 毫秒最终性），其已在测试网和开发网部署，但主网激活日期尚未公布。",
-        "en": "The 200-millisecond target of SIMD-0525 has been activated and declared complete by Anza; attention now shifts to the Alpenglow consensus overhaul targeting ~150ms finality, which has been deployed on testnet and devnet but has no announced mainnet activation date."
-      },
-      "first_seen_at": "2026-08-22T08:00:00+08:00",
-      "last_material_change_at": "2026-10-10T02:39:29.330494+00:00",
-      "updates_count": 4,
-      "sources_count": 4
     },
     {
       "event_id": "evt_852be42bf77f39e0",
@@ -2279,7 +2355,7 @@
       "first_seen_at": "2026-10-01T00:03:28.262995+00:00",
       "last_material_change_at": "2026-10-01T18:31:40.561261+00:00",
       "updates_count": 2,
-      "sources_count": 3
+      "sources_count": 4
     },
     {
       "event_id": "evt_b6d7c0abc84207d8",
@@ -2356,25 +2432,6 @@
       "last_material_change_at": "2026-10-01T06:31:03.021755+00:00",
       "updates_count": 6,
       "sources_count": 7
-    },
-    {
-      "event_id": "evt_d5ced273c2ef0a66",
-      "url": "https://xiyu.news/events/evt_d5ced273c2ef0a66/",
-      "json": "https://xiyu.news/api/events/evt_d5ced273c2ef0a66.json",
-      "status": "monitoring",
-      "type": "product_release",
-      "title": {
-        "zh": "Gemini 4 Argon：我们通往前沿智能的下一个时代",
-        "en": "Gemini 4 Argon: our next era of frontier intelligence"
-      },
-      "current_state": {
-        "zh": "谷歌发布了 Gemini 4 Argon，并将其作为新一代旗舰长程模型。单次输出上限从此前 64K tokens 提高到 100 万 tokens。模型暂不向普通用户开放，首批仅通过 Fairwind Program 提供给可信网络安全团队，后续再逐步开放给付费 API 客户和 Google AI Ultra 用户。API 定价初期为每百万输入 tokens 2 美元、输出 10 美元，之后翻倍至 4 美元和 20 美元。官方评测中，Argon 在 DeepSWE v1.1 得 77.9%，高于 GPT-6 Astra 和 Claude Opus 5.5，但在 FrontierSWE、Terminal-Bench 4.0 及部分科学任务上仍落后。谷歌重点强化了网络安全能力，可信防御团队版本甚至会取消部分网络安全限制；正式开放前，谷歌仍在测试滥用、提示词注入和 Agent 越界等风险。",
-        "en": "Google released Gemini 4 Argon as its next flagship long-horizon model. Its single-pass output limit jumps from 64K tokens to 1 million tokens. The model is not yet open to ordinary users; initial access is only through the Fairwind Program to trusted cybersecurity teams, with later rollout to paid API customers and Google AI Ultra users. API pricing starts at $2 per million input tokens and $10 per million output tokens, later doubling to $4 and $20. In official evaluations, Argon scores 77.9% on DeepSWE v1.1, ahead of GPT-6 Astra and Claude Opus 5.5, but still trails on FrontierSWE, Terminal-Bench 4.0 and some scientific tasks. Google emphasized cybersecurity capabilities, with trusted defender versions even removing some cyber restrictions; before formal opening, Google is still testing abuse, prompt injection and agent boundary risks."
-      },
-      "first_seen_at": "2026-09-30T23:26:56.671688+00:00",
-      "last_material_change_at": "2026-10-01T00:03:18.016338+00:00",
-      "updates_count": 2,
-      "sources_count": 2
     },
     {
       "event_id": "evt_b0db05166e5a4acd",
@@ -2755,25 +2812,6 @@
       "last_material_change_at": "2026-09-26T16:34:47.489495+00:00",
       "updates_count": 2,
       "sources_count": 7
-    },
-    {
-      "event_id": "evt_d75668abfb43b4e7",
-      "url": "https://xiyu.news/events/evt_d75668abfb43b4e7/",
-      "json": "https://xiyu.news/api/events/evt_d75668abfb43b4e7.json",
-      "status": "monitoring",
-      "type": "protocol_change",
-      "title": {
-        "zh": "Solana Alpenglow 共识升级在测试网上线",
-        "en": "Solana Alpenglow consensus upgrade goes live on testnets"
-      },
-      "current_state": {
-        "zh": "Anza 于 9 月 25 日宣布，其针对 Solana 的共识改造 Alpenglow 已在 devnet 上线；此前一天，独立的 testnet 已完成切换，Solana 基金会的升级页面显示该升级在两个网络上均已激活。主网激活仍未有时间表。\n\nAlpenglow 的目标是将最终确认时间从现行系统的大约 12.8 秒缩短到约 150 毫秒，这可能缩短交易所释放存款或支付应用向商户确认交易完成所需的时间。由于验证者投票移出区块，即使用户活动不变，报告的交易总量也会下降。\n\n验证者将直接交换投票，而不再把投票作为交易记录在区块内，从而使共识在一到两轮投票内完成；Solana 基金会已要求数据服务商调整其对比口径。150 毫秒这一数字来自模拟结果，而非真实市场条件下的实测；钱包处理和交易所自身的入金审核还可能增加额外等待时间；仅发送交易和读取账户余额的应用无需迁移。",
-        "en": "Anza's Alpenglow consensus upgrade for Solana is now live on devnet, with developers asked to test programs and integrations while mainnet activation remains pending."
-      },
-      "first_seen_at": "2026-09-23T17:21:30.707301+00:00",
-      "last_material_change_at": "2026-09-26T16:34:46.702009+00:00",
-      "updates_count": 3,
-      "sources_count": 3
     },
     {
       "event_id": "evt_28746d908759a2d3",
