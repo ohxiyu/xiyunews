@@ -10,7 +10,7 @@
   "owner": "当前会话，唯一编辑与发布整合负责人",
   "branch": "agent/story-reading-order",
   "last_verified_commit": "4ce04e421c0a53146000b3d339b3636943823ad2",
-  "pr": "PR 待创建",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/245",
   "completed": [
     "PR241/244 已合并，www 精确301处理上传到同一现役 Worker",
     "www 区路由已用现有本机授权账号创建并回读；未改 DNS/权限/密钥，真实 HTTP/HTTPS301 保留查询已通过",
