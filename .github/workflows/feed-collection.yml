@@ -161,7 +161,7 @@ jobs:
           XIYUNEWS_RECOVERY_CHECK_TOKEN: ${{ secrets.XIYUNEWS_RECOVERY_CHECK_TOKEN }}
           XIYUNEWS_EDGE_ENABLED: ${{ vars.XIYUNEWS_EDGE_ENABLED }}
         run: >-
-          python -m src.schedule_watchdog
+          python3 -m src.schedule_watchdog
           --coordinator
           --repository "${GITHUB_REPOSITORY}"
           --workflow daily-summary.yml

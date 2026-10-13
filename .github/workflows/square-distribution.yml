@@ -76,7 +76,7 @@ jobs:
              { [ "$EVENT_NAME" = workflow_run ] && [ "$UPSTREAM_NAME" != 'xiyu.news X Distribution' ]; }; then
             args+=(--force-sync)
           fi
-          python -m src.square_plan "${args[@]}" | tee -a "$GITHUB_OUTPUT" "$GITHUB_STEP_SUMMARY"
+          python3 -m src.square_plan "${args[@]}" | tee -a "$GITHUB_OUTPUT" "$GITHUB_STEP_SUMMARY"
       - name: Read edition only on publication, revision or bootstrap
         if: steps.gate.outputs.sync == 'true'
         env:

@@ -112,7 +112,7 @@ jobs:
       - name: Import immutable published history
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
-          python -m src.history_import \
+          python3 -m src.history_import \
             --current current-site \
             --history history-site \
             --output docs \
