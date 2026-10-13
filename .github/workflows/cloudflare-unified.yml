@@ -75,7 +75,8 @@ jobs:
         if: steps.plan.outputs.skip != 'true'
         with:
           node-version: '24'
-          cache: npm
+          cache: ${{ runner.environment == 'github-hosted' && 'npm' || '' }}
+          package-manager-cache: ${{ runner.environment == 'github-hosted' }}
           cache-dependency-path: ops/daily-dispatcher/package-lock.json
       - name: Use the validated npm version on the bounded runner
         if: steps.plan.outputs.skip != 'true' && runner.environment == 'self-hosted'
