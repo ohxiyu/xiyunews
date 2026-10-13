@@ -73,9 +73,18 @@
     });
     function group(nodes, placement) {
       if (!nodes.length) return null;
-      var wrapper = document.createElement('div');
+      var wrapper = document.createElement(placement === 'after' ? 'details' : 'div');
       wrapper.className = 'reading-context reading-context-' + placement + ' is-enhanced';
       wrapper.dataset.contextPlacement = placement;
+      if (placement === 'after') {
+        var summary = document.createElement('summary');
+        var kinds = nodes.map(function (section) { return section.dataset.contextKind; });
+        var visibleKinds = kinds.filter(function (kind) { return kind !== 'tags'; });
+        summary.textContent = (visibleKinds.length ? visibleKinds : kinds).map(function (kind) {
+          return labels[kind];
+        }).join(' · ');
+        wrapper.appendChild(summary);
+      }
       var content = document.createElement('div');
       content.className = 'story-more-content';
       nodes.forEach(function (section) { content.appendChild(section); });
