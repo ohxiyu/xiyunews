@@ -15,7 +15,7 @@ def test_pr_checks_do_not_repeat_after_merge() -> None:
 
     assert "pull_request:" in ci
     assert "\n  push:" not in ci
-    assert "group: ci-${{ github.event.pull_request.number }}" in ci
+    assert "group: ci-${{ github.event.pull_request.number || github.ref }}-${{ github.event_name }}" in ci
     assert "cancel-in-progress: true" in ci
     assert "npm run check" in ci
     assert "ops/daily-dispatcher" in ci
