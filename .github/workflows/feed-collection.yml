@@ -38,7 +38,8 @@ jobs:
       - name: Restore published event state
         shell: bash
         run: |
-          git fetch --depth=1 origin gh-pages:refs/remotes/origin/gh-pages
+          # Persistent runners retain shallow refs; only refresh the local tracking ref.
+          git fetch --depth=1 origin +gh-pages:refs/remotes/origin/gh-pages
           mkdir -p docs/_data
           for path in _data/events.json _data/event-legacy-urls.json; do
             git show "origin/gh-pages:${path}" > "docs/${path}"
@@ -106,7 +107,7 @@ jobs:
 
       - name: Publish run report
         if: ${{ always() }}
-        run: python -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
+        run: python3 -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
 
       - name: Preserve successful AI work even after publication failure
         if: ${{ always() }}
@@ -160,7 +161,7 @@ jobs:
           XIYUNEWS_RECOVERY_CHECK_TOKEN: ${{ secrets.XIYUNEWS_RECOVERY_CHECK_TOKEN }}
           XIYUNEWS_EDGE_ENABLED: ${{ vars.XIYUNEWS_EDGE_ENABLED }}
         run: >-
-          python -m src.schedule_watchdog
+          python3 -m src.schedule_watchdog
           --coordinator
           --repository "${GITHUB_REPOSITORY}"
           --workflow daily-summary.yml
