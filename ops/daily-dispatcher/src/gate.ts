@@ -65,7 +65,7 @@ export class RecoveryGate extends DurableObject<Env> {
     this.write(key, value);
   }
 
-  claimAction(token: string, kind: "daily" | "pages", now: number): string {
+  claimAction(token: string, kind: "daily" | "pages" | "collection", now: number): string {
     if (this.read("owner") !== token ||
         Number(this.read("lease_until")) <= now) return "lock_lost";
     const attempts = Number(this.read(kind + "_attempts") ?? "0");

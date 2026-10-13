@@ -89,6 +89,7 @@ jobs:
           npx wrangler deploy --config wrangler.unified.jsonc --keep-vars
           --var "SITE_SOURCE_COMMIT:$SOURCE_SHA"
           --var "SITE_ARTIFACT_COMMIT:$ARTIFACT_SHA"
+          --var "RUNTIME_HEALTH_URL:https://api.xiyu.news/ops/runtime.json"
 
       # Traffic and cron activation are deliberately not performed by this job.
       # Update the final owned DO binding/cron config in a reviewed cutover PR.

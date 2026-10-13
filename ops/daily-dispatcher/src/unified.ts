@@ -1,6 +1,7 @@
 import dispatcher from "./index";
 import type { RecoveryEnv } from "./recovery";
 import {runGroupNews} from "./group-news";
+import {runtimeHealth} from "./runtime";
 // Reuse the audited Pages handler; do not duplicate auth, caching or API routing.
 // @ts-expect-error The existing JavaScript module is validated by its Node tests.
 import website, {primaryHostRedirect} from "../../../docs/_worker.js";
@@ -24,6 +25,7 @@ export interface UnifiedEnv extends Env {
   ADMIN_ALLOWED_EMAIL?: string;
   QUICK_POST_AI_API_KEY?: string;
   QUICK_POST_AI_ENABLED?: string;
+  RUNTIME_HEALTH_URL?: string;
 }
 
 const OPERATIONS = new Set(["/health", "/ready", "/publication/check"]);
@@ -50,6 +52,7 @@ export default {
     if (path !== "/health" || !response.ok) return response;
     const health = await response.json() as Record<string, unknown>;
     return Response.json({...health, service: "xiyunews", project: "xiyunews",
+      runner: await runtimeHealth(env.RUNTIME_HEALTH_URL),
       dispatcher_enabled: env.ENABLE_DISPATCHER === "true",
       realtime_watchdog_enabled: env.ENABLE_REALTIME_WATCHDOG === "true",
       site_source_commit: env.SITE_SOURCE_COMMIT ?? null,

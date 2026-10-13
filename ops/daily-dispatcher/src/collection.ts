@@ -7,7 +7,9 @@ export const FEED_WORKFLOW = "feed-collection.yml";
 export const FEED_INTERVAL_MS = 4 * 60 * 60 * 1000;
 
 export type CollectionStatus =
-  | "not_due" | "edition_window" | "active" | "fresh" | "dispatched";
+  | "not_due" | "edition_window" | "active" | "fresh" | "dispatched"
+  | "failed_waiting" | "retry_dispatched" | "check_in_progress"
+  | "cooldown" | "retry_limit" | "lock_lost";
 
 export async function dispatchCollection(env: Env, now: number): Promise<CollectionStatus> {
   const date = new Date(now);
@@ -20,10 +22,23 @@ export async function dispatchCollection(env: Env, now: number): Promise<Collect
   const runs = (await fetchWorkflowRuns(env, FEED_WORKFLOW))
     .filter(run => run.headBranch === env.GITHUB_REF);
   if (runs.some(run => ACTIVE_STATUSES.has(run.status))) return "active";
-  const latest = Math.max(0, ...runs.map(run => run.startedAt.getTime()));
-  if (now - latest < FEED_INTERVAL_MS) return "fresh";
-  await githubRequest(env,
+  const newest = [...runs].sort((a, b) => b.startedAt.getTime() - a.startedAt.getTime())[0];
+  const age = now - (newest?.startedAt.getTime() ?? 0);
+  const failed = newest?.status === "completed" &&
+    ["failure", "timed_out", "startup_failure"].includes(newest.conclusion ?? "");
+  // An operator cancellation is respected. Successful or cancelled recent
+  // runs retain the normal cadence; infrastructure failures retry after 30m.
+  if (age < FEED_INTERVAL_MS && !failed) return "fresh";
+  if (failed && age < 30 * 60_000) return "failed_waiting";
+  const gate = env.RECOVERY_GATE.getByName("collection-" + Math.floor(now / FEED_INTERVAL_MS));
+  const owner = await gate.claim(now);
+  if (!owner) return "check_in_progress";
+  try {
+    const claim = await gate.claimAction(owner, "collection", now);
+    if (claim !== "claimed") return claim as CollectionStatus;
+    await githubRequest(env,
     `/repos/${env.GITHUB_REPOSITORY}/actions/workflows/${FEED_WORKFLOW}/dispatches`,
     { method: "POST", body: JSON.stringify({ ref: env.GITHUB_REF }) });
-  return "dispatched";
+    return failed ? "retry_dispatched" : "dispatched";
+  } finally { await gate.release(owner); }
 }

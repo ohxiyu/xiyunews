@@ -41,7 +41,7 @@ it.each(["queued", "in_progress", "waiting", "pending", "requested"])("does not 
 
 it("dispatches when no collection has ever run", async () => {
   github([]);
-  expect(await dispatchCollection(env, Date.parse("2026-09-29T18:10:00Z"))).toBe("dispatched");
+  expect(await dispatchCollection(env, Date.parse("2026-09-28T18:10:00Z"))).toBe("dispatched");
 });
 
 it.each([
@@ -59,8 +59,26 @@ it("fails closed on GitHub API failure", async () => {
   await expect(dispatchCollection(env, Date.parse("2026-09-29T18:10:00Z"))).rejects.toThrow("403");
 });
 
+it("retries recent failures with a durable budget but respects cancellation", async () => {
+  const now = Date.parse("2026-10-02T18:10:00Z");
+  const failed = {...run("completed", "2026-10-02T17:00:00Z"), conclusion: "failure"};
+  const calls = github([failed]);
+  expect(await dispatchCollection(env, now)).toBe("retry_dispatched");
+  expect(await dispatchCollection(env, now + 10 * 60_000)).toBe("cooldown");
+  expect(await dispatchCollection(env, now + 30 * 60_000)).toBe("retry_dispatched");
+  expect(await dispatchCollection(env, now + 60 * 60_000)).toBe("retry_limit");
+  expect(calls.filter(call => call.method === "POST")).toHaveLength(2);
+  github([{...failed, conclusion: "cancelled"}]);
+  expect(await dispatchCollection(env, now)).toBe("fresh");
+});
+
+it("does not count a failed fresh run as successful collection", async () => {
+  github([{...run("completed", "2026-10-03T18:00:00Z"), conclusion: "timed_out"}]);
+  expect(await dispatchCollection(env, Date.parse("2026-10-03T18:10:00Z"))).toBe("failed_waiting");
+});
+
 it("the overnight tick checks collection without touching Square or publication", async () => {
-  const now = Date.parse("2026-09-29T18:10:00Z"); // 02:10 Shanghai
+  const now = Date.parse("2026-09-30T18:10:00Z"); // 02:10 Shanghai
   vi.spyOn(Date, "now").mockReturnValue(now);
   const calls = github([run("completed", "2026-09-29T13:00:00Z")]);
   await runCombinedSchedule(SQUARE_CRON, now, env);
