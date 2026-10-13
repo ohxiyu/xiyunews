@@ -98,7 +98,7 @@ describe("production-aware recovery", () => {
     expect((await runRecovery(unifiedEnv, f.now + 16 * 60_000, "test")).status).toBe("pages_dispatched");
     expect(f.posts()).toHaveLength(1);
     expect(f.posts()[0]?.url).toBe("https://api.github.com/repos/ohxiyu/xiyunews/actions/workflows/cloudflare-unified.yml/dispatches");
-    expect(await f.posts()[0]?.json()).toEqual({ref: "main"});
+    expect(await f.posts()[0]?.json()).toEqual({ref: "main", inputs: {force_deploy: "true"}});
   });
   it("rejects an arbitrary replacement deployment workflow", async () => {
     const f = fixture({raw: true});

@@ -2,6 +2,11 @@ name: xiyunews Cloudflare
 
 on:
   workflow_dispatch:
+    inputs:
+      force_deploy:
+        description: Publish validated assets even when the live input marker matches (recovery)
+        type: boolean
+        default: false
   workflow_run:
     workflows:
       - xiyu.news Daily Edition
@@ -18,6 +23,7 @@ concurrency:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   deploy:
@@ -47,49 +53,97 @@ jobs:
         run: |
           echo "code=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           echo "artifact=$(git -C .edge-source rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Compare immutable inputs with the live version
+        id: plan
+        env:
+          FORCE_DEPLOY: ${{ github.event.inputs.force_deploy || 'false' }}
+          ARTIFACT_SHA: ${{ steps.source.outputs.artifact }}
+        run: python3 scripts/edge_build_cache.py plan --artifact "$ARTIFACT_SHA"
+      - uses: actions/cache/restore@v5
+        if: steps.plan.outputs.skip != 'true'
+        id: render-cache
+        with:
+          path: .edge-rendered
+          key: xiyunews-render-v1-${{ steps.plan.outputs.key }}
+      - name: Verify every restored file before reuse
+        if: steps.plan.outputs.skip != 'true'
+        id: cache-ready
+        env:
+          BUILD_KEY: ${{ steps.plan.outputs.key }}
+        run: python3 scripts/edge_build_cache.py verify --key "$BUILD_KEY"
       - uses: ruby/setup-ruby@v1
+        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         with:
           ruby-version: '3.3'
           bundler-cache: true
       - name: Render published snapshot without collection or AI
+        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
       - uses: astral-sh/setup-uv@v7
+        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         with:
           version: "0.11.32"
       - run: uv sync --frozen
+        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
       - name: Prepare bounded group messages from this published artifact without AI
+        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         run: >-
           uv run python -m src.services.telegram_group_snapshot
           .edge-source .edge-rendered --artifact "${{ steps.source.outputs.artifact }}"
+      - name: Record validated output integrity and check existing cache capacity
+        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
+        id: cache-capacity
+        env:
+          BUILD_KEY: ${{ steps.plan.outputs.key }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/prepare_edge_assets.py .edge-rendered .edge-site
+          python3 scripts/edge_build_cache.py record --key "$BUILD_KEY"
+          usage=$(gh api repos/ohxiyu/xiyunews/actions/cache/usage --jq '.active_caches_size_in_bytes' 2>/dev/null || echo 9999999999)
+          if [[ "$usage" =~ ^[0-9]+$ && "$usage" -lt 3221225472 ]]; then
+            echo 'allowed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/cache/save@v5
+        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true' && steps.render-cache.outputs.cache-hit != 'true' && steps.cache-capacity.outputs.allowed == 'true'
+        with:
+          path: .edge-rendered
+          key: xiyunews-render-v1-${{ steps.plan.outputs.key }}
       - name: Validate and stage public assets
+        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid == 'true'
         run: python3 scripts/prepare_edge_assets.py .edge-rendered .edge-site
       - uses: actions/setup-node@v6
+        if: steps.plan.outputs.skip != 'true'
         with:
           node-version: '24'
           cache: npm
           cache-dependency-path: ops/daily-dispatcher/package-lock.json
       - name: Use the validated npm version on the bounded runner
-        if: runner.environment == 'self-hosted'
+        if: steps.plan.outputs.skip != 'true' && runner.environment == 'self-hosted'
         run: |
           if [ "$(npm --version)" != "11.11.1" ]; then
             npm install --global npm@11.11.1 --maxsockets=2
           fi
       - run: npm ci
+        if: steps.plan.outputs.skip != 'true'
         working-directory: ops/daily-dispatcher
       - run: npm run audit
+        if: steps.plan.outputs.skip != 'true'
         working-directory: ops/daily-dispatcher
       - name: Deploy the single existing project without replacing operator vars
+        if: steps.plan.outputs.skip != 'true'
         working-directory: ops/daily-dispatcher
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           SOURCE_SHA: ${{ steps.source.outputs.code }}
           ARTIFACT_SHA: ${{ steps.source.outputs.artifact }}
+          BUILD_KEY: ${{ steps.plan.outputs.key }}
         run: >-
           npx wrangler deploy --config wrangler.unified.jsonc --keep-vars
           --var "SITE_SOURCE_COMMIT:$SOURCE_SHA"
           --var "SITE_ARTIFACT_COMMIT:$ARTIFACT_SHA"
           --var "RUNTIME_HEALTH_URL:https://api.xiyu.news/ops/runtime.json"
+          --var "SITE_BUILD_KEY:$BUILD_KEY"
 
       # Traffic and cron activation are deliberately not performed by this job.
       # Update the final owned DO binding/cron config in a reviewed cutover PR.
