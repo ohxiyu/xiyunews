@@ -10,15 +10,15 @@
   "owner": "当前会话唯一编辑与发布整合负责人",
   "branch": "agent/analysis-collapse",
   "last_verified_commit": "36cc79258b196146fcf74e23137ff076db7c7515",
-  "pr": "pending",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/249",
   "completed": ["分析/参考/标签原生折叠及静态输出已修改，背景预览与全文保留", "已更新共享 UI 规则与资源指纹"],
-  "unfinished": ["整站构建、同步 main 与 CI、合并及自动发布验收"],
-  "validation": ["应用回归1061passed/4skipped；三项交接字段检查初次失败，补齐生产快照后治理11passed，check_governance与diff通过", "阅读/分享/PWA33项Node通过", "1280×720桌面、390×844手机/暗色/英文/事件折叠及Enter/Space可用，无横向溢出，折叠时分享仍生成1320×4176完整卡片"],
+  "unfinished": ["运营者恢复 GitHub Actions 付款/可用额度后重跑 CI，再同步 main、合并并验证自动发布"],
+  "validation": ["最终完整Python1064passed/4skipped，check_governance与diff通过；初次交接缺字段已修正", "阅读/分享/PWA33项Node通过", "1280×720桌面、390×844手机/暗色/英文/事件折叠及Enter/Space可用，无横向溢出，折叠时分享仍生成1320×4176完整卡片", "本机既有Ruby3.3整站Jekyll构建成功，六个静态事件资料默认关闭、背景打开，summary存在；使用/private/tmp路径解决Jekyll安全真实路径检查"],
   "unverified": ["本轮自动部署和线上折叠行为尚未验证"],
   "production": {"source_commit": "305701a18aca68c91b0945d3a873c09571e740c3", "artifact_commit": "5b72a32067c87b6110e8ab22476f50b89bcbc13e", "edition": "2026-10-13", "generated_at": "本轮尚未重建，既有出版内容不改", "worker_version": "c49f4b21-cb47-46c2-acfc-afb9a73defff", "verified_at": "2026-10-13，开工只读 /health status=ok"},
-  "blockers": [],
-  "next_action": "完成相关验证后走既有 PR→main→Deploy Docs→统一 Worker；不改 DNS、Access、密钥、Cron、来源、后台或消息，不发送测试/历史新闻。",
-  "states": {"code": "complete", "tests": "pending", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
+  "blockers": ["GitHub CI38346104455各job在执行步骤前失败，annotation：近期账户付款失败或支出上限受限。不能通过代码修复，未改付款/预算/计划，未绕过检查合并。"],
+  "next_action": "保留完整改动与Draft PR249；运营者在GitHub Billing恢复Actions可用状态后重跑失败CI，通过且同步main才合并并沿已有自动发布验收。不改DNS、Access、密钥、Cron、来源、后台或消息，不发送测试/历史新闻。",
+  "states": {"code": "complete", "tests": "complete", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
   "evidence": "project-docs/releases/2026-10-13-analysis-collapse.md"
 }
 ```
