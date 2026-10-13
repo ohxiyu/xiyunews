@@ -147,7 +147,7 @@ jobs:
         shell: bash
         run: |
           if [ -f data/run-report.json ]; then
-            python -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
+            python3 -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Keep machine-readable cost and health report

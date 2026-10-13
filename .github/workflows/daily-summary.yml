@@ -188,7 +188,7 @@ jobs:
 
       - name: Publish run report
         if: ${{ always() }}
-        run: python -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
+        run: python3 -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
 
       - name: Preserve successful AI work even after publication failure
         if: ${{ always() }}
