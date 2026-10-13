@@ -1,5 +1,9 @@
 # 第9项：独立出版状态 SQLite
 
+## 最终验收更新
+
+最终状态：PR277/757e44be，CI38408646325全部通过；空闲启用与迁移38411818537成功、4050缓存/6文档原样。采集38412051393/发布38412824060成功，3关系命中、3进展；PR279备份收尾与异机38417087420/双库恢复通过，原实时PID/零重启保持。 完整跨阶段证据以[全部完成记录](2026-10-13-server-optimization-complete.md)为准，下文待执行措辞保留作阶段过程。
+
 Source commit: 当前 agent/publication-sqlite，前置 8f241bfe63198355a791b2f89381d3362c60a669
 Worker version: 沿正常工作流发布后回读
 Deployment: CI 通过与 main 同步后合并；空闲时启用可信主分支生产者的 SQLite 环境，运行 publication-state.yml 原样迁移，正常采集和统一发布验收。

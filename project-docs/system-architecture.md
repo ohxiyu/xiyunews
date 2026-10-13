@@ -12,12 +12,13 @@ flowchart TD
     Runner --> Collection[Actions工作流：四小时采集，东京执行]
     Sources[公开新闻、交易所公告与其他已配置来源] --> Collection
     Collection --> Analysis[Python：规范化、去重、新内容分析]
-    Analysis --> Stage[staging-cache：候选与分析缓存]
+    Analysis --> MainDB[独立出版SQLite：候选 / 缓存 / 报告]
+    MainDB --> Stage[staging-cache：正常Actions导出的审计快照]
     Analysis --> Events[持续事件更新]
     Stage --> Edition[每日 07:26：定稿中英文日报]
     Edition --> Published[gh-pages：网页、归档、JSON、RSS]
     Events --> Published
-    Published --> Build[东京执行Actions：固定出版 SHA 渲染与资产校验]
+    Published --> Build[固定输入校验：同版本跳过 / 已验证构建复用]
     Build --> Edge[统一 xiyunews Worker / Assets]
     Edge --> Readers[xiyu.news 网页 / PWA / 只读 API]
     Edition --> DailyTG[日报 Telegram 频道]
@@ -37,6 +38,9 @@ flowchart TD
     Realtime --> ReadAPI[api.xiyu.news：只读健康接口]
     Edge --> Watchdog[同一 Worker：实时看门狗 + 原 STATE KV]
     Watchdog --> ReadAPI
+    MainDB --> Backup[在线副本 / 一致镜像去重 / xz + age加密]
+    SQLite --> Backup
+    Backup --> Offhost[原私有Artifact / 本机隔离恢复]
 ```
 
 图中是当前部署结构。Cloudflare 的同一个项目合并静态资产、边缘后台、Clock 和 Watchdog；realtime/ 仅整合代码管理与独立 CI，不合并运行进程、Python 依赖、数据库或 Telegram 目标。东京服务仍是独立单实例，网站没有增加实时行情前端。
@@ -75,7 +79,9 @@ Feed Collection 每四小时补采候选，复用有效分析结果，并对真�
 | x-queue | X v2 计划、任务时间、状态与回执 | 分发工作流在发送前后持久化检查点。 |
 | square-queue | 广场每日计划、发送结果与回执 | 独立分发工作流，已尝试任务不重新当作未发送。 |
 | Actions cache / artifact | 缓存副本、机器可读运行报告 | 缓存可失效；报告用于核对采集、tokens 和执行结果。 |
-| 东京 SQLite | 实时监测状态、去重和消息队列 | 实时服务独立管理，不由网站或日报读写。 |
+| 主出版 SQLite | publication.sqlite3：缓存、staging、文档、投递检查点、200报告和400任务 | 可信main生产者；CI/PR/预览不启用业务库，未出版与不同Git快照冲突时保留双方并停止。 |
+| 实时 SQLite | 原独立监测状态、去重和消息队列 | 实时服务管理，不由网站或日报读写。 |
+| 加密备份 | 双库在线副本、完整SHA/表计数与部署版本 | 原128MiB/20%CPU单元，仅整理副本/等价镜像去重；xz preset3/age，8MiB/7版本/3天异机。 |
 
 ### 3.3 Quick Post
 
@@ -96,6 +102,14 @@ PWA 的离线内容可能不是最新一期，必须显示保存状态并保留�
 运营者取消旧域跳转，并于2026-10-02操作时确认后删除bmt.news DNS区域及三个旧Pages绑定，面板回读确认不存在；新域绑定与DNS保留。旧地址可能解析或TLS失败，不保证410；没有删除域名注册，也不会远程清空旧安装缓存。旧Horizon已删除，但生产Pages、调度器和看门狗须等统一项目真实验收后退役，详见 [旧资源清单](legacy-resources.md)。网页站名xiyu.news、中文品牌稀有News，公开联系仅 [X @ohxiyu](https://x.com/ohxiyu)。
 
 ## 5. 安全、成本与运维
+
+2026-10-13九项优化均已生产验收，见[完整记录](releases/2026-10-13-server-optimization-complete.md)。主缓存与staging采用独立SQLite，关系结果逐条落库、任务结束导出正常Git快照；publication-state.yml只读导入缺失状态并证明原样一致，重复迁移不覆盖现役库。来源替代只在主RSS失败时使用同发布者公开索引，headline-only不足仍延后，不以标题补造进展。
+
+构建key绑定不可变产物SHA与相关代码/锁文件；缓存每文件SHA和完整集合先验证，无效重建，相同已上线输入跳过。完整252秒/复用96秒/同输入24秒分别实际验证。生成副本压缩9资源约33%、首屏后延迟布局，全文仍在DOM，保留现行密度/UI；不把文件字节当WebVitals。干净任务工作区与工具/凭据/业务状态分离，hook_completed仅表示清理结束，任务成功以GitHub实际结论为准。
+
+guardian每分钟仅在服务已启用、失活、无任务、无维护暂停时启动执行器，最大3次/日且间隔30分钟；边缘恢复同样保留预算/冷却/活跃任务门控，不无限重跑AI或重启发送者。备份03:20上海、异机上传03:45上海，latest.tar.xz.age为现役导出，旧gzip加密文件保留兼容；实际6820048B双库异机恢复通过。只整理隔离副本，现役库不VACUUM，只有镜像与本次副本内容哈希相同才去重，较新镜像保留，全部活跃业务记录仍在库中。
+
+运营者本机隔离解密并自动识别压缩，核对完整性/SHA/所有表计数后清明文，不启动第二发送者。限额超出停止，不静默减少业务数据或增加费用；未来自然故障未人为制造，手机模拟不是真机安装/收件。系统仍依赖GitHub控制面与单服务器，Quick Post登录后验收另列。
 
 密钥只在 GitHub Secrets、Cloudflare Secrets 和服务器环境文件中使用，不进入 Git、浏览器脚本、公开 API、架构图或日志。私有仓内容通过鉴权 Contents API 读取，禁止带凭据跟随第三方重定向；内容与模型返回都是不可信输入，保留 URL 校验、输出转义和输入限制。Access 与 Worker 双重校验，私有仓不能代替撤销已泄露凭据。
 
