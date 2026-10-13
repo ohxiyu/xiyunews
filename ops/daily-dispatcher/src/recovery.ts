@@ -15,6 +15,7 @@ export interface RecoveryResult {
 }
 
 export type RecoveryEnv = Env & {
+  EDGE_DEPLOY_WORKFLOW?: string;
   // The unified Worker cannot probe its own origin with a public subrequest.
   // Inject the exact website handler, not raw assets or a readiness shortcut.
   PUBLICATION_FETCH?: (request: Request) => Promise<Response>;
@@ -209,6 +210,13 @@ export async function runRecovery(
     };
     const kind = assets.rawReady ? "pages" : "daily";
     if (kind === "pages") {
+      const edgeWorkflow = (env as Env & {EDGE_DEPLOY_WORKFLOW?: string}).EDGE_DEPLOY_WORKFLOW;
+      if (edgeWorkflow === "cloudflare-unified.yml") {
+        const builds = await fetchWorkflowRuns(env, edgeWorkflow);
+        const build = builds.find(run => run.headBranch === env.GITHUB_REF && ACTIVE_STATUSES.has(run.status));
+        if (build) return {...result, status: now - build.startedAt.getTime() >= 45 * 60_000
+          ? "deployment_stuck" : "deployment_active", active_run_url: build.htmlUrl};
+      }
       const seen = await gate.firstRawSeen(now);
       if (now - seen < 15 * 60_000) return { ...result, status: "pages_waiting" };
     }

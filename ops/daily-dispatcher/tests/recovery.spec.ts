@@ -74,6 +74,23 @@ function fixture(options: {
 }
 
 describe("production-aware recovery", () => {
+  it("waits for an active deployment instead of replacing its pending job", async () => {
+    const f = fixture({raw: true});
+    const original = globalThis.fetch;
+    vi.stubGlobal("fetch", vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const request = new Request(input, init);
+      if (request.url.includes("cloudflare-unified.yml/runs")) return Response.json({workflow_runs: [{
+        status: "queued", conclusion: null, head_branch: "main",
+        run_started_at: new Date(f.now - 10 * 60_000).toISOString(), html_url: "https://github.com/run/2",
+      }]});
+      return original(input, init);
+    }));
+    expect((await runRecovery({...env, EDGE_DEPLOY_WORKFLOW: "cloudflare-unified.yml"}, f.now, "test")).status)
+      .toBe("deployment_active");
+    expect((await runRecovery({...env, EDGE_DEPLOY_WORKFLOW: "cloudflare-unified.yml"}, f.now + 40 * 60_000, "test")).status)
+      .toBe("deployment_stuck");
+    expect(f.posts()).toHaveLength(0);
+  });
   it("rebuilds only published assets through the single-project workflow without a Pages hook", async () => {
     const f = fixture({raw: true});
     const unifiedEnv = {...env, EDGE_DEPLOY_WORKFLOW: "cloudflare-unified.yml", PAGES_DEPLOY_HOOK: ""};

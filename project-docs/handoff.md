@@ -1,26 +1,51 @@
 # 当前交接
 
-运营者已明确授权服务器架构优化1–9全部完成并直接部署。第1项PR259当前CI全部通过后合并，东京同代码四源72h取回66项无AI/发送，正常采集38382903277进行中；当前执行第2项按路径裁剪CI，随后继续3–9。完整顺序、验收及状态维护在[九项计划](server-optimization-plan.md)，总任务[Issue257](https://github.com/ohxiyu/xiyunews/issues/257)，不重复询问本轮已授权改造和部署。
+运营者已明确授权服务器架构优化 1–9 全部完成并直接部署。第 1、2 项已完成，当前第 3 项；完整顺序和准确状态见[九项计划](server-optimization-plan.md)，总任务 [Issue257](https://github.com/ohxiyu/xiyunews/issues/257)。后续维护者继续当前指针，不恢复旧任务，不重复询问已经授权的范围。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "完成服务器架构1–9优化并部署；当前减少CI占用生产队列",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/262",
+  "goal": "完成服务器架构1–9优化并部署；当前端到端恢复",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/264",
   "owner": "当前会话唯一编辑与生产整合负责人",
-  "branch": "agent/ci-scope-evidence",
-  "last_verified_commit": "2d97c8951eba73776e22b405b5ad9a32cc69f550",
-  "pr": "本分支文档PR关联Issue262；PR259与261均已合并，总任务Issue257",
-  "completed": ["九项实施/验收顺序已入仓计划，用户明确授权全部完成直接部署", "第1项原RSS失败后同publisher索引替代/质量/报告代码与真实东京66项检查、CI通过并合并", "第2项精确变更范围/未知保守全检查、周一05:13定期全量审计、提议模板整站验证代码完成"],
-  "unfinished": ["第2项完整回归/当前CI/合并，真实纯文档及代码场景验收", "第1项正常采集和产物发布待回读；后续3恢复、4备份、5Token、6发布、7隔离、8前端、9日报SQLite仍需完成", "各阶段证据、最终归档及自有已合并分支清理"],
-  "validation": ["第1项CI38381934730全部适用检查成功，独立无AI东京四源66项/20.264s/15.5MiB成功", "第2项actionlint全部工作流通过，原预算测试按新的并发分组语义更新；精确路径/删除/改名/未知目录回归正在运行"],
-  "unverified": ["第2项当前CI、实际跳过无关检查与定时全量审计尚未验收", "其余3–9未执行，来源采集发布尚待回读，原403依然保留为degraded", "未来自然刊期与手动检查分别验收，无测试新闻/消息"],
-  "production": {"source_commit": "b5abadb2b44708533bc2db2f2f01b44d4c6cf857", "artifact_commit": "187c6a360815ad7f14cfeb79faba7515bdedb7b4", "edition": "2026-10-13", "generated_at": "本轮开工沿用先前采集后正式产物，未重刊", "worker_version": "afd40c2f-e05f-4aeb-91a4-ab59b2640c5c", "verified_at": "2026-10-13约18:00上海回读health status=ok"},
+  "branch": "agent/end-to-end-recovery",
+  "last_verified_commit": "4521b69738750774a75018612896019c101a0058",
+  "pr": "本分支PR关联Issue264；总任务Issue257",
+  "completed": [
+    "1 来源恢复已生产验收",
+    "2 CI分域完整检查成功；纯文档CI38386364633仅治理14s/范围11s，其余正确跳过，PR263合并",
+    "3 有限采集恢复/部署排队判断与执行器独立自愈代码完成"
+  ],
+  "unfinished": [
+    "3 完成CI、合并和生产安装验收",
+    "4–9 备份、Token、发布、隔离、前端、SQLite全部继续实施",
+    "最后证据归档与自有合并分支清理"
+  ],
+  "validation": [
+    "运行时停机/忙碌/暂停/预算和nginx定向注入离线测试通过",
+    "Worker类型检查通过，采集失败与重复派发测试正在完整检查"
+  ],
+  "unverified": [
+    "当前代码尚未生产安装；真实故障恢复不制造停机，仅离线故障测试",
+    "未来自然刊期需单独记录"
+  ],
+  "production": {
+    "source_commit": "23192f361256f53823fd6617850286ca1e3f1901",
+    "artifact_commit": "cd1b66613bd72f3a51622425565bc1b9775c34f1",
+    "edition": "2026-10-13",
+    "generated_at": "正式采集38382903277生成",
+    "worker_version": "18caa7c0-ee7c-4daf-a50d-8f2cb7744457",
+    "verified_at": "2026-10-13约18:45上海health回读"
+  },
   "blockers": [],
-  "next_action": "本纯文档PR实际范围/治理检查成功、无关项明确跳过且同步main后合并，随即实施第3项端到端恢复，直至1–9全部部署。第1项正常采集和出版已success、第2项全量CI已success并合并；不重新执行旧指针或询问已授权部署，保留刊期、发送检查点、原实时进程与预算。",
-  "states": {"code": "complete", "tests": "pending", "pr_merged": "pending", "deployed": "not_required", "production_verified": "not_required"},
-  "evidence": "project-docs/releases/2026-10-13-ci-scope.md"
+  "next_action": "测试/当前CI与main同步后合并，严格SSH安装独立guardian并正常统一发布验收，随后4–9串行推进。用户已授权全部实施部署，无测试消息/历史补发，不重启原实时进程。",
+  "states": {
+    "code": "complete",
+    "tests": "pending",
+    "pr_merged": "pending",
+    "deployed": "pending",
+    "production_verified": "pending"
+  },
+  "evidence": "project-docs/releases/2026-10-13-end-to-end-recovery.md"
 }
 ```
-
-服务器此前迁移与UI验收见[完整记录](releases/2026-10-13-runtime-verification.md)。旧群手机收件/Quick Post登录验证不混入九项执行。
