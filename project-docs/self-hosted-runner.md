@@ -29,7 +29,9 @@ ssh -F /Users/minutesdr/.ssh/xiyunews_tokyo_config -o BatchMode=yes \
   -o StrictHostKeyChecking=yes xiyunews-tokyo \
   'test ! -e /home/admin/xiyunews-runner-install && mkdir /home/admin/xiyunews-runner-install'
 scp -F /Users/minutesdr/.ssh/xiyunews_tokyo_config ops/runner/provision.sh \
-  ops/runner/xiyunews-runner.service ops/runner/register.py \
+  ops/runner/xiyunews-runner.service ops/runner/register.py ops/runner/maintenance.sh \
+  ops/runner/xiyunews-runner-maintenance.service ops/runner/xiyunews-runner-maintenance.timer \
+  ops/runner/xiyunews-runner-swap.service \
   xiyunews-tokyo:/home/admin/xiyunews-runner-install/
 ssh -F /Users/minutesdr/.ssh/xiyunews_tokyo_config -o BatchMode=yes \
   -o StrictHostKeyChecking=yes xiyunews-tokyo \
@@ -43,7 +45,7 @@ gh api --method POST repos/ohxiyu/xiyunews/actions/runners/registration-token --
     'sudo -u xiyunews-runner python3 /opt/xiyunews-runner-register.py'
 ssh -F /Users/minutesdr/.ssh/xiyunews_tokyo_config -o BatchMode=yes \
   -o StrictHostKeyChecking=yes xiyunews-tokyo \
-  'sudo systemctl enable --now xiyunews-runner; systemctl is-active fomobtc'
+  'sudo systemctl enable --now xiyunews-runner-swap xiyunews-runner xiyunews-runner-maintenance.timer; systemctl is-active fomobtc'
 gh api repos/ohxiyu/xiyunews/actions/runners \
   --jq '.runners[]|{name,status,busy,labels:[.labels[].name]}'
 gh variable set XIYUNEWS_RUNNER_LABELS --repo ohxiyu/xiyunews \
@@ -51,6 +53,8 @@ gh variable set XIYUNEWS_RUNNER_LABELS --repo ohxiyu/xiyunews \
 ```
 
 注册Token仅通过管道stdin传送，register.py设置runner的ACTIONS_RUNNER_INPUT_TOKEN环境输入，命令参数/文件/报告不包含它。Token一小时失效；注册后的runner机器凭据为专用用户持有，不能读取或打印到聊天。现有GitHub业务Secrets继续在原工作流步骤短时注入，不迁移到服务器业务env，安装目录只存无秘密的审查脚本。
+
+服务器无swap时创建一个专用512MiB、root0600交换文件，按独立服务开机启用；执行器MemorySwapMax限制512MiB，物理内存硬上限仍768MiB。不是新增磁盘/套餐，不停止原服务、不改fstab，也不自动删除/交换停用。必要时经批准退役前先确认缓冲已释放。Node原生解压线程单线程、npm下载最多2连接，自托管构建固定npm11.11.1，与已验证环境一致，安全审计仍运行；从Ubuntu仓安装gh以支持来源管理和正常调度脚本。
 
 ## 验收与交接
 

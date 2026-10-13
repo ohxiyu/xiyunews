@@ -68,6 +68,12 @@ jobs:
           node-version: '24'
           cache: npm
           cache-dependency-path: ops/daily-dispatcher/package-lock.json
+      - name: Use the validated npm version on the bounded runner
+        if: runner.environment == 'self-hosted'
+        run: |
+          if [ "$(npm --version)" != "11.11.1" ]; then
+            npm install --global npm@11.11.1 --maxsockets=2
+          fi
       - run: npm ci
         working-directory: ops/daily-dispatcher
       - run: npm run audit

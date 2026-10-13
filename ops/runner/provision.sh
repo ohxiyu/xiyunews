@@ -16,7 +16,7 @@ done
 export DEBIAN_FRONTEND=noninteractive
 export NEEDRESTART_MODE=l
 apt-get update -qq
-apt-get install -y --no-upgrade --no-install-recommends ca-certificates curl git jq unzip rsync \
+apt-get install -y --no-upgrade --no-install-recommends ca-certificates curl git gh jq unzip rsync \
   libicu74 libssl3t64 libyaml-0-2 libgmp10 libffi8 libreadline8t64 \
   zlib1g libbz2-1.0 libsqlite3-0 build-essential pkg-config libyaml-dev
 if ! id xiyunews-runner >/dev/null 2>&1; then
@@ -35,6 +35,18 @@ printf '%s  %s\n' 70920811a4f8ad4328818682bca5c6469c1c942fab52448868071d00638166
 tar -xzf "$runner_download/runner.tar.gz" -C /opt/xiyunews-runner --no-same-owner
 chown -R xiyunews-runner:xiyunews-runner /opt/xiyunews-runner
 install -m 0644 "$(dirname "$0")/xiyunews-runner.service" /etc/systemd/system/xiyunews-runner.service
+install -m 0644 "$(dirname "$0")/xiyunews-runner-swap.service" /etc/systemd/system/xiyunews-runner-swap.service
+install -m 0755 "$(dirname "$0")/maintenance.sh" /opt/xiyunews-runner-maintenance.sh
+install -m 0644 "$(dirname "$0")/xiyunews-runner-maintenance.service" \
+  "$(dirname "$0")/xiyunews-runner-maintenance.timer" /etc/systemd/system/
+if [[ ! -e /var/lib/xiyunews-runner.swap ]]; then
+  install -m 0600 /dev/null /var/lib/xiyunews-runner.swap
+  fallocate -l 512M /var/lib/xiyunews-runner.swap
+  mkswap /var/lib/xiyunews-runner.swap
+else
+  [[ ! -L /var/lib/xiyunews-runner.swap && "$(stat -c %U /var/lib/xiyunews-runner.swap)" == root ]]
+  [[ "$(stat -c %s /var/lib/xiyunews-runner.swap)" == 536870912 ]]
+fi
 systemctl daemon-reload
 systemctl is-active --quiet fomobtc
 echo "Isolated runner installed, not enrolled or started. Verified package retained at $runner_download."
