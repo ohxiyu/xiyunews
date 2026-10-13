@@ -270,6 +270,17 @@
 .category-filters button { border-radius: 6px; min-height: 30px; }
 .category-filters button.active { background: var(--surface); box-shadow: 0 1px 3px rgb(0 0 0 / 6%); }
 .digest-item { margin-block: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+/* Keep the first two reports ready; postpone below-fold layout, with all
+   content still in the document for reading, anchors and complete sharing. */
+@media screen {
+  @supports (content-visibility: auto) {
+    .daily-story-stream > .digest-item:nth-child(n + 3),
+    .event-focus-feed > .digest-item:nth-child(n + 3) {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 480px;
+    }
+  }
+}
 .digest-item:first-child, .event-feed-item:first-child, .entity-report-feed .entity-feed-item:first-child { border-top: 1px solid var(--border); }
 .digest-item-meta { margin-bottom: 7px; align-items: center; flex-wrap: wrap; }
 .digest-item-meta > div:first-child { gap: 6px; flex-wrap: wrap; min-width: 0; }
