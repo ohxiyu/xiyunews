@@ -51,6 +51,24 @@ def make_item(
     )
 
 
+def test_background_precedes_report_and_analysis_references_follow_source():
+    item = make_item("reading-order", "crypto-markets")
+    item.metadata.update(background_zh="背景事实", market_impact_zh="明确的分析判断",
+                         community_discussion_zh="有依据的讨论", reference_links=[{"url":"https://example.com/evidence","title":"原始证据"}])
+    page = BeautifulSoup(render_web_feed([item], date="2026-10-13", total_fetched=1,
+                                        language="zh", display_timezone="Asia/Shanghai"), "html.parser")
+    article = page.select_one("article.digest-item")
+    children = list(article.select_one(".digest-item-content").children)
+    background = article.select_one('[data-context-placement="background"]')
+    after = article.select_one('[data-context-placement="after"]')
+    assert children.index(background) < children.index(article.select_one(".story-summary-body"))
+    assert children.index(after) > children.index(article.select_one(".source-line"))
+    assert "背景事实" in background.get_text() and "明确的分析判断" not in background.get_text()
+    assert "明确的分析判断" in after.get_text() and "背景事实" not in after.get_text()
+    assert "有依据的讨论" in after.get_text()
+    assert article.select_one(".story-summary-body").get_text() == "摘要 reading-order"
+
+
 def test_render_web_feed_outputs_final_cards_and_top_level_filters() -> None:
     items = [
         make_item("market", "crypto-markets", score=9.4),

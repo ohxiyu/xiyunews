@@ -42,6 +42,8 @@ curl -fsS https://xiyu.news/health
 
 xiyu.news已从Pages转为Worker Custom Domain，路径和查询参数由原网站handler/Assets继续处理；HTML旧链接可能由Assets规范化重定向，最终应200。bmt.news旧区/绑定已删除，不恢复旧域跳转，不触碰仍使用的fomobtc.com/API。Pages→Workers依据见[官方迁移说明](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)。
 
+www.xiyu.news 使用同 zone 的运维绑定 `www.xiyu.news/* → xiyunews`，复用已有代理 DNS/TLS，由同一 Worker 精确 Host 301 保留路径/查询到主域。该绑定不列入自动发布的非 Custom Domain 路由：既有 CI Token 无区路由管理权限，不能扩大权限或让每次部署反复报错；Wrangler 在没有声明普通 routes 时不调用区路由写入或清除。代码发布仍只声明主域 Custom Domain。重建环境时先由授权运维账号核验已有 www 路由无他人脚本冲突，再建立此精确绑定，禁止删除外部托管 DNS；具体错误/创建/验收见 [www 记录](releases/2026-10-13-www-entry.md)。
+
 2026-10-05 接口迁移任务：新增专用 DNS-only A `api.xiyu.news` → 47.79.36.171，东京 nginx/独立证书提供 `/api/*`，统一看门狗改读 `https://api.xiyu.news/api/health`。旧域仅过渡保留；不修改主站、www 或通配符记录，不修改 STATE、Telegram 或发送服务。证书与 nginx 发布不等于 Worker 已发布，实际阶段以[迁移证据](releases/2026-10-05-realtime-api-domain.md)为准。
 
 ## 后台与凭据

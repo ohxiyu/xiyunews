@@ -30,7 +30,7 @@ _LABELS = {
         "more": "背景、讨论与参考资料",
         "background": "背景",
         "discussion": "社区讨论",
-        "references": "参考链接",
+        "references": "参考资料",
         "tags": "标签",
         "empty": "今日暂无达到展示阈值的重要资讯。",
         "editorial": "编辑精选",
@@ -39,7 +39,7 @@ _LABELS = {
         "event_update": "持续追踪 · {count} 次进展",
         "sources_confirmed": "{count} 源确认",
         "single_source": "单一来源",
-        "market_impact": "市场影响",
+        "market_impact": "影响分析",
         "overview": "今日脉络",
         "overview_rank": "查看第 {rank} 条",
         "overview_signals": "{count} 条线索",
@@ -66,7 +66,7 @@ _LABELS = {
         "event_update": "Tracking · {count} updates",
         "sources_confirmed": "{count} sources",
         "single_source": "Single source",
-        "market_impact": "Market impact",
+        "market_impact": "Impact analysis",
         "overview": "Today at a glance",
         "overview_rank": "View story {rank}",
         "overview_signals": "{count} signals",
@@ -410,21 +410,25 @@ def _thread_html(item: ContentItem, language: str) -> str:
     )
 
 
-def _details_html(item: ContentItem, language: str) -> str:
+def _details_html(item: ContentItem, language: str, *, placement: str = "after") -> str:
     labels = _LABELS[language]
     sections: list[str] = []
     background = _localized_text(item, "background", language)
     discussion = _localized_text(item, "community_discussion", language)
     market_impact = _localized_text(item, "market_impact", language)
+    if placement == "background":
+        if not background:
+            return ""
+        return (
+            '<details class="story-more" data-context-placement="background" open>'
+            f'<summary>{labels["background"]}</summary><div class="story-more-content">'
+            f'<section data-context-kind="background"><h3>{labels["background"]}</h3>'
+            f'<p>{_escape(background)}</p></section></div></details>'
+        )
     if market_impact:
         sections.append(
             f'<section><h3>{labels["market_impact"]}</h3>'
             f"<p>{_escape(market_impact)}</p></section>"
-        )
-    if background:
-        sections.append(
-            f'<section><h3>{labels["background"]}</h3>'
-            f"<p>{_escape(background)}</p></section>"
         )
     if discussion:
         sections.append(
@@ -446,8 +450,8 @@ def _details_html(item: ContentItem, language: str) -> str:
     if not sections:
         return ""
     return (
-        '<details class="story-more" open>'
-        f"<summary>{labels['more']}</summary>"
+        '<details class="story-more" data-context-placement="after" open>'
+        f'<summary>{"Analysis and references" if language == "en" else "分析与资料"}</summary>'
         f'<div class="story-more-content">{"".join(sections)}</div>'
         "</details>"
     )
@@ -524,11 +528,12 @@ def _render_article(
         f"{share_actions}"
         "</div>"
         f"<h2>{title_html}</h2>"
-        f"{_details_html(item, language)}"
+        f'{_details_html(item, language, placement="background")}'
         f"{_summary_html(summary, language)}"
         f'<p class="source-line">'
         f"{_source_html(item, language=language, display_timezone=display_timezone)}"
         f" · {_provenance_html(item, language)}</p>"
+        f"{_details_html(item, language)}"
         "</div>"
         "</article>"
     )

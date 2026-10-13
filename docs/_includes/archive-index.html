@@ -80,8 +80,8 @@ Parameters: kind ("threads" | "entities" | "weekly"), language ("zh" | "en").
                 <span class="event-status" data-status="{{ row.status | escape }}">{% if is_en %}{{ row.status_en | escape }}{% else %}{{ row.status_zh | escape }}{% endif %}</span>
               </div>{% if row.score %}<span class="score-badge" data-tier="{% if row.score >= 9 %}high{% elsif row.score >= 7 %}good{% else %}mid{% endif %}">{{ row.score | escape }}</span>{% endif %}</div>
               <h2><a href="{{ prefix | escape }}/events/{{ row.event_id | escape }}/">{{ title | escape }}</a></h2>
+              {% include event-reading-context.html row=row language=include.language placement="background" %}
               {% if state and state != "" %}<p class="event-focus-state">{{ state | escape }}</p>{% endif %}
-              {% include event-reading-context.html row=row language=include.language %}
               <section class="event-focus-developments">
                 <h3>{% if is_en %}Latest developments{% else %}最新进展{% endif %}</h3>
                 <ol class="event-spotlight-timeline">
@@ -93,6 +93,7 @@ Parameters: kind ("threads" | "entities" | "weekly"), language ("zh" | "en").
                 </ol>
               </section>
               {% if watch and watch != "" %}<p class="event-next-watch"><span>{% if is_en %}Watch next{% else %}下一关注点{% endif %}</span> {{ watch | escape }} {% include external-reference.html url=row.watch_source title="↗" %}</p>{% endif %}
+              {% include event-reading-context.html row=row language=include.language placement="after" %}
               <p class="source-line event-feed-meta">{% if is_en %}{{ row.updates_count | escape }} recorded updates · {{ row.sources_count | escape }} source links · since {{ row.first_date | escape }}{% else %}{{ row.updates_count | escape }} 条进展记录 · {{ row.sources_count | escape }} 个来源链接 · 始于 {{ row.first_date | escape }}{% endif %}
                 <a class="event-detail-link" href="{{ prefix | escape }}/events/{{ row.event_id | escape }}/">{% if is_en %}Full timeline{% else %}完整时间线{% endif %} →</a>
               </p>

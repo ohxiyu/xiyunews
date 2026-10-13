@@ -3,7 +3,7 @@ import {readFile} from 'node:fs/promises';
 import test from 'node:test';
 import vm from 'node:vm';
 
-// Tiny offline DOM double; execute the production controller, not a copy.
+// Execute the real controller against an offline DOM; no network or source calls.
 class Node {
   constructor(tag, classes = '') {
     this.tagName = tag.toUpperCase(); this.children = []; this.dataset = {};
@@ -16,109 +16,108 @@ class Node {
         return !present;
       }};
   }
+  get parentElement() { return this.parent; }
   get textContent() { return this.ownText + this.children.map(child => child.textContent).join(''); }
   set textContent(value) { this.ownText = value; this.children = []; }
   appendChild(child) {
     if (child.parent) child.parent.children = child.parent.children.filter(node => node !== child);
     child.parent = this; this.children.push(child); return child;
   }
+  insertBefore(child, reference) {
+    if (child.parent) child.parent.children = child.parent.children.filter(node => node !== child);
+    const index = this.children.indexOf(reference); assert.ok(index >= 0);
+    child.parent = this; this.children.splice(index, 0, child); return child;
+  }
+  remove() {
+    this.parent.children = this.parent.children.filter(child => child !== this); this.parent = null;
+  }
   setAttribute(key, value) { this.attributes[key] = value; }
+  hasAttribute(key) { return key in this.attributes; }
   addEventListener(name, fn) { this.listeners[name] = fn; }
-  focus() { this.focused = true; }
   matches(selector) {
     return selector.startsWith('.') ? this.classList.contains(selector.slice(1)) : this.tagName === selector.toUpperCase();
   }
   querySelectorAll(selector) {
     const descendants = this.children.flatMap(child => [child, ...child.querySelectorAll('*')]);
     if (selector === '*') return descendants;
-    if (selector === 'li a') return descendants.filter(child => child.tagName === 'A' && child.parent.tagName === 'LI');
     return descendants.filter(child => child.matches(selector));
   }
   querySelector(selector) { return this.querySelectorAll(selector)[0] || null; }
-  replaceWith(other) {
-    const index = this.parent.children.indexOf(this); other.parent = this.parent;
-    this.parent.children[index] = other;
-  }
   insertAdjacentElement(position, other) {
     assert.equal(position, 'afterend');
-    other.parent.children = other.parent.children.filter(node => node !== other);
+    if(other.parent) other.parent.children = other.parent.children.filter(node => node !== other);
     const index = this.parent.children.indexOf(this); other.parent = this.parent;
     this.parent.children.splice(index + 1, 0, other);
   }
 }
-
 const source = await readFile(new URL('../docs/assets/js/bmtnews-ui.js', import.meta.url), 'utf8');
 const controller = source.slice(source.indexOf('  function contextKind('), source.indexOf('  var CATEGORY_ORDER'));
 const context = {document: {createElement: tag => new Node(tag)}, textOf: node => node ? node.textContent.trim() : ''};
 vm.runInNewContext('var contextSequence = 0;\n' + controller + '\nthis.enhance = enhanceReadingContext;', context);
 
-function fixture({event = false, background = true, discussion = true, impact = true, refs = true} = {}) {
-  const host = new Node('article', event ? 'event-feed-item' : 'digest-item');
-  host.appendChild(new Node('h2')); host.appendChild(new Node('p'));
-  const details = host.appendChild(new Node('details', 'story-more'));
-  const content = details.appendChild(new Node('div', 'story-more-content'));
-  for (const [enabled, title, text] of [[impact, '市场影响', '完整影响内容'], [background, '背景', '长背景'.repeat(100)], [discussion, '社区讨论', '真实讨论内容']]) {
-    if (!enabled) continue;
-    const section = content.appendChild(new Node('section'));
-    section.appendChild(new Node('h3')).textContent = title;
-    section.appendChild(new Node('p')).textContent = text;
+function fixture({event=false, background=true, discussion=true, impact=true, refs=true}={}) {
+  const host=new Node('article',event?'event-feed-item':'digest-item');
+  host.appendChild(new Node('h2')).textContent='新闻标题';
+  if(event) {
+    host.appendChild(new Node('p','event-focus-state')).textContent='当前已报道状态';
+    host.appendChild(new Node('section','event-focus-developments')).appendChild(new Node('p')).textContent='三条完整进展';
+    host.appendChild(new Node('p','event-next-watch')).textContent='下一关注点';
+  } else host.appendChild(new Node('div','story-summary-body')).appendChild(new Node('p')).textContent='完整新闻事实';
+  host.appendChild(new Node('p','source-line')).textContent='原始报道来源';
+  const details=host.appendChild(new Node('details','story-more'));
+  const content=details.appendChild(new Node('div','story-more-content'));
+  for(const [enabled,title,text] of [[impact,'市场影响','完整影响内容'],[background,'背景','长背景'.repeat(100)],[discussion,'社区讨论','真实讨论内容']]) {
+    if(!enabled) continue;
+    const section=content.appendChild(new Node('section'));
+    section.appendChild(new Node('h3')).textContent=title;
+    section.appendChild(new Node('p')).textContent=text;
   }
-  if (refs) {
-    const section = content.appendChild(new Node('section'));
-    section.appendChild(new Node('h3')).textContent = '参考链接';
-    section.appendChild(new Node('ul')).appendChild(new Node('li')).appendChild(new Node('a')).textContent = '完整参考标题';
+  if(refs) {
+    const section=content.appendChild(new Node('section'));
+    section.appendChild(new Node('h3')).textContent='参考链接';
+    section.appendChild(new Node('ul')).appendChild(new Node('li')).appendChild(new Node('a')).textContent='完整参考标题';
   }
-  return {host, content};
+  return {host,content,details};
 }
 
-test('context moves above body, defaults to background, preserves all export text', () => {
-  const {host, content} = fixture(); context.enhance(host, 'zh');
-  assert.equal(host.children[1].className, 'reading-context is-enhanced');
-  const tabs = host.querySelector('.reading-context-tabs').children;
-  assert.deepEqual(tabs.map(tab => tab.textContent), ['背景', '讨论与影响', '参考资料 1']);
-  assert.equal(tabs[0].attributes['aria-selected'], 'true');
-  assert.equal(content.attributes.role, 'tabpanel');
-  assert.equal(content.children.find(section => section.dataset.contextKind === 'background').hidden, false);
-  assert.ok(content.textContent.includes('完整影响内容') && content.textContent.includes('完整参考标题'));
-  assert.equal(content.querySelector('p').textContent, '完整影响内容');
-  tabs[2].listeners.click();
-  assert.equal(content.children.find(section => section.dataset.contextKind === 'references').hidden, false);
-  assert.equal(tabs[2].attributes['aria-selected'], 'true');
+test('legacy combined context splits around complete report and keeps all evidence visible',()=>{
+  const {host}=fixture();context.enhance(host,'zh');
+  assert.deepEqual(host.children.map(n=>n.className||n.tagName),
+    ['H2','reading-context reading-context-background is-enhanced','story-summary-body','source-line','reading-context reading-context-after is-enhanced']);
+  assert.equal(host.querySelector('.reading-context-tabs'),null);
+  const after=host.querySelector('.reading-context-after');
+  assert.deepEqual(after.querySelectorAll('h3').map(h=>h.textContent),['影响分析','讨论焦点','参考资料']);
+  assert.ok(after.querySelectorAll('section').every(s=>!s.hidden));
+  for(const text of ['长背景'.repeat(100),'完整新闻事实','完整影响内容','真实讨论内容','完整参考标题']) assert.ok(host.textContent.includes(text));
 });
-
-test('keyboard switches tabs and full background expands without losing text', () => {
-  const {host, content} = fixture(); context.enhance(host, 'zh');
-  const tabs = host.querySelector('.reading-context-tabs').children;
-  let prevented = false;
-  tabs[0].listeners.keydown({key: 'ArrowRight', preventDefault() { prevented = true; }});
-  assert.ok(prevented && tabs[1].focused);
-  assert.equal(tabs[1].tabIndex, 0); assert.equal(tabs[0].tabIndex, -1);
-  const background = content.children.find(section => section.dataset.contextKind === 'background');
-  const expand = background.querySelector('button'); expand.listeners.click();
-  assert.equal(expand.attributes['aria-expanded'], 'true');
-  assert.ok(background.classList.contains('is-expanded'));
-  assert.equal(background.querySelector('p').textContent, '长背景'.repeat(100));
+test('keyboard-operable background control owns a unique paragraph and preserves full text',()=>{
+  const one=fixture(),two=fixture();context.enhance(one.host,'zh');context.enhance(two.host,'en');
+  const block=one.host.querySelector('.reading-context-background'),p=block.querySelector('p'),button=block.querySelector('button');
+  assert.equal(button.attributes['aria-controls'],p.id);assert.equal(button.attributes['aria-expanded'],'false');
+  button.listeners.click();assert.equal(button.attributes['aria-expanded'],'true');
+  assert.ok(block.querySelector('section').classList.contains('is-expanded'));
+  assert.equal(p.textContent,'长背景'.repeat(100));
+  assert.notEqual(p.id,two.host.querySelector('.reading-context-background').querySelector('p').id);
 });
-
-test('missing background and discussion do not produce empty or mislabeled tabs', () => {
-  const {host} = fixture({background:false, discussion:false}); context.enhance(host, 'en');
-  assert.deepEqual(host.querySelector('.reading-context-tabs').children.map(tab => tab.textContent), ['Impact analysis', 'References 1']);
+test('missing fields do not create empty panels or label impact as community discussion',()=>{
+  const {host}=fixture({background:false,discussion:false});context.enhance(host,'en');
+  assert.equal(host.querySelector('.reading-context-background'),null);
+  assert.deepEqual(host.querySelectorAll('h3').map(h=>h.textContent),['Impact analysis','References']);
 });
-
-test('event context retains its place after current state and setup is idempotent', () => {
-  const {host} = fixture({event:true}); context.enhance(host, 'zh');
-  assert.equal(host.children[1].tagName, 'P');
-  assert.equal(host.children[2].className, 'reading-context is-enhanced');
-  context.enhance(host, 'zh');
-  assert.equal(host.querySelectorAll('.reading-context').length, 1);
+test('event background precedes state while analysis and evidence follow full developments',()=>{
+  const {host}=fixture({event:true});context.enhance(host,'zh');
+  assert.deepEqual(host.children.map(n=>n.className||n.tagName),['H2','reading-context reading-context-background is-enhanced',
+    'event-focus-state','event-focus-developments','event-next-watch','reading-context reading-context-after is-enhanced','source-line']);
+  context.enhance(host,'zh');assert.equal(host.querySelectorAll('.reading-context').length,2);
 });
-
-test('separate cards get unique accessible tab and panel IDs', () => {
-  const first = fixture(), second = fixture(); context.enhance(first.host, 'zh'); context.enhance(second.host, 'zh');
-  assert.notEqual(first.content.id, second.content.id);
-  for (const card of [first, second]) {
-    const tab = card.host.querySelector('.reading-context-tabs').children[0];
-    assert.equal(tab.attributes['aria-controls'], card.content.id);
-    assert.equal(card.content.attributes['aria-labelledby'], tab.id);
-  }
+test('already split new markup is normalized once without duplicate or dropped sections',()=>{
+  const {host,content}=fixture();
+  const background=content.children.find(s=>s.querySelector('h3').textContent==='背景');
+  const split=new Node('details','story-more');split.appendChild(new Node('div','story-more-content')).appendChild(background);
+  host.insertBefore(split,host.querySelector('.story-summary-body'));
+  context.enhance(host,'zh');context.enhance(host,'zh');
+  assert.equal(host.querySelectorAll('.reading-context').length,2);
+  assert.equal(host.querySelectorAll('.story-more').length,0);
+  assert.equal(host.querySelectorAll('h3').filter(h=>h.textContent==='背景').length,1);
+  assert.ok(host.textContent.includes('完整影响内容'));
 });
