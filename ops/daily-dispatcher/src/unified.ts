@@ -17,6 +17,7 @@ export interface UnifiedEnv extends Env {
   EDGE_DEPLOY_WORKFLOW?: string;
   SITE_SOURCE_COMMIT?: string;
   SITE_ARTIFACT_COMMIT?: string;
+  SITE_BUILD_KEY?: string;
   TELEGRAM_BOT_TOKEN?: string;
   ALERT_CHAT_ID?: string;
   ADMIN_GITHUB_TOKEN?: string;
@@ -57,6 +58,7 @@ export default {
       realtime_watchdog_enabled: env.ENABLE_REALTIME_WATCHDOG === "true",
       site_source_commit: env.SITE_SOURCE_COMMIT ?? null,
       site_artifact_commit: env.SITE_ARTIFACT_COMMIT ?? null,
+      site_build_key: env.SITE_BUILD_KEY ?? null,
     }, {headers: {"Cache-Control": "no-store"}});
   },
 

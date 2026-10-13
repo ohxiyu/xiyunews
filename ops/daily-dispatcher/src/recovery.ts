@@ -229,7 +229,7 @@ export async function runRecovery(
         // Rebuild published gh-pages only. Never rerun AI for a deployment lag.
         await githubRequest(env,
           "/repos/" + env.GITHUB_REPOSITORY + "/actions/workflows/" + edgeWorkflow + "/dispatches",
-          {method: "POST", body: JSON.stringify({ref: env.GITHUB_REF})},
+          {method: "POST", body: JSON.stringify({ref: env.GITHUB_REF, inputs: {force_deploy: "true"}})},
         );
       } else {
       // The secret hook builds the current gh-pages HEAD, without invoking AI.

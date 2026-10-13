@@ -26,7 +26,7 @@ def prepare(source: Path, destination: Path) -> None:
         if any(part in {".git", ".env", ".dev.vars", "node_modules"} or
                part.startswith(".env.") or part.startswith(".dev.vars.") for part in path.relative_to(source).parts):
             raise ValueError("private files are not allowed in edge assets")
-    shutil.copytree(source, destination, ignore=shutil.ignore_patterns("_worker.js", "Gemfile", "Gemfile.lock", "CNAME"))
+    shutil.copytree(source, destination, ignore=shutil.ignore_patterns("_worker.js", "Gemfile", "Gemfile.lock", "CNAME", ".xiyunews-build-cache.json"))
 
 
 if __name__ == "__main__":
