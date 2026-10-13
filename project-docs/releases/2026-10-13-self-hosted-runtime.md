@@ -21,3 +21,7 @@ Rollback: 先获批准；只恢复runner变量或停新服务，原实时服务�
 已验证SHA256的actionlint1.7.12对全部工作流检查通过。GitHub托管CI38348135782仍在步骤前因账户额度失败，旧非生产Pages预览通过；未将其当实际runner验收。已向运营者请求新服务器常驻服务及仓库机器运行凭据注册/部署的确认（根AGENTS.md要求凭据/新增外部认证先批准），未收到答案，尚未安装或注册，不以任务代码准备或时间经过当授权。
 
 2026-10-13运营者明确回复“可以你帮我直接改完上线。既然换到了服务器，其实很多事情可以再优化一下了”，授权已准备方案的新增服务/机器注册/运行切换与生产发布。严格SSH复查原MainPID235825/NRestarts0、MemoryCurrent304128000、available840MiB，安装目录此前不存在；开始按手册安装。此时尚未注册/切换，不将授权或安装进行中当完成。
+
+12:56安装并注册成功，GitHub runner id21/xiyunews-tokyo-1，online；非秘密标签变量精确self-hosted/Linux/X64/xiyunews-tokyo。现有Secrets未改，注册Token走stdin，无明文导出。第一轮真实CI38349010751开始执行，realtime-paths成功、Python/依赖审计阶段通过，但Worker单进程累计内存触发软线回收，2项5秒测试超时及2项pool启动超时（78passed），未写成功；主动取消本轮自有CI后修改受限测试执行方式。
+
+调优仍单任务串行、内存硬768MiB，软704MiB、CPU1核、Node堆256MiB；每个Worker测试文件用新进程，保留全部130项。不调整模型/来源或生产规则。原fomobtc MainPID235825/NRestarts0始终不变，无OOM，峰值741068800字节；维护timer每周日上海04:10加最多20分钟，仅旧执行日志/uv无用包缓存，dry-run0、实际Resultsuccess。优化后全量CI与业务验收尚待完成。
