@@ -179,6 +179,16 @@ def _public_fetch_report(payload: dict[str, Any]) -> dict[str, Any]:
         ]
         if channels:
             public_source["channels"] = channels
+        feeds = [
+            {
+                key: sanitize_diagnostic(row[key], 100) if isinstance(row[key], str) else row[key]
+                for key in ("name", "items", "status", "error", "fallback", "fallback_items", "fallback_status")
+                if key in row
+            }
+            for row in source.get("feeds") or [] if isinstance(row, dict)
+        ]
+        if feeds:
+            public_source["feeds"] = feeds
         sources.append(public_source)
     report["sources"] = sources
     return report

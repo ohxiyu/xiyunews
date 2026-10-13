@@ -8,13 +8,15 @@ import re
 from datetime import datetime, timezone
 from typing import List, Optional
 from email.utils import parsedate_to_datetime
+from urllib.parse import urlsplit
 import httpx
 import feedparser
 
 from .base import BaseScraper
 from .google_news_url import canonicalize_entry_link
 from ..extractors import ExtractorRegistry
-from ..models import ContentItem, SourceType, RSSSourceConfig
+from ..models import ContentItem, SourceType, RSSSourceConfig, GoogleNewsConfig
+from .google_news import GoogleNewsScraper
 
 logger = logging.getLogger(__name__)
 
@@ -101,6 +103,8 @@ class RSSScraper(BaseScraper):
 
             # Parse feed
             feed = feedparser.parse(response.text)
+            if not feed.get("version") and not feed.entries:
+                raise ValueError("Response is not an RSS or Atom feed")
 
             for entry in feed.entries:
                 # Parse published date
@@ -154,6 +158,31 @@ class RSSScraper(BaseScraper):
         except Exception as e:
             logger.warning("Error parsing RSS feed %s: %s", source.name, e)
             failure = type(e).__name__
+
+        if failure and source.fallback_google_news:
+            host = (urlsplit(str(source.url)).hostname or "").removeprefix("www.")
+            config = GoogleNewsConfig(
+                enabled=True, query=f"site:{host}", allowed_domains=[host],
+                category=source.category, max_results=20, resolve_links=20,
+            )
+            fallback_scraper = GoogleNewsScraper(config, self.client)
+            fallback = await fallback_scraper.fetch(since)
+            for item in fallback:
+                item.metadata.update({
+                    "feed_name": source.name,
+                    "collection_method": "google_news_fallback",
+                    "original_feed_url": str(source.url),
+                    "original_feed_error": failure,
+                    "headline_only": True,
+                })
+            # No current entry is not proof the original feed recovered.
+            self.feed_results.append({
+                "name": source.name, "items": len(fallback),
+                "status": "degraded" if fallback else "failure", "error": failure,
+                "fallback": "google_news", "fallback_items": len(fallback),
+                "fallback_status": next((row["status"] for row in fallback_scraper.query_reports), "unknown"),
+            })
+            return fallback
 
         self.feed_results.append({
             "name": source.name, "items": len(items),

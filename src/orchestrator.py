@@ -187,6 +187,7 @@ class SourceFetchOutcome:
     subsource_counts: Dict[str, int] = field(default_factory=dict)
     error: Optional[str] = None
     channels: List[Dict[str, object]] = field(default_factory=list)
+    feeds: List[Dict[str, object]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, object]:
         result: Dict[str, object] = {
@@ -199,6 +200,8 @@ class SourceFetchOutcome:
             result["error"] = self.error
         if self.channels:
             result["channels"] = [dict(row) for row in self.channels]
+        if self.feeds:
+            result["feeds"] = [dict(row) for row in self.feeds]
         return result
 
 
@@ -2423,11 +2426,11 @@ class BMTNewsOrchestrator:
 
         self.console.print(f"   Found {len(items)} items from {name}")
         feed_results = getattr(scraper, "feed_results", [])
-        failed_feeds = [row for row in feed_results if row["status"] == "failure"]
+        failed_feeds = [row for row in feed_results if row["status"] in {"failure", "degraded"}]
         source_status = "success" if items else "empty"
         source_error = None
         if failed_feeds:
-            source_status = "failure" if len(failed_feeds) == len(feed_results) else "partial_failure"
+            source_status = "failure" if not items and len(failed_feeds) == len(feed_results) else "partial_failure"
             source_error = "; ".join(f'{row["name"]}: {row["error"]}' for row in failed_feeds)
 
         # Show per-sub-source breakdown when there are multiple sub-sources
@@ -2458,6 +2461,7 @@ class BMTNewsOrchestrator:
             items=items,
             subsource_counts=dict(sorted(sub_counts.items())),
             channels=channels,
+            feeds=list(feed_results),
         )
 
     def _source_tier(self, item: ContentItem) -> str:

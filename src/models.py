@@ -222,6 +222,8 @@ class RSSSourceConfig(BaseModel):
     enabled: bool = True
     category: Optional[str] = None
     content_extractor: Optional[str] = None
+    # Public same-publisher index only; never bypass the publisher's access gate.
+    fallback_google_news: bool = False
 
 
 class RedditSubredditConfig(BaseModel):
