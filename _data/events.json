@@ -125047,7 +125047,7 @@
       "first_seen_at": "2026-10-07T10:50:55.157265Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-13T12:08:58.268558Z",
-      "last_updated_at": "2026-10-13T12:08:58.268558Z",
+      "last_updated_at": "2026-10-13T12:11:10.365204Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -125139,11 +125139,18 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://m.theblockbeats.info/flash/371585?from=telegram"
+            },
+            {
+              "label": "CoinDesk",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.coindesk.com/business/2026/10/13/russia-s-largest-bank-sberbank-secures-approval-to-trade-crypto"
             }
           ],
           "story_ids": [
             "telegram:foresightnews:120300",
-            "telegram:theblockbeats:200253"
+            "telegram:theblockbeats:200253",
+            "rss:www.coindesk.com_arc_outboundfeeds_rss_:80d3f6cddf1bc22a"
           ],
           "time_precision": "published",
           "title_en": "【俄罗斯联邦储蓄银行获准开展加密货币兑换业务，计划 12 月 1 日上线】",
@@ -134489,8 +134496,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Ledger's Donjon security team confirmed an unauthorized hardware implant in wallets sold by Southeast Asian reseller CryptoBilis that reads the 24-word recovery phrase from the device screen during setup and transmits it over LTE via a provisioned eSIM, with all confirmed losses from the suspected $86M drain tied to devices bought through that reseller.",
-      "current_state_zh": "Ledger的Donjon安全团队确认，东南亚经销商CryptoBilis销售的钱包中存在未经授权的硬件植入物，该植入物会在设置过程中从设备屏幕读取24词恢复短语，并通过预置eSIM经LTE传输，所有已确认的损失均与通过该经销商购买的设备有关，疑似被盗资金达8600万美元。",
+      "current_state_en": "The incident remains under monitoring; the confirmed implant and suspected $86M drain remain tied to devices sold by CryptoBilis, which is not selling wallets during the investigation; MediaMarkt Saturn has suspended online and in-store Ledger sales in Germany; Karpelès’s teardowns also point to wallets sold by MediaMarkt, Singapore’s Metapod, and official Philippine reseller LazMall; Ledger says it has not verified a drain linked to devices bought elsewhere and is reviewing implant reports from other resellers and locations.",
+      "current_state_zh": "事件仍处于监控中；已确认的植入物和疑似8600万美元资金流出仍与CryptoBilis销售的设备相关，CryptoBilis在调查期间停售；MediaMarkt Saturn已暂停德国线上及线下门店的Ledger销售；Karpelès的拆解分析还指向MediaMarkt、新加坡Metapod及菲律宾官方经销商LazMall销售的钱包；Ledger表示尚未核实其他渠道购买设备相关的资金流出，并正在审查其他经销商和地点的植入物报告。",
       "entities": [
         "affected",
         "after",
@@ -134530,6 +134537,7 @@
         "free",
         "from",
         "frozen",
+        "german",
         "gox",
         "hack",
         "hackers",
@@ -134597,8 +134605,8 @@
       "event_type": "security_incident",
       "first_seen_at": "2026-10-09T15:30:47.822838Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-13T12:13:24.371450Z",
-      "last_updated_at": "2026-10-13T12:13:24.371450Z",
+      "last_material_change_at": "2026-10-13T14:18:27.572470Z",
+      "last_updated_at": "2026-10-13T14:18:27.572470Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_d805e062148e6406",
@@ -134630,7 +134638,7 @@
         "evt_7d511557d1391182"
       ],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "developing",
       "title_en": "Ledger Hardware Wallet Supply Chain Implant Seed Theft Incident",
       "title_zh": "Ledger硬件钱包供应链植入物窃取助记词事件",
       "topics": [
@@ -134646,6 +134654,7 @@
         "fund-tracing",
         "funds-frozen",
         "funds-theft",
+        "germany",
         "hacks-exploits",
         "ledger",
         "on-chain-analysis",
@@ -136430,6 +136439,82 @@
           "update_type": "confirmation",
           "what_changed_en": "Ledger's Donjon security team confirmed an unauthorized hardware implant in wallets sold by Southeast Asian reseller CryptoBilis that reads the 24-word recovery phrase from the device screen during setup and transmits it over LTE via a provisioned eSIM, with all confirmed losses from the suspected $86M drain tied to devices bought through that reseller.",
           "what_changed_zh": "Ledger的Donjon安全团队确认，东南亚经销商CryptoBilis销售的钱包中存在未经授权的硬件植入物，该植入物会在设置过程中从设备屏幕读取24词恢复短语，并通过预置eSIM经LTE传输，所有已确认的损失均与通过该经销商购买的设备有关，疑似被盗资金达8600万美元。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.92,
+          "current_state_en": "The incident remains under monitoring; Ledger has coordinated with German retailer MediaMarkt Saturn to suspend online and in-store sales while investigating a German user's suspected implant report. Ledger said there were no reported fund losses tied to that report and no signs of compromise to its infrastructure, systems, or services, with customer support and Donjon reviewing the report and inspecting devices. The previously confirmed CryptoBilis reseller device implants and suspected $86M drain remain part of the same supply-chain security incident.",
+          "current_state_zh": "事件仍处于监控中；Ledger已与德国零售商MediaMarkt Saturn协调暂停其线上及线下门店销售，以调查一名德国用户报告的疑似植入物；Ledger称该报告相关事件暂无资金损失，亦无迹象表明其基础设施、系统或服务遭入侵，客服与Donjon团队正在审查报告并检查设备。此前已确认的CryptoBilis经销商设备植入物及疑似8600万美元损失仍属于同一供应链安全事件。",
+          "detailed_summary_en": "Ledger confirmed that MediaMarkt Saturn has suspended sales of its hardware wallets in Germany pending investigation into a user report of a suspected implanted device, with no funds lost and no sign of infrastructure compromise.",
+          "detailed_summary_zh": "Ledger confirmed that MediaMarkt Saturn has suspended sales of its hardware wallets in Germany pending investigation into a user report of a suspected implanted device, with no funds lost and no sign of infrastructure compromise.",
+          "event_id": "evt_c594d0e29e7b400b",
+          "first_seen_at": "2026-10-13T14:18:11.619089Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T12:43:02Z",
+          "published_at": "2026-10-13T12:43:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371604?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:200270"
+          ],
+          "time_precision": "published",
+          "title_en": "Ledger：MediaMarkt暂停销售源于德国用户报告发现植入物，暂无资金损失",
+          "title_zh": "Ledger：MediaMarkt暂停销售源于德国用户报告发现植入物，暂无资金损失",
+          "update_id": "upd_af34e3d874d3000c",
+          "update_type": "response",
+          "what_changed_en": "New: Ledger officially confirmed it coordinated with MediaMarkt Saturn to suspend online and in-store sales in Germany pending investigation into a German user's suspected implant report; Ledger said there were no reported fund losses tied to that report and no signs of compromise to its infrastructure, systems, or services, with customer support reviewing the report and Donjon set to inspect devices.",
+          "what_changed_zh": "新增：Ledger官方确认已与MediaMarkt Saturn协调暂停德国线上及线下门店销售，以配合一名德国用户疑似植入物报告的调查；Ledger表示该报告相关事件暂无资金损失，且无迹象表明其基础设施、系统或服务遭到入侵，客服正在审查报告，Donjon将检查设备。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.9,
+          "current_state_en": "The incident remains under monitoring; the confirmed implant and suspected $86M drain remain tied to devices sold by CryptoBilis, which is not selling wallets during the investigation; MediaMarkt Saturn has suspended online and in-store Ledger sales in Germany; Karpelès’s teardowns also point to wallets sold by MediaMarkt, Singapore’s Metapod, and official Philippine reseller LazMall; Ledger says it has not verified a drain linked to devices bought elsewhere and is reviewing implant reports from other resellers and locations.",
+          "current_state_zh": "事件仍处于监控中；已确认的植入物和疑似8600万美元资金流出仍与CryptoBilis销售的设备相关，CryptoBilis在调查期间停售；MediaMarkt Saturn已暂停德国线上及线下门店的Ledger销售；Karpelès的拆解分析还指向MediaMarkt、新加坡Metapod及菲律宾官方经销商LazMall销售的钱包；Ledger表示尚未核实其他渠道购买设备相关的资金流出，并正在审查其他经销商和地点的植入物报告。",
+          "detailed_summary_en": "German official Ledger reseller MediaMarkt has removed all Ledger products from stores and online platforms after spyware was found in wallets it sold, part of a supply-chain attack linked to an $86 million draining incident that has now surfaced across multiple official resellers.",
+          "detailed_summary_zh": "German official Ledger reseller MediaMarkt has removed all Ledger products from stores and online platforms after spyware was found in wallets it sold, part of a supply-chain attack linked to an $86 million draining incident that has now surfaced across multiple official resellers.",
+          "event_id": "evt_c594d0e29e7b400b",
+          "first_seen_at": "2026-10-13T14:18:27.572470Z",
+          "importance_score": 8.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T13:35:09Z",
+          "published_at": "2026-10-13T13:35:09Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Protos",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://protos.com/german-ledger-reseller-pauses-sales-following-86m-draining-incident/"
+            }
+          ],
+          "story_ids": [
+            "rss:protos.com_feed_:f64c1a7a7c6f5527"
+          ],
+          "time_precision": "published",
+          "title_en": "German Ledger reseller pauses sales following $86M draining incident",
+          "title_zh": "德国Ledger经销商在8600万美元盗取事件后暂停销售",
+          "update_id": "upd_297849731069bd61",
+          "update_type": "escalation",
+          "what_changed_en": "The new report says Mark Karpelès has also found spyware in Ledger wallets sold by official Philippine reseller LazMall, further widening the affected-reseller scope; Ledger’s latest statement says it has not verified a drain linked to a signer bought elsewhere and is reviewing reports of implants in other signers and locations, while CryptoBilis remains not selling wallets during the investigation.",
+          "what_changed_zh": "新报道称，Mark Karpelès 已在菲律宾官方经销商 LazMall 销售的 Ledger 钱包中也发现间谍软件，使受影响经销商范围进一步扩大；Ledger 最新声明称尚未核实来自其他渠道购买签名器的资金流出，并正在审查其他签名器和地点的植入物报告，同时 CryptoBilis 在调查期间继续停售。"
         }
       ]
     },
@@ -142608,8 +142693,8 @@
     {
       "category": "policy",
       "confidence": 0.75,
-      "current_state_en": "Dubai's crypto regulator approved Kraken parent company Payward to operate in the UAE, clearing the exchange to serve local investors.",
-      "current_state_zh": "迪拜加密监管机构批准Kraken母公司Payward在阿联酋运营，为该交易所服务当地投资者扫清障碍。",
+      "current_state_en": "Kraken has launched operations in Dubai after receiving full market approval from the Virtual Assets Regulatory Authority (VARA), expanding its regulated footprint into the UAE.",
+      "current_state_zh": "Kraken在获得虚拟资产监管局（VARA）的全面市场批准后已在迪拜开展业务，将其受监管业务版图扩展至阿联酋。",
       "entities": [
         "after",
         "approval",
@@ -142623,6 +142708,7 @@
         "kraken",
         "lands",
         "launch",
+        "launches",
         "licence",
         "license",
         "live",
@@ -142643,19 +142729,20 @@
       "event_type": "regulatory_action",
       "first_seen_at": "2026-10-12T10:40:54.508266Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-13T06:33:44.364564Z",
-      "last_updated_at": "2026-10-13T06:33:44.364564Z",
+      "last_material_change_at": "2026-10-13T10:23:11.557952Z",
+      "last_updated_at": "2026-10-13T10:23:11.557952Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_cdd84a5ffff2a9b4",
         "evt_10e93b0421de52e8",
         "evt_625e7fd13410778c",
-        "evt_b00628776834fcb0"
+        "evt_b00628776834fcb0",
+        "evt_43937c76de2e3bd5"
       ],
       "schema_version": 1,
       "status": "monitoring",
-      "title_en": "Dubai VARA Approves Kraken Parent Payward to Operate",
-      "title_zh": "迪拜VARA批准Kraken母公司Payward运营",
+      "title_en": "Dubai VARA Approves Kraken Parent Payward, Kraken Subsequently Launches in Dubai",
+      "title_zh": "迪拜VARA批准Kraken母公司Payward运营，Kraken随后在迪拜上线",
       "topics": [
         "aed-trading-pairs",
         "crypto-regulation",
@@ -142855,6 +142942,44 @@
           "update_type": "confirmation",
           "what_changed_en": "Dubai's crypto regulator approved Kraken parent company Payward to operate in the UAE, clearing the exchange to serve local investors.",
           "what_changed_zh": "迪拜加密监管机构批准Kraken母公司Payward在阿联酋运营，为该交易所服务当地投资者扫清障碍。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Kraken has launched operations in Dubai after receiving full market approval from the Virtual Assets Regulatory Authority (VARA), expanding its regulated footprint into the UAE.",
+          "current_state_zh": "Kraken在获得虚拟资产监管局（VARA）的全面市场批准后已在迪拜开展业务，将其受监管业务版图扩展至阿联酋。",
+          "detailed_summary_en": "Kraken has launched operations in Dubai after receiving full market approval from the Virtual Assets Regulatory Authority (VARA), expanding its regulated footprint into the UAE.",
+          "detailed_summary_zh": "Kraken has launched operations in Dubai after receiving full market approval from the Virtual Assets Regulatory Authority (VARA), expanding its regulated footprint into the UAE.",
+          "event_id": "evt_8c80affa701d556f",
+          "first_seen_at": "2026-10-13T10:23:11.557952Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T09:44:55Z",
+          "published_at": "2026-10-13T09:44:55Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Coinfomania",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://coinfomania.com/kraken-launches-in-dubai-with-full-market-approval-from-vara/"
+            }
+          ],
+          "story_ids": [
+            "google_news:article:4934e96a25e682d5"
+          ],
+          "time_precision": "published",
+          "title_en": "Kraken Launches in Dubai with Full Market Approval from VARA",
+          "title_zh": "Kraken获VARA全面市场批准，在迪拜上线",
+          "update_id": "upd_c93aabbf260396ed",
+          "update_type": "confirmation",
+          "what_changed_en": "Kraken has launched operations in Dubai after receiving full market approval from the Virtual Assets Regulatory Authority (VARA), expanding its regulated footprint into the UAE.",
+          "what_changed_zh": "Kraken在获得虚拟资产监管局（VARA）的全面市场批准后已在迪拜开展业务，将其受监管业务版图扩展至阿联酋。"
         }
       ]
     },
@@ -146404,79 +146529,6 @@
       ]
     },
     {
-      "category": "policy",
-      "confidence": 0.75,
-      "current_state_en": "Kraken has launched operations in Dubai after receiving full market approval from the Virtual Assets Regulatory Authority (VARA), expanding its regulated footprint into the UAE.",
-      "current_state_zh": "Kraken has launched operations in Dubai after receiving full market approval from the Virtual Assets Regulatory Authority (VARA), expanding its regulated footprint into the UAE.",
-      "entities": [
-        "approval",
-        "dubai",
-        "full",
-        "kraken",
-        "launches",
-        "market",
-        "vara"
-      ],
-      "event_id": "evt_43937c76de2e3bd5",
-      "event_type": "regulatory_action",
-      "first_seen_at": "2026-10-13T10:23:11.557952Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-13T10:23:11.557952Z",
-      "last_updated_at": "2026-10-13T10:23:11.557952Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Kraken Launches in Dubai with Full Market Approval from VARA",
-      "title_zh": "Kraken Launches in Dubai with Full Market Approval from VARA",
-      "topics": [
-        "dubai",
-        "exchange-expansion",
-        "kraken",
-        "vara"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Kraken has launched operations in Dubai after receiving full market approval from the Virtual Assets Regulatory Authority (VARA), expanding its regulated footprint into the UAE.",
-          "current_state_zh": "Kraken has launched operations in Dubai after receiving full market approval from the Virtual Assets Regulatory Authority (VARA), expanding its regulated footprint into the UAE.",
-          "detailed_summary_en": "Kraken has launched operations in Dubai after receiving full market approval from the Virtual Assets Regulatory Authority (VARA), expanding its regulated footprint into the UAE.",
-          "detailed_summary_zh": "Kraken has launched operations in Dubai after receiving full market approval from the Virtual Assets Regulatory Authority (VARA), expanding its regulated footprint into the UAE.",
-          "event_id": "evt_43937c76de2e3bd5",
-          "first_seen_at": "2026-10-13T10:23:11.557952Z",
-          "importance_score": 7.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-13T09:44:55Z",
-          "published_at": "2026-10-13T09:44:55Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "Coinfomania",
-              "official": false,
-              "source_type": "google_news",
-              "url": "https://coinfomania.com/kraken-launches-in-dubai-with-full-market-approval-from-vara/"
-            }
-          ],
-          "story_ids": [
-            "google_news:article:4934e96a25e682d5"
-          ],
-          "time_precision": "published",
-          "title_en": "Kraken Launches in Dubai with Full Market Approval from VARA",
-          "title_zh": "Kraken Launches in Dubai with Full Market Approval from VARA",
-          "update_id": "upd_c93aabbf260396ed",
-          "update_type": "initial",
-          "what_changed_en": "Kraken has launched operations in Dubai after receiving full market approval from the Virtual Assets Regulatory Authority (VARA), expanding its regulated footprint into the UAE.",
-          "what_changed_zh": "Kraken has launched operations in Dubai after receiving full market approval from the Virtual Assets Regulatory Authority (VARA), expanding its regulated footprint into the UAE."
-        }
-      ]
-    },
-    {
       "category": "crypto",
       "confidence": 0.75,
       "current_state_en": "Binance announced it will terminate Binance Pool and its associated services — including Pool Savings, cloud mining, trade acceleration, notification and API functions — on 10 November at 15:00, requiring miners to redirect hashrate to other pools and complete redemption or settlement steps by 11 November 07:59, with historical data accessible on the pool page until 24 November 15:00.",
@@ -146874,7 +146926,7 @@
       "first_seen_at": "2026-10-13T10:23:17.255251Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-13T10:23:17.255251Z",
-      "last_updated_at": "2026-10-13T10:23:17.255251Z",
+      "last_updated_at": "2026-10-13T14:18:33.068980Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -146901,7 +146953,7 @@
           "detailed_summary_zh": "Character.AI filed for Chapter 11 bankruptcy protection on October 12, with Disney submitting a $20 million initial bid covering only perpetual non-exclusive licensing of some IP rather than the platform itself, leaving the service's survival dependent on finding a buyer willing to keep operating it.",
           "event_id": "evt_e498047bf3431d29",
           "first_seen_at": "2026-10-13T10:23:17.255251Z",
-          "importance_score": 8.0,
+          "importance_score": 8.5,
           "market_impact_en": "",
           "market_impact_zh": "",
           "material_change": true,
@@ -146914,10 +146966,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "http://character.ai/"
+            },
+            {
+              "label": "The Verge AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.theverge.com/ai-artificial-intelligence/1009802/character-ai-files-for-bankruptcy-disney"
             }
           ],
           "story_ids": [
-            "telegram:theblockbeats:200230"
+            "telegram:theblockbeats:200230",
+            "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:b587e6777616868b"
           ],
           "time_precision": "published",
           "title_en": "Character.AI申请破产：创始人回归谷歌、CEO转投迪士尼，平台面临关停",
@@ -147563,7 +147622,7 @@
       "category": "crypto",
       "confidence": 0.75,
       "current_state_en": "Federated Hermes, a $911 billion asset manager, said it will issue tokenized fund shares for the first time early next year in partnership with digital securities infrastructure provider Prometheum, with money market funds possibly among the first products.",
-      "current_state_zh": "Federated Hermes, a $911 billion asset manager, said it will issue tokenized fund shares for the first time early next year in partnership with digital securities infrastructure provider Prometheum, with money market funds possibly among the first products.",
+      "current_state_zh": "管理着9110亿美元资产的Federated Hermes表示，将于明年初与数字证券基础设施提供商Prometheum合作，首次发行代币化基金份额，货币市场基金可能成为首批产品之一。",
       "entities": [
         "federated",
         "hermes"
@@ -147573,7 +147632,7 @@
       "first_seen_at": "2026-10-13T12:08:57.538969Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-13T12:08:57.538969Z",
-      "last_updated_at": "2026-10-13T12:08:57.538969Z",
+      "last_updated_at": "2026-10-13T12:08:58.272238Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -147582,6 +147641,7 @@
       "title_zh": "Federated Hermes计划于明年年初首次发行代币化基金份额",
       "topics": [
         "asset-management",
+        "prometheum",
         "rwa"
       ],
       "updates": [
@@ -147590,9 +147650,47 @@
           "background_zh": "",
           "community_discussion_en": "",
           "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "Federated Hermes plans to self-issue its first tokenized fund shares in early 2027 in partnership with Prometheum, whose SEC-registered broker-dealer subsidiary will provide custody, clearing, and settlement, with distribution through traditional brokerages and financial advisors; the specific fund and blockchain have not been disclosed, and a money market fund is likely first.",
+          "current_state_zh": "Federated Hermes 计划于2027年初自行发行首批代币化基金份额，与 Prometheum 合作，由其 SEC 注册经纪交易商子公司提供托管、清算和结算，并通过传统券商及财务顾问渠道分销；具体基金和区块链尚未披露，货币市场基金可能是首选。",
+          "detailed_summary_en": "Federated Hermes, a $911 billion asset manager, plans to self-issue its first tokenized fund shares in early 2027 in partnership with Prometheum, distributing through traditional brokerages and financial advisors and likely starting with a money market fund.",
+          "detailed_summary_zh": "Federated Hermes, a $911 billion asset manager, plans to self-issue its first tokenized fund shares in early 2027 in partnership with Prometheum, distributing through traditional brokerages and financial advisors and likely starting with a money market fund.",
+          "event_id": "evt_65b2c720a9c6bd40",
+          "first_seen_at": "2026-10-13T12:08:58.272238Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T12:05:51Z",
+          "published_at": "2026-10-13T12:05:51Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115096"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120307"
+          ],
+          "time_precision": "published",
+          "title_en": "【Federated Hermes 计划明年初发行首批代币化基金份额】",
+          "title_zh": "【Federated Hermes 计划明年初发行首批代币化基金份额】",
+          "update_id": "upd_62e0ac4d66d981c1",
+          "update_type": "confirmation",
+          "what_changed_en": "New details: Federated Hermes will self-issue its first tokenized fund shares (previously issued via third-party platforms), targeting early 2027; with Prometheum, whose SEC-registered broker-dealer subsidiary will provide custody, clearing, and settlement, and distribution via traditional brokerages and financial advisors; specific fund and blockchain not yet disclosed, money market fund likely first.",
+          "what_changed_zh": "新增细节：Federated Hermes 将自行发行首批代币化基金份额（此前由第三方平台发行），目标2027年初；与 Prometheum 合作，由其 SEC 注册经纪交易商子公司提供托管、清算和结算，并通过传统券商及财务顾问分销；具体基金和区块链尚未披露，货币市场基金可能是首选。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Federated Hermes, a $911 billion asset manager, said it will issue tokenized fund shares for the first time early next year in partnership with digital securities infrastructure provider Prometheum, with money market funds possibly among the first products.",
-          "current_state_zh": "Federated Hermes, a $911 billion asset manager, said it will issue tokenized fund shares for the first time early next year in partnership with digital securities infrastructure provider Prometheum, with money market funds possibly among the first products.",
+          "current_state_zh": "管理着9110亿美元资产的Federated Hermes表示，将于明年初与数字证券基础设施提供商Prometheum合作，首次发行代币化基金份额，货币市场基金可能成为首批产品之一。",
           "detailed_summary_en": "Federated Hermes, a $911 billion asset manager, said it will issue tokenized fund shares for the first time early next year in partnership with digital securities infrastructure provider Prometheum, with money market funds possibly among the first products.",
           "detailed_summary_zh": "Federated Hermes, a $911 billion asset manager, said it will issue tokenized fund shares for the first time early next year in partnership with digital securities infrastructure provider Prometheum, with money market funds possibly among the first products.",
           "event_id": "evt_65b2c720a9c6bd40",
@@ -147621,7 +147719,7 @@
           "update_id": "upd_693d71f1b209ebe6",
           "update_type": "initial",
           "what_changed_en": "Federated Hermes, a $911 billion asset manager, said it will issue tokenized fund shares for the first time early next year in partnership with digital securities infrastructure provider Prometheum, with money market funds possibly among the first products.",
-          "what_changed_zh": "Federated Hermes, a $911 billion asset manager, said it will issue tokenized fund shares for the first time early next year in partnership with digital securities infrastructure provider Prometheum, with money market funds possibly among the first products."
+          "what_changed_zh": "管理着9110亿美元资产的Federated Hermes表示，将于明年初与数字证券基础设施提供商Prometheum合作，首次发行代币化基金份额，货币市场基金可能成为首批产品之一。"
         }
       ]
     },
@@ -147767,6 +147865,361 @@
           "what_changed_zh": "French lawmakers advanced a proposal requiring crypto holders to declare holdings of €100,000 or more under penalty of fines up to €10,000, prompting industry backlash over privacy and personal-security risks amid a wave of physical crypto robberies in France."
         }
       ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027.",
+      "current_state_zh": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027.",
+      "entities": [
+        "adds",
+        "devnet",
+        "post",
+        "post-quantum",
+        "quantum",
+        "rollout",
+        "signature",
+        "sui",
+        "support",
+        "targets"
+      ],
+      "event_id": "evt_b3a221aa544aae9b",
+      "event_type": "other",
+      "first_seen_at": "2026-10-13T14:18:08.239360Z",
+      "identifiers": [
+        "dsa-65"
+      ],
+      "last_material_change_at": "2026-10-13T14:18:08.239360Z",
+      "last_updated_at": "2026-10-13T14:18:08.239360Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Sui Devnet Adds Post-Quantum Signature Support, Targets Mainnet Rollout in Q1 20",
+      "title_zh": "Sui Devnet Adds Post-Quantum Signature Support, Targets Mainnet Rollout in Q1 20",
+      "topics": [
+        "cryptography",
+        "layer-1",
+        "ml-dsa-65",
+        "post-quantum",
+        "sui"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027.",
+          "current_state_zh": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027.",
+          "detailed_summary_en": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027.",
+          "detailed_summary_zh": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027.",
+          "event_id": "evt_b3a221aa544aae9b",
+          "first_seen_at": "2026-10-13T14:18:08.239360Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T14:05:51Z",
+          "published_at": "2026-10-13T14:05:51Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/sui-devnet-adds-post-quantum-signatures-mainnet-rollout-q1-2027-21221"
+            }
+          ],
+          "story_ids": [
+            "telegram:wublockchainenglish:26394"
+          ],
+          "time_precision": "published",
+          "title_en": "Sui Devnet Adds Post-Quantum Signature Support, Targets Mainnet Rollout in Q1 20",
+          "title_zh": "Sui Devnet Adds Post-Quantum Signature Support, Targets Mainnet Rollout in Q1 20",
+          "update_id": "upd_257e1ed1dc637393",
+          "update_type": "initial",
+          "what_changed_en": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027.",
+          "what_changed_zh": "Mysten Labs added ML-DSA-65 post-quantum signature support to Sui Devnet v1.82.0, processing the network's first quantum-safe transaction via its ExecuteTransaction and VerifySignature APIs, with Testnet expected by end-2026 and native Mainnet account authentication targeted for Q1 2027."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "S&P Global executed its first on-chain derivatives swap on the Canton blockchain, with Marex and DRW as counterparties, marking an institutional push of regulated derivatives onto blockchain infrastructure.",
+      "current_state_zh": "S&P Global executed its first on-chain derivatives swap on the Canton blockchain, with Marex and DRW as counterparties, marking an institutional push of regulated derivatives onto blockchain infrastructure.",
+      "entities": [
+        "canton"
+      ],
+      "event_id": "evt_b26a127e86506d24",
+      "event_type": "market_structure",
+      "first_seen_at": "2026-10-13T14:18:11.616421Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-13T14:18:11.616421Z",
+      "last_updated_at": "2026-10-13T14:18:11.616421Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "标普在Canton区块链上完成首笔链上衍生品互换交易",
+      "title_zh": "标普在Canton区块链上完成首笔链上衍生品互换交易",
+      "topics": [
+        "canton-network",
+        "derivatives"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "S&P Global executed its first on-chain derivatives swap on the Canton blockchain, with Marex and DRW as counterparties, marking an institutional push of regulated derivatives onto blockchain infrastructure.",
+          "current_state_zh": "S&P Global executed its first on-chain derivatives swap on the Canton blockchain, with Marex and DRW as counterparties, marking an institutional push of regulated derivatives onto blockchain infrastructure.",
+          "detailed_summary_en": "S&P Global executed its first on-chain derivatives swap on the Canton blockchain, with Marex and DRW as counterparties, marking an institutional push of regulated derivatives onto blockchain infrastructure.",
+          "detailed_summary_zh": "S&P Global executed its first on-chain derivatives swap on the Canton blockchain, with Marex and DRW as counterparties, marking an institutional push of regulated derivatives onto blockchain infrastructure.",
+          "event_id": "evt_b26a127e86506d24",
+          "first_seen_at": "2026-10-13T14:18:11.616421Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T12:12:02Z",
+          "published_at": "2026-10-13T12:12:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371598?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:200265"
+          ],
+          "time_precision": "published",
+          "title_en": "标普在Canton区块链上完成首笔链上衍生品互换交易",
+          "title_zh": "标普在Canton区块链上完成首笔链上衍生品互换交易",
+          "update_id": "upd_ac8561470700c61e",
+          "update_type": "initial",
+          "what_changed_en": "S&P Global executed its first on-chain derivatives swap on the Canton blockchain, with Marex and DRW as counterparties, marking an institutional push of regulated derivatives onto blockchain infrastructure.",
+          "what_changed_zh": "S&P Global executed its first on-chain derivatives swap on the Canton blockchain, with Marex and DRW as counterparties, marking an institutional push of regulated derivatives onto blockchain infrastructure."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "OpenCode 2.0 rewrites its architecture around a Code Mode that turns MCP services and OpenAPI endpoints into chainable JavaScript functions, adds a shared local backend service with parallel background sub-agents and 80+ hot-loadable plugins, and ships an embeddable SDK that Cloudflare now supports experimentally via Durable Objects.",
+      "current_state_zh": "OpenCode 2.0 rewrites its architecture around a Code Mode that turns MCP services and OpenAPI endpoints into chainable JavaScript functions, adds a shared local backend service with parallel background sub-agents and 80+ hot-loadable plugins, and ships an embeddable SDK that Cloudflare now supports experimentally via Durable Objects.",
+      "entities": [
+        "agent",
+        "mcp",
+        "opencode"
+      ],
+      "event_id": "evt_fb8b29843ad489dd",
+      "event_type": "other",
+      "first_seen_at": "2026-10-13T14:18:11.629355Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-13T14:18:11.629355Z",
+      "last_updated_at": "2026-10-13T14:18:11.629355Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "OpenCode 2.0重写底层：MCP工具能用代码串联，多个Agent可后台并行干活",
+      "title_zh": "OpenCode 2.0重写底层：MCP工具能用代码串联，多个Agent可后台并行干活",
+      "topics": [
+        "ai-coding-agents",
+        "cloudflare-durable-objects",
+        "mcp",
+        "open-source-devtools",
+        "plugin-architecture"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "OpenCode 2.0 rewrites its architecture around a Code Mode that turns MCP services and OpenAPI endpoints into chainable JavaScript functions, adds a shared local backend service with parallel background sub-agents and 80+ hot-loadable plugins, and ships an embeddable SDK that Cloudflare now supports experimentally via Durable Objects.",
+          "current_state_zh": "OpenCode 2.0 rewrites its architecture around a Code Mode that turns MCP services and OpenAPI endpoints into chainable JavaScript functions, adds a shared local backend service with parallel background sub-agents and 80+ hot-loadable plugins, and ships an embeddable SDK that Cloudflare now supports experimentally via Durable Objects.",
+          "detailed_summary_en": "OpenCode 2.0 rewrites its architecture around a Code Mode that turns MCP services and OpenAPI endpoints into chainable JavaScript functions, adds a shared local backend service with parallel background sub-agents and 80+ hot-loadable plugins, and ships an embeddable SDK that Cloudflare now supports experimentally via Durable Objects.",
+          "detailed_summary_zh": "OpenCode 2.0 rewrites its architecture around a Code Mode that turns MCP services and OpenAPI endpoints into chainable JavaScript functions, adds a shared local backend service with parallel background sub-agents and 80+ hot-loadable plugins, and ships an embeddable SDK that Cloudflare now supports experimentally via Durable Objects.",
+          "event_id": "evt_fb8b29843ad489dd",
+          "first_seen_at": "2026-10-13T14:18:11.629355Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T13:36:02Z",
+          "published_at": "2026-10-13T13:36:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371618?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:200284"
+          ],
+          "time_precision": "published",
+          "title_en": "OpenCode 2.0重写底层：MCP工具能用代码串联，多个Agent可后台并行干活",
+          "title_zh": "OpenCode 2.0重写底层：MCP工具能用代码串联，多个Agent可后台并行干活",
+          "update_id": "upd_c9c1a6a8dcd8a440",
+          "update_type": "initial",
+          "what_changed_en": "OpenCode 2.0 rewrites its architecture around a Code Mode that turns MCP services and OpenAPI endpoints into chainable JavaScript functions, adds a shared local backend service with parallel background sub-agents and 80+ hot-loadable plugins, and ships an embeddable SDK that Cloudflare now supports experimentally via Durable Objects.",
+          "what_changed_zh": "OpenCode 2.0 rewrites its architecture around a Code Mode that turns MCP services and OpenAPI endpoints into chainable JavaScript functions, adds a shared local backend service with parallel background sub-agents and 80+ hot-loadable plugins, and ships an embeddable SDK that Cloudflare now supports experimentally via Durable Objects."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Interactive Brokers has launched an Ethereum staking service for its clients, with infrastructure and technical support provided by ZeroHash.",
+      "current_state_zh": "Interactive Brokers has launched an Ethereum staking service for its clients, with infrastructure and technical support provided by ZeroHash.",
+      "entities": [
+        "zerohash"
+      ],
+      "event_id": "evt_2994c98009c734d7",
+      "event_type": "other",
+      "first_seen_at": "2026-10-13T14:18:11.632973Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-13T14:18:11.632973Z",
+      "last_updated_at": "2026-10-13T14:18:11.632973Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "盈透证券推出以太坊质押服务，由ZeroHash提供技术支持",
+      "title_zh": "盈透证券推出以太坊质押服务，由ZeroHash提供技术支持",
+      "topics": [
+        "brokerage",
+        "staking",
+        "zerohash"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Interactive Brokers has launched an Ethereum staking service for its clients, with infrastructure and technical support provided by ZeroHash.",
+          "current_state_zh": "Interactive Brokers has launched an Ethereum staking service for its clients, with infrastructure and technical support provided by ZeroHash.",
+          "detailed_summary_en": "Interactive Brokers has launched an Ethereum staking service for its clients, with infrastructure and technical support provided by ZeroHash.",
+          "detailed_summary_zh": "Interactive Brokers has launched an Ethereum staking service for its clients, with infrastructure and technical support provided by ZeroHash.",
+          "event_id": "evt_2994c98009c734d7",
+          "first_seen_at": "2026-10-13T14:18:11.632973Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T14:04:02Z",
+          "published_at": "2026-10-13T14:04:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371623?from=telegram"
+            },
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115112"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:200289",
+            "telegram:foresightnews:120323"
+          ],
+          "time_precision": "published",
+          "title_en": "盈透证券推出以太坊质押服务，由ZeroHash提供技术支持",
+          "title_zh": "盈透证券推出以太坊质押服务，由ZeroHash提供技术支持",
+          "update_id": "upd_5b3b4dc48de4cd03",
+          "update_type": "initial",
+          "what_changed_en": "Interactive Brokers has launched an Ethereum staking service for its clients, with infrastructure and technical support provided by ZeroHash.",
+          "what_changed_zh": "Interactive Brokers has launched an Ethereum staking service for its clients, with infrastructure and technical support provided by ZeroHash."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
+      "current_state_zh": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
+      "entities": [
+        "anthropic"
+      ],
+      "event_id": "evt_d151507e290c34d2",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-13T14:18:35.212680Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-13T14:18:35.212680Z",
+      "last_updated_at": "2026-10-13T14:18:35.212680Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Anthropic warns ‘AI worms’ may autonomously spread across devices like a virus",
+      "title_zh": "Anthropic warns ‘AI worms’ may autonomously spread across devices like a virus",
+      "topics": [
+        "ai-safety",
+        "anthropic",
+        "cybersecurity",
+        "iot-security",
+        "self-replicating-ai"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
+          "current_state_zh": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
+          "detailed_summary_en": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
+          "detailed_summary_zh": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
+          "event_id": "evt_d151507e290c34d2",
+          "first_seen_at": "2026-10-13T14:18:35.212680Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-13T13:55:09Z",
+          "published_at": "2026-10-13T13:55:09Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/anthropic-ai-worms-autonomously-spread-devices-virus?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:8d1c5e2e3b263c8f"
+          ],
+          "time_precision": "published",
+          "title_en": "Anthropic warns ‘AI worms’ may autonomously spread across devices like a virus",
+          "title_zh": "Anthropic warns ‘AI worms’ may autonomously spread across devices like a virus",
+          "update_id": "upd_3b84fb2a560a573f",
+          "update_type": "initial",
+          "what_changed_en": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
+          "what_changed_zh": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -147788,7 +148241,7 @@
       "evt_f8abfe1cabbeae51"
     ],
     "ai-safety": [
-      "evt_9807e7a6d948fadb",
+      "evt_b0831ae7fb72a1c8",
       "evt_eb423dfd6479e630"
     ],
     "alpenglow": [
@@ -148516,7 +148969,8 @@
       "evt_50013e6f488ce06a",
       "evt_60799d5ad64a7cfa",
       "evt_67c7df87b36b86b2",
-      "evt_fbecd5dc63a19caa"
+      "evt_b3a221aa544aae9b",
+      "evt_cb95dc37cc44fdd1"
     ],
     "superintelligence": [
       "evt_cdb41193ee09709c"
@@ -148607,6 +149061,9 @@
       "evt_0e8a68a8b363e6bf",
       "evt_85b8850df81f687c",
       "evt_90e6b7b9337429f2"
+    ],
+    "vara": [
+      "evt_8c80affa701d556f"
     ],
     "visa": [
       "evt_720f8d3373a42591",
@@ -150641,7 +151098,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A confirmed supply-chain compromise in which third-party reseller CryptoBilis sold tampered hardware wallets that covertly transmit users' recovery phrases over LTE is a serious security incident with direct, material user impact — anyone who bought from that reseller faces total loss of funds. It is not a protocol-level exploit or a >$50M systemic event, so it sits below the top tier, but it is well above routine security news because the attack vector targets the seed phrase itself and undermines trust in hardware-wallet supply chains.",
         "ai_score": 8.0,
@@ -150678,7 +151135,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A UK High Court ruling on which jurisdiction's law governs claims to roughly $5 billion in seized bitcoin is a substantive legal precedent for cross-border crypto asset ownership and enforcement, with clear implications for how confiscated digital assets are adjudicated. It is a high-value regulatory/legal development rather than a market-moving event, so it lands below the systemic threshold.",
         "ai_score": 7.5,
@@ -150716,73 +151173,7 @@
       }
     },
     {
-      "attempts": 1,
-      "item": {
-        "ai_reason": "Russia's largest bank securing regulatory approval to trade crypto is a substantive market-access and institutional-adoption development, expanding crypto trading into a major state-linked banking institution. It is a concrete in-window regulatory milestone with clear transmission to Russia's crypto market structure, though its impact is regionally concentrated rather than systemic globally.",
-        "ai_score": 7.5,
-        "ai_summary": "Sberbank, Russia's largest bank, has received regulatory approval to trade cryptocurrency, marking a significant expansion of institutional crypto access within the Russian market.",
-        "ai_tags": [
-          "Russia",
-          "Sberbank",
-          "regulation",
-          "institutional-adoption",
-          "banking"
-        ],
-        "author": "AI Boost",
-        "content": "Skip to main content\nNews\nMarkets\nFinance\nTech\nPolicy\nFocus\nBitcoin News\nEthereum News\nXRP News\nSolana News\nPrices\nLatest Crypto Prices\nBitcoin (BTC)\nEthereum (ETH)\nXRP (XRP)\nSOL (SOL)\nHyperliquid (HYPE)\nSee all crypto prices\nLatest US Stock Prices\nS&P 500 (SPY)\nBullish (BLSH)\nCircle (CRCL)\nCoinbase (COIN)\nStrategy (MSTR)\nSee all US stock prices\nData & Indices\nMarket Data\nIndex Offering\nAPI\nResearch Insights\nDocumentation and Governance\nResearch\nResearch Hub\nExchange Benchmark\nEvents\nConsensus Hong Kong 2027\nConsensus Miami 2027\nSponsored\nThought Leadership\nMedia & Partnership Opportunities\nVideos\nCoinDesk Daily\nPublic Keys at NYSE\nThe Policy Protocol\nMarkets Outlook\nGen C\nCoinDesk Spotlight\nBlockspace Media\nShorts\nPodcasts\nPublic Keys at NYSE\nThe Policy Protocol\nCoinDesk Podcast Network\nMarkets Outlook\nGen C\nNewsletters\nCoinDesk Headlines\nCrypto Daybook Americas\nState of Crypto\nCrypto Long & Short\nCrypto for Advisors\nTokenization Weekly\nCoinDesk Insider\nLanguage\nEN\nEnglish\nen\nDeutsch\nde\nEspañol\nes\nFilipino\nfil\nFrançais\nfr\nBahasa Indonesia\nid\nItaliano\nit\n日本語\nja\n한국어\nko\nNederlands\nnl\nPortuguês\npt-br\nРусский\nru\nTürkçe\ntr\nУкраїнська\nuk\n中文\nzh\nSign Up\nSign In\nSearch\n/\nNews\nNews\nStories\nMarkets\nFinance\nTech\nPolicy\nFocus\nSee all news articles\nNewsletters\nCoinDesk Headlines\nCrypto Daybook Americas\nState of Crypto\nCrypto Long & Short\nCrypto for Advisors\nTokenization Weekly\nCoinDesk Insider\nSee all newsletters\nCrypto News\nBitcoin News\nEthereum News\nXRP News\nSolana News\nVideo\nVideo\nVideos\nCoinDesk Daily\nPublic Keys at NYSE\nThe Policy Protocol\nMarkets Outlook\nGen C\nCoinDesk Spotlight\nBlockspace Media\nShorts\nSee all videos\nPodcasts\nPublic Keys at NYSE\nThe Policy Protocol\nCoinDesk Podcast Network\nMarkets Outlook\nGen C\nSee all podcasts\nPrices\nPrices\nLatest Crypto Prices\nBitcoin (BTC)\nEthereum (ETH)\nXRP (XRP)\nSOL (SOL)\nHyperliquid (HYPE)\nSee all crypto prices\nLatest US Stock Prices\nS&P 500 (SPY)\nBullish (BLSH)\nCircle (CRCL)\nCoinbase (COIN)\nStrategy (MSTR)\nSee all US stock prices\nResearch\nResearch\nResearch Hub\nBespoke research, primers, and quarterly updates trusted by allocators and protocol teams.\nExchange Benchmark\nThe institutional standard for evaluating exchange transparency, market integrity, and risk.\nEvents\nEvents\nConsensus Hong Kong 2027\nConsensus Miami 2027\nData & Indices\nData & Indices\nMarket Data\nUnrivaled digital asset data for institutional analysis and insights.\nIndex Offering\nDiscover our index offerings with $49 billion in benchmarked assets, trusted by 100+ global partners.\nAPI\nInstitutional-grade crypto data streamed live from 300+ exchanges.\nResearch Insights\nData-driven analysis of key digital asset trends.\nDocumentation and Governance\nIndex methodologies, policies, announcements and updates.\nMore\nResearch\nEvents\nData & Indices\nResearch Hub\nBespoke research, primers, and quarterly updates trusted by allocators and protocol teams.\nExchange Benchmark\nThe institutional standard for evaluating exchange transparency, market integrity, and risk.\nConsensus Hong Kong 2027\nConsensus Miami 2027\nMarket Data\nUnrivaled digital asset data for institutional analysis and insights.\nIndex Offering\nDiscover our index offerings with $49 billion in benchmarked assets, trusted by 100+ global partners.\nAPI\nInstitutional-grade crypto data streamed live from 300+ exchanges.\nResearch Insights\nData-driven analysis of key digital asset trends.\nDocumentation and Governance\nIndex methodologies, policies, announcements and updates.\nSponsored\nSponsored\nThought Leadership\nExpert perspectives from our partners\nMedia & Partnership Opportunities\nReach the architects of the digital economy\nSearch\n/\nen\nen\nEnglish\nen\nDeutsch\nde\nEspañol\nes\nFilipino\nfil\nFrançais\nfr\nBahasa Indonesia\nid\nItaliano\nit\n日本語\nja\n한국어\nko\nNederlands\nnl\nPortuguês\npt-br\nРусский\nru\nTürkçe\ntr\nУкраїнська\nuk\n中文\nzh\nSign In\nSign Up\nFinance\nRussia’s largest bank Sberbank secures approval to trade crypto\nSberbank plans to open crypto trading to all clients Dec. 1 and is already testing BTC, ETH and USDT trades in its app.\nBy\nFrancisco Rodrigues\n,\nAI Boost\n|\nEdited by\nJamie Crawley\nOct 13, 2026, 7:02 a.m. EDT\n2 min read\nMake\npreferred on\nShare\nShare this article\nCopy link\nX icon\nX (Twitter)\nLinkedIn\nFacebook\nEmail\nMake\npreferred on\n(Perituss/Wikimedia Commons)\nCrypto\nStocks\nCD20\n$2,305.89\nCD20 down 1.79 percent\n1.79%\nBTC\n$83,286.01\nBTC up 0.71 percent\n0.71%\nETH\n$2,499.41\nETH down 1.21 percent\n1.21%\nXRP\n$1.36\nXRP down 2.19 percent\n2.19%\nSOL\n$106.24\nSOL down 3.58 percent\n3.58%\nHYPE\n$81.66\nHYPE down 4.46 percent\n4.46%\nTRX\n$0.32\nTRX down 0.81 percent\n0.81%",
-        "fetched_at": "2026-10-13T12:11:10.365204Z",
-        "id": "rss:www.coindesk.com_arc_outboundfeeds_rss_:80d3f6cddf1bc22a",
-        "metadata": {
-          "category": "crypto-regulation",
-          "event_retry_pending": true,
-          "feed_name": "CoinDesk",
-          "score_model": "deepseek:deepseek-flash",
-          "source_category": "crypto-markets",
-          "tags": [
-            "Finance",
-            "banks",
-            "Crypto Trading",
-            "News"
-          ]
-        },
-        "published_at": "2026-10-13T11:02:47Z",
-        "source_type": "rss",
-        "title": "Russia’s largest bank Sberbank secures approval to trade crypto",
-        "url": "https://www.coindesk.com/business/2026/10/13/russia-s-largest-bank-sberbank-secures-approval-to-trade-crypto"
-      }
-    },
-    {
-      "attempts": 1,
-      "item": {
-        "ai_reason": "A $911B-AUM asset manager moving from third-party tokenization to issuing its own tokenized fund shares via a SEC-registered broker-dealer (Prometheum) is a substantive institutional adoption and market-structure development, with a clear distribution path through traditional brokerages and advisors. It is a concrete forward plan rather than an immediate product launch, so it sits in the high-value but not groundbreaking range.",
-        "ai_score": 7.0,
-        "ai_summary": "Federated Hermes, a $911 billion asset manager, plans to self-issue its first tokenized fund shares in early 2027 in partnership with Prometheum, distributing through traditional brokerages and financial advisors and likely starting with a money market fund.",
-        "ai_tags": [
-          "tokenization",
-          "institutional-adoption",
-          "rwa",
-          "asset-management",
-          "prometheum"
-        ],
-        "author": "foresightnews",
-        "content": "【Federated Hermes 计划明年初发行首批代币化基金份额】\n\nForesight News 消息，据 CoinDesk 报道，管理资产规模达 9110 亿美元的资管公司 Federated Hermes 计划于 2027 年初自行发行首批代币化基金份额，并与数字证券基础设施提供商 Prometheum 合作，通过传统券商及财务顾问渠道分销。Federated Hermes 尚未披露拟代币化的具体基金及所用区块链，其数字资产产品与平台负责人 Kevin Barr 表示，货币市场基金可能是首选。Prometheum 旗下在美 SEC 注册的经纪交易商子公司将提供托管、清算及结算服务，其代理清算平台也将支持其他经纪交易商向客户提供相关产品。此前，Federated Hermes 曾与多家第三方平台合作，由第三方发行其投资产品的代币化版本，此次将改为自行发行。\nhttps://foresightnews.pro/news/h5Detail/115096",
-        "fetched_at": "2026-10-13T12:08:58.272238Z",
-        "id": "telegram:foresightnews:120307",
-        "metadata": {
-          "category": "crypto-markets",
-          "channel": "foresightnews",
-          "event_retry_pending": true,
-          "msg_url": "https://telegram.me/foresightnews/120307",
-          "score_model": "deepseek:deepseek-flash"
-        },
-        "published_at": "2026-10-13T12:05:51Z",
-        "source_type": "telegram",
-        "title": "【Federated Hermes 计划明年初发行首批代币化基金份额】",
-        "url": "https://foresightnews.pro/news/h5Detail/115096"
-      }
-    },
-    {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A concrete regulatory/legal development: South Korea formalizing rules that let courts seize and sell Bitcoin and other crypto held by debtors, effective November. This expands enforcement powers and creates a clear pathway for forced liquidation of domestic crypto holdings, a meaningful structural/market-access development for Korean crypto users and exchanges, though it is an incremental extension of existing asset-forfeiture frameworks rather than a landmark market-reshaping decision. No discussion or commentary was provided.",
         "ai_score": 7.0,
@@ -150820,7 +151211,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Blur, a leading NFT marketplace, announced it will shut down its frontend on November 12 due to collapsing volume. This is a material operational change for a widely-used platform and signals continued contraction in the NFT sector, though it lacks systemic market impact.",
         "ai_score": 7.0,
@@ -150849,6 +151240,222 @@
         "source_type": "google_news",
         "title": "Blur to shut NFT marketplace frontend on November 12 as volume collapses",
         "url": "https://cryptorank.io/news/feed/1e532-blur-to-shut-nft-marketplace-frontend-on-november-12-as-volume-collapses"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Bankruptcy filing by a once-high-profile consumer AI platform, coupled with a $20M asset sale to Disney, is a major industry event signaling consolidation and financial distress among standalone consumer AI chatbot companies. It is a substantial structural/competitive development rather than a routine product update, though it falls short of a frontier-lab collapse that would reshape AI capability or safety landscapes, warranting a high but not top-tier score.",
+        "ai_score": 8.5,
+        "ai_summary": "Interactive chatbot platform Character.AI has filed for bankruptcy roughly five years after launch and will sell some of its assets to Disney for $20 million.",
+        "ai_tags": [
+          "Character.AI",
+          "bankruptcy",
+          "AI startups",
+          "Disney",
+          "consumer AI"
+        ],
+        "author": "Ivan Mehta",
+        "content": "The startup will sell some of its assets to Disney for $20 million.",
+        "fetched_at": "2026-10-13T14:18:33.137523Z",
+        "id": "rss:techcrunch.com_category_artificial-intelligence_feed_:b3dfed6b92907480",
+        "metadata": {
+          "category": "ai-media",
+          "event_retry_pending": true,
+          "feed_name": "TechCrunch AI",
+          "score_model": "deepseek:deepseek-flash",
+          "tags": [
+            "AI",
+            "Apps",
+            "bankruptcy",
+            "Chapter 11",
+            "character.ai",
+            "greycroft"
+          ]
+        },
+        "published_at": "2026-10-13T12:23:42Z",
+        "source_type": "rss",
+        "title": "Just 5 years in, interactive chatbot platform Character.AI files for bankruptcy",
+        "url": "https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A major traditional brokerage (Interactive Brokers) adding Ethereum staking via Zerohash is a meaningful institutional adoption and market-structure development, giving mainstream brokerage clients direct access to ETH staking yield. It is not a ground-breaking regulatory or systemic event, but it is a substantive step in TradFi distribution of crypto yield products, warranting high-value attention.",
+        "ai_score": 7.5,
+        "ai_summary": "Interactive Brokers has rolled out Ethereum staking for its clients through infrastructure provider Zerohash, extending staking access to a mainstream brokerage customer base.",
+        "ai_tags": [
+          "ethereum-staking",
+          "institutional-adoption",
+          "zerohash",
+          "tradfi",
+          "market-structure"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxNZTNMTUkwbDJHQ3pRbUZ2T2hRZ1ZuTW12T0Y5MEIzcEpwWmZNbFUtbjd0MW9EWUZmNTlfOUpvMEVBUnk1OXk0ajFDY2lweF9kTDR1ZXVXZFR2T2tTV0d1UzZTWUhnWDhoWWJZeS13NGNoeW16RDA0SF9OWDRIbXc5OVB1cDdLTGUzbGlOdy0zZ181cE8wbzMweVhVbDFvaFNFRGlGZ3pucWNCU2xmM0Rva3Jn?oc=5\" target=\"_blank\">Interactive Brokers Launches Ethereum Staking Through Zerohash</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-13T14:18:23.089253Z",
+        "id": "google_news:article:6eb6ba5a1cf530d1",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-protocols",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-13T14:14:56Z",
+        "source_type": "google_news",
+        "title": "Interactive Brokers Launches Ethereum Staking Through Zerohash",
+        "url": "https://thedefiant.io/converge/tradfi-and-fintech/interactive-brokers-launches-ethereum-staking-through-zerohash"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A concrete regulatory development within the news window: Russia's central bank expanded its authorized operator register, adding Sberbank and VTB to crypto trading and custody roles ahead of a planned Dec. 1, 2026 launch of BTC, ETH and USDT products. Clearing the country's largest lender materially expands retail and institutional crypto access in a major market, a clear transmission path from regulation to market structure, though its impact is largely domestic rather than systemic.",
+        "ai_score": 7.5,
+        "ai_summary": "Russia's central bank authorized Sberbank (alongside VTB and other firms) as a licensed crypto exchange operator and custodian, with the lender preparing to offer BTC, ETH and USDT trading through its platforms starting Dec. 1, 2026.",
+        "ai_tags": [
+          "russia",
+          "sberbank",
+          "crypto-regulation",
+          "banking",
+          "crypto-adoption"
+        ],
+        "author": "Cointelegraph by Helen Partz",
+        "content": "Russia clears Sberbank for crypto trading ahead of December launch\nRussia’s largest bank, Sberbank, has secured crypto exchange authorization as it prepares to offer Bitcoin, Ether and Tether USDt trading.\nSberbank, Russia’s largest lender, has secured the central bank’s approval to trade cryptocurrencies, including Bitcoin, ahead of a planned December launch.\nThe Bank of Russia’s updated register, dated Tuesday, lists 10 authorized crypto exchange operators and six digital custodians, up from four and five, respectively, a week earlier. The lists include major lenders Sberbank and VTB alongside nonbank companies such as T-Invest Lab and Atomyze.\nSberbank previously said it plans to launch crypto products supporting Bitcoin (BTC), Ether (ETH) and Tether’s USDt (USDT) on Dec. 1, 2026, through its existing SberBank Online, SberInvestments and SberBusiness platforms.\nSberbank has already begun testing crypto purchases, sales, deposits and withdrawals through its SberBank Online app, Russian business newspaper Vedomosti reported on Thursday, citing the bank’s press office. The bank said the final launch timeline depends on additional central bank regulations.\nThe registrations follow the Sept. 1 entry into force of Russia’s new crypto rules, which placed exchange operators and custodians under central bank oversight. The country still prohibits using cryptocurrencies to pay for goods and services.\nSberbank was among the first companies to secure digital custodian status last Tuesday.\nRelated: UK sanctions three crypto exchanges tied to Russian illicit funds",
+        "fetched_at": "2026-10-13T14:18:36.197067Z",
+        "id": "rss:cointelegraph.com_rss:c89fdd1163858ac0",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "feed_name": "Cointelegraph",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "tags": [
+            "Latest News"
+          ]
+        },
+        "published_at": "2026-10-13T12:22:24Z",
+        "source_type": "rss",
+        "title": "Russia clears Sberbank for crypto trading ahead of December launch",
+        "url": "https://cointelegraph.com/news/sberbank-russia-crypto-trading-approval?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Thailand's clearance of Bitcoin and Ether ETFs represents a concrete regulatory step that opens a new national market to spot crypto ETF products, with a defined launch date of October 16 — a genuine market-access development worth attention, though Thailand's market size limits systemic impact. The article's value is diluted by promotional content about 'Pepeto buyers chasing 100x listing gains,' which is speculative hype rather than substantive news.",
+        "ai_score": 7.0,
+        "ai_summary": "Thailand's regulator has cleared Bitcoin and Ether ETF products to begin trading on October 16, expanding regulated crypto investment access in the Thai market.",
+        "ai_tags": [
+          "bitcoin-etf",
+          "ethereum-etf",
+          "thailand",
+          "crypto-regulation",
+          "market-access"
+        ],
+        "author": "Coin Gabbar",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMikAFBVV95cUxPdVA0NU1sTWc1TU10WDJPeEJFdUVPSTFRNnlGdGJDaVNCVHY1TS1zeUdwNVZYUkZFRld4UE5hb2l1YWFUNVRLX3RmVnBfMVVVWWVFTWZ0d1ozcW5WMkJCS29uNzZseE5NamRKRGlzSklDNnpzaDU2ZTRhSnhLeGoyN2pBeWgwSmR4UjJ5OGp5dlM?oc=5\" target=\"_blank\">Crypto News: Thailand Clears Bitcoin and Ether ETFs for October 16 as Pepeto Buyers Chase 100x Listing Gains</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Coin Gabbar</font>",
+        "fetched_at": "2026-10-13T14:18:05.389675Z",
+        "id": "google_news:article:0aef672a1b9ee12c",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.coingabbar.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Coin Gabbar"
+        },
+        "published_at": "2026-10-13T12:40:00Z",
+        "source_type": "google_news",
+        "title": "Crypto News: Thailand Clears Bitcoin and Ether ETFs for October 16 as Pepeto Buyers Chase 100x Listing Gains",
+        "url": "https://www.coingabbar.com/en/crypto-news-thailand-clears-bitcoin-ether-etfs-october-16"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "This is a concrete institutional/TradFi blockchain milestone: two regulated trading firms (DRW and Marex) executing a bond-index swap natively on the Canton Network. It demonstrates real derivatives activity — not just a pilot announcement — on a privacy-focused institutional protocol, which is a meaningful market-structure data point for tokenized traditional finance. It lacks the scale of a systemic event or a top-tier protocol upgrade, so it lands in the high-value rather than groundbreaking tier.",
+        "ai_score": 7.0,
+        "ai_summary": "DRW and Marex executed a bond-index swap on the Canton Network, marking an on-chain derivatives trade between two institutional trading firms.",
+        "ai_tags": [
+          "canton-network",
+          "institutional-adoption",
+          "tokenization",
+          "derivatives",
+          "tradfi-defi"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxNWk1tamwxZG9FQ190S3ZDWHBFbGdfTjZzdkJqR3dvMU9XclJCcExfUlViaElfWi1UdGo1N1AtREsxbmhIQmFKTWR4b1cxaVotb1hrQTRyZ0Nqd1Z2cm5EWk0zZnpDY3ZFYUJRQ3J2N2tzVXV1TVVjVXNReXp4dXhFOURWWDBkNlZGTXA5Z25oS2xMX2ZidmFiWkYxNDEwUQ?oc=5\" target=\"_blank\">DRW and Marex Execute Bond-Index Swap on Canton</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-13T14:18:23.088952Z",
+        "id": "google_news:article:76a3e273d33179a8",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-13T12:25:01Z",
+        "source_type": "google_news",
+        "title": "DRW and Marex Execute Bond-Index Swap on Canton",
+        "url": "https://thedefiant.io/converge/tradfi-and-fintech/drw-and-marex-execute-bond-index-swap-on-canton"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Binance is discontinuing an entire product line — its mining pool, cloud mining, and related services — which forces affected miners to migrate hashrate and withdraw funds before deadlines. This is a material exchange service/operations change rather than a routine listing or marketing item, but it is not systemic: Binance Pool holds a modest share of global hashrate and no broader market access or solvency implications are signaled. Score sits above routine maintenance/product updates but below platform-wide fee or top-asset listing changes.",
+        "ai_score": 7.0,
+        "ai_summary": "Binance announced it is shutting down its mining pool, cloud mining, and related services, requiring participating miners to wind down and migrate away from the platform.",
+        "ai_tags": [
+          "binance",
+          "mining-pool",
+          "cloud-mining",
+          "exchange-operations",
+          "service-shutdown"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi8gFBVV95cUxQOURVMjhsbFc2Y25vVkk3d2VpQWZLVU9MWllKNjdfTVNDOFFZc3k5bWhxY1d6dmVLa2tyQ0xmM0hVNVQ2U0lBMmM2UkE4azctbE03X3l4YmNFRlAwX21sY2RwTkVyb0ZZOF9wb3hSR21adUo5VlRDYkRiZTVpai16RXpPNjRIb2pQOUtjMEsyVDNQVzZKMGN5SlR1ek95bjRaZzBaZGlWaDU2Sm5CQmR6YzdhRTJVM0F6UE42M09WNWplLTRCQjRpZFV4NkxvWTRqa0tYS0hnNTNEczR4dXlHZXRTRFlUQno4SThYS3pkbmhEUQ?oc=5\" target=\"_blank\">Binance to shut down mining pool, cloud mining and related services</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-10-13T14:18:20.264088Z",
+        "id": "google_news:article:244ac6ac3db0d2d8",
+        "metadata": {
+          "category": "exchange-operations",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-10-13T11:40:00Z",
+        "source_type": "google_news",
+        "title": "Binance to shut down mining pool, cloud mining and related services",
+        "url": "https://www.theblock.co/news/business/2026-10-13-binance-to-shut-down-mining-pool-cloud-mining-and-related-services-418410?utm_source=tradingview&utm_medium=rss"
       }
     }
   ],

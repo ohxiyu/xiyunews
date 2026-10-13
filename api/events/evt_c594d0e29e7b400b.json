@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_c594d0e29e7b400b/",
   "json": "https://xiyu.news/api/events/evt_c594d0e29e7b400b.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "developing",
   "category": "crypto",
   "title": {
     "zh": "Ledger硬件钱包供应链植入物窃取助记词事件",
     "en": "Ledger Hardware Wallet Supply Chain Implant Seed Theft Incident"
   },
   "current_state": {
-    "zh": "Ledger的Donjon安全团队确认，东南亚经销商CryptoBilis销售的钱包中存在未经授权的硬件植入物，该植入物会在设置过程中从设备屏幕读取24词恢复短语，并通过预置eSIM经LTE传输，所有已确认的损失均与通过该经销商购买的设备有关，疑似被盗资金达8600万美元。",
-    "en": "Ledger's Donjon security team confirmed an unauthorized hardware implant in wallets sold by Southeast Asian reseller CryptoBilis that reads the 24-word recovery phrase from the device screen during setup and transmits it over LTE via a provisioned eSIM, with all confirmed losses from the suspected $86M drain tied to devices bought through that reseller."
+    "zh": "事件仍处于监控中；已确认的植入物和疑似8600万美元资金流出仍与CryptoBilis销售的设备相关，CryptoBilis在调查期间停售；MediaMarkt Saturn已暂停德国线上及线下门店的Ledger销售；Karpelès的拆解分析还指向MediaMarkt、新加坡Metapod及菲律宾官方经销商LazMall销售的钱包；Ledger表示尚未核实其他渠道购买设备相关的资金流出，并正在审查其他经销商和地点的植入物报告。",
+    "en": "The incident remains under monitoring; the confirmed implant and suspected $86M drain remain tied to devices sold by CryptoBilis, which is not selling wallets during the investigation; MediaMarkt Saturn has suspended online and in-store Ledger sales in Germany; Karpelès’s teardowns also point to wallets sold by MediaMarkt, Singapore’s Metapod, and official Philippine reseller LazMall; Ledger says it has not verified a drain linked to devices bought elsewhere and is reviewing implant reports from other resellers and locations."
   },
   "first_seen_at": "2026-10-09T15:30:47.822838+00:00",
-  "last_updated_at": "2026-10-13T12:13:24.371450+00:00",
-  "last_material_change_at": "2026-10-13T12:13:24.371450+00:00",
+  "last_updated_at": "2026-10-13T14:18:27.572470+00:00",
+  "last_material_change_at": "2026-10-13T14:18:27.572470+00:00",
   "confidence": 0.75,
-  "updates_count": 39,
-  "sources_count": 73,
+  "updates_count": 41,
+  "sources_count": 75,
   "entities": [
     "affected",
     "after",
@@ -59,6 +59,7 @@
     "free",
     "from",
     "frozen",
+    "german",
     "gox",
     "hack",
     "hackers",
@@ -136,6 +137,7 @@
     "fund-tracing",
     "funds-frozen",
     "funds-theft",
+    "germany",
     "hacks-exploits",
     "ledger",
     "on-chain-analysis",
@@ -1916,6 +1918,82 @@
         {
           "url": "https://decrypt.co/380826/ledger-finds-lte-implant-that-stole-recovery-phrases-in-suspected-86m-drain",
           "label": "Decrypt",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_af34e3d874d3000c",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-13T12:43:02Z",
+      "published_at": "2026-10-13T12:43:02Z",
+      "first_seen_at": "2026-10-13T14:18:11.619089Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "Ledger：MediaMarkt暂停销售源于德国用户报告发现植入物，暂无资金损失",
+      "title_en": "Ledger：MediaMarkt暂停销售源于德国用户报告发现植入物，暂无资金损失",
+      "what_changed_zh": "新增：Ledger官方确认已与MediaMarkt Saturn协调暂停德国线上及线下门店销售，以配合一名德国用户疑似植入物报告的调查；Ledger表示该报告相关事件暂无资金损失，且无迹象表明其基础设施、系统或服务遭到入侵，客服正在审查报告，Donjon将检查设备。",
+      "what_changed_en": "New: Ledger officially confirmed it coordinated with MediaMarkt Saturn to suspend online and in-store sales in Germany pending investigation into a German user's suspected implant report; Ledger said there were no reported fund losses tied to that report and no signs of compromise to its infrastructure, systems, or services, with customer support reviewing the report and Donjon set to inspect devices.",
+      "current_state_zh": "事件仍处于监控中；Ledger已与德国零售商MediaMarkt Saturn协调暂停其线上及线下门店销售，以调查一名德国用户报告的疑似植入物；Ledger称该报告相关事件暂无资金损失，亦无迹象表明其基础设施、系统或服务遭入侵，客服与Donjon团队正在审查报告并检查设备。此前已确认的CryptoBilis经销商设备植入物及疑似8600万美元损失仍属于同一供应链安全事件。",
+      "current_state_en": "The incident remains under monitoring; Ledger has coordinated with German retailer MediaMarkt Saturn to suspend online and in-store sales while investigating a German user's suspected implant report. Ledger said there were no reported fund losses tied to that report and no signs of compromise to its infrastructure, systems, or services, with customer support and Donjon reviewing the report and inspecting devices. The previously confirmed CryptoBilis reseller device implants and suspected $86M drain remain part of the same supply-chain security incident.",
+      "detailed_summary_zh": "Ledger confirmed that MediaMarkt Saturn has suspended sales of its hardware wallets in Germany pending investigation into a user report of a suspected implanted device, with no funds lost and no sign of infrastructure compromise.",
+      "detailed_summary_en": "Ledger confirmed that MediaMarkt Saturn has suspended sales of its hardware wallets in Germany pending investigation into a user report of a suspected implanted device, with no funds lost and no sign of infrastructure compromise.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "telegram:theblockbeats:200270"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/371604?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_297849731069bd61",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-13T13:35:09Z",
+      "published_at": "2026-10-13T13:35:09Z",
+      "first_seen_at": "2026-10-13T14:18:27.572470Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "德国Ledger经销商在8600万美元盗取事件后暂停销售",
+      "title_en": "German Ledger reseller pauses sales following $86M draining incident",
+      "what_changed_zh": "新报道称，Mark Karpelès 已在菲律宾官方经销商 LazMall 销售的 Ledger 钱包中也发现间谍软件，使受影响经销商范围进一步扩大；Ledger 最新声明称尚未核实来自其他渠道购买签名器的资金流出，并正在审查其他签名器和地点的植入物报告，同时 CryptoBilis 在调查期间继续停售。",
+      "what_changed_en": "The new report says Mark Karpelès has also found spyware in Ledger wallets sold by official Philippine reseller LazMall, further widening the affected-reseller scope; Ledger’s latest statement says it has not verified a drain linked to a signer bought elsewhere and is reviewing reports of implants in other signers and locations, while CryptoBilis remains not selling wallets during the investigation.",
+      "current_state_zh": "事件仍处于监控中；已确认的植入物和疑似8600万美元资金流出仍与CryptoBilis销售的设备相关，CryptoBilis在调查期间停售；MediaMarkt Saturn已暂停德国线上及线下门店的Ledger销售；Karpelès的拆解分析还指向MediaMarkt、新加坡Metapod及菲律宾官方经销商LazMall销售的钱包；Ledger表示尚未核实其他渠道购买设备相关的资金流出，并正在审查其他经销商和地点的植入物报告。",
+      "current_state_en": "The incident remains under monitoring; the confirmed implant and suspected $86M drain remain tied to devices sold by CryptoBilis, which is not selling wallets during the investigation; MediaMarkt Saturn has suspended online and in-store Ledger sales in Germany; Karpelès’s teardowns also point to wallets sold by MediaMarkt, Singapore’s Metapod, and official Philippine reseller LazMall; Ledger says it has not verified a drain linked to devices bought elsewhere and is reviewing implant reports from other resellers and locations.",
+      "detailed_summary_zh": "German official Ledger reseller MediaMarkt has removed all Ledger products from stores and online platforms after spyware was found in wallets it sold, part of a supply-chain attack linked to an $86 million draining incident that has now surfaced across multiple official resellers.",
+      "detailed_summary_en": "German official Ledger reseller MediaMarkt has removed all Ledger products from stores and online platforms after spyware was found in wallets it sold, part of a supply-chain attack linked to an $86 million draining incident that has now surfaced across multiple official resellers.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.9,
+      "story_ids": [
+        "rss:protos.com_feed_:f64c1a7a7c6f5527"
+      ],
+      "sources": [
+        {
+          "url": "https://protos.com/german-ledger-reseller-pauses-sales-following-86m-draining-incident/",
+          "label": "Protos",
           "source_type": "rss",
           "official": false
         }
