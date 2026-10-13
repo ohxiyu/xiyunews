@@ -29,3 +29,15 @@ Rollback: 先获批准；只恢复runner变量或停新服务，原实时服务�
 第二轮38350259461治理通过，Python/审计完成，缓存命中后的npm11.19依赖安装触及768MiB硬线并持续回收，主动取消该自有CI调优。重启新runner释放内存（一次服务stop90秒后SIGKILL清理取消测试，原fomobtc PID235825/NRestarts0及三分片/Telegram/队列不变），GitHub旧session短时冲突待重连，不宣称CI通过。加入原生解压单线程/npm连接2、固定npm11.11.1及专用512MiB磁盘缓冲，root0600、独立开机服务，执行器swap上限512MiB，物理内存硬上限不增；不购买升级或停原提醒。Ubuntu官方gh2.45已补齐，安装脚本/完整重建手册同步。仍需优化后全量CI和生产验证。
 
 服务器原vm.swappiness=0，缓冲启用后仍不换页；已按本轮优化授权改20并保存专用sysctl.d配置，原值保留证据。第三轮38351366705整站构建success（Jekyll120.716秒，缓存依赖安装2分钟，npm11.11.1），治理/路径success；完整应用/Worker步骤已通过、正在post缓存，实时两套环境尚待完成。物理峰值741953536、缓冲一度约229MiB后回落；原PID235825/NRestarts0。最终完整配置补入仓库后重新核对实际head CI，未经全通过不合并。
+
+## 最终执行方案验收
+
+最终head7391c8ca64f84e79d0cf9752412753e6b452a6e1的CI38352364252全部适用任务通过：edge-build3m43s、应用2m46s、治理/路径与实时Python3.11/3.12通过；CodeQL按原私有免费授权条件跳过，未购买升级。PR251于上海13:46:54合并7388457ae407ebf68d00a4c1d9b519c354052cf6。
+
+Source commit: 7388457ae407ebf68d00a4c1d9b519c354052cf6（执行方案首次生产快照）。
+Worker version: f4bf4bd7-8e7b-4ed3-a353-8b4ba0bee0ae（随后UI/兼容修复独立发布）。
+Deployment: Deploy Docs38353164281及统一Worker38353244993均success，真实runner为xiyunews-tokyo-1，产物db8e866244912b5a964920c45e5a6cdcb0ce46c3。
+Verification: 上海约13:54回读/health status=ok且source/artifact/version一致；实时PID235825/NRestarts0、三个现货分片live、队列0，执行器内存峰值741953536字节、无OOM。维护timer已启用且首次Resultsuccess；AI/产物/队列/原实时数据不清理。
+Rollback: 仅经批准恢复runner变量/停新服务；托管额度仍耗尽、预算0，旧执行位置不是可用备用，不自动回滚/删资源。
+
+第一次正常采集38353543010及X恢复出版状态时暴露持久checkout旧浅层ref，Square门控38354408915暴露初始化前缺少python。均在AI/发送前失败，未以首次静态上线当业务链路成功。已独立PR254实际CI38355573706全通过后合并b5abadb2b44708533bc2db2f2f01b44d4c6cf857；日报恢复38356746499真实服务器success并返回healthy HTTP200，不重复日报。正常采集和最终版出版证据见[兼容修复记录](2026-10-13-persistent-checkout.md)。服务器仍单实例，未来自然日报单独验收。

@@ -10,7 +10,7 @@
 
 ## 共机保护
 
-2026-10-13只读测量：Ubuntu24.04/x86_64、2核、1613MiB内存、available846MiB、34GB磁盘可用。现有实时进程约300MiB、NRestarts=0。不是容量保证：新任务必须按实际峰值验收。只创建一个 runner，所有 job 排队串行；整个服务上限768MiB、软线640MiB、CPU0.75核，降低CPU/I/O优先级、优先终止执行器而非实时服务。Vitest在此环境内串行，编译/安装并行受限。
+2026-10-13安装前只读测量：Ubuntu24.04/x86_64、2核、1613MiB内存、available846MiB、34GB磁盘可用。现有实时进程约300MiB、NRestarts=0。实际最终配置：单个 runner 串行执行所有 job，物理内存硬上限768MiB、软线704MiB、CPU最多1核、交换上限512MiB，降低CPU/I/O优先级并优先终止执行器而非实时服务。Node堆256MiB、原生解压单线程、npm连接2，Vitest每文件独立进程串行；全量测试与安全审计保留。不是容量保证，持续以真实峰值验收；原640MiB/0.75核仅为首次试验，已由调优值替代。
 
 专用锁定登录的系统用户 xiyunews-runner，无sudo、无SSH密钥。服务使用NoNewPrivileges、只允许自己目录写入、临时目录隔离，并隐藏实时凭据、数据库、源码和admin/root家目录。没有Docker socket、没有公开端口；不重启fomobtc、不读取其env或复制数据库。CI拒绝fork PR在自托管机器上运行；只供这个私有仓库及其可信维护分支使用，仓库公开前必须先停用和重新审查此配置。
 
@@ -59,6 +59,10 @@ gh variable set XIYUNEWS_RUNNER_LABELS --repo ohxiyu/xiyunews \
 原服务器vm.swappiness=0导致磁盘缓冲虽启用但不换页，2026-10-13按服务器优化授权改为20，优先保留活跃页面于内存，在压力下允许不活跃页面进入缓冲。配置仅维护在ops/runner/99-xiyunews-runner.conf并安装到同名sysctl.d文件；旧值0记在记录中，不自动回滚。实际峰值、swap和原实时PID/连接均核对，不能将新增swap当无限内存或高可用承诺。
 
 ## 验收与交接
+
+2026-10-13 已注册 repo runner21、xiyunews-tokyo-1，变量选择已生效。实际CI与部署均显示该 runner；PR251、PR249与PR254分别在当前head检查通过后合并。缓存工具环境复用，维护timer已启用；无需重新执行首次注册安装，不读取机器凭据。完整证据见[运行记录](releases/2026-10-13-self-hosted-runtime.md)和[持久状态修复](releases/2026-10-13-persistent-checkout.md)。
+
+持久执行器和一次性托管机器不同：浅层Git引用跨任务保留，读取出版状态须使用明确的本地tracking ref更新（`git fetch --depth=1 origin +gh-pages:refs/remotes/origin/gh-pages`），这不是远端强推。初始化前的stdlib门控/恢复/报告用Ubuntu自带python3；其余应用经setup-python/uv固定环境运行。不要靠清空状态历史或重设已发送任务解决环境问题。
 
 1. 当前PR每个实际CI job必须显示self-hosted/xiyunews-tokyo，测试/治理/安全审计/整站构建全部通过，fork保护及单任务串行可核对；原小内存实时服务继续active、NRestarts不增、三个分片live。若GitHub仍因账户状态拒绝自托管任务，保留PR并报告实际annotation，不能认定安装即解决限制。
 2. 合并后先走已有无AI Deploy Docs/统一Worker链路验证网站、RSS、公开API、实际source/artifact/version。手动启动正常workflow是既有工作流执行，不能本机手工写gh-pages或绕过发送检查点。

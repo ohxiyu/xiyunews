@@ -27,3 +27,15 @@ Rollback: 不自动回滚或清读者数据，如确需回退先获运营者批�
 ## 执行方式恢复后的继续发布
 
 运营者2026-10-13授权已准备方案直接改完上线并优化服务器运行。PR251在东京自托管CI38352364252全部通过后，于13:46:54合并7388457ae407ebf68d00a4c1d9b519c354052cf6。原托管2000分钟/预算0保持，计算已转现有服务器，无新增付费额度；主分支Deploy Docs38353164281已正常启动。PR249同步新main，唯一冲突根交接按实际当前目标改写，保留全部服务器改造和记录；本分支新的完整CI、合并/部署/生产验收待完成，不再要求恢复付款或增加预算。其后证据在本节补齐。
+
+## 正式上线验收
+
+PR249当前head2078c3a817ad7c3821395ba53ee7d861eae75392的东京CI38353338739全部适用检查通过：应用2m42s、整站3m36s、治理/路径及旧Pages成功。与main同步后于上海14:02:15合并，自动发布完成。
+
+Source commit: 7ee1ee87b5d9ead50aafff564f3745dc1a6a0a1b。
+Worker version: f46f3bd3-2475-42dc-9c96-a5ec14cd4701（UI首次生产验收）。
+Deployment: Deploy Docs38354520543与统一Worker38355444205均success，产物a90d47cef1801121d889b40e4f10acd017c6e89d；真实东京runner。
+Verification: 上海约14:19回读生产/health status=ok及source/artifact/version一致，HTML资源sha256-d7ce605479ae。正式1280×720首页27个附加面板均DETAILS/closed，背景在上，首条点击打开3条参考、Enter关闭；390×844/Space打开、暗色/英文/追踪页6个默认关闭/点击展开无溢出。收起资料时分享仍完整生成1320×4176，不发布图片或X。首页/API/RSS/sitemap/manifest200，日报.html规范化307后200，canonical为xiyu.news；www301保留完整路径和查询。
+Rollback: 经批准才回退；不删除读者阅读数据或关闭认证。后续兼容修复沿用相同UI资源并另记最终版，不以文档合并作为新应用上线证据。
+
+正式浏览器截图保存在工作区outputs/analysis-collapse-20261013/下production-desktop.png、production-mobile.png、production-dark.png和production-threads.png；当前会话已核对可见效果，浏览器临时尺寸验收后恢复，原资讯内容没有重新核查。

@@ -4,23 +4,25 @@
 
 ## 1. 总体结构
 
-系统有三个分离的部分：GitHub Actions 执行采集、分析和定稿；Cloudflare 提供网页、只读接口、后台认证与调度；东京服务器运行实时提醒。网站不是在浏览器里调用 AI，也不是实时行情前端。实时服务只通过自己的 Telegram 话题群输出，不混入日报频道或首页。
+系统仍有代码/任务管理、计算执行和边缘服务三个职责。2026-10-13起，GitHub保存私有仓、工作流定义、Secrets、任务记录与产物分支，所有应用Actions任务由现有东京服务器专用自托管执行器计算；Cloudflare提供网页、只读接口、后台认证与定时派发。东京服务器同时保留独立实时提醒进程，两个用户/依赖/数据目录和发送目标分离；网站不是浏览器调用AI，也不是实时行情前端。运行位置变化不改变每日刊期、四小时采集或AI缓存规则。
 
 ```mermaid
 flowchart TD
-    Sources[公开新闻、交易所公告与其他已配置来源] --> Collection[GitHub Actions：四小时采集]
+    GitHub[私有GitHub：代码 / 工作流 / Secrets / 任务记录] --> Runner[东京专用受限执行器：单任务排队]
+    Runner --> Collection[Actions工作流：四小时采集，东京执行]
+    Sources[公开新闻、交易所公告与其他已配置来源] --> Collection
     Collection --> Analysis[Python：规范化、去重、新内容分析]
     Analysis --> Stage[staging-cache：候选与分析缓存]
     Analysis --> Events[持续事件更新]
     Stage --> Edition[每日 07:26：定稿中英文日报]
     Edition --> Published[gh-pages：网页、归档、JSON、RSS]
     Events --> Published
-    Published --> Build[GitHub Actions：固定出版 SHA 渲染与资产校验]
+    Published --> Build[东京执行Actions：固定出版 SHA 渲染与资产校验]
     Build --> Edge[统一 xiyunews Worker / Assets]
     Edge --> Readers[xiyu.news 网页 / PWA / 只读 API]
     Edition --> DailyTG[日报 Telegram 频道]
     Edition --> Plans[X / Square 持久化发送计划]
-    Plans --> Delivery[独立 GitHub Actions：检查点后发送]
+    Plans --> Delivery[东京执行独立Actions：检查点后发送]
     Edge --> Clock[同一 Worker：Cron + 原 RecoveryGate]
     Clock --> Collection
     Clock --> Edition
@@ -45,12 +47,12 @@ flowchart TD
 
 | 模块 | 代码入口 | 执行位置 | 主要职责 |
 | --- | --- | --- | --- |
-| 内容管线 | src/main.py、src/orchestrator.py、src/scrapers/、src/ai/ | GitHub Actions 的 Python 任务 | 采集、去重、评分、选稿、翻译和扩写；缓存有效结果。 |
+| 内容管线 | src/main.py、src/orchestrator.py、src/scrapers/、src/ai/ | GitHub管理的Actions，东京自托管Python任务 | 采集、去重、评分、选稿、翻译和扩写；缓存有效结果。 |
 | 网页与公开数据 | docs/、Jekyll 模板、src/orchestrator.py、src/site_pages.py、src/weekly.py | 出版 Actions 生成，统一部署 Actions 渲染，Worker Assets 提供 | 日报、连续信息流、事件线、实体、周报、订阅与 JSON 输出。 |
 | 统一边缘层 | ops/daily-dispatcher/src/unified.ts，复用 docs/_worker.js | 单个 xiyunews Worker | 内容协商、接口路由、缓存、Quick Post、认证与两个定时组件。 |
 | 调度与恢复 | ops/daily-dispatcher/src/ | 同一 Worker Cron + 原 RecoveryGate Durable Object | 检查日报缺失、受限补发、四小时采集和分发到期门控。 |
 | 人工编辑 | src/quick_posts.py、data/editorial.json、站点后台 | Access 保护的 /s/ 与统一 Worker | 不调用 AI 的快速发布，保留人工编辑身份和原始内容。 |
-| 社交分发 | src/x_queue.py、src/services/x_delivery.py、src/square_plan.py、src/square_delivery.py | 独立 GitHub Actions | 持久化计划、到期发送、保留回执，未知结果不自动重发。 |
+| 社交分发 | src/x_queue.py、src/services/x_delivery.py、src/square_plan.py、src/square_delivery.py | 独立Actions工作流，东京执行 | 持久化计划、到期发送、保留回执，未知结果不自动重发。 |
 | 实时提醒 | realtime/ | 东京 systemd 服务 fomobtc，已部署新仓合并 SHA | 三个币安现货分片、公告与链上监测，输出到独立话题群；@xiyunewsbot 为原群管理员，三类自然 API 回执已核验，手机收件另验。 |
 
 前端仍是静态模板和原生 JavaScript/CSS，不是 React 应用，没有因为视觉调整引入一套前端组件服务。PWA 增加安装、离线阅读、阅读状态和更新提示，不新增服务器常驻进程；本站没有引入 D1、Redis、Kafka 或独立用户数据库。
@@ -97,13 +99,17 @@ PWA 的离线内容可能不是最新一期，必须显示保存状态并保留�
 
 密钥只在 GitHub Secrets、Cloudflare Secrets 和服务器环境文件中使用，不进入 Git、浏览器脚本、公开 API、架构图或日志。私有仓内容通过鉴权 Contents API 读取，禁止带凭据跟随第三方重定向；内容与模型返回都是不可信输入，保留 URL 校验、输出转义和输入限制。Access 与 Worker 双重校验，私有仓不能代替撤销已泄露凭据。
 
-主要可变成本是 AI 输入/输出、私有 Actions 执行时间、网站 Worker 请求和既有服务器。有效缓存降低重复分析；到期门控降低空 runner；Quick Post、普通阅读、调度检查和实时规则不因每次动作调用 AI。它们不等于系统总成本为零；当前没有新增付费套餐，实际账单和剩余额度需在各平台核实。
+主要可变成本是AI输入/输出、网站Worker请求和既有服务器，以及GitHub artifact/cache存储限额。现有私有Actions托管2000分钟已耗尽、预算保持0；应用执行已转自托管，按GitHub当前说明自托管执行不占托管分钟。有效缓存降低重复分析，到期门控降低空任务；Quick Post、普通阅读、调度检查和实时规则不因每次动作调用AI。不是系统免费，没有购买新服务器或付费升级，实际账单和剩余额度仍需分别核实。
+
+东京新增无sudo权限的xiyunews-runner用户与单个systemd执行器，所有任务排队串行，CPU最多1核、内存768MiB硬上限/704MiB软线，512MiB交换缓冲；工具环境复用，Node/测试并发受限。每周维护只清专用旧执行日志与无用uv包缓存，不清AI分析或生产状态；原fomobtc进程不重启、凭据/数据库目录对执行器隐藏。只接受可信同仓PR，系统仍依赖GitHub控制面与单台服务器网络，不提供高可用保证；手册见[自托管执行器](self-hosted-runner.md)。
 
 日报恢复使用按刊期命名的 Durable Object 租约、重试预算与冷却期；先确认产物，再确认生产页面，产物有而页面未更新时优先处理部署，不重跑 AI。采集、缓存持久化、Pages 构建、社交回执和实时健康必须分别验收。/health 可用不等于完整就绪；实时 Hyperliquid 的既有降级会使 ready 失败，不能隐藏或写成迁移后全部正常。
 
 当前套餐不能提供私有仓分支保护和 CodeQL 授权，未购买升级；已有 CI、依赖审计、治理和整合负责人的 main/检查核对继续执行，但不能宣称等价于平台强制保护。每个变更仍保持一个 Issue、一个 agent 分支和一个 PR，部署后的真实证据以文档 PR 回写。
 
-## 6. 尚未完成的迁移依赖
+## 6. 品牌迁移的历史依赖清单
+
+下列为2026-10-03迁移记录的历史条件，不能作为当前执行清单。2026-10-13本任务只核实服务器计算迁移、正常采集/恢复/分发与网站发布；旧资源、实际手机收件和登录后Quick Post验收以[当前交接](handoff.md)及对应记录为准，不由本次计算位置迁移推断完成。
 
 1. 旧Token撤销、完整历史、安全凭据、原状态迁移和正式域切换均已完成，不再列为阻塞。原两个边缘Worker已停用，新统一Worker已启用原Cron；自动部署成功与自然运行证据须分别回读。
 2. 专用SSH已恢复，实时服务已按原路径备份并切换到新仓完整合并SHA；源码、单进程、三个现货分片和三类自然回执均已验证，2026-10-03只读累计30条sent。原release和备份仍保留，手机收件与看门狗私聊实际告警另行验收；不改数据库、systemd、规则或目标群。

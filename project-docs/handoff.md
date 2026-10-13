@@ -1,25 +1,25 @@
 # 当前交接
 
-PR251东京CI与生产部署成功，PR249当前CI38353338739全部适用检查通过后已合并7ee1ee87b5d9ead50aafff564f3745dc1a6a0a1b。正常采集38353543010与X分发在状态读取时因持久checkout旧浅层引用失败，未调用AI或发送；当前先修复本地引用恢复，再验收完整链路。原实时PID235825/NRestarts0保持。
+服务器执行迁移PR251、折叠阅读PR249、真实持久环境兼容修复PR254均在各最终head的东京CI通过且与main同步后合并上线。正常采集38356743463与缓存/事件出版success，日报恢复/分发门控通过；最终统一Worker38357733594已成功，正式页面行为验收完成。当前仅归档证据、更新真实架构并清理自有已合并分支；不再要求恢复付款/增加预算，也不重跑已成功的AI采集。四个RSS子源的服务器403覆盖限制如实保留。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "修复持久执行器恢复出版状态并完成正常采集与生产验收",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/253",
+  "goal": "归档已完成的服务器运行和阅读优化验收，统一架构与交接",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/255",
   "owner": "当前会话唯一编辑与生产整合负责人",
-  "branch": "agent/persistent-checkout",
-  "last_verified_commit": "7ee1ee87b5d9ead50aafff564f3745dc1a6a0a1b",
-  "pr": "待创建；PR251与PR249均已合并",
-  "completed": ["分析/参考/标签默认原生折叠，背景和全文/分享保留", "PR251东京runner21已注册online，当前CI38352364252全success后同步main合并，所有20个任务入口统一标签", "原服务不重启，资源上限/512MiB缓冲/换页20/独立维护部署，执行方案首次主分支Deploy Docs38353164281进行中", "已将新main合入UI分支，交接冲突按当前目标解决，原服务器改造完整保留"],
-  "unfinished": ["本地引用修复的离线真实Git回归、完整应用/治理/工作流验证及当前CI/合并", "正常Feed Collection、最终source/artifact/version、UI正式验收与原实时健康", "验收文档PR及自有已合并分支/worktree清理"],
-  "validation": ["UI本地完整Python1064passed/4skipped、33Node、整站构建及1280桌面/390手机/暗色/英文/事件/键盘/完整分享已通过；本次合并后回归待完成", "执行方案实际CI38352364252：整站3m43s、应用2m46s、治理/路径/实时3.11/3.12及旧Pages均通过，无跳过正式步骤", "原实时PID235825/NRestarts0、三个分片live/Telegram启用/队列0持续验证"],
-  "unverified": ["当前UI部署/正式折叠行为、正常自托管采集发布尚未验收", "下一刊07:26自然日报及下一次四小时采集单独验收，不能用今天静态重建冒充"],
-  "production": {"source_commit": "305701a18aca68c91b0945d3a873c09571e740c3", "artifact_commit": "5b72a32067c87b6110e8ab22476f50b89bcbc13e", "edition": "2026-10-13", "generated_at": "仅正常静态重建，原资讯不改", "worker_version": "c49f4b21-cb47-46c2-acfc-afb9a73defff", "verified_at": "2026-10-13开工及迁移过程只读核验，执行方案首次主分支部署尚进行中"},
+  "branch": "agent/runtime-verification",
+  "last_verified_commit": "b5abadb2b44708533bc2db2f2f01b44d4c6cf857",
+  "pr": "本分支唯一文档PR关联Issue255；应用PR251、249、254均已合并",
+  "completed": ["单个东京执行器统一全部20个任务入口，受限资源/缓存环境/周维护实际部署，无新增付费预算", "PR251/249/254各最终head适用CI通过、同步main后合并，完整正常采集与缓存/状态持久化通过", "主域和新事件数据已发布；中英文/手机/暗色/追踪默认折叠和完整分享验收", "日报恢复healthy且不重复出刊，X idle/Square正常门控通过；实时PID235825/NRestarts0/三分片live，执行器无OOM"],
+  "unfinished": ["本归档文档PR当前CI/合并与自有已合并分支worktree清理；代码和生产验收已完成"],
+  "validation": ["应用最终本地1070passed/4skipped、实际Git6组与相关模块75组、actionlint/治理通过；服务器CI38355573706适用检查全部通过", "采集38356743463success，208条采集/62新增暂存/2实质事件更新，AI缓存与staging分支保存成功", "恢复38356746499、X38356833645、Square38356833651及最终统一部署38357733594success，HTTP和浏览器验收通过"],
+  "unverified": ["后续自然四小时采集和明日07:26日报尚未发生，不能由本次手动正常运行证明未来触发", "四个RSS子源服务器403覆盖限制保留，不能宣称所有来源健康；既有Hyperliquid降级不由本任务修复", "登录后Quick Post、手机实际收件、看门狗故障私聊不在本次验收，无测试新闻/消息"],
+  "production": {"source_commit": "b5abadb2b44708533bc2db2f2f01b44d4c6cf857", "artifact_commit": "187c6a360815ad7f14cfeb79faba7515bdedb7b4", "edition": "2026-10-13", "generated_at": "正常采集报告完成2026-10-13T06:36:40.880946+00:00；原固定日报未重刊", "worker_version": "afd40c2f-e05f-4aeb-91a4-ab59b2640c5c", "verified_at": "2026-10-13上海约14:43，/health与新事件API回读一致"},
   "blockers": [],
-  "next_action": "本地引用修复真实回归与CI通过后同步main合并，再运行正常采集验收。授权已取得，不再询问；不force push、不手工写状态、不改业务秘密/DNS/Access/Cron/来源/模型，不重启实时进程或补发历史。",
-  "states": {"code": "complete", "tests": "pending", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
-  "evidence": "project-docs/releases/2026-10-13-persistent-checkout.md"
+  "next_action": "本归档文档PR检查通过同步main后正常合并，核对祖先与干净工作区后清理自有任务分支。生产代码/发布/验收已完成，无需再采集或重部署；未来自然触发及RSS覆盖另验，不擅自删来源/开代理/升预算，不改原实时提醒、DNS、Access、Secrets。",
+  "states": {"code": "complete", "tests": "complete", "pr_merged": "pending", "deployed": "not_required", "production_verified": "not_required"},
+  "evidence": "project-docs/releases/2026-10-13-runtime-verification.md"
 }
 ```
 
