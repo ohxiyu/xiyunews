@@ -16,10 +16,10 @@ def test_final_cutover_preserves_namespace_by_transfer_not_creation():
     assert "new_classes" not in text and "new_sqlite_classes" not in text and "deleted_classes" not in text
     assert config["kv_namespaces"] == [{"binding": "STATE", "id": "469346950dfc4f36b8d9bf9997d960fa"}]
     assert config["triggers"]["crons"] == ["26 23 * * *", "36,46,56 23 * * *", "*/5 * * * *"]
-    assert config["routes"] == [
-        {"pattern": "xiyu.news", "custom_domain": True},
-        {"pattern": "www.xiyu.news/*", "zone_name": "xiyu.news"},
-    ]
+    assert config["routes"] == [{"pattern": "xiyu.news", "custom_domain": True}]
+    # Existing www zone route is owned separately, preserving narrow CI permissions.
+    assert "www.xiyu.news/* -> xiyunews" in text
+    assert "does not replace zone routes" in text
     assert config["vars"]["ENABLE_DISPATCHER"] == "true"
     assert config["vars"]["ENABLE_REALTIME_WATCHDOG"] == "true"
 

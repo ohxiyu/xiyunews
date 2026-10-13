@@ -6,100 +6,102 @@
   var contextSequence = 0;
 
   function contextKind(section) {
-    if (section.dataset.contextKind) return section.dataset.contextKind;
-    if (section.classList.contains('tag-line') || section.querySelector('li')) return 'references';
+    if (section.classList.contains('tag-line')) return 'tags';
     var title = textOf(section.querySelector('h3'));
     if (/背景|Background/i.test(title)) return 'background';
+    if (/影响|Impact|matters/i.test(title) || section.hasAttribute('data-context-impact')) return 'impact';
+    if (/讨论|Discussion/i.test(title)) return 'discussion';
+    if (section.dataset.contextKind) return section.dataset.contextKind;
+    if (section.querySelector('li')) return 'references';
     return 'discussion';
   }
 
   function enhanceReadingContext(host, language) {
-    var details = host.querySelector('.story-more');
-    if (!details) return;
-    var content = details.querySelector('.story-more-content');
-    if (!content) return;
-    var sections = Array.prototype.slice.call(content.children).filter(function (node) {
-      return node.tagName === 'SECTION';
+    var details = Array.prototype.slice.call(host.querySelectorAll('.story-more'));
+    if (!details.length) return;
+    var sections = [];
+    details.forEach(function (block) {
+      var content = block.querySelector('.story-more-content');
+      if (!content) return;
+      Array.prototype.forEach.call(content.children, function (node) {
+        if (node.tagName === 'SECTION') sections.push(node);
+      });
     });
     if (!sections.length) return;
     var isEn = language === 'en';
-    var groups = ['background', 'discussion', 'references'].filter(function (kind) {
-      return sections.some(function (section) { return contextKind(section) === kind; });
-    });
-    var wrapper = document.createElement('div');
-    wrapper.className = 'reading-context is-enhanced';
-    var tabs = document.createElement('div');
-    tabs.className = 'reading-context-tabs';
-    tabs.setAttribute('role', 'tablist');
-    tabs.setAttribute('aria-label', isEn ? 'Reading context' : '阅读辅助');
-    var baseId = 'reading-context-' + (++contextSequence);
-    content.id = baseId + '-panel';
-    content.setAttribute('role', 'tabpanel');
-    content.tabIndex = 0;
-    var buttons = [];
-    var hasDiscussion = sections.some(function (section) {
-      return /讨论|Discussion/i.test(textOf(section.querySelector('h3')));
-    });
-    var hasImpact = sections.some(function (section) {
-      return /影响|Impact|matters/i.test(textOf(section.querySelector('h3')));
-    });
-    var referencesCount = content.querySelectorAll('li a').length;
+    var heading = host.querySelector('h2');
+    var body = (!host.classList.contains('event-feed-item') && host.querySelector('.source-line')) ||
+      host.querySelector('.event-next-watch') ||
+      host.querySelector('.event-focus-developments') ||
+      host.querySelector('.story-summary-body') ||
+      host.querySelector('.event-focus-state') || heading;
+    var parent = details[0].parentElement;
     var labels = {
       background: isEn ? 'Background' : '背景',
-      discussion: hasDiscussion ? (hasImpact ? (isEn ? 'Discussion & impact' : '讨论与影响') : (isEn ? 'Discussion' : '讨论焦点')) : (isEn ? 'Impact analysis' : '影响分析'),
-      references: referencesCount ? (isEn ? 'References ' : '参考资料 ') + referencesCount : (isEn ? 'Tags' : '标签')
+      impact: isEn ? 'Impact analysis' : '影响分析',
+      discussion: isEn ? 'Discussion' : '讨论焦点',
+      references: isEn ? 'References' : '参考资料',
+      tags: isEn ? 'Tags' : '标签'
     };
-    function select(index) {
-      buttons.forEach(function (button, position) {
-        button.setAttribute('aria-selected', position === index ? 'true' : 'false');
-        button.tabIndex = position === index ? 0 : -1;
-      });
-      content.setAttribute('aria-labelledby', buttons[index].id);
-      sections.forEach(function (section) { section.hidden = contextKind(section) !== groups[index]; });
-    }
     sections.forEach(function (section) {
       section.dataset.contextKind = contextKind(section);
+      section.hidden = false;
+      var title = section.querySelector('h3');
+      if (title && labels[section.dataset.contextKind]) title.textContent = labels[section.dataset.contextKind];
       if (section.dataset.contextKind !== 'background') return;
       var paragraph = section.querySelector('p');
       if (!paragraph) return;
+      paragraph.id = 'reading-background-' + (++contextSequence);
+      var line = document.createElement('div');
+      line.className = 'reading-context-heading';
+      if (title) line.appendChild(title);
       var expand = document.createElement('button');
       expand.type = 'button';
       expand.className = 'reading-context-expand';
+      expand.setAttribute('aria-controls', paragraph.id);
       expand.setAttribute('aria-expanded', 'false');
-      expand.textContent = isEn ? 'Read full background' : '展开完整背景';
+      expand.setAttribute('aria-label', isEn ? 'Read full background' : '展开完整背景');
+      expand.textContent = isEn ? 'Expand' : '展开';
       expand.addEventListener('click', function () {
         var expanded = section.classList.toggle('is-expanded');
         expand.setAttribute('aria-expanded', String(expanded));
-        expand.textContent = expanded ? (isEn ? 'Collapse background' : '收起背景') : (isEn ? 'Read full background' : '展开完整背景');
+        expand.setAttribute('aria-label', expanded ? (isEn ? 'Collapse background' : '收起背景') : (isEn ? 'Read full background' : '展开完整背景'));
+        expand.textContent = expanded ? (isEn ? 'Collapse' : '收起') : (isEn ? 'Expand' : '展开');
       });
-      section.appendChild(expand);
+      line.appendChild(expand);
+      section.insertBefore(line, paragraph);
     });
-    groups.forEach(function (kind, index) {
-      var button = document.createElement('button');
-      button.type = 'button';
-      button.id = baseId + '-tab-' + index;
-      button.setAttribute('role', 'tab');
-      button.setAttribute('aria-controls', content.id);
-      button.textContent = labels[kind];
-      button.addEventListener('click', function () { select(index); });
-      button.addEventListener('keydown', function (event) {
-        var next = index;
-        if (event.key === 'ArrowRight') next = (index + 1) % groups.length;
-        else if (event.key === 'ArrowLeft') next = (index + groups.length - 1) % groups.length;
-        else if (event.key === 'Home') next = 0;
-        else if (event.key === 'End') next = groups.length - 1;
-        else return;
-        event.preventDefault(); select(next); buttons[next].focus();
-      });
-      buttons.push(button); tabs.appendChild(button);
-    });
-    wrapper.appendChild(tabs); wrapper.appendChild(content);
-    details.replaceWith(wrapper);
-    // Old editions already contain their full context at the bottom. Move it
-    // in the DOM, not with CSS order (keyboard and reading order must agree).
-    var heading = host.querySelector('h2');
-    if (heading && !host.classList.contains('event-feed-item')) heading.insertAdjacentElement('afterend', wrapper);
-    select(0);
+    function group(nodes, placement) {
+      if (!nodes.length) return null;
+      var wrapper = document.createElement('div');
+      wrapper.className = 'reading-context reading-context-' + placement + ' is-enhanced';
+      wrapper.dataset.contextPlacement = placement;
+      var content = document.createElement('div');
+      content.className = 'story-more-content';
+      nodes.forEach(function (section) { content.appendChild(section); });
+      wrapper.appendChild(content);
+      return wrapper;
+    }
+    var before = group(sections.filter(function (section) {
+      return section.dataset.contextKind === 'background';
+    }), 'background');
+    var order = ['impact', 'discussion', 'references', 'tags'];
+    var after = group(sections.filter(function (section) {
+      return section.dataset.contextKind !== 'background';
+    }).sort(function (a, b) {
+      return order.indexOf(a.dataset.contextKind) - order.indexOf(b.dataset.contextKind);
+    }), 'after');
+    // Keep the actual DOM and keyboard reading order aligned, including legacy
+    // editions whose combined details block used to precede the news text.
+    if (before) {
+      if (heading) heading.insertAdjacentElement('afterend', before);
+      else parent.appendChild(before);
+    }
+    if (after) {
+      if (body) body.insertAdjacentElement('afterend', after);
+      else parent.appendChild(after);
+    }
+    details.forEach(function (block) { block.remove(); });
   }
 
   var CATEGORY_ORDER = [
