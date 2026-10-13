@@ -2,6 +2,12 @@ import { cloudflareTest } from "@cloudflare/vitest-pool-workers";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
+  // The small co-hosted runner executes one test file at a time. Hosted/local
+  // development keeps the normal defaults unless this explicit flag is set.
+  test: {
+    maxWorkers: process.env.XIYUNEWS_SERIAL_TESTS === "1" ? 1 : undefined,
+    fileParallelism: process.env.XIYUNEWS_SERIAL_TESTS !== "1",
+  },
   plugins: [
     cloudflareTest({
       main: "./src/index.ts",

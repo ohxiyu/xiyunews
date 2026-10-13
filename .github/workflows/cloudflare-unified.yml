@@ -28,7 +28,7 @@ jobs:
        (github.event.workflow_run.conclusion == 'success' &&
         github.event.workflow_run.head_branch == 'main' &&
         github.event.workflow_run.head_repository.full_name == github.repository))
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 20
     # Repository secrets keep the private-repository path independent of paid
     # environment features. Main/origin/opt-in guards above still apply.

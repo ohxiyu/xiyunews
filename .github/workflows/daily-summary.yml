@@ -42,7 +42,7 @@ concurrency:
 jobs:
   dedup-diagnostic:
     if: ${{ inputs.diagnostic_only }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 10
     permissions:
       contents: read
@@ -80,7 +80,7 @@ jobs:
           uv run python -m scripts.diagnose_dedup "${args[@]}"
   daily-summary:
     if: ${{ !inputs.diagnostic_only }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 30
     env:
       TZ: Asia/Shanghai

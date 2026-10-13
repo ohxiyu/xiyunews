@@ -1,0 +1,43 @@
+[Unit]
+Description=xiyunews repository Actions runner
+Wants=network-online.target
+After=network-online.target
+ConditionPathExists=/opt/xiyunews-runner/.runner
+
+[Service]
+User=xiyunews-runner
+Group=xiyunews-runner
+WorkingDirectory=/opt/xiyunews-runner
+ExecStart=/opt/xiyunews-runner/bin/runsvc.sh
+Restart=always
+RestartSec=15
+TimeoutStopSec=90
+KillMode=control-group
+Environment=RUNNER_TOOL_CACHE=/opt/hostedtoolcache
+Environment=ImageOS=ubuntu24
+Environment=LANG=C.UTF-8
+Environment=BUNDLE_JOBS=1
+Environment=MAKEFLAGS=-j1
+Environment=UV_CONCURRENT_BUILDS=1
+Environment=UV_CONCURRENT_INSTALLS=2
+Environment=XIYUNEWS_SERIAL_TESTS=1
+Environment=NODE_OPTIONS=--max-old-space-size=384
+CPUQuota=75%
+CPUWeight=10
+IOWeight=10
+Nice=10
+MemoryHigh=640M
+MemoryMax=768M
+OOMScoreAdjust=900
+TasksMax=256
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/opt/xiyunews-runner /opt/hostedtoolcache /home/xiyunews-runner /home/runner
+InaccessiblePaths=-/etc/fomobtc.env -/var/lib/fomobtc -/opt/fomobtc -/home/admin -/root
+RestrictSUIDSGID=yes
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

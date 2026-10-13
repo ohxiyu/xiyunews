@@ -14,7 +14,8 @@ permissions:
 
 jobs:
   edge-build:
-    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
@@ -47,7 +48,8 @@ jobs:
       - run: npx wrangler deploy --config wrangler.unified.jsonc --dry-run
         working-directory: ops/daily-dispatcher
   realtime-paths:
-    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 5
     outputs:
       changed: ${{ steps.paths.outputs.changed }}
@@ -67,8 +69,8 @@ jobs:
           fi
   realtime:
     needs: realtime-paths
-    if: needs.realtime-paths.outputs.changed == 'true'
-    runs-on: ubuntu-latest
+    if: needs.realtime-paths.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     strategy:
       fail-fast: false
@@ -97,7 +99,8 @@ jobs:
           node-version: "24"
       - run: node --test scripts/deploy/watchdog/watchdog.test.mjs
   governance:
-    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v6
@@ -112,7 +115,8 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: python scripts/check_governance.py --base "$BASE_SHA" --head "$HEAD_SHA"
   test:
-    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
