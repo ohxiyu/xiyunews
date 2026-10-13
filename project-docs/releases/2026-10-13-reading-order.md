@@ -27,3 +27,18 @@ Worker version: 现役5404da70-69c6-4385-b2e0-2f8ad2c211cf。
 Deployment: pending，走已有 main→Deploy Docs→统一 Worker，无AI重建静态产物，不人工写gh-pages。
 Verification: UI仅本地预览/测试；www已实际HTTP/HTTPS301并保留路径查询，最终要在正常发布后复验。
 Rollback: 不自动回滚/清PWA数据，用户保留原读书记录；若需回滚先批准。
+
+## 正式合并、自动发布与生产验收
+
+PR245 已于2026-10-13 11:59:36 Asia/Shanghai同步main后合并305701a18aca68c91b0945d3a873c09571e740c3。GitHub CI [38343910157](https://github.com/ohxiyu/xiyunews/actions/runs/38343910157) 的主项目/治理/路径/整站构建全部success，realtime/CodeQL按已有条件skipped。旧非生产Pages预览0cbeb81c在clone阶段悬停，后返回failure；它已不承载主域，未将其写为成功或用其替代正式Worker验收，不更改其权限/项目。实际网站继续受GitHub整站CI及后续Worker渲染/部署验证，不跳过任一正式流水线步骤。
+
+Source commit: 305701a18aca68c91b0945d3a873c09571e740c3。
+Artifact commit: 5b72a32067c87b6110e8ab22476f50b89bcbc13e。
+Worker version: c49f4b21-cb47-46c2-acfc-afb9a73defff。
+Deployment: [Deploy Docs38344302628](https://github.com/ohxiyu/xiyunews/actions/runs/38344302628) success；其正常workflow_run触发[统一Worker38344355331](https://github.com/ohxiyu/xiyunews/actions/runs/38344355331) success，2m32s、全部步骤通过。恢复正常自动部署，不再额外手动发布/改Token权限。
+Verification: 2026-10-13 12:03–12:05 Asia/Shanghai，health source/artifact/version一致、ok、dispatcher/watchdogtrue及原Cron列表不变；www首页/文章/RSS/API301到主域并保留查询，目标200；线上HTML新指纹sha256-10267c5504c6。真实浏览器www→主域保留hash，1440×1120桌面、390×844手机/暗色/英文无横向溢出；旧日报10.12可读且同样上下分层，事件卡背景在状态/完整进展前，分析/资料在后。键盘Enter展开true且全文保留，正式分享1320×4176完整长卡生成。原实时health200、telegram_enabledtrue、spot接收新鲜。未测试真实设备安装（本轮不涉及PWA逻辑改动）。
+Rollback: 没有自动回退/清用户阅读数据，www区路由未删；如需回滚代码/绑定先获批准。
+
+正式截图：[桌面](images/2026-10-13-reading-order/production-desktop.jpg)、[手机](images/2026-10-13-reading-order/production-mobile.jpg)、[暗色](images/2026-10-13-reading-order/production-mobile-dark.jpg)、[英文手机](images/2026-10-13-reading-order/production-english-mobile.jpg)、[事件手机](images/2026-10-13-reading-order/production-events-mobile.jpg)、[完整分享](images/2026-10-13-reading-order/production-share.jpg)。旧日期/新增静态数据/分享引用均没有编造内容；图片仅为展示验证，不重新核查新闻事实。
+
+Issue246/branch agent/reading-order-production-record只补本段/其他当前证据/handoff/图片，当前会话唯一owner，不改代码、配置或再次部署。应用五阶段全部complete。自有stash经文件逐项比对与main相同后清理，全部改动在已合并PR/main可恢复；原用户未提交文件保留。旧群消息Issue238与旧Pages预览克隆问题不在本任务补发/修复范围。
