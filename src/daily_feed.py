@@ -15,6 +15,7 @@ from pydantic import BaseModel, Field, ValidationError
 
 from ._file_utils import _atomic_write_text
 from .models import ContentItem
+from .publication_state import read_document, write_document
 
 
 DAILY_FEED_STATE_PATH = Path("docs/_data/bmtnews_state.json")
@@ -209,11 +210,11 @@ def load_daily_feed_state(
         timezone=timezone_name,
         updated_at=datetime.now(timezone.utc),
     )
-    if not path.exists():
-        return empty
-
     try:
-        state = DailyFeedState.model_validate_json(path.read_text(encoding="utf-8"))
+        payload = read_document(path)
+        if payload is None:
+            return empty
+        state = DailyFeedState.model_validate(payload)
     except (OSError, ValidationError, ValueError) as exc:
         raise DailyFeedStateError(f"Invalid daily feed state: {path}") from exc
 
@@ -249,10 +250,5 @@ def save_daily_feed_state(
         },
         deep=True,
     )
-    payload = json.dumps(
-        public_state.model_dump(mode="json"),
-        ensure_ascii=False,
-        indent=2,
-    )
-    _atomic_write_text(path, f"{payload}\n")
+    write_document(path, public_state.model_dump(mode="json"))
     return path

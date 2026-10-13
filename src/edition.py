@@ -14,6 +14,7 @@ from pydantic import BaseModel, Field, ValidationError
 from ._file_utils import _atomic_write_text
 from .daily_feed import item_identity
 from .models import ContentItem
+from .publication_state import read_document, write_document
 
 
 DEFAULT_STAGING_PATH = Path("data/staging-items.json")
@@ -140,10 +141,11 @@ def load_staging_state(
     path: Path = DEFAULT_STAGING_PATH,
 ) -> StagingState:
     """Load staged items, returning an empty state when no cache exists."""
-    if not path.exists():
-        return StagingState(updated_at=datetime.now(timezone.utc))
     try:
-        return StagingState.model_validate_json(path.read_text(encoding="utf-8"))
+        payload = read_document(path, primary=True)
+        if payload is None:
+            return StagingState(updated_at=datetime.now(timezone.utc))
+        return StagingState.model_validate(payload)
     except (OSError, ValidationError, ValueError) as exc:
         raise StagingStateError(f"Invalid staging state: {path}") from exc
 
@@ -216,10 +218,5 @@ def save_staging_state(
         items=list(items),
     )
     path.parent.mkdir(parents=True, exist_ok=True)
-    payload = json.dumps(
-        state.model_dump(mode="json"),
-        ensure_ascii=False,
-        indent=2,
-    )
-    _atomic_write_text(path, f"{payload}\n")
+    write_document(path, state.model_dump(mode="json"))
     return path

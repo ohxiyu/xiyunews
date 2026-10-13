@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import random
 from zoneinfo import ZoneInfo
+from .publication_state import read_document
 
 TZ = ZoneInfo("Asia/Shanghai")
 
@@ -20,7 +21,13 @@ def timestamp(value: str) -> datetime:
 
 
 def load(path: Path) -> dict:
-    state = json.loads(path.read_text()) if path.exists() else {"version": 1, "editions": {}}
+    state = read_document(path, name="square_queue")
+    if state is None:
+        state = {"version": 1, "editions": {}}
+    return validate(state)
+
+
+def validate(state: dict) -> dict:
     if not isinstance(state, dict) or state.get("version") != 1 or not isinstance(state.get("editions"), dict):
         raise ValueError("Invalid queue; never reset delivery history")
     for rows in state["editions"].values():

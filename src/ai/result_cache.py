@@ -11,6 +11,7 @@ from typing import Any, Iterable
 from .._file_utils import _atomic_write_text
 from ..models import ContentItem
 from . import prompts
+from ..publication_state import active_store
 
 
 CACHE_VERSION = 1
@@ -49,6 +50,7 @@ class AnalysisResultCache:
         prompt_revision: str = "2026-09-input-aware-v2",
     ) -> None:
         self.path = path
+        self.backend = active_store() if path.resolve() == (Path.cwd() / "data/analysis-cache.json").resolve() else None
         self.model = model
         self.ttl = timedelta(days=max(1, ttl_days))
         self.max_entries = max(100, max_entries)
@@ -66,8 +68,14 @@ class AnalysisResultCache:
         self._load()
 
     def _load(self) -> None:
+        payload = {}
         try:
             payload = json.loads(self.path.read_text(encoding="utf-8"))
+        except (OSError, ValueError, TypeError):
+            pass
+        if self.backend is not None:
+            payload = self.backend.load_cache(payload)
+        if isinstance(payload, dict):
             if payload.get("version") == CACHE_VERSION and isinstance(
                 payload.get("entries"), dict
             ):
@@ -76,8 +84,6 @@ class AnalysisResultCache:
                     self.prefilter_batches = payload["prefilter_batches"]
                 if isinstance(payload.get("relation_pairs"), dict):
                     self.relation_pairs = payload["relation_pairs"]
-        except (OSError, ValueError, TypeError):
-            self.entries = {}
         self._prune()
 
     def _key(self, item: ContentItem, stage: str) -> str:
@@ -301,20 +307,23 @@ class AnalysisResultCache:
         # Separate budget: relation comparisons cannot evict scored stories.
         self.relation_pairs = prune(self.relation_pairs, min(self.ttl, timedelta(days=7)), 2000)
 
-    def save(self) -> None:
-        if not self._dirty:
+    def save(self, *, export_json: bool = True) -> None:
+        changed = self._dirty
+        if not changed and not (self.backend is not None and export_json):
             return
         self._prune()
+        payload = {"version": CACHE_VERSION, "entries": self.entries,
+            "prefilter_batches": self.prefilter_batches, "relation_pairs": self.relation_pairs}
+        if self.backend is not None and self._dirty:
+            self.backend.save_cache(payload)
+        self._dirty = False
+        if self.backend is not None and not export_json:
+            return  # Per-pair durable row updates, not whole-file rewrites.
         self.path.parent.mkdir(parents=True, exist_ok=True)
         _atomic_write_text(
             self.path,
             json.dumps(
-                {
-                    "version": CACHE_VERSION,
-                    "entries": self.entries,
-                    "prefilter_batches": self.prefilter_batches,
-                    "relation_pairs": self.relation_pairs,
-                },
+                payload,
                 ensure_ascii=False,
                 indent=2,
                 sort_keys=True,

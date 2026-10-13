@@ -135,5 +135,5 @@ async def classify_event_relation(
     if cache is not None:
         cache.store_relation(EVENT_RELATION_SYSTEM, cache_input, decision.model_dump(mode="json"))
         # Preserve paid, validated work even if a later candidate fails.
-        cache.save()
+        cache.save(export_json=False)
     return decision

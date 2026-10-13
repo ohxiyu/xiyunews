@@ -41,6 +41,7 @@ from .events import (
     signature_for_story,
 )
 from .models import ContentItem
+from .publication_state import read_document, write_document
 
 
 EVENT_CATALOG_PATH = Path("docs/_data/events.json")
@@ -80,7 +81,9 @@ def load_event_catalog(
     path: Path = EVENT_CATALOG_PATH,
 ) -> tuple[dict[str, object], list[TrackedEvent]]:
     """Load and validate the public catalog while preserving its audit fields."""
-    payload = json.loads(path.read_text(encoding="utf-8"))
+    payload = read_document(path)
+    if payload is None:
+        raise ValueError("event catalog missing")
     rows = payload.get("events")
     if not isinstance(rows, list):
         raise ValueError(f"event catalog has no events array: {path}")
@@ -104,19 +107,16 @@ def save_event_catalog(
         "schema_version": int(metadata.get("schema_version") or 1),
         "events": [event.model_dump(mode="json") for event in ordered],
     }
-    _atomic_write_text(
-        path,
-        json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
-    )
+    write_document(path, payload)
     return path
 
 
 def load_legacy_event_urls(
     path: Path = EVENT_LEGACY_URLS_PATH,
 ) -> tuple[dict[str, str], dict[str, list[str]]]:
-    if not path.exists():
+    payload = read_document(path)
+    if payload is None:
         return {}, {}
-    payload = json.loads(path.read_text(encoding="utf-8"))
     redirects = payload.get("redirects") or {}
     retired = payload.get("retired") or {}
     if not isinstance(redirects, dict) or not isinstance(retired, dict):

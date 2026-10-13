@@ -324,6 +324,10 @@ class BMTNewsOrchestrator:
             report.set_metric("event_relation_cache_hits", cache.relation_hits)
             report.set_metric("event_relation_cache_misses", cache.relation_misses)
         report.finish()
+        from .publication_state import active_store
+        backend = active_store()
+        if backend is not None:
+            backend.save_report(report.to_dict())
         return save_run_report(report)
 
     async def run(self, force_hours: int = None) -> None:
