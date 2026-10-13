@@ -4,9 +4,13 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
+  schedule:
+    # Weekly full validation, Monday 05:13 Asia/Shanghai, outside publication.
+    - cron: '13 21 * * 0'
 
 concurrency:
-  group: ci-${{ github.event.pull_request.number }}
+  group: ci-${{ github.event.pull_request.number || github.ref }}-${{ github.event_name }}
   cancel-in-progress: true
 
 permissions:
@@ -14,7 +18,8 @@ permissions:
 
 jobs:
   edge-build:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    needs: realtime-paths
+    if: needs.realtime-paths.outputs.edge == 'true'
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
@@ -26,6 +31,15 @@ jobs:
           ref: gh-pages
           path: .edge-source
           persist-credentials: false
+      - name: Render the proposed templates against the published data
+        run: |
+          for directory in _layouts _includes _sass assets; do
+            if [ -d "docs/$directory" ]; then
+              mkdir -p ".edge-source/$directory"
+              cp -a "docs/$directory/." ".edge-source/$directory/"
+            fi
+          done
+          cp docs/_config.yml .edge-source/_config.yml
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
@@ -54,11 +68,16 @@ jobs:
       - run: npx wrangler deploy --config wrangler.unified.jsonc --dry-run
         working-directory: ops/daily-dispatcher
   realtime-paths:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: >-
+      (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name != 'pull_request' && github.ref == 'refs/heads/main')
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 5
     outputs:
       changed: ${{ steps.paths.outputs.changed }}
+      python: ${{ steps.paths.outputs.python }}
+      web: ${{ steps.paths.outputs.web }}
+      edge: ${{ steps.paths.outputs.edge }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -67,15 +86,16 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
-          if git diff --name-only "$BASE_SHA...$HEAD_SHA" -- realtime/ .github/workflows/ci.yml | grep -q .; then
-            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          if [ "$EVENT_NAME" = pull_request ]; then
+            python3 scripts/ci_scope.py --base "$BASE_SHA" --head "$HEAD_SHA" >> "$GITHUB_OUTPUT"
           else
-            echo 'changed=false' >> "$GITHUB_OUTPUT"
+            python3 scripts/ci_scope.py --all >> "$GITHUB_OUTPUT"
           fi
   realtime:
     needs: realtime-paths
-    if: needs.realtime-paths.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository
+    if: needs.realtime-paths.outputs.changed == 'true'
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     strategy:
@@ -105,7 +125,9 @@ jobs:
           node-version: "24"
       - run: node --test scripts/deploy/watchdog/watchdog.test.mjs
   governance:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: >-
+      (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name != 'pull_request' && github.ref == 'refs/heads/main')
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 5
     steps:
@@ -119,9 +141,16 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: python scripts/check_governance.py --base "$BASE_SHA" --head "$HEAD_SHA"
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT_NAME" = pull_request ]; then
+            python scripts/check_governance.py --base "$BASE_SHA" --head "$HEAD_SHA"
+          else
+            python scripts/check_governance.py
+          fi
   test:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    needs: realtime-paths
+    if: needs.realtime-paths.outputs.python == 'true'
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
@@ -160,6 +189,15 @@ jobs:
           done
           echo "::error::pip-audit could not reach PyPI or OSV"
           exit 1
+  web:
+    needs: realtime-paths
+    if: needs.realtime-paths.outputs.web == 'true'
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
