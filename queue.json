@@ -3028,10 +3028,11 @@
         "post_id": "376797049325606"
       },
       "d0d069fe02126cca74371e1219f0848faf43fcaf5474c327cb00fc5e90438eab": {
-        "status": "pending",
+        "status": "sent",
         "rank": 9,
         "text_hash": "3f848885a8239fc8d24a7b6811800d8bb19847d112c2ec1ad876aaf245a180c7",
-        "attempted_at": "2026-10-13T17:45:58.879567+08:00"
+        "attempted_at": "2026-10-13T17:45:58.879567+08:00",
+        "post_id": "376805628675087"
       }
     }
   },
@@ -3253,12 +3254,6 @@
     "2026-10-13": {
       "revision": "8fc4edb4b9f5d2082abf83f0b58ebc21c91f899e6062d03c982dba6d7fd43c70",
       "jobs": [
-        {
-          "id": "d0d069fe02126cca74371e1219f0848faf43fcaf5474c327cb00fc5e90438eab",
-          "text": "微软股价触及近一年高点，公司宣布计划大规模部署自有人工智能芯片\n\n微软周一公布第三代 AI 加速芯片 Maia 300，并表示计划逐步提高自研芯片在数据中心的使用比例，未来将主要依靠自研 Maia 芯片架构处理 AI 模型请求，并计划在 Maia 系列芯片上部署数吉瓦级算力，预计 2027 年投产。据 BlockBeats 援引 BIT（Bit.com）行情数据，10 月 12 日微软股价日内上涨 0.8%，触及近一年高点。\n\n此举被视为对英伟达在 AI 基础设施领域主导地位的直接竞争动作，目标是降低微软对英伟达 GPU 的依赖。微软称 Maia 300 有望提升 AI 服务性能并降低数据中心运营成本。\n\n每个数据中心机架可搭载 96 颗 Maia 300 芯片，是上一代 Maia 200 的两倍；微软称与 GPU 相比，其每机架 AI Token 处理量最高可达 7 倍，每兆瓦可处理的 Token 数量提升约 40%。模型训练仍将使用英伟达和 AMD 芯片；与谷歌 TPU、亚马逊 Trainium 等产品不同，微软自研加速芯片目前尚未向其他企业开放租用。Evercore ISI 分析师预计，截至 2027 年第一季度，Maia 芯片将占微软 AI 芯片支出的约 10%。\n\n来源：https://m.theblockbeats.info/flash/371421?from=telegram\nxiyu.news · 2026-10-13 · https://xiyu.news",
-          "rank": 9,
-          "due_at": "2026-10-13T17:41:00+08:00"
-        },
         {
           "id": "66f4637059d5f449088cefed69177add67d5a4dee258c1cbc9f5e0a9c9f37bc3",
           "text": "Zod 4.6.6 被恶意软件入侵？\n\n开发者指出，Zod 的 GitHub 发布标签 v4.6.6 目前仍指向一个恶意提交（d821685）。该提交于 2026 年 9 月 21 日使用窃取的维护者凭据被推入仓库，并于当天被回滚。相关报道称该代码从未发布到 npm，同一攻击活动还针对了 standard-schema 和 nub 两个包。\n\nZod 是最广泛使用的 TypeScript 优先模式校验库之一，因此即使已回滚，恶意提交仍带着标签留在 GitHub 上可供下载，感染代码依然可被获取。报道称该攻击活动通过 Ethereum 智能合约下发 JS 载荷，这一手法意在规避注册表与安全扫描器的检查。\n\n该提交的说明为“Fix bugs and improve performance”，改动涉及 packages/mini/meta.test.mjs；据讨论，注入代码被设计为在 Zod 安装时执行，并从 Ethereum 智能合约获取下一阶段载荷。评论者称恶意代码进入了 Zod 的主分支但未进入 npm，维护者 Colin Hicks 当天通过 PR #6620 回滚，随后于 2026 年 10 月 11 日发布了不含恶意代码的 4.6.6 版本。在 nub 的案例中，同一攻击者的代码据称进入了注册表。\n\n来源：https://github.com/colinhacks/zod/commit/d821685ea6732436fcdf786a81d076958471e467\nxiyu.news · 2026-10-13 · https://xiyu.news",
