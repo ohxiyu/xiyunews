@@ -41,7 +41,7 @@ jobs:
       - name: Restore the published archive
         shell: bash
         run: |
-          git fetch --depth=1 origin gh-pages:refs/remotes/origin/gh-pages
+          git fetch --depth=1 origin +gh-pages:refs/remotes/origin/gh-pages
           mkdir -p docs/_data/archive
           for path in $(git ls-tree -r --name-only origin/gh-pages -- _data/archive 2>/dev/null); do
             git show "origin/gh-pages:${path}" > "docs/${path}"

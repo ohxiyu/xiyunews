@@ -69,7 +69,7 @@ jobs:
             ${{ runner.os }}-bmtnews-pipeline-v2-
       - name: Read public state
         run: |
-          git fetch --depth=1 origin main:refs/remotes/origin/main gh-pages:refs/remotes/origin/gh-pages
+          git fetch --depth=1 origin +main:refs/remotes/origin/main +gh-pages:refs/remotes/origin/gh-pages
       - name: Bounded sanitized dedup diagnosis
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
@@ -95,7 +95,7 @@ jobs:
       - name: Restore published daily state and archive
         shell: bash
         run: |
-          git fetch --depth=1 origin gh-pages:refs/remotes/origin/gh-pages
+          git fetch --depth=1 origin +gh-pages:refs/remotes/origin/gh-pages
           if git cat-file -e "origin/gh-pages:_data/bmtnews_state.json" 2>/dev/null; then
             mkdir -p docs/_data
             git show "origin/gh-pages:_data/bmtnews_state.json" > docs/_data/bmtnews_state.json
