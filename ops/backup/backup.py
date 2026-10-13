@@ -1,5 +1,6 @@
 """Independent stdlib online backup; only encrypted files leave root storage."""
 import argparse
+from contextlib import closing
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -45,7 +46,7 @@ def digest(path):
 
 
 def database_manifest(path):
-    with sqlite3.connect(f"file:{path}?mode=ro", uri=True, timeout=30) as db:
+    with closing(sqlite3.connect(f"file:{path}?mode=ro", uri=True, timeout=30)) as db:
         if db.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
             raise ValueError("SQLite integrity check failed")
         tables = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name").fetchall()
@@ -56,9 +57,13 @@ def database_manifest(path):
 def snapshot_database(source, target):
     if source.is_symlink() or target.exists():
         raise ValueError("unsafe SQLite backup path")
-    with sqlite3.connect(f"file:{source}?mode=ro", uri=True, timeout=30) as original:
-        with sqlite3.connect(target) as backup:
+    with closing(sqlite3.connect(f"file:{source}?mode=ro", uri=True, timeout=30)) as original:
+        with closing(sqlite3.connect(target)) as backup:
             original.backup(backup, pages=128, sleep=0.05)
+            backup.execute("PRAGMA journal_mode=DELETE")
+            # Compact ONLY the isolated copy. Discard free pages left by old
+            # replaced blobs without touching the running database or rows.
+            backup.execute("VACUUM")
     target.chmod(0o600)
     return database_manifest(target)
 
@@ -73,14 +78,22 @@ def create_snapshot(destination, databases=DATABASES, state=Path("/home/xiyunews
         info = snapshot_database(source, destination / (name + ".sqlite3"))
         manifest["databases"][name] = info
     redundant = set()
+    audit_digests = {}
     publication = destination / "publication.sqlite3"
     if publication.exists():
-        with sqlite3.connect(f"file:{publication}?mode=ro", uri=True) as db:
+        with closing(sqlite3.connect(f"file:{publication}?mode=ro", uri=True)) as db:
             tables = {row[0] for row in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
             if "publication_meta" in tables and db.execute("SELECT 1 FROM publication_meta WHERE key='cache_initialized' AND value='1'").fetchone():
                 redundant.add("analysis-cache.json")
             if "publication_documents" in tables and db.execute("SELECT 1 FROM publication_documents WHERE name='staging'").fetchone():
                 redundant.add("staging-items.json")
+            if "publication_documents" in tables:
+                filenames = {"events": "events.json", "event_urls": "event-legacy-urls.json", "daily": "bmtnews_state.json"}
+                for name, payload, expected in db.execute("SELECT name,payload,digest FROM publication_documents"):
+                    if hashlib.sha256(payload.encode()).hexdigest() != expected:
+                        raise ValueError("publication snapshot document digest mismatch")
+                    if name in filenames:
+                        audit_digests[filenames[name]] = expected
     # Only owned checkpoint snapshots, never .env/config/private keys/logs.
     for source in state.glob("*.json") if state.exists() else []:
         if source.name in redundant:
@@ -88,7 +101,11 @@ def create_snapshot(destination, databases=DATABASES, state=Path("/home/xiyunews
         if source.is_symlink():
             raise ValueError("symlink in state snapshots")
         data = source.read_bytes()
-        json.loads(data)
+        value = json.loads(data)
+        if source.name in audit_digests:
+            canonical = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False)
+            if hashlib.sha256(canonical.encode()).hexdigest() == audit_digests[source.name]:
+                continue  # Prove equality to this online backup, not the live DB.
         target = destination / ("state-" + source.name)
         target.write_bytes(data)
         target.chmod(0o600)
@@ -117,6 +134,16 @@ def verify_restore(directory):
     return {"verified": True, "databases": len(manifest["databases"]), "state_files": len(manifest["state_files"])}
 
 
+def write_archive(snapshot, archive):
+    # Stdlib xz preset 3 bounds compressor memory, while its larger dictionary
+    # compresses repeated SQLite/news structure better than gzip's 32KiB window.
+    with tarfile.open(archive, "w:xz", preset=3) as tar:
+        for path in sorted(snapshot.iterdir()):
+            if path.is_symlink() or not path.is_file() or path.name.endswith(("-wal", "-shm")):
+                raise ValueError("unexpected snapshot sidecar or unsafe member")
+            tar.add(path, arcname=path.name, recursive=False)
+
+
 def run_backup():
     if os.geteuid() != 0:
         raise SystemExit("root backup required")
@@ -125,7 +152,7 @@ def run_backup():
     if ROOT.is_symlink() or EXPORT.is_symlink():
         raise ValueError("unsafe backup root")
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    output = ROOT / ("xiyunews-" + stamp + ".tar.gz.age")
+    output = ROOT / ("xiyunews-" + stamp + ".tar.xz.age")
     if output.exists():
         raise ValueError("backup already exists")
     with tempfile.TemporaryDirectory(prefix="snapshot-", dir=ROOT) as temporary:
@@ -136,26 +163,26 @@ def run_backup():
         manifest["deployment"] = deployment_manifest()
         (snapshot / "manifest.json").write_text(json.dumps(manifest, sort_keys=True, indent=2) + "\n")
         verify_restore(snapshot)
-        archive = directory / "snapshot.tar.gz"
-        with tarfile.open(archive, "w:gz") as tar:
-            for path in sorted(snapshot.iterdir()):
-                tar.add(path, arcname=path.name, recursive=False)
+        archive = directory / "snapshot.tar.xz"
+        write_archive(snapshot, archive)
         subprocess.run(["age", "-R", "/etc/xiyunews-backup-recipient.pub", "-o", str(output), str(archive)], check=True, timeout=180)
     # Bound existing artifact storage use; fail closed rather than raising quota.
     if output.stat().st_size > 8 * 1024 * 1024:
         raise ValueError("encrypted backup exceeds 8MiB off-host storage budget")
-    export_file = EXPORT / "latest.tar.gz.age"
+    export_file = EXPORT / "latest.tar.xz.age"
     temporary_export = EXPORT / "latest.tmp"
     shutil.copyfile(output, temporary_export)
     temporary_export.chmod(0o644)
     temporary_export.replace(export_file)
-    summary = {"format": 1, "created_at": stamp, "sha256": digest(output), "bytes": output.stat().st_size}
+    summary = {"format": 1, "compression": "xz", "archive": export_file.name,
+               "created_at": stamp, "sha256": digest(output), "bytes": output.stat().st_size}
     temporary_manifest = EXPORT / "manifest.tmp"
     temporary_manifest.write_text(json.dumps(summary) + "\n")
     temporary_manifest.chmod(0o644)
     temporary_manifest.replace(EXPORT / "manifest.json")
     # Seven owned encrypted versions locally; never touch original releases/DB.
-    for expired in sorted(ROOT.glob("xiyunews-????????T??????Z.tar.gz.age"))[:-7]:
+    owned = list(ROOT.glob("xiyunews-????????T??????Z.tar.gz.age")) + list(ROOT.glob("xiyunews-????????T??????Z.tar.xz.age"))
+    for expired in sorted(owned)[:-7]:
         if expired.is_symlink():
             raise ValueError("unsafe retention entry")
         expired.unlink()
