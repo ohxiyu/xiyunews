@@ -10,7 +10,7 @@
   "owner": "当前会话，唯一编辑与发布整合负责人",
   "branch": "agent/www-proxied-route",
   "last_verified_commit": "c1595aa900e5fc77ba85e2ad5d189c5883f9d7c0",
-  "pr": "PR 待创建",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/244",
   "completed": [
     "PR241 已合并，主域 Worker 跳转代码已上传且健康正常",
     "已定位实际绑定错误100117：www 的 DNS externally managed，未删除或覆盖任何记录",
