@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 
 from pydantic import ValidationError
 
@@ -10,10 +11,39 @@ from ..events import EventRelation, EventRelationDecision, StoryEvidence, Tracke
 from .client import AIClient
 from .prompts import EVENT_RELATION_SYSTEM, EVENT_RELATION_USER
 from .utils import parse_json_response
+from .result_cache import AnalysisResultCache
 
 
 class EventRelationError(ValueError):
     """Raised when a semantic event decision is missing or invalid."""
+
+
+def compact_context(value):
+    """Remove only exact duplicate translations, never omit distinct facts."""
+    if isinstance(value, list):
+        return [compact_context(row) for row in value]
+    if not isinstance(value, dict):
+        return value
+    result = {key: compact_context(row) for key, row in value.items()}
+    for key in list(result):
+        if key.endswith("_en") and result.get(key) and result.get(key[:-3] + "_zh") == result[key]:
+            result.pop(key)
+    return result
+
+
+def relation_user(event: TrackedEvent, story: StoryEvidence) -> str:
+    return EVENT_RELATION_USER.format(
+        event=json.dumps(compact_context(_event_context(event)), ensure_ascii=False, separators=(",", ":")),
+        story=json.dumps(compact_context(_story_context(story)), ensure_ascii=False, separators=(",", ":")),
+    )
+
+
+def relation_cache_input(event: TrackedEvent, story: StoryEvidence, user: str) -> str:
+    # Full evidence/catalog revision also invalidates changes omitted from the
+    # bounded model context (e.g. earlier history, new source references).
+    revision = hashlib.sha256(json.dumps([event.model_dump(mode="json"), story.model_dump(mode="json")],
+        sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
+    return revision + "\n" + user
 
 
 def _event_context(event: TrackedEvent) -> dict:
@@ -54,6 +84,8 @@ def _story_context(story: StoryEvidence) -> dict:
         "source_label": story.source_label,
         "source_excerpt": story.source_excerpt,
         "evidence_quality": story.evidence_quality,
+        "entities": story.entities,
+        "identifiers": story.identifiers,
     }
 
 
@@ -75,22 +107,33 @@ async def classify_event_relation(
     *,
     event: TrackedEvent,
     story: StoryEvidence,
+    cache: AnalysisResultCache | None = None,
 ) -> EventRelationDecision:
     """Classify one prefiltered pair with a strict, auditable JSON contract."""
+    user = relation_user(event, story)
+    cache_input = relation_cache_input(event, story, user)
+    def validate(payload: str) -> EventRelationDecision:
+        decision = parse_event_relation(payload, event_id=event.event_id)
+        if decision.relation is EventRelation.SAME_EVENT_UPDATE and story.evidence_quality == "headline_only":
+            raise EventRelationError("headline-only evidence cannot confirm a material change")
+        return decision
+    if cache is not None:
+        value = cache.get_relation(EVENT_RELATION_SYSTEM, cache_input)
+        if value is not None:
+            try:
+                return validate(json.dumps(value, ensure_ascii=False))
+            except (EventRelationError, ValueError):
+                cache.discard_relation(EVENT_RELATION_SYSTEM, cache_input)
     response = await client.complete(
         system=EVENT_RELATION_SYSTEM,
-        user=EVENT_RELATION_USER.format(
-            event=json.dumps(_event_context(event), ensure_ascii=False, indent=2),
-            story=json.dumps(_story_context(story), ensure_ascii=False, indent=2),
-        ),
+        user=user,
         temperature=0.0,
         max_tokens=4096,
         response_format="json",
     )
-    decision = parse_event_relation(response, event_id=event.event_id)
-    if (
-        decision.relation is EventRelation.SAME_EVENT_UPDATE
-        and story.evidence_quality == "headline_only"
-    ):
-        raise EventRelationError("headline-only evidence cannot confirm a material change")
+    decision = validate(response)
+    if cache is not None:
+        cache.store_relation(EVENT_RELATION_SYSTEM, cache_input, decision.model_dump(mode="json"))
+        # Preserve paid, validated work even if a later candidate fails.
+        cache.save()
     return decision

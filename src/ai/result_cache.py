@@ -55,6 +55,9 @@ class AnalysisResultCache:
         self.prompt_revision = prompt_revision
         self.entries: dict[str, dict[str, Any]] = {}
         self.prefilter_batches: dict[str, dict[str, Any]] = {}
+        self.relation_pairs: dict[str, dict[str, Any]] = {}
+        self.relation_hits = 0
+        self.relation_misses = 0
         self.hits = 0
         self.misses = 0
         self.comparison_hits = 0
@@ -71,6 +74,8 @@ class AnalysisResultCache:
                 self.entries = payload["entries"]
                 if isinstance(payload.get("prefilter_batches"), dict):
                     self.prefilter_batches = payload["prefilter_batches"]
+                if isinstance(payload.get("relation_pairs"), dict):
+                    self.relation_pairs = payload["relation_pairs"]
         except (OSError, ValueError, TypeError):
             self.entries = {}
         self._prune()
@@ -167,6 +172,32 @@ class AnalysisResultCache:
             ensure_ascii=False,
         )
         return hashlib.sha256(material.encode()).hexdigest()
+
+    def _relation_key(self, system: str, user: str) -> str:
+        material = json.dumps(["event-relation-compact-exact-v1", self.model,
+            self.prompt_revision, system, user], ensure_ascii=False)
+        return hashlib.sha256(material.encode()).hexdigest()
+
+    def get_relation(self, system: str, user: str) -> dict[str, Any] | None:
+        value = self._get_key(self._relation_key(system, user), records=self.relation_pairs,
+            ttl=min(self.ttl, timedelta(days=7)), track_stats=False)
+        if value is None:
+            self.relation_misses += 1
+        else:
+            self.relation_hits += 1
+        return value
+
+    def discard_relation(self, system: str, user: str) -> None:
+        self.relation_pairs.pop(self._relation_key(system, user), None)
+        self.relation_hits = max(0, self.relation_hits - 1)
+        self.relation_misses += 1
+        self._dirty = True
+
+    def store_relation(self, system: str, user: str, value: dict[str, Any]) -> None:
+        self.relation_pairs[self._relation_key(system, user)] = {
+            "stored_at": _utc_now().isoformat(), "value": value,
+        }
+        self._dirty = True
 
     def get_prefilter_batch(self, system: str, user: str) -> dict[str, Any] | None:
         return self._get_key(
@@ -267,6 +298,8 @@ class AnalysisResultCache:
             self.prefilter_batches, min(self.ttl, PREFILTER_TTL),
             PREFILTER_MAX_BATCHES,
         )
+        # Separate budget: relation comparisons cannot evict scored stories.
+        self.relation_pairs = prune(self.relation_pairs, min(self.ttl, timedelta(days=7)), 2000)
 
     def save(self) -> None:
         if not self._dirty:
@@ -280,6 +313,7 @@ class AnalysisResultCache:
                     "version": CACHE_VERSION,
                     "entries": self.entries,
                     "prefilter_batches": self.prefilter_batches,
+                    "relation_pairs": self.relation_pairs,
                 },
                 ensure_ascii=False,
                 indent=2,

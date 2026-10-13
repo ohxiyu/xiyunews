@@ -23,6 +23,7 @@ from bs4 import BeautifulSoup
 from ._file_utils import _atomic_write_text
 from .ai.client import AIClient
 from .ai.event_relations import classify_event_relation
+from .ai.result_cache import AnalysisResultCache
 from .events import (
     EventReference,
     EventRelation,
@@ -63,6 +64,7 @@ class IncrementalEventResult:
     new_events: int = 0
     classifier_errors: int = 0
     briefs_enriched: int = 0
+    evidence_deferred: int = 0
 
     @property
     def changed(self) -> bool:
@@ -746,12 +748,14 @@ async def update_events(
     *,
     client: AIClient | None,
     classifier: RelationClassifier = _default_classifier,
+    relation_cache: AnalysisResultCache | None = None,
 ) -> tuple[list[TrackedEvent], IncrementalEventResult]:
     """Attach only unseen stories and return an updated, validated catalog."""
     working = [event.model_copy(deep=True) for event in events]
     assignments = _story_assignment_index(working)
     considered = already_known = classified = material = duplicates = created = errors = 0
     briefs_enriched = 0
+    evidence_deferred = 0
 
     ordered_items = sorted(
         items,
@@ -790,13 +794,23 @@ async def update_events(
         )
         decisions: list[EventRelationDecision] = []
         failed = False
+        if candidates and story.evidence_quality == "headline_only":
+            # The downstream contract already forbids material changes from
+            # this evidence. Wait for better source text instead of paying for
+            # an inference that cannot safely advance a tracked event.
+            item.metadata["event_retry_pending"] = True
+            evidence_deferred += 1
+            continue
         if candidates and client is None:
             raise ValueError("an AI client is required for unseen event candidates")
         for candidate in candidates:
             try:
-                decisions.append(
-                    await classifier(client, by_id[candidate.event_id], story)  # type: ignore[arg-type]
-                )
+                if classifier is _default_classifier:
+                    relation = await classify_event_relation(client, event=by_id[candidate.event_id],  # type: ignore[arg-type]
+                        story=story, cache=relation_cache)
+                else:
+                    relation = await classifier(client, by_id[candidate.event_id], story)  # type: ignore[arg-type]
+                decisions.append(relation)
                 classified += 1
             except Exception:
                 errors += 1
@@ -856,4 +870,5 @@ async def update_events(
         new_events=created,
         classifier_errors=errors,
         briefs_enriched=briefs_enriched,
+        evidence_deferred=evidence_deferred,
     )

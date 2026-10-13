@@ -15,3 +15,5 @@ Rollback: 旧Worker18caa7c0-ee7c-4daf-a50d-8f2cb7744457；如确需回退另获�
 前置验收：PR263纯文档CI38386364633治理14s、范围11s成功；Python/web/edge/realtime明确跳过，原Pages预览成功。
 
 当前实际：PR265于2026-10-13 19:14上海合并6dbc9bffe38db730ad6a300ab4dfcb5146f5792f，CI38387763044全部适用项成功（Python1m20s/web2m/edge3m43s/实时3.11与3.12均成功）。严格SSH安装guardian Result=success，定时器启用；只读runtime返回新鲜idle、starts_24h=0。原实时PID235825、NRestarts0。统一Worker发布38388839156进行中，不能把服务器安装等同Worker上线。
+
+统一发布38388839156随后success；health回读Worker7c0f3e05-92a8-4bfc-937c-4bbbbf5b7c39、source6dbc9bffe38db730ad6a300ab4dfcb5146f5792f、artifact cd1b66613bd72f3a51622425565bc1b9775c34f1，runner=idle且状态新鲜。真实停机恢复未刻意制造，有限恢复离线故障测试与现役安装分别成立。
