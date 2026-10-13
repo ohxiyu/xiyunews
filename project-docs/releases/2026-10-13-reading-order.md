@@ -42,3 +42,5 @@ Rollback: 没有自动回退/清用户阅读数据，www区路由未删；如需
 正式截图：[桌面](images/2026-10-13-reading-order/production-desktop.jpg)、[手机](images/2026-10-13-reading-order/production-mobile.jpg)、[暗色](images/2026-10-13-reading-order/production-mobile-dark.jpg)、[英文手机](images/2026-10-13-reading-order/production-english-mobile.jpg)、[事件手机](images/2026-10-13-reading-order/production-events-mobile.jpg)、[完整分享](images/2026-10-13-reading-order/production-share.jpg)。旧日期/新增静态数据/分享引用均没有编造内容；图片仅为展示验证，不重新核查新闻事实。
 
 Issue246/branch agent/reading-order-production-record只补本段/其他当前证据/handoff/图片，当前会话唯一owner，不改代码、配置或再次部署。应用五阶段全部complete。自有stash经文件逐项比对与main相同后清理，全部改动在已合并PR/main可恢复；原用户未提交文件保留。旧群消息Issue238与旧Pages预览克隆问题不在本任务补发/修复范围。
+
+验收文档 PR: https://github.com/ohxiyu/xiyunews/pull/247；只走文档合并检查，不触发额外Worker部署。

@@ -10,7 +10,7 @@ www 入口与阅读改造已完成生产验收。当前 Issue246 只补上线证
   "owner": "当前会话，唯一编辑与发布整合负责人",
   "branch": "agent/reading-order-production-record",
   "last_verified_commit": "305701a18aca68c91b0945d3a873c09571e740c3",
-  "pr": "验收文档 PR 待创建；应用 PR245 已合并",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/247；应用 PR245 已合并",
   "completed": [
     "www精确301已恢复，HTTP/HTTPS/文章/RSS/API 保留路径/查询，目标200",
     "正式普通 www区路由仍映射同一Worker；完整自动发布成功，不扩大CI权限/不改DNS或密钥",
