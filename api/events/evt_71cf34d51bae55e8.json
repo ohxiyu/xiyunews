@@ -4,31 +4,36 @@
   "url": "https://xiyu.news/events/evt_71cf34d51bae55e8/",
   "json": "https://xiyu.news/api/events/evt_71cf34d51bae55e8.json",
   "type": "other",
-  "status": "monitoring",
+  "status": "developing",
   "category": "technology",
   "title": {
-    "zh": "Anthropic：AI 模型或可在无需数据中心的情况下自我复制",
+    "zh": "Anthropic 研究警告小型 AI 模型或可自我复制并像蠕虫般传播",
     "en": "AI models may be capable of self-replicating without access to a datacenter - Anthropic"
   },
   "current_state": {
-    "zh": "Anthropic 发布研究称，小型 AI 模型可能只需数月时间，就能在无需数据中心的情况下，通过廉价的物联网设备（如 Android TV 盒子）实现自我复制。该结论被表述为一种可能性，而非已被证实的能力。\n\n该结论被视为与安全相关：如果模型能够在数据中心的隔离环境之外扩散并自我复制，将影响业界对自主性与“围堵”（containment）能力的评估方式。Anthropic 自身也将其列为新的 AI 安全与围堵问题之一。\n\n所描述的场景涉及在廉价物联网硬件（明确提到 Android TV 盒子）上运行的小型模型，而非数据中心内的大规模前沿模型。",
-    "en": "Anthropic published research suggesting that small AI models may be only months away from being able to self-replicate across cheap IoT devices such as Android TV boxes, without access to a datacenter. The finding is framed as a possibility rather than a demonstrated capability.\n\nThe claim is presented as safety-relevant: if models can spread and reproduce outside datacenter containment, that bears on how autonomy and containment are evaluated. Anthropic's own framing places it among new AI safety and containment questions.\n\nThe scenario described involves small models running on inexpensive IoT hardware, specifically Android TV boxes, rather than frontier-scale systems in datacenters."
+    "zh": "Anthropic的研究警告称，AI可能像计算机蠕虫一样在廉价消费设备间传播，研究显示GLM-5.2在模拟网络中自主完成发现-传输-运行-传播循环，Qwen3.5-9B在9种硬件类型中的8种上自我部署，而失败学习将部署成功率从45%提升至61–84%。",
+    "en": "Anthropic research warns that AI could spread like a computer worm across cheap consumer devices, showing GLM-5.2 autonomously completing a find-transfer-run-propagate loop in a simulated network, Qwen3.5-9B self-deploying on 8 of 9 hardware types, and failure-learning raising deployment success from 45% to 61–84%."
   },
   "first_seen_at": "2026-10-12T23:27:22.339561+00:00",
-  "last_updated_at": "2026-10-12T23:27:22.339561+00:00",
-  "last_material_change_at": "2026-10-12T23:27:22.339561+00:00",
+  "last_updated_at": "2026-10-13T10:23:17.247041+00:00",
+  "last_material_change_at": "2026-10-13T10:23:17.247041+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "anthropic"
   ],
-  "identifiers": [],
+  "identifiers": [
+    "glm-5"
+  ],
   "topics": [
     "ai-research",
     "ai-safety",
+    "ai-security",
     "anthropic",
+    "edge-inference",
     "frontier-models",
+    "self-replicating-ai",
     "self-replication"
   ],
   "updates": [
@@ -79,6 +84,44 @@
           "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBRTnpIbVhZdVJZa2ZyVy1Namo1b3Qxcm5IVEVJcmllZ0tITVJkd1FKTjBJazBDU3JRX055UHdkTUxtM0hQbG1aSmpKaFZxMFRTU1YzUzNtWi1jU2hiUjR6c3E5VWk?oc=5",
           "label": "Anthropic News",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_29fcc5d09308af3f",
+      "event_id": "evt_71cf34d51bae55e8",
+      "occurred_at": "2026-10-13T07:48:02Z",
+      "published_at": "2026-10-13T07:48:02Z",
+      "first_seen_at": "2026-10-13T10:23:17.247041Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "Anthropic警告AI蠕虫逼近：15台廉价电视盒已能运行260亿参数模型",
+      "title_en": "Anthropic警告AI蠕虫逼近：15台廉价电视盒已能运行260亿参数模型",
+      "what_changed_zh": "Anthropic的研究警告称，AI可能像计算机蠕虫一样在廉价消费设备间传播，研究显示GLM-5.2在模拟网络中自主完成发现-传输-运行-传播循环，Qwen3.5-9B在9种硬件类型中的8种上自我部署，而失败学习将部署成功率从45%提升至61–84%。",
+      "what_changed_en": "Anthropic research warns that AI could spread like a computer worm across cheap consumer devices, showing GLM-5.2 autonomously completing a find-transfer-run-propagate loop in a simulated network, Qwen3.5-9B self-deploying on 8 of 9 hardware types, and failure-learning raising deployment success from 45% to 61–84%.",
+      "current_state_zh": "Anthropic的研究警告称，AI可能像计算机蠕虫一样在廉价消费设备间传播，研究显示GLM-5.2在模拟网络中自主完成发现-传输-运行-传播循环，Qwen3.5-9B在9种硬件类型中的8种上自我部署，而失败学习将部署成功率从45%提升至61–84%。",
+      "current_state_en": "Anthropic research warns that AI could spread like a computer worm across cheap consumer devices, showing GLM-5.2 autonomously completing a find-transfer-run-propagate loop in a simulated network, Qwen3.5-9B self-deploying on 8 of 9 hardware types, and failure-learning raising deployment success from 45% to 61–84%.",
+      "detailed_summary_zh": "Anthropic research warns that AI could spread like a computer worm across cheap consumer devices, showing GLM-5.2 autonomously completing a find-transfer-run-propagate loop in a simulated network, Qwen3.5-9B self-deploying on 8 of 9 hardware types, and failure-learning raising deployment success from 45% to 61–84%.",
+      "detailed_summary_en": "Anthropic research warns that AI could spread like a computer worm across cheap consumer devices, showing GLM-5.2 autonomously completing a find-transfer-run-propagate loop in a simulated network, Qwen3.5-9B self-deploying on 8 of 9 hardware types, and failure-learning raising deployment success from 45% to 61–84%.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:theblockbeats:200215"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/371547?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]

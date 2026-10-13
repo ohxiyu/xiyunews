@@ -7,19 +7,19 @@
   "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "Ledger硬件钱包供应链植入与盗币事件",
-    "en": "Ledger Hardware Wallet Supply Chain Implant and Theft Incident"
+    "zh": "Ledger硬件钱包供应链植入模块窃取助记词事件",
+    "en": "Ledger Hardware Wallet Supply Chain Implant Seed Theft Incident"
   },
   "current_state": {
-    "zh": "CryptoBilis 相关 Ledger 钱包盗取事件已涉及多地区，间谍软件篡改设备在亚洲、欧洲和南美被指认；Ledger 确认 10 月 9 日事件影响有限数量的 CryptoBilis 设备，损失超过 8600 万美元（Bitquery 此前估计 9320 万美元，约 1000 万美元被冻结），Ledger 仍在调查且未向受影响买家提供赔偿计划；CryptoBilis 前 CEO 称公司已被收购并已卸任，CryptoBilis 已停止全部硬件钱包销售；Ledger 在 72 小时更新中称所有已确认案例均涉 CryptoBilis 设备，自身系统与直销渠道未受影响，正与主管部门合作并警告经销商不得重新上架退回产品；一名买家报告从 MediaMarkt 发现第二台被篡改的 Ledger 设备，点名经销商 Aqipa，呼吁召回，并将设备送交 Ledger 分析。",
-    "en": "The CryptoBilis-linked Ledger wallet drain incident now spans multiple regions, with spyware-tampered devices alleged in Asia, Europe, and South America; Ledger confirmed the October 9 incident affected a limited number of CryptoBilis devices, losses exceed $86 million (Bitquery previously estimated $93.2 million with about $10 million frozen), Ledger continues to investigate and offers no repayment plan to affected buyers; former CryptoBilis CEO says the firm was acquired and he stepped down, and CryptoBilis has ceased all hardware wallet sales; in a 72-hour update, Ledger said all confirmed cases involve CryptoBilis devices, its own systems and direct channels are unaffected, it is working with authorities, and it warned resellers not to restock returned products; a buyer reports a second tampered Ledger device from MediaMarkt, names distributor Aqipa, calls for a recall, and sends the device to Ledger for analysis."
+    "zh": "Ledger详细说明了经销商CryptoBilis所售Ledger硬件钱包中被植入的、支持LTE的恶意植入物如何通过eSIM捕获用户的24词助记词并通过蜂窝网络传输，促使CryptoBilis停止销售，Trezor和OneKey也与该经销商断绝关系。",
+    "en": "Ledger detailed how malicious LTE-enabled implants embedded in Ledger hardware wallets sold by reseller CryptoBilis captured users' 24-word recovery phrases via an eSIM and transmitted them over cellular networks, prompting CryptoBilis to halt sales and Trezor and OneKey to cut ties with the reseller."
   },
   "first_seen_at": "2026-10-09T15:30:47.822838+00:00",
-  "last_updated_at": "2026-10-13T03:47:30.488948+00:00",
-  "last_material_change_at": "2026-10-12T20:21:35.778249+00:00",
+  "last_updated_at": "2026-10-13T10:23:41.082489+00:00",
+  "last_material_change_at": "2026-10-13T10:23:41.082489+00:00",
   "confidence": 0.75,
-  "updates_count": 33,
-  "sources_count": 63,
+  "updates_count": 37,
+  "sources_count": 69,
   "entities": [
     "affected",
     "after",
@@ -52,6 +52,7 @@
     "drains",
     "europe",
     "flags",
+    "flex",
     "former",
     "founder",
     "free",
@@ -76,6 +77,7 @@
     "malaysia",
     "many",
     "mediamarkt",
+    "mediamarktsaturn",
     "million",
     "mod",
     "off",
@@ -136,6 +138,8 @@
     "security-breach",
     "security-disclosure",
     "security-incident",
+    "seed-phrase",
+    "seed-phrase-theft",
     "self-custody",
     "southeast-asia",
     "spyware",
@@ -1652,6 +1656,172 @@
           "url": "https://decrypt.co/380706/ledger-says-all-confirmed-cases-in-suspected-87m-drain-tied-to-reseller-cryptobilis",
           "label": "Decrypt",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_5a4d772ef0b00bc1",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-13T06:51:02Z",
+      "published_at": "2026-10-13T06:51:02Z",
+      "first_seen_at": "2026-10-13T10:23:17.240418Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Ledger确认经销商CryptoBilis设备遭硬件植入，助记词被LTE外传",
+      "title_en": "Ledger确认经销商CryptoBilis设备遭硬件植入，助记词被LTE外传",
+      "what_changed_zh": "Ledger 安全团队发布硬件植入事件最新调查进展，确认 CryptoBilis 销售的部分 Ledger 设备外壳内被植入未授权硬件，可在初始化时读取屏幕并截取 24 个助记词，再通过内置微控制器与 eSIM 经 LTE 外传；该组件不修改 Secure Element 或 Ledger OS，也不干预交易签名。Ledger 同时表示尚未确认受影响用户总数及损失金额，网上流传数字未经官方核实。",
+      "what_changed_en": "Ledger's security team released the latest investigation update on the hardware implant incident, confirming that some Ledger devices sold by CryptoBilis contained unauthorized hardware implanted inside the casing that can read the screen and capture the 24-word seed phrase during initialization, then exfiltrate it over LTE via an embedded microcontroller and eSIM; the component does not modify the Secure Element or Ledger OS and does not interfere with transaction signing. Ledger also said it has not confirmed the total number of affected users or loss amount, and circulating online figures are unverified.",
+      "current_state_zh": "Ledger 确认 CryptoBilis 渠道设备存在硬件植入，植入物通过读取屏幕截取 24 个助记词并经 LTE/eSIM 外传，且不触碰 Secure Element 或交易签名；10 月 9 日事件所有已确认损失均与 CryptoBilis 渠道设备有关，其他渠道暂未核实；CryptoBilis 已暂停销售 Ledger 产品；Ledger 称受影响用户总数及损失金额尚未确认，网上数字未经官方核实，建议未初始化设备不要设置、已设置用户转移资产并生成新助记词，调查仍在继续。",
+      "current_state_en": "Ledger has confirmed hardware implants in CryptoBilis-channel devices; the implant reads the screen to capture the 24-word seed phrase during initialization and exfiltrates it over LTE/eSIM without touching the Secure Element or transaction signing; all confirmed losses from the October 9 incident are linked to CryptoBilis-channel devices, while other channels remain unverified; CryptoBilis has suspended sales of Ledger products; Ledger says the total affected-user count and loss amount are not yet confirmed, online figures are unverified, and it advises users not to initialize uninitialized devices and for already-configured users to move assets and generate new seed phrases; the investigation continues.",
+      "detailed_summary_zh": "Ledger confirmed that some hardware wallets sold by reseller CryptoBilis contained unauthorized implants that read the screen to capture 24-word seed phrases during initialization and exfiltrate them over LTE via an embedded eSIM, with all confirmed losses from the October 9 theft linked to that sales channel.",
+      "detailed_summary_en": "Ledger confirmed that some hardware wallets sold by reseller CryptoBilis contained unauthorized implants that read the screen to capture 24-word seed phrases during initialization and exfiltrate them over LTE via an embedded eSIM, with all confirmed losses from the October 9 theft linked to that sales channel.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.93,
+      "story_ids": [
+        "telegram:theblockbeats:200202",
+        "telegram:foresightnews:120273"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/371535?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/115068",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_f878461c29d4ee64",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-13T08:45:10Z",
+      "published_at": "2026-10-13T08:45:10Z",
+      "first_seen_at": "2026-10-13T10:23:41.082489Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Ledger详述CryptoBilis所售钱包中支持LTE的间谍植入物",
+      "title_en": "Ledger details LTE-enabled spy implants in wallets sold by CryptoBilis",
+      "what_changed_zh": "Ledger详细说明了经销商CryptoBilis所售Ledger硬件钱包中被植入的、支持LTE的恶意植入物如何通过eSIM捕获用户的24词助记词并通过蜂窝网络传输，促使CryptoBilis停止销售，Trezor和OneKey也与该经销商断绝关系。",
+      "what_changed_en": "Ledger detailed how malicious LTE-enabled implants embedded in Ledger hardware wallets sold by reseller CryptoBilis captured users' 24-word recovery phrases via an eSIM and transmitted them over cellular networks, prompting CryptoBilis to halt sales and Trezor and OneKey to cut ties with the reseller.",
+      "current_state_zh": "Ledger详细说明了经销商CryptoBilis所售Ledger硬件钱包中被植入的、支持LTE的恶意植入物如何通过eSIM捕获用户的24词助记词并通过蜂窝网络传输，促使CryptoBilis停止销售，Trezor和OneKey也与该经销商断绝关系。",
+      "current_state_en": "Ledger detailed how malicious LTE-enabled implants embedded in Ledger hardware wallets sold by reseller CryptoBilis captured users' 24-word recovery phrases via an eSIM and transmitted them over cellular networks, prompting CryptoBilis to halt sales and Trezor and OneKey to cut ties with the reseller.",
+      "detailed_summary_zh": "Ledger detailed how malicious LTE-enabled implants embedded in Ledger hardware wallets sold by reseller CryptoBilis captured users' 24-word recovery phrases via an eSIM and transmitted them over cellular networks, prompting CryptoBilis to halt sales and Trezor and OneKey to cut ties with the reseller.",
+      "detailed_summary_en": "Ledger detailed how malicious LTE-enabled implants embedded in Ledger hardware wallets sold by reseller CryptoBilis captured users' 24-word recovery phrases via an eSIM and transmitted them over cellular networks, prompting CryptoBilis to halt sales and Trezor and OneKey to cut ties with the reseller.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:29737ebe1c663511"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/ledger-cellular-implants-wallets-sold-cryptobilis?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_0e712766d27beecc",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-13T09:20:02Z",
+      "published_at": "2026-10-13T09:20:02Z",
+      "first_seen_at": "2026-10-13T10:23:17.257983Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "新加坡机场所购Ledger Flex被确认植入间谍模块，硬件钱包供应链风险扩大",
+      "title_en": "新加坡机场所购Ledger Flex被确认植入间谍模块，硬件钱包供应链风险扩大",
+      "what_changed_zh": "Mark Karpelès通过拆解图片和视频确认，在新加坡机场Metapod购买的一台Ledger Flex内含植入的电路板和线路，可窃取用户的助记词，这是硬件钱包供应链遭入侵范围扩大的最新证据。",
+      "what_changed_en": "Mark Karpelès confirmed via teardown images and video that a Ledger Flex purchased at Singapore airport's Metapod contained an implanted board and wiring that could steal the user's seed phrase, the latest evidence of an expanding hardware-wallet supply-chain compromise.",
+      "current_state_zh": "Mark Karpelès通过拆解图片和视频确认，在新加坡机场Metapod购买的一台Ledger Flex内含植入的电路板和线路，可窃取用户的助记词，这是硬件钱包供应链遭入侵范围扩大的最新证据。",
+      "current_state_en": "Mark Karpelès confirmed via teardown images and video that a Ledger Flex purchased at Singapore airport's Metapod contained an implanted board and wiring that could steal the user's seed phrase, the latest evidence of an expanding hardware-wallet supply-chain compromise.",
+      "detailed_summary_zh": "Mark Karpelès confirmed via teardown images and video that a Ledger Flex purchased at Singapore airport's Metapod contained an implanted board and wiring that could steal the user's seed phrase, the latest evidence of an expanding hardware-wallet supply-chain compromise.",
+      "detailed_summary_en": "Mark Karpelès confirmed via teardown images and video that a Ledger Flex purchased at Singapore airport's Metapod contained an implanted board and wiring that could steal the user's seed phrase, the latest evidence of an expanding hardware-wallet supply-chain compromise.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:theblockbeats:200236"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/371567?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_7ad83bbde9655f9a",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-13T10:09:01Z",
+      "published_at": "2026-10-13T10:09:01Z",
+      "first_seen_at": "2026-10-13T10:23:40.840763Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "MediaMarktSaturn在篡改报告后下架Ledger产品",
+      "title_en": "MediaMarktSaturn pulls Ledger products amid tampering reports",
+      "what_changed_zh": "MediaMarktSaturn 已将所有 Ledger 产品从门店和线上平台下架，并与制造商联系；此前一名买家报告在两家 MediaMarkt 门店购买的两台 Ledger 钱包内含未授权线缆和蜂窝模块，使调查范围扩大至 CryptoBilis 以外。",
+      "what_changed_en": "MediaMarktSaturn has removed all Ledger products from its stores and online platforms and is in contact with the manufacturer; this follows a buyer reporting two Ledger wallets purchased from separate MediaMarkt stores containing unauthorized cables and cellular modules, widening the investigation beyond CryptoBilis.",
+      "current_state_zh": "Ledger 确认 CryptoBilis 渠道设备存在硬件植入，植入物通过读取屏幕截取 24 个助记词并经 LTE/eSIM 外传，且不触碰 Secure Element 或交易签名；所有已确认损失均与 CryptoBilis 渠道设备有关，其他渠道正在核实；CryptoBilis 已暂停销售 Ledger 产品；MediaMarktSaturn 已下架所有 Ledger 产品并与制造商联系；Ledger 称受影响用户总数及损失金额尚未确认，网上数字未经官方核实，建议未初始化设备不要设置、已设置用户转移资产并生成新助记词，调查仍在继续。",
+      "current_state_en": "Ledger has confirmed hardware implants in CryptoBilis-channel devices; the implant reads the screen to capture the 24-word seed phrase during initialization and exfiltrates it over LTE/eSIM without touching the Secure Element or transaction signing; all confirmed losses are linked to CryptoBilis-channel devices, while other channels are being investigated; CryptoBilis has suspended sales of Ledger products; MediaMarktSaturn has removed all Ledger products from its stores and online platforms and is in contact with the manufacturer; Ledger says the total affected-user count and loss amount are not yet confirmed, online figures are unverified, and it advises users not to initialize uninitialized devices and for already-configured users to move assets and generate new seed phrases; the investigation continues.",
+      "detailed_summary_zh": "MediaMarktSaturn has removed all Ledger hardware wallets from its stores and online platforms after a buyer reported tampered devices containing unauthorized cables and cellular modules, widening Ledger's investigation beyond Southeast Asian reseller CryptoBilis.",
+      "detailed_summary_en": "MediaMarktSaturn has removed all Ledger hardware wallets from its stores and online platforms after a buyer reported tampered devices containing unauthorized cables and cellular modules, widening Ledger's investigation beyond Southeast Asian reseller CryptoBilis.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.93,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:e9d8561a2b280af5",
+        "telegram:foresightnews:120298"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/mediamarkt-pulls-ledger-wallet-security-incident?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/115089",
+          "label": "foresightnews",
+          "source_type": "telegram",
           "official": false
         }
       ]
