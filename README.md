@@ -39,7 +39,7 @@ collect every ~4h ─► cached scoring ─► incremental event timeline
           │
           └──────────► fixed 24h edition ─► dedup ─► quota balance ─► publish
                                                             │
-              events · entities · JSON API · feeds · weekly review
+              events · entities · JSON API · feeds
 ```
 
 - **Fixed publication window.** Every edition covers exactly 07:00→07:00 local
@@ -98,7 +98,6 @@ Other modes:
 |---|---|
 | `uv run bmtnews --mode fetch` | Collect new items, reuse cached scoring, and increment the restored event catalog |
 | `uv run bmtnews --mode publish` | Build and publish one fixed-window edition |
-| `uv run bmtnews --mode weekly` | Build the weekly review from the archive |
 | `uv run bmtnews --mode x-post` | Plan today's X posts and send the one that is due |
 | `uv run bmtnews-mcp` | Serve the pipeline and archive over MCP |
 
@@ -110,7 +109,6 @@ Full configuration reference: [project-docs/configuration.md](project-docs/confi
 |---|---|---|
 | `feed-collection` | every ~4h + 08:37 | Collect new sources, update event pages, and run a daily recovery check |
 | `daily-summary` | 08:30 Asia/Shanghai | Build and publish the edition |
-| `weekly-review` | Mondays 09:30 | Weekly digest and scoring calibration |
 | `x-distribution` | publication + 5× daily | Drip-post top stories immediately, then at peak hours |
 | `editorial-rebuild` | on edit | Republish after an editorial change |
 

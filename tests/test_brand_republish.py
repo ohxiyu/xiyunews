@@ -59,3 +59,21 @@ def test_invalid_xml_fails_without_overwriting(tmp_path):
     with pytest.raises(ET.ParseError):
         republish(tmp_path)
     assert sitemap.read_text() == "<invalid>"
+
+
+def test_republish_removes_only_retired_owned_weekly_sitemap_entries(tmp_path):
+    sitemap = tmp_path / "sitemap.xml"
+    sitemap.write_text('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join(
+        f'<url><loc>{url}</loc><lastmod>2026-10-14</lastmod></url>' for url in [
+            'https://bmt.news/weekly/', 'https://xiyu.news/en/weekly/2026-10-11/',
+            'https://xiyu.news/threads/', 'https://example.org/weekly/',
+            'https://xiyu.news/weekly-market/'
+        ]) + '</urlset>')
+    assert republish(tmp_path) == 1
+    assert republish(tmp_path) == 0
+    result = sitemap.read_text()
+    assert 'https://xiyu.news/weekly/' not in result
+    assert 'https://xiyu.news/en/weekly/' not in result
+    assert 'https://xiyu.news/threads/' in result
+    assert 'https://example.org/weekly/' in result
+    assert 'https://xiyu.news/weekly-market/' in result

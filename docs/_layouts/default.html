@@ -13,8 +13,6 @@
   {% assign current_section = "events" %}
 {% elsif page.page_class contains "entity-" or page.url contains "/entity/" %}
   {% assign current_section = "entities" %}
-{% elsif page.page_type == "weekly" or page.url contains "/weekly/" %}
-  {% assign current_section = "weekly" %}
 {% endif %}
 {% if page.alternate_url %}
   {% if interface_language == "en" %}
@@ -111,21 +109,6 @@
             data-i18n-href-zh="{{ '/threads/' | relative_url }}"
             data-i18n-href-en="{{ '/en/threads/' | relative_url }}"
           >{% if interface_language == "en" %}Tracking{% else %}追踪{% endif %}</a>
-          <a
-            href="{% if interface_language == 'en' %}{{ '/en/weekly/' | relative_url }}{% else %}{{ '/weekly/' | relative_url }}{% endif %}"
-            {% if current_section == "weekly" %}class="is-current" aria-current="page"{% endif %}
-            data-i18n-zh="周报"
-            data-i18n-en="Weekly"
-            data-i18n-href-zh="{{ '/weekly/' | relative_url }}"
-            data-i18n-href-en="{{ '/en/weekly/' | relative_url }}"
-          >{% if interface_language == "en" %}Weekly{% else %}周报{% endif %}</a>
-          <a
-            href="{% if interface_language == 'en' %}{{ '/feed-en.xml' | relative_url }}{% else %}{{ '/feed-zh.xml' | relative_url }}{% endif %}"
-            data-i18n-zh="RSS"
-            data-i18n-en="RSS"
-            data-i18n-href-zh="{{ '/feed-zh.xml' | relative_url }}"
-            data-i18n-href-en="{{ '/feed-en.xml' | relative_url }}"
-          >RSS</a>
         </nav>
 
         <div class="site-actions">
@@ -213,8 +196,6 @@
           </div>
         </div>
       </section>
-    {% elsif page.page_type == "weekly" %}
-      {% comment %}Weekly pages render the shared section masthead inside main.{% endcomment %}
     {% elsif page.page_class == "event-index-page" or page.page_class == "entity-index-page" %}
       {% comment %}Index mastheads live with their overview, not in a separate full-width banner.{% endcomment %}
     {% elsif page.page_type == "archive" %}
@@ -256,7 +237,6 @@
     <nav class="pwa-bottom-nav" aria-label="{% if interface_language == 'en' %}App navigation{% else %}App 导航{% endif %}">
       <a href="{{ interface_home_url }}" {% if current_section == "feed" %}aria-current="page"{% endif %}>{% if interface_language == "en" %}Feed{% else %}信息流{% endif %}</a>
       <a href="{% if interface_language == 'en' %}/en{% endif %}/threads/" {% if current_section == "events" %}aria-current="page"{% endif %}>{% if interface_language == "en" %}Tracking{% else %}追踪{% endif %}</a>
-      <a href="{% if interface_language == 'en' %}/en{% endif %}/weekly/" {% if current_section == "weekly" %}aria-current="page"{% endif %}>{% if interface_language == "en" %}Weekly{% else %}周报{% endif %}</a>
     </nav>
     {% endunless %}
 

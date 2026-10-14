@@ -886,6 +886,12 @@ export async function handleRequest(request, env, ctx) {
       'X-Robots-Tag': 'noindex, nofollow'
     }});
   }
+  // Retired weekly module: recover old links before any cached legacy page.
+  if (/^\/(?:en\/)?weekly(?:\/|\.html$|$)/.test(url.pathname)) {
+    const target = new URL(url.pathname.startsWith('/en/') ? '/en/' : '/', SITE_ORIGIN);
+    target.search = url.search;
+    return Response.redirect(target.href, 301);
+  }
   if (isAdminPath(new URL(request.url).pathname)) return handleAdmin(request, env);
   const livePath = new URL(request.url).pathname;
   if (livePath === '/api/quick-posts.json' || /^\/assets\/uploads\/quick-[a-f0-9]{64}\.(png|jpg|webp)$/.test(livePath)) {

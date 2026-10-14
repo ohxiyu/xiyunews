@@ -3,6 +3,7 @@ import argparse
 import json
 from pathlib import Path
 import xml.etree.ElementTree as ET
+from urllib.parse import urlsplit
 
 from ._file_utils import _atomic_write_text
 
@@ -24,6 +25,13 @@ def migrate(value):
 
 def republish(root: Path):
     count = 0
+    guidance = root / "llms.txt"
+    if guidance.is_file():
+        old = guidance.read_text(encoding="utf-8")
+        new = old.replace("timelines, and weekly reviews", "and timelines")
+        if new != old:
+            _atomic_write_text(guidance, new)
+            count += 1
     for prefix in ("api", "editions", "_data/archive"):
         for path in (root / prefix).rglob("*.json"):
             old = json.loads(path.read_text(encoding="utf-8"))
@@ -37,6 +45,19 @@ def republish(root: Path):
             continue
         document = ET.fromstring(path.read_text(encoding="utf-8"))
         changed = False
+        # Deploy Docs restores the existing sitemap; retire weekly discovery
+        # without touching archived news, other pages, or subscription entries.
+        if path == root / "sitemap.xml":
+            for entry in list(document):
+                loc = next((node for node in entry if node.tag.rsplit("}", 1)[-1] == "loc"), None)
+                if loc is not None and loc.text:
+                    url = urlsplit(migrate(loc.text))
+                    if url.netloc == "xiyu.news" and (
+                        url.path in {"/weekly", "/weekly.html", "/en/weekly", "/en/weekly.html"}
+                        or url.path.startswith(("/weekly/", "/en/weekly/"))
+                    ):
+                        document.remove(entry)
+                        changed = True
         for node in document.iter():
             if node.tag.rsplit("}", 1)[-1] in {"loc", "link", "id", "guid"} and node.text:
                 value = migrate(node.text)

@@ -52,7 +52,7 @@ flowchart TD
 | 模块 | 代码入口 | 执行位置 | 主要职责 |
 | --- | --- | --- | --- |
 | 内容管线 | src/main.py、src/orchestrator.py、src/scrapers/、src/ai/ | GitHub管理的Actions，东京自托管Python任务 | 采集、去重、评分、选稿、翻译和扩写；缓存有效结果。 |
-| 网页与公开数据 | docs/、Jekyll 模板、src/orchestrator.py、src/site_pages.py、src/weekly.py | 出版 Actions 生成，统一部署 Actions 渲染，Worker Assets 提供 | 日报、连续信息流、事件线、实体、周报、订阅与 JSON 输出。 |
+| 网页与公开数据 | docs/、Jekyll 模板、src/orchestrator.py、src/site_pages.py | 出版 Actions 生成，统一部署 Actions 渲染，Worker Assets 提供 | 日报、连续信息流、事件线、实体、订阅与 JSON 输出。 |
 | 统一边缘层 | ops/daily-dispatcher/src/unified.ts，复用 docs/_worker.js | 单个 xiyunews Worker | 内容协商、接口路由、缓存、Quick Post、认证与两个定时组件。 |
 | 调度与恢复 | ops/daily-dispatcher/src/ | 同一 Worker Cron + 原 RecoveryGate Durable Object | 检查日报缺失、受限补发、四小时采集和分发到期门控。 |
 | 人工编辑 | src/quick_posts.py、data/editorial.json、站点后台 | Access 保护的 /s/ 与统一 Worker | 不调用 AI 的快速发布，保留人工编辑身份和原始内容。 |
