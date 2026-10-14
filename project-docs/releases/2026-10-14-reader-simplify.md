@@ -10,7 +10,13 @@
 
 ## 验证与状态
 
-独立分支 agent/reader-simplify，基于 main eef77c30。69 项相关 Node 测试已通过，包含周报跳转、PWA 两入口/退休路由、分享内容排除与背景先于正文。完整 Python、治理、CI 与视觉检查进行中，结果完成后补记，不把代码完成当作已上线。
+独立分支 agent/reader-simplify，基于 main eef77c30，[PR285](https://github.com/ohxiyu/xiyunews/pull/285)。完整 Python 1113 项通过、4 项既有条件跳过；117 项前端 Node 与 135 项 Worker 测试通过，npm 审计 0 漏洞，治理/actionlint/diff 检查通过。CI 与生产发布仍需完成，不把本地验证当作上线。
+
+桌面 1440×1000，手机 390×844，英文窄屏 320×844 预览无横向溢出。实际分享：中文浅色 1320×2742 px、英文暗色 1320×3519 px，完整背景先于所有正文段落，无其他附加内容；图片保存通过，没有点击 X 发送。预览用隔离的已发布快照和现有本地 Jekyll 3.9/Liquid 4.0.4（Liquid 单独临时安装）；生产锁定的 Jekyll 3.10 由 CI 构建验收。公开构建中无 weekly 页面，sitemap 与发布 llms 无周报导航。Quick Post 本地动态接口不可用，不冒充生产故障，待生产回读。
+
+- [改前桌面](images/2026-10-14-reader-simplify/before-desktop.jpg)与[改后桌面](images/2026-10-14-reader-simplify/after-desktop.jpg)。
+- [手机浅色](images/2026-10-14-reader-simplify/after-mobile-light.jpg)、[手机暗色](images/2026-10-14-reader-simplify/after-mobile-dark.jpg)、[英文320](images/2026-10-14-reader-simplify/after-english-320.jpg)。
+- [完整分享PNG](images/2026-10-14-reader-simplify/share-light.png)与[英文暗色分享面板](images/2026-10-14-reader-simplify/share-english-dark-mobile.jpg)。
 
 Source commit: 待 PR 合并后核验。
 Worker version: pending，本轮含旧周报 URL 处理。
