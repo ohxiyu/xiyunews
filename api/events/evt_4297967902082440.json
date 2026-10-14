@@ -7,21 +7,22 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Crypto Hardware Wallets Hit in Estimated $70 Million Attack",
+    "zh": "加密硬件钱包遭攻击，估计损失7000万美元",
     "en": "Crypto Hardware Wallets Hit in Estimated $70 Million Attack"
   },
   "current_state": {
-    "zh": "Ledger reported that cryptocurrency hardware wallets were drained in an attack estimated at $70 million, raising concerns about the security guarantees of self-custody devices.",
-    "en": "Ledger reported that cryptocurrency hardware wallets were drained in an attack estimated at $70 million, raising concerns about the security guarantees of self-custody devices."
+    "zh": "Ledger 硬件钱包被盗事件现已确认涉及供应链环节：授权经销商售出的设备被植入未授权模块，助记词可被截获并外传；行业对硬件钱包供应链与自托管安全保证的审查加剧。",
+    "en": "The Ledger hardware-wallet loss incident is now confirmed to involve the supply chain: devices sold through an authorized reseller contained unauthorized implants that could capture and exfiltrate recovery phrases, intensifying scrutiny of hardware-wallet supply-chain and self-custody security guarantees."
   },
   "first_seen_at": "2026-10-09T18:27:27.283336+00:00",
-  "last_updated_at": "2026-10-09T18:27:27.283336+00:00",
-  "last_material_change_at": "2026-10-09T18:27:27.283336+00:00",
+  "last_updated_at": "2026-10-14T13:42:24.762867+00:00",
+  "last_material_change_at": "2026-10-14T13:42:24.762867+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "attack",
+    "can",
     "estimated",
     "hardware",
     "hardware-wallets",
@@ -33,7 +34,9 @@
   "topics": [
     "hardware-wallets",
     "ledger",
-    "self-custody"
+    "security-research",
+    "self-custody",
+    "supply-chain-security"
   ],
   "updates": [
     {
@@ -45,11 +48,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Crypto Hardware Wallets Hit in Estimated $70 Million Attack",
+      "title_zh": "加密硬件钱包遭攻击，估计损失7000万美元",
       "title_en": "Crypto Hardware Wallets Hit in Estimated $70 Million Attack",
-      "what_changed_zh": "Ledger reported that cryptocurrency hardware wallets were drained in an attack estimated at $70 million, raising concerns about the security guarantees of self-custody devices.",
+      "what_changed_zh": "Ledger报告称，加密货币硬件钱包在一场估计损失7000万美元的攻击中被盗空，引发了对自托管设备安全保证的担忧。",
       "what_changed_en": "Ledger reported that cryptocurrency hardware wallets were drained in an attack estimated at $70 million, raising concerns about the security guarantees of self-custody devices.",
-      "current_state_zh": "Ledger reported that cryptocurrency hardware wallets were drained in an attack estimated at $70 million, raising concerns about the security guarantees of self-custody devices.",
+      "current_state_zh": "Ledger报告称，加密货币硬件钱包在一场估计损失7000万美元的攻击中被盗空，引发了对自托管设备安全保证的担忧。",
       "current_state_en": "Ledger reported that cryptocurrency hardware wallets were drained in an attack estimated at $70 million, raising concerns about the security guarantees of self-custody devices.",
       "detailed_summary_zh": "Ledger reported that cryptocurrency hardware wallets were drained in an attack estimated at $70 million, raising concerns about the security guarantees of self-custody devices.",
       "detailed_summary_en": "Ledger reported that cryptocurrency hardware wallets were drained in an attack estimated at $70 million, raising concerns about the security guarantees of self-custody devices.",
@@ -70,6 +73,44 @@
           "url": "https://www.bloomberg.com/news/articles/2026-10-09/crypto-hardware-maker-ledger-says-wallets-drained-in-latest-attack",
           "label": "Bloomberg.com",
           "source_type": "google_news",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_400392dc51e59f67",
+      "event_id": "evt_4297967902082440",
+      "occurred_at": "2026-10-14T11:59:42Z",
+      "published_at": "2026-10-14T11:59:42Z",
+      "first_seen_at": "2026-10-14T13:42:24.762867Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "加密用户能信任硬件钱包背后的供应链吗？",
+      "title_en": "Can crypto users trust the supply chain behind hardware wallets?",
+      "what_changed_zh": "Ledger 确认通过授权经销商 CryptoBilis 售出的一台受影响设备含有未授权植入模块；这些恶意植入模块会截取用户助记词并通过蜂窝网络传输。Trezor 也宣布作为预防措施减少经销商数量。",
+      "what_changed_en": "Ledger confirmed that one affected device sold through authorized reseller CryptoBilis contained an unauthorized implant; the malicious implants captured users’ recovery phrases and transmitted them over cellular networks. Trezor also announced it would reduce resellers as a preventive step.",
+      "current_state_zh": "Ledger 硬件钱包被盗事件现已确认涉及供应链环节：授权经销商售出的设备被植入未授权模块，助记词可被截获并外传；行业对硬件钱包供应链与自托管安全保证的审查加剧。",
+      "current_state_en": "The Ledger hardware-wallet loss incident is now confirmed to involve the supply chain: devices sold through an authorized reseller contained unauthorized implants that could capture and exfiltrate recovery phrases, intensifying scrutiny of hardware-wallet supply-chain and self-custody security guarantees.",
+      "detailed_summary_zh": "A Cointelegraph report, featuring hardware-security researcher Joe Grand, examines whether crypto users can realistically verify the integrity of hardware wallets after reported losses involving Ledger devices sold through authorized reseller CryptoBilis.",
+      "detailed_summary_en": "A Cointelegraph report, featuring hardware-security researcher Joe Grand, examines whether crypto users can realistically verify the integrity of hardware wallets after reported losses involving Ledger devices sold through authorized reseller CryptoBilis.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:e9a0c577b7bc4174"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/hardware-wallet-supply-chain-risk-ledger-incident?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
           "official": false
         }
       ]
