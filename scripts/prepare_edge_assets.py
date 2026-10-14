@@ -27,6 +27,14 @@ def prepare(source: Path, destination: Path) -> None:
                part.startswith(".env.") or part.startswith(".dev.vars.") for part in path.relative_to(source).parts):
             raise ValueError("private files are not allowed in edge assets")
     shutil.copytree(source, destination, ignore=shutil.ignore_patterns("_worker.js", "Gemfile", "Gemfile.lock", "CNAME", ".xiyunews-build-cache.json"))
+    # Every publisher and restored build cache passes this final public boundary.
+    # Collection may carry an older source description; never advertise a retired
+    # section again, and leave the immutable input snapshot unchanged.
+    guidance = destination / "llms.txt"
+    text = guidance.read_text(encoding="utf-8")
+    updated = text.replace("timelines, and weekly reviews", "and timelines")
+    if updated != text:
+        guidance.write_text(updated, encoding="utf-8")
 
 
 if __name__ == "__main__":

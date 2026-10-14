@@ -5,18 +5,18 @@
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "停用周报、移除菜单 RSS，分享 PNG 改为背景与正文",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/284",
+  "goal": "补齐统一发布出口的周报简介清理，并完成阅读精简生产验收",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/286",
   "owner": "当前会话唯一编辑与生产整合负责人",
-  "branch": "agent/reader-simplify",
+  "branch": "agent/reader-simplify-production-evidence",
   "last_verified_commit": "eef77c30b3f326a26eec2883dbb148d1fe6a5d9e",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/285",
+  "pr": "PR285已合并f5610b12；当前仅补齐统一发布出口元数据清理",
   "completed": [
     "代码调整、1113项Python通过/4项既有条件跳过、117项前端Node和135项Worker测试通过",
     "桌面1440与手机390/320中英导航、浅色/暗色分享图验证通过"
   ],
   "unfinished": [
-    "必需CI、PR合并、自动发布与生产回读"
+    "元数据补充CI、PR合并、自动发布与生产回读"
   ],
   "validation": [
     "完整Python/前端Node/Worker测试通过，npm审计0漏洞，治理/actionlint/diff通过",
