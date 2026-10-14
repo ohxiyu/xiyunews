@@ -36,7 +36,9 @@ concurrency:
 jobs:
   deploy:
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
-    timeout-minutes: 10
+    # Two exact checkouts can take several minutes on the Tokyo runner.
+    # Keep a bound, but allow slow downloads before the no-AI rebuild.
+    timeout-minutes: 20
     permissions:
       contents: write
     env:
