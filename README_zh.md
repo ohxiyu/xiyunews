@@ -31,7 +31,7 @@
                                                           │
                     归档 ◄── 发布 ◄── 背景补充 ◄──────────┘
                      │        │
-     事件线 · 实体页 · JSON API · 分类订阅 · 周报
+     事件线 · 实体页 · JSON API · 分类订阅
 ```
 
 - **固定窗口**：每期严格覆盖当地时间 08:00→08:00，不重不漏
@@ -76,7 +76,6 @@ uv run bmtnews --mode publish --hours 24 --cutoff-hour 8
 |---|---|
 | `uv run bmtnews --mode fetch` | 只采集进暂存缓存，不调用 AI |
 | `uv run bmtnews --mode publish` | 构建并发布一期固定窗口日报 |
-| `uv run bmtnews --mode weekly` | 从归档生成周报 |
 | `uv run bmtnews --mode x-post` | 发布分时队列中的下一条 X 内容 |
 | `uv run bmtnews-mcp` | 以 MCP 方式提供管线与归档查询 |
 
@@ -88,7 +87,6 @@ uv run bmtnews --mode publish --hours 24 --cutoff-hour 8
 |---|---|---|
 | `feed-collection` | 每约 4 小时及 08:37 | 采集信息源并执行独立日报恢复检查 |
 | `daily-summary` | 08:30（东八区） | 构建并发布日报 |
-| `weekly-review` | 周一 09:30 | 周报与评分校准复盘 |
 | `x-distribution` | 每天 4 次 | 按高峰时段分时投放 X |
 | `editorial-rebuild` | 编辑触发 | 编辑层改动后自动重刊 |
 

@@ -32,7 +32,7 @@ does not change collection schedules, AI analysis, publishing, or authentication
   the current two-day feed. Native back/forward-cache restoration is respected.
 - Reading data is bounded to 200 bookmarks, 1,000 read markers and 20 positions.
   It stays on this device; clearing browser data or uninstalling may lose it.
-- The four-section bottom navigation appears only on small standalone displays.
+- The two-section bottom navigation appears only on small standalone displays.
   Normal browser and desktop navigation remain unchanged. Installation prompts
   continue to use native browser support or the existing iOS instructions.
 
@@ -71,7 +71,7 @@ styles and a visible save time. Clearing the cache preserved bookmarks and chang
 the subsequent offline navigation to the uncached-page fallback. A new Jekyll build
 remained opt-in; accepting it loaded the new build and restored the same story.
 Chinese and English layouts were checked down to 320 px, including the four section
-indexes. A standalone CSS fixture at 390 px verified four 52 px-high bottom targets,
+indexes. A standalone CSS fixture at 390 px verified two 52 px-high bottom targets,
 hidden duplicate top navigation and no sideways overflow; it is not a device test.
 Production acceptance additionally covers Cloudflare's canonical dated URLs and
 the transient first-install waiting state, which must not trigger an update prompt.

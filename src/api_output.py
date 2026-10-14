@@ -45,8 +45,6 @@ _SITEMAP_STATIC_PATHS = (
     "/en/threads/",
     "/entity/",
     "/en/entity/",
-    "/weekly/",
-    "/en/weekly/",
     "/developers/",
     "/about/",
     "/contact/",

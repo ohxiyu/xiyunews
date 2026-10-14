@@ -82,13 +82,13 @@ test('a first install does not report an update, but a waiting replacement does'
   assert.equal(waitingUpdate(false, true), false);
   assert.equal(waitingUpdate(true, true), true);
 });
-test('layout and manifest keep three app sections and versioned local reader assets', async () => {
+test('layout and manifest keep two app sections and versioned local reader assets', async () => {
   const layout = await readFile(new URL('../docs/_layouts/default.html', import.meta.url), 'utf8');
   const nav = layout.match(/<nav class="pwa-bottom-nav"[\s\S]*?<\/nav>/)[0];
-  assert.equal((nav.match(/<a /g) || []).length, 3);
-  assert.doesNotMatch(nav, /\/entity\//);
+  assert.equal((nav.match(/<a /g) || []).length, 2);
+  assert.doesNotMatch(nav, /\/entity\/|weekly|RSS/);
   const manifest = JSON.parse(await readFile(new URL('../docs/manifest.webmanifest', import.meta.url), 'utf8'));
-  assert.equal(manifest.shortcuts.length, 3);
+  assert.equal(manifest.shortcuts.length, 2);
   const head = await readFile(new URL('../docs/_includes/head-custom.html', import.meta.url), 'utf8');
   assert.match(head, /pwa-reader\.js[^\n]+asset_version/);
   assert.match(head, /unless page.page_type == "source_console" or page.noindex/);

@@ -79,8 +79,8 @@ function harness() {
 }
 test('only public reading routes with harmless tracking parameters are eligible', async () => {
   const h = harness();
-  for (const path of ['/', '/en/', '/threads/', '/en/threads/', '/events/evt_123/', '/entity/bitcoin/', '/weekly/2026-w36/', '/2026/09/05/summary-zh.html']) assert.ok(h.api.pageURL(origin + path), path);
-  for (const path of ['/admin/', '/s', '/s/config', '/login', '/api/latest.json', '/?token=secret', '/threads/?authorization=x']) {
+  for (const path of ['/', '/en/', '/threads/', '/en/threads/', '/events/evt_123/', '/entity/bitcoin/', '/2026/09/05/summary-zh.html']) assert.ok(h.api.pageURL(origin + path), path);
+  for (const path of ['/weekly/', '/en/weekly/2026-w36/', '/admin/', '/s', '/s/config', '/login', '/api/latest.json', '/?token=secret', '/threads/?authorization=x']) {
     assert.equal(h.api.pageURL(origin + path), null, path);
     assert.equal(await h.dispatch(origin + path), undefined);
   }

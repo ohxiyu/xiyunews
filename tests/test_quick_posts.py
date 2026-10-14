@@ -74,7 +74,7 @@ def test_publish_matches_html_and_json(tmp_path):
 
 def test_all_publication_workflows_regenerate_stream():
     root = Path(__file__).parents[1]
-    for name in ["daily-summary", "feed-collection", "deploy-docs", "weekly-review", "event-archive-migration"]:
+    for name in ["daily-summary", "feed-collection", "deploy-docs", "event-archive-migration"]:
         text = (root / f".github/workflows/{name}.yml").read_text()
         assert "uv run python -m src.quick_posts" in text
     page = (root / "docs/_includes/feed-home.html").read_text()

@@ -8,7 +8,7 @@ title: xiyu.news
 description: Crypto market intelligence covering exchanges, markets, security, regulation, and protocols
 baseurl: ""
 url: "https://xiyu.news"
-asset_version: "sha256-6884d3c7dc35"
+asset_version: "sha256-5267d8be426b"
 
 markdown: kramdown
 future: true
@@ -18,6 +18,11 @@ include:
 exclude:
   - ".github"
   - "node_modules"
+  # Retired weekly pages remain in Git history, never in public output.
+  - "weekly"
+  - "weekly.html"
+  - "en/weekly"
+  - "en/weekly.html"
 
 defaults:
   - scope:

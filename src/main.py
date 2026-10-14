@@ -48,12 +48,11 @@ def main():
     parser.add_argument("--hours", type=int, help="Force fetch from last N hours")
     parser.add_argument(
         "--mode",
-        choices=("full", "fetch", "publish", "weekly", "x-post"),
+        choices=("full", "fetch", "publish", "x-post"),
         default="full",
         help=(
             "full runs the legacy pipeline; fetch updates staging and the event timeline; "
             "publish builds one fixed-window daily edition; "
-            "weekly builds the weekly review from the archive; "
             "x-post publishes the next drip story for today's edition"
         ),
     )
@@ -113,11 +112,10 @@ def main():
         parser.error("--x-queue-dir requires --mode x-post")
     if args.edition_date is not None and args.mode not in {
         "publish",
-        "weekly",
         "x-post",
     }:
         parser.error(
-            "--edition-date requires --mode publish, --mode weekly, or --mode x-post"
+            "--edition-date requires --mode publish or --mode x-post"
         )
 
     try:
@@ -169,10 +167,6 @@ def main():
                     kickoff_only=args.x_kickoff_only,
                     queue_dir=args.x_queue_dir,
                 )
-            )
-        elif args.mode == "weekly":
-            asyncio.run(
-                orchestrator.run_weekly_review(end_date=args.edition_date)
             )
         elif args.mode == "publish":
             asyncio.run(
