@@ -10,6 +10,10 @@
 
 ## 验证与状态
 
+### 发布出口补充
+
+PR285 已于 2026-10-14 23:41 上海合并为 f5610b12553783ebfe60d58956dd2dda7d1f6fbc，CI38589139515 全部适用检查通过。无 AI 重建 38591505567 正在执行。后续采集仍可能携带旧 llms 描述，因此 [Issue286](https://github.com/ohxiyu/xiyunews/issues/286) 将同一精确文本清理放到 scripts/prepare_edge_assets.py 的最终公共产物复制阶段，覆盖所有发布来源与恢复的构建缓存，不改变不可变输入快照或 RSS；有回归测试覆盖旧快照重复构建。此补充需要新的 CI 与正常统一部署验收。
+
 独立分支 agent/reader-simplify，基于 main eef77c30，[PR285](https://github.com/ohxiyu/xiyunews/pull/285)。完整 Python 1113 项通过、4 项既有条件跳过；117 项前端 Node 与 135 项 Worker 测试通过，npm 审计 0 漏洞，治理/actionlint/diff 检查通过。CI 与生产发布仍需完成，不把本地验证当作上线。
 
 桌面 1440×1000，手机 390×844，英文窄屏 320×844 预览无横向溢出。实际分享：中文浅色 1320×2742 px、英文暗色 1320×3519 px，完整背景先于所有正文段落，无其他附加内容；图片保存通过，没有点击 X 发送。预览用隔离的已发布快照和现有本地 Jekyll 3.9/Liquid 4.0.4（Liquid 单独临时安装）；生产锁定的 Jekyll 3.10 由 CI 构建验收。公开构建中无 weekly 页面，sitemap 与发布 llms 无周报导航。Quick Post 本地动态接口不可用，不冒充生产故障，待生产回读。

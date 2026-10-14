@@ -31,6 +31,18 @@ def test_stage_public_rendered_assets_only(tmp_path):
     assert (destination / "llms.txt").read_bytes() == (source / "llms.txt").read_bytes()
 
 
+def test_retired_weekly_discovery_cannot_return_from_an_older_snapshot(tmp_path):
+    source = fixture(tmp_path)
+    guidance = source / "llms.txt"
+    old = '# xiyu.news\nDiscover archives, entity pages, timelines, and weekly reviews only when needed.\nRSS is still available.\n'
+    guidance.write_text(old)
+    for name in ["assets", "restored-cache-assets"]:
+        destination = tmp_path / name
+        prepare(source, destination)
+        assert (destination / "llms.txt").read_text() == old.replace('timelines, and weekly reviews', 'and timelines')
+        assert guidance.read_text() == old
+
+
 def test_refuse_output_missing_agent_discovery(tmp_path):
     source = fixture(tmp_path)
     (source / "llms.txt").unlink()
