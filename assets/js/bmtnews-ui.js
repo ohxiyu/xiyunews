@@ -392,6 +392,7 @@
       title: title,
       summary: summaryParagraphs.join('\n\n'),
       summaryParagraphs: summaryParagraphs,
+      background: sections.filter(function (section) { return /背景|Background/i.test(section.title); }).map(function (section) { return section.text; }).join("\n\n"),
       sections: sections,
       references: references,
       tags: tags,
@@ -1390,17 +1391,6 @@
     });
   }
 
-  function setupWeeklyHistory() {
-    var button = document.querySelector('[data-weekly-load-more]');
-    if (!button) return;
-    button.addEventListener('click', function () {
-      document.querySelectorAll('[data-weekly-older]').forEach(function (row) {
-        row.hidden = false;
-      });
-      button.hidden = true;
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', function () {
     setupThemeToggle();
     setupInterfaceLanguage();
@@ -1410,7 +1400,6 @@
     enhanceDailyFeeds();
     setupScrollspy();
     setupKeyboardNav();
-    setupWeeklyHistory();
     document.documentElement.classList.add('feed-ready');
   });
 })();

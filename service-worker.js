@@ -14,7 +14,7 @@ let writes = Promise.resolve();
 
 function pageURL(value) {
   const url = new URL(value, self.location.origin);
-  if (url.origin !== self.location.origin || !/^\/(?:en\/)?(?:$|threads\/$|entity\/(?:[a-z0-9_-]+\/)?$|events\/[a-z0-9_-]+\/$|weekly\/(?:[a-z0-9_-]+\/)?$|20\d\d\/\d\d\/\d\d\/summary-(?:zh|en)(?:\.html)?$)/i.test(url.pathname)) return null;
+  if (url.origin !== self.location.origin || !/^\/(?:en\/)?(?:$|threads\/$|entity\/(?:[a-z0-9_-]+\/)?$|events\/[a-z0-9_-]+\/$|20\d\d\/\d\d\/\d\d\/summary-(?:zh|en)(?:\.html)?$)/i.test(url.pathname)) return null;
   for (const key of url.searchParams.keys()) {
     if (key !== 'source' && key !== 'publication_check' && !key.startsWith('utm_')) return null;
   }

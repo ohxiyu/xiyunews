@@ -21,8 +21,7 @@ export function cardPalette(styles) {
 }
 
 const METRICS = {
-  left: 26, right: 26, headerHeight: 47, railY: 70, metaY: 94,
-  titleY: 122,
+  left: 26, right: 26, headerHeight: 47, titleY: 76,
   xs: 11.5, small: 12.8, body: 15, title: 18,
   xsLine: 17.25, smallLine: 23.04, bodyLine: 27.75, titleLine: 28.8
 };
@@ -53,7 +52,7 @@ let activeCardStory = null;
 
 function cardFilename(story) {
   const rank = String(story.rank || '').replace(/\D+/g, '') || 'story';
-  return `bmtnews-${story.date || 'daily'}-${rank}.png`;
+  return `xiyunews-${story.date || 'daily'}-${rank}.png`;
 }
 
 export function supportsImageClipboard() {
@@ -294,153 +293,38 @@ function drawLines(context, lines, x, y, lineHeight) {
   return y + lines.length * lineHeight;
 }
 
-function sourceSegments(story, COLORS) {
-  const parts = story.sourceParts || {};
-  const result = [];
-  const append = (text, color, weight) => {
-    if (!normalizeText(text)) return;
-    if (result.length) result.push({text: ' · ', color: COLORS.muted, weight: 450});
-    result.push({text: normalizeText(text), color: color, weight: weight});
-  };
-  append(parts.type, COLORS.muted, 450);
-  append(parts.outlet, COLORS.soft, 550);
-  append(parts.published, COLORS.muted, 450);
-  (parts.extras || []).forEach((extra) => append(extra, COLORS.accent, 450));
-  append(parts.provenance, parts.confirmed ? COLORS.up : COLORS.muted, parts.confirmed ? 600 : 450);
-  if (!result.length && story.source) append(story.source, COLORS.muted, 450);
-  return result;
-}
-
-function layoutInlineRows(context, segments, maxWidth) {
-  const rows = [[]];
-  let rowWidth = 0;
-  segments.forEach((segment) => {
-    setFont(context, METRICS.small, segment.weight, false);
-    // An unusually long outlet/source must wrap, never overflow the panel.
-    const separator = segment.text.trim() === '·';
-    const pieces = separator ? [segment.text] : wrapText(context, segment.text, maxWidth, 'en');
-    pieces.forEach((text, index) => {
-      const width = context.measureText(text).width;
-      if (rowWidth && rowWidth + width > maxWidth) {
-        rows.push([]);
-        rowWidth = 0;
-      }
-      if (!rowWidth && separator) return;
-      rows[rows.length - 1].push({...segment, text, width: width});
-      rowWidth += width;
-      if (index < pieces.length - 1) { rows.push([]); rowWidth = 0; }
-    });
-  });
-  return rows.filter((row) => row.length);
-}
-
-function drawInlineRows(context, rows, x, y) {
-  rows.forEach((row, rowIndex) => {
-    let cursor = x;
-    row.forEach((segment) => {
-      setFont(context, METRICS.small, segment.weight, false);
-      context.fillStyle = segment.color;
-      context.fillText(segment.text, cursor, y + rowIndex * METRICS.smallLine);
-      cursor += segment.width;
-    });
-  });
-}
-
-function categoryColor(category, COLORS) {
-  if (['crypto', 'exchange', 'protocol'].includes(category)) return COLORS.accent;
-  if (category === 'technology') return COLORS.up;
-  if (['policy', 'regulation', 'security'].includes(category)) return COLORS.warn;
-  return COLORS.muted;
-}
-
-function scoreColor(tier, COLORS) {
-  if (tier === 'high') return COLORS.high;
-  if (tier === 'good') return COLORS.accent;
-  return COLORS.muted;
-}
-
-function buildLayout(context, story, COLORS) {
+function buildLayout(context, story) {
   const contentX = METRICS.left;
   const contentWidth = CARD_CSS_WIDTH - METRICS.left - METRICS.right;
-  const detailsX = contentX + 14;
-  const detailsWidth = contentWidth - 28;
-
   setFont(context, METRICS.title, 700, false);
   const titleLines = wrapBalancedText(context, story.title, contentWidth, story.language);
-  setFont(context, METRICS.body, 400, false);
-  const summaryBlocks = (Array.isArray(story.summaryParagraphs) && story.summaryParagraphs.length
-    ? story.summaryParagraphs
-    : String(story.summary || '').split(/\n\s*\n+/)
-  ).map(normalizeText).filter(Boolean);
-  const summaryParagraphs = summaryBlocks.map((paragraph) => ({
-    lines: wrapText(context, paragraph, contentWidth, story.language),
-    y: 0
-  }));
-  const sourceRows = layoutInlineRows(context, sourceSegments(story, COLORS), contentWidth);
+  let y = METRICS.titleY + titleLines.length * METRICS.titleLine + 14;
 
-  const titleY = METRICS.titleY;
-  let y = titleY;
-  y += titleLines.length * METRICS.titleLine + 6;
-  const summaryY = y;
-  summaryParagraphs.forEach((paragraph, index) => {
-    paragraph.y = y;
-    y += paragraph.lines.length * METRICS.bodyLine;
-    if (index < summaryParagraphs.length - 1) y += 9;
-  });
-  y += 8;
-  const sourceY = y;
-  y += Math.max(1, sourceRows.length) * METRICS.smallLine + 8;
-
-  const hasDetails = story.sections.length || story.references.length || story.tags.length;
-  const detailsTop = y;
-  let detailsTitleY = 0;
-  const sections = [];
-  const references = [];
-  let referencesTitleY = 0;
-  let tagsTitleY = 0;
-  let tagsY = 0;
-  let tagLines = [];
-
-  if (hasDetails) {
-    y += 12;
-    detailsTitleY = y;
-    y += METRICS.smallLine + 8;
-    story.sections.forEach((section) => {
-      setFont(context, METRICS.small, 400, false);
-      const lines = wrapText(context, section.text, detailsWidth, story.language);
-      const item = {title: section.title, titleY: y, textY: y + METRICS.xsLine + 4, lines: lines};
-      sections.push(item);
-      y = item.textY + lines.length * METRICS.smallLine + 10;
-    });
-
-    if (story.references.length) {
-      referencesTitleY = y;
-      y += METRICS.xsLine + 4;
-      story.references.forEach((reference) => {
-        setFont(context, METRICS.small, 400, false);
-        const lines = wrapText(context, reference, detailsWidth - 20, story.language);
-        references.push({y: y, lines: lines});
-        y += lines.length * METRICS.smallLine + 2;
-      });
-      y += 8;
-    }
-
-    if (story.tags.length) {
-      tagsTitleY = y;
-      y += METRICS.xsLine + 4;
-      setFont(context, METRICS.xs, 450, true);
-      tagLines = wrapText(context, story.tags.join('  '), detailsWidth, story.language);
-      tagsY = y;
-      y += tagLines.length * METRICS.xsLine + 10;
-    }
+  // Explicit field for new pages; section fallback supports older editions.
+  const background = normalizeText(story.background) || (story.sections || [])
+    .filter(section => /背景|Background/i.test(section.title))
+    .map(section => normalizeText(section.text)).filter(Boolean).join('\n\n');
+  let backgroundPanel = null;
+  if (background) {
+    setFont(context, METRICS.small, 400, false);
+    const lines = wrapText(context, background, contentWidth - 28, story.language);
+    backgroundPanel = {top: y, titleY: y + 12, textY: y + 12 + METRICS.xsLine + 6, lines};
+    backgroundPanel.bottom = backgroundPanel.textY + lines.length * METRICS.smallLine + 12;
+    y = backgroundPanel.bottom + 16;
   }
 
-  return {
-    height: Math.ceil(Math.max(y + 28, 250)), contentX, contentWidth, detailsX, detailsWidth,
-    titleY, titleLines, summaryY, summaryParagraphs, sourceY, sourceRows, hasDetails, detailsTop,
-    detailsTitleY, sections, references, referencesTitleY, tagsTitleY, tagsY, tagLines,
-    detailsBottom: hasDetails ? y + 4 : detailsTop
-  };
+  setFont(context, METRICS.body, 400, false);
+  const blocks = (Array.isArray(story.summaryParagraphs) && story.summaryParagraphs.length
+    ? story.summaryParagraphs : String(story.summary || '').split(/\n\s*\n+/))
+    .map(normalizeText).filter(Boolean);
+  const summaryParagraphs = blocks.map(paragraph => {
+    const lines = wrapText(context, paragraph, contentWidth, story.language);
+    const row = {y, lines};
+    y += lines.length * METRICS.bodyLine + 9;
+    return row;
+  });
+  return {height: Math.ceil(Math.max(y + 20, 180)), contentX, contentWidth,
+    titleY: METRICS.titleY, titleLines, backgroundPanel, summaryParagraphs};
 }
 
 function drawHeader(context, COLORS) {
@@ -487,85 +371,27 @@ function drawCard(context, story, layout, COLORS) {
   drawHeader(context, COLORS);
   drawPanel(context, 12, 56, CARD_CSS_WIDTH - 24, layout.height - 68,
     12, COLORS.surface, COLORS.border);
-
-  setFont(context, METRICS.title, 750, false, 0.35);
-  context.fillStyle = story.priority ? COLORS.text : COLORS.muted;
-  context.fillText(story.rank || '', METRICS.left, METRICS.railY);
-  const rankWidth = context.measureText(story.rank || '').width;
-  setFont(context, METRICS.xs, 450, false, 0.4);
-  context.fillStyle = COLORS.muted;
-  context.fillText(story.dateLabel || story.date || '', METRICS.left + rankWidth + 9, METRICS.railY + 3);
-
-  let metaX = METRICS.left;
-  setFont(context, METRICS.xs, 700, false, 1.15);
-  context.fillStyle = categoryColor(story.categoryKey, COLORS);
-  context.fillText(story.category, metaX, METRICS.metaY);
-  metaX += context.measureText(story.category).width + 10;
-  if (story.priority) {
-    setFont(context, METRICS.xs, 700, false, 1.15);
-    context.fillStyle = COLORS.high;
-    context.fillText(story.priority, metaX, METRICS.metaY);
-  }
-
-  setFont(context, METRICS.small, 700, true);
-  context.fillStyle = scoreColor(story.scoreTier, COLORS);
-  context.textAlign = 'right';
-  context.fillText(story.score, CARD_CSS_WIDTH - METRICS.right, METRICS.metaY + 1);
-  context.textAlign = 'left';
-
   setFont(context, METRICS.title, 700, false);
   context.fillStyle = COLORS.text;
   drawLines(context, layout.titleLines, layout.contentX, layout.titleY, METRICS.titleLine);
 
-  setFont(context, METRICS.body, 400, false);
-  context.fillStyle = COLORS.soft;
-  layout.summaryParagraphs.forEach((paragraph) => {
-    drawLines(context, paragraph.lines, layout.contentX, paragraph.y, METRICS.bodyLine);
-  });
-  drawInlineRows(context, layout.sourceRows, layout.contentX, layout.sourceY);
-
-  if (!layout.hasDetails) {
-    return;
-  }
-  drawPanel(context, layout.contentX, layout.detailsTop, layout.contentWidth,
-    layout.detailsBottom - layout.detailsTop, 9, COLORS.detail, COLORS.border);
-
-  setFont(context, METRICS.small, 400, false);
-  context.fillStyle = COLORS.accent;
-  const detailsTitle = normalizeText(story.detailsTitle) || LABELS[story.language].details;
-  context.fillText(`${detailsTitle} −`, layout.detailsX, layout.detailsTitleY);
-
-  layout.sections.forEach((section) => {
+  const background = layout.backgroundPanel;
+  if (background) {
+    drawPanel(context, layout.contentX, background.top, layout.contentWidth,
+      background.bottom - background.top, 9, COLORS.detail, COLORS.border);
+    context.fillStyle = COLORS.accent;
+    context.fillRect(layout.contentX, background.top + 10, 3, background.bottom - background.top - 20);
     setFont(context, METRICS.xs, 600, false);
-    context.fillStyle = COLORS.muted;
-    context.fillText(section.title, layout.detailsX, section.titleY);
+    context.fillText(story.language === 'en' ? 'Background' : '背景', layout.contentX + 14, background.titleY);
     setFont(context, METRICS.small, 400, false);
     context.fillStyle = COLORS.soft;
-    drawLines(context, section.lines, layout.detailsX, section.textY, METRICS.smallLine);
+    drawLines(context, background.lines, layout.contentX + 14, background.textY, METRICS.smallLine);
+  }
+  setFont(context, METRICS.body, 400, false);
+  context.fillStyle = COLORS.soft;
+  layout.summaryParagraphs.forEach(paragraph => {
+    drawLines(context, paragraph.lines, layout.contentX, paragraph.y, METRICS.bodyLine);
   });
-
-  if (layout.references.length) {
-    setFont(context, METRICS.xs, 600, false);
-    context.fillStyle = COLORS.muted;
-    context.fillText(LABELS[story.language].references, layout.detailsX, layout.referencesTitleY);
-    layout.references.forEach((reference) => {
-      setFont(context, METRICS.small, 400, false);
-      context.fillStyle = COLORS.soft;
-      context.fillText('•', layout.detailsX + 2, reference.y);
-      context.fillStyle = COLORS.accent;
-      drawLines(context, reference.lines, layout.detailsX + 18, reference.y, METRICS.smallLine);
-    });
-  }
-
-  if (layout.tagLines.length) {
-    setFont(context, METRICS.xs, 600, false);
-    context.fillStyle = COLORS.muted;
-    context.fillText(LABELS[story.language].tags, layout.detailsX, layout.tagsTitleY);
-    setFont(context, METRICS.xs, 450, true);
-    context.fillStyle = COLORS.muted;
-    drawLines(context, layout.tagLines, layout.detailsX, layout.tagsY, METRICS.xsLine);
-  }
-
 }
 
 export async function renderStoryCard(story) {
