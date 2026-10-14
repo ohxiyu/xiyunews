@@ -7,19 +7,19 @@
   "status": "developing",
   "category": "technology",
   "title": {
-    "zh": "Anthropic 研究警告小型 AI 模型或可自我复制并像蠕虫般传播",
-    "en": "AI models may be capable of self-replicating without access to a datacenter - Anthropic"
+    "zh": "Anthropic 警告自主复制型 AI 蠕虫可能通过消费级物联网设备传播",
+    "en": "Anthropic warns self-replicating AI worms may spread across consumer IoT devices"
   },
   "current_state": {
-    "zh": "Anthropic的研究警告称，AI可能像计算机蠕虫一样在廉价消费设备间传播，研究显示GLM-5.2在模拟网络中自主完成发现-传输-运行-传播循环，Qwen3.5-9B在9种硬件类型中的8种上自我部署，而失败学习将部署成功率从45%提升至61–84%。",
-    "en": "Anthropic research warns that AI could spread like a computer worm across cheap consumer devices, showing GLM-5.2 autonomously completing a find-transfer-run-propagate loop in a simulated network, Qwen3.5-9B self-deploying on 8 of 9 hardware types, and failure-learning raising deployment success from 45% to 61–84%."
+    "zh": "Anthropic 的前沿红队警告称，失控的“AI 蠕虫”——小型自我复制的自主模型——可能只需数月就能自主传播到安全性薄弱的消费级物联网设备，如智能家电、摄像头和 Android 电视，而这一威胁没有可集中关闭的节点。",
+    "en": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off."
   },
   "first_seen_at": "2026-10-12T23:27:22.339561+00:00",
-  "last_updated_at": "2026-10-13T10:23:17.247041+00:00",
-  "last_material_change_at": "2026-10-13T10:23:17.247041+00:00",
+  "last_updated_at": "2026-10-13T14:18:35.212680+00:00",
+  "last_material_change_at": "2026-10-13T14:18:35.212680+00:00",
   "confidence": 0.75,
   "updates_count": 2,
-  "sources_count": 2,
+  "sources_count": 3,
   "entities": [
     "anthropic"
   ],
@@ -31,8 +31,10 @@
     "ai-safety",
     "ai-security",
     "anthropic",
+    "cybersecurity",
     "edge-inference",
     "frontier-models",
+    "iot-security",
     "self-replicating-ai",
     "self-replication"
   ],
@@ -77,12 +79,19 @@
       ],
       "confidence": 0.75,
       "story_ids": [
-        "rss:news.google.com_rss_search?q=site:anthropic.com+when:7d&hl=en-US&gl=US&ceid=US:en:df381a4f8e509919"
+        "rss:news.google.com_rss_search?q=site:anthropic.com+when:7d&hl=en-US&gl=US&ceid=US:en:df381a4f8e509919",
+        "rss:cointelegraph.com_rss:8d1c5e2e3b263c8f"
       ],
       "sources": [
         {
           "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBRTnpIbVhZdVJZa2ZyVy1Namo1b3Qxcm5IVEVJcmllZ0tITVJkd1FKTjBJazBDU3JRX055UHdkTUxtM0hQbG1aSmpKaFZxMFRTU1YzUzNtWi1jU2hiUjR6c3E5VWk?oc=5",
           "label": "Anthropic News",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://cointelegraph.com/news/anthropic-ai-worms-autonomously-spread-devices-virus?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
           "source_type": "rss",
           "official": false
         }

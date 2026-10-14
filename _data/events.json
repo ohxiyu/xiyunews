@@ -37944,8 +37944,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Coinbase is building a post-quantum cryptography plan to protect Bitcoin custody for approximately $250 billion in assets under management.",
-      "current_state_zh": "Coinbase 正在制定一项后量子密码学方案，用于保护其托管的约 2500 亿美元比特币资产。该举措目前被描述为一项方案，而非已部署的系统，尚无确认的技术规范或落地时间表。\n\n该方案针对的是一种长期风险：比特币当前使用的公钥密码学未来可能被量子计算机攻破；而它涉及的是托管着规模庞大客户资产的托管理基础设施。\n\n据报道，约 2500 亿美元这一数字指的是该方案所覆盖的托管资产规模；具体的部署细节与时间表尚未得到确认。",
+      "current_state_en": "Coinbase has published a post-quantum readiness proposal urging Bitcoin to act now, recommending flexible post-quantum signatures, staged adoption, and a backup quantum-proof key, while separating the dormant-wallet issue. The plan remains a proposal, not deployed.",
+      "current_state_zh": "Coinbase 已发布一项后量子准备提案，呼吁比特币立即采取行动，建议灵活的后量子签名、分阶段采用和备份量子安全密钥，并将休眠钱包处理问题分开讨论。该方案仍处于提案阶段，尚未部署。",
       "entities": [
         "assets",
         "billion",
@@ -37969,8 +37969,8 @@
       "event_type": "security_incident",
       "first_seen_at": "2026-09-09T16:49:30.323045Z",
       "identifiers": [],
-      "last_material_change_at": "2026-09-23T23:02:29.660601Z",
-      "last_updated_at": "2026-09-23T23:02:29.660601Z",
+      "last_material_change_at": "2026-10-14T06:11:20.172850Z",
+      "last_updated_at": "2026-10-14T06:11:20.172850Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_e701e1ce84a087f5",
@@ -37984,7 +37984,9 @@
         "coinbase",
         "custody",
         "post-quantum",
-        "quantum-computing"
+        "post-quantum-cryptography",
+        "quantum-computing",
+        "wallet-security"
       ],
       "updates": [
         {
@@ -38085,6 +38087,44 @@
           "update_type": "confirmation",
           "what_changed_en": "Coinbase's head of cryptography Yehuda Lindell disclosed more details on post-quantum custody safeguards, including exploring a fallback architecture combining post-quantum threshold decryption with programmable HSMs to address potential non-MPC-friendly post-quantum signature schemes.",
           "what_changed_zh": "Coinbase 首席密码学家 Yehuda Lindell 披露了后量子托管保障的更多细节，包括探索结合后量子阈值解密与可编程 HSM 的备用架构，以应对部分后量子签名方案可能不兼容 MPC 的问题。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "Coinbase has published a post-quantum readiness proposal urging Bitcoin to act now, recommending flexible post-quantum signatures, staged adoption, and a backup quantum-proof key, while separating the dormant-wallet issue. The plan remains a proposal, not deployed.",
+          "current_state_zh": "Coinbase 已发布一项后量子准备提案，呼吁比特币立即采取行动，建议灵活的后量子签名、分阶段采用和备份量子安全密钥，并将休眠钱包处理问题分开讨论。该方案仍处于提案阶段，尚未部署。",
+          "detailed_summary_en": "Coinbase published a proposal urging Bitcoin to begin preparing for quantum computers now, recommending flexible post-quantum signature schemes, staged adoption, a backup quantum-proof key, and treating the contentious question of dormant or late-migrating wallets as a separate debate so it does not stall broader protections.",
+          "detailed_summary_zh": "Coinbase published a proposal urging Bitcoin to begin preparing for quantum computers now, recommending flexible post-quantum signature schemes, staged adoption, a backup quantum-proof key, and treating the contentious question of dormant or late-migrating wallets as a separate debate so it does not stall broader protections.",
+          "event_id": "evt_0002147175c620c0",
+          "first_seen_at": "2026-10-14T06:11:20.172850Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-14T05:44:51Z",
+          "published_at": "2026-10-14T05:44:51Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "CoinDesk",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.coindesk.com/tech/2026/10/14/coinbase-which-holds-5-of-all-bitcoin-wants-the-quantum-fix-started-now"
+            }
+          ],
+          "story_ids": [
+            "rss:www.coindesk.com_arc_outboundfeeds_rss_:12cc9fa114a0a970"
+          ],
+          "time_precision": "published",
+          "title_en": "Coinbase, which holds 5% of all bitcoin, wants the quantum fix started now",
+          "title_zh": "持有全部比特币 5% 的 Coinbase 希望现在就启动量子修复",
+          "update_id": "upd_20a23cea68ffcebd",
+          "update_type": "confirmation",
+          "what_changed_en": "Coinbase published a proposal urging Bitcoin to begin preparing for quantum computers now, recommending flexible post-quantum signature schemes, staged adoption, a backup quantum-proof key, and treating dormant or late-migrating wallets as a separate debate.",
+          "what_changed_zh": "Coinbase 发布了一项提案，敦促比特币立即开始为量子计算做准备，建议采用灵活的后量子签名方案、分阶段采用、备份量子安全密钥，并将休眠或迁移延迟钱包的争议作为单独议题处理。"
         }
       ]
     },
@@ -123805,15 +123845,21 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "Anthropic announced advanced agent-building capabilities for Claude on Google Vertex AI, giving developers on the cloud platform expanded tooling for constructing agentic applications.",
-      "current_state_zh": "Anthropic announced advanced agent-building capabilities for Claude on Google Vertex AI, giving developers on the cloud platform expanded tooling for constructing agentic applications.",
+      "current_state_en": "Anthropic details how to build on the Claude platform, introducing Claude Fable 5 and outlining model orchestration patterns for developers.",
+      "current_state_zh": "Anthropic details how to build on the Claude platform, introducing Claude Fable 5 and outlining model orchestration patterns for developers.",
       "entities": [
         "advanced",
         "agent",
+        "agents",
         "anthropic",
         "building",
         "capabilities",
         "claude",
+        "fable",
+        "how",
+        "managed",
+        "model-orchestration",
+        "platform",
         "vertex",
         "vertex-ai"
       ],
@@ -123821,18 +123867,24 @@
       "event_type": "other",
       "first_seen_at": "2026-10-07T02:40:32.602511Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-07T02:40:32.602511Z",
-      "last_updated_at": "2026-10-07T02:40:32.602511Z",
+      "last_material_change_at": "2026-10-13T10:23:36.841501Z",
+      "last_updated_at": "2026-10-13T10:23:36.841501Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_d2e6fcf93a731810",
+        "evt_31c999ee198c3f55"
+      ],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "Building with Advanced Agent Capabilities for Claude on Vertex AI - Anthropic",
-      "title_zh": "Building with Advanced Agent Capabilities for Claude on Vertex AI - Anthropic",
+      "title_zh": "Anthropic 推出 Claude 平台开发工具与托管代理服务",
       "topics": [
+        "agent-deployment",
+        "ai-platform",
         "anthropic",
         "claude",
         "developer-tools",
+        "model-orchestration",
         "vertex-ai"
       ],
       "updates": [
@@ -123861,10 +123913,24 @@
               "official": false,
               "source_type": "rss",
               "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPb3RTRTNDZ3ZfOVhvVUtPdklJbTFHNmFZUGZoSUYwOHlSd0NtaGFlVUVRbjh4dkEtckViUVk0azBYZkhBWlR4NVFWeEtrMGktZHlZRjVPZDlCTDNZdW9kTzBLaFZhNEFZZExDclFpYnBoT2lFN1ptSGZ1UVZuRnFRNjVrS0g0OWFCRmw3Vi1LNmJiR3RpSmNZbExCMGNqd1ZnaEpXd0VTWkszaFd1MVFDZUVRLXkxS05iM0JvaXhQei1raDMwd01ONg?oc=5"
+            },
+            {
+              "label": "Anthropic News",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxOLWNwTkIxVGRqS1hjWUszUk1rZjZRb0VVVTdhOFdZN01jbFhPay1kY0dvc1ByOGF5RUU1b3I3SUo3bE5wc2RwdWUwckM3Y3hhcFdCcERuLURHT19rbWp4YWVWSWNYX3hucDRvQ2tPZmZnRTgyc05Xa1Y2MFBCa3RpSkxXbzVhRC0xU2haQWU3LUpBM0tIMFFBbGhzbWlMdG02ZjYteDcwTnB4ZHE0N0FFS3dHaF9XYXE3a2FVeGI0VU9QczBxSDRQcFp2b01YeGg2N3VGX013OEtkRFQwS0xBQjZoY19xWG0wUW1yOW5iRTV4Zw?oc=5"
+            },
+            {
+              "label": "Anthropic News",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://news.google.com/rss/articles/CBMiugJBVV95cUxOVG5sLUNtVGRDVnlnaWhyczJKREtwOGFja0U4YWYxaXVGTTdTUllmczViLTRob3FaYkQxOXlqVndmLXpFeExhcEJxUHROeWJSMHNoNjRFaUVBeUt6UWFzVV9NU0tWM1BLbnU3c09uX0ctZGh1YW5GNEMzb3UxRnA0T0ZOOEZMNExVckJTRThienlDYXkxNDNmbFNiNFBrbmgxVXhxTmJmdXhhYnA3dWl5clB1OVpGaW9KOTY3alFTd2hQVF8xOUl1QmJMZmJjNF94NktFRnMxSmNqaUx5WTk2LWZiaU41RThpNzRXdDdQQUtCM3dhQVZ0VkVQOUxHYjVxZUlXY2dCR1NuMFFGam9STUwtX0lHMmRiRmliTlpjYmI4OEE5dy13MVZUWUtTMjNzNlJ3U2EwYVFNUQ?oc=5"
             }
           ],
           "story_ids": [
-            "rss:news.google.com_rss_search?q=site:anthropic.com+when:7d&hl=en-US&gl=US&ceid=US:en:00e72913d48648f0"
+            "rss:news.google.com_rss_search?q=site:anthropic.com+when:7d&hl=en-US&gl=US&ceid=US:en:00e72913d48648f0",
+            "rss:news.google.com_rss_search?q=site:anthropic.com+when:7d&hl=en-US&gl=US&ceid=US:en:0836d95838541eb8",
+            "rss:news.google.com_rss_search?q=site:anthropic.com+when:7d&hl=en-US&gl=US&ceid=US:en:f16dd72a1aa61743"
           ],
           "time_precision": "published",
           "title_en": "Building with Advanced Agent Capabilities for Claude on Vertex AI - Anthropic",
@@ -142408,77 +142474,6 @@
       ]
     },
     {
-      "category": "technology",
-      "confidence": 0.75,
-      "current_state_en": "Anthropic introduced Claude Managed Agents, a hosted platform for deploying and scaling AI agents in production, along with guidance on shipping them.",
-      "current_state_zh": "Anthropic introduced Claude Managed Agents, a hosted platform for deploying and scaling AI agents in production, along with guidance on shipping them.",
-      "entities": [
-        "agents",
-        "anthropic",
-        "claude",
-        "how",
-        "managed"
-      ],
-      "event_id": "evt_31c999ee198c3f55",
-      "event_type": "other",
-      "first_seen_at": "2026-10-12T06:40:42.838339Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-12T06:40:42.838339Z",
-      "last_updated_at": "2026-10-12T06:40:42.838339Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "How to ship and scale agents with Claude Managed Agents - Anthropic",
-      "title_zh": "How to ship and scale agents with Claude Managed Agents - Anthropic",
-      "topics": [
-        "agent-deployment",
-        "anthropic",
-        "claude",
-        "developer-tools"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Anthropic introduced Claude Managed Agents, a hosted platform for deploying and scaling AI agents in production, along with guidance on shipping them.",
-          "current_state_zh": "Anthropic introduced Claude Managed Agents, a hosted platform for deploying and scaling AI agents in production, along with guidance on shipping them.",
-          "detailed_summary_en": "Anthropic introduced Claude Managed Agents, a hosted platform for deploying and scaling AI agents in production, along with guidance on shipping them.",
-          "detailed_summary_zh": "Anthropic introduced Claude Managed Agents, a hosted platform for deploying and scaling AI agents in production, along with guidance on shipping them.",
-          "event_id": "evt_31c999ee198c3f55",
-          "first_seen_at": "2026-10-12T06:40:42.838339Z",
-          "importance_score": 7.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-11T18:58:02Z",
-          "published_at": "2026-10-11T18:58:02Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "Anthropic News",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxOLWNwTkIxVGRqS1hjWUszUk1rZjZRb0VVVTdhOFdZN01jbFhPay1kY0dvc1ByOGF5RUU1b3I3SUo3bE5wc2RwdWUwckM3Y3hhcFdCcERuLURHT19rbWp4YWVWSWNYX3hucDRvQ2tPZmZnRTgyc05Xa1Y2MFBCa3RpSkxXbzVhRC0xU2haQWU3LUpBM0tIMFFBbGhzbWlMdG02ZjYteDcwTnB4ZHE0N0FFS3dHaF9XYXE3a2FVeGI0VU9QczBxSDRQcFp2b01YeGg2N3VGX013OEtkRFQwS0xBQjZoY19xWG0wUW1yOW5iRTV4Zw?oc=5"
-            }
-          ],
-          "story_ids": [
-            "rss:news.google.com_rss_search?q=site:anthropic.com+when:7d&hl=en-US&gl=US&ceid=US:en:0836d95838541eb8"
-          ],
-          "time_precision": "published",
-          "title_en": "How to ship and scale agents with Claude Managed Agents - Anthropic",
-          "title_zh": "How to ship and scale agents with Claude Managed Agents - Anthropic",
-          "update_id": "upd_e46674c9d7749760",
-          "update_type": "initial",
-          "what_changed_en": "Anthropic introduced Claude Managed Agents, a hosted platform for deploying and scaling AI agents in production, along with guidance on shipping them.",
-          "what_changed_zh": "Anthropic introduced Claude Managed Agents, a hosted platform for deploying and scaling AI agents in production, along with guidance on shipping them."
-        }
-      ]
-    },
-    {
       "category": "crypto",
       "confidence": 0.75,
       "current_state_en": "Solana treasury company SkyAI (Nasdaq: SKYA) plans a ~$201M cash tender offer at $3 per share and per pre-funded warrant for up to 95% of its stock and warrants starting around Oct. 15, funded by cash and SOL sales, and rejected Forward Industries' unsolicited all-stock exchange proposal as undervaluing the company.",
@@ -145905,8 +145900,8 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "Anthropic research warns that AI could spread like a computer worm across cheap consumer devices, showing GLM-5.2 autonomously completing a find-transfer-run-propagate loop in a simulated network, Qwen3.5-9B self-deploying on 8 of 9 hardware types, and failure-learning raising deployment success from 45% to 61–84%.",
-      "current_state_zh": "Anthropic的研究警告称，AI可能像计算机蠕虫一样在廉价消费设备间传播，研究显示GLM-5.2在模拟网络中自主完成发现-传输-运行-传播循环，Qwen3.5-9B在9种硬件类型中的8种上自我部署，而失败学习将部署成功率从45%提升至61–84%。",
+      "current_state_en": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
+      "current_state_zh": "Anthropic 的前沿红队警告称，失控的“AI 蠕虫”——小型自我复制的自主模型——可能只需数月就能自主传播到安全性薄弱的消费级物联网设备，如智能家电、摄像头和 Android 电视，而这一威胁没有可集中关闭的节点。",
       "entities": [
         "anthropic"
       ],
@@ -145916,23 +145911,26 @@
       "identifiers": [
         "glm-5"
       ],
-      "last_material_change_at": "2026-10-13T10:23:17.247041Z",
-      "last_updated_at": "2026-10-13T10:23:17.247041Z",
+      "last_material_change_at": "2026-10-13T14:18:35.212680Z",
+      "last_updated_at": "2026-10-13T14:18:35.212680Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
-        "evt_f797d67ff6f8e13c"
+        "evt_f797d67ff6f8e13c",
+        "evt_d151507e290c34d2"
       ],
       "schema_version": 1,
       "status": "developing",
-      "title_en": "AI models may be capable of self-replicating without access to a datacenter - Anthropic",
-      "title_zh": "Anthropic 研究警告小型 AI 模型或可自我复制并像蠕虫般传播",
+      "title_en": "Anthropic warns self-replicating AI worms may spread across consumer IoT devices",
+      "title_zh": "Anthropic 警告自主复制型 AI 蠕虫可能通过消费级物联网设备传播",
       "topics": [
         "ai-research",
         "ai-safety",
         "ai-security",
         "anthropic",
+        "cybersecurity",
         "edge-inference",
         "frontier-models",
+        "iot-security",
         "self-replicating-ai",
         "self-replication"
       ],
@@ -145975,10 +145973,17 @@
               "official": false,
               "source_type": "rss",
               "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBRTnpIbVhZdVJZa2ZyVy1Namo1b3Qxcm5IVEVJcmllZ0tITVJkd1FKTjBJazBDU3JRX055UHdkTUxtM0hQbG1aSmpKaFZxMFRTU1YzUzNtWi1jU2hiUjR6c3E5VWk?oc=5"
+            },
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/anthropic-ai-worms-autonomously-spread-devices-virus?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
             }
           ],
           "story_ids": [
-            "rss:news.google.com_rss_search?q=site:anthropic.com+when:7d&hl=en-US&gl=US&ceid=US:en:df381a4f8e509919"
+            "rss:news.google.com_rss_search?q=site:anthropic.com+when:7d&hl=en-US&gl=US&ceid=US:en:df381a4f8e509919",
+            "rss:cointelegraph.com_rss:8d1c5e2e3b263c8f"
           ],
           "time_precision": "published",
           "title_en": "AI models may be capable of self-replicating without access to a datacenter - Anthropic",
@@ -147155,8 +147160,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Metaplanet is issuing ~$329M (¥52B) of 2031-maturity zero-coupon convertible bonds, with ~$149M of net proceeds to repay Bitcoin-collateralized loans and ~$179M for share buybacks under a new up to $380M repurchase program; no BTC holdings will be sold, and its loan-to-BTCNAV ratio of ~17.7% remains above its 10% target.",
-      "current_state_zh": "Metaplanet 拟发行约3.29亿美元（520亿日元）2031年到期的零息可转债，净收益中约1.49亿美元用于偿还比特币抵押贷款、约1.79亿美元用于股票回购，并启动最高3.8亿美元的回购计划；不会出售BTC，贷款与BTCNAV比率约17.7%，仍高于10%目标。",
+      "current_state_en": "Metaplanet is issuing ~¥52B (~$328M) of 2031-maturity zero-coupon convertible bonds, with ~$149M of net proceeds to repay Bitcoin-collateralized loans and ~$179M for share buybacks under a new up to $380M repurchase program; no BTC holdings will be sold, and its loan-to-BTCNAV ratio of ~17.7% remains above its 10% target. Additionally, CEO Simon Gerovich will lend up to 55 million personal shares at 0.75% annual interest to optimize bond issuance conditions; the August 18 announced investment in Super League Enterprise (SLE) is expected to complete soon, after which SLE plans to rename to Superplanet, Inc.",
+      "current_state_zh": "Metaplanet 拟发行约520亿日元（约3.28亿美元）2031年到期的零息可转债，净收益中约1.49亿美元用于偿还比特币抵押贷款、约1.79亿美元用于股票回购，并启动最高3.8亿美元的回购计划；不会出售BTC，贷款与BTCNAV比率约17.7%，仍高于10%目标。此外，CEO Simon Gerovich 将以0.75%年利率出借最多5500万股个人持股以优化债券发行条件；8月18日宣布的对Super League Enterprise（SLE）的投资预计很快完成，交易完成后SLE计划更名为Superplanet, Inc.。",
       "entities": [
         "convertible-bonds",
         "metaplanet"
@@ -147165,8 +147170,8 @@
       "event_type": "other",
       "first_seen_at": "2026-10-13T10:23:16.603991Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-13T12:13:30.400438Z",
-      "last_updated_at": "2026-10-13T12:13:30.400438Z",
+      "last_material_change_at": "2026-10-14T02:08:02.750585Z",
+      "last_updated_at": "2026-10-14T02:08:02.750585Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -147176,6 +147181,7 @@
       "topics": [
         "bitcoin-treasury",
         "btc",
+        "convertible-bond",
         "convertible-bonds",
         "corporate-finance",
         "metaplanet",
@@ -147257,6 +147263,44 @@
           "update_type": "confirmation",
           "what_changed_en": "Clarified that ~$149M of net proceeds will repay Bitcoin-collateralized loans and ~$179M will fund share buybacks; new buyback program targets up to $380M; confirmed no BTC holdings will be sold.",
           "what_changed_zh": "明确债券发行净收益中约1.49亿美元用于偿还比特币抵押贷款，约1.79亿美元用于股票回购；新设最高3.8亿美元回购计划，并确认不会出售任何BTC持仓。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "Metaplanet is issuing ~¥52B (~$328M) of 2031-maturity zero-coupon convertible bonds, with ~$149M of net proceeds to repay Bitcoin-collateralized loans and ~$179M for share buybacks under a new up to $380M repurchase program; no BTC holdings will be sold, and its loan-to-BTCNAV ratio of ~17.7% remains above its 10% target. Additionally, CEO Simon Gerovich will lend up to 55 million personal shares at 0.75% annual interest to optimize bond issuance conditions; the August 18 announced investment in Super League Enterprise (SLE) is expected to complete soon, after which SLE plans to rename to Superplanet, Inc.",
+          "current_state_zh": "Metaplanet 拟发行约520亿日元（约3.28亿美元）2031年到期的零息可转债，净收益中约1.49亿美元用于偿还比特币抵押贷款、约1.79亿美元用于股票回购，并启动最高3.8亿美元的回购计划；不会出售BTC，贷款与BTCNAV比率约17.7%，仍高于10%目标。此外，CEO Simon Gerovich 将以0.75%年利率出借最多5500万股个人持股以优化债券发行条件；8月18日宣布的对Super League Enterprise（SLE）的投资预计很快完成，交易完成后SLE计划更名为Superplanet, Inc.。",
+          "detailed_summary_en": "Metaplanet announced a ¥52 billion (~$328M) zero-coupon convertible bond maturing 2031, with up to ¥28.3bn earmarked for discounted share buybacks and ¥23.6bn for debt repayment to release pledged bitcoin collateral and increase flexibility for further BTC purchases.",
+          "detailed_summary_zh": "Metaplanet announced a ¥52 billion (~$328M) zero-coupon convertible bond maturing 2031, with up to ¥28.3bn earmarked for discounted share buybacks and ¥23.6bn for debt repayment to release pledged bitcoin collateral and increase flexibility for further BTC purchases.",
+          "event_id": "evt_d5ac35167714910c",
+          "first_seen_at": "2026-10-14T02:08:02.750585Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-14T01:11:26Z",
+          "published_at": "2026-10-14T01:11:26Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115130"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120341"
+          ],
+          "time_precision": "published",
+          "title_en": "【Metaplanet 拟发行约 3.28 亿美元零息可转债，用于回购股份及释放抵押的比特币】",
+          "title_zh": "【Metaplanet 拟发行约 3.28 亿美元零息可转债，用于回购股份及释放抵押的比特币】",
+          "update_id": "upd_49516e3c645780ff",
+          "update_type": "confirmation",
+          "what_changed_en": "Metaplanet CEO Simon Gerovich will lend up to 55 million personal shares at 0.75% annual interest to reduce institutional hedging borrowing costs and optimize bond issuance conditions; the August 18 announced investment in Super League Enterprise (SLE) is expected to complete soon, subject to SLE shareholder approval and other closing conditions, after which SLE plans to rename to Superplanet, Inc.",
+          "what_changed_zh": "Metaplanet CEO Simon Gerovich 将以0.75%年利率出借最多5500万股个人持股，以降低机构投资者对冲借券成本并优化债券发行条件；8月18日宣布的对Super League Enterprise（SLE）的投资预计很快完成，但需经SLE股东大会批准并满足其他交割条件，交易完成后SLE计划更名为Superplanet, Inc.。"
         }
       ]
     },
@@ -147843,79 +147887,6 @@
           "update_type": "initial",
           "what_changed_en": "Sanctioned payment provider A7 announced a new service that converts USDT stablecoin balances into SWIFT bank transfers, a crypto-to-traditional-banking bridge with potential sanctions-evasion implications.",
           "what_changed_zh": "Sanctioned payment provider A7 announced a new service that converts USDT stablecoin balances into SWIFT bank transfers, a crypto-to-traditional-banking bridge with potential sanctions-evasion implications."
-        }
-      ]
-    },
-    {
-      "category": "technology",
-      "confidence": 0.75,
-      "current_state_en": "Anthropic details how to build on the Claude platform, introducing Claude Fable 5 and outlining model orchestration patterns for developers.",
-      "current_state_zh": "Anthropic details how to build on the Claude platform, introducing Claude Fable 5 and outlining model orchestration patterns for developers.",
-      "entities": [
-        "anthropic",
-        "building",
-        "claude",
-        "fable",
-        "model-orchestration",
-        "platform"
-      ],
-      "event_id": "evt_d2e6fcf93a731810",
-      "event_type": "other",
-      "first_seen_at": "2026-10-13T10:23:36.841501Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-13T10:23:36.841501Z",
-      "last_updated_at": "2026-10-13T10:23:36.841501Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Building on the Claude Platform: Claude Fable 5 and model orchestration patterns - Anthropic",
-      "title_zh": "Building on the Claude Platform: Claude Fable 5 and model orchestration patterns - Anthropic",
-      "topics": [
-        "ai-platform",
-        "anthropic",
-        "claude",
-        "developer-tools",
-        "model-orchestration"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Anthropic details how to build on the Claude platform, introducing Claude Fable 5 and outlining model orchestration patterns for developers.",
-          "current_state_zh": "Anthropic details how to build on the Claude platform, introducing Claude Fable 5 and outlining model orchestration patterns for developers.",
-          "detailed_summary_en": "Anthropic details how to build on the Claude platform, introducing Claude Fable 5 and outlining model orchestration patterns for developers.",
-          "detailed_summary_zh": "Anthropic details how to build on the Claude platform, introducing Claude Fable 5 and outlining model orchestration patterns for developers.",
-          "event_id": "evt_d2e6fcf93a731810",
-          "first_seen_at": "2026-10-13T10:23:36.841501Z",
-          "importance_score": 7.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-12T23:43:28Z",
-          "published_at": "2026-10-12T23:43:28Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "Anthropic News",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://news.google.com/rss/articles/CBMiugJBVV95cUxOVG5sLUNtVGRDVnlnaWhyczJKREtwOGFja0U4YWYxaXVGTTdTUllmczViLTRob3FaYkQxOXlqVndmLXpFeExhcEJxUHROeWJSMHNoNjRFaUVBeUt6UWFzVV9NU0tWM1BLbnU3c09uX0ctZGh1YW5GNEMzb3UxRnA0T0ZOOEZMNExVckJTRThienlDYXkxNDNmbFNiNFBrbmgxVXhxTmJmdXhhYnA3dWl5clB1OVpGaW9KOTY3alFTd2hQVF8xOUl1QmJMZmJjNF94NktFRnMxSmNqaUx5WTk2LWZiaU41RThpNzRXdDdQQUtCM3dhQVZ0VkVQOUxHYjVxZUlXY2dCR1NuMFFGam9STUwtX0lHMmRiRmliTlpjYmI4OEE5dy13MVZUWUtTMjNzNlJ3U2EwYVFNUQ?oc=5"
-            }
-          ],
-          "story_ids": [
-            "rss:news.google.com_rss_search?q=site:anthropic.com+when:7d&hl=en-US&gl=US&ceid=US:en:f16dd72a1aa61743"
-          ],
-          "time_precision": "published",
-          "title_en": "Building on the Claude Platform: Claude Fable 5 and model orchestration patterns - Anthropic",
-          "title_zh": "Building on the Claude Platform: Claude Fable 5 and model orchestration patterns - Anthropic",
-          "update_id": "upd_d5c79d20b95c173b",
-          "update_type": "initial",
-          "what_changed_en": "Anthropic details how to build on the Claude platform, introducing Claude Fable 5 and outlining model orchestration patterns for developers.",
-          "what_changed_zh": "Anthropic details how to build on the Claude platform, introducing Claude Fable 5 and outlining model orchestration patterns for developers."
         }
       ]
     },
@@ -148770,74 +148741,6 @@
       ]
     },
     {
-      "category": "technology",
-      "confidence": 0.75,
-      "current_state_en": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
-      "current_state_zh": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
-      "entities": [
-        "anthropic"
-      ],
-      "event_id": "evt_d151507e290c34d2",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-10-13T14:18:35.212680Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-13T14:18:35.212680Z",
-      "last_updated_at": "2026-10-13T14:18:35.212680Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Anthropic warns ‘AI worms’ may autonomously spread across devices like a virus",
-      "title_zh": "Anthropic warns ‘AI worms’ may autonomously spread across devices like a virus",
-      "topics": [
-        "ai-safety",
-        "anthropic",
-        "cybersecurity",
-        "iot-security",
-        "self-replicating-ai"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
-          "current_state_zh": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
-          "detailed_summary_en": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
-          "detailed_summary_zh": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
-          "event_id": "evt_d151507e290c34d2",
-          "first_seen_at": "2026-10-13T14:18:35.212680Z",
-          "importance_score": 7.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-13T13:55:09Z",
-          "published_at": "2026-10-13T13:55:09Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "Cointelegraph",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://cointelegraph.com/news/anthropic-ai-worms-autonomously-spread-devices-virus?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
-            }
-          ],
-          "story_ids": [
-            "rss:cointelegraph.com_rss:8d1c5e2e3b263c8f"
-          ],
-          "time_precision": "published",
-          "title_en": "Anthropic warns ‘AI worms’ may autonomously spread across devices like a virus",
-          "title_zh": "Anthropic warns ‘AI worms’ may autonomously spread across devices like a virus",
-          "update_id": "upd_3b84fb2a560a573f",
-          "update_type": "initial",
-          "what_changed_en": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off.",
-          "what_changed_zh": "Anthropic's Frontier Red Team warned that rogue 'AI worms' — small self-replicating autonomous models — could be only months away from autonomously spreading across weakly-secured consumer IoT devices like smart appliances, cameras and Android TVs, a threat with no centralized point to shut off."
-        }
-      ]
-    },
-    {
       "category": "policy",
       "confidence": 0.75,
       "current_state_en": "Russia's central bank authorized Sberbank (alongside VTB and other firms) as a licensed crypto exchange operator and custodian, with the lender preparing to offer BTC, ETH and USDT trading through its platforms starting Dec. 1, 2026.",
@@ -149137,7 +149040,7 @@
       "first_seen_at": "2026-10-13T18:21:42.448637Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-13T18:21:42.448637Z",
-      "last_updated_at": "2026-10-13T18:21:42.448637Z",
+      "last_updated_at": "2026-10-14T06:11:45.375840Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -149217,10 +149120,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://m.theblockbeats.info/flash/371641?from=telegram"
+            },
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/starknet-introduces-wallet-privacy-feature-for-defi-activity?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
             }
           ],
           "story_ids": [
-            "telegram:theblockbeats:200307"
+            "telegram:theblockbeats:200307",
+            "rss:cointelegraph.com_rss:b7f581a55e4757f7"
           ],
           "time_precision": "published",
           "title_en": "Starknet推出影子账户，支持用户匿名关联主钱包与DeFi活动",
@@ -149455,10 +149365,11 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production.",
-      "current_state_zh": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production.",
+      "current_state_en": "Anthropic has migrated its main code repository off Git to Scion, its purpose-built server-side version control system. Scion supports over 30,000 daily merges and about 25 million CI checkouts, with much lower resource usage than the prior Git mirror architecture, and is accompanied by the Antique code review tool. Scion is not open-sourced and is aimed at very large repositories with many parallel coding agents.",
+      "current_state_zh": "Anthropic已将主代码仓库从Git迁移至自研服务器端版本控制系统Scion；Scion支持日均超过3万次合并和约2500万次CI检出，资源占用较原Git镜像架构大幅下降，并配套代码审查工具Antique。Scion尚未开源，主要面向大量Agent并行编程的超大型仓库。",
       "entities": [
         "anthropic",
+        "git",
         "redesigning",
         "source-control"
       ],
@@ -149466,18 +149377,20 @@
       "event_type": "other",
       "first_seen_at": "2026-10-13T19:26:54.794159Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-13T19:26:54.794159Z",
-      "last_updated_at": "2026-10-13T19:26:54.794159Z",
+      "last_material_change_at": "2026-10-14T06:11:20.876343Z",
+      "last_updated_at": "2026-10-14T06:11:20.876343Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "Redesigning source control at Anthropic",
-      "title_zh": "Redesigning source control at Anthropic",
+      "title_zh": "Anthropic 重新设计源代码管理",
       "topics": [
+        "ai-coding-agents",
         "anthropic",
         "developer-tools",
         "engineering-infrastructure",
+        "gitlab",
         "source-control",
         "version-control"
       ],
@@ -149489,7 +149402,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production.",
-          "current_state_zh": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production.",
+          "current_state_zh": "Anthropic 详细介绍了其将内部源代码管理重新设计为基于服务器的版本控制系统，旨在每天承受约 3 万次合并和 2500 万次 CI 检出，并认为合并代码的潜在需求实际上是无限的，每消除一个瓶颈只会增加代码产出。",
           "detailed_summary_en": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production.",
           "detailed_summary_zh": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production.",
           "event_id": "evt_9808ec0c02e47d27",
@@ -149519,11 +149432,49 @@
           ],
           "time_precision": "published",
           "title_en": "Redesigning source control at Anthropic",
-          "title_zh": "Redesigning source control at Anthropic",
+          "title_zh": "Anthropic 重新设计源代码管理",
           "update_id": "upd_7334273d95e337bd",
           "update_type": "initial",
           "what_changed_en": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production.",
-          "what_changed_zh": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production."
+          "what_changed_zh": "Anthropic 详细介绍了其将内部源代码管理重新设计为基于服务器的版本控制系统，旨在每天承受约 3 万次合并和 2500 万次 CI 检出，并认为合并代码的潜在需求实际上是无限的，每消除一个瓶颈只会增加代码产出。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.92,
+          "current_state_en": "Anthropic has migrated its main code repository off Git to Scion, its purpose-built server-side version control system. Scion supports over 30,000 daily merges and about 25 million CI checkouts, with much lower resource usage than the prior Git mirror architecture, and is accompanied by the Antique code review tool. Scion is not open-sourced and is aimed at very large repositories with many parallel coding agents.",
+          "current_state_zh": "Anthropic已将主代码仓库从Git迁移至自研服务器端版本控制系统Scion；Scion支持日均超过3万次合并和约2500万次CI检出，资源占用较原Git镜像架构大幅下降，并配套代码审查工具Antique。Scion尚未开源，主要面向大量Agent并行编程的超大型仓库。",
+          "detailed_summary_en": "Anthropic migrated its main code repository off Git to a purpose-built system called Scion — developed by 7 engineers over 5 months with Claude's help — after agent-driven daily merges surged past 30,000, while GitLab said it is developing its own Git-compatible architecture to handle parallel AI agents.",
+          "detailed_summary_zh": "Anthropic migrated its main code repository off Git to a purpose-built system called Scion — developed by 7 engineers over 5 months with Claude's help — after agent-driven daily merges surged past 30,000, while GitLab said it is developing its own Git-compatible architecture to handle parallel AI agents.",
+          "event_id": "evt_9808ec0c02e47d27",
+          "first_seen_at": "2026-10-14T06:11:20.876343Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-14T05:04:02Z",
+          "published_at": "2026-10-14T05:04:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371725?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:200390"
+          ],
+          "time_precision": "published",
+          "title_en": "Anthropic主仓库弃用Git：日合并突破3万次，7个人花5个月完成系统迁移",
+          "title_zh": "Anthropic主仓库弃用Git：日合并突破3万次，7个人花5个月完成系统迁移",
+          "update_id": "upd_068351762526b7fb",
+          "update_type": "confirmation",
+          "what_changed_en": "Added confirmation that Anthropic migrated its main repository off Git to the purpose-built VCS Scion, developed by 7 engineers over 5 months with Claude assistance, alongside a code review tool called Antique.",
+          "what_changed_zh": "补充确认Anthropic主仓库已从Git迁出，迁移至自研版本控制系统Scion；该系统由7名工程师借助Claude在5个月内开发，并配套推出代码审查工具Antique。"
         }
       ]
     },
@@ -150372,6 +150323,522 @@
           "what_changed_zh": "Google DeepMind and GovTech Singapore announced an on-device AI scam-detection tool built on lightweight Gemma models that intercepts conversational scams in private chats without any cloud data egress."
         }
       ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "DRW and Marex executed the first OTC total return swap on Canton Network, referencing Kaiko's tokenized S&P iBoxx USD Liquid Investment Grade Index, with smart-contract-based lifecycle and valuation management and plans to link positions to digital cash and collateral.",
+      "current_state_zh": "DRW and Marex executed the first OTC total return swap on Canton Network, referencing Kaiko's tokenized S&P iBoxx USD Liquid Investment Grade Index, with smart-contract-based lifecycle and valuation management and plans to link positions to digital cash and collateral.",
+      "entities": [
+        "canton",
+        "drw",
+        "marex"
+      ],
+      "event_id": "evt_2ca5fc3edbf80aaf",
+      "event_type": "other",
+      "first_seen_at": "2026-10-14T06:11:19.492591Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-14T06:11:19.492591Z",
+      "last_updated_at": "2026-10-14T06:11:19.492591Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【DRW 与 Marex 在 Canton 完成引用代币化标普 iBoxx 指数的场外互换交易】",
+      "title_zh": "【DRW 与 Marex 在 Canton 完成引用代币化标普 iBoxx 指数的场外互换交易】",
+      "topics": [
+        "canton-network",
+        "otc-derivatives",
+        "rwa"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "DRW and Marex executed the first OTC total return swap on Canton Network, referencing Kaiko's tokenized S&P iBoxx USD Liquid Investment Grade Index, with smart-contract-based lifecycle and valuation management and plans to link positions to digital cash and collateral.",
+          "current_state_zh": "DRW and Marex executed the first OTC total return swap on Canton Network, referencing Kaiko's tokenized S&P iBoxx USD Liquid Investment Grade Index, with smart-contract-based lifecycle and valuation management and plans to link positions to digital cash and collateral.",
+          "detailed_summary_en": "DRW and Marex executed the first OTC total return swap on Canton Network, referencing Kaiko's tokenized S&P iBoxx USD Liquid Investment Grade Index, with smart-contract-based lifecycle and valuation management and plans to link positions to digital cash and collateral.",
+          "detailed_summary_zh": "DRW and Marex executed the first OTC total return swap on Canton Network, referencing Kaiko's tokenized S&P iBoxx USD Liquid Investment Grade Index, with smart-contract-based lifecycle and valuation management and plans to link positions to digital cash and collateral.",
+          "event_id": "evt_2ca5fc3edbf80aaf",
+          "first_seen_at": "2026-10-14T06:11:19.492591Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-14T02:08:08Z",
+          "published_at": "2026-10-14T02:08:08Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115141"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120353"
+          ],
+          "time_precision": "published",
+          "title_en": "【DRW 与 Marex 在 Canton 完成引用代币化标普 iBoxx 指数的场外互换交易】",
+          "title_zh": "【DRW 与 Marex 在 Canton 完成引用代币化标普 iBoxx 指数的场外互换交易】",
+          "update_id": "upd_92e82e4fca665efa",
+          "update_type": "initial",
+          "what_changed_en": "DRW and Marex executed the first OTC total return swap on Canton Network, referencing Kaiko's tokenized S&P iBoxx USD Liquid Investment Grade Index, with smart-contract-based lifecycle and valuation management and plans to link positions to digital cash and collateral.",
+          "what_changed_zh": "DRW and Marex executed the first OTC total return swap on Canton Network, referencing Kaiko's tokenized S&P iBoxx USD Liquid Investment Grade Index, with smart-contract-based lifecycle and valuation management and plans to link positions to digital cash and collateral."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "The Tianjin No. 2 Intermediate Court has accepted the prosecutor's application to confiscate assets from Qian Zhimin's illegal fundraising proceeds; the case is in judicial process, with assets including over 61,800 bitcoins and other crypto and conventional assets.",
+      "current_state_zh": "天津市第二中级人民法院已受理检方没收钱志敏违法所得资产的申请，案件处于司法程序中，涉案资产包括6.18万余枚比特币及其他加密货币和传统资产。",
+      "entities": [],
+      "event_id": "evt_4e651ca22c0ddcaa",
+      "event_type": "legal_case",
+      "first_seen_at": "2026-10-14T06:11:19.494405Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-14T06:11:20.863057Z",
+      "last_updated_at": "2026-10-14T06:11:20.863057Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【钱志敏 400 亿非法集资案进展：检方申请没收 6.18 万余枚比特币等资产，法院已受理】",
+      "title_zh": "【钱志敏 400 亿非法集资案进展：检方申请没收 6.18 万余枚比特币等资产，法院已受理】",
+      "topics": [
+        "asset-confiscation",
+        "china",
+        "crypto-regulation",
+        "crypto-seizure",
+        "legal"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "A Tianjin court has accepted a prosecutor's application to confiscate assets linked to the 40-billion-yuan Qian Zhimin illegal fundraising case, including more than 61,800 bitcoins plus BCH, BSV, XRP and DOGE holdings seized in the UK.",
+          "current_state_zh": "A Tianjin court has accepted a prosecutor's application to confiscate assets linked to the 40-billion-yuan Qian Zhimin illegal fundraising case, including more than 61,800 bitcoins plus BCH, BSV, XRP and DOGE holdings seized in the UK.",
+          "detailed_summary_en": "A Tianjin court has accepted a prosecutor's application to confiscate assets linked to the 40-billion-yuan Qian Zhimin illegal fundraising case, including more than 61,800 bitcoins plus BCH, BSV, XRP and DOGE holdings seized in the UK.",
+          "detailed_summary_zh": "A Tianjin court has accepted a prosecutor's application to confiscate assets linked to the 40-billion-yuan Qian Zhimin illegal fundraising case, including more than 61,800 bitcoins plus BCH, BSV, XRP and DOGE holdings seized in the UK.",
+          "event_id": "evt_4e651ca22c0ddcaa",
+          "first_seen_at": "2026-10-14T06:11:19.494405Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-14T02:44:47Z",
+          "published_at": "2026-10-14T02:44:47Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115145"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120357"
+          ],
+          "time_precision": "published",
+          "title_en": "【钱志敏 400 亿非法集资案进展：检方申请没收 6.18 万余枚比特币等资产，法院已受理】",
+          "title_zh": "【钱志敏 400 亿非法集资案进展：检方申请没收 6.18 万余枚比特币等资产，法院已受理】",
+          "update_id": "upd_9c8f5cd0437278c6",
+          "update_type": "initial",
+          "what_changed_en": "A Tianjin court has accepted a prosecutor's application to confiscate assets linked to the 40-billion-yuan Qian Zhimin illegal fundraising case, including more than 61,800 bitcoins plus BCH, BSV, XRP and DOGE holdings seized in the UK.",
+          "what_changed_zh": "A Tianjin court has accepted a prosecutor's application to confiscate assets linked to the 40-billion-yuan Qian Zhimin illegal fundraising case, including more than 61,800 bitcoins plus BCH, BSV, XRP and DOGE holdings seized in the UK."
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "The Tianjin No. 2 Intermediate Court has accepted the prosecutor's application to confiscate assets from Qian Zhimin's illegal fundraising proceeds; the case is in judicial process, with assets including over 61,800 bitcoins and other crypto and conventional assets.",
+          "current_state_zh": "天津市第二中级人民法院已受理检方没收钱志敏违法所得资产的申请，案件处于司法程序中，涉案资产包括6.18万余枚比特币及其他加密货币和传统资产。",
+          "detailed_summary_en": "Tianjin's No. 2 Intermediate Court has accepted prosecutors' application to confiscate over 61,800 BTC and a range of other crypto and conventional assets linked to Qian Zhimin's RMB 40 billion illegal fundraising case.",
+          "detailed_summary_zh": "Tianjin's No. 2 Intermediate Court has accepted prosecutors' application to confiscate over 61,800 BTC and a range of other crypto and conventional assets linked to Qian Zhimin's RMB 40 billion illegal fundraising case.",
+          "event_id": "evt_4e651ca22c0ddcaa",
+          "first_seen_at": "2026-10-14T06:11:20.863057Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-14T02:49:02Z",
+          "published_at": "2026-10-14T02:49:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371692?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:200362"
+          ],
+          "time_precision": "published",
+          "title_en": "⚡️钱志敏400亿非法集资案进展：检方申请没收6.18万余枚比特币等资产，法院已受理",
+          "title_zh": "⚡️钱志敏400亿非法集资案进展：检方申请没收6.18万余枚比特币等资产，法院已受理",
+          "update_id": "upd_16490f1f911b033d",
+          "update_type": "confirmation",
+          "what_changed_en": "The Tianjin No. 2 Intermediate Court accepted the confiscation application on Sept 28 and issued an announcement on Oct 13; it also disclosed a more detailed asset list including 72,745.79502 BCH, 72,745.78555 BSV, 72,745.7845 BCH (Satoshi Vision), 3,605,989.9995 XRP, 70,081,208.62553222 DOGE (converted by UK judicial authorities into an interest-bearing account), plus USD, EUR, GBP cash, jewelry, bank balances and investment portfolios.",
+          "what_changed_zh": "天津二中院于9月28日立案受理该没收申请，并于10月13日发布公告；同时披露了更详细的没收财产清单，包括72,745.79502枚BCH、72,745.78555枚BSV、72,745.7845枚BCH（中本聪愿景）、3,605,989.9995枚XRP、70,081,208.62553222枚DOGE（已由英国司法机关转换后存入计息账户）以及美元、欧元、英镑现金、珠宝、银行余额和投资组合等。"
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "Standard Chartered launched a VARA-licensed crypto trading service for eligible professional investors in the UAE, allowing clients to buy and sell Bitcoin and Ethereum directly through existing bank accounts with end-to-end custody and settlement via Zodia Markets, with plans to expand to other markets.",
+      "current_state_zh": "Standard Chartered launched a VARA-licensed crypto trading service for eligible professional investors in the UAE, allowing clients to buy and sell Bitcoin and Ethereum directly through existing bank accounts with end-to-end custody and settlement via Zodia Markets, with plans to expand to other markets.",
+      "entities": [],
+      "event_id": "evt_0f3deae0fa8f60be",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-14T06:11:19.500842Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-14T06:11:19.500842Z",
+      "last_updated_at": "2026-10-14T06:11:19.500842Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【渣打银行在阿联酋推出加密货币交易服务，已获得阿联酋虚拟资产监管局许可】",
+      "title_zh": "【渣打银行在阿联酋推出加密货币交易服务，已获得阿联酋虚拟资产监管局许可】",
+      "topics": [
+        "custody",
+        "standard-chartered",
+        "uae",
+        "vara"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Standard Chartered launched a VARA-licensed crypto trading service for eligible professional investors in the UAE, allowing clients to buy and sell Bitcoin and Ethereum directly through existing bank accounts with end-to-end custody and settlement via Zodia Markets, with plans to expand to other markets.",
+          "current_state_zh": "Standard Chartered launched a VARA-licensed crypto trading service for eligible professional investors in the UAE, allowing clients to buy and sell Bitcoin and Ethereum directly through existing bank accounts with end-to-end custody and settlement via Zodia Markets, with plans to expand to other markets.",
+          "detailed_summary_en": "Standard Chartered launched a VARA-licensed crypto trading service for eligible professional investors in the UAE, allowing clients to buy and sell Bitcoin and Ethereum directly through existing bank accounts with end-to-end custody and settlement via Zodia Markets, with plans to expand to other markets.",
+          "detailed_summary_zh": "Standard Chartered launched a VARA-licensed crypto trading service for eligible professional investors in the UAE, allowing clients to buy and sell Bitcoin and Ethereum directly through existing bank accounts with end-to-end custody and settlement via Zodia Markets, with plans to expand to other markets.",
+          "event_id": "evt_0f3deae0fa8f60be",
+          "first_seen_at": "2026-10-14T06:11:19.500842Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-14T05:39:17Z",
+          "published_at": "2026-10-14T05:39:17Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115157"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120370"
+          ],
+          "time_precision": "published",
+          "title_en": "【渣打银行在阿联酋推出加密货币交易服务，已获得阿联酋虚拟资产监管局许可】",
+          "title_zh": "【渣打银行在阿联酋推出加密货币交易服务，已获得阿联酋虚拟资产监管局许可】",
+          "update_id": "upd_5efd0bb2fdd13fa4",
+          "update_type": "initial",
+          "what_changed_en": "Standard Chartered launched a VARA-licensed crypto trading service for eligible professional investors in the UAE, allowing clients to buy and sell Bitcoin and Ethereum directly through existing bank accounts with end-to-end custody and settlement via Zodia Markets, with plans to expand to other markets.",
+          "what_changed_zh": "Standard Chartered launched a VARA-licensed crypto trading service for eligible professional investors in the UAE, allowing clients to buy and sell Bitcoin and Ethereum directly through existing bank accounts with end-to-end custody and settlement via Zodia Markets, with plans to expand to other markets."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "EPIC fell 16.7% to 0.39 USDT after Binance announced it would delist the token.",
+      "current_state_zh": "EPIC fell 16.7% to 0.39 USDT after Binance announced it would delist the token.",
+      "entities": [
+        "epic",
+        "usdt"
+      ],
+      "event_id": "evt_7d1188c58e4608bf",
+      "event_type": "exchange_operation",
+      "first_seen_at": "2026-10-14T06:11:19.503526Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-14T06:11:19.503526Z",
+      "last_updated_at": "2026-10-14T06:11:19.503526Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【EPIC 短时跌 16.7%，现报 0.39 USDT】",
+      "title_zh": "【EPIC 短时跌 16.7%，现报 0.39 USDT】",
+      "topics": [
+        "binance",
+        "delisting",
+        "epic",
+        "exchange-announcements",
+        "price-move"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "EPIC fell 16.7% to 0.39 USDT after Binance announced it would delist the token.",
+          "current_state_zh": "EPIC fell 16.7% to 0.39 USDT after Binance announced it would delist the token.",
+          "detailed_summary_en": "EPIC fell 16.7% to 0.39 USDT after Binance announced it would delist the token.",
+          "detailed_summary_zh": "EPIC fell 16.7% to 0.39 USDT after Binance announced it would delist the token.",
+          "event_id": "evt_7d1188c58e4608bf",
+          "first_seen_at": "2026-10-14T06:11:19.503526Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-14T06:08:53Z",
+          "published_at": "2026-10-14T06:08:53Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115161"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120376"
+          ],
+          "time_precision": "published",
+          "title_en": "【EPIC 短时跌 16.7%，现报 0.39 USDT】",
+          "title_zh": "【EPIC 短时跌 16.7%，现报 0.39 USDT】",
+          "update_id": "upd_5ecf6dcef0efa303",
+          "update_type": "initial",
+          "what_changed_en": "EPIC fell 16.7% to 0.39 USDT after Binance announced it would delist the token.",
+          "what_changed_zh": "EPIC fell 16.7% to 0.39 USDT after Binance announced it would delist the token."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "OpenAI is reportedly in early-stage acquisition talks with crypto security firm Trail of Bits to expand its cybersecurity capabilities, following their joint 'Patch the Planet' vulnerability-hunting initiative.",
+      "current_state_zh": "OpenAI is reportedly in early-stage acquisition talks with crypto security firm Trail of Bits to expand its cybersecurity capabilities, following their joint 'Patch the Planet' vulnerability-hunting initiative.",
+      "entities": [
+        "bits",
+        "openai",
+        "trail",
+        "trail-of-bits"
+      ],
+      "event_id": "evt_e27bf8899631b2f5",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-14T06:11:20.856375Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-14T06:11:20.856375Z",
+      "last_updated_at": "2026-10-14T06:11:20.856375Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "OpenAI正洽谈收购加密安全公司Trail of Bits",
+      "title_zh": "OpenAI正洽谈收购加密安全公司Trail of Bits",
+      "topics": [
+        "acquisitions",
+        "ai-security",
+        "crypto-security-audits",
+        "openai",
+        "trail-of-bits"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "OpenAI is reportedly in early-stage acquisition talks with crypto security firm Trail of Bits to expand its cybersecurity capabilities, following their joint 'Patch the Planet' vulnerability-hunting initiative.",
+          "current_state_zh": "OpenAI is reportedly in early-stage acquisition talks with crypto security firm Trail of Bits to expand its cybersecurity capabilities, following their joint 'Patch the Planet' vulnerability-hunting initiative.",
+          "detailed_summary_en": "OpenAI is reportedly in early-stage acquisition talks with crypto security firm Trail of Bits to expand its cybersecurity capabilities, following their joint 'Patch the Planet' vulnerability-hunting initiative.",
+          "detailed_summary_zh": "OpenAI is reportedly in early-stage acquisition talks with crypto security firm Trail of Bits to expand its cybersecurity capabilities, following their joint 'Patch the Planet' vulnerability-hunting initiative.",
+          "event_id": "evt_e27bf8899631b2f5",
+          "first_seen_at": "2026-10-14T06:11:20.856375Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-14T02:08:02Z",
+          "published_at": "2026-10-14T02:08:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371681?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:200348"
+          ],
+          "time_precision": "published",
+          "title_en": "OpenAI正洽谈收购加密安全公司Trail of Bits",
+          "title_zh": "OpenAI正洽谈收购加密安全公司Trail of Bits",
+          "update_id": "upd_371efec40c5d9591",
+          "update_type": "initial",
+          "what_changed_en": "OpenAI is reportedly in early-stage acquisition talks with crypto security firm Trail of Bits to expand its cybersecurity capabilities, following their joint 'Patch the Planet' vulnerability-hunting initiative.",
+          "what_changed_zh": "OpenAI is reportedly in early-stage acquisition talks with crypto security firm Trail of Bits to expand its cybersecurity capabilities, following their joint 'Patch the Planet' vulnerability-hunting initiative."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "JPMorgan research reports that Microsoft's Maia 300 delivers 40% more tokens per megawatt than leading GPU systems and 7x Maia 200 rack-level throughput, with over 1 million chips slated for 2027 deployment.",
+      "current_state_zh": "JPMorgan research reports that Microsoft's Maia 300 delivers 40% more tokens per megawatt than leading GPU systems and 7x Maia 200 rack-level throughput, with over 1 million chips slated for 2027 deployment.",
+      "entities": [
+        "maia300"
+      ],
+      "event_id": "evt_670cf9c954a30ff3",
+      "event_type": "other",
+      "first_seen_at": "2026-10-14T06:11:20.870992Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-14T06:11:20.870992Z",
+      "last_updated_at": "2026-10-14T06:11:20.870992Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "摩根大通：微软Maia300推理性能提40%，百万芯片部署降本",
+      "title_zh": "摩根大通：微软Maia300推理性能提40%，百万芯片部署降本",
+      "topics": [
+        "ai-chips",
+        "capex",
+        "inference",
+        "jpmorgan",
+        "microsoft"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "JPMorgan research reports that Microsoft's Maia 300 delivers 40% more tokens per megawatt than leading GPU systems and 7x Maia 200 rack-level throughput, with over 1 million chips slated for 2027 deployment.",
+          "current_state_zh": "JPMorgan research reports that Microsoft's Maia 300 delivers 40% more tokens per megawatt than leading GPU systems and 7x Maia 200 rack-level throughput, with over 1 million chips slated for 2027 deployment.",
+          "detailed_summary_en": "JPMorgan research reports that Microsoft's Maia 300 delivers 40% more tokens per megawatt than leading GPU systems and 7x Maia 200 rack-level throughput, with over 1 million chips slated for 2027 deployment.",
+          "detailed_summary_zh": "JPMorgan research reports that Microsoft's Maia 300 delivers 40% more tokens per megawatt than leading GPU systems and 7x Maia 200 rack-level throughput, with over 1 million chips slated for 2027 deployment.",
+          "event_id": "evt_670cf9c954a30ff3",
+          "first_seen_at": "2026-10-14T06:11:20.870992Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-14T03:56:02Z",
+          "published_at": "2026-10-14T03:56:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/371713?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:200379"
+          ],
+          "time_precision": "published",
+          "title_en": "摩根大通：微软Maia300推理性能提40%，百万芯片部署降本",
+          "title_zh": "摩根大通：微软Maia300推理性能提40%，百万芯片部署降本",
+          "update_id": "upd_896ab64f8d780b6b",
+          "update_type": "initial",
+          "what_changed_en": "JPMorgan research reports that Microsoft's Maia 300 delivers 40% more tokens per megawatt than leading GPU systems and 7x Maia 200 rack-level throughput, with over 1 million chips slated for 2027 deployment.",
+          "what_changed_zh": "JPMorgan research reports that Microsoft's Maia 300 delivers 40% more tokens per megawatt than leading GPU systems and 7x Maia 200 rack-level throughput, with over 1 million chips slated for 2027 deployment."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Solana has scheduled its Alpenglow consensus upgrade for Oct. 21, targeting roughly 150-millisecond transaction finality by replacing TowerBFT and moving validator votes off-chain, while requiring validators to migrate to Agave 4.3.0.",
+      "current_state_zh": "Solana has scheduled its Alpenglow consensus upgrade for Oct. 21, targeting roughly 150-millisecond transaction finality by replacing TowerBFT and moving validator votes off-chain, while requiring validators to migrate to Agave 4.3.0.",
+      "entities": [
+        "alpenglow",
+        "finality",
+        "oct",
+        "solana"
+      ],
+      "event_id": "evt_4d02cdb4ef11b373",
+      "event_type": "protocol_change",
+      "first_seen_at": "2026-10-14T06:11:21.975420Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-14T06:11:21.975420Z",
+      "last_updated_at": "2026-10-14T06:11:21.975420Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Solana sets Oct. 21 for Alpenglow upgrade targeting 150-millisecond finality",
+      "title_zh": "Solana sets Oct. 21 for Alpenglow upgrade targeting 150-millisecond finality",
+      "topics": [
+        "alpenglow",
+        "consensus",
+        "finality",
+        "protocol-upgrade",
+        "solana"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Solana has scheduled its Alpenglow consensus upgrade for Oct. 21, targeting roughly 150-millisecond transaction finality by replacing TowerBFT and moving validator votes off-chain, while requiring validators to migrate to Agave 4.3.0.",
+          "current_state_zh": "Solana has scheduled its Alpenglow consensus upgrade for Oct. 21, targeting roughly 150-millisecond transaction finality by replacing TowerBFT and moving validator votes off-chain, while requiring validators to migrate to Agave 4.3.0.",
+          "detailed_summary_en": "Solana has scheduled its Alpenglow consensus upgrade for Oct. 21, targeting roughly 150-millisecond transaction finality by replacing TowerBFT and moving validator votes off-chain, while requiring validators to migrate to Agave 4.3.0.",
+          "detailed_summary_zh": "Solana has scheduled its Alpenglow consensus upgrade for Oct. 21, targeting roughly 150-millisecond transaction finality by replacing TowerBFT and moving validator votes off-chain, while requiring validators to migrate to Agave 4.3.0.",
+          "event_id": "evt_4d02cdb4ef11b373",
+          "first_seen_at": "2026-10-14T06:11:21.975420Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-14T04:11:16Z",
+          "published_at": "2026-10-14T04:11:16Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "CoinDesk",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.coindesk.com/tech/2026/10/14/solana-sets-oct-21-for-alpenglow-upgrade-targeting-150-millisecond-finality"
+            }
+          ],
+          "story_ids": [
+            "rss:www.coindesk.com_arc_outboundfeeds_rss_:be233e686f0b496f"
+          ],
+          "time_precision": "published",
+          "title_en": "Solana sets Oct. 21 for Alpenglow upgrade targeting 150-millisecond finality",
+          "title_zh": "Solana sets Oct. 21 for Alpenglow upgrade targeting 150-millisecond finality",
+          "update_id": "upd_c5534e99a8e90fa1",
+          "update_type": "initial",
+          "what_changed_en": "Solana has scheduled its Alpenglow consensus upgrade for Oct. 21, targeting roughly 150-millisecond transaction finality by replacing TowerBFT and moving validator votes off-chain, while requiring validators to migrate to Agave 4.3.0.",
+          "what_changed_zh": "Solana has scheduled its Alpenglow consensus upgrade for Oct. 21, targeting roughly 150-millisecond transaction finality by replacing TowerBFT and moving validator votes off-chain, while requiring validators to migrate to Agave 4.3.0."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -150405,19 +150872,17 @@
       "evt_0d970a8f88206a9e",
       "evt_0e8a1f4abf831db4",
       "evt_20dba8ac6044ff20",
-      "evt_31c999ee198c3f55",
       "evt_3f51363aa7485f50",
       "evt_5599707a84d56a28",
       "evt_60a98d951dc3d274",
       "evt_6162e66199cbf449",
       "evt_71cf34d51bae55e8",
       "evt_8be584b4918ed8c6",
+      "evt_9808ec0c02e47d27",
       "evt_9dbbeeda37a571fa",
-      "evt_9e748fdbec9c5df9",
       "evt_aa238c767ce5c9cd",
       "evt_ba25d8d8c5f43cdf",
       "evt_c765a0bcd269aec3",
-      "evt_d2e6fcf93a731810",
       "evt_d3c1381fa90c0105"
     ],
     "aptos": [
@@ -150590,9 +151055,10 @@
       "evt_f90e7e488826e7d6"
     ],
     "coinbase": [
+      "evt_0002147175c620c0",
+      "evt_0275f3c60a75cd96",
       "evt_0655aad2257c6798",
       "evt_0e9784d23469c516",
-      "evt_108847309d8bc70c",
       "evt_278adb5efa906e44",
       "evt_2b2ec86d08cbbf8f",
       "evt_3c805c6967d06757",
@@ -150608,7 +151074,6 @@
       "evt_b1d9cbba75006141",
       "evt_cbf1a347f7f2c296",
       "evt_cc2ee6ed697c7f69",
-      "evt_d286367b68ed9229",
       "evt_e84fa252f80895fe",
       "evt_e95ba9ad10d8c64c"
     ],
@@ -150992,6 +151457,10 @@
       "evt_583f52deb63823c7",
       "evt_9033f39ccff62e41",
       "evt_ba0fb6138631988e"
+    ],
+    "post-quantum": [
+      "evt_0002147175c620c0",
+      "evt_b3a221aa544aae9b"
     ],
     "prediction-markets": [
       "evt_136619766390fb04",
@@ -154243,7 +154712,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A concrete institutional market-structure development: BNY and Citadel Securities settling an overnight repo transaction using a tokenized Treasury, extending tokenized real-world assets from collateral pilots into a core funding market with major TradFi counterparties. It signals real adoption path for blockchain rails in wholesale funding, though it appears to be an initial/pilot use rather than a scaled, market-wide shift, so it lands in the high-value rather than groundbreaking band.",
         "ai_score": 7.0,
@@ -154281,7 +154750,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A security scare centered on Ledger hardware wallets is spreading across the self-custody ecosystem, prompting Trezor to tighten control over its reseller channel. Hardware-wallet supply-chain integrity is a high-stakes issue for a large user base, and vendor-level responses (reseller crackdowns) are actionable. However, this is a scare/fear-driven development rather than a confirmed exploit with quantified losses, so it falls below the 8+ tier reserved for material, confirmed security incidents.",
         "ai_score": 7.0,
@@ -154319,7 +154788,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A major European electronics retailer pulling Ledger hardware wallets from shelves over tampering reports is a significant supply-chain security development directly affecting crypto asset custody and retail distribution. It is high-value because a compromised hardware wallet supply chain could lead to material user fund loss, though the reports are not yet a confirmed exploit with quantified losses, keeping it below the 8.5+ systemic threshold.",
         "ai_score": 7.5,
@@ -154358,31 +154827,112 @@
     {
       "attempts": 1,
       "item": {
-        "ai_reason": "Metaplanet's ¥52bn (~$328M) zero-coupon convertible bond due 2031, combined with a discounted share buyback and repayment of borrowings to free up pledged bitcoin, is a material capital-structure move by one of the largest corporate bitcoin treasury holders. It has a clear transmission path to both its equity and its BTC accumulation capacity, and the CEO's personal share lending at 0.75% is an unusual structural detail. Still corporate-financing news rather than a systemic market or protocol event, so it sits in the high-value but not groundbreaking band.",
-        "ai_score": 7.0,
-        "ai_summary": "Metaplanet announced a ¥52 billion (~$328M) zero-coupon convertible bond maturing 2031, with up to ¥28.3bn earmarked for discounted share buybacks and ¥23.6bn for debt repayment to release pledged bitcoin collateral and increase flexibility for further BTC purchases.",
+        "ai_reason": "A Ledger-linked hack with reported contagion effects across DeFi is a material security event for a widely used wallet provider, and contagion risk raises the potential for systemic user losses. However, the item is a newsletter headline without confirmed loss figures, affected contracts, or scope, so it falls short of the 8.5-9.0 band reserved for confirmed exploits with >$50M losses. No comments provided to assess discussion quality.",
+        "ai_score": 7.5,
+        "ai_summary": "A Ledger-related hack is prompting fears of contagion across the DeFi ecosystem as concerns spread over how many users and protocols are exposed.",
         "ai_tags": [
-          "Metaplanet",
-          "bitcoin-treasury",
-          "convertible-bond",
-          "share-buyback",
-          "corporate-finance"
+          "Ledger",
+          "security-incident",
+          "hack",
+          "DeFi",
+          "contagion-risk"
         ],
-        "author": "foresightnews",
-        "content": "【Metaplanet 拟发行约 3.28 亿美元零息可转债，用于回购股份及释放抵押的比特币】\n\nForesight News 消息，据 Metaplanet 首席执行官 Simon Gerovich 披露，Metaplanet 宣布发行 520 亿日元（约 3.28 亿美元） 2031 年到期的零息日元可转换公司债券，并同步推进股份回购。募集资金中，最多 283 亿日元（约 1.79 亿美元）用于折价回购公司股份；236 亿日元（约 1.49 亿美元）用于偿还借款并释放此前作为抵押品锁定的比特币，以消除利息成本并提高追加买入比特币的财务灵活性。此外，Simon Gerovich 将以 0.75% 的年利率出借最多 5,500 万股个人持股，以降低机构投资者的对冲借券成本并优化债券发行条件。此外，8 月 18 日宣布的对 Super League Enterprise（纳斯达克股票代码：SLE）的投资预计很快完成，但需经 SLE 股东大会批准并满足其他交割条件。交易完成后，SLE 计划更名为 Superplanet, Inc.。具体细节将在交易完成时公布。\nhttps://foresightnews.pro/news/h5Detail/115130",
-        "fetched_at": "2026-10-14T02:08:02.750585Z",
-        "id": "telegram:foresightnews:120341",
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxQZFJFcFRpbmJpNm9heUNPNlBNd1ZSdGZ4QnNBOVlZMVo2VkhMNVlsUzZ6MEx3MHNLRUlhRjB1UzZvQjhONzBEeGM5QmJZblB0dDk0V2o5UXpEbEN5LTdnSUNMRVhTbE1hZVFrRlVyY3BHWVE3bms1SW1aUnp2c2hmT1Fzb2E?oc=5\" target=\"_blank\">Ledger Hack Contagion Fears Spread</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-14T06:11:27.422790Z",
+        "id": "google_news:article:26f8ec72c3a30b0a",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-13T20:14:00Z",
+        "source_type": "google_news",
+        "title": "Ledger Hack Contagion Fears Spread",
+        "url": "https://thedefiant.io/newsletter/defi-daily/ledger-hack-contagion-fears-spread"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Metaplanet's $380M share buyback comes amid a ~90% drawdown from its peak, a material signal about the stress in the bitcoin-treasury corporate model and a large capital-allocation move by one of the most prominent BTC-accumulating listed companies. It has a clear transmission path to crypto markets via sentiment around treasury-company equity premium/discount and potential forced-selling dynamics, though it remains a single-company event rather than a systemic market shift. No comments were provided to gauge community discussion quality.",
+        "ai_score": 7.0,
+        "ai_summary": "Metaplanet announced a $380 million share buyback after its stock fell nearly 90% from its peak, as the Bitcoin-treasury company moves to support its equity valuation.",
+        "ai_tags": [
+          "metaplanet",
+          "bitcoin-treasury",
+          "share-buyback",
+          "equities",
+          "crypto-markets"
+        ],
+        "author": "CryptoSlate",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxPRFlNLU5oTnhzcFU2bmVYT2F3SVRVd0ctQnQwX2s5R2pqWXVDeldOS2lQX3Q0WkFGQi11T1U5UkQ1Rl9sV2dSellldWZqMW5PX2hKSC0tei0wcUxUUkpyRy00STNsX2xUeHpjMkR1QVM5WG5QLTg4LURFbUVLQW8xNHJIQ1R4bWNoVk52MEpSdGpxdnhjZ0EtOTRHYi04MUdNUUNXcVJTaVh2cEJPcnc?oc=5\" target=\"_blank\">Metaplanet unveils $380 million share buyback after stock crashes nearly 90% from peak</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoSlate</font>",
+        "fetched_at": "2026-10-14T06:11:30.733163Z",
+        "id": "google_news:article:135078bf5dab96f6",
         "metadata": {
           "category": "crypto-markets",
-          "channel": "foresightnews",
+          "collection_method": "google_news_fallback",
           "event_retry_pending": true,
-          "msg_url": "https://telegram.me/foresightnews/120341",
-          "score_model": "deepseek:deepseek-flash"
+          "feed_name": "CryptoSlate",
+          "gn_query": "site:cryptoslate.com",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://cryptoslate.com/feed/",
+          "publisher_url": "https://cryptoslate.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "CryptoSlate"
         },
-        "published_at": "2026-10-14T01:11:26Z",
-        "source_type": "telegram",
-        "title": "【Metaplanet 拟发行约 3.28 亿美元零息可转债，用于回购股份及释放抵押的比特币】",
-        "url": "https://foresightnews.pro/news/h5Detail/115130"
+        "published_at": "2026-10-14T00:30:45Z",
+        "source_type": "google_news",
+        "title": "Metaplanet unveils $380 million share buyback after stock crashes nearly 90% from peak",
+        "url": "https://cryptoslate.com/metaplanet-unveils-380-million-share-buyback-after-stock-crashes-nearly-90-from-peak/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A notable open-weights release: ModelBest (面壁智能) open-sourced MiniCPM-V 4.7, a ~35B multimodal model engineered to run fully offline on an iPhone within roughly 3GB of memory. On-device multimodal inference at that scale is a substantive capability and deployment milestone for the open-model ecosystem, and the MiniCPM-V line is widely used by developers. It falls short of frontier-lab paradigm-shift territory, so it lands at the notable open-weights release anchor rather than 8+.",
+        "ai_score": 7.0,
+        "ai_summary": "ModelBest open-sourced MiniCPM-V 4.7, a multimodal model that can run offline on an iPhone while using only about 3GB of memory.",
+        "ai_tags": [
+          "open-weights",
+          "multimodal",
+          "on-device-ai",
+          "edge-inference",
+          "model-release"
+        ],
+        "author": "十三",
+        "content": "面壁开源MiniCPM-V 4.7",
+        "fetched_at": "2026-10-14T06:11:38.020293Z",
+        "id": "rss:www.qbitai.com_feed:c28910be318f566a",
+        "metadata": {
+          "category": "ai-labs",
+          "event_retry_pending": true,
+          "feed_name": "QbitAI 量子位",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "ai-media",
+          "tags": [
+            "资讯",
+            "首页轮播",
+            "MiniCPM-V 4.7",
+            "端侧模型",
+            "面壁智能"
+          ]
+        },
+        "published_at": "2026-10-13T20:55:15Z",
+        "source_type": "rss",
+        "title": "iPhone断网跑35B多模态！国产开源新模型，只占3G内存",
+        "url": "https://www.qbitai.com/2026/10/503109.html"
       }
     }
   ],

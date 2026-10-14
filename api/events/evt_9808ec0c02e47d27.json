@@ -7,29 +7,32 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "Redesigning source control at Anthropic",
+    "zh": "Anthropic 重新设计源代码管理",
     "en": "Redesigning source control at Anthropic"
   },
   "current_state": {
-    "zh": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production.",
-    "en": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production."
+    "zh": "Anthropic已将主代码仓库从Git迁移至自研服务器端版本控制系统Scion；Scion支持日均超过3万次合并和约2500万次CI检出，资源占用较原Git镜像架构大幅下降，并配套代码审查工具Antique。Scion尚未开源，主要面向大量Agent并行编程的超大型仓库。",
+    "en": "Anthropic has migrated its main code repository off Git to Scion, its purpose-built server-side version control system. Scion supports over 30,000 daily merges and about 25 million CI checkouts, with much lower resource usage than the prior Git mirror architecture, and is accompanied by the Antique code review tool. Scion is not open-sourced and is aimed at very large repositories with many parallel coding agents."
   },
   "first_seen_at": "2026-10-13T19:26:54.794159+00:00",
-  "last_updated_at": "2026-10-13T19:26:54.794159+00:00",
-  "last_material_change_at": "2026-10-13T19:26:54.794159+00:00",
+  "last_updated_at": "2026-10-14T06:11:20.876343+00:00",
+  "last_material_change_at": "2026-10-14T06:11:20.876343+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "anthropic",
+    "git",
     "redesigning",
     "source-control"
   ],
   "identifiers": [],
   "topics": [
+    "ai-coding-agents",
     "anthropic",
     "developer-tools",
     "engineering-infrastructure",
+    "gitlab",
     "source-control",
     "version-control"
   ],
@@ -43,11 +46,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Redesigning source control at Anthropic",
+      "title_zh": "Anthropic 重新设计源代码管理",
       "title_en": "Redesigning source control at Anthropic",
-      "what_changed_zh": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production.",
+      "what_changed_zh": "Anthropic 详细介绍了其将内部源代码管理重新设计为基于服务器的版本控制系统，旨在每天承受约 3 万次合并和 2500 万次 CI 检出，并认为合并代码的潜在需求实际上是无限的，每消除一个瓶颈只会增加代码产出。",
       "what_changed_en": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production.",
-      "current_state_zh": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production.",
+      "current_state_zh": "Anthropic 详细介绍了其将内部源代码管理重新设计为基于服务器的版本控制系统，旨在每天承受约 3 万次合并和 2500 万次 CI 检出，并认为合并代码的潜在需求实际上是无限的，每消除一个瓶颈只会增加代码产出。",
       "current_state_en": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production.",
       "detailed_summary_zh": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production.",
       "detailed_summary_en": "Anthropic details its redesign of internal source control into a server-based VCS built to absorb roughly 30,000 merges per day and 25 million CI checkouts, arguing that latent demand for merging code is effectively infinite and every removed bottleneck only increases code production.",
@@ -73,6 +76,44 @@
           "url": "https://www.anthropic.com/engineering/redesigning-source-control",
           "label": "Philpax",
           "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_068351762526b7fb",
+      "event_id": "evt_9808ec0c02e47d27",
+      "occurred_at": "2026-10-14T05:04:02Z",
+      "published_at": "2026-10-14T05:04:02Z",
+      "first_seen_at": "2026-10-14T06:11:20.876343Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Anthropic主仓库弃用Git：日合并突破3万次，7个人花5个月完成系统迁移",
+      "title_en": "Anthropic主仓库弃用Git：日合并突破3万次，7个人花5个月完成系统迁移",
+      "what_changed_zh": "补充确认Anthropic主仓库已从Git迁出，迁移至自研版本控制系统Scion；该系统由7名工程师借助Claude在5个月内开发，并配套推出代码审查工具Antique。",
+      "what_changed_en": "Added confirmation that Anthropic migrated its main repository off Git to the purpose-built VCS Scion, developed by 7 engineers over 5 months with Claude assistance, alongside a code review tool called Antique.",
+      "current_state_zh": "Anthropic已将主代码仓库从Git迁移至自研服务器端版本控制系统Scion；Scion支持日均超过3万次合并和约2500万次CI检出，资源占用较原Git镜像架构大幅下降，并配套代码审查工具Antique。Scion尚未开源，主要面向大量Agent并行编程的超大型仓库。",
+      "current_state_en": "Anthropic has migrated its main code repository off Git to Scion, its purpose-built server-side version control system. Scion supports over 30,000 daily merges and about 25 million CI checkouts, with much lower resource usage than the prior Git mirror architecture, and is accompanied by the Antique code review tool. Scion is not open-sourced and is aimed at very large repositories with many parallel coding agents.",
+      "detailed_summary_zh": "Anthropic migrated its main code repository off Git to a purpose-built system called Scion — developed by 7 engineers over 5 months with Claude's help — after agent-driven daily merges surged past 30,000, while GitLab said it is developing its own Git-compatible architecture to handle parallel AI agents.",
+      "detailed_summary_en": "Anthropic migrated its main code repository off Git to a purpose-built system called Scion — developed by 7 engineers over 5 months with Claude's help — after agent-driven daily merges surged past 30,000, while GitLab said it is developing its own Git-compatible architecture to handle parallel AI agents.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "telegram:theblockbeats:200390"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/371725?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]
