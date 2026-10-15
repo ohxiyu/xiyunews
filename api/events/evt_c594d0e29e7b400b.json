@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_c594d0e29e7b400b/",
   "json": "https://xiyu.news/api/events/evt_c594d0e29e7b400b.json",
   "type": "security_incident",
-  "status": "developing",
+  "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Ledger硬件钱包供应链植入间谍芯片窃取助记词事件",
+    "zh": "Ledger 硬件钱包供应链植入恶意硬件窃取助记词事件",
     "en": "Ledger Hardware Wallet Supply Chain Implant Seed Theft Incident"
   },
   "current_state": {
-    "zh": "Ledger已将销售暂停请求扩大至六个东南亚国家和香港的经销商，设备下架，调查仍在进行；Ledger称已确认事件仍限于东南亚，且未核实其他地区购买设备相关的资金流出。",
-    "en": "Ledger has expanded its sales suspension request to resellers in six Southeast Asian countries and Hong Kong, with devices removed from shelves and the investigation ongoing; Ledger says confirmed incidents remain contained to Southeast Asia and it has not verified a drain linked to a device bought elsewhere."
+    "zh": "Ledger将事件定性为设备离开控制后的局部分销渠道攻击，要求东南亚及香港授权经销商暂停销售并执行更严格的退货、存放与上报规则；已检查德国等地门店及仓库样本未发现篡改，芯片/操作系统/服务器未受损，调查与执法追踪持续。",
+    "en": "Ledger has characterized the incident as a localized distribution-channel attack after devices left its control, requiring authorized resellers in Southeast Asia and Hong Kong to suspend sales and follow stricter return, storage, and reporting rules; inspections of devices from stores in Germany and elsewhere and warehouse samples found no tampering, with its chips/OS/servers uncompromised and investigation and law-enforcement tracing ongoing."
   },
   "first_seen_at": "2026-10-09T15:30:47.822838+00:00",
-  "last_updated_at": "2026-10-14T17:28:42.198419+00:00",
-  "last_material_change_at": "2026-10-13T23:49:14.055968+00:00",
+  "last_updated_at": "2026-10-15T15:21:32.091221+00:00",
+  "last_material_change_at": "2026-10-15T15:21:32.091221+00:00",
   "confidence": 0.75,
-  "updates_count": 43,
-  "sources_count": 81,
+  "updates_count": 45,
+  "sources_count": 84,
   "entities": [
     "affected",
     "after",
@@ -37,6 +37,7 @@
     "cases",
     "cash",
     "ceo",
+    "chain",
     "ciso",
     "company",
     "confirmed",
@@ -68,6 +69,7 @@
     "hong",
     "impacted",
     "implant",
+    "infiltrated",
     "investigates",
     "involve",
     "its",
@@ -80,14 +82,17 @@
     "lte",
     "maker",
     "malaysia",
+    "malic",
     "many",
     "mediamarkt",
     "mediamarktsaturn",
     "million",
     "mod",
+    "months",
     "off",
     "offers",
     "onekey",
+    "organized",
     "phrases",
     "probes",
     "purchased",
@@ -111,7 +116,9 @@
     "spy",
     "spyware",
     "stole",
+    "supply",
     "suspected",
+    "syndicate",
     "tampered",
     "tether",
     "that",
@@ -2129,6 +2136,89 @@
           "url": "https://decrypt.co/380940/ledger-asks-resellers-in-seven-asian-markets-to-pull-devices-after-suspected-86m-drain",
           "label": "Decrypt",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_41e5ebc754e5656f",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-15T11:57:03Z",
+      "published_at": "2026-10-15T11:57:03Z",
+      "first_seen_at": "2026-10-15T15:21:32.091221Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "Ledger回应硬件植入攻击：属局部分销渠道攻击，要求东南亚及香港授权渠道暂停销售",
+      "title_en": "Ledger回应硬件植入攻击：属局部分销渠道攻击，要求东南亚及香港授权渠道暂停销售",
+      "what_changed_zh": "Ledger首次将事件正式定性为设备离开公司控制后的局部分销渠道攻击，而非系统性供应链攻击，并称芯片、操作系统及服务器未被攻破；同时收紧渠道规则：退货设备即便看似全新、未开封也不得再次出售，产品不得置于货架或展示区，须在后场存放并在购买时交付，渠道须及时上报异常产品；Ledger还表示已赴德国等地门店购买并拆检设备、检查仓库及自有库存样本，均未发现篡改，并正与执法机构追踪资金。",
+      "what_changed_en": "Ledger formally characterized the incident as a localized distribution-channel attack after devices left its control, rather than a systemic supply-chain compromise, saying its chips, OS, and servers were not breached; it also tightened channel rules — returned devices cannot be resold even if seemingly new or unopened, products must not be displayed on shelves and must be stored in backrooms and delivered at purchase, and channels must promptly report anomalous products; Ledger added it bought and inspected devices at stores in Germany and elsewhere and checked warehouses and its own inventory samples without finding tampering, while working with law enforcement to trace funds.",
+      "current_state_zh": "Ledger将事件定性为设备离开控制后的局部分销渠道攻击，要求东南亚及香港授权经销商暂停销售并执行更严格的退货、存放与上报规则；已检查德国等地门店及仓库样本未发现篡改，芯片/操作系统/服务器未受损，调查与执法追踪持续。",
+      "current_state_en": "Ledger has characterized the incident as a localized distribution-channel attack after devices left its control, requiring authorized resellers in Southeast Asia and Hong Kong to suspend sales and follow stricter return, storage, and reporting rules; inspections of devices from stores in Germany and elsewhere and warehouse samples found no tampering, with its chips/OS/servers uncompromised and investigation and law-enforcement tracing ongoing.",
+      "detailed_summary_zh": "Ledger confirmed a localized distribution-channel attack in which criminals implanted hidden seed-phrase-stealing components into genuine devices resold through Southeast Asian distributors, and ordered authorized resellers in Southeast Asia and Hong Kong to suspend sales while tightening return, storage, and reporting rules.",
+      "detailed_summary_en": "Ledger confirmed a localized distribution-channel attack in which criminals implanted hidden seed-phrase-stealing components into genuine devices resold through Southeast Asian distributors, and ordered authorized resellers in Southeast Asia and Hong Kong to suspend sales while tightening return, storage, and reporting rules.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "telegram:theblockbeats:200719",
+        "telegram:foresightnews:120514"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/372056?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/115280",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_e995462022770a6d",
+      "event_id": "evt_c594d0e29e7b400b",
+      "occurred_at": "2026-10-15T12:42:42Z",
+      "published_at": "2026-10-15T12:42:42Z",
+      "first_seen_at": "2026-10-15T15:21:29.011175Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Ledger：有组织团伙数月渗透供应链植入恶意",
+      "title_en": "Ledger: Organized Syndicate Infiltrated Supply Chain for Months to Implant Malic",
+      "what_changed_zh": "Ledger披露，一个有组织团伙花费数月时间将恶意硬件植入正版Ledger设备，并通过东南亚转售渠道重新分销，以拦截助记词并盗取用户资产；同时确认其安全芯片、BOLOS操作系统和服务器基础设施未遭入侵。",
+      "what_changed_en": "Ledger disclosed that an organized syndicate spent months implanting malicious hardware into genuine Ledger devices and redistributing them through Southeast Asian resale channels to intercept seed phrases and drain user assets, while confirming its secure element chips, BOLOS OS, and server infrastructure were not compromised.",
+      "current_state_zh": "Ledger披露，一个有组织团伙花费数月时间将恶意硬件植入正版Ledger设备，并通过东南亚转售渠道重新分销，以拦截助记词并盗取用户资产；同时确认其安全芯片、BOLOS操作系统和服务器基础设施未遭入侵。",
+      "current_state_en": "Ledger disclosed that an organized syndicate spent months implanting malicious hardware into genuine Ledger devices and redistributing them through Southeast Asian resale channels to intercept seed phrases and drain user assets, while confirming its secure element chips, BOLOS OS, and server infrastructure were not compromised.",
+      "detailed_summary_zh": "Ledger disclosed that an organized syndicate spent months implanting malicious hardware into genuine Ledger devices and redistributing them through Southeast Asian resale channels to intercept seed phrases and drain user assets, while confirming its secure element chips, BOLOS OS, and server infrastructure were not compromised.",
+      "detailed_summary_en": "Ledger disclosed that an organized syndicate spent months implanting malicious hardware into genuine Ledger devices and redistributing them through Southeast Asian resale channels to intercept seed phrases and drain user assets, while confirming its secure element chips, BOLOS OS, and server infrastructure were not compromised.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:wublockchainenglish:26423"
+      ],
+      "sources": [
+        {
+          "url": "https://wublockchain.xyz/news/news-21250",
+          "label": "wublockchainenglish",
+          "source_type": "telegram",
           "official": false
         }
       ]
