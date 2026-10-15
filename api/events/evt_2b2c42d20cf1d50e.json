@@ -15,11 +15,11 @@
     "en": "Meta launched Muse Spark Open, an 816B-parameter (42B active) open-weights model published on Hugging Face with broad inference-runner and Mac Studio support, prompting community debate over its competitive benchmarks versus Qwen and GLM models and its revenue-capped 'Model as a Service' license clause."
   },
   "first_seen_at": "2026-10-15T21:21:19.210111+00:00",
-  "last_updated_at": "2026-10-15T21:21:19.210111+00:00",
+  "last_updated_at": "2026-10-15T23:28:10.439543+00:00",
   "last_material_change_at": "2026-10-15T21:21:19.210111+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 2,
   "entities": [
     "muse",
     "open",
@@ -43,36 +43,51 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Muse Spark Open",
+      "title_zh": "欢迎 Muse Spark Open：Meta 推出的开放权重前沿多模态混合专家模型",
       "title_en": "Muse Spark Open",
-      "what_changed_zh": "Meta launched Muse Spark Open, an 816B-parameter (42B active) open-weights model published on Hugging Face with broad inference-runner and Mac Studio support, prompting community debate over its competitive benchmarks versus Qwen and GLM models and its revenue-capped 'Model as a Service' license clause.",
+      "what_changed_zh": "Meta 发布了 Muse Spark Open，这是一个开放权重的前沿多模态混合专家模型，Meta 称其为“迄今为止美国最强的开放权重模型”。Meta 表示，这是同类模型中首个可在桌面端运行的产品，需使用两台 Apple M5 Ultra Mac Studio 和最新的 MLX 框架；Hugging Face 上的模型页面将其列为 Muse-Spark-Open-816B-A42B。\n\n由于权重公开发布，前沿级多模态参数可以被下载、微调和自行部署，而不再只能通过 Meta 的服务访问。Meta 同时把 Apple 芯片定位为目标部署平台，主张这一级别的模型已可在本地桌面端运行。\n\nMeta 与 Apple 为此次发布进行了合作，模型针对在 Apple 芯片上本地运行做了优化；社区引用的 Meta 部署文档显示其支持多种模型运行器，包括 Unsloth 和 MLX。已公布的模型标识为 Muse-Spark-Open-816B-A42B。",
       "what_changed_en": "Meta launched Muse Spark Open, an 816B-parameter (42B active) open-weights model published on Hugging Face with broad inference-runner and Mac Studio support, prompting community debate over its competitive benchmarks versus Qwen and GLM models and its revenue-capped 'Model as a Service' license clause.",
-      "current_state_zh": "Meta launched Muse Spark Open, an 816B-parameter (42B active) open-weights model published on Hugging Face with broad inference-runner and Mac Studio support, prompting community debate over its competitive benchmarks versus Qwen and GLM models and its revenue-capped 'Model as a Service' license clause.",
+      "current_state_zh": "Meta 发布了 Muse Spark Open，这是一个开放权重的前沿多模态混合专家模型，Meta 称其为“迄今为止美国最强的开放权重模型”。Meta 表示，这是同类模型中首个可在桌面端运行的产品，需使用两台 Apple M5 Ultra Mac Studio 和最新的 MLX 框架；Hugging Face 上的模型页面将其列为 Muse-Spark-Open-816B-A42B。\n\n由于权重公开发布，前沿级多模态参数可以被下载、微调和自行部署，而不再只能通过 Meta 的服务访问。Meta 同时把 Apple 芯片定位为目标部署平台，主张这一级别的模型已可在本地桌面端运行。\n\nMeta 与 Apple 为此次发布进行了合作，模型针对在 Apple 芯片上本地运行做了优化；社区引用的 Meta 部署文档显示其支持多种模型运行器，包括 Unsloth 和 MLX。已公布的模型标识为 Muse-Spark-Open-816B-A42B。",
       "current_state_en": "Meta launched Muse Spark Open, an 816B-parameter (42B active) open-weights model published on Hugging Face with broad inference-runner and Mac Studio support, prompting community debate over its competitive benchmarks versus Qwen and GLM models and its revenue-capped 'Model as a Service' license clause.",
       "detailed_summary_zh": "Meta launched Muse Spark Open, an 816B-parameter (42B active) open-weights model published on Hugging Face with broad inference-runner and Mac Studio support, prompting community debate over its competitive benchmarks versus Qwen and GLM models and its revenue-capped 'Model as a Service' license clause.",
       "detailed_summary_en": "Meta launched Muse Spark Open, an 816B-parameter (42B active) open-weights model published on Hugging Face with broad inference-runner and Mac Studio support, prompting community debate over its competitive benchmarks versus Qwen and GLM models and its revenue-capped 'Model as a Service' license clause.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
-      "importance_score": 7.5,
+      "background_zh": "开放权重模型会公开训练好的参数，任何人都可以下载并用自己的硬件运行，而不必只通过开发者的在线服务使用，Meta 的 Llama 系列是其中最知名的例子之一。MLX 是 Apple 为 Apple 芯片上的机器学习开发的开源数组框架，于 2023 年 12 月首次发布；Meta 此前发布模型系列时也曾搭配指定运行时。",
+      "background_en": "Open-weight models publish their trained parameters so anyone can download and run them on their own hardware rather than only through the developer's online service, with Meta's Llama family among the best-known examples. MLX is Apple's open-source array framework for machine learning on Apple silicon, first released in December 2023; Meta's previous model-family releases have also paired weights with named runtimes.",
+      "community_discussion_zh": "评论者意见不一。有人引用 Artificial Analysis 的结果指出，该模型表现不及 Qwen3.8 Flash Next 和 GLM 5.3 Flash，而后两者都能在单台 B300 上运行，并认为 Meta 在开放权重领域还需要追赶；也有人质疑“开放权重”这一说法，指出许可证中存在限制条款：当第三方及关联方总营收超过 2000 万美元时，不得以 API 等形式把该模型作为服务对外提供。多位评论者称赞其运行器支持范围广（Unsloth、MLX），还有人认为 Meta 的真正策略是打造黏性生态，而非以“前沿智能”收取租金。",
+      "community_discussion_en": "Commenters were divided. One cited Artificial Analysis results showing the model underperforming Qwen3.8 Flash Next and GLM 5.3 Flash, both of which can run on a single B300, and said Meta has catching up to do in the open-weight space; others disputed the \"open weight\" label, pointing to a license clause restricting third parties with aggregate gross revenue above $20 million from offering the model as a service. Several praised the breadth of runner support (Unsloth, MLX), and one argued Meta's real strategy is building a sticky ecosystem rather than charging rent for frontier intelligence.",
+      "market_impact_zh": "最清晰的传导渠道是推理经济学：可免费下载的前沿级权重会扩大自建部署和本地推理，从而影响对托管 API 容量与算力硬件的需求，并影响 AI 与去中心化算力相关加密板块的市场情绪。此次发布本身没有直接的代币或协议关联，因此对加密市场的影响属于间接的叙事层面。",
+      "market_impact_en": "The clearest transmission channel is inference economics: freely downloadable frontier-class weights expand self-hosting and local inference, which bears on demand for hosted API capacity and compute hardware, and feeds sentiment in AI- and decentralized-compute-related crypto segments. The release itself has no direct token or protocol linkage, so any crypto-market effect would be indirect and narrative-driven.",
+      "importance_score": 8.0,
       "references": [
         {
           "url": "https://news.ycombinator.com/item?id=50107379",
           "title": "Community discussion"
+        },
+        {
+          "url": "https://grokipedia.com/page/MLX_machine_learning_framework",
+          "title": "MLX (machine learning framework)"
+        },
+        {
+          "url": "https://grokipedia.com/page/Open-Weight_Model",
+          "title": "Open-Weight Model"
         }
       ],
       "confidence": 0.75,
       "story_ids": [
-        "hackernews:story:50107379"
+        "hackernews:story:50107379",
+        "rss:huggingface.co_blog_feed.xml:ff0cf28c5d753057"
       ],
       "sources": [
         {
           "url": "https://research.meta.ai/blog/muse-spark-open",
           "label": "bigwheels",
           "source_type": "hackernews",
+          "official": false
+        },
+        {
+          "url": "https://huggingface.co/blog/meta-muse-spark-open",
+          "label": "Hugging Face Blog",
+          "source_type": "rss",
           "official": false
         }
       ]

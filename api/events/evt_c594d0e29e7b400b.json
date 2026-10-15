@@ -2244,14 +2244,27 @@
       "current_state_en": "In the Ledger supply-chain implant incident, Chainalysis tallies over $103.4M in onchain thefts across 530 addresses, including a task-scammer who lost 60 BTC via three tampered Ledgers; Ledger maintains reseller suspension across Southeast Asia and Hong Kong, Trezor plans to cut far-flung resellers, and investigation and law-enforcement tracing continue.",
       "detailed_summary_zh": "Chainalysis reports a task-scammer lost 60 BTC (~$4.8M) after buying three tampered Ledger devices that recorded seed phrases, part of a broader supply chain attack in which thieves drained over $103.4M from 530 addresses, prompting Ledger to suspend its reseller network across South East Asia.",
       "detailed_summary_en": "Chainalysis reports a task-scammer lost 60 BTC (~$4.8M) after buying three tampered Ledger devices that recorded seed phrases, part of a broader supply chain attack in which thieves drained over $103.4M from 530 addresses, prompting Ledger to suspend its reseller network across South East Asia.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "据BleepingComputer报道，此次篡改据称涉及一种混入正品硬件的间谍植入物，并未改动安全芯片或Ledger固件，因此Ledger的真伪校验（Genuine Check）仍然通过。助记词是恢复加密钱包的“主密钥”，因此记录助记词的设备会把资金控制权交给攻击者。此事发生在7月底Coldcard助记词风波之后。",
+      "background_en": "The tampering reportedly involved a spy implant that blended into legitimate hardware without altering the secure chip or Ledger's firmware, so Ledger's Genuine Check still passed, according to BleepingComputer. A seed phrase is the master key that restores access to a crypto wallet, so a device that records it hands an attacker full control of the funds. The incident follows the Coldcard seed phrase debacle at the end of July.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "经销商停售使东南亚自托管硬件钱包这一细分市场的风险集中显现——依赖第三方经销商的买家若买到会记录助记词的被篡改设备，其资产的托管安全将直接暴露；Ledger称已确认盗窃仅限于亚洲，是主要的范围限定。另外，韩国屏蔽27家未注册交易所网站，是在应用之外进一步限制本国用户的网页访问渠道；泰国的ETF规则则为比特币和以太坊敞口打开了一条受监管的境内通道。",
+      "market_impact_en": "The reseller suspension concentrates risk in the self-custody hardware wallet segment in South East Asia, where buyers relying on third-party resellers face custody exposure if a tampered device records their seed phrase; Ledger's statement limiting confirmed thefts to Asia is the main scope caveat. Separately, South Korea's move to block 27 unregistered exchange websites restricts domestic access through the web rather than apps, while Thailand's ETF rules open a regulated onshore channel for Bitcoin and Ether exposure.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://www.bleepingcomputer.com/news/security/ledger-confirms-hardware-wallet-spy-implant-behind-crypto-thefts/",
+          "title": "Ledger confirms spy chip implant behind wallet crypto thefts"
+        },
+        {
+          "url": "https://crypto.com/en/university/seed-phrases-for-crypto-wallets",
+          "title": "Seed Phrases for Crypto Wallets: How They Work to Protect ..."
+        },
+        {
+          "url": "https://ton-adoption.xyz/en/blog/hardware-wallet-supply-chain-risks-2026/",
+          "title": "Hardware wallet supply-chain risks: TON guide 2026 — TON Adoption"
+        }
+      ],
       "confidence": 0.9,
       "story_ids": [
         "rss:cointelegraph.com_rss:e939ff951424800d"
