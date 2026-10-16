@@ -7,30 +7,42 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "Muse Spark Open",
-    "en": "Muse Spark Open"
+    "zh": "Meta发布Muse Spark Open开放权重模型并支持Mac本地运行",
+    "en": "Meta launches Muse Spark Open open-weight model with Mac local support"
   },
   "current_state": {
-    "zh": "Meta launched Muse Spark Open, an 816B-parameter (42B active) open-weights model published on Hugging Face with broad inference-runner and Mac Studio support, prompting community debate over its competitive benchmarks versus Qwen and GLM models and its revenue-capped 'Model as a Service' license clause.",
-    "en": "Meta launched Muse Spark Open, an 816B-parameter (42B active) open-weights model published on Hugging Face with broad inference-runner and Mac Studio support, prompting community debate over its competitive benchmarks versus Qwen and GLM models and its revenue-capped 'Model as a Service' license clause."
+    "zh": "Meta 的 Muse Spark Open 已在 Hugging Face 上发布，并针对 Apple 芯片优化，可在本地 Mac Studio 上运行。后续报道补充了 100 万 Token 上下文、约 37 tokens/秒速度、自定义 Muse Model License 的营收门槛与 API 服务条款等细节。",
+    "en": "Meta's Muse Spark Open remains launched with weights on Hugging Face and optimized for Apple silicon local Mac Studio deployment. Follow-up coverage adds details on 1M-token context, ~37 tokens/sec, and custom Muse Model License revenue and API service clauses."
   },
   "first_seen_at": "2026-10-15T21:21:19.210111+00:00",
-  "last_updated_at": "2026-10-15T23:28:10.439543+00:00",
-  "last_material_change_at": "2026-10-15T21:21:19.210111+00:00",
+  "last_updated_at": "2026-10-16T01:37:31.103921+00:00",
+  "last_material_change_at": "2026-10-16T01:37:31.103921+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 2,
+  "updates_count": 2,
+  "sources_count": 5,
   "entities": [
+    "apple",
+    "mac",
+    "macs",
+    "meta",
     "muse",
     "open",
-    "spark"
+    "spark",
+    "studio"
   ],
   "identifiers": [],
   "topics": [
+    "ai-model-release",
+    "apple",
+    "apple-mlx",
     "inference-deployment",
+    "large-language-models",
     "llm-release",
+    "local-inference",
     "meta",
+    "mlx",
     "model-licensing",
+    "open-weight-models",
     "open-weights"
   ],
   "updates": [
@@ -75,7 +87,9 @@
       "confidence": 0.75,
       "story_ids": [
         "hackernews:story:50107379",
-        "rss:huggingface.co_blog_feed.xml:ff0cf28c5d753057"
+        "rss:huggingface.co_blog_feed.xml:ff0cf28c5d753057",
+        "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:ef1bd269f0e9100c",
+        "rss:techcrunch.com_category_artificial-intelligence_feed_:5249679bff53ff0e"
       ],
       "sources": [
         {
@@ -88,6 +102,56 @@
           "url": "https://huggingface.co/blog/meta-muse-spark-open",
           "label": "Hugging Face Blog",
           "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://www.theverge.com/news/1012293/meta-apple-muse-spark-open-ai-model-mlx",
+          "label": "The Verge AI",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/",
+          "label": "TechCrunch AI",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_a4fa74380614f470",
+      "event_id": "evt_2b2c42d20cf1d50e",
+      "occurred_at": "2026-10-16T00:54:02Z",
+      "published_at": "2026-10-16T00:54:02Z",
+      "first_seen_at": "2026-10-16T01:37:31.103921Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Meta与苹果罕见联手：8160亿参数Muse Spark开源，两台Mac Studio就能本地运行",
+      "title_en": "Meta与苹果罕见联手：8160亿参数Muse Spark开源，两台Mac Studio就能本地运行",
+      "what_changed_zh": "新增细节：模型支持 100 万 Token 上下文；四台 M5 Ultra Mac Studio 协同运行在 8192 Token 上下文下约 37 tokens/秒；采用自定义 Muse Model License，允许修改、商用和分发但需注明来源，企业连续12个月营收超过2000万美元若将模型作为 API 服务对外提供需与 Meta 另行签约；4 位精度下仍需约 493GB 内存，最低部署需两台配备 512GB 统一内存的 M5 Ultra Mac Studio，硬件成本超过 4 万美元。",
+      "what_changed_en": "Added details: 1M-token context; ~37 tokens/sec on four M5 Ultra Mac Studios at 8192-token context; custom Muse Model License permits modification, commercial use, and distribution with attribution, but enterprises with >$20M trailing 12-month revenue need a separate Meta agreement to offer the model as an API service; requires ~493GB memory at 4-bit, minimum two M5 Ultra Mac Studios with 512GB unified memory each, hardware cost over $40k.",
+      "current_state_zh": "Meta 的 Muse Spark Open 已在 Hugging Face 上发布，并针对 Apple 芯片优化，可在本地 Mac Studio 上运行。后续报道补充了 100 万 Token 上下文、约 37 tokens/秒速度、自定义 Muse Model License 的营收门槛与 API 服务条款等细节。",
+      "current_state_en": "Meta's Muse Spark Open remains launched with weights on Hugging Face and optimized for Apple silicon local Mac Studio deployment. Follow-up coverage adds details on 1M-token context, ~37 tokens/sec, and custom Muse Model License revenue and API service clauses.",
+      "detailed_summary_zh": "Meta open-sourced the 816B-parameter Muse Spark Open model (42B active, 1M-token context) with weights on Hugging Face under a custom license, and partnered with Apple so it can run locally on clusters of Mac Studio machines via MLX at roughly 37 tokens/second.",
+      "detailed_summary_en": "Meta open-sourced the 816B-parameter Muse Spark Open model (42B active, 1M-token context) with weights on Hugging Face under a custom license, and partnered with Apple so it can run locally on clusters of Mac Studio machines via MLX at roughly 37 tokens/second.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "telegram:theblockbeats:200781"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/372118?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]
