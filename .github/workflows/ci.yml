@@ -23,10 +23,10 @@ jobs:
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: gh-pages
           path: .edge-source
@@ -54,7 +54,7 @@ jobs:
           uv run python -m src.services.telegram_group_snapshot
           .edge-source .edge-rendered --artifact "$(git -C .edge-source rev-parse HEAD)"
       - run: python3 scripts/prepare_edge_assets.py .edge-rendered .edge-site
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: '24'
       - name: Use the validated npm version on the bounded runner
@@ -79,7 +79,7 @@ jobs:
       web: ${{ steps.paths.outputs.web }}
       edge: ${{ steps.paths.outputs.edge }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           filter: blob:none
@@ -109,11 +109,11 @@ jobs:
     env:
       TELEGRAM_ENABLED: "false"
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           filter: blob:none
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
       - run: python -m pip install -r requirements-dev.txt
@@ -122,7 +122,7 @@ jobs:
       - run: python -m pytest
       - run: python -m compileall -q src run.py
       - run: python scripts/check_repository.py --base origin/main
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: "24"
       - run: node --test scripts/deploy/watchdog/watchdog.test.mjs
@@ -133,11 +133,11 @@ jobs:
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           filter: blob:none
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Check versions, handoff, document links and PR evidence
@@ -157,12 +157,12 @@ jobs:
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
         with:
           version: "0.11.32"
           enable-cache: true
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - run: uv sync --frozen --extra dev
@@ -198,10 +198,10 @@ jobs:
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: "24"
           cache: ${{ runner.environment == 'github-hosted' && 'npm' || '' }}

@@ -34,7 +34,7 @@ jobs:
               assert hashlib.file_digest(handle, 'sha256').hexdigest() == info['sha256']
           print('Fresh encrypted backup verified; no plaintext accessed.')
           PY
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: xiyunews-encrypted-backup-${{ github.run_id }}
           path: |
