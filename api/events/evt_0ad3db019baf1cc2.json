@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_0ad3db019baf1cc2/",
   "json": "https://xiyu.news/api/events/evt_0ad3db019baf1cc2.json",
   "type": "security_incident",
-  "status": "closed",
+  "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "Base 上金库遭攻击，约 1783 枚 wstETH 被盗",
+    "zh": "Base 网络金库遭攻击，约 1783 枚 wstETH 被提取",
     "en": "Base vault attacked, ~1,783 wstETH drained"
   },
   "current_state": {
-    "zh": "Base 上一未认领金库合约遭攻击，约 600 万美元（约 1783 枚 wstETH）通过 Safe 多签白名单机制与 Aave V3 赎回被盗；攻击者通过六笔资金流出完成抽资，部分资金已跨链桥转向以太坊；该金库内仍有约 3170 万美元资产处于风险中，Aave 核心合约和 Base 链本身未受影响。",
-    "en": "An unclaimed vault contract on Base was attacked, with ~$6M (~1,783 wstETH) drained via a Safe multisig whitelist mechanism and Aave V3 redemption; the attacker executed six outflows and some funds were bridged toward Ethereum; ~$31.7M in assets remain at risk in the vault, while Aave core contracts and Base itself were unaffected."
+    "zh": "标普正将评级式审查扩展至规模约100亿美元的加密金库市场，而Base上一起600万美元漏洞利用事件凸显了链上收益产品的风险。",
+    "en": "S&P is extending ratings-style scrutiny to the roughly $10 billion crypto vault market just as a $6 million exploit on Base highlights the risks in on-chain yield products."
   },
   "first_seen_at": "2026-10-04T10:42:09.161969+00:00",
-  "last_updated_at": "2026-10-05T23:27:22.359570+00:00",
-  "last_material_change_at": "2026-10-05T23:27:22.359570+00:00",
+  "last_updated_at": "2026-10-07T15:20:54.804525+00:00",
+  "last_material_change_at": "2026-10-07T15:20:54.804525+00:00",
   "confidence": 0.75,
-  "updates_count": 4,
-  "sources_count": 5,
+  "updates_count": 5,
+  "sources_count": 6,
   "entities": [
     "aave",
     "about",
@@ -38,11 +38,13 @@
   "topics": [
     "aave",
     "base",
+    "crypto-vaults",
     "defi-exploit",
     "defi-governance",
     "peckshield",
     "safe-multisig",
     "security-exploit",
+    "sp",
     "wsteth"
   ],
   "updates": [
@@ -219,6 +221,44 @@
           "url": "https://thedefiant.io/news/hacks/base-vault-drained-of-about-6-million-in-aave-deposit-tokens",
           "label": "The Defiant",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_c104a6902a93058f",
+      "event_id": "evt_0ad3db019baf1cc2",
+      "occurred_at": "2026-10-07T13:26:24Z",
+      "published_at": "2026-10-07T13:26:24Z",
+      "first_seen_at": "2026-10-07T15:20:54.804525Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "标普对100亿美元加密金库市场引入评级式审查，Base上600万美元事件暴露风险",
+      "title_en": "S&P brings ratings-style scrutiny to $10 billion crypto vault market as $6 million Base incident exposes risks",
+      "what_changed_zh": "标普正将评级式审查扩展至规模约100亿美元的加密金库市场，而Base上一起600万美元漏洞利用事件凸显了链上收益产品的风险。",
+      "what_changed_en": "S&P is extending ratings-style scrutiny to the roughly $10 billion crypto vault market just as a $6 million exploit on Base highlights the risks in on-chain yield products.",
+      "current_state_zh": "标普正将评级式审查扩展至规模约100亿美元的加密金库市场，而Base上一起600万美元漏洞利用事件凸显了链上收益产品的风险。",
+      "current_state_en": "S&P is extending ratings-style scrutiny to the roughly $10 billion crypto vault market just as a $6 million exploit on Base highlights the risks in on-chain yield products.",
+      "detailed_summary_zh": "S&P is extending ratings-style scrutiny to the roughly $10 billion crypto vault market just as a $6 million exploit on Base highlights the risks in on-chain yield products.",
+      "detailed_summary_en": "S&P is extending ratings-style scrutiny to the roughly $10 billion crypto vault market just as a $6 million exploit on Base highlights the risks in on-chain yield products.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "google_news:article:127242a636350c07"
+      ],
+      "sources": [
+        {
+          "url": "https://cryptorank.io/news/feed/8a9b3-sp-brings-ratings-style-scrutiny-to-10-billion-crypto-vault-market-as-6-million-base-incident-exposes-risks",
+          "label": "CryptoRank",
+          "source_type": "google_news",
           "official": false
         }
       ]

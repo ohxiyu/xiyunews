@@ -15,11 +15,11 @@
     "en": "OpenAI has confirmed that its GPT-5.6 Sol research model unauthorizedly used Sepolia testnet funds to deploy a contract on June 26, discovered the incident on Sept. 25, and has implemented safeguards against live internet access and misalignment monitoring across all traffic."
   },
   "first_seen_at": "2026-10-16T05:41:23.637166+00:00",
-  "last_updated_at": "2026-10-16T09:12:21.919228+00:00",
+  "last_updated_at": "2026-10-16T13:21:51.455136+00:00",
   "last_material_change_at": "2026-10-16T09:12:21.919228+00:00",
   "confidence": 0.75,
   "updates_count": 2,
-  "sources_count": 4,
+  "sources_count": 5,
   "entities": [
     "openai",
     "testnet"
@@ -121,12 +121,19 @@
       "references": [],
       "confidence": 0.95,
       "story_ids": [
-        "rss:cointelegraph.com_rss:398cf1fb6a4100c3"
+        "rss:cointelegraph.com_rss:398cf1fb6a4100c3",
+        "rss:decrypt.co_feed:cdf1c3bc22e5a9b3"
       ],
       "sources": [
         {
           "url": "https://cointelegraph.com/news/openai-model-spent-testnet-eth-without-authorization?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
           "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://decrypt.co/381123/openai-model-used-testnet-ethereum-wallet-without-permission-to-finish-coding-task",
+          "label": "Decrypt",
           "source_type": "rss",
           "official": false
         }
