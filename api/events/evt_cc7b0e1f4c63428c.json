@@ -42,20 +42,33 @@
       "material_change": true,
       "title_zh": "【DTCC 代币化服务首批支持 25 种证券，底层资产规模约 30 万亿美元】",
       "title_en": "【DTCC 代币化服务首批支持 25 种证券，底层资产规模约 30 万亿美元】",
-      "what_changed_zh": "DTCC's tokenization service went live with 25 tokenizable securities backed by about $30 trillion in DTC-custodied assets, issuing 1:1 CUSIP-matched tokens with compliance transfer restrictions on Canton Network and its private Besu chain, with Stellar and Circle's Arc to follow in 2027.",
+      "what_changed_zh": "据 DTCC 公布的代币化服务资料，该服务首批开放 25 种可代币化证券，底层为 DTC 托管的证券，规模约 30 万亿美元。代币与原证券保持 1:1 对应并使用相同 CUSIP，可在 DTC 注册钱包之间进行 24/7 点对点转账，且带有合规转让限制，官方账簿记录仍由 DTC 保管。\n\n由于代币沿用相同的 CUSIP，其权利与投资者保护与簿记证券一致，因此一部分 DTC 托管资产（包括美国国债的派息与到期服务）开始在链上运行，而 DTC 仍保留官方账簿记录的角色。\n\n首批支持的资产包括罗素 1000 成分股（从部分大盘股开始）、部分 ETF 和美国国债；美国国债的派息和到期服务将在链上进行，款项以法币支付至参与者的传统账户。首批上线网络为 Canton Network（CIP-56）和 DTCC 私有 Besu 网络（ERC-20），Stellar（SEP-41）与 Circle 的 Arc（ERC-20）预计于 2027 年接入。",
       "what_changed_en": "DTCC's tokenization service went live with 25 tokenizable securities backed by about $30 trillion in DTC-custodied assets, issuing 1:1 CUSIP-matched tokens with compliance transfer restrictions on Canton Network and its private Besu chain, with Stellar and Circle's Arc to follow in 2027.",
-      "current_state_zh": "DTCC's tokenization service went live with 25 tokenizable securities backed by about $30 trillion in DTC-custodied assets, issuing 1:1 CUSIP-matched tokens with compliance transfer restrictions on Canton Network and its private Besu chain, with Stellar and Circle's Arc to follow in 2027.",
+      "current_state_zh": "据 DTCC 公布的代币化服务资料，该服务首批开放 25 种可代币化证券，底层为 DTC 托管的证券，规模约 30 万亿美元。代币与原证券保持 1:1 对应并使用相同 CUSIP，可在 DTC 注册钱包之间进行 24/7 点对点转账，且带有合规转让限制，官方账簿记录仍由 DTC 保管。\n\n由于代币沿用相同的 CUSIP，其权利与投资者保护与簿记证券一致，因此一部分 DTC 托管资产（包括美国国债的派息与到期服务）开始在链上运行，而 DTC 仍保留官方账簿记录的角色。\n\n首批支持的资产包括罗素 1000 成分股（从部分大盘股开始）、部分 ETF 和美国国债；美国国债的派息和到期服务将在链上进行，款项以法币支付至参与者的传统账户。首批上线网络为 Canton Network（CIP-56）和 DTCC 私有 Besu 网络（ERC-20），Stellar（SEP-41）与 Circle 的 Arc（ERC-20）预计于 2027 年接入。",
       "current_state_en": "DTCC's tokenization service went live with 25 tokenizable securities backed by about $30 trillion in DTC-custodied assets, issuing 1:1 CUSIP-matched tokens with compliance transfer restrictions on Canton Network and its private Besu chain, with Stellar and Circle's Arc to follow in 2027.",
       "detailed_summary_zh": "DTCC's tokenization service went live with 25 tokenizable securities backed by about $30 trillion in DTC-custodied assets, issuing 1:1 CUSIP-matched tokens with compliance transfer restrictions on Canton Network and its private Besu chain, with Stellar and Circle's Arc to follow in 2027.",
       "detailed_summary_en": "DTCC's tokenization service went live with 25 tokenizable securities backed by about $30 trillion in DTC-custodied assets, issuing 1:1 CUSIP-matched tokens with compliance transfer restrictions on Canton Network and its private Besu chain, with Stellar and Circle's Arc to follow in 2027.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "CUSIP 是用于清算交收、唯一标识北美证券的九位代码，因此代币沿用原证券 CUSIP 对同一资产的权利主张意义重大。CIP-56 是 Canton Network 的代币标准，由一组 Daml 接口和链下 API 构成，让钱包与应用能以统一方式处理代币化持仓与转账。Hyperledger Besu 是开源、基于 Java 的以太坊客户端，既可用于公有主网，也可用于支持 ERC-20 代币的许可制 EVM 网络。",
+      "background_en": "CUSIP is a nine-character identifier that uniquely identifies a North American security for clearing and settlement, which is why matching the original CUSIP matters for tokenized claims on the same asset. CIP-56 is Canton Network's token standard, a set of Daml interfaces and off-ledger APIs that let wallets and applications handle tokenized holdings and transfers uniformly across registries. Hyperledger Besu is an open-source, Java-based Ethereum client used for both public mainnet and permissioned EVM networks supporting ERC-20 tokens.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "传导路径集中在代币化与 RWA 的市场结构上：在 Canton 和 DTCC 许可制 Besu 网络上发行、带转让限制且以 DTC 为记录方的代币，提供了一套以合规为导向的模板，代币化国债与基金产品需据此定位。计划于 2027 年接入 Stellar 与 Circle 的 Arc，将机构结算轨道与现有稳定币基础设施相连，扩大代币化现金与证券可能交互的场所范围。",
+      "market_impact_en": "The transmission channel runs through tokenization and RWA market structure: tokens issued on Canton and DTCC's permissioned Besu network, with transfer restrictions and DTC as record keeper, set a compliance-oriented template that tokenized Treasury and fund products must position against. The planned 2027 links to Stellar and Circle's Arc tie institutional settlement rails to existing stablecoin infrastructure, widening the set of venues where tokenized cash and securities could interact.",
       "importance_score": 8.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://www.canton.network/blog/what-is-cip-56-a-guide-to-cantons-token-standard",
+          "title": "What is CIP-56? A Guide to Canton’s Token Standard"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/CUSIP",
+          "title": "CUSIP - Wikipedia"
+        },
+        {
+          "url": "https://chainlaunch.dev/blog/what-is-hyperledger-besu",
+          "title": "What Is Hyperledger Besu? Enterprise Ethereum Guide (2026)"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:foresightnews:120656",
