@@ -7,19 +7,19 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "Claude reveals ECDSA curve origins",
-    "en": "Claude reveals ECDSA curve origins"
+    "zh": "Anthropic称Claude揭示NIST椭圆曲线种子参数来源",
+    "en": "Anthropic says Claude uncovered origin of NIST elliptic-curve seed parameters"
   },
   "current_state": {
-    "zh": "Anthropic research reports that Claude identified the NIST elliptic-curve seeds as outputs of the lrand48 PRNG seeded with a Unix timestamp, resolving the long-unknown origin of the P-192 through P-521 parameters.",
-    "en": "Anthropic research reports that Claude identified the NIST elliptic-curve seeds as outputs of the lrand48 PRNG seeded with a Unix timestamp, resolving the long-unknown origin of the P-192 through P-521 parameters."
+    "zh": "Anthropic披露，其Claude模型还原了NIST椭圆曲线种子参数可能的生成方式，为一个约25年历史的密码学透明度问题提供了新解释，同时未破解ECDSA，也未揭示新的曲线漏洞。",
+    "en": "Anthropic disclosed that its Claude model reconstructed how NIST elliptic-curve seed parameters were likely generated, offering a new explanation for a roughly 25-year-old cryptographic transparency question without breaking ECDSA or revealing a new curve vulnerability."
   },
   "first_seen_at": "2026-10-16T21:01:29.094846+00:00",
-  "last_updated_at": "2026-10-16T21:01:29.094846+00:00",
-  "last_material_change_at": "2026-10-16T21:01:29.094846+00:00",
+  "last_updated_at": "2026-10-17T05:31:24.238809+00:00",
+  "last_material_change_at": "2026-10-17T05:31:24.238809+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "claude",
     "ecdsa"
@@ -27,10 +27,12 @@
   "identifiers": [],
   "topics": [
     "ai-research",
+    "ai-security",
     "claude",
     "cryptography",
     "ecdsa",
-    "nist-curves"
+    "nist-curves",
+    "nist-elliptic-curves"
   ],
   "updates": [
     {
@@ -42,11 +44,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Claude reveals ECDSA curve origins",
+      "title_zh": "Claude揭示ECDSA曲线起源",
       "title_en": "Claude reveals ECDSA curve origins",
-      "what_changed_zh": "Anthropic research reports that Claude identified the NIST elliptic-curve seeds as outputs of the lrand48 PRNG seeded with a Unix timestamp, resolving the long-unknown origin of the P-192 through P-521 parameters.",
+      "what_changed_zh": "Anthropic研究称，Claude确认NIST椭圆曲线种子是以Unix时间戳为种子的lrand48伪随机数生成器的输出，解开了P-192至P-521参数长期未知的起源。",
       "what_changed_en": "Anthropic research reports that Claude identified the NIST elliptic-curve seeds as outputs of the lrand48 PRNG seeded with a Unix timestamp, resolving the long-unknown origin of the P-192 through P-521 parameters.",
-      "current_state_zh": "Anthropic research reports that Claude identified the NIST elliptic-curve seeds as outputs of the lrand48 PRNG seeded with a Unix timestamp, resolving the long-unknown origin of the P-192 through P-521 parameters.",
+      "current_state_zh": "Anthropic研究称，Claude确认NIST椭圆曲线种子是以Unix时间戳为种子的lrand48伪随机数生成器的输出，解开了P-192至P-521参数长期未知的起源。",
       "current_state_en": "Anthropic research reports that Claude identified the NIST elliptic-curve seeds as outputs of the lrand48 PRNG seeded with a Unix timestamp, resolving the long-unknown origin of the P-192 through P-521 parameters.",
       "detailed_summary_zh": "Anthropic research reports that Claude identified the NIST elliptic-curve seeds as outputs of the lrand48 PRNG seeded with a Unix timestamp, resolving the long-unknown origin of the P-192 through P-521 parameters.",
       "detailed_summary_en": "Anthropic research reports that Claude identified the NIST elliptic-curve seeds as outputs of the lrand48 PRNG seeded with a Unix timestamp, resolving the long-unknown origin of the P-192 through P-521 parameters.",
@@ -72,6 +74,44 @@
           "url": "https://www.anthropic.com/research/ecdsa-curve-origins",
           "label": "ahlCVA",
           "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_b369bf9780add196",
+      "event_id": "evt_a9ef27f88ab3e4fd",
+      "occurred_at": "2026-10-17T04:10:03Z",
+      "published_at": "2026-10-17T04:10:03Z",
+      "first_seen_at": "2026-10-17T05:31:24.238809Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Claude半小时破解25年密码学谜题，比特币为何没用这套曲线？",
+      "title_en": "Claude半小时破解25年密码学谜题，比特币为何没用这套曲线？",
+      "what_changed_zh": "Anthropic披露，其Claude模型还原了NIST椭圆曲线种子参数可能的生成方式，为一个约25年历史的密码学透明度问题提供了新解释，同时未破解ECDSA，也未揭示新的曲线漏洞。",
+      "what_changed_en": "Anthropic disclosed that its Claude model reconstructed how NIST elliptic-curve seed parameters were likely generated, offering a new explanation for a roughly 25-year-old cryptographic transparency question without breaking ECDSA or revealing a new curve vulnerability.",
+      "current_state_zh": "Anthropic披露，其Claude模型还原了NIST椭圆曲线种子参数可能的生成方式，为一个约25年历史的密码学透明度问题提供了新解释，同时未破解ECDSA，也未揭示新的曲线漏洞。",
+      "current_state_en": "Anthropic disclosed that its Claude model reconstructed how NIST elliptic-curve seed parameters were likely generated, offering a new explanation for a roughly 25-year-old cryptographic transparency question without breaking ECDSA or revealing a new curve vulnerability.",
+      "detailed_summary_zh": "Anthropic disclosed that its Claude model reconstructed how NIST elliptic-curve seed parameters were likely generated, offering a new explanation for a roughly 25-year-old cryptographic transparency question without breaking ECDSA or revealing a new curve vulnerability.",
+      "detailed_summary_en": "Anthropic disclosed that its Claude model reconstructed how NIST elliptic-curve seed parameters were likely generated, offering a new explanation for a roughly 25-year-old cryptographic transparency question without breaking ECDSA or revealing a new curve vulnerability.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:theblockbeats:200993"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/372332?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]
