@@ -3365,8 +3365,9 @@
       },
       "4e7791ef0f2b4d5344aa9c53253bc3a169ceda67b574a96d5ca3de31fd6e658c": {
         "attempted_at": "2026-10-17T21:45:49.168264+08:00",
+        "post_id": "378280150004238",
         "rank": 13,
-        "status": "pending",
+        "status": "sent",
         "text_hash": "b89dd9868a6281686643cf15ff97b6df6e1920ac026ba2226dcb1f2d86c5e1f1"
       },
       "668505cbfadc7861d028ec28b9313c8d70203af6085f02fe7b6f54414b9bd49b": {
@@ -3712,12 +3713,6 @@
     },
     "2026-10-17": {
       "jobs": [
-        {
-          "due_at": "2026-10-17T21:42:00+08:00",
-          "id": "4e7791ef0f2b4d5344aa9c53253bc3a169ceda67b574a96d5ca3de31fd6e658c",
-          "rank": 13,
-          "text": "Anthropic 称 Claude 将 NIST 曲线种子追溯至 1990 年代时间戳\n\nAnthropic 前沿红队（Frontier Red Team）报告称，Claude 将 NIST 椭圆曲线 P-192、P-224、P-256、P-384 和 P-521 的种子常量追溯至 C 语言库随机数生成器 lrand48() 的输出，并以 Unix 时间戳作为种子，而非标准所描述的“对任意短语做哈希”。据 Filippo Valsorda 的文章《The NIST Elliptic Curves Seeds Bounty Has Been Claimed》，该推导在不到半小时内被识别出来，且五个 NIST 素域曲线种子与另外五个来自 ANSI X9.62 标准的种子都符合 lrand48() >> 23 的模式。\n\n这一结果为自曲线发布以来密码学界一直质疑的“袖子里没有藏东西”（nothing up my sleeve）常量提供了具体且可独立验证的解释。但正如来源与评论者所指出的，它确认的是生成方法，而非这些参数是否被刻意挑选以具备某种隐藏属性。\n\nNIST 素域曲线于 2000 年随 FIPS 186-2 发布，按照 ANSI X9.62 的规定，其参数应通过对一个任意种子做 SHA-1 哈希生成。每个恢复出的 48 位 lrand48() 状态都能重新生成完整的 160 位种子，来源称这种吻合不可能是偶然；二进制曲线的种子 B-163 仍无法解释。\n\n来源：https://thedefiant.io/news/security/anthropic-says-claude-traced-nist-curve-seeds-to-1990s-timestamps\nxiyu.news · 2026-10-17 · https://xiyu.news"
-        },
         {
           "due_at": "2026-10-17T22:49:00+08:00",
           "id": "c7dfeeeb6dfb1916550c27a8b4f77f3b7baa83e8ef5781803e7af6b2ed9ab700",
