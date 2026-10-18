@@ -84,3 +84,6 @@
 {% if page.page_type == "source_console" %}
 <script src="{{ '/assets/js/source-console.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
 {% endif %}
+{% if site.cloudflare_web_analytics_token and site.cloudflare_web_analytics_token != "" and page.page_type != "source_console" %}
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": {{ site.cloudflare_web_analytics_token | jsonify }}}'></script>
+{% endif %}
