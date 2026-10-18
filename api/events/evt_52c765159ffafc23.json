@@ -44,20 +44,33 @@
       "material_change": true,
       "title_zh": "VAST开源实时世界模型EdenLive！单消费级显卡、720P超24FPS",
       "title_en": "VAST开源实时世界模型EdenLive！单消费级显卡、720P超24FPS",
-      "what_changed_zh": "VAST has open-sourced EdenLive, a real-time interactive world model that runs 720P at over 24 FPS on a single consumer-grade GPU.",
+      "what_changed_zh": "VAST 开源了实时交互世界模型 EdenLive，官方称其可在单张消费级显卡上以 720P 分辨率、超过 24FPS 的帧率运行。该发布以“让人人都能自由创造并体验可交互世界”为定位。\n\n在单张消费级显卡上以 720P、超过 24FPS 运行交互式世界模型，降低了开发者和创作者本地运行此类模型的硬件门槛，不再必须依赖服务器集群。\n\n720P 与 24FPS 以上的数据来自 VAST 自身的发布口径，此次发布未包含第三方独立基准测试结果。该模型以开源形式发布。",
       "what_changed_en": "VAST has open-sourced EdenLive, a real-time interactive world model that runs 720P at over 24 FPS on a single consumer-grade GPU.",
-      "current_state_zh": "VAST has open-sourced EdenLive, a real-time interactive world model that runs 720P at over 24 FPS on a single consumer-grade GPU.",
+      "current_state_zh": "VAST 开源了实时交互世界模型 EdenLive，官方称其可在单张消费级显卡上以 720P 分辨率、超过 24FPS 的帧率运行。该发布以“让人人都能自由创造并体验可交互世界”为定位。\n\n在单张消费级显卡上以 720P、超过 24FPS 运行交互式世界模型，降低了开发者和创作者本地运行此类模型的硬件门槛，不再必须依赖服务器集群。\n\n720P 与 24FPS 以上的数据来自 VAST 自身的发布口径，此次发布未包含第三方独立基准测试结果。该模型以开源形式发布。",
       "current_state_en": "VAST has open-sourced EdenLive, a real-time interactive world model that runs 720P at over 24 FPS on a single consumer-grade GPU.",
       "detailed_summary_zh": "VAST has open-sourced EdenLive, a real-time interactive world model that runs 720P at over 24 FPS on a single consumer-grade GPU.",
       "detailed_summary_en": "VAST has open-sourced EdenLive, a real-time interactive world model that runs 720P at over 24 FPS on a single consumer-grade GPU.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "交互式世界模型需要根据用户控制实时生成画面，同时尽量保持长时程一致性，这与一次性视频生成是不同的问题。该方向近期的公开工作包括微软基于《我的世界》构建的交互式世界模型 MineWorld，以及聚焦实时响应与长时程一致性的 WorldPlay2 论文。VAST 以 VAST-AI 名义在 Hugging Face 上发布模型。",
+      "background_en": "Interactive world models generate frames in response to user controls in real time while trying to keep long-horizon consistency, a distinct problem from one-off video generation. Recent public work in this area includes Microsoft's MineWorld, an interactive world model built on Minecraft, and the WorldPlay2 paper, which targets real-time responsiveness alongside long-horizon consistency. VAST publishes models under the VAST-AI organization on Hugging Face.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "对加密市场的传导路径是间接的：可在单张消费级显卡上运行的实时世界模型，与聚合消费级硬件的去中心化算力网络相关，也会影响更广泛的 AI 算力叙事情绪。VAST 此次发布本身不涉及代币或链上组件。",
+      "market_impact_en": "The transmission path to crypto markets is indirect: a real-time world model that fits on a single consumer-grade GPU is relevant to decentralized compute networks that aggregate consumer hardware, and to AI-compute sentiment more broadly. VAST's release itself carries no token or on-chain component.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://arxiv.org/abs/2609.35560",
+          "title": "[2609.35560] WorldPlay2: Extending Real-Time Interactive ..."
+        },
+        {
+          "url": "https://github.com/microsoft/mineworld",
+          "title": "A Real-time Interactive World Model on Minecraft - GitHub"
+        },
+        {
+          "url": "https://huggingface.co/spaces/VAST-AI/TripoSG",
+          "title": "TripoSG - a Hugging Face Space by VAST-AI"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "rss:www.qbitai.com_feed:3aec40f55862b6d1"

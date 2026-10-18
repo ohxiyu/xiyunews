@@ -1,451 +1,125 @@
 {
   "version": 1,
   "content_revision_version": 1,
-  "date": "2026-10-18",
-  "generated_at": "2026-10-17T23:30:13.263827Z",
+  "date": "2026-10-19",
+  "generated_at": "2026-10-18T23:29:28.167526Z",
   "site": "https://xiyu.news",
   "window": {
-    "start": "2026-10-16T23:00:00Z",
-    "end": "2026-10-17T23:00:00Z"
+    "start": "2026-10-17T23:00:00Z",
+    "end": "2026-10-18T23:00:00Z"
   },
   "stats": {
-    "candidates": 230,
+    "candidates": 247,
     "analyzed": 140,
-    "displayed": 14,
+    "displayed": 13,
     "high_priority": 0
   },
   "overview": {
-    "zh": "代币化资产正从试点走向主流金融基础设施，而发行方阻力与量子风险构成新的张力。 代币化基础设施：DTCC 代币化服务首批开放 25 种证券，底层 DTC 托管资产约 30 万亿美元，代币沿用相同 CUSIP。 机构抵押品：BNY 与 Citadel Securities 在一笔隔夜回购中使用代币化美国国债，将代币化资产带入短期融资抵押环节。 AI 密码学：Anthropic 称内部 Claude 研究模型在 30 分钟内追溯出五个 NSA 椭圆曲线种子的来源，外部密码学家复现代码核验。",
-    "en": "Tokenized assets are moving from pilots into core financial plumbing, even as issuer pushback and quantum risk sharpen. Tokenization rails：DTCC's service opens with 25 securities backed by roughly $30 trillion in DTC-custodied assets, with tokens keeping the same CUSIP. Institutional collateral：BNY and Citadel Securities used a tokenized Treasury in an overnight repo, placing tokenized assets in short-term funding collateral. AI cryptography：Anthropic said an internal Claude research model traced five NSA elliptic-curve seeds in under 30 minutes, a result external cryptographers reportedly replicated."
+    "zh": "加密与AI领域同日暴露信任缺口：硬件、代币化证券与AI融资均受制于外部信任环节 硬件供应链：彭博社调查称，以防黑客为卖点的加密硬件设备出厂即内置监控组件，问题出在设备内部而非外部攻击。 AI：Anthropic 表示将把 5% 的股份投入一个“公共利益基金 AI融资：CoreWeave高收益债收益率本周升至15%，高收益债市场平均收益率周三达8.41%，创18个月新高。",
+    "en": "Crypto and AI both hit trust gaps in hardware, tokenized equities and AI debt financing on the same day Hardware supply chain：Bloomberg reported that crypto devices marketed as hack-resistant shipped with embedded surveillance components, a problem inside the devices rather than an external attack. AI：Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’ AI financing：CoreWeave's high-yield bond yields rose to 15% this week, while the broader high-yield average reached 8.41% on Wednesday, an 18-month high."
   },
   "market": {
-    "btc_usd": 81211.0,
-    "btc_change_24h": -0.4451373622266581,
-    "eth_usd": 2391.67,
-    "eth_change_24h": -1.2069903827539152,
-    "fear_greed": 55,
-    "fear_greed_label": "Greed"
+    "btc_usd": 81905.0,
+    "btc_change_24h": 0.8507020832724153,
+    "eth_usd": 2403.81,
+    "eth_change_24h": 0.4698735376550928,
+    "fear_greed": 53,
+    "fear_greed_label": "Neutral"
   },
   "items": [
     {
       "rank": 1,
-      "url": "https://foresightnews.pro/news/h5Detail/115404",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-18/the-crypto-devices-built-to-foil-hackers-came-with-spies-inside",
       "title": {
-        "zh": "【DTCC 代币化服务首批支持 25 种证券，底层资产规模约 30 万亿美元】",
-        "en": "DTCC's tokenization service launches with 25 securities, backed by roughly $30 trillion in underlying assets"
+        "zh": "为防黑客而生的加密设备，内部却藏着间谍组件",
+        "en": "The Crypto Devices Built to Foil Hackers Came With Spies Inside"
       },
       "summary": {
-        "zh": "据 DTCC 公布的代币化服务资料，该服务首批开放 25 种可代币化证券，底层为 DTC 托管的证券，规模约 30 万亿美元。代币与原证券保持 1:1 对应并使用相同 CUSIP，可在 DTC 注册钱包之间进行 24/7 点对点转账，且带有合规转让限制，官方账簿记录仍由 DTC 保管。\n\n由于代币沿用相同的 CUSIP，其权利与投资者保护与簿记证券一致，因此一部分 DTC 托管资产（包括美国国债的派息与到期服务）开始在链上运行，而 DTC 仍保留官方账簿记录的角色。\n\n首批支持的资产包括罗素 1000 成分股（从部分大盘股开始）、部分 ETF 和美国国债；美国国债的派息和到期服务将在链上进行，款项以法币支付至参与者的传统账户。首批上线网络为 Canton Network（CIP-56）和 DTCC 私有 Besu 网络（ERC-20），Stellar（SEP-41）与 Circle 的 Arc（ERC-20）预计于 2027 年接入。",
-        "en": "According to materials published by DTCC, its tokenization service has opened with 25 tokenizable securities whose underlying DTC-custodied assets total roughly $30 trillion. The tokens correspond 1:1 to the original securities, carry the same CUSIP, and can be transferred peer-to-peer 24/7 between registered DTC wallets subject to compliance transfer restrictions, while DTC remains the official book of record.\n\nBecause the tokens keep the same CUSIP and the same rights and investor protections as book-entry securities, a slice of DTC-custodied assets — including Treasury coupon and maturity servicing — now runs on blockchain rails without DTC ceding its role as the official record keeper.\n\nThe first supported assets are Russell 1000 constituents (starting with some large-cap stocks), selected ETFs and U.S. Treasuries; Treasury interest and maturity servicing will occur on-chain, with payments made in fiat to participants' traditional accounts. Initial networks are Canton Network (CIP-56) and DTCC's private Besu network (ERC-20), with Stellar (SEP-41) and Circle's Arc (ERC-20) expected to connect in 2027."
+        "zh": "彭博社于2026年10月18日发布调查报道，称一些以“防黑客”为卖点的加密硬件设备在出厂时就被植入了监控/间谍组件。报道指出，问题源自设备内部，而非外部攻击所致。\n\n硬件钱包的核心卖点在于私钥被隔离在专用设备之内，而内置监控组件直接动摇了受影响产品赖以成立的前提。这一发现使关注点从单纯的软件漏洞转向设备制造与分销环节。\n\n报道将此事定性为供应链与隐私问题，而非协议层面的漏洞利用，目前也没有已确认的用户资金损失。",
+        "en": "Bloomberg published an investigation on October 18, 2026 reporting that crypto hardware devices marketed as resistant to hacking shipped with embedded surveillance or spy components. The report describes the problem as originating inside the devices themselves rather than from an external attack.\n\nHardware wallets are sold on the premise that private keys stay isolated inside a dedicated device; embedded surveillance components undercut that premise for the affected products. The finding shifts scrutiny to device manufacturing and distribution rather than to software vulnerabilities alone.\n\nThe reporting frames the issue as a supply-chain and privacy problem rather than a protocol exploit, and no confirmed loss of user funds has been reported."
       },
       "content_revision": {
-        "zh": "1ef8f2a5293ee6b463cc28fb2f9578d074696e022b0cdfc3667d124610aa609a",
-        "en": "462ec289ecc0ca7136211b7c526232c46467a42d87be274cfcdde4f90bf2be61"
+        "zh": "92c47f344be207ca017780e75977accf95d0d5fc4f52d5d7174ccf4d36e17b39",
+        "en": "83da7dc8663f36c56275d36b40da40b02f0bec7dbe8e4be62fd22f391bda4bd4"
       },
-      "score": 8.5,
-      "category": "crypto-markets",
+      "score": 8.0,
+      "category": "crypto-protocols",
       "top_category": "crypto",
       "source": {
-        "type": "telegram",
-        "label": "foresightnews"
+        "type": "google_news",
+        "label": "Bloomberg.com"
       },
       "tags": [
-        "DTCC",
-        "tokenization",
-        "RWA",
-        "CUSIP",
-        "Canton Network",
-        "Hyperledger Besu"
+        "hardware-wallets",
+        "supply-chain-security",
+        "surveillance",
+        "privacy",
+        "crypto-security"
       ],
-      "sources_count": 2,
+      "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "t9ca105f220",
+        "id": "t87b151a8fc",
         "day": 1,
-        "url": "https://xiyu.news/threads/t9ca105f220/"
+        "url": "https://xiyu.news/threads/t87b151a8fc/"
       },
-      "event": {
-        "event_id": "evt_cc7b0e1f4c63428c",
-        "update_id": "upd_a24927baca5f2c1f",
-        "url": "https://xiyu.news/events/evt_cc7b0e1f4c63428c/#upd_a24927baca5f2c1f",
-        "json": "https://xiyu.news/api/events/evt_cc7b0e1f4c63428c.json"
-      }
+      "event": null
     },
     {
       "rank": 2,
-      "url": "https://cryptoslate.com/visa-and-mastercard-adopt-usdc-payouts-across-200-countries/",
+      "url": "https://finance.biggo.com/news/ad7c8cd9-10ba-4ab2-b819-77109191c2ef",
       "title": {
-        "zh": "Visa 和 Mastercard 在 200 个国家启用 USDC 支付",
-        "en": "Visa and Mastercard adopt USDC payouts across 200 countries"
+        "zh": "九家美国发行方阻止其股票在 OKXICE 代币平台上交易",
+        "en": "Nine U.S. Issuers Block Their Shares From Trading on OKXICE Token Platform"
       },
       "summary": {
-        "zh": "据 CryptoSlate 报道，Visa 和 Mastercard 正在约 200 个国家启用 USDC 支付，通过全球最大的两家卡组织扩展稳定币结算。按报道所述，这意味着付款可以经由 Circle 发行的美元锚定稳定币通道完成，而不再仅依赖传统的代理行汇款网络。\n\n若 USDC 结算真正接入 Visa 和 Mastercard，稳定币将从加密原生场景进入商户与金融机构广泛使用的主流支付基础设施。检索到的资料显示，卡组织已在并行测试多种稳定币用于结算，这实际上是一场围绕“哪类美元代币能占据结算通道”的竞争。\n\n报道将该举措描述为覆盖约 200 个国家的支付扩展。检索资料提到，Mastercard 于 2026 年 6 月将稳定币结算支持范围扩大至 USDC、PYUSD、RLUSD 和 SoFiUSD，且 SoFi 成为首个在大型卡网络上线的银行发行稳定币。",
-        "en": "Visa and Mastercard are enabling USDC payouts across roughly 200 countries, extending stablecoin settlement through the two largest global card networks, according to CryptoSlate. The reported rollout would let payouts be routed in the dollar-pegged stablecoin issued by Circle rather than solely through traditional correspondent banking rails.\n\nStablecoin settlement through Visa and Mastercard would move USDC from crypto-native venues into mainstream payment infrastructure used by merchants and financial institutions. Search context indicates card networks are already testing multiple stablecoins side by side for settlement, making this a live contest over which dollar tokens sit on those rails.\n\nThe report frames the move as a payout expansion spanning about 200 countries. Search excerpts note that Mastercard expanded its stablecoin settlement support in June 2026 to include USDC, PYUSD, RLUSD and SoFiUSD, and that SoFi became the first bank-issued stablecoin to go live on a major card network."
+        "zh": "九家美国发行方已采取行动，阻止其股票在 OKXICE 的代币平台上交易，从而限制该平台的代币化股票交易。此举涉及该平台计划提供的多只与美国上市公司挂钩的代币化股票工具。\n\n这一动向表明代币化证券交易场所面临法律与运营风险，因为发行方是否同意，可能决定某家公司的代币化股票能否继续在平台上交易。\n\nOKXICE 是 OKX 与 ICE 合作的代币化股票项目，已向美国证券交易委员会（SEC）提交申请，拟在该机构的“创新豁免”机制下提供 60 多家美国上市公司的代币化股票，其中一篇报道提到 63 家纽交所上市公司。",
+        "en": "Nine U.S. issuers have moved to block their shares from trading on OKXICE's token platform, restricting tokenized equity trading on the venue. The action targets multiple tokenized equity instruments tied to U.S.-listed companies that the platform intended to offer.\n\nThe move signals legal and operational risk for tokenized securities venues, as issuer consent can determine whether tokenized shares of a given company remain tradable on a platform.\n\nOKXICE is the OKX–ICE tokenized stock venture that filed with the SEC to offer tokenized shares in more than 60 U.S.-listed companies, with one report citing 63 NYSE-listed names, under the agency's Innovation Exemption."
       },
       "content_revision": {
-        "zh": "e5378055a64abf0c674ee54f61508d14919b29f8cb0a8f6a6f345fa7173f005c",
-        "en": "b2f2afe9328763d5d9171444f09d7746a2f7a40105530e9bef743d0b324439c4"
-      },
-      "score": 8.0,
-      "category": "crypto-markets",
-      "top_category": "crypto",
-      "source": {
-        "type": "google_news",
-        "label": "CryptoSlate"
-      },
-      "tags": [
-        "USDC",
-        "Visa",
-        "Mastercard",
-        "stablecoins",
-        "payments",
-        "Circle"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "te41cf1c197",
-        "day": 3,
-        "url": "https://xiyu.news/threads/te41cf1c197/"
-      },
-      "event": null
-    },
-    {
-      "rank": 3,
-      "url": "https://thedefiant.io/converge/tradfi-and-fintech/bny-and-citadel-securities-use-tokenized-treasury-in-overnight-repo",
-      "title": {
-        "zh": "BNY与Citadel Securities在隔夜回购交易中使用代币化美国国债",
-        "en": "BNY and Citadel Securities Use Tokenized Treasury in Overnight Repo"
-      },
-      "summary": {
-        "zh": "据The Defiant报道，纽约梅隆银行（BNY）与做市商Citadel Securities完成了一笔隔夜回购协议交易，其中使用了代币化美国国债。此举将区块链形式的政府债务工具放入核心的机构短期融资交易之中，而非停留在孤立的代币化试点层面。\n\n隔夜回购是机构以美国国债为抵押进行资金拆借的基础通道，代币化国债在此类交易中的使用，意味着代币化现实世界资产正从投资产品向抵押品与结算功能延伸。\n\n该交易的结构为隔夜回购，即卖出证券并于次日回購的短期有担保贷款。参与方一方是大型托管银行BNY，另一方是美国国债市场最大的中介机构之一Citadel Securities。",
-        "en": "BNY (Bank of New York Mellon) and market maker Citadel Securities executed an overnight repurchase agreement in which a tokenized Treasury was used, according to The Defiant. The transaction places a blockchain-represented government debt instrument inside a core short-term institutional funding trade rather than in a standalone tokenization pilot.\n\nOvernight repo is the plumbing through which institutions borrow and lend cash against Treasuries, so using a tokenized Treasury there signals tokenized real-world assets edging from investment products into collateral and settlement functions.\n\nThe trade was structured as an overnight repo, a short-term secured loan in which securities are sold and repurchased the next day. It involved BNY, a major custodian bank, and Citadel Securities, one of the largest Treasury market intermediaries."
-      },
-      "content_revision": {
-        "zh": "559cf8289b2011a25e912b9ca55e3b9ca29be82601de1ee4b60666fa16ded519",
-        "en": "07941515412ca6c945559e939f820c54632041126dc0d1f6ef79b8bd1db32884"
-      },
-      "score": 8.0,
-      "category": "crypto-markets",
-      "top_category": "crypto",
-      "source": {
-        "type": "google_news",
-        "label": "The Defiant"
-      },
-      "tags": [
-        "tokenized-treasuries",
-        "repo-market",
-        "BNY",
-        "Citadel Securities",
-        "institutional-adoption",
-        "blockchain-settlement"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "t8681ed7f45",
-        "day": 2,
-        "url": "https://xiyu.news/threads/t8681ed7f45/"
-      },
-      "event": null
-    },
-    {
-      "rank": 4,
-      "url": "https://www.theblock.co/news/markets/2026-10-17-coreweave-broadcom-verizon-among-nine-companies-objecting-to-tokenized-trading-of-their-shares-on-okxice-418859?utm_source=tradingview&utm_medium=rss",
-      "title": {
-        "zh": "CoreWeave、博通、Verizon等九家公司反对OKXICE对其股票进行代币化交易",
-        "en": "CoreWeave, Broadcom, Verizon among nine companies objecting to tokenized trading of their shares on OKXICE"
-      },
-      "summary": {
-        "zh": "据The Block于2026年10月17日报道，包括CoreWeave、博通（Broadcom）和Verizon在内的九家公司对OKXICE促使其股票进行代币化交易表示反对。这些反对意见给代币化股票带来了法律与市场结构方面的问题。\n\n据报道，这些反对意见给代币化股票带来法律与市场结构层面的问题，上市发行方正抵制第三方提供其股票代币版本的做法。\n\nOKXICE是加密货币交易所OKX与洲际交易所（ICE）成立的合资公司，于2026年10月5日向美国证券交易委员会（SEC）提交申请，拟推出代币化证券平台。其通知涵盖60余家目前在美国证券交易所上市的公司。",
-        "en": "Nine companies, including CoreWeave, Broadcom and Verizon, have objected to OKXICE facilitating tokenized trading of their shares, The Block reported on Oct 17, 2026. The objections raise legal and market-structure questions for tokenized equities.\n\nAccording to the report, the objections raise legal and market-structure questions for tokenized equities, as listed issuers push back against third parties offering token versions of their shares.\n\nOKXICE is the joint venture between crypto exchange OKX and Intercontinental Exchange (ICE) that filed with the SEC on Oct 5, 2026 to launch a tokenized securities platform. Its notice covered more than 60 companies currently listed on US stock exchanges."
-      },
-      "content_revision": {
-        "zh": "3bf60472da1f0311c3379bf527db57eabcb1e37483569676198743ff5496eb49",
-        "en": "4d8a9d2d757448c75a85fbafaae9da00e729dfff1d21098c8a1d6e72595bc47b"
+        "zh": "61127fcc4b86e9724637c4d09a261efd62f2788461a909babb1b5e48c493a07d",
+        "en": "79827c55a08b77b6f25f09b06c9ec40aa7c0dfc218f645076a28dfbb453bf5cb"
       },
       "score": 7.5,
-      "category": "crypto-markets",
+      "category": "exchange-operations",
       "top_category": "crypto",
       "source": {
         "type": "google_news",
-        "label": "The Block"
+        "label": "BigGo Finance"
       },
       "tags": [
-        "tokenized equities",
-        "OKXICE",
-        "CoreWeave",
-        "Broadcom",
-        "Verizon",
-        "SEC filing"
+        "tokenized securities",
+        "OKX",
+        "ICE",
+        "trading restrictions",
+        "U.S. issuers",
+        "SEC"
       ],
       "sources_count": 1,
       "editorial": false,
       "thread": {
         "id": "t46c3091a7e",
-        "day": 1,
+        "day": 2,
         "url": "https://xiyu.news/threads/t46c3091a7e/"
       },
       "event": null
     },
     {
-      "rank": 5,
-      "url": "https://thedefiant.io/converge/markets/strategy-slides-9-6-after-msci-decision-outpacing-bitcoin-s-drop",
+      "rank": 3,
+      "url": "https://m.theblockbeats.info/flash/372444?from=telegram",
       "title": {
-        "zh": "Strategy 在 MSCI 决定后下跌 9.6%，跌幅超过比特币",
-        "en": "Strategy Slides 9.6% After MSCI Decision, Outpacing Bitcoin’s Drop"
+        "zh": "⚡️Qubic披露安全事件：约2.94万亿枚QU被盗，涉及1404个Qubic钱包",
+        "en": "⚡️Qubic Discloses Security Incident: Roughly 2.94 Trillion QU Stolen From 1,404 Qubic Wallets"
       },
       "summary": {
-        "zh": "在 MSCI 作出决定后，Strategy 股价下跌 9.6%，跌幅超过同期比特币的下跌幅度。这一跌幅也大于该公司资产负债表上核心资产的表现。\n\n股价跌幅与比特币跌幅之间的差距，凸显出该股票对指数处理方式的敏感度，这一因素独立于其持有的比特币价格本身。\n\nStrategy 是最大的企业比特币持有者，其股票被广泛视为加密概念股的代理标的。此次跌幅超过比特币本身的跌幅，并非简单跟随。",
-        "en": "Strategy's shares fell 9.6% following an MSCI decision, a drop larger than bitcoin's decline over the same period. The move outpaced the underlying asset that dominates the company's balance sheet.\n\nThe gap between the share move and bitcoin's decline points to the stock's sensitivity to index treatment, a factor separate from the price of the bitcoin it holds.\n\nStrategy is the largest corporate holder of bitcoin, and its equity is widely treated as a crypto-equity proxy. The decline exceeded bitcoin's own move rather than simply mirroring it."
+        "zh": "Qubic 公告披露，在 10 月 17 日 23:42 至 10 月 18 日 01:26（UTC）期间，攻击者利用部分钱包 Seed 随机性不足的问题，访问并转走了 1404 个 Qubic 钱包中约 2.94 万亿枚 QU。网络已在 tick 85,371,949 处暂停，Seed 生成问题已在 4.26.4 版本中修复。\n\nQubic 表示，问题出在 Seed 生成机制，而非 Qubic 协议本身；87.1% 的被盗资金仍停留在 Qubic 网络上并已被冻结，其余 12.9% 已转入 MEXC，相关接收账户也已被冻结。\n\nQubic 列出的受影响 Seed 包括：10 月 18 日前在 iPhone 或 iPad 任意浏览器中创建的 Seed、同日前在 Mac Safari 中创建的 Seed，以及 2025 年 7 月前通过 Qubic iOS App 创建的 Seed。后续处置将由 Computor quorum 按网络规则决定，完整技术报告将在资金恢复方案确定后发布；The Defiant 报道称此次被盗金额约合 130 万美元。",
+        "en": "Qubic disclosed that between 23:42 UTC on Oct. 17 and 01:26 UTC on Oct. 18, an attacker exploited insufficient randomness in some wallets' Seed generation to access and transfer about 2.94 trillion QU from 1,404 Qubic wallets. The network was halted at tick 85,371,949, and the seed-generation flaw was fixed in version 4.26.4.\n\nQubic said the problem lies in the Seed generation mechanism rather than the Qubic protocol itself, and that 87.1% of the stolen funds remain on the Qubic network and have been frozen, while the remaining 12.9% sent to MEXC has also been frozen in the receiving accounts.\n\nQubic listed the affected seeds as those created in any browser on iPhone or iPad before Oct. 18, those created in Safari on Mac before the same date, and those created through the Qubic iOS app before July 2025. Follow-up handling will be decided by the Computor quorum under network rules, with a full technical report to be published once a fund-recovery plan is set; The Defiant reported the drain as worth about $1.3 million."
       },
       "content_revision": {
-        "zh": "5e1e21acb202e70b014ef86f34a8080091cf2bc8c5083732765c2db19b0ab109",
-        "en": "5216aa18dcb27bdbb1139bf759547a4f47d1bdc6551c2bd006615862a53f15d2"
+        "zh": "d7aa159f4089e8d8a6dff0a459a83ee3fa25cd3d926879e3a395ad3ddfd57165",
+        "en": "29d6f3091e42ba4ecf169b10854a09d6ee151a50a37a9490612bc201452c9e83"
       },
       "score": 7.5,
-      "category": "crypto-markets",
-      "top_category": "crypto",
-      "source": {
-        "type": "google_news",
-        "label": "The Defiant"
-      },
-      "tags": [
-        "Strategy",
-        "MSCI",
-        "Bitcoin",
-        "equities",
-        "index inclusion"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "t4cb37a541f",
-        "day": 6,
-        "url": "https://xiyu.news/threads/t4cb37a541f/"
-      },
-      "event": null
-    },
-    {
-      "rank": 6,
-      "url": "https://www.coindesk.com/tech/2026/10/17/wow-it-s-a-real-discovery-claude-cracks-a-25-year-nsa-number-mystery",
-      "title": {
-        "zh": "“哇，这是一项真正的发现”：Claude 破解了困扰 25 年的 NSA 数字之谜",
-        "en": "‘Wow, it’s a real discovery’: Claude cracks a 25-year NSA number mystery"
-      },
-      "summary": {
-        "zh": "据报道，Anthropic 表示其内部一款 Claude 研究模型在不到 30 分钟内追溯出五个由 NSA 提供的椭圆曲线种子的来源，解决了一个悬置约 25 年的密码学问题。这些种子被追溯到一段旧的计算机程序以及 1997 至 1998 年的 Unix 时间戳。\n\n这些种子来源不明，长期引发外界怀疑：这套标准化曲线参数中或许藏有被人为植入的弱点。报道称，追溯结果显示其源自标准的随机数生成方式，而外部密码学家据称已通过复现代码对这一结果进行了核验。\n\n报道称，这项工作由 Anthropic 内部的一款研究模型完成，而非公开发布的产品。The Crypto Times 的另一篇报道还称 Claude 将量子电路的门数量削减了 17 倍，但现有材料未对该说法给出细节。",
-        "en": "Anthropic said an internal Claude research model traced the origins of five NSA-supplied elliptic-curve seeds in under 30 minutes, resolving a cryptography question that had stayed open for roughly 25 years, according to reports. The seeds were traced to an old computer program and to Unix timestamps dating from 1997–98.\n\nThe seeds' unexplained provenance had long fed suspicion that the standardized curve parameters might conceal a deliberately planted weakness. Reports said the traced origin points to standard random-number generation, a finding that external cryptographers reportedly checked by replicating the code.\n\nReports said the work was carried out by an internal Anthropic research model rather than a publicly released product. Separate coverage by The Crypto Times also credited Claude with cutting quantum circuit gate counts 17-fold, a claim not detailed in the available material."
-      },
-      "content_revision": {
-        "zh": "1f0acb751de7383feca51d9ce065dec2d38572f54184ba93e0a1c991556092fe",
-        "en": "e35bb6d3539c146e774330c06b20eafa65a313f4da5b637ad2a03889bfdccd41"
-      },
-      "score": 7.5,
-      "category": "ai-labs",
-      "top_category": "technology",
-      "source": {
-        "type": "rss",
-        "label": "CoinDesk"
-      },
-      "tags": [
-        "Claude",
-        "Anthropic",
-        "cryptography",
-        "elliptic curves",
-        "NSA",
-        "AI research"
-      ],
-      "sources_count": 3,
-      "editorial": false,
-      "thread": {
-        "id": "te50f2d2415",
-        "day": 1,
-        "url": "https://xiyu.news/threads/te50f2d2415/"
-      },
-      "event": {
-        "event_id": "evt_a9ef27f88ab3e4fd",
-        "update_id": "upd_cd3034d42187c84a",
-        "url": "https://xiyu.news/events/evt_a9ef27f88ab3e4fd/#upd_cd3034d42187c84a",
-        "json": "https://xiyu.news/api/events/evt_a9ef27f88ab3e4fd.json"
-      }
-    },
-    {
-      "rank": 7,
-      "url": "https://m.theblockbeats.info/flash/372343?from=telegram",
-      "title": {
-        "zh": "谷歌4个Gemini 4 Argon通关《我的世界》：27小时死605次，花费约520美元",
-        "en": "Google's 4 Gemini 4 Argon Agents Beat Minecraft: 27 Hours, 605 Deaths, About $520"
-      },
-      "summary": {
-        "zh": "Google DeepMind 让 4 个 Gemini 4 Argon 编程 Agent 进入随机生成的《我的世界》生存世界，只给它们一个目标：击败末影龙。研究者没有预设分工，也没有编写专用游戏脚本；4 个 Agent 通过开源库 Mineflayer 自行编写并执行了 2783 段 JavaScript 程序，在 27 小时 14 分钟后打败末影龙，累计死亡 605 次。\n\n这一实验所强调的进展在于：通用编程 Agent 能够自行规划、编写代码并协作，而今年 9 月完成类似任务的 Claude Opus 5 社区项目依赖 37 个预先开发的游戏工具。\n\n仅最后一关的末影龙就耗费近 14 小时、死亡 69 次；Agent 发现塔顶水晶会不断给龙回血后，用泥土垫高自己，逐个打掉 10 个水晶。整个实验约 22% 的程序执行报错，通关前调用模型约 2.4 万次，处理 13.5 亿输入 Token，其中 91% 命中缓存；按促销 API 标价估算成本约 520 美元，标准价则约 1040 美元。",
-        "en": "Google DeepMind placed four Gemini 4 Argon coding agents into a randomly generated Minecraft survival world with a single high-level goal: defeat the Ender Dragon. With no preset division of labor and no game-specific scripts, the agents wrote and executed 2,783 JavaScript programs through the open-source Mineflayer library and killed the dragon after 27 hours and 14 minutes, having died 605 times.\n\nThe reported advance is that general-purpose coding agents planned, wrote code and coordinated on their own, unlike a September Claude Opus 5 community project that completed a similar task while relying on 37 pre-developed game tools.\n\nThe final Ender Dragon stage alone took nearly 14 hours and 69 deaths; the agents found that the tower crystals kept healing the dragon and used dirt to pillar up and destroy all 10 crystals. About 22% of program executions returned errors, and the run involved roughly 24,000 model calls and 1.35 billion input tokens, 91% of them cache hits, for an estimated cost of about $520 at Gemini 4 Argon's promotional API pricing versus about $1,040 at standard pricing."
-      },
-      "content_revision": {
-        "zh": "e8532ded8afabaf302e1bdf966e4a4f50153d8f3c184ea2a03933f00c9bc4b10",
-        "en": "42a904cfa260704b375595e7c4acb27303ca4ed70366dc52264d7b160094b23b"
-      },
-      "score": 7.5,
-      "category": "ai-labs",
-      "top_category": "technology",
-      "source": {
-        "type": "telegram",
-        "label": "theblockbeats"
-      },
-      "tags": [
-        "ai-agents",
-        "google-deepmind",
-        "gemini-4-argon",
-        "multi-agent-systems",
-        "minecraft",
-        "mineflayer"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "t3dee4ea3e8",
-        "day": 1,
-        "url": "https://xiyu.news/threads/t3dee4ea3e8/"
-      },
-      "event": {
-        "event_id": "evt_48dd263d7b649072",
-        "update_id": "upd_ddc1081ede1b81a4",
-        "url": "https://xiyu.news/events/evt_48dd263d7b649072/#upd_ddc1081ede1b81a4",
-        "json": "https://xiyu.news/api/events/evt_48dd263d7b649072.json"
-      }
-    },
-    {
-      "rank": 8,
-      "url": "https://finance.yahoo.com/markets/crypto/articles/coinbase-global-coin-wins-sec-211032219.html",
-      "title": {
-        "zh": "Coinbase Global（COIN）二元期权获SEC放行，并警示比特币量子风险",
-        "en": "Coinbase Global (COIN) Wins SEC Backing For Binaries And Flags Bitcoin Quantum Risk"
-      },
-      "summary": {
-        "zh": "美国证券交易委员会（SEC）批准了一项证券交易所规则变更，允许上市标准化二元期权——当特定公司业绩条件达成时支付预定现金金额，标的指标包括Coinbase交易量、MARA的比特币产量以及Robinhood的相关指标。Coinbase方面则另行警示了量子计算对比特币构成的潜在风险。\n\n这一批准为美国证券交易所提供了依据现行规则上市“事件驱动型”合约的路径，其标的为加密相关公司的经营指标，意味着受监管衍生品的覆盖范围从现货代币扩展到数字资产企业的业务表现。\n\n这些合约是依据现有证券交易所规则获批的，而非通过一套新的加密专门框架。同一篇报道还提到，Coinbase正与Evernorth合作，在2026年转向对一笔规模可观的XRP储备进行主动管理。",
-        "en": "The SEC approved a securities-exchange rule change allowing standardized binary options that pay a predetermined cash amount when a specified company performance condition is met, covering metrics such as Coinbase trading volume, MARA's Bitcoin production and Robinhood indicators. Coinbase separately flagged quantum-computing risk to Bitcoin.\n\nThe approval gives US securities exchanges a rule-based path to list event-driven contracts tied to crypto-company operating metrics, extending regulated derivatives access around digital-asset firms rather than only spot tokens.\n\nThe contracts were cleared under existing securities-exchange rules rather than through a new crypto-specific framework. The same report notes Coinbase is working with Evernorth as it shifts to active management of a sizeable XRP treasury in 2026."
-      },
-      "content_revision": {
-        "zh": "230e612d5159d27046997673a21cf7d4e3db30a1d9c5a6cb674d4602124c77b6",
-        "en": "18b3e5b81c356c7f62e33a14f486e56f1d356c9a075fb58fd03d3c87e74d3a6d"
-      },
-      "score": 7.5,
-      "category": "crypto-regulation",
-      "top_category": "policy",
-      "source": {
-        "type": "google_news",
-        "label": "Yahoo Finance"
-      },
-      "tags": [
-        "Coinbase",
-        "SEC",
-        "binary options",
-        "Bitcoin quantum risk",
-        "MARA",
-        "crypto regulation"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "te4ece4ff57",
-        "day": 2,
-        "url": "https://xiyu.news/threads/te4ece4ff57/"
-      },
-      "event": null
-    },
-    {
-      "rank": 9,
-      "url": "https://www.theblock.co/news/regulation/2026-10-17-turkey-confirms-hex-founder-richard-hearts-arrest-says-police-seized-7-15-million-and-six-cold-wallets-418852",
-      "title": {
-        "zh": "土耳其证实 Hex 创始人 Richard Heart 被捕，称警方查获 715 万美元及六个冷钱包",
-        "en": "Turkey confirms Hex founder Richard Heart's arrest, says police seized $7.15 million and six cold wallets"
-      },
-      "summary": {
-        "zh": "土耳其当局证实 Hex 创始人 Richard Heart（法定姓名 Richard James Schueler）已被逮捕，并称警方在其案件中查获 715 万美元资金及六个冷钱包。这是土耳其官方首次公开、正式确认对其采取的拘押行动。\n\n这一确认把此前仅有媒体报道的拘押升级为官方承认的执法行动，也使 Hex、PulseChain 与 PulseX 创始人面临的法律压力从美国扩展到第二个国家司法辖区。\n\n当局明确查获金额为 715 万美元，并表示作为案件的一部分扣押了六个冷钱包。Heart 是 Hex 的创建者，也是 PulseChain 和 PulseX 的创始人。",
-        "en": "Turkish authorities confirmed the arrest of Hex founder Richard Heart — legally named Richard James Schueler — and said police seized $7.15 million along with six cold wallets as part of the case against him. The disclosure marks an official, on-the-record confirmation of the detention by Turkish officials.\n\nThe confirmation turns a previously reported detention into an officially acknowledged law-enforcement action, adding a second national jurisdiction to the legal pressure on the founder of Hex, PulseChain and PulseX.\n\nAuthorities specified the amount seized as $7.15 million and said six cold wallets were taken as part of the case. Heart is the creator of Hex and the founder of PulseChain and PulseX."
-      },
-      "content_revision": {
-        "zh": "127d0b980e43cc5edd9de518d4e1502e8bc5ccfb8e22d4c84920fd5b6670743a",
-        "en": "6bf293d283dc7953fc7fe5fe1392a7f7f53965d70643a291e28a3958b60dd125"
-      },
-      "score": 7.5,
-      "category": "crypto-regulation",
-      "top_category": "policy",
-      "source": {
-        "type": "google_news",
-        "label": "The Block"
-      },
-      "tags": [
-        "richard-heart",
-        "hex",
-        "pulsechain",
-        "turkey",
-        "asset-seizure",
-        "enforcement"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "t8c08703c7c",
-        "day": 1,
-        "url": "https://xiyu.news/threads/t8c08703c7c/"
-      },
-      "event": null
-    },
-    {
-      "rank": 10,
-      "url": "https://cryptoslate.com/binance-will-shut-its-mining-pool-on-nov-10-giving-miners-a-deadline-to-move/",
-      "title": {
-        "zh": "币安矿池将于11月10日关闭，记录访问权限两周后终止",
-        "en": "Binance Pool shuts on November 10, with record access ending two weeks later"
-      },
-      "summary": {
-        "zh": "币安旗下的比特币矿池服务 Binance Pool 将于11月10日关闭，矿工访问自身记录的权限将在关闭两周后终止，用户需在此期限前完成迁移。\n\n将算力接入 Binance Pool 的矿工必须在11月10日关闭前迁移至其他矿池，而后续的记录访问截止意味着收益与结算数据需在该窗口内导出。\n\n此处涉及两个不同的截止时间：矿池本身于11月10日停止运营，而记录访问权限在此之后仍保留两周，随后终止。",
-        "en": "Binance Pool, the exchange's Bitcoin mining pool service, will shut down on November 10, and miners' access to their records will end two weeks after that date, giving users a deadline to move their operations elsewhere.\n\nMiners who direct hashrate to Binance Pool must migrate to another pool before the November 10 shutdown, and the later record-access cutoff means payout and earnings data must be exported within that window.\n\nTwo separate deadlines apply: the pool itself stops operating on November 10, while access to records continues for two more weeks before ending."
-      },
-      "content_revision": {
-        "zh": "a44c96dbe0af6cce8c71263eaf50cb48dcdb01101fad554f50fd6b5cb45d8ae9",
-        "en": "1828c4bc46b341b958ab6a6d59d6727f6f8b8188e89c92242b11c40c56d7b1cd"
-      },
-      "score": 7.0,
-      "category": "exchange-operations",
-      "top_category": "crypto",
-      "source": {
-        "type": "google_news",
-        "label": "CryptoSlate"
-      },
-      "tags": [
-        "Binance Pool",
-        "mining",
-        "exchange operations",
-        "service shutdown",
-        "miners"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "t94bb9d764d",
-        "day": 2,
-        "url": "https://xiyu.news/threads/t94bb9d764d/"
-      },
-      "event": null
-    },
-    {
-      "rank": 11,
-      "url": "https://m.theblockbeats.info/flash/372324?from=telegram",
-      "title": {
-        "zh": "谷歌量子芯片新突破：降低关键计算错误率，早期比特币钱包量子风险受关注",
-        "en": "Google Quantum Chip Breakthrough: Cuts Error Rate in Key Computation, Quantum Risk to Early Bitcoin Wallets in Focus"
-      },
-      "summary": {
-        "zh": "谷歌表示，其 Willow 量子芯片通过一种名为「Cultivation」的方法，将制备量子计算所需特殊状态（Magic States）时的错误率降低约 40 倍，相关研究本周发表于《Science》。该实验实现了约 99.99% 的状态保真度，但仅约 8% 的尝试通过筛选。\n\n谷歌称，该成果有望降低未来大规模量子计算机的硬件开销；同时，这一进展也使早期比特币钱包面临的长期量子风险受到更多关注——这些钱包的公钥已经公开。\n\n研究人员表示，后续仍需扩大实验规模，并解决实时运行及错误纠正等问题。谷歌此前的攻击成本估算已假设采用高效的 Magic States 制备方案，因此本次成果不能简单理解为破解比特币的成本再降低 40 倍。",
-        "en": "Google said its Willow quantum chip used a method called \"Cultivation\" to reduce errors in preparing magic states — a key resource for running quantum computations — by roughly 40 times, with the research published in Science this week. The experiment reached about 99.99% state fidelity, though only around 8% of attempts passed screening.\n\nGoogle said the result could lower the hardware overhead of future large-scale quantum computers, and the advance has renewed attention on the long-term quantum risk to early Bitcoin wallets whose public keys are already exposed.\n\nResearchers said the experiment still needs to be scaled up and that real-time operation and error correction remain to be solved. Google's earlier attack-cost estimates already assumed an efficient magic-state preparation scheme, so the 40x error reduction should not be read as a 40x cut in the cost of breaking Bitcoin."
-      },
-      "content_revision": {
-        "zh": "f11540645514465047a14786f22f780b1dd2e2332538c166826a905b7fa80b34",
-        "en": "fd84b6209b9c18fd2e1346fbfa532859d141c8a6905034b7da182678164b24b9"
-      },
-      "score": 7.0,
       "category": "crypto-protocols",
       "top_category": "crypto",
       "source": {
@@ -453,120 +127,168 @@
         "label": "theblockbeats"
       },
       "tags": [
-        "quantum computing",
-        "Google Willow",
-        "magic states",
-        "Bitcoin security",
-        "cryptography",
-        "Science"
+        "Qubic",
+        "QU",
+        "security-incident",
+        "seed-randomness",
+        "chain-halt",
+        "MEXC"
       ],
       "sources_count": 2,
       "editorial": false,
       "thread": {
-        "id": "te299681e32",
+        "id": "t0a5df892c4",
         "day": 1,
-        "url": "https://xiyu.news/threads/te299681e32/"
+        "url": "https://xiyu.news/threads/t0a5df892c4/"
       },
       "event": {
-        "event_id": "evt_157d580b27aa7886",
-        "update_id": "upd_149db5945819c1bb",
-        "url": "https://xiyu.news/events/evt_157d580b27aa7886/#upd_149db5945819c1bb",
-        "json": "https://xiyu.news/api/events/evt_157d580b27aa7886.json"
+        "event_id": "evt_80c3c97f6315e516",
+        "update_id": "upd_d3ffdda7837bc2c1",
+        "url": "https://xiyu.news/events/evt_80c3c97f6315e516/#upd_d3ffdda7837bc2c1",
+        "json": "https://xiyu.news/api/events/evt_80c3c97f6315e516.json"
       }
     },
     {
-      "rank": 12,
-      "url": "https://www.qbitai.com/2026/10/504067.html",
+      "rank": 4,
+      "url": "https://foresightnews.pro/news/h5Detail/115417",
       "title": {
-        "zh": "突发！DeepSeek新模型发布，超级性价比斩杀一切",
-        "en": "Breaking: DeepSeek releases a new model, 'super cost-effectiveness' beats everything"
+        "zh": "【Starknet 是否应继续转型为 L1 的研究提案支持率目前为 99.95%】",
+        "en": "Starknet research proposal on whether to continue transitioning into an L1 currently has 99.95% support"
       },
       "summary": {
-        "zh": "DeepSeek 发布 V4.1-Flash-1017 模型，并开放了自研搜索 API。根据 DeepSeek API 文档，新版本已上线官网、App 与 API，在基准测试表现上更强、任务完成更快，输出也比上一版本更短。\n\nDeepSeek 称该版本在性能与成本上相对上一版本实现了帕累托改进。配套的 Search 与 Fetch API 让智能体（Agent）和 RAG 应用可以通过 DeepSeek 自研搜索引擎获取实时网页内容。\n\n据 OpenRouter，模型名中的“1017”对应 2026 年 10 月 17 日的 V4.1 Flash 快照，DeepSeek 以 deepseek-flash 这一 API 模型名提供服务。Ollama 的模型条目则称其为多模态混合专家（MoE）模型，主干参数量 552B，支持最长一百万 token 的上下文。",
-        "en": "DeepSeek released the V4.1-Flash-1017 model and opened up its self-developed search API. According to DeepSeek's API documentation, the new version is now live on its website, app and API, and it delivers stronger benchmark performance, faster task completion and shorter outputs than the previous version.\n\nDeepSeek describes the release as a Pareto improvement in both performance and cost relative to the prior version. The accompanying Search and Fetch APIs give agents and RAG applications access to live web content through DeepSeek's in-house search engine.\n\nThe \"1017\" in the model name corresponds to an October 17, 2026 snapshot of V4.1 Flash, served by DeepSeek under the deepseek-flash API model name, according to OpenRouter. A listing on Ollama describes the model as a multimodal Mixture-of-Experts with 552B backbone parameters and support for contexts of up to one million tokens."
+        "zh": "据 Snapshot 数据，关于 Starknet 是否应继续转型为 L1 的研究提案目前获得超过 3.45 亿票支持，占比 99.95%；反对票仅约 15.77 万，占比 0.05%。该提案投票将于 10 月 22 日结束。\n\n这一计票结果来自参与投票者，对一项结构性架构问题给出了近乎一致的表态，即这条规模最大的 ZK rollup 之一是否继续走向独立 L1；不过该提案属于研究性质，本身并不执行任何升级。\n\nSnapshot 是链下、免 Gas 的投票工具，因此这项研究提案的结果属于意向信号，而非链上变更。StarkWare 曾表示，转型 L1 一事仍处于评估阶段而非已经决定，并称这是该网络最清晰的战略前进路径。",
+        "en": "On Snapshot, the research proposal asking whether Starknet should continue its transition into an independent L1 is currently passing with more than 345 million votes in favor (99.95%), against roughly 157,700 votes opposed (0.05%). Voting is scheduled to close on October 22.\n\nThe tally is a near-unanimous signal from participating voters on a structural architectural question — whether one of the largest ZK rollups keeps moving toward standalone L1 status — although it is a research proposal and does not itself execute any upgrade.\n\nSnapshot is an off-chain, gas-free voting tool, and the outcome of this research proposal is a sentiment signal rather than an on-chain change. StarkWare has said the L1 move remains under evaluation rather than decided, describing it as the network's clearest strategic path forward."
       },
       "content_revision": {
-        "zh": "aa827593ce630ee8713c3ea741e8e950412ab69de750c437a243f319b81fd6f8",
-        "en": "81d0cc34f7dfe62e43a207a7a4aa358d9c7aecaf8acf81c3db0ae3c8981d951b"
+        "zh": "7d7f245f475374012b2bf3150a0c3d3a129b0e13239e4c8cd16bb1afb44d11f4",
+        "en": "f400b7c69ad19df1acf3fbceed32f8f610d41326c61ccad7d522c6318c04b434"
       },
-      "score": 7.0,
+      "score": 7.5,
+      "category": "crypto-protocols",
+      "top_category": "crypto",
+      "source": {
+        "type": "telegram",
+        "label": "foresightnews"
+      },
+      "tags": [
+        "Starknet",
+        "governance",
+        "L1",
+        "ZK-rollup",
+        "Snapshot",
+        "StarkWare"
+      ],
+      "sources_count": 1,
+      "editorial": false,
+      "thread": {
+        "id": "t63589551d7",
+        "day": 1,
+        "url": "https://xiyu.news/threads/t63589551d7/"
+      },
+      "event": {
+        "event_id": "evt_2d6087e05696f663",
+        "update_id": "upd_d61adaae999aced8",
+        "url": "https://xiyu.news/events/evt_2d6087e05696f663/#upd_d61adaae999aced8",
+        "json": "https://xiyu.news/api/events/evt_2d6087e05696f663.json"
+      }
+    },
+    {
+      "rank": 5,
+      "url": "https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/",
+      "title": {
+        "zh": "Anthropic 表示将把 5% 的股份投入一个“公共利益基金”",
+        "en": "Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’"
+      },
+      "summary": {
+        "zh": "2026 年 10 月 18 日，Anthropic 表示计划将 5% 的股份投入新设立的 Anthropic 公共利益基金（Anthropic Public Benefit Fund），该实体的结构设计使其持股比例随公司成长而增加。该承诺仍需获得股东批准。\n\nAnthropic 表示，该基金将拥有更大的灵活性和规模，使其能够探索向传统非营利组织进行大额捐赠或向特定人群直接分配等做法。\n\n该基金的持股比例被设计为随公司估值增长而增加，而非固定停留在 5%。这一安排尚未获得股东批准。",
+        "en": "On October 18, 2026, Anthropic said it plans to commit 5% of its shares to the newly established Anthropic Public Benefit Fund, an entity structured so that its stake increases as the company grows. The commitment is subject to stockholder approval.\n\nAnthropic said the fund will have greater flexibility and scale, allowing it to explore options such as large donations to traditional nonprofits or direct distributions to specific populations.\n\nThe fund's stake is designed to increase as the company's valuation grows, rather than remaining fixed at 5%. The arrangement has not yet been approved by stockholders."
+      },
+      "content_revision": {
+        "zh": "75489d8f88aa759f779167162fcbef0dd5fe4fd3fc95c9bbbd37bbba7ea97441",
+        "en": "14a9c29d2ec20fd76ce5464cc6039808c82a8dd34400e560a2b7b69f34726745"
+      },
+      "score": 7.5,
       "category": "ai-labs",
       "top_category": "technology",
       "source": {
         "type": "rss",
-        "label": "QbitAI 量子位"
+        "label": "TechCrunch AI"
       },
       "tags": [
-        "DeepSeek",
-        "model release",
-        "AI search API",
-        "developer tools",
-        "cost efficiency"
+        "anthropic",
+        "ai-governance",
+        "public-benefit-fund",
+        "public-benefit-corporation",
+        "corporate-structure"
       ],
       "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "tc991932364",
+        "id": "t16eddc2105",
         "day": 1,
-        "url": "https://xiyu.news/threads/tc991932364/"
+        "url": "https://xiyu.news/threads/t16eddc2105/"
       },
       "event": null
     },
     {
-      "rank": 13,
-      "url": "https://www.qbitai.com/2026/10/503935.html",
+      "rank": 6,
+      "url": "https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce/",
       "title": {
-        "zh": "清华开源！智能体操作系统任务成本降83%，AI记忆可查可改",
-        "en": "Tsinghua open-sources agent operating system with 83% lower task cost and queryable, editable AI memory"
+        "zh": "迪士尼同意聘用 Character.AI 大部分员工",
+        "en": "Disney agrees to hire the majority of Character.AI’s workforce"
       },
       "summary": {
-        "zh": "据量子位报道，清华大学团队开源了一套智能体操作系统，原生支持模型上下文协议（MCP）。团队宣称该系统可将任务成本降低83%，并让AI记忆可查询、可修改。\n\n原生支持MCP意味着基于该系统的智能体可直接接入这一标准已有的工具、数据源与工作流，无需单独编写适配层。\n\n83%的成本降幅来自团队自述、由量子位转述，目前尚无第三方复现，也未公开基准测试的方法细节。",
-        "en": "A Tsinghua University team has open-sourced an agent operating system that natively supports the Model Context Protocol (MCP), according to a report by QbitAI. The team claims the system cuts task costs by 83% and gives AI memory that can be queried and modified.\n\nNative MCP support means agents built on the system can connect to the standard's existing tools, data sources and workflows without bespoke adapters.\n\nThe 83% cost-reduction figure comes from the team's own account as relayed by QbitAI; no third-party reproduction or benchmark methodology has been disclosed."
+        "zh": "聊天机器人初创公司 Character.AI 本周早些时候申请破产后，迪士尼同意聘用其大部分员工，并以 2000 万美元收购该公司部分资产。Character.AI 前首席执行官 Karandeep Anand 此前已加入迪士尼，出任该公司首位首席技术官。\n\n这一安排将一家知名消费级 AI 初创公司的大部分团队转入大型娱乐公司，而迪士尼此前已将该公司首席执行官招入新设立的首席技术官岗位。\n\n根据 Character.AI 此前的声明，2000 万美元对应的是其部分资产。报道提到 Character.AI 涉及一项法律事项，但未披露具体细节。",
+        "en": "After chatbot startup Character.AI filed for bankruptcy earlier this week, Disney agreed to hire the majority of its workforce and to acquire some of the company's assets for $20 million. Character.AI's former CEO, Karandeep Anand, had already joined Disney as its first chief technology officer.\n\nThe arrangement shifts most of a well-known consumer AI startup's team into a major entertainment company, following Disney's earlier hire of the startup's chief executive into a newly created CTO role.\n\nThe $20 million figure covers some of Character.AI's assets, according to the startup's earlier statement. The report references a legal matter involving Character.AI, but its details were not included."
       },
       "content_revision": {
-        "zh": "7a91573d458aa16b819d879132a2193f8b7f8ee9e98ef36eceb43226f684be98",
-        "en": "abe493042078525f00b44a769c18eb638d450bc7d96f26bf49f8229468e8eb5d"
+        "zh": "c705b4071ef7abeda0bd1e5ae9879be4b8b20428435e8e1cf1f1e3964f657fa6",
+        "en": "4b6ca67293df75e2e847b4413bcce39c9128b7b0374da1263ba1cf83ce97600c"
       },
-      "score": 7.0,
-      "category": "ai-devtools",
+      "score": 7.5,
+      "category": "ai-labs",
       "top_category": "technology",
       "source": {
         "type": "rss",
-        "label": "QbitAI 量子位"
+        "label": "TechCrunch AI"
       },
       "tags": [
-        "Tsinghua University",
-        "open-source",
-        "AI agents",
-        "agent OS",
-        "MCP",
-        "AI memory"
+        "Character.AI",
+        "Disney",
+        "bankruptcy",
+        "acquihire",
+        "Karandeep Anand"
       ],
       "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "t7fc73ab44f",
-        "day": 1,
-        "url": "https://xiyu.news/threads/t7fc73ab44f/"
+        "id": "tb2fa807e4b",
+        "day": 3,
+        "url": "https://xiyu.news/threads/tb2fa807e4b/"
       },
-      "event": null
+      "event": {
+        "event_id": "evt_e498047bf3431d29",
+        "update_id": "upd_73e82432d1cf59e3",
+        "url": "https://xiyu.news/events/evt_e498047bf3431d29/#upd_73e82432d1cf59e3",
+        "json": "https://xiyu.news/api/events/evt_e498047bf3431d29.json"
+      }
     },
     {
-      "rank": 14,
-      "url": "https://wublockchain.xyz/news/news-21279",
+      "rank": 7,
+      "url": "https://wublockchain.xyz/news/anthropic-proposes-1b-loss-or-50-casualty-ai-intervention-21296",
       "title": {
-        "zh": "Anthropic 的 Claude Mythos 5 将椭圆曲线运算量子电路门数削减约 17 倍",
-        "en": "Anthropic’s Claude Mythos 5 Cuts Quantum Circuit Gate Count for Elliptic-Curve O"
+        "zh": "Anthropic 提议以10亿美元损失或50人伤亡作为AI干预门槛",
+        "en": "Anthropic Proposes $1B Loss or 50-Casualty Threshold for AI Intervention"
       },
       "summary": {
-        "zh": "10 月 16 日，Anthropic 发布研究称，Claude Mythos 5 在一个自动化评估系统的辅助下，自主重新设计了八个量子电路，覆盖量子化学、优化、物理模拟与数论领域，并称这些新设计优于此前已发表的方法。其中，一个椭圆曲线点加法电路使用的量子门数量减少约 17 倍，但所需量子比特增加 12%；用于优化算法 DQI 的 Reed–Solomon 解码电路门数则减少约 12 倍。\n\nAnthropic 称这些重新设计的电路优于此前已发表的方案，而椭圆曲线点加法的结果关系到评估量子攻击椭圆曲线密码所需的资源规模。该工作目前仍停留在电路设计与验证阶段。\n\nClaude 提出了一种可逆的模逆算法，无需存储分支历史，取代了步骤数量和顺序依赖输入的扩展欧几里得方法。这些结果尚未在真实的量子硬件上验证。",
-        "en": "On October 16, Anthropic published research showing that Claude Mythos 5, assisted by an automated evaluation system, autonomously redesigned eight quantum circuits spanning quantum chemistry, optimization, physics simulation and number theory, producing designs the company says outperform previously published methods. Among them, an elliptic-curve point-addition circuit uses roughly 17 times fewer quantum gates while requiring 12% more qubits, and a Reed–Solomon decoding circuit for the optimization algorithm DQI cuts gate count by about 12 times.\n\nAnthropic says the redesigned circuits beat previously published constructions, and the elliptic-curve point-addition result bears on resource estimates for quantum attacks on elliptic-curve cryptography. The work remains at the circuit design and verification stage.\n\nClaude developed a reversible modular inversion algorithm that eliminates the need to store branch history, replacing the extended Euclidean approach whose number and order of steps depend on the input. The results have not yet been validated on actual quantum hardware."
+        "zh": "据 POLITICO 报道，Anthropic 一直在向美国国会议员推销一份尚未公开的草案法案：只有当前沿模型构成可预见且迫在眉睫的风险——造成超过10亿美元损失，或至少50人死亡或重伤——政府才可寻求限制该模型的发布或使用。该草案还要求对前沿模型进行定期独立评估，并将部分州级 AI 安全规则纳入联邦框架。\n\n该草案为联邦政府何时可以介入模型设定了明确且较高的门槛，其中涉及联邦优先的条款会把部分州级 AI 安全监管权收归联邦框架。不过它仍是一份向议员推销的未公开提案，既未正式提出，也未成为法律。\n\n草案列举的触发风险包括生物武器、开发者失去对模型的控制以及网络攻击。该文本仍是向议员传阅的未公开草案，而非已提交的法案。",
+        "en": "Anthropic has been pitching U.S. lawmakers on an unpublished draft bill that would let the government seek restrictions on a frontier model's release or use only when the model poses a foreseeable and imminent risk of more than $1 billion in damages or at least 50 deaths or serious injuries, according to POLITICO. The draft would also require regular independent evaluations of frontier models and would place some state-level AI safety rules under a federal framework.\n\nThe draft sets explicit, high thresholds for when Washington could intervene on a model, and its preemption element would move part of state-level AI safety oversight into a federal framework. It is an unpublished proposal being pitched to lawmakers, not introduced or enacted legislation.\n\nThe risks cited as triggers include biological weapons, loss of developer control and cyberattacks. The text remains an unpublished draft circulated to lawmakers rather than a filed bill."
       },
       "content_revision": {
-        "zh": "64c6c3ed6ace0717919c76398d207ba66fb901f49f47b8adc3392a1170aed189",
-        "en": "5914806d6fce4b9515acf2964659293431230a484e158378952f34eebafd844f"
+        "zh": "a76d877e9fa6cf0d5ccd40ed425e9997d2087a6073bdd5a6ec985ba0c0466866",
+        "en": "5b25dd9867865b5fe749da7359306e21d997901f629205bac0e477ca665aa306"
       },
-      "score": 7.0,
+      "score": 7.5,
       "category": "ai-labs",
       "top_category": "technology",
       "source": {
@@ -574,24 +296,275 @@
         "label": "wublockchainenglish"
       },
       "tags": [
-        "ai-research",
-        "quantum-computing",
-        "anthropic",
-        "claude",
-        "cryptography"
+        "Anthropic",
+        "AI regulation",
+        "frontier AI safety",
+        "AI policy",
+        "legislation"
       ],
       "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "tddb2fb35ca",
-        "day": 1,
-        "url": "https://xiyu.news/threads/tddb2fb35ca/"
+        "id": "t6fafcbf095",
+        "day": 4,
+        "url": "https://xiyu.news/threads/t6fafcbf095/"
       },
       "event": {
-        "event_id": "evt_f335efa8291ad66f",
-        "update_id": "upd_d1f2d4930b9c1070",
-        "url": "https://xiyu.news/events/evt_f335efa8291ad66f/#upd_d1f2d4930b9c1070",
-        "json": "https://xiyu.news/api/events/evt_f335efa8291ad66f.json"
+        "event_id": "evt_c9a6fe1a8346f0ca",
+        "update_id": "upd_2e1a2b09bab08886",
+        "url": "https://xiyu.news/events/evt_c9a6fe1a8346f0ca/#upd_2e1a2b09bab08886",
+        "json": "https://xiyu.news/api/events/evt_c9a6fe1a8346f0ca.json"
+      }
+    },
+    {
+      "rank": 8,
+      "url": "https://www.theblock.co/news/regulation/2026-10-18-crypto-com-novig-sue-missouri-over-sports-event-contracts-kalshi-polymarket-robinhood-hold-off-418866",
+      "title": {
+        "zh": "Crypto.com与Novig就体育赛事合约起诉密苏里州；Kalshi、Polymarket、Robinhood暂缓推进",
+        "en": "Crypto.com, Novig sue Missouri over sports event contracts; Kalshi, Polymarket, Robinhood hold off"
+      },
+      "summary": {
+        "zh": "Crypto.com与Novig已就密苏里州对体育赛事合约的处理方式对该州提起诉讼。受由此产生的监管不确定性影响，Kalshi、Polymarket和Robinhood则暂缓了各自的推进。\n\n该诉讼把“体育赛事类事件合约由各州还是由美国商品期货交易委员会（CFTC）监管”这一问题推向司法程序；而主要平台的观望态度表明，这一悬而未决的问题已在影响产品上线节奏。\n\n这是一起已提起的诉讼，而非裁决，报道未披露受理法院、承办法官或具体诉讼请求。美国国会研究服务处（CRS）指出，《商品交易法》赋予CFTC对在注册指定合约市场（DCM）上交易的期货、期权和掉期的“专属管辖权”，而这一管辖权在多大程度上优先于各州对事件合约的监管，目前正由法院审理。",
+        "en": "Crypto.com and Novig filed a lawsuit against Missouri over the state's treatment of sports event contracts. Kalshi, Polymarket and Robinhood held off on their own moves amid the resulting regulatory uncertainty.\n\nThe suit puts the question of whether states or the federal Commodity Futures Trading Commission governs event contracts traded on registered exchanges before the courts, while major platforms' hesitation shows how that unresolved question is already shaping product rollouts.\n\nThis is a filed lawsuit rather than a ruling, and the report gives no court, judge or specific legal claims. The CFTC holds what the Congressional Research Service describes as exclusive jurisdiction over futures, options and swaps traded on registered designated contract markets, and how far that preempts state regulation of event contracts is being litigated."
+      },
+      "content_revision": {
+        "zh": "37786d54b19b12c4da6cd0270e5d2b643e2334b741855f99c0cc30228c33cca3",
+        "en": "7c81175b77dcf86d3dbc6eb6701dc42412767256fce6d61ac9fe354e717c6934"
+      },
+      "score": 7.5,
+      "category": "crypto-regulation",
+      "top_category": "policy",
+      "source": {
+        "type": "google_news",
+        "label": "The Block"
+      },
+      "tags": [
+        "prediction-markets",
+        "event-contracts",
+        "crypto-regulation",
+        "lawsuits",
+        "Crypto.com",
+        "Novig"
+      ],
+      "sources_count": 1,
+      "editorial": false,
+      "thread": {
+        "id": "t3da17b136c",
+        "day": 1,
+        "url": "https://xiyu.news/threads/t3da17b136c/"
+      },
+      "event": null
+    },
+    {
+      "rank": 9,
+      "url": "https://www.qbitai.com/2026/10/504136.html",
+      "title": {
+        "zh": "VAST开源实时世界模型EdenLive！单消费级显卡、720P超24FPS",
+        "en": "VAST Open-Sources Real-Time World Model EdenLive: 720P at Over 24 FPS on a Single Consumer-Grade GPU"
+      },
+      "summary": {
+        "zh": "VAST 开源了实时交互世界模型 EdenLive，官方称其可在单张消费级显卡上以 720P 分辨率、超过 24FPS 的帧率运行。该发布以“让人人都能自由创造并体验可交互世界”为定位。\n\n在单张消费级显卡上以 720P、超过 24FPS 运行交互式世界模型，降低了开发者和创作者本地运行此类模型的硬件门槛，不再必须依赖服务器集群。\n\n720P 与 24FPS 以上的数据来自 VAST 自身的发布口径，此次发布未包含第三方独立基准测试结果。该模型以开源形式发布。",
+        "en": "VAST has open-sourced EdenLive, a real-time interactive world model that the company says runs at 720P resolution and above 24 FPS on a single consumer-grade GPU. The release is positioned around letting users freely create and experience interactive worlds.\n\nRunning an interactive world model at 720P and above 24 FPS on one consumer-grade GPU lowers the hardware threshold for developers and creators who want to run such models locally rather than on server clusters.\n\nThe 720P and 24+ FPS figures come from VAST's own release claims; independent benchmark results were not part of the announcement. The model is released as open source."
+      },
+      "content_revision": {
+        "zh": "1ce11608ed46abf644f1222721de359f15f6b1824eff07f8a0121ea805967c31",
+        "en": "50047790475b119fe8372ba4f05b36836576df69e211f599ac088d7160612a4e"
+      },
+      "score": 7.5,
+      "category": "ai-labs",
+      "top_category": "technology",
+      "source": {
+        "type": "rss",
+        "label": "QbitAI 量子位"
+      },
+      "tags": [
+        "open-source",
+        "world-model",
+        "real-time-generation",
+        "consumer-gpu",
+        "VAST"
+      ],
+      "sources_count": 1,
+      "editorial": false,
+      "thread": {
+        "id": "t06e34488cd",
+        "day": 1,
+        "url": "https://xiyu.news/threads/t06e34488cd/"
+      },
+      "event": {
+        "event_id": "evt_52c765159ffafc23",
+        "update_id": "upd_8bd094b9b686077c",
+        "url": "https://xiyu.news/events/evt_52c765159ffafc23/#upd_8bd094b9b686077c",
+        "json": "https://xiyu.news/api/events/evt_52c765159ffafc23.json"
+      }
+    },
+    {
+      "rank": 10,
+      "url": "https://m.theblockbeats.info/flash/372379?from=telegram",
+      "title": {
+        "zh": "⚡️彭博社：CoreWeave困境或导致AI垃圾债融资市场阶段性关闭",
+        "en": "⚡️Bloomberg: CoreWeave's Troubles May Cause a Temporary Shutdown of the AI Junk-Debt Financing Market"
+      },
+      "summary": {
+        "zh": "据彭博社10月18日报道，CoreWeave 的高收益债收益率本周升至 15%，达到通常预示债务陷入困境的水平，高收益债投资者愈发不愿向科技初创公司提供资金。相关担忧已扩散至更广泛的高收益债市场：本周三市场平均收益率升至 8.41%，创 18 个月新高，风险溢价扩大至 3 月以来最高水平。\n\nShorecliff Asset Management 首席投资官 Grant Nachman 表示，按当前市场水平，大型「新型云服务商」的无担保融资可能成本过高、无法完成发行，或两者兼有；新交易可能需要资产或合同现金流担保，并提供更强的债权人保护。\n\nCoreWeave 表示，其财务状况「完全足以支持」偿债义务，英伟达 CEO 黄仁勋也出面维护该公司的财务健康状况。不过，部分投资者认为，核心问题并非企业信用状况突然恶化，而是未来一年半仍将有大量新增债务供给。",
+        "en": "Bloomberg reported on October 18 that CoreWeave's high-yield bond yields rose to 15% this week, a level typically associated with debt distress, as high-yield investors grow increasingly reluctant to fund technology startups. The concerns have spread to the broader high-yield market, where the average yield climbed to 8.41% on Wednesday, an 18-month high, and the risk premium widened to its highest level since March.\n\nShorecliff Asset Management chief investment officer Grant Nachman said that at current market levels, unsecured financing for large \"neoclouds\" may be too expensive to complete, or may not be completable at all, and that new deals may require backing from assets or contracted cash flows plus stronger creditor protections.\n\nCoreWeave says its financial position is \"fully sufficient\" to cover its debt obligations, and Nvidia CEO Jensen Huang has publicly defended the company's financial health. Some investors argue the core issue is not a sudden deterioration in corporate credit quality but the large volume of new debt supply still expected over the next 18 months."
+      },
+      "content_revision": {
+        "zh": "722d4f3c46fa3fee392e575c1af01b2c89f17c8342816c0221d585e5e82d6c65",
+        "en": "8ce6a4a4b25747b78f2ba92d0e6ddabd68d3398e95113bac4a4dd2fc962f70cf"
+      },
+      "score": 7.5,
+      "category": "macro-regulation",
+      "top_category": "policy",
+      "source": {
+        "type": "telegram",
+        "label": "theblockbeats"
+      },
+      "tags": [
+        "CoreWeave",
+        "AI infrastructure",
+        "high-yield bonds",
+        "credit markets",
+        "data centers",
+        "Bloomberg"
+      ],
+      "sources_count": 1,
+      "editorial": false,
+      "thread": {
+        "id": "tafed01b66f",
+        "day": 1,
+        "url": "https://xiyu.news/threads/tafed01b66f/"
+      },
+      "event": {
+        "event_id": "evt_13018c4bc722d948",
+        "update_id": "upd_8d31e99f23ca3f42",
+        "url": "https://xiyu.news/events/evt_13018c4bc722d948/#upd_8d31e99f23ca3f42",
+        "json": "https://xiyu.news/api/events/evt_13018c4bc722d948.json"
+      }
+    },
+    {
+      "rank": 11,
+      "url": "https://foresightnews.pro/news/h5Detail/115419",
+      "title": {
+        "zh": "【Cysic 跨链桥遭到攻击，黑客未经授权铸造了 1000 万枚 CYS】",
+        "en": "Cysic cross-chain bridge attacked, hacker minted 10 million CYS without authorization"
+      },
+      "summary": {
+        "zh": "Cysic 基金会表示，其跨链桥于 10 月 17 日遭到攻击：攻击者未经授权获取了支撑跨链桥服务的数据库访问权限，并利用处理逻辑漏洞提交伪造的铸币消息，在 BNB Smart Chain 上额外铸造了 1000 万枚 CYS。该笔未经授权的铸造发生在 UTC 时间 12:31:38，Cysic 于 13:47:52 UTC 将接收地址加入代币合约黑名单。\n\n约 280 万枚 CYS 仍留在该被拉黑的地址中，已无法转出。Cysic 称此次事件仅限跨链桥的消息处理与铸币功能，未影响主网及其他运营系统，也未导致用户钱包中的现有资产被盗。\n\nCysic 表示，1000 万枚的铸造数量本身并不等同于最终美元损失，相关转账、兑换与实际损失仍在核查中；据报道引用的 CoinMarketCap 数据，当时约有 1.608 亿枚 CYS 处于流通状态。基金会已聘请一家未具名的安全公司调查攻击路径并追踪资金流向，并称跨链桥将在安全审查完成后才会重新开放。",
+        "en": "The Cysic Foundation said its cross-chain bridge was exploited on October 17, when an attacker gained unauthorized access to a database supporting the bridge service and used a processing logic flaw to submit a fake mint message, creating 10 million CYS on BNB Smart Chain. The unauthorized mint occurred at 12:31:38 UTC, and Cysic added the recipient address to the token contract's blacklist at 13:47:52 UTC.\n\nAbout 2.8 million CYS remained at the blacklisted address and can no longer be transferred out. Cysic said the incident was confined to bridge message processing and minting, and did not affect the mainnet, other operational systems, or existing assets in user wallets.\n\nCysic said the 10 million tokens minted does not by itself establish the final dollar loss, and that transfers, swaps and actual losses remain under review; roughly 160.8 million CYS were in circulation at the time, according to CoinMarketCap data cited in reports. The foundation has hired an unnamed security firm to investigate the attack path and trace the funds, and said the bridge will reopen only after a security review is completed."
+      },
+      "content_revision": {
+        "zh": "00bd43f7cc579de7055b06f5145123990a3572648c694b3b8c34ce3dd296a62d",
+        "en": "95e49ea8c5fb3aa62520a0bf6c7bddaf2013e43446d328c8a020cf1e7ad3ec75"
+      },
+      "score": 7.0,
+      "category": "crypto-protocols",
+      "top_category": "crypto",
+      "source": {
+        "type": "telegram",
+        "label": "foresightnews"
+      },
+      "tags": [
+        "Cysic",
+        "CYS",
+        "cross-chain bridge",
+        "unauthorized mint",
+        "BNB Chain",
+        "exploit"
+      ],
+      "sources_count": 3,
+      "editorial": false,
+      "thread": {
+        "id": "tea408db93f",
+        "day": 1,
+        "url": "https://xiyu.news/threads/tea408db93f/"
+      },
+      "event": {
+        "event_id": "evt_84d1f22c2841c444",
+        "update_id": "upd_fcb26fbfedc65513",
+        "url": "https://xiyu.news/events/evt_84d1f22c2841c444/#upd_fcb26fbfedc65513",
+        "json": "https://xiyu.news/api/events/evt_84d1f22c2841c444.json"
+      }
+    },
+    {
+      "rank": 12,
+      "url": "https://startupfortune.com/binance-is-shutting-down-its-bitcoin-mining-pool-after-hashrate-crashed-65/",
+      "title": {
+        "zh": "算力暴跌65%后，币安关停其比特币矿池",
+        "en": "Binance is shutting down its bitcoin mining pool after hashrate crashed 65%"
+      },
+      "summary": {
+        "zh": "在矿池算力下滑约65%之后，币安正在关停其比特币矿池，结束面向客户的矿池服务。\n\n将算力接入币安矿池的矿工失去这一选项，需要把矿机转向其他矿池，矿工可选的知名交易所系矿池因此少了一个。\n\n约65%的下滑指的是币安矿池自身的算力，而非比特币全网算力。该矿池此前被宣传为与交易所打通的服务，具备收益即时到账、VIP权益和云挖矿等功能。",
+        "en": "Binance is shutting down its Bitcoin mining pool after the pool's hashrate dropped roughly 65%, ending the exchange's mining-pool service for customers.\n\nMiners who directed hashpower to Binance Pool lose that option and must route their machines to other pools, removing one well-known exchange-operated pool from the choices available to them.\n\nThe roughly 65% decline refers to the Binance pool's own hashrate, not Bitcoin's network-wide hashrate. The pool was marketed as an exchange-integrated service with instant reward access, VIP perks and cloud mining features."
+      },
+      "content_revision": {
+        "zh": "02d4d209cfee3abbeb6bf6f1e941ed6b425c826b7a417e4ee6591507b0345249",
+        "en": "912848c50f97acff53e11b4f314804402c10739445aebdd903395a74e64c31d1"
+      },
+      "score": 7.0,
+      "category": "exchange-operations",
+      "top_category": "crypto",
+      "source": {
+        "type": "google_news",
+        "label": "Startup Fortune"
+      },
+      "tags": [
+        "binance",
+        "bitcoin-mining",
+        "mining-pool",
+        "hashrate",
+        "exchange-operations"
+      ],
+      "sources_count": 1,
+      "editorial": false,
+      "thread": {
+        "id": "t94bb9d764d",
+        "day": 3,
+        "url": "https://xiyu.news/threads/t94bb9d764d/"
+      },
+      "event": null
+    },
+    {
+      "rank": 13,
+      "url": "https://arxiv.org/abs/2610.18861",
+      "title": {
+        "zh": "混合推理智能体：在潜空间中思考、通过文本行动的 LLM 智能体",
+        "en": "Hybrid Reasoning Agents: LLM agents that think in latent space, act through text"
+      },
+      "summary": {
+        "zh": "Together Computer 发布了混合推理智能体（HybridAgents），该架构让模型在连续的潜空间中完成推理，仅在执行动作和调用工具时输出文本。此次发布附带 GitHub 代码仓库、HuggingFace 模型合集，以及 arXiv 论文 2610.18861 中的评测结果。\n\n作者将该方案定位为弥合两条路线：潜空间推理内部效率高，但缺乏原生工具调用能力和推理透明度；文本智能体则能够执行动作并接受检查。这是一种有别于显式思维链的架构思路，而不只是发布一个新的模型权重。\n\n本次开源发布包括 GitHub 上的代码（togethercomputer/HybridAgent）、一个 HuggingFace 模型合集，以及 arXiv HTML 版本中公开的评测章节。在讨论帖中，一位用户报告称，通过 llama.cpp 运行 bartowski 的 8 位量化 14B 版本时，面对一个简单的聊天、网页搜索与摘要请求，模型在约五分钟内反复输出同一段落的不同变体，直至耗尽回合预算；该用户指出 llama.cpp 可能需要更新才能支持该模型。",
+        "en": "Together Computer released Hybrid Reasoning Agents (HybridAgents), an agent architecture in which the model performs its reasoning in continuous latent space and emits text only for actions and tool calls. The release ships with a GitHub repository, a HuggingFace model collection, and evaluations in arXiv paper 2610.18861.\n\nThe authors position the approach as bridging latent reasoning, which is efficient internally but lacks native tool access and reasoning transparency, with text-based agents that can act and be inspected. It is an architectural departure from explicit chain-of-thought rather than a new model checkpoint alone.\n\nThe open release spans code on GitHub (togethercomputer/HybridAgent), a HuggingFace collection, and a published evaluation section in the arXiv HTML version. In the discussion thread, one user reported that the 14B variant, run through llama.cpp with bartowski's 8-bit quantization, looped on variations of the same paragraph for roughly five minutes until it exhausted its turn budget on a simple chat, web search and summarization request; the user noted llama.cpp may need updates to support the model."
+      },
+      "content_revision": {
+        "zh": "c308cfcbdcaa0759b686405c56c0741fb87113508eab12f017c5324ca0038972",
+        "en": "6fe8a5738f1883d8317eeee3e3bd1565bd135f796c4d281bbf5b67bef59d5553"
+      },
+      "score": 7.0,
+      "category": "ai-labs",
+      "top_category": "technology",
+      "source": {
+        "type": "hackernews",
+        "label": "allinonai"
+      },
+      "tags": [
+        "LLM agents",
+        "latent reasoning",
+        "open-weights models",
+        "Together AI",
+        "chain-of-thought"
+      ],
+      "sources_count": 1,
+      "editorial": false,
+      "thread": {
+        "id": "tae6e492100",
+        "day": 1,
+        "url": "https://xiyu.news/threads/tae6e492100/"
+      },
+      "event": {
+        "event_id": "evt_0d525c6d8145742c",
+        "update_id": "upd_aedade6f39977fe9",
+        "url": "https://xiyu.news/events/evt_0d525c6d8145742c/#upd_aedade6f39977fe9",
+        "json": "https://xiyu.news/api/events/evt_0d525c6d8145742c.json"
       }
     }
   ]

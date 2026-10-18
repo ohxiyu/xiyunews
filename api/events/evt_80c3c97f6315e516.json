@@ -43,20 +43,33 @@
       "material_change": true,
       "title_zh": "⚡️Qubic披露安全事件：约2.94万亿枚QU被盗，涉及1404个Qubic钱包",
       "title_en": "⚡️Qubic披露安全事件：约2.94万亿枚QU被盗，涉及1404个Qubic钱包",
-      "what_changed_zh": "Qubic disclosed that a seed-generation randomness flaw allowed an attacker to steal roughly 2.94 trillion QU from 1,404 wallets, prompting a network halt at tick 85,371,949 with 87.1% of the funds frozen on-chain and the remaining 12.9% sent to MEXC also frozen, while the flaw itself was patched in version 4.26.4.",
+      "what_changed_zh": "Qubic 公告披露，在 10 月 17 日 23:42 至 10 月 18 日 01:26（UTC）期间，攻击者利用部分钱包 Seed 随机性不足的问题，访问并转走了 1404 个 Qubic 钱包中约 2.94 万亿枚 QU。网络已在 tick 85,371,949 处暂停，Seed 生成问题已在 4.26.4 版本中修复。\n\nQubic 表示，问题出在 Seed 生成机制，而非 Qubic 协议本身；87.1% 的被盗资金仍停留在 Qubic 网络上并已被冻结，其余 12.9% 已转入 MEXC，相关接收账户也已被冻结。\n\nQubic 列出的受影响 Seed 包括：10 月 18 日前在 iPhone 或 iPad 任意浏览器中创建的 Seed、同日前在 Mac Safari 中创建的 Seed，以及 2025 年 7 月前通过 Qubic iOS App 创建的 Seed。后续处置将由 Computor quorum 按网络规则决定，完整技术报告将在资金恢复方案确定后发布；The Defiant 报道称此次被盗金额约合 130 万美元。",
       "what_changed_en": "Qubic disclosed that a seed-generation randomness flaw allowed an attacker to steal roughly 2.94 trillion QU from 1,404 wallets, prompting a network halt at tick 85,371,949 with 87.1% of the funds frozen on-chain and the remaining 12.9% sent to MEXC also frozen, while the flaw itself was patched in version 4.26.4.",
-      "current_state_zh": "Qubic disclosed that a seed-generation randomness flaw allowed an attacker to steal roughly 2.94 trillion QU from 1,404 wallets, prompting a network halt at tick 85,371,949 with 87.1% of the funds frozen on-chain and the remaining 12.9% sent to MEXC also frozen, while the flaw itself was patched in version 4.26.4.",
+      "current_state_zh": "Qubic 公告披露，在 10 月 17 日 23:42 至 10 月 18 日 01:26（UTC）期间，攻击者利用部分钱包 Seed 随机性不足的问题，访问并转走了 1404 个 Qubic 钱包中约 2.94 万亿枚 QU。网络已在 tick 85,371,949 处暂停，Seed 生成问题已在 4.26.4 版本中修复。\n\nQubic 表示，问题出在 Seed 生成机制，而非 Qubic 协议本身；87.1% 的被盗资金仍停留在 Qubic 网络上并已被冻结，其余 12.9% 已转入 MEXC，相关接收账户也已被冻结。\n\nQubic 列出的受影响 Seed 包括：10 月 18 日前在 iPhone 或 iPad 任意浏览器中创建的 Seed、同日前在 Mac Safari 中创建的 Seed，以及 2025 年 7 月前通过 Qubic iOS App 创建的 Seed。后续处置将由 Computor quorum 按网络规则决定，完整技术报告将在资金恢复方案确定后发布；The Defiant 报道称此次被盗金额约合 130 万美元。",
       "current_state_en": "Qubic disclosed that a seed-generation randomness flaw allowed an attacker to steal roughly 2.94 trillion QU from 1,404 wallets, prompting a network halt at tick 85,371,949 with 87.1% of the funds frozen on-chain and the remaining 12.9% sent to MEXC also frozen, while the flaw itself was patched in version 4.26.4.",
       "detailed_summary_zh": "Qubic disclosed that a seed-generation randomness flaw allowed an attacker to steal roughly 2.94 trillion QU from 1,404 wallets, prompting a network halt at tick 85,371,949 with 87.1% of the funds frozen on-chain and the remaining 12.9% sent to MEXC also frozen, while the flaw itself was patched in version 4.26.4.",
       "detailed_summary_en": "Qubic disclosed that a seed-generation randomness flaw allowed an attacker to steal roughly 2.94 trillion QU from 1,404 wallets, prompting a network halt at tick 85,371,949 with 87.1% of the funds frozen on-chain and the remaining 12.9% sent to MEXC also frozen, while the flaw itself was patched in version 4.26.4.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "Qubic 是一条采用 quorum 共识、并以面向人工智能训练的 Useful Proof of Work 为核心的 Layer 1 网络，其 Computor quorum 负责生成 tick 并对投票进行表决。Seed 生成环节的随机性不足会使推导出的钱包地址变得可预测，无论用户如何谨慎保管设备或助记词，因此这类缺陷往往在软件修补之后仍长期威胁钱包安全。",
+      "background_en": "Qubic is a Layer-1 network built around quorum-based consensus and Useful Proof of Work directed at AI training, in which the Computor quorum forms ticks and votes on polls. Weak randomness at the point of seed generation makes derived wallet addresses predictable regardless of how carefully a user stores the device or recovery phrase, which is why such flaws can expose wallets long after the software is patched.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "风险敞口主要集中在 QU 本身：在 tick 85,371,949 处暂停使链上转账与结算中断，而转入 MEXC 的 12.9% 资金则经由中心化交易所的托管与冻结流程处理。该事件还影响市场对更广泛范围内自托管钱包密钥生成实践的观感，但并未波及大范围资产。",
+      "market_impact_en": "The exposure is concentrated in QU itself: the halt at tick 85,371,949 stops on-chain transfers and settlement, and the 12.9% routed to MEXC puts a portion of the flow through a centralized exchange's custody and freeze procedures. The incident also feeds sentiment around self-custody wallet key-generation practices across the wider market rather than affecting a broad set of assets.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://docs.qubic.org/learn/quorum/",
+          "title": "Quorum | Qubic Docs"
+        },
+        {
+          "url": "https://www.mexc.co/crypto-glossary/article/qubic-135881",
+          "title": "Qubic Definition, Meaning & Crypto Use Cases | MEXC Glossary"
+        },
+        {
+          "url": "https://www.coinspect.com/blog/weak-wallet-seed-generation/",
+          "title": "Why Weak Seed Generation Can Put Crypto Wallets at Risk for Years"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:theblockbeats:201105"

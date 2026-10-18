@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "event_id": "evt_0d525c6d8145742c",
+  "url": "https://xiyu.news/events/evt_0d525c6d8145742c/",
+  "json": "https://xiyu.news/api/events/evt_0d525c6d8145742c.json",
+  "type": "other",
+  "status": "monitoring",
+  "category": "technology",
+  "title": {
+    "zh": "混合推理智能体：在潜空间中思考、通过文本行动的 LLM 智能体",
+    "en": "Hybrid Reasoning Agents: LLM agents that think in latent space, act through text"
+  },
+  "current_state": {
+    "zh": "Together Computer 发布了混合推理智能体（HybridAgents），该架构让模型在连续的潜空间中完成推理，仅在执行动作和调用工具时输出文本。此次发布附带 GitHub 代码仓库、HuggingFace 模型合集，以及 arXiv 论文 2610.18861 中的评测结果。\n\n作者将该方案定位为弥合两条路线：潜空间推理内部效率高，但缺乏原生工具调用能力和推理透明度；文本智能体则能够执行动作并接受检查。这是一种有别于显式思维链的架构思路，而不只是发布一个新的模型权重。\n\n本次开源发布包括 GitHub 上的代码（togethercomputer/HybridAgent）、一个 HuggingFace 模型合集，以及 arXiv HTML 版本中公开的评测章节。在讨论帖中，一位用户报告称，通过 llama.cpp 运行 bartowski 的 8 位量化 14B 版本时，面对一个简单的聊天、网页搜索与摘要请求，模型在约五分钟内反复输出同一段落的不同变体，直至耗尽回合预算；该用户指出 llama.cpp 可能需要更新才能支持该模型。",
+    "en": "Together Computer released Hybrid Reasoning Agents (HybridAgents), an agent architecture in which the model performs its reasoning in continuous latent space and emits text only for actions and tool calls. The release ships with a GitHub repository, a HuggingFace model collection, and evaluations in arXiv paper 2610.18861.\n\nThe authors position the approach as bridging latent reasoning, which is efficient internally but lacks native tool access and reasoning transparency, with text-based agents that can act and be inspected. It is an architectural departure from explicit chain-of-thought rather than a new model checkpoint alone.\n\nThe open release spans code on GitHub (togethercomputer/HybridAgent), a HuggingFace collection, and a published evaluation section in the arXiv HTML version. In the discussion thread, one user reported that the 14B variant, run through llama.cpp with bartowski's 8-bit quantization, looped on variations of the same paragraph for roughly five minutes until it exhausted its turn budget on a simple chat, web search and summarization request; the user noted llama.cpp may need updates to support the model."
+  },
+  "first_seen_at": "2026-10-18T23:27:34.701250+00:00",
+  "last_updated_at": "2026-10-18T23:27:34.701250+00:00",
+  "last_material_change_at": "2026-10-18T23:27:34.701250+00:00",
+  "confidence": 0.75,
+  "updates_count": 1,
+  "sources_count": 1,
+  "entities": [
+    "agents",
+    "hybrid",
+    "llm",
+    "llm-agents",
+    "reasoning"
+  ],
+  "identifiers": [],
+  "topics": [
+    "chain-of-thought",
+    "latent-reasoning",
+    "llm-agents",
+    "open-weights-models",
+    "together-ai"
+  ],
+  "updates": [
+    {
+      "update_id": "upd_aedade6f39977fe9",
+      "event_id": "evt_0d525c6d8145742c",
+      "occurred_at": "2026-10-18T20:48:14Z",
+      "published_at": "2026-10-18T20:48:14Z",
+      "first_seen_at": "2026-10-18T23:27:34.701250Z",
+      "time_precision": "published",
+      "update_type": "initial",
+      "material_change": true,
+      "title_zh": "混合推理智能体：在潜空间中思考、通过文本行动的 LLM 智能体",
+      "title_en": "Hybrid Reasoning Agents: LLM agents that think in latent space, act through text",
+      "what_changed_zh": "Together Computer 发布了混合推理智能体（HybridAgents），该架构让模型在连续的潜空间中完成推理，仅在执行动作和调用工具时输出文本。此次发布附带 GitHub 代码仓库、HuggingFace 模型合集，以及 arXiv 论文 2610.18861 中的评测结果。\n\n作者将该方案定位为弥合两条路线：潜空间推理内部效率高，但缺乏原生工具调用能力和推理透明度；文本智能体则能够执行动作并接受检查。这是一种有别于显式思维链的架构思路，而不只是发布一个新的模型权重。\n\n本次开源发布包括 GitHub 上的代码（togethercomputer/HybridAgent）、一个 HuggingFace 模型合集，以及 arXiv HTML 版本中公开的评测章节。在讨论帖中，一位用户报告称，通过 llama.cpp 运行 bartowski 的 8 位量化 14B 版本时，面对一个简单的聊天、网页搜索与摘要请求，模型在约五分钟内反复输出同一段落的不同变体，直至耗尽回合预算；该用户指出 llama.cpp 可能需要更新才能支持该模型。",
+      "what_changed_en": "Together Computer released Hybrid Reasoning Agents (HybridAgents), an agent architecture in which the model performs its reasoning in continuous latent space and emits text only for actions and tool calls. The release ships with a GitHub repository, a HuggingFace model collection, and evaluations in arXiv paper 2610.18861.\n\nThe authors position the approach as bridging latent reasoning, which is efficient internally but lacks native tool access and reasoning transparency, with text-based agents that can act and be inspected. It is an architectural departure from explicit chain-of-thought rather than a new model checkpoint alone.\n\nThe open release spans code on GitHub (togethercomputer/HybridAgent), a HuggingFace collection, and a published evaluation section in the arXiv HTML version. In the discussion thread, one user reported that the 14B variant, run through llama.cpp with bartowski's 8-bit quantization, looped on variations of the same paragraph for roughly five minutes until it exhausted its turn budget on a simple chat, web search and summarization request; the user noted llama.cpp may need updates to support the model.",
+      "current_state_zh": "Together Computer 发布了混合推理智能体（HybridAgents），该架构让模型在连续的潜空间中完成推理，仅在执行动作和调用工具时输出文本。此次发布附带 GitHub 代码仓库、HuggingFace 模型合集，以及 arXiv 论文 2610.18861 中的评测结果。\n\n作者将该方案定位为弥合两条路线：潜空间推理内部效率高，但缺乏原生工具调用能力和推理透明度；文本智能体则能够执行动作并接受检查。这是一种有别于显式思维链的架构思路，而不只是发布一个新的模型权重。\n\n本次开源发布包括 GitHub 上的代码（togethercomputer/HybridAgent）、一个 HuggingFace 模型合集，以及 arXiv HTML 版本中公开的评测章节。在讨论帖中，一位用户报告称，通过 llama.cpp 运行 bartowski 的 8 位量化 14B 版本时，面对一个简单的聊天、网页搜索与摘要请求，模型在约五分钟内反复输出同一段落的不同变体，直至耗尽回合预算；该用户指出 llama.cpp 可能需要更新才能支持该模型。",
+      "current_state_en": "Together Computer released Hybrid Reasoning Agents (HybridAgents), an agent architecture in which the model performs its reasoning in continuous latent space and emits text only for actions and tool calls. The release ships with a GitHub repository, a HuggingFace model collection, and evaluations in arXiv paper 2610.18861.\n\nThe authors position the approach as bridging latent reasoning, which is efficient internally but lacks native tool access and reasoning transparency, with text-based agents that can act and be inspected. It is an architectural departure from explicit chain-of-thought rather than a new model checkpoint alone.\n\nThe open release spans code on GitHub (togethercomputer/HybridAgent), a HuggingFace collection, and a published evaluation section in the arXiv HTML version. In the discussion thread, one user reported that the 14B variant, run through llama.cpp with bartowski's 8-bit quantization, looped on variations of the same paragraph for roughly five minutes until it exhausted its turn budget on a simple chat, web search and summarization request; the user noted llama.cpp may need updates to support the model.",
+      "detailed_summary_zh": "Together Computer 发布了混合推理智能体（HybridAgents），该架构让模型在连续的潜空间中完成推理，仅在执行动作和调用工具时输出文本。此次发布附带 GitHub 代码仓库、HuggingFace 模型合集，以及 arXiv 论文 2610.18861 中的评测结果。\n\n作者将该方案定位为弥合两条路线：潜空间推理内部效率高，但缺乏原生工具调用能力和推理透明度；文本智能体则能够执行动作并接受检查。这是一种有别于显式思维链的架构思路，而不只是发布一个新的模型权重。\n\n本次开源发布包括 GitHub 上的代码（togethercomputer/HybridAgent）、一个 HuggingFace 模型合集，以及 arXiv HTML 版本中公开的评测章节。在讨论帖中，一位用户报告称，通过 llama.cpp 运行 bartowski 的 8 位量化 14B 版本时，面对一个简单的聊天、网页搜索与摘要请求，模型在约五分钟内反复输出同一段落的不同变体，直至耗尽回合预算；该用户指出 llama.cpp 可能需要更新才能支持该模型。",
+      "detailed_summary_en": "Together Computer released Hybrid Reasoning Agents (HybridAgents), an agent architecture in which the model performs its reasoning in continuous latent space and emits text only for actions and tool calls. The release ships with a GitHub repository, a HuggingFace model collection, and evaluations in arXiv paper 2610.18861.\n\nThe authors position the approach as bridging latent reasoning, which is efficient internally but lacks native tool access and reasoning transparency, with text-based agents that can act and be inspected. It is an architectural departure from explicit chain-of-thought rather than a new model checkpoint alone.\n\nThe open release spans code on GitHub (togethercomputer/HybridAgent), a HuggingFace collection, and a published evaluation section in the arXiv HTML version. In the discussion thread, one user reported that the 14B variant, run through llama.cpp with bartowski's 8-bit quantization, looped on variations of the same paragraph for roughly five minutes until it exhausted its turn budget on a simple chat, web search and summarization request; the user noted llama.cpp may need updates to support the model.",
+      "background_zh": "LLM 智能体通常以文本进行推理和交互，往往依赖思维链，这使得推理过程可被检查，但 token 开销较大。此前的 Coconut（连续思维链，arXiv 2412.06769）等研究探索了训练模型在不受限的连续潜空间中推理，而非使用自然语言。HybridAgents 论文称其贡献在于将潜空间推理与文本层面的动作结合，使智能体既保留工具调用能力，也保留一定的透明度。",
+      "background_en": "LLM agents conventionally reason and interact in text, typically via chain-of-thought, which makes their reasoning inspectable but token-expensive. Prior research such as Coconut (Chain of Continuous Thought, arXiv 2412.06769) explored training models to reason in an unrestricted continuous latent space instead of natural language. The HybridAgents paper describes its contribution as combining latent reasoning with text-level action so agents retain tool access and some transparency.",
+      "community_discussion_zh": "讨论热度较高但态度偏向质疑。多位评论者援引对不透明的“neuralese”推理的警告，其中一人称其为“最被禁忌的技术”；也有人认为这适合 Qwen 这类推理输出中重复陈述较多的模型，因为这些复述可以留在潜空间中。另有用户实测 14B 模型在 llama.cpp 8 位量化下出现病态循环，引发了对工具链和量化适配的实际担忧。",
+      "community_discussion_en": "Reception was engaged but skeptical. Several commenters invoked warnings about opaque \"neuralese\" reasoning, with one calling it \"the Most Forbidden Technique\"; others saw a fit for models like Qwen that tend to restate reasoning verbosely, since that restatement could stay in latent space. A hands-on report of the 14B model looping pathologically under llama.cpp 8-bit quantization raised practical tooling and quantization concerns.",
+      "market_impact_zh": "潜空间推理针对的是智能体推理的 token 成本，因此如果该路线成立，影响会体现在开源权重智能体部署的推理经济性上，而非直接作用于某一代币或协议。所报告的 llama.cpp 循环问题表明，实际效果取决于运行时与量化支持，目前尚未得到验证。",
+      "market_impact_en": "Latent-space reasoning targets the token cost of agent reasoning, so if the approach holds up it would feed into inference economics for open-weight agent deployments rather than into any token or protocol directly. The reported llama.cpp looping indicates the practical effect depends on runtime and quantization support, which is not yet demonstrated.",
+      "importance_score": 7.0,
+      "references": [
+        {
+          "url": "https://arxiv.org/pdf/2610.18861",
+          "title": "Hybrid Reasoning Agents"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2412.06769",
+          "title": "Training Large Language Models to Reason in a Continuous Latent..."
+        },
+        {
+          "url": "https://github.com/EIT-NLP/Awesome-Latent-CoT",
+          "title": "GitHub - EIT-NLP/Awesome-Latent-CoT: This repository contains..."
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=50145337",
+          "title": "Community discussion"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "hackernews:story:50145337"
+      ],
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2610.18861",
+          "label": "allinonai",
+          "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    }
+  ]
+}
