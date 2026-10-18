@@ -19,6 +19,10 @@ PR: https://github.com/ohxiyu/xiyunews/pull/291
 - 用 Ruby Liquid 4.0.4 渲染片段：令牌为空、令牌缺失、来源控制台三种情况都不输出；有效令牌只输出一个 beacon 标签。
 - `uv run pytest`：1118 passed，4 skipped（既有条件跳过）。`scripts/check_governance.py` 通过。
 
+## 依赖安全修复（CI 发现）
+
+PR291 首次 CI 的 test 任务里，pip-audit 报告 mcp 1.28.1 存在 CVE-2026-59951（修复版本 1.30.0 / 2.2.0）。这与本次改动无关，main 上任何 PR 都会因此失败。直接升级会跳到 mcp 2.3.0 的大版本，所以没有采用；改为 `uv lock --upgrade-package 'mcp<2'`，只把 uv.lock 里的 mcp 升到 1.30.0（3 行改动，pyproject 约束不变，其他包不变）。升级后本地 pytest 1118 passed / 4 skipped，pip-audit 结果为 No known vulnerabilities found。
+
 ## 上线与待办
 
 - 本次合并时令牌为空，线上页面不变。
