@@ -2,7 +2,7 @@
 
 Issue: https://github.com/ohxiyu/xiyunews/issues/290；branch agent/web-analytics，当前会话唯一 owner。运营者要求接入 Cloudflare Web Analytics，在 Cloudflare 后台查看访问量与热门页面，不做站内数据页。
 
-PR: pending
+PR: https://github.com/ohxiyu/xiyunews/pull/291
 
 ## 改动
 

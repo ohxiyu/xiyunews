@@ -10,7 +10,7 @@
   "owner": "当前会话唯一编辑与生产整合负责人",
   "branch": "agent/web-analytics",
   "last_verified_commit": "51acae41533fe1279715318db1acec1d54cb80a5",
-  "pr": "pending: PR for agent/web-analytics",
+  "pr": "PR291 open, CI pending",
   "completed": [
     "docs/_config.yml 新增 cloudflare_web_analytics_token（公开站点令牌，空则停用）",
     "head-custom 加入受令牌控制的官方 beacon；来源控制台不加载",
