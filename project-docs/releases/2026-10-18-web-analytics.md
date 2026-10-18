@@ -29,8 +29,16 @@ PR291 首次 CI 的 test 任务里，pip-audit 报告 mcp 1.28.1 存在 CVE-2026
 - 运营者在 Cloudflare 后台 Web Analytics 添加 xiyu.news，选择手动 JS 片段，并提供站点令牌，避免和自动注入重复计数；随后用一个单行 PR 写入令牌，按既有 Deploy Docs → cloudflare-unified 路径上线。
 - 生产验收：主域 HTML 含 beacon，Cloudflare 后台出现访问数据。本环境的代理无法访问 xiyu.news，需由运营者在后台确认。
 
-Source commit: 现役 51acae41533fe1279715318db1acec1d54cb80a5，本改动未合并。
-Worker version: d7e2c610-2b5d-4c76-beca-8f4df2bf2390，不改动。
-Deployment: pending（合并后走既有自动路径）。
-Verification: 仅离线测试与模板渲染。
+## 合并与部署证据
+
+- PR291 于 2026-10-18 05:38Z 合并为 d22034fe02be77bc07f351762c179d35556dd71c，合并前全部适用检查通过（governance、realtime-paths、test、web、edge-build）。
+- Deploy Docs 39101269168 success（05:40:49Z），gh-pages a76d9082 含新的 head-custom 令牌判断、`cloudflare_web_analytics_token: ""` 和法律页统计说明（从 gh-pages 回读确认）。
+- xiyunews Cloudflare 统一部署 163（39101320453）与 164（39101378884）均 success（05:45–05:46Z）。
+- 令牌为空，因此线上页面不输出统计脚本，只多了法律页说明，符合预期。
+
+Source commit: d22034fe02be77bc07f351762c179d35556dd71c。
+Artifact commit: gh-pages a76d9082。
+Worker version: 未改动 Worker 代码；统一部署只运送静态资产。
+Deployment: complete（令牌为空）。
+Verification: 主域页面回读未进行（本环境代理无法访问 xiyu.news）；统计生效需站点令牌。
 Rollback: 令牌改回空字符串即可停用，不涉及状态或数据。
