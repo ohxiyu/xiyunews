@@ -50,20 +50,33 @@
       "material_change": true,
       "title_zh": "OpenCode遭入侵，OpenAI出手补账：攻击消耗的API额度退还用户",
       "title_en": "OpenCode遭入侵，OpenAI出手补账：攻击消耗的API额度退还用户",
-      "what_changed_zh": "OpenCode's legacy system was breached, potentially exposing third-party model API keys for 1.4% of Console users; OpenAI is helping restore service, refunding API credits consumed during the attack, and granting Daybreak Blue defense access.",
+      "what_changed_zh": "黑客侵入了 OpenCode 在线平台的一部分，窃取了部分用户的 API 密钥，并利用这些密钥在受害者的 AI 账户上刷出高额费用。据报道，OpenCode 求助的 AI 工具多次拒绝查看这些恶意代码。\n\n被盗密钥让攻击者能够消耗由受影响用户付费的 AI 调用额度，使一次凭证泄露直接变成使用该工具的开发者们的经济损失。\n\n此次入侵影响的是 OpenCode 在线平台的一部分，而非其开源代码库本身。OpenCode 以终端界面、桌面应用和网页应用三种形式提供。",
       "what_changed_en": "OpenCode's legacy system was breached, potentially exposing third-party model API keys for 1.4% of Console users; OpenAI is helping restore service, refunding API credits consumed during the attack, and granting Daybreak Blue defense access.",
-      "current_state_zh": "OpenCode's legacy system was breached, potentially exposing third-party model API keys for 1.4% of Console users; OpenAI is helping restore service, refunding API credits consumed during the attack, and granting Daybreak Blue defense access.",
+      "current_state_zh": "黑客侵入了 OpenCode 在线平台的一部分，窃取了部分用户的 API 密钥，并利用这些密钥在受害者的 AI 账户上刷出高额费用。据报道，OpenCode 求助的 AI 工具多次拒绝查看这些恶意代码。\n\n被盗密钥让攻击者能够消耗由受影响用户付费的 AI 调用额度，使一次凭证泄露直接变成使用该工具的开发者们的经济损失。\n\n此次入侵影响的是 OpenCode 在线平台的一部分，而非其开源代码库本身。OpenCode 以终端界面、桌面应用和网页应用三种形式提供。",
       "current_state_en": "OpenCode's legacy system was breached, potentially exposing third-party model API keys for 1.4% of Console users; OpenAI is helping restore service, refunding API credits consumed during the attack, and granting Daybreak Blue defense access.",
       "detailed_summary_zh": "OpenCode's legacy system was breached, potentially exposing third-party model API keys for 1.4% of Console users; OpenAI is helping restore service, refunding API credits consumed during the attack, and granting Daybreak Blue defense access.",
       "detailed_summary_en": "OpenCode's legacy system was breached, potentially exposing third-party model API keys for 1.4% of Console users; OpenAI is helping restore service, refunding API credits consumed during the attack, and granting Daybreak Blue defense access.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "OpenCode 是一款开源 AI 编程智能体，已成为 Claude Code 和 Cursor 之外颇受欢迎的替代选择。API 密钥是用于对 API 进行身份验证和授权的唯一代码，因此极具攻击价值；安全研究者将利用窃取的 AI API 密钥耗尽受害者额度的行为称为“LLMjacking”。",
+      "background_en": "OpenCode is an open-source AI coding agent that has become a popular alternative to Claude Code and Cursor. API keys are unique codes that authenticate and authorize access to an API, which makes them a valuable target; security researchers describe the abuse of stolen AI API keys to burn through a victim's quota as \"LLMjacking.\"",
       "community_discussion_zh": "",
       "community_discussion_en": "",
       "market_impact_zh": "",
       "market_impact_en": "",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://github.com/opencode-ai/opencode",
+          "title": "GitHub - opencode-ai/opencode: A powerful AI coding agent."
+        },
+        {
+          "url": "https://opencode.ai/v2/docs",
+          "title": "Intro | OpenCode"
+        },
+        {
+          "url": "https://medium.com/@KuboidSecureLayer/llmjacking-how-ai-api-key-theft-works-and-how-to-prevent-it-7128d53f3b81",
+          "title": "LLMjacking — How AI API Key Theft Works and How to... | Medium"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:theblockbeats:201159",
