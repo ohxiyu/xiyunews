@@ -164376,8 +164376,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Vitalik Buterin said EIP-8288 would let users prove arbitrary signature schemes with STARKs and an aggregator, potentially sparing Ethereum from ever adding new signature precompiles.",
-      "current_state_zh": "Vitalik Buterin said EIP-8288 would let users prove arbitrary signature schemes with STARKs and an aggregator, potentially sparing Ethereum from ever adding new signature precompiles.",
+      "current_state_en": "Vitalik Buterin argues Ethereum should adopt EIP-8288, having clients perform complex cryptography and submit recursively aggregated STARK proofs so the chain only verifies results, keeping the chain lightweight and reducing the need for new precompile contracts.",
+      "current_state_zh": "Vitalik Buterin argues Ethereum should adopt EIP-8288, having clients perform complex cryptography and submit recursively aggregated STARK proofs so the chain only verifies results, keeping the chain lightweight and reducing the need for new precompile contracts.",
       "entities": [
         "arbitrary",
         "eip",
@@ -164396,18 +164396,22 @@
       "identifiers": [
         "eip-8288"
       ],
-      "last_material_change_at": "2026-10-19T05:41:20.866369Z",
-      "last_updated_at": "2026-10-19T05:41:20.866369Z",
+      "last_material_change_at": "2026-10-19T05:41:23.825302Z",
+      "last_updated_at": "2026-10-19T05:41:23.825302Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_24a311ed2fa54900"
+      ],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "Vitalik: EIP-8288 Enables Arbitrary Signature Schemes, Ethereum May Never Need N",
-      "title_zh": "Vitalik: EIP-8288 Enables Arbitrary Signature Schemes, Ethereum May Never Need N",
+      "title_zh": "Vitalik提出EIP-8288以STARK证明实现通用密码学支持，减少预编译合约需求",
       "topics": [
         "cryptography",
         "eip-8288",
         "precompiles",
+        "protocol-design",
+        "stark-proofs",
         "starks"
       ],
       "updates": [
@@ -164436,10 +164440,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://wublockchain.xyz/news/news-21300"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372494?from=telegram"
             }
           ],
           "story_ids": [
-            "telegram:wublockchainenglish:26470"
+            "telegram:wublockchainenglish:26470",
+            "telegram:theblockbeats:201156"
           ],
           "time_precision": "published",
           "title_en": "Vitalik: EIP-8288 Enables Arbitrary Signature Schemes, Ethereum May Never Need N",
@@ -164989,6 +165000,312 @@
           "what_changed_zh": "OpenCode's legacy system was breached, potentially exposing third-party model API keys for 1.4% of Console users; OpenAI is helping restore service, refunding API credits consumed during the attack, and granting Daybreak Blue defense access."
         }
       ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Linux 7.3 was released with record contributor numbers, new ksmbd SMB support for Apple Time Machine backups, and Apple M3 Pro/Max/Ultra platform support in Device Tree.",
+      "current_state_zh": "Linux 7.3 was released with record contributor numbers, new ksmbd SMB support for Apple Time Machine backups, and Apple M3 Pro/Max/Ultra platform support in Device Tree.",
+      "entities": [
+        "linux",
+        "released"
+      ],
+      "event_id": "evt_604322b6701c6d3e",
+      "event_type": "product_release",
+      "first_seen_at": "2026-10-19T09:51:52.648590Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-19T09:51:52.648590Z",
+      "last_updated_at": "2026-10-19T09:51:52.648590Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Linux 7.3 Released",
+      "title_zh": "Linux 7.3 Released",
+      "topics": [
+        "apple-silicon",
+        "linux-kernel",
+        "open-source",
+        "smb",
+        "software-release"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Linux 7.3 was released with record contributor numbers, new ksmbd SMB support for Apple Time Machine backups, and Apple M3 Pro/Max/Ultra platform support in Device Tree.",
+          "current_state_zh": "Linux 7.3 was released with record contributor numbers, new ksmbd SMB support for Apple Time Machine backups, and Apple M3 Pro/Max/Ultra platform support in Device Tree.",
+          "detailed_summary_en": "Linux 7.3 was released with record contributor numbers, new ksmbd SMB support for Apple Time Machine backups, and Apple M3 Pro/Max/Ultra platform support in Device Tree.",
+          "detailed_summary_zh": "Linux 7.3 was released with record contributor numbers, new ksmbd SMB support for Apple Time Machine backups, and Apple M3 Pro/Max/Ultra platform support in Device Tree.",
+          "event_id": "evt_604322b6701c6d3e",
+          "first_seen_at": "2026-10-19T09:51:52.648590Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-19T07:23:57Z",
+          "published_at": "2026-10-19T07:23:57Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50149392"
+            }
+          ],
+          "sources": [
+            {
+              "label": "cjd8",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://lwn.net/Articles/1101143/"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50149392"
+          ],
+          "time_precision": "published",
+          "title_en": "Linux 7.3 Released",
+          "title_zh": "Linux 7.3 Released",
+          "update_id": "upd_a61cc8a699ce9020",
+          "update_type": "initial",
+          "what_changed_en": "Linux 7.3 was released with record contributor numbers, new ksmbd SMB support for Apple Time Machine backups, and Apple M3 Pro/Max/Ultra platform support in Device Tree.",
+          "what_changed_zh": "Linux 7.3 was released with record contributor numbers, new ksmbd SMB support for Apple Time Machine backups, and Apple M3 Pro/Max/Ultra platform support in Device Tree."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Crypto vault products have grown to channel billions of dollars of investor capital into riskier DeFi lending strategies, raising concerns about hidden leverage and contagion risk in on-chain credit markets.",
+      "current_state_zh": "Crypto vault products have grown to channel billions of dollars of investor capital into riskier DeFi lending strategies, raising concerns about hidden leverage and contagion risk in on-chain credit markets.",
+      "entities": [
+        "crypto-vaults",
+        "rise"
+      ],
+      "event_id": "evt_164ad67ffe78865a",
+      "event_type": "market_structure",
+      "first_seen_at": "2026-10-19T09:51:53.433046Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-19T09:51:53.433046Z",
+      "last_updated_at": "2026-10-19T09:51:53.433046Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Rise of crypto vaults channels billions of dollars into risky lending",
+      "title_zh": "Rise of crypto vaults channels billions of dollars into risky lending",
+      "topics": [
+        "crypto-vaults",
+        "defi-lending",
+        "systemic-risk",
+        "yield-products"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Crypto vault products have grown to channel billions of dollars of investor capital into riskier DeFi lending strategies, raising concerns about hidden leverage and contagion risk in on-chain credit markets.",
+          "current_state_zh": "Crypto vault products have grown to channel billions of dollars of investor capital into riskier DeFi lending strategies, raising concerns about hidden leverage and contagion risk in on-chain credit markets.",
+          "detailed_summary_en": "Crypto vault products have grown to channel billions of dollars of investor capital into riskier DeFi lending strategies, raising concerns about hidden leverage and contagion risk in on-chain credit markets.",
+          "detailed_summary_zh": "Crypto vault products have grown to channel billions of dollars of investor capital into riskier DeFi lending strategies, raising concerns about hidden leverage and contagion risk in on-chain credit markets.",
+          "event_id": "evt_164ad67ffe78865a",
+          "first_seen_at": "2026-10-19T09:51:53.433046Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-19T04:00:06Z",
+          "published_at": "2026-10-19T04:00:06Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Financial Times",
+              "official": false,
+              "source_type": "google_news",
+              "url": "https://www.ft.com/content/997a975e-dd70-4935-b2b8-2ba5bafa62d5?syn-25a6b1a6=1"
+            }
+          ],
+          "story_ids": [
+            "google_news:article:754bae3b951ac687"
+          ],
+          "time_precision": "published",
+          "title_en": "Rise of crypto vaults channels billions of dollars into risky lending",
+          "title_zh": "Rise of crypto vaults channels billions of dollars into risky lending",
+          "update_id": "upd_046ec0322e8a803d",
+          "update_type": "initial",
+          "what_changed_en": "Crypto vault products have grown to channel billions of dollars of investor capital into riskier DeFi lending strategies, raising concerns about hidden leverage and contagion risk in on-chain credit markets.",
+          "what_changed_zh": "Crypto vault products have grown to channel billions of dollars of investor capital into riskier DeFi lending strategies, raising concerns about hidden leverage and contagion risk in on-chain credit markets."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Google Research released Harness², an open-source (Apache 2.0) agent harness that autonomously rewrites prompts, memory, skills, tool rules and plugins by proposing, A/B-testing and combining agent variants, lifting GLM-5 from 64.2 to 75.7 on WorkBuddy-Bench after a single optimization round.",
+      "current_state_zh": "Google Research released Harness², an open-source (Apache 2.0) agent harness that autonomously rewrites prompts, memory, skills, tool rules and plugins by proposing, A/B-testing and combining agent variants, lifting GLM-5 from 64.2 to 75.7 on WorkBuddy-Bench after a single optimization round.",
+      "entities": [
+        "glm",
+        "harness"
+      ],
+      "event_id": "evt_a7e30232565f1955",
+      "event_type": "other",
+      "first_seen_at": "2026-10-19T09:51:53.845147Z",
+      "identifiers": [
+        "glm-5"
+      ],
+      "last_material_change_at": "2026-10-19T09:51:53.845147Z",
+      "last_updated_at": "2026-10-19T09:51:53.845147Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "谷歌开源Harness²：让AI自己改进工具链，GLM-5跑分提高11.5分",
+      "title_zh": "谷歌开源Harness²：让AI自己改进工具链，GLM-5跑分提高11.5分",
+      "topics": [
+        "benchmarks",
+        "developer-tools",
+        "google-research",
+        "open-source"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Google Research released Harness², an open-source (Apache 2.0) agent harness that autonomously rewrites prompts, memory, skills, tool rules and plugins by proposing, A/B-testing and combining agent variants, lifting GLM-5 from 64.2 to 75.7 on WorkBuddy-Bench after a single optimization round.",
+          "current_state_zh": "Google Research released Harness², an open-source (Apache 2.0) agent harness that autonomously rewrites prompts, memory, skills, tool rules and plugins by proposing, A/B-testing and combining agent variants, lifting GLM-5 from 64.2 to 75.7 on WorkBuddy-Bench after a single optimization round.",
+          "detailed_summary_en": "Google Research released Harness², an open-source (Apache 2.0) agent harness that autonomously rewrites prompts, memory, skills, tool rules and plugins by proposing, A/B-testing and combining agent variants, lifting GLM-5 from 64.2 to 75.7 on WorkBuddy-Bench after a single optimization round.",
+          "detailed_summary_zh": "Google Research released Harness², an open-source (Apache 2.0) agent harness that autonomously rewrites prompts, memory, skills, tool rules and plugins by proposing, A/B-testing and combining agent variants, lifting GLM-5 from 64.2 to 75.7 on WorkBuddy-Bench after a single optimization round.",
+          "event_id": "evt_a7e30232565f1955",
+          "first_seen_at": "2026-10-19T09:51:53.845147Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-19T07:27:02Z",
+          "published_at": "2026-10-19T07:27:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372535?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201193"
+          ],
+          "time_precision": "published",
+          "title_en": "谷歌开源Harness²：让AI自己改进工具链，GLM-5跑分提高11.5分",
+          "title_zh": "谷歌开源Harness²：让AI自己改进工具链，GLM-5跑分提高11.5分",
+          "update_id": "upd_0c682f328c571985",
+          "update_type": "initial",
+          "what_changed_en": "Google Research released Harness², an open-source (Apache 2.0) agent harness that autonomously rewrites prompts, memory, skills, tool rules and plugins by proposing, A/B-testing and combining agent variants, lifting GLM-5 from 64.2 to 75.7 on WorkBuddy-Bench after a single optimization round.",
+          "what_changed_zh": "Google Research released Harness², an open-source (Apache 2.0) agent harness that autonomously rewrites prompts, memory, skills, tool rules and plugins by proposing, A/B-testing and combining agent variants, lifting GLM-5 from 64.2 to 75.7 on WorkBuddy-Bench after a single optimization round."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "JPMorgan is reportedly expanding JPM Coin, its dollar-deposit token, to Ethereum so approved institutional clients can make payments and settle tokenized asset transactions on the public network.",
+      "current_state_zh": "JPMorgan is reportedly expanding JPM Coin, its dollar-deposit token, to Ethereum so approved institutional clients can make payments and settle tokenized asset transactions on the public network.",
+      "entities": [
+        "coin",
+        "jpm",
+        "jpm-coin",
+        "jpmorgan",
+        "report"
+      ],
+      "event_id": "evt_e3733ea8fac2a6ab",
+      "event_type": "other",
+      "first_seen_at": "2026-10-19T09:51:54.538071Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-19T09:52:04.467870Z",
+      "last_updated_at": "2026-10-19T09:52:04.467870Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [
+        "evt_aa1db897464c260e"
+      ],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【摩根大通正将 JPM Coin 存款代币扩展至以太坊，面向机构客户】",
+      "title_zh": "摩根大通将JPM Coin存款代币扩展至以太坊主网面向机构客户",
+      "topics": [
+        "deposit-token",
+        "jpm-coin",
+        "jpmorgan",
+        "tokenized-deposits"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "JPMorgan is expanding its JPM Coin deposit token to Ethereum mainnet for institutional clients, enabling round-the-clock fund transfers and settlement.",
+          "current_state_zh": "JPMorgan is expanding its JPM Coin deposit token to Ethereum mainnet for institutional clients, enabling round-the-clock fund transfers and settlement.",
+          "detailed_summary_en": "JPMorgan is expanding its JPM Coin deposit token to Ethereum mainnet for institutional clients, enabling round-the-clock fund transfers and settlement.",
+          "detailed_summary_zh": "JPMorgan is expanding its JPM Coin deposit token to Ethereum mainnet for institutional clients, enabling round-the-clock fund transfers and settlement.",
+          "event_id": "evt_e3733ea8fac2a6ab",
+          "first_seen_at": "2026-10-19T09:51:54.538071Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-19T07:20:22Z",
+          "published_at": "2026-10-19T07:20:22Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115457"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372533?from=telegram"
+            },
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/news-21304"
+            },
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/jpmorgan-jpm-coin-ethereum-institutional-clients?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120716",
+            "telegram:theblockbeats:201191",
+            "telegram:wublockchainenglish:26474",
+            "rss:cointelegraph.com_rss:0ae8018b1d3bfcb8"
+          ],
+          "time_precision": "published",
+          "title_en": "【摩根大通正将 JPM Coin 存款代币扩展至以太坊，面向机构客户】",
+          "title_zh": "【摩根大通正将 JPM Coin 存款代币扩展至以太坊，面向机构客户】",
+          "update_id": "upd_cec8621be0dc6abc",
+          "update_type": "initial",
+          "what_changed_en": "JPMorgan is expanding its JPM Coin deposit token to Ethereum mainnet for institutional clients, enabling round-the-clock fund transfers and settlement.",
+          "what_changed_zh": "JPMorgan is expanding its JPM Coin deposit token to Ethereum mainnet for institutional clients, enabling round-the-clock fund transfers and settlement."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -165052,8 +165369,8 @@
       "evt_d11b7206dab04715"
     ],
     "australia": [
-      "evt_60a98d951dc3d274",
-      "evt_9282666dbb76c43d"
+      "evt_9282666dbb76c43d",
+      "evt_c9fe6340da98c3c4"
     ],
     "balancer": [
       "evt_5b952520b19a58b8"
@@ -165318,6 +165635,9 @@
       "evt_1851f7d38a8f886b",
       "evt_93077ad0ca930996"
     ],
+    "eip-8288": [
+      "evt_9a2795c305f4c9e8"
+    ],
     "el-salvador": [
       "evt_4d20ef51f41ca1b0",
       "evt_cc2ee6ed697c7f69",
@@ -165483,6 +165803,9 @@
     "iran": [
       "evt_323c1c6bc32c86f6",
       "evt_8159a9f007775839"
+    ],
+    "jpm-coin": [
+      "evt_e3733ea8fac2a6ab"
     ],
     "kalshi": [
       "evt_043ec5bbc26f6b87",
@@ -174784,7 +175107,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A significant regulatory and market-structure development for tokenized equities, with major issuers challenging an SEC framework and an OKX-ICE listing. It has a clear transmission path to crypto market access but is pushback rather than a final decision or systemic event.",
         "ai_score": 7.5,
@@ -174828,7 +175151,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A substantive market-structure development: tokenized US equities moving on-chain under a new SEC framework, with 63 names going live and nine issuers exercising veto rights. The issuer-veto angle is the key signal — it shows tokenization is being negotiated issuer-by-issuer rather than blanket-approved, which shapes how tokenized-equity venues will scale. Scored high-value rather than groundbreaking because only headline-level detail is available (no disclosure of which issuers, venues, or volumes), limiting assessment of material market impact.",
         "ai_score": 7.0,
@@ -174859,38 +175182,7 @@
       }
     },
     {
-      "attempts": 1,
-      "item": {
-        "ai_reason": "A substantive protocol-architecture proposal from Ethereum's co-founder: moving complex cryptography off-chain into client-side STARK computation aggregated recursively under EIP-8288, rather than adding precompiles. It has clear implications for Ethereum's roadmap, data-throughput constraints, and developer cryptography choices, but it is a design direction rather than an implemented upgrade or binding governance decision, so it falls short of the 8+ tier.",
-        "ai_score": 7.0,
-        "ai_summary": "Vitalik Buterin argues Ethereum should adopt EIP-8288, having clients perform complex cryptography and submit recursively aggregated STARK proofs so the chain only verifies results, keeping the chain lightweight and reducing the need for new precompile contracts.",
-        "ai_tags": [
-          "ethereum",
-          "EIP-8288",
-          "STARK proofs",
-          "precompiles",
-          "protocol design"
-        ],
-        "author": "theblockbeats",
-        "content": "Vitalik：以太坊应通过EIP-8288实现通用密码学支持，减少预编译合约需求\n\nBlockBeats 消息，10 月 19 日，以太坊联合创始人 Vitalik Buterin 发文表示，将大部分密码学支持放在预编译合约和以太坊虚拟机（EVM）中并非理想方案。由于两者处理的数据通常需要通过调用数据写入以太坊区块，链上数据空间存在限制，即使引入 PeerDAS 和 Blob 机制，实际数据吞吐量达到约 8 MB/s 后仍可能面临压力。\n\n以太坊不应仅被视为一条区块链，而应被视为一台「密码学世界计算机」。对于无需纳入链上数据与执行主流程的计算任务，不应强制将其放入主流程处理。更合适的方案是采用以 EIP-8288 为核心的设计：在客户端完成复杂计算，并生成 STARK 证明，再通过 EIP-8288 的递归聚合机制提交证明。\n\n按照这一思路，链上只需验证计算已完成及其结果，无需直接处理相关原始数据或执行完整计算过程。Vitalik 认为，这将使开发者能够自由使用不同的密码学技术，同时保持以太坊链的轻量化，并减少未来新增预编译合约的需求。\n\n原文链接 https://m.theblockbeats.info/flash/372494",
-        "fetched_at": "2026-10-19T05:41:23.825302Z",
-        "id": "telegram:theblockbeats:201156",
-        "metadata": {
-          "category": "crypto-protocols",
-          "channel": "theblockbeats",
-          "event_retry_pending": true,
-          "msg_url": "https://telegram.me/theblockbeats/201156",
-          "score_model": "deepseek:deepseek-flash",
-          "source_category": "crypto-markets"
-        },
-        "published_at": "2026-10-19T04:08:02Z",
-        "source_type": "telegram",
-        "title": "Vitalik：以太坊应通过EIP-8288实现通用密码学支持，减少预编译合约需求",
-        "url": "https://m.theblockbeats.info/flash/372494?from=telegram"
-      }
-    },
-    {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A major global bank publicly committing to crypto custody expansion into Asia for 2027, alongside an imminent German launch, is a material institutional-adoption and market-structure signal with a clear transmission path to custody competition and institutional flows. It is a strategic roadmap announcement rather than a live product or a landmark regulatory shift, so it sits below the highest tier.",
         "ai_score": 7.0,
@@ -174924,7 +175216,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Reports formal objections from nine major public companies to third-party tokenization of their shares, raising a material legal and market-structure question for tokenized equities. It is a high-value development for crypto regulation and tokenization platforms, though it stops short of a definitive court or regulatory ruling.",
         "ai_score": 7.0,
@@ -174954,6 +175246,175 @@
         "source_type": "google_news",
         "title": "Nine Companies, Including Broadcom and Verizon, Object to Their Shares Being Tokenized. Can They Stop It?",
         "url": "https://www.aol.com/articles/nine-companies-including-broadcom-verizon-183029000.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A top-tier global bank extending its deposit token to a public chain (Ethereum) for institutional clients is a material market-structure and institutional-adoption development, signalling growing bank participation in tokenized settlement on public infrastructure. It is a concrete in-window development rather than a recap, though it falls short of a paradigm-shifting regulatory or protocol change.",
+        "ai_score": 7.5,
+        "ai_summary": "JPMorgan has extended its JPM Coin deposit token to Ethereum, giving institutional clients access to tokenized deposit settlement on the public network.",
+        "ai_tags": [
+          "JPMorgan",
+          "tokenized-deposits",
+          "Ethereum",
+          "institutional-adoption",
+          "settlement"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxNekRsb3dLOVFsUlpGRjRxcnh4WkZGakdXOTVWeGdBTFQ0UXpNZkJNU19sa2piUE96VURzbnl6SFBiM1lWX3FYNWdoUGhUODlsS19VcVQ3cXhFMFJnR0UxS2xMbjd4d0NScXR1czRNQnV3Z1R1TUN6UC1xdk1NOUo2ZTc3OTNpc1pMN1hneFNjSUhtM2ZYaTFsaW8tbXE?oc=5\" target=\"_blank\">JPMorgan expands 'JPM Coin' deposit token to Ethereum for institutional clients</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-10-19T09:51:53.446904Z",
+        "id": "google_news:article:08b595f196deee09",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-10-19T08:31:00Z",
+        "source_type": "google_news",
+        "title": "JPMorgan expands 'JPM Coin' deposit token to Ethereum for institutional clients",
+        "url": "https://www.theblock.co/news/business/2026-10-19-jpmorgan-jpm-coin-deposit-token-ethereum-418874"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Deutsche Bank, a globally systemic institution, going live with crypto custody in Germany and laying out a 2027 Asia expansion is a material institutional-adoption and market-structure development: it signals regulated bank-grade custody broadening beyond crypto-native firms, with a clear transmission path to institutional capital access. It is a concrete new launch rather than commentary, though it is an incremental build-out of a long-signaled initiative rather than a paradigm shift, so it lands just below the top tier. The item is a multi-outlet comparison aggregation rather than original reporting, and no community discussion is provided.",
+        "ai_score": 7.5,
+        "ai_summary": "Deutsche Bank has launched regulated crypto custody services in Germany and outlined plans to extend the offering into Asia by 2027, marking a major bank's entry into institutional digital-asset custody.",
+        "ai_tags": [
+          "crypto-custody",
+          "institutional-adoption",
+          "deutsche-bank",
+          "banking",
+          "regulation"
+        ],
+        "author": "NewsCord",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi6AFBVV95cUxONUM4SDdpeVBneU9RRWZ5T2cxU2NaMXcwSkhBcUVQeEFORmRmbXBjTmhNVENTUGJqb1BhOHNYX21WVVgwSUpYMmZjY0FxbzhrczBGR19LZHFKS1J5U2FiQVdiWlYzMXpremthS0JMR2d4azUyWklhcmNVMzNQWnlIRXVyY0w1dXdqTTM5ZnFqM1c5WDl6REpmYU1PRXlEcXJNU2VERWNBQmtzQzhBeWEzZW5RSmVXc2UzYmRsc05ySl9oSFV3dlNpcVV3cnBlNEdORFY2UGhabUJwRXVBZ1d6Yjd1VkNTdE5i?oc=5\" target=\"_blank\">Deutsche Bank Launches Crypto Custody in Germany, Targets Asia Expansion in 2027: 9 outlets compared</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">NewsCord</font>",
+        "fetched_at": "2026-10-19T09:51:50.827475Z",
+        "id": "google_news:article:c1e2879c578007f3",
+        "metadata": {
+          "category": "exchange-announcements",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://newscord.org",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "NewsCord"
+        },
+        "published_at": "2026-10-19T05:48:54Z",
+        "source_type": "google_news",
+        "title": "Deutsche Bank Launches Crypto Custody in Germany, Targets Asia Expansion in 2027: 9 outlets compared",
+        "url": "https://newscord.org/article/deutsche-bank-launches-crypto-custody-in-germany-targets-asia-expansion-in-2027--Story_20261018_DeutscheBanktargetsA5143ace4"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A material regulatory and market-structure development for tokenized equities: nine US issuers blocking tokenized share trading on OKXICE under new SEC rules signals concrete constraints on tokenized-securities market access. It is high-value for crypto and traditional-finance convergence but not a systemic market event.",
+        "ai_score": 7.5,
+        "ai_summary": "Nine US companies have moved to block trading of their tokenized shares on OKXICE following new SEC rules affecting tokenized equity offerings.",
+        "ai_tags": [
+          "tokenized-securities",
+          "SEC-regulation",
+          "OKXICE",
+          "equity-trading",
+          "market-structure"
+        ],
+        "author": "FinanceFeeds",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxQZzVyQTFteEJiaDdFZ0RzQVBaczFaSVNmTWJ6OHNhTFVYWkNhakpKRzJjWHJZZGs4cllra01IdDBVcVpveEdLSVRRdGswR3pKQ18zRllBTGV1YU1LWEJKRFAzeGN6ZmpEa05Qc3YwNmtmRXRwRFFXUTEyMWx3VFc5VXlNRTNfOE5ibFRCNDJkQ3RjVTl2LVpmT1BOaXhOSHNsTWNwZ0ZB?oc=5\" target=\"_blank\">Nine US Companies Block Tokenized Share Trading on OKXICE Under New SEC Rules</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">FinanceFeeds</font>",
+        "fetched_at": "2026-10-19T09:51:50.831136Z",
+        "id": "google_news:article:f7b8b275ffdc3007",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://financefeeds.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "FinanceFeeds"
+        },
+        "published_at": "2026-10-19T05:33:23Z",
+        "source_type": "google_news",
+        "title": "Nine US Companies Block Tokenized Share Trading on OKXICE Under New SEC Rules",
+        "url": "https://financefeeds.com/nine-us-companies-block-tokenized-share-trading-on-okxice-under-new-sec-rules/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A concrete market-structure milestone — crypto vault deposits crossing $10 billion — combined with emerging regulatory scrutiny of vault lending risks, giving a clear transmission path to DeFi and yield-product markets. Notable but not yet a systemic or landmark regulatory event, so it lands in the high-value rather than groundbreaking tier.",
+        "ai_score": 7.0,
+        "ai_summary": "Crypto vault deposits have surpassed $10 billion, a record level that is drawing regulatory attention to the lending and counterparty risks embedded in these yield-bearing products.",
+        "ai_tags": [
+          "crypto-vaults",
+          "defi-lending",
+          "regulatory-scrutiny",
+          "market-structure",
+          "yield-products"
+        ],
+        "author": "AI Boost",
+        "content": "",
+        "fetched_at": "2026-10-19T09:51:52.286943Z",
+        "id": "rss:www.coindesk.com_arc_outboundfeeds_rss_:c088e314b7ea10fc",
+        "metadata": {
+          "category": "crypto-markets",
+          "event_retry_pending": true,
+          "feed_name": "CoinDesk",
+          "score_model": "deepseek:deepseek-flash",
+          "tags": [
+            "Markets",
+            "DeFi",
+            "News"
+          ]
+        },
+        "published_at": "2026-10-19T09:32:38Z",
+        "source_type": "rss",
+        "title": "Crypto vault deposits top $10 billion as lending risks draw regulatory scrutiny",
+        "url": "https://www.coindesk.com/markets/2026/10/19/crypto-vault-deposits-top-usd10-billion-as-lending-risks-draw-regulatory-scrutiny"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Covers issuer pushback against NYSE's tokenization initiative, a significant market-structure issue for tokenized equities, but the headline indicates analysis of opposition rather than a concrete regulatory decision, launch, or measurable market event.",
+        "ai_score": 7.0,
+        "ai_summary": "Major U.S.-listed companies are opposing the New York Stock Exchange's tokenization plans, underscoring issuer pushback against exchange-led tokenized-equity initiatives.",
+        "ai_tags": [
+          "tokenization",
+          "NYSE",
+          "market-structure",
+          "institutional-adoption",
+          "securities-regulation"
+        ],
+        "author": "BitKE",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE9oQzFwYkIxRVlHQl91Z2hidXFSSVpweWp5X0txcWdyRnZ4MjhsNENOT08wUWdtc0gwNjA5bUw1RV9XREVUZ0FuRzMzVFY2bzV4Y2lFeGtoMDAxcnd3OC1yb2x0Vnp5ay1vLU1xUy1zTGVBTHhTRVBoZTd0dGZtZw?oc=5\" target=\"_blank\">INSTITUTIONAL | Why Major U.S-Listed Companies are Opposing New York Stock Exchange Tokenization Plans</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">BitKE</font>",
+        "fetched_at": "2026-10-19T09:51:50.827324Z",
+        "id": "google_news:article:dde01b0fd41d3fba",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://bitcoinke.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "BitKE"
+        },
+        "published_at": "2026-10-19T05:00:11Z",
+        "source_type": "google_news",
+        "title": "INSTITUTIONAL | Why Major U.S-Listed Companies are Opposing New York Stock Exchange Tokenization Plans",
+        "url": "https://bitcoinke.io/2026/10/listed-companies-opposing-nyse-tokenization/"
       }
     }
   ],

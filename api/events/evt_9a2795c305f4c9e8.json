@@ -7,19 +7,19 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Vitalik: EIP-8288 Enables Arbitrary Signature Schemes, Ethereum May Never Need N",
+    "zh": "Vitalik提出EIP-8288以STARK证明实现通用密码学支持，减少预编译合约需求",
     "en": "Vitalik: EIP-8288 Enables Arbitrary Signature Schemes, Ethereum May Never Need N"
   },
   "current_state": {
-    "zh": "Vitalik Buterin said EIP-8288 would let users prove arbitrary signature schemes with STARKs and an aggregator, potentially sparing Ethereum from ever adding new signature precompiles.",
-    "en": "Vitalik Buterin said EIP-8288 would let users prove arbitrary signature schemes with STARKs and an aggregator, potentially sparing Ethereum from ever adding new signature precompiles."
+    "zh": "Vitalik Buterin argues Ethereum should adopt EIP-8288, having clients perform complex cryptography and submit recursively aggregated STARK proofs so the chain only verifies results, keeping the chain lightweight and reducing the need for new precompile contracts.",
+    "en": "Vitalik Buterin argues Ethereum should adopt EIP-8288, having clients perform complex cryptography and submit recursively aggregated STARK proofs so the chain only verifies results, keeping the chain lightweight and reducing the need for new precompile contracts."
   },
   "first_seen_at": "2026-10-19T05:41:20.866369+00:00",
-  "last_updated_at": "2026-10-19T05:41:20.866369+00:00",
-  "last_material_change_at": "2026-10-19T05:41:20.866369+00:00",
+  "last_updated_at": "2026-10-19T05:41:23.825302+00:00",
+  "last_material_change_at": "2026-10-19T05:41:23.825302+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 2,
   "entities": [
     "arbitrary",
     "eip",
@@ -39,6 +39,8 @@
     "cryptography",
     "eip-8288",
     "precompiles",
+    "protocol-design",
+    "stark-proofs",
     "starks"
   ],
   "updates": [
@@ -69,12 +71,19 @@
       "references": [],
       "confidence": 0.75,
       "story_ids": [
-        "telegram:wublockchainenglish:26470"
+        "telegram:wublockchainenglish:26470",
+        "telegram:theblockbeats:201156"
       ],
       "sources": [
         {
           "url": "https://wublockchain.xyz/news/news-21300",
           "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://m.theblockbeats.info/flash/372494?from=telegram",
+          "label": "theblockbeats",
           "source_type": "telegram",
           "official": false
         }
