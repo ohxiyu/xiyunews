@@ -7,19 +7,19 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "Claude Code 团队如何做代码审查",
-    "en": "How the Claude Code team does code review"
+    "zh": "Anthropic披露Claude Code团队以AI审查AI的大规模代码审查实践",
+    "en": "Anthropic details AI-reviewing-AI code review practice for Claude Code team"
   },
   "current_state": {
-    "zh": "Anthropic 的 Claude Code 团队发布博文，介绍其大规模代码审查流程：据其描述每天处理约 3 万个 PR，大部分路径已自动化，人的注意力被引导到高风险改动上。文档、文案、仅内部使用的功能以及带开关的增量改动等低风险改动，只要自动审查与安全检查通过，就不需要人工批准。\n\n按照该团队自己的表述，这套流程的目的是把有限的人工审查精力只放到有风险的地方；同时评估套件（eval suite）会随每一次事故扩充，审查器的每一次改动都要针对整个套件评分。\n\n每天约 3 万个 PR 的数字以及低风险类别（文档、文案、仅内部功能、带开关的增量改动）均出自该团队自己的博文，而非独立测算。",
-    "en": "Anthropic's Claude Code team published a post describing how it runs code review at scale, reporting roughly 30,000 pull requests per day, with most of the path automated and human attention directed to high-risk changes. Low-risk changes — docs, copy, internal-only features and additive changes behind a flag — require no human approval once automated review and security checks are green.\n\nAccording to the team's own framing, the pipeline is designed to send scarce human review attention only where the risk is, while the reviewer's eval suite grows with every incident and every change to the reviewer is scored against all of it.\n\nThe ~30k PRs/day figure and the low-risk categories (docs, copy, internal-only features, additive changes behind a flag) come from the team's own blog post rather than independent measurement."
+    "zh": "Anthropic 披露，Claude Code 约 90% 的代码如今由 Claude 编写，并已围绕多智能体 AI 检查与按风险分级的人工审批重建代码审查流程，同时对失控的审查循环设限——此前有一次改动在一夜之间经历了 50 多轮审查。",
+    "en": "Anthropic disclosed that roughly 90% of Claude Code's code is now written by Claude and that it has rebuilt code review around multi-agent AI checking with risk-tiered human approval, while capping runaway review loops after one change went through 50+ rounds in a single night."
   },
   "first_seen_at": "2026-10-16T23:27:32.709086+00:00",
-  "last_updated_at": "2026-10-16T23:27:32.709086+00:00",
-  "last_material_change_at": "2026-10-16T23:27:32.709086+00:00",
+  "last_updated_at": "2026-10-18T13:01:27.109904+00:00",
+  "last_material_change_at": "2026-10-18T13:01:27.109904+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "claude",
     "claude-code",
@@ -29,11 +29,14 @@
   ],
   "identifiers": [],
   "topics": [
+    "agentic-coding",
+    "ai-code-review",
     "ai-devtools",
     "anthropic",
     "claude-code",
     "code-review",
-    "engineering-practices"
+    "engineering-practices",
+    "software-engineering"
   ],
   "updates": [
     {
@@ -87,6 +90,44 @@
           "url": "https://claude.dev/blog/solving-code-review-at-anthropic/",
           "label": "pretext",
           "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_41e6200caf8f1079",
+      "event_id": "evt_eb56a02846741ca3",
+      "occurred_at": "2026-10-18T11:12:02Z",
+      "published_at": "2026-10-18T11:12:02Z",
+      "first_seen_at": "2026-10-18T13:01:27.109904Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Claude Code开始让AI审查AI：90%代码由Claude编写，低风险修改无需人工批准",
+      "title_en": "Claude Code开始让AI审查AI：90%代码由Claude编写，低风险修改无需人工批准",
+      "what_changed_zh": "Anthropic 披露，Claude Code 约 90% 的代码如今由 Claude 编写，并已围绕多智能体 AI 检查与按风险分级的人工审批重建代码审查流程，同时对失控的审查循环设限——此前有一次改动在一夜之间经历了 50 多轮审查。",
+      "what_changed_en": "Anthropic disclosed that roughly 90% of Claude Code's code is now written by Claude and that it has rebuilt code review around multi-agent AI checking with risk-tiered human approval, while capping runaway review loops after one change went through 50+ rounds in a single night.",
+      "current_state_zh": "Anthropic 披露，Claude Code 约 90% 的代码如今由 Claude 编写，并已围绕多智能体 AI 检查与按风险分级的人工审批重建代码审查流程，同时对失控的审查循环设限——此前有一次改动在一夜之间经历了 50 多轮审查。",
+      "current_state_en": "Anthropic disclosed that roughly 90% of Claude Code's code is now written by Claude and that it has rebuilt code review around multi-agent AI checking with risk-tiered human approval, while capping runaway review loops after one change went through 50+ rounds in a single night.",
+      "detailed_summary_zh": "Anthropic disclosed that roughly 90% of Claude Code's code is now written by Claude and that it has rebuilt code review around multi-agent AI checking with risk-tiered human approval, while capping runaway review loops after one change went through 50+ rounds in a single night.",
+      "detailed_summary_en": "Anthropic disclosed that roughly 90% of Claude Code's code is now written by Claude and that it has rebuilt code review around multi-agent AI checking with risk-tiered human approval, while capping runaway review loops after one change went through 50+ rounds in a single night.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:theblockbeats:201087"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/372426?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]
