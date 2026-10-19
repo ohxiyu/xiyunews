@@ -3600,8 +3600,9 @@
       },
       "ae6e49210029e41a672a7f639a040f260b0aeb7595e36baced9dfc8765964be4": {
         "attempted_at": "2026-10-19T23:15:51.540503+08:00",
+        "post_id": "379010066185787",
         "rank": 13,
-        "status": "pending",
+        "status": "sent",
         "text_hash": "5ce8744bae1c7be9b8d43efcc0e08eed56dd74b08b0e2c3fcbe73712c1fb6deb"
       },
       "afed01b66f8f8cd921e1ad29a8a1260871439dc9966fbb25167bde2a8ba15d14": {
@@ -3930,14 +3931,7 @@
       "synced_at": "2026-10-18T07:36:14.671273+08:00"
     },
     "2026-10-19": {
-      "jobs": [
-        {
-          "due_at": "2026-10-19T23:13:00+08:00",
-          "id": "ae6e49210029e41a672a7f639a040f260b0aeb7595e36baced9dfc8765964be4",
-          "rank": 13,
-          "text": "混合推理智能体：在潜空间中思考、通过文本行动的 LLM 智能体\n\nTogether Computer 发布了混合推理智能体（HybridAgents），该架构让模型在连续的潜空间中完成推理，仅在执行动作和调用工具时输出文本。此次发布附带 GitHub 代码仓库、HuggingFace 模型合集，以及 arXiv 论文 2610.18861 中的评测结果。\n\n作者将该方案定位为弥合两条路线：潜空间推理内部效率高，但缺乏原生工具调用能力和推理透明度；文本智能体则能够执行动作并接受检查。这是一种有别于显式思维链的架构思路，而不只是发布一个新的模型权重。\n\n本次开源发布包括 GitHub 上的代码（togethercomputer/HybridAgent）、一个 HuggingFace 模型合集，以及 arXiv HTML 版本中公开的评测章节。在讨论帖中，一位用户报告称，通过 llama.cpp 运行 bartowski 的 8 位量化 14B 版本时，面对一个简单的聊天、网页搜索与摘要请求，模型在约五分钟内反复输出同一段落的不同变体，直至耗尽回合预算；该用户指出 llama.cpp 可能需要更新才能支持该模型。\n\n来源：https://arxiv.org/abs/2610.18861\nxiyu.news · 2026-10-19 · https://xiyu.news"
-        }
-      ],
+      "jobs": [],
       "revision": "9b031be72646f355604f34a556e3ba8ec8e5cc233a0fb25527e33ceb4dcc5e7e",
       "selected": 13,
       "synced_at": "2026-10-19T07:31:36.052059+08:00"
