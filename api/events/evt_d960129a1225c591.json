@@ -7,31 +7,36 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "OpenCode遭入侵，OpenAI出手补账：攻击消耗的API额度退还用户",
-    "en": "OpenCode遭入侵，OpenAI出手补账：攻击消耗的API额度退还用户"
+    "zh": "OpenCode旧系统遭入侵，部分用户API密钥泄露",
+    "en": "OpenCode legacy system breached, exposing some users' API keys"
   },
   "current_state": {
-    "zh": "OpenCode's legacy system was breached, potentially exposing third-party model API keys for 1.4% of Console users; OpenAI is helping restore service, refunding API credits consumed during the attack, and granting Daybreak Blue defense access.",
-    "en": "OpenCode's legacy system was breached, potentially exposing third-party model API keys for 1.4% of Console users; OpenAI is helping restore service, refunding API credits consumed during the attack, and granting Daybreak Blue defense access."
+    "zh": "Hackers breached part of OpenCode's online platform, stole users' API keys, and used them to run up charges on victims' AI accounts.",
+    "en": "Hackers breached part of OpenCode's online platform, stole users' API keys, and used them to run up charges on victims' AI accounts."
   },
   "first_seen_at": "2026-10-19T05:41:23.828081+00:00",
-  "last_updated_at": "2026-10-19T05:41:23.828081+00:00",
-  "last_material_change_at": "2026-10-19T05:41:23.828081+00:00",
+  "last_updated_at": "2026-10-19T22:51:45.850375+00:00",
+  "last_material_change_at": "2026-10-19T22:51:45.850375+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 2,
   "entities": [
     "api",
+    "hackers",
     "openai",
     "opencode"
   ],
   "identifiers": [],
   "topics": [
+    "ai-coding-agents",
+    "api-key-theft",
     "api-security",
     "credential-leak",
     "daybreak-blue",
+    "developer-tools",
     "openai",
-    "opencode"
+    "opencode",
+    "security-incident"
   ],
   "updates": [
     {
@@ -57,17 +62,24 @@
       "community_discussion_en": "",
       "market_impact_zh": "",
       "market_impact_en": "",
-      "importance_score": 7.0,
+      "importance_score": 7.5,
       "references": [],
       "confidence": 0.75,
       "story_ids": [
-        "telegram:theblockbeats:201159"
+        "telegram:theblockbeats:201159",
+        "rss:techcrunch.com_category_artificial-intelligence_feed_:de009d5eb1f05044"
       ],
       "sources": [
         {
           "url": "https://m.theblockbeats.info/flash/372498?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://techcrunch.com/2026/10/19/hackers-hit-ai-coding-tool-opencode-running-up-charges-on-users-ai-accounts/",
+          "label": "TechCrunch AI",
+          "source_type": "rss",
           "official": false
         }
       ]
