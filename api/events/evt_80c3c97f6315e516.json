@@ -7,29 +7,37 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "⚡️Qubic披露安全事件：约2.94万亿枚QU被盗，涉及1404个Qubic钱包",
+    "zh": "Qubic钱包种子生成随机性缺陷致约2.94万亿枚QU被盗，网络暂停并冻结大部分资金",
     "en": "⚡️Qubic披露安全事件：约2.94万亿枚QU被盗，涉及1404个Qubic钱包"
   },
   "current_state": {
-    "zh": "Qubic disclosed that a seed-generation randomness flaw allowed an attacker to steal roughly 2.94 trillion QU from 1,404 wallets, prompting a network halt at tick 85,371,949 with 87.1% of the funds frozen on-chain and the remaining 12.9% sent to MEXC also frozen, while the flaw itself was patched in version 4.26.4.",
-    "en": "Qubic disclosed that a seed-generation randomness flaw allowed an attacker to steal roughly 2.94 trillion QU from 1,404 wallets, prompting a network halt at tick 85,371,949 with 87.1% of the funds frozen on-chain and the remaining 12.9% sent to MEXC also frozen, while the flaw itself was patched in version 4.26.4."
+    "zh": "Qubic disclosed that an attacker exploited insufficient randomness in wallet seed generation to drain roughly 2.94 trillion QU from 1,404 wallets, halted the network, froze 87.1% of the stolen funds, and patched the flaw in version 4.26.4 while exchanges suspended QUBIC deposits and withdrawals.",
+    "en": "Qubic disclosed that an attacker exploited insufficient randomness in wallet seed generation to drain roughly 2.94 trillion QU from 1,404 wallets, halted the network, froze 87.1% of the stolen funds, and patched the flaw in version 4.26.4 while exchanges suspended QUBIC deposits and withdrawals."
   },
   "first_seen_at": "2026-10-18T16:03:16.951260+00:00",
-  "last_updated_at": "2026-10-18T16:03:16.951260+00:00",
-  "last_material_change_at": "2026-10-18T16:03:16.951260+00:00",
+  "last_updated_at": "2026-10-19T01:36:41.151776+00:00",
+  "last_material_change_at": "2026-10-19T01:36:25.132529+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 3,
   "entities": [
-    "qubic"
+    "approximately",
+    "attack",
+    "drains",
+    "qubic",
+    "trillion",
+    "wallets",
+    "with"
   ],
   "identifiers": [],
   "topics": [
     "chain-halt",
+    "exchange-suspension",
     "qubic",
     "security-incident",
     "seed-randomness",
-    "wallet-exploit"
+    "wallet-exploit",
+    "wallet-security"
   ],
   "updates": [
     {
@@ -72,12 +80,26 @@
       ],
       "confidence": 0.75,
       "story_ids": [
-        "telegram:theblockbeats:201105"
+        "telegram:theblockbeats:201105",
+        "rss:cointelegraph.com_rss:129d5b1ac60e0a72",
+        "telegram:wublockchainenglish:26468"
       ],
       "sources": [
         {
           "url": "https://m.theblockbeats.info/flash/372444?from=telegram",
           "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://cointelegraph.com/news/qubic-freezes-chain-after-attacker-drains-14k-wallets-with-weak-seeds?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://wublockchain.xyz/news/news-21298",
+          "label": "wublockchainenglish",
           "source_type": "telegram",
           "official": false
         }
