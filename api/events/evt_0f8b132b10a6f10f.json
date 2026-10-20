@@ -7,24 +7,30 @@
   "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "以太坊Glamsterdam升级在Sepolia测试网激活并提升区块Gas上限",
-    "en": "Ethereum’s upcoming Glamsterdam upgrade clears rehearsal for a big jump in capacity"
+    "zh": "以太坊 Glamsterdam 升级测试网部署与风险警示",
+    "en": "Ethereum Glamsterdam Upgrade Testnet Deployments and Risk Warning"
   },
   "current_state": {
-    "zh": "以太坊的 Glamsterdam 升级已在 Sepolia 测试网上线，将测试网区块 gas 上限从约 6000 万提高到约 2 亿，开发者正于主网部署前测试容量改进。",
-    "en": "Ethereum's Glamsterdam upgrade went live on the Sepolia testnet, raising the testnet block gas limit from roughly 60 million to about 200 million as developers test capacity improvements ahead of mainnet deployment."
+    "zh": "Lido 工程负责人警告称，在以太坊 Glamsterdam 硬分叉期间，节点运营者可能利用以 0xB0 开头的构建者提款凭证抢先处理委托质押存款，导致用户的验证者从未出现，而存款被记入拥有相同公钥的构建者名下，并敦促质押协议采用存款前检查。",
+    "en": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks."
   },
   "first_seen_at": "2026-09-17T17:11:45.183417+00:00",
-  "last_updated_at": "2026-10-09T03:03:28.944936+00:00",
-  "last_material_change_at": "2026-10-09T03:03:28.944936+00:00",
+  "last_updated_at": "2026-10-20T09:34:14.170374+00:00",
+  "last_material_change_at": "2026-10-20T09:34:14.170374+00:00",
   "confidence": 0.75,
-  "updates_count": 7,
-  "sources_count": 13,
+  "updates_count": 9,
+  "sources_count": 15,
   "entities": [
     "activates",
     "gas",
     "glamsterdam",
+    "hoodi",
+    "lido",
+    "october",
+    "raising",
     "sepolia",
+    "sets",
+    "testnet",
     "upgrade"
   ],
   "identifiers": [],
@@ -32,12 +38,14 @@
     "epbs",
     "gas-limit",
     "glamsterdam",
+    "lido",
     "mev",
     "protocol-upgrade",
     "prysm",
     "scalability",
     "scaling",
     "sepolia",
+    "staking",
     "testnet"
   ],
   "updates": [
@@ -357,6 +365,82 @@
         {
           "url": "https://m.theblockbeats.info/flash/370900?from=telegram",
           "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_7036c23984ba6ad8",
+      "event_id": "evt_0f8b132b10a6f10f",
+      "occurred_at": "2026-10-20T02:50:21Z",
+      "published_at": "2026-10-20T02:50:21Z",
+      "first_seen_at": "2026-10-20T06:11:28.149763Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "以太坊将 Glamsterdam 升级在 Hoodi 测试网的激活时间定于 10 月 26 日，提高 Gas 上限",
+      "title_en": "Ethereum Sets October 26 for Glamsterdam Upgrade on Hoodi Testnet, Raising Gas L",
+      "what_changed_zh": "以太坊基金会已将 Glamsterdam 升级安排在 10 月 26 日 17:42 UTC 于 Hoodi 测试网激活，将区块 Gas 上限提高至 2 亿，并引入 ePBS、区块级访问列表，以及针对状态创建和数据访问的修订版 Gas 定价。",
+      "what_changed_en": "The Ethereum Foundation scheduled the Glamsterdam upgrade to activate on the Hoodi testnet on October 26 at 17:42 UTC, lifting the block gas limit to 200 million and introducing ePBS, block-level access lists, and revised gas pricing for state creation and data access.",
+      "current_state_zh": "以太坊基金会已将 Glamsterdam 升级安排在 10 月 26 日 17:42 UTC 于 Hoodi 测试网激活，将区块 Gas 上限提高至 2 亿，并引入 ePBS、区块级访问列表，以及针对状态创建和数据访问的修订版 Gas 定价。",
+      "current_state_en": "The Ethereum Foundation scheduled the Glamsterdam upgrade to activate on the Hoodi testnet on October 26 at 17:42 UTC, lifting the block gas limit to 200 million and introducing ePBS, block-level access lists, and revised gas pricing for state creation and data access.",
+      "detailed_summary_zh": "The Ethereum Foundation scheduled the Glamsterdam upgrade to activate on the Hoodi testnet on October 26 at 17:42 UTC, lifting the block gas limit to 200 million and introducing ePBS, block-level access lists, and revised gas pricing for state creation and data access.",
+      "detailed_summary_en": "The Ethereum Foundation scheduled the Glamsterdam upgrade to activate on the Hoodi testnet on October 26 at 17:42 UTC, lifting the block gas limit to 200 million and introducing ePBS, block-level access lists, and revised gas pricing for state creation and data access.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:wublockchainenglish:26483"
+      ],
+      "sources": [
+        {
+          "url": "https://wublockchain.xyz/news/ethereum-glamsterdam-upgrade-oct-26-hooodi-testnet-gas-limit-200m-21313",
+          "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_efeb0b86e2498a3a",
+      "event_id": "evt_0f8b132b10a6f10f",
+      "occurred_at": "2026-10-20T08:26:22Z",
+      "published_at": "2026-10-20T08:26:22Z",
+      "first_seen_at": "2026-10-20T09:34:14.170374Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "【Lido 工程负责人：Glamsterdam 硬分叉期间存在质押存款劫持风险】",
+      "title_en": "【Lido 工程负责人：Glamsterdam 硬分叉期间存在质押存款劫持风险】",
+      "what_changed_zh": "Lido 工程负责人警告称，在以太坊 Glamsterdam 硬分叉期间，节点运营者可能利用以 0xB0 开头的构建者提款凭证抢先处理委托质押存款，导致用户的验证者从未出现，而存款被记入拥有相同公钥的构建者名下，并敦促质押协议采用存款前检查。",
+      "what_changed_en": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks.",
+      "current_state_zh": "Lido 工程负责人警告称，在以太坊 Glamsterdam 硬分叉期间，节点运营者可能利用以 0xB0 开头的构建者提款凭证抢先处理委托质押存款，导致用户的验证者从未出现，而存款被记入拥有相同公钥的构建者名下，并敦促质押协议采用存款前检查。",
+      "current_state_en": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks.",
+      "detailed_summary_zh": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks.",
+      "detailed_summary_en": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:120824"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/115552",
+          "label": "foresightnews",
           "source_type": "telegram",
           "official": false
         }
