@@ -27931,45 +27931,67 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "The Liquid Network remains paused; 3,400 BTC have been confirmed returned to the federation wallet, but the attacker retains approximately 598.5 BTC; redemption access is not restored, Blockstream's status page shows the incident continuing, and full backing and recovery remain unconfirmed.",
-      "current_state_zh": "Liquid网络仍处于暂停状态，部分资金（3,400 BTC）已确认归还至联邦钱包，但攻击者仍保有598.5 BTC，赎回通道未开放，Blockstream状态页面显示事件持续，资金支持和恢复仍有待确认。",
+      "current_state_en": "The Liquid Network is in the final recovery stage; federation node software has been upgraded and semi-automated BTC/LBTC conversions are being reopened through swap providers, but direct federation peg-outs remain restricted, and rebuilding 1:1 bitcoin backing and restoring normal peg-out access for PAK key holders are not yet complete.",
+      "current_state_zh": "Liquid Network 处于恢复最后阶段；联盟节点软件已升级，半自动化 BTC/LBTC 兑换正通过兑换服务商逐步重启，但联盟直接 peg-out 仍受限，1:1 比特币储备重建及 PAK 密钥持有者正常兑出尚未完成。",
       "entities": [
         "after",
         "attacker",
         "blockstream",
         "broadcasts",
         "btc",
+        "coverage",
         "federation",
+        "frozen",
         "how",
         "keeps",
+        "l-btc",
+        "lbtc",
         "leaves",
         "liquid",
         "liquid-network",
         "paused",
+        "redemptions",
+        "remain",
+        "reserve",
+        "reserves",
         "return",
         "sidechain",
         "tokens",
-        "wallet"
+        "wallet",
+        "with"
       ],
       "event_id": "evt_c8eeb2561cb07df2",
       "event_type": "security_incident",
       "first_seen_at": "2026-09-06T22:13:15.375035Z",
       "identifiers": [],
-      "last_material_change_at": "2026-09-08T16:47:13.470928Z",
-      "last_updated_at": "2026-09-08T16:47:13.470928Z",
+      "last_material_change_at": "2026-10-20T13:41:31.689657Z",
+      "last_updated_at": "2026-10-20T13:41:31.689657Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_18fc53f138aba645"
+      ],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "closed",
       "title_en": "Liquid Network pauses after purported ‘white-hat’ hackers withdraw $320 million in bitcoin",
-      "title_zh": "白帽黑客提取3.2亿美元比特币，Liquid网络暂停",
+      "title_zh": "Liquid Network 遭约3.2亿美元比特币提取后暂停并恢复出块",
       "topics": [
+        "bitcoin-sidechain",
+        "blockchain-recovery",
         "blockstream",
         "btc",
         "hack",
+        "l-btc",
+        "lbtc",
         "liquid",
         "liquid-network",
+        "network-recovery",
+        "peg",
+        "peg-out",
+        "peg-out-suspension",
         "recovery",
+        "redemptions",
+        "reserves",
+        "security-incident",
         "sidechain"
       ],
       "updates": [
@@ -28360,6 +28382,193 @@
           "update_type": "confirmation",
           "what_changed_en": "Confirmed that the attacker's broadcast return transaction was confirmed in block 965950 at 16:09:25 UTC, actually returning 3,400 BTC to the federation wallet, while the hacker retained approximately 598.5 BTC (~$47 million), with an on-chain message asking 'is that ok.' Blockstream's status page still lists an active incident and major outage affecting public bridge nodes; full L-BTC backing and redemption access are not yet restored.",
           "what_changed_zh": "确认了攻击者广播的归还交易已在区块965950中于16:09:25 UTC得到确认，实际返还3,400 BTC至联邦钱包，黑客保留598.5 BTC（约合4700万美元），并在链上留言询问是否可接受。Blockstream状态页面仍显示活动事件和公共桥接节点中断，完整的L-BTC支持和赎回通道尚未恢复。"
+        },
+        {
+          "background_en": "Liquid is an open-source Bitcoin sidechain launched by Blockstream in 2018 that enables faster, more confidential BTC transfers and the issuance of digital assets such as stablecoins, tokenized securities and bonds. Users hold L-BTC, which is pegged 1:1 to BTC and backed by real bitcoin locked in a wallet collectively managed by federated nodes called functionaries. Elements is the open-source codebase underpinning the network, and its Confidential Transactions feature uses range proofs to validate that transaction amounts are legitimate without revealing them publicly; a flaw in the caching of those verifications is what the attacker exploited.",
+          "background_zh": "Liquid 是 Blockstream 于 2018 年推出的开源比特币侧链，支持更快速、更保密的 BTC 转账，并可用于发行稳定币、证券型代币和债券等数字资产。用户持有的是 L-BTC，它与 BTC 按 1:1 锚定，背后是在由名为 functionary 的联邦节点共同管理的钱包中锁定的真实比特币。Elements 是支撑该网络的开源代码库，其机密交易（Confidential Transactions）功能使用范围证明在不公开金额的前提下验证交易是否合法，而攻击者利用的正是这些验证结果缓存环节中的缺陷。",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "The Liquid Network resumed block production after deploying emergency software updates following a $320 million Bitcoin withdrawal exploit, though transactions and peg operations remain suspended during recovery.",
+          "current_state_zh": "Liquid Network 在部署紧急软件更新后于周四恢复出块，但作为预防措施，交易与锚定（peg）操作仍然暂停，网络正在被持续监控以确认完全稳定。此次重启源于 9 月 6 日的事件：约 4,000 枚 BTC（价值约 3.2 亿美元）通过 Elements 软件中的一个漏洞从该网络的联合钱包中被提取。\n\nLiquid 是规模最大、运行时间最长的比特币侧链之一，这次提取掏空了其联合钱包约 95% 的余额，暴露出联邦式跨链桥设计中高度集中的信任如何转化为系统性风险。事件直接波及 L-BTC 持有者、在 Liquid 上发行代币化资产与稳定币的机构，以及依赖其进行结算的交易所和做市商。\n\n攻击者利用了 Elements 范围证明（range proof）验证缓存中的漏洞，铸造出约 4,000 枚无真实背书的 L-BTC，随后通过 SideSwap 的授权退出锚定路径兑换为真实 BTC。紧急补丁 Elements v23.3.4 加固了范围证明所使用的缓存键；在受影响桥节点完成修补后，3,400 枚 BTC（约 2.7 亿美元）被归还，截至 9 月 7 日仍有约 598 枚 BTC（约 4,600 万美元）未追回。",
+          "detailed_summary_en": "The Liquid Network resumed block production after deploying emergency software updates following a $320 million Bitcoin withdrawal exploit, though transactions and peg operations remain suspended during recovery.",
+          "detailed_summary_zh": "The Liquid Network resumed block production after deploying emergency software updates following a $320 million Bitcoin withdrawal exploit, though transactions and peg operations remain suspended during recovery.",
+          "event_id": "evt_c8eeb2561cb07df2",
+          "first_seen_at": "2026-09-10T22:43:07.725464Z",
+          "importance_score": 8.5,
+          "market_impact_en": "The transmission channel is peg confidence: with peg operations and PAK-authorized peg-outs suspended, the redemption path connecting L-BTC to BTC is constrained, which bears on venues, issuers and liquidity providers that settle on Liquid, including SideSwap-linked exits. The incident also feeds into a broader reassessment of custody and federation risk across federated Bitcoin layer-2 and bridge designs, and the outstanding ~598 BTC shortfall in the BTC/L-BTC reserve is the key variable still being resolved.",
+          "market_impact_zh": "传导渠道主要是锚定信心：由于锚定操作与 PAK 授权提现均被暂停，L-BTC 兑换为 BTC 的赎回通道受限，这直接影响在 Liquid 上结算的交易所、发行方和流动性提供者，包括与 SideSwap 相关的退出路径。该事件还可能推动市场重新评估联邦式比特币二层与跨链桥设计中的托管风险，而 BTC/L-BTC 储备中尚未追回的约 598 枚 BTC 缺口仍是待解决的关键变量。",
+          "material_change": true,
+          "occurred_at": "2026-09-10T16:38:16Z",
+          "published_at": "2026-09-10T16:38:16Z",
+          "references": [
+            {
+              "title": "The Liquid Network | Bitcoin layer-2 solution for digital ...",
+              "url": "https://blockstream.com/liquid/"
+            },
+            {
+              "title": "Liquid Network Resumes Block Production After 4,000 BTC ...",
+              "url": "https://news.bitcoin.com/crypto-news/liquid-network-resumes-block-production-after-4000-btc-exploit/"
+            },
+            {
+              "title": "Liquid Federation Discloses 4,000 BTC Vulnerability Incident | KuCoin",
+              "url": "https://www.kucoin.com/news/flash/liquid-federation-discloses-4-000-btc-vulnerability-incident"
+            }
+          ],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/liquid-network-resumes-block-production-after-320m-exploit?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:656b87c8d60ff48b"
+          ],
+          "time_precision": "published",
+          "title_en": "Liquid Network resumes block production after $320M exploit",
+          "title_zh": "Liquid Network 在 3.2 亿美元漏洞事件后恢复出块",
+          "update_id": "upd_0994e70ba0d0ffe3",
+          "update_type": "remediation",
+          "what_changed_en": "The Liquid Network resumed block production after deploying emergency software updates following a $320 million Bitcoin withdrawal exploit, though transactions and peg operations remain suspended during recovery.",
+          "what_changed_zh": "Liquid Network 在部署紧急软件更新后于周四恢复出块，但作为预防措施，交易与锚定（peg）操作仍然暂停，网络正在被持续监控以确认完全稳定。此次重启源于 9 月 6 日的事件：约 4,000 枚 BTC（价值约 3.2 亿美元）通过 Elements 软件中的一个漏洞从该网络的联合钱包中被提取。\n\nLiquid 是规模最大、运行时间最长的比特币侧链之一，这次提取掏空了其联合钱包约 95% 的余额，暴露出联邦式跨链桥设计中高度集中的信任如何转化为系统性风险。事件直接波及 L-BTC 持有者、在 Liquid 上发行代币化资产与稳定币的机构，以及依赖其进行结算的交易所和做市商。\n\n攻击者利用了 Elements 范围证明（range proof）验证缓存中的漏洞，铸造出约 4,000 枚无真实背书的 L-BTC，随后通过 SideSwap 的授权退出锚定路径兑换为真实 BTC。紧急补丁 Elements v23.3.4 加固了范围证明所使用的缓存键；在受影响桥节点完成修补后，3,400 枚 BTC（约 2.7 亿美元）被归还，截至 9 月 7 日仍有约 598 枚 BTC（约 4,600 万美元）未追回。"
+        },
+        {
+          "background_en": "Liquid is an open-source Bitcoin sidechain operated by a federation of functionaries, where users move BTC onto the chain through a peg-in that creates L-BTC and back to Bitcoin through a peg-out that burns L-BTC and directs the federation's multisig wallet to release BTC after confirmations. Because a federated sidechain depends on a defined set of trusted members rather than Bitcoin's own consensus, the integrity of the 1:1 peg rests on the federation's keys and controls. The Sept. 6 incident moved roughly 3,400 BTC out of the federation wallet, with about 3,400 BTC reported as returning on Sept. 7, and block production was later restarted in a controlled mode without transactions. This reserve gap, the reopened venue and the still-closed peg-out route are three separate parts of the same event.",
+          "background_zh": "Liquid 是一条由功能节点（functionaries）组成的联邦运营的开源比特币侧链：用户通过 peg-in 将 BTC 转入并生成 L-BTC，通过 peg-out 销毁 L-BTC，并由联邦多签钱包在获得确认后释放 BTC 回到比特币主链。由于联邦制侧链依赖一组既定的可信成员而非比特币自身的共识，1:1 锚定的完整性取决于联邦的密钥与控制流程。9 月 6 日的事件使约 3,400 BTC 从联邦钱包转出，9 月 7 日约有 3,400 BTC 被报告回流，随后出块以不含交易的受控模式重启。储备缺口、市场重开与仍未恢复的 peg-out 通道，是同一事件的三个不同环节。",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "Liquid Network has resumed block production and SideSwap reopened L-BTC trading, but federation peg-outs remain suspended; reserves cover only ~85% of L-BTC supply, a ~627 BTC shortfall, and recovery is ongoing.",
+          "current_state_zh": "Liquid Network 已恢复区块生产，SideSwap 重新开放 L-BTC 交易，但联邦锚定退出仍暂停；储备仅覆盖约85%的 L-BTC 供应，缺口约627 BTC，恢复仍在进行中。",
+          "detailed_summary_en": "SideSwap reopened L-BTC markets after Liquid resumed block production, but federation peg-outs remain suspended and reserves cover only about 85% of outstanding L-BTC, leaving a roughly 627 BTC shortfall.",
+          "detailed_summary_zh": "SideSwap reopened L-BTC markets after Liquid resumed block production, but federation peg-outs remain suspended and reserves cover only about 85% of outstanding L-BTC, leaving a roughly 627 BTC shortfall.",
+          "event_id": "evt_c8eeb2561cb07df2",
+          "first_seen_at": "2026-09-12T04:55:43.358323Z",
+          "importance_score": 8.5,
+          "market_impact_en": "The direct exposure sits with L-BTC holders and Liquid venues such as SideSwap: with federation peg-outs suspended, L-BTC trades as a claim on a fractionally backed reserve rather than a redeemable claim on BTC, and any discount transmits through the redemption-arbitrage channel that normally links the two assets — a channel that is currently closed. Exchanges and issuers that custody L-BTC or settle tokenized assets on Liquid face custody and liquidity uncertainty, and the episode feeds broader scrutiny of federated sidechain and bridge trust models, which can weigh on sentiment toward BTC layer-2 assets.",
+          "market_impact_zh": "直接暴露风险的是 L-BTC 持有者与 SideSwap 等 Liquid 上的交易场所：在联邦 peg-out 暂停的情况下，L-BTC 交易的是一个仅由部分储备支撑的债权，而非可赎回为 BTC 的索取权；任何折价都会通过通常连接这两种资产的赎回套利渠道传导，而该渠道目前已被关闭。托管 L-BTC 或在 Liquid 上结算代币化资产的交易所与发行方，面临托管与流动性层面的不确定性；该事件也会加剧市场对联邦制侧链与跨链桥信任模型的审视，进而影响围绕 BTC 二层资产的普遍情绪。",
+          "material_change": true,
+          "occurred_at": "2026-09-12T00:30:41Z",
+          "published_at": "2026-09-12T00:30:41Z",
+          "references": [
+            {
+              "title": "Peg-in and Peg-out - Documentation - The Liquid Network",
+              "url": "https://docs.liquid.net/docs/advanced-pegin-pegout"
+            },
+            {
+              "title": "What is a Liquid peg-out? – Blockstream Help Center",
+              "url": "https://help.blockstream.com/hc/en-us/articles/900001551783-What-is-a-Liquid-peg-out"
+            },
+            {
+              "title": "The Liquid Network | Bitcoin layer-2 solution for digital asset issuance.",
+              "url": "https://blockstream.com/liquid/"
+            }
+          ],
+          "sources": [
+            {
+              "label": "CryptoSlate",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cryptoslate.com/l-btc-resumes-trading-with-reserves-covering-just-85-of-supply/"
+            }
+          ],
+          "story_ids": [
+            "rss:cryptoslate.com_feed_:62c40af23e13e1cc"
+          ],
+          "time_precision": "published",
+          "title_en": "L-BTC resumes trading with reserves covering just 85% of supply",
+          "title_zh": "SideSwap 恢复 L-BTC 交易，但储备仅覆盖约 85% 供应量",
+          "update_id": "upd_e4935ec08ab9160a",
+          "update_type": "aftermath",
+          "what_changed_en": "SideSwap reopened L-BTC markets after Liquid resumed block production, but federation peg-outs remain suspended; Sept. 10 data shows reserves cover only ~85.15% of L-BTC supply, a ~627 BTC shortfall.",
+          "what_changed_zh": "SideSwap 在 Liquid 恢复区块生产后重新开放了 L-BTC 市场，但联邦锚定退出仍暂停；9月10日数据显示储备仅覆盖约85.15%的L-BTC供应，缺口约627 BTC。"
+        },
+        {
+          "background_en": "Liquid Network is a Bitcoin layer-2 sidechain that maintains a 1:1 peg with bitcoin, letting BTC move between the Bitcoin mainchain (peg-in) and the sidechain (peg-out). Peg-outs were halted following a security incident, and Blockstream has said it will continue publishing technical updates as recovery progresses and corrective actions are formally adopted.",
+          "background_zh": "Liquid Network 是一条与比特币保持 1:1 锚定的比特币二层侧链，允许 BTC 在比特币主链（peg-in，转入）与侧链（peg-out，转出）之间流转。在一次安全事件后，peg-out 被暂停；Blockstream 表示，随着恢复推进以及相关整改措施被正式采纳，将继续发布技术更新。",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "L-BTC peg-out redemptions remain frozen; reserves cover ~85.8% of supply, a ~603 BTC shortfall, and full backing plus completed security reviews are required before redemptions resume.",
+          "current_state_zh": "L-BTC 锚定退出仍冻结，储备仅覆盖约85.8%的供应，缺口约603 BTC，需完全背书并完成安全审查后才能恢复赎回。",
+          "detailed_summary_en": "Liquid Network's bitcoin peg-out redemptions stay frozen with reserves covering just 85.8% of issued L-BTC, a shortfall of roughly 603 BTC that must be closed and security reviews completed before redemptions resume.",
+          "detailed_summary_zh": "Liquid Network's bitcoin peg-out redemptions stay frozen with reserves covering just 85.8% of issued L-BTC, a shortfall of roughly 603 BTC that must be closed and security reviews completed before redemptions resume.",
+          "event_id": "evt_c8eeb2561cb07df2",
+          "first_seen_at": "2026-10-11T17:44:43.309027Z",
+          "importance_score": 8.0,
+          "market_impact_en": "The freeze directly restricts the redemption path for L-BTC, an asset held and supported by exchanges and custody providers, so liquidity and pricing for L-BTC pairs on those venues can diverge from mainchain BTC while the peg is closed. It also puts a spotlight on the trust assumptions of federated pegs, which can affect sentiment toward other Bitcoin sidechain and bridged-BTC designs.",
+          "market_impact_zh": "此次冻结直接切断了 L-BTC 的赎回路径，而 L-BTC 被多家交易所和托管机构持有与支持，因此在锚定通道关闭期间，这些场所上 L-BTC 交易对的流动性与价格可能与主链 BTC 出现偏离。同时，这也使市场重新审视联合锚定（federated peg）的信任假设，可能影响对其他比特币侧链及跨链 BTC 设计的人气。",
+          "material_change": true,
+          "occurred_at": "2026-10-11T15:59:08Z",
+          "published_at": "2026-10-11T15:59:08Z",
+          "references": [
+            {
+              "title": "Liquid Network Security Incident Assessment",
+              "url": "https://blog.liquid.net/liquid-network-security-incident-assessment/"
+            },
+            {
+              "title": "Blockstream Help Center | What is a Liquid peg-out?",
+              "url": "https://help.blockstream.com/liquid-network/faqs/what-is-a-liquid-peg-out"
+            }
+          ],
+          "sources": [
+            {
+              "label": "The Defiant",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://thedefiant.io/news/security/liquid-bitcoin-redemptions-remain-frozen-with-85-8-reserve-coverage"
+            }
+          ],
+          "story_ids": [
+            "rss:thedefiant.io_api_feed:611073f227bb6929"
+          ],
+          "time_precision": "published",
+          "title_en": "Liquid Bitcoin Redemptions Remain Frozen With 85.8% Reserve Coverage",
+          "title_zh": "Liquid Bitcoin 赎回仍处冻结状态，储备覆盖率 85.8%",
+          "update_id": "upd_079eacf50bc108e8",
+          "update_type": "aftermath",
+          "what_changed_en": "Reserve coverage updated to 85.8%, shortfall ~603 BTC; Liquid says peg-outs require full backing and completed security reviews before restart.",
+          "what_changed_zh": "储备覆盖率更新为85.8%，缺口约603 BTC；Liquid 表示锚定退出需完全背书并完成安全审查后方可重启。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "The Liquid Network is in the final recovery stage; federation node software has been upgraded and semi-automated BTC/LBTC conversions are being reopened through swap providers, but direct federation peg-outs remain restricted, and rebuilding 1:1 bitcoin backing and restoring normal peg-out access for PAK key holders are not yet complete.",
+          "current_state_zh": "Liquid Network 处于恢复最后阶段；联盟节点软件已升级，半自动化 BTC/LBTC 兑换正通过兑换服务商逐步重启，但联盟直接 peg-out 仍受限，1:1 比特币储备重建及 PAK 密钥持有者正常兑出尚未完成。",
+          "detailed_summary_en": "Liquid Network says it has upgraded the federation node software managing its bitcoin reserves and is coordinating with swap providers to reopen semi-automated BTC/LBTC conversions without protocol-level limits, while direct federation peg-outs remain restricted until the network's 1:1 bitcoin backing is rebuilt and PAK key holders regain normal peg-out access.",
+          "detailed_summary_zh": "Liquid Network says it has upgraded the federation node software managing its bitcoin reserves and is coordinating with swap providers to reopen semi-automated BTC/LBTC conversions without protocol-level limits, while direct federation peg-outs remain restricted until the network's 1:1 bitcoin backing is rebuilt and PAK key holders regain normal peg-out access.",
+          "event_id": "evt_c8eeb2561cb07df2",
+          "first_seen_at": "2026-10-20T13:41:31.689657Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T13:37:51Z",
+          "published_at": "2026-10-20T13:37:51Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115576"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120853"
+          ],
+          "time_precision": "published",
+          "title_en": "【Liquid Network 进入恢复最后阶段，将逐步重启 BTC 与 LBTC 兑换】",
+          "title_zh": "【Liquid Network 进入恢复最后阶段，将逐步重启 BTC 与 LBTC 兑换】",
+          "update_id": "upd_daa32946d3d8e171",
+          "update_type": "remediation",
+          "what_changed_en": "Liquid Network announced it entered the final recovery stage: it upgraded federation node software managing bitcoin reserves and is coordinating with swap providers to reopen semi-automated BTC/LBTC conversions without protocol-level limits; however, direct federation peg-outs remain restricted until 1:1 bitcoin backing is rebuilt and PAK key holders regain normal peg-out access.",
+          "what_changed_zh": "Liquid Network 宣布进入恢复最后阶段：已完成管理比特币储备的联盟节点软件升级，并正与兑换服务商协调重新开放半自动化 BTC/LBTC 兑换，且不设协议层面额度限制；但联盟直接 peg-out 仍受限，需待 1:1 比特币储备重建并为 PAK 密钥持有者恢复兑出功能。"
         }
       ]
     },
@@ -46676,8 +46885,8 @@
     {
       "category": "policy",
       "confidence": 0.75,
-      "current_state_en": "OKX has filed with the SEC to outline a 24/7 trading framework for 63 tokenized stocks on its platform, advancing its push into tokenized equity products.",
-      "current_state_zh": "OKX已向美国证券交易委员会（SEC）提交文件，说明在其平台上对63只代币化股票实行7×24小时全天候交易的框架。该文件与OKXICE实体相关，推进了该交易所布局代币化股票产品的进程。\n\n这份文件是一家大型加密交易所切入代币化股票市场结构的实质性动作，而SEC工作人员已在2026年1月就联邦证券法如何适用于代币化证券发表过声明。\n\n对该文件的报道称其对代币化股票交易设有限制，另有一个标题指出代币化证券交易场所不会挑战传统交易所。该文件本身并不构成对该计划的批准。",
+      "current_state_en": "OKXICE, the OKX-ICE joint venture tokenized stock venue, plans under the SEC's five-year Innovation Exemption to support 24/7 trading of 62 companies/63 tickers via AMMs and liquidity pools, with issuers allowed to object. Sixteen issuers have now objected (15 on the original roster), and Nasdaq is opting its own shares out. No launch date has been announced and the venue is not an SEC-registered exchange.",
+      "current_state_zh": "OKXICE是OKX与ICE合资推进的代币化股票交易场所，拟依据SEC五年期创新豁免框架支持62家公司/63个股票代码的7×24小时代币化股票交易，通过AMM与流动性池撮合，并允许发行方提出异议。目前16家发行方已提出反对（15家属原名单），纳斯达克也选择排除自身股票。该场所尚未宣布上线日期，也并非SEC注册交易所。",
       "entities": [
         "actual",
         "after",
@@ -46686,14 +46895,17 @@
         "apex",
         "approves",
         "australia",
+        "blue",
         "boost",
         "bullish",
         "cftc",
+        "chip",
         "circle",
         "clarity",
         "clarity-act",
         "coinbase",
         "coindesk",
+        "companies",
         "congress",
         "dividends",
         "door",
@@ -46730,6 +46942,7 @@
         "never",
         "new",
         "news",
+        "nine",
         "not",
         "notice",
         "nyse",
@@ -46754,6 +46967,7 @@
         "robinhood",
         "rushes",
         "salvador",
+        "say",
         "sec",
         "sec-filing",
         "seek",
@@ -46787,8 +47001,8 @@
       "event_type": "legal_case",
       "first_seen_at": "2026-09-10T22:42:59.603645Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-07T11:15:03.153857Z",
-      "last_updated_at": "2026-10-09T11:20:49.228703Z",
+      "last_material_change_at": "2026-10-20T13:41:48.186349Z",
+      "last_updated_at": "2026-10-20T13:41:48.186349Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_850acbfb4d581e34",
@@ -46847,11 +47061,13 @@
         "nyse",
         "okx",
         "onchain-trading",
+        "real-world-assets",
         "rwa",
         "rwa-tokenization",
         "sec",
         "sec-filing",
         "sec-regulation",
+        "securities-regulation",
         "token-issuance",
         "tokenized-equities",
         "tokenized-securities",
@@ -47790,6 +48006,89 @@
           "update_type": "escalation",
           "what_changed_en": "OKX has filed with the SEC to outline a 24/7 trading framework for 63 tokenized stocks on its platform, advancing its push into tokenized equity products.",
           "what_changed_zh": "OKX已向美国证券交易委员会（SEC）提交文件，说明在其平台上对63只代币化股票实行7×24小时全天候交易的框架。该文件与OKXICE实体相关，推进了该交易所布局代币化股票产品的进程。\n\n这份文件是一家大型加密交易所切入代币化股票市场结构的实质性动作，而SEC工作人员已在2026年1月就联邦证券法如何适用于代币化证券发表过声明。\n\n对该文件的报道称其对代币化股票交易设有限制，另有一个标题指出代币化证券交易场所不会挑战传统交易所。该文件本身并不构成对该计划的批准。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.93,
+          "current_state_en": "OKXICE, the OKX-ICE joint venture tokenized stock venue, planned to support 63 tokenized stocks with 24/7 trading via Uniswap v4 pools on XLayer. After Cerebras' earlier issuer objection, nine blue-chip issuers have now objected, representing 14% of the planned roster, and Nasdaq is opting its own shares out. The venue has not announced a launch date and is not an SEC-registered exchange.",
+          "current_state_zh": "OKXICE是OKX与ICE合资推进的代币化股票交易场所，计划支持63只代币化股票并通过XLayer上的Uniswap v4池进行7×24小时交易。在Cerebras此前提出发行人反对后，现有九家蓝筹发行人提出反对，占计划名单的14%；纳斯达克也选择排除自身股票。该场所尚未宣布上线日期，且并非SEC注册交易所。",
+          "detailed_summary_en": "Nine blue-chip companies have objected to their shares being traded on OKX and ICE's tokenized stock venue OKXICE, marking the first significant issuer backlash against tokenized equities.",
+          "detailed_summary_zh": "Nine blue-chip companies have objected to their shares being traded on OKX and ICE's tokenized stock venue OKXICE, marking the first significant issuer backlash against tokenized equities.",
+          "event_id": "evt_cc2ee6ed697c7f69",
+          "first_seen_at": "2026-10-20T13:41:48.186349Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T12:06:44Z",
+          "published_at": "2026-10-20T12:06:44Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/381399/morning-minute-nine-blue-chip-companies-say-no-to-tokenized-stocks"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:21303f3e9fc7d10e"
+          ],
+          "time_precision": "published",
+          "title_en": "Morning Minute: Nine Blue Chip Companies Say No to Tokenized Stocks",
+          "title_zh": "早间速览：九家蓝筹公司对代币化股票说不",
+          "update_id": "upd_a0c356ca8169a4a3",
+          "update_type": "escalation",
+          "what_changed_en": "Nine blue-chip issuers — Verizon, Broadcom, UnitedHealth, Cerebras, AppLovin, Applied Digital, Rocket Lab, CoreWeave and Applied Optoelectronics — have objected to their shares trading on OKXICE, equal to 14% of the 63 companies the venue planned to list; Nasdaq is also opting its own shares out, citing the lack of real-time best prices and consolidated tape reporting.",
+          "what_changed_zh": "九家蓝筹公司（Verizon、博通、联合健康、Cerebras、AppLovin、Applied Digital、Rocket Lab、CoreWeave、Applied Optoelectronics）已对OKXICE代币化股票交易场所提出反对，占其计划上市的63家公司的14%；纳斯达克也选择将其自身股票排除在外，理由是缺乏实时最优价格和合并行情报告。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.93,
+          "current_state_en": "OKXICE, the OKX-ICE joint venture tokenized stock venue, plans under the SEC's five-year Innovation Exemption to support 24/7 trading of 62 companies/63 tickers via AMMs and liquidity pools, with issuers allowed to object. Sixteen issuers have now objected (15 on the original roster), and Nasdaq is opting its own shares out. No launch date has been announced and the venue is not an SEC-registered exchange.",
+          "current_state_zh": "OKXICE是OKX与ICE合资推进的代币化股票交易场所，拟依据SEC五年期创新豁免框架支持62家公司/63个股票代码的7×24小时代币化股票交易，通过AMM与流动性池撮合，并允许发行方提出异议。目前16家发行方已提出反对（15家属原名单），纳斯达克也选择排除自身股票。该场所尚未宣布上线日期，也并非SEC注册交易所。",
+          "detailed_summary_en": "Microsoft, Alphabet, Goldman Sachs and four other companies formally objected to the planned OKX-ICE platform trading tokenized versions of their shares, bringing the total number of objecting issuers to 16 and creating mounting friction for the SEC innovation-exemption-based tokenized US equity plan.",
+          "detailed_summary_zh": "Microsoft, Alphabet, Goldman Sachs and four other companies formally objected to the planned OKX-ICE platform trading tokenized versions of their shares, bringing the total number of objecting issuers to 16 and creating mounting friction for the SEC innovation-exemption-based tokenized US equity plan.",
+          "event_id": "evt_cc2ee6ed697c7f69",
+          "first_seen_at": "2026-10-20T13:41:30.782926Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T12:45:02Z",
+          "published_at": "2026-10-20T12:45:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372795?from=telegram"
+            },
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115568"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201449",
+            "telegram:foresightnews:120845"
+          ],
+          "time_precision": "published",
+          "title_en": "微软、谷歌母公司等7家企业反对在OKX-ICE平台交易其代币化股票",
+          "title_zh": "微软、谷歌母公司等7家企业反对在OKX-ICE平台交易其代币化股票",
+          "update_id": "upd_41282aac862b978c",
+          "update_type": "escalation",
+          "what_changed_en": "Seven more issuers — Microsoft, Alphabet, Goldman Sachs, Qualcomm, Caterpillar, McDonald's and Western Digital — have objected, raising total disclosed objecting issuers from nine to 16 (15 of them on the original 62-company roster, with Cerebras outside that list), per the joint venture's 19 October updated public statement.",
+          "what_changed_zh": "微软、Alphabet、高盛、高通、卡特彼勒、麦当劳和西部数据这7家企业新提出反对，使已披露的反对发行方总数从9家增至16家（其中15家属于原62家公司名单，Cerebras不在最初名单内），OKXICE于10月19日更新了公开声明。"
         }
       ]
     },
@@ -48519,198 +48818,6 @@
           "update_type": "initial",
           "what_changed_en": "The UK House of Lords voted 194–138 to add an amendment to the Financial Services and Markets Bill requiring the Treasury to publish and consult on a digital asset strategy covering cryptoassets, stablecoins, and tokenized securities within 12 months.",
           "what_changed_zh": "The UK House of Lords voted 194–138 to add an amendment to the Financial Services and Markets Bill requiring the Treasury to publish and consult on a digital asset strategy covering cryptoassets, stablecoins, and tokenized securities within 12 months."
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "L-BTC peg-out redemptions remain frozen; reserves cover ~85.8% of supply, a ~603 BTC shortfall, and full backing plus completed security reviews are required before redemptions resume.",
-      "current_state_zh": "L-BTC 锚定退出仍冻结，储备仅覆盖约85.8%的供应，缺口约603 BTC，需完全背书并完成安全审查后才能恢复赎回。",
-      "entities": [
-        "coverage",
-        "frozen",
-        "l-btc",
-        "liquid",
-        "liquid-network",
-        "redemptions",
-        "remain",
-        "reserve",
-        "reserves",
-        "with"
-      ],
-      "event_id": "evt_18fc53f138aba645",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-09-10T22:43:07.725464Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-11T17:44:43.309027Z",
-      "last_updated_at": "2026-10-11T17:44:43.309027Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "closed",
-      "title_en": "Liquid Network resumes block production after $320M exploit",
-      "title_zh": "Liquid Network 在 3.2 亿美元漏洞事件后恢复出块",
-      "topics": [
-        "bitcoin-sidechain",
-        "blockchain-recovery",
-        "l-btc",
-        "liquid-network",
-        "peg",
-        "peg-out-suspension",
-        "redemptions",
-        "reserves",
-        "security-incident"
-      ],
-      "updates": [
-        {
-          "background_en": "Liquid is an open-source Bitcoin sidechain launched by Blockstream in 2018 that enables faster, more confidential BTC transfers and the issuance of digital assets such as stablecoins, tokenized securities and bonds. Users hold L-BTC, which is pegged 1:1 to BTC and backed by real bitcoin locked in a wallet collectively managed by federated nodes called functionaries. Elements is the open-source codebase underpinning the network, and its Confidential Transactions feature uses range proofs to validate that transaction amounts are legitimate without revealing them publicly; a flaw in the caching of those verifications is what the attacker exploited.",
-          "background_zh": "Liquid 是 Blockstream 于 2018 年推出的开源比特币侧链，支持更快速、更保密的 BTC 转账，并可用于发行稳定币、证券型代币和债券等数字资产。用户持有的是 L-BTC，它与 BTC 按 1:1 锚定，背后是在由名为 functionary 的联邦节点共同管理的钱包中锁定的真实比特币。Elements 是支撑该网络的开源代码库，其机密交易（Confidential Transactions）功能使用范围证明在不公开金额的前提下验证交易是否合法，而攻击者利用的正是这些验证结果缓存环节中的缺陷。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "The Liquid Network resumed block production after deploying emergency software updates following a $320 million Bitcoin withdrawal exploit, though transactions and peg operations remain suspended during recovery.",
-          "current_state_zh": "Liquid Network 在部署紧急软件更新后于周四恢复出块，但作为预防措施，交易与锚定（peg）操作仍然暂停，网络正在被持续监控以确认完全稳定。此次重启源于 9 月 6 日的事件：约 4,000 枚 BTC（价值约 3.2 亿美元）通过 Elements 软件中的一个漏洞从该网络的联合钱包中被提取。\n\nLiquid 是规模最大、运行时间最长的比特币侧链之一，这次提取掏空了其联合钱包约 95% 的余额，暴露出联邦式跨链桥设计中高度集中的信任如何转化为系统性风险。事件直接波及 L-BTC 持有者、在 Liquid 上发行代币化资产与稳定币的机构，以及依赖其进行结算的交易所和做市商。\n\n攻击者利用了 Elements 范围证明（range proof）验证缓存中的漏洞，铸造出约 4,000 枚无真实背书的 L-BTC，随后通过 SideSwap 的授权退出锚定路径兑换为真实 BTC。紧急补丁 Elements v23.3.4 加固了范围证明所使用的缓存键；在受影响桥节点完成修补后，3,400 枚 BTC（约 2.7 亿美元）被归还，截至 9 月 7 日仍有约 598 枚 BTC（约 4,600 万美元）未追回。",
-          "detailed_summary_en": "The Liquid Network resumed block production after deploying emergency software updates following a $320 million Bitcoin withdrawal exploit, though transactions and peg operations remain suspended during recovery.",
-          "detailed_summary_zh": "The Liquid Network resumed block production after deploying emergency software updates following a $320 million Bitcoin withdrawal exploit, though transactions and peg operations remain suspended during recovery.",
-          "event_id": "evt_18fc53f138aba645",
-          "first_seen_at": "2026-09-10T22:43:07.725464Z",
-          "importance_score": 8.5,
-          "market_impact_en": "The transmission channel is peg confidence: with peg operations and PAK-authorized peg-outs suspended, the redemption path connecting L-BTC to BTC is constrained, which bears on venues, issuers and liquidity providers that settle on Liquid, including SideSwap-linked exits. The incident also feeds into a broader reassessment of custody and federation risk across federated Bitcoin layer-2 and bridge designs, and the outstanding ~598 BTC shortfall in the BTC/L-BTC reserve is the key variable still being resolved.",
-          "market_impact_zh": "传导渠道主要是锚定信心：由于锚定操作与 PAK 授权提现均被暂停，L-BTC 兑换为 BTC 的赎回通道受限，这直接影响在 Liquid 上结算的交易所、发行方和流动性提供者，包括与 SideSwap 相关的退出路径。该事件还可能推动市场重新评估联邦式比特币二层与跨链桥设计中的托管风险，而 BTC/L-BTC 储备中尚未追回的约 598 枚 BTC 缺口仍是待解决的关键变量。",
-          "material_change": true,
-          "occurred_at": "2026-09-10T16:38:16Z",
-          "published_at": "2026-09-10T16:38:16Z",
-          "references": [
-            {
-              "title": "The Liquid Network | Bitcoin layer-2 solution for digital ...",
-              "url": "https://blockstream.com/liquid/"
-            },
-            {
-              "title": "Liquid Network Resumes Block Production After 4,000 BTC ...",
-              "url": "https://news.bitcoin.com/crypto-news/liquid-network-resumes-block-production-after-4000-btc-exploit/"
-            },
-            {
-              "title": "Liquid Federation Discloses 4,000 BTC Vulnerability Incident | KuCoin",
-              "url": "https://www.kucoin.com/news/flash/liquid-federation-discloses-4-000-btc-vulnerability-incident"
-            }
-          ],
-          "sources": [
-            {
-              "label": "Cointelegraph",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://cointelegraph.com/news/liquid-network-resumes-block-production-after-320m-exploit?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
-            }
-          ],
-          "story_ids": [
-            "rss:cointelegraph.com_rss:656b87c8d60ff48b"
-          ],
-          "time_precision": "published",
-          "title_en": "Liquid Network resumes block production after $320M exploit",
-          "title_zh": "Liquid Network 在 3.2 亿美元漏洞事件后恢复出块",
-          "update_id": "upd_0994e70ba0d0ffe3",
-          "update_type": "initial",
-          "what_changed_en": "The Liquid Network resumed block production after deploying emergency software updates following a $320 million Bitcoin withdrawal exploit, though transactions and peg operations remain suspended during recovery.",
-          "what_changed_zh": "Liquid Network 在部署紧急软件更新后于周四恢复出块，但作为预防措施，交易与锚定（peg）操作仍然暂停，网络正在被持续监控以确认完全稳定。此次重启源于 9 月 6 日的事件：约 4,000 枚 BTC（价值约 3.2 亿美元）通过 Elements 软件中的一个漏洞从该网络的联合钱包中被提取。\n\nLiquid 是规模最大、运行时间最长的比特币侧链之一，这次提取掏空了其联合钱包约 95% 的余额，暴露出联邦式跨链桥设计中高度集中的信任如何转化为系统性风险。事件直接波及 L-BTC 持有者、在 Liquid 上发行代币化资产与稳定币的机构，以及依赖其进行结算的交易所和做市商。\n\n攻击者利用了 Elements 范围证明（range proof）验证缓存中的漏洞，铸造出约 4,000 枚无真实背书的 L-BTC，随后通过 SideSwap 的授权退出锚定路径兑换为真实 BTC。紧急补丁 Elements v23.3.4 加固了范围证明所使用的缓存键；在受影响桥节点完成修补后，3,400 枚 BTC（约 2.7 亿美元）被归还，截至 9 月 7 日仍有约 598 枚 BTC（约 4,600 万美元）未追回。"
-        },
-        {
-          "background_en": "Liquid is an open-source Bitcoin sidechain operated by a federation of functionaries, where users move BTC onto the chain through a peg-in that creates L-BTC and back to Bitcoin through a peg-out that burns L-BTC and directs the federation's multisig wallet to release BTC after confirmations. Because a federated sidechain depends on a defined set of trusted members rather than Bitcoin's own consensus, the integrity of the 1:1 peg rests on the federation's keys and controls. The Sept. 6 incident moved roughly 3,400 BTC out of the federation wallet, with about 3,400 BTC reported as returning on Sept. 7, and block production was later restarted in a controlled mode without transactions. This reserve gap, the reopened venue and the still-closed peg-out route are three separate parts of the same event.",
-          "background_zh": "Liquid 是一条由功能节点（functionaries）组成的联邦运营的开源比特币侧链：用户通过 peg-in 将 BTC 转入并生成 L-BTC，通过 peg-out 销毁 L-BTC，并由联邦多签钱包在获得确认后释放 BTC 回到比特币主链。由于联邦制侧链依赖一组既定的可信成员而非比特币自身的共识，1:1 锚定的完整性取决于联邦的密钥与控制流程。9 月 6 日的事件使约 3,400 BTC 从联邦钱包转出，9 月 7 日约有 3,400 BTC 被报告回流，随后出块以不含交易的受控模式重启。储备缺口、市场重开与仍未恢复的 peg-out 通道，是同一事件的三个不同环节。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.95,
-          "current_state_en": "Liquid Network has resumed block production and SideSwap reopened L-BTC trading, but federation peg-outs remain suspended; reserves cover only ~85% of L-BTC supply, a ~627 BTC shortfall, and recovery is ongoing.",
-          "current_state_zh": "Liquid Network 已恢复区块生产，SideSwap 重新开放 L-BTC 交易，但联邦锚定退出仍暂停；储备仅覆盖约85%的 L-BTC 供应，缺口约627 BTC，恢复仍在进行中。",
-          "detailed_summary_en": "SideSwap reopened L-BTC markets after Liquid resumed block production, but federation peg-outs remain suspended and reserves cover only about 85% of outstanding L-BTC, leaving a roughly 627 BTC shortfall.",
-          "detailed_summary_zh": "SideSwap reopened L-BTC markets after Liquid resumed block production, but federation peg-outs remain suspended and reserves cover only about 85% of outstanding L-BTC, leaving a roughly 627 BTC shortfall.",
-          "event_id": "evt_18fc53f138aba645",
-          "first_seen_at": "2026-09-12T04:55:43.358323Z",
-          "importance_score": 8.5,
-          "market_impact_en": "The direct exposure sits with L-BTC holders and Liquid venues such as SideSwap: with federation peg-outs suspended, L-BTC trades as a claim on a fractionally backed reserve rather than a redeemable claim on BTC, and any discount transmits through the redemption-arbitrage channel that normally links the two assets — a channel that is currently closed. Exchanges and issuers that custody L-BTC or settle tokenized assets on Liquid face custody and liquidity uncertainty, and the episode feeds broader scrutiny of federated sidechain and bridge trust models, which can weigh on sentiment toward BTC layer-2 assets.",
-          "market_impact_zh": "直接暴露风险的是 L-BTC 持有者与 SideSwap 等 Liquid 上的交易场所：在联邦 peg-out 暂停的情况下，L-BTC 交易的是一个仅由部分储备支撑的债权，而非可赎回为 BTC 的索取权；任何折价都会通过通常连接这两种资产的赎回套利渠道传导，而该渠道目前已被关闭。托管 L-BTC 或在 Liquid 上结算代币化资产的交易所与发行方，面临托管与流动性层面的不确定性；该事件也会加剧市场对联邦制侧链与跨链桥信任模型的审视，进而影响围绕 BTC 二层资产的普遍情绪。",
-          "material_change": true,
-          "occurred_at": "2026-09-12T00:30:41Z",
-          "published_at": "2026-09-12T00:30:41Z",
-          "references": [
-            {
-              "title": "Peg-in and Peg-out - Documentation - The Liquid Network",
-              "url": "https://docs.liquid.net/docs/advanced-pegin-pegout"
-            },
-            {
-              "title": "What is a Liquid peg-out? – Blockstream Help Center",
-              "url": "https://help.blockstream.com/hc/en-us/articles/900001551783-What-is-a-Liquid-peg-out"
-            },
-            {
-              "title": "The Liquid Network | Bitcoin layer-2 solution for digital asset issuance.",
-              "url": "https://blockstream.com/liquid/"
-            }
-          ],
-          "sources": [
-            {
-              "label": "CryptoSlate",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://cryptoslate.com/l-btc-resumes-trading-with-reserves-covering-just-85-of-supply/"
-            }
-          ],
-          "story_ids": [
-            "rss:cryptoslate.com_feed_:62c40af23e13e1cc"
-          ],
-          "time_precision": "published",
-          "title_en": "L-BTC resumes trading with reserves covering just 85% of supply",
-          "title_zh": "SideSwap 恢复 L-BTC 交易，但储备仅覆盖约 85% 供应量",
-          "update_id": "upd_e4935ec08ab9160a",
-          "update_type": "aftermath",
-          "what_changed_en": "SideSwap reopened L-BTC markets after Liquid resumed block production, but federation peg-outs remain suspended; Sept. 10 data shows reserves cover only ~85.15% of L-BTC supply, a ~627 BTC shortfall.",
-          "what_changed_zh": "SideSwap 在 Liquid 恢复区块生产后重新开放了 L-BTC 市场，但联邦锚定退出仍暂停；9月10日数据显示储备仅覆盖约85.15%的L-BTC供应，缺口约627 BTC。"
-        },
-        {
-          "background_en": "Liquid Network is a Bitcoin layer-2 sidechain that maintains a 1:1 peg with bitcoin, letting BTC move between the Bitcoin mainchain (peg-in) and the sidechain (peg-out). Peg-outs were halted following a security incident, and Blockstream has said it will continue publishing technical updates as recovery progresses and corrective actions are formally adopted.",
-          "background_zh": "Liquid Network 是一条与比特币保持 1:1 锚定的比特币二层侧链，允许 BTC 在比特币主链（peg-in，转入）与侧链（peg-out，转出）之间流转。在一次安全事件后，peg-out 被暂停；Blockstream 表示，随着恢复推进以及相关整改措施被正式采纳，将继续发布技术更新。",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.95,
-          "current_state_en": "L-BTC peg-out redemptions remain frozen; reserves cover ~85.8% of supply, a ~603 BTC shortfall, and full backing plus completed security reviews are required before redemptions resume.",
-          "current_state_zh": "L-BTC 锚定退出仍冻结，储备仅覆盖约85.8%的供应，缺口约603 BTC，需完全背书并完成安全审查后才能恢复赎回。",
-          "detailed_summary_en": "Liquid Network's bitcoin peg-out redemptions stay frozen with reserves covering just 85.8% of issued L-BTC, a shortfall of roughly 603 BTC that must be closed and security reviews completed before redemptions resume.",
-          "detailed_summary_zh": "Liquid Network's bitcoin peg-out redemptions stay frozen with reserves covering just 85.8% of issued L-BTC, a shortfall of roughly 603 BTC that must be closed and security reviews completed before redemptions resume.",
-          "event_id": "evt_18fc53f138aba645",
-          "first_seen_at": "2026-10-11T17:44:43.309027Z",
-          "importance_score": 8.0,
-          "market_impact_en": "The freeze directly restricts the redemption path for L-BTC, an asset held and supported by exchanges and custody providers, so liquidity and pricing for L-BTC pairs on those venues can diverge from mainchain BTC while the peg is closed. It also puts a spotlight on the trust assumptions of federated pegs, which can affect sentiment toward other Bitcoin sidechain and bridged-BTC designs.",
-          "market_impact_zh": "此次冻结直接切断了 L-BTC 的赎回路径，而 L-BTC 被多家交易所和托管机构持有与支持，因此在锚定通道关闭期间，这些场所上 L-BTC 交易对的流动性与价格可能与主链 BTC 出现偏离。同时，这也使市场重新审视联合锚定（federated peg）的信任假设，可能影响对其他比特币侧链及跨链 BTC 设计的人气。",
-          "material_change": true,
-          "occurred_at": "2026-10-11T15:59:08Z",
-          "published_at": "2026-10-11T15:59:08Z",
-          "references": [
-            {
-              "title": "Liquid Network Security Incident Assessment",
-              "url": "https://blog.liquid.net/liquid-network-security-incident-assessment/"
-            },
-            {
-              "title": "Blockstream Help Center | What is a Liquid peg-out?",
-              "url": "https://help.blockstream.com/liquid-network/faqs/what-is-a-liquid-peg-out"
-            }
-          ],
-          "sources": [
-            {
-              "label": "The Defiant",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://thedefiant.io/news/security/liquid-bitcoin-redemptions-remain-frozen-with-85-8-reserve-coverage"
-            }
-          ],
-          "story_ids": [
-            "rss:thedefiant.io_api_feed:611073f227bb6929"
-          ],
-          "time_precision": "published",
-          "title_en": "Liquid Bitcoin Redemptions Remain Frozen With 85.8% Reserve Coverage",
-          "title_zh": "Liquid Bitcoin 赎回仍处冻结状态，储备覆盖率 85.8%",
-          "update_id": "upd_079eacf50bc108e8",
-          "update_type": "aftermath",
-          "what_changed_en": "Reserve coverage updated to 85.8%, shortfall ~603 BTC; Liquid says peg-outs require full backing and completed security reviews before restart.",
-          "what_changed_zh": "储备覆盖率更新为85.8%，缺口约603 BTC；Liquid 表示锚定退出需完全背书并完成安全审查后方可重启。"
         }
       ]
     },
@@ -121965,7 +122072,7 @@
       "first_seen_at": "2026-10-06T07:22:05.375575Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-08T15:41:11.876243Z",
-      "last_updated_at": "2026-10-08T15:41:11.876243Z",
+      "last_updated_at": "2026-10-20T13:41:31.682775Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_7a4138a822a734db"
@@ -122060,10 +122167,24 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://foresightnews.pro/news/h5Detail/114782"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372762?from=telegram"
+            },
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115563"
             }
           ],
           "story_ids": [
-            "telegram:foresightnews:119959"
+            "telegram:foresightnews:119959",
+            "telegram:theblockbeats:201417",
+            "telegram:foresightnews:120838"
           ],
           "time_precision": "published",
           "title_en": "【Ondo Private Markets 上线 OpenAI 私募市场票据，支持 7x24 小时链上交易】",
@@ -165405,7 +165526,7 @@
       "first_seen_at": "2026-10-19T05:41:23.819491Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-19T05:41:23.819491Z",
-      "last_updated_at": "2026-10-19T05:41:23.819491Z",
+      "last_updated_at": "2026-10-20T13:41:48.413261Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -165444,10 +165565,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://m.theblockbeats.info/flash/372486?from=telegram"
+            },
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/381392/mt-gox-pushes-repayment-deadline-to-2027-with-2-8b-in-bitcoin-still-to-distribute"
             }
           ],
           "story_ids": [
-            "telegram:theblockbeats:201148"
+            "telegram:theblockbeats:201148",
+            "rss:decrypt.co_feed:439114a3ff1f0d97"
           ],
           "time_precision": "published",
           "title_en": "门头沟Mt. Gox将还款期限再次延后一年至2027年10月31日",
@@ -169893,7 +170021,7 @@
       "first_seen_at": "2026-10-20T09:34:13.396948Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-20T09:34:13.396948Z",
-      "last_updated_at": "2026-10-20T09:34:13.396948Z",
+      "last_updated_at": "2026-10-20T13:41:32.208363Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -169926,17 +170054,29 @@
           "material_change": true,
           "occurred_at": "2026-10-20T09:18:03Z",
           "published_at": "2026-10-20T09:18:03Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50163277"
+            }
+          ],
           "sources": [
             {
               "label": "theblockbeats",
               "official": false,
               "source_type": "telegram",
               "url": "https://m.theblockbeats.info/flash/372748?from=telegram"
+            },
+            {
+              "label": "ggcr",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://github.com/deepseek-ai/DeepInfer"
             }
           ],
           "story_ids": [
-            "telegram:theblockbeats:201404"
+            "telegram:theblockbeats:201404",
+            "hackernews:story:50163277"
           ],
           "time_precision": "published",
           "title_en": "DeepSeek开源内部推理引擎DeepInfer：支持昇腾950，但还不是完整的在线服务",
@@ -170100,7 +170240,7 @@
       "first_seen_at": "2026-10-20T09:34:14.171646Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-20T09:34:14.171646Z",
-      "last_updated_at": "2026-10-20T09:34:14.171646Z",
+      "last_updated_at": "2026-10-20T13:41:49.841713Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -170121,7 +170261,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "The Drift Protocol attacker, dormant for two months, moved at least 13,400 ETH (~$32M) into Tornado Cash and still holds about $225M in tracked wallets, including 93,965 ETH and 477,375 USDY.",
-          "current_state_zh": "The Drift Protocol attacker, dormant for two months, moved at least 13,400 ETH (~$32M) into Tornado Cash and still holds about $225M in tracked wallets, including 93,965 ETH and 477,375 USDY.",
+          "current_state_zh": "Drift Protocol 攻击者沉寂两个月后，将至少 13,400 枚 ETH（约 3200 万美元）转入 Tornado Cash，其被追踪的钱包中仍持有约 2.25 亿美元资产，包括 93,965 枚 ETH 和 477,375 枚 USDY。",
           "detailed_summary_en": "The Drift Protocol attacker, dormant for two months, moved at least 13,400 ETH (~$32M) into Tornado Cash and still holds about $225M in tracked wallets, including 93,965 ETH and 477,375 USDY.",
           "detailed_summary_zh": "The Drift Protocol attacker, dormant for two months, moved at least 13,400 ETH (~$32M) into Tornado Cash and still holds about $225M in tracked wallets, including 93,965 ETH and 477,375 USDY.",
           "event_id": "evt_269a773047599628",
@@ -170150,7 +170290,7 @@
           "update_id": "upd_ee89b59ed5f7e7da",
           "update_type": "initial",
           "what_changed_en": "The Drift Protocol attacker, dormant for two months, moved at least 13,400 ETH (~$32M) into Tornado Cash and still holds about $225M in tracked wallets, including 93,965 ETH and 477,375 USDY.",
-          "what_changed_zh": "The Drift Protocol attacker, dormant for two months, moved at least 13,400 ETH (~$32M) into Tornado Cash and still holds about $225M in tracked wallets, including 93,965 ETH and 477,375 USDY."
+          "what_changed_zh": "Drift Protocol 攻击者沉寂两个月后，将至少 13,400 枚 ETH（约 3200 万美元）转入 Tornado Cash，其被追踪的钱包中仍持有约 2.25 亿美元资产，包括 93,965 枚 ETH 和 477,375 枚 USDY。"
         },
         {
           "background_en": "",
@@ -170183,11 +170323,18 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://m.theblockbeats.info/flash/372752?from=telegram"
+            },
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/drift-exploiter-eth-tornado-cash?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
             }
           ],
           "story_ids": [
             "telegram:lookonchainchannel:10698",
-            "telegram:theblockbeats:201408"
+            "telegram:theblockbeats:201408",
+            "rss:cointelegraph.com_rss:ad85fc51ec9c9b55"
           ],
           "time_precision": "published",
           "title_en": "The Drift Protocol exploiter, who stole over $270M, is moving $ETH to #TornadoCa",
@@ -170196,6 +170343,1267 @@
           "update_type": "escalation",
           "what_changed_en": "The attacker's Tornado Cash deposits increased from the previously reported at least 13,400 ETH to 25,700 ETH (~$61.56M), with remaining holdings down to 81,864 ETH (~$195M).",
           "what_changed_zh": "攻击者向 Tornado Cash 的转入规模从上一次报告的至少 1.34 万枚 ETH 增至 2.57 万枚 ETH（约 6156 万美元），剩余持仓降至约 8.19 万枚 ETH（约 1.95 亿美元）。"
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Investigators identified FreedomXMR (FXMR) on Hyperliquid Core as a centralized laundering service with over 87% illicit inflow volume and $20M+ traced to ransomware and exploits including Axelar, Fetch.ai, DCENT, and Gamdom.",
+      "current_state_zh": "Investigators identified FreedomXMR (FXMR) on Hyperliquid Core as a centralized laundering service with over 87% illicit inflow volume and $20M+ traced to ransomware and exploits including Axelar, Fetch.ai, DCENT, and Gamdom.",
+      "entities": [
+        "freedomxmr",
+        "fxmr",
+        "hyperliquid",
+        "inflows",
+        "laundering",
+        "over",
+        "service",
+        "zachxbt"
+      ],
+      "event_id": "evt_36967d2c37c7557e",
+      "event_type": "other",
+      "first_seen_at": "2026-10-20T13:41:26.769364Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:27.952952Z",
+      "last_updated_at": "2026-10-20T13:41:30.774853Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [
+        "evt_c9b8abf1e18c1994"
+      ],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Investigators identify FreedomXMR laundering service on Hyperliquid",
+      "title_zh": "调查人员指认Hyperliquid上的洗钱服务FreedomXMR",
+      "topics": [
+        "hyperliquid",
+        "illicit-finance",
+        "kucoin",
+        "money-laundering",
+        "on-chain-investigation",
+        "zachxbt"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "ZachXBT reported that over 87% of inflows to FreedomXMR, a Hyperliquid-based laundering service, are linked to illicit activity, with more than $20M traced to ransomware, exploits, and social engineering and XMR liquidity sourced via KuCoin.",
+          "current_state_zh": "ZachXBT reported that over 87% of inflows to FreedomXMR, a Hyperliquid-based laundering service, are linked to illicit activity, with more than $20M traced to ransomware, exploits, and social engineering and XMR liquidity sourced via KuCoin.",
+          "detailed_summary_en": "ZachXBT reported that over 87% of inflows to FreedomXMR, a Hyperliquid-based laundering service, are linked to illicit activity, with more than $20M traced to ransomware, exploits, and social engineering and XMR liquidity sourced via KuCoin.",
+          "detailed_summary_zh": "ZachXBT reported that over 87% of inflows to FreedomXMR, a Hyperliquid-based laundering service, are linked to illicit activity, with more than $20M traced to ransomware, exploits, and social engineering and XMR liquidity sourced via KuCoin.",
+          "event_id": "evt_36967d2c37c7557e",
+          "first_seen_at": "2026-10-20T13:41:26.769364Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T12:15:13Z",
+          "published_at": "2026-10-20T12:15:13Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/news-21319"
+            },
+            {
+              "label": "investigations",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://hypurrscan.io/tx/0xfd78058387f7e753fef10440d9547002017f006922fb0626a140b0d646fbc13e"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372784?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:wublockchainenglish:26489",
+            "telegram:investigations:367",
+            "telegram:theblockbeats:201438"
+          ],
+          "time_precision": "published",
+          "title_en": "ZachXBT: Over 87% of Inflows to FreedomXMR, a Laundering Service on Hyperliquid,",
+          "title_zh": "ZachXBT: Over 87% of Inflows to FreedomXMR, a Laundering Service on Hyperliquid,",
+          "update_id": "upd_d4c052506ae7b09c",
+          "update_type": "initial",
+          "what_changed_en": "ZachXBT reported that over 87% of inflows to FreedomXMR, a Hyperliquid-based laundering service, are linked to illicit activity, with more than $20M traced to ransomware, exploits, and social engineering and XMR liquidity sourced via KuCoin.",
+          "what_changed_zh": "ZachXBT reported that over 87% of inflows to FreedomXMR, a Hyperliquid-based laundering service, are linked to illicit activity, with more than $20M traced to ransomware, exploits, and social engineering and XMR liquidity sourced via KuCoin."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Ant Group's Bailing open-sourced the MIT-licensed Ming-3.0 speech suite of five models, including a 0.5B TTS system that ranked first among open-source models on Artificial Analysis' same-voice blind listening test at 1069 Elo, a 126B-parameter (6.5B active) audio-understanding model, and an ASR model averaging 4.41% error across four test categories.",
+      "current_state_zh": "Ant Group's Bailing open-sourced the MIT-licensed Ming-3.0 speech suite of five models, including a 0.5B TTS system that ranked first among open-source models on Artificial Analysis' same-voice blind listening test at 1069 Elo, a 126B-parameter (6.5B active) audio-understanding model, and an ASR model averaging 4.41% error across four test categories.",
+      "entities": [
+        "tts"
+      ],
+      "event_id": "evt_6c23fc25d4f99afa",
+      "event_type": "product_release",
+      "first_seen_at": "2026-10-20T13:41:30.754956Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:30.754956Z",
+      "last_updated_at": "2026-10-20T13:41:30.754956Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "蚂蚁百灵开源5款语音模型：5亿参数TTS在同音色盲听测试中拿下开源第一",
+      "title_zh": "蚂蚁百灵开源5款语音模型：5亿参数TTS在同音色盲听测试中拿下开源第一",
+      "topics": [
+        "ant-group",
+        "model-release",
+        "open-source-models",
+        "speech-recognition",
+        "text-to-speech"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Ant Group's Bailing open-sourced the MIT-licensed Ming-3.0 speech suite of five models, including a 0.5B TTS system that ranked first among open-source models on Artificial Analysis' same-voice blind listening test at 1069 Elo, a 126B-parameter (6.5B active) audio-understanding model, and an ASR model averaging 4.41% error across four test categories.",
+          "current_state_zh": "Ant Group's Bailing open-sourced the MIT-licensed Ming-3.0 speech suite of five models, including a 0.5B TTS system that ranked first among open-source models on Artificial Analysis' same-voice blind listening test at 1069 Elo, a 126B-parameter (6.5B active) audio-understanding model, and an ASR model averaging 4.41% error across four test categories.",
+          "detailed_summary_en": "Ant Group's Bailing open-sourced the MIT-licensed Ming-3.0 speech suite of five models, including a 0.5B TTS system that ranked first among open-source models on Artificial Analysis' same-voice blind listening test at 1069 Elo, a 126B-parameter (6.5B active) audio-understanding model, and an ASR model averaging 4.41% error across four test categories.",
+          "detailed_summary_zh": "Ant Group's Bailing open-sourced the MIT-licensed Ming-3.0 speech suite of five models, including a 0.5B TTS system that ranked first among open-source models on Artificial Analysis' same-voice blind listening test at 1069 Elo, a 126B-parameter (6.5B active) audio-understanding model, and an ASR model averaging 4.41% error across four test categories.",
+          "event_id": "evt_6c23fc25d4f99afa",
+          "first_seen_at": "2026-10-20T13:41:30.754956Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T09:50:02Z",
+          "published_at": "2026-10-20T09:50:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372755?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201411"
+          ],
+          "time_precision": "published",
+          "title_en": "蚂蚁百灵开源5款语音模型：5亿参数TTS在同音色盲听测试中拿下开源第一",
+          "title_zh": "蚂蚁百灵开源5款语音模型：5亿参数TTS在同音色盲听测试中拿下开源第一",
+          "update_id": "upd_4639293be3567d6d",
+          "update_type": "initial",
+          "what_changed_en": "Ant Group's Bailing open-sourced the MIT-licensed Ming-3.0 speech suite of five models, including a 0.5B TTS system that ranked first among open-source models on Artificial Analysis' same-voice blind listening test at 1069 Elo, a 126B-parameter (6.5B active) audio-understanding model, and an ASR model averaging 4.41% error across four test categories.",
+          "what_changed_zh": "Ant Group's Bailing open-sourced the MIT-licensed Ming-3.0 speech suite of five models, including a 0.5B TTS system that ranked first among open-source models on Artificial Analysis' same-voice blind listening test at 1069 Elo, a 126B-parameter (6.5B active) audio-understanding model, and an ASR model averaging 4.41% error across four test categories."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Inception released Mercury 3, a diffusion language model with over 40x the parameters of the original and 1M-token context that the company claims matches or beats GPT-6 Luna and Claude Haiku 5.5 on aggregate benchmarks at 4-8x their generation speed, now available through Inception API, OpenRouter, Baseten and Vercel at discounted launch pricing.",
+      "current_state_zh": "Inception released Mercury 3, a diffusion language model with over 40x the parameters of the original and 1M-token context that the company claims matches or beats GPT-6 Luna and Claude Haiku 5.5 on aggregate benchmarks at 4-8x their generation speed, now available through Inception API, OpenRouter, Baseten and Vercel at discounted launch pricing.",
+      "entities": [
+        "gpt",
+        "luna",
+        "mercury",
+        "token"
+      ],
+      "event_id": "evt_b93435ebd56dadbd",
+      "event_type": "product_release",
+      "first_seen_at": "2026-10-20T13:41:30.757484Z",
+      "identifiers": [
+        "gpt-6"
+      ],
+      "last_material_change_at": "2026-10-20T13:41:30.757484Z",
+      "last_updated_at": "2026-10-20T13:41:30.757484Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Mercury 3挑战GPT-6 Luna：比初代大40倍，官方测速仍超千Token/秒",
+      "title_zh": "Mercury 3挑战GPT-6 Luna：比初代大40倍，官方测速仍超千Token/秒",
+      "topics": [
+        "api-pricing",
+        "benchmarks",
+        "diffusion-language-models",
+        "inference-speed",
+        "model-release"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Inception released Mercury 3, a diffusion language model with over 40x the parameters of the original and 1M-token context that the company claims matches or beats GPT-6 Luna and Claude Haiku 5.5 on aggregate benchmarks at 4-8x their generation speed, now available through Inception API, OpenRouter, Baseten and Vercel at discounted launch pricing.",
+          "current_state_zh": "Inception released Mercury 3, a diffusion language model with over 40x the parameters of the original and 1M-token context that the company claims matches or beats GPT-6 Luna and Claude Haiku 5.5 on aggregate benchmarks at 4-8x their generation speed, now available through Inception API, OpenRouter, Baseten and Vercel at discounted launch pricing.",
+          "detailed_summary_en": "Inception released Mercury 3, a diffusion language model with over 40x the parameters of the original and 1M-token context that the company claims matches or beats GPT-6 Luna and Claude Haiku 5.5 on aggregate benchmarks at 4-8x their generation speed, now available through Inception API, OpenRouter, Baseten and Vercel at discounted launch pricing.",
+          "detailed_summary_zh": "Inception released Mercury 3, a diffusion language model with over 40x the parameters of the original and 1M-token context that the company claims matches or beats GPT-6 Luna and Claude Haiku 5.5 on aggregate benchmarks at 4-8x their generation speed, now available through Inception API, OpenRouter, Baseten and Vercel at discounted launch pricing.",
+          "event_id": "evt_b93435ebd56dadbd",
+          "first_seen_at": "2026-10-20T13:41:30.757484Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T10:14:02Z",
+          "published_at": "2026-10-20T10:14:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372759?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201414"
+          ],
+          "time_precision": "published",
+          "title_en": "Mercury 3挑战GPT-6 Luna：比初代大40倍，官方测速仍超千Token/秒",
+          "title_zh": "Mercury 3挑战GPT-6 Luna：比初代大40倍，官方测速仍超千Token/秒",
+          "update_id": "upd_82fc6405fac25817",
+          "update_type": "initial",
+          "what_changed_en": "Inception released Mercury 3, a diffusion language model with over 40x the parameters of the original and 1M-token context that the company claims matches or beats GPT-6 Luna and Claude Haiku 5.5 on aggregate benchmarks at 4-8x their generation speed, now available through Inception API, OpenRouter, Baseten and Vercel at discounted launch pricing.",
+          "what_changed_zh": "Inception released Mercury 3, a diffusion language model with over 40x the parameters of the original and 1M-token context that the company claims matches or beats GPT-6 Luna and Claude Haiku 5.5 on aggregate benchmarks at 4-8x their generation speed, now available through Inception API, OpenRouter, Baseten and Vercel at discounted launch pricing."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Ex-NVIDIA GR00T researchers' startup Dream Labs raised a $90M seed round and released the Dream-1 cross-robot manipulation model API, which beat Gemini 4 Argon on third-party task-progress benchmarks at far lower cost while still showing limited end-to-end success rates in research testing.",
+      "current_state_zh": "Ex-NVIDIA GR00T researchers' startup Dream Labs raised a $90M seed round and released the Dream-1 cross-robot manipulation model API, which beat Gemini 4 Argon on third-party task-progress benchmarks at far lower cost while still showing limited end-to-end success rates in research testing.",
+      "entities": [
+        "gr00t"
+      ],
+      "event_id": "evt_5d32defc021b5a3e",
+      "event_type": "other",
+      "first_seen_at": "2026-10-20T13:41:30.759623Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:30.759623Z",
+      "last_updated_at": "2026-10-20T13:41:30.759623Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "英伟达GR00T研究员创业：融资9000万美元，推出跨机型机器人AI",
+      "title_zh": "英伟达GR00T研究员创业：融资9000万美元，推出跨机型机器人AI",
+      "topics": [
+        "ai-funding",
+        "developer-api",
+        "embodied-ai",
+        "robot-foundation-models",
+        "robotics"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Ex-NVIDIA GR00T researchers' startup Dream Labs raised a $90M seed round and released the Dream-1 cross-robot manipulation model API, which beat Gemini 4 Argon on third-party task-progress benchmarks at far lower cost while still showing limited end-to-end success rates in research testing.",
+          "current_state_zh": "Ex-NVIDIA GR00T researchers' startup Dream Labs raised a $90M seed round and released the Dream-1 cross-robot manipulation model API, which beat Gemini 4 Argon on third-party task-progress benchmarks at far lower cost while still showing limited end-to-end success rates in research testing.",
+          "detailed_summary_en": "Ex-NVIDIA GR00T researchers' startup Dream Labs raised a $90M seed round and released the Dream-1 cross-robot manipulation model API, which beat Gemini 4 Argon on third-party task-progress benchmarks at far lower cost while still showing limited end-to-end success rates in research testing.",
+          "detailed_summary_zh": "Ex-NVIDIA GR00T researchers' startup Dream Labs raised a $90M seed round and released the Dream-1 cross-robot manipulation model API, which beat Gemini 4 Argon on third-party task-progress benchmarks at far lower cost while still showing limited end-to-end success rates in research testing.",
+          "event_id": "evt_5d32defc021b5a3e",
+          "first_seen_at": "2026-10-20T13:41:30.759623Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T10:33:02Z",
+          "published_at": "2026-10-20T10:33:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372761?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201416"
+          ],
+          "time_precision": "published",
+          "title_en": "英伟达GR00T研究员创业：融资9000万美元，推出跨机型机器人AI",
+          "title_zh": "英伟达GR00T研究员创业：融资9000万美元，推出跨机型机器人AI",
+          "update_id": "upd_16990be66c590206",
+          "update_type": "initial",
+          "what_changed_en": "Ex-NVIDIA GR00T researchers' startup Dream Labs raised a $90M seed round and released the Dream-1 cross-robot manipulation model API, which beat Gemini 4 Argon on third-party task-progress benchmarks at far lower cost while still showing limited end-to-end success rates in research testing.",
+          "what_changed_zh": "Ex-NVIDIA GR00T researchers' startup Dream Labs raised a $90M seed round and released the Dream-1 cross-robot manipulation model API, which beat Gemini 4 Argon on third-party task-progress benchmarks at far lower cost while still showing limited end-to-end success rates in research testing."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "A US judge denied bail to a Saudi engineer accused of planting a listening device in an OpenAI executive meeting room, after prosecutors revealed his contacts with a Saudi royal and his use of OpenAI's internal agent to query meetings with Saudi officials.",
+      "current_state_zh": "A US judge denied bail to a Saudi engineer accused of planting a listening device in an OpenAI executive meeting room, after prosecutors revealed his contacts with a Saudi royal and his use of OpenAI's internal agent to query meetings with Saudi officials.",
+      "entities": [
+        "openai"
+      ],
+      "event_id": "evt_1bca2fecf9d84d15",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-20T13:41:30.760921Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:30.760921Z",
+      "last_updated_at": "2026-10-20T13:41:30.760921Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "OpenAI窃听案牵出沙特王室：领馆出面保释，法官仍拒绝放人",
+      "title_zh": "OpenAI窃听案牵出沙特王室：领馆出面保释，法官仍拒绝放人",
+      "topics": [
+        "ai-security",
+        "espionage",
+        "insider-threat",
+        "openai",
+        "saudi-arabia"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "A US judge denied bail to a Saudi engineer accused of planting a listening device in an OpenAI executive meeting room, after prosecutors revealed his contacts with a Saudi royal and his use of OpenAI's internal agent to query meetings with Saudi officials.",
+          "current_state_zh": "A US judge denied bail to a Saudi engineer accused of planting a listening device in an OpenAI executive meeting room, after prosecutors revealed his contacts with a Saudi royal and his use of OpenAI's internal agent to query meetings with Saudi officials.",
+          "detailed_summary_en": "A US judge denied bail to a Saudi engineer accused of planting a listening device in an OpenAI executive meeting room, after prosecutors revealed his contacts with a Saudi royal and his use of OpenAI's internal agent to query meetings with Saudi officials.",
+          "detailed_summary_zh": "A US judge denied bail to a Saudi engineer accused of planting a listening device in an OpenAI executive meeting room, after prosecutors revealed his contacts with a Saudi royal and his use of OpenAI's internal agent to query meetings with Saudi officials.",
+          "event_id": "evt_1bca2fecf9d84d15",
+          "first_seen_at": "2026-10-20T13:41:30.760921Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T10:43:03Z",
+          "published_at": "2026-10-20T10:43:03Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372763?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201418"
+          ],
+          "time_precision": "published",
+          "title_en": "OpenAI窃听案牵出沙特王室：领馆出面保释，法官仍拒绝放人",
+          "title_zh": "OpenAI窃听案牵出沙特王室：领馆出面保释，法官仍拒绝放人",
+          "update_id": "upd_b6ba97516d177d2f",
+          "update_type": "initial",
+          "what_changed_en": "A US judge denied bail to a Saudi engineer accused of planting a listening device in an OpenAI executive meeting room, after prosecutors revealed his contacts with a Saudi royal and his use of OpenAI's internal agent to query meetings with Saudi officials.",
+          "what_changed_zh": "A US judge denied bail to a Saudi engineer accused of planting a listening device in an OpenAI executive meeting room, after prosecutors revealed his contacts with a Saudi royal and his use of OpenAI's internal agent to query meetings with Saudi officials."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Nvidia CEO Jensen Huang said the company invested nearly $1 billion in Germany over the past year and has become one of the country's larger venture investors, citing Germany's science, math, and startup ecosystem and noting that about half of newly founded companies there are AI-focused.",
+      "current_state_zh": "Nvidia CEO Jensen Huang said the company invested nearly $1 billion in Germany over the past year and has become one of the country's larger venture investors, citing Germany's science, math, and startup ecosystem and noting that about half of newly founded companies there are AI-focused.",
+      "entities": [],
+      "event_id": "evt_42ea81d58db52098",
+      "event_type": "other",
+      "first_seen_at": "2026-10-20T13:41:30.763716Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:30.763716Z",
+      "last_updated_at": "2026-10-20T13:41:30.763716Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "黄仁勋：英伟达过去一年投资德国近10亿美元，看好当地科学、数学与创业生态",
+      "title_zh": "黄仁勋：英伟达过去一年投资德国近10亿美元，看好当地科学、数学与创业生态",
+      "topics": [
+        "ai-investment",
+        "ai-startups",
+        "germany",
+        "nvidia",
+        "venture-capital"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Nvidia CEO Jensen Huang said the company invested nearly $1 billion in Germany over the past year and has become one of the country's larger venture investors, citing Germany's science, math, and startup ecosystem and noting that about half of newly founded companies there are AI-focused.",
+          "current_state_zh": "Nvidia CEO Jensen Huang said the company invested nearly $1 billion in Germany over the past year and has become one of the country's larger venture investors, citing Germany's science, math, and startup ecosystem and noting that about half of newly founded companies there are AI-focused.",
+          "detailed_summary_en": "Nvidia CEO Jensen Huang said the company invested nearly $1 billion in Germany over the past year and has become one of the country's larger venture investors, citing Germany's science, math, and startup ecosystem and noting that about half of newly founded companies there are AI-focused.",
+          "detailed_summary_zh": "Nvidia CEO Jensen Huang said the company invested nearly $1 billion in Germany over the past year and has become one of the country's larger venture investors, citing Germany's science, math, and startup ecosystem and noting that about half of newly founded companies there are AI-focused.",
+          "event_id": "evt_42ea81d58db52098",
+          "first_seen_at": "2026-10-20T13:41:30.763716Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T10:54:02Z",
+          "published_at": "2026-10-20T10:54:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372767?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201422"
+          ],
+          "time_precision": "published",
+          "title_en": "黄仁勋：英伟达过去一年投资德国近10亿美元，看好当地科学、数学与创业生态",
+          "title_zh": "黄仁勋：英伟达过去一年投资德国近10亿美元，看好当地科学、数学与创业生态",
+          "update_id": "upd_624e94ab6d89c68e",
+          "update_type": "initial",
+          "what_changed_en": "Nvidia CEO Jensen Huang said the company invested nearly $1 billion in Germany over the past year and has become one of the country's larger venture investors, citing Germany's science, math, and startup ecosystem and noting that about half of newly founded companies there are AI-focused.",
+          "what_changed_zh": "Nvidia CEO Jensen Huang said the company invested nearly $1 billion in Germany over the past year and has become one of the country's larger venture investors, citing Germany's science, math, and startup ecosystem and noting that about half of newly founded companies there are AI-focused."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "ByteDance, Alibaba, and Tencent have ordered more than 3 million Nvidia RTX PRO 5500 workstation GPUs worth over $35 billion, but Nvidia reportedly cannot guarantee full delivery amid tight capacity and export-control-driven demand.",
+      "current_state_zh": "ByteDance, Alibaba, and Tencent have ordered more than 3 million Nvidia RTX PRO 5500 workstation GPUs worth over $35 billion, but Nvidia reportedly cannot guarantee full delivery amid tight capacity and export-control-driven demand.",
+      "entities": [
+        "pro",
+        "rtx"
+      ],
+      "event_id": "evt_8a4e786b6f4e4b20",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-20T13:41:30.766603Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:30.766603Z",
+      "last_updated_at": "2026-10-20T13:41:30.766603Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "字节、阿里、腾讯下单超300万张英伟达RTX PRO 5500显卡，订单总额超350亿美元",
+      "title_zh": "字节、阿里、腾讯下单超300万张英伟达RTX PRO 5500显卡，订单总额超350亿美元",
+      "topics": [
+        "ai-compute",
+        "china-tech",
+        "export-controls",
+        "gpu-supply",
+        "nvidia"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "ByteDance, Alibaba, and Tencent have ordered more than 3 million Nvidia RTX PRO 5500 workstation GPUs worth over $35 billion, but Nvidia reportedly cannot guarantee full delivery amid tight capacity and export-control-driven demand.",
+          "current_state_zh": "ByteDance, Alibaba, and Tencent have ordered more than 3 million Nvidia RTX PRO 5500 workstation GPUs worth over $35 billion, but Nvidia reportedly cannot guarantee full delivery amid tight capacity and export-control-driven demand.",
+          "detailed_summary_en": "ByteDance, Alibaba, and Tencent have ordered more than 3 million Nvidia RTX PRO 5500 workstation GPUs worth over $35 billion, but Nvidia reportedly cannot guarantee full delivery amid tight capacity and export-control-driven demand.",
+          "detailed_summary_zh": "ByteDance, Alibaba, and Tencent have ordered more than 3 million Nvidia RTX PRO 5500 workstation GPUs worth over $35 billion, but Nvidia reportedly cannot guarantee full delivery amid tight capacity and export-control-driven demand.",
+          "event_id": "evt_8a4e786b6f4e4b20",
+          "first_seen_at": "2026-10-20T13:41:30.766603Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T11:08:02Z",
+          "published_at": "2026-10-20T11:08:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372771?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201426"
+          ],
+          "time_precision": "published",
+          "title_en": "字节、阿里、腾讯下单超300万张英伟达RTX PRO 5500显卡，订单总额超350亿美元",
+          "title_zh": "字节、阿里、腾讯下单超300万张英伟达RTX PRO 5500显卡，订单总额超350亿美元",
+          "update_id": "upd_c509d39caf1e7235",
+          "update_type": "initial",
+          "what_changed_en": "ByteDance, Alibaba, and Tencent have ordered more than 3 million Nvidia RTX PRO 5500 workstation GPUs worth over $35 billion, but Nvidia reportedly cannot guarantee full delivery amid tight capacity and export-control-driven demand.",
+          "what_changed_zh": "ByteDance, Alibaba, and Tencent have ordered more than 3 million Nvidia RTX PRO 5500 workstation GPUs worth over $35 billion, but Nvidia reportedly cannot guarantee full delivery amid tight capacity and export-control-driven demand."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "FINMA approved Switzerland’s first Bitcoin ETF that invests directly in BTC and is available to retail investors, with multiple fund providers having submitted applications.",
+      "current_state_zh": "FINMA approved Switzerland’s first Bitcoin ETF that invests directly in BTC and is available to retail investors, with multiple fund providers having submitted applications.",
+      "entities": [
+        "bitcoin-etf",
+        "etf",
+        "finma",
+        "retail-investors",
+        "switzerland"
+      ],
+      "event_id": "evt_1e54ee1a7f832638",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-20T13:41:30.769384Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:49.679529Z",
+      "last_updated_at": "2026-10-20T13:41:49.679529Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [
+        "evt_1ab429355fc14452"
+      ],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "FINMA approves Switzerland's first spot Bitcoin ETF for retail investors",
+      "title_zh": "瑞士FINMA批准该国首只面向零售投资者的现货比特币ETF",
+      "topics": [
+        "bitcoin-etf",
+        "crypto-regulation",
+        "finma",
+        "retail-investors",
+        "switzerland"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Switzerland's FINMA approved the country's first spot Bitcoin ETF for retail investors, using a regulated investment-fund structure with stricter custody, operational-risk and disclosure requirements instead of the debt-security format used by existing Swiss Bitcoin ETPs.",
+          "current_state_zh": "Switzerland's FINMA approved the country's first spot Bitcoin ETF for retail investors, using a regulated investment-fund structure with stricter custody, operational-risk and disclosure requirements instead of the debt-security format used by existing Swiss Bitcoin ETPs.",
+          "detailed_summary_en": "Switzerland's FINMA approved the country's first spot Bitcoin ETF for retail investors, using a regulated investment-fund structure with stricter custody, operational-risk and disclosure requirements instead of the debt-security format used by existing Swiss Bitcoin ETPs.",
+          "detailed_summary_zh": "Switzerland's FINMA approved the country's first spot Bitcoin ETF for retail investors, using a regulated investment-fund structure with stricter custody, operational-risk and disclosure requirements instead of the debt-security format used by existing Swiss Bitcoin ETPs.",
+          "event_id": "evt_1e54ee1a7f832638",
+          "first_seen_at": "2026-10-20T13:41:30.769384Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T11:31:02Z",
+          "published_at": "2026-10-20T11:31:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372776?from=telegram"
+            },
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/finma-approves-switzerlands-first-bitcoin-etf-retail?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201430",
+            "rss:cointelegraph.com_rss:f956c5ff6e0256c4"
+          ],
+          "time_precision": "published",
+          "title_en": "瑞士FINMA批准该国首只面向零售投资者的现货比特币ETF",
+          "title_zh": "瑞士FINMA批准该国首只面向零售投资者的现货比特币ETF",
+          "update_id": "upd_bd007fd1e8ae70a5",
+          "update_type": "initial",
+          "what_changed_en": "Switzerland's FINMA approved the country's first spot Bitcoin ETF for retail investors, using a regulated investment-fund structure with stricter custody, operational-risk and disclosure requirements instead of the debt-security format used by existing Swiss Bitcoin ETPs.",
+          "what_changed_zh": "Switzerland's FINMA approved the country's first spot Bitcoin ETF for retail investors, using a regulated investment-fund structure with stricter custody, operational-risk and disclosure requirements instead of the debt-security format used by existing Swiss Bitcoin ETPs."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "AI-related companies have issued about $466 billion in debt this year, driving record CDS costs for major technology firms and heightened credit stress for AI cloud provider CoreWeave.",
+      "current_state_zh": "AI-related companies have issued about $466 billion in debt this year, driving record CDS costs for major technology firms and heightened credit stress for AI cloud provider CoreWeave.",
+      "entities": [
+        "cds",
+        "meta"
+      ],
+      "event_id": "evt_0a57c3820e5a54ed",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-20T13:41:30.776986Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:30.776986Z",
+      "last_updated_at": "2026-10-20T13:41:30.776986Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "华尔街给AI债务「上保险」：相关企业今年融资4660亿美元，Meta、英伟达CDS成本创历史新高",
+      "title_zh": "华尔街给AI债务「上保险」：相关企业今年融资4660亿美元，Meta、英伟达CDS成本创历史新高",
+      "topics": [
+        "ai-infrastructure",
+        "cds",
+        "coreweave",
+        "credit-risk",
+        "debt-financing"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "AI-related companies have issued about $466 billion in debt this year, driving record CDS costs for major technology firms and heightened credit stress for AI cloud provider CoreWeave.",
+          "current_state_zh": "AI-related companies have issued about $466 billion in debt this year, driving record CDS costs for major technology firms and heightened credit stress for AI cloud provider CoreWeave.",
+          "detailed_summary_en": "AI-related companies have issued about $466 billion in debt this year, driving record CDS costs for major technology firms and heightened credit stress for AI cloud provider CoreWeave.",
+          "detailed_summary_zh": "AI-related companies have issued about $466 billion in debt this year, driving record CDS costs for major technology firms and heightened credit stress for AI cloud provider CoreWeave.",
+          "event_id": "evt_0a57c3820e5a54ed",
+          "first_seen_at": "2026-10-20T13:41:30.776986Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T12:20:02Z",
+          "published_at": "2026-10-20T12:20:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372787?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201441"
+          ],
+          "time_precision": "published",
+          "title_en": "华尔街给AI债务「上保险」：相关企业今年融资4660亿美元，Meta、英伟达CDS成本创历史新高",
+          "title_zh": "华尔街给AI债务「上保险」：相关企业今年融资4660亿美元，Meta、英伟达CDS成本创历史新高",
+          "update_id": "upd_d1d2be2d92b78f85",
+          "update_type": "initial",
+          "what_changed_en": "AI-related companies have issued about $466 billion in debt this year, driving record CDS costs for major technology firms and heightened credit stress for AI cloud provider CoreWeave.",
+          "what_changed_zh": "AI-related companies have issued about $466 billion in debt this year, driving record CDS costs for major technology firms and heightened credit stress for AI cloud provider CoreWeave."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Cloudflare previewed Clairic on Workers AI, a non-autoregressive model that extracts fields, computes values and returns confidence scores directly, which in a claims-processing demo combined with the Clef decision model ran 3.2x faster and cut costs 49% versus routing everything through a single LLM.",
+      "current_state_zh": "Cloudflare previewed Clairic on Workers AI, a non-autoregressive model that extracts fields, computes values and returns confidence scores directly, which in a claims-processing demo combined with the Clef decision model ran 3.2x faster and cut costs 49% versus routing everything through a single LLM.",
+      "entities": [
+        "cloudflare"
+      ],
+      "event_id": "evt_4d8f22e5561c7f4a",
+      "event_type": "other",
+      "first_seen_at": "2026-10-20T13:41:30.779234Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:30.779234Z",
+      "last_updated_at": "2026-10-20T13:41:30.779234Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Cloudflare让3个AI接力处理理赔：自测快3.2倍，成本降49%",
+      "title_zh": "Cloudflare让3个AI接力处理理赔：自测快3.2倍，成本降49%",
+      "topics": [
+        "ai-models",
+        "cloudflare",
+        "data-extraction",
+        "inference-cost",
+        "workers-ai"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Cloudflare previewed Clairic on Workers AI, a non-autoregressive model that extracts fields, computes values and returns confidence scores directly, which in a claims-processing demo combined with the Clef decision model ran 3.2x faster and cut costs 49% versus routing everything through a single LLM.",
+          "current_state_zh": "Cloudflare previewed Clairic on Workers AI, a non-autoregressive model that extracts fields, computes values and returns confidence scores directly, which in a claims-processing demo combined with the Clef decision model ran 3.2x faster and cut costs 49% versus routing everything through a single LLM.",
+          "detailed_summary_en": "Cloudflare previewed Clairic on Workers AI, a non-autoregressive model that extracts fields, computes values and returns confidence scores directly, which in a claims-processing demo combined with the Clef decision model ran 3.2x faster and cut costs 49% versus routing everything through a single LLM.",
+          "detailed_summary_zh": "Cloudflare previewed Clairic on Workers AI, a non-autoregressive model that extracts fields, computes values and returns confidence scores directly, which in a claims-processing demo combined with the Clef decision model ran 3.2x faster and cut costs 49% versus routing everything through a single LLM.",
+          "event_id": "evt_4d8f22e5561c7f4a",
+          "first_seen_at": "2026-10-20T13:41:30.779234Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T12:30:02Z",
+          "published_at": "2026-10-20T12:30:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372790?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201444"
+          ],
+          "time_precision": "published",
+          "title_en": "Cloudflare让3个AI接力处理理赔：自测快3.2倍，成本降49%",
+          "title_zh": "Cloudflare让3个AI接力处理理赔：自测快3.2倍，成本降49%",
+          "update_id": "upd_5ad9fc5f6837499b",
+          "update_type": "initial",
+          "what_changed_en": "Cloudflare previewed Clairic on Workers AI, a non-autoregressive model that extracts fields, computes values and returns confidence scores directly, which in a claims-processing demo combined with the Clef decision model ran 3.2x faster and cut costs 49% versus routing everything through a single LLM.",
+          "what_changed_zh": "Cloudflare previewed Clairic on Workers AI, a non-autoregressive model that extracts fields, computes values and returns confidence scores directly, which in a claims-processing demo combined with the Clef decision model ran 3.2x faster and cut costs 49% versus routing everything through a single LLM."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Tether Capital participated in Tenstorrent’s $1.5 billion Series E funding round, valuing the AI computing company at $6.2 billion as Tether expands its AI strategy into processors and computing systems.",
+      "current_state_zh": "Tether Capital participated in Tenstorrent’s $1.5 billion Series E funding round, valuing the AI computing company at $6.2 billion as Tether expands its AI strategy into processors and computing systems.",
+      "entities": [
+        "capital",
+        "tenstorrent",
+        "tether"
+      ],
+      "event_id": "evt_d8350873f779a45b",
+      "event_type": "other",
+      "first_seen_at": "2026-10-20T13:41:31.688509Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:31.688509Z",
+      "last_updated_at": "2026-10-20T13:41:31.688509Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【Tether Capital 参投 AI 计算公司 Tenstorrent 的 15 亿美元 E 轮融资】",
+      "title_zh": "【Tether Capital 参投 AI 计算公司 Tenstorrent 的 15 亿美元 E 轮融资】",
+      "topics": [
+        "ai-compute",
+        "ai-hardware",
+        "funding-round",
+        "tenstorrent",
+        "tether"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Tether Capital participated in Tenstorrent’s $1.5 billion Series E funding round, valuing the AI computing company at $6.2 billion as Tether expands its AI strategy into processors and computing systems.",
+          "current_state_zh": "Tether Capital participated in Tenstorrent’s $1.5 billion Series E funding round, valuing the AI computing company at $6.2 billion as Tether expands its AI strategy into processors and computing systems.",
+          "detailed_summary_en": "Tether Capital participated in Tenstorrent’s $1.5 billion Series E funding round, valuing the AI computing company at $6.2 billion as Tether expands its AI strategy into processors and computing systems.",
+          "detailed_summary_zh": "Tether Capital participated in Tenstorrent’s $1.5 billion Series E funding round, valuing the AI computing company at $6.2 billion as Tether expands its AI strategy into processors and computing systems.",
+          "event_id": "evt_d8350873f779a45b",
+          "first_seen_at": "2026-10-20T13:41:31.688509Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T13:16:47Z",
+          "published_at": "2026-10-20T13:16:47Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115573"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372801?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120850",
+            "telegram:theblockbeats:201456"
+          ],
+          "time_precision": "published",
+          "title_en": "【Tether Capital 参投 AI 计算公司 Tenstorrent 的 15 亿美元 E 轮融资】",
+          "title_zh": "【Tether Capital 参投 AI 计算公司 Tenstorrent 的 15 亿美元 E 轮融资】",
+          "update_id": "upd_3a87ed9a37e84f05",
+          "update_type": "initial",
+          "what_changed_en": "Tether Capital participated in Tenstorrent’s $1.5 billion Series E funding round, valuing the AI computing company at $6.2 billion as Tether expands its AI strategy into processors and computing systems.",
+          "what_changed_zh": "Tether Capital participated in Tenstorrent’s $1.5 billion Series E funding round, valuing the AI computing company at $6.2 billion as Tether expands its AI strategy into processors and computing systems."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "LayerZero announced that its Zero mainnet and lzATLAS, the network's first application, will go live on November 30, 2026, initially targeting open markets while institutions test the app for US equities and fixed-income use cases and trading venues run integration, execution, settlement, and performance tests in production environments.",
+      "current_state_zh": "LayerZero announced that its Zero mainnet and lzATLAS, the network's first application, will go live on November 30, 2026, initially targeting open markets while institutions test the app for US equities and fixed-income use cases and trading venues run integration, execution, settlement, and performance tests in production environments.",
+      "entities": [
+        "zero"
+      ],
+      "event_id": "evt_ffdcbf3888e995c8",
+      "event_type": "protocol_change",
+      "first_seen_at": "2026-10-20T13:41:31.688893Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:31.688893Z",
+      "last_updated_at": "2026-10-20T13:41:31.688893Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【Zero 主网与 lzATLAS 将于 11 月 30 日上线】",
+      "title_zh": "【Zero 主网与 lzATLAS 将于 11 月 30 日上线】",
+      "topics": [
+        "interoperability",
+        "layerzero",
+        "protocol-launch",
+        "zero-mainnet"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "LayerZero announced that its Zero mainnet and lzATLAS, the network's first application, will go live on November 30, 2026, initially targeting open markets while institutions test the app for US equities and fixed-income use cases and trading venues run integration, execution, settlement, and performance tests in production environments.",
+          "current_state_zh": "LayerZero announced that its Zero mainnet and lzATLAS, the network's first application, will go live on November 30, 2026, initially targeting open markets while institutions test the app for US equities and fixed-income use cases and trading venues run integration, execution, settlement, and performance tests in production environments.",
+          "detailed_summary_en": "LayerZero announced that its Zero mainnet and lzATLAS, the network's first application, will go live on November 30, 2026, initially targeting open markets while institutions test the app for US equities and fixed-income use cases and trading venues run integration, execution, settlement, and performance tests in production environments.",
+          "detailed_summary_zh": "LayerZero announced that its Zero mainnet and lzATLAS, the network's first application, will go live on November 30, 2026, initially targeting open markets while institutions test the app for US equities and fixed-income use cases and trading venues run integration, execution, settlement, and performance tests in production environments.",
+          "event_id": "evt_ffdcbf3888e995c8",
+          "first_seen_at": "2026-10-20T13:41:31.688893Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T13:28:06Z",
+          "published_at": "2026-10-20T13:28:06Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115574"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120851"
+          ],
+          "time_precision": "published",
+          "title_en": "【Zero 主网与 lzATLAS 将于 11 月 30 日上线】",
+          "title_zh": "【Zero 主网与 lzATLAS 将于 11 月 30 日上线】",
+          "update_id": "upd_8666fa5206fade7a",
+          "update_type": "initial",
+          "what_changed_en": "LayerZero announced that its Zero mainnet and lzATLAS, the network's first application, will go live on November 30, 2026, initially targeting open markets while institutions test the app for US equities and fixed-income use cases and trading venues run integration, execution, settlement, and performance tests in production environments.",
+          "what_changed_zh": "LayerZero announced that its Zero mainnet and lzATLAS, the network's first application, will go live on November 30, 2026, initially targeting open markets while institutions test the app for US equities and fixed-income use cases and trading venues run integration, execution, settlement, and performance tests in production environments."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "The Google Cloud europe-west2 power event has been mitigated, but disruption and recovery for HSBC, Lloyds, Bank of Scotland, Revolut and related crypto trading services are ongoing.",
+      "current_state_zh": "Google Cloud europe-west2 电力事件已缓解，但HSBC、Lloyds、Bank of Scotland、Revolut等银行及加密交易相关服务的中断和恢复情况仍在持续。",
+      "entities": [
+        "cloud",
+        "cloud-outage",
+        "google",
+        "google-cloud",
+        "hsbc",
+        "lloyds",
+        "outage",
+        "revolut"
+      ],
+      "event_id": "evt_dbcfcf77c4f2ad5b",
+      "event_type": "other",
+      "first_seen_at": "2026-10-20T13:41:32.208495Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:40.989956Z",
+      "last_updated_at": "2026-10-20T13:41:40.989956Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Google cloud outage takes down banks",
+      "title_zh": "谷歌云故障导致多家银行服务中断",
+      "topics": [
+        "cloud-outage",
+        "crypto-trading",
+        "google-cloud",
+        "infrastructure",
+        "outage",
+        "revolut"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "A Google Cloud europe-west2 power event caused an outage that disrupted online banking and card services for HSBC, Revolut, Bank of Scotland, Lloyds, Equifax and others.",
+          "current_state_zh": "谷歌云 europe-west2 区域发生电力事件，导致服务中断，影响了汇丰、Revolut、苏格兰银行、劳埃德、Equifax 等机构的网上银行和银行卡服务。",
+          "detailed_summary_en": "A Google Cloud europe-west2 power event caused an outage that disrupted online banking and card services for HSBC, Revolut, Bank of Scotland, Lloyds, Equifax and others.",
+          "detailed_summary_zh": "A Google Cloud europe-west2 power event caused an outage that disrupted online banking and card services for HSBC, Revolut, Bank of Scotland, Lloyds, Equifax and others.",
+          "event_id": "evt_dbcfcf77c4f2ad5b",
+          "first_seen_at": "2026-10-20T13:41:32.208495Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T10:26:02Z",
+          "published_at": "2026-10-20T10:26:02Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50163961"
+            }
+          ],
+          "sources": [
+            {
+              "label": "paweladamczuk",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://www.neowin.net/news/google-cloud-outage-takes-down-hsbc-revolut-bank-of-scotland-llyods-equifax-more/"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50163961"
+          ],
+          "time_precision": "published",
+          "title_en": "Google cloud outage takes down banks",
+          "title_zh": "谷歌云故障导致多家银行服务中断",
+          "update_id": "upd_4e67c0975d591ea6",
+          "update_type": "initial",
+          "what_changed_en": "A Google Cloud europe-west2 power event caused an outage that disrupted online banking and card services for HSBC, Revolut, Bank of Scotland, Lloyds, Equifax and others.",
+          "what_changed_zh": "谷歌云 europe-west2 区域发生电力事件，导致服务中断，影响了汇丰、Revolut、苏格兰银行、劳埃德、Equifax 等机构的网上银行和银行卡服务。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.94,
+          "current_state_en": "The Google Cloud europe-west2 power event has been mitigated, but disruption and recovery for HSBC, Lloyds, Bank of Scotland, Revolut and related crypto trading services are ongoing.",
+          "current_state_zh": "Google Cloud europe-west2 电力事件已缓解，但HSBC、Lloyds、Bank of Scotland、Revolut等银行及加密交易相关服务的中断和恢复情况仍在持续。",
+          "detailed_summary_en": "A Google Cloud outage in London's europe-west2 region knocked out banking services at Revolut, Lloyds, HSBC, and Bank of Scotland, including Revolut's crypto trading and payment functions.",
+          "detailed_summary_zh": "A Google Cloud outage in London's europe-west2 region knocked out banking services at Revolut, Lloyds, HSBC, and Bank of Scotland, including Revolut's crypto trading and payment functions.",
+          "event_id": "evt_dbcfcf77c4f2ad5b",
+          "first_seen_at": "2026-10-20T13:41:40.989956Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T11:38:17Z",
+          "published_at": "2026-10-20T11:38:17Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Protos",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://protos.com/google-cloud-outage-takes-down-revolut-lloyds-and-hsbc/"
+            }
+          ],
+          "story_ids": [
+            "rss:protos.com_feed_:aa08084c9ba35767"
+          ],
+          "time_precision": "published",
+          "title_en": "Google Cloud outage takes down Revolut, Lloyds, and HSBC",
+          "title_zh": "谷歌云故障导致 Revolut、劳埃德和汇丰服务中断",
+          "update_id": "upd_5e8fde2905a73331",
+          "update_type": "remediation",
+          "what_changed_en": "Google said the power event behind the disruption had been mitigated and suggested affected users migrate workloads to another available zone or region; reports added that Revolut's crypto trading, payments, ATM withdrawals and other services were down, while Google Cloud's status page cited elevated errors and intermittent network failures in europe-west2.",
+          "what_changed_zh": "Google表示引发故障的电力事件已缓解，并建议受影响用户将工作负载迁移至其他可用区域；报道补充Revolut的加密交易、支付、ATM取款等服务受影响，Google Cloud状态页显示europe-west2区域出现 elevated errors 和间歇性网络故障。"
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "The US has ordered federal civilian agencies to remove DeepSeek AI products and third-party services built using its technology, citing national security concerns.",
+      "current_state_zh": "The US has ordered federal civilian agencies to remove DeepSeek AI products and third-party services built using its technology, citing national security concerns.",
+      "entities": [
+        "china",
+        "deepseek"
+      ],
+      "event_id": "evt_1b0a31afe15e9185",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-20T13:41:47.718399Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:47.718399Z",
+      "last_updated_at": "2026-10-20T13:41:47.718399Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "US orders federal agencies to remove China’s DeepSeek AI from their systems",
+      "title_zh": "US orders federal agencies to remove China’s DeepSeek AI from their systems",
+      "topics": [
+        "ai-policy",
+        "deepseek",
+        "national-security",
+        "technology-restrictions",
+        "us-government"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "The US has ordered federal civilian agencies to remove DeepSeek AI products and third-party services built using its technology, citing national security concerns.",
+          "current_state_zh": "The US has ordered federal civilian agencies to remove DeepSeek AI products and third-party services built using its technology, citing national security concerns.",
+          "detailed_summary_en": "The US has ordered federal civilian agencies to remove DeepSeek AI products and third-party services built using its technology, citing national security concerns.",
+          "detailed_summary_zh": "The US has ordered federal civilian agencies to remove DeepSeek AI products and third-party services built using its technology, citing national security concerns.",
+          "event_id": "evt_1b0a31afe15e9185",
+          "first_seen_at": "2026-10-20T13:41:47.718399Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T13:07:24Z",
+          "published_at": "2026-10-20T13:07:24Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "TechCrunch AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://techcrunch.com/2026/10/20/us-orders-federal-agencies-to-remove-chinas-deepseek-ai-from-their-systems/"
+            }
+          ],
+          "story_ids": [
+            "rss:techcrunch.com_category_artificial-intelligence_feed_:feecaabbd3daf19d"
+          ],
+          "time_precision": "published",
+          "title_en": "US orders federal agencies to remove China’s DeepSeek AI from their systems",
+          "title_zh": "US orders federal agencies to remove China’s DeepSeek AI from their systems",
+          "update_id": "upd_c2aac9214b16bc90",
+          "update_type": "initial",
+          "what_changed_en": "The US has ordered federal civilian agencies to remove DeepSeek AI products and third-party services built using its technology, citing national security concerns.",
+          "what_changed_zh": "The US has ordered federal civilian agencies to remove DeepSeek AI products and third-party services built using its technology, citing national security concerns."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Eka Robotics has reached a $1.45B valuation on the strength of a physical AI model that powers a robotic arm capable of smoothly picking up a wide range of objects, drawing praise from industry experts.",
+      "current_state_zh": "Eka Robotics has reached a $1.45B valuation on the strength of a physical AI model that powers a robotic arm capable of smoothly picking up a wide range of objects, drawing praise from industry experts.",
+      "entities": [
+        "eka",
+        "physical-ai"
+      ],
+      "event_id": "evt_ba6df38ba45ed6ad",
+      "event_type": "other",
+      "first_seen_at": "2026-10-20T13:41:47.718469Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:47.718469Z",
+      "last_updated_at": "2026-10-20T13:41:47.718469Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Eka is worth $1.45B thanks to a physical AI model that has experts raving",
+      "title_zh": "Eka is worth $1.45B thanks to a physical AI model that has experts raving",
+      "topics": [
+        "embodied-ai",
+        "physical-ai",
+        "robot-manipulation",
+        "robotics",
+        "startup-funding"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Eka Robotics has reached a $1.45B valuation on the strength of a physical AI model that powers a robotic arm capable of smoothly picking up a wide range of objects, drawing praise from industry experts.",
+          "current_state_zh": "Eka Robotics has reached a $1.45B valuation on the strength of a physical AI model that powers a robotic arm capable of smoothly picking up a wide range of objects, drawing praise from industry experts.",
+          "detailed_summary_en": "Eka Robotics has reached a $1.45B valuation on the strength of a physical AI model that powers a robotic arm capable of smoothly picking up a wide range of objects, drawing praise from industry experts.",
+          "detailed_summary_zh": "Eka Robotics has reached a $1.45B valuation on the strength of a physical AI model that powers a robotic arm capable of smoothly picking up a wide range of objects, drawing praise from industry experts.",
+          "event_id": "evt_ba6df38ba45ed6ad",
+          "first_seen_at": "2026-10-20T13:41:47.718469Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T13:00:00Z",
+          "published_at": "2026-10-20T13:00:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "TechCrunch AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://techcrunch.com/2026/10/20/eka-is-worth-1-45-billion-thanks-to-a-physical-ai-model-that-has-experts-raving/"
+            }
+          ],
+          "story_ids": [
+            "rss:techcrunch.com_category_artificial-intelligence_feed_:86bad9a6564b0c06"
+          ],
+          "time_precision": "published",
+          "title_en": "Eka is worth $1.45B thanks to a physical AI model that has experts raving",
+          "title_zh": "Eka is worth $1.45B thanks to a physical AI model that has experts raving",
+          "update_id": "upd_6897f5525cd68d32",
+          "update_type": "initial",
+          "what_changed_en": "Eka Robotics has reached a $1.45B valuation on the strength of a physical AI model that powers a robotic arm capable of smoothly picking up a wide range of objects, drawing praise from industry experts.",
+          "what_changed_zh": "Eka Robotics has reached a $1.45B valuation on the strength of a physical AI model that powers a robotic arm capable of smoothly picking up a wide range of objects, drawing praise from industry experts."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Mt. Gox rehabilitation trustee Nobuaki Kobayashi announced that the Tokyo District Court approved extending the creditor repayment deadline by one year to October 31, 2027, as many creditors have yet to complete required procedures or have hit payment processing problems, despite most straightforward claims being largely paid.",
+      "current_state_zh": "Mt. Gox rehabilitation trustee Nobuaki Kobayashi announced that the Tokyo District Court approved extending the creditor repayment deadline by one year to October 31, 2027, as many creditors have yet to complete required procedures or have hit payment processing problems, despite most straightforward claims being largely paid.",
+      "entities": [
+        "gox",
+        "mt-gox"
+      ],
+      "event_id": "evt_66f926f8bb2a5b78",
+      "event_type": "exchange_operation",
+      "first_seen_at": "2026-10-20T13:41:52.022492Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:52.022492Z",
+      "last_updated_at": "2026-10-20T13:41:52.022492Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Mt. Gox pushes creditor repayment deadline to 2027 in sixth extension",
+      "title_zh": "Mt. Gox pushes creditor repayment deadline to 2027 in sixth extension",
+      "topics": [
+        "bankruptcy",
+        "creditor-repayments",
+        "exchange-operations",
+        "mt-gox"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Mt. Gox rehabilitation trustee Nobuaki Kobayashi announced that the Tokyo District Court approved extending the creditor repayment deadline by one year to October 31, 2027, as many creditors have yet to complete required procedures or have hit payment processing problems, despite most straightforward claims being largely paid.",
+          "current_state_zh": "Mt. Gox rehabilitation trustee Nobuaki Kobayashi announced that the Tokyo District Court approved extending the creditor repayment deadline by one year to October 31, 2027, as many creditors have yet to complete required procedures or have hit payment processing problems, despite most straightforward claims being largely paid.",
+          "detailed_summary_en": "Mt. Gox rehabilitation trustee Nobuaki Kobayashi announced that the Tokyo District Court approved extending the creditor repayment deadline by one year to October 31, 2027, as many creditors have yet to complete required procedures or have hit payment processing problems, despite most straightforward claims being largely paid.",
+          "detailed_summary_zh": "Mt. Gox rehabilitation trustee Nobuaki Kobayashi announced that the Tokyo District Court approved extending the creditor repayment deadline by one year to October 31, 2027, as many creditors have yet to complete required procedures or have hit payment processing problems, despite most straightforward claims being largely paid.",
+          "event_id": "evt_66f926f8bb2a5b78",
+          "first_seen_at": "2026-10-20T13:41:52.022492Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T10:20:13Z",
+          "published_at": "2026-10-20T10:20:13Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/mt-gox-creditor-repayment-deadline-extended-2027?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:666cf4cf15fe30e3"
+          ],
+          "time_precision": "published",
+          "title_en": "Mt. Gox pushes creditor repayment deadline to 2027 in sixth extension",
+          "title_zh": "Mt. Gox pushes creditor repayment deadline to 2027 in sixth extension",
+          "update_id": "upd_f0e4730fa60e3beb",
+          "update_type": "initial",
+          "what_changed_en": "Mt. Gox rehabilitation trustee Nobuaki Kobayashi announced that the Tokyo District Court approved extending the creditor repayment deadline by one year to October 31, 2027, as many creditors have yet to complete required procedures or have hit payment processing problems, despite most straightforward claims being largely paid.",
+          "what_changed_zh": "Mt. Gox rehabilitation trustee Nobuaki Kobayashi announced that the Tokyo District Court approved extending the creditor repayment deadline by one year to October 31, 2027, as many creditors have yet to complete required procedures or have hit payment processing problems, despite most straightforward claims being largely paid."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Bitget announced plans to acquire Thailand’s GMO-Z.com Cryptonomics through BTGT Management (Thailand) to establish locally licensed operations and expand in Southeast Asia.",
+      "current_state_zh": "Bitget announced plans to acquire Thailand’s GMO-Z.com Cryptonomics through BTGT Management (Thailand) to establish locally licensed operations and expand in Southeast Asia.",
+      "entities": [
+        "acquisition",
+        "bitget",
+        "thai"
+      ],
+      "event_id": "evt_0084f1abe31eee62",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-20T13:41:52.119704Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T13:41:52.119704Z",
+      "last_updated_at": "2026-10-20T13:41:52.119704Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Bitget plans Thai crypto exchange acquisition weeks after $388M hack",
+      "title_zh": "Bitget plans Thai crypto exchange acquisition weeks after $388M hack",
+      "topics": [
+        "acquisition",
+        "bitget",
+        "exchange-expansion",
+        "southeast-asia",
+        "thailand"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Bitget announced plans to acquire Thailand’s GMO-Z.com Cryptonomics through BTGT Management (Thailand) to establish locally licensed operations and expand in Southeast Asia.",
+          "current_state_zh": "Bitget announced plans to acquire Thailand’s GMO-Z.com Cryptonomics through BTGT Management (Thailand) to establish locally licensed operations and expand in Southeast Asia.",
+          "detailed_summary_en": "Bitget announced plans to acquire Thailand’s GMO-Z.com Cryptonomics through BTGT Management (Thailand) to establish locally licensed operations and expand in Southeast Asia.",
+          "detailed_summary_zh": "Bitget announced plans to acquire Thailand’s GMO-Z.com Cryptonomics through BTGT Management (Thailand) to establish locally licensed operations and expand in Southeast Asia.",
+          "event_id": "evt_0084f1abe31eee62",
+          "first_seen_at": "2026-10-20T13:41:52.119704Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T10:00:00Z",
+          "published_at": "2026-10-20T10:00:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/bitget-plans-thai-crypto-exchange-acquisition-weeks-after-388m-hack?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:cf852a1c5f474b8c"
+          ],
+          "time_precision": "published",
+          "title_en": "Bitget plans Thai crypto exchange acquisition weeks after $388M hack",
+          "title_zh": "Bitget plans Thai crypto exchange acquisition weeks after $388M hack",
+          "update_id": "upd_f70be4fd63440e2c",
+          "update_type": "initial",
+          "what_changed_en": "Bitget announced plans to acquire Thailand’s GMO-Z.com Cryptonomics through BTGT Management (Thailand) to establish locally licensed operations and expand in Southeast Asia.",
+          "what_changed_zh": "Bitget announced plans to acquire Thailand’s GMO-Z.com Cryptonomics through BTGT Management (Thailand) to establish locally licensed operations and expand in Southeast Asia."
         }
       ]
     }
@@ -170603,6 +172011,9 @@
       "evt_1f948f22021fd0ec",
       "evt_73185cb0883f45f9"
     ],
+    "finma": [
+      "evt_1e54ee1a7f832638"
+    ],
     "france": [
       "evt_f4dc4d313423e8c1",
       "evt_fe8d9d3ba5b844c0"
@@ -170671,6 +172082,7 @@
     ],
     "hyperliquid": [
       "evt_1e6b631d8e096e64",
+      "evt_36967d2c37c7557e",
       "evt_7f2afdef65c41574",
       "evt_b01e9cd2f1c5238c",
       "evt_e0cb366797ad14a0"
@@ -170758,6 +172170,9 @@
     "lido": [
       "evt_7655f45086e9baee",
       "evt_8fca4d5c4b0173a2"
+    ],
+    "liquid-network": [
+      "evt_c8eeb2561cb07df2"
     ],
     "liquidations": [
       "evt_80de6fd849b88317"
@@ -181516,7 +182931,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "In-window regulatory development: Ukraine is accelerating crypto legalization specifically to meet Ukraine Facility (EU funding) conditions, tying digital-asset legislation to budget financing. This is a concrete legislative/regulatory step that materially changes market access and legal status for crypto in a mid-sized European market, giving it a clear transmission path to adoption and exchange operations. It falls short of a landmark global rulemaking, so it sits in the high-value rather than groundbreaking tier.",
         "ai_score": 7.0,
@@ -181549,7 +182964,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A Drift-linked wallet moving $54.8M in ETH into Tornado Cash indicates a material protocol-linked loss with funds actively being laundered — a consequential security event with real user/ecosystem impact, well above routine news. It is scored slightly below the top systemic tier because the transfer itself is the laundering/aftermath stage rather than confirmation of a network-wide or market-structure shock.",
         "ai_score": 8.5,
@@ -181586,7 +183001,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A major bank deploying its JPM Coin on Ethereum is a significant institutional tokenization and market-structure development, though the permissioned, zero-retail design limits immediate market access and transmission.",
         "ai_score": 7.5,
@@ -181623,7 +183038,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "JPMorgan expanding JPM Coin to Ethereum for institutional clients is a material institutional adoption and market-structure development, with a clear path to broader tokenized settlement use. It is high-value but not paradigm-shifting enough for the 9-10 range.",
         "ai_score": 7.5,
@@ -181660,7 +183075,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A Lido engineer publicly flags a staking-deposit hijack risk in Glamsterdam, Ethereum's next major upgrade combining Gloas and Amsterdam. It is not a confirmed exploit or an in-window incident, but a high-signal protocol security warning from a major staking provider about a change to deposit/withdrawal mechanics that could affect a widely used network. This is worth immediate attention for Ethereum staking operators and client teams, though its impact remains prospective rather than realized.",
         "ai_score": 7.0,
@@ -181697,7 +183112,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A single-day $665M inflow into BlackRock's IBIT is the largest since October 2025, a concrete institutional demand data point with a clear read-through for spot Bitcoin market structure and sentiment. It is high-signal market news but a flow print rather than a structural or policy change, so it sits below landmark tier.",
         "ai_score": 7.0,
@@ -181734,7 +183149,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Headline points to a material US regulatory shift: the CFTC moving unilaterally to permit retail crypto leverage trading and potentially preempting state licensing with a federal framework. If accurate, this has a direct transmission path to US market access and market structure, making it high-value rather than routine. However, the item is only a linked headline with no supporting details, no named officials or documents, and comes from a low-authority aggregator, so confidence and evidentiary weight are limited; no comments or discussion quality to assess.",
         "ai_score": 7.0,
@@ -181764,6 +183179,445 @@
         "source_type": "google_news",
         "title": "CFTC Won't Wait for Congress: Retail Crypto Leverage Trading Set to Return to U.S. Shores, State Licenses May Be Replaced by a Unified Framework",
         "url": "https://t.co/8QwNagulij"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A significant regulatory and tax development that materially changes how crypto-to-stablecoin trades are treated in France, with a clear transmission path to trading behavior and market access for French users.",
+        "ai_score": 8.0,
+        "ai_summary": "France's parliament approved a measure imposing a 31% capital gains levy on crypto-to-stablecoin trades, changing the tax treatment of such conversions.",
+        "ai_tags": [
+          "France",
+          "stablecoin",
+          "capital gains tax",
+          "crypto regulation",
+          "taxation"
+        ],
+        "author": "AI Boost",
+        "content": "",
+        "fetched_at": "2026-10-20T13:41:30.287204Z",
+        "id": "rss:www.coindesk.com_arc_outboundfeeds_rss_:c9424e6d645eaa5d",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "feed_name": "CoinDesk",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "tags": [
+            "Policy",
+            "Stablecoins",
+            "Tax",
+            "News"
+          ]
+        },
+        "published_at": "2026-10-20T11:25:00Z",
+        "source_type": "rss",
+        "title": "France's parliament approves vote to hit stablecoin trades with 31% capital gains tax",
+        "url": "https://www.coindesk.com/policy/2026/10/20/france-s-parliament-approves-vote-to-hit-crypto-to-stablecoin-trades-with-31-levy"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A mid-tier exchange restoring only part of its service while peg-outs (withdrawals) remain frozen signals an unresolved operational or security disruption with direct user-fund access implications. Withdrawal freezes are high-signal for exchange risk, but Liquid's smaller scale and the lack of disclosed loss figures keep it below systemic-event territory.",
+        "ai_score": 7.5,
+        "ai_summary": "Liquid has reactivated Bitcoin swaps trading while peg-out withdrawals remain suspended, leaving users unable to move funds off the exchange.",
+        "ai_tags": [
+          "liquid",
+          "exchange-outage",
+          "withdrawals",
+          "bitcoin",
+          "exchange-risk"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxPeU5temlXSHVGNk92WnlCNW5qeG42Ump0Q01Bb3c2S3NEOTVNeGczdTRmZEF3VThUZTlSTlRyQ09hTEpka18xWUZOZVZybG9BV0dlNjJuckk4R0U0SUxoMFJyNG5RUGtVQUxld3VnYlNsNlRmYUxQNXNYSjlxTWJsMGJDMlRpdExLcE5oVkZBenBRZERnZWs2N3ZabEh2M1plTFVB?oc=5\" target=\"_blank\">Liquid Says Bitcoin Swaps Are Restored While Peg-Outs Stay Frozen</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-20T13:41:36.154310Z",
+        "id": "google_news:article:4febdfc543aed9c5",
+        "metadata": {
+          "category": "exchange-operations",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-protocols",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-20T12:59:54Z",
+        "source_type": "google_news",
+        "title": "Liquid Says Bitcoin Swaps Are Restored While Peg-Outs Stay Frozen",
+        "url": "https://thedefiant.io/news/security/liquid-says-bitcoin-swaps-are-restored-while-peg-outs-stay-frozen"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A coordinated objection by major corporates (Microsoft, Alphabet, Goldman Sachs) against OKX-ICE's tokenized equity trading is a high-signal market-structure and legal development: it directly challenges the legality and legitimacy of tokenized stocks and could shape access rules for a fast-growing segment. It is not a market-wide systemic event nor a definitive regulatory ruling, so it falls below the 8.5+ tier, but it is materially more consequential than a routine exchange update.",
+        "ai_score": 7.5,
+        "ai_summary": "Microsoft, Alphabet and Goldman Sachs have joined a growing set of objections to OKX-ICE's tokenized stock trading, escalating pressure on the tokenized-equity model over legal and market-integrity concerns.",
+        "ai_tags": [
+          "tokenized-stocks",
+          "OKX",
+          "ICE",
+          "securities-regulation",
+          "market-structure"
+        ],
+        "author": "CoinDesk",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMizAFBVV95cUxQT1JQcGkxc2tGRTIyUG42RldTRkh1TDY3Y2tXblZDNXZScVRFZ25iRXBtTVdoeDVURFVPaE1ETzlyRjNGX0FyMm5aLWRCOTlUOXNLMVFyai1YY1NOTmJHOWJ4dUtneVJQV2h5LWRnWWxjajNNd3dmQ3NrTGZ4U09wZUVWUHVIQ2ZlMlhMU0hjc2lTMjgwQ0g3TmRVa2E4aDBjMVdKWmtkTzJ0dy1GamRiV255ZTM2eVA1ZlBIamFxdV9IWmlUOXVPVnlZTDI?oc=5\" target=\"_blank\">Microsoft, Alphabet and Goldman Sachs join objections to OKX-ICE tokenized stock trading</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CoinDesk</font>",
+        "fetched_at": "2026-10-20T13:41:26.303044Z",
+        "id": "google_news:article:c85a3e0790de50d0",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "feed_name": "CoinDesk",
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "merged_sources": [
+            "CoinDesk"
+          ],
+          "publisher_url": "https://www.coindesk.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "CoinDesk",
+          "tags": [
+            "Finance",
+            "Tokenization",
+            "Tokenized Equities",
+            "News"
+          ]
+        },
+        "published_at": "2026-10-20T12:40:17Z",
+        "source_type": "google_news",
+        "title": "Microsoft, Alphabet and Goldman Sachs join objections to OKX-ICE tokenized stock trading",
+        "url": "https://www.coindesk.com/business/2026/10/19/microsoft-alphabet-and-goldman-sachs-join-objections-to-okx-ice-tokenized-stock-trading"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "FINMA granting approval for Switzerland's first spot bitcoin ETF with retail access is a concrete regulatory milestone that opens a new regulated distribution channel for BTC exposure in a major financial jurisdiction. It qualifies as a significant ETF/market-structure and regulatory development (high value, not systemic), though its immediate market impact is smaller than a US spot ETF approval given Switzerland's market size.",
+        "ai_score": 7.5,
+        "ai_summary": "Switzerland's financial regulator FINMA has approved the country's first spot bitcoin ETF, allowing retail investors to gain regulated BTC exposure through a listed fund.",
+        "ai_tags": [
+          "bitcoin-etf",
+          "finma",
+          "switzerland",
+          "crypto-regulation",
+          "retail-investors"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi2AFBVV95cUxPSThuVGpDcFJ3bWFFQVBXUEk4eUszYW1valRaZTdJYW12SEpmMlNVRmlsRWRYV0hoVndsX0d1Nlp4T2gzVHNuQ2x1Ri1tNXpwcFllZlgtTjBGNHh1V245WHdEQ1B3dVU1aFZvNG1qNnNZU0pzNU8tbEZKcFI4VGduRHg4QWQ2Ym81ZmtSMHZXaUJnTzVPWDlDcjczNFlPb3BnbFpsdUFDbVJEazQ0MUpXLW5KOXJJTmtyMXdVdFBSYzlxVHg0QzNFdTFLeTdfLXZvX2FRYzJPd04?oc=5\" target=\"_blank\">Swiss regulator FINMA approves country's first spot bitcoin ETF for retail investors</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-10-20T13:41:32.954090Z",
+        "id": "google_news:article:ed0e02772421a1d9",
+        "metadata": {
+          "category": "crypto-regulation",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-10-20T12:15:00Z",
+        "source_type": "google_news",
+        "title": "Swiss regulator FINMA approves country's first spot bitcoin ETF for retail investors",
+        "url": "https://www.theblock.co/news/regulation/2026-10-20-swiss-regulator-finma-approves-countrys-first-spot-bitcoin-etf-for-retail-investors-421127"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "FINMA's approval of Switzerland's first retail Bitcoin ETF is a material regulatory and market-structure development, expanding regulated retail access to Bitcoin in a major financial jurisdiction. It is high-value but nationally scoped rather than a systemic global market event.",
+        "ai_score": 7.5,
+        "ai_summary": "FINMA has approved Switzerland's first retail Bitcoin ETF, opening a regulated Bitcoin investment product to Swiss retail investors.",
+        "ai_tags": [
+          "Bitcoin ETF",
+          "Switzerland",
+          "FINMA",
+          "crypto regulation",
+          "retail access"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxPY1pvSUtJeC1VM2V4ZG9neWVyc0JiVG8yeGZnTzAzbmJaa3JzQnhJZDRFcmFzZEc2cHBJS2xUWTlJTWVORDJPSS1KX3ppalgwTHp4a3ltMFMtbDhGNlB6NXNVeTRLQ19rdmRXTEFjM2VTVk9PSEtJRkdhNkYxSEFIdW45NjB6QVA1Z2FKZ2I4TmFnc2syM24ydHFTcw?oc=5\" target=\"_blank\">FINMA Approves First Swiss Retail Bitcoin ETF</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-20T13:41:36.153386Z",
+        "id": "google_news:article:43a9583f4059b974",
+        "metadata": {
+          "category": "crypto-regulation",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-protocols",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-20T10:59:29Z",
+        "source_type": "google_news",
+        "title": "FINMA Approves First Swiss Retail Bitcoin ETF",
+        "url": "https://thedefiant.io/converge/tradfi-and-fintech/finma-approves-first-swiss-retail-bitcoin-etf"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A major exchange is forcing conversion of several widely used stablecoins to USDC for German users, creating taxable events and changing custody/trading outcomes. This is a material exchange policy and stablecoin market-structure development with direct user impact, though it is jurisdiction-specific rather than systemic.",
+        "ai_score": 7.5,
+        "ai_summary": "Coinbase will automatically convert USDT, DAI, and PYUSD balances to USDC for German users on October 30, a move that triggers taxable events under German law.",
+        "ai_tags": [
+          "Coinbase",
+          "USDC",
+          "stablecoins",
+          "Germany",
+          "crypto-tax"
+        ],
+        "author": "Pluang",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxPMXpsSXJ3NjlzYUNfY3I4UDBxUGhuc1laSkJjZFM1QmxXcFFxNk82SHdLeWRXY2ZuWnBxaW9RN2UydWV1OWpzaU82T1ZTNm1Ca1c2WkJqTDdQd0FQRXM5c2NkVGhwbm15allNMnZTS3dJdjhjMFd1M3N3dVppdnJDamdOaTgxSzU1?oc=5\" target=\"_blank\">Coinbase will convert USDT, DAI, PYUSD to USDC on Oct 30, triggering taxable events under German law.</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Pluang</font>",
+        "fetched_at": "2026-10-20T13:41:26.306049Z",
+        "id": "google_news:article:f23488bb1abe39d8",
+        "metadata": {
+          "category": "exchange-announcements",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://pluang.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "Pluang"
+        },
+        "published_at": "2026-10-20T09:34:31Z",
+        "source_type": "google_news",
+        "title": "Coinbase will convert USDT, DAI, PYUSD to USDC on Oct 30, triggering taxable events under German law.",
+        "url": "https://pluang.com/en/news-feed/swap-usdt-ke-usdc-pajak-dan-masa-tahan-satu-tahun"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A court decision in Kazakhstan's Astana International Financial Centre barring Coinbase and five other firms from offering unlicensed crypto services is a concrete regulatory enforcement action with a clear transmission path to market access for a major exchange. Impact is meaningful but geographically contained to one jurisdiction/AIFC zone, so it falls short of landmark, industry-wide regulation.",
+        "ai_score": 7.0,
+        "ai_summary": "A Kazakh court has prohibited Coinbase and five other crypto firms from providing unlicensed digital asset services within the Astana International Financial Centre, tightening enforcement of local licensing requirements.",
+        "ai_tags": [
+          "coinbase",
+          "kazakhstan",
+          "regulation",
+          "licensing",
+          "market-access"
+        ],
+        "author": "AI Boost",
+        "content": "",
+        "fetched_at": "2026-10-20T13:41:30.194824Z",
+        "id": "rss:www.coindesk.com_arc_outboundfeeds_rss_:212258ddbad0ba67",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "feed_name": "CoinDesk",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "tags": [
+            "Finance",
+            "Regulation",
+            "News"
+          ]
+        },
+        "published_at": "2026-10-20T13:35:08Z",
+        "source_type": "rss",
+        "title": "Kazakhstan court bars Coinbase, five others from unlicensed crypto services in Astana International Financial Centre",
+        "url": "https://www.coindesk.com/business/2026/10/20/kazakhstan-court-bars-coinbase-five-others-from-unlicensed-crypto-services-in-astana-international-financial-centre"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A concrete, in-window policy change from a major exchange terminating service for an entire national user base (Russia and Belarus), which materially affects access, withdrawals and compliance exposure for those users. Impact is significant but geographically contained rather than systemic, so it sits below platform-wide fee/listing changes or market-wide events.",
+        "ai_score": 7.0,
+        "ai_summary": "MEXC is terminating services for users in Russia and Belarus, cutting off access for customers in both sanctioned jurisdictions.",
+        "ai_tags": [
+          "MEXC",
+          "Russia",
+          "Belarus",
+          "sanctions",
+          "exchange-access"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxQOC1MZV8ySDdmMkxRNEo3ZlVXb1lmcEJTU1NPbjRobVcycHBlS3NuanFIaTI4WmdKVi1jUDByT1Y4VkdHVUJieTJJYXowdzREbXZEbFRVakpZbEVNUzhURkxHQnh3czE0ZU1fZ2RBVTVOYXlianRrcEhfN3h6OFR0X0U4aGhaSy1scHBobA?oc=5\" target=\"_blank\">MEXC to End Services for Users in Russia and Belarus</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-20T13:41:36.154520Z",
+        "id": "google_news:article:8672d1461aecf541",
+        "metadata": {
+          "category": "exchange-announcements",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-protocols",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-20T13:34:57Z",
+        "source_type": "google_news",
+        "title": "MEXC to End Services for Users in Russia and Belarus",
+        "url": "https://thedefiant.io/news/cefi/mexc-to-end-services-for-users-in-russia-and-belarus"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Bitget's acquisition of a licensed Thai exchange is a meaningful exchange M&A and regulated market-access development, giving a major offshore exchange a local license. It is strategically important for exchange operations and expansion but is not a systemic market event or a platform-wide change for users.",
+        "ai_score": 7.0,
+        "ai_summary": "Bitget agreed to acquire a licensed Thai cryptocurrency exchange from Japan's GMO Internet, expanding its regulated presence in Thailand.",
+        "ai_tags": [
+          "Bitget",
+          "GMO Internet",
+          "Thailand",
+          "exchange-acquisition",
+          "crypto-regulation"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxQN3FHb0R5UzYwV2VtZkJfTUZSNFRpaTdTNlhaOVRzRjZUMS1VMWFtclFpY3NiVm1XMTdLX2hkSGFJZGthNG9rUnpLSmlXYlV1RmFaSmN2ZWItc2hvV1pVS2tveWl4T1VuZmxEMzhiNlRjLVg4aXpwVzEzaWFGX1FFb0M4VXNwa2JvZGtTWlVUWTNTSWdmOWRiWllR?oc=5\" target=\"_blank\">Bitget to Buy Licensed Thai Exchange From Japan's GMO Internet</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-20T13:41:36.154039Z",
+        "id": "google_news:article:a14e4e07172b0f3c",
+        "metadata": {
+          "category": "exchange-operations",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-protocols",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-20T13:34:56Z",
+        "source_type": "google_news",
+        "title": "Bitget to Buy Licensed Thai Exchange From Japan's GMO Internet",
+        "url": "https://thedefiant.io/news/cefi/bitget-to-buy-licensed-thai-exchange-from-japan-s-gmo-internet"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "An operational disruption at Revolut affecting both payments and crypto services is a high-value availability incident for a major fintech user base, but it does not indicate a systemic exchange or protocol failure.",
+        "ai_score": 7.0,
+        "ai_summary": "Revolut experienced a service disruption that affected its payments and crypto services.",
+        "ai_tags": [
+          "Revolut",
+          "outage",
+          "payments",
+          "crypto-services",
+          "fintech"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxPYy1KX0tELUNwV3NqeW1SWjNmSGpYdU1GOURmRm9jRWpscEZ6aEYxOUNxOEFsVFREdE5hSmtzdFVyaWVtdjkzNWJ2WFhKbE9qSlc5UGxaR0VfLTdGZzNKZFpJZV9lU2NPbkpFenowTVF2STNnWkxqVUhGUmlKNzRZLUs0N0IxeENONGg3ajFHcDBKQ3N1T2NfOWxMTHEwYXdUTXY1bg?oc=5\" target=\"_blank\">Revolut Disruption Hits Payments and Crypto Services</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-20T13:41:36.153940Z",
+        "id": "google_news:article:038c5ebd30ca6bda",
+        "metadata": {
+          "category": "exchange-operations",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-protocols",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-20T10:51:00Z",
+        "source_type": "google_news",
+        "title": "Revolut Disruption Hits Payments and Crypto Services",
+        "url": "https://thedefiant.io/converge/tradfi-and-fintech/revolut-disruption-hits-payments-and-crypto-services"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "This is a concrete regulatory enforcement action restricting platform access in a jurisdiction: Taiwan moved to block Coinbase and Kalshi over suspected election betting, directly affecting market access for two prominent platforms (a major exchange and a leading prediction market). It carries real transmission to crypto/prediction-market operations and legal precedent for election-related products, but the impact is jurisdictionally contained rather than systemic, so it sits below landmark regulatory decisions.",
+        "ai_score": 7.0,
+        "ai_summary": "Taiwan ordered Coinbase and Kalshi to be blocked over suspected election betting activity, cutting off platform access for users in the jurisdiction.",
+        "ai_tags": [
+          "taiwan",
+          "coinbase",
+          "kalshi",
+          "prediction-markets",
+          "crypto-regulation"
+        ],
+        "author": "Tekedia",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxNa3BNMnRFUXRJcnNzVU14RlhhM3hhOFBzUGxKYzNuVmtiSGYyNXhDR0pNdW4waXVfVWhpUnUxS2V0UWhOUUdxNFFCaVBYeTdHTVBWYjl4alE3SVVfdkJIaTZ3cnVjWEw5TXgwVFJOVlM3UVZ2NTZLNGVoUXNyYy1xb2ZvQUpIUXNRX1FxNmY0T0t5ME5w?oc=5\" target=\"_blank\">Taiwan Blocks Coinbase and Kalshi Over Suspected Election Betting</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Tekedia</font>",
+        "fetched_at": "2026-10-20T13:41:26.306442Z",
+        "id": "google_news:article:2b3f4a9893fd76e7",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.tekedia.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Tekedia"
+        },
+        "published_at": "2026-10-20T09:08:12Z",
+        "source_type": "google_news",
+        "title": "Taiwan Blocks Coinbase and Kalshi Over Suspected Election Betting",
+        "url": "https://www.tekedia.com/taiwan-blocks-coinbase-and-kalshi-over-suspected-election-betting/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A concrete platform-level change from the largest exchange: moving the bStocks (tokenized equity) collateral index price to 24/7 dynamic updates affects valuation and liquidation mechanics for users posting these assets as collateral. This is a material trading-rule/index maintenance update rather than a routine listing, but it applies to a specific collateral product with limited systemic reach, placing it in the high-value tier.",
+        "ai_score": 7.0,
+        "ai_summary": "Binance announced it will support round-the-clock dynamic updates to the bStocks collateral index price, replacing static pricing for tokenized-equity collateral used on its platform.",
+        "ai_tags": [
+          "Binance",
+          "tokenized stocks",
+          "collateral",
+          "price oracle",
+          "exchange operations"
+        ],
+        "author": "Binance",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMihwFBVV95cUxNcXZIVU56NzdYT0h2d0pZcy1URkJnc1N4MUN3ZTdrZFZ0ODhuQ2h6RjJMcEhNRm0wamVDRHBPanUteTE0U1huV1JhSFZVQ25kUE1RZUtvbWJLSTN5T3ZSSS00RG1Cc0lTbkRYMHJrM0ludHFlNnNOYWoyT2cyc2FwTlY4WDc0cXc?oc=5\" target=\"_blank\">Binance to Support 24/7 Dynamic Updates of the bStocks Collateral Index Price</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Binance</font>",
+        "fetched_at": "2026-10-20T13:41:26.305815Z",
+        "id": "google_news:article:844076122238269e",
+        "metadata": {
+          "category": "exchange-announcements",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.binance.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "Binance"
+        },
+        "published_at": "2026-10-20T08:09:49Z",
+        "source_type": "google_news",
+        "title": "Binance to Support 24/7 Dynamic Updates of the bStocks Collateral Index Price",
+        "url": "https://www.binance.com/en/support/announcement/1a5f87ab3b77476b9ad0177b560e3054"
       }
     }
   ],

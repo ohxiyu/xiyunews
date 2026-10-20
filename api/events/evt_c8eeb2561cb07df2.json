@@ -4,48 +4,68 @@
   "url": "https://xiyu.news/events/evt_c8eeb2561cb07df2/",
   "json": "https://xiyu.news/api/events/evt_c8eeb2561cb07df2.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "closed",
   "category": "crypto",
   "title": {
-    "zh": "白帽黑客提取3.2亿美元比特币，Liquid网络暂停",
+    "zh": "Liquid Network 遭约3.2亿美元比特币提取后暂停并恢复出块",
     "en": "Liquid Network pauses after purported ‘white-hat’ hackers withdraw $320 million in bitcoin"
   },
   "current_state": {
-    "zh": "Liquid网络仍处于暂停状态，部分资金（3,400 BTC）已确认归还至联邦钱包，但攻击者仍保有598.5 BTC，赎回通道未开放，Blockstream状态页面显示事件持续，资金支持和恢复仍有待确认。",
-    "en": "The Liquid Network remains paused; 3,400 BTC have been confirmed returned to the federation wallet, but the attacker retains approximately 598.5 BTC; redemption access is not restored, Blockstream's status page shows the incident continuing, and full backing and recovery remain unconfirmed."
+    "zh": "Liquid Network 处于恢复最后阶段；联盟节点软件已升级，半自动化 BTC/LBTC 兑换正通过兑换服务商逐步重启，但联盟直接 peg-out 仍受限，1:1 比特币储备重建及 PAK 密钥持有者正常兑出尚未完成。",
+    "en": "The Liquid Network is in the final recovery stage; federation node software has been upgraded and semi-automated BTC/LBTC conversions are being reopened through swap providers, but direct federation peg-outs remain restricted, and rebuilding 1:1 bitcoin backing and restoring normal peg-out access for PAK key holders are not yet complete."
   },
   "first_seen_at": "2026-09-06T22:13:15.375035+00:00",
-  "last_updated_at": "2026-09-08T16:47:13.470928+00:00",
-  "last_material_change_at": "2026-09-08T16:47:13.470928+00:00",
+  "last_updated_at": "2026-10-20T13:41:31.689657+00:00",
+  "last_material_change_at": "2026-10-20T13:41:31.689657+00:00",
   "confidence": 0.75,
-  "updates_count": 7,
-  "sources_count": 16,
+  "updates_count": 11,
+  "sources_count": 20,
   "entities": [
     "after",
     "attacker",
     "blockstream",
     "broadcasts",
     "btc",
+    "coverage",
     "federation",
+    "frozen",
     "how",
     "keeps",
+    "l-btc",
+    "lbtc",
     "leaves",
     "liquid",
     "liquid-network",
     "paused",
+    "redemptions",
+    "remain",
+    "reserve",
+    "reserves",
     "return",
     "sidechain",
     "tokens",
-    "wallet"
+    "wallet",
+    "with"
   ],
   "identifiers": [],
   "topics": [
+    "bitcoin-sidechain",
+    "blockchain-recovery",
     "blockstream",
     "btc",
     "hack",
+    "l-btc",
+    "lbtc",
     "liquid",
     "liquid-network",
+    "network-recovery",
+    "peg",
+    "peg-out",
+    "peg-out-suspension",
     "recovery",
+    "redemptions",
+    "reserves",
+    "security-incident",
     "sidechain"
   ],
   "updates": [
@@ -433,6 +453,193 @@
           "url": "https://cryptoslate.com/liquid-recovers-3400-btc-as-hacker-asks-is-that-ok-after-pocketing-47-million-in-bitcoin/",
           "label": "CryptoSlate",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_0994e70ba0d0ffe3",
+      "event_id": "evt_c8eeb2561cb07df2",
+      "occurred_at": "2026-09-10T16:38:16Z",
+      "published_at": "2026-09-10T16:38:16Z",
+      "first_seen_at": "2026-09-10T22:43:07.725464Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "Liquid Network 在 3.2 亿美元漏洞事件后恢复出块",
+      "title_en": "Liquid Network resumes block production after $320M exploit",
+      "what_changed_zh": "Liquid Network 在部署紧急软件更新后于周四恢复出块，但作为预防措施，交易与锚定（peg）操作仍然暂停，网络正在被持续监控以确认完全稳定。此次重启源于 9 月 6 日的事件：约 4,000 枚 BTC（价值约 3.2 亿美元）通过 Elements 软件中的一个漏洞从该网络的联合钱包中被提取。\n\nLiquid 是规模最大、运行时间最长的比特币侧链之一，这次提取掏空了其联合钱包约 95% 的余额，暴露出联邦式跨链桥设计中高度集中的信任如何转化为系统性风险。事件直接波及 L-BTC 持有者、在 Liquid 上发行代币化资产与稳定币的机构，以及依赖其进行结算的交易所和做市商。\n\n攻击者利用了 Elements 范围证明（range proof）验证缓存中的漏洞，铸造出约 4,000 枚无真实背书的 L-BTC，随后通过 SideSwap 的授权退出锚定路径兑换为真实 BTC。紧急补丁 Elements v23.3.4 加固了范围证明所使用的缓存键；在受影响桥节点完成修补后，3,400 枚 BTC（约 2.7 亿美元）被归还，截至 9 月 7 日仍有约 598 枚 BTC（约 4,600 万美元）未追回。",
+      "what_changed_en": "The Liquid Network resumed block production after deploying emergency software updates following a $320 million Bitcoin withdrawal exploit, though transactions and peg operations remain suspended during recovery.",
+      "current_state_zh": "Liquid Network 在部署紧急软件更新后于周四恢复出块，但作为预防措施，交易与锚定（peg）操作仍然暂停，网络正在被持续监控以确认完全稳定。此次重启源于 9 月 6 日的事件：约 4,000 枚 BTC（价值约 3.2 亿美元）通过 Elements 软件中的一个漏洞从该网络的联合钱包中被提取。\n\nLiquid 是规模最大、运行时间最长的比特币侧链之一，这次提取掏空了其联合钱包约 95% 的余额，暴露出联邦式跨链桥设计中高度集中的信任如何转化为系统性风险。事件直接波及 L-BTC 持有者、在 Liquid 上发行代币化资产与稳定币的机构，以及依赖其进行结算的交易所和做市商。\n\n攻击者利用了 Elements 范围证明（range proof）验证缓存中的漏洞，铸造出约 4,000 枚无真实背书的 L-BTC，随后通过 SideSwap 的授权退出锚定路径兑换为真实 BTC。紧急补丁 Elements v23.3.4 加固了范围证明所使用的缓存键；在受影响桥节点完成修补后，3,400 枚 BTC（约 2.7 亿美元）被归还，截至 9 月 7 日仍有约 598 枚 BTC（约 4,600 万美元）未追回。",
+      "current_state_en": "The Liquid Network resumed block production after deploying emergency software updates following a $320 million Bitcoin withdrawal exploit, though transactions and peg operations remain suspended during recovery.",
+      "detailed_summary_zh": "The Liquid Network resumed block production after deploying emergency software updates following a $320 million Bitcoin withdrawal exploit, though transactions and peg operations remain suspended during recovery.",
+      "detailed_summary_en": "The Liquid Network resumed block production after deploying emergency software updates following a $320 million Bitcoin withdrawal exploit, though transactions and peg operations remain suspended during recovery.",
+      "background_zh": "Liquid 是 Blockstream 于 2018 年推出的开源比特币侧链，支持更快速、更保密的 BTC 转账，并可用于发行稳定币、证券型代币和债券等数字资产。用户持有的是 L-BTC，它与 BTC 按 1:1 锚定，背后是在由名为 functionary 的联邦节点共同管理的钱包中锁定的真实比特币。Elements 是支撑该网络的开源代码库，其机密交易（Confidential Transactions）功能使用范围证明在不公开金额的前提下验证交易是否合法，而攻击者利用的正是这些验证结果缓存环节中的缺陷。",
+      "background_en": "Liquid is an open-source Bitcoin sidechain launched by Blockstream in 2018 that enables faster, more confidential BTC transfers and the issuance of digital assets such as stablecoins, tokenized securities and bonds. Users hold L-BTC, which is pegged 1:1 to BTC and backed by real bitcoin locked in a wallet collectively managed by federated nodes called functionaries. Elements is the open-source codebase underpinning the network, and its Confidential Transactions feature uses range proofs to validate that transaction amounts are legitimate without revealing them publicly; a flaw in the caching of those verifications is what the attacker exploited.",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "传导渠道主要是锚定信心：由于锚定操作与 PAK 授权提现均被暂停，L-BTC 兑换为 BTC 的赎回通道受限，这直接影响在 Liquid 上结算的交易所、发行方和流动性提供者，包括与 SideSwap 相关的退出路径。该事件还可能推动市场重新评估联邦式比特币二层与跨链桥设计中的托管风险，而 BTC/L-BTC 储备中尚未追回的约 598 枚 BTC 缺口仍是待解决的关键变量。",
+      "market_impact_en": "The transmission channel is peg confidence: with peg operations and PAK-authorized peg-outs suspended, the redemption path connecting L-BTC to BTC is constrained, which bears on venues, issuers and liquidity providers that settle on Liquid, including SideSwap-linked exits. The incident also feeds into a broader reassessment of custody and federation risk across federated Bitcoin layer-2 and bridge designs, and the outstanding ~598 BTC shortfall in the BTC/L-BTC reserve is the key variable still being resolved.",
+      "importance_score": 8.5,
+      "references": [
+        {
+          "url": "https://blockstream.com/liquid/",
+          "title": "The Liquid Network | Bitcoin layer-2 solution for digital ..."
+        },
+        {
+          "url": "https://news.bitcoin.com/crypto-news/liquid-network-resumes-block-production-after-4000-btc-exploit/",
+          "title": "Liquid Network Resumes Block Production After 4,000 BTC ..."
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/liquid-federation-discloses-4-000-btc-vulnerability-incident",
+          "title": "Liquid Federation Discloses 4,000 BTC Vulnerability Incident | KuCoin"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:656b87c8d60ff48b"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/liquid-network-resumes-block-production-after-320m-exploit?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_e4935ec08ab9160a",
+      "event_id": "evt_c8eeb2561cb07df2",
+      "occurred_at": "2026-09-12T00:30:41Z",
+      "published_at": "2026-09-12T00:30:41Z",
+      "first_seen_at": "2026-09-12T04:55:43.358323Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "SideSwap 恢复 L-BTC 交易，但储备仅覆盖约 85% 供应量",
+      "title_en": "L-BTC resumes trading with reserves covering just 85% of supply",
+      "what_changed_zh": "SideSwap 在 Liquid 恢复区块生产后重新开放了 L-BTC 市场，但联邦锚定退出仍暂停；9月10日数据显示储备仅覆盖约85.15%的L-BTC供应，缺口约627 BTC。",
+      "what_changed_en": "SideSwap reopened L-BTC markets after Liquid resumed block production, but federation peg-outs remain suspended; Sept. 10 data shows reserves cover only ~85.15% of L-BTC supply, a ~627 BTC shortfall.",
+      "current_state_zh": "Liquid Network 已恢复区块生产，SideSwap 重新开放 L-BTC 交易，但联邦锚定退出仍暂停；储备仅覆盖约85%的 L-BTC 供应，缺口约627 BTC，恢复仍在进行中。",
+      "current_state_en": "Liquid Network has resumed block production and SideSwap reopened L-BTC trading, but federation peg-outs remain suspended; reserves cover only ~85% of L-BTC supply, a ~627 BTC shortfall, and recovery is ongoing.",
+      "detailed_summary_zh": "SideSwap reopened L-BTC markets after Liquid resumed block production, but federation peg-outs remain suspended and reserves cover only about 85% of outstanding L-BTC, leaving a roughly 627 BTC shortfall.",
+      "detailed_summary_en": "SideSwap reopened L-BTC markets after Liquid resumed block production, but federation peg-outs remain suspended and reserves cover only about 85% of outstanding L-BTC, leaving a roughly 627 BTC shortfall.",
+      "background_zh": "Liquid 是一条由功能节点（functionaries）组成的联邦运营的开源比特币侧链：用户通过 peg-in 将 BTC 转入并生成 L-BTC，通过 peg-out 销毁 L-BTC，并由联邦多签钱包在获得确认后释放 BTC 回到比特币主链。由于联邦制侧链依赖一组既定的可信成员而非比特币自身的共识，1:1 锚定的完整性取决于联邦的密钥与控制流程。9 月 6 日的事件使约 3,400 BTC 从联邦钱包转出，9 月 7 日约有 3,400 BTC 被报告回流，随后出块以不含交易的受控模式重启。储备缺口、市场重开与仍未恢复的 peg-out 通道，是同一事件的三个不同环节。",
+      "background_en": "Liquid is an open-source Bitcoin sidechain operated by a federation of functionaries, where users move BTC onto the chain through a peg-in that creates L-BTC and back to Bitcoin through a peg-out that burns L-BTC and directs the federation's multisig wallet to release BTC after confirmations. Because a federated sidechain depends on a defined set of trusted members rather than Bitcoin's own consensus, the integrity of the 1:1 peg rests on the federation's keys and controls. The Sept. 6 incident moved roughly 3,400 BTC out of the federation wallet, with about 3,400 BTC reported as returning on Sept. 7, and block production was later restarted in a controlled mode without transactions. This reserve gap, the reopened venue and the still-closed peg-out route are three separate parts of the same event.",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "直接暴露风险的是 L-BTC 持有者与 SideSwap 等 Liquid 上的交易场所：在联邦 peg-out 暂停的情况下，L-BTC 交易的是一个仅由部分储备支撑的债权，而非可赎回为 BTC 的索取权；任何折价都会通过通常连接这两种资产的赎回套利渠道传导，而该渠道目前已被关闭。托管 L-BTC 或在 Liquid 上结算代币化资产的交易所与发行方，面临托管与流动性层面的不确定性；该事件也会加剧市场对联邦制侧链与跨链桥信任模型的审视，进而影响围绕 BTC 二层资产的普遍情绪。",
+      "market_impact_en": "The direct exposure sits with L-BTC holders and Liquid venues such as SideSwap: with federation peg-outs suspended, L-BTC trades as a claim on a fractionally backed reserve rather than a redeemable claim on BTC, and any discount transmits through the redemption-arbitrage channel that normally links the two assets — a channel that is currently closed. Exchanges and issuers that custody L-BTC or settle tokenized assets on Liquid face custody and liquidity uncertainty, and the episode feeds broader scrutiny of federated sidechain and bridge trust models, which can weigh on sentiment toward BTC layer-2 assets.",
+      "importance_score": 8.5,
+      "references": [
+        {
+          "url": "https://docs.liquid.net/docs/advanced-pegin-pegout",
+          "title": "Peg-in and Peg-out - Documentation - The Liquid Network"
+        },
+        {
+          "url": "https://help.blockstream.com/hc/en-us/articles/900001551783-What-is-a-Liquid-peg-out",
+          "title": "What is a Liquid peg-out? – Blockstream Help Center"
+        },
+        {
+          "url": "https://blockstream.com/liquid/",
+          "title": "The Liquid Network | Bitcoin layer-2 solution for digital asset issuance."
+        }
+      ],
+      "confidence": 0.95,
+      "story_ids": [
+        "rss:cryptoslate.com_feed_:62c40af23e13e1cc"
+      ],
+      "sources": [
+        {
+          "url": "https://cryptoslate.com/l-btc-resumes-trading-with-reserves-covering-just-85-of-supply/",
+          "label": "CryptoSlate",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_079eacf50bc108e8",
+      "event_id": "evt_c8eeb2561cb07df2",
+      "occurred_at": "2026-10-11T15:59:08Z",
+      "published_at": "2026-10-11T15:59:08Z",
+      "first_seen_at": "2026-10-11T17:44:43.309027Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "Liquid Bitcoin 赎回仍处冻结状态，储备覆盖率 85.8%",
+      "title_en": "Liquid Bitcoin Redemptions Remain Frozen With 85.8% Reserve Coverage",
+      "what_changed_zh": "储备覆盖率更新为85.8%，缺口约603 BTC；Liquid 表示锚定退出需完全背书并完成安全审查后方可重启。",
+      "what_changed_en": "Reserve coverage updated to 85.8%, shortfall ~603 BTC; Liquid says peg-outs require full backing and completed security reviews before restart.",
+      "current_state_zh": "L-BTC 锚定退出仍冻结，储备仅覆盖约85.8%的供应，缺口约603 BTC，需完全背书并完成安全审查后才能恢复赎回。",
+      "current_state_en": "L-BTC peg-out redemptions remain frozen; reserves cover ~85.8% of supply, a ~603 BTC shortfall, and full backing plus completed security reviews are required before redemptions resume.",
+      "detailed_summary_zh": "Liquid Network's bitcoin peg-out redemptions stay frozen with reserves covering just 85.8% of issued L-BTC, a shortfall of roughly 603 BTC that must be closed and security reviews completed before redemptions resume.",
+      "detailed_summary_en": "Liquid Network's bitcoin peg-out redemptions stay frozen with reserves covering just 85.8% of issued L-BTC, a shortfall of roughly 603 BTC that must be closed and security reviews completed before redemptions resume.",
+      "background_zh": "Liquid Network 是一条与比特币保持 1:1 锚定的比特币二层侧链，允许 BTC 在比特币主链（peg-in，转入）与侧链（peg-out，转出）之间流转。在一次安全事件后，peg-out 被暂停；Blockstream 表示，随着恢复推进以及相关整改措施被正式采纳，将继续发布技术更新。",
+      "background_en": "Liquid Network is a Bitcoin layer-2 sidechain that maintains a 1:1 peg with bitcoin, letting BTC move between the Bitcoin mainchain (peg-in) and the sidechain (peg-out). Peg-outs were halted following a security incident, and Blockstream has said it will continue publishing technical updates as recovery progresses and corrective actions are formally adopted.",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "此次冻结直接切断了 L-BTC 的赎回路径，而 L-BTC 被多家交易所和托管机构持有与支持，因此在锚定通道关闭期间，这些场所上 L-BTC 交易对的流动性与价格可能与主链 BTC 出现偏离。同时，这也使市场重新审视联合锚定（federated peg）的信任假设，可能影响对其他比特币侧链及跨链 BTC 设计的人气。",
+      "market_impact_en": "The freeze directly restricts the redemption path for L-BTC, an asset held and supported by exchanges and custody providers, so liquidity and pricing for L-BTC pairs on those venues can diverge from mainchain BTC while the peg is closed. It also puts a spotlight on the trust assumptions of federated pegs, which can affect sentiment toward other Bitcoin sidechain and bridged-BTC designs.",
+      "importance_score": 8.0,
+      "references": [
+        {
+          "url": "https://blog.liquid.net/liquid-network-security-incident-assessment/",
+          "title": "Liquid Network Security Incident Assessment"
+        },
+        {
+          "url": "https://help.blockstream.com/liquid-network/faqs/what-is-a-liquid-peg-out",
+          "title": "Blockstream Help Center | What is a Liquid peg-out?"
+        }
+      ],
+      "confidence": 0.95,
+      "story_ids": [
+        "rss:thedefiant.io_api_feed:611073f227bb6929"
+      ],
+      "sources": [
+        {
+          "url": "https://thedefiant.io/news/security/liquid-bitcoin-redemptions-remain-frozen-with-85-8-reserve-coverage",
+          "label": "The Defiant",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_daa32946d3d8e171",
+      "event_id": "evt_c8eeb2561cb07df2",
+      "occurred_at": "2026-10-20T13:37:51Z",
+      "published_at": "2026-10-20T13:37:51Z",
+      "first_seen_at": "2026-10-20T13:41:31.689657Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "【Liquid Network 进入恢复最后阶段，将逐步重启 BTC 与 LBTC 兑换】",
+      "title_en": "【Liquid Network 进入恢复最后阶段，将逐步重启 BTC 与 LBTC 兑换】",
+      "what_changed_zh": "Liquid Network 宣布进入恢复最后阶段：已完成管理比特币储备的联盟节点软件升级，并正与兑换服务商协调重新开放半自动化 BTC/LBTC 兑换，且不设协议层面额度限制；但联盟直接 peg-out 仍受限，需待 1:1 比特币储备重建并为 PAK 密钥持有者恢复兑出功能。",
+      "what_changed_en": "Liquid Network announced it entered the final recovery stage: it upgraded federation node software managing bitcoin reserves and is coordinating with swap providers to reopen semi-automated BTC/LBTC conversions without protocol-level limits; however, direct federation peg-outs remain restricted until 1:1 bitcoin backing is rebuilt and PAK key holders regain normal peg-out access.",
+      "current_state_zh": "Liquid Network 处于恢复最后阶段；联盟节点软件已升级，半自动化 BTC/LBTC 兑换正通过兑换服务商逐步重启，但联盟直接 peg-out 仍受限，1:1 比特币储备重建及 PAK 密钥持有者正常兑出尚未完成。",
+      "current_state_en": "The Liquid Network is in the final recovery stage; federation node software has been upgraded and semi-automated BTC/LBTC conversions are being reopened through swap providers, but direct federation peg-outs remain restricted, and rebuilding 1:1 bitcoin backing and restoring normal peg-out access for PAK key holders are not yet complete.",
+      "detailed_summary_zh": "Liquid Network says it has upgraded the federation node software managing its bitcoin reserves and is coordinating with swap providers to reopen semi-automated BTC/LBTC conversions without protocol-level limits, while direct federation peg-outs remain restricted until the network's 1:1 bitcoin backing is rebuilt and PAK key holders regain normal peg-out access.",
+      "detailed_summary_en": "Liquid Network says it has upgraded the federation node software managing its bitcoin reserves and is coordinating with swap providers to reopen semi-automated BTC/LBTC conversions without protocol-level limits, while direct federation peg-outs remain restricted until the network's 1:1 bitcoin backing is rebuilt and PAK key holders regain normal peg-out access.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "telegram:foresightnews:120853"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/115576",
+          "label": "foresightnews",
+          "source_type": "telegram",
           "official": false
         }
       ]
