@@ -142619,8 +142619,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Papertrade remains live: cumulative notional volume over $58.4 billion, open interest notional around $2.313 billion, margin around $16.398 million; PAPER staking ratio about 98.92%, cumulative staker rewards about $24.021 million; pool net funds about $3.8757 million, with zero pending payout queue.",
-      "current_state_zh": "Papertrade 继续运营：累计名义成交额超 5840 亿美元，未平仓合约名义价值约 23.13 亿美元，保证金约 1639.80 万美元；PAPER 质押比例约 98.92%，累计质押者奖励约 2402.10 万美元；资金池净资金约 387.57 万美元，当前排队待付金额为零。",
+      "current_state_en": "Papertrade remains live, but PAPER is currently and near-term non-transferable; fees and minting curve have been adjusted, diluting early holders; PAPER pre-market perpetuals were force-settled by Paragon and switched to reduce-only with delisting planned by Aster; BTC and ETH open interest declined sharply, TVL fell to about $58.3 million, and negative sentiment including “soft rug” accusations has emerged.",
+      "current_state_zh": "Papertrade 仍在运营，但 PAPER 当前及短期内不可转让，手续费结构与铸造曲线已调整，早期持有者面临稀释；PAPER 盘前永续合约已被 Paragon 强制结算、被 Aster 切换为仅减仓并准备下架；平台 BTC 与 ETH 持仓量显著下降，TVL 降至约 5830 万美元，并面临“软 Rug”等负面舆情。",
       "entities": [
         "paper",
         "papertrade"
@@ -142629,8 +142629,8 @@
       "event_type": "product_release",
       "first_seen_at": "2026-10-10T14:50:31.899249Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-11T06:10:35.826529Z",
-      "last_updated_at": "2026-10-11T06:10:35.826529Z",
+      "last_material_change_at": "2026-10-20T09:34:13.387048Z",
+      "last_updated_at": "2026-10-20T09:34:13.387048Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -142651,7 +142651,9 @@
         "staking",
         "synthetic-assets",
         "synthetic-perpetuals",
-        "token-emissions"
+        "token-emissions",
+        "token-transferability",
+        "tvl-outflows"
       ],
       "updates": [
         {
@@ -142805,6 +142807,44 @@
           "update_type": "escalation",
           "what_changed_en": "Papertrade updated operating metrics: cumulative notional volume over $58.4 billion, open interest notional around $2.313 billion, backing margin around $16.398 million; PAPER supply about 5.162 billion with about 5.106 billion staked (~98.92%); cumulative staker rewards about $24.021 million; pool book balance about $4.1534 million, net of unrealized PnL about $3.8757 million, and zero pending payout queue.",
           "what_changed_zh": "Papertrade 更新运营数据：累计名义成交额超 5840 亿美元，未平仓合约名义价值约 23.13 亿美元，对应保证金约 1639.80 万美元；PAPER 总供应约 51.62 亿枚，其中约 51.06 亿枚已质押（约 98.92%），累计质押者奖励约 2402.10 万美元；资金池账面余额约 415.34 万美元，计入浮盈浮亏后净资金约 387.57 万美元，当前排队待付金额为零。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.94,
+          "current_state_en": "Papertrade remains live, but PAPER is currently and near-term non-transferable; fees and minting curve have been adjusted, diluting early holders; PAPER pre-market perpetuals were force-settled by Paragon and switched to reduce-only with delisting planned by Aster; BTC and ETH open interest declined sharply, TVL fell to about $58.3 million, and negative sentiment including “soft rug” accusations has emerged.",
+          "current_state_zh": "Papertrade 仍在运营，但 PAPER 当前及短期内不可转让，手续费结构与铸造曲线已调整，早期持有者面临稀释；PAPER 盘前永续合约已被 Paragon 强制结算、被 Aster 切换为仅减仓并准备下架；平台 BTC 与 ETH 持仓量显著下降，TVL 降至约 5830 万美元，并面临“软 Rug”等负面舆情。",
+          "detailed_summary_en": "Papertrade declared its PAPER token non-transferable and reworked fees and the minting curve, prompting Paragon to force-settle PAPER pre-market perps at ~$0.0263 and Aster to go reduce-only, while the platform's BTC and ETH open interest fell 41% and 55% and TVL slipped to ~$58M amid accusations of a 'soft rug'.",
+          "detailed_summary_zh": "Papertrade declared its PAPER token non-transferable and reworked fees and the minting curve, prompting Paragon to force-settle PAPER pre-market perps at ~$0.0263 and Aster to go reduce-only, while the platform's BTC and ETH open interest fell 41% and 55% and TVL slipped to ~$58M amid accusations of a 'soft rug'.",
+          "event_id": "evt_8860783216280eb3",
+          "first_seen_at": "2026-10-20T09:34:13.387048Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T07:37:02Z",
+          "published_at": "2026-10-20T07:37:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://www.theblockbeats.info/flash/372624"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201382"
+          ],
+          "time_precision": "published",
+          "title_en": "PAPER不可转让引爆负面舆情：「亏损挖矿」退出路径被封堵，盘前合约遭多方下架，平台数据显著下滑",
+          "title_zh": "PAPER不可转让引爆负面舆情：「亏损挖矿」退出路径被封堵，盘前合约遭多方下架，平台数据显著下滑",
+          "update_id": "upd_afd9f3562cb82937",
+          "update_type": "escalation",
+          "what_changed_en": "On October 20, 2026, Papertrade announced PAPER is non-transferable currently and near-term and adjusted its fee structure and token minting curve; Paragon paused and force-settled PAPER pre-market perpetuals, settling all open positions at about $0.026296; Aster switched PAPER pre-market perpetuals to reduce-only and prepared to delist; platform BTC open interest fell 41% (from about $390 million to $230 million), ETH open interest fell 55% (from about $150 million to $66.3 million), and TVL dropped about 7% to about $58.3 million.",
+          "what_changed_zh": "2026年10月20日，Papertrade 宣布 PAPER 当前及短期内不可转让，并调整手续费结构与代币铸造曲线；Paragon 暂停并强制结算 PAPER 盘前永续合约，所有未平仓头寸按约 0.026296 美元结算；Aster 将 PAPER 盘前永续切换为仅减仓模式并准备下架；平台 BTC 持仓量下降 41%（约 3.9 亿美元降至 2.3 亿美元），ETH 持仓量下降 55%（约 1.5 亿美元降至 6630 万美元），TVL 下降约 7% 至约 5830 万美元。"
         }
       ]
     },
@@ -166352,8 +166392,8 @@
     {
       "category": "policy",
       "confidence": 0.75,
-      "current_state_en": "The US Department of Homeland Security ordered DeepSeek products and related services removed from federal civilian agency IT systems, citing risks of sensitive data exposure to China and security vulnerabilities.",
-      "current_state_zh": "The US Department of Homeland Security ordered DeepSeek products and related services removed from federal civilian agency IT systems, citing risks of sensitive data exposure to China and security vulnerabilities.",
+      "current_state_en": "DHS has ordered DeepSeek and related products removed from federal civilian agency systems; China's Foreign Ministry has publicly responded, criticizing the politicization of technology and pledging to protect Chinese companies' lawful rights.",
+      "current_state_zh": "美国国土安全部要求联邦民用机构移除DeepSeek及相关产品；中国外交部已公开回应，批评美方将科技问题政治化，并承诺维护中国企业的合法权益。",
       "entities": [
         "deepseek"
       ],
@@ -166361,23 +166401,26 @@
       "event_type": "security_incident",
       "first_seen_at": "2026-10-19T14:11:31.534873Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-20T06:11:49.555595Z",
-      "last_updated_at": "2026-10-20T06:11:49.555595Z",
+      "last_material_change_at": "2026-10-20T09:34:13.386025Z",
+      "last_updated_at": "2026-10-20T09:34:13.386025Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_22a0ee912e490a29"
       ],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "developing",
       "title_en": "DHS orders DeepSeek products removed from federal civilian agency systems",
       "title_zh": "美国土安全部下令将DeepSeek产品排除在联邦民用机构系统之外",
       "topics": [
         "ai-regulation",
         "china",
+        "data-security",
         "deepseek",
+        "foreign-policy",
         "government-it",
         "procurement-security",
         "supply-chain",
+        "us-china-tech",
         "us-government",
         "us-policy"
       ],
@@ -166389,7 +166432,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "The U.S. Department of Homeland Security ordered DeepSeek and related products, including third-party services incorporating DeepSeek, to be excluded from federal civilian agency procurement and removed from their IT systems.",
-          "current_state_zh": "The U.S. Department of Homeland Security ordered DeepSeek and related products, including third-party services incorporating DeepSeek, to be excluded from federal civilian agency procurement and removed from their IT systems.",
+          "current_state_zh": "美国国土安全部下令将DeepSeek及相关产品（包括集成DeepSeek的第三方服务）排除在联邦民事机构采购之外，并从其IT系统中移除。",
           "detailed_summary_en": "The U.S. Department of Homeland Security ordered DeepSeek and related products, including third-party services incorporating DeepSeek, to be excluded from federal civilian agency procurement and removed from their IT systems.",
           "detailed_summary_zh": "The U.S. Department of Homeland Security ordered DeepSeek and related products, including third-party services incorporating DeepSeek, to be excluded from federal civilian agency procurement and removed from their IT systems.",
           "event_id": "evt_c618c5c7acbf0909",
@@ -166432,7 +166475,45 @@
           "update_id": "upd_c64db09ef925d3f9",
           "update_type": "initial",
           "what_changed_en": "The U.S. Department of Homeland Security ordered DeepSeek and related products, including third-party services incorporating DeepSeek, to be excluded from federal civilian agency procurement and removed from their IT systems.",
-          "what_changed_zh": "The U.S. Department of Homeland Security ordered DeepSeek and related products, including third-party services incorporating DeepSeek, to be excluded from federal civilian agency procurement and removed from their IT systems."
+          "what_changed_zh": "美国国土安全部下令将DeepSeek及相关产品（包括集成DeepSeek的第三方服务）排除在联邦民事机构采购之外，并从其IT系统中移除。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.9,
+          "current_state_en": "DHS has ordered DeepSeek and related products removed from federal civilian agency systems; China's Foreign Ministry has publicly responded, criticizing the politicization of technology and pledging to protect Chinese companies' lawful rights.",
+          "current_state_zh": "美国国土安全部要求联邦民用机构移除DeepSeek及相关产品；中国外交部已公开回应，批评美方将科技问题政治化，并承诺维护中国企业的合法权益。",
+          "detailed_summary_en": "China's Foreign Ministry criticized the U.S. requirement that federal agencies stop using Chinese AI products including DeepSeek, calling it politicization of technology and vowing to protect Chinese companies' rights.",
+          "detailed_summary_zh": "China's Foreign Ministry criticized the U.S. requirement that federal agencies stop using Chinese AI products including DeepSeek, calling it politicization of technology and vowing to protect Chinese companies' rights.",
+          "event_id": "evt_c618c5c7acbf0909",
+          "first_seen_at": "2026-10-20T09:34:13.386025Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T07:31:02Z",
+          "published_at": "2026-10-20T07:31:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372723?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201380"
+          ],
+          "time_precision": "published",
+          "title_en": "中国外交部回应美政府禁用中国AI",
+          "title_zh": "中国外交部回应美政府禁用中国AI",
+          "update_id": "upd_936f85041fad3307",
+          "update_type": "response",
+          "what_changed_en": "China's Foreign Ministry responded to the U.S. requirement that federal agencies stop using Chinese AI products including DeepSeek, criticizing the politicization of technology and vowing to protect Chinese companies' lawful rights.",
+          "what_changed_zh": "中国外交部就美国要求联邦机构停止使用DeepSeek等中国AI产品作出回应，批评美方将科技问题政治化，并表示将坚决维护中国企业的合法权益。"
         }
       ]
     },
@@ -168367,28 +168448,41 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "BlackRock submitted a filing with the US SEC for the iShares Bitcoin Managed Protect ETF, which would offer partial downside protection while delivering capped upside exposure to its flagship IBIT bitcoin ETF.",
-      "current_state_zh": "BlackRock submitted a filing with the US SEC for the iShares Bitcoin Managed Protect ETF, which would offer partial downside protection while delivering capped upside exposure to its flagship IBIT bitcoin ETF.",
+      "current_state_en": "BlackRock filed a preliminary prospectus with the SEC for the iShares Bitcoin Managed Protection ETF (PBIT), which would use options linked to its $65.7B spot IBIT fund to offer limited downside protection in exchange for capped gains, adding a third Bitcoin-linked product to its crypto ETF lineup without filing for Solana or XRP exposure.",
+      "current_state_zh": "贝莱德向SEC提交了iShares比特币管理保护ETF（PBIT）的初步招股说明书，该基金将利用与其657亿美元现货IBIT基金挂钩的期权，以收益上限换取有限的下行保护，从而在其加密ETF产品线中新增第三只比特币相关产品，但未申请Solana或XRP敞口。",
       "entities": [
+        "bitcoin-etf",
+        "blackrock",
+        "buffer",
+        "day",
+        "draws",
         "etf",
-        "ibit"
+        "files",
+        "ibit",
+        "solana",
+        "xrp"
       ],
       "event_id": "evt_08af92ed8a7478e8",
       "event_type": "market_structure",
       "first_seen_at": "2026-10-20T02:02:32.793211Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-20T02:02:32.793211Z",
-      "last_updated_at": "2026-10-20T02:02:32.793211Z",
+      "last_material_change_at": "2026-10-20T09:34:29.693819Z",
+      "last_updated_at": "2026-10-20T09:34:29.693819Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_7ab9e9d17f9bae64"
+      ],
       "schema_version": 1,
       "status": "monitoring",
-      "title_en": "贝莱德提交第三只比特币ETF申请，拟提供下行保护及IBIT上涨敞口",
-      "title_zh": "贝莱德提交第三只比特币ETF申请，拟提供下行保护及IBIT上涨敞口",
+      "title_en": "BlackRock files with SEC for third Bitcoin ETF (PBIT)",
+      "title_zh": "贝莱德向SEC提交第三只比特币ETF（PBIT）申请",
       "topics": [
         "bitcoin-etf",
         "blackrock",
+        "buffer-etf",
         "defined-outcome",
+        "ibit",
+        "options-strategy",
         "sec-filing"
       ],
       "updates": [
@@ -168399,7 +168493,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "BlackRock submitted a filing with the US SEC for the iShares Bitcoin Managed Protect ETF, which would offer partial downside protection while delivering capped upside exposure to its flagship IBIT bitcoin ETF.",
-          "current_state_zh": "BlackRock submitted a filing with the US SEC for the iShares Bitcoin Managed Protect ETF, which would offer partial downside protection while delivering capped upside exposure to its flagship IBIT bitcoin ETF.",
+          "current_state_zh": "贝莱德向美国SEC提交了iShares比特币管理保护ETF的申请文件，该基金将提供部分下行保护，同时为其旗舰IBIT比特币ETF提供有上限的上行敞口。",
           "detailed_summary_en": "BlackRock submitted a filing with the US SEC for the iShares Bitcoin Managed Protect ETF, which would offer partial downside protection while delivering capped upside exposure to its flagship IBIT bitcoin ETF.",
           "detailed_summary_zh": "BlackRock submitted a filing with the US SEC for the iShares Bitcoin Managed Protect ETF, which would offer partial downside protection while delivering capped upside exposure to its flagship IBIT bitcoin ETF.",
           "event_id": "evt_08af92ed8a7478e8",
@@ -168417,10 +168511,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://m.theblockbeats.info/flash/372630?from=telegram"
+            },
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/blackrock-ishares-bitcoin-managed-protection-etf-pbit?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
             }
           ],
           "story_ids": [
-            "telegram:theblockbeats:201285"
+            "telegram:theblockbeats:201285",
+            "rss:cointelegraph.com_rss:520fd50d55f2158d"
           ],
           "time_precision": "published",
           "title_en": "贝莱德提交第三只比特币ETF申请，拟提供下行保护及IBIT上涨敞口",
@@ -168428,7 +168529,45 @@
           "update_id": "upd_f15e8638a0ebe9c9",
           "update_type": "initial",
           "what_changed_en": "BlackRock submitted a filing with the US SEC for the iShares Bitcoin Managed Protect ETF, which would offer partial downside protection while delivering capped upside exposure to its flagship IBIT bitcoin ETF.",
-          "what_changed_zh": "BlackRock submitted a filing with the US SEC for the iShares Bitcoin Managed Protect ETF, which would offer partial downside protection while delivering capped upside exposure to its flagship IBIT bitcoin ETF."
+          "what_changed_zh": "贝莱德向美国SEC提交了iShares比特币管理保护ETF的申请文件，该基金将提供部分下行保护，同时为其旗舰IBIT比特币ETF提供有上限的上行敞口。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.9,
+          "current_state_en": "BlackRock has filed with the US SEC for the iShares Bitcoin Managed Protection ETF (proposed ticker PBIT), a buffer ETF using IBIT options to provide roughly 10% downside protection while capping upside; the filing remains pending SEC review and has not been approved or launched.",
+          "current_state_zh": "贝莱德已向美国SEC提交iShares Bitcoin Managed Protection ETF（拟用代码PBIT）的申请，该缓冲型ETF拟通过IBIT期权提供约10%的下行保护并限制上涨空间；申请仍处于待SEC审查阶段，尚未获批或推出。",
+          "detailed_summary_en": "BlackRock filed for the iShares Bitcoin Managed Protection ETF (PBIT), which would use options on IBIT to cap gains while limiting losses, as IBIT recorded $665.2 million in net inflows on Monday.",
+          "detailed_summary_zh": "BlackRock filed for the iShares Bitcoin Managed Protection ETF (PBIT), which would use options on IBIT to cap gains while limiting losses, as IBIT recorded $665.2 million in net inflows on Monday.",
+          "event_id": "evt_08af92ed8a7478e8",
+          "first_seen_at": "2026-10-20T09:34:28.347434Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T09:13:30Z",
+          "published_at": "2026-10-20T09:13:30Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/381385/blackrock-files-for-buffer-bitcoin-etf-as-ibit-draws-665m-in-a-day"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:4d3df2681b1ff721"
+          ],
+          "time_precision": "published",
+          "title_en": "BlackRock Files for 'Buffer' Bitcoin ETF as IBIT Draws $665M in a Day",
+          "title_zh": "贝莱德申请“缓冲型”比特币ETF，IBIT单日吸金6.65亿美元",
+          "update_id": "upd_e8a88b11ac08b5bb",
+          "update_type": "confirmation",
+          "what_changed_en": "The report adds details of the same SEC filing: proposed ticker PBIT, a buffer structure using IBIT options with three overlapping monthly tranches, roughly 10% initial downside protection per tranche, registration under the Investment Company Act of 1940, and an unfilled management fee.",
+          "what_changed_zh": "新报道补充了该申请的细节：拟用代码PBIT，通过IBIT期权构建缓冲结构，分三批每月滚动，每批初始损失保护约10%，并依据1940年投资公司法注册；管理费尚未填写。"
         }
       ]
     },
@@ -168663,8 +168802,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "JPMorgan Asset Management included Bitcoin in its long-term capital market assumptions for the first time, projecting a 10% compound annual return over 10-15 years — above U.S. large-cap stocks at 7.5% and gold at 5.5% — with 55% annualized volatility.",
-      "current_state_zh": "JPMorgan Asset Management included Bitcoin in its long-term capital market assumptions for the first time, projecting a 10% compound annual return over 10-15 years — above U.S. large-cap stocks at 7.5% and gold at 5.5% — with 55% annualized volatility.",
+      "current_state_en": "JPMorgan Asset Management included Bitcoin in its long-term capital market assumptions for the first time, with a 10% base-case annualized return, 16.6% bull case, and -11.2% bear case, above U.S. large caps at 7.5% and gold at 5.5%, while stressing that high volatility and unstable correlations limit its current portfolio-diversification role.",
+      "current_state_zh": "JPMorgan Asset Management首次将比特币纳入长期资本市场假设，基准预测10%年化回报、牛市16.6%、熊市-11.2%，高于美国大盘股7.5%和黄金5.5%，但强调高波动和不稳定相关性限制其当前组合分散化作用。",
       "entities": [
         "decade",
         "gold",
@@ -168679,16 +168818,18 @@
       "event_type": "other",
       "first_seen_at": "2026-10-20T06:11:28.150776Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-20T06:11:28.150776Z",
-      "last_updated_at": "2026-10-20T06:11:28.150776Z",
+      "last_material_change_at": "2026-10-20T09:34:29.621106Z",
+      "last_updated_at": "2026-10-20T09:34:29.621106Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "JPMorgan Sees Bitcoin Outperforming U.S. Stocks and Gold Over Next Decade",
-      "title_zh": "JPMorgan Sees Bitcoin Outperforming U.S. Stocks and Gold Over Next Decade",
+      "title_zh": "摩根大通预计未来十年比特币将跑赢美股和黄金",
       "topics": [
+        "gold",
         "jpmorgan",
+        "market-outlook",
         "return-forecast"
       ],
       "updates": [
@@ -168699,7 +168840,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "JPMorgan Asset Management included Bitcoin in its long-term capital market assumptions for the first time, projecting a 10% compound annual return over 10-15 years — above U.S. large-cap stocks at 7.5% and gold at 5.5% — with 55% annualized volatility.",
-          "current_state_zh": "JPMorgan Asset Management included Bitcoin in its long-term capital market assumptions for the first time, projecting a 10% compound annual return over 10-15 years — above U.S. large-cap stocks at 7.5% and gold at 5.5% — with 55% annualized volatility.",
+          "current_state_zh": "摩根大通资产管理首次将比特币纳入其长期资本市场假设，预计未来10至15年复合年回报率为10%，高于美国大盘股的7.5%和黄金的5.5%，年化波动率为55%。",
           "detailed_summary_en": "JPMorgan Asset Management included Bitcoin in its long-term capital market assumptions for the first time, projecting a 10% compound annual return over 10-15 years — above U.S. large-cap stocks at 7.5% and gold at 5.5% — with 55% annualized volatility.",
           "detailed_summary_zh": "JPMorgan Asset Management included Bitcoin in its long-term capital market assumptions for the first time, projecting a 10% compound annual return over 10-15 years — above U.S. large-cap stocks at 7.5% and gold at 5.5% — with 55% annualized volatility.",
           "event_id": "evt_3531d5fd9421325c",
@@ -168724,11 +168865,49 @@
           ],
           "time_precision": "published",
           "title_en": "JPMorgan Sees Bitcoin Outperforming U.S. Stocks and Gold Over Next Decade",
-          "title_zh": "JPMorgan Sees Bitcoin Outperforming U.S. Stocks and Gold Over Next Decade",
+          "title_zh": "摩根大通预计未来十年比特币将跑赢美股和黄金",
           "update_id": "upd_23296fde566b1bb9",
           "update_type": "initial",
           "what_changed_en": "JPMorgan Asset Management included Bitcoin in its long-term capital market assumptions for the first time, projecting a 10% compound annual return over 10-15 years — above U.S. large-cap stocks at 7.5% and gold at 5.5% — with 55% annualized volatility.",
-          "what_changed_zh": "JPMorgan Asset Management included Bitcoin in its long-term capital market assumptions for the first time, projecting a 10% compound annual return over 10-15 years — above U.S. large-cap stocks at 7.5% and gold at 5.5% — with 55% annualized volatility."
+          "what_changed_zh": "摩根大通资产管理首次将比特币纳入其长期资本市场假设，预计未来10至15年复合年回报率为10%，高于美国大盘股的7.5%和黄金的5.5%，年化波动率为55%。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.9,
+          "current_state_en": "JPMorgan Asset Management included Bitcoin in its long-term capital market assumptions for the first time, with a 10% base-case annualized return, 16.6% bull case, and -11.2% bear case, above U.S. large caps at 7.5% and gold at 5.5%, while stressing that high volatility and unstable correlations limit its current portfolio-diversification role.",
+          "current_state_zh": "JPMorgan Asset Management首次将比特币纳入长期资本市场假设，基准预测10%年化回报、牛市16.6%、熊市-11.2%，高于美国大盘股7.5%和黄金5.5%，但强调高波动和不稳定相关性限制其当前组合分散化作用。",
+          "detailed_summary_en": "JPMorgan Asset Management's long-term outlook projects Bitcoin will return 10% annualized over the next decade, outperforming US large-cap stocks and gold, while cautioning that volatility and unstable correlations limit its portfolio role.",
+          "detailed_summary_zh": "JPMorgan Asset Management's long-term outlook projects Bitcoin will return 10% annualized over the next decade, outperforming US large-cap stocks and gold, while cautioning that volatility and unstable correlations limit its portfolio role.",
+          "event_id": "evt_3531d5fd9421325c",
+          "first_seen_at": "2026-10-20T09:34:29.621106Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T08:54:27Z",
+          "published_at": "2026-10-20T08:54:27Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/markets/jpmorgan-bitcoin-outperform-stocks-gold-annual-returns?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:dbae3f8f023c84fb"
+          ],
+          "time_precision": "published",
+          "title_en": "JPMorgan projects Bitcoin to outperform US stocks and gold over next decade",
+          "title_zh": "摩根大通预计未来十年比特币将跑赢美股和黄金",
+          "update_id": "upd_cec43de73a38fcb4",
+          "update_type": "confirmation",
+          "what_changed_en": "The same JPMorgan 2027 Long-Term Capital Market Assumptions report added bull-case 16.6% and bear-case -11.2% annualized Bitcoin return scenarios, and explicitly said Bitcoin is not currently viewed as a portfolio diversifier but as a speculative asset and hedge against monetary easing.",
+          "what_changed_zh": "同一份JPMorgan 2027长期资本市场假设报告补充了比特币牛市年化回报16.6%、熊市年化亏损11.2%的情景预测，并明确称当前不将比特币视为投资组合分散化工具，而是投机性资产和对冲货币宽松的工具。"
         }
       ]
     },
@@ -169275,6 +169454,750 @@
           "what_changed_zh": "Investors are sharply increasing credit default swap trading tied to major AI and technology borrowers to hedge against potential debt defaults from the AI infrastructure borrowing boom."
         }
       ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Mt. Gox extended its creditor repayment deadline by another year to October 31, 2027, citing incomplete documentation and processing issues for remaining creditors.",
+      "current_state_zh": "Mt. Gox extended its creditor repayment deadline by another year to October 31, 2027, citing incomplete documentation and processing issues for remaining creditors.",
+      "entities": [
+        "creditor",
+        "creditor-repayment",
+        "deadline",
+        "delays",
+        "fourth",
+        "gox",
+        "mt-gox",
+        "repayment",
+        "straight",
+        "year"
+      ],
+      "event_id": "evt_482bacc5d8a76b5e",
+      "event_type": "exchange_operation",
+      "first_seen_at": "2026-10-20T09:34:09.723687Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T09:34:09.723687Z",
+      "last_updated_at": "2026-10-20T09:34:09.723687Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Mt. Gox Delays Creditor Repayment Deadline to 2027 for Fourth Straight Year",
+      "title_zh": "Mt. Gox Delays Creditor Repayment Deadline to 2027 for Fourth Straight Year",
+      "topics": [
+        "creditor-repayment",
+        "exchange-insolvency",
+        "market-supply",
+        "mt-gox"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Mt. Gox extended its creditor repayment deadline by another year to October 31, 2027, citing incomplete documentation and processing issues for remaining creditors.",
+          "current_state_zh": "Mt. Gox extended its creditor repayment deadline by another year to October 31, 2027, citing incomplete documentation and processing issues for remaining creditors.",
+          "detailed_summary_en": "Mt. Gox extended its creditor repayment deadline by another year to October 31, 2027, citing incomplete documentation and processing issues for remaining creditors.",
+          "detailed_summary_zh": "Mt. Gox extended its creditor repayment deadline by another year to October 31, 2027, citing incomplete documentation and processing issues for remaining creditors.",
+          "event_id": "evt_482bacc5d8a76b5e",
+          "first_seen_at": "2026-10-20T09:34:09.723687Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T06:18:10Z",
+          "published_at": "2026-10-20T06:18:10Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/mt-gox-delays-creditor-repayment-deadline-to-2027-21318"
+            }
+          ],
+          "story_ids": [
+            "telegram:wublockchainenglish:26488"
+          ],
+          "time_precision": "published",
+          "title_en": "Mt. Gox Delays Creditor Repayment Deadline to 2027 for Fourth Straight Year",
+          "title_zh": "Mt. Gox Delays Creditor Repayment Deadline to 2027 for Fourth Straight Year",
+          "update_id": "upd_c899ace28153b1b3",
+          "update_type": "initial",
+          "what_changed_en": "Mt. Gox extended its creditor repayment deadline by another year to October 31, 2027, citing incomplete documentation and processing issues for remaining creditors.",
+          "what_changed_zh": "Mt. Gox extended its creditor repayment deadline by another year to October 31, 2027, citing incomplete documentation and processing issues for remaining creditors."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Project Discovery research shows how abliterated open-weight models can carry exploitable malicious behavior, highlighting supply-chain risks when users deploy untrusted model artifacts.",
+      "current_state_zh": "Project Discovery research shows how abliterated open-weight models can carry exploitable malicious behavior, highlighting supply-chain risks when users deploy untrusted model artifacts.",
+      "entities": [
+        "how"
+      ],
+      "event_id": "evt_7ad112d57f50b0d4",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-20T09:34:12.557729Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T09:34:12.557729Z",
+      "last_updated_at": "2026-10-20T09:34:12.557729Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "How abliterated models can get you pwned",
+      "title_zh": "How abliterated models can get you pwned",
+      "topics": [
+        "abliteration",
+        "ai-security",
+        "backdoors",
+        "model-supply-chain",
+        "open-weight-models"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Project Discovery research shows how abliterated open-weight models can carry exploitable malicious behavior, highlighting supply-chain risks when users deploy untrusted model artifacts.",
+          "current_state_zh": "Project Discovery research shows how abliterated open-weight models can carry exploitable malicious behavior, highlighting supply-chain risks when users deploy untrusted model artifacts.",
+          "detailed_summary_en": "Project Discovery research shows how abliterated open-weight models can carry exploitable malicious behavior, highlighting supply-chain risks when users deploy untrusted model artifacts.",
+          "detailed_summary_zh": "Project Discovery research shows how abliterated open-weight models can carry exploitable malicious behavior, highlighting supply-chain risks when users deploy untrusted model artifacts.",
+          "event_id": "evt_7ad112d57f50b0d4",
+          "first_seen_at": "2026-10-20T09:34:12.557729Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-19T23:08:52Z",
+          "published_at": "2026-10-19T23:08:52Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50159245"
+            }
+          ],
+          "sources": [
+            {
+              "label": "chatmasta",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://projectdiscovery.io/research/how-abliterated-models-can-get-you-pwned"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50159245"
+          ],
+          "time_precision": "published",
+          "title_en": "How abliterated models can get you pwned",
+          "title_zh": "How abliterated models can get you pwned",
+          "update_id": "upd_2c5e000066913184",
+          "update_type": "initial",
+          "what_changed_en": "Project Discovery research shows how abliterated open-weight models can carry exploitable malicious behavior, highlighting supply-chain risks when users deploy untrusted model artifacts.",
+          "what_changed_zh": "Project Discovery research shows how abliterated open-weight models can carry exploitable malicious behavior, highlighting supply-chain risks when users deploy untrusted model artifacts."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Citrini analyst Jukan says Musk's Tesla/SpaceX Terafab semiconductor project is excluding Chinese suppliers, seeking Korean vendors with aggressive pricing, and targeting roughly 100,000 wafers per month by 2030 while exploring partnerships with Intel and TSMC.",
+      "current_state_zh": "Citrini analyst Jukan says Musk's Tesla/SpaceX Terafab semiconductor project is excluding Chinese suppliers, seeking Korean vendors with aggressive pricing, and targeting roughly 100,000 wafers per month by 2030 while exploring partnerships with Intel and TSMC.",
+      "entities": [
+        "citrini",
+        "terafab"
+      ],
+      "event_id": "evt_be2f135709d30cef",
+      "event_type": "other",
+      "first_seen_at": "2026-10-20T09:34:13.377248Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T09:34:13.377248Z",
+      "last_updated_at": "2026-10-20T09:34:13.377248Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Citrini观点：Terafab全面排除中国供应商，要求韩企报价低于中国厂商",
+      "title_zh": "Citrini观点：Terafab全面排除中国供应商，要求韩企报价低于中国厂商",
+      "topics": [
+        "china",
+        "semiconductor",
+        "spacex",
+        "supply-chain",
+        "tesla"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Citrini analyst Jukan says Musk's Tesla/SpaceX Terafab semiconductor project is excluding Chinese suppliers, seeking Korean vendors with aggressive pricing, and targeting roughly 100,000 wafers per month by 2030 while exploring partnerships with Intel and TSMC.",
+          "current_state_zh": "Citrini analyst Jukan says Musk's Tesla/SpaceX Terafab semiconductor project is excluding Chinese suppliers, seeking Korean vendors with aggressive pricing, and targeting roughly 100,000 wafers per month by 2030 while exploring partnerships with Intel and TSMC.",
+          "detailed_summary_en": "Citrini analyst Jukan says Musk's Tesla/SpaceX Terafab semiconductor project is excluding Chinese suppliers, seeking Korean vendors with aggressive pricing, and targeting roughly 100,000 wafers per month by 2030 while exploring partnerships with Intel and TSMC.",
+          "detailed_summary_zh": "Citrini analyst Jukan says Musk's Tesla/SpaceX Terafab semiconductor project is excluding Chinese suppliers, seeking Korean vendors with aggressive pricing, and targeting roughly 100,000 wafers per month by 2030 while exploring partnerships with Intel and TSMC.",
+          "event_id": "evt_be2f135709d30cef",
+          "first_seen_at": "2026-10-20T09:34:13.377248Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T06:21:02Z",
+          "published_at": "2026-10-20T06:21:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372709?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201363"
+          ],
+          "time_precision": "published",
+          "title_en": "Citrini观点：Terafab全面排除中国供应商，要求韩企报价低于中国厂商",
+          "title_zh": "Citrini观点：Terafab全面排除中国供应商，要求韩企报价低于中国厂商",
+          "update_id": "upd_4bea99c685d92c9f",
+          "update_type": "initial",
+          "what_changed_en": "Citrini analyst Jukan says Musk's Tesla/SpaceX Terafab semiconductor project is excluding Chinese suppliers, seeking Korean vendors with aggressive pricing, and targeting roughly 100,000 wafers per month by 2030 while exploring partnerships with Intel and TSMC.",
+          "what_changed_zh": "Citrini analyst Jukan says Musk's Tesla/SpaceX Terafab semiconductor project is excluding Chinese suppliers, seeking Korean vendors with aggressive pricing, and targeting roughly 100,000 wafers per month by 2030 while exploring partnerships with Intel and TSMC."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "DeepSeek and Huawei are deepening collaboration on next-generation Ascend chip design, with Huawei reserving most 960DT supply for DeepSeek and DeepSeek aiming to start pretraining on domestic 950DT chips by year-end.",
+      "current_state_zh": "DeepSeek and Huawei are deepening collaboration on next-generation Ascend chip design, with Huawei reserving most 960DT supply for DeepSeek and DeepSeek aiming to start pretraining on domestic 950DT chips by year-end.",
+      "entities": [
+        "deepseek"
+      ],
+      "event_id": "evt_522befbbdf3ccb57",
+      "event_type": "other",
+      "first_seen_at": "2026-10-20T09:34:13.380419Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T09:34:13.380419Z",
+      "last_updated_at": "2026-10-20T09:34:13.380419Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "DeepSeek与华为联手挑战英伟达AI算力霸权：参与下一代芯片设计，年底冲刺国产芯片预训练",
+      "title_zh": "DeepSeek与华为联手挑战英伟达AI算力霸权：参与下一代芯片设计，年底冲刺国产芯片预训练",
+      "topics": [
+        "ai-chips",
+        "ascend",
+        "deepseek",
+        "huawei",
+        "nvidia"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "DeepSeek and Huawei are deepening collaboration on next-generation Ascend chip design, with Huawei reserving most 960DT supply for DeepSeek and DeepSeek aiming to start pretraining on domestic 950DT chips by year-end.",
+          "current_state_zh": "DeepSeek and Huawei are deepening collaboration on next-generation Ascend chip design, with Huawei reserving most 960DT supply for DeepSeek and DeepSeek aiming to start pretraining on domestic 950DT chips by year-end.",
+          "detailed_summary_en": "DeepSeek and Huawei are deepening collaboration on next-generation Ascend chip design, with Huawei reserving most 960DT supply for DeepSeek and DeepSeek aiming to start pretraining on domestic 950DT chips by year-end.",
+          "detailed_summary_zh": "DeepSeek and Huawei are deepening collaboration on next-generation Ascend chip design, with Huawei reserving most 960DT supply for DeepSeek and DeepSeek aiming to start pretraining on domestic 950DT chips by year-end.",
+          "event_id": "evt_522befbbdf3ccb57",
+          "first_seen_at": "2026-10-20T09:34:13.380419Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T06:48:02Z",
+          "published_at": "2026-10-20T06:48:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372713?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201368"
+          ],
+          "time_precision": "published",
+          "title_en": "DeepSeek与华为联手挑战英伟达AI算力霸权：参与下一代芯片设计，年底冲刺国产芯片预训练",
+          "title_zh": "DeepSeek与华为联手挑战英伟达AI算力霸权：参与下一代芯片设计，年底冲刺国产芯片预训练",
+          "update_id": "upd_b46b26c96115a242",
+          "update_type": "initial",
+          "what_changed_en": "DeepSeek and Huawei are deepening collaboration on next-generation Ascend chip design, with Huawei reserving most 960DT supply for DeepSeek and DeepSeek aiming to start pretraining on domestic 950DT chips by year-end.",
+          "what_changed_zh": "DeepSeek and Huawei are deepening collaboration on next-generation Ascend chip design, with Huawei reserving most 960DT supply for DeepSeek and DeepSeek aiming to start pretraining on domestic 950DT chips by year-end."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Tencent Cloud launched developer access to Yuanbao Search via API, MCP, and Skill, positioning it as infrastructure for AI agents with tiered pricing and access to authoritative vertical sources.",
+      "current_state_zh": "Tencent Cloud launched developer access to Yuanbao Search via API, MCP, and Skill, positioning it as infrastructure for AI agents with tiered pricing and access to authoritative vertical sources.",
+      "entities": [
+        "agent",
+        "deepseek"
+      ],
+      "event_id": "evt_0d777c1f2c7e598c",
+      "event_type": "other",
+      "first_seen_at": "2026-10-20T09:34:13.391440Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T09:34:13.391440Z",
+      "last_updated_at": "2026-10-20T09:34:13.391440Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "腾讯、阿里、字节、DeepSeek都开始卖搜索，AI Agent又多了一门基础设施生意",
+      "title_zh": "腾讯、阿里、字节、DeepSeek都开始卖搜索，AI Agent又多了一门基础设施生意",
+      "topics": [
+        "ai-search",
+        "developer-apis",
+        "mcp",
+        "tencent"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Tencent Cloud launched developer access to Yuanbao Search via API, MCP, and Skill, positioning it as infrastructure for AI agents with tiered pricing and access to authoritative vertical sources.",
+          "current_state_zh": "Tencent Cloud launched developer access to Yuanbao Search via API, MCP, and Skill, positioning it as infrastructure for AI agents with tiered pricing and access to authoritative vertical sources.",
+          "detailed_summary_en": "Tencent Cloud launched developer access to Yuanbao Search via API, MCP, and Skill, positioning it as infrastructure for AI agents with tiered pricing and access to authoritative vertical sources.",
+          "detailed_summary_zh": "Tencent Cloud launched developer access to Yuanbao Search via API, MCP, and Skill, positioning it as infrastructure for AI agents with tiered pricing and access to authoritative vertical sources.",
+          "event_id": "evt_0d777c1f2c7e598c",
+          "first_seen_at": "2026-10-20T09:34:13.391440Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T08:33:02Z",
+          "published_at": "2026-10-20T08:33:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372735?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201391"
+          ],
+          "time_precision": "published",
+          "title_en": "腾讯、阿里、字节、DeepSeek都开始卖搜索，AI Agent又多了一门基础设施生意",
+          "title_zh": "腾讯、阿里、字节、DeepSeek都开始卖搜索，AI Agent又多了一门基础设施生意",
+          "update_id": "upd_1c3fa13eaae27512",
+          "update_type": "initial",
+          "what_changed_en": "Tencent Cloud launched developer access to Yuanbao Search via API, MCP, and Skill, positioning it as infrastructure for AI agents with tiered pricing and access to authoritative vertical sources.",
+          "what_changed_zh": "Tencent Cloud launched developer access to Yuanbao Search via API, MCP, and Skill, positioning it as infrastructure for AI agents with tiered pricing and access to authoritative vertical sources."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Exa launched Exa 3.0, its AI-agent web search API, claiming a benchmark tie with Perplexity Search and a 47% cut in per-task token consumption via consolidated Dynamic Highlights, alongside a larger embedding model, a broader real-time data index, and new Lite/Auto pricing.",
+      "current_state_zh": "Exa launched Exa 3.0, its AI-agent web search API, claiming a benchmark tie with Perplexity Search and a 47% cut in per-task token consumption via consolidated Dynamic Highlights, alongside a larger embedding model, a broader real-time data index, and new Lite/Auto pricing.",
+      "entities": [
+        "exa",
+        "perplexity",
+        "token"
+      ],
+      "event_id": "evt_2dbf72ecc28ae6d3",
+      "event_type": "other",
+      "first_seen_at": "2026-10-20T09:34:13.394258Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T09:34:13.394258Z",
+      "last_updated_at": "2026-10-20T09:34:13.394258Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Exa 3.0搜索Token消耗减少47%，独立评测追平 Perplexity",
+      "title_zh": "Exa 3.0搜索Token消耗减少47%，独立评测追平 Perplexity",
+      "topics": [
+        "ai-search",
+        "developer-apis",
+        "exa",
+        "perplexity",
+        "token-efficiency"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Exa launched Exa 3.0, its AI-agent web search API, claiming a benchmark tie with Perplexity Search and a 47% cut in per-task token consumption via consolidated Dynamic Highlights, alongside a larger embedding model, a broader real-time data index, and new Lite/Auto pricing.",
+          "current_state_zh": "Exa launched Exa 3.0, its AI-agent web search API, claiming a benchmark tie with Perplexity Search and a 47% cut in per-task token consumption via consolidated Dynamic Highlights, alongside a larger embedding model, a broader real-time data index, and new Lite/Auto pricing.",
+          "detailed_summary_en": "Exa launched Exa 3.0, its AI-agent web search API, claiming a benchmark tie with Perplexity Search and a 47% cut in per-task token consumption via consolidated Dynamic Highlights, alongside a larger embedding model, a broader real-time data index, and new Lite/Auto pricing.",
+          "detailed_summary_zh": "Exa launched Exa 3.0, its AI-agent web search API, claiming a benchmark tie with Perplexity Search and a 47% cut in per-task token consumption via consolidated Dynamic Highlights, alongside a larger embedding model, a broader real-time data index, and new Lite/Auto pricing.",
+          "event_id": "evt_2dbf72ecc28ae6d3",
+          "first_seen_at": "2026-10-20T09:34:13.394258Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T08:57:02Z",
+          "published_at": "2026-10-20T08:57:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372742?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201398"
+          ],
+          "time_precision": "published",
+          "title_en": "Exa 3.0搜索Token消耗减少47%，独立评测追平 Perplexity",
+          "title_zh": "Exa 3.0搜索Token消耗减少47%，独立评测追平 Perplexity",
+          "update_id": "upd_7a9617ac70015c9b",
+          "update_type": "initial",
+          "what_changed_en": "Exa launched Exa 3.0, its AI-agent web search API, claiming a benchmark tie with Perplexity Search and a 47% cut in per-task token consumption via consolidated Dynamic Highlights, alongside a larger embedding model, a broader real-time data index, and new Lite/Auto pricing.",
+          "what_changed_zh": "Exa launched Exa 3.0, its AI-agent web search API, claiming a benchmark tie with Perplexity Search and a 47% cut in per-task token consumption via consolidated Dynamic Highlights, alongside a larger embedding model, a broader real-time data index, and new Lite/Auto pricing."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
+      "current_state_zh": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
+      "entities": [
+        "deepinfer",
+        "deepseek"
+      ],
+      "event_id": "evt_987c4b4be04c5507",
+      "event_type": "other",
+      "first_seen_at": "2026-10-20T09:34:13.396948Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T09:34:13.396948Z",
+      "last_updated_at": "2026-10-20T09:34:13.396948Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "DeepSeek开源内部推理引擎DeepInfer：支持昇腾950，但还不是完整的在线服务",
+      "title_zh": "DeepSeek开源内部推理引擎DeepInfer：支持昇腾950，但还不是完整的在线服务",
+      "topics": [
+        "ai-infrastructure",
+        "ascend-950",
+        "deepseek",
+        "inference-engine",
+        "open-source"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
+          "current_state_zh": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
+          "detailed_summary_en": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
+          "detailed_summary_zh": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
+          "event_id": "evt_987c4b4be04c5507",
+          "first_seen_at": "2026-10-20T09:34:13.396948Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T09:18:03Z",
+          "published_at": "2026-10-20T09:18:03Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372748?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201404"
+          ],
+          "time_precision": "published",
+          "title_en": "DeepSeek开源内部推理引擎DeepInfer：支持昇腾950，但还不是完整的在线服务",
+          "title_zh": "DeepSeek开源内部推理引擎DeepInfer：支持昇腾950，但还不是完整的在线服务",
+          "update_id": "upd_31b72f24afa5cc66",
+          "update_type": "initial",
+          "what_changed_en": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
+          "what_changed_zh": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "Switzerland's FINMA approved the country's first publicly offered exchange-traded fund investing directly in bitcoin, classified as an alternative investment fund with special-risk labeling and a waiver from diversification rules, with more providers preparing similar filings.",
+      "current_state_zh": "Switzerland's FINMA approved the country's first publicly offered exchange-traded fund investing directly in bitcoin, classified as an alternative investment fund with special-risk labeling and a waiver from diversification rules, with more providers preparing similar filings.",
+      "entities": [
+        "etf"
+      ],
+      "event_id": "evt_186d2fda86d54fdc",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-20T09:34:14.169989Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T09:34:14.169989Z",
+      "last_updated_at": "2026-10-20T09:34:14.169989Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【瑞士监管机构批准该国首支比特币 ETF】",
+      "title_zh": "【瑞士监管机构批准该国首支比特币 ETF】",
+      "topics": [
+        "bitcoin-etf",
+        "finma",
+        "market-access",
+        "switzerland"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Switzerland's FINMA approved the country's first publicly offered exchange-traded fund investing directly in bitcoin, classified as an alternative investment fund with special-risk labeling and a waiver from diversification rules, with more providers preparing similar filings.",
+          "current_state_zh": "Switzerland's FINMA approved the country's first publicly offered exchange-traded fund investing directly in bitcoin, classified as an alternative investment fund with special-risk labeling and a waiver from diversification rules, with more providers preparing similar filings.",
+          "detailed_summary_en": "Switzerland's FINMA approved the country's first publicly offered exchange-traded fund investing directly in bitcoin, classified as an alternative investment fund with special-risk labeling and a waiver from diversification rules, with more providers preparing similar filings.",
+          "detailed_summary_zh": "Switzerland's FINMA approved the country's first publicly offered exchange-traded fund investing directly in bitcoin, classified as an alternative investment fund with special-risk labeling and a waiver from diversification rules, with more providers preparing similar filings.",
+          "event_id": "evt_186d2fda86d54fdc",
+          "first_seen_at": "2026-10-20T09:34:14.169989Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T08:25:45Z",
+          "published_at": "2026-10-20T08:25:45Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115551"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120823"
+          ],
+          "time_precision": "published",
+          "title_en": "【瑞士监管机构批准该国首支比特币 ETF】",
+          "title_zh": "【瑞士监管机构批准该国首支比特币 ETF】",
+          "update_id": "upd_45dec797d2162a00",
+          "update_type": "initial",
+          "what_changed_en": "Switzerland's FINMA approved the country's first publicly offered exchange-traded fund investing directly in bitcoin, classified as an alternative investment fund with special-risk labeling and a waiver from diversification rules, with more providers preparing similar filings.",
+          "what_changed_zh": "Switzerland's FINMA approved the country's first publicly offered exchange-traded fund investing directly in bitcoin, classified as an alternative investment fund with special-risk labeling and a waiver from diversification rules, with more providers preparing similar filings."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks.",
+      "current_state_zh": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks.",
+      "entities": [
+        "glamsterdam",
+        "lido"
+      ],
+      "event_id": "evt_a73448857c927050",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-20T09:34:14.170374Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T09:34:14.170374Z",
+      "last_updated_at": "2026-10-20T09:34:14.170374Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【Lido 工程负责人：Glamsterdam 硬分叉期间存在质押存款劫持风险】",
+      "title_zh": "【Lido 工程负责人：Glamsterdam 硬分叉期间存在质押存款劫持风险】",
+      "topics": [
+        "glamsterdam",
+        "lido",
+        "staking"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks.",
+          "current_state_zh": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks.",
+          "detailed_summary_en": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks.",
+          "detailed_summary_zh": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks.",
+          "event_id": "evt_a73448857c927050",
+          "first_seen_at": "2026-10-20T09:34:14.170374Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T08:26:22Z",
+          "published_at": "2026-10-20T08:26:22Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115552"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120824"
+          ],
+          "time_precision": "published",
+          "title_en": "【Lido 工程负责人：Glamsterdam 硬分叉期间存在质押存款劫持风险】",
+          "title_zh": "【Lido 工程负责人：Glamsterdam 硬分叉期间存在质押存款劫持风险】",
+          "update_id": "upd_efeb0b86e2498a3a",
+          "update_type": "initial",
+          "what_changed_en": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks.",
+          "what_changed_zh": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "The Drift Protocol attacker is actively laundering after two months of dormancy, having deposited 25,700 ETH (~$61.56M) into Tornado Cash while still holding 81,864 ETH (~$195M).",
+      "current_state_zh": "Drift Protocol 攻击者在两个月沉寂后持续洗钱，已向 Tornado Cash 存入 2.57 万枚 ETH（约 6156 万美元），钱包仍持有约 8.19 万枚 ETH（约 1.95 亿美元）。",
+      "entities": [
+        "cash",
+        "drift",
+        "drift-protocol",
+        "tornado",
+        "tornado-cash",
+        "tornadoca"
+      ],
+      "event_id": "evt_269a773047599628",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-20T09:34:14.171646Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-20T09:34:14.171646Z",
+      "last_updated_at": "2026-10-20T09:34:14.171646Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "developing",
+      "title_en": "【Drift Protocol 攻击者向 Tornado Cash 转入 1.34 万枚以太坊】",
+      "title_zh": "【Drift Protocol 攻击者向 Tornado Cash 转入 1.34 万枚以太坊】",
+      "topics": [
+        "drift-protocol",
+        "money-laundering",
+        "on-chain-data",
+        "tornado-cash"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "The Drift Protocol attacker, dormant for two months, moved at least 13,400 ETH (~$32M) into Tornado Cash and still holds about $225M in tracked wallets, including 93,965 ETH and 477,375 USDY.",
+          "current_state_zh": "The Drift Protocol attacker, dormant for two months, moved at least 13,400 ETH (~$32M) into Tornado Cash and still holds about $225M in tracked wallets, including 93,965 ETH and 477,375 USDY.",
+          "detailed_summary_en": "The Drift Protocol attacker, dormant for two months, moved at least 13,400 ETH (~$32M) into Tornado Cash and still holds about $225M in tracked wallets, including 93,965 ETH and 477,375 USDY.",
+          "detailed_summary_zh": "The Drift Protocol attacker, dormant for two months, moved at least 13,400 ETH (~$32M) into Tornado Cash and still holds about $225M in tracked wallets, including 93,965 ETH and 477,375 USDY.",
+          "event_id": "evt_269a773047599628",
+          "first_seen_at": "2026-10-20T09:34:14.171646Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T08:45:42Z",
+          "published_at": "2026-10-20T08:45:42Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115554"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120827"
+          ],
+          "time_precision": "published",
+          "title_en": "【Drift Protocol 攻击者向 Tornado Cash 转入 1.34 万枚以太坊】",
+          "title_zh": "【Drift Protocol 攻击者向 Tornado Cash 转入 1.34 万枚以太坊】",
+          "update_id": "upd_ee89b59ed5f7e7da",
+          "update_type": "initial",
+          "what_changed_en": "The Drift Protocol attacker, dormant for two months, moved at least 13,400 ETH (~$32M) into Tornado Cash and still holds about $225M in tracked wallets, including 93,965 ETH and 477,375 USDY.",
+          "what_changed_zh": "The Drift Protocol attacker, dormant for two months, moved at least 13,400 ETH (~$32M) into Tornado Cash and still holds about $225M in tracked wallets, including 93,965 ETH and 477,375 USDY."
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.93,
+          "current_state_en": "The Drift Protocol attacker is actively laundering after two months of dormancy, having deposited 25,700 ETH (~$61.56M) into Tornado Cash while still holding 81,864 ETH (~$195M).",
+          "current_state_zh": "Drift Protocol 攻击者在两个月沉寂后持续洗钱，已向 Tornado Cash 存入 2.57 万枚 ETH（约 6156 万美元），钱包仍持有约 8.19 万枚 ETH（约 1.95 亿美元）。",
+          "detailed_summary_en": "The Drift Protocol exploiter deposited 25,700 ETH worth $61.56M into Tornado Cash after two months of inactivity while still holding 81,864 ETH worth $195M.",
+          "detailed_summary_zh": "The Drift Protocol exploiter deposited 25,700 ETH worth $61.56M into Tornado Cash after two months of inactivity while still holding 81,864 ETH worth $195M.",
+          "event_id": "evt_269a773047599628",
+          "first_seen_at": "2026-10-20T09:34:10.374928Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-20T09:25:27Z",
+          "published_at": "2026-10-20T09:25:27Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "lookonchainchannel",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://arkm.com/explorer/entity/drift-protocol-exploiter"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372752?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:lookonchainchannel:10698",
+            "telegram:theblockbeats:201408"
+          ],
+          "time_precision": "published",
+          "title_en": "The Drift Protocol exploiter, who stole over $270M, is moving $ETH to #TornadoCa",
+          "title_zh": "盗取逾2.7亿美元的Drift Protocol漏洞利用者正将ETH转入Tornado Cash",
+          "update_id": "upd_73a9072b40d74d8d",
+          "update_type": "escalation",
+          "what_changed_en": "The attacker's Tornado Cash deposits increased from the previously reported at least 13,400 ETH to 25,700 ETH (~$61.56M), with remaining holdings down to 81,864 ETH (~$195M).",
+          "what_changed_zh": "攻击者向 Tornado Cash 的转入规模从上一次报告的至少 1.34 万枚 ETH 增至 2.57 万枚 ETH（约 6156 万美元），剩余持仓降至约 8.19 万枚 ETH（约 1.95 亿美元）。"
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -169367,8 +170290,8 @@
       "evt_f28ee03d3060fa04"
     ],
     "bitcoin-etf": [
-      "evt_a2704a893b13e69b",
-      "evt_d918c8d1e6c25a31"
+      "evt_08af92ed8a7478e8",
+      "evt_35c3545d3199784c"
     ],
     "bitget": [
       "evt_6655595dc1e36e0b"
@@ -169575,7 +170498,9 @@
     ],
     "deepseek": [
       "evt_44b1c55d1263fe92",
+      "evt_522befbbdf3ccb57",
       "evt_8985d5d57c3ea1cb",
+      "evt_987c4b4be04c5507",
       "evt_ab484a3555fdbe82",
       "evt_c01a27d5703acbbd",
       "evt_c618c5c7acbf0909",
@@ -170233,6 +171158,7 @@
       "evt_cc2ee6ed697c7f69"
     ],
     "tornado-cash": [
+      "evt_269a773047599628",
       "evt_29962740cd39e1c7",
       "evt_c594d0e29e7b400b"
     ],
@@ -180557,7 +181483,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A new BlackRock ETF filing aimed at hedging Bitcoin downside is a material institutional/market-structure development with a clear transmission path to crypto markets, comparable to notable ETF and custody product news. However, the item is only a headline with no filing details, fee structure, or mechanism disclosed, and the teaser 'catch' suggests a constrained product rather than a straightforward inverse ETF, keeping it below the highest tier.",
         "ai_score": 7.0,
@@ -180590,7 +181516,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "In-window regulatory development: Ukraine is accelerating crypto legalization specifically to meet Ukraine Facility (EU funding) conditions, tying digital-asset legislation to budget financing. This is a concrete legislative/regulatory step that materially changes market access and legal status for crypto in a mid-sized European market, giving it a clear transmission path to adoption and exchange operations. It falls short of a landmark global rulemaking, so it sits in the high-value rather than groundbreaking tier.",
         "ai_score": 7.0,
@@ -180620,6 +181546,224 @@
         "source_type": "google_news",
         "title": "Ukraine rushes to legalize crypto for the sake of the Ukraine Facility: what the budget stands to gain",
         "url": "https://finance.liga.net/en/cryptoeconomics/article/ukraine-rushes-to-legalize-crypto-for-the-sake-of-the-ukraine-facility-what-the-budget-stands-to-gain"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A Drift-linked wallet moving $54.8M in ETH into Tornado Cash indicates a material protocol-linked loss with funds actively being laundered — a consequential security event with real user/ecosystem impact, well above routine news. It is scored slightly below the top systemic tier because the transfer itself is the laundering/aftermath stage rather than confirmation of a network-wide or market-structure shock.",
+        "ai_score": 8.5,
+        "ai_summary": "A wallet connected to Drift transferred roughly $54.8 million worth of ETH into the sanctioned mixer Tornado Cash, signaling large-scale laundering of funds tied to the protocol.",
+        "ai_tags": [
+          "Drift",
+          "Tornado Cash",
+          "exploit",
+          "money-laundering",
+          "DeFi"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxQSXVzV1Vnel95SFRXZk9DcDhXNE1Tdk9qczJaMENPamJkR2VqZ0pNMER0NTNkZU9aTFVZdFYwY0JQeUxrc0diRDlWT0ZfNDFzYldpb2lVRTJERUFfSlhTdTBydmVfX0JITTBrRE5HNlc0SEZHRWx6Vjd1VF9Xd2xNVkJ2OEF1RHBkUzh2VEc2T1duTjc5bjY3Nmxn?oc=5\" target=\"_blank\">Drift-Linked Wallet Sends $54.8 Million in ETH to Tornado Cash</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-20T09:34:16.327654Z",
+        "id": "google_news:article:97ab515618f8e9ad",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-20T00:14:54Z",
+        "source_type": "google_news",
+        "title": "Drift-Linked Wallet Sends $54.8 Million in ETH to Tornado Cash",
+        "url": "https://thedefiant.io/news/hacks/drift-linked-wallet-sends-54-8-million-in-eth-to-tornado-cash"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A major bank deploying its JPM Coin on Ethereum is a significant institutional tokenization and market-structure development, though the permissioned, zero-retail design limits immediate market access and transmission.",
+        "ai_score": 7.5,
+        "ai_summary": "JPMorgan has deployed JPM Coin on Ethereum for institutional-only use, with no retail access.",
+        "ai_tags": [
+          "JPMorgan",
+          "JPM Coin",
+          "Ethereum",
+          "institutional adoption",
+          "tokenization"
+        ],
+        "author": "CryptoSlate",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxOd01lU01vUTZ6ckd6R2VuX1B2dHF4dExxcUUwXzNwVjk4ZHZXRzRVdElFU0lYX2NQcGJZS1UwMDRMRkQ4bjBWVWViSWZIeFU4dDA2d0l3cEFkVUp6YmxwRUZjNTZWd3lnUDg5eExpcW1peXlzR29pbmRoMFdRSFNNQjM2MGJsWXlRdFhXaw?oc=5\" target=\"_blank\">JPMorgan drops JPM Coin on Ethereum with zero retail access</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoSlate</font>",
+        "fetched_at": "2026-10-20T09:34:19.671664Z",
+        "id": "google_news:article:553a89dacdaf6619",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "CryptoSlate",
+          "gn_query": "site:cryptoslate.com",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://cryptoslate.com/feed/",
+          "publisher_url": "https://cryptoslate.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "CryptoSlate"
+        },
+        "published_at": "2026-10-20T06:30:25Z",
+        "source_type": "google_news",
+        "title": "JPMorgan drops JPM Coin on Ethereum with zero retail access",
+        "url": "https://cryptoslate.com/jpmorgan-drops-jpm-coin-on-ethereum-with-zero-retail-access/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "JPMorgan expanding JPM Coin to Ethereum for institutional clients is a material institutional adoption and market-structure development, with a clear path to broader tokenized settlement use. It is high-value but not paradigm-shifting enough for the 9-10 range.",
+        "ai_score": 7.5,
+        "ai_summary": "JPMorgan has expanded its JPM Coin to Ethereum for institutional clients, advancing tokenized settlement on a public blockchain.",
+        "ai_tags": [
+          "JPMorgan",
+          "JPM Coin",
+          "Ethereum",
+          "institutional adoption",
+          "tokenization"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi3wFBVV95cUxQQ1FFZmo1eFprcG9XNHhEa3pZSWktcGNYQ0RJY2NKbTJYM2lfN2FVa24wMkx6NHVuN0pSMGpySU1ZSU9TV1VKX0xnWExuQ3YwMzJpZ3VtMDBONzFXVHRWbVZxeUpZZ1ZicXE2TUlxenlZeXA3WU5keDJTVHlGazdqdDZ1cUtmckxkS1BTM0NPLTFYS21hS2Exbko2NkM3YTNuWVp3d0ZMRHV5UW1HWGFQYTNRMHdFczh3WFhiVXlEYzdWMUdDRm9TNFJkV2FOUkMwQTdVM1FuQXFFVzZYY3F3?oc=5\" target=\"_blank\">The Daily: JPMorgan expands JPM Coin to Ethereum for institutional clients, and more</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-10-20T09:34:12.228809Z",
+        "id": "google_news:article:3905ee1fce9c4ae9",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-10-20T04:30:00Z",
+        "source_type": "google_news",
+        "title": "The Daily: JPMorgan expands JPM Coin to Ethereum for institutional clients, and more",
+        "url": "https://www.theblock.co/newsletters/the-daily/2026-10-20-the-daily-jpmorgan-expands-jpm-coin-to-ethereum-for-institutional-clients-and-more-421086"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A Lido engineer publicly flags a staking-deposit hijack risk in Glamsterdam, Ethereum's next major upgrade combining Gloas and Amsterdam. It is not a confirmed exploit or an in-window incident, but a high-signal protocol security warning from a major staking provider about a change to deposit/withdrawal mechanics that could affect a widely used network. This is worth immediate attention for Ethereum staking operators and client teams, though its impact remains prospective rather than realized.",
+        "ai_score": 7.0,
+        "ai_summary": "A Lido engineer warned that the Glamsterdam Ethereum upgrade's design could expose staking deposits to hijacking, prompting scrutiny of the planned deposit and validator-entry changes before deployment.",
+        "ai_tags": [
+          "ethereum",
+          "lido",
+          "staking",
+          "protocol-security",
+          "glamsterdam"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxPcUhIUXhnMElZXzJfaG5HakJQWVZ5YVM4VXBoWWxSVFNnM01ENUphVTdqUWpzZl9yb1R2SlNFanhrY3hrcmdreUE5bEdYM3lWQ2F2bW5ONHNRNEtJZWU0WWZLUmxPOF96S0MxYjBNc2JfOGxHS25ZRDVrdmJZRkU2bmtfMHFmeEpXRVhTWHA4Y2NXWW9LZERGOEV4dmk?oc=5\" target=\"_blank\">Lido Engineer Warns of Staking Deposit Hijack at Glamsterdam</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-20T09:34:16.327511Z",
+        "id": "google_news:article:ab9a0bc6ccd358f5",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-20T07:49:55Z",
+        "source_type": "google_news",
+        "title": "Lido Engineer Warns of Staking Deposit Hijack at Glamsterdam",
+        "url": "https://thedefiant.io/news/security/lido-engineer-warns-of-staking-deposit-hijack-at-glamsterdam"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A single-day $665M inflow into BlackRock's IBIT is the largest since October 2025, a concrete institutional demand data point with a clear read-through for spot Bitcoin market structure and sentiment. It is high-signal market news but a flow print rather than a structural or policy change, so it sits below landmark tier.",
+        "ai_score": 7.0,
+        "ai_summary": "BlackRock's spot Bitcoin ETF IBIT recorded a $665 million net inflow, its biggest single-day haul in roughly a year, signaling renewed institutional appetite for BTC exposure.",
+        "ai_tags": [
+          "bitcoin-etf",
+          "blackrock-ibit",
+          "institutional-flows",
+          "spot-bitcoin",
+          "market-structure"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxPekpIWFJCVjVhcjFIRjZqci1nUk43djNFLXlxTVNOaElOZjlpWUxTZVlJSTY4SFZEZnN0c0ZhTVpqQnZXV2FhWVVhOHFpVTQ3a1hWTmFPY2U3Uzl4MTlreGhFU3lrWjFlTTlMNTJpakV3b0RMTzRvWXFtY184UktPMXhjdXVjaVl0Q3JSV1pMV1prYlFnRm5ldA?oc=5\" target=\"_blank\">BlackRock's IBIT Bitcoin ETF draws $665 million inflow, highest since October 2025</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-10-20T09:34:12.228585Z",
+        "id": "google_news:article:e6e0aa867d701a92",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-10-20T07:05:00Z",
+        "source_type": "google_news",
+        "title": "BlackRock's IBIT Bitcoin ETF draws $665 million inflow, highest since October 2025",
+        "url": "https://www.theblock.co/news/markets/2026-10-20-blackrock-ibit-bitcoin-etf-665-million-421102"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Headline points to a material US regulatory shift: the CFTC moving unilaterally to permit retail crypto leverage trading and potentially preempting state licensing with a federal framework. If accurate, this has a direct transmission path to US market access and market structure, making it high-value rather than routine. However, the item is only a linked headline with no supporting details, no named officials or documents, and comes from a low-authority aggregator, so confidence and evidentiary weight are limited; no comments or discussion quality to assess.",
+        "ai_score": 7.0,
+        "ai_summary": "The CFTC is reportedly preparing to allow retail leveraged crypto trading in the US without waiting for Congress, potentially replacing the state-by-state licensing regime with a unified federal framework.",
+        "ai_tags": [
+          "CFTC",
+          "crypto-regulation",
+          "leverage-trading",
+          "US-policy",
+          "market-access"
+        ],
+        "author": "Howl.link",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiO0FVX3lxTE4ydmJRLWo4ci1uRlB5TUJ5dk12dEI1SjNhUTMwOXRIRmJZTS1nRmxBMUx5WnByRXR0aVF3?oc=5\" target=\"_blank\">CFTC Won't Wait for Congress: Retail Crypto Leverage Trading Set to Return to U.S. Shores, State Licenses May Be Replaced by a Unified Framework</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Howl.link</font>",
+        "fetched_at": "2026-10-20T09:34:09.180963Z",
+        "id": "google_news:article:6046076daf0ea0f8",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://t.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Howl.link"
+        },
+        "published_at": "2026-10-20T05:46:23Z",
+        "source_type": "google_news",
+        "title": "CFTC Won't Wait for Congress: Retail Crypto Leverage Trading Set to Return to U.S. Shores, State Licenses May Be Replaced by a Unified Framework",
+        "url": "https://t.co/8QwNagulij"
       }
     }
   ],
