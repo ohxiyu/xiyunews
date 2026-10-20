@@ -46,25 +46,33 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Google open-sources TorchTPU, a native PyTorch back end for TPUs",
+      "title_zh": "谷歌开源 TorchTPU：面向 TPU 的原生 PyTorch 后端",
       "title_en": "Google open-sources TorchTPU, a native PyTorch back end for TPUs",
-      "what_changed_zh": "Google has open-sourced TorchTPU, a native PyTorch back end for TPUs, giving PyTorch users first-party support for Google's accelerator hardware.",
+      "what_changed_zh": "谷歌已开源 TorchTPU，这是一个原生 PyTorch 后端，可让 PyTorch 工作负载直接在谷歌的张量处理器（TPU）上运行。谷歌在开发者博客中详细介绍了该项目，称其采用“Eager First（优先即时执行）”设计并集成 XLA，目的是简化模型向 TPU 基础设施的迁移。\n\nPyTorch 是模型开发的主流框架，官方一方支持消除了一个长期障碍——此前团队若要用 TPU，往往需要绕过 XLA 适配，或干脆留在 TensorFlow/JAX 上。社区评论认为，这一发布加速了开发者远离 TensorFlow 的趋势，并扩大了 PyTorch 代码可适配的加速器范围。\n\n该项目最早由路透社在去年 12 月报道，如今谷歌正式确认并披露了细节；The Stack 报道称，谷歌投入了多名员工专职构建该后端。谷歌开发者博客将 XLA 集成以及在 TPU 基础设施上实现峰值效率作为核心目标。",
       "what_changed_en": "Google has open-sourced TorchTPU, a native PyTorch back end for TPUs, giving PyTorch users first-party support for Google's accelerator hardware.",
-      "current_state_zh": "Google has open-sourced TorchTPU, a native PyTorch back end for TPUs, giving PyTorch users first-party support for Google's accelerator hardware.",
+      "current_state_zh": "谷歌已开源 TorchTPU，这是一个原生 PyTorch 后端，可让 PyTorch 工作负载直接在谷歌的张量处理器（TPU）上运行。谷歌在开发者博客中详细介绍了该项目，称其采用“Eager First（优先即时执行）”设计并集成 XLA，目的是简化模型向 TPU 基础设施的迁移。\n\nPyTorch 是模型开发的主流框架，官方一方支持消除了一个长期障碍——此前团队若要用 TPU，往往需要绕过 XLA 适配，或干脆留在 TensorFlow/JAX 上。社区评论认为，这一发布加速了开发者远离 TensorFlow 的趋势，并扩大了 PyTorch 代码可适配的加速器范围。\n\n该项目最早由路透社在去年 12 月报道，如今谷歌正式确认并披露了细节；The Stack 报道称，谷歌投入了多名员工专职构建该后端。谷歌开发者博客将 XLA 集成以及在 TPU 基础设施上实现峰值效率作为核心目标。",
       "current_state_en": "Google has open-sourced TorchTPU, a native PyTorch back end for TPUs, giving PyTorch users first-party support for Google's accelerator hardware.",
       "detailed_summary_zh": "Google has open-sourced TorchTPU, a native PyTorch back end for TPUs, giving PyTorch users first-party support for Google's accelerator hardware.",
       "detailed_summary_en": "Google has open-sourced TorchTPU, a native PyTorch back end for TPUs, giving PyTorch users first-party support for Google's accelerator hardware.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "background_zh": "TPU 是谷歌自研的 AI 加速器，历史上主要通过 TensorFlow 和 XLA 编译器进行编程，JAX 同样可以面向其运行。此前在 Cloud TPU 上运行 PyTorch 需要额外的桥接层，谷歌云文档描述了由 Ray 等框架为每个 TPU 设备启动一个 PyTorch worker 的方案。竞争对手也在推进类似工作，例如 AWS 面向 Trainium 的 torch-neuronx。",
+      "background_en": "TPUs are Google's custom-designed AI accelerators, historically programmed primarily through TensorFlow and the XLA compiler, with JAX also targeting them. Running PyTorch on Cloud TPU previously required bridging layers, and Google Cloud documentation describes setups in which frameworks such as Ray provision PyTorch workers per TPU device. Competing accelerator vendors have shipped similar efforts, such as AWS's torch-neuronx for Trainium.",
+      "community_discussion_zh": "评论整体偏正面。一位开发者称自己为 Tenstorrent 加速器做了开源 libtpu 实现，已能运行 TorchTPU 的大部分功能，展示了把 Torch 下沉到基于 tile 的加速器所涉及的环节；另一位指出 AWS 的 torch-neuronx 是 Trainium 上的对等方案。也有人认为 XLA 是优秀的编译器基础设施，此次发布是“给 TensorFlow 棺材钉上的最后一颗钉子”；还有评论者认为，既然硬件相关细节大多位于内核层（Pallas 或 CUDA），JAX 与 PyTorch 之争现在更像是风格偏好。",
+      "community_discussion_en": "Commenters were largely positive. One developer said he had built an open-source libtpu implementation for Tenstorrent accelerators that already runs most of TorchTPU, illustrating what lowering Torch to tile-based accelerators involves; another pointed to AWS's torch-neuronx as the equivalent Trainium effort. Others argued XLA is strong compiler infrastructure and that the release is \"the final nail in the coffin of Tensorflow,\" while one commenter suggested that with hardware specifics living in the kernel layer (Pallas or CUDA), JAX versus PyTorch is now closer to a style preference.",
+      "market_impact_zh": "传导渠道是 AI 算力层面的硬件替代：原生 PyTorch 路径降低了从英伟达 GPU 迁移到 TPU 的成本，可能逐步影响云厂商之间训练与推理算力的采购结构。对加密市场而言，其影响是间接的，主要通过去中心化 GPU 租赁与算力市场等 AI 算力相关板块体现——这些板块的经济性以主流加速器租赁价格为参照。",
+      "market_impact_en": "The transmission channel is hardware substitution in AI compute: a first-party PyTorch path lowers the migration cost onto TPUs relative to Nvidia GPUs, which could gradually affect how training and inference capacity is sourced across cloud providers. For crypto, that matters indirectly through AI-compute-adjacent segments such as decentralized GPU rental and compute marketplaces, whose economics are benchmarked against prevailing accelerator rental rates.",
       "importance_score": 7.5,
       "references": [
         {
           "url": "https://news.ycombinator.com/item?id=50169053",
           "title": "Community discussion"
+        },
+        {
+          "url": "https://developers.googleblog.com/torchtpu-running-pytorch-natively-on-tpus-at-google-scale/",
+          "title": "TorchTPU: Running PyTorch Natively on TPUs at Google Scale"
+        },
+        {
+          "url": "https://www.thestack.technology/google-torchtpu-pytorch-backend-tpu/",
+          "title": "Google open-sources TorchTPU, a native PyTorch backend"
         }
       ],
       "confidence": 0.75,
