@@ -11,15 +11,15 @@
     "en": "Solana Foundation Sets Alpenglow Mainnet Upgrade Date"
   },
   "current_state": {
-    "zh": "Solana已将Alpenglow主网激活时间定在10月21日，届时将退役其原始共识机制，目标终局时间约为150毫秒，而目前约为12.8秒；与此同时，加密市场整体遭遇抛售，主流币种下跌3%至5%，清算金额超过9亿美元。",
-    "en": "Solana has scheduled Alpenglow's mainnet activation for October 21, retiring its original consensus mechanism and targeting finality of roughly 150 milliseconds versus today's ~12.8 seconds, amid a broader crypto selloff that saw majors drop 3-5% and over $900M in liquidations."
+    "zh": "Alpenglow仍计划于10月21日第1064纪元在Solana主网启动，目标将最终确认时间缩短至约150毫秒，并以每纪元0.8 SOL的验证者准入费取代每日投票费；测试网迁移已在多次重启和一次回滚后完成，但主网尚未确认激活。",
+    "en": "Alpenglow remains scheduled to activate on Solana mainnet at epoch 1064 on October 21, targeting roughly 150ms finality and replacing daily voting fees with a 0.8 SOL per-epoch validator admission fee; the testnet migration completed after multiple restarts and one rollback, but mainnet activation is not yet confirmed live."
   },
   "first_seen_at": "2026-08-22T08:00:00+08:00",
-  "last_updated_at": "2026-10-15T15:21:58.519802+00:00",
-  "last_material_change_at": "2026-10-15T15:21:58.519802+00:00",
+  "last_updated_at": "2026-10-21T06:41:28.568358+00:00",
+  "last_material_change_at": "2026-10-21T06:41:28.568358+00:00",
   "confidence": 0.75,
-  "updates_count": 11,
-  "sources_count": 13,
+  "updates_count": 12,
+  "sources_count": 14,
   "entities": [
     "about",
     "activates",
@@ -79,6 +79,8 @@
     "scalability",
     "solana",
     "testnet",
+    "transaction-finality",
+    "validator-economics",
     "validators"
   ],
   "updates": [
@@ -575,6 +577,44 @@
           "url": "https://decrypt.co/381018/morning-minute-solana-is-about-to-get-faster",
           "label": "Decrypt",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_757b3123d91a32c5",
+      "event_id": "evt_04729c76ccc47903",
+      "occurred_at": "2026-10-21T05:09:02Z",
+      "published_at": "2026-10-21T05:09:02Z",
+      "first_seen_at": "2026-10-21T06:41:28.568358Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Solana将于周三启动Alpenglow升级，交易最终确认时间有望缩短至150毫秒",
+      "title_en": "Solana将于周三启动Alpenglow升级，交易最终确认时间有望缩短至150毫秒",
+      "what_changed_zh": "新增细节：验证者投票将移出链上并整合为证书；每日约2 SOL的投票费将取消，改为每纪元固定0.8 SOL准入费，预计成本降低约60%；测试网曾重启6次且一次迁移失败后回滚，最终成功；并给出过渡5000个slot、于slot 459,653,000完成切换。",
+      "what_changed_en": "Adds details: validator voting moves off-chain and is consolidated into certificates; daily ~2 SOL voting fees are replaced by a fixed 0.8 SOL per-epoch validator admission fee, an estimated ~60% cost reduction; the testnet restarted six times and one migration attempt failed and rolled back before eventually succeeding; and the transition covers 5,000 slots, completing at slot 459,653,000.",
+      "current_state_zh": "Alpenglow仍计划于10月21日第1064纪元在Solana主网启动，目标将最终确认时间缩短至约150毫秒，并以每纪元0.8 SOL的验证者准入费取代每日投票费；测试网迁移已在多次重启和一次回滚后完成，但主网尚未确认激活。",
+      "current_state_en": "Alpenglow remains scheduled to activate on Solana mainnet at epoch 1064 on October 21, targeting roughly 150ms finality and replacing daily voting fees with a 0.8 SOL per-epoch validator admission fee; the testnet migration completed after multiple restarts and one rollback, but mainnet activation is not yet confirmed live.",
+      "detailed_summary_zh": "Solana activates its Alpenglow consensus upgrade starting at epoch 1064, moving validator voting off-chain and consolidating votes into certificates to cut transaction finality from roughly 6 seconds to 150 milliseconds while replacing daily voting fees with a 0.8 SOL per-epoch validator admission fee, an estimated ~60% cost reduction.",
+      "detailed_summary_en": "Solana activates its Alpenglow consensus upgrade starting at epoch 1064, moving validator voting off-chain and consolidating votes into certificates to cut transaction finality from roughly 6 seconds to 150 milliseconds while replacing daily voting fees with a 0.8 SOL per-epoch validator admission fee, an estimated ~60% cost reduction.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "telegram:theblockbeats:201569"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/372911?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]
