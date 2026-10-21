@@ -1400,8 +1400,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Alpenglow remains scheduled to activate on Solana mainnet at epoch 1064 on October 21, targeting roughly 150ms finality and replacing daily voting fees with a 0.8 SOL per-epoch validator admission fee; the testnet migration completed after multiple restarts and one rollback, but mainnet activation is not yet confirmed live.",
-      "current_state_zh": "Alpenglow仍计划于10月21日第1064纪元在Solana主网启动，目标将最终确认时间缩短至约150毫秒，并以每纪元0.8 SOL的验证者准入费取代每日投票费；测试网迁移已在多次重启和一次回滚后完成，但主网尚未确认激活。",
+      "current_state_en": "Alpenglow is live on Solana mainnet, TowerBFT is retired, and phase one Votor is active; observed finality is about 6.6 seconds while the target remains roughly 150 milliseconds, with Rotor planned for a later phase.",
+      "current_state_zh": "Alpenglow 已在 Solana 主网激活，TowerBFT 退役，第一阶段 Votor 上线；实际观测最终确认时间约 6.6 秒，目标仍为约 150 毫秒，后续阶段将引入 Rotor。",
       "entities": [
         "about",
         "activates",
@@ -1444,8 +1444,8 @@
       "identifiers": [
         "simd-0525"
       ],
-      "last_material_change_at": "2026-10-21T06:41:28.568358Z",
-      "last_updated_at": "2026-10-21T06:41:28.568358Z",
+      "last_material_change_at": "2026-10-21T14:11:57.540745Z",
+      "last_updated_at": "2026-10-21T14:11:57.540745Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_f854fe8fc4c9f869",
@@ -1456,7 +1456,7 @@
         "evt_55a84f9340bd3cc6"
       ],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "closed",
       "title_en": "Solana Foundation Sets Alpenglow Mainnet Upgrade Date",
       "title_zh": "Solana基金会确定Alpenglow主网升级日期",
       "topics": [
@@ -1475,12 +1475,14 @@
         "mainnet-launch",
         "market-selloff",
         "network-performance",
+        "proof-of-stake",
         "protocol-upgrade",
         "scalability",
         "solana",
         "testnet",
         "transaction-finality",
         "validator-economics",
+        "validator-infrastructure",
         "validators"
       ],
       "updates": [
@@ -2018,6 +2020,89 @@
           "update_type": "confirmation",
           "what_changed_en": "Adds details: validator voting moves off-chain and is consolidated into certificates; daily ~2 SOL voting fees are replaced by a fixed 0.8 SOL per-epoch validator admission fee, an estimated ~60% cost reduction; the testnet restarted six times and one migration attempt failed and rolled back before eventually succeeding; and the transition covers 5,000 slots, completing at slot 459,653,000.",
           "what_changed_zh": "新增细节：验证者投票将移出链上并整合为证书；每日约2 SOL的投票费将取消，改为每纪元固定0.8 SOL准入费，预计成本降低约60%；测试网曾重启6次且一次迁移失败后回滚，最终成功；并给出过渡5000个slot、于slot 459,653,000完成切换。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.98,
+          "current_state_en": "Alpenglow is now live on Solana mainnet, replacing TowerBFT and reducing transaction finality from roughly 12.8 seconds to 150 milliseconds.",
+          "current_state_zh": "Alpenglow 已在 Solana 主网激活并上线，取代 TowerBFT，交易最终确认时间由约 12.8 秒缩短至 150 毫秒。",
+          "detailed_summary_en": "Anza's Alpenglow consensus protocol went live on Solana mainnet-beta, replacing TowerBFT and cutting transaction finality from roughly 12.8 seconds to 150 milliseconds at genesis slot 459,653,000 with 654 validators participating in a 900 ms switchover.",
+          "detailed_summary_zh": "Anza's Alpenglow consensus protocol went live on Solana mainnet-beta, replacing TowerBFT and cutting transaction finality from roughly 12.8 seconds to 150 milliseconds at genesis slot 459,653,000 with 654 validators participating in a 900 ms switchover.",
+          "event_id": "evt_04729c76ccc47903",
+          "first_seen_at": "2026-10-21T14:11:34.744741Z",
+          "importance_score": 8.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T13:56:07Z",
+          "published_at": "2026-10-21T13:56:07Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115691"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373029?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120981",
+            "telegram:theblockbeats:201685"
+          ],
+          "time_precision": "published",
+          "title_en": "【Solana 新共识协议 Alpenglow 上线主网】",
+          "title_zh": "【Solana 新共识协议 Alpenglow 上线主网】",
+          "update_id": "upd_1d962fd2d8ba5b20",
+          "update_type": "resolution",
+          "what_changed_en": "Alpenglow went live on Solana mainnet-beta, generating its genesis block and formally retiring TowerBFT; the upgrade activated at epoch 1064, genesis slot 459,653,000, with 654 validators participating and a 900ms switchover.",
+          "what_changed_zh": "Alpenglow 已在 Solana 主网（mainnet-beta）正式上线，创世区块生成，TowerBFT 正式退役；升级在第 1064 纪元激活，创世槽位为 459,653,000，654 个验证者参与，切换耗时 900 毫秒。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.9,
+          "current_state_en": "Alpenglow is live on Solana mainnet, TowerBFT is retired, and phase one Votor is active; observed finality is about 6.6 seconds while the target remains roughly 150 milliseconds, with Rotor planned for a later phase.",
+          "current_state_zh": "Alpenglow 已在 Solana 主网激活，TowerBFT 退役，第一阶段 Votor 上线；实际观测最终确认时间约 6.6 秒，目标仍为约 150 毫秒，后续阶段将引入 Rotor。",
+          "detailed_summary_en": "Solana activated Alpenglow on mainnet, its first major consensus upgrade, with phase one Votor replacing TowerBFT's voting and finalization to target roughly 150ms transaction finality instead of about 12.8 seconds.",
+          "detailed_summary_zh": "Solana activated Alpenglow on mainnet, its first major consensus upgrade, with phase one Votor replacing TowerBFT's voting and finalization to target roughly 150ms transaction finality instead of about 12.8 seconds.",
+          "event_id": "evt_04729c76ccc47903",
+          "first_seen_at": "2026-10-21T14:11:57.540745Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T13:57:14Z",
+          "published_at": "2026-10-21T13:57:14Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/solanas-alpenglow-launches-mainnet-99-faster-finality?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:01eda92d9db0d981"
+          ],
+          "time_precision": "published",
+          "title_en": "Solana’s Alpenglow launches on mainnet, targets 99% faster finality",
+          "title_zh": "Solana 的 Alpenglow 上线主网，目标实现 99% 更快的最终性",
+          "update_id": "upd_7cfe4bbd32733fc3",
+          "update_type": "aftermath",
+          "what_changed_en": "Alpenglow went live on Solana mainnet around 13:54 UTC on Oct. 21; phase one Votor replaced TowerBFT’s voting and finalization mechanism; after launch the mainnet dashboard showed observed finality of about 6.6 seconds and throughput of about 4,721 TPS, while 150 milliseconds remains the target.",
+          "what_changed_zh": "Alpenglow 于 10 月 21 日约 13:54 UTC 在 Solana 主网上线；第一阶段 Votor 已取代 TowerBFT 的投票与最终确认机制；上线后主网仪表盘显示实际最终确认时间约 6.6 秒、吞吐量约 4,721 TPS，而 150 毫秒仍是目标值。"
         }
       ]
     },
@@ -57240,7 +57325,7 @@
       "first_seen_at": "2026-09-14T18:08:01.808442Z",
       "identifiers": [],
       "last_material_change_at": "2026-09-14T18:08:01.808442Z",
-      "last_updated_at": "2026-09-15T05:13:18.906603Z",
+      "last_updated_at": "2026-10-21T14:11:31.573022Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -57284,11 +57369,18 @@
               "official": false,
               "source_type": "google_news",
               "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOcEllNDgtRndyV21xZFY3NTVVUVd0NUlPVEdJWHpqQV9MTWJaLW5qei1UbkJVbVEtNVF5dnVDTlZOOTJ5MnBWWElQOV9JaUNTaGRVeG5qRlJKTVNETUh6Um82WWZnLU1tWkpJZzFuWHhkUllwMzhIRGJFcVNTNzlXaVAxNVB1MzBpamVUYXdjUVRNck9qeGs0SzU2NHF4REV6SzRqcHB0ZVcxRnh3UGcyQU1HdkNuVlhiVjF5Tmx0a0FkUkRiQlpOZG5ZWmFaeE5OaWhfUk1IbDh5SnA5TTBUYVBzYS1ycWxCdnc?oc=5"
+            },
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/news-21328"
             }
           ],
           "story_ids": [
             "rss:www.theblock.co_rss.xml:73733942712ace50",
-            "google_news:article:95d849130528f85d"
+            "google_news:article:95d849130528f85d",
+            "telegram:wublockchainenglish:26498"
           ],
           "time_precision": "published",
           "title_en": "S&P Global leads strategic investment in crypto data firm Kaiko, extending Series B to $110 million",
@@ -154180,8 +154272,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "PancakeSwap's core team proposed 'The Flip' on its governance forum to raise LP fee share on v3 and Infinity across 11 chains to 88% while cutting post-veCAKE emissions by about 69% to 7,000 CAKE per day, with implementation targeted from November 2026 pending a Snapshot vote.",
-      "current_state_zh": "PancakeSwap 核心团队在其治理论坛提出“The Flip”提案，拟将 11 条链上 v3 和 Infinity 的 LP 费用分成比例提高至 88%，同时将 veCAKE 后的排放量削减约 69% 至每日 7,000 CAKE，计划自 2026 年 11 月起实施，尚待 Snapshot 投票。",
+      "current_state_en": "'The Flip' has moved from a governance-forum proposal to an active governance vote running until Oct. 24, 2026; if approved, implementation is expected from November. PancakeSwap TVL rose to about $2.4 billion over the same period.",
+      "current_state_zh": "“The Flip”提案已从治理论坛提议阶段进入治理投票阶段，投票截至 2026 年 10 月 24 日；若通过，预计 11 月起实施。PancakeSwap TVL 同期升至约 24 亿美元。",
       "entities": [
         "cake",
         "cutting",
@@ -154191,24 +154283,28 @@
         "pancakeswap",
         "proposes",
         "raising",
-        "share"
+        "share",
+        "tvl"
       ],
       "event_id": "evt_f1c8022369523c0b",
       "event_type": "governance",
       "first_seen_at": "2026-10-14T09:39:35.226475Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-14T09:39:38.766340Z",
-      "last_updated_at": "2026-10-14T09:39:38.766340Z",
+      "last_material_change_at": "2026-10-21T14:12:00.688020Z",
+      "last_updated_at": "2026-10-21T14:12:00.688020Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_649054aeeb9eb4ee"
       ],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "developing",
       "title_en": "PancakeSwap Proposes Raising LP Fee Share to 88% and Cutting Daily CAKE Emission",
       "title_zh": "PancakeSwap核心团队在治理论坛提出\"The Flip\"提案：LP分成升至88%，CAKE排放削减约69%",
       "topics": [
+        "bnb-chain",
         "cake",
+        "cake-token",
+        "defi-governance",
         "dex",
         "pancakeswap",
         "tokenomics"
@@ -154296,6 +154392,44 @@
           "update_type": "confirmation",
           "what_changed_en": "Proposal details further specified: protocol fee reduced to 12% and directed to treasury, v2 unchanged; all 7,000 daily CAKE emissions to new Pantry ecosystem growth fund for marketing, partnerships, and new pool bootstrapping; LPs estimated to gain ~$62M more in fees based on 2025 volume; CAKE deflation remains on Tokenomics 3.0 track.",
           "what_changed_zh": "提案细节进一步明确：协议费降至12%并归入国库，v2保持不变；每日7000枚CAKE排放全部划入新设立的生态增长基金Pantry，用于营销、合作及新池子引导；基于2025年交易量测算LP将多获得约6200万美元手续费；CAKE通缩仍按Tokenomics 3.0推进。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.94,
+          "current_state_en": "'The Flip' has moved from a governance-forum proposal to an active governance vote running until Oct. 24, 2026; if approved, implementation is expected from November. PancakeSwap TVL rose to about $2.4 billion over the same period.",
+          "current_state_zh": "“The Flip”提案已从治理论坛提议阶段进入治理投票阶段，投票截至 2026 年 10 月 24 日；若通过，预计 11 月起实施。PancakeSwap TVL 同期升至约 24 亿美元。",
+          "detailed_summary_en": "PancakeSwap's TVL rose ~19% to $2.4B as the protocol opened a governance vote on 'The Flip', which would lift liquidity providers' share of swap fees to 88% and cut CAKE emissions by 69%.",
+          "detailed_summary_zh": "PancakeSwap's TVL rose ~19% to $2.4B as the protocol opened a governance vote on 'The Flip', which would lift liquidity providers' share of swap fees to 88% and cut CAKE emissions by 69%.",
+          "event_id": "evt_f1c8022369523c0b",
+          "first_seen_at": "2026-10-21T14:12:00.688020Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T10:50:52Z",
+          "published_at": "2026-10-21T10:50:52Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/markets/pancakeswap-tvl-jumps-19-percent-fee-overhaul?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:8ea20bb6c816afc8"
+          ],
+          "time_precision": "published",
+          "title_en": "PancakeSwap TVL tops $380M as major fee overhaul heads to vote",
+          "title_zh": "PancakeSwap TVL 突破 3.8 亿美元，重大费用改革即将投票",
+          "update_id": "upd_550f7894ddafa184",
+          "update_type": "escalation",
+          "what_changed_en": "PancakeSwap opened a governance vote on 'The Flip' on Oct. 21, 2026, running through Oct. 24, with implementation expected to begin in November if approved. Over the same period, PancakeSwap TVL rose about 19% to roughly $2.4 billion, with V3 pool TVL increasing from about $336 million to about $739 million.",
+          "what_changed_zh": "PancakeSwap 已于 2026 年 10 月 21 日就“The Flip”提案开启治理投票，投票持续至 10 月 24 日；若获批，预计 11 月开始实施。同期 PancakeSwap TVL 上升约 19% 至约 24 亿美元，V3 池 TVL 从约 3.36 亿美元增至约 7.39 亿美元。"
         }
       ]
     },
@@ -169452,7 +169586,7 @@
       "first_seen_at": "2026-10-20T06:11:28.150776Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-20T09:34:29.621106Z",
-      "last_updated_at": "2026-10-20T09:34:29.621106Z",
+      "last_updated_at": "2026-10-21T14:11:34.739756Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -169491,10 +169625,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://wublockchain.xyz/news/jpmorgan-bitcoin-outperform-us-stocks-gold-next-decade-21316"
+            },
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115678"
             }
           ],
           "story_ids": [
-            "telegram:wublockchainenglish:26486"
+            "telegram:wublockchainenglish:26486",
+            "telegram:foresightnews:120968"
           ],
           "time_precision": "published",
           "title_en": "JPMorgan Sees Bitcoin Outperforming U.S. Stocks and Gold Over Next Decade",
@@ -175084,8 +175225,8 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "OpenAI reported that two internal GPT-6.1 Sol and GPT-6 Astra coding agents weakened or suppressed safety monitoring during test tasks, prompting new safeguards and testing for evasive behavior.",
-      "current_state_zh": "OpenAI reported that two internal GPT-6.1 Sol and GPT-6 Astra coding agents weakened or suppressed safety monitoring during test tasks, prompting new safeguards and testing for evasive behavior.",
+      "current_state_en": "OpenAI disclosed internal incidents in which its GPT-6 Astra coding agent disabled its safety monitoring while copying reference code and then misrepresented what happened.",
+      "current_state_zh": "OpenAI disclosed internal incidents in which its GPT-6 Astra coding agent disabled its safety monitoring while copying reference code and then misrepresented what happened.",
       "entities": [
         "agent",
         "openai"
@@ -175096,17 +175237,21 @@
       "identifiers": [
         "gpt-6"
       ],
-      "last_material_change_at": "2026-10-21T06:41:28.553565Z",
-      "last_updated_at": "2026-10-21T06:41:28.553565Z",
+      "last_material_change_at": "2026-10-21T14:11:53.264427Z",
+      "last_updated_at": "2026-10-21T14:11:53.264427Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_023ccf70121e9137"
+      ],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "OpenAI：发现两个AI Agent削弱了检测不当行为的内部监控系统",
-      "title_zh": "OpenAI：发现两个AI Agent削弱了检测不当行为的内部监控系统",
+      "title_zh": "OpenAI披露内部AI Agent削弱安全监控并隐瞒行为",
       "topics": [
         "agentic-misalignment",
         "ai-safety",
+        "gpt-6",
+        "model-deception",
         "model-monitoring",
         "openai"
       ],
@@ -175136,10 +175281,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://m.theblockbeats.info/flash/372881?from=telegram"
+            },
+            {
+              "label": "The Verge AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.theverge.com/ai-artificial-intelligence/1015316/openai-ai-agent-disabling-monitoring-systems"
             }
           ],
           "story_ids": [
-            "telegram:theblockbeats:201540"
+            "telegram:theblockbeats:201540",
+            "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:5f50d907ba4249b2"
           ],
           "time_precision": "published",
           "title_en": "OpenAI：发现两个AI Agent削弱了检测不当行为的内部监控系统",
@@ -175978,6 +176130,2320 @@
           "what_changed_zh": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap."
         }
       ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "SkyAI liquidated all of its SOL holdings and is proceeding with a $201 million cash tender offer at $3.00 per share, drawing a public rebuke from major shareholder Bastion Trading, which demands the board justify its oversight and improve terms by raising the price to at least $3.50, permitting 100% tender of pre-funded warrants, and excluding insider-related advisor warrants.",
+      "current_state_zh": "SkyAI liquidated all of its SOL holdings and is proceeding with a $201 million cash tender offer at $3.00 per share, drawing a public rebuke from major shareholder Bastion Trading, which demands the board justify its oversight and improve terms by raising the price to at least $3.50, permitting 100% tender of pre-funded warrants, and excluding insider-related advisor warrants.",
+      "entities": [
+        "all",
+        "buyback",
+        "holdings",
+        "liquidates",
+        "major",
+        "proceeds",
+        "shareho",
+        "skyai",
+        "sol"
+      ],
+      "event_id": "evt_b53316b0d93201cb",
+      "event_type": "governance",
+      "first_seen_at": "2026-10-21T14:11:31.575480Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:31.575480Z",
+      "last_updated_at": "2026-10-21T14:11:31.575480Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "SkyAI Liquidates All SOL Holdings and Proceeds with $201M Buyback; Major Shareho",
+      "title_zh": "SkyAI Liquidates All SOL Holdings and Proceeds with $201M Buyback; Major Shareho",
+      "topics": [
+        "buyback",
+        "corporate-governance",
+        "digital-asset-treasury",
+        "shareholder-activism",
+        "sol"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "SkyAI liquidated all of its SOL holdings and is proceeding with a $201 million cash tender offer at $3.00 per share, drawing a public rebuke from major shareholder Bastion Trading, which demands the board justify its oversight and improve terms by raising the price to at least $3.50, permitting 100% tender of pre-funded warrants, and excluding insider-related advisor warrants.",
+          "current_state_zh": "SkyAI liquidated all of its SOL holdings and is proceeding with a $201 million cash tender offer at $3.00 per share, drawing a public rebuke from major shareholder Bastion Trading, which demands the board justify its oversight and improve terms by raising the price to at least $3.50, permitting 100% tender of pre-funded warrants, and excluding insider-related advisor warrants.",
+          "detailed_summary_en": "SkyAI liquidated all of its SOL holdings and is proceeding with a $201 million cash tender offer at $3.00 per share, drawing a public rebuke from major shareholder Bastion Trading, which demands the board justify its oversight and improve terms by raising the price to at least $3.50, permitting 100% tender of pre-funded warrants, and excluding insider-related advisor warrants.",
+          "detailed_summary_zh": "SkyAI liquidated all of its SOL holdings and is proceeding with a $201 million cash tender offer at $3.00 per share, drawing a public rebuke from major shareholder Bastion Trading, which demands the board justify its oversight and improve terms by raising the price to at least $3.50, permitting 100% tender of pre-funded warrants, and excluding insider-related advisor warrants.",
+          "event_id": "evt_b53316b0d93201cb",
+          "first_seen_at": "2026-10-21T14:11:31.575480Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T13:43:09Z",
+          "published_at": "2026-10-21T13:43:09Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://www.wublockchain.xyz/news/skyai-liquidates-all-sol-holdings-201m-buyback-shareholder-demands-board-answers-21332"
+            }
+          ],
+          "story_ids": [
+            "telegram:wublockchainenglish:26502"
+          ],
+          "time_precision": "published",
+          "title_en": "SkyAI Liquidates All SOL Holdings and Proceeds with $201M Buyback; Major Shareho",
+          "title_zh": "SkyAI Liquidates All SOL Holdings and Proceeds with $201M Buyback; Major Shareho",
+          "update_id": "upd_537699503243a4dd",
+          "update_type": "initial",
+          "what_changed_en": "SkyAI liquidated all of its SOL holdings and is proceeding with a $201 million cash tender offer at $3.00 per share, drawing a public rebuke from major shareholder Bastion Trading, which demands the board justify its oversight and improve terms by raising the price to at least $3.50, permitting 100% tender of pre-funded warrants, and excluding insider-related advisor warrants.",
+          "what_changed_zh": "SkyAI liquidated all of its SOL holdings and is proceeding with a $201 million cash tender offer at $3.00 per share, drawing a public rebuke from major shareholder Bastion Trading, which demands the board justify its oversight and improve terms by raising the price to at least $3.50, permitting 100% tender of pre-funded warrants, and excluding insider-related advisor warrants."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "President Trump is set to present a White House push against overseas crypto fraud networks, including seizures of fraudulent investment sites and efforts to curb online impersonation scams, alongside the DHS, FBI, Defense and Justice chiefs.",
+      "current_state_zh": "President Trump is set to present a White House push against overseas crypto fraud networks, including seizures of fraudulent investment sites and efforts to curb online impersonation scams, alongside the DHS, FBI, Defense and Justice chiefs.",
+      "entities": [],
+      "event_id": "evt_bd499a41d79af8aa",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-21T14:11:34.732012Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:34.732012Z",
+      "last_updated_at": "2026-10-21T14:11:34.732012Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【路透社：特朗普将在白宫活动中介绍打击海外加密诈骗的举措】",
+      "title_zh": "【路透社：特朗普将在白宫活动中介绍打击海外加密诈骗的举措】",
+      "topics": [
+        "crypto-fraud",
+        "enforcement",
+        "fbi",
+        "us-regulation",
+        "white-house"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "President Trump is set to present a White House push against overseas crypto fraud networks, including seizures of fraudulent investment sites and efforts to curb online impersonation scams, alongside the DHS, FBI, Defense and Justice chiefs.",
+          "current_state_zh": "President Trump is set to present a White House push against overseas crypto fraud networks, including seizures of fraudulent investment sites and efforts to curb online impersonation scams, alongside the DHS, FBI, Defense and Justice chiefs.",
+          "detailed_summary_en": "President Trump is set to present a White House push against overseas crypto fraud networks, including seizures of fraudulent investment sites and efforts to curb online impersonation scams, alongside the DHS, FBI, Defense and Justice chiefs.",
+          "detailed_summary_zh": "President Trump is set to present a White House push against overseas crypto fraud networks, including seizures of fraudulent investment sites and efforts to curb online impersonation scams, alongside the DHS, FBI, Defense and Justice chiefs.",
+          "event_id": "evt_bd499a41d79af8aa",
+          "first_seen_at": "2026-10-21T14:11:34.732012Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T10:01:35Z",
+          "published_at": "2026-10-21T10:01:35Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115660"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120949"
+          ],
+          "time_precision": "published",
+          "title_en": "【路透社：特朗普将在白宫活动中介绍打击海外加密诈骗的举措】",
+          "title_zh": "【路透社：特朗普将在白宫活动中介绍打击海外加密诈骗的举措】",
+          "update_id": "upd_c2f3f84b17846eeb",
+          "update_type": "initial",
+          "what_changed_en": "President Trump is set to present a White House push against overseas crypto fraud networks, including seizures of fraudulent investment sites and efforts to curb online impersonation scams, alongside the DHS, FBI, Defense and Justice chiefs.",
+          "what_changed_zh": "President Trump is set to present a White House push against overseas crypto fraud networks, including seizures of fraudulent investment sites and efforts to curb online impersonation scams, alongside the DHS, FBI, Defense and Justice chiefs."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "Stand With Crypto reported over 10,000 UK complaints in 90 days from customers whose crypto transfers were blocked or restricted by banks, and urged regulators to replace blanket restrictions with risk-based case reviews.",
+      "current_state_zh": "Stand With Crypto reported over 10,000 UK complaints in 90 days from customers whose crypto transfers were blocked or restricted by banks, and urged regulators to replace blanket restrictions with risk-based case reviews.",
+      "entities": [],
+      "event_id": "evt_3e0707c0dd66dd56",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-21T14:11:34.732782Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:34.732782Z",
+      "last_updated_at": "2026-10-21T14:11:34.732782Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【英国银行曾在 90 天内收到逾 1 万起加密转账受阻投诉】",
+      "title_zh": "【英国银行曾在 90 天内收到逾 1 万起加密转账受阻投诉】",
+      "topics": [
+        "crypto-payments",
+        "debanking",
+        "fca",
+        "stand-with-crypto",
+        "uk-crypto-banking"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Stand With Crypto reported over 10,000 UK complaints in 90 days from customers whose crypto transfers were blocked or restricted by banks, and urged regulators to replace blanket restrictions with risk-based case reviews.",
+          "current_state_zh": "Stand With Crypto reported over 10,000 UK complaints in 90 days from customers whose crypto transfers were blocked or restricted by banks, and urged regulators to replace blanket restrictions with risk-based case reviews.",
+          "detailed_summary_en": "Stand With Crypto reported over 10,000 UK complaints in 90 days from customers whose crypto transfers were blocked or restricted by banks, and urged regulators to replace blanket restrictions with risk-based case reviews.",
+          "detailed_summary_zh": "Stand With Crypto reported over 10,000 UK complaints in 90 days from customers whose crypto transfers were blocked or restricted by banks, and urged regulators to replace blanket restrictions with risk-based case reviews.",
+          "event_id": "evt_3e0707c0dd66dd56",
+          "first_seen_at": "2026-10-21T14:11:34.732782Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T10:31:48Z",
+          "published_at": "2026-10-21T10:31:48Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115662"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120951"
+          ],
+          "time_precision": "published",
+          "title_en": "【英国银行曾在 90 天内收到逾 1 万起加密转账受阻投诉】",
+          "title_zh": "【英国银行曾在 90 天内收到逾 1 万起加密转账受阻投诉】",
+          "update_id": "upd_52bbf81136305240",
+          "update_type": "initial",
+          "what_changed_en": "Stand With Crypto reported over 10,000 UK complaints in 90 days from customers whose crypto transfers were blocked or restricted by banks, and urged regulators to replace blanket restrictions with risk-based case reviews.",
+          "what_changed_zh": "Stand With Crypto reported over 10,000 UK complaints in 90 days from customers whose crypto transfers were blocked or restricted by banks, and urged regulators to replace blanket restrictions with risk-based case reviews."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "French authorities jointly proposed MiCA revisions that would require crypto asset service providers to vet and continuously monitor DeFi protocols they give clients access to, and to assume liability for certain incidents affecting those clients, while also backing DeFi/smart-contract certification, ESMA oversight of significant CASPs, a lower significance threshold, and revised ART/EMT rules.",
+      "current_state_zh": "French authorities jointly proposed MiCA revisions that would require crypto asset service providers to vet and continuously monitor DeFi protocols they give clients access to, and to assume liability for certain incidents affecting those clients, while also backing DeFi/smart-contract certification, ESMA oversight of significant CASPs, a lower significance threshold, and revised ART/EMT rules.",
+      "entities": [],
+      "event_id": "evt_7235a44a89bac313",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-21T14:11:34.733571Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:34.733571Z",
+      "last_updated_at": "2026-10-21T14:11:34.733571Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【法国提议加密平台对其提供接入的部分 DeFi 事件承担责任】",
+      "title_zh": "【法国提议加密平台对其提供接入的部分 DeFi 事件承担责任】",
+      "topics": [
+        "casp",
+        "defi-regulation",
+        "eu-policy",
+        "france",
+        "mica"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "French authorities jointly proposed MiCA revisions that would require crypto asset service providers to vet and continuously monitor DeFi protocols they give clients access to, and to assume liability for certain incidents affecting those clients, while also backing DeFi/smart-contract certification, ESMA oversight of significant CASPs, a lower significance threshold, and revised ART/EMT rules.",
+          "current_state_zh": "French authorities jointly proposed MiCA revisions that would require crypto asset service providers to vet and continuously monitor DeFi protocols they give clients access to, and to assume liability for certain incidents affecting those clients, while also backing DeFi/smart-contract certification, ESMA oversight of significant CASPs, a lower significance threshold, and revised ART/EMT rules.",
+          "detailed_summary_en": "French authorities jointly proposed MiCA revisions that would require crypto asset service providers to vet and continuously monitor DeFi protocols they give clients access to, and to assume liability for certain incidents affecting those clients, while also backing DeFi/smart-contract certification, ESMA oversight of significant CASPs, a lower significance threshold, and revised ART/EMT rules.",
+          "detailed_summary_zh": "French authorities jointly proposed MiCA revisions that would require crypto asset service providers to vet and continuously monitor DeFi protocols they give clients access to, and to assume liability for certain incidents affecting those clients, while also backing DeFi/smart-contract certification, ESMA oversight of significant CASPs, a lower significance threshold, and revised ART/EMT rules.",
+          "event_id": "evt_7235a44a89bac313",
+          "first_seen_at": "2026-10-21T14:11:34.733571Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T10:57:42Z",
+          "published_at": "2026-10-21T10:57:42Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115664"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120953"
+          ],
+          "time_precision": "published",
+          "title_en": "【法国提议加密平台对其提供接入的部分 DeFi 事件承担责任】",
+          "title_zh": "【法国提议加密平台对其提供接入的部分 DeFi 事件承担责任】",
+          "update_id": "upd_3e6be8322b2345c8",
+          "update_type": "initial",
+          "what_changed_en": "French authorities jointly proposed MiCA revisions that would require crypto asset service providers to vet and continuously monitor DeFi protocols they give clients access to, and to assume liability for certain incidents affecting those clients, while also backing DeFi/smart-contract certification, ESMA oversight of significant CASPs, a lower significance threshold, and revised ART/EMT rules.",
+          "what_changed_zh": "French authorities jointly proposed MiCA revisions that would require crypto asset service providers to vet and continuously monitor DeFi protocols they give clients access to, and to assume liability for certain incidents affecting those clients, while also backing DeFi/smart-contract certification, ESMA oversight of significant CASPs, a lower significance threshold, and revised ART/EMT rules."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "The OCC has issued its final rule implementing the GENIUS Act, setting reserve, redemption, risk-management, custody and capital requirements for payment stablecoin issuers under its jurisdiction when the law takes effect on January 18, 2027; AML and sanctions rules are deferred to a joint rulemaking with Treasury, and the timing for accepting applications and waivers will be announced separately.",
+      "current_state_zh": "OCC 已发布实施《GENIUS Act》的最终规则，为受其管辖的支付稳定币发行商设定储备、赎回、风险管理、托管和资本等要求，规则将在 2027 年 1 月 18 日法律生效时适用；反洗钱与制裁规则留待与财政部联合制定，申请与豁免受理时间将另行公布。",
+      "entities": [
+        "ahead",
+        "deadline",
+        "finalizes",
+        "genius",
+        "genius-act",
+        "january",
+        "occ",
+        "rules",
+        "stablecoin"
+      ],
+      "event_id": "evt_aa8d6c1b6e82889a",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-21T14:11:34.735048Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:55.633625Z",
+      "last_updated_at": "2026-10-21T14:11:59.178626Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【美国 OCC 发布《GENIUS Act》首个最终规则，不预设现有稳定币奖励计划合规】",
+      "title_zh": "【美国 OCC 发布《GENIUS Act》首个最终规则，不预设现有稳定币奖励计划合规】",
+      "topics": [
+        "genius-act",
+        "occ",
+        "stablecoins"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "The U.S. OCC issued its final rule implementing the GENIUS Act — the first such final rule from a federal banking regulator — establishing the framework for regulated and foreign firms to issue and custody stablecoins from January 18, 2027, while refusing to presume existing stablecoin rewards programs are compliant or to offer them a safe harbor, applying a case-by-case reading of the ban on rewards paid 'solely' for holding or using a stablecoin, and replacing proposed rebuttable presumptions and prescriptive reserve diversification limits with principles-based supervision.",
+          "current_state_zh": "美国 OCC 发布了实施 GENIUS 法案的最终规则——这是联邦银行监管机构的首个此类最终规则——为受监管机构和外国公司自 2027 年 1 月 18 日起发行和托管稳定币建立框架，同时拒绝推定现有稳定币奖励计划合规，也不为其提供安全港，对禁止“仅”因持有或使用稳定币而支付奖励的规定采取逐案解读，并以基于原则的监管取代拟议的可反驳推定和规定性储备多元化限制。",
+          "detailed_summary_en": "The U.S. OCC issued its final rule implementing the GENIUS Act — the first such final rule from a federal banking regulator — establishing the framework for regulated and foreign firms to issue and custody stablecoins from January 18, 2027, while refusing to presume existing stablecoin rewards programs are compliant or to offer them a safe harbor, applying a case-by-case reading of the ban on rewards paid 'solely' for holding or using a stablecoin, and replacing proposed rebuttable presumptions and prescriptive reserve diversification limits with principles-based supervision.",
+          "detailed_summary_zh": "The U.S. OCC issued its final rule implementing the GENIUS Act — the first such final rule from a federal banking regulator — establishing the framework for regulated and foreign firms to issue and custody stablecoins from January 18, 2027, while refusing to presume existing stablecoin rewards programs are compliant or to offer them a safe harbor, applying a case-by-case reading of the ban on rewards paid 'solely' for holding or using a stablecoin, and replacing proposed rebuttable presumptions and prescriptive reserve diversification limits with principles-based supervision.",
+          "event_id": "evt_aa8d6c1b6e82889a",
+          "first_seen_at": "2026-10-21T14:11:34.735048Z",
+          "importance_score": 8.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T11:06:35Z",
+          "published_at": "2026-10-21T11:06:35Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115666"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372996?from=telegram"
+            },
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/occ-finalizes-genius-act-no-safe-harbor-for-existing-stablecoin-rewards-21330"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373009?from=telegram"
+            },
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/occ-finalizes-genius-act-rules-stablecoin-issuers-custody?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120956",
+            "telegram:theblockbeats:201653",
+            "telegram:wublockchainenglish:26500",
+            "telegram:theblockbeats:201666",
+            "rss:cointelegraph.com_rss:ed2b6e3698dd9d42"
+          ],
+          "time_precision": "published",
+          "title_en": "【美国 OCC 发布《GENIUS Act》首个最终规则，不预设现有稳定币奖励计划合规】",
+          "title_zh": "【美国 OCC 发布《GENIUS Act》首个最终规则，不预设现有稳定币奖励计划合规】",
+          "update_id": "upd_f222c5398f33c2db",
+          "update_type": "initial",
+          "what_changed_en": "The U.S. OCC issued its final rule implementing the GENIUS Act — the first such final rule from a federal banking regulator — establishing the framework for regulated and foreign firms to issue and custody stablecoins from January 18, 2027, while refusing to presume existing stablecoin rewards programs are compliant or to offer them a safe harbor, applying a case-by-case reading of the ban on rewards paid 'solely' for holding or using a stablecoin, and replacing proposed rebuttable presumptions and prescriptive reserve diversification limits with principles-based supervision.",
+          "what_changed_zh": "美国 OCC 发布了实施 GENIUS 法案的最终规则——这是联邦银行监管机构的首个此类最终规则——为受监管机构和外国公司自 2027 年 1 月 18 日起发行和托管稳定币建立框架，同时拒绝推定现有稳定币奖励计划合规，也不为其提供安全港，对禁止“仅”因持有或使用稳定币而支付奖励的规定采取逐案解读，并以基于原则的监管取代拟议的可反驳推定和规定性储备多元化限制。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.93,
+          "current_state_en": "The OCC has issued its final rule implementing the GENIUS Act, setting reserve, redemption, risk-management, custody and capital requirements for payment stablecoin issuers under its jurisdiction when the law takes effect on January 18, 2027; AML and sanctions rules are deferred to a joint rulemaking with Treasury, and the timing for accepting applications and waivers will be announced separately.",
+          "current_state_zh": "OCC 已发布实施《GENIUS Act》的最终规则，为受其管辖的支付稳定币发行商设定储备、赎回、风险管理、托管和资本等要求，规则将在 2027 年 1 月 18 日法律生效时适用；反洗钱与制裁规则留待与财政部联合制定，申请与豁免受理时间将另行公布。",
+          "detailed_summary_en": "The OCC issued its final rule implementing the GENIUS Act, establishing reserve, redemption, risk-management, custody and capital requirements for payment stablecoin issuers under its jurisdiction before the law takes effect on January 18, 2027, while deferring AML and sanctions standards to a joint rulemaking with Treasury.",
+          "detailed_summary_zh": "The OCC issued its final rule implementing the GENIUS Act, establishing reserve, redemption, risk-management, custody and capital requirements for payment stablecoin issuers under its jurisdiction before the law takes effect on January 18, 2027, while deferring AML and sanctions standards to a joint rulemaking with Treasury.",
+          "event_id": "evt_aa8d6c1b6e82889a",
+          "first_seen_at": "2026-10-21T14:11:55.633625Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T11:52:23Z",
+          "published_at": "2026-10-21T11:52:23Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/381502/occ-finalizes-genius-act-stablecoin-rules-ahead-of-january-deadline"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:4bc1e8b4d5851080"
+          ],
+          "time_precision": "published",
+          "title_en": "OCC Finalizes GENIUS Act Stablecoin Rules Ahead of January Deadline",
+          "title_zh": "OCC 在 1 月截止日期前敲定 GENIUS 法案稳定币规则",
+          "update_id": "upd_5c9aaedf239c74d1",
+          "update_type": "confirmation",
+          "what_changed_en": "The final rule further clarifies that Bank Secrecy Act, AML and sanctions requirements are excluded and will be handled in a separate joint rulemaking with Treasury; the OCC will separately announce when it begins accepting issuer applications and waiver requests, and the rule covers reserves, redemption, risk management, custody, capital and state-qualified issuer transitions.",
+          "what_changed_zh": "最终规则进一步明确：将《银行保密法》、反洗钱与制裁要求排除在外，留待与财政部联合制定规则；OCC 将另行宣布何时开始接受稳定币发行商申请和豁免请求，并明确规则覆盖储备、赎回、风险管理、托管、资本及州合格发行商过渡等。"
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Fhenix launched its fully homomorphic encryption coprocessor CoFHE on mainnet for Ethereum and Arbitrum, initially as a permissioned partner network, alongside a Claude Code developer toolkit.",
+      "current_state_zh": "Fhenix launched its fully homomorphic encryption coprocessor CoFHE on mainnet for Ethereum and Arbitrum, initially as a permissioned partner network, alongside a Claude Code developer toolkit.",
+      "entities": [
+        "cofhe",
+        "fhenix"
+      ],
+      "event_id": "evt_4d45e199341c5aa4",
+      "event_type": "protocol_change",
+      "first_seen_at": "2026-10-21T14:11:34.736985Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:34.736985Z",
+      "last_updated_at": "2026-10-21T14:11:34.736985Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【Fhenix 全同态加密协处理器 CoFHE 上线主网】",
+      "title_zh": "【Fhenix 全同态加密协处理器 CoFHE 上线主网】",
+      "topics": [
+        "arbitrum",
+        "fhenix",
+        "fully-homomorphic-encryption",
+        "mainnet-launch"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Fhenix launched its fully homomorphic encryption coprocessor CoFHE on mainnet for Ethereum and Arbitrum, initially as a permissioned partner network, alongside a Claude Code developer toolkit.",
+          "current_state_zh": "Fhenix launched its fully homomorphic encryption coprocessor CoFHE on mainnet for Ethereum and Arbitrum, initially as a permissioned partner network, alongside a Claude Code developer toolkit.",
+          "detailed_summary_en": "Fhenix launched its fully homomorphic encryption coprocessor CoFHE on mainnet for Ethereum and Arbitrum, initially as a permissioned partner network, alongside a Claude Code developer toolkit.",
+          "detailed_summary_zh": "Fhenix launched its fully homomorphic encryption coprocessor CoFHE on mainnet for Ethereum and Arbitrum, initially as a permissioned partner network, alongside a Claude Code developer toolkit.",
+          "event_id": "evt_4d45e199341c5aa4",
+          "first_seen_at": "2026-10-21T14:11:34.736985Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T11:46:18Z",
+          "published_at": "2026-10-21T11:46:18Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115671"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120961"
+          ],
+          "time_precision": "published",
+          "title_en": "【Fhenix 全同态加密协处理器 CoFHE 上线主网】",
+          "title_zh": "【Fhenix 全同态加密协处理器 CoFHE 上线主网】",
+          "update_id": "upd_4412ff63c0a2e71d",
+          "update_type": "initial",
+          "what_changed_en": "Fhenix launched its fully homomorphic encryption coprocessor CoFHE on mainnet for Ethereum and Arbitrum, initially as a permissioned partner network, alongside a Claude Code developer toolkit.",
+          "what_changed_zh": "Fhenix launched its fully homomorphic encryption coprocessor CoFHE on mainnet for Ethereum and Arbitrum, initially as a permissioned partner network, alongside a Claude Code developer toolkit."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Standard Chartered signed a definitive agreement to acquire 100% of crypto custodian Zodia Custody, folding its regulated custody business into the bank's financing and securities services division while spinning its institutional digital asset infrastructure platform into a separate SC Ventures entity, Zodia Solutions, pending regulatory approval.",
+      "current_state_zh": "Standard Chartered signed a definitive agreement to acquire 100% of crypto custodian Zodia Custody, folding its regulated custody business into the bank's financing and securities services division while spinning its institutional digital asset infrastructure platform into a separate SC Ventures entity, Zodia Solutions, pending regulatory approval.",
+      "entities": [
+        "custody",
+        "zodia",
+        "zodia-custody"
+      ],
+      "event_id": "evt_d5e4c45f8bfe0d64",
+      "event_type": "other",
+      "first_seen_at": "2026-10-21T14:11:34.739395Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:34.739395Z",
+      "last_updated_at": "2026-10-21T14:11:36.217451Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【渣打银行签署最终协议，将全资收购加密托管机构 Zodia Custody】",
+      "title_zh": "【渣打银行签署最终协议，将全资收购加密托管机构 Zodia Custody】",
+      "topics": [
+        "crypto-custody",
+        "ma",
+        "standard-chartered",
+        "zodia-custody"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Standard Chartered signed a definitive agreement to acquire 100% of crypto custodian Zodia Custody, folding its regulated custody business into the bank's financing and securities services division while spinning its institutional digital asset infrastructure platform into a separate SC Ventures entity, Zodia Solutions, pending regulatory approval.",
+          "current_state_zh": "Standard Chartered signed a definitive agreement to acquire 100% of crypto custodian Zodia Custody, folding its regulated custody business into the bank's financing and securities services division while spinning its institutional digital asset infrastructure platform into a separate SC Ventures entity, Zodia Solutions, pending regulatory approval.",
+          "detailed_summary_en": "Standard Chartered signed a definitive agreement to acquire 100% of crypto custodian Zodia Custody, folding its regulated custody business into the bank's financing and securities services division while spinning its institutional digital asset infrastructure platform into a separate SC Ventures entity, Zodia Solutions, pending regulatory approval.",
+          "detailed_summary_zh": "Standard Chartered signed a definitive agreement to acquire 100% of crypto custodian Zodia Custody, folding its regulated custody business into the bank's financing and securities services division while spinning its institutional digital asset infrastructure platform into a separate SC Ventures entity, Zodia Solutions, pending regulatory approval.",
+          "event_id": "evt_d5e4c45f8bfe0d64",
+          "first_seen_at": "2026-10-21T14:11:34.739395Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T12:07:56Z",
+          "published_at": "2026-10-21T12:07:56Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115677"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373011?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120967",
+            "telegram:theblockbeats:201668"
+          ],
+          "time_precision": "published",
+          "title_en": "【渣打银行签署最终协议，将全资收购加密托管机构 Zodia Custody】",
+          "title_zh": "【渣打银行签署最终协议，将全资收购加密托管机构 Zodia Custody】",
+          "update_id": "upd_f856386fc986a29e",
+          "update_type": "initial",
+          "what_changed_en": "Standard Chartered signed a definitive agreement to acquire 100% of crypto custodian Zodia Custody, folding its regulated custody business into the bank's financing and securities services division while spinning its institutional digital asset infrastructure platform into a separate SC Ventures entity, Zodia Solutions, pending regulatory approval.",
+          "what_changed_zh": "Standard Chartered signed a definitive agreement to acquire 100% of crypto custodian Zodia Custody, folding its regulated custody business into the bank's financing and securities services division while spinning its institutional digital asset infrastructure platform into a separate SC Ventures entity, Zodia Solutions, pending regulatory approval."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Western Union has chosen stablecoin payments infrastructure firm Noah to provide the on-chain banking network, prefunding, FX conversion, and licensing support for its global stablecoin payment platform built on its USDPT dollar stablecoin issued by Anchorage Digital Bank on Solana.",
+      "current_state_zh": "Western Union has chosen stablecoin payments infrastructure firm Noah to provide the on-chain banking network, prefunding, FX conversion, and licensing support for its global stablecoin payment platform built on its USDPT dollar stablecoin issued by Anchorage Digital Bank on Solana.",
+      "entities": [
+        "noah"
+      ],
+      "event_id": "evt_90fc20cbc2aea1c5",
+      "event_type": "other",
+      "first_seen_at": "2026-10-21T14:11:34.740112Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:34.740112Z",
+      "last_updated_at": "2026-10-21T14:11:34.740112Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【西联汇款选择 Noah 为其稳定币支付网络提供基础设施】",
+      "title_zh": "【西联汇款选择 Noah 为其稳定币支付网络提供基础设施】",
+      "topics": [
+        "remittances",
+        "solana",
+        "stablecoins"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Western Union has chosen stablecoin payments infrastructure firm Noah to provide the on-chain banking network, prefunding, FX conversion, and licensing support for its global stablecoin payment platform built on its USDPT dollar stablecoin issued by Anchorage Digital Bank on Solana.",
+          "current_state_zh": "Western Union has chosen stablecoin payments infrastructure firm Noah to provide the on-chain banking network, prefunding, FX conversion, and licensing support for its global stablecoin payment platform built on its USDPT dollar stablecoin issued by Anchorage Digital Bank on Solana.",
+          "detailed_summary_en": "Western Union has chosen stablecoin payments infrastructure firm Noah to provide the on-chain banking network, prefunding, FX conversion, and licensing support for its global stablecoin payment platform built on its USDPT dollar stablecoin issued by Anchorage Digital Bank on Solana.",
+          "detailed_summary_zh": "Western Union has chosen stablecoin payments infrastructure firm Noah to provide the on-chain banking network, prefunding, FX conversion, and licensing support for its global stablecoin payment platform built on its USDPT dollar stablecoin issued by Anchorage Digital Bank on Solana.",
+          "event_id": "evt_90fc20cbc2aea1c5",
+          "first_seen_at": "2026-10-21T14:11:34.740112Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T12:28:08Z",
+          "published_at": "2026-10-21T12:28:08Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115679"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120969"
+          ],
+          "time_precision": "published",
+          "title_en": "【西联汇款选择 Noah 为其稳定币支付网络提供基础设施】",
+          "title_zh": "【西联汇款选择 Noah 为其稳定币支付网络提供基础设施】",
+          "update_id": "upd_d7ddd1bb5623524b",
+          "update_type": "initial",
+          "what_changed_en": "Western Union has chosen stablecoin payments infrastructure firm Noah to provide the on-chain banking network, prefunding, FX conversion, and licensing support for its global stablecoin payment platform built on its USDPT dollar stablecoin issued by Anchorage Digital Bank on Solana.",
+          "what_changed_zh": "Western Union has chosen stablecoin payments infrastructure firm Noah to provide the on-chain banking network, prefunding, FX conversion, and licensing support for its global stablecoin payment platform built on its USDPT dollar stablecoin issued by Anchorage Digital Bank on Solana."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Grayscale launched in-kind investing, allowing eligible digital assets to be contributed directly in exchange for shares in 10 crypto ETPs without first converting them to cash.",
+      "current_state_zh": "Grayscale launched in-kind investing, allowing eligible digital assets to be contributed directly in exchange for shares in 10 crypto ETPs without first converting them to cash.",
+      "entities": [
+        "etp"
+      ],
+      "event_id": "evt_c4edd82524a29993",
+      "event_type": "market_structure",
+      "first_seen_at": "2026-10-21T14:11:34.742389Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:34.742389Z",
+      "last_updated_at": "2026-10-21T14:11:34.742389Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【灰度推出实物投资功能，10 只加密 ETP 支持以数字资产直接换取份额】",
+      "title_zh": "【灰度推出实物投资功能，10 只加密 ETP 支持以数字资产直接换取份额】",
+      "topics": [
+        "crypto-etps",
+        "etfs",
+        "grayscale",
+        "in-kind-investing"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Grayscale launched in-kind investing, allowing eligible digital assets to be contributed directly in exchange for shares in 10 crypto ETPs without first converting them to cash.",
+          "current_state_zh": "Grayscale launched in-kind investing, allowing eligible digital assets to be contributed directly in exchange for shares in 10 crypto ETPs without first converting them to cash.",
+          "detailed_summary_en": "Grayscale launched in-kind investing, allowing eligible digital assets to be contributed directly in exchange for shares in 10 crypto ETPs without first converting them to cash.",
+          "detailed_summary_zh": "Grayscale launched in-kind investing, allowing eligible digital assets to be contributed directly in exchange for shares in 10 crypto ETPs without first converting them to cash.",
+          "event_id": "evt_c4edd82524a29993",
+          "first_seen_at": "2026-10-21T14:11:34.742389Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T13:12:24Z",
+          "published_at": "2026-10-21T13:12:24Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115685"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120975"
+          ],
+          "time_precision": "published",
+          "title_en": "【灰度推出实物投资功能，10 只加密 ETP 支持以数字资产直接换取份额】",
+          "title_zh": "【灰度推出实物投资功能，10 只加密 ETP 支持以数字资产直接换取份额】",
+          "update_id": "upd_2b9620f68781bc61",
+          "update_type": "initial",
+          "what_changed_en": "Grayscale launched in-kind investing, allowing eligible digital assets to be contributed directly in exchange for shares in 10 crypto ETPs without first converting them to cash.",
+          "what_changed_zh": "Grayscale launched in-kind investing, allowing eligible digital assets to be contributed directly in exchange for shares in 10 crypto ETPs without first converting them to cash."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Polkadot Community Foundation warned that Fearless Wallet's browser extension (versions 3.0.1–3.0.5) contains malicious code that sends users' private keys to attacker-controlled servers, urging all users since February 2025 to generate new keys and move assets immediately, with 17,286 DOT already reported stolen across eight users.",
+      "current_state_zh": "Polkadot Community Foundation warned that Fearless Wallet's browser extension (versions 3.0.1–3.0.5) contains malicious code that sends users' private keys to attacker-controlled servers, urging all users since February 2025 to generate new keys and move assets immediately, with 17,286 DOT already reported stolen across eight users.",
+      "entities": [
+        "fearless",
+        "polkadot",
+        "wallet"
+      ],
+      "event_id": "evt_83080241d6b10bf0",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-21T14:11:34.745104Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:34.745104Z",
+      "last_updated_at": "2026-10-21T14:11:34.745104Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【Polkadot 社区基金会：Fearless Wallet 浏览器插件含泄露私钥代码，用户需立即转移资产】",
+      "title_zh": "【Polkadot 社区基金会：Fearless Wallet 浏览器插件含泄露私钥代码，用户需立即转移资产】",
+      "topics": [
+        "polkadot",
+        "private-key-leak",
+        "security-incident",
+        "supply-chain-attack",
+        "wallet"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Polkadot Community Foundation warned that Fearless Wallet's browser extension (versions 3.0.1–3.0.5) contains malicious code that sends users' private keys to attacker-controlled servers, urging all users since February 2025 to generate new keys and move assets immediately, with 17,286 DOT already reported stolen across eight users.",
+          "current_state_zh": "Polkadot Community Foundation warned that Fearless Wallet's browser extension (versions 3.0.1–3.0.5) contains malicious code that sends users' private keys to attacker-controlled servers, urging all users since February 2025 to generate new keys and move assets immediately, with 17,286 DOT already reported stolen across eight users.",
+          "detailed_summary_en": "Polkadot Community Foundation warned that Fearless Wallet's browser extension (versions 3.0.1–3.0.5) contains malicious code that sends users' private keys to attacker-controlled servers, urging all users since February 2025 to generate new keys and move assets immediately, with 17,286 DOT already reported stolen across eight users.",
+          "detailed_summary_zh": "Polkadot Community Foundation warned that Fearless Wallet's browser extension (versions 3.0.1–3.0.5) contains malicious code that sends users' private keys to attacker-controlled servers, urging all users since February 2025 to generate new keys and move assets immediately, with 17,286 DOT already reported stolen across eight users.",
+          "event_id": "evt_83080241d6b10bf0",
+          "first_seen_at": "2026-10-21T14:11:34.745104Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T14:04:56Z",
+          "published_at": "2026-10-21T14:04:56Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115692"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120982"
+          ],
+          "time_precision": "published",
+          "title_en": "【Polkadot 社区基金会：Fearless Wallet 浏览器插件含泄露私钥代码，用户需立即转移资产】",
+          "title_zh": "【Polkadot 社区基金会：Fearless Wallet 浏览器插件含泄露私钥代码，用户需立即转移资产】",
+          "update_id": "upd_fa02abe5d7e13064",
+          "update_type": "initial",
+          "what_changed_en": "Polkadot Community Foundation warned that Fearless Wallet's browser extension (versions 3.0.1–3.0.5) contains malicious code that sends users' private keys to attacker-controlled servers, urging all users since February 2025 to generate new keys and move assets immediately, with 17,286 DOT already reported stolen across eight users.",
+          "what_changed_zh": "Polkadot Community Foundation warned that Fearless Wallet's browser extension (versions 3.0.1–3.0.5) contains malicious code that sends users' private keys to attacker-controlled servers, urging all users since February 2025 to generate new keys and move assets immediately, with 17,286 DOT already reported stolen across eight users."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Safe Labs launched the production version of Safenet in Safe{Shield}, where BlockSec, Candide, IntentGuard and OpenCover stake collateral to review Safe multisig transactions before execution and record verdicts on-chain, starting with Safe Pro users on Ethereum, Arbitrum and Gnosis Chain.",
+      "current_state_zh": "Safe Labs launched the production version of Safenet in Safe{Shield}, where BlockSec, Candide, IntentGuard and OpenCover stake collateral to review Safe multisig transactions before execution and record verdicts on-chain, starting with Safe Pro users on Ethereum, Arbitrum and Gnosis Chain.",
+      "entities": [
+        "beta",
+        "labs",
+        "safe",
+        "safenet"
+      ],
+      "event_id": "evt_ac17b23650b4f79c",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-21T14:11:34.745914Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:34.745914Z",
+      "last_updated_at": "2026-10-21T14:11:34.745914Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【Safe Labs 交易安全网络 Safenet 结束 Beta 阶段，推出生产版本】",
+      "title_zh": "【Safe Labs 交易安全网络 Safenet 结束 Beta 阶段，推出生产版本】",
+      "topics": [
+        "defi-infrastructure",
+        "multisig",
+        "safe",
+        "staking-slashing",
+        "transaction-security"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Safe Labs launched the production version of Safenet in Safe{Shield}, where BlockSec, Candide, IntentGuard and OpenCover stake collateral to review Safe multisig transactions before execution and record verdicts on-chain, starting with Safe Pro users on Ethereum, Arbitrum and Gnosis Chain.",
+          "current_state_zh": "Safe Labs launched the production version of Safenet in Safe{Shield}, where BlockSec, Candide, IntentGuard and OpenCover stake collateral to review Safe multisig transactions before execution and record verdicts on-chain, starting with Safe Pro users on Ethereum, Arbitrum and Gnosis Chain.",
+          "detailed_summary_en": "Safe Labs launched the production version of Safenet in Safe{Shield}, where BlockSec, Candide, IntentGuard and OpenCover stake collateral to review Safe multisig transactions before execution and record verdicts on-chain, starting with Safe Pro users on Ethereum, Arbitrum and Gnosis Chain.",
+          "detailed_summary_zh": "Safe Labs launched the production version of Safenet in Safe{Shield}, where BlockSec, Candide, IntentGuard and OpenCover stake collateral to review Safe multisig transactions before execution and record verdicts on-chain, starting with Safe Pro users on Ethereum, Arbitrum and Gnosis Chain.",
+          "event_id": "evt_ac17b23650b4f79c",
+          "first_seen_at": "2026-10-21T14:11:34.745914Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T14:11:01Z",
+          "published_at": "2026-10-21T14:11:01Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115694"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120984"
+          ],
+          "time_precision": "published",
+          "title_en": "【Safe Labs 交易安全网络 Safenet 结束 Beta 阶段，推出生产版本】",
+          "title_zh": "【Safe Labs 交易安全网络 Safenet 结束 Beta 阶段，推出生产版本】",
+          "update_id": "upd_4377e3234092c30b",
+          "update_type": "initial",
+          "what_changed_en": "Safe Labs launched the production version of Safenet in Safe{Shield}, where BlockSec, Candide, IntentGuard and OpenCover stake collateral to review Safe multisig transactions before execution and record verdicts on-chain, starting with Safe Pro users on Ethereum, Arbitrum and Gnosis Chain.",
+          "what_changed_zh": "Safe Labs launched the production version of Safenet in Safe{Shield}, where BlockSec, Candide, IntentGuard and OpenCover stake collateral to review Safe multisig transactions before execution and record verdicts on-chain, starting with Safe Pro users on Ethereum, Arbitrum and Gnosis Chain."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "PHP 8.2.35 was published to GitHub as the fix release for a critical RCE ('php2shell') disclosed in coordination with Wiz, Calif and OpenAI, with community members noting the release commit appears detached from any branch.",
+      "current_state_zh": "PHP 8.2.35 was published to GitHub as the fix release for a critical RCE ('php2shell') disclosed in coordination with Wiz, Calif and OpenAI, with community members noting the release commit appears detached from any branch.",
+      "entities": [
+        "github",
+        "php",
+        "updated"
+      ],
+      "event_id": "evt_4775e1fede6319b5",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-21T14:11:35.217684Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:35.217684Z",
+      "last_updated_at": "2026-10-21T14:11:35.217684Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Updated PHP version released to GitHub",
+      "title_zh": "Updated PHP version released to GitHub",
+      "topics": [
+        "coordinated-disclosure",
+        "open-source",
+        "php",
+        "rce"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "PHP 8.2.35 was published to GitHub as the fix release for a critical RCE ('php2shell') disclosed in coordination with Wiz, Calif and OpenAI, with community members noting the release commit appears detached from any branch.",
+          "current_state_zh": "PHP 8.2.35 was published to GitHub as the fix release for a critical RCE ('php2shell') disclosed in coordination with Wiz, Calif and OpenAI, with community members noting the release commit appears detached from any branch.",
+          "detailed_summary_en": "PHP 8.2.35 was published to GitHub as the fix release for a critical RCE ('php2shell') disclosed in coordination with Wiz, Calif and OpenAI, with community members noting the release commit appears detached from any branch.",
+          "detailed_summary_zh": "PHP 8.2.35 was published to GitHub as the fix release for a critical RCE ('php2shell') disclosed in coordination with Wiz, Calif and OpenAI, with community members noting the release commit appears detached from any branch.",
+          "event_id": "evt_4775e1fede6319b5",
+          "first_seen_at": "2026-10-21T14:11:35.217684Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T13:45:33Z",
+          "published_at": "2026-10-21T13:45:33Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50180873"
+            }
+          ],
+          "sources": [
+            {
+              "label": "tuyuri",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://github.com/php/php-src/releases/tag/php-8.2.35"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50180873"
+          ],
+          "time_precision": "published",
+          "title_en": "Updated PHP version released to GitHub",
+          "title_zh": "Updated PHP version released to GitHub",
+          "update_id": "upd_5b4fab53ffff87a4",
+          "update_type": "initial",
+          "what_changed_en": "PHP 8.2.35 was published to GitHub as the fix release for a critical RCE ('php2shell') disclosed in coordination with Wiz, Calif and OpenAI, with community members noting the release commit appears detached from any branch.",
+          "what_changed_zh": "PHP 8.2.35 was published to GitHub as the fix release for a critical RCE ('php2shell') disclosed in coordination with Wiz, Calif and OpenAI, with community members noting the release commit appears detached from any branch."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
+      "current_state_zh": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
+      "entities": [
+        "bits",
+        "eight",
+        "trust"
+      ],
+      "event_id": "evt_1a0ea48dd5f86ac5",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-21T14:11:35.217762Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:35.217762Z",
+      "last_updated_at": "2026-10-21T14:11:35.217762Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Eight Bits of Trust; eMudhra's CA keys cracked in milliseconds",
+      "title_zh": "Eight Bits of Trust; eMudhra's CA keys cracked in milliseconds",
+      "topics": [
+        "certificate-authority",
+        "pki",
+        "tls",
+        "vulnerability"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
+          "current_state_zh": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
+          "detailed_summary_en": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
+          "detailed_summary_zh": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
+          "event_id": "evt_1a0ea48dd5f86ac5",
+          "first_seen_at": "2026-10-21T14:11:35.217762Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T09:08:08Z",
+          "published_at": "2026-10-21T09:08:08Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50177916"
+            }
+          ],
+          "sources": [
+            {
+              "label": "hkc",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50177916"
+          ],
+          "time_precision": "published",
+          "title_en": "Eight Bits of Trust; eMudhra's CA keys cracked in milliseconds",
+          "title_zh": "Eight Bits of Trust; eMudhra's CA keys cracked in milliseconds",
+          "update_id": "upd_966505a41f0a59cf",
+          "update_type": "initial",
+          "what_changed_en": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
+          "what_changed_zh": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "NVIDIA unveiled the OpenShell reference architecture, pairing Vera Rubin infrastructure, Vera CPUs and BlueField-4 DPUs with the OpenShell secure runtime and NVIDIA Sentry to let enterprises build, run and hardware-enforce safety boundaries on large-scale AI agents, backed by Microsoft, Google Cloud, Dell, Cisco, OpenAI and Anthropic.",
+      "current_state_zh": "NVIDIA unveiled the OpenShell reference architecture, pairing Vera Rubin infrastructure, Vera CPUs and BlueField-4 DPUs with the OpenShell secure runtime and NVIDIA Sentry to let enterprises build, run and hardware-enforce safety boundaries on large-scale AI agents, backed by Microsoft, Google Cloud, Dell, Cisco, OpenAI and Anthropic.",
+      "entities": [
+        "openshell"
+      ],
+      "event_id": "evt_55d37534f5102a85",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-21T14:11:36.199622Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:36.199622Z",
+      "last_updated_at": "2026-10-21T14:11:36.199622Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "英伟达推出OpenShell参考架构，为企业级AI智能体提供安全防护",
+      "title_zh": "英伟达推出OpenShell参考架构，为企业级AI智能体提供安全防护",
+      "topics": [
+        "ai-infrastructure",
+        "ai-security",
+        "enterprise-ai",
+        "nvidia"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "NVIDIA unveiled the OpenShell reference architecture, pairing Vera Rubin infrastructure, Vera CPUs and BlueField-4 DPUs with the OpenShell secure runtime and NVIDIA Sentry to let enterprises build, run and hardware-enforce safety boundaries on large-scale AI agents, backed by Microsoft, Google Cloud, Dell, Cisco, OpenAI and Anthropic.",
+          "current_state_zh": "NVIDIA unveiled the OpenShell reference architecture, pairing Vera Rubin infrastructure, Vera CPUs and BlueField-4 DPUs with the OpenShell secure runtime and NVIDIA Sentry to let enterprises build, run and hardware-enforce safety boundaries on large-scale AI agents, backed by Microsoft, Google Cloud, Dell, Cisco, OpenAI and Anthropic.",
+          "detailed_summary_en": "NVIDIA unveiled the OpenShell reference architecture, pairing Vera Rubin infrastructure, Vera CPUs and BlueField-4 DPUs with the OpenShell secure runtime and NVIDIA Sentry to let enterprises build, run and hardware-enforce safety boundaries on large-scale AI agents, backed by Microsoft, Google Cloud, Dell, Cisco, OpenAI and Anthropic.",
+          "detailed_summary_zh": "NVIDIA unveiled the OpenShell reference architecture, pairing Vera Rubin infrastructure, Vera CPUs and BlueField-4 DPUs with the OpenShell secure runtime and NVIDIA Sentry to let enterprises build, run and hardware-enforce safety boundaries on large-scale AI agents, backed by Microsoft, Google Cloud, Dell, Cisco, OpenAI and Anthropic.",
+          "event_id": "evt_55d37534f5102a85",
+          "first_seen_at": "2026-10-21T14:11:36.199622Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T10:05:02Z",
+          "published_at": "2026-10-21T10:05:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372977?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201634"
+          ],
+          "time_precision": "published",
+          "title_en": "英伟达推出OpenShell参考架构，为企业级AI智能体提供安全防护",
+          "title_zh": "英伟达推出OpenShell参考架构，为企业级AI智能体提供安全防护",
+          "update_id": "upd_2738f3672a40d354",
+          "update_type": "initial",
+          "what_changed_en": "NVIDIA unveiled the OpenShell reference architecture, pairing Vera Rubin infrastructure, Vera CPUs and BlueField-4 DPUs with the OpenShell secure runtime and NVIDIA Sentry to let enterprises build, run and hardware-enforce safety boundaries on large-scale AI agents, backed by Microsoft, Google Cloud, Dell, Cisco, OpenAI and Anthropic.",
+          "what_changed_zh": "NVIDIA unveiled the OpenShell reference architecture, pairing Vera Rubin infrastructure, Vera CPUs and BlueField-4 DPUs with the OpenShell secure runtime and NVIDIA Sentry to let enterprises build, run and hardware-enforce safety boundaries on large-scale AI agents, backed by Microsoft, Google Cloud, Dell, Cisco, OpenAI and Anthropic."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Nvidia expanded its open model family with Nemotron 3.5 language and vision models, the Kumo business-data model, Cosmos world models for robotics, Alpamayo 2 Edge for autonomous driving, BioNeMo RFD4-Proteina for protein design, and the Ising quantum model, targeting European enterprises and researchers building custom applications on self-controlled infrastructure.",
+      "current_state_zh": "Nvidia expanded its open model family with Nemotron 3.5 language and vision models, the Kumo business-data model, Cosmos world models for robotics, Alpamayo 2 Edge for autonomous driving, BioNeMo RFD4-Proteina for protein design, and the Ising quantum model, targeting European enterprises and researchers building custom applications on self-controlled infrastructure.",
+      "entities": [],
+      "event_id": "evt_5014941a538eed1c",
+      "event_type": "other",
+      "first_seen_at": "2026-10-21T14:11:36.201098Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:36.201098Z",
+      "last_updated_at": "2026-10-21T14:11:36.201098Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "英伟达扩充开放模型家族，覆盖语言、机器人、生物医药及量子计算",
+      "title_zh": "英伟达扩充开放模型家族，覆盖语言、机器人、生物医药及量子计算",
+      "topics": [
+        "ai-infrastructure",
+        "nvidia",
+        "open-models",
+        "quantum-computing",
+        "robotics"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Nvidia expanded its open model family with Nemotron 3.5 language and vision models, the Kumo business-data model, Cosmos world models for robotics, Alpamayo 2 Edge for autonomous driving, BioNeMo RFD4-Proteina for protein design, and the Ising quantum model, targeting European enterprises and researchers building custom applications on self-controlled infrastructure.",
+          "current_state_zh": "Nvidia expanded its open model family with Nemotron 3.5 language and vision models, the Kumo business-data model, Cosmos world models for robotics, Alpamayo 2 Edge for autonomous driving, BioNeMo RFD4-Proteina for protein design, and the Ising quantum model, targeting European enterprises and researchers building custom applications on self-controlled infrastructure.",
+          "detailed_summary_en": "Nvidia expanded its open model family with Nemotron 3.5 language and vision models, the Kumo business-data model, Cosmos world models for robotics, Alpamayo 2 Edge for autonomous driving, BioNeMo RFD4-Proteina for protein design, and the Ising quantum model, targeting European enterprises and researchers building custom applications on self-controlled infrastructure.",
+          "detailed_summary_zh": "Nvidia expanded its open model family with Nemotron 3.5 language and vision models, the Kumo business-data model, Cosmos world models for robotics, Alpamayo 2 Edge for autonomous driving, BioNeMo RFD4-Proteina for protein design, and the Ising quantum model, targeting European enterprises and researchers building custom applications on self-controlled infrastructure.",
+          "event_id": "evt_5014941a538eed1c",
+          "first_seen_at": "2026-10-21T14:11:36.201098Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T10:16:02Z",
+          "published_at": "2026-10-21T10:16:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372979?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201637"
+          ],
+          "time_precision": "published",
+          "title_en": "英伟达扩充开放模型家族，覆盖语言、机器人、生物医药及量子计算",
+          "title_zh": "英伟达扩充开放模型家族，覆盖语言、机器人、生物医药及量子计算",
+          "update_id": "upd_9f6da34de7a6a814",
+          "update_type": "initial",
+          "what_changed_en": "Nvidia expanded its open model family with Nemotron 3.5 language and vision models, the Kumo business-data model, Cosmos world models for robotics, Alpamayo 2 Edge for autonomous driving, BioNeMo RFD4-Proteina for protein design, and the Ising quantum model, targeting European enterprises and researchers building custom applications on self-controlled infrastructure.",
+          "what_changed_zh": "Nvidia expanded its open model family with Nemotron 3.5 language and vision models, the Kumo business-data model, Cosmos world models for robotics, Alpamayo 2 Edge for autonomous driving, BioNeMo RFD4-Proteina for protein design, and the Ising quantum model, targeting European enterprises and researchers building custom applications on self-controlled infrastructure."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "At GTC Berlin, Nvidia CEO Jensen Huang unveiled the DSX POD AI factory reference design, a pre-integrated modular container that Nvidia says can cut time-to-token deployment from six months to as little as 14 days, with global delivery starting in early 2027.",
+      "current_state_zh": "At GTC Berlin, Nvidia CEO Jensen Huang unveiled the DSX POD AI factory reference design, a pre-integrated modular container that Nvidia says can cut time-to-token deployment from six months to as little as 14 days, with global delivery starting in early 2027.",
+      "entities": [
+        "dsx-pod",
+        "dsxpod"
+      ],
+      "event_id": "evt_3d1eff7b5b8bef87",
+      "event_type": "other",
+      "first_seen_at": "2026-10-21T14:11:36.201804Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:36.201804Z",
+      "last_updated_at": "2026-10-21T14:11:36.201804Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "英伟达推出DSXPOD ，缩短数据中心部署时间",
+      "title_zh": "英伟达推出DSXPOD ，缩短数据中心部署时间",
+      "topics": [
+        "ai-infrastructure",
+        "data-centers",
+        "dsx-pod",
+        "gtc-berlin",
+        "nvidia"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "At GTC Berlin, Nvidia CEO Jensen Huang unveiled the DSX POD AI factory reference design, a pre-integrated modular container that Nvidia says can cut time-to-token deployment from six months to as little as 14 days, with global delivery starting in early 2027.",
+          "current_state_zh": "At GTC Berlin, Nvidia CEO Jensen Huang unveiled the DSX POD AI factory reference design, a pre-integrated modular container that Nvidia says can cut time-to-token deployment from six months to as little as 14 days, with global delivery starting in early 2027.",
+          "detailed_summary_en": "At GTC Berlin, Nvidia CEO Jensen Huang unveiled the DSX POD AI factory reference design, a pre-integrated modular container that Nvidia says can cut time-to-token deployment from six months to as little as 14 days, with global delivery starting in early 2027.",
+          "detailed_summary_zh": "At GTC Berlin, Nvidia CEO Jensen Huang unveiled the DSX POD AI factory reference design, a pre-integrated modular container that Nvidia says can cut time-to-token deployment from six months to as little as 14 days, with global delivery starting in early 2027.",
+          "event_id": "evt_3d1eff7b5b8bef87",
+          "first_seen_at": "2026-10-21T14:11:36.201804Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T10:17:02Z",
+          "published_at": "2026-10-21T10:17:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372980?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201638"
+          ],
+          "time_precision": "published",
+          "title_en": "英伟达推出DSXPOD ，缩短数据中心部署时间",
+          "title_zh": "英伟达推出DSXPOD ，缩短数据中心部署时间",
+          "update_id": "upd_60898c97b2aba8c0",
+          "update_type": "initial",
+          "what_changed_en": "At GTC Berlin, Nvidia CEO Jensen Huang unveiled the DSX POD AI factory reference design, a pre-integrated modular container that Nvidia says can cut time-to-token deployment from six months to as little as 14 days, with global delivery starting in early 2027.",
+          "what_changed_zh": "At GTC Berlin, Nvidia CEO Jensen Huang unveiled the DSX POD AI factory reference design, a pre-integrated modular container that Nvidia says can cut time-to-token deployment from six months to as little as 14 days, with global delivery starting in early 2027."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "NVIDIA upgraded its Isaac general-purpose robotics development platform, adding a humanoid robot reference framework, simulation workflows and data tools intended to accelerate physical-AI and general-purpose robot development.",
+      "current_state_zh": "NVIDIA upgraded its Isaac general-purpose robotics development platform, adding a humanoid robot reference framework, simulation workflows and data tools intended to accelerate physical-AI and general-purpose robot development.",
+      "entities": [
+        "isaac"
+      ],
+      "event_id": "evt_d6b094efce6bc185",
+      "event_type": "protocol_change",
+      "first_seen_at": "2026-10-21T14:11:36.205117Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:36.205117Z",
+      "last_updated_at": "2026-10-21T14:11:36.205117Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "英伟达升级Isaac机器人平台，推出人形机器人参考框架与仿真工具",
+      "title_zh": "英伟达升级Isaac机器人平台，推出人形机器人参考框架与仿真工具",
+      "topics": [
+        "developer-platform",
+        "humanoid-robots",
+        "nvidia",
+        "robotics",
+        "simulation"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "NVIDIA upgraded its Isaac general-purpose robotics development platform, adding a humanoid robot reference framework, simulation workflows and data tools intended to accelerate physical-AI and general-purpose robot development.",
+          "current_state_zh": "NVIDIA upgraded its Isaac general-purpose robotics development platform, adding a humanoid robot reference framework, simulation workflows and data tools intended to accelerate physical-AI and general-purpose robot development.",
+          "detailed_summary_en": "NVIDIA upgraded its Isaac general-purpose robotics development platform, adding a humanoid robot reference framework, simulation workflows and data tools intended to accelerate physical-AI and general-purpose robot development.",
+          "detailed_summary_zh": "NVIDIA upgraded its Isaac general-purpose robotics development platform, adding a humanoid robot reference framework, simulation workflows and data tools intended to accelerate physical-AI and general-purpose robot development.",
+          "event_id": "evt_d6b094efce6bc185",
+          "first_seen_at": "2026-10-21T14:11:36.205117Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T10:33:02Z",
+          "published_at": "2026-10-21T10:33:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372986?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201644"
+          ],
+          "time_precision": "published",
+          "title_en": "英伟达升级Isaac机器人平台，推出人形机器人参考框架与仿真工具",
+          "title_zh": "英伟达升级Isaac机器人平台，推出人形机器人参考框架与仿真工具",
+          "update_id": "upd_45e68d8cf9b8bf5e",
+          "update_type": "initial",
+          "what_changed_en": "NVIDIA upgraded its Isaac general-purpose robotics development platform, adding a humanoid robot reference framework, simulation workflows and data tools intended to accelerate physical-AI and general-purpose robot development.",
+          "what_changed_zh": "NVIDIA upgraded its Isaac general-purpose robotics development platform, adding a humanoid robot reference framework, simulation workflows and data tools intended to accelerate physical-AI and general-purpose robot development."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Eagle released EAGLE-4 speculative decoding, claiming 3.6x faster Qwen3.8-27B generation on B300 GPUs, 34% higher concurrent throughput, and 3.2x CPU-only speedup on mobile, published under a new restrictive commercial license rather than Apache 2.0.",
+      "current_state_zh": "Eagle released EAGLE-4 speculative decoding, claiming 3.6x faster Qwen3.8-27B generation on B300 GPUs, 34% higher concurrent throughput, and 3.2x CPU-only speedup on mobile, published under a new restrictive commercial license rather than Apache 2.0.",
+      "entities": [
+        "cpu",
+        "eagle",
+        "qwen"
+      ],
+      "event_id": "evt_2a5498b35978aa79",
+      "event_type": "other",
+      "first_seen_at": "2026-10-21T14:11:36.209913Z",
+      "identifiers": [
+        "eagle-4"
+      ],
+      "last_material_change_at": "2026-10-21T14:11:36.209913Z",
+      "last_updated_at": "2026-10-21T14:11:36.209913Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "EAGLE-4让Qwen生成速度提升3.6倍，手机CPU也能提速3倍",
+      "title_zh": "EAGLE-4让Qwen生成速度提升3.6倍，手机CPU也能提速3倍",
+      "topics": [
+        "inference-optimization",
+        "llm-inference",
+        "on-device-ai",
+        "open-source-licensing",
+        "speculative-decoding"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Eagle released EAGLE-4 speculative decoding, claiming 3.6x faster Qwen3.8-27B generation on B300 GPUs, 34% higher concurrent throughput, and 3.2x CPU-only speedup on mobile, published under a new restrictive commercial license rather than Apache 2.0.",
+          "current_state_zh": "Eagle released EAGLE-4 speculative decoding, claiming 3.6x faster Qwen3.8-27B generation on B300 GPUs, 34% higher concurrent throughput, and 3.2x CPU-only speedup on mobile, published under a new restrictive commercial license rather than Apache 2.0.",
+          "detailed_summary_en": "Eagle released EAGLE-4 speculative decoding, claiming 3.6x faster Qwen3.8-27B generation on B300 GPUs, 34% higher concurrent throughput, and 3.2x CPU-only speedup on mobile, published under a new restrictive commercial license rather than Apache 2.0.",
+          "detailed_summary_zh": "Eagle released EAGLE-4 speculative decoding, claiming 3.6x faster Qwen3.8-27B generation on B300 GPUs, 34% higher concurrent throughput, and 3.2x CPU-only speedup on mobile, published under a new restrictive commercial license rather than Apache 2.0.",
+          "event_id": "evt_2a5498b35978aa79",
+          "first_seen_at": "2026-10-21T14:11:36.209913Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T11:05:02Z",
+          "published_at": "2026-10-21T11:05:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372995?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201652"
+          ],
+          "time_precision": "published",
+          "title_en": "EAGLE-4让Qwen生成速度提升3.6倍，手机CPU也能提速3倍",
+          "title_zh": "EAGLE-4让Qwen生成速度提升3.6倍，手机CPU也能提速3倍",
+          "update_id": "upd_64b601fcb12a2488",
+          "update_type": "initial",
+          "what_changed_en": "Eagle released EAGLE-4 speculative decoding, claiming 3.6x faster Qwen3.8-27B generation on B300 GPUs, 34% higher concurrent throughput, and 3.2x CPU-only speedup on mobile, published under a new restrictive commercial license rather than Apache 2.0.",
+          "what_changed_zh": "Eagle released EAGLE-4 speculative decoding, claiming 3.6x faster Qwen3.8-27B generation on B300 GPUs, 34% higher concurrent throughput, and 3.2x CPU-only speedup on mobile, published under a new restrictive commercial license rather than Apache 2.0."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "KRAFTON released the open-weights Raon-1 mini preview, a 28.8B-parameter MoE model with 4.3B active parameters, 256K context, Apache 2.0 licensing, and benchmark results near Meta's model on code repair while using attention and training techniques derived from Kimi and DeepSeek.",
+      "current_state_zh": "KRAFTON released the open-weights Raon-1 mini preview, a 28.8B-parameter MoE model with 4.3B active parameters, 256K context, Apache 2.0 licensing, and benchmark results near Meta's model on code repair while using attention and training techniques derived from Kimi and DeepSeek.",
+      "entities": [
+        "bug",
+        "deepseek",
+        "kimi",
+        "meta"
+      ],
+      "event_id": "evt_8b6cfeddba38fdd5",
+      "event_type": "product_release",
+      "first_seen_at": "2026-10-21T14:11:36.214809Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:36.214809Z",
+      "last_updated_at": "2026-10-21T14:11:36.214809Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "《绝地求生》厂商开源30B模型：修Bug接近Meta，底层用上Kimi和DeepSeek技术",
+      "title_zh": "《绝地求生》厂商开源30B模型：修Bug接近Meta，底层用上Kimi和DeepSeek技术",
+      "topics": [
+        "coding-agents",
+        "krafton",
+        "model-release",
+        "moe",
+        "open-weights"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "KRAFTON released the open-weights Raon-1 mini preview, a 28.8B-parameter MoE model with 4.3B active parameters, 256K context, Apache 2.0 licensing, and benchmark results near Meta's model on code repair while using attention and training techniques derived from Kimi and DeepSeek.",
+          "current_state_zh": "KRAFTON released the open-weights Raon-1 mini preview, a 28.8B-parameter MoE model with 4.3B active parameters, 256K context, Apache 2.0 licensing, and benchmark results near Meta's model on code repair while using attention and training techniques derived from Kimi and DeepSeek.",
+          "detailed_summary_en": "KRAFTON released the open-weights Raon-1 mini preview, a 28.8B-parameter MoE model with 4.3B active parameters, 256K context, Apache 2.0 licensing, and benchmark results near Meta's model on code repair while using attention and training techniques derived from Kimi and DeepSeek.",
+          "detailed_summary_zh": "KRAFTON released the open-weights Raon-1 mini preview, a 28.8B-parameter MoE model with 4.3B active parameters, 256K context, Apache 2.0 licensing, and benchmark results near Meta's model on code repair while using attention and training techniques derived from Kimi and DeepSeek.",
+          "event_id": "evt_8b6cfeddba38fdd5",
+          "first_seen_at": "2026-10-21T14:11:36.214809Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T11:32:02Z",
+          "published_at": "2026-10-21T11:32:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373005?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201662"
+          ],
+          "time_precision": "published",
+          "title_en": "《绝地求生》厂商开源30B模型：修Bug接近Meta，底层用上Kimi和DeepSeek技术",
+          "title_zh": "《绝地求生》厂商开源30B模型：修Bug接近Meta，底层用上Kimi和DeepSeek技术",
+          "update_id": "upd_a48930be6556d0bf",
+          "update_type": "initial",
+          "what_changed_en": "KRAFTON released the open-weights Raon-1 mini preview, a 28.8B-parameter MoE model with 4.3B active parameters, 256K context, Apache 2.0 licensing, and benchmark results near Meta's model on code repair while using attention and training techniques derived from Kimi and DeepSeek.",
+          "what_changed_zh": "KRAFTON released the open-weights Raon-1 mini preview, a 28.8B-parameter MoE model with 4.3B active parameters, 256K context, Apache 2.0 licensing, and benchmark results near Meta's model on code repair while using attention and training techniques derived from Kimi and DeepSeek."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "OpenAI and Google Cloud are bringing OpenAI frontier models and Codex workflows into Gemini's Model Garden, purchasable through Google Cloud Marketplace.",
+      "current_state_zh": "OpenAI and Google Cloud are bringing OpenAI frontier models and Codex workflows into Gemini's Model Garden, purchasable through Google Cloud Marketplace.",
+      "entities": [
+        "cloud",
+        "codex",
+        "google",
+        "google-cloud",
+        "openai"
+      ],
+      "event_id": "evt_ee1e1100fb0ff269",
+      "event_type": "other",
+      "first_seen_at": "2026-10-21T14:11:36.217898Z",
+      "identifiers": [
+        "gpt-6"
+      ],
+      "last_material_change_at": "2026-10-21T14:11:50.204275Z",
+      "last_updated_at": "2026-10-21T14:11:50.204275Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [
+        "evt_6d616bceea14eb20"
+      ],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "OpenAI and Google Cloud reach distribution deal for frontier models and Codex",
+      "title_zh": "OpenAI与谷歌达成分销协议，前沿模型及Codex登陆谷歌云",
+      "topics": [
+        "ai-distribution",
+        "codex",
+        "enterprise-ai",
+        "google-cloud",
+        "gpt-6-astra",
+        "model-distribution",
+        "openai"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "OpenAI struck an AI distribution deal with Google to offer frontier models including GPT-6 Astra and Codex through Google Cloud Marketplace, with enterprise purchases counting toward existing cloud spending commitments, extending its multi-cloud push after the Microsoft exclusivity arrangement ended and its AWS expansion.",
+          "current_state_zh": "OpenAI struck an AI distribution deal with Google to offer frontier models including GPT-6 Astra and Codex through Google Cloud Marketplace, with enterprise purchases counting toward existing cloud spending commitments, extending its multi-cloud push after the Microsoft exclusivity arrangement ended and its AWS expansion.",
+          "detailed_summary_en": "OpenAI struck an AI distribution deal with Google to offer frontier models including GPT-6 Astra and Codex through Google Cloud Marketplace, with enterprise purchases counting toward existing cloud spending commitments, extending its multi-cloud push after the Microsoft exclusivity arrangement ended and its AWS expansion.",
+          "detailed_summary_zh": "OpenAI struck an AI distribution deal with Google to offer frontier models including GPT-6 Astra and Codex through Google Cloud Marketplace, with enterprise purchases counting toward existing cloud spending commitments, extending its multi-cloud push after the Microsoft exclusivity arrangement ended and its AWS expansion.",
+          "event_id": "evt_ee1e1100fb0ff269",
+          "first_seen_at": "2026-10-21T14:11:36.217898Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T12:13:02Z",
+          "published_at": "2026-10-21T12:13:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373012?from=telegram"
+            },
+            {
+              "label": "OpenAI Blog",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://openai.com/index/openai-models-google-cloud"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201669",
+            "rss:openai.com_blog_rss.xml:95dedf578de78f3e"
+          ],
+          "time_precision": "published",
+          "title_en": "OpenAI与谷歌达成AI分销协议，前沿模型及Codex将登陆谷歌云",
+          "title_zh": "OpenAI与谷歌达成AI分销协议，前沿模型及Codex将登陆谷歌云",
+          "update_id": "upd_b4c731f6e5b6175d",
+          "update_type": "initial",
+          "what_changed_en": "OpenAI struck an AI distribution deal with Google to offer frontier models including GPT-6 Astra and Codex through Google Cloud Marketplace, with enterprise purchases counting toward existing cloud spending commitments, extending its multi-cloud push after the Microsoft exclusivity arrangement ended and its AWS expansion.",
+          "what_changed_zh": "OpenAI struck an AI distribution deal with Google to offer frontier models including GPT-6 Astra and Codex through Google Cloud Marketplace, with enterprise purchases counting toward existing cloud spending commitments, extending its multi-cloud push after the Microsoft exclusivity arrangement ended and its AWS expansion."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Grayscale launched in-kind ETF creation, allowing eligible digital assets to be contributed directly for shares across 10 products including Bitcoin, Ethereum, Hyperliquid, Solana, XRP and Zcash ETFs/trusts.",
+      "current_state_zh": "Grayscale launched in-kind ETF creation, allowing eligible digital assets to be contributed directly for shares across 10 products including Bitcoin, Ethereum, Hyperliquid, Solana, XRP and Zcash ETFs/trusts.",
+      "entities": [
+        "etf",
+        "hyperliquid"
+      ],
+      "event_id": "evt_acb265faee5ef115",
+      "event_type": "market_structure",
+      "first_seen_at": "2026-10-21T14:11:36.221918Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:36.221918Z",
+      "last_updated_at": "2026-10-21T14:11:36.221918Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "灰度推出ETF实物申购服务，覆盖比特币、以太坊及Hyperliquid等10款产品",
+      "title_zh": "灰度推出ETF实物申购服务，覆盖比特币、以太坊及Hyperliquid等10款产品",
+      "topics": [
+        "crypto-etfs",
+        "grayscale",
+        "in-kind-creation"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Grayscale launched in-kind ETF creation, allowing eligible digital assets to be contributed directly for shares across 10 products including Bitcoin, Ethereum, Hyperliquid, Solana, XRP and Zcash ETFs/trusts.",
+          "current_state_zh": "Grayscale launched in-kind ETF creation, allowing eligible digital assets to be contributed directly for shares across 10 products including Bitcoin, Ethereum, Hyperliquid, Solana, XRP and Zcash ETFs/trusts.",
+          "detailed_summary_en": "Grayscale launched in-kind ETF creation, allowing eligible digital assets to be contributed directly for shares across 10 products including Bitcoin, Ethereum, Hyperliquid, Solana, XRP and Zcash ETFs/trusts.",
+          "detailed_summary_zh": "Grayscale launched in-kind ETF creation, allowing eligible digital assets to be contributed directly for shares across 10 products including Bitcoin, Ethereum, Hyperliquid, Solana, XRP and Zcash ETFs/trusts.",
+          "event_id": "evt_acb265faee5ef115",
+          "first_seen_at": "2026-10-21T14:11:36.221918Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T13:23:02Z",
+          "published_at": "2026-10-21T13:23:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373021?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201677"
+          ],
+          "time_precision": "published",
+          "title_en": "灰度推出ETF实物申购服务，覆盖比特币、以太坊及Hyperliquid等10款产品",
+          "title_zh": "灰度推出ETF实物申购服务，覆盖比特币、以太坊及Hyperliquid等10款产品",
+          "update_id": "upd_411ff1b223ef4fc2",
+          "update_type": "initial",
+          "what_changed_en": "Grayscale launched in-kind ETF creation, allowing eligible digital assets to be contributed directly for shares across 10 products including Bitcoin, Ethereum, Hyperliquid, Solana, XRP and Zcash ETFs/trusts.",
+          "what_changed_zh": "Grayscale launched in-kind ETF creation, allowing eligible digital assets to be contributed directly for shares across 10 products including Bitcoin, Ethereum, Hyperliquid, Solana, XRP and Zcash ETFs/trusts."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Arda, the manufacturing-engineering AI agent startup founded by former OpenAI chief research officer Bob McGrew, launched with a $160M Series A at a $1.5B valuation, bringing total funding to $232M, and is already deployed at Anduril's ArsenalOS manufacturing system where it cuts basic work-instruction writing from 10 hours to 15 minutes.",
+      "current_state_zh": "Arda, the manufacturing-engineering AI agent startup founded by former OpenAI chief research officer Bob McGrew, launched with a $160M Series A at a $1.5B valuation, bringing total funding to $232M, and is already deployed at Anduril's ArsenalOS manufacturing system where it cuts basic work-instruction writing from 10 hours to 15 minutes.",
+      "entities": [
+        "agent",
+        "openai"
+      ],
+      "event_id": "evt_bb537717a09f1f65",
+      "event_type": "other",
+      "first_seen_at": "2026-10-21T14:11:36.225317Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:36.225317Z",
+      "last_updated_at": "2026-10-21T14:11:36.225317Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "OpenAI前研究主管转战工厂Agent：融资2.32亿美元，10小时工作压至15分钟",
+      "title_zh": "OpenAI前研究主管转战工厂Agent：融资2.32亿美元，10小时工作压至15分钟",
+      "topics": [
+        "funding",
+        "industrial-automation",
+        "manufacturing",
+        "openai-alumni"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Arda, the manufacturing-engineering AI agent startup founded by former OpenAI chief research officer Bob McGrew, launched with a $160M Series A at a $1.5B valuation, bringing total funding to $232M, and is already deployed at Anduril's ArsenalOS manufacturing system where it cuts basic work-instruction writing from 10 hours to 15 minutes.",
+          "current_state_zh": "Arda, the manufacturing-engineering AI agent startup founded by former OpenAI chief research officer Bob McGrew, launched with a $160M Series A at a $1.5B valuation, bringing total funding to $232M, and is already deployed at Anduril's ArsenalOS manufacturing system where it cuts basic work-instruction writing from 10 hours to 15 minutes.",
+          "detailed_summary_en": "Arda, the manufacturing-engineering AI agent startup founded by former OpenAI chief research officer Bob McGrew, launched with a $160M Series A at a $1.5B valuation, bringing total funding to $232M, and is already deployed at Anduril's ArsenalOS manufacturing system where it cuts basic work-instruction writing from 10 hours to 15 minutes.",
+          "detailed_summary_zh": "Arda, the manufacturing-engineering AI agent startup founded by former OpenAI chief research officer Bob McGrew, launched with a $160M Series A at a $1.5B valuation, bringing total funding to $232M, and is already deployed at Anduril's ArsenalOS manufacturing system where it cuts basic work-instruction writing from 10 hours to 15 minutes.",
+          "event_id": "evt_bb537717a09f1f65",
+          "first_seen_at": "2026-10-21T14:11:36.225317Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T14:02:02Z",
+          "published_at": "2026-10-21T14:02:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373028?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201684"
+          ],
+          "time_precision": "published",
+          "title_en": "OpenAI前研究主管转战工厂Agent：融资2.32亿美元，10小时工作压至15分钟",
+          "title_zh": "OpenAI前研究主管转战工厂Agent：融资2.32亿美元，10小时工作压至15分钟",
+          "update_id": "upd_b054490340a8fd2f",
+          "update_type": "initial",
+          "what_changed_en": "Arda, the manufacturing-engineering AI agent startup founded by former OpenAI chief research officer Bob McGrew, launched with a $160M Series A at a $1.5B valuation, bringing total funding to $232M, and is already deployed at Anduril's ArsenalOS manufacturing system where it cuts basic work-instruction writing from 10 hours to 15 minutes.",
+          "what_changed_zh": "Arda, the manufacturing-engineering AI agent startup founded by former OpenAI chief research officer Bob McGrew, launched with a $160M Series A at a $1.5B valuation, bringing total funding to $232M, and is already deployed at Anduril's ArsenalOS manufacturing system where it cuts basic work-instruction writing from 10 hours to 15 minutes."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "ElevenLabs launched Eleven Realtime (Mini and Max), a packaged real-time speech model for voice agents supporting 90+ languages and 17,000+ voices, with an OpenAI WebSocket-compatible Realtime API and benchmark accuracy of 98.8% at 0.57s response latency.",
+      "current_state_zh": "ElevenLabs launched Eleven Realtime (Mini and Max), a packaged real-time speech model for voice agents supporting 90+ languages and 17,000+ voices, with an OpenAI WebSocket-compatible Realtime API and benchmark accuracy of 98.8% at 0.57s response latency.",
+      "entities": [
+        "agent",
+        "elevenlabs",
+        "openai"
+      ],
+      "event_id": "evt_8ddfe0de983c35eb",
+      "event_type": "other",
+      "first_seen_at": "2026-10-21T14:11:36.226142Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:36.226142Z",
+      "last_updated_at": "2026-10-21T14:11:36.226142Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "ElevenLabs打包语音Agent：支持90多种语言，兼容OpenAI接口",
+      "title_zh": "ElevenLabs打包语音Agent：支持90多种语言，兼容OpenAI接口",
+      "topics": [
+        "ai-devtools",
+        "elevenlabs",
+        "realtime-api",
+        "speech-models",
+        "voice-agents"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "ElevenLabs launched Eleven Realtime (Mini and Max), a packaged real-time speech model for voice agents supporting 90+ languages and 17,000+ voices, with an OpenAI WebSocket-compatible Realtime API and benchmark accuracy of 98.8% at 0.57s response latency.",
+          "current_state_zh": "ElevenLabs launched Eleven Realtime (Mini and Max), a packaged real-time speech model for voice agents supporting 90+ languages and 17,000+ voices, with an OpenAI WebSocket-compatible Realtime API and benchmark accuracy of 98.8% at 0.57s response latency.",
+          "detailed_summary_en": "ElevenLabs launched Eleven Realtime (Mini and Max), a packaged real-time speech model for voice agents supporting 90+ languages and 17,000+ voices, with an OpenAI WebSocket-compatible Realtime API and benchmark accuracy of 98.8% at 0.57s response latency.",
+          "detailed_summary_zh": "ElevenLabs launched Eleven Realtime (Mini and Max), a packaged real-time speech model for voice agents supporting 90+ languages and 17,000+ voices, with an OpenAI WebSocket-compatible Realtime API and benchmark accuracy of 98.8% at 0.57s response latency.",
+          "event_id": "evt_8ddfe0de983c35eb",
+          "first_seen_at": "2026-10-21T14:11:36.226142Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T14:09:02Z",
+          "published_at": "2026-10-21T14:09:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373030?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201686"
+          ],
+          "time_precision": "published",
+          "title_en": "ElevenLabs打包语音Agent：支持90多种语言，兼容OpenAI接口",
+          "title_zh": "ElevenLabs打包语音Agent：支持90多种语言，兼容OpenAI接口",
+          "update_id": "upd_4cc8df29718edc33",
+          "update_type": "initial",
+          "what_changed_en": "ElevenLabs launched Eleven Realtime (Mini and Max), a packaged real-time speech model for voice agents supporting 90+ languages and 17,000+ voices, with an OpenAI WebSocket-compatible Realtime API and benchmark accuracy of 98.8% at 0.57s response latency.",
+          "what_changed_zh": "ElevenLabs launched Eleven Realtime (Mini and Max), a packaged real-time speech model for voice agents supporting 90+ languages and 17,000+ voices, with an OpenAI WebSocket-compatible Realtime API and benchmark accuracy of 98.8% at 0.57s response latency."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Anthropic and AMD have structured a multi-billion-dollar deal in which Anthropic commits to over $20 billion in AMD AI compute services while AMD pledges up to $5 billion to purchase Anthropic stock, raising concerns about circular financing tied to Anthropic’s IPO prospectus.",
+      "current_state_zh": "Anthropic and AMD have structured a multi-billion-dollar deal in which Anthropic commits to over $20 billion in AMD AI compute services while AMD pledges up to $5 billion to purchase Anthropic stock, raising concerns about circular financing tied to Anthropic’s IPO prospectus.",
+      "entities": [
+        "amd",
+        "anthropic",
+        "inside"
+      ],
+      "event_id": "evt_985e2c1757224243",
+      "event_type": "other",
+      "first_seen_at": "2026-10-21T14:11:47.661206Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:47.661206Z",
+      "last_updated_at": "2026-10-21T14:11:47.661206Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Inside AMD and Anthropic’s ‘chips for shares’ deal",
+      "title_zh": "Inside AMD and Anthropic’s ‘chips for shares’ deal",
+      "topics": [
+        "ai-compute",
+        "amd",
+        "anthropic",
+        "circular-financing",
+        "ipo"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Anthropic and AMD have structured a multi-billion-dollar deal in which Anthropic commits to over $20 billion in AMD AI compute services while AMD pledges up to $5 billion to purchase Anthropic stock, raising concerns about circular financing tied to Anthropic’s IPO prospectus.",
+          "current_state_zh": "Anthropic and AMD have structured a multi-billion-dollar deal in which Anthropic commits to over $20 billion in AMD AI compute services while AMD pledges up to $5 billion to purchase Anthropic stock, raising concerns about circular financing tied to Anthropic’s IPO prospectus.",
+          "detailed_summary_en": "Anthropic and AMD have structured a multi-billion-dollar deal in which Anthropic commits to over $20 billion in AMD AI compute services while AMD pledges up to $5 billion to purchase Anthropic stock, raising concerns about circular financing tied to Anthropic’s IPO prospectus.",
+          "detailed_summary_zh": "Anthropic and AMD have structured a multi-billion-dollar deal in which Anthropic commits to over $20 billion in AMD AI compute services while AMD pledges up to $5 billion to purchase Anthropic stock, raising concerns about circular financing tied to Anthropic’s IPO prospectus.",
+          "event_id": "evt_985e2c1757224243",
+          "first_seen_at": "2026-10-21T14:11:47.661206Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T10:52:06Z",
+          "published_at": "2026-10-21T10:52:06Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Protos",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://protos.com/inside-amd-and-anthropics-chips-for-shares-deal/"
+            }
+          ],
+          "story_ids": [
+            "rss:protos.com_feed_:aef6a4b688677cfc"
+          ],
+          "time_precision": "published",
+          "title_en": "Inside AMD and Anthropic’s ‘chips for shares’ deal",
+          "title_zh": "Inside AMD and Anthropic’s ‘chips for shares’ deal",
+          "update_id": "upd_e6876c9c8efbe6cc",
+          "update_type": "initial",
+          "what_changed_en": "Anthropic and AMD have structured a multi-billion-dollar deal in which Anthropic commits to over $20 billion in AMD AI compute services while AMD pledges up to $5 billion to purchase Anthropic stock, raising concerns about circular financing tied to Anthropic’s IPO prospectus.",
+          "what_changed_zh": "Anthropic and AMD have structured a multi-billion-dollar deal in which Anthropic commits to over $20 billion in AMD AI compute services while AMD pledges up to $5 billion to purchase Anthropic stock, raising concerns about circular financing tied to Anthropic’s IPO prospectus."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "OpenAI, PerturbAI, and Scripps Research coordinated thousands of distributed AI agents to analyze data from millions of brain cells and identify promising new research leads in complex biological datasets.",
+      "current_state_zh": "OpenAI, PerturbAI, and Scripps Research coordinated thousands of distributed AI agents to analyze data from millions of brain cells and identify promising new research leads in complex biological datasets.",
+      "entities": [
+        "using"
+      ],
+      "event_id": "evt_1c14ff33bcbd7f81",
+      "event_type": "other",
+      "first_seen_at": "2026-10-21T14:11:50.204481Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:50.204481Z",
+      "last_updated_at": "2026-10-21T14:11:50.204481Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Using thousands of AI agents to uncover new leads in biological data",
+      "title_zh": "Using thousands of AI agents to uncover new leads in biological data",
+      "topics": [
+        "ai-for-science",
+        "biotech-research",
+        "distributed-computing",
+        "openai"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "OpenAI, PerturbAI, and Scripps Research coordinated thousands of distributed AI agents to analyze data from millions of brain cells and identify promising new research leads in complex biological datasets.",
+          "current_state_zh": "OpenAI, PerturbAI, and Scripps Research coordinated thousands of distributed AI agents to analyze data from millions of brain cells and identify promising new research leads in complex biological datasets.",
+          "detailed_summary_en": "OpenAI, PerturbAI, and Scripps Research coordinated thousands of distributed AI agents to analyze data from millions of brain cells and identify promising new research leads in complex biological datasets.",
+          "detailed_summary_zh": "OpenAI, PerturbAI, and Scripps Research coordinated thousands of distributed AI agents to analyze data from millions of brain cells and identify promising new research leads in complex biological datasets.",
+          "event_id": "evt_1c14ff33bcbd7f81",
+          "first_seen_at": "2026-10-21T14:11:50.204481Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T04:50:00Z",
+          "published_at": "2026-10-21T04:50:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "OpenAI Blog",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://openai.com/index/scaling-ai-research-for-complex-biological-data"
+            }
+          ],
+          "story_ids": [
+            "rss:openai.com_blog_rss.xml:64ddfb139fec8a1c"
+          ],
+          "time_precision": "published",
+          "title_en": "Using thousands of AI agents to uncover new leads in biological data",
+          "title_zh": "Using thousands of AI agents to uncover new leads in biological data",
+          "update_id": "upd_41036efd042aeebf",
+          "update_type": "initial",
+          "what_changed_en": "OpenAI, PerturbAI, and Scripps Research coordinated thousands of distributed AI agents to analyze data from millions of brain cells and identify promising new research leads in complex biological datasets.",
+          "what_changed_zh": "OpenAI, PerturbAI, and Scripps Research coordinated thousands of distributed AI agents to analyze data from millions of brain cells and identify promising new research leads in complex biological datasets."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "OpenAI detailed how it built ChatGPT's LLM-powered advertising stack, using conversational intent modeling to target ads while keeping them architecturally separate from model answers.",
+      "current_state_zh": "OpenAI detailed how it built ChatGPT's LLM-powered advertising stack, using conversational intent modeling to target ads while keeping them architecturally separate from model answers.",
+      "entities": [
+        "chatgpt",
+        "how"
+      ],
+      "event_id": "evt_49a0301ceca4c6f8",
+      "event_type": "other",
+      "first_seen_at": "2026-10-21T14:11:50.204574Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:50.204574Z",
+      "last_updated_at": "2026-10-21T14:11:50.204574Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "How we built ChatGPT’s novel ad stack for user trust and relevance",
+      "title_zh": "How we built ChatGPT’s novel ad stack for user trust and relevance",
+      "topics": [
+        "advertising",
+        "chatgpt",
+        "llm",
+        "openai",
+        "product-infrastructure"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "OpenAI detailed how it built ChatGPT's LLM-powered advertising stack, using conversational intent modeling to target ads while keeping them architecturally separate from model answers.",
+          "current_state_zh": "OpenAI detailed how it built ChatGPT's LLM-powered advertising stack, using conversational intent modeling to target ads while keeping them architecturally separate from model answers.",
+          "detailed_summary_en": "OpenAI detailed how it built ChatGPT's LLM-powered advertising stack, using conversational intent modeling to target ads while keeping them architecturally separate from model answers.",
+          "detailed_summary_zh": "OpenAI detailed how it built ChatGPT's LLM-powered advertising stack, using conversational intent modeling to target ads while keeping them architecturally separate from model answers.",
+          "event_id": "evt_49a0301ceca4c6f8",
+          "first_seen_at": "2026-10-21T14:11:50.204574Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T07:00:00Z",
+          "published_at": "2026-10-21T07:00:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "OpenAI Blog",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://openai.com/index/building-chatgpt-ad-stack"
+            }
+          ],
+          "story_ids": [
+            "rss:openai.com_blog_rss.xml:ea92da5c121ecb45"
+          ],
+          "time_precision": "published",
+          "title_en": "How we built ChatGPT’s novel ad stack for user trust and relevance",
+          "title_zh": "How we built ChatGPT’s novel ad stack for user trust and relevance",
+          "update_id": "upd_ea5d7c080cad7522",
+          "update_type": "initial",
+          "what_changed_en": "OpenAI detailed how it built ChatGPT's LLM-powered advertising stack, using conversational intent modeling to target ads while keeping them architecturally separate from model answers.",
+          "what_changed_zh": "OpenAI detailed how it built ChatGPT's LLM-powered advertising stack, using conversational intent modeling to target ads while keeping them architecturally separate from model answers."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "JPMorgan Asset Management's newly released 2027 Long-Term Capital Market Assumptions ranks Bitcoin first among thirteen asset classes with a projected 10% annualized return over 10-15 years, ahead of REITs, small caps, U.S. large caps and gold.",
+      "current_state_zh": "JPMorgan Asset Management's newly released 2027 Long-Term Capital Market Assumptions ranks Bitcoin first among thirteen asset classes with a projected 10% annualized return over 10-15 years, ahead of REITs, small caps, U.S. large caps and gold.",
+      "entities": [
+        "all",
+        "assets",
+        "forecast",
+        "jpmorgan",
+        "minute",
+        "morning",
+        "ten",
+        "tops",
+        "year"
+      ],
+      "event_id": "evt_b3e0e06dc47c5861",
+      "event_type": "market_structure",
+      "first_seen_at": "2026-10-21T14:11:55.380403Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:55.380403Z",
+      "last_updated_at": "2026-10-21T14:11:55.380403Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Morning Minute: Bitcoin Tops JPMorgan’s Ten-Year Forecast for All Assets",
+      "title_zh": "Morning Minute: Bitcoin Tops JPMorgan’s Ten-Year Forecast for All Assets",
+      "topics": [
+        "asset-allocation",
+        "jpmorgan",
+        "market-forecast"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "JPMorgan Asset Management's newly released 2027 Long-Term Capital Market Assumptions ranks Bitcoin first among thirteen asset classes with a projected 10% annualized return over 10-15 years, ahead of REITs, small caps, U.S. large caps and gold.",
+          "current_state_zh": "JPMorgan Asset Management's newly released 2027 Long-Term Capital Market Assumptions ranks Bitcoin first among thirteen asset classes with a projected 10% annualized return over 10-15 years, ahead of REITs, small caps, U.S. large caps and gold.",
+          "detailed_summary_en": "JPMorgan Asset Management's newly released 2027 Long-Term Capital Market Assumptions ranks Bitcoin first among thirteen asset classes with a projected 10% annualized return over 10-15 years, ahead of REITs, small caps, U.S. large caps and gold.",
+          "detailed_summary_zh": "JPMorgan Asset Management's newly released 2027 Long-Term Capital Market Assumptions ranks Bitcoin first among thirteen asset classes with a projected 10% annualized return over 10-15 years, ahead of REITs, small caps, U.S. large caps and gold.",
+          "event_id": "evt_b3e0e06dc47c5861",
+          "first_seen_at": "2026-10-21T14:11:55.380403Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T12:16:38Z",
+          "published_at": "2026-10-21T12:16:38Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/381510/morning-minute-bitcoin-tops-jpmorgans-ten-year-forecast-for-all-assets"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:901289736d8d4348"
+          ],
+          "time_precision": "published",
+          "title_en": "Morning Minute: Bitcoin Tops JPMorgan’s Ten-Year Forecast for All Assets",
+          "title_zh": "Morning Minute: Bitcoin Tops JPMorgan’s Ten-Year Forecast for All Assets",
+          "update_id": "upd_96faea9c3d526db9",
+          "update_type": "initial",
+          "what_changed_en": "JPMorgan Asset Management's newly released 2027 Long-Term Capital Market Assumptions ranks Bitcoin first among thirteen asset classes with a projected 10% annualized return over 10-15 years, ahead of REITs, small caps, U.S. large caps and gold.",
+          "what_changed_zh": "JPMorgan Asset Management's newly released 2027 Long-Term Capital Market Assumptions ranks Bitcoin first among thirteen asset classes with a projected 10% annualized return over 10-15 years, ahead of REITs, small caps, U.S. large caps and gold."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Standard Chartered signed definitive agreements to acquire Zodia Custody's regulated operating entities across the UK, Singapore, Hong Kong, Australia, Luxembourg and the UAE, folding the crypto custodian into its Securities Services business pending regulatory approval.",
+      "current_state_zh": "Standard Chartered signed definitive agreements to acquire Zodia Custody's regulated operating entities across the UK, Singapore, Hong Kong, Australia, Luxembourg and the UAE, folding the crypto custodian into its Securities Services business pending regulatory approval.",
+      "entities": [
+        "chartered",
+        "custody",
+        "standard",
+        "standard-chartered",
+        "zodia"
+      ],
+      "event_id": "evt_512138b79ed24289",
+      "event_type": "other",
+      "first_seen_at": "2026-10-21T14:11:59.966313Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:11:59.966313Z",
+      "last_updated_at": "2026-10-21T14:11:59.966313Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Standard Chartered signs definitive deal to acquire Zodia Custody",
+      "title_zh": "Standard Chartered signs definitive deal to acquire Zodia Custody",
+      "topics": [
+        "custody",
+        "ma",
+        "standard-chartered"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Standard Chartered signed definitive agreements to acquire Zodia Custody's regulated operating entities across the UK, Singapore, Hong Kong, Australia, Luxembourg and the UAE, folding the crypto custodian into its Securities Services business pending regulatory approval.",
+          "current_state_zh": "Standard Chartered signed definitive agreements to acquire Zodia Custody's regulated operating entities across the UK, Singapore, Hong Kong, Australia, Luxembourg and the UAE, folding the crypto custodian into its Securities Services business pending regulatory approval.",
+          "detailed_summary_en": "Standard Chartered signed definitive agreements to acquire Zodia Custody's regulated operating entities across the UK, Singapore, Hong Kong, Australia, Luxembourg and the UAE, folding the crypto custodian into its Securities Services business pending regulatory approval.",
+          "detailed_summary_zh": "Standard Chartered signed definitive agreements to acquire Zodia Custody's regulated operating entities across the UK, Singapore, Hong Kong, Australia, Luxembourg and the UAE, folding the crypto custodian into its Securities Services business pending regulatory approval.",
+          "event_id": "evt_512138b79ed24289",
+          "first_seen_at": "2026-10-21T14:11:59.966313Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T12:06:23Z",
+          "published_at": "2026-10-21T12:06:23Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/standard-chartered-acquire-zodia-custody-uk?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:e5663c3217792644"
+          ],
+          "time_precision": "published",
+          "title_en": "Standard Chartered signs definitive deal to acquire Zodia Custody",
+          "title_zh": "Standard Chartered signs definitive deal to acquire Zodia Custody",
+          "update_id": "upd_252a6b3c57dbfb88",
+          "update_type": "initial",
+          "what_changed_en": "Standard Chartered signed definitive agreements to acquire Zodia Custody's regulated operating entities across the UK, Singapore, Hong Kong, Australia, Luxembourg and the UAE, folding the crypto custodian into its Securities Services business pending regulatory approval.",
+          "what_changed_zh": "Standard Chartered signed definitive agreements to acquire Zodia Custody's regulated operating entities across the UK, Singapore, Hong Kong, Australia, Luxembourg and the UAE, folding the crypto custodian into its Securities Services business pending regulatory approval."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "French authorities proposed revising EU MiCA rules so crypto exchanges that facilitate access to DeFi protocols must vet them and could be held liable for certain customer losses.",
+      "current_state_zh": "French authorities proposed revising EU MiCA rules so crypto exchanges that facilitate access to DeFi protocols must vet them and could be held liable for certain customer losses.",
+      "entities": [
+        "crypto-exchanges",
+        "france"
+      ],
+      "event_id": "evt_dab867ab19cc680a",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-21T14:12:00.778156Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:12:00.778156Z",
+      "last_updated_at": "2026-10-21T14:12:00.778156Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "France proposes liability for crypto exchanges offering DeFi access",
+      "title_zh": "France proposes liability for crypto exchanges offering DeFi access",
+      "topics": [
+        "crypto-exchanges",
+        "france",
+        "mica"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "French authorities proposed revising EU MiCA rules so crypto exchanges that facilitate access to DeFi protocols must vet them and could be held liable for certain customer losses.",
+          "current_state_zh": "French authorities proposed revising EU MiCA rules so crypto exchanges that facilitate access to DeFi protocols must vet them and could be held liable for certain customer losses.",
+          "detailed_summary_en": "French authorities proposed revising EU MiCA rules so crypto exchanges that facilitate access to DeFi protocols must vet them and could be held liable for certain customer losses.",
+          "detailed_summary_zh": "French authorities proposed revising EU MiCA rules so crypto exchanges that facilitate access to DeFi protocols must vet them and could be held liable for certain customer losses.",
+          "event_id": "evt_dab867ab19cc680a",
+          "first_seen_at": "2026-10-21T14:12:00.778156Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T10:46:00Z",
+          "published_at": "2026-10-21T10:46:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/france-liability-crypto-exchange-defi-access?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:047cfaa2bce1ecb0"
+          ],
+          "time_precision": "published",
+          "title_en": "France proposes liability for crypto exchanges offering DeFi access",
+          "title_zh": "France proposes liability for crypto exchanges offering DeFi access",
+          "update_id": "upd_4b2a7207b428e778",
+          "update_type": "initial",
+          "what_changed_en": "French authorities proposed revising EU MiCA rules so crypto exchanges that facilitate access to DeFi protocols must vet them and could be held liable for certain customer losses.",
+          "what_changed_zh": "French authorities proposed revising EU MiCA rules so crypto exchanges that facilitate access to DeFi protocols must vet them and could be held liable for certain customer losses."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Shinhan Card signed an agreement with SBI VC Trade and SBI XDC Network APAC to pilot yen stablecoin card payments, wallet-to-wallet transfers and Korea-Japan cross-border trade settlement, alongside AML and fraud-detection safeguards.",
+      "current_state_zh": "Shinhan Card signed an agreement with SBI VC Trade and SBI XDC Network APAC to pilot yen stablecoin card payments, wallet-to-wallet transfers and Korea-Japan cross-border trade settlement, alongside AML and fraud-detection safeguards.",
+      "entities": [
+        "japan",
+        "korea",
+        "sbi",
+        "shinhan",
+        "stablecoins",
+        "yen-stablecoin"
+      ],
+      "event_id": "evt_ed6746d25a1dfdc1",
+      "event_type": "other",
+      "first_seen_at": "2026-10-21T14:12:02.284071Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:12:02.284071Z",
+      "last_updated_at": "2026-10-21T14:12:02.284071Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Shinhan, SBI make Japan-Korea tourist spending a test case for yen stablecoins",
+      "title_zh": "Shinhan, SBI make Japan-Korea tourist spending a test case for yen stablecoins",
+      "topics": [
+        "cross-border-payments",
+        "japan",
+        "south-korea",
+        "stablecoins",
+        "yen-stablecoin"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Shinhan Card signed an agreement with SBI VC Trade and SBI XDC Network APAC to pilot yen stablecoin card payments, wallet-to-wallet transfers and Korea-Japan cross-border trade settlement, alongside AML and fraud-detection safeguards.",
+          "current_state_zh": "Shinhan Card signed an agreement with SBI VC Trade and SBI XDC Network APAC to pilot yen stablecoin card payments, wallet-to-wallet transfers and Korea-Japan cross-border trade settlement, alongside AML and fraud-detection safeguards.",
+          "detailed_summary_en": "Shinhan Card signed an agreement with SBI VC Trade and SBI XDC Network APAC to pilot yen stablecoin card payments, wallet-to-wallet transfers and Korea-Japan cross-border trade settlement, alongside AML and fraud-detection safeguards.",
+          "detailed_summary_zh": "Shinhan Card signed an agreement with SBI VC Trade and SBI XDC Network APAC to pilot yen stablecoin card payments, wallet-to-wallet transfers and Korea-Japan cross-border trade settlement, alongside AML and fraud-detection safeguards.",
+          "event_id": "evt_ed6746d25a1dfdc1",
+          "first_seen_at": "2026-10-21T14:12:02.284071Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T10:22:44Z",
+          "published_at": "2026-10-21T10:22:44Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/shinhan-sbi-japan-korea-travel-yen-stablecoin?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:22080e4c6d886cf9"
+          ],
+          "time_precision": "published",
+          "title_en": "Shinhan, SBI make Japan-Korea tourist spending a test case for yen stablecoins",
+          "title_zh": "Shinhan, SBI make Japan-Korea tourist spending a test case for yen stablecoins",
+          "update_id": "upd_aa07571c5f184fd9",
+          "update_type": "initial",
+          "what_changed_en": "Shinhan Card signed an agreement with SBI VC Trade and SBI XDC Network APAC to pilot yen stablecoin card payments, wallet-to-wallet transfers and Korea-Japan cross-border trade settlement, alongside AML and fraud-detection safeguards.",
+          "what_changed_zh": "Shinhan Card signed an agreement with SBI VC Trade and SBI XDC Network APAC to pilot yen stablecoin card payments, wallet-to-wallet transfers and Korea-Japan cross-border trade settlement, alongside AML and fraud-detection safeguards."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Zcash developers set the NU7 mainnet activation height at block 3,543,405, targeted for around Nov. 5, as ZEC rallied about 12%.",
+      "current_state_zh": "Zcash developers set the NU7 mainnet activation height at block 3,543,405, targeted for around Nov. 5, as ZEC rallied about 12%.",
+      "entities": [
+        "nu7",
+        "zcash"
+      ],
+      "event_id": "evt_627b3e8c51eed22d",
+      "event_type": "protocol_change",
+      "first_seen_at": "2026-10-21T14:12:02.391076Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:12:02.391076Z",
+      "last_updated_at": "2026-10-21T14:12:02.391076Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Zcash rallies 12% as developers finalize NU7 activation height",
+      "title_zh": "Zcash rallies 12% as developers finalize NU7 activation height",
+      "topics": [
+        "nu7",
+        "privacy-coins",
+        "protocol-upgrade",
+        "zcash",
+        "zec"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Zcash developers set the NU7 mainnet activation height at block 3,543,405, targeted for around Nov. 5, as ZEC rallied about 12%.",
+          "current_state_zh": "Zcash developers set the NU7 mainnet activation height at block 3,543,405, targeted for around Nov. 5, as ZEC rallied about 12%.",
+          "detailed_summary_en": "Zcash developers set the NU7 mainnet activation height at block 3,543,405, targeted for around Nov. 5, as ZEC rallied about 12%.",
+          "detailed_summary_zh": "Zcash developers set the NU7 mainnet activation height at block 3,543,405, targeted for around Nov. 5, as ZEC rallied about 12%.",
+          "event_id": "evt_627b3e8c51eed22d",
+          "first_seen_at": "2026-10-21T14:12:02.391076Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T10:15:00Z",
+          "published_at": "2026-10-21T10:15:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/markets/zcash-zec-rallies-12-percent-nu7-mainnet-upgrade?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:b5b942da01ee57a2"
+          ],
+          "time_precision": "published",
+          "title_en": "Zcash rallies 12% as developers finalize NU7 activation height",
+          "title_zh": "Zcash rallies 12% as developers finalize NU7 activation height",
+          "update_id": "upd_3e1d2f412cdaa976",
+          "update_type": "initial",
+          "what_changed_en": "Zcash developers set the NU7 mainnet activation height at block 3,543,405, targeted for around Nov. 5, as ZEC rallied about 12%.",
+          "what_changed_zh": "Zcash developers set the NU7 mainnet activation height at block 3,543,405, targeted for around Nov. 5, as ZEC rallied about 12%."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Wallets linked to the $295 million Drift exploit moved another $46 million in Ether to Tornado Cash on Wednesday, bringing the two-day total to $109 million while roughly $138 million in Ether remains in exploiter-linked wallets.",
+      "current_state_zh": "Wallets linked to the $295 million Drift exploit moved another $46 million in Ether to Tornado Cash on Wednesday, bringing the two-day total to $109 million while roughly $138 million in Ether remains in exploiter-linked wallets.",
+      "entities": [
+        "cash",
+        "drift",
+        "drift-exploit",
+        "ether",
+        "tornado",
+        "tornado-cash"
+      ],
+      "event_id": "evt_67f47937f4ba1995",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-21T14:12:03.143655Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-21T14:12:03.143655Z",
+      "last_updated_at": "2026-10-21T14:12:03.143655Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Drift exploiter sends $109M in Ether to Tornado Cash in 2 days",
+      "title_zh": "Drift exploiter sends $109M in Ether to Tornado Cash in 2 days",
+      "topics": [
+        "crypto-security",
+        "drift-exploit",
+        "money-laundering",
+        "tornado-cash"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Wallets linked to the $295 million Drift exploit moved another $46 million in Ether to Tornado Cash on Wednesday, bringing the two-day total to $109 million while roughly $138 million in Ether remains in exploiter-linked wallets.",
+          "current_state_zh": "Wallets linked to the $295 million Drift exploit moved another $46 million in Ether to Tornado Cash on Wednesday, bringing the two-day total to $109 million while roughly $138 million in Ether remains in exploiter-linked wallets.",
+          "detailed_summary_en": "Wallets linked to the $295 million Drift exploit moved another $46 million in Ether to Tornado Cash on Wednesday, bringing the two-day total to $109 million while roughly $138 million in Ether remains in exploiter-linked wallets.",
+          "detailed_summary_zh": "Wallets linked to the $295 million Drift exploit moved another $46 million in Ether to Tornado Cash on Wednesday, bringing the two-day total to $109 million while roughly $138 million in Ether remains in exploiter-linked wallets.",
+          "event_id": "evt_67f47937f4ba1995",
+          "first_seen_at": "2026-10-21T14:12:03.143655Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T10:13:52Z",
+          "published_at": "2026-10-21T10:13:52Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/drift-exploiter-moves-109m-eth-tornado-cash-2-days?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:10023cf7acded1ab"
+          ],
+          "time_precision": "published",
+          "title_en": "Drift exploiter sends $109M in Ether to Tornado Cash in 2 days",
+          "title_zh": "Drift exploiter sends $109M in Ether to Tornado Cash in 2 days",
+          "update_id": "upd_32f75293f45c3fab",
+          "update_type": "initial",
+          "what_changed_en": "Wallets linked to the $295 million Drift exploit moved another $46 million in Ether to Tornado Cash on Wednesday, bringing the two-day total to $109 million while roughly $138 million in Ether remains in exploiter-linked wallets.",
+          "what_changed_zh": "Wallets linked to the $295 million Drift exploit moved another $46 million in Ether to Tornado Cash on Wednesday, bringing the two-day total to $109 million while roughly $138 million in Ether remains in exploiter-linked wallets."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -176664,9 +179130,8 @@
       "evt_cc2ee6ed697c7f69"
     ],
     "occ": [
-      "evt_0244db9d635ae0ab",
-      "evt_48fe865f97e3959a",
-      "evt_dc16e92af9427b8f"
+      "evt_78de95a51927b1b6",
+      "evt_aa8d6c1b6e82889a"
     ],
     "okx": [
       "evt_0e8a68a8b363e6bf",
@@ -176711,6 +179176,7 @@
       "evt_d960129a1225c591",
       "evt_dd74b90bd962fc88",
       "evt_e27bf8899631b2f5",
+      "evt_ee1e1100fb0ff269",
       "evt_f749f5af85b10786",
       "evt_f90e7e488826e7d6",
       "evt_fb2b11fa3ef1214c"
@@ -176733,6 +179199,10 @@
     ],
     "php": [
       "evt_4eb800807f88fccc"
+    ],
+    "polkadot": [
+      "evt_83080241d6b10bf0",
+      "evt_cdd9da4e6059f216"
     ],
     "polymarket": [
       "evt_1f2b6fadaa0a74a3",
@@ -189257,7 +191727,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A reported exploration of a merger between Tesla and SpaceX is a consequential corporate development given both firms are among the largest public-company bitcoin holders; consolidating ~30,000 BTC into one entity would be a material corporate-treasury and market-structure event. The score is tempered because this is described as early-stage exploration rather than a confirmed transaction, with no terms, timing, or regulatory review details. High signal, but not yet a paradigm shift.",
         "ai_score": 7.5,
@@ -189295,7 +191765,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Active exploitation of PHP vulnerabilities ahead of critical patches is a significant security development for widely used web infrastructure. The headline signals urgency but lacks confirmed scope, affected versions, or impact details, keeping it below top-tier incident scores.",
         "ai_score": 7.5,
@@ -189333,7 +191803,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Concrete in-window development: Zcash developers locked in a November activation date for a network upgrade that roughly triples transaction throughput. This is a substantive protocol-level change with a defined timeline for a widely tracked privacy network, giving it actionable relevance for holders, miners, and node operators, though it is a scheduled incremental scaling upgrade rather than a paradigm shift.",
         "ai_score": 7.0,
@@ -189368,7 +191838,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Germany's Sparkassen savings bank network — one of Europe's largest retail banking groups — opening Bitcoin trading to retail customers is a material institutional/market-structure development with a clear path to broader European bank adoption. It is not a systemic or regulatory event, so it sits below the 8.5+ tier, but it exceeds routine exchange listings in significance.",
         "ai_score": 7.5,
@@ -189402,6 +191872,395 @@
         "source_type": "google_news",
         "title": "Germany’s main savings bank network launches Bitcoin trading",
         "url": "https://cryptoslate.com/germanys-main-savings-bank-network-launches-bitcoin-trading/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Finalization of U.S. stablecoin rules is a landmark regulatory step that directly shapes how dollar-pegged tokens operate and are distributed, and the softened treatment of user rewards removes a key compliance risk for issuers and exchanges. Impact is industry-wide, though the headline-level detail available limits certainty on scope and effective dates.",
+        "ai_score": 8.5,
+        "ai_summary": "The U.S. has finalized its stablecoin regulatory framework and eased its previously restrictive position on rewarding stablecoin holders, clarifying rules for issuance and distribution.",
+        "ai_tags": [
+          "stablecoins",
+          "us-regulation",
+          "crypto-policy",
+          "yield-rewards",
+          "market-structure"
+        ],
+        "author": "Koin Bülteni",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxPUjZicDFpWkVFSmpGNnFXandzV0FRRWJUaWdpVGYwSlM1dzExSVFhRnNaWW1FYWdtcjdFTHpGVXpCSWM4b205U3g5YU9DVXZHY3ZjWWk0U0otQlpUeUp5NkoxVUdDSlRmbHlHdmk4RHFvOGJ6cV9nQ0w5b0E2ZGkwb3BIVWtHZml2LTBwZ0x0bjJ6V2N1eEdJR2NDS1d1OFVycHc?oc=5\" target=\"_blank\">U.S. Finalizes Stablecoin Rules, Softens Stance on User Rewards</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Koin Bülteni</font>",
+        "fetched_at": "2026-10-21T14:11:30.015441Z",
+        "id": "google_news:article:fa5b5c35d5067dc5",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://koinbulteni.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Koin Bülteni"
+        },
+        "published_at": "2026-10-21T11:15:06Z",
+        "source_type": "google_news",
+        "title": "U.S. Finalizes Stablecoin Rules, Softens Stance on User Rewards",
+        "url": "https://koinbulteni.com/en/u-s-finalizes-stablecoin-rules-softens-stance-on-user-rewards-290566.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "The OCC issuing the first final rule implementing the GENIUS Act is a material regulatory milestone that sets concrete federal compliance obligations for stablecoin issuers, custody and reserve requirements — a clear transmission path to crypto market structure. It is high-value and novel (first implementing rule), though it operationalizes an already-enacted statute rather than delivering a new paradigm shift, keeping it below the 9+ landmark tier.",
+        "ai_score": 8.0,
+        "ai_summary": "The OCC published its final rule implementing the GENIUS Act, becoming the first federal regulator to formalize the stablecoin framework signed into law by Trump.",
+        "ai_tags": [
+          "stablecoins",
+          "GENIUS Act",
+          "OCC",
+          "regulation",
+          "compliance"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxOQ1JRTmRxc1MxMHA3a1FkbXhXVnFIQTBPbFlaYlpMVzJ1bTJhS1VXbGctVTdGTkVJTlNxUDUtUUd2VGdlR3dESzB4LU9CWFk0b2NKdkZqVFlLM3NyX2k2d0RuZERZc2hjZU8yWkFLZTdLVENOc2pwZ2FwSjRDNDE2RlhpT2xwRVZGZi1VUVl1WHE0LURaeXM1OVp3aTJvMmFhVGJKNGo2TWRvOWtTWmc?oc=5\" target=\"_blank\">First out the gate: OCC debuts final rule implementing Trump-signed GENIUS Act</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-10-21T14:11:36.481221Z",
+        "id": "google_news:article:2afe9de69f4cbf54",
+        "metadata": {
+          "category": "crypto-regulation",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-10-21T11:01:00Z",
+        "source_type": "google_news",
+        "title": "First out the gate: OCC debuts final rule implementing Trump-signed GENIUS Act",
+        "url": "https://www.theblock.co/news/regulation/2026-10-21-occ-final-rule-implementing-trump-signed-genius-act-421470"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Tokenized equity trading scaling offshore while major U.S. issuers like Goldman object is a material market-structure development: it signals real traction for tokenized real-world assets and sets up a likely regulatory/legal confrontation over who controls trading in tokenized shares. Concrete transmission path to crypto market access and to how RWA products are structured, though it is an evolving trend piece rather than a single decisive ruling or incident.",
+        "ai_score": 7.5,
+        "ai_summary": "Tokenized stock trading is gaining volume in overseas jurisdictions while Goldman Sachs and other U.S. companies push back against the practice, setting up a market-structure and regulatory fight over tokenized equities.",
+        "ai_tags": [
+          "tokenized-stocks",
+          "real-world-assets",
+          "market-structure",
+          "equities",
+          "crypto-regulation"
+        ],
+        "author": "CNBC",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE1NQzRUS0R5RTRjLTFPaUdlM3dUa0pxeVdpYVA0VXpQNkVUWTJDclpMcHkzVnIxNWtWdjVPVTRMWndwN3B0bk5LMk1GRGlTTUxwV0pwWXB3bFhUQlpmQzI2c0hGTHRUQzgwRk9uOGwxd182QUxmTHFBQ2lialpnd9IBgwFBVV95cUxQc0l3bllTYjJZMjVvWHNaYUhPVXJIWGg0Q05ZdlBRZWNkbDRKb2JJT0M4NHpud3JQemF2bEhzZVVScGc0dXpjX1lHcGRnc3hnem03OGMwWWpKdXdvWHRhU0NmeldHRlg4dDBJMWdmZ3FyMDJsa3B5clJycGhSd29BZXJ2dw?oc=5\" target=\"_blank\">Tokenized stock trading takes off overseas as Goldman, other U.S. companies object</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CNBC</font>",
+        "fetched_at": "2026-10-21T14:11:35.354453Z",
+        "id": "google_news:article:a62597f159cfa080",
+        "metadata": {
+          "category": "crypto-markets",
+          "event_retry_pending": true,
+          "gn_query": "(bitcoin OR crypto OR cryptocurrency OR stablecoin OR ethereum OR blockchain) (site:reuters.com OR site:bloomberg.com OR site:ft.com OR site:wsj.com OR site:cnbc.com OR site:apnews.com OR site:axios.com OR site:fortune.com OR site:nytimes.com OR site:economist.com)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.cnbc.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "CNBC"
+        },
+        "published_at": "2026-10-21T12:33:34Z",
+        "source_type": "google_news",
+        "title": "Tokenized stock trading takes off overseas as Goldman, other U.S. companies object",
+        "url": "https://www.cnbc.com/2026/10/21/tokenized-stocks-us-companies-object.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A final rule from a key U.S. bank regulator on how stablecoin rewards are assessed under the GENIUS Act is a material regulatory development for stablecoin issuers and yield-bearing products, though it establishes an evaluative approach rather than an outright market-wide ban or approval.",
+        "ai_score": 7.5,
+        "ai_summary": "The OCC issued a final rule that takes a fresh approach to assessing stablecoin reward programs against the GENIUS Act’s ban on paying yield or interest to stablecoin holders.",
+        "ai_tags": [
+          "stablecoin regulation",
+          "OCC",
+          "GENIUS Act",
+          "stablecoin yield",
+          "crypto policy"
+        ],
+        "author": "Jesse Hamilton",
+        "content": "",
+        "fetched_at": "2026-10-21T14:11:34.489402Z",
+        "id": "rss:www.coindesk.com_arc_outboundfeeds_rss_:21df6f1336d235e5",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "feed_name": "CoinDesk",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "tags": [
+            "Policy",
+            "stablecoin yield",
+            "News"
+          ]
+        },
+        "published_at": "2026-10-21T11:00:00Z",
+        "source_type": "rss",
+        "title": "OCC's final rule to start fresh in weighing stablecoin rewards against GENIUS Act ban",
+        "url": "https://www.coindesk.com/policy/2026/10/21/occ-s-final-rule-to-start-fresh-in-weighing-stablecoin-rewards-against-genius-act-ban"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A substantive NVIDIA research/model release published via Hugging Face: a time-series forecasting model that combines pretrained representations with retrieval over historical patterns and built-in interpretability. This is a meaningful, actionable engineering and modeling release for practitioners building forecasting systems (open weights/usage via HF, architecture and interpretability details), placing it above a routine product update but below a frontier-model or industry-shaping event. No crypto relevance; scored on AI merit alone.",
+        "ai_score": 7.0,
+        "ai_summary": "NVIDIA released Kumo Forecast, a time-series forecasting model on Hugging Face that pairs pretrained time-series representations with historical pattern retrieval and interpretability features.",
+        "ai_tags": [
+          "nvidia",
+          "time-series-forecasting",
+          "pretrained-models",
+          "interpretability",
+          "hugging-face"
+        ],
+        "author": "Hugging Face Blog",
+        "content": "",
+        "fetched_at": "2026-10-21T14:11:51.621062Z",
+        "id": "rss:huggingface.co_blog_feed.xml:5c32755a71da49ed",
+        "metadata": {
+          "category": "ai-labs",
+          "event_retry_pending": true,
+          "feed_name": "Hugging Face Blog",
+          "score_model": "deepseek:deepseek-flash",
+          "tags": []
+        },
+        "published_at": "2026-10-21T12:51:24Z",
+        "source_type": "rss",
+        "title": "NVIDIA Kumo Forecast Combines Pretrained Time-Series Representations with Historical Pattern Retrieval and Interpretability",
+        "url": "https://huggingface.co/blog/nvidia/kumo-forecast"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A major global bank signing definitive agreements to take full ownership of its crypto custody joint venture is a meaningful institutional market-structure development, signaling deeper bank balance-sheet commitment to digital-asset custody. It is not a systemic or market-moving event, and the disclosure is a corporate M&A step rather than a new product or regulatory shift, so it lands at high-value rather than groundbreaking.",
+        "ai_score": 7.0,
+        "ai_summary": "Standard Chartered has signed definitive agreements to acquire Zodia Custody, bringing the institutional crypto custody provider fully in-house as banks expand their digital-asset servicing footprint.",
+        "ai_tags": [
+          "custody",
+          "institutional-adoption",
+          "standard-chartered",
+          "zodia",
+          "m&a"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxNWGQtTjg3czRSWlBvYWNra2xwRUVkb1ZaSkNnckU0M0tNa3JqakdDMUU0S2QxNVJPSlRpZVFUVTd6Y1pNbmJzNWgtYjYzeUhjbEhkbFl5cXBJZU41RTBHazhJMmIyQnozVzI4aWNfdjAwTUNnYlFPVDlLV3AwM1VHTGROYkc0N184YW1DSGlTdUtoZWFEUlByQjNSZjN2Z2l5WFo0TU5pWmhmYWNIdDdRVGZJVmJsNDJwOG1Nd2p5c0xRcVlTTnc?oc=5\" target=\"_blank\">Standard Chartered signs definitive agreements to acquire Zodia Custody</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-10-21T14:11:36.481068Z",
+        "id": "google_news:article:c8a0ba3a01bb7c23",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-10-21T12:44:00Z",
+        "source_type": "google_news",
+        "title": "Standard Chartered signs definitive agreements to acquire Zodia Custody",
+        "url": "https://www.theblock.co/news/business/2026-10-21-standard-chartered-signs-definitive-agreements-to-acquire-zodia-custody-421535"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Standard Chartered moving to full ownership of its crypto custody subsidiary Zodia is a meaningful institutional/market-structure development: a major global bank deepening direct control of digital-asset custody infrastructure signals continued bank-led institutional adoption. It is a concrete corporate transaction rather than a routine product update, but it falls short of a paradigm shift for the broader market, so it lands in the high-value tier rather than the groundbreaking tier. No community discussion was provided to assess.",
+        "ai_score": 7.0,
+        "ai_summary": "Standard Chartered has signed a deal to acquire full ownership of Zodia Custody, consolidating its control over the bank-backed institutional crypto custody business.",
+        "ai_tags": [
+          "custody",
+          "institutional-adoption",
+          "standard-chartered",
+          "zodia",
+          "banking"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxQSzNpaV9ucWoyczIwajZwZjNPb3ZWSDduZFA4bjVjVEswWWtucHhsSHRJSmVGWTJQakc2OFFOTVZWOWNjQWM5YjBGa2JFVi1BXzNJd0JXSlhCWldQQmJrNW5mbWVIeFlHQkZBZDRGMTh5MDFhbXl2aHN2eXBBUVFGanBLTUdPczFNeHFXZ05HOUd5b0h2SHZsQ0dmcnVWdTgwRC01dkFSSVJpVUZoZ0tSalRYSTUwQ0JrSnU4?oc=5\" target=\"_blank\">Standard Chartered Signs Deal to Take Full Ownership of Zodia Custody</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-21T14:11:40.798758Z",
+        "id": "google_news:article:94bdd1e380f87cad",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-protocols",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-21T12:15:03Z",
+        "source_type": "google_news",
+        "title": "Standard Chartered Signs Deal to Take Full Ownership of Zodia Custody",
+        "url": "https://thedefiant.io/converge/tradfi-and-fintech/standard-chartered-signs-deal-to-take-full-ownership-of-zodia-custody"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "The article identifies a concrete, market-structure development: centralized exchanges reportedly declining to list legacy tokens absent explicit SEC immunity, which transmits directly into liquidity and access for older assets. It is analytically significant and policy-relevant, but it is commentary/analysis rather than a formal regulatory action or a specific enforcement decision, so it falls short of the 7.5-8 range reserved for confirmed rule changes or landmark rulings.",
+        "ai_score": 7.0,
+        "ai_summary": "Centralized exchanges are reportedly withholding listings of legacy crypto tokens until the SEC provides explicit immunity from securities-law liability, illustrating how unresolved regulatory classification is constraining asset access and liquidity.",
+        "ai_tags": [
+          "sec",
+          "exchange-listings",
+          "securities-law",
+          "token-classification",
+          "regulatory-uncertainty"
+        ],
+        "author": "AI Boost",
+        "content": "",
+        "fetched_at": "2026-10-21T14:11:34.165524Z",
+        "id": "rss:www.coindesk.com_arc_outboundfeeds_rss_:6f0d5863d4cd53e6",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "feed_name": "CoinDesk",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "tags": [
+            "Policy",
+            "SEC",
+            "News"
+          ]
+        },
+        "published_at": "2026-10-21T12:12:36Z",
+        "source_type": "rss",
+        "title": "Why centralized exchanges refuse to list legacy crypto tokens without explicit SEC immunity",
+        "url": "https://www.coindesk.com/policy/2026/10/21/why-centralized-exchanges-refuse-to-list-legacy-crypto-tokens-without-explicit-sec-immunity"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A major remittance incumbent (Western Union) selecting a crypto-native settlement partner (Noah) to route receiver-redirect payouts in the USDPT stablecoin is a concrete institutional stablecoin-adoption milestone with a clear transmission path to real payment volume, rather than a promotional announcement. It is not a paradigm shift on the scale of a landmark regulatory or protocol event, so it lands in the high-value band rather than the top tier; the item itself is thin on settlement volumes, launch timing, and corridor coverage.",
+        "ai_score": 7.0,
+        "ai_summary": "Western Union has chosen Noah to settle receiver-redirect payouts using the USDPT stablecoin, extending stablecoin-based settlement into mainstream remittance payout flows.",
+        "ai_tags": [
+          "stablecoins",
+          "cross-border payments",
+          "institutional adoption",
+          "settlement",
+          "remittances"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxNLTktcGo1aU5HRnpDQ1pXRzg1aXloSUs1bGhqdFNnYzNlNVU0alIxUXpIa0ZjZGw2a0d5bXZjemdXSFFaR256ZTQtZ05iUExETUhJNC01YUNiQ04ySTFVSjJ3WllIUHJlb2Q0MktFTlVxZzkwczNnYmxKYnJHQjFQUzlfZFJ0MF84WS05TEZnaW84a0l0NjZfbzhrZzhCUDBxV3JrRkJQRVpBSkg4aVlsREFkclV2WlBvcHlZ?oc=5\" target=\"_blank\">Western Union Picks Noah to Settle Receiver Redirect Payouts in USDPT</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-21T14:11:40.797987Z",
+        "id": "google_news:article:29cd57da64288b61",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-21T12:10:07Z",
+        "source_type": "google_news",
+        "title": "Western Union Picks Noah to Settle Receiver Redirect Payouts in USDPT",
+        "url": "https://thedefiant.io/converge/tradfi-and-fintech/western-union-picks-noah-to-settle-receiver-redirect-payouts-in-usdpt"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "This is a concrete in-window governance/protocol development: Lido Lend's exit plan would use borrower collateral to fund withdrawals, a material change for users of the lending product and a notable DeFi wind-down decision. It is important but not systemic or market-wide.",
+        "ai_score": 7.0,
+        "ai_summary": "Lido Lend's exit plan would tap borrower collateral to process withdrawals as the lending product winds down.",
+        "ai_tags": [
+          "Lido",
+          "DeFi lending",
+          "protocol governance",
+          "collateral",
+          "withdrawals"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxPNkd1aVc4bk5DZnI5V0N5amZYUHlvOVhQTmZsdzl3YzdZSkVHREc4LXI4bW9iS3VxYXA1Z05JZk5EeWRYdENxdlB4MVVNR1NGQ3JyRzRJWUt6Zjd1NDBHRllHRlowSHFxNDJlVW1oZjN3c2RTME55V2pSSGxfNTJwVVJLOHMxUDEtWEFoNDJJWndMQlFSN0JadWJCclJGdw?oc=5\" target=\"_blank\">Lido Lend Exit Plan Would Tap Borrower Collateral for Withdrawals</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-21T14:11:40.797845Z",
+        "id": "google_news:article:7c254d1948e0d4eb",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-21T12:10:05Z",
+        "source_type": "google_news",
+        "title": "Lido Lend Exit Plan Would Tap Borrower Collateral for Withdrawals",
+        "url": "https://thedefiant.io/news/defi/lido-lend-exit-plan-would-tap-borrower-collateral-for-withdrawals"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A material stablecoin and institutional-custody development: Securitize gaining direct stablecoin minting capability through Anchorage Digital Bank strengthens regulated issuance infrastructure and bank-integrated tokenization, though it is a focused partnership rather than a market-wide shift.",
+        "ai_score": 7.0,
+        "ai_summary": "Securitize will mint stablecoins directly through Anchorage Digital Bank, integrating regulated banking infrastructure with its tokenization platform.",
+        "ai_tags": [
+          "stablecoins",
+          "institutional-adoption",
+          "custody",
+          "tokenization",
+          "banking"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxPbXQ3OUpWVDd4b0tsUXNTTV9XdXVSRXB2RGxTQlhnUVNzRW13OEhmODlWLTE5QVBFdVhSTzVCaGI4YWpvR0pQLUhtejVINU5LaTNsYndOY3h4NzloUXlCS3hCQVBzVVZwUVVaaGpMS3hEQk11M3dZdU0tYlZNcjM4YjJSTmdVc0VjN0VmenItUV9kRk1Iak80RzlhSDRkVE9IZUQwSzJMSHVBVG9tSUJNbjN0Z0tHZw?oc=5\" target=\"_blank\">Securitize Will Mint Stablecoins Directly With Anchorage Digital Bank</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-21T14:11:40.798673Z",
+        "id": "google_news:article:1423be558447679e",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-21T12:10:02Z",
+        "source_type": "google_news",
+        "title": "Securitize Will Mint Stablecoins Directly With Anchorage Digital Bank",
+        "url": "https://thedefiant.io/news/tradfi-and-fintech/securitize-will-mint-stablecoins-directly-with-anchorage-digital-bank"
       }
     }
   ],

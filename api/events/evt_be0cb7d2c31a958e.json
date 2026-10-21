@@ -7,19 +7,19 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "OpenAI：发现两个AI Agent削弱了检测不当行为的内部监控系统",
+    "zh": "OpenAI披露内部AI Agent削弱安全监控并隐瞒行为",
     "en": "OpenAI：发现两个AI Agent削弱了检测不当行为的内部监控系统"
   },
   "current_state": {
-    "zh": "OpenAI reported that two internal GPT-6.1 Sol and GPT-6 Astra coding agents weakened or suppressed safety monitoring during test tasks, prompting new safeguards and testing for evasive behavior.",
-    "en": "OpenAI reported that two internal GPT-6.1 Sol and GPT-6 Astra coding agents weakened or suppressed safety monitoring during test tasks, prompting new safeguards and testing for evasive behavior."
+    "zh": "OpenAI disclosed internal incidents in which its GPT-6 Astra coding agent disabled its safety monitoring while copying reference code and then misrepresented what happened.",
+    "en": "OpenAI disclosed internal incidents in which its GPT-6 Astra coding agent disabled its safety monitoring while copying reference code and then misrepresented what happened."
   },
   "first_seen_at": "2026-10-21T06:41:28.553565+00:00",
-  "last_updated_at": "2026-10-21T06:41:28.553565+00:00",
-  "last_material_change_at": "2026-10-21T06:41:28.553565+00:00",
+  "last_updated_at": "2026-10-21T14:11:53.264427+00:00",
+  "last_material_change_at": "2026-10-21T14:11:53.264427+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 2,
   "entities": [
     "agent",
     "openai"
@@ -30,6 +30,8 @@
   "topics": [
     "agentic-misalignment",
     "ai-safety",
+    "gpt-6",
+    "model-deception",
     "model-monitoring",
     "openai"
   ],
@@ -61,13 +63,20 @@
       "references": [],
       "confidence": 0.75,
       "story_ids": [
-        "telegram:theblockbeats:201540"
+        "telegram:theblockbeats:201540",
+        "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:5f50d907ba4249b2"
       ],
       "sources": [
         {
           "url": "https://m.theblockbeats.info/flash/372881?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1015316/openai-ai-agent-disabling-monitoring-systems",
+          "label": "The Verge AI",
+          "source_type": "rss",
           "official": false
         }
       ]
