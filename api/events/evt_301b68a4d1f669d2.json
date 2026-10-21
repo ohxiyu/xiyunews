@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "event_id": "evt_301b68a4d1f669d2",
+  "url": "https://xiyu.news/events/evt_301b68a4d1f669d2/",
+  "json": "https://xiyu.news/api/events/evt_301b68a4d1f669d2.json",
+  "type": "security_incident",
+  "status": "monitoring",
+  "category": "technology",
+  "title": {
+    "zh": "PyPI 上被篡改的 LiteLLM 1.107.0 安装凭据窃取器和后门",
+    "en": "Compromised LiteLLM 1.107.0 on PyPI Installs a Credential Stealer and Backdoor"
+  },
+  "current_state": {
+    "zh": "LiteLLM 1.107.0 的恶意 PyPI 包和受影响 Docker 镜像已被下架；JFrog 建议受影响用户轮换凭证并重建环境，已确认安全回退版本为 1.106.2，但恶意代码如何混入发布流程仍未查清。",
+    "en": "Malicious LiteLLM 1.107.0 PyPI packages and affected Docker images have been removed; JFrog advises affected users to rotate credentials and rebuild environments, with 1.106.2 confirmed as the safe rollback, while how the malicious code entered the release process remains unclear."
+  },
+  "first_seen_at": "2026-10-21T17:31:51.266456+00:00",
+  "last_updated_at": "2026-10-21T17:31:51.266456+00:00",
+  "last_material_change_at": "2026-10-21T17:31:51.266456+00:00",
+  "confidence": 0.75,
+  "updates_count": 2,
+  "sources_count": 2,
+  "entities": [
+    "backdoor",
+    "compromised",
+    "credential",
+    "installs",
+    "litellm",
+    "pypi",
+    "stealer"
+  ],
+  "identifiers": [],
+  "topics": [
+    "ai-devtools",
+    "credential-theft",
+    "litellm",
+    "pypi",
+    "supply-chain-attack"
+  ],
+  "updates": [
+    {
+      "update_id": "upd_fc03adbab276a131",
+      "event_id": "evt_301b68a4d1f669d2",
+      "occurred_at": "2026-10-21T14:00:26Z",
+      "published_at": "2026-10-21T14:00:26Z",
+      "first_seen_at": "2026-10-21T17:31:51.266456Z",
+      "time_precision": "published",
+      "update_type": "initial",
+      "material_change": true,
+      "title_zh": "PyPI 上被篡改的 LiteLLM 1.107.0 安装凭据窃取器和后门",
+      "title_en": "Compromised LiteLLM 1.107.0 on PyPI Installs a Credential Stealer and Backdoor",
+      "what_changed_zh": "PyPI 上被篡改的 LiteLLM 1.107.0 版本携带了凭据窃取器和后门，促使维护者告知用户锁定到 1.106.2 或更早版本，同时向企业客户分发禁运中的修复程序。",
+      "what_changed_en": "A tampered LiteLLM 1.107.0 release on PyPI shipped a credential stealer and backdoor, prompting maintainers to tell users to pin to 1.106.2 or earlier while an embargoed fix is distributed to enterprise customers.",
+      "current_state_zh": "PyPI 上被篡改的 LiteLLM 1.107.0 版本携带了凭据窃取器和后门，促使维护者告知用户锁定到 1.106.2 或更早版本，同时向企业客户分发禁运中的修复程序。",
+      "current_state_en": "A tampered LiteLLM 1.107.0 release on PyPI shipped a credential stealer and backdoor, prompting maintainers to tell users to pin to 1.106.2 or earlier while an embargoed fix is distributed to enterprise customers.",
+      "detailed_summary_zh": "A tampered LiteLLM 1.107.0 release on PyPI shipped a credential stealer and backdoor, prompting maintainers to tell users to pin to 1.106.2 or earlier while an embargoed fix is distributed to enterprise customers.",
+      "detailed_summary_en": "A tampered LiteLLM 1.107.0 release on PyPI shipped a credential stealer and backdoor, prompting maintainers to tell users to pin to 1.106.2 or earlier while an embargoed fix is distributed to enterprise customers.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [
+        {
+          "url": "https://news.ycombinator.com/item?id=50181114",
+          "title": "Community discussion"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "hackernews:story:50181114"
+      ],
+      "sources": [
+        {
+          "url": "https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/",
+          "label": "abhisek",
+          "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_357e553ffd64f351",
+      "event_id": "evt_301b68a4d1f669d2",
+      "occurred_at": "2026-10-21T15:28:02Z",
+      "published_at": "2026-10-21T15:28:02Z",
+      "first_seen_at": "2026-10-21T17:31:49.746836Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "LiteLLM今年第二次遭投毒：不调用也能偷密钥",
+      "title_en": "LiteLLM今年第二次遭投毒：不调用也能偷密钥",
+      "what_changed_zh": "JFrog 披露该供应链攻击还影响官方 Docker 镜像，PyPI 全部七个平台安装包均被植入木马；PyPI 已移除恶意版本，Docker Hub 已撤下受影响镜像；攻击者使用的发布源码指向名称仅差一个连字符的仿冒仓库；建议将凭证视为可能泄露、隔离并重建环境、轮换密钥，回退到 1.106.2。",
+      "what_changed_en": "JFrog reported that the supply-chain attack also affected official Docker images and all seven PyPI platform packages; PyPI removed the malicious version and Docker Hub pulled affected images; the release source pointed to a typosquatted repository differing by one hyphen; users are advised to treat credentials as exposed, isolate and rebuild environments, rotate secrets, and roll back to 1.106.2.",
+      "current_state_zh": "LiteLLM 1.107.0 的恶意 PyPI 包和受影响 Docker 镜像已被下架；JFrog 建议受影响用户轮换凭证并重建环境，已确认安全回退版本为 1.106.2，但恶意代码如何混入发布流程仍未查清。",
+      "current_state_en": "Malicious LiteLLM 1.107.0 PyPI packages and affected Docker images have been removed; JFrog advises affected users to rotate credentials and rebuild environments, with 1.106.2 confirmed as the safe rollback, while how the malicious code entered the release process remains unclear.",
+      "detailed_summary_zh": "Security firm JFrog discovered that LiteLLM version 1.107.0 and its official Docker images were compromised in a supply chain attack that installs credential-stealing malware and a persistent backdoor, affecting all PyPI platform packages and prompting advice to rotate credentials and rebuild environments.",
+      "detailed_summary_en": "Security firm JFrog discovered that LiteLLM version 1.107.0 and its official Docker images were compromised in a supply chain attack that installs credential-stealing malware and a persistent backdoor, affecting all PyPI platform packages and prompting advice to rotate credentials and rebuild environments.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.96,
+      "story_ids": [
+        "telegram:theblockbeats:201703"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/373048?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    }
+  ]
+}

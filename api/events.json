@@ -2,6 +2,101 @@
   "version": 1,
   "events": [
     {
+      "event_id": "evt_aa8d6c1b6e82889a",
+      "url": "https://xiyu.news/events/evt_aa8d6c1b6e82889a/",
+      "json": "https://xiyu.news/api/events/evt_aa8d6c1b6e82889a.json",
+      "status": "monitoring",
+      "type": "regulatory_action",
+      "title": {
+        "zh": "美国OCC发布《GENIUS Act》首个最终规则",
+        "en": "US OCC issues first final rule implementing the GENIUS Act"
+      },
+      "current_state": {
+        "zh": "OCC 敲定了实施 GENIUS 法案关于稳定币储备与赎回的规则，财政部长斯科特·贝森特将此比作林肯时代 1863 年的《国家货币法》，并称其为美国金融的转折点。",
+        "en": "The OCC finalized rules implementing the GENIUS Act on stablecoin reserves and redemptions, a step Treasury Secretary Scott Bessent likened to the Lincoln-era National Currency Act of 1863 and called a watershed moment for American finance."
+      },
+      "first_seen_at": "2026-10-21T14:11:34.735048+00:00",
+      "last_material_change_at": "2026-10-21T17:32:12.701054+00:00",
+      "updates_count": 2,
+      "sources_count": 7
+    },
+    {
+      "event_id": "evt_04729c76ccc47903",
+      "url": "https://xiyu.news/events/evt_04729c76ccc47903/",
+      "json": "https://xiyu.news/api/events/evt_04729c76ccc47903.json",
+      "status": "closed",
+      "type": "other",
+      "title": {
+        "zh": "Solana基金会确定Alpenglow主网升级日期，随后Alpenglow在主网激活并停用TowerBFT",
+        "en": "Solana Foundation Sets Alpenglow Mainnet Upgrade Date"
+      },
+      "current_state": {
+        "zh": "Solana 验证者在槽位 459,653,000 停用 TowerBFT 并激活 Anza 的 Alpenglow 共识，将主网-beta 的交易最终确认时间从约 12.8 秒缩短至约 150 毫秒，同时沿用现有账本。",
+        "en": "Solana validators retired TowerBFT and activated Anza's Alpenglow consensus at slot 459,653,000, reducing transaction finality from about 12.8 seconds to roughly 150 milliseconds on mainnet-beta while carrying the existing ledger forward."
+      },
+      "first_seen_at": "2026-08-22T08:00:00+08:00",
+      "last_material_change_at": "2026-10-21T17:32:11.398304+00:00",
+      "updates_count": 15,
+      "sources_count": 18
+    },
+    {
+      "event_id": "evt_4eb800807f88fccc",
+      "url": "https://xiyu.news/events/evt_4eb800807f88fccc/",
+      "json": "https://xiyu.news/api/events/evt_4eb800807f88fccc.json",
+      "status": "developing",
+      "type": "security_incident",
+      "title": {
+        "zh": "PHP 曝出两个严重远程代码执行漏洞并发布紧急补丁",
+        "en": "PHP discloses two critical RCE vulnerabilities and releases emergency patches"
+      },
+      "current_state": {
+        "zh": "PHP 发布紧急补丁，修复两个影响大部分网络的关键未认证 RCE 漏洞，导致政府网站下线，且在修复可用前已观察到攻击。",
+        "en": "PHP released emergency patches for two critical unauthenticated RCE flaws affecting most of the web, prompting government sites to go offline and attacks to be observed before fixes were available."
+      },
+      "first_seen_at": "2026-10-21T06:41:27.640635+00:00",
+      "last_material_change_at": "2026-10-21T17:32:11.197089+00:00",
+      "updates_count": 6,
+      "sources_count": 14
+    },
+    {
+      "event_id": "evt_7240d43ce6617553",
+      "url": "https://xiyu.news/events/evt_7240d43ce6617553/",
+      "json": "https://xiyu.news/api/events/evt_7240d43ce6617553.json",
+      "status": "resolved",
+      "type": "governance",
+      "title": {
+        "zh": "Abracadabra 因多次黑客攻击提议清算协议并关闭 MIM",
+        "en": "Abracadabra Proposes Winding Down MIM at Four Cents on the Dollar"
+      },
+      "current_state": {
+        "zh": "Abracadabra 的关停提案已在第二次投票中通过，但该结果依赖降低法定人数门槛并由金库关联地址大量投票，治理争议加剧；MIM 持有者仍面临约每美元四美分的严重减值回收。",
+        "en": "Abracadabra's wind-down proposal has passed on a second vote, but the result relied on a lowered quorum threshold and heavy voting by a treasury-linked address, deepening governance concerns; MIM holders still face severely impaired recovery of roughly four cents on the dollar."
+      },
+      "first_seen_at": "2026-09-30T02:19:40.260270+00:00",
+      "last_material_change_at": "2026-10-21T17:32:03.881458+00:00",
+      "updates_count": 4,
+      "sources_count": 4
+    },
+    {
+      "event_id": "evt_301b68a4d1f669d2",
+      "url": "https://xiyu.news/events/evt_301b68a4d1f669d2/",
+      "json": "https://xiyu.news/api/events/evt_301b68a4d1f669d2.json",
+      "status": "monitoring",
+      "type": "security_incident",
+      "title": {
+        "zh": "PyPI 上被篡改的 LiteLLM 1.107.0 安装凭据窃取器和后门",
+        "en": "Compromised LiteLLM 1.107.0 on PyPI Installs a Credential Stealer and Backdoor"
+      },
+      "current_state": {
+        "zh": "LiteLLM 1.107.0 的恶意 PyPI 包和受影响 Docker 镜像已被下架；JFrog 建议受影响用户轮换凭证并重建环境，已确认安全回退版本为 1.106.2，但恶意代码如何混入发布流程仍未查清。",
+        "en": "Malicious LiteLLM 1.107.0 PyPI packages and affected Docker images have been removed; JFrog advises affected users to rotate credentials and rebuild environments, with 1.106.2 confirmed as the safe rollback, while how the malicious code entered the release process remains unclear."
+      },
+      "first_seen_at": "2026-10-21T17:31:51.266456+00:00",
+      "last_material_change_at": "2026-10-21T17:31:51.266456+00:00",
+      "updates_count": 2,
+      "sources_count": 2
+    },
+    {
       "event_id": "evt_f1c8022369523c0b",
       "url": "https://xiyu.news/events/evt_f1c8022369523c0b/",
       "json": "https://xiyu.news/api/events/evt_f1c8022369523c0b.json",
@@ -19,44 +114,6 @@
       "last_material_change_at": "2026-10-21T14:12:00.688020+00:00",
       "updates_count": 3,
       "sources_count": 4
-    },
-    {
-      "event_id": "evt_04729c76ccc47903",
-      "url": "https://xiyu.news/events/evt_04729c76ccc47903/",
-      "json": "https://xiyu.news/api/events/evt_04729c76ccc47903.json",
-      "status": "closed",
-      "type": "other",
-      "title": {
-        "zh": "Solana基金会确定Alpenglow主网升级日期",
-        "en": "Solana Foundation Sets Alpenglow Mainnet Upgrade Date"
-      },
-      "current_state": {
-        "zh": "Alpenglow 已在 Solana 主网激活，TowerBFT 退役，第一阶段 Votor 上线；实际观测最终确认时间约 6.6 秒，目标仍为约 150 毫秒，后续阶段将引入 Rotor。",
-        "en": "Alpenglow is live on Solana mainnet, TowerBFT is retired, and phase one Votor is active; observed finality is about 6.6 seconds while the target remains roughly 150 milliseconds, with Rotor planned for a later phase."
-      },
-      "first_seen_at": "2026-08-22T08:00:00+08:00",
-      "last_material_change_at": "2026-10-21T14:11:57.540745+00:00",
-      "updates_count": 14,
-      "sources_count": 17
-    },
-    {
-      "event_id": "evt_aa8d6c1b6e82889a",
-      "url": "https://xiyu.news/events/evt_aa8d6c1b6e82889a/",
-      "json": "https://xiyu.news/api/events/evt_aa8d6c1b6e82889a.json",
-      "status": "monitoring",
-      "type": "regulatory_action",
-      "title": {
-        "zh": "【美国 OCC 发布《GENIUS Act》首个最终规则，不预设现有稳定币奖励计划合规】",
-        "en": "【美国 OCC 发布《GENIUS Act》首个最终规则，不预设现有稳定币奖励计划合规】"
-      },
-      "current_state": {
-        "zh": "OCC 已发布实施《GENIUS Act》的最终规则，为受其管辖的支付稳定币发行商设定储备、赎回、风险管理、托管和资本等要求，规则将在 2027 年 1 月 18 日法律生效时适用；反洗钱与制裁规则留待与财政部联合制定，申请与豁免受理时间将另行公布。",
-        "en": "The OCC has issued its final rule implementing the GENIUS Act, setting reserve, redemption, risk-management, custody and capital requirements for payment stablecoin issuers under its jurisdiction when the law takes effect on January 18, 2027; AML and sanctions rules are deferred to a joint rulemaking with Treasury, and the timing for accepting applications and waivers will be announced separately."
-      },
-      "first_seen_at": "2026-10-21T14:11:34.735048+00:00",
-      "last_material_change_at": "2026-10-21T14:11:55.633625+00:00",
-      "updates_count": 2,
-      "sources_count": 6
     },
     {
       "event_id": "evt_269a773047599628",
@@ -3724,25 +3781,6 @@
       "last_material_change_at": "2026-09-30T18:04:17.318193+00:00",
       "updates_count": 2,
       "sources_count": 2
-    },
-    {
-      "event_id": "evt_7240d43ce6617553",
-      "url": "https://xiyu.news/events/evt_7240d43ce6617553/",
-      "json": "https://xiyu.news/api/events/evt_7240d43ce6617553.json",
-      "status": "developing",
-      "type": "governance",
-      "title": {
-        "zh": "Abracadabra 因多次黑客攻击提议清算协议并关闭 MIM",
-        "en": "Abracadabra Proposes Winding Down MIM at Four Cents on the Dollar"
-      },
-      "current_state": {
-        "zh": "Abracadabra 已就“有序关停”协议发起治理投票，理由是一系列安全事件使其稳定币 Magic Internet Money（MIM）已“没有回到锚定价值的可行路径”。提案披露目前有 2200 万枚 MIM 未偿付，而“可动用抵押资产”仅约 90 万美元，隐含每枚 MIM 价值约 0.04 美元；截至发稿，投票约有 1 亿枚 SPELL 赞成、50 万枚反对，投票定于周三晚间结束。\n\n该投票将正式宣告一个锁仓总值曾达 60 亿美元的协议走向终结，其披露的资产缺口意味着仍持有 MIM 的用户将面临重大损失。DeFi 评论人、Trading Strategy 联合创始人 Mikko Ohtamaa 公开将此举称为“金库掠夺”，并指向此前的 DAO 资金转移。\n\n据文章称，该协议因 2024 年 1 月 650 万美元的黑客攻击，以及 2025 年 3 月和 10 月两起分别涉资 1300 万美元和 170 万美元的攻击，累计产生 2100 万美元坏账。Ohtamaa 指出，6 月 8 日和 11 日在 Curve 上出现了金库抛售 MIM 的操作，在“MIM 已经脱锚”的情况下为卖方换回约 50 万美元；随后的一个月又发生“金库提取”，逾 800 万美元被转入一个 Binance 充值地址和一个未标注地址。关停提案既未处理这些资金，也未在赎回计算中将其纳入。",
-        "en": "Abracadabra has moved to wind down the protocol after repeated hacks left its Magic Internet Money stablecoin with 22 million outstanding MIM against roughly $900,000 in actionable backing, prompting accusations of 'treasury looting' over earlier governance actions."
-      },
-      "first_seen_at": "2026-09-30T02:19:40.260270+00:00",
-      "last_material_change_at": "2026-09-30T18:04:11.237715+00:00",
-      "updates_count": 3,
-      "sources_count": 3
     },
     {
       "event_id": "evt_d9bf484ad8821fd1",
