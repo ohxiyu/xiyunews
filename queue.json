@@ -4147,6 +4147,97 @@
       "revision": "71fdf78f66c094f549f4b019ba78f5d08f18e1cda2fcadc836ca6ec812294a76",
       "selected": 14,
       "synced_at": "2026-10-21T07:33:00.552405+08:00"
+    },
+    "2026-10-22": {
+      "jobs": [
+        {
+          "due_at": "2026-10-22T09:24:00+08:00",
+          "id": "8d04070c961955bd20b276600b10fb5a6bf294d31d532d09669346298487cbb4",
+          "rank": 1,
+          "text": "【Solana 新共识协议 Alpenglow 上线主网】\n\nSolana 客户端开发团队 Anza 宣布，新共识协议 Alpenglow 已在 Solana 主网（mainnet-beta）上线，原有共识机制 TowerBFT 正式退役。此次切换发生在创世槽位 459,653,000、于第 1064 个纪元激活，共有 654 个验证者参与，切换耗时 900 毫秒，交易最终确认时间由约 12.8 秒缩短至约 150 毫秒。\n\n此次升级改变的是“最终性”——即交易不可再被回滚的时间点，也是交易所、银行或商户在认定资产已转移之前等待的时刻。Anza 首席执行官 Brennan Watt 称其为“自‘The Merge’以来规模最大、最具雄心的区块链升级”，并表示团队在不到 18 个月内将其从白皮书推进到主网。\n\n验证者已于 2025 年 9 月批准该升级，以 98% 的赞成票通过了实施提案 SIMD-0236；Anza 在其维护的验证者客户端 Agave 中实现了该协议，并由独立运营者在运行中的网络上协调统一的切换点，同时沿用既有账本。该设计旨在在低于 20% 质押份额作恶、另有 20% 离线的情况下仍可运行；若网络连续 10 秒未能出块最终化，验证者将逐步延长出块时间。\n\n来源：https://foresightnews.pro/news/h5Detail/115691\nxiyu.news · 2026-10-22 · https://xiyu.news"
+        },
+        {
+          "due_at": "2026-10-22T10:19:00+08:00",
+          "id": "b47014cfe76ceecafd26152f7905c9eb0afb15f96106e3e89d8ec7c2531d8e21",
+          "rank": 2,
+          "text": "OCC 敲定首份 GENIUS 法案实施细则：现有稳定币奖励不获安全港\n\n美国货币监理署（OCC）周三敲定了首份落实《GENIUS 法案》的最终规则，覆盖其管辖范围内实体的支付型稳定币发行、托管及第三方合作安排，该规则与法案均将于 2027 年 1 月 18 日生效。现有稳定币收益与奖励计划不会自动获得祖父条款或安全港待遇，需逐案接受合规评估。\n\n由于奖励与收益计划是 Coinbase、PayPal、Kraken 等主要交易所和发行方的重要收入来源，拒绝给予现有计划祖父条款意味着这些产品需逐一接受合规审查，而不能在框架生效后自动延续。\n\n最终规则要求发行方持有的储备价值至少与其未偿稳定币规模相当，并通常在两个工作日内处理赎回请求。OCC 删除了此前提出的一项推定，即涉及关联方或相关第三方的某些安排违反收益禁令；同时保留了禁止发行方仅因持有、使用或留存稳定币而支付利息或收益的规定，并表示将另行宣布何时开始受理发行方申请与豁免请求。\n\n来源：https://wublockchain.xyz/news/occ-finalizes-genius-act-no-safe-harbor-for-existing-stablecoin-rewards-21330\nxiyu.news · 2026-10-22 · https://xiyu.news"
+        },
+        {
+          "due_at": "2026-10-22T12:04:00+08:00",
+          "id": "a5a081fa02eb50c1f3ad7d7aea498b1a6fb07c15703479b6adcc0434a347d6d5",
+          "rank": 3,
+          "text": "八比特的信任：eMudhra 的 CA 密钥在毫秒内被破解\n\neMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。\n\n由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链接到受信任根证书的证书；而无法更新 CA 证书包的设备将持续处于暴露状态。\n\n据最初报告者称，该发现来自谷歌开源工具 paranoid_crypto，在检查用户证书之前，直接以默认配置对 CCADB 证书库跑了一遍。据称随后对所有现有 CCADB 证书的更全面排查未再发现其他命中项，Chrome 也在证书透明度（CT）日志中未发现恶意签发的证书。\n\n来源：https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/\nxiyu.news · 2026-10-22 · https://xiyu.news"
+        },
+        {
+          "due_at": "2026-10-22T12:20:00+08:00",
+          "id": "4245ce5db3f4b06acef9ec21ccfea741cc53b9b1073f39341ded645edd465b40",
+          "rank": 4,
+          "text": "币安推出 bStocks 代币化证券，支持 7×24 小时交易\n\n币安推出名为 bStocks 的代币化证券产品，让用户可以在该交易所获得 7×24 小时的代币化股票敞口。这些代币在币安现货市场交易，而不受传统股票市场交易时段的限制。\n\n该产品让全球最大加密交易所之一提供不间断的股票敞口，把交易时间延伸到传统市场时段之外，并形成一种介于加密现货市场与受监管证券之间的工具。\n\n币安自有资料称，每个 bStocks 代币由存放于受监管托管机构的美国股票 1:1 支撑，并在其现货市场 7×24 小时交易。该产品以零转换费以及自动再投资等股息相关功能作为卖点。\n\n来源：https://blockchain.news/news/binance-bstocks-tokenized-securities-24-7-access\nxiyu.news · 2026-10-22 · https://xiyu.news"
+        },
+        {
+          "due_at": "2026-10-22T13:33:00+08:00",
+          "id": "0976f6641814028c64bac8f90f2d96999b9de2b960b2c6c61c610aefc7d9a4b0",
+          "rank": 5,
+          "text": "【Polkadot 社区基金会：Fearless Wallet 浏览器插件含泄露私钥代码，用户需立即转移资产】\n\nPolkadot 社区基金会在 Polkadot 论坛发布安全警告称，第三方钱包 Fearless Wallet 浏览器插件的 3.0.1、3.0.3、3.0.4 及 3.0.5 版本含有恶意代码，用户解锁钱包时私钥会被发送至攻击者控制的服务器。该代码于 2025 年 2 月 19 日随一项名为「TON ecosystem」的大型代码变更加入插件公开源码，在 2025 年 2 月至 2026 年 10 月 10 日期间不定时生效，且随时可能被重新启用。\n\n基金会建议，自 2025 年 2 月起使用过该插件的用户应将其中所有账户视为已泄露，立即在其他钱包中生成新密钥对并转移资产，并强调仅更换密码或重装插件无效。目前已有 8 名用户报告了可归因于此事件的未授权交易，共计 17,286 枚 DOT。\n\nChrome 版本已确认受影响，已下架的 Firefox 版本使用了相同代码；Android 和 iOS 移动端未发现该代码，但若同一私钥曾导入过浏览器插件，同样应视为已泄露。资产处于质押、提名池或治理投票锁定中的用户，可先借助 polkadot-api 团队开发的 PAPI Rescue 工具协助找回。\n\n来源：https://foresightnews.pro/news/h5Detail/115692\nxiyu.news · 2026-10-22 · https://xiyu.news"
+        },
+        {
+          "due_at": "2026-10-22T14:32:00+08:00",
+          "id": "fab7e00f3d93f566a1f6a5409d15fab1d28f0da8889eef1759757a4c3c9710f7",
+          "rank": 6,
+          "text": "谁发现了那个让各国政府下线网站的 PHP 漏洞？当然是 ChatGPT\n\nOpenAI 总裁 Greg Brockman 表示，公司在其“Patch the Planet”计划下，用自家模型主导了一个为期两个月的联盟，发现并修复了 PHP 核心中的 PHP2Shell 漏洞。安全公司 Calif 于 8 月使用 OpenAI 的 GPT-5.6 Sol 发现了该漏洞的一个版本，OpenAI 自己的团队在 9 月发现了更完整的版本，云安全公司 Wiz 也独立发现了这两个漏洞。\n\n这些漏洞的 CVSS 评分为 9.2，可让未通过身份验证的攻击者在运行 PHP 的服务器上执行任意代码；在已知服务端语言的网站中，约 70% 使用 PHP。细节泄露一天后 PHP 才发布修复。芬兰、荷兰和法国于周三下线了政府网站。Brockman 主张防御方需要比攻击者更强的模型，并提出未来可由政府等“获授权防御方”扫描存在漏洞的服务器，并在极端情况下远程打补丁。\n\nBrockman 称该漏洞在 PHP 中存在了 14 年，2024 年曾出现一个有限版本，但“当时未被认为影响重大”；细节开始泄露后，发布时间从原定的 10 月 22 日提前到 10 月 21 日。OpenAI 表示还在修复“若干其他重大漏洞”，包括周三公布的 Node.js 远程代码执行漏洞，并承诺为其关键基础设施防御者计划 Daybreak 提供价值 10 亿美元的补贴访问额度。\n\n来源：https://decrypt.co/381567/who-found-php-bug-governments-unplug-websites-chatgpt\nxiyu.news · 2026-10-22 · https://xiyu.news"
+        },
+        {
+          "due_at": "2026-10-22T15:13:00+08:00",
+          "id": "8c41c16282ce270588dd2b64d6c37ad4c5e59389ccbdac7157573deba3d9858b",
+          "rank": 7,
+          "text": "LiteLLM今年第二次遭投毒：不调用也能偷密钥\n\n安全公司 JFrog 发现，热门开源 AI 模型网关 LiteLLM 的 1.107.0 版本及官方 Docker 镜像遭到供应链攻击，Python 安装包中被藏入三个额外文件。用户安装后只要启动相关 Python 环境，即使不调用 LiteLLM，恶意代码也会自动运行，搜集浏览器密码、SSH 私钥、AWS 等云平台凭证，以及 Claude、Codex、Cursor 等工具的认证信息，并发送到伪装成官方域名的服务器。\n\nJFrog 提醒，安装或运行过 1.107.0 的用户应将相关凭证视为可能泄露，隔离并重建环境、轮换 API 密钥等敏感凭证，而不是简单卸载软件；已确认安全的回退版本为 1.106.2。攻击者还留下了一个持久化后门，每小时检查一次远程指令，必要时下载并执行新的代码。\n\n目前 PyPI 已移除恶意版本，Docker Hub 也已撤下受影响镜像。GitHub 上的正式版本源码没有这些恶意文件，但发布到 PyPI 的全部七个平台安装包都被植入木马；社区通过 Docker 构建记录发现，发布系统使用的源码地址指向一个与官方仓库名称只差一个连字符的仿冒仓库，它究竟如何混入发布流程仍未查清。\n\n来源：https://m.theblockbeats.info/flash/373048?from=telegram\nxiyu.news · 2026-10-22 · https://xiyu.news"
+        },
+        {
+          "due_at": "2026-10-22T16:24:00+08:00",
+          "id": "2ff0e15ff5d08600580dd6f19def55317f3828c895954e81d4fdce4c9e27abe8",
+          "rank": 8,
+          "text": "比特币闪电网络开发者就安全漏洞发出警告，五天内第二个补丁落地\n\n据 CryptoSlate 报道，比特币闪电网络开发者在五天内第二个补丁发布后，公开就安全漏洞发出警告。现有材料中尚无已确认的大规模利用或系统性资金损失事件。\n\n这一警告提醒闪电网络节点运营者应用最新修复，因为支付通道软件中的安全缺陷会对持有和路由资金的系统构成运营风险。\n\n第二个补丁在五天窗口内发布，表明修复正在快速连续推出。现有证据尚不能确认这些漏洞已被大规模利用。\n\n来源：https://cryptoslate.com/bitcoin-lightning-developers-sound-alarm-over-security-flaws-as-second-patch-lands-in-five-days/\nxiyu.news · 2026-10-22 · https://xiyu.news"
+        },
+        {
+          "due_at": "2026-10-22T17:16:00+08:00",
+          "id": "2ef9b9a0924336ac1c50595a80224af126097b8918fa10f5820bbe3d0c6cba4e",
+          "rank": 9,
+          "text": "Kalshi将支持加密资产抵押借款用于永续期货保证金\n\nKalshi 与加密资产托管机构 BitGo 达成协议，将允许其在美国注册的期货佣金商 Kalshi Prime 的客户以托管的数字资产作为抵押借款，并把贷款资金用作 Kalshi 交易所杠杆永续期货交易的保证金。据彭博社报道，该安排采用三方抵押品管理结构，贷款由 Kalshi 关联借贷公司 Kalshi Katalyst 提供，抵押资产存放于 BitGo Bank & Trust。\n\nKalshi Prime 首席执行官 Jeff Bandman 表示，该安排旨在让客户无需退出加密资产持仓即可参与交易，并可能吸引加密原生交易机构及持有大量数字资产的巨鲸。\n\n合格抵押资产包括比特币、以太坊，以及被视为符合《GENIUS 法案》的稳定币，预计后续还将接入其他托管机构。Kalshi 今年早些时候已推出黄金、白银及加密货币永续合约，并已申请推出与石油和美股挂钩的永续类产品。\n\n来源：https://m.theblockbeats.info/flash/373039?from=telegram\nxiyu.news · 2026-10-22 · https://xiyu.news"
+        },
+        {
+          "due_at": "2026-10-22T18:52:00+08:00",
+          "id": "d46e474f8a82184430cf74f4bf767659f0c4ab80b73a94d51e3d2fec3c2619f9",
+          "rank": 10,
+          "text": "代币化股票交易在海外兴起，高盛等美国公司表示反对\n\n据 CNBC 报道，代币化股票交易在海外司法辖区的成交量正在上升，与此同时高盛等美国公司对这一做法表示反对。双方的对立使代币化股票的市场结构与监管归属成为争议焦点。\n\n一家美国主要发行方的反对，使一个关键问题浮出水面：离岸平台能否在未获得标的公司同意的情况下，继续扩大代币化股票交易。\n\n根据美国证监会（SEC）市场结构小组委员会的一份建议文件，只要代币化工具符合股权证券的定义，就仍须遵守联邦证券法、SEC 法规以及美国金融业监管局（FINRA）的要求。CNBC 的报道描述的是一个正在演变的趋势，而非某一项裁决或执法行动。\n\n来源：https://www.cnbc.com/2026/10/21/tokenized-stocks-us-companies-object.html\nxiyu.news · 2026-10-22 · https://xiyu.news"
+        },
+        {
+          "due_at": "2026-10-22T20:01:00+08:00",
+          "id": "529df044dbb476dab6662ee3e29946bdf3dd5b2e5d90ac3d9b5a3c7ac1c9ae90",
+          "rank": 11,
+          "text": "盗取逾 2.7 亿美元的 Drift Protocol 攻击者再存入 24,885 枚 ETH\n\n据链上监测账号余烬统计，与 4 月 Drift Protocol 攻击事件相关的钱包在约一小时内再向 Tornado Cash 存入 24,885 枚 ETH（约 6104 万美元），使该攻击者两日累计存入量达到 50,595 枚 ETH（约 1.22 亿美元）。转账后，被标记为攻击者的地址仍持有 56,569 枚 ETH，价值约 1.39 亿美元。\n\n这些资金正通过一个旨在切断存款与提现地址之间链上关联的混币器流转，加大了调查方的追踪难度，也降低了 Drift 受损用户追回被盗资产的可能性。\n\n各方给出的损失数字存在差异：标题称超过 2.7 亿美元，而有关 4 月 1 日黑客事件的报道称损失约 2.95 亿美元，DefiLlama 将其列为今年第三大加密黑客事件。部分追踪机构记录的兩日累计存入量为 44,510 枚 ETH（约 1.09 亿美元），其中周三转出 18,800 枚 ETH（约 4600 万美元），与余烬给出的 50,595 枚 ETH 并不一致。\n\n来源：https://x.com/lookonchain/status/2112475259907846217\nxiyu.news · 2026-10-22 · https://xiyu.news"
+        },
+        {
+          "due_at": "2026-10-22T21:13:00+08:00",
+          "id": "f395a3e3a7221e90da5065d195ffd2f6f77e9eedc50f451c6edcf8f93b09bdfc",
+          "rank": 12,
+          "text": "SpaceX与特斯拉探索合并，将整合逾3万枚比特币\n\n据报道，SpaceX与特斯拉正在探索合并事宜，若交易达成，两家公司的企业比特币持仓将归入同一实体，合计超过3万枚BTC。其中一篇报道给出的合并数字为30,221枚比特币。\n\n若合并成行，全球两家最大的企业比特币持有方将把持仓汇集到同一张资产负债表上，合并后的公司将成为最大的企业级比特币持有者之一。\n\n相关讨论被描述为早期阶段的探索，而非已敲定的交易，未披露交易条款、时间表或监管审查安排。各家报道对合并后持仓规模的数字并不一致，部分报道提及近2万枚比特币，另一些则称为30,221枚BTC。\n\n来源：https://www.coindesk.com/markets/2026/10/21/spacex-and-tesla-explore-merger-that-would-unite-more-than-30-000-bitcoin\nxiyu.news · 2026-10-22 · https://xiyu.news"
+        },
+        {
+          "due_at": "2026-10-22T21:58:00+08:00",
+          "id": "77478890f8ef21f470b90177fcba99d1a8ada4afece7ae28e1020e50ce7c0341",
+          "rank": 13,
+          "text": "德国主要储蓄银行网络推出比特币交易\n\n据 CryptoSlate 报道，德国储蓄银行网络（Sparkassen）已推出比特币交易服务，零售客户可通过既有的银行基础设施直接获得比特币敞口，而无需另行开设加密交易所账户。\n\nSparkassen-Finanzgruppe（储蓄银行金融集团）按资产计是德国乃至欧洲最大的金融服务集团，因此通过其零售银行渠道提供比特币，意味着比特币直接进入了该地区最保守的银行网络之一。\n\n储蓄银行是以公法机构（Anstalten des öffentlichen Rechts）形式运营、受市政或地区托管监督的银行，采取分散治理与共享机构框架相结合的模式。交易功能集成在银行的数字银行平台中，客户可通过现有银行账户进入数字资产市场。\n\n来源：https://cryptoslate.com/germanys-main-savings-bank-network-launches-bitcoin-trading/\nxiyu.news · 2026-10-22 · https://xiyu.news"
+        },
+        {
+          "due_at": "2026-10-22T23:11:00+08:00",
+          "id": "258d5ff776fa8f139d323b47c646b9f38c1b658b178bbd1b413e2c0a6136a7ff",
+          "rank": 14,
+          "text": "Anthropic推出新AI智能体Claude Duet，正面迎战Muse\n\nAnthropic宣布推出AI智能体Claude Duet，面向专业人士和小企业主，以“研究预览”（research preview）形式上线。该产品提供iOS和Android独立应用，同时可通过网页版Claude（claude.ai）使用。\n\nDuet使Anthropic进入与Meta的Muse、OpenAI的Dots相同的消费级与小企业智能体赛道，三大实验室在此领域已形成直接竞争。Anthropic官方材料将该智能体描述为“主动式”，会在有事需要用户处理时主动发消息提醒。\n\n据The Verge报道，该智能体基于Claude Opus 5.5构建，Anthropic称其可处理收件箱、日历和后续跟进事项。Anthropic将该版本定位为研究预览而非完整正式发布的产品，其产品页面目前提供等候名单（waitlist）入口。\n\n来源：https://www.theverge.com/ai-artificial-intelligence/1015843/anthropic-claude-duet-ai-agent\nxiyu.news · 2026-10-22 · https://xiyu.news"
+        }
+      ],
+      "revision": "4ce17ffb8b46197bfa87b81bf7dd02f51ce944f2b90d7e9955ba7aef54192ec8",
+      "selected": 14,
+      "synced_at": "2026-10-22T07:36:48.020676+08:00"
     }
   },
   "version": 1
