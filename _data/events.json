@@ -170688,7 +170688,7 @@
       "first_seen_at": "2026-10-20T09:34:14.171646Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-21T09:29:58.345033Z",
-      "last_updated_at": "2026-10-21T09:29:58.345033Z",
+      "last_updated_at": "2026-10-21T10:01:25.732940Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -170856,7 +170856,7 @@
           "detailed_summary_zh": "The attacker behind the April Drift Protocol theft deposited another 24,885 ETH (~$61M) into Tornado Cash in the past hour, taking cumulative laundering on Oct 20–21 to 50,595 ETH (~$122M) while still holding roughly 56,569 ETH (~$139M).",
           "event_id": "evt_269a773047599628",
           "first_seen_at": "2026-10-21T09:29:58.345033Z",
-          "importance_score": 7.0,
+          "importance_score": 7.5,
           "market_impact_en": "",
           "market_impact_zh": "",
           "material_change": true,
@@ -170869,10 +170869,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://foresightnews.pro/news/h5Detail/115654"
+            },
+            {
+              "label": "lookonchainchannel",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://x.com/lookonchain/status/2112475259907846217"
             }
           ],
           "story_ids": [
-            "telegram:foresightnews:120942"
+            "telegram:foresightnews:120942",
+            "telegram:lookonchainchannel:10718"
           ],
           "time_precision": "published",
           "title_en": "【Drift 黑客过去 1 小时再向 Tornado Cash 存入 24,885 枚 ETH，约合 6104 万美元】",
@@ -173285,8 +173292,8 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "Meta paused its Muse conversation-sharing feature after Claroc researchers discovered more than 6,800 publicly accessible Muse chat links through public DNS records.",
-      "current_state_zh": "Meta 表示已暂停 Muse 的一项分享功能——该功能允许用户分享与这款 AI 助手的对话。此前，安全公司 Claroc 的研究人员通过公开的 DNS 记录发现了超过 6,800 条可公开访问的 Muse 聊天链接，Ars Technica 报道了这一消息。Claroc 本周发布了相关报告。\n\n这次暂停是针对一起隐私暴露事件的产品层面应对，而用户此前可能以为这些对话只在小范围内被分享。\n\n据报道，这些链接是通过公开的 DNS 记录被定位到的，而非由 Meta 主动披露。Meta 称该分享功能为“暂停”，并非永久移除。",
+      "current_state_en": "Claroc researchers found over 6,800 of Meta's Muse AI chat-sharing links discoverable through DNS history databases, exposing sensitive corporate and personal material, prompting Meta to suspend the chat-sharing feature after press inquiries.",
+      "current_state_zh": "Claroc researchers found over 6,800 of Meta's Muse AI chat-sharing links discoverable through DNS history databases, exposing sensitive corporate and personal material, prompting Meta to suspend the chat-sharing feature after press inquiries.",
       "entities": [
         "meta",
         "muse"
@@ -173295,17 +173302,20 @@
       "event_type": "security_incident",
       "first_seen_at": "2026-10-20T21:31:45.776307Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-20T21:31:45.776307Z",
-      "last_updated_at": "2026-10-21T09:29:56.748762Z",
+      "last_material_change_at": "2026-10-21T10:01:30.247136Z",
+      "last_updated_at": "2026-10-21T10:01:30.247136Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_853bd3f2a842d7b4"
+      ],
       "schema_version": 1,
       "status": "monitoring",
-      "title_en": "Meta pauses Muse sharing after researchers find AI chats on the web",
-      "title_zh": "研究人员在网上发现 AI 聊天记录后，Meta 暂停 Muse 分享功能",
+      "title_en": "Meta Muse chat-sharing links found publicly discoverable; Meta pauses feature",
+      "title_zh": "Meta Muse 聊天分享链接被曝公开可查，Meta 暂停该功能",
       "topics": [
         "ai-privacy",
         "data-exposure",
+        "dns",
         "meta",
         "muse"
       ],
@@ -173350,11 +173360,18 @@
               "official": false,
               "source_type": "hackernews",
               "url": "https://arstechnica.com/security/2026/10/meta-muse-exposes-users-personal-and-business-secrets-when-they-share-conversations/"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372971?from=telegram"
             }
           ],
           "story_ids": [
             "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:d05985f548b7ed22",
-            "hackernews:story:50174687"
+            "hackernews:story:50174687",
+            "telegram:theblockbeats:201628"
           ],
           "time_precision": "published",
           "title_en": "Meta pauses Muse sharing after researchers find AI chats on the web",
@@ -175889,6 +175906,78 @@
           "what_changed_zh": "Bittensor's Opentensor Foundation launched eTAO, letting subnet owners customize how alpha emissions are split among owners, validators, and miners while preserving root-network TAO staker protections."
         }
       ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
+      "current_state_zh": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
+      "entities": [
+        "eip",
+        "eip-8288",
+        "starkware",
+        "vitalik"
+      ],
+      "event_id": "evt_3c185917c5599b82",
+      "event_type": "other",
+      "first_seen_at": "2026-10-21T10:01:29.551436Z",
+      "identifiers": [
+        "eip-8288"
+      ],
+      "last_material_change_at": "2026-10-21T10:01:29.551436Z",
+      "last_updated_at": "2026-10-21T10:01:29.551436Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "FN 速递丨a16z 和 StarkWare 争吵密码学路线，Vitalik 想都交给 EIP-8288",
+      "title_zh": "FN 速递丨a16z 和 StarkWare 争吵密码学路线，Vitalik 想都交给 EIP-8288",
+      "topics": [
+        "cryptography",
+        "eip-8288",
+        "precompiles",
+        "vitalik-buterin"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
+          "current_state_zh": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
+          "detailed_summary_en": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
+          "detailed_summary_zh": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
+          "event_id": "evt_3c185917c5599b82",
+          "first_seen_at": "2026-10-21T10:01:29.551436Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T09:58:56Z",
+          "published_at": "2026-10-21T09:58:56Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/article/detail/101095"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120948"
+          ],
+          "time_precision": "published",
+          "title_en": "FN 速递丨a16z 和 StarkWare 争吵密码学路线，Vitalik 想都交给 EIP-8288",
+          "title_zh": "FN 速递丨a16z 和 StarkWare 争吵密码学路线，Vitalik 想都交给 EIP-8288",
+          "update_id": "upd_f526c3d8050d0cc9",
+          "update_type": "initial",
+          "what_changed_en": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
+          "what_changed_zh": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -176014,7 +176103,7 @@
     ],
     "block-time": [
       "evt_04729c76ccc47903",
-      "evt_92fa30c8f4d94ba9"
+      "evt_7961cef127fc12b3"
     ],
     "blockchaincom": [
       "evt_37466bb2c58748f7"
@@ -176477,6 +176566,7 @@
       "evt_66e5ed0ea3e6e528"
     ],
     "mastercard": [
+      "evt_7271c70aa08a2985",
       "evt_ca4ef5c71eebdf77",
       "evt_e66d9aa6984f2221"
     ],
@@ -176486,6 +176576,7 @@
     "meta": [
       "evt_294b831ec4a5f79c",
       "evt_2b2c42d20cf1d50e",
+      "evt_5d6713f865ed5f7d",
       "evt_66e5ed0ea3e6e528",
       "evt_6f03cb273dfc8938",
       "evt_dd74b90bd962fc88",
@@ -188954,7 +189045,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A national regulator approving a Bitcoin ETF is a material market-access and market-structure development with a clear transmission path to crypto demand, comparable to ETF approvals in other jurisdictions. Switzerland is a significant financial center, but its market size limits systemic impact relative to a US approval, placing it in the high-value rather than groundbreaking tier.",
         "ai_score": 8.0,
@@ -188992,7 +189083,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Alpenglow is Solana's most substantial core protocol overhaul since 2020, replacing the TowerBFT/Proof-of-History finality mechanism with a new consensus design aimed at sub-second finality. A mainnet activation of a consensus-layer change on one of the largest smart-contract networks is a high-value, time-sensitive infrastructure event with implications for validators, dApps, and market structure, though it is an anticipated upgrade rather than a surprise or a systemic risk event.",
         "ai_score": 8.0,
@@ -189026,7 +189117,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "The article highlights a notable market-structure shift as major crypto exchanges move to offer prediction markets to US customers, a development with clear implications for product expansion, regulatory boundaries, and competition with established prediction-market platforms. It is a trend-level report rather than a single confirmed launch, which keeps it below the highest tier.",
         "ai_score": 7.0,
@@ -189058,7 +189149,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A national authority cutting off mobile access to six major crypto exchanges is a concrete regulatory action that materially changes retail market access in a sizable jurisdiction, with a clear transmission path to exchange volumes and local user activity. It falls short of landmark status because it is jurisdiction-specific and appears to be an access restriction rather than a global policy shift or enforcement action against the exchanges themselves.",
         "ai_score": 7.0,
@@ -189096,7 +189187,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Governance vote on NEAR's tokenomics that would cut issuance to 1.6% is a material protocol-level change affecting supply dynamics and staking economics for a widely-held L1. It is a formal vote opening rather than a finalized decision, keeping it below the top tier of protocol events.",
         "ai_score": 7.0,
@@ -189133,7 +189224,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Statement by CFTC Chair Michael Selig that proposed rules could open the door to U.S. retail crypto margin trading is a meaningful regulatory signal with a direct transmission path to market access and derivatives structure. It is high-value but not yet a final rule or material policy change, and the item is a headline-level report without detailed rule text.",
         "ai_score": 7.0,
@@ -189166,7 +189257,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A reported exploration of a merger between Tesla and SpaceX is a consequential corporate development given both firms are among the largest public-company bitcoin holders; consolidating ~30,000 BTC into one entity would be a material corporate-treasury and market-structure event. The score is tempered because this is described as early-stage exploration rather than a confirmed transaction, with no terms, timing, or regulatory review details. High signal, but not yet a paradigm shift.",
         "ai_score": 7.5,
@@ -189204,7 +189295,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Active exploitation of PHP vulnerabilities ahead of critical patches is a significant security development for widely used web infrastructure. The headline signals urgency but lacks confirmed scope, affected versions, or impact details, keeping it below top-tier incident scores.",
         "ai_score": 7.5,
@@ -189242,7 +189333,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Concrete in-window development: Zcash developers locked in a November activation date for a network upgrade that roughly triples transaction throughput. This is a substantive protocol-level change with a defined timeline for a widely tracked privacy network, giving it actionable relevance for holders, miners, and node operators, though it is a scheduled incremental scaling upgrade rather than a paradigm shift.",
         "ai_score": 7.0,
@@ -189274,6 +189365,43 @@
         "source_type": "rss",
         "title": "Zcash developers confirm November date for upgrade that triples payment speed",
         "url": "https://www.coindesk.com/markets/2026/10/21/zcash-developers-confirm-november-date-for-upgrade-that-triples-payment-speed"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Germany's Sparkassen savings bank network — one of Europe's largest retail banking groups — opening Bitcoin trading to retail customers is a material institutional/market-structure development with a clear path to broader European bank adoption. It is not a systemic or regulatory event, so it sits below the 8.5+ tier, but it exceeds routine exchange listings in significance.",
+        "ai_score": 7.5,
+        "ai_summary": "Germany's main savings bank network (Sparkassen) has launched Bitcoin trading, giving retail bank customers direct access to BTC through established banking infrastructure.",
+        "ai_tags": [
+          "bitcoin",
+          "institutional-adoption",
+          "germany",
+          "retail-banking",
+          "europe"
+        ],
+        "author": "CryptoSlate",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxQUlJMT21NRTlZY3hFcUV4TXBMMHVsb2VEREc0ckxzYTFYZWFyVmtWamhKUWttcUo1bWNidFEtRnlQWmh5WHVaYzgzNWdjcFd0QVUteXI3NFNmeGJhSnNMNlVuakRkU1IxYjlvUmcyaEpFT3hzWUtYbXBEOG55UGc4OEk2Yy0wdm5RbXNQTw?oc=5\" target=\"_blank\">Germany’s main savings bank network launches Bitcoin trading</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoSlate</font>",
+        "fetched_at": "2026-10-21T10:01:38.290535Z",
+        "id": "google_news:article:a35e008f7a5123ba",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "CryptoSlate",
+          "gn_query": "site:cryptoslate.com",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://cryptoslate.com/feed/",
+          "publisher_url": "https://cryptoslate.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "CryptoSlate"
+        },
+        "published_at": "2026-10-21T07:10:17Z",
+        "source_type": "google_news",
+        "title": "Germany’s main savings bank network launches Bitcoin trading",
+        "url": "https://cryptoslate.com/germanys-main-savings-bank-network-launches-bitcoin-trading/"
       }
     }
   ],
