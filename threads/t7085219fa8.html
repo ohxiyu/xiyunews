@@ -1,0 +1,18 @@
+---
+layout: default
+title: "八比特的信任：eMudhra 的 CA 密钥在毫秒内被破解"
+permalink: /threads/t7085219fa8/
+interface_language: zh
+description: "eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。  由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链"
+page_type: archive
+---
+
+<div class="archive-stats"><div class="archive-stat"><strong>2</strong><span>天</span></div><div class="archive-stat"><strong>2</strong><span>条</span></div><div class="archive-stat"><strong>2026-10-22</strong><span>最近报道</span></div></div><h2>时间线</h2><ul class="archive-list"><li class="archive-row"><time datetime="2026-10-22">2026-10-22</time><div class="archive-row-body"><h3><a href="https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/" target="_blank" rel="noopener noreferrer">八比特的信任：eMudhra 的 CA 密钥在毫秒内被破解</a></h3><p class="archive-row-summary">eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。
+
+由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链接到受信任根证书的证书；而无法更新 CA 证书包的设备将持续处于暴露状态。
+
+据最初报告者称，该发现来自谷歌开源工具 paranoid_crypto，在检查用户证书之前，直接以默认配置对 CCADB 证书库跑了一遍。据称随后对所有现有 CCADB 证书的更全面排查未再发现其他命中项，Chrome 也在证书透明度（CT）日志中未发现恶意签发的证书。</p><p class="archive-row-meta">hkc</p></div><span class="score-badge" data-tier="good">8.5</span></li><li class="archive-row"><time datetime="2026-10-21">2026-10-21</time><div class="archive-row-body"><h3><a href="https://emudhra.we-have-a-problem.com/" target="_blank" rel="noopener noreferrer">eMudhra 中间证书颁发机构被攻陷</a></h3><p class="archive-row-summary">eMudhra 的中间 ECC 证书颁发机构被发现私钥实际上可被猜测——据报道只有一个字节（其中一个私钥字面值就是“4”），根源在于某一天用于生成这些 ECC 签发者的 KGC 脚本存在缺陷。浏览器厂商随即撤销了对相关中间 CA 的信任，而未采用现代吊销机制的非浏览器 TLS 客户端仍暴露在风险之中。
+
+由于这些中间 CA 属于公开受信任的机构，任何能猜出私钥的人都可以为任意域名伪造证书，而这种风险在生态中的分布极不均衡。一位 Mozilla 工程师表示，Firefox 用户通过 OneCRL 在两小时内即自动获得保护，Chrome、Apple 和 Microsoft 也有类似机制，但“生态中的其余部分在吊销机制上几乎没有任何投入”。
+
+在 Mozilla 缺陷报告 2083449 中，eMudhra 表示初步评估发现“当天用于创建这些 ECC 签发者的 KGC 脚本存在缺陷”，并称对 KGC 代码和 HSM 密钥的审查迄今显示：一组原始 ECC 密钥按预期在硬件内生成，此外还存在一项对其常规 KGC 流程的获批偏离。社区讨论提到共有 8 个受影响的 CA，一位评论者称这些密钥据称是在某个公开仓库 URL 上被发现的，同时表示不确定这些文件说明的是密钥被窃取，还是密钥生成过程本身过弱。</p><p class="archive-row-meta">galadran</p></div><span class="score-badge" data-tier="good">8.0</span></li></ul><p class="archive-back"><a href="/threads/">全部追踪</a> · <a href="/">返回首页</a></p>

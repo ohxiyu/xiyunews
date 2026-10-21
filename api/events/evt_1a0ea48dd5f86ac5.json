@@ -42,25 +42,37 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Eight Bits of Trust; eMudhra's CA keys cracked in milliseconds",
+      "title_zh": "八比特的信任：eMudhra 的 CA 密钥在毫秒内被破解",
       "title_en": "Eight Bits of Trust; eMudhra's CA keys cracked in milliseconds",
-      "what_changed_zh": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
+      "what_changed_zh": "eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。\n\n由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链接到受信任根证书的证书；而无法更新 CA 证书包的设备将持续处于暴露状态。\n\n据最初报告者称，该发现来自谷歌开源工具 paranoid_crypto，在检查用户证书之前，直接以默认配置对 CCADB 证书库跑了一遍。据称随后对所有现有 CCADB 证书的更全面排查未再发现其他命中项，Chrome 也在证书透明度（CT）日志中未发现恶意签发的证书。",
       "what_changed_en": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
-      "current_state_zh": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
+      "current_state_zh": "eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。\n\n由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链接到受信任根证书的证书；而无法更新 CA 证书包的设备将持续处于暴露状态。\n\n据最初报告者称，该发现来自谷歌开源工具 paranoid_crypto，在检查用户证书之前，直接以默认配置对 CCADB 证书库跑了一遍。据称随后对所有现有 CCADB 证书的更全面排查未再发现其他命中项，Chrome 也在证书透明度（CT）日志中未发现恶意签发的证书。",
       "current_state_en": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
       "detailed_summary_zh": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
       "detailed_summary_en": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
-      "importance_score": 8.0,
+      "background_zh": "eMudhra 是一家成立于 2008 年的印度证书颁发机构，据维基百科其已签发超过 6000 万张数字证书。通常 CA 密钥失陷意味着被盗，有明确的失窃时点，也能追问密钥现在在谁手里；而这次没有任何东西被偷——密钥材料本身太弱，直接算出来即可。对可更新的设备而言，修复主要是刷新 CA 证书包（操作系统 ca-certificates、certifi、Node、Homebrew、容器基础镜像），而长期在线且难以更新的嵌入式设备才是难点。",
+      "background_en": "eMudhra is an Indian certificate authority founded in 2008; per Wikipedia it has issued more than 60 million digital certificates. Normally a CA key compromise involves theft, with a clear moment of loss and a question of who holds the key. Here nothing was stolen — the key material was so weak it could simply be computed. Fixing the updatable devices is largely a matter of refreshing CA bundles (OS ca-certificates, certifi, Node, Homebrew, container base images), while long-lived embedded devices are the hard part.",
+      "community_discussion_zh": "Hacker News 的评论者主要关注两点：一是受信任 CA 的数量之多，有人直言“有 100 个受信任的证书颁发机构，回头看可能确实过头了”；二是无法打补丁的设备问题，因为建议本质上就是“去更新”，而很多硬件根本更新不了。有评论者提出，能否用这些坏掉的密钥签发证书来越狱被锁定的物联网设备；也有人贴出了此前讨论热烈的 HN 帖，主题正是 eMudhra 中间 CA 失陷。",
+      "community_discussion_en": "Hacker News commenters focused on the sheer number of trusted CAs — one remark that \"having 100 trusted certificate authorities might have been excessive\" — and on the unpatched-device problem, since the advice reduces to \"update them\" for hardware that often cannot be updated. One commenter floated the idea of using the broken keys to mint certificates for jailbreaking locked-down IoT devices, while another linked a prior, heavily discussed HN thread on the eMudhra intermediate CA compromise.",
+      "market_impact_zh": "传导路径在 Web PKI 信任层面，而非链上资产：伪造证书可能被用于对加密货币交易所前端、钱包下载页面以及依赖公共 TLS 的固件更新通道实施钓鱼或劫持。信任库无法刷新的硬件钱包与物联网钱包面临的暴露期最长，但就密钥弱点本身而言，尚无某个市场板块受到直接损害。",
+      "market_impact_en": "The transmission path runs through web PKI trust rather than on-chain assets: forged certificates could support phishing or interception against crypto exchange front-ends, wallet download pages and firmware update channels that rely on public TLS. Hardware and IoT wallets whose trust stores cannot be refreshed carry the longest-lived exposure, though no market segment is directly impaired by the key weakness itself.",
+      "importance_score": 8.5,
       "references": [
         {
           "url": "https://news.ycombinator.com/item?id=50177916",
           "title": "Community discussion"
+        },
+        {
+          "url": "https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/",
+          "title": "Eight Bits of Trust; eMudhra's CA keys cracked in milliseconds"
+        },
+        {
+          "url": "https://thehackernews.com/2026/10/eight-emudhra-ca-keys-compromised.html",
+          "title": "Eight eMudhra CA Keys Compromised, Triggering Emergency Fixes..."
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/EMudhra",
+          "title": "eMudhra - Wikipedia"
         }
       ],
       "confidence": 0.75,

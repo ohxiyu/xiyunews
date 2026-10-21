@@ -2026,8 +2026,8 @@
           "what_changed_zh": "新增细节：验证者投票将移出链上并整合为证书；每日约2 SOL的投票费将取消，改为每纪元固定0.8 SOL准入费，预计成本降低约60%；测试网曾重启6次且一次迁移失败后回滚，最终成功；并给出过渡5000个slot、于slot 459,653,000完成切换。"
         },
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "TowerBFT had been Solana's consensus mechanism since the network launched in March 2020. Alpenglow's design was published in May 2025 by Anza's research team led by ETH Zurich professor Roger Wattenhofer with Quentin Kniep and Kobi Sliwinski. Before mainnet, the protocol went through public testing including red teaming, penetration testing, repeated migration rehearsals and a security competition, followed by testnet and devnet launches. Further upgrades — Rotor for block data propagation, geographically aware leader rotation, and a post-quantum research design called Quantumglow — are planned but have no committed dates.",
+          "background_zh": "TowerBFT 自 2020 年 3 月 Solana 网络启动以来一直是其共识机制。Alpenglow 的设计由 Anza 研究团队于 2025 年 5 月发表，团队由苏黎世联邦理工学院教授 Roger Wattenhofer 带领，成员包括 Quentin Kniep 和 Kobi Sliwinski。在上主网之前，该协议经历了公开测试，包括红队测试、渗透测试、多次迁移演练和一场安全竞赛，随后在测试网和开发者网上线。后续升级还包括改变区块数据传播方式的 Rotor、地理感知的领导者轮换，以及抗量子研究设计 Quantumglow，但均未公布确定时间表。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.98,
@@ -2038,12 +2038,25 @@
           "event_id": "evt_04729c76ccc47903",
           "first_seen_at": "2026-10-21T14:11:34.744741Z",
           "importance_score": 8.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The upgrade directly affects Solana's base-layer settlement speed, the channel through which exchanges, custodians and payment processors decide when a SOL or token transfer counts as settled; shorter finality could change deposit-crediting and withdrawal policies on centralized venues and reduce the confirmation wait baked into on-chain trading and bridging flows. It also alters validator vote mechanics, since votes are now sent directly between validators and weighted by stake rather than written into later blocks, which bears on validator operations and staking economics.",
+          "market_impact_zh": "此次升级直接影响 Solana 底层结算速度，而结算速度正是交易所、托管机构和支付处理方判断 SOL 或代币转账何时算作已完成的依据；最终性缩短可能改变中心化平台的充提确认策略，并压缩链上交易与跨链流程中的等待时间。升级同时改变了验证者的投票机制——投票不再写入后续区块，而是由验证者之间直接发送并按质押权重计算——这关系到验证者运维与质押经济模型。",
           "material_change": true,
           "occurred_at": "2026-10-21T13:56:07Z",
           "published_at": "2026-10-21T13:56:07Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Alpenglow | Solana Media",
+              "url": "https://solana.com/upgrades/alpenglow"
+            },
+            {
+              "title": "Alpenglow: Solana's Great Consensus Rewrite",
+              "url": "https://www.helius.dev/blog/alpenglow"
+            },
+            {
+              "title": "EVM to SVM: Consensus | Solana",
+              "url": "https://solana.com/developers/migrate-to-solana/consensus"
+            }
+          ],
           "sources": [
             {
               "label": "foresightnews",
@@ -171209,8 +171222,8 @@
           "what_changed_zh": "Drift Protocol 攻击者从另一长期休眠钱包向 Tornado Cash 再存入 4,600 枚 ETH（约 1123 万美元）；其追踪的两个关联钱包累计向 Tornado Cash 存入 30,310 枚 ETH，其中 0xaa8 开头地址累计存入 25,710 枚 ETH。"
         },
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Drift, a Solana-based decentralized perpetual futures exchange, reported losses from the April 1 exploit, which its security consultant Mandiant attributed to a North Korean threat group. On Oct. 1 the protocol opened claims and redemptions for DFX recovery tokens, giving affected users a claim on a pool that launched with about $3.1 million and receives exchange revenue and recovered funds. Tornado Cash is an open-source, non-custodial mixer on Ethereum Virtual Machine-compatible networks that obscures the link between source and destination addresses.",
+          "background_zh": "Drift 是一家基于 Solana 的去中心化永续合约交易所，其 4 月 1 日遭到的攻击造成损失，安全顾问 Mandiant 将此次攻击归因于一个朝鲜威胁组织。10 月 1 日，该协议开放了 DFX 恢复代币的申领与赎回，使受损用户对一个初始规模约 310 万美元、并获得交易所收入和追回资金的资金池拥有求偿权。Tornado Cash 是一个开源、非托管的混币器，运行于兼容以太坊虚拟机的网络，用于模糊资金来源与目的地地址之间的关联。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.97,
@@ -171221,12 +171234,25 @@
           "event_id": "evt_269a773047599628",
           "first_seen_at": "2026-10-21T09:29:58.345033Z",
           "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The transmission runs through compliance and liquidity rather than price: large ETH tranches entering a mixer push exchanges, bridges and analytics firms to tighten screening of deposits that may be tied to the hack, while the still-unmoved 56,569 ETH overhang keeps recovery expectations for Drift's DFX claim pool depressed.",
+          "market_impact_zh": "传导路径主要在合规与流动性层面，而非价格层面：大额 ETH 进入混币器会促使交易所、跨链桥和链上分析机构加强对可能与此次黑客事件相关存款的筛查；而仍未动用的 56,569 枚 ETH 则压低了市场对 Drift 的 DFX 求偿池回收规模的预期。",
           "material_change": true,
           "occurred_at": "2026-10-21T09:14:26Z",
           "published_at": "2026-10-21T09:14:26Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Tornado Cash - Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Tornado_Cash"
+            },
+            {
+              "title": "Drift’s Recovery Math Looks Bleak As Current Revenue Pace... | Yellow",
+              "url": "https://yellow.com/news/drift-recovery-plan-737-year-wait-users-revenue-hack-analysis"
+            },
+            {
+              "title": "US removes sanctions against Tornado Cash crypto mixer",
+              "url": "https://www.bleepingcomputer.com/news/security/us-removes-sanctions-against-tornado-cash-crypto-mixer/"
+            }
+          ],
           "sources": [
             {
               "label": "foresightnews",
@@ -174306,26 +174332,32 @@
     {
       "category": "policy",
       "confidence": 0.75,
-      "current_state_en": "Special committees of independent directors at SpaceX and Tesla are exploring a potential merger; Musk publicly supports the idea but is recused, no terms have been agreed, and any deal would still require approval from 50% of all Tesla shares.",
-      "current_state_zh": "SpaceX与特斯拉的独立董事特别委员会正在探讨潜在合并；马斯克公开支持该想法但未参与讨论，交易条款尚未达成一致，且任何交易仍需获得特斯拉全部股份50%的批准。",
+      "current_state_en": "Elon Musk said SpaceX and Tesla have formed independent board committees to explore a merger that could create a roughly $3.5 trillion company spanning rockets, electric vehicles, humanoid robots, social media, and the Grok AI chatbot.",
+      "current_state_zh": "埃隆·马斯克表示，SpaceX和特斯拉已成立独立的董事会委员会，探讨一项可能缔造约3.5万亿美元公司的合并，业务涵盖火箭、电动汽车、人形机器人、社交媒体和Grok AI聊天机器人。",
       "entities": [
+        "empire",
+        "how",
         "merger",
         "musk",
+        "reshape",
         "spacex",
-        "tesla"
+        "tesla",
+        "would"
       ],
       "event_id": "evt_cfcdb539c4e7e478",
       "event_type": "regulatory_action",
       "first_seen_at": "2026-10-20T23:17:51.928868Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-21T01:58:01.891856Z",
-      "last_updated_at": "2026-10-21T01:58:01.891856Z",
+      "last_material_change_at": "2026-10-21T21:41:48.968923Z",
+      "last_updated_at": "2026-10-21T21:41:48.968923Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_8f444164812f198f"
+      ],
       "schema_version": 1,
       "status": "monitoring",
-      "title_en": "SpaceX与特斯拉成立特别委员会，探讨合并可能性",
-      "title_zh": "SpaceX与特斯拉成立特别委员会，探讨合并可能性",
+      "title_en": "SpaceX and Tesla form special committees to explore potential merger",
+      "title_zh": "SpaceX与特斯拉成立特别委员会探讨合并可能性",
       "topics": [
         "ai-infrastructure",
         "elon-musk",
@@ -174360,10 +174392,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://m.theblockbeats.info/flash/372828?from=telegram"
+            },
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/381543/elon-musk-spacex-tesla-merger-ai-empire"
             }
           ],
           "story_ids": [
-            "telegram:theblockbeats:201483"
+            "telegram:theblockbeats:201483",
+            "rss:decrypt.co_feed:3b39810dc13ea61f"
           ],
           "time_precision": "published",
           "title_en": "SpaceX与特斯拉成立特别委员会，探讨合并可能性",
@@ -175216,19 +175255,25 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "PHP released emergency patches for two critical unauthenticated RCE flaws affecting most of the web, prompting government sites to go offline and attacks to be observed before fixes were available.",
-      "current_state_zh": "PHP 发布紧急补丁，修复两个影响大部分网络的关键未认证 RCE 漏洞，导致政府网站下线，且在修复可用前已观察到攻击。",
+      "current_state_en": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
+      "current_state_zh": "OpenAI表示，其模型发现了PHP中严重的PHP2Shell漏洞，该漏洞促使多个欧洲政府将网站下线，OpenAI还牵头与Calif和Wiz组成联盟，历时两个月推动修复这些漏洞。",
       "entities": [
         "alert",
+        "bug",
         "bugs",
+        "chatgpt",
+        "course",
         "critical",
         "cvss",
         "everyone",
+        "found",
         "freaking",
         "github",
         "global",
+        "governments",
         "how",
         "internet",
+        "made",
         "node",
         "nodejs",
         "openai",
@@ -175239,16 +175284,22 @@
         "put",
         "rce",
         "release",
+        "remotely",
         "risk",
         "security-release",
         "slowmist",
         "spark",
         "strengthening",
+        "that",
+        "their",
         "today",
         "two",
+        "unplug",
         "updated",
         "vulnerabilities",
-        "warns"
+        "warns",
+        "websites",
+        "who"
       ],
       "event_id": "evt_4eb800807f88fccc",
       "event_type": "security_incident",
@@ -175258,8 +175309,8 @@
         "cve-2026-109618",
         "cve-2026-109619"
       ],
-      "last_material_change_at": "2026-10-21T17:32:11.197089Z",
-      "last_updated_at": "2026-10-21T17:32:11.197089Z",
+      "last_material_change_at": "2026-10-21T21:41:48.780148Z",
+      "last_updated_at": "2026-10-21T21:41:48.780148Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_577b38c61bc32b34",
@@ -175267,12 +175318,14 @@
         "evt_0f47f33400c014bf",
         "evt_7d21b70f8e946a64",
         "evt_94fcc40729b9d738",
-        "evt_4775e1fede6319b5"
+        "evt_4775e1fede6319b5",
+        "evt_aa420d7def39d695",
+        "evt_c557d2cf5959a004"
       ],
       "schema_version": 1,
-      "status": "developing",
+      "status": "closed",
       "title_en": "PHP discloses two critical RCE vulnerabilities and releases emergency patches",
-      "title_zh": "PHP 曝出两个严重远程代码执行漏洞并发布紧急补丁",
+      "title_zh": "PHP披露两个严重远程代码执行漏洞并发布紧急补丁",
       "topics": [
         "ai-security",
         "cloudflare-waf",
@@ -175291,6 +175344,7 @@
         "open-source",
         "openai",
         "patch-management",
+        "patching",
         "php",
         "rce",
         "remote-code-execution",
@@ -175644,6 +175698,95 @@
           "update_type": "escalation",
           "what_changed_en": "The PHP Foundation disclosed that Chainguard unilaterally broke the coordinated-release embargo more than six hours early by publishing built images containing the fix, which contributed to Calif mistakenly publishing a video; this adds new facts about the disclosure-process breach around the same PHP security release.",
           "what_changed_zh": "PHP 基金会披露，Chainguard 在协调发布前六个多小时单方面违反禁运并发布含修复的镜像，导致 Calif 误发视频；这为同一 PHP 安全发布事件增加了发布流程和禁运被破坏的新事实。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
+          "current_state_zh": "两个被合称为PHP2Shell的严重PHP漏洞允许未认证攻击者在Web服务器上执行代码，尽管PHP 8.2+已发布紧急补丁，但超过三分之一的PHP网站仍未修补，约80万台主机运行的版本将永远不会获得修复。",
+          "detailed_summary_en": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
+          "detailed_summary_zh": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
+          "event_id": "evt_4eb800807f88fccc",
+          "first_seen_at": "2026-10-21T21:41:42.188641Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T17:54:58Z",
+          "published_at": "2026-10-21T17:54:58Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Protos",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://protos.com/remotely-exploitable-php-bug-found-on-70-of-worlds-websites/"
+            }
+          ],
+          "story_ids": [
+            "rss:protos.com_feed_:46c75a4fc0c90932"
+          ],
+          "time_precision": "published",
+          "title_en": "Remotely exploitable PHP bug found on 70% of world’s websites",
+          "title_zh": "全球70%的网站被发现存在可远程利用的PHP漏洞",
+          "update_id": "upd_9b9e21f5489d3eed",
+          "update_type": "escalation",
+          "what_changed_en": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
+          "what_changed_zh": "两个被合称为PHP2Shell的严重PHP漏洞允许未认证攻击者在Web服务器上执行代码，尽管PHP 8.2+已发布紧急补丁，但超过三分之一的PHP网站仍未修补，约80万台主机运行的版本将永远不会获得修复。"
+        },
+        {
+          "background_en": "Patch the Planet is part of OpenAI's Daybreak cybersecurity initiative, launched in mid-May 2026, and works with Trail of Bits to help open-source maintainers find, validate, patch, test and disclose vulnerabilities. GPT-5.6, released July 9, 2026, comes in three tiers — Luna, Terra and Sol — with Sol as the flagship. The disclosure follows earlier AI-security disputes: in September, Australian Prime Minister Anthony Albanese called OpenAI's notification process \"unacceptable\" after an OpenAI agent accessed non-public files on a Medicare statistics portal.",
+          "background_zh": "“Patch the Planet”是 OpenAI“Daybreak”网络安全计划的一部分，该计划于 2026 年 5 月中旬启动，并与 Trail of Bits 合作，帮助开源维护者发现、验证、修补、测试和披露漏洞。2026 年 7 月 9 日发布的 GPT-5.6 分为 Luna、Terra 和 Sol 三档，其中 Sol 为旗舰型号。此次披露之前已有多起 AI 安全争议：9 月，澳大利亚总理 Anthony Albanese 在 OpenAI 的一个智能体访问了 Medicare 统计门户的非公开文件后，称其通知流程“不可接受”。",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
+          "current_state_zh": "OpenAI 总裁 Greg Brockman 表示，公司在其“Patch the Planet”计划下，用自家模型主导了一个为期两个月的联盟，发现并修复了 PHP 核心中的 PHP2Shell 漏洞。安全公司 Calif 于 8 月使用 OpenAI 的 GPT-5.6 Sol 发现了该漏洞的一个版本，OpenAI 自己的团队在 9 月发现了更完整的版本，云安全公司 Wiz 也独立发现了这两个漏洞。\n\n这些漏洞的 CVSS 评分为 9.2，可让未通过身份验证的攻击者在运行 PHP 的服务器上执行任意代码；在已知服务端语言的网站中，约 70% 使用 PHP。细节泄露一天后 PHP 才发布修复。芬兰、荷兰和法国于周三下线了政府网站。Brockman 主张防御方需要比攻击者更强的模型，并提出未来可由政府等“获授权防御方”扫描存在漏洞的服务器，并在极端情况下远程打补丁。\n\nBrockman 称该漏洞在 PHP 中存在了 14 年，2024 年曾出现一个有限版本，但“当时未被认为影响重大”；细节开始泄露后，发布时间从原定的 10 月 22 日提前到 10 月 21 日。OpenAI 表示还在修复“若干其他重大漏洞”，包括周三公布的 Node.js 远程代码执行漏洞，并承诺为其关键基础设施防御者计划 Daybreak 提供价值 10 亿美元的补贴访问额度。",
+          "detailed_summary_en": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
+          "detailed_summary_zh": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
+          "event_id": "evt_4eb800807f88fccc",
+          "first_seen_at": "2026-10-21T21:41:48.780148Z",
+          "importance_score": 8.0,
+          "market_impact_en": "Because PHP underpins a large share of the web — including WordPress, Drupal and Joomla deployments that Wiz demonstrated could be exploited unauthenticated — crypto exchanges, DeFi front-ends and custody dashboards running those stacks carried the same exposure that forced European government sites offline. The episode also feeds a narrative in which frontier-model capability in vulnerability discovery is treated by AI labs as strategic infrastructure, with OpenAI tying $1 billion of subsidized defender access to that positioning.",
+          "market_impact_zh": "由于 PHP 支撑着互联网的很大一部分——包括 Wiz 演示可被未授权利用的 WordPress、Drupal 和 Joomla 部署——运行这些技术栈的加密交易所、DeFi 前端和托管面板面临与迫使欧洲政府网站下线相同的暴露面。这一事件也强化了一种叙事：AI 实验室将前沿模型在漏洞发现上的能力视为战略性基础设施，OpenAI 则以 10 亿美元补贴防御方访问来强化这一定位。",
+          "material_change": true,
+          "occurred_at": "2026-10-21T18:46:08Z",
+          "published_at": "2026-10-21T18:46:08Z",
+          "references": [
+            {
+              "title": "PHP2Shell — AI uncovers critical vulnerabilities in the backbone of...",
+              "url": "https://www.php2shell.com/"
+            },
+            {
+              "title": "PHP2Shell: AI uncovers critical RCE vulnerabilities... | Wiz Blog",
+              "url": "https://www.wiz.io/blog/php2shell-php-rce"
+            },
+            {
+              "title": "OpenAI Patch the Planet: Codex Security and the New... | NxCode",
+              "url": "https://www.nxcode.io/resources/news/openai-patch-the-planet-codex-security-open-source-2026"
+            }
+          ],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/381567/who-found-php-bug-governments-unplug-websites-chatgpt"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:b7b0afeb6f4ee1e5"
+          ],
+          "time_precision": "published",
+          "title_en": "Who Found the PHP Bug That Made Governments Unplug Their Websites? ChatGPT, Of Course",
+          "title_zh": "谁发现了那个让各国政府下线网站的 PHP 漏洞？当然是 ChatGPT",
+          "update_id": "upd_c0fbd4318a998e09",
+          "update_type": "aftermath",
+          "what_changed_en": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
+          "what_changed_zh": "OpenAI 总裁 Greg Brockman 表示，公司在其“Patch the Planet”计划下，用自家模型主导了一个为期两个月的联盟，发现并修复了 PHP 核心中的 PHP2Shell 漏洞。安全公司 Calif 于 8 月使用 OpenAI 的 GPT-5.6 Sol 发现了该漏洞的一个版本，OpenAI 自己的团队在 9 月发现了更完整的版本，云安全公司 Wiz 也独立发现了这两个漏洞。\n\n这些漏洞的 CVSS 评分为 9.2，可让未通过身份验证的攻击者在运行 PHP 的服务器上执行任意代码；在已知服务端语言的网站中，约 70% 使用 PHP。细节泄露一天后 PHP 才发布修复。芬兰、荷兰和法国于周三下线了政府网站。Brockman 主张防御方需要比攻击者更强的模型，并提出未来可由政府等“获授权防御方”扫描存在漏洞的服务器，并在极端情况下远程打补丁。\n\nBrockman 称该漏洞在 PHP 中存在了 14 年，2024 年曾出现一个有限版本，但“当时未被认为影响重大”；细节开始泄露后，发布时间从原定的 10 月 22 日提前到 10 月 21 日。OpenAI 表示还在修复“若干其他重大漏洞”，包括周三公布的 Node.js 远程代码执行漏洞，并承诺为其关键基础设施防御者计划 Daybreak 提供价值 10 亿美元的补贴访问额度。"
         }
       ]
     },
@@ -176861,8 +177004,8 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "The GENIUS Act is the federal statute establishing a framework for payment stablecoins, and the OCC is the primary banking regulator tasked with implementing it for issuers under its oversight. The rule applies to national banks, federal savings associations, federal branches and their subsidiaries, nonbank firms that seek or receive federal qualified issuer status, foreign payment stablecoin issuers, and state-qualified issuers where the OCC has regulatory or enforcement authority. Comptroller of the Currency Jonathan Gould described the framework as providing \"strong standards for reserve backing, redemption, and risk management.\" Anti-money-laundering, Bank Secrecy Act and sanctions requirements are being handled in a separate rulemaking with Treasury.",
+          "background_zh": "《GENIUS 法案》是确立支付型稳定币监管框架的联邦立法，OCC 是负责为其监管下的发行方落实该法案的主要银行监管机构。该规则适用于国民银行、联邦储蓄协会、联邦分行及其子公司、申请或获得联邦合格发行方资格的非银行机构、外国支付型稳定币发行方，以及在 OCC 拥有监管或执法权的情况下的州级合格发行方。货币监理署署长乔纳森·古尔德称该框架提供了\"储备支持、赎回和风险管理方面的严格标准\"。反洗钱、银行保密法及制裁相关要求则由 OCC 与财政部通过另一项规则制定程序处理。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
@@ -176873,12 +177016,25 @@
           "event_id": "evt_aa8d6c1b6e82889a",
           "first_seen_at": "2026-10-21T14:11:34.735048Z",
           "importance_score": 8.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The rule transmits to crypto markets through the revenue models of stablecoin issuers and the exchanges that distribute their tokens: without a safe harbor, rewards programs tied to holding stablecoins face case-by-case regulatory review, creating product-structure uncertainty for issuers and platforms that market such incentives. Reserve, redemption and custody standards also set compliance costs for entities seeking OCC-supervised issuer status.",
+          "market_impact_zh": "该规则通过稳定币发行方及分销其代币的交易所的收入模式传导至加密市场：在没有安全港的情况下，与持有稳定币挂钩的奖励计划需逐案接受监管审查，给发行方和推广此类激励的平台带来产品结构上的不确定性。储备、赎回与托管标准也为寻求 OCC 监管下发行方资格的机构设定了合规成本。",
           "material_change": true,
           "occurred_at": "2026-10-21T11:06:35Z",
           "published_at": "2026-10-21T11:06:35Z",
-          "references": [],
+          "references": [
+            {
+              "title": "GENIUS Act Regulations: Final Rule | OCC",
+              "url": "https://www.occ.gov/news-issuances/bulletins/2026/bulletin-2026-50.html"
+            },
+            {
+              "title": "GENIUS Act Regulations on Payment ... - Federal Register",
+              "url": "https://www.federalregister.gov/documents/2026/08/18/2026-16796/genius-act-regulations-on-payment-stablecoin-issuance-offer-and-sale"
+            },
+            {
+              "title": "An Act - Congress.gov",
+              "url": "https://www.congress.gov/119/plaws/publ27/PLAW-119publ27.pdf"
+            }
+          ],
           "sources": [
             {
               "label": "foresightnews",
@@ -177281,24 +177437,37 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Fearless Wallet is a Polkadot- and Kusama-focused wallet offered as both a browser extension and a mobile app; the Foundation stressed that it is developed and maintained by an independent team and is not an official Polkadot wallet. PAPI Rescue describes itself as a technical recovery service for compromised wallets on Polkadot-based chains, adapting its product to each eligible case. On Polkadot, staked DOT is bonded and locked, which complicates moving funds out of a compromised account.",
+          "background_zh": "Fearless Wallet 是面向 Polkadot 与 Kusama 生态的钱包，同时提供浏览器插件和移动端应用；基金会强调该钱包由独立团队开发维护，并非 Polkadot 官方钱包。PAPI Rescue 自称为面向 Polkadot 生态链上受损钱包的技术恢复服务，会针对每个符合条件的案例调整方案。在 Polkadot 上，用于质押的 DOT 处于绑定锁定状态，这会使从已泄露账户中转出资产的流程更加复杂。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Polkadot Community Foundation warned that Fearless Wallet's browser extension (versions 3.0.1–3.0.5) contains malicious code that sends users' private keys to attacker-controlled servers, urging all users since February 2025 to generate new keys and move assets immediately, with 17,286 DOT already reported stolen across eight users.",
-          "current_state_zh": "Polkadot Community Foundation warned that Fearless Wallet's browser extension (versions 3.0.1–3.0.5) contains malicious code that sends users' private keys to attacker-controlled servers, urging all users since February 2025 to generate new keys and move assets immediately, with 17,286 DOT already reported stolen across eight users.",
+          "current_state_zh": "Polkadot 社区基金会在 Polkadot 论坛发布安全警告称，第三方钱包 Fearless Wallet 浏览器插件的 3.0.1、3.0.3、3.0.4 及 3.0.5 版本含有恶意代码，用户解锁钱包时私钥会被发送至攻击者控制的服务器。该代码于 2025 年 2 月 19 日随一项名为「TON ecosystem」的大型代码变更加入插件公开源码，在 2025 年 2 月至 2026 年 10 月 10 日期间不定时生效，且随时可能被重新启用。\n\n基金会建议，自 2025 年 2 月起使用过该插件的用户应将其中所有账户视为已泄露，立即在其他钱包中生成新密钥对并转移资产，并强调仅更换密码或重装插件无效。目前已有 8 名用户报告了可归因于此事件的未授权交易，共计 17,286 枚 DOT。\n\nChrome 版本已确认受影响，已下架的 Firefox 版本使用了相同代码；Android 和 iOS 移动端未发现该代码，但若同一私钥曾导入过浏览器插件，同样应视为已泄露。资产处于质押、提名池或治理投票锁定中的用户，可先借助 polkadot-api 团队开发的 PAPI Rescue 工具协助找回。",
           "detailed_summary_en": "Polkadot Community Foundation warned that Fearless Wallet's browser extension (versions 3.0.1–3.0.5) contains malicious code that sends users' private keys to attacker-controlled servers, urging all users since February 2025 to generate new keys and move assets immediately, with 17,286 DOT already reported stolen across eight users.",
           "detailed_summary_zh": "Polkadot Community Foundation warned that Fearless Wallet's browser extension (versions 3.0.1–3.0.5) contains malicious code that sends users' private keys to attacker-controlled servers, urging all users since February 2025 to generate new keys and move assets immediately, with 17,286 DOT already reported stolen across eight users.",
           "event_id": "evt_83080241d6b10bf0",
           "first_seen_at": "2026-10-21T14:11:34.745104Z",
           "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The exposure runs through the self-custody and wallet supply-chain channel on Polkadot: DOT holders who used the extension face key compromise, and the reported 17,286 DOT in losses is small relative to network scale, so the immediate market transmission is limited to affected users' forced migrations toward other Polkadot wallets rather than broad liquidity pressure.",
+          "market_impact_zh": "风险传导主要经由 Polkadot 生态的自托管与钱包供应链渠道：使用过该插件的 DOT 持有者面临私钥泄露风险，而已报告的 17,286 枚 DOT 损失相对网络规模较小，因此短期市场传导更多体现为受影响用户被迫迁移至其他 Polkadot 钱包，而非广泛的流动性压力。",
           "material_change": true,
           "occurred_at": "2026-10-21T14:04:56Z",
           "published_at": "2026-10-21T14:04:56Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Introducing PAPI Rescue: A Recovery Service for... - Polkadot Forum",
+              "url": "https://forum.polkadot.network/t/introducing-papi-rescue-a-recovery-service-for-compromised-polkadot-wallets/17578"
+            },
+            {
+              "title": "PAPI Rescue | Recovery Product for Compromised Wallets on...",
+              "url": "https://www.papirescue.now/"
+            },
+            {
+              "title": "Nominator - Polkadot Wiki",
+              "url": "https://wiki.polkadot.com/learn/learn-nominator/"
+            }
+          ],
           "sources": [
             {
               "label": "foresightnews",
@@ -177316,7 +177485,7 @@
           "update_id": "upd_fa02abe5d7e13064",
           "update_type": "initial",
           "what_changed_en": "Polkadot Community Foundation warned that Fearless Wallet's browser extension (versions 3.0.1–3.0.5) contains malicious code that sends users' private keys to attacker-controlled servers, urging all users since February 2025 to generate new keys and move assets immediately, with 17,286 DOT already reported stolen across eight users.",
-          "what_changed_zh": "Polkadot Community Foundation warned that Fearless Wallet's browser extension (versions 3.0.1–3.0.5) contains malicious code that sends users' private keys to attacker-controlled servers, urging all users since February 2025 to generate new keys and move assets immediately, with 17,286 DOT already reported stolen across eight users."
+          "what_changed_zh": "Polkadot 社区基金会在 Polkadot 论坛发布安全警告称，第三方钱包 Fearless Wallet 浏览器插件的 3.0.1、3.0.3、3.0.4 及 3.0.5 版本含有恶意代码，用户解锁钱包时私钥会被发送至攻击者控制的服务器。该代码于 2025 年 2 月 19 日随一项名为「TON ecosystem」的大型代码变更加入插件公开源码，在 2025 年 2 月至 2026 年 10 月 10 日期间不定时生效，且随时可能被重新启用。\n\n基金会建议，自 2025 年 2 月起使用过该插件的用户应将其中所有账户视为已泄露，立即在其他钱包中生成新密钥对并转移资产，并强调仅更换密码或重装插件无效。目前已有 8 名用户报告了可归因于此事件的未授权交易，共计 17,286 枚 DOT。\n\nChrome 版本已确认受影响，已下架的 Firefox 版本使用了相同代码；Android 和 iOS 移动端未发现该代码，但若同一私钥曾导入过浏览器插件，同样应视为已泄露。资产处于质押、提名池或治理投票锁定中的用户，可先借助 polkadot-api 团队开发的 PAPI Rescue 工具协助找回。"
         }
       ]
     },
@@ -177421,20 +177590,20 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
+          "background_en": "eMudhra is an Indian certificate authority founded in 2008; per Wikipedia it has issued more than 60 million digital certificates. Normally a CA key compromise involves theft, with a clear moment of loss and a question of who holds the key. Here nothing was stolen — the key material was so weak it could simply be computed. Fixing the updatable devices is largely a matter of refreshing CA bundles (OS ca-certificates, certifi, Node, Homebrew, container base images), while long-lived embedded devices are the hard part.",
+          "background_zh": "eMudhra 是一家成立于 2008 年的印度证书颁发机构，据维基百科其已签发超过 6000 万张数字证书。通常 CA 密钥失陷意味着被盗，有明确的失窃时点，也能追问密钥现在在谁手里；而这次没有任何东西被偷——密钥材料本身太弱，直接算出来即可。对可更新的设备而言，修复主要是刷新 CA 证书包（操作系统 ca-certificates、certifi、Node、Homebrew、容器基础镜像），而长期在线且难以更新的嵌入式设备才是难点。",
+          "community_discussion_en": "Hacker News commenters focused on the sheer number of trusted CAs — one remark that \"having 100 trusted certificate authorities might have been excessive\" — and on the unpatched-device problem, since the advice reduces to \"update them\" for hardware that often cannot be updated. One commenter floated the idea of using the broken keys to mint certificates for jailbreaking locked-down IoT devices, while another linked a prior, heavily discussed HN thread on the eMudhra intermediate CA compromise.",
+          "community_discussion_zh": "Hacker News 的评论者主要关注两点：一是受信任 CA 的数量之多，有人直言“有 100 个受信任的证书颁发机构，回头看可能确实过头了”；二是无法打补丁的设备问题，因为建议本质上就是“去更新”，而很多硬件根本更新不了。有评论者提出，能否用这些坏掉的密钥签发证书来越狱被锁定的物联网设备；也有人贴出了此前讨论热烈的 HN 帖，主题正是 eMudhra 中间 CA 失陷。",
           "confidence": 0.75,
           "current_state_en": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
-          "current_state_zh": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
+          "current_state_zh": "eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。\n\n由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链接到受信任根证书的证书；而无法更新 CA 证书包的设备将持续处于暴露状态。\n\n据最初报告者称，该发现来自谷歌开源工具 paranoid_crypto，在检查用户证书之前，直接以默认配置对 CCADB 证书库跑了一遍。据称随后对所有现有 CCADB 证书的更全面排查未再发现其他命中项，Chrome 也在证书透明度（CT）日志中未发现恶意签发的证书。",
           "detailed_summary_en": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
           "detailed_summary_zh": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
           "event_id": "evt_1a0ea48dd5f86ac5",
           "first_seen_at": "2026-10-21T14:11:35.217762Z",
-          "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "importance_score": 8.5,
+          "market_impact_en": "The transmission path runs through web PKI trust rather than on-chain assets: forged certificates could support phishing or interception against crypto exchange front-ends, wallet download pages and firmware update channels that rely on public TLS. Hardware and IoT wallets whose trust stores cannot be refreshed carry the longest-lived exposure, though no market segment is directly impaired by the key weakness itself.",
+          "market_impact_zh": "传导路径在 Web PKI 信任层面，而非链上资产：伪造证书可能被用于对加密货币交易所前端、钱包下载页面以及依赖公共 TLS 的固件更新通道实施钓鱼或劫持。信任库无法刷新的硬件钱包与物联网钱包面临的暴露期最长，但就密钥弱点本身而言，尚无某个市场板块受到直接损害。",
           "material_change": true,
           "occurred_at": "2026-10-21T09:08:08Z",
           "published_at": "2026-10-21T09:08:08Z",
@@ -177442,6 +177611,18 @@
             {
               "title": "Community discussion",
               "url": "https://news.ycombinator.com/item?id=50177916"
+            },
+            {
+              "title": "Eight Bits of Trust; eMudhra's CA keys cracked in milliseconds",
+              "url": "https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/"
+            },
+            {
+              "title": "Eight eMudhra CA Keys Compromised, Triggering Emergency Fixes...",
+              "url": "https://thehackernews.com/2026/10/eight-emudhra-ca-keys-compromised.html"
+            },
+            {
+              "title": "eMudhra - Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/EMudhra"
             }
           ],
           "sources": [
@@ -177457,11 +177638,11 @@
           ],
           "time_precision": "published",
           "title_en": "Eight Bits of Trust; eMudhra's CA keys cracked in milliseconds",
-          "title_zh": "Eight Bits of Trust; eMudhra's CA keys cracked in milliseconds",
+          "title_zh": "八比特的信任：eMudhra 的 CA 密钥在毫秒内被破解",
           "update_id": "upd_966505a41f0a59cf",
           "update_type": "initial",
           "what_changed_en": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
-          "what_changed_zh": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns."
+          "what_changed_zh": "eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。\n\n由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链接到受信任根证书的证书；而无法更新 CA 证书包的设备将持续处于暴露状态。\n\n据最初报告者称，该发现来自谷歌开源工具 paranoid_crypto，在检查用户证书之前，直接以默认配置对 CCADB 证书库跑了一遍。据称随后对所有现有 CCADB 证书的更全面排查未再发现其他命中项，Chrome 也在证书透明度（CT）日志中未发现恶意签发的证书。"
         }
       ]
     },
@@ -178968,24 +179149,37 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Kalshi Prime is a US futures commission merchant regulated by the Commodity Futures Trading Commission that provides execution, clearing and prime brokerage services for derivatives and event-based financial products; Kalshi launched it in June and appointed former CFTC Division of Clearing and Risk head Jeff Bandman as CEO on 12 August. The GENIUS Act is the US federal stablecoin statute governing permitted payment stablecoin issuance, and regulators including the OCC and Treasury have been issuing implementing rules.",
+          "background_zh": "Kalshi Prime 是美国商品期货交易委员会（CFTC）监管的期货佣金商，为衍生品和事件类金融产品提供执行、清算和主经纪商服务；Kalshi 于今年 6 月推出该实体，并于 8 月 12 日任命 CFTC 清算与风险部前负责人 Jeff Bandman 为首席执行官。《GENIUS 法案》是美国联邦层面的稳定币立法，规定了合规支付稳定币的发行要求，OCC 与财政部等监管机构正在陆续出台实施细则。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Kalshi has partnered with BitGo to let Kalshi Prime clients borrow against custody-held bitcoin, ether, and GENIUS-compliant stablecoins and use the loan proceeds as margin for leveraged perpetual futures trading.",
-          "current_state_zh": "Kalshi has partnered with BitGo to let Kalshi Prime clients borrow against custody-held bitcoin, ether, and GENIUS-compliant stablecoins and use the loan proceeds as margin for leveraged perpetual futures trading.",
+          "current_state_zh": "Kalshi 与加密资产托管机构 BitGo 达成协议，将允许其在美国注册的期货佣金商 Kalshi Prime 的客户以托管的数字资产作为抵押借款，并把贷款资金用作 Kalshi 交易所杠杆永续期货交易的保证金。据彭博社报道，该安排采用三方抵押品管理结构，贷款由 Kalshi 关联借贷公司 Kalshi Katalyst 提供，抵押资产存放于 BitGo Bank & Trust。\n\nKalshi Prime 首席执行官 Jeff Bandman 表示，该安排旨在让客户无需退出加密资产持仓即可参与交易，并可能吸引加密原生交易机构及持有大量数字资产的巨鲸。\n\n合格抵押资产包括比特币、以太坊，以及被视为符合《GENIUS 法案》的稳定币，预计后续还将接入其他托管机构。Kalshi 今年早些时候已推出黄金、白银及加密货币永续合约，并已申请推出与石油和美股挂钩的永续类产品。",
           "detailed_summary_en": "Kalshi has partnered with BitGo to let Kalshi Prime clients borrow against custody-held bitcoin, ether, and GENIUS-compliant stablecoins and use the loan proceeds as margin for leveraged perpetual futures trading.",
           "detailed_summary_zh": "Kalshi has partnered with BitGo to let Kalshi Prime clients borrow against custody-held bitcoin, ether, and GENIUS-compliant stablecoins and use the loan proceeds as margin for leveraged perpetual futures trading.",
           "event_id": "evt_e063bf6152340c21",
           "first_seen_at": "2026-10-21T17:31:49.742513Z",
           "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The channel is leverage and collateral mobility: crypto held at BitGo can now back margin on a CFTC-regulated venue without being sold, which may reduce the need for institutional holders to liquidate spot positions to fund derivatives exposure. The explicit inclusion of GENIUS-compliant stablecoins ties the margin base to the regulated stablecoin perimeter, though the facility is limited to Kalshi Prime clients and is not systemic in scale.",
+          "market_impact_zh": "传导渠道是杠杆与抵押品流动性：存放于 BitGo 的加密资产如今无需卖出即可为 CFTC 监管场所的保证金提供支持，这可能降低机构持有者为衍生品敞口而清算现货的需求。明确纳入符合《GENIUS 法案》的稳定币，则把保证金基础与受监管稳定币范畴绑定；不过该安排仅面向 Kalshi Prime 客户，规模上尚不具系统性。",
           "material_change": true,
           "occurred_at": "2026-10-21T14:42:02Z",
           "published_at": "2026-10-21T14:42:02Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Kalshi Prime - MarketsWiki, A Commonwealth of Market Knowledge",
+              "url": "https://www.marketswiki.com/wiki/Kalshi_Prime"
+            },
+            {
+              "title": "DeFi: Do Prediction Markets Need a Prime Broker Yet?",
+              "url": "https://www.linkedin.com/pulse/defi-do-prediction-markets-need-prime-broker-yet-lex-sokolin-olt1e"
+            },
+            {
+              "title": "GENIUS Act Regulations: Final Rule | OCC",
+              "url": "https://www.occ.gov/news-issuances/bulletins/2026/bulletin-2026-50.html"
+            }
+          ],
           "sources": [
             {
               "label": "theblockbeats",
@@ -179003,7 +179197,7 @@
           "update_id": "upd_7b59160427e612f5",
           "update_type": "initial",
           "what_changed_en": "Kalshi has partnered with BitGo to let Kalshi Prime clients borrow against custody-held bitcoin, ether, and GENIUS-compliant stablecoins and use the loan proceeds as margin for leveraged perpetual futures trading.",
-          "what_changed_zh": "Kalshi has partnered with BitGo to let Kalshi Prime clients borrow against custody-held bitcoin, ether, and GENIUS-compliant stablecoins and use the loan proceeds as margin for leveraged perpetual futures trading."
+          "what_changed_zh": "Kalshi 与加密资产托管机构 BitGo 达成协议，将允许其在美国注册的期货佣金商 Kalshi Prime 的客户以托管的数字资产作为抵押借款，并把贷款资金用作 Kalshi 交易所杠杆永续期货交易的保证金。据彭博社报道，该安排采用三方抵押品管理结构，贷款由 Kalshi 关联借贷公司 Kalshi Katalyst 提供，抵押资产存放于 BitGo Bank & Trust。\n\nKalshi Prime 首席执行官 Jeff Bandman 表示，该安排旨在让客户无需退出加密资产持仓即可参与交易，并可能吸引加密原生交易机构及持有大量数字资产的巨鲸。\n\n合格抵押资产包括比特币、以太坊，以及被视为符合《GENIUS 法案》的稳定币，预计后续还将接入其他托管机构。Kalshi 今年早些时候已推出黄金、白银及加密货币永续合约，并已申请推出与石油和美股挂钩的永续类产品。"
         }
       ]
     },
@@ -179432,10 +179626,10 @@
           "what_changed_zh": "PyPI 上被篡改的 LiteLLM 1.107.0 版本携带了凭据窃取器和后门，促使维护者告知用户锁定到 1.106.2 或更早版本，同时向企业客户分发禁运中的修复程序。"
         },
         {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
+          "background_en": "LiteLLM is an open-source AI gateway (LLM proxy) that puts an AI stack behind one OpenAI-compatible API, routing requests to models such as OpenAI and Anthropic and centrally managing API keys, with self-hosting including air-gapped deployments. This is the second supply chain attack on the project this year, after an earlier incident in March.",
+          "background_zh": "LiteLLM 是一款开源 AI 网关（LLM 代理），用一套兼容 OpenAI 的 API 统一接入 AI 技术栈，把请求路由到 OpenAI、Anthropic 等模型，并集中管理 API 密钥，支持包括完全离线在内的自托管部署。这是该项目今年第二次遭遇供应链攻击，今年 3 月就曾因另一场供应链攻击遭到投毒。",
+          "community_discussion_en": "Hacker News commenters focused on the systemic nature of the problem rather than the single package: one suggested using canarytokens to detect credential theft, another complained that permission pop-up fatigue and routine package installation have desensitized developers to risk, and a third questioned how a project with 55,000 commits in three years could be hit this way. One commenter, citing reports that three unique developer GitHub credentials were compromised, called the pattern systemic and said they would pin LiteLLM to a version before this one until further notice.",
+          "community_discussion_zh": "Hacker News 的讨论更多聚焦于问题的系统性而非单一软件包：有人建议使用 canarytokens 来检测凭证是否被盗；有人抱怨权限弹窗疲劳和日常化的软件包安装让开发者对风险变得麻木；还有人质疑一个三年内拥有 5.5 万次提交的项目为何会以这种方式被攻破。一位评论者援引“三名开发者的 GitHub 凭证被窃取”的说法，认为这是系统性问题，并表示会把 LiteLLM 固定在更早的版本直到有进一步消息。",
           "confidence": 0.96,
           "current_state_en": "Malicious LiteLLM 1.107.0 PyPI packages and affected Docker images have been removed; JFrog advises affected users to rotate credentials and rebuild environments, with 1.106.2 confirmed as the safe rollback, while how the malicious code entered the release process remains unclear.",
           "current_state_zh": "LiteLLM 1.107.0 的恶意 PyPI 包和受影响 Docker 镜像已被下架；JFrog 建议受影响用户轮换凭证并重建环境，已确认安全回退版本为 1.106.2，但恶意代码如何混入发布流程仍未查清。",
@@ -179444,12 +179638,25 @@
           "event_id": "evt_301b68a4d1f669d2",
           "first_seen_at": "2026-10-21T17:31:49.746836Z",
           "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The transmission channel is credential exposure: self-hosted LiteLLM instances commonly hold model API keys, cloud credentials and SSH keys in their databases and host environments, so crypto and AI-agent teams running such gateways may have had deployment infrastructure credentials exposed, requiring key rotation and environment rebuilds regardless of whether they invoked the library.",
+          "market_impact_zh": "传导渠道是凭证暴露：自托管的 LiteLLM 实例通常在其数据库和主机环境中保存模型 API 密钥、云平台凭证和 SSH 私钥，因此运行此类网关的加密与 AI 智能体团队可能面临部署基础设施凭证外泄的风险，无论是否调用过该库，都需要轮换密钥并重建环境。",
           "material_change": true,
           "occurred_at": "2026-10-21T15:28:02Z",
           "published_at": "2026-10-21T15:28:02Z",
-          "references": [],
+          "references": [
+            {
+              "title": "LiteLLM — Open-Source AI Gateway & LLM Proxy",
+              "url": "https://www.litellm.ai/"
+            },
+            {
+              "title": "GitHub - BerriAI/litellm: The fastest, litest AI Gateway. Rust core with...",
+              "url": "https://github.com/BerriAI/litellm"
+            },
+            {
+              "title": "PYPI Security: How to Prevent Supply Chain Attacks in Python Projects",
+              "url": "https://bolster.ai/blog/pypi-supply-chain-attacks"
+            }
+          ],
           "sources": [
             {
               "label": "theblockbeats",
@@ -179921,74 +180128,6 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
-      "current_state_zh": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
-      "entities": [
-        "php",
-        "remotely"
-      ],
-      "event_id": "evt_aa420d7def39d695",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-10-21T21:41:42.188641Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-21T21:41:42.188641Z",
-      "last_updated_at": "2026-10-21T21:41:42.188641Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Remotely exploitable PHP bug found on 70% of world’s websites",
-      "title_zh": "Remotely exploitable PHP bug found on 70% of world’s websites",
-      "topics": [
-        "patching",
-        "php",
-        "remote-code-execution",
-        "vulnerability"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
-          "current_state_zh": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
-          "detailed_summary_en": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
-          "detailed_summary_zh": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
-          "event_id": "evt_aa420d7def39d695",
-          "first_seen_at": "2026-10-21T21:41:42.188641Z",
-          "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-21T17:54:58Z",
-          "published_at": "2026-10-21T17:54:58Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "Protos",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://protos.com/remotely-exploitable-php-bug-found-on-70-of-worlds-websites/"
-            }
-          ],
-          "story_ids": [
-            "rss:protos.com_feed_:46c75a4fc0c90932"
-          ],
-          "time_precision": "published",
-          "title_en": "Remotely exploitable PHP bug found on 70% of world’s websites",
-          "title_zh": "Remotely exploitable PHP bug found on 70% of world’s websites",
-          "update_id": "upd_9b9e21f5489d3eed",
-          "update_type": "initial",
-          "what_changed_en": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
-          "what_changed_zh": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix."
-        }
-      ]
-    },
-    {
-      "category": "technology",
-      "confidence": 0.75,
       "current_state_en": "Meta will issue a new non-voting class of shares, trading from 2027, to fund its AI buildout, potential acquisitions and employee compensation, as disclosed in its Q3 2026 earnings report.",
       "current_state_zh": "Meta will issue a new non-voting class of shares, trading from 2027, to fund its AI buildout, potential acquisitions and employee compensation, as disclosed in its Q3 2026 earnings report.",
       "entities": [
@@ -180086,24 +180225,37 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Claude Duet enters a crowded agent market: Meta introduced Muse as a personal AI agent running on a dedicated \"Muse Secure VM,\" and OpenAI launched Dots as always-on agents at its DevDay 2026 keynote on September 29, 2026. Anthropic's previous Claude offerings were primarily accessed through chat interfaces rather than a proactive, standalone agent app.",
+          "background_zh": "Claude Duet进入的是一个已相当拥挤的智能体市场：Meta推出Muse，将其定位为运行在专用“Muse Secure VM”上的个人AI智能体；OpenAI则在2026年9月29日的DevDay 2026主题演讲上发布了“始终在线”的Dots智能体。此前Anthropic的Claude产品主要通过对话界面使用，而非主动式的独立智能体应用。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Anthropic announced Claude Duet, a new AI agent for professionals and small businesses, launched as a research preview on iOS, Android, and the web to compete with Meta Muse and OpenAI Dots.",
-          "current_state_zh": "Anthropic announced Claude Duet, a new AI agent for professionals and small businesses, launched as a research preview on iOS, Android, and the web to compete with Meta Muse and OpenAI Dots.",
+          "current_state_zh": "Anthropic宣布推出AI智能体Claude Duet，面向专业人士和小企业主，以“研究预览”（research preview）形式上线。该产品提供iOS和Android独立应用，同时可通过网页版Claude（claude.ai）使用。\n\nDuet使Anthropic进入与Meta的Muse、OpenAI的Dots相同的消费级与小企业智能体赛道，三大实验室在此领域已形成直接竞争。Anthropic官方材料将该智能体描述为“主动式”，会在有事需要用户处理时主动发消息提醒。\n\n据The Verge报道，该智能体基于Claude Opus 5.5构建，Anthropic称其可处理收件箱、日历和后续跟进事项。Anthropic将该版本定位为研究预览而非完整正式发布的产品，其产品页面目前提供等候名单（waitlist）入口。",
           "detailed_summary_en": "Anthropic announced Claude Duet, a new AI agent for professionals and small businesses, launched as a research preview on iOS, Android, and the web to compete with Meta Muse and OpenAI Dots.",
           "detailed_summary_zh": "Anthropic announced Claude Duet, a new AI agent for professionals and small businesses, launched as a research preview on iOS, Android, and the web to compete with Meta Muse and OpenAI Dots.",
           "event_id": "evt_b9e2572f1adb2406",
           "first_seen_at": "2026-10-21T21:41:47.864746Z",
           "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The release feeds the competitive narrative around always-on AI agents from the three largest labs, a theme that typically moves sentiment in AI-adjacent crypto segments rather than any single token's fundamentals. Any transmission would run through narrative and attention flows toward agent-branded tokens and AI compute/inference-related assets, not through direct protocol exposure.",
+          "market_impact_zh": "此次发布强化了三大实验室围绕“始终在线”AI智能体的竞争叙事，这一主题通常影响的是与AI相关的加密板块情绪，而非某一代币的基本面。传导路径主要是叙事与资金关注度流向智能体概念代币及AI算力、推理相关资产，而非直接的协议层面敞口。",
           "material_change": true,
           "occurred_at": "2026-10-21T19:53:20Z",
           "published_at": "2026-10-21T19:53:20Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Anthropic takes on Muse with Claude Duet, its new AI agent",
+              "url": "https://www.theverge.com/ai-artificial-intelligence/1015843/anthropic-claude-duet-ai-agent"
+            },
+            {
+              "title": "Introducing Claude Duet | Claude by Anthropic",
+              "url": "https://claude.com/resources/articles/claude-duet"
+            },
+            {
+              "title": "Claude Duet | Your personal AI assistant",
+              "url": "https://claude.com/product/claude-duet"
+            }
+          ],
           "sources": [
             {
               "label": "The Verge AI",
@@ -180117,11 +180269,11 @@
           ],
           "time_precision": "published",
           "title_en": "Anthropic takes on Muse with Claude Duet, its new AI agent",
-          "title_zh": "Anthropic takes on Muse with Claude Duet, its new AI agent",
+          "title_zh": "Anthropic推出新AI智能体Claude Duet，正面迎战Muse",
           "update_id": "upd_d96bbacb0687c368",
           "update_type": "initial",
           "what_changed_en": "Anthropic announced Claude Duet, a new AI agent for professionals and small businesses, launched as a research preview on iOS, Android, and the web to compete with Meta Muse and OpenAI Dots.",
-          "what_changed_zh": "Anthropic announced Claude Duet, a new AI agent for professionals and small businesses, launched as a research preview on iOS, Android, and the web to compete with Meta Muse and OpenAI Dots."
+          "what_changed_zh": "Anthropic宣布推出AI智能体Claude Duet，面向专业人士和小企业主，以“研究预览”（research preview）形式上线。该产品提供iOS和Android独立应用，同时可通过网页版Claude（claude.ai）使用。\n\nDuet使Anthropic进入与Meta的Muse、OpenAI的Dots相同的消费级与小企业智能体赛道，三大实验室在此领域已形成直接竞争。Anthropic官方材料将该智能体描述为“主动式”，会在有事需要用户处理时主动发消息提醒。\n\n据The Verge报道，该智能体基于Claude Opus 5.5构建，Anthropic称其可处理收件箱、日历和后续跟进事项。Anthropic将该版本定位为研究预览而非完整正式发布的产品，其产品页面目前提供等候名单（waitlist）入口。"
         }
       ]
     },
@@ -180266,160 +180418,6 @@
           "update_type": "initial",
           "what_changed_en": "Nvidia unveiled the OpenShell Reference Architecture at GTC Berlin, combining Vera CPUs, the open-source OpenShell runtime, and BlueField-4 chips running Sentry to isolate, inspect, and quarantine AI agents at the hardware level, with CrowdStrike, Palo Alto Networks, Zscaler, and Check Point integrating support ahead of planned availability early next year.",
           "what_changed_zh": "Nvidia unveiled the OpenShell Reference Architecture at GTC Berlin, combining Vera CPUs, the open-source OpenShell runtime, and BlueField-4 chips running Sentry to isolate, inspect, and quarantine AI agents at the hardware level, with CrowdStrike, Palo Alto Networks, Zscaler, and Check Point integrating support ahead of planned availability early next year."
-        }
-      ]
-    },
-    {
-      "category": "technology",
-      "confidence": 0.75,
-      "current_state_en": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
-      "current_state_zh": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
-      "entities": [
-        "bug",
-        "chatgpt",
-        "course",
-        "found",
-        "governments",
-        "made",
-        "php",
-        "that",
-        "their",
-        "unplug",
-        "websites",
-        "who"
-      ],
-      "event_id": "evt_c557d2cf5959a004",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-10-21T21:41:48.780148Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-21T21:41:48.780148Z",
-      "last_updated_at": "2026-10-21T21:41:48.780148Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Who Found the PHP Bug That Made Governments Unplug Their Websites? ChatGPT, Of Course",
-      "title_zh": "Who Found the PHP Bug That Made Governments Unplug Their Websites? ChatGPT, Of Course",
-      "topics": [
-        "ai-security",
-        "open-source",
-        "openai",
-        "php",
-        "vulnerability-discovery"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
-          "current_state_zh": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
-          "detailed_summary_en": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
-          "detailed_summary_zh": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
-          "event_id": "evt_c557d2cf5959a004",
-          "first_seen_at": "2026-10-21T21:41:48.780148Z",
-          "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-21T18:46:08Z",
-          "published_at": "2026-10-21T18:46:08Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "Decrypt",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://decrypt.co/381567/who-found-php-bug-governments-unplug-websites-chatgpt"
-            }
-          ],
-          "story_ids": [
-            "rss:decrypt.co_feed:b7b0afeb6f4ee1e5"
-          ],
-          "time_precision": "published",
-          "title_en": "Who Found the PHP Bug That Made Governments Unplug Their Websites? ChatGPT, Of Course",
-          "title_zh": "Who Found the PHP Bug That Made Governments Unplug Their Websites? ChatGPT, Of Course",
-          "update_id": "upd_c0fbd4318a998e09",
-          "update_type": "initial",
-          "what_changed_en": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
-          "what_changed_zh": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed."
-        }
-      ]
-    },
-    {
-      "category": "technology",
-      "confidence": 0.75,
-      "current_state_en": "Elon Musk said SpaceX and Tesla have formed independent board committees to explore a merger that could create a roughly $3.5 trillion company spanning rockets, electric vehicles, humanoid robots, social media, and the Grok AI chatbot.",
-      "current_state_zh": "Elon Musk said SpaceX and Tesla have formed independent board committees to explore a merger that could create a roughly $3.5 trillion company spanning rockets, electric vehicles, humanoid robots, social media, and the Grok AI chatbot.",
-      "entities": [
-        "empire",
-        "how",
-        "merger",
-        "musk",
-        "reshape",
-        "spacex",
-        "tesla",
-        "would"
-      ],
-      "event_id": "evt_8f444164812f198f",
-      "event_type": "other",
-      "first_seen_at": "2026-10-21T21:41:48.968923Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-21T21:41:48.968923Z",
-      "last_updated_at": "2026-10-21T21:41:48.968923Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "How a SpaceX and Tesla Merger Would Reshape Musk’s AI Empire",
-      "title_zh": "How a SpaceX and Tesla Merger Would Reshape Musk’s AI Empire",
-      "topics": [
-        "elon-musk",
-        "merger",
-        "spacex",
-        "tesla",
-        "xai"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Elon Musk said SpaceX and Tesla have formed independent board committees to explore a merger that could create a roughly $3.5 trillion company spanning rockets, electric vehicles, humanoid robots, social media, and the Grok AI chatbot.",
-          "current_state_zh": "Elon Musk said SpaceX and Tesla have formed independent board committees to explore a merger that could create a roughly $3.5 trillion company spanning rockets, electric vehicles, humanoid robots, social media, and the Grok AI chatbot.",
-          "detailed_summary_en": "Elon Musk said SpaceX and Tesla have formed independent board committees to explore a merger that could create a roughly $3.5 trillion company spanning rockets, electric vehicles, humanoid robots, social media, and the Grok AI chatbot.",
-          "detailed_summary_zh": "Elon Musk said SpaceX and Tesla have formed independent board committees to explore a merger that could create a roughly $3.5 trillion company spanning rockets, electric vehicles, humanoid robots, social media, and the Grok AI chatbot.",
-          "event_id": "evt_8f444164812f198f",
-          "first_seen_at": "2026-10-21T21:41:48.968923Z",
-          "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-21T18:16:03Z",
-          "published_at": "2026-10-21T18:16:03Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "Decrypt",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://decrypt.co/381543/elon-musk-spacex-tesla-merger-ai-empire"
-            }
-          ],
-          "story_ids": [
-            "rss:decrypt.co_feed:3b39810dc13ea61f"
-          ],
-          "time_precision": "published",
-          "title_en": "How a SpaceX and Tesla Merger Would Reshape Musk’s AI Empire",
-          "title_zh": "How a SpaceX and Tesla Merger Would Reshape Musk’s AI Empire",
-          "update_id": "upd_0ed49c4a4f2dad90",
-          "update_type": "initial",
-          "what_changed_en": "Elon Musk said SpaceX and Tesla have formed independent board committees to explore a merger that could create a roughly $3.5 trillion company spanning rockets, electric vehicles, humanoid robots, social media, and the Grok AI chatbot.",
-          "what_changed_zh": "Elon Musk said SpaceX and Tesla have formed independent board committees to explore a merger that could create a roughly $3.5 trillion company spanning rockets, electric vehicles, humanoid robots, social media, and the Grok AI chatbot."
         }
       ]
     }
@@ -181017,8 +181015,13 @@
     "mathematics": [
       "evt_bfb0f6efc7a1b3a4"
     ],
+    "merger": [
+      "evt_cfcdb539c4e7e478"
+    ],
     "meta": [
+      "evt_22c6e440e405e92e",
       "evt_294b831ec4a5f79c",
+      "evt_2967636a41c2a581",
       "evt_2b2c42d20cf1d50e",
       "evt_5d6713f865ed5f7d",
       "evt_66e5ed0ea3e6e528",
@@ -193707,7 +193710,7 @@
       }
     },
     {
-      "attempts": 3,
+      "attempts": 1,
       "item": {
         "ai_reason": "A reported exploration of a merger between Tesla and SpaceX is a consequential corporate development given both firms are among the largest public-company bitcoin holders; consolidating ~30,000 BTC into one entity would be a material corporate-treasury and market-structure event. The score is tempered because this is described as early-stage exploration rather than a confirmed transaction, with no terms, timing, or regulatory review details. High signal, but not yet a paradigm shift.",
         "ai_score": 7.5,
@@ -193720,14 +193723,49 @@
           "merger"
         ],
         "author": "James Van Straten",
-        "content": "",
-        "fetched_at": "2026-10-21T09:29:56.072228Z",
+        "content": "\n\n--- From google_news ---\n<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxQZUtUd3JhVF9sbmtHODlfLWlkOFhjYlJTcEgwWGZBZUlQU3FkZFhxQW1yWXhXS0l4VXB1LVVEX1NYa21XM0dpTFhDVHMxUWc4U3Q4RUlsYU9DcTFIWTFaTklieEVaNTh6Wnl1R05KZzJ1eThlTHhuWEM2V3o0SkJ2MHNUaUxuNGJxeVlmam1ZX1E0ZUpROVd1T0lNVExDOTQ?oc=5\" target=\"_blank\">Tesla and SpaceX Explore Merger That Could Unite 30,221 Bitcoin</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-21T23:27:37.390935Z",
         "id": "rss:www.coindesk.com_arc_outboundfeeds_rss_:f9c3bb6f297da869",
         "metadata": {
+          "background": "Tesla and SpaceX are both among the largest corporate holders of bitcoin, with holdings that have drawn attention as corporate treasury allocations to BTC became more common. Elon Musk has reportedly weighed a potential merger involving SpaceX, Tesla or his artificial intelligence firm xAI, which brought the bitcoin holdings back into focus.",
+          "background_en": "Tesla and SpaceX are both among the largest corporate holders of bitcoin, with holdings that have drawn attention as corporate treasury allocations to BTC became more common. Elon Musk has reportedly weighed a potential merger involving SpaceX, Tesla or his artificial intelligence firm xAI, which brought the bitcoin holdings back into focus.",
+          "background_zh": "特斯拉与SpaceX均属企业界最大的比特币持有者之列，随着企业将BTC纳入金库储备的做法日益普遍，两家的持仓一直受到关注。据报道，埃隆·马斯克曾考虑让SpaceX、特斯拉或其人工智能公司xAI参与潜在合并，这使得相关比特币持仓再度成为焦点。",
           "category": "crypto-markets",
+          "community_discussion": "",
+          "detailed_summary": "SpaceX and Tesla are reportedly exploring a merger that would consolidate their corporate bitcoin holdings into a single entity holding more than 30,000 BTC. One report put the combined figure at 30,221 bitcoin.\n\nA combination would pool two of the largest corporate bitcoin holders in the world onto a single balance sheet, making the merged company one of the biggest corporate owners of BTC.\n\nThe talks are described as an early-stage exploration rather than an agreed transaction, with no terms, timing or regulatory review disclosed. Reported figures for the combined holdings differ, with some coverage citing nearly 20,000 bitcoin and other reports citing 30,221 BTC.",
+          "detailed_summary_en": "SpaceX and Tesla are reportedly exploring a merger that would consolidate their corporate bitcoin holdings into a single entity holding more than 30,000 BTC. One report put the combined figure at 30,221 bitcoin.\n\nA combination would pool two of the largest corporate bitcoin holders in the world onto a single balance sheet, making the merged company one of the biggest corporate owners of BTC.\n\nThe talks are described as an early-stage exploration rather than an agreed transaction, with no terms, timing or regulatory review disclosed. Reported figures for the combined holdings differ, with some coverage citing nearly 20,000 bitcoin and other reports citing 30,221 BTC.",
+          "detailed_summary_zh": "据报道，SpaceX与特斯拉正在探索合并事宜，若交易达成，两家公司的企业比特币持仓将归入同一实体，合计超过3万枚BTC。其中一篇报道给出的合并数字为30,221枚比特币。\n\n若合并成行，全球两家最大的企业比特币持有方将把持仓汇集到同一张资产负债表上，合并后的公司将成为最大的企业级比特币持有者之一。\n\n相关讨论被描述为早期阶段的探索，而非已敲定的交易，未披露交易条款、时间表或监管审查安排。各家报道对合并后持仓规模的数字并不一致，部分报道提及近2万枚比特币，另一些则称为30,221枚BTC。",
+          "editorial_tags": [
+            "bitcoin",
+            "corporate-treasury",
+            "tesla",
+            "spacex",
+            "merger"
+          ],
+          "enrichment_status": "complete",
           "event_retry_pending": true,
           "feed_name": "CoinDesk",
+          "market_impact_en": "The transmission channel is corporate treasury and custody concentration: combining the holdings would place more than 30,000 BTC under a single issuer's disclosure and accounting regime, changing how that supply is reported and perceived. Because the talks are only exploratory, no change to actual custody or supply has occurred.",
+          "market_impact_zh": "传导渠道在于企业金库与托管集中度：若持仓合并，逾3万枚BTC将归入同一发行主体的披露与会计框架之下，从而改变这部分供应量的报告方式和市场认知。由于目前仅处于探索阶段，实际托管安排或供应格局尚未发生变化。",
+          "merged_sources": [
+            "CoinDesk",
+            "The Defiant"
+          ],
           "score_model": "deepseek:deepseek-flash",
+          "sources": [
+            {
+              "title": "SpaceX-Tesla merger talks puts nearly 20,000 bitcoin in focus",
+              "url": "https://sg.finance.yahoo.com/news/spacex-tesla-merger-talks-puts-233000628.html"
+            },
+            {
+              "title": "interactivecrypto.com/spacex-tesla-merger-talks-puts-nearly-20000...",
+              "url": "https://www.interactivecrypto.com/spacex-tesla-merger-talks-puts-nearly-20000-bitcoin-in-focus-1769821338121"
+            },
+            {
+              "title": "Bitcoin Treasuries - Bitcoin Treasury Data, News & Analysis",
+              "url": "https://bitcointreasuries.net/"
+            }
+          ],
           "tags": [
             "Markets",
             "Bitcoin News",
@@ -193736,7 +193774,9 @@
             "mergers and acquisitions",
             "Artificial Intelligence",
             "News"
-          ]
+          ],
+          "title_en": "SpaceX and Tesla explore merger that would unite more than 30,000 bitcoin",
+          "title_zh": "SpaceX与特斯拉探索合并，将整合逾3万枚比特币"
         },
         "published_at": "2026-10-21T09:23:00Z",
         "source_type": "rss",
@@ -194244,7 +194284,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Alpenglow is a fundamental consensus overhaul for Solana, a widely used network, and its mainnet activation with finality reduced to 150 milliseconds is a material protocol-level breakthrough rather than a routine update. The development is in-window and affects network performance and infrastructure broadly, though the headline provides limited detail on deployment scope or observed impact.",
         "ai_score": 8.5,
@@ -194282,7 +194322,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "The OCC finalizing its rule implementing the GENIUS Act is a concrete, in-window regulatory action with a direct transmission path to stablecoin issuance and market structure. Dropping the third-party yield presumption materially affects how stablecoin rewards programs can be structured, which matters for issuers, distributors, and exchanges. It is not a systemic market event, but it is a high-value regulatory milestone rather than routine guidance.",
         "ai_score": 8.0,
@@ -194320,7 +194360,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A reported exploration of a Tesla-SpaceX merger is a major corporate development, and the combined entity would hold 30,221 BTC, making it a significant institutional Bitcoin treasury event. It is not a confirmed transaction and has limited direct crypto-market transmission, so it falls below systemic or landmark regulatory/security events.",
         "ai_score": 7.5,
@@ -194358,7 +194398,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A security-related development in Bitcoin Lightning infrastructure, with developers publicly warning about flaws and a second patch released within five days. This is a high-value protocol security update for a widely used network, though the available evidence does not indicate a confirmed large-scale exploit or systemic loss event.",
         "ai_score": 7.5,
@@ -194371,22 +194411,54 @@
         ],
         "author": "CryptoSlate",
         "content": "<a href=\"https://news.google.com/rss/articles/CBMivAFBVV95cUxQS1lGTlViZEdEME11NGhDbWFMRkJNMWhZdlJlSGlsaE9XXzVUaTM0eGMwNzljQnZJWWFLNEJiUDBQQjktZGtMcHpXZFZ2Sm8xcGZmYjgxMEV4TEdVcnNpNDhod2RKSVdNREVYUnZPX0Uxc25VMnRtWHplenJHSldtNE9qN2V1amhGVUczdWtpajE3Q2xFMDlySVhCekVQN1FEU1hyV2VENTJ0QW5VWkNGQmpfTGZIQVhlbTdwNw?oc=5\" target=\"_blank\">Bitcoin Lightning developers sound alarm over security flaws as second patch lands in five days</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoSlate</font>",
-        "fetched_at": "2026-10-21T17:32:01.108858Z",
+        "fetched_at": "2026-10-21T23:27:49.058866Z",
         "id": "google_news:article:c5fccd22e5373774",
         "metadata": {
+          "background": "The Lightning Network is a Bitcoin layer-2 payment network designed to enable fast, low-cost transactions through off-chain payment channels. Search excerpts point to recent security patches in Lightning implementations, including LDK and Core Lightning, addressing flaws related to channel reconnection and shutdown.",
+          "background_en": "The Lightning Network is a Bitcoin layer-2 payment network designed to enable fast, low-cost transactions through off-chain payment channels. Search excerpts point to recent security patches in Lightning implementations, including LDK and Core Lightning, addressing flaws related to channel reconnection and shutdown.",
+          "background_zh": "闪电网络是比特币的二层支付网络，旨在通过链下支付通道实现快速、低成本交易。搜索摘要显示，闪电网络的多个实现近期发布了安全补丁，包括 LDK 和 Core Lightning，修复涉及通道重连和关闭的缺陷。",
           "category": "crypto-protocols",
           "collection_method": "google_news_fallback",
+          "community_discussion": "",
+          "detailed_summary": "Bitcoin Lightning developers are warning publicly about security flaws after a second patch was released within five days, CryptoSlate reported. No confirmed large-scale exploit or systemic loss event has been reported in the available material.\n\nThe warning puts Lightning node operators on notice to apply the latest fixes, since security defects in payment-channel software are an operational risk for systems that hold and route funds.\n\nThe second patch arrived within a five-day window, underscoring that fixes are being rolled out in quick succession. The available evidence does not establish that the flaws were exploited at scale.",
+          "detailed_summary_en": "Bitcoin Lightning developers are warning publicly about security flaws after a second patch was released within five days, CryptoSlate reported. No confirmed large-scale exploit or systemic loss event has been reported in the available material.\n\nThe warning puts Lightning node operators on notice to apply the latest fixes, since security defects in payment-channel software are an operational risk for systems that hold and route funds.\n\nThe second patch arrived within a five-day window, underscoring that fixes are being rolled out in quick succession. The available evidence does not establish that the flaws were exploited at scale.",
+          "detailed_summary_zh": "据 CryptoSlate 报道，比特币闪电网络开发者在五天内第二个补丁发布后，公开就安全漏洞发出警告。现有材料中尚无已确认的大规模利用或系统性资金损失事件。\n\n这一警告提醒闪电网络节点运营者应用最新修复，因为支付通道软件中的安全缺陷会对持有和路由资金的系统构成运营风险。\n\n第二个补丁在五天窗口内发布，表明修复正在快速连续推出。现有证据尚不能确认这些漏洞已被大规模利用。",
+          "editorial_tags": [
+            "Bitcoin",
+            "Lightning Network",
+            "security vulnerability",
+            "protocol patch"
+          ],
+          "enrichment_status": "complete",
           "event_retry_pending": true,
           "feed_name": "CryptoSlate",
           "gn_query": "site:cryptoslate.com",
           "google_news_link_resolved": true,
           "headline_only": true,
+          "market_impact_en": "The immediate exposure is to Lightning node operators and services that rely on channel liquidity and self-custody, where repeated patches can trigger operational reviews and weigh on confidence in Bitcoin’s layer-2 payment infrastructure. No confirmed loss event has been tied to the warning in the available evidence.",
+          "market_impact_zh": "直接影响集中在依赖通道流动性和自托管的闪电网络节点运营者及相关服务；连续补丁可能促使运营方进行安全复核，并影响市场对比特币二层支付基础设施的信心。现有证据中没有与该警告相关的已确认损失事件。",
           "original_feed_error": "HTTP 403",
           "original_feed_url": "https://cryptoslate.com/feed/",
           "publisher_url": "https://cryptoslate.com",
           "score_model": "deepseek:deepseek-flash",
           "source_category": "crypto-markets",
-          "source_name": "CryptoSlate"
+          "source_name": "CryptoSlate",
+          "sources": [
+            {
+              "title": "Lightning Network",
+              "url": "https://lightning.network/"
+            },
+            {
+              "title": "Core Lightning patches critical security flaws and a Bitcoin payment...",
+              "url": "https://cryptoslate.com/core-lightning-patches-critical-security-flaws-and-a-bitcoin-payment-bug/"
+            },
+            {
+              "title": "Bitcoin Lightning Network SDK LDK Fixes Security Vulnerabilities",
+              "url": "https://www.kucoin.com/news/flash/bitcoin-lightning-network-sdk-ldk-patches-security-vulnerabilities"
+            }
+          ],
+          "title_en": "Bitcoin Lightning developers sound alarm over security flaws as second patch lands in five days",
+          "title_zh": "比特币闪电网络开发者就安全漏洞发出警告，五天内第二个补丁落地"
         },
         "published_at": "2026-10-21T16:30:34Z",
         "source_type": "google_news",
@@ -194395,7 +194467,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A named foundation issuing a direct security warning that a widely used wallet extension leaked private keys is a high-value, actionable security development with clear transmission to user fund safety. It falls short of the 8.5-9.0 anchor because the scope appears limited to users of a single wallet extension rather than a systemic, multi-hundred-million-dollar exploit.",
         "ai_score": 7.5,
@@ -194428,7 +194500,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Polymarket US filing suit against Ohio over sports-contract enforcement is a concrete regulatory/legal development with a clear path to affecting prediction-market access in the US. It is significant for the crypto prediction-market sector, though it is a state-level challenge and not yet a final court ruling or nationwide market-structure change.",
         "ai_score": 7.0,
@@ -194466,7 +194538,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "An emergency PHP patch affecting a globally ubiquitous web runtime is a high-signal security event with direct exposure for crypto exchanges, wallets and web-facing services; crypto security leads issuing warnings adds actionable urgency. Impact is broad but contingent on exploitability, and it is not a protocol- or market-structure event, so it sits below the 8+ tier reserved for confirmed material losses or systemic incidents.",
         "ai_score": 7.0,
@@ -194507,7 +194579,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Kalshi enabling leveraged futures bets collateralized by bitcoin loans is a material market-structure and product development for a regulated prediction-market venue, with implications for crypto collateral use and derivatives access. It is notable and actionable but not systemic or a major exchange-wide change.",
         "ai_score": 7.0,
@@ -194540,7 +194612,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Grayscale extending in-kind (crypto-denominated) subscriptions across 10 ETFs and trusts is a concrete market-structure development that improves creation/redemption mechanics for institutional allocators and reduces cash-conversion friction. It is a material product/operational change for a major digital-asset manager but is an incremental expansion of an existing capability rather than a paradigm shift, so it lands in the high-value rather than groundbreaking tier.",
         "ai_score": 7.0,
@@ -194577,15 +194649,15 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Binance launching tokenized securities under bStocks with 24/7 access is a material exchange product and market-structure development, going beyond a routine listing or maintenance update. It expands how traditional securities exposure can be traded on a major crypto platform, with possible regulatory and operational implications.",
         "ai_score": 8.0,
         "ai_summary": "Binance has launched bStocks, a tokenized securities product offering 24/7 access to tokenized equity exposure.",
         "ai_tags": [
           "Binance",
-          "tokenized-securities",
           "bStocks",
+          "tokenized-securities",
           "24/7-trading",
           "market-structure"
         ],
@@ -194594,13 +194666,46 @@
         "fetched_at": "2026-10-21T21:41:23.847781Z",
         "id": "google_news:article:4d1577a9fc26904e",
         "metadata": {
+          "background": "Binance first introduced bStocks in June with tokenized versions of companies including Nvidia, Tesla and Circle, and has continued adding supported securities since then, according to CoinInsider. Tokenized stock trading has grown from virtually nothing to more than €20 billion in under a year, almost entirely settled in stablecoins, per one industry analysis. Regulators have been clarifying how federal securities laws apply to tokenized instruments, with the US SEC issuing guidance on crypto-based securities.",
+          "background_en": "Binance first introduced bStocks in June with tokenized versions of companies including Nvidia, Tesla and Circle, and has continued adding supported securities since then, according to CoinInsider. Tokenized stock trading has grown from virtually nothing to more than €20 billion in under a year, almost entirely settled in stablecoins, per one industry analysis. Regulators have been clarifying how federal securities laws apply to tokenized instruments, with the US SEC issuing guidance on crypto-based securities.",
+          "background_zh": "据 CoinInsider 报道，币安最早于今年 6 月推出 bStocks，首批包含英伟达、特斯拉和 Circle 等公司的代币化版本，此后持续增加支持的证券。一份行业分析称，代币化股票交易在不到一年内从几乎为零增长到逾 200 亿欧元，且几乎全部以稳定币结算。监管机构也在澄清联邦证券法如何适用于代币化工具，美国 SEC 已就加密类证券发布指引。",
           "category": "exchange-announcements",
+          "community_discussion": "",
+          "detailed_summary": "Binance has launched bStocks, a tokenized securities product that gives users round-the-clock access to tokenized equity exposure on the exchange. The tokens trade on Binance's spot market rather than during traditional stock-market hours.\n\nThe product places continuous equity exposure on one of the largest crypto exchanges, extending trading past traditional market hours and creating an instrument that sits between crypto spot markets and regulated securities.\n\nBinance's own documentation states that each bStocks token is backed 1:1 by a US share held at a regulated custodian and is traded 24/7 on the exchange's spot market. The offering is positioned with zero conversion fees and dividend-related features such as automatic reinvestment.",
+          "detailed_summary_en": "Binance has launched bStocks, a tokenized securities product that gives users round-the-clock access to tokenized equity exposure on the exchange. The tokens trade on Binance's spot market rather than during traditional stock-market hours.\n\nThe product places continuous equity exposure on one of the largest crypto exchanges, extending trading past traditional market hours and creating an instrument that sits between crypto spot markets and regulated securities.\n\nBinance's own documentation states that each bStocks token is backed 1:1 by a US share held at a regulated custodian and is traded 24/7 on the exchange's spot market. The offering is positioned with zero conversion fees and dividend-related features such as automatic reinvestment.",
+          "detailed_summary_zh": "币安推出名为 bStocks 的代币化证券产品，让用户可以在该交易所获得 7×24 小时的代币化股票敞口。这些代币在币安现货市场交易，而不受传统股票市场交易时段的限制。\n\n该产品让全球最大加密交易所之一提供不间断的股票敞口，把交易时间延伸到传统市场时段之外，并形成一种介于加密现货市场与受监管证券之间的工具。\n\n币安自有资料称，每个 bStocks 代币由存放于受监管托管机构的美国股票 1:1 支撑，并在其现货市场 7×24 小时交易。该产品以零转换费以及自动再投资等股息相关功能作为卖点。",
+          "editorial_tags": [
+            "Binance",
+            "bStocks",
+            "tokenized-securities",
+            "24/7-trading",
+            "market-structure"
+          ],
+          "enrichment_status": "complete",
           "event_retry_pending": true,
           "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
           "google_news_link_resolved": true,
+          "market_impact_en": "bStocks routes equity exposure through Binance's spot venue and stablecoin settlement, putting the exchange in competition with other onchain equity platforms and with brokers' extended-hours offerings. Expansion of this segment can shift stablecoin and trading-volume flows toward venues listing tokenized equities, while custody arrangements and securities-law treatment remain the binding constraints.",
+          "market_impact_zh": "bStocks 通过币安现货市场与稳定币结算来承载股票敞口，使该交易所与其他链上股票平台以及券商的延长时段服务形成竞争。该细分市场扩张可能使稳定币与交易量资金流向上线代币化股票的场所，而托管安排与证券法适用仍是关键约束。",
           "publisher_url": "https://blockchain.news",
           "score_model": "deepseek:deepseek-flash",
-          "source_name": "Blockchain News"
+          "source_name": "Blockchain News",
+          "sources": [
+            {
+              "title": "What Are bStocks? A Guide to Tokenized Stocks on Binance",
+              "url": "https://www.binance.bh/en/academy/articles/what-are-bstocks-a-guide-to-tokenized-stocks-on-binance"
+            },
+            {
+              "title": "Binance Renews BStocks Push",
+              "url": "https://www.coininsider.org/news/binance-renews-bstocks-push/"
+            },
+            {
+              "title": "SEC Clarifies Tokenized Securities Rules, Opening Door to...",
+              "url": "https://news.bitcoin.com/sec-clarifies-tokenized-securities-rules-opening-door-to-regulated-onchain-equities/"
+            }
+          ],
+          "title_en": "Binance launches bStocks tokenized securities with 24/7 access",
+          "title_zh": "币安推出 bStocks 代币化证券，支持 7×24 小时交易"
         },
         "published_at": "2026-10-21T17:17:00Z",
         "source_type": "google_news",
@@ -194609,7 +194714,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A federal banking regulatory clarification that lets crypto companies continue offering interest-like rewards, directly affecting stablecoin and crypto yield products and the competitive boundary between banks and crypto firms. It is a material regulatory development with a clear market transmission path, though not a landmark statutory overhaul.",
         "ai_score": 7.5,
@@ -194642,7 +194747,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A major bank acquiring an entire company to expand crypto custody is a high-value institutional adoption and market-structure development, though it falls short of systemic or landmark regulatory impact.",
         "ai_score": 7.5,
@@ -194675,7 +194780,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A concrete U.S. enforcement development: the DOJ reports $938 million restrained in a crypto scam crackdown, with presidential promotion. This is a significant regulatory/security milestone with material deterrence and market-integrity implications, but it is not a structural rule change or a systemic market event.",
         "ai_score": 7.0,
@@ -194713,7 +194818,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Announcement of a new NVIDIA AI approach for relational data that reportedly outperforms supervised ML without training; notable for builders and applied ML, but not a frontier-model breakthrough or industry-reshaping event.",
         "ai_score": 7.0,
@@ -194743,7 +194848,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A significant regulatory flashpoint: the American Bankers Association publicly accusing the OCC of exceeding congressional intent with a finalized rule on stablecoin rewards/yield. Rules governing whether stablecoins can pay rewards directly determine the economics of the stablecoin market and the competitive boundary between banks and crypto issuers, giving this a clear transmission path to market structure. It is a policy/industry confrontation rather than a market-moving enforcement action, so it sits below landmark regulatory decisions.",
         "ai_score": 7.0,
@@ -194781,7 +194886,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A top-tier exchange merging fiat EUR and EURC stablecoin liquidity into a single spot order book is a meaningful market-structure and trading-rule change, improving liquidity and execution for euro-denominated pairs. It is a substantive but not systemic development, so it sits below landmark status.",
         "ai_score": 7.0,
@@ -194819,7 +194924,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A high-signal technical deep-dive with a concrete, actionable result: application-specific vocabulary specialization cuts SLM inference costs by 77%. It is useful for builders optimizing deployment economics, though it is a blog-level engineering technique rather than a frontier model or industry-wide breakthrough.",
         "ai_score": 7.0,

@@ -4,33 +4,39 @@
   "url": "https://xiyu.news/events/evt_4eb800807f88fccc/",
   "json": "https://xiyu.news/api/events/evt_4eb800807f88fccc.json",
   "type": "security_incident",
-  "status": "developing",
+  "status": "closed",
   "category": "technology",
   "title": {
-    "zh": "PHP 曝出两个严重远程代码执行漏洞并发布紧急补丁",
+    "zh": "PHP披露两个严重远程代码执行漏洞并发布紧急补丁",
     "en": "PHP discloses two critical RCE vulnerabilities and releases emergency patches"
   },
   "current_state": {
-    "zh": "PHP 发布紧急补丁，修复两个影响大部分网络的关键未认证 RCE 漏洞，导致政府网站下线，且在修复可用前已观察到攻击。",
-    "en": "PHP released emergency patches for two critical unauthenticated RCE flaws affecting most of the web, prompting government sites to go offline and attacks to be observed before fixes were available."
+    "zh": "OpenAI表示，其模型发现了PHP中严重的PHP2Shell漏洞，该漏洞促使多个欧洲政府将网站下线，OpenAI还牵头与Calif和Wiz组成联盟，历时两个月推动修复这些漏洞。",
+    "en": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed."
   },
   "first_seen_at": "2026-10-21T06:41:27.640635+00:00",
-  "last_updated_at": "2026-10-21T17:32:11.197089+00:00",
-  "last_material_change_at": "2026-10-21T17:32:11.197089+00:00",
+  "last_updated_at": "2026-10-21T21:41:48.780148+00:00",
+  "last_material_change_at": "2026-10-21T21:41:48.780148+00:00",
   "confidence": 0.75,
-  "updates_count": 7,
-  "sources_count": 15,
+  "updates_count": 9,
+  "sources_count": 17,
   "entities": [
     "alert",
+    "bug",
     "bugs",
+    "chatgpt",
+    "course",
     "critical",
     "cvss",
     "everyone",
+    "found",
     "freaking",
     "github",
     "global",
+    "governments",
     "how",
     "internet",
+    "made",
     "node",
     "nodejs",
     "openai",
@@ -41,16 +47,22 @@
     "put",
     "rce",
     "release",
+    "remotely",
     "risk",
     "security-release",
     "slowmist",
     "spark",
     "strengthening",
+    "that",
+    "their",
     "today",
     "two",
+    "unplug",
     "updated",
     "vulnerabilities",
-    "warns"
+    "warns",
+    "websites",
+    "who"
   ],
   "identifiers": [
     "cve-2026",
@@ -75,6 +87,7 @@
     "open-source",
     "openai",
     "patch-management",
+    "patching",
     "php",
     "rce",
     "remote-code-execution",
@@ -425,6 +438,95 @@
           "url": "https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/",
           "label": "ejohnso49",
           "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_9b9e21f5489d3eed",
+      "event_id": "evt_4eb800807f88fccc",
+      "occurred_at": "2026-10-21T17:54:58Z",
+      "published_at": "2026-10-21T17:54:58Z",
+      "first_seen_at": "2026-10-21T21:41:42.188641Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "全球70%的网站被发现存在可远程利用的PHP漏洞",
+      "title_en": "Remotely exploitable PHP bug found on 70% of world’s websites",
+      "what_changed_zh": "两个被合称为PHP2Shell的严重PHP漏洞允许未认证攻击者在Web服务器上执行代码，尽管PHP 8.2+已发布紧急补丁，但超过三分之一的PHP网站仍未修补，约80万台主机运行的版本将永远不会获得修复。",
+      "what_changed_en": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
+      "current_state_zh": "两个被合称为PHP2Shell的严重PHP漏洞允许未认证攻击者在Web服务器上执行代码，尽管PHP 8.2+已发布紧急补丁，但超过三分之一的PHP网站仍未修补，约80万台主机运行的版本将永远不会获得修复。",
+      "current_state_en": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
+      "detailed_summary_zh": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
+      "detailed_summary_en": "Two critical PHP flaws collectively dubbed PHP2Shell allow unauthenticated attackers to execute code on web servers, and while emergency patches shipped for PHP 8.2+, over a third of PHP-based sites remain unpatched and some 800,000 hosts run branches that will never receive a fix.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "rss:protos.com_feed_:46c75a4fc0c90932"
+      ],
+      "sources": [
+        {
+          "url": "https://protos.com/remotely-exploitable-php-bug-found-on-70-of-worlds-websites/",
+          "label": "Protos",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_c0fbd4318a998e09",
+      "event_id": "evt_4eb800807f88fccc",
+      "occurred_at": "2026-10-21T18:46:08Z",
+      "published_at": "2026-10-21T18:46:08Z",
+      "first_seen_at": "2026-10-21T21:41:48.780148Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "谁发现了那个让各国政府下线网站的 PHP 漏洞？当然是 ChatGPT",
+      "title_en": "Who Found the PHP Bug That Made Governments Unplug Their Websites? ChatGPT, Of Course",
+      "what_changed_zh": "OpenAI 总裁 Greg Brockman 表示，公司在其“Patch the Planet”计划下，用自家模型主导了一个为期两个月的联盟，发现并修复了 PHP 核心中的 PHP2Shell 漏洞。安全公司 Calif 于 8 月使用 OpenAI 的 GPT-5.6 Sol 发现了该漏洞的一个版本，OpenAI 自己的团队在 9 月发现了更完整的版本，云安全公司 Wiz 也独立发现了这两个漏洞。\n\n这些漏洞的 CVSS 评分为 9.2，可让未通过身份验证的攻击者在运行 PHP 的服务器上执行任意代码；在已知服务端语言的网站中，约 70% 使用 PHP。细节泄露一天后 PHP 才发布修复。芬兰、荷兰和法国于周三下线了政府网站。Brockman 主张防御方需要比攻击者更强的模型，并提出未来可由政府等“获授权防御方”扫描存在漏洞的服务器，并在极端情况下远程打补丁。\n\nBrockman 称该漏洞在 PHP 中存在了 14 年，2024 年曾出现一个有限版本，但“当时未被认为影响重大”；细节开始泄露后，发布时间从原定的 10 月 22 日提前到 10 月 21 日。OpenAI 表示还在修复“若干其他重大漏洞”，包括周三公布的 Node.js 远程代码执行漏洞，并承诺为其关键基础设施防御者计划 Daybreak 提供价值 10 亿美元的补贴访问额度。",
+      "what_changed_en": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
+      "current_state_zh": "OpenAI 总裁 Greg Brockman 表示，公司在其“Patch the Planet”计划下，用自家模型主导了一个为期两个月的联盟，发现并修复了 PHP 核心中的 PHP2Shell 漏洞。安全公司 Calif 于 8 月使用 OpenAI 的 GPT-5.6 Sol 发现了该漏洞的一个版本，OpenAI 自己的团队在 9 月发现了更完整的版本，云安全公司 Wiz 也独立发现了这两个漏洞。\n\n这些漏洞的 CVSS 评分为 9.2，可让未通过身份验证的攻击者在运行 PHP 的服务器上执行任意代码；在已知服务端语言的网站中，约 70% 使用 PHP。细节泄露一天后 PHP 才发布修复。芬兰、荷兰和法国于周三下线了政府网站。Brockman 主张防御方需要比攻击者更强的模型，并提出未来可由政府等“获授权防御方”扫描存在漏洞的服务器，并在极端情况下远程打补丁。\n\nBrockman 称该漏洞在 PHP 中存在了 14 年，2024 年曾出现一个有限版本，但“当时未被认为影响重大”；细节开始泄露后，发布时间从原定的 10 月 22 日提前到 10 月 21 日。OpenAI 表示还在修复“若干其他重大漏洞”，包括周三公布的 Node.js 远程代码执行漏洞，并承诺为其关键基础设施防御者计划 Daybreak 提供价值 10 亿美元的补贴访问额度。",
+      "current_state_en": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
+      "detailed_summary_zh": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
+      "detailed_summary_en": "OpenAI says its models discovered the severe PHP2Shell flaws in PHP that prompted several European governments to pull websites offline, and it led a two-month coalition with Calif and Wiz to get the bugs fixed.",
+      "background_zh": "“Patch the Planet”是 OpenAI“Daybreak”网络安全计划的一部分，该计划于 2026 年 5 月中旬启动，并与 Trail of Bits 合作，帮助开源维护者发现、验证、修补、测试和披露漏洞。2026 年 7 月 9 日发布的 GPT-5.6 分为 Luna、Terra 和 Sol 三档，其中 Sol 为旗舰型号。此次披露之前已有多起 AI 安全争议：9 月，澳大利亚总理 Anthony Albanese 在 OpenAI 的一个智能体访问了 Medicare 统计门户的非公开文件后，称其通知流程“不可接受”。",
+      "background_en": "Patch the Planet is part of OpenAI's Daybreak cybersecurity initiative, launched in mid-May 2026, and works with Trail of Bits to help open-source maintainers find, validate, patch, test and disclose vulnerabilities. GPT-5.6, released July 9, 2026, comes in three tiers — Luna, Terra and Sol — with Sol as the flagship. The disclosure follows earlier AI-security disputes: in September, Australian Prime Minister Anthony Albanese called OpenAI's notification process \"unacceptable\" after an OpenAI agent accessed non-public files on a Medicare statistics portal.",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "由于 PHP 支撑着互联网的很大一部分——包括 Wiz 演示可被未授权利用的 WordPress、Drupal 和 Joomla 部署——运行这些技术栈的加密交易所、DeFi 前端和托管面板面临与迫使欧洲政府网站下线相同的暴露面。这一事件也强化了一种叙事：AI 实验室将前沿模型在漏洞发现上的能力视为战略性基础设施，OpenAI 则以 10 亿美元补贴防御方访问来强化这一定位。",
+      "market_impact_en": "Because PHP underpins a large share of the web — including WordPress, Drupal and Joomla deployments that Wiz demonstrated could be exploited unauthenticated — crypto exchanges, DeFi front-ends and custody dashboards running those stacks carried the same exposure that forced European government sites offline. The episode also feeds a narrative in which frontier-model capability in vulnerability discovery is treated by AI labs as strategic infrastructure, with OpenAI tying $1 billion of subsidized defender access to that positioning.",
+      "importance_score": 8.0,
+      "references": [
+        {
+          "url": "https://www.php2shell.com/",
+          "title": "PHP2Shell — AI uncovers critical vulnerabilities in the backbone of..."
+        },
+        {
+          "url": "https://www.wiz.io/blog/php2shell-php-rce",
+          "title": "PHP2Shell: AI uncovers critical RCE vulnerabilities... | Wiz Blog"
+        },
+        {
+          "url": "https://www.nxcode.io/resources/news/openai-patch-the-planet-codex-security-open-source-2026",
+          "title": "OpenAI Patch the Planet: Codex Security and the New... | NxCode"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "rss:decrypt.co_feed:b7b0afeb6f4ee1e5"
+      ],
+      "sources": [
+        {
+          "url": "https://decrypt.co/381567/who-found-php-bug-governments-unplug-websites-chatgpt",
+          "label": "Decrypt",
+          "source_type": "rss",
           "official": false
         }
       ]

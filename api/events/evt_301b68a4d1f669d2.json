@@ -98,14 +98,27 @@
       "current_state_en": "Malicious LiteLLM 1.107.0 PyPI packages and affected Docker images have been removed; JFrog advises affected users to rotate credentials and rebuild environments, with 1.106.2 confirmed as the safe rollback, while how the malicious code entered the release process remains unclear.",
       "detailed_summary_zh": "Security firm JFrog discovered that LiteLLM version 1.107.0 and its official Docker images were compromised in a supply chain attack that installs credential-stealing malware and a persistent backdoor, affecting all PyPI platform packages and prompting advice to rotate credentials and rebuild environments.",
       "detailed_summary_en": "Security firm JFrog discovered that LiteLLM version 1.107.0 and its official Docker images were compromised in a supply chain attack that installs credential-stealing malware and a persistent backdoor, affecting all PyPI platform packages and prompting advice to rotate credentials and rebuild environments.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "background_zh": "LiteLLM 是一款开源 AI 网关（LLM 代理），用一套兼容 OpenAI 的 API 统一接入 AI 技术栈，把请求路由到 OpenAI、Anthropic 等模型，并集中管理 API 密钥，支持包括完全离线在内的自托管部署。这是该项目今年第二次遭遇供应链攻击，今年 3 月就曾因另一场供应链攻击遭到投毒。",
+      "background_en": "LiteLLM is an open-source AI gateway (LLM proxy) that puts an AI stack behind one OpenAI-compatible API, routing requests to models such as OpenAI and Anthropic and centrally managing API keys, with self-hosting including air-gapped deployments. This is the second supply chain attack on the project this year, after an earlier incident in March.",
+      "community_discussion_zh": "Hacker News 的讨论更多聚焦于问题的系统性而非单一软件包：有人建议使用 canarytokens 来检测凭证是否被盗；有人抱怨权限弹窗疲劳和日常化的软件包安装让开发者对风险变得麻木；还有人质疑一个三年内拥有 5.5 万次提交的项目为何会以这种方式被攻破。一位评论者援引“三名开发者的 GitHub 凭证被窃取”的说法，认为这是系统性问题，并表示会把 LiteLLM 固定在更早的版本直到有进一步消息。",
+      "community_discussion_en": "Hacker News commenters focused on the systemic nature of the problem rather than the single package: one suggested using canarytokens to detect credential theft, another complained that permission pop-up fatigue and routine package installation have desensitized developers to risk, and a third questioned how a project with 55,000 commits in three years could be hit this way. One commenter, citing reports that three unique developer GitHub credentials were compromised, called the pattern systemic and said they would pin LiteLLM to a version before this one until further notice.",
+      "market_impact_zh": "传导渠道是凭证暴露：自托管的 LiteLLM 实例通常在其数据库和主机环境中保存模型 API 密钥、云平台凭证和 SSH 私钥，因此运行此类网关的加密与 AI 智能体团队可能面临部署基础设施凭证外泄的风险，无论是否调用过该库，都需要轮换密钥并重建环境。",
+      "market_impact_en": "The transmission channel is credential exposure: self-hosted LiteLLM instances commonly hold model API keys, cloud credentials and SSH keys in their databases and host environments, so crypto and AI-agent teams running such gateways may have had deployment infrastructure credentials exposed, requiring key rotation and environment rebuilds regardless of whether they invoked the library.",
       "importance_score": 8.0,
-      "references": [],
+      "references": [
+        {
+          "url": "https://www.litellm.ai/",
+          "title": "LiteLLM — Open-Source AI Gateway & LLM Proxy"
+        },
+        {
+          "url": "https://github.com/BerriAI/litellm",
+          "title": "GitHub - BerriAI/litellm: The fastest, litest AI Gateway. Rust core with..."
+        },
+        {
+          "url": "https://bolster.ai/blog/pypi-supply-chain-attacks",
+          "title": "PYPI Security: How to Prevent Supply Chain Attacks in Python Projects"
+        }
+      ],
       "confidence": 0.96,
       "story_ids": [
         "telegram:theblockbeats:201703"

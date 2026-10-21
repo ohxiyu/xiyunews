@@ -641,14 +641,27 @@
       "current_state_en": "Alpenglow is now live on Solana mainnet, replacing TowerBFT and reducing transaction finality from roughly 12.8 seconds to 150 milliseconds.",
       "detailed_summary_zh": "Anza's Alpenglow consensus protocol went live on Solana mainnet-beta, replacing TowerBFT and cutting transaction finality from roughly 12.8 seconds to 150 milliseconds at genesis slot 459,653,000 with 654 validators participating in a 900 ms switchover.",
       "detailed_summary_en": "Anza's Alpenglow consensus protocol went live on Solana mainnet-beta, replacing TowerBFT and cutting transaction finality from roughly 12.8 seconds to 150 milliseconds at genesis slot 459,653,000 with 654 validators participating in a 900 ms switchover.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "TowerBFT 自 2020 年 3 月 Solana 网络启动以来一直是其共识机制。Alpenglow 的设计由 Anza 研究团队于 2025 年 5 月发表，团队由苏黎世联邦理工学院教授 Roger Wattenhofer 带领，成员包括 Quentin Kniep 和 Kobi Sliwinski。在上主网之前，该协议经历了公开测试，包括红队测试、渗透测试、多次迁移演练和一场安全竞赛，随后在测试网和开发者网上线。后续升级还包括改变区块数据传播方式的 Rotor、地理感知的领导者轮换，以及抗量子研究设计 Quantumglow，但均未公布确定时间表。",
+      "background_en": "TowerBFT had been Solana's consensus mechanism since the network launched in March 2020. Alpenglow's design was published in May 2025 by Anza's research team led by ETH Zurich professor Roger Wattenhofer with Quentin Kniep and Kobi Sliwinski. Before mainnet, the protocol went through public testing including red teaming, penetration testing, repeated migration rehearsals and a security competition, followed by testnet and devnet launches. Further upgrades — Rotor for block data propagation, geographically aware leader rotation, and a post-quantum research design called Quantumglow — are planned but have no committed dates.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "此次升级直接影响 Solana 底层结算速度，而结算速度正是交易所、托管机构和支付处理方判断 SOL 或代币转账何时算作已完成的依据；最终性缩短可能改变中心化平台的充提确认策略，并压缩链上交易与跨链流程中的等待时间。升级同时改变了验证者的投票机制——投票不再写入后续区块，而是由验证者之间直接发送并按质押权重计算——这关系到验证者运维与质押经济模型。",
+      "market_impact_en": "The upgrade directly affects Solana's base-layer settlement speed, the channel through which exchanges, custodians and payment processors decide when a SOL or token transfer counts as settled; shorter finality could change deposit-crediting and withdrawal policies on centralized venues and reduce the confirmation wait baked into on-chain trading and bridging flows. It also alters validator vote mechanics, since votes are now sent directly between validators and weighted by stake rather than written into later blocks, which bears on validator operations and staking economics.",
       "importance_score": 8.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://solana.com/upgrades/alpenglow",
+          "title": "Alpenglow | Solana Media"
+        },
+        {
+          "url": "https://www.helius.dev/blog/alpenglow",
+          "title": "Alpenglow: Solana's Great Consensus Rewrite"
+        },
+        {
+          "url": "https://solana.com/developers/migrate-to-solana/consensus",
+          "title": "EVM to SVM: Consensus | Solana"
+        }
+      ],
       "confidence": 0.98,
       "story_ids": [
         "telegram:foresightnews:120981",
