@@ -11,15 +11,15 @@
     "en": "EMudhra Intermediate CA Compromise"
   },
   "current_state": {
-    "zh": "eMudhra 的 8 个受影响中间 CA 已被主要浏览器和 Cloudflare 等厂商紧急封堵或缓解；主要浏览器暂无被利用证据，但不强制证书透明度的非浏览器客户端仍可能暴露于伪造证书风险。",
-    "en": "The eight affected eMudhra intermediate CAs have been emergency-blocked or mitigated by major browsers and Cloudflare; major browsers show no evidence of exploitation, but non-browser clients that do not enforce Certificate Transparency may remain exposed to forged certificates."
+    "zh": "8 个受影响的 eMudhra 中间 CA 已被主要浏览器、Cloudflare 及多个开发语言/框架生态紧急封堵，eMudhra 也已正式吊销相关证书；尚未发现脆弱私钥被用于签发伪造证书的证据，但物联网设备和未更新旧系统仍存在清理与暴露风险。",
+    "en": "The eight affected eMudhra intermediate CAs have been emergency-blocked by major browsers, Cloudflare, and several developer language/framework ecosystems, and eMudhra has formally revoked the certificates; no evidence yet shows the weak keys were used to forge certificates, but IoT devices and unpatched legacy systems remain exposed and cleanup is ongoing."
   },
   "first_seen_at": "2026-10-20T17:25:49.327432+00:00",
-  "last_updated_at": "2026-10-21T06:41:49.551817+00:00",
-  "last_material_change_at": "2026-10-21T06:41:49.551817+00:00",
+  "last_updated_at": "2026-10-21T09:29:57.659443+00:00",
+  "last_material_change_at": "2026-10-21T09:29:57.659443+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 2,
+  "updates_count": 3,
+  "sources_count": 3,
   "entities": [
     "compromise",
     "emudhra",
@@ -32,6 +32,7 @@
     "certificate-authority",
     "cybersecurity",
     "emudhra",
+    "mitm",
     "pki",
     "revocation",
     "security-incident",
@@ -128,6 +129,44 @@
           "url": "https://cointelegraph.com/news/tech-giants-rush-to-block-flawed-emudhra-certs-that-could-enable-fake-sites?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
           "label": "Cointelegraph",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_466d2041abd54d0a",
+      "event_id": "evt_b556f6f05750ec0d",
+      "occurred_at": "2026-10-21T06:47:02Z",
+      "published_at": "2026-10-21T06:47:02Z",
+      "first_seen_at": "2026-10-21T09:29:57.659443Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "印度CA机构eMudhra曝私钥生成漏洞，全球浏览器紧急拉黑防范中间人攻击",
+      "title_en": "印度CA机构eMudhra曝私钥生成漏洞，全球浏览器紧急拉黑防范中间人攻击",
+      "what_changed_zh": "新增了 eMudhra 已正式吊销存在缺陷的证书，以及 Go、Python、Rust、Electron 等主流开发语言和框架已推送更新并在各自生态内封禁相关证书的响应细节。",
+      "what_changed_en": "Added that eMudhra has formally revoked the defective certificates and that major developer ecosystems including Go, Python, Rust, and Electron have pushed updates to block the affected certificates within their own trust stores.",
+      "current_state_zh": "8 个受影响的 eMudhra 中间 CA 已被主要浏览器、Cloudflare 及多个开发语言/框架生态紧急封堵，eMudhra 也已正式吊销相关证书；尚未发现脆弱私钥被用于签发伪造证书的证据，但物联网设备和未更新旧系统仍存在清理与暴露风险。",
+      "current_state_en": "The eight affected eMudhra intermediate CAs have been emergency-blocked by major browsers, Cloudflare, and several developer language/framework ecosystems, and eMudhra has formally revoked the certificates; no evidence yet shows the weak keys were used to forge certificates, but IoT devices and unpatched legacy systems remain exposed and cleanup is ongoing.",
+      "detailed_summary_zh": "Indian CA eMudhra exposed eight intermediate certificates with trivially crackable private keys, prompting global browsers and developer ecosystems to blacklist them and update trust stores to prevent HTTPS man-in-the-middle attacks.",
+      "detailed_summary_en": "Indian CA eMudhra exposed eight intermediate certificates with trivially crackable private keys, prompting global browsers and developer ecosystems to blacklist them and update trust stores to prevent HTTPS man-in-the-middle attacks.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.94,
+      "story_ids": [
+        "telegram:theblockbeats:201591"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/372933?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]

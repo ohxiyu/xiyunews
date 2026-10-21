@@ -7,19 +7,19 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "Meta pauses Muse sharing after researchers find AI chats on the web",
+    "zh": "研究人员在网上发现 AI 聊天记录后，Meta 暂停 Muse 分享功能",
     "en": "Meta pauses Muse sharing after researchers find AI chats on the web"
   },
   "current_state": {
-    "zh": "Meta paused its Muse conversation-sharing feature after Claroc researchers discovered more than 6,800 publicly accessible Muse chat links through public DNS records.",
+    "zh": "Meta 表示已暂停 Muse 的一项分享功能——该功能允许用户分享与这款 AI 助手的对话。此前，安全公司 Claroc 的研究人员通过公开的 DNS 记录发现了超过 6,800 条可公开访问的 Muse 聊天链接，Ars Technica 报道了这一消息。Claroc 本周发布了相关报告。\n\n这次暂停是针对一起隐私暴露事件的产品层面应对，而用户此前可能以为这些对话只在小范围内被分享。\n\n据报道，这些链接是通过公开的 DNS 记录被定位到的，而非由 Meta 主动披露。Meta 称该分享功能为“暂停”，并非永久移除。",
     "en": "Meta paused its Muse conversation-sharing feature after Claroc researchers discovered more than 6,800 publicly accessible Muse chat links through public DNS records."
   },
   "first_seen_at": "2026-10-20T21:31:45.776307+00:00",
-  "last_updated_at": "2026-10-20T21:31:45.776307+00:00",
+  "last_updated_at": "2026-10-21T09:29:56.748762+00:00",
   "last_material_change_at": "2026-10-20T21:31:45.776307+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 2,
   "entities": [
     "meta",
     "muse"
@@ -60,17 +60,28 @@
         {
           "url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
           "title": "Introducing Muse: The World’s First Personal AI Agent Built for Everyone"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=50174687",
+          "title": "Community discussion"
         }
       ],
       "confidence": 0.75,
       "story_ids": [
-        "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:d05985f548b7ed22"
+        "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:d05985f548b7ed22",
+        "hackernews:story:50174687"
       ],
       "sources": [
         {
           "url": "https://www.theverge.com/tech/1014627/meta-muse-ai-sharing-ai-chats",
           "label": "The Verge AI",
           "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://arstechnica.com/security/2026/10/meta-muse-exposes-users-personal-and-business-secrets-when-they-share-conversations/",
+          "label": "gumby",
+          "source_type": "hackernews",
           "official": false
         }
       ]

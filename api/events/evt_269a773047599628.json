@@ -11,19 +11,20 @@
     "en": "【Drift Protocol 攻击者向 Tornado Cash 转入 1.34 万枚以太坊】"
   },
   "current_state": {
-    "zh": "Drift Protocol 攻击者在两个月沉寂后持续洗钱，已向 Tornado Cash 存入 2.57 万枚 ETH（约 6156 万美元），钱包仍持有约 8.19 万枚 ETH（约 1.95 亿美元）。",
-    "en": "The Drift Protocol attacker is actively laundering after two months of dormancy, having deposited 25,700 ETH (~$61.56M) into Tornado Cash while still holding 81,864 ETH (~$195M)."
+    "zh": "Drift Protocol 攻击者持续通过 Tornado Cash 洗钱，10 月 20 日至 21 日累计存入 50,595 枚 ETH（约 1.22 亿美元），相关地址仍持有约 56,569 枚 ETH（约 1.39 亿美元）。",
+    "en": "The Drift Protocol attacker continues laundering through Tornado Cash, with cumulative deposits on Oct 20–21 reaching 50,595 ETH (~$122M), while the related address still holds about 56,569 ETH (~$139M)."
   },
   "first_seen_at": "2026-10-20T09:34:14.171646+00:00",
-  "last_updated_at": "2026-10-20T21:31:46.420433+00:00",
-  "last_material_change_at": "2026-10-20T09:34:14.171646+00:00",
+  "last_updated_at": "2026-10-21T09:29:58.345033+00:00",
+  "last_material_change_at": "2026-10-21T09:29:58.345033+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 5,
+  "updates_count": 4,
+  "sources_count": 8,
   "entities": [
     "cash",
     "drift",
     "drift-protocol",
+    "salus",
     "tornado",
     "tornado-cash",
     "tornadoca"
@@ -129,6 +130,89 @@
           "url": "https://decrypt.co/381450/wallet-drift-exploit-sends-61-million-ethereum-tornado-cash",
           "label": "Decrypt",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_17683cd1458c4fa8",
+      "event_id": "evt_269a773047599628",
+      "occurred_at": "2026-10-21T07:50:16Z",
+      "published_at": "2026-10-21T07:50:16Z",
+      "first_seen_at": "2026-10-21T09:29:58.339386Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "【Salus：Drift 黑客再向 Tornado Cash 转入 4600 枚 ETH，约合 1123 万美元】",
+      "title_en": "【Salus：Drift 黑客再向 Tornado Cash 转入 4600 枚 ETH，约合 1123 万美元】",
+      "what_changed_zh": "Drift Protocol 攻击者从另一长期休眠钱包向 Tornado Cash 再存入 4,600 枚 ETH（约 1123 万美元）；其追踪的两个关联钱包累计向 Tornado Cash 存入 30,310 枚 ETH，其中 0xaa8 开头地址累计存入 25,710 枚 ETH。",
+      "what_changed_en": "The Drift Protocol attacker deposited another 4,600 ETH (~$11.23M) into Tornado Cash from another previously dormant wallet, bringing the two tracked linked addresses to a combined 30,310 ETH deposited into the mixer; the 0xaa8 address alone accounts for 25,710 ETH.",
+      "current_state_zh": "Drift Protocol 攻击者持续通过 Tornado Cash 洗钱，两个关联钱包已累计存入 30,310 枚 ETH；其中 0xd3f 开头地址新转入 4,600 枚 ETH，监测时仍持有约 20,286 枚 ETH。",
+      "current_state_en": "The Drift Protocol attacker continues laundering through Tornado Cash, with two linked addresses now having deposited a combined 30,310 ETH; the 0xd3f address newly deposited 4,600 ETH and still held about 20,286 ETH at the time of monitoring.",
+      "detailed_summary_zh": "The Drift Protocol attacker deposited another 4,600 ETH (~$11.23M) into Tornado Cash from a previously dormant wallet, pushing two linked addresses to a combined 30,310 ETH in mixer inflows as laundering of the exploit proceeds continues.",
+      "detailed_summary_en": "The Drift Protocol attacker deposited another 4,600 ETH (~$11.23M) into Tornado Cash from a previously dormant wallet, pushing two linked addresses to a combined 30,310 ETH in mixer inflows as laundering of the exploit proceeds continues.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.94,
+      "story_ids": [
+        "telegram:foresightnews:120927",
+        "telegram:theblockbeats:201608"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/115642",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://m.theblockbeats.info/flash/372951?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_ac8808a86288ddf2",
+      "event_id": "evt_269a773047599628",
+      "occurred_at": "2026-10-21T09:14:26Z",
+      "published_at": "2026-10-21T09:14:26Z",
+      "first_seen_at": "2026-10-21T09:29:58.345033Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "【Drift 黑客过去 1 小时再向 Tornado Cash 存入 24,885 枚 ETH，约合 6104 万美元】",
+      "title_en": "【Drift 黑客过去 1 小时再向 Tornado Cash 存入 24,885 枚 ETH，约合 6104 万美元】",
+      "what_changed_zh": "Drift Protocol 攻击者在过去 1 小时内再向 Tornado Cash 存入 24,885 枚 ETH（约 6104 万美元），使其 10 月 20 日至 21 日累计存入量升至 50,595 枚 ETH（约 1.22 亿美元），地址仍持有约 56,569 枚 ETH（约 1.39 亿美元）。",
+      "what_changed_en": "The Drift Protocol attacker deposited another 24,885 ETH (~$61.04M) into Tornado Cash in the past hour, raising cumulative deposits on Oct 20–21 to 50,595 ETH (~$122M), while still holding about 56,569 ETH (~$139M).",
+      "current_state_zh": "Drift Protocol 攻击者持续通过 Tornado Cash 洗钱，10 月 20 日至 21 日累计存入 50,595 枚 ETH（约 1.22 亿美元），相关地址仍持有约 56,569 枚 ETH（约 1.39 亿美元）。",
+      "current_state_en": "The Drift Protocol attacker continues laundering through Tornado Cash, with cumulative deposits on Oct 20–21 reaching 50,595 ETH (~$122M), while the related address still holds about 56,569 ETH (~$139M).",
+      "detailed_summary_zh": "The attacker behind the April Drift Protocol theft deposited another 24,885 ETH (~$61M) into Tornado Cash in the past hour, taking cumulative laundering on Oct 20–21 to 50,595 ETH (~$122M) while still holding roughly 56,569 ETH (~$139M).",
+      "detailed_summary_en": "The attacker behind the April Drift Protocol theft deposited another 24,885 ETH (~$61M) into Tornado Cash in the past hour, taking cumulative laundering on Oct 20–21 to 50,595 ETH (~$122M) while still holding roughly 56,569 ETH (~$139M).",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.97,
+      "story_ids": [
+        "telegram:foresightnews:120942"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/115654",
+          "label": "foresightnews",
+          "source_type": "telegram",
           "official": false
         }
       ]
