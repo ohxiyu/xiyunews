@@ -3837,8 +3837,9 @@
       },
       "a5a081fa02eb50c1f3ad7d7aea498b1a6fb07c15703479b6adcc0434a347d6d5": {
         "attempted_at": "2026-10-22T12:05:48.688924+08:00",
+        "post_id": "379907078224254",
         "rank": 3,
-        "status": "pending",
+        "status": "sent",
         "text_hash": "d9dc8c3eceb6edd64d10c8c0af2d0584731652cf86a66c58636da1d9a4cbefc4"
       },
       "b47014cfe76ceecafd26152f7905c9eb0afb15f96106e3e89d8ec7c2531d8e21": {
@@ -4172,12 +4173,6 @@
     },
     "2026-10-22": {
       "jobs": [
-        {
-          "due_at": "2026-10-22T12:04:00+08:00",
-          "id": "a5a081fa02eb50c1f3ad7d7aea498b1a6fb07c15703479b6adcc0434a347d6d5",
-          "rank": 3,
-          "text": "八比特的信任：eMudhra 的 CA 密钥在毫秒内被破解\n\neMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。\n\n由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链接到受信任根证书的证书；而无法更新 CA 证书包的设备将持续处于暴露状态。\n\n据最初报告者称，该发现来自谷歌开源工具 paranoid_crypto，在检查用户证书之前，直接以默认配置对 CCADB 证书库跑了一遍。据称随后对所有现有 CCADB 证书的更全面排查未再发现其他命中项，Chrome 也在证书透明度（CT）日志中未发现恶意签发的证书。\n\n来源：https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/\nxiyu.news · 2026-10-22 · https://xiyu.news"
-        },
         {
           "due_at": "2026-10-22T12:20:00+08:00",
           "id": "4245ce5db3f4b06acef9ec21ccfea741cc53b9b1073f39341ded645edd465b40",
