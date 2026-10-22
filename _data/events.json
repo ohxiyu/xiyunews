@@ -174131,8 +174131,8 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "Claroc researchers found over 6,800 of Meta's Muse AI chat-sharing links discoverable through DNS history databases, exposing sensitive corporate and personal material, prompting Meta to suspend the chat-sharing feature after press inquiries.",
-      "current_state_zh": "Meta 表示已暂停 Muse 的一项分享功能——该功能允许用户分享与这款 AI 助手的对话。此前，安全公司 Claroc 的研究人员通过公开的 DNS 记录发现了超过 6,800 条可公开访问的 Muse 聊天链接，Ars Technica 报道了这一消息。Claroc 本周发布了相关报告。\n\n这次暂停是针对一起隐私暴露事件的产品层面应对，而用户此前可能以为这些对话只在小范围内被分享。\n\n据报道，这些链接是通过公开的 DNS 记录被定位到的，而非由 Meta 主动披露。Meta 称该分享功能为“暂停”，并非永久移除。",
+      "current_state_en": "Meta has restored Muse conversation sharing. The feature had been paused after Claroc researchers showed that publicly accessible Muse chat links could expose sensitive material; sharing is now re-enabled.",
+      "current_state_zh": "Meta 已恢复 Muse 的对话分享功能。此前 Claroc 研究人员发现公开可访问的 Muse 聊天链接可暴露敏感材料，Meta 随后暂停了该功能；现在分享功能已重新开启。",
       "entities": [
         "meta",
         "muse"
@@ -174141,8 +174141,8 @@
       "event_type": "security_incident",
       "first_seen_at": "2026-10-20T21:31:45.776307Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-21T10:01:30.247136Z",
-      "last_updated_at": "2026-10-21T10:01:30.247136Z",
+      "last_material_change_at": "2026-10-22T21:31:54.255790Z",
+      "last_updated_at": "2026-10-22T21:31:54.255790Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_853bd3f2a842d7b4"
@@ -174156,7 +174156,8 @@
         "data-exposure",
         "dns",
         "meta",
-        "muse"
+        "muse",
+        "security-research"
       ],
       "updates": [
         {
@@ -174219,6 +174220,44 @@
           "update_type": "initial",
           "what_changed_en": "Meta paused its Muse conversation-sharing feature after Claroc researchers discovered more than 6,800 publicly accessible Muse chat links through public DNS records.",
           "what_changed_zh": "Meta 表示已暂停 Muse 的一项分享功能——该功能允许用户分享与这款 AI 助手的对话。此前，安全公司 Claroc 的研究人员通过公开的 DNS 记录发现了超过 6,800 条可公开访问的 Muse 聊天链接，Ars Technica 报道了这一消息。Claroc 本周发布了相关报告。\n\n这次暂停是针对一起隐私暴露事件的产品层面应对，而用户此前可能以为这些对话只在小范围内被分享。\n\n据报道，这些链接是通过公开的 DNS 记录被定位到的，而非由 Meta 主动披露。Meta 称该分享功能为“暂停”，并非永久移除。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.97,
+          "current_state_en": "Meta has restored Muse conversation sharing. The feature had been paused after Claroc researchers showed that publicly accessible Muse chat links could expose sensitive material; sharing is now re-enabled.",
+          "current_state_zh": "Meta 已恢复 Muse 的对话分享功能。此前 Claroc 研究人员发现公开可访问的 Muse 聊天链接可暴露敏感材料，Meta 随后暂停了该功能；现在分享功能已重新开启。",
+          "detailed_summary_en": "Meta restored Muse conversation sharing after security researchers showed that publicly accessible links could expose sensitive documents such as internal revenue reviews and loan applications.",
+          "detailed_summary_zh": "Meta restored Muse conversation sharing after security researchers showed that publicly accessible links could expose sensitive documents such as internal revenue reviews and loan applications.",
+          "event_id": "evt_5d6713f865ed5f7d",
+          "first_seen_at": "2026-10-22T21:31:54.255790Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T20:24:04Z",
+          "published_at": "2026-10-22T20:24:04Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "The Verge AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.theverge.com/tech/1017066/meta-muse-sharing-back-on-artifiacts"
+            }
+          ],
+          "story_ids": [
+            "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:54d50603a5f05284"
+          ],
+          "time_precision": "published",
+          "title_en": "Meta turns Muse sharing back on",
+          "title_zh": "Meta重新开启Muse分享功能",
+          "update_id": "upd_8558e3c07351e54c",
+          "update_type": "remediation",
+          "what_changed_en": "Meta re-enabled Muse conversation sharing after the feature had been paused because public links could expose sensitive documents.",
+          "what_changed_zh": "Meta 已重新启用 Muse 的对话分享功能；此前该功能因公开链接可暴露敏感文档而被暂停。"
         }
       ]
     },
@@ -180859,29 +180898,48 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "Meta will issue a new non-voting class of shares, trading from 2027, to fund its AI buildout, potential acquisitions and employee compensation, as disclosed in its Q3 2026 earnings report.",
-      "current_state_zh": "Meta will issue a new non-voting class of shares, trading from 2027, to fund its AI buildout, potential acquisitions and employee compensation, as disclosed in its Q3 2026 earnings report.",
+      "current_state_en": "Meta's board approved a non-voting Class C stock — distributed one-for-one to existing holders from Jan. 19, 2027, effectively a 2-for-1 split — letting the company sell equity to fund a multi-hundred-billion-dollar AI buildout while preserving Mark Zuckerberg's voting control.",
+      "current_state_zh": "Meta董事会批准了一项无投票权的C类股票，自2027年1月19日起按一比一比例向现有股东分配，实际上相当于二比一拆股，使公司能够出售股权，为耗资数千亿美元的AI建设提供资金，同时保留马克·扎克伯格的投票控制权。",
       "entities": [
-        "meta"
+        "buildout",
+        "control",
+        "creates",
+        "fund",
+        "keeping",
+        "meta",
+        "non",
+        "stock",
+        "voting",
+        "zuckerberg"
       ],
       "event_id": "evt_2967636a41c2a581",
       "event_type": "other",
       "first_seen_at": "2026-10-21T21:41:47.864667Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-21T21:41:47.864667Z",
-      "last_updated_at": "2026-10-21T21:41:47.864667Z",
+      "last_material_change_at": "2026-10-22T21:31:55.087550Z",
+      "last_updated_at": "2026-10-22T21:31:55.087550Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_1b96096edae9229b",
+        "evt_7d110797008ddab2"
+      ],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "Meta to create a new class of shares to fund AI push",
-      "title_zh": "Meta to create a new class of shares to fund AI push",
+      "title_zh": "Meta 董事会批准无投票权 C 类股票以资助 AI 建设并保留扎克伯格控制权",
       "topics": [
         "ai-capex",
+        "ai-funding",
         "ai-infrastructure",
         "big-tech",
+        "capex",
+        "corporate-governance",
+        "dual-class-shares",
+        "equity-financing",
         "equity-issuance",
-        "meta"
+        "meta",
+        "non-voting-shares",
+        "zuckerberg-control"
       ],
       "updates": [
         {
@@ -180891,7 +180949,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Meta will issue a new non-voting class of shares, trading from 2027, to fund its AI buildout, potential acquisitions and employee compensation, as disclosed in its Q3 2026 earnings report.",
-          "current_state_zh": "Meta will issue a new non-voting class of shares, trading from 2027, to fund its AI buildout, potential acquisitions and employee compensation, as disclosed in its Q3 2026 earnings report.",
+          "current_state_zh": "Meta将发行一个新的无投票权股票类别，自2027年起交易，用于为其AI建设、潜在收购和员工薪酬提供资金，这一信息在其2026年第三季度财报中披露。",
           "detailed_summary_en": "Meta will issue a new non-voting class of shares, trading from 2027, to fund its AI buildout, potential acquisitions and employee compensation, as disclosed in its Q3 2026 earnings report.",
           "detailed_summary_zh": "Meta will issue a new non-voting class of shares, trading from 2027, to fund its AI buildout, potential acquisitions and employee compensation, as disclosed in its Q3 2026 earnings report.",
           "event_id": "evt_2967636a41c2a581",
@@ -180909,18 +180967,63 @@
               "official": false,
               "source_type": "rss",
               "url": "https://www.theverge.com/tech/1015799/meta-shares-class-ai-q3-2026-earnings"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373070?from=telegram"
             }
           ],
           "story_ids": [
-            "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:54cf7760cbb31d32"
+            "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:54cf7760cbb31d32",
+            "telegram:theblockbeats:201726"
           ],
           "time_precision": "published",
           "title_en": "Meta to create a new class of shares to fund AI push",
-          "title_zh": "Meta to create a new class of shares to fund AI push",
+          "title_zh": "Meta将设立新类别股票以资助AI推进",
           "update_id": "upd_0c568e4efba5af05",
           "update_type": "initial",
           "what_changed_en": "Meta will issue a new non-voting class of shares, trading from 2027, to fund its AI buildout, potential acquisitions and employee compensation, as disclosed in its Q3 2026 earnings report.",
-          "what_changed_zh": "Meta will issue a new non-voting class of shares, trading from 2027, to fund its AI buildout, potential acquisitions and employee compensation, as disclosed in its Q3 2026 earnings report."
+          "what_changed_zh": "Meta将发行一个新的无投票权股票类别，自2027年起交易，用于为其AI建设、潜在收购和员工薪酬提供资金，这一信息在其2026年第三季度财报中披露。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Meta's board approved a non-voting Class C stock — distributed one-for-one to existing holders from Jan. 19, 2027, effectively a 2-for-1 split — letting the company sell equity to fund a multi-hundred-billion-dollar AI buildout while preserving Mark Zuckerberg's voting control.",
+          "current_state_zh": "Meta董事会批准了一项无投票权的C类股票，自2027年1月19日起按一比一比例向现有股东分配，实际上相当于二比一拆股，使公司能够出售股权，为耗资数千亿美元的AI建设提供资金，同时保留马克·扎克伯格的投票控制权。",
+          "detailed_summary_en": "Meta's board approved a non-voting Class C stock — distributed one-for-one to existing holders from Jan. 19, 2027, effectively a 2-for-1 split — letting the company sell equity to fund a multi-hundred-billion-dollar AI buildout while preserving Mark Zuckerberg's voting control.",
+          "detailed_summary_zh": "Meta's board approved a non-voting Class C stock — distributed one-for-one to existing holders from Jan. 19, 2027, effectively a 2-for-1 split — letting the company sell equity to fund a multi-hundred-billion-dollar AI buildout while preserving Mark Zuckerberg's voting control.",
+          "event_id": "evt_2967636a41c2a581",
+          "first_seen_at": "2026-10-22T21:31:55.087550Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T19:06:02Z",
+          "published_at": "2026-10-22T19:06:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/381640/meta-non-voting-stock-fund-ai-buildout-zuckerberg-control"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:6ab41115d4dce0e1"
+          ],
+          "time_precision": "published",
+          "title_en": "Meta Creates Non-Voting Stock to Fund AI Buildout, Keeping Zuckerberg in Control",
+          "title_zh": "Meta设立无投票权股票以资助AI建设，同时保持扎克伯格的控制权",
+          "update_id": "upd_ee23e573111a8617",
+          "update_type": "confirmation",
+          "what_changed_en": "Meta's board approved a non-voting Class C stock — distributed one-for-one to existing holders from Jan. 19, 2027, effectively a 2-for-1 split — letting the company sell equity to fund a multi-hundred-billion-dollar AI buildout while preserving Mark Zuckerberg's voting control.",
+          "what_changed_zh": "Meta董事会批准了一项无投票权的C类股票，自2027年1月19日起按一比一比例向现有股东分配，实际上相当于二比一拆股，使公司能够出售股权，为耗资数千亿美元的AI建设提供资金，同时保留马克·扎克伯格的投票控制权。"
         }
       ]
     },
@@ -181270,74 +181373,6 @@
           "update_type": "initial",
           "what_changed_en": "The UK's Financial Conduct Authority launched consultations on guidance for DeFi firms' anti-money-laundering and financial-crime compliance and on crypto asset regulatory exemptions linked to recent legislation, ahead of a stablecoin regime taking effect in October 2027.",
           "what_changed_zh": "The UK's Financial Conduct Authority launched consultations on guidance for DeFi firms' anti-money-laundering and financial-crime compliance and on crypto asset regulatory exemptions linked to recent legislation, ahead of a stablecoin regime taking effect in October 2027."
-        }
-      ]
-    },
-    {
-      "category": "technology",
-      "confidence": 0.75,
-      "current_state_en": "Meta plans to introduce non-voting shares so it can issue equity to fund AI acquisitions, talent, and chips without diluting Mark Zuckerberg's control, following capex guidance raised to $135–145 billion and negative free cash flow.",
-      "current_state_zh": "Meta plans to introduce non-voting shares so it can issue equity to fund AI acquisitions, talent, and chips without diluting Mark Zuckerberg's control, following capex guidance raised to $135–145 billion and negative free cash flow.",
-      "entities": [
-        "meta"
-      ],
-      "event_id": "evt_1b96096edae9229b",
-      "event_type": "governance",
-      "first_seen_at": "2026-10-22T01:46:15.741402Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-22T01:46:15.741402Z",
-      "last_updated_at": "2026-10-22T01:46:15.741402Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Meta计划引入无投票权股票，以在不稀释扎克伯格控制权的情况下为AI提供资金",
-      "title_zh": "Meta计划引入无投票权股票，以在不稀释扎克伯格控制权的情况下为AI提供资金",
-      "topics": [
-        "ai-funding",
-        "capex",
-        "meta",
-        "non-voting-shares",
-        "zuckerberg-control"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Meta plans to introduce non-voting shares so it can issue equity to fund AI acquisitions, talent, and chips without diluting Mark Zuckerberg's control, following capex guidance raised to $135–145 billion and negative free cash flow.",
-          "current_state_zh": "Meta plans to introduce non-voting shares so it can issue equity to fund AI acquisitions, talent, and chips without diluting Mark Zuckerberg's control, following capex guidance raised to $135–145 billion and negative free cash flow.",
-          "detailed_summary_en": "Meta plans to introduce non-voting shares so it can issue equity to fund AI acquisitions, talent, and chips without diluting Mark Zuckerberg's control, following capex guidance raised to $135–145 billion and negative free cash flow.",
-          "detailed_summary_zh": "Meta plans to introduce non-voting shares so it can issue equity to fund AI acquisitions, talent, and chips without diluting Mark Zuckerberg's control, following capex guidance raised to $135–145 billion and negative free cash flow.",
-          "event_id": "evt_1b96096edae9229b",
-          "first_seen_at": "2026-10-22T01:46:15.741402Z",
-          "importance_score": 7.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-22T01:12:02Z",
-          "published_at": "2026-10-22T01:12:02Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "theblockbeats",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://m.theblockbeats.info/flash/373070?from=telegram"
-            }
-          ],
-          "story_ids": [
-            "telegram:theblockbeats:201726"
-          ],
-          "time_precision": "published",
-          "title_en": "Meta计划引入无投票权股票，以在不稀释扎克伯格控制权的情况下为AI提供资金",
-          "title_zh": "Meta计划引入无投票权股票，以在不稀释扎克伯格控制权的情况下为AI提供资金",
-          "update_id": "upd_ceeb88033d7ba699",
-          "update_type": "initial",
-          "what_changed_en": "Meta plans to introduce non-voting shares so it can issue equity to fund AI acquisitions, talent, and chips without diluting Mark Zuckerberg's control, following capex guidance raised to $135–145 billion and negative free cash flow.",
-          "what_changed_zh": "Meta plans to introduce non-voting shares so it can issue equity to fund AI acquisitions, talent, and chips without diluting Mark Zuckerberg's control, following capex guidance raised to $135–145 billion and negative free cash flow."
         }
       ]
     },
@@ -183565,7 +183600,7 @@
       "first_seen_at": "2026-10-22T13:44:19.183568Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-22T17:28:45.585556Z",
-      "last_updated_at": "2026-10-22T17:28:45.585556Z",
+      "last_updated_at": "2026-10-22T21:31:54.886057Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -183659,11 +183694,18 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://m.theblockbeats.info/flash/373273?from=telegram"
+            },
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/381642/a16z-drops-crypto-widens-bets-ai-frontier-tech"
             }
           ],
           "story_ids": [
             "telegram:foresightnews:121102",
-            "telegram:theblockbeats:201932"
+            "telegram:theblockbeats:201932",
+            "rss:decrypt.co_feed:87325683311875aa"
           ],
           "time_precision": "published",
           "title_en": "【a16z Frontier 确认将继续布局加密领域，并拓展至更广泛的前沿科技初创企业】",
@@ -185017,6 +185059,505 @@
           "what_changed_zh": "Fireblocks denied a report that Visa is in late-stage talks to acquire it for about $2.5 billion, while Visa declined to comment."
         }
       ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "NVIDIA published OpenShell, an open-source runtime that confines fleets of autonomous AI agents while still letting them read files, install packages, call APIs, and use credentials, with opt-out anonymous telemetry and Helm-based deployment.",
+      "current_state_zh": "NVIDIA published OpenShell, an open-source runtime that confines fleets of autonomous AI agents while still letting them read files, install packages, call APIs, and use credentials, with opt-out anonymous telemetry and Helm-based deployment.",
+      "entities": [
+        "openshell"
+      ],
+      "event_id": "evt_da9885fd2fb9a764",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-22T21:31:34.124332Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T21:31:34.124332Z",
+      "last_updated_at": "2026-10-22T21:31:34.124332Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "OpenShell – A safe, private runtime for fleets of autonomous AI agents",
+      "title_zh": "OpenShell – A safe, private runtime for fleets of autonomous AI agents",
+      "topics": [
+        "agent-security",
+        "nvidia",
+        "open-source",
+        "sandboxing"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "NVIDIA published OpenShell, an open-source runtime that confines fleets of autonomous AI agents while still letting them read files, install packages, call APIs, and use credentials, with opt-out anonymous telemetry and Helm-based deployment.",
+          "current_state_zh": "NVIDIA published OpenShell, an open-source runtime that confines fleets of autonomous AI agents while still letting them read files, install packages, call APIs, and use credentials, with opt-out anonymous telemetry and Helm-based deployment.",
+          "detailed_summary_en": "NVIDIA published OpenShell, an open-source runtime that confines fleets of autonomous AI agents while still letting them read files, install packages, call APIs, and use credentials, with opt-out anonymous telemetry and Helm-based deployment.",
+          "detailed_summary_zh": "NVIDIA published OpenShell, an open-source runtime that confines fleets of autonomous AI agents while still letting them read files, install packages, call APIs, and use credentials, with opt-out anonymous telemetry and Helm-based deployment.",
+          "event_id": "evt_da9885fd2fb9a764",
+          "first_seen_at": "2026-10-22T21:31:34.124332Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T17:44:06Z",
+          "published_at": "2026-10-22T17:44:06Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50198675"
+            }
+          ],
+          "sources": [
+            {
+              "label": "niemandhier",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://github.com/NVIDIA/OpenShell"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50198675"
+          ],
+          "time_precision": "published",
+          "title_en": "OpenShell – A safe, private runtime for fleets of autonomous AI agents",
+          "title_zh": "OpenShell – A safe, private runtime for fleets of autonomous AI agents",
+          "update_id": "upd_e4a21db10d9e2691",
+          "update_type": "initial",
+          "what_changed_en": "NVIDIA published OpenShell, an open-source runtime that confines fleets of autonomous AI agents while still letting them read files, install packages, call APIs, and use credentials, with opt-out anonymous telemetry and Helm-based deployment.",
+          "what_changed_zh": "NVIDIA published OpenShell, an open-source runtime that confines fleets of autonomous AI agents while still letting them read files, install packages, call APIs, and use credentials, with opt-out anonymous telemetry and Helm-based deployment."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "A Show HN project demonstrates booting the full iOS 16.5 XNU kernel on Android devices and QEMU in short, log-collecting research sessions rather than as a bootable ROM.",
+      "current_state_zh": "A Show HN project demonstrates booting the full iOS 16.5 XNU kernel on Android devices and QEMU in short, log-collecting research sessions rather than as a bootable ROM.",
+      "entities": [
+        "android",
+        "devices",
+        "ios",
+        "run",
+        "show",
+        "show-hn"
+      ],
+      "event_id": "evt_fdf4be77e1ed272a",
+      "event_type": "other",
+      "first_seen_at": "2026-10-22T21:31:34.124407Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T21:31:34.124407Z",
+      "last_updated_at": "2026-10-22T21:31:34.124407Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Show HN: Run full iOS 16.5 firmware on Android Devices",
+      "title_zh": "Show HN: Run full iOS 16.5 firmware on Android Devices",
+      "topics": [
+        "android",
+        "ios",
+        "reverse-engineering",
+        "show-hn",
+        "virtualization"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "A Show HN project demonstrates booting the full iOS 16.5 XNU kernel on Android devices and QEMU in short, log-collecting research sessions rather than as a bootable ROM.",
+          "current_state_zh": "A Show HN project demonstrates booting the full iOS 16.5 XNU kernel on Android devices and QEMU in short, log-collecting research sessions rather than as a bootable ROM.",
+          "detailed_summary_en": "A Show HN project demonstrates booting the full iOS 16.5 XNU kernel on Android devices and QEMU in short, log-collecting research sessions rather than as a bootable ROM.",
+          "detailed_summary_zh": "A Show HN project demonstrates booting the full iOS 16.5 XNU kernel on Android devices and QEMU in short, log-collecting research sessions rather than as a bootable ROM.",
+          "event_id": "evt_fdf4be77e1ed272a",
+          "first_seen_at": "2026-10-22T21:31:34.124407Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T15:26:22Z",
+          "published_at": "2026-10-22T15:26:22Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50196718"
+            }
+          ],
+          "sources": [
+            {
+              "label": "aghuang",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://github.com/oosexgang/hackios-xnu-kernel"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50196718"
+          ],
+          "time_precision": "published",
+          "title_en": "Show HN: Run full iOS 16.5 firmware on Android Devices",
+          "title_zh": "Show HN: Run full iOS 16.5 firmware on Android Devices",
+          "update_id": "upd_0d679603f6647d04",
+          "update_type": "initial",
+          "what_changed_en": "A Show HN project demonstrates booting the full iOS 16.5 XNU kernel on Android devices and QEMU in short, log-collecting research sessions rather than as a bootable ROM.",
+          "what_changed_zh": "A Show HN project demonstrates booting the full iOS 16.5 XNU kernel on Android devices and QEMU in short, log-collecting research sessions rather than as a bootable ROM."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Microsoft AI CEO Mustafa Suleyman announced a new AI diagnostic tool that the company claims can diagnose medical conditions up to four times more accurately than human doctors.",
+      "current_state_zh": "Microsoft AI CEO Mustafa Suleyman announced a new AI diagnostic tool that the company claims can diagnose medical conditions up to four times more accurately than human doctors.",
+      "entities": [
+        "microsoft"
+      ],
+      "event_id": "evt_cbbfbea0bd8d1896",
+      "event_type": "other",
+      "first_seen_at": "2026-10-22T21:31:54.256056Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T21:31:54.256056Z",
+      "last_updated_at": "2026-10-22T21:31:54.256056Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Microsoft says its AI tool is better than doctors at diagnosing conditions",
+      "title_zh": "Microsoft says its AI tool is better than doctors at diagnosing conditions",
+      "topics": [
+        "ai-healthcare",
+        "ai-products",
+        "medical-diagnosis",
+        "microsoft",
+        "mustafa-suleyman"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Microsoft AI CEO Mustafa Suleyman announced a new AI diagnostic tool that the company claims can diagnose medical conditions up to four times more accurately than human doctors.",
+          "current_state_zh": "Microsoft AI CEO Mustafa Suleyman announced a new AI diagnostic tool that the company claims can diagnose medical conditions up to four times more accurately than human doctors.",
+          "detailed_summary_en": "Microsoft AI CEO Mustafa Suleyman announced a new AI diagnostic tool that the company claims can diagnose medical conditions up to four times more accurately than human doctors.",
+          "detailed_summary_zh": "Microsoft AI CEO Mustafa Suleyman announced a new AI diagnostic tool that the company claims can diagnose medical conditions up to four times more accurately than human doctors.",
+          "event_id": "evt_cbbfbea0bd8d1896",
+          "first_seen_at": "2026-10-22T21:31:54.256056Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T18:00:00Z",
+          "published_at": "2026-10-22T18:00:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "The Verge AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.theverge.com/ai-artificial-intelligence/1016690/suleyman-microsoft-diagnostic-orchestrator-science-medical-superintelligence"
+            }
+          ],
+          "story_ids": [
+            "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:c71e635bbe622afa"
+          ],
+          "time_precision": "published",
+          "title_en": "Microsoft says its AI tool is better than doctors at diagnosing conditions",
+          "title_zh": "Microsoft says its AI tool is better than doctors at diagnosing conditions",
+          "update_id": "upd_5a4fdb65e2cb02ef",
+          "update_type": "initial",
+          "what_changed_en": "Microsoft AI CEO Mustafa Suleyman announced a new AI diagnostic tool that the company claims can diagnose medical conditions up to four times more accurately than human doctors.",
+          "what_changed_zh": "Microsoft AI CEO Mustafa Suleyman announced a new AI diagnostic tool that the company claims can diagnose medical conditions up to four times more accurately than human doctors."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "1Password launched a feature that lets AI agents sign in to users' accounts using protected credentials without exposing passwords.",
+      "current_state_zh": "1Password launched a feature that lets AI agents sign in to users' accounts using protected credentials without exposing passwords.",
+      "entities": [
+        "1password"
+      ],
+      "event_id": "evt_3562756f0056dfd7",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-22T21:31:54.327529Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T21:31:54.327529Z",
+      "last_updated_at": "2026-10-22T21:31:54.327529Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "1Password launches a way for AI agents to log in on your behalf without seeing your password",
+      "title_zh": "1Password launches a way for AI agents to log in on your behalf without seeing your password",
+      "topics": [
+        "1password",
+        "authentication",
+        "identity-access",
+        "password-security"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "1Password launched a feature that lets AI agents sign in to users' accounts using protected credentials without exposing passwords.",
+          "current_state_zh": "1Password launched a feature that lets AI agents sign in to users' accounts using protected credentials without exposing passwords.",
+          "detailed_summary_en": "1Password launched a feature that lets AI agents sign in to users' accounts using protected credentials without exposing passwords.",
+          "detailed_summary_zh": "1Password launched a feature that lets AI agents sign in to users' accounts using protected credentials without exposing passwords.",
+          "event_id": "evt_3562756f0056dfd7",
+          "first_seen_at": "2026-10-22T21:31:54.327529Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T19:07:09Z",
+          "published_at": "2026-10-22T19:07:09Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "TechCrunch AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://techcrunch.com/2026/10/22/1password-launches-a-way-for-ai-agents-to-log-in-on-your-behalf-without-seeing-your-password/"
+            }
+          ],
+          "story_ids": [
+            "rss:techcrunch.com_category_artificial-intelligence_feed_:2842563552ee5de8"
+          ],
+          "time_precision": "published",
+          "title_en": "1Password launches a way for AI agents to log in on your behalf without seeing your password",
+          "title_zh": "1Password launches a way for AI agents to log in on your behalf without seeing your password",
+          "update_id": "upd_5d117654801a38b1",
+          "update_type": "initial",
+          "what_changed_en": "1Password launched a feature that lets AI agents sign in to users' accounts using protected credentials without exposing passwords.",
+          "what_changed_zh": "1Password launched a feature that lets AI agents sign in to users' accounts using protected credentials without exposing passwords."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "A Science study found Microsoft's new AI diagnostic system beat generalist doctors on difficult medical cases, though most of the improvement was attributed to the underlying AI models rather than Microsoft's system itself.",
+      "current_state_zh": "A Science study found Microsoft's new AI diagnostic system beat generalist doctors on difficult medical cases, though most of the improvement was attributed to the underlying AI models rather than Microsoft's system itself.",
+      "entities": [
+        "microsoft",
+        "mustafa",
+        "suleyman"
+      ],
+      "event_id": "evt_6a82897d1b7354e2",
+      "event_type": "other",
+      "first_seen_at": "2026-10-22T21:31:54.327698Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T21:31:54.327698Z",
+      "last_updated_at": "2026-10-22T21:31:54.327698Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Microsoft’s Mustafa Suleyman says its AI outperforms doctors on hard cases as he chases ‘medical superintelligence’",
+      "title_zh": "Microsoft’s Mustafa Suleyman says its AI outperforms doctors on hard cases as he chases ‘medical superintelligence’",
+      "topics": [
+        "ai-healthcare",
+        "clinical-ai",
+        "medical-diagnostics",
+        "microsoft",
+        "science-study"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "A Science study found Microsoft's new AI diagnostic system beat generalist doctors on difficult medical cases, though most of the improvement was attributed to the underlying AI models rather than Microsoft's system itself.",
+          "current_state_zh": "A Science study found Microsoft's new AI diagnostic system beat generalist doctors on difficult medical cases, though most of the improvement was attributed to the underlying AI models rather than Microsoft's system itself.",
+          "detailed_summary_en": "A Science study found Microsoft's new AI diagnostic system beat generalist doctors on difficult medical cases, though most of the improvement was attributed to the underlying AI models rather than Microsoft's system itself.",
+          "detailed_summary_zh": "A Science study found Microsoft's new AI diagnostic system beat generalist doctors on difficult medical cases, though most of the improvement was attributed to the underlying AI models rather than Microsoft's system itself.",
+          "event_id": "evt_6a82897d1b7354e2",
+          "first_seen_at": "2026-10-22T21:31:54.327698Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T18:43:53Z",
+          "published_at": "2026-10-22T18:43:53Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "TechCrunch AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/"
+            }
+          ],
+          "story_ids": [
+            "rss:techcrunch.com_category_artificial-intelligence_feed_:42139ce22b4327bd"
+          ],
+          "time_precision": "published",
+          "title_en": "Microsoft’s Mustafa Suleyman says its AI outperforms doctors on hard cases as he chases ‘medical superintelligence’",
+          "title_zh": "Microsoft’s Mustafa Suleyman says its AI outperforms doctors on hard cases as he chases ‘medical superintelligence’",
+          "update_id": "upd_3a87f4fb5d2d0d8b",
+          "update_type": "initial",
+          "what_changed_en": "A Science study found Microsoft's new AI diagnostic system beat generalist doctors on difficult medical cases, though most of the improvement was attributed to the underlying AI models rather than Microsoft's system itself.",
+          "what_changed_zh": "A Science study found Microsoft's new AI diagnostic system beat generalist doctors on difficult medical cases, though most of the improvement was attributed to the underlying AI models rather than Microsoft's system itself."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Tesla's quarterly net income fell 43% to $787 million as it ramped research and capital spending, while also starting Optimus humanoid robot production and targeting Cybercab customer deliveries by the end of 2026.",
+      "current_state_zh": "Tesla's quarterly net income fell 43% to $787 million as it ramped research and capital spending, while also starting Optimus humanoid robot production and targeting Cybercab customer deliveries by the end of 2026.",
+      "entities": [
+        "building",
+        "cabs",
+        "driverless",
+        "drops",
+        "musk",
+        "plans",
+        "profit",
+        "robots",
+        "sell",
+        "starts",
+        "tesla"
+      ],
+      "event_id": "evt_9ac0a863b5676374",
+      "event_type": "other",
+      "first_seen_at": "2026-10-22T21:31:55.519340Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T21:31:55.519340Z",
+      "last_updated_at": "2026-10-22T21:31:55.519340Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Tesla's Profit Drops 43% as Musk Starts Building Robots and Plans to Sell Driverless Cabs",
+      "title_zh": "Tesla's Profit Drops 43% as Musk Starts Building Robots and Plans to Sell Driverless Cabs",
+      "topics": [
+        "earnings",
+        "humanoid-robotics",
+        "optimus",
+        "robotaxi",
+        "tesla"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Tesla's quarterly net income fell 43% to $787 million as it ramped research and capital spending, while also starting Optimus humanoid robot production and targeting Cybercab customer deliveries by the end of 2026.",
+          "current_state_zh": "Tesla's quarterly net income fell 43% to $787 million as it ramped research and capital spending, while also starting Optimus humanoid robot production and targeting Cybercab customer deliveries by the end of 2026.",
+          "detailed_summary_en": "Tesla's quarterly net income fell 43% to $787 million as it ramped research and capital spending, while also starting Optimus humanoid robot production and targeting Cybercab customer deliveries by the end of 2026.",
+          "detailed_summary_zh": "Tesla's quarterly net income fell 43% to $787 million as it ramped research and capital spending, while also starting Optimus humanoid robot production and targeting Cybercab customer deliveries by the end of 2026.",
+          "event_id": "evt_9ac0a863b5676374",
+          "first_seen_at": "2026-10-22T21:31:55.519340Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T18:06:02Z",
+          "published_at": "2026-10-22T18:06:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/381624/teslas-profit-drops-musk-robots-driverless-cabs"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:5d29b6d82450ffda"
+          ],
+          "time_precision": "published",
+          "title_en": "Tesla's Profit Drops 43% as Musk Starts Building Robots and Plans to Sell Driverless Cabs",
+          "title_zh": "Tesla's Profit Drops 43% as Musk Starts Building Robots and Plans to Sell Driverless Cabs",
+          "update_id": "upd_acab0c1bf8d6870a",
+          "update_type": "initial",
+          "what_changed_en": "Tesla's quarterly net income fell 43% to $787 million as it ramped research and capital spending, while also starting Optimus humanoid robot production and targeting Cybercab customer deliveries by the end of 2026.",
+          "what_changed_zh": "Tesla's quarterly net income fell 43% to $787 million as it ramped research and capital spending, while also starting Optimus humanoid robot production and targeting Cybercab customer deliveries by the end of 2026."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Dune launched real-time onchain market data feeds covering over 200 trading venues across 12 blockchains, delivering trade data about one second after execution for institutional clients.",
+      "current_state_zh": "Dune launched real-time onchain market data feeds covering over 200 trading venues across 12 blockchains, delivering trade data about one second after execution for institutional clients.",
+      "entities": [
+        "dune"
+      ],
+      "event_id": "evt_2d6c63d2a266950a",
+      "event_type": "product_release",
+      "first_seen_at": "2026-10-22T21:32:01.283417Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T21:32:01.283417Z",
+      "last_updated_at": "2026-10-22T21:32:01.283417Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Dune launches real-time data feeds covering 200 onchain trading venues",
+      "title_zh": "Dune launches real-time data feeds covering 200 onchain trading venues",
+      "topics": [
+        "dune",
+        "market-data",
+        "onchain-data"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Dune launched real-time onchain market data feeds covering over 200 trading venues across 12 blockchains, delivering trade data about one second after execution for institutional clients.",
+          "current_state_zh": "Dune launched real-time onchain market data feeds covering over 200 trading venues across 12 blockchains, delivering trade data about one second after execution for institutional clients.",
+          "detailed_summary_en": "Dune launched real-time onchain market data feeds covering over 200 trading venues across 12 blockchains, delivering trade data about one second after execution for institutional clients.",
+          "detailed_summary_zh": "Dune launched real-time onchain market data feeds covering over 200 trading venues across 12 blockchains, delivering trade data about one second after execution for institutional clients.",
+          "event_id": "evt_2d6c63d2a266950a",
+          "first_seen_at": "2026-10-22T21:32:01.283417Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T20:36:00Z",
+          "published_at": "2026-10-22T20:36:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/dune-launches-real-time-data-feeds-covering-200-onchain-trading-venues?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:c0421486e17224e0"
+          ],
+          "time_precision": "published",
+          "title_en": "Dune launches real-time data feeds covering 200 onchain trading venues",
+          "title_zh": "Dune launches real-time data feeds covering 200 onchain trading venues",
+          "update_id": "upd_4058747692401a45",
+          "update_type": "initial",
+          "what_changed_en": "Dune launched real-time onchain market data feeds covering over 200 trading venues across 12 blockchains, delivering trade data about one second after execution for institutional clients.",
+          "what_changed_zh": "Dune launched real-time onchain market data feeds covering over 200 trading venues across 12 blockchains, delivering trade data about one second after execution for institutional clients."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -185220,8 +185761,8 @@
       "evt_e498047bf3431d29"
     ],
     "chatgpt": [
-      "evt_a172ba689c659648",
-      "evt_c1df07c0fff95914",
+      "evt_49a0301ceca4c6f8",
+      "evt_9dea8eadbe32856f",
       "evt_f90e7e488826e7d6"
     ],
     "china": [
@@ -185650,9 +186191,10 @@
       "evt_2967636a41c2a581",
       "evt_2b2c42d20cf1d50e",
       "evt_5d6713f865ed5f7d",
-      "evt_66e5ed0ea3e6e528",
       "evt_6f03cb273dfc8938",
+      "evt_7aeb5e93765fd375",
       "evt_dd74b90bd962fc88",
+      "evt_e2f32f8110e7e706",
       "evt_f90e7e488826e7d6"
     ],
     "metamask": [
@@ -186019,6 +186561,10 @@
     ],
     "tenstorrent": [
       "evt_468879168c9d59e7"
+    ],
+    "tesla": [
+      "evt_9ac0a863b5676374",
+      "evt_cfcdb539c4e7e478"
     ],
     "testnet": [
       "evt_04729c76ccc47903",
@@ -200475,7 +201021,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Reported talks of a ~$2.5B acquisition of a major crypto custody infrastructure provider by Visa, a global payments giant, would be a significant institutional adoption and market-structure development if confirmed. Credible Axios report but still unconfirmed deal talks, keeping it below the highest tier.",
         "ai_score": 8.0,
@@ -200512,7 +201058,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A material US regulatory shift in stablecoin reserve requirements, with banks warning of deposit flight and reduced lending. This has a clear transmission path to stablecoin issuance, banking deposits, and crypto market structure, though it is a targeted rule change rather than a landmark market-access overhaul.",
         "ai_score": 8.0,
@@ -200550,7 +201096,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A Chinese prosecution seeking confiscation of 61,896 BTC is a high-signal legal and regulatory development with material implications for cryptocurrency enforcement, asset custody, and market perception, though it is not yet a finalized systemic event.",
         "ai_score": 8.0,
@@ -200588,7 +201134,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "SoFi, a bank-chartered fintech, launching an interest-bearing, FDIC-insured tokenized deposit aimed at crypto users is a material market-structure and institutional-adoption development in the tokenized-money space. It sits in the high-value tier alongside significant stablecoin/custody/institutional product launches rather than being a paradigm shift, since it is one issuer's product launch with an unproven scale of adoption and no direct protocol, exploit, or regulatory-decision impact.",
         "ai_score": 7.5,
@@ -200625,7 +201171,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A €3.25 million regulatory fine against Coinbase Ireland over customer-fund safeguarding failures is a notable enforcement action involving a major exchange. It carries high regulatory and operational relevance, but the modest penalty size and absence of an indicated systemic user-loss event keep it below the highest-impact tier.",
         "ai_score": 7.0,
@@ -200666,7 +201212,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A regulatory enforcement action against a major exchange over customer-fund safeguarding is high-signal for exchange operations and compliance, but the €3.25M penalty is modest and does not indicate a systemic market event or material user losses.",
         "ai_score": 7.0,
@@ -200699,7 +201245,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Ethereum finality is a core protocol parameter, and a plan to cut settlement to roughly four minutes could materially improve exchange, bridge, and cross-chain asset flows. The impact is prospective rather than a live upgrade, so it sits below implemented protocol changes with immediate market effects.",
         "ai_score": 7.0,
@@ -200734,7 +201280,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A top-tier exchange obtaining a VARA licence to offer exchange services in Dubai is a material regulatory and market-access development for the MENA region, expanding Bybit's licensed footprint. It is a concrete in-window announcement but falls short of a paradigm-shifting or systemic regulatory decision, so it sits in the high-value tier rather than the groundbreaking one.",
         "ai_score": 7.0,
@@ -200767,7 +201313,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "CZ's warning highlights a critical PHP vulnerability class affecting millions of websites, a high-impact security issue. However, the piece is a secondary warning rather than a primary disclosure with confirmed exploit details or direct crypto-market transmission, so it sits below the highest tier.",
         "ai_score": 7.0,
@@ -200800,7 +201346,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A high-profile lawsuit alleging a sitting president illegally profited from foreign crypto ventures is a significant legal and political development with clear relevance to crypto policy and conflicts-of-interest scrutiny, though it is a filed complaint rather than a ruling or market-structure change.",
         "ai_score": 7.0,
@@ -200833,7 +201379,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Enforcement action by the Central Bank of Ireland against a major exchange's EU entity for failing to keep customer accounts fully funded — a safeguarding/regulatory breach with direct implications for client-asset protections in Europe. The monetary penalty (~$3.64M) is modest relative to Coinbase's balance sheet, so it is not systemic, but the admission of breaches at a top-tier exchange makes it materially more important than routine compliance news.",
         "ai_score": 7.0,
@@ -200866,7 +201412,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "OlmoEarth v1.3 is a substantive open model release from a well-regarded lab, delivering state-of-the-art geospatial embeddings across the whole planet. This is more than a benchmark claim or minor version bump: broadly capable, openly available Earth-observation embeddings give builders and researchers a reusable foundation for land-cover mapping, change detection, and climate/monitoring pipelines, which carries real developer-ecosystem implications. It falls short of a frontier general-purpose model launch or landmark capability jump, so it sits in the high-value rather than groundbreaking band.",
         "ai_score": 7.0,
@@ -200896,7 +201442,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Ethereum developers canceling a scheduled testnet upgrade is a material protocol-development event for the Ethereum ecosystem, affecting upgrade timelines and developer planning. It is high-value but limited by being testnet-specific rather than a mainnet deployment or systemic incident.",
         "ai_score": 7.0,
@@ -200933,7 +201479,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "DeepMind’s release of a global 10-meter resolution forest-type map is a substantive AI-for-Earth-observation research and dataset contribution with practical climate and land-use applications. It is notable but not a frontier model breakthrough or an industry-reshaping AI event.",
         "ai_score": 7.0,
@@ -200963,7 +201509,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A formal enforcement action by a national regulator against a major exchange's EU entity, touching on client-fund segregation—a core custody safeguard. It is a genuine in-window development with compliance and reputational implications for Coinbase's European expansion, but the €/$3.6M penalty is modest, no user losses are reported, and market access is unchanged, keeping it below systemic or market-structure-shifting territory.",
         "ai_score": 7.0,
@@ -201004,7 +201550,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Genuine in-window protocol release: Uniswap activated aggregator hooks simultaneously on Ethereum, Base and Robinhood Chain, extending v4-style hook extensibility into aggregation/routing and marking one of the first notable deployments on Robinhood's chain. This is a meaningful infrastructure and developer-ecosystem step for the largest DEX, with implications for how liquidity routing is customized and monetized, but it is not a paradigm-shifting upgrade or a security/market-structure event, so it sits below the 7.5-8 band.",
         "ai_score": 7.0,
@@ -201043,7 +201589,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Anthropic launching a dedicated agent-focused app (Claude Duet) for Pro/Max subscribers is a substantive product step from a leading AI lab, with implications for how agentic tooling reaches end users. Impact is tempered by the limited rollout (waitlist only) and the sparse detail available, so it sits below a frontier-model or major platform shift but above a routine feature bump.",
         "ai_score": 7.0,
@@ -201080,7 +201626,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Reports a live, widespread web-security event: PHP vulnerabilities are being actively exploited at scale, driving millions of attack attempts and forcing site shutdowns globally. That is a materially consequential infrastructure/security development with broad operational impact for anyone running PHP-based services, including exchange and fintech backends. It stops short of the 8+ tier because the piece reads as an incident roundup without a named CVE deep-dive, exploitation economics, or confirmed victim-scale data, and no discussion thread is provided to gauge practitioner signal.",
         "ai_score": 7.0,
@@ -201110,6 +201656,285 @@
         "source_type": "google_news",
         "title": "Websites shut down globally as PHP flaws trigger millions of attack attempts",
         "url": "https://www.turkiyetoday.com/business/websites-shut-down-globally-as-php-flaws-trigger-millions-of-attack-attempts-3230794"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A major U.S. fintech/bank launching a yield-bearing tokenized deposit is a significant institutional tokenization and market-structure development, though it is a product launch rather than a systemic event.",
+        "ai_score": 7.5,
+        "ai_summary": "SoFi launched SOFIE, a tokenized deposit product offering a 4.4% annual percentage yield.",
+        "ai_tags": [
+          "SoFi",
+          "tokenized deposits",
+          "stablecoins",
+          "institutional adoption",
+          "yield"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxPcXd3WVQ5YThlWmdoTWQ0c0JwUG1IdGNuOVNzWHZXTEdCTGNpZl9vRHR1eWZsSVdEUThXX1JEUkRMY1lEMVBwVklVTDBWOHFhUmZGMTF5bkZCS1hObjZWcE40MGd1R0hSaEFFZEZJTklILUFZRDNRX1VWRndaS3lyY1hwUWlDYTVPTk9HcEdCSHk0R3ExQldYdDlQSE5yOVB4Wnc?oc=5\" target=\"_blank\">SoFi Launches SOFIE Tokenized Deposit With 4.4% APY</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-22T21:31:39.758794Z",
+        "id": "google_news:article:f32f145e8d0f040f",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-protocols",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-22T13:15:08Z",
+        "source_type": "google_news",
+        "title": "SoFi Launches SOFIE Tokenized Deposit With 4.4% APY",
+        "url": "https://thedefiant.io/converge/tradfi-and-fintech/sofi-launches-sofie-tokenized-deposit-with-4-4-apy"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A major global bank moving crypto custody in-house is a meaningful institutional adoption and market-structure development, signaling deeper Wall Street integration of digital assets. It is high-value but not yet a paradigm-shifting or systemic event, and no discussion quality is available to assess.",
+        "ai_score": 7.0,
+        "ai_summary": "Standard Chartered is bringing its cryptocurrency custody operations in-house, accelerating the institutional digital-asset infrastructure race among major banks.",
+        "ai_tags": [
+          "crypto-custody",
+          "institutional-adoption",
+          "standard-chartered",
+          "digital-assets",
+          "market-infrastructure"
+        ],
+        "author": "CryptoSlate",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi3AFBVV95cUxNTURDS2lIT0lPcVZaVTNxMWRTdmJmd2dwRGpoSHNxcTdYQWF6dXEwNHUwM3BTLUgzdm10S1VWWUduT2twaXV3REktazJHRFpUVFFtMHF2RWljQm9aV2xQRWxmUEVQY0hGVWNOWjhsVG1kZk5qX282MmZHdU5jUXdvRTIzNGlzdUhnbGE4ZVlGRjNBZWVDS1FLWjdISEJGMnNaWE5tOXZMRThEeXpIRi1hV1N6TFRRQnBYcDB1WmZpTjc5TlRQclE3UkdwZUpoNDJKbGYzZ0pQa1lwUHFD?oc=5\" target=\"_blank\">Standard Chartered moves to bring crypto custody in-house as Wall Street's digital asset infrastructure race accelerates</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoSlate</font>",
+        "fetched_at": "2026-10-22T21:31:45.561800Z",
+        "id": "google_news:article:98f38289c7cf9483",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "CryptoSlate",
+          "gn_query": "site:cryptoslate.com",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://cryptoslate.com/feed/",
+          "publisher_url": "https://cryptoslate.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "CryptoSlate"
+        },
+        "published_at": "2026-10-22T19:20:56Z",
+        "source_type": "google_news",
+        "title": "Standard Chartered moves to bring crypto custody in-house as Wall Street's digital asset infrastructure race accelerates",
+        "url": "https://cryptoslate.com/standard-chartered-moves-to-bring-crypto-custody-in-house-as-wall-streets-digital-asset-infrastructure-race-accelerates/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Anthropic contributing Agent Skills to the Agentic AI Foundation is a meaningful open-ecosystem and developer-tooling move with potential to standardize agent interoperability, but it is not a frontier-model, safety, or industry-reshaping milestone. No discussion comments were provided.",
+        "ai_score": 7.0,
+        "ai_summary": "Anthropic is donating its Agent Skills work to the Agentic AI Foundation to support open development of agentic AI capabilities.",
+        "ai_tags": [
+          "agentic AI",
+          "open source",
+          "developer tools",
+          "Anthropic",
+          "AI standards"
+        ],
+        "author": "Anthropic News",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxOOEZpcUwyanBJN3AtN3hwdGdNeS1obVZxc1c5c2lWZ3ZZUWFWM2M2SHFKNHB2Z3ZlQndXWUNMU3NGU3g1NElZeEw1M1pHaUJOZzZqeWsxSlFDSzUwcGFVUmxOUDhuZklpeDZ1ODVQc2dHNnZkUnVSTjE1dzU5R1ZVcjJURHl6RW1z?oc=5\" target=\"_blank\">Donating Agent Skills to the Agentic AI Foundation</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Anthropic</font>",
+        "fetched_at": "2026-10-22T21:31:51.286063Z",
+        "id": "rss:news.google.com_rss_search?q=site:anthropic.com+when:7d&hl=en-US&gl=US&ceid=US:en:3a71234e705a7e5e",
+        "metadata": {
+          "category": "ai-devtools",
+          "event_retry_pending": true,
+          "feed_name": "Anthropic News",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "ai-labs",
+          "tags": []
+        },
+        "published_at": "2026-10-22T18:25:44Z",
+        "source_type": "rss",
+        "title": "Donating Agent Skills to the Agentic AI Foundation - Anthropic",
+        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOOEZpcUwyanBJN3AtN3hwdGdNeS1obVZxc1c5c2lWZ3ZZUWFWM2M2SHFKNHB2Z3ZlQndXWUNMU3NGU3g1NElZeEw1M1pHaUJOZzZqeWsxSlFDSzUwcGFVUmxOUDhuZklpeDZ1ODVQc2dHNnZkUnVSTjE1dzU5R1ZVcjJURHl6RW1z?oc=5"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Enforcement action by a national regulator against a major exchange's EU entity over customer-fund safeguarding failures. The €3.25M penalty is modest relative to Coinbase's balance sheet and does not alter market structure, but it is a concrete regulatory finding on custody/safeguarding compliance that carries supervisory and reputational weight for the exchange's European operations — more consequential than a routine listing, short of a landmark market-access decision.",
+        "ai_score": 7.0,
+        "ai_summary": "The Central Bank of Ireland fined Coinbase Ireland €3.25 million for failures in safeguarding customer funds, marking a formal regulatory enforcement action against the exchange's EU entity.",
+        "ai_tags": [
+          "coinbase",
+          "ireland",
+          "central-bank",
+          "regulation",
+          "custody"
+        ],
+        "author": "Altcoin Buzz",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMikAFBVV95cUxPdVZKVGctRmVvajZSNjB2clgtWnRWQ2NXWW4teTJGUkZZY0JuM25ueGtwVk1sRHM5YjJmdVY2dzRMV3R0TmtVLXpjSTIzOVlRdWhRc0gxMUc0azJ2VTdJak1iYnVDV3ZUWWd5VHNGVjBBN1NldDJ3Z0taZjJ2UGpHRDRyOThZNlBvVzk3OWtFM3U?oc=5\" target=\"_blank\">Coinbase Ireland Fined €3.25M by Central Bank Over Safeguarding Failures</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Altcoin Buzz</font>",
+        "fetched_at": "2026-10-22T21:31:29.765898Z",
+        "id": "google_news:article:c2b27669b12048a3",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.altcoinbuzz.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Altcoin Buzz"
+        },
+        "published_at": "2026-10-22T17:42:17Z",
+        "source_type": "google_news",
+        "title": "Coinbase Ireland Fined €3.25M by Central Bank Over Safeguarding Failures",
+        "url": "https://www.altcoinbuzz.io/coinbase-ireland-fined-3-25m-over-customer-fund-safeguarding"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A material market-access development: Bybit secured a VASP license from Dubai's regulator, giving it a formal foothold in a key Middle Eastern jurisdiction, though the approval excludes derivatives for now, limiting near-term business scope. Important for the exchange's regional expansion and regulatory positioning but not systemic or market-wide in impact.",
+        "ai_score": 7.0,
+        "ai_summary": "Bybit obtained a Dubai virtual asset service provider license covering spot activities, while permission to offer derivatives remains pending, constraining the immediate scope of its UAE expansion.",
+        "ai_tags": [
+          "Bybit",
+          "Dubai VASP license",
+          "crypto regulation",
+          "derivatives",
+          "exchange expansion"
+        ],
+        "author": "Blockonomi",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMikAFBVV95cUxNYXZocVFpb3hzbmNtY2ZrVlRlN0plWVYtckVsbjlPY3FyOXNBY2tqMTBUdy1mVkxrNEppVENhcWxvWC1PYWJ1RjNCcVBYcHBXOC13S2RCWmFMaTRscnlKQk9zeEFralktNWR5dm1uQmhYYk9McE1pM01meHNoc2VSa2NVam9wdjVnSEVYQjhZZlg?oc=5\" target=\"_blank\">Bybit Wins Dubai VASP License, but Derivatives Must Wait</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Blockonomi</font>",
+        "fetched_at": "2026-10-22T21:31:29.768481Z",
+        "id": "google_news:article:75652b12e59d91eb",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://blockonomi.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Blockonomi"
+        },
+        "published_at": "2026-10-22T17:10:46Z",
+        "source_type": "google_news",
+        "title": "Bybit Wins Dubai VASP License, but Derivatives Must Wait",
+        "url": "https://blockonomi.com/bybit-wins-dubai-vasp-license-but-derivatives-must-wait217098-2/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A formal enforcement action by the Central Bank of Ireland against Coinbase's EU entity, with admitted breaches tied to underfunded client asset safeguarding. This is materially relevant to custody and regulatory-compliance risk for a top-tier exchange and its European expansion, though the monetary penalty itself is modest relative to the company's scale, keeping it below systemic-event territory.",
+        "ai_score": 7.0,
+        "ai_summary": "Coinbase Ireland admitted regulatory breaches and accepted a roughly $3.64 million penalty after the Central Bank of Ireland found client funds were not fully backed in a customer account.",
+        "ai_tags": [
+          "coinbase",
+          "ireland",
+          "regulation",
+          "enforcement",
+          "client-assets"
+        ],
+        "author": "unchainedcrypto.com",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxPT29VUTFZQnprZnZmZ1p4UDk1RFAyYVItcFdGSUxzRWQyTnVSNFRWbUN0T182RGRNWGtGNkpOeV9taVRidUlqazVIZm1EWjhPYnlJZGZRNHRWbDNvT0lqLTZRR1F6ajdYV0dUaWFnaUR2a2ZxNS1GLTdJbk0tNzR4SndTMTZDWUc0b0RYZmkwYndYVVN6LVpnVW9aR0NxUzRaUnFpNmNHeU1pa3U1eWtLN2Y0ZndJbnRCTE13OGlhTQ?oc=5\" target=\"_blank\">Coinbase Ireland Admits Breaches, Takes $3.64 Million Penalty Over Underfunded Customer Account</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">unchainedcrypto.com</font>",
+        "fetched_at": "2026-10-22T21:31:29.765344Z",
+        "id": "google_news:article:ee8cbd11f9739623",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://unchainedcrypto.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "unchainedcrypto.com"
+        },
+        "published_at": "2026-10-22T16:17:00Z",
+        "source_type": "google_news",
+        "title": "Coinbase Ireland Admits Breaches, Takes $3.64 Million Penalty Over Underfunded Customer Account",
+        "url": "https://unchainedcrypto.com/coinbase-ireland-admits-breaches-takes-3-64-million-penalty-over-underfunded-customer-account/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A concrete protocol integration: Morpho enabling Robinhood-issued tokenized equity tokens as collateral for stablecoin borrowing is a meaningful step in DeFi collateral expansion and real-world/tokenized-asset market structure, with clear implications for builders and lenders. It is not a systemic event or a landmark regulatory decision, and the source provides only headline-level detail, keeping it below the top tier.",
+        "ai_score": 7.0,
+        "ai_summary": "Morpho has enabled Robinhood's tokenized stock tokens to be posted as collateral for stablecoin borrowing on its lending protocol, expanding DeFi credit markets into tokenized equities.",
+        "ai_tags": [
+          "Morpho",
+          "tokenized stocks",
+          "DeFi lending",
+          "stablecoins",
+          "RWA"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxPYU4xdm01cEpSTXRzZzVzOWpPODA5eHpuNjByM2E1WllSSFpQa2QtT3o0NmhOb2t6aFNqWjNDQ3VoejNFUGR6YkFWVDg0TmVWYlFRWGhrQ3FQRUROME0tTGJLbnFfOTMzYnFjSW4zbUFGem1zeXFoc1dpNlpyYjBDMEs4M1Z6UGJMSTB5WVNRZWRFcTM2LVE?oc=5\" target=\"_blank\">Morpho Opens Robinhood Stock Tokens to Stablecoin Borrowing</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-22T21:31:39.758027Z",
+        "id": "google_news:article:2a7e52d76dbad998",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-22T15:20:10Z",
+        "source_type": "google_news",
+        "title": "Morpho Opens Robinhood Stock Tokens to Stablecoin Borrowing",
+        "url": "https://thedefiant.io/news/defi/morpho-opens-robinhood-stock-tokens-to-stablecoin-borrowing"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A security research finding of a rate-manipulation vector in Swell's liquid staking/restaking mechanics, surfaced alongside a key-drain warning, carries actionable risk implications for depositors and integrators of a widely-used DeFi protocol. It is a credible vulnerability disclosure rather than a confirmed large-scale exploit with quantified losses, placing it in the high-value but not paradigm-shifting band.",
+        "ai_score": 7.0,
+        "ai_summary": "Researchers publicly flagged a rate-manipulation vulnerability affecting Swell after issuing a key-drain warning tied to Railway, prompting scrutiny of the protocol's exchange-rate and oracle assumptions.",
+        "ai_tags": [
+          "security",
+          "defi",
+          "liquid-staking",
+          "vulnerability",
+          "oracle-manipulation"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxNSEhhbHM5MGphNXFnVnJiLTZxWTNkTWlHeXBYeWRhVUNSTzF6YTBrdjdfLWlLLUdqbU01WDRkbzF2azROejJ1VjdNeERsVWlSdTI1M3daLUdQZjdqY0F6RUVHX0ZYeHp6c1U3dnNGbFgwWnA4bV9ZOFpzWjUxMXh4ZjVfS1VkdF9JT1htamZycGhTdUd6ckdhemhsRy1WckdrdW5kdkc5Mkc?oc=5\" target=\"_blank\">Researchers Flag Swell Rate Manipulation After Railway Key-Drain Warning</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-22T21:31:39.758161Z",
+        "id": "google_news:article:b356809db35bd5bb",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-22T15:20:08Z",
+        "source_type": "google_news",
+        "title": "Researchers Flag Swell Rate Manipulation After Railway Key-Drain Warning",
+        "url": "https://thedefiant.io/news/hacks/researchers-flag-swell-rate-manipulation-after-railway-key-drain-warning"
       }
     }
   ],

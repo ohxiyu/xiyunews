@@ -11,15 +11,15 @@
     "en": "Meta Muse chat-sharing links found publicly discoverable; Meta pauses feature"
   },
   "current_state": {
-    "zh": "Meta 表示已暂停 Muse 的一项分享功能——该功能允许用户分享与这款 AI 助手的对话。此前，安全公司 Claroc 的研究人员通过公开的 DNS 记录发现了超过 6,800 条可公开访问的 Muse 聊天链接，Ars Technica 报道了这一消息。Claroc 本周发布了相关报告。\n\n这次暂停是针对一起隐私暴露事件的产品层面应对，而用户此前可能以为这些对话只在小范围内被分享。\n\n据报道，这些链接是通过公开的 DNS 记录被定位到的，而非由 Meta 主动披露。Meta 称该分享功能为“暂停”，并非永久移除。",
-    "en": "Claroc researchers found over 6,800 of Meta's Muse AI chat-sharing links discoverable through DNS history databases, exposing sensitive corporate and personal material, prompting Meta to suspend the chat-sharing feature after press inquiries."
+    "zh": "Meta 已恢复 Muse 的对话分享功能。此前 Claroc 研究人员发现公开可访问的 Muse 聊天链接可暴露敏感材料，Meta 随后暂停了该功能；现在分享功能已重新开启。",
+    "en": "Meta has restored Muse conversation sharing. The feature had been paused after Claroc researchers showed that publicly accessible Muse chat links could expose sensitive material; sharing is now re-enabled."
   },
   "first_seen_at": "2026-10-20T21:31:45.776307+00:00",
-  "last_updated_at": "2026-10-21T10:01:30.247136+00:00",
-  "last_material_change_at": "2026-10-21T10:01:30.247136+00:00",
+  "last_updated_at": "2026-10-22T21:31:54.255790+00:00",
+  "last_material_change_at": "2026-10-22T21:31:54.255790+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 3,
+  "updates_count": 2,
+  "sources_count": 4,
   "entities": [
     "meta",
     "muse"
@@ -30,7 +30,8 @@
     "data-exposure",
     "dns",
     "meta",
-    "muse"
+    "muse",
+    "security-research"
   ],
   "updates": [
     {
@@ -90,6 +91,44 @@
           "url": "https://m.theblockbeats.info/flash/372971?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_8558e3c07351e54c",
+      "event_id": "evt_5d6713f865ed5f7d",
+      "occurred_at": "2026-10-22T20:24:04Z",
+      "published_at": "2026-10-22T20:24:04Z",
+      "first_seen_at": "2026-10-22T21:31:54.255790Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "Meta重新开启Muse分享功能",
+      "title_en": "Meta turns Muse sharing back on",
+      "what_changed_zh": "Meta 已重新启用 Muse 的对话分享功能；此前该功能因公开链接可暴露敏感文档而被暂停。",
+      "what_changed_en": "Meta re-enabled Muse conversation sharing after the feature had been paused because public links could expose sensitive documents.",
+      "current_state_zh": "Meta 已恢复 Muse 的对话分享功能。此前 Claroc 研究人员发现公开可访问的 Muse 聊天链接可暴露敏感材料，Meta 随后暂停了该功能；现在分享功能已重新开启。",
+      "current_state_en": "Meta has restored Muse conversation sharing. The feature had been paused after Claroc researchers showed that publicly accessible Muse chat links could expose sensitive material; sharing is now re-enabled.",
+      "detailed_summary_zh": "Meta restored Muse conversation sharing after security researchers showed that publicly accessible links could expose sensitive documents such as internal revenue reviews and loan applications.",
+      "detailed_summary_en": "Meta restored Muse conversation sharing after security researchers showed that publicly accessible links could expose sensitive documents such as internal revenue reviews and loan applications.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.97,
+      "story_ids": [
+        "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:54d50603a5f05284"
+      ],
+      "sources": [
+        {
+          "url": "https://www.theverge.com/tech/1017066/meta-muse-sharing-back-on-artifiacts",
+          "label": "The Verge AI",
+          "source_type": "rss",
           "official": false
         }
       ]
