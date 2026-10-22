@@ -2,23 +2,80 @@
   "version": 1,
   "events": [
     {
+      "event_id": "evt_0245756f830ed8db",
+      "url": "https://xiyu.news/events/evt_0245756f830ed8db/",
+      "json": "https://xiyu.news/api/events/evt_0245756f830ed8db.json",
+      "status": "monitoring",
+      "type": "security_incident",
+      "title": {
+        "zh": "Pirate Chain确认近日遭攻击，代币供应量增发约20%",
+        "en": "Pirate Chain确认近日遭攻击，代币供应量增发约20%"
+      },
+      "current_state": {
+        "zh": "Pirate Chain 已进入修复阶段：强制升级 v6.0.14 已发布，相关验证漏洞已修复，链已回滚至区块 4,176,944 以清除伪造 ARRR 并恢复供应上限；旧版本运营方被要求立即升级。",
+        "en": "Pirate Chain is in remediation: mandatory v6.0.14 has been released, the validation vulnerabilities are fixed, and the chain has been rolled back to block 4,176,944 to purge forged ARRR and restore the supply cap; old-version operators are required to upgrade immediately."
+      },
+      "first_seen_at": "2026-10-16T01:37:31.105394+00:00",
+      "last_material_change_at": "2026-10-22T06:31:30.929429+00:00",
+      "updates_count": 2,
+      "sources_count": 2
+    },
+    {
+      "event_id": "evt_c01a27d5703acbbd",
+      "url": "https://xiyu.news/events/evt_c01a27d5703acbbd/",
+      "json": "https://xiyu.news/api/events/evt_c01a27d5703acbbd.json",
+      "status": "monitoring",
+      "type": "other",
+      "title": {
+        "zh": "DeepSeek或将完成约120亿美元融资，腾讯和宁德时代或参投",
+        "en": "DeepSeek或将完成约120亿美元融资，腾讯和宁德时代或参投"
+      },
+      "current_state": {
+        "zh": "DeepSeek 已完成约1000亿元人民币（约150亿美元）融资，宁德时代和腾讯等参投；融资目标曾从500亿元上调至800亿元，最终筹得约1000亿元。",
+        "en": "DeepSeek has completed a funding round of about RMB100B (~$15B), with CATL, Tencent and others participating; the target was raised from RMB50B to RMB80B and ultimately reached about RMB100B."
+      },
+      "first_seen_at": "2026-10-06T07:22:05.373892+00:00",
+      "last_material_change_at": "2026-10-22T06:31:30.927947+00:00",
+      "updates_count": 3,
+      "sources_count": 3
+    },
+    {
+      "event_id": "evt_7663cdda3e29b8e3",
+      "url": "https://xiyu.news/events/evt_7663cdda3e29b8e3/",
+      "json": "https://xiyu.news/api/events/evt_7663cdda3e29b8e3.json",
+      "status": "developing",
+      "type": "security_incident",
+      "title": {
+        "zh": "Coldcard 固件随机数漏洞致用户损失并引发加拿大集体诉讼",
+        "en": "Coldcard Loses $70M In 41 Minutes As CZ Warns Hardware Wallets Can Fail"
+      },
+      "current_state": {
+        "zh": "Coinkite 及其联合创始人在加拿大安大略省面临一项拟议的集体诉讼，指控 Coldcard 的标准固件使用可预测的伪随机数生成器，使种子短语可被复现，导致用户的比特币面临风险，诉讼依据消费者保护和货物销售法提出，并包含过失和违约索赔。",
+        "en": "Coinkite and its co-founders face a proposed class action in Ontario, Canada, alleging Coldcard's standard firmware used a predictable pseudo-random number generator that made seed phrases reproducible and left users' bitcoin vulnerable, with claims under consumer protection and sale-of-goods law plus negligence and breach of contract."
+      },
+      "first_seen_at": "2026-10-08T23:51:38.281051+00:00",
+      "last_material_change_at": "2026-10-22T06:31:30.925914+00:00",
+      "updates_count": 2,
+      "sources_count": 3
+    },
+    {
       "event_id": "evt_4eb800807f88fccc",
       "url": "https://xiyu.news/events/evt_4eb800807f88fccc/",
       "json": "https://xiyu.news/api/events/evt_4eb800807f88fccc.json",
-      "status": "closed",
+      "status": "developing",
       "type": "security_incident",
       "title": {
         "zh": "PHP 披露两个严重远程代码执行漏洞并发布紧急补丁，基金会承认结构性失误导致修复延迟",
         "en": "PHP discloses two critical RCE vulnerabilities and releases emergency patches"
       },
       "current_state": {
-        "zh": "PHP 基金会为两个严重漏洞发布紧急补丁，这些漏洞可能让未经身份验证的攻击者在受影响的服务器上执行代码；此前该基金会承认结构性失误导致 2024 年首次发现的修复被延误，同时一些政府网站已作为预防措施下线。",
-        "en": "The PHP Foundation released emergency patches for two critical vulnerabilities that could let unauthenticated attackers execute code on vulnerable servers, after acknowledging that structural failures delayed a fix first identified in 2024 and as government websites went offline as a precaution."
+        "zh": "PHP 基金会已发布紧急补丁；日本、欧洲及澳大利亚等地部分政府网站曾出于预防暂停或下线内容；Cloudflare 报告披露后利用尝试达数百万次；中国工信部 NVDB 现已发布风险提示并明确受影响版本范围。",
+        "en": "The PHP Foundation has released emergency patches; some government websites in Japan, Europe, and Australia paused or took content offline as a precaution; Cloudflare reports millions of exploitation attempts after disclosure; China's MIIT NVDB has now issued a risk advisory specifying affected version ranges."
       },
       "first_seen_at": "2026-10-21T06:41:27.640635+00:00",
-      "last_material_change_at": "2026-10-22T01:46:43.657405+00:00",
-      "updates_count": 11,
-      "sources_count": 19
+      "last_material_change_at": "2026-10-22T06:31:29.138768+00:00",
+      "updates_count": 14,
+      "sources_count": 23
     },
     {
       "event_id": "evt_222d63a1d8d1919b",
@@ -27,8 +84,8 @@
       "status": "monitoring",
       "type": "product_release",
       "title": {
-        "zh": "Anthropic推出基于Claude Opus 5.5的AI助手Claude Duet",
-        "en": "Anthropic launches Claude Duet AI assistant powered by Claude Opus 5.5"
+        "zh": "Anthropic发布Claude Duet AI助手",
+        "en": "Anthropic launches Claude Duet AI assistant"
       },
       "current_state": {
         "zh": "Anthropic 推出研究预览版 Claude Duet，这是一款基于 Claude Opus 5.5 构建的主动式智能体助手，运行在自带浏览器的云虚拟机中，可提供每日简报、通过 6000 多个连接器执行多步骤业务任务，敏感操作需用户明确批准，同时禁止证券交易和账户转账等操作。",
@@ -37,7 +94,7 @@
       "first_seen_at": "2026-10-21T21:41:28.736745+00:00",
       "last_material_change_at": "2026-10-22T01:46:15.740420+00:00",
       "updates_count": 2,
-      "sources_count": 2
+      "sources_count": 3
     },
     {
       "event_id": "evt_cc2ee6ed697c7f69",
@@ -2128,25 +2185,6 @@
       "last_material_change_at": "2026-10-13T03:47:30.490841+00:00",
       "updates_count": 3,
       "sources_count": 3
-    },
-    {
-      "event_id": "evt_c01a27d5703acbbd",
-      "url": "https://xiyu.news/events/evt_c01a27d5703acbbd/",
-      "json": "https://xiyu.news/api/events/evt_c01a27d5703acbbd.json",
-      "status": "developing",
-      "type": "other",
-      "title": {
-        "zh": "DeepSeek或将完成约120亿美元融资，腾讯和宁德时代或参投",
-        "en": "DeepSeek或将完成约120亿美元融资，腾讯和宁德时代或参投"
-      },
-      "current_state": {
-        "zh": "DeepSeek 据报即将完成第二轮融资，规模约1000亿元人民币，投前估值约5000亿元人民币，新老股东拟投资金额约各占一半，新进投资方以产业投资方为主。",
-        "en": "DeepSeek is reportedly set to close its second funding round at roughly ¥100B, with a pre-money valuation of about ¥500B; new and existing shareholders are expected to split the round roughly evenly, with new industrial investors taking part."
-      },
-      "first_seen_at": "2026-10-06T07:22:05.373892+00:00",
-      "last_material_change_at": "2026-10-13T03:47:30.487178+00:00",
-      "updates_count": 2,
-      "sources_count": 2
     },
     {
       "event_id": "evt_0e8a1f4abf831db4",
