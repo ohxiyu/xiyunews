@@ -11,15 +11,15 @@
     "en": "PHP discloses two critical RCE vulnerabilities and releases emergency patches"
   },
   "current_state": {
-    "zh": "Cloudflare 报告称，针对两个关键 PHP 漏洞的利用尝试达数百万次，其中数千次发生在公开披露之前；此前 PHP 基金会发布了紧急补丁，并承认资源短缺导致修复延迟。",
-    "en": "Cloudflare reported millions of exploit attempts against two critical PHP vulnerabilities, including thousands before public disclosure, after the PHP Foundation released emergency patches and acknowledged resource shortages delayed a fix."
+    "zh": "PHP 基金会已发布紧急补丁；Cloudflare 报告称针对两个关键 PHP 漏洞的利用尝试达数百万次，其中数千次发生在公开披露之前；亚马逊进一步报告其 MadPot 蜜罐在公开披露前约四天已观测到利用尝试，但尚不清楚禁运期内利用信息如何泄露，也未证实真实系统被攻破。",
+    "en": "The PHP Foundation has released emergency patches; Cloudflare reported millions of exploit attempts against the two critical PHP vulnerabilities, including thousands before public disclosure; Amazon further reported that its MadPot honeypot observed exploitation attempts about four days before public disclosure, though it remains unclear how exploit information leaked during the embargo and no real-system compromise has been confirmed."
   },
   "first_seen_at": "2026-10-21T06:41:27.640635+00:00",
-  "last_updated_at": "2026-10-22T09:33:29.101363+00:00",
-  "last_material_change_at": "2026-10-22T09:33:29.101363+00:00",
+  "last_updated_at": "2026-10-22T13:44:19.185781+00:00",
+  "last_material_change_at": "2026-10-22T13:44:19.185781+00:00",
   "confidence": 0.75,
-  "updates_count": 16,
-  "sources_count": 25,
+  "updates_count": 17,
+  "sources_count": 26,
   "entities": [
     "alert",
     "bug",
@@ -75,12 +75,14 @@
     "cve-2026-109619"
   ],
   "topics": [
+    "ai-assisted-attacks",
     "ai-security",
     "cloudflare",
     "cloudflare-waf",
     "coordinated-disclosure",
     "critical-infrastructure",
     "cve",
+    "cve-2026-109618",
     "cyberattack",
     "cybersecurity",
     "disclosure",
@@ -115,6 +117,7 @@
     "vulnerability",
     "vulnerability-disclosure",
     "vulnerability-discovery",
+    "vulnerability-exploitation",
     "web-infrastructure",
     "web-security",
     "white-house",
@@ -816,6 +819,44 @@
           "url": "https://cointelegraph.com/news/cloudflare-millions-exploit-attempts-php-vulnerability-disclosure?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
           "label": "Cointelegraph",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_1dfba7f2706266ae",
+      "event_id": "evt_4eb800807f88fccc",
+      "occurred_at": "2026-10-22T11:40:02Z",
+      "published_at": "2026-10-22T11:40:02Z",
+      "first_seen_at": "2026-10-22T13:44:19.185781Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "PHP严重漏洞公开前四天已遭黑客尝试利用",
+      "title_en": "PHP严重漏洞公开前四天已遭黑客尝试利用",
+      "what_changed_zh": "亚马逊威胁情报称，其 MadPot 蜜罐于 10 月 17 日观测到针对 PHP2Shell（CVE-2026-109618 与 CVE-2026-109619）的利用尝试，比公开披露早约四天；尝试来自与商业匿名网络相关的 IP，尚不清楚攻击者如何在禁运期内获得利用信息，也未证实真实系统已被攻破；亚马逊 CISO 称 AI 辅助分析正在缩短从补丁到可用利用的窗口。",
+      "what_changed_en": "Amazon threat intelligence said its MadPot honeypot observed exploitation attempts against PHP2Shell (CVE-2026-109618 and CVE-2026-109619) on October 17, about four days before public disclosure; attempts came from IPs associated with commercial anonymized networks, it is unclear how attackers obtained exploit information during the embargo, and no real-system compromise was confirmed; Amazon's CISO said AI-assisted analysis is shortening the patch-to-working-exploit window.",
+      "current_state_zh": "PHP 基金会已发布紧急补丁；Cloudflare 报告称针对两个关键 PHP 漏洞的利用尝试达数百万次，其中数千次发生在公开披露之前；亚马逊进一步报告其 MadPot 蜜罐在公开披露前约四天已观测到利用尝试，但尚不清楚禁运期内利用信息如何泄露，也未证实真实系统被攻破。",
+      "current_state_en": "The PHP Foundation has released emergency patches; Cloudflare reported millions of exploit attempts against the two critical PHP vulnerabilities, including thousands before public disclosure; Amazon further reported that its MadPot honeypot observed exploitation attempts about four days before public disclosure, though it remains unclear how exploit information leaked during the embargo and no real-system compromise has been confirmed.",
+      "detailed_summary_zh": "Amazon reports its MadPot honeypot detected exploitation attempts against the critical PHP2Shell PHP vulnerability (CVE-2026-109618 and CVE-2026-109619, unauthenticated RCE affecting PHP 7.x and 8.x) about four days before details were publicly disclosed, with the flaw now widely exploited in the wild and AI-assisted analysis shortening the window from patch to working exploit.",
+      "detailed_summary_en": "Amazon reports its MadPot honeypot detected exploitation attempts against the critical PHP2Shell PHP vulnerability (CVE-2026-109618 and CVE-2026-109619, unauthenticated RCE affecting PHP 7.x and 8.x) about four days before details were publicly disclosed, with the flaw now widely exploited in the wild and AI-assisted analysis shortening the window from patch to working exploit.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.94,
+      "story_ids": [
+        "telegram:theblockbeats:201879"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/373221?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]
