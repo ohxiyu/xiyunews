@@ -3844,8 +3844,9 @@
       },
       "8c41c16282ce270588dd2b64d6c37ad4c5e59389ccbdac7157573deba3d9858b": {
         "attempted_at": "2026-10-22T15:15:48.591115+08:00",
+        "post_id": "379953773357652",
         "rank": 7,
-        "status": "pending",
+        "status": "sent",
         "text_hash": "ce10a8f6a7243d4311fc9a5cdffdea75c64d182b7ea80ca1c665c78b62ca858f"
       },
       "8d04070c961955bd20b276600b10fb5a6bf294d31d532d09669346298487cbb4": {
@@ -4200,12 +4201,6 @@
     },
     "2026-10-22": {
       "jobs": [
-        {
-          "due_at": "2026-10-22T15:13:00+08:00",
-          "id": "8c41c16282ce270588dd2b64d6c37ad4c5e59389ccbdac7157573deba3d9858b",
-          "rank": 7,
-          "text": "LiteLLM今年第二次遭投毒：不调用也能偷密钥\n\n安全公司 JFrog 发现，热门开源 AI 模型网关 LiteLLM 的 1.107.0 版本及官方 Docker 镜像遭到供应链攻击，Python 安装包中被藏入三个额外文件。用户安装后只要启动相关 Python 环境，即使不调用 LiteLLM，恶意代码也会自动运行，搜集浏览器密码、SSH 私钥、AWS 等云平台凭证，以及 Claude、Codex、Cursor 等工具的认证信息，并发送到伪装成官方域名的服务器。\n\nJFrog 提醒，安装或运行过 1.107.0 的用户应将相关凭证视为可能泄露，隔离并重建环境、轮换 API 密钥等敏感凭证，而不是简单卸载软件；已确认安全的回退版本为 1.106.2。攻击者还留下了一个持久化后门，每小时检查一次远程指令，必要时下载并执行新的代码。\n\n目前 PyPI 已移除恶意版本，Docker Hub 也已撤下受影响镜像。GitHub 上的正式版本源码没有这些恶意文件，但发布到 PyPI 的全部七个平台安装包都被植入木马；社区通过 Docker 构建记录发现，发布系统使用的源码地址指向一个与官方仓库名称只差一个连字符的仿冒仓库，它究竟如何混入发布流程仍未查清。\n\n来源：https://m.theblockbeats.info/flash/373048?from=telegram\nxiyu.news · 2026-10-22 · https://xiyu.news"
-        },
         {
           "due_at": "2026-10-22T16:24:00+08:00",
           "id": "2ff0e15ff5d08600580dd6f19def55317f3828c895954e81d4fdce4c9e27abe8",
