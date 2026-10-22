@@ -1,16 +1,20 @@
 ---
 layout: default
-title: "Eight Bits of Trust; eMudhra's CA keys cracked in milliseconds"
+title: "八比特的信任：eMudhra 的 CA 密钥在毫秒内被破解"
 permalink: /events/evt_1a0ea48dd5f86ac5/
 interface_language: zh
-description: "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns."
+description: "eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。  由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链"
 page_type: archive
 alternate_url: /en/events/evt_1a0ea48dd5f86ac5/
 page_class: event-detail-page
 noindex: true
 ---
 
-<div class="event-detail-layout"><article class="event-detail-stream"><div class="event-detail-orientation"><div class="event-status-line"><span class="event-status" data-status="monitoring">持续观察</span><span class="category-pill" data-category="technology">AI 科技</span><span>安全事件</span><span>首次追踪 2026.10.21</span><span>最近变化 2026.10.21</span></div><section class="event-current-state"><h2>目前结论</h2><p>eMudhra&#x27;s CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.</p></section></div><div class="event-timeline-heading"><h2>进展时间线</h2><span>1 次实质进展</span></div><ol class="event-timeline"><li class="event-update event-stream-item" id="upd_966505a41f0a59cf"><div class="event-update-rail"><strong>#01</strong><time datetime="2026-10-21T09:08:08+00:00">10.21</time><span class="event-update-marker" aria-hidden="true"></span></div><div class="event-update-content"><div class="digest-item-meta"><div><span class="event-update-type">首次出现</span><span class="event-update-precision">2026.10.21 09:08 · 报道时间</span></div></div><h3>八比特的信任：eMudhra 的 CA 密钥在毫秒内被破解</h3><p class="event-update-change">eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。
+<div class="event-detail-layout"><article class="event-detail-stream"><div class="event-detail-orientation"><div class="event-status-line"><span class="event-status" data-status="monitoring">持续观察</span><span class="category-pill" data-category="technology">AI 科技</span><span>安全事件</span><span>首次追踪 2026.10.21</span><span>最近变化 2026.10.21</span></div><section class="event-current-state"><h2>目前结论</h2><p>eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。
+
+由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链接到受信任根证书的证书；而无法更新 CA 证书包的设备将持续处于暴露状态。
+
+据最初报告者称，该发现来自谷歌开源工具 paranoid_crypto，在检查用户证书之前，直接以默认配置对 CCADB 证书库跑了一遍。据称随后对所有现有 CCADB 证书的更全面排查未再发现其他命中项，Chrome 也在证书透明度（CT）日志中未发现恶意签发的证书。</p></section></div><div class="event-timeline-heading"><h2>进展时间线</h2><span>1 次实质进展</span></div><ol class="event-timeline"><li class="event-update event-stream-item" id="upd_966505a41f0a59cf"><div class="event-update-rail"><strong>#01</strong><time datetime="2026-10-21T09:08:08+00:00">10.21</time><span class="event-update-marker" aria-hidden="true"></span></div><div class="event-update-content"><div class="digest-item-meta"><div><span class="event-update-type">首次出现</span><span class="event-update-precision">2026.10.21 09:08 · 报道时间</span></div></div><h3>八比特的信任：eMudhra 的 CA 密钥在毫秒内被破解</h3><p class="event-update-change">eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。
 
 由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链接到受信任根证书的证书；而无法更新 CA 证书包的设备将持续处于暴露状态。
 

@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_301b68a4d1f669d2/",
   "json": "https://xiyu.news/api/events/evt_301b68a4d1f669d2.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "developing",
   "category": "technology",
   "title": {
-    "zh": "PyPI 上被篡改的 LiteLLM 1.107.0 安装凭据窃取器和后门",
+    "zh": "LiteLLM 1.107.0 供应链攻击：恶意版本窃取凭证并植入后门",
     "en": "Compromised LiteLLM 1.107.0 on PyPI Installs a Credential Stealer and Backdoor"
   },
   "current_state": {
-    "zh": "LiteLLM 1.107.0 的恶意 PyPI 包和受影响 Docker 镜像已被下架；JFrog 建议受影响用户轮换凭证并重建环境，已确认安全回退版本为 1.106.2，但恶意代码如何混入发布流程仍未查清。",
-    "en": "Malicious LiteLLM 1.107.0 PyPI packages and affected Docker images have been removed; JFrog advises affected users to rotate credentials and rebuild environments, with 1.106.2 confirmed as the safe rollback, while how the malicious code entered the release process remains unclear."
+    "zh": "SlowMist 报告称，LiteLLM 再次遭遇供应链攻击：PyPI 上的恶意版本 1.107.0 及其 Docker 镜像会在 Python 启动时自动执行，窃取云凭证、AI API 密钥和 SSH 私钥，并实现远程代码执行；建议用户避免使用 1.107.0，从干净镜像重建，轮换凭证并锁定 1.106.2。",
+    "en": "SlowMist reported that LiteLLM suffered another supply chain attack: malicious version 1.107.0 on PyPI and its Docker images auto-executes on Python startup to steal cloud credentials, AI API keys and SSH private keys and enables remote code execution, with users advised to avoid 1.107.0, rebuild from clean images, rotate credentials and pin 1.106.2."
   },
   "first_seen_at": "2026-10-21T17:31:51.266456+00:00",
-  "last_updated_at": "2026-10-21T17:31:51.266456+00:00",
-  "last_material_change_at": "2026-10-21T17:31:51.266456+00:00",
+  "last_updated_at": "2026-10-22T06:31:30.923318+00:00",
+  "last_material_change_at": "2026-10-22T06:31:30.923318+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 2,
+  "updates_count": 3,
+  "sources_count": 3,
   "entities": [
     "backdoor",
     "compromised",
@@ -127,6 +127,44 @@
         {
           "url": "https://m.theblockbeats.info/flash/373048?from=telegram",
           "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_217ed0b4c02f62a5",
+      "event_id": "evt_301b68a4d1f669d2",
+      "occurred_at": "2026-10-22T03:44:23Z",
+      "published_at": "2026-10-22T03:44:23Z",
+      "first_seen_at": "2026-10-22T06:31:30.923318Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "【慢雾：LiteLLM 再遭供应链攻击，恶意版本 1.107.0 窃取云凭证与 AI 密钥】",
+      "title_en": "【慢雾：LiteLLM 再遭供应链攻击，恶意版本 1.107.0 窃取云凭证与 AI 密钥】",
+      "what_changed_zh": "SlowMist 报告称，LiteLLM 再次遭遇供应链攻击：PyPI 上的恶意版本 1.107.0 及其 Docker 镜像会在 Python 启动时自动执行，窃取云凭证、AI API 密钥和 SSH 私钥，并实现远程代码执行；建议用户避免使用 1.107.0，从干净镜像重建，轮换凭证并锁定 1.106.2。",
+      "what_changed_en": "SlowMist reported that LiteLLM suffered another supply chain attack: malicious version 1.107.0 on PyPI and its Docker images auto-executes on Python startup to steal cloud credentials, AI API keys and SSH private keys and enables remote code execution, with users advised to avoid 1.107.0, rebuild from clean images, rotate credentials and pin 1.106.2.",
+      "current_state_zh": "SlowMist 报告称，LiteLLM 再次遭遇供应链攻击：PyPI 上的恶意版本 1.107.0 及其 Docker 镜像会在 Python 启动时自动执行，窃取云凭证、AI API 密钥和 SSH 私钥，并实现远程代码执行；建议用户避免使用 1.107.0，从干净镜像重建，轮换凭证并锁定 1.106.2。",
+      "current_state_en": "SlowMist reported that LiteLLM suffered another supply chain attack: malicious version 1.107.0 on PyPI and its Docker images auto-executes on Python startup to steal cloud credentials, AI API keys and SSH private keys and enables remote code execution, with users advised to avoid 1.107.0, rebuild from clean images, rotate credentials and pin 1.106.2.",
+      "detailed_summary_zh": "SlowMist reported that LiteLLM suffered another supply chain attack: malicious version 1.107.0 on PyPI and its Docker images auto-executes on Python startup to steal cloud credentials, AI API keys and SSH private keys and enables remote code execution, with users advised to avoid 1.107.0, rebuild from clean images, rotate credentials and pin 1.106.2.",
+      "detailed_summary_en": "SlowMist reported that LiteLLM suffered another supply chain attack: malicious version 1.107.0 on PyPI and its Docker images auto-executes on Python startup to steal cloud credentials, AI API keys and SSH private keys and enables remote code execution, with users advised to avoid 1.107.0, rebuild from clean images, rotate credentials and pin 1.106.2.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:121023"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/115731",
+          "label": "foresightnews",
           "source_type": "telegram",
           "official": false
         }

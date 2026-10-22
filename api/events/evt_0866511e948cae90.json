@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_0866511e948cae90/",
   "json": "https://xiyu.news/api/events/evt_0866511e948cae90.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "developing",
   "category": "crypto",
   "title": {
     "zh": "【Spreek：Swell DAO 的 swETH 与 rswETH 管理员密钥疑似泄露，分析报告由 Claude 辅助撰写】",
     "en": "【Spreek：Swell DAO 的 swETH 与 rswETH 管理员密钥疑似泄露，分析报告由 Claude 辅助撰写】"
   },
   "current_state": {
-    "zh": "Chain analyst Spreek reports a suspected leak of Swell DAO's swETH and rswETH admin keys, with attackers inflating NAV by up to 1% per hour and deploying four malicious upgrade contracts that could endanger roughly 2,500 ETH.",
-    "en": "Chain analyst Spreek reports a suspected leak of Swell DAO's swETH and rswETH admin keys, with attackers inflating NAV by up to 1% per hour and deploying four malicious upgrade contracts that could endanger roughly 2,500 ETH."
+    "zh": "Swell 正在调查 swETH 与 rswETH 合约可疑活动，暂无 ETH 从相关存款或提款合约流出；此前 Spreek 报告的疑似管理员密钥泄露和四个恶意升级合约仍处于调查中。",
+    "en": "Swell is investigating suspicious swETH and rswETH contract activity and says no ETH has flowed out of the relevant deposit or withdrawal contracts; the suspected admin-key leak and four malicious upgrade contracts reported by Spreek remain under investigation."
   },
   "first_seen_at": "2026-10-22T06:31:30.918080+00:00",
-  "last_updated_at": "2026-10-22T06:31:30.918080+00:00",
-  "last_material_change_at": "2026-10-22T06:31:30.918080+00:00",
+  "last_updated_at": "2026-10-22T09:33:10.599498+00:00",
+  "last_material_change_at": "2026-10-22T09:33:10.599498+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 2,
+  "updates_count": 2,
+  "sources_count": 3,
   "entities": [
     "claude",
     "dao",
@@ -34,6 +34,7 @@
     "defi-security",
     "key-compromise",
     "rsweth",
+    "swell",
     "swell-dao",
     "sweth"
   ],
@@ -49,9 +50,9 @@
       "material_change": true,
       "title_zh": "【Spreek：Swell DAO 的 swETH 与 rswETH 管理员密钥疑似泄露，分析报告由 Claude 辅助撰写】",
       "title_en": "【Spreek：Swell DAO 的 swETH 与 rswETH 管理员密钥疑似泄露，分析报告由 Claude 辅助撰写】",
-      "what_changed_zh": "Chain analyst Spreek reports a suspected leak of Swell DAO's swETH and rswETH admin keys, with attackers inflating NAV by up to 1% per hour and deploying four malicious upgrade contracts that could endanger roughly 2,500 ETH.",
+      "what_changed_zh": "链上分析师 Spreek 报告称，Swell DAO 的 swETH 和 rswETH 管理员密钥疑似泄露，攻击者每小时将净值抬高最多 1%，并部署了四个恶意升级合约，可能危及约 2500 ETH。",
       "what_changed_en": "Chain analyst Spreek reports a suspected leak of Swell DAO's swETH and rswETH admin keys, with attackers inflating NAV by up to 1% per hour and deploying four malicious upgrade contracts that could endanger roughly 2,500 ETH.",
-      "current_state_zh": "Chain analyst Spreek reports a suspected leak of Swell DAO's swETH and rswETH admin keys, with attackers inflating NAV by up to 1% per hour and deploying four malicious upgrade contracts that could endanger roughly 2,500 ETH.",
+      "current_state_zh": "链上分析师 Spreek 报告称，Swell DAO 的 swETH 和 rswETH 管理员密钥疑似泄露，攻击者每小时将净值抬高最多 1%，并部署了四个恶意升级合约，可能危及约 2500 ETH。",
       "current_state_en": "Chain analyst Spreek reports a suspected leak of Swell DAO's swETH and rswETH admin keys, with attackers inflating NAV by up to 1% per hour and deploying four malicious upgrade contracts that could endanger roughly 2,500 ETH.",
       "detailed_summary_zh": "Chain analyst Spreek reports a suspected leak of Swell DAO's swETH and rswETH admin keys, with attackers inflating NAV by up to 1% per hour and deploying four malicious upgrade contracts that could endanger roughly 2,500 ETH.",
       "detailed_summary_en": "Chain analyst Spreek reports a suspected leak of Swell DAO's swETH and rswETH admin keys, with attackers inflating NAV by up to 1% per hour and deploying four malicious upgrade contracts that could endanger roughly 2,500 ETH.",
@@ -78,6 +79,44 @@
         {
           "url": "https://m.theblockbeats.info/flash/373093?from=telegram",
           "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_4a37cd52fb5a4e5c",
+      "event_id": "evt_0866511e948cae90",
+      "occurred_at": "2026-10-22T07:20:58Z",
+      "published_at": "2026-10-22T07:20:58Z",
+      "first_seen_at": "2026-10-22T09:33:10.599498Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "【Swell：正调查 swETH 与 rswETH 合约可疑活动，暂无资金流出】",
+      "title_en": "【Swell：正调查 swETH 与 rswETH 合约可疑活动，暂无资金流出】",
+      "what_changed_zh": "Swell 官方表示正与安全合作伙伴调查 swETH 与 rswETH 合约可疑活动，并采取预防措施；同时称目前暂无 ETH 从存款或提款合约流出，用户无需采取行动。",
+      "what_changed_en": "Swell officially said it is investigating suspicious swETH and rswETH contract activity with security partners and taking precautionary measures; it stated that no ETH has flowed out of the deposit or withdrawal contracts and users need not take action.",
+      "current_state_zh": "Swell 正在调查 swETH 与 rswETH 合约可疑活动，暂无 ETH 从相关存款或提款合约流出；此前 Spreek 报告的疑似管理员密钥泄露和四个恶意升级合约仍处于调查中。",
+      "current_state_en": "Swell is investigating suspicious swETH and rswETH contract activity and says no ETH has flowed out of the relevant deposit or withdrawal contracts; the suspected admin-key leak and four malicious upgrade contracts reported by Spreek remain under investigation.",
+      "detailed_summary_zh": "Swell is investigating suspicious swETH and rswETH contract activity amid reports of a possible admin-key compromise and malicious upgrade contracts, while stating that no ETH has flowed out of the deposit or withdrawal contracts.",
+      "detailed_summary_en": "Swell is investigating suspicious swETH and rswETH contract activity amid reports of a possible admin-key compromise and malicious upgrade contracts, while stating that no ETH has flowed out of the deposit or withdrawal contracts.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.96,
+      "story_ids": [
+        "telegram:foresightnews:121042"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/115747",
+          "label": "foresightnews",
           "source_type": "telegram",
           "official": false
         }

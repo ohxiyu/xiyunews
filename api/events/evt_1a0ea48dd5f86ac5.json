@@ -7,11 +7,11 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "Eight Bits of Trust; eMudhra's CA keys cracked in milliseconds",
+    "zh": "八比特的信任：eMudhra 的 CA 密钥在毫秒内被破解",
     "en": "Eight Bits of Trust; eMudhra's CA keys cracked in milliseconds"
   },
   "current_state": {
-    "zh": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns.",
+    "zh": "eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。\n\n由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链接到受信任根证书的证书；而无法更新 CA 证书包的设备将持续处于暴露状态。\n\n据最初报告者称，该发现来自谷歌开源工具 paranoid_crypto，在检查用户证书之前，直接以默认配置对 CCADB 证书库跑了一遍。据称随后对所有现有 CCADB 证书的更全面排查未再发现其他命中项，Chrome 也在证书透明度（CT）日志中未发现恶意签发的证书。",
     "en": "eMudhra's CA keys were found to be crackable in milliseconds due to weak key material, raising serious certificate-authority trust and remediation concerns."
   },
   "first_seen_at": "2026-10-21T14:11:35.217762+00:00",

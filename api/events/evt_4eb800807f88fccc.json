@@ -7,23 +7,24 @@
   "status": "developing",
   "category": "technology",
   "title": {
-    "zh": "PHP 披露两个严重远程代码执行漏洞并发布紧急补丁，基金会承认结构性失误导致修复延迟",
+    "zh": "PHP披露两个严重远程代码执行漏洞并发布紧急补丁",
     "en": "PHP discloses two critical RCE vulnerabilities and releases emergency patches"
   },
   "current_state": {
-    "zh": "PHP 基金会已发布紧急补丁；日本、欧洲及澳大利亚等地部分政府网站曾出于预防暂停或下线内容；Cloudflare 报告披露后利用尝试达数百万次；中国工信部 NVDB 现已发布风险提示并明确受影响版本范围。",
-    "en": "The PHP Foundation has released emergency patches; some government websites in Japan, Europe, and Australia paused or took content offline as a precaution; Cloudflare reports millions of exploitation attempts after disclosure; China's MIIT NVDB has now issued a risk advisory specifying affected version ranges."
+    "zh": "Cloudflare 报告称，针对两个关键 PHP 漏洞的利用尝试达数百万次，其中数千次发生在公开披露之前；此前 PHP 基金会发布了紧急补丁，并承认资源短缺导致修复延迟。",
+    "en": "Cloudflare reported millions of exploit attempts against two critical PHP vulnerabilities, including thousands before public disclosure, after the PHP Foundation released emergency patches and acknowledged resource shortages delayed a fix."
   },
   "first_seen_at": "2026-10-21T06:41:27.640635+00:00",
-  "last_updated_at": "2026-10-22T06:31:30.929889+00:00",
-  "last_material_change_at": "2026-10-22T06:31:29.138768+00:00",
+  "last_updated_at": "2026-10-22T09:33:29.101363+00:00",
+  "last_material_change_at": "2026-10-22T09:33:29.101363+00:00",
   "confidence": 0.75,
-  "updates_count": 14,
-  "sources_count": 23,
+  "updates_count": 16,
+  "sources_count": 25,
   "entities": [
     "alert",
     "bug",
     "bugs",
+    "ceo",
     "chatgpt",
     "cloudflare",
     "course",
@@ -65,7 +66,8 @@
     "vulnerabilities",
     "warns",
     "websites",
-    "who"
+    "who",
+    "wordpress"
   ],
   "identifiers": [
     "cve-2026",
@@ -85,6 +87,7 @@
     "embargo",
     "emergency-patch",
     "exchanges",
+    "exploitation",
     "financial-institutions",
     "frontier-models",
     "go",
@@ -114,7 +117,8 @@
     "vulnerability-discovery",
     "web-infrastructure",
     "web-security",
-    "white-house"
+    "white-house",
+    "wordpress"
   ],
   "updates": [
     {
@@ -658,6 +662,44 @@
       ]
     },
     {
+      "update_id": "upd_665061dadd3c18c3",
+      "event_id": "evt_4eb800807f88fccc",
+      "occurred_at": "2026-10-22T04:01:02Z",
+      "published_at": "2026-10-22T04:01:02Z",
+      "first_seen_at": "2026-10-22T06:31:29.121281Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "WordPress回应PHP严重漏洞：建议网站运营方立即更新升级",
+      "title_en": "WordPress回应PHP严重漏洞：建议网站运营方立即更新升级",
+      "what_changed_zh": "WordPress 警告网站运营者立即更新 PHP，并确认托管服务商的补丁和 WAF 缓解措施，因为一个严重的 PHP 漏洞影响运行 PHP 应用的服务器。",
+      "what_changed_en": "WordPress warned site operators to immediately update PHP and confirm hosting-provider patches and WAF mitigations because of a severe PHP vulnerability affecting servers running PHP applications.",
+      "current_state_zh": "WordPress 警告网站运营者立即更新 PHP，并确认托管服务商的补丁和 WAF 缓解措施，因为一个严重的 PHP 漏洞影响运行 PHP 应用的服务器。",
+      "current_state_en": "WordPress warned site operators to immediately update PHP and confirm hosting-provider patches and WAF mitigations because of a severe PHP vulnerability affecting servers running PHP applications.",
+      "detailed_summary_zh": "WordPress warned site operators to immediately update PHP and confirm hosting-provider patches and WAF mitigations because of a severe PHP vulnerability affecting servers running PHP applications.",
+      "detailed_summary_en": "WordPress warned site operators to immediately update PHP and confirm hosting-provider patches and WAF mitigations because of a severe PHP vulnerability affecting servers running PHP applications.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:theblockbeats:201775"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/373114?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
       "update_id": "upd_e045da066fc042ce",
       "event_id": "evt_4eb800807f88fccc",
       "occurred_at": "2026-10-22T05:32:02Z",
@@ -736,6 +778,44 @@
           "url": "https://foresightnews.pro/news/h5Detail/115743",
           "label": "foresightnews",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_704e8977d8224648",
+      "event_id": "evt_4eb800807f88fccc",
+      "occurred_at": "2026-10-22T09:06:02Z",
+      "published_at": "2026-10-22T09:06:02Z",
+      "first_seen_at": "2026-10-22T09:33:29.101363Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "PHP 漏洞引发数百万次利用尝试，Cloudflare CEO 发出警告",
+      "title_en": "PHP flaw draws millions of exploit attempts, Cloudflare CEO warns",
+      "what_changed_zh": "Cloudflare 报告称，针对两个关键 PHP 漏洞的利用尝试达数百万次，其中数千次发生在公开披露之前；此前 PHP 基金会发布了紧急补丁，并承认资源短缺导致修复延迟。",
+      "what_changed_en": "Cloudflare reported millions of exploit attempts against two critical PHP vulnerabilities, including thousands before public disclosure, after the PHP Foundation released emergency patches and acknowledged resource shortages delayed a fix.",
+      "current_state_zh": "Cloudflare 报告称，针对两个关键 PHP 漏洞的利用尝试达数百万次，其中数千次发生在公开披露之前；此前 PHP 基金会发布了紧急补丁，并承认资源短缺导致修复延迟。",
+      "current_state_en": "Cloudflare reported millions of exploit attempts against two critical PHP vulnerabilities, including thousands before public disclosure, after the PHP Foundation released emergency patches and acknowledged resource shortages delayed a fix.",
+      "detailed_summary_zh": "Cloudflare reported millions of exploit attempts against two critical PHP vulnerabilities, including thousands before public disclosure, after the PHP Foundation released emergency patches and acknowledged resource shortages delayed a fix.",
+      "detailed_summary_en": "Cloudflare reported millions of exploit attempts against two critical PHP vulnerabilities, including thousands before public disclosure, after the PHP Foundation released emergency patches and acknowledged resource shortages delayed a fix.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:a872f92223f064ac"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/cloudflare-millions-exploit-attempts-php-vulnerability-disclosure?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
           "official": false
         }
       ]
