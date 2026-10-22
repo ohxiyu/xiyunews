@@ -1,13 +1,17 @@
 ---
 layout: default
-title: "八比特的信任：eMudhra 的 CA 密钥在毫秒内被破解"
+title: "CVE-2026-111943：中间证书颁发机构遭攻陷"
 permalink: /threads/t7085219fa8/
 interface_language: zh
-description: "eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。  由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链"
+description: "美国国家标准与技术研究院的国家漏洞数据库发布了 CVE-2026-111943，针对 eMudhra 中间证书颁发机构证书遭攻陷一事。此前，Mozilla 与谷歌 Chrome 根证书计划于 2026 年 10 月 20 日确认，eMudhra 的 8 个中间证书的私钥可以直接从公开证书中还原。Chrome 随后将 emSign ECC Root CA - "
 page_type: archive
 ---
 
-<div class="archive-stats"><div class="archive-stat"><strong>2</strong><span>天</span></div><div class="archive-stat"><strong>2</strong><span>条</span></div><div class="archive-stat"><strong>2026-10-22</strong><span>最近报道</span></div></div><h2>时间线</h2><ul class="archive-list"><li class="archive-row"><time datetime="2026-10-22">2026-10-22</time><div class="archive-row-body"><h3><a href="https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/" target="_blank" rel="noopener noreferrer">八比特的信任：eMudhra 的 CA 密钥在毫秒内被破解</a></h3><p class="archive-row-summary">eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。
+<div class="archive-stats"><div class="archive-stat"><strong>3</strong><span>天</span></div><div class="archive-stat"><strong>3</strong><span>条</span></div><div class="archive-stat"><strong>2026-10-23</strong><span>最近报道</span></div></div><h2>时间线</h2><ul class="archive-list"><li class="archive-row"><time datetime="2026-10-23">2026-10-23</time><div class="archive-row-body"><h3><a href="https://nvd.nist.gov/vuln/detail/cve-2026-111943" target="_blank" rel="noopener noreferrer">CVE-2026-111943：中间证书颁发机构遭攻陷</a></h3><p class="archive-row-summary">美国国家标准与技术研究院的国家漏洞数据库发布了 CVE-2026-111943，针对 eMudhra 中间证书颁发机构证书遭攻陷一事。此前，Mozilla 与谷歌 Chrome 根证书计划于 2026 年 10 月 20 日确认，eMudhra 的 8 个中间证书的私钥可以直接从公开证书中还原。Chrome 随后将 emSign ECC Root CA - G3 从 Chrome 根证书库中移除，以保护那些不接收 CRLSet 更新的使用方。
+
+由于任何人都能从公开材料中推导出这些私钥，攻击者可以伪造出对任意域名都看似有效的证书，冒充银行、GitHub 或 PyPI 等站点，这迫使操作系统和浏览器厂商紧急推送信任库更新。
+
+eMudhra 在事件声明中表示，受影响的中间证书是在 2025 年 4 月的一次密钥生成仪式中创建的，其根 CA 私钥和其他中间证书颁发机构未受影响，并称未签发任何终端实体证书。Mozilla 表示已在 UTC 21:48 独立还原出受影响证书的私钥，确认密钥生成过程存在缺陷且极易被利用。</p><p class="archive-row-meta">keks24</p></div><span class="score-badge" data-tier="high">9.0</span></li><li class="archive-row"><time datetime="2026-10-22">2026-10-22</time><div class="archive-row-body"><h3><a href="https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/" target="_blank" rel="noopener noreferrer">八比特的信任：eMudhra 的 CA 密钥在毫秒内被破解</a></h3><p class="archive-row-summary">eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。
 
 由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链接到受信任根证书的证书；而无法更新 CA 证书包的设备将持续处于暴露状态。
 

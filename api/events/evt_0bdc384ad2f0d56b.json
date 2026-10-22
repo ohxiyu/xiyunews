@@ -53,14 +53,27 @@
       "current_state_en": "Uniswap launched Aggregator Hooks, letting v4 wrap external liquidity sources such as Curve, Fluid, and PancakeSwap into v4 liquidity pools, live on Ethereum mainnet, Base, and Robinhood Chain via the Uniswap Web app and API.",
       "detailed_summary_zh": "Uniswap launched Aggregator Hooks, letting v4 wrap external liquidity sources such as Curve, Fluid, and PancakeSwap into v4 liquidity pools, live on Ethereum mainnet, Base, and Robinhood Chain via the Uniswap Web app and API.",
       "detailed_summary_en": "Uniswap launched Aggregator Hooks, letting v4 wrap external liquidity sources such as Curve, Fluid, and PancakeSwap into v4 liquidity pools, live on Ethereum mainnet, Base, and Robinhood Chain via the Uniswap Web app and API.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "Uniswap v4 于 2025 年 1 月上线主网，引入 Hook、单例合约设计与闪 accounting（闪电记账）机制。Hook 允许开发者给资金池附加自定义逻辑，而 Aggregator Hooks 是首次用该机制将路由接入其他协议的流动性，而不仅是 Uniswap 自身资金池。",
+      "background_en": "Uniswap v4 launched on mainnet in January 2025, introducing hooks, the singleton contract design and flash accounting. Hooks let developers attach custom logic to pools, and Aggregator Hooks is the first use of that mechanism to route into other protocols' liquidity rather than only Uniswap's own pools.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "此次发布直接作用于 DEX 聚合器这一细分市场：Uniswap v4 现在可以通过自身路由吸收 Curve、Fluid、PancakeSwap 等场所的报价，聚合器订单流与手续费捕获由此向 Uniswap 网页端与 API 转移。对 UNI 而言，传导渠道是经外部来源路由的兑换所缴纳的协议费进入销毁，使代币供应不仅取决于 Uniswap 原生池活动，也对聚合交易量敏感。",
+      "market_impact_en": "The release touches the DEX aggregator segment directly: Uniswap v4 can now absorb quotes from venues such as Curve, Fluid and PancakeSwap through its own router, so aggregator order flow and fee capture shift toward Uniswap's Web app and API. For UNI, the transmission channel is the protocol fee on externally routed swaps feeding the burn, making token supply sensitive to aggregator volume rather than only to Uniswap-native pool activity.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://www.okx.com/en-eu/learn/uniswap-proposal-fees-token-burn",
+          "title": "Uniswap Proposal Fees: How the New Fee Switch and... | OKX Europe"
+        },
+        {
+          "url": "https://www.binance.com/en/academy/articles/what-is-uniswap-v4",
+          "title": "What Is Uniswap V4? | Binance Academy"
+        },
+        {
+          "url": "https://oakresearch.io/en/projects/Robinhood-Chain",
+          "title": "Robinhood Chain (Blockchain) - Analytics, Metrics... | OAK Research"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:foresightnews:121092"

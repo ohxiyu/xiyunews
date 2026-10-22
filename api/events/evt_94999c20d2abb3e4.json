@@ -48,25 +48,41 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "CVE-2026-111943: Compromised Intermediate Certificate Authority",
+      "title_zh": "CVE-2026-111943：中间证书颁发机构遭攻陷",
       "title_en": "CVE-2026-111943: Compromised Intermediate Certificate Authority",
-      "what_changed_zh": "A compromised eMudhra intermediate certificate authority allowed private signing keys to be recovered from public certificates, enabling attackers to mint valid HTTPS certificates for any domain and prompting urgent certificate-store updates.",
+      "what_changed_zh": "美国国家标准与技术研究院的国家漏洞数据库发布了 CVE-2026-111943，针对 eMudhra 中间证书颁发机构证书遭攻陷一事。此前，Mozilla 与谷歌 Chrome 根证书计划于 2026 年 10 月 20 日确认，eMudhra 的 8 个中间证书的私钥可以直接从公开证书中还原。Chrome 随后将 emSign ECC Root CA - G3 从 Chrome 根证书库中移除，以保护那些不接收 CRLSet 更新的使用方。\n\n由于任何人都能从公开材料中推导出这些私钥，攻击者可以伪造出对任意域名都看似有效的证书，冒充银行、GitHub 或 PyPI 等站点，这迫使操作系统和浏览器厂商紧急推送信任库更新。\n\neMudhra 在事件声明中表示，受影响的中间证书是在 2025 年 4 月的一次密钥生成仪式中创建的，其根 CA 私钥和其他中间证书颁发机构未受影响，并称未签发任何终端实体证书。Mozilla 表示已在 UTC 21:48 独立还原出受影响证书的私钥，确认密钥生成过程存在缺陷且极易被利用。",
       "what_changed_en": "A compromised eMudhra intermediate certificate authority allowed private signing keys to be recovered from public certificates, enabling attackers to mint valid HTTPS certificates for any domain and prompting urgent certificate-store updates.",
-      "current_state_zh": "A compromised eMudhra intermediate certificate authority allowed private signing keys to be recovered from public certificates, enabling attackers to mint valid HTTPS certificates for any domain and prompting urgent certificate-store updates.",
+      "current_state_zh": "美国国家标准与技术研究院的国家漏洞数据库发布了 CVE-2026-111943，针对 eMudhra 中间证书颁发机构证书遭攻陷一事。此前，Mozilla 与谷歌 Chrome 根证书计划于 2026 年 10 月 20 日确认，eMudhra 的 8 个中间证书的私钥可以直接从公开证书中还原。Chrome 随后将 emSign ECC Root CA - G3 从 Chrome 根证书库中移除，以保护那些不接收 CRLSet 更新的使用方。\n\n由于任何人都能从公开材料中推导出这些私钥，攻击者可以伪造出对任意域名都看似有效的证书，冒充银行、GitHub 或 PyPI 等站点，这迫使操作系统和浏览器厂商紧急推送信任库更新。\n\neMudhra 在事件声明中表示，受影响的中间证书是在 2025 年 4 月的一次密钥生成仪式中创建的，其根 CA 私钥和其他中间证书颁发机构未受影响，并称未签发任何终端实体证书。Mozilla 表示已在 UTC 21:48 独立还原出受影响证书的私钥，确认密钥生成过程存在缺陷且极易被利用。",
       "current_state_en": "A compromised eMudhra intermediate certificate authority allowed private signing keys to be recovered from public certificates, enabling attackers to mint valid HTTPS certificates for any domain and prompting urgent certificate-store updates.",
       "detailed_summary_zh": "A compromised eMudhra intermediate certificate authority allowed private signing keys to be recovered from public certificates, enabling attackers to mint valid HTTPS certificates for any domain and prompting urgent certificate-store updates.",
       "detailed_summary_en": "A compromised eMudhra intermediate certificate authority allowed private signing keys to be recovered from public certificates, enabling attackers to mint valid HTTPS certificates for any domain and prompting urgent certificate-store updates.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "background_zh": "eMudhra 是一家总部位于印度的证书颁发机构，通过印度、美国和荷兰的公司以 emSign 品牌销售证书，其根证书被纳入 Mozilla、Chrome 和苹果的根证书库。据《The Register》报道，该公司已签发超过 6000 万张证书。有报道称，缺陷源自一个 HSM 密钥封装测试脚本，该脚本在 2025 年 4 月的仪式中生成了一套弱 P-384 密钥对。",
+      "background_en": "eMudhra is an India-based certificate authority that sells certificates under the emSign brand through companies in India, the United States and the Netherlands, and its roots are included in the Mozilla, Chrome and Apple root stores. According to The Register, it has issued more than 60 million certificates. Reports describe the flaw as originating in an HSM key-wrapping test script that produced a second set of weak P-384 key pairs during the April 2025 ceremony.",
+      "community_discussion_zh": "评论者主要关注实际运维影响：Gentoo 用户被建议将 app-misc/ca-certificates 升级到 20260816.3.125 或更高版本；有人指出 Red Hat 用户目前仍只有一项变通方案，即禁用两张用于签发 eMudhra 证书的 Comodo 根证书，相关安全公告仍标记为“进行中”。还有人提醒 Python 用户可能需要单独采取措施，也有评论者认为 eMudhra 事件本身属于旧闻，NIST 只是刚刚正式收录。",
+      "community_discussion_en": "Commenters focused on operational fallout: Gentoo users were advised to upgrade app-misc/ca-certificates to 20260816.3.125 or higher, and one noted Red Hat customers still had only a workaround disabling two Comodo root certificates used to sign the eMudhra certificates, with the advisory marked ongoing. Others flagged that Python users may need separate steps, while one commenter argued the underlying eMudhra incident is older news that NIST is only now formally cataloguing.",
+      "market_impact_zh": "风险传导路径位于 Web PKI 信任层：任何依赖标准 HTTPS 证书或基于证书的服务认证的加密货币交易所、托管机构、钱包服务商或 dApp 前端，都可能需要重新签发证书或更新信任库；在此期间，未及时应用更新的客户端将面临被冒充的风险。",
+      "market_impact_en": "The exposure runs through the web PKI trust layer: any crypto exchange, custodian, wallet provider or dApp front end that relies on standard HTTPS certificates or certificate-based service authentication may need to reissue certificates or update trust stores, and clients that fail to apply updates face impersonation risk in the interim.",
       "importance_score": 9.0,
       "references": [
         {
           "url": "https://news.ycombinator.com/item?id=50192900",
           "title": "Community discussion"
+        },
+        {
+          "url": "https://thehackernews.com/2026/10/eight-emudhra-ca-keys-compromised.html",
+          "title": "Eight eMudhra CA Keys Compromised, Triggering Emergency Fixes..."
+        },
+        {
+          "url": "https://blog.google/security/protecting-chrome-and-android-users-from-compromised-emudhra-intermediate-ca-certificates/",
+          "title": "Protecting Chrome and Android Users from Compromised eMudhra..."
+        },
+        {
+          "url": "https://bugzilla.mozilla.org/show_bug.cgi?id=2083449",
+          "title": "2083449 - eMudhra: Private key compromise of Intermediate ..."
+        },
+        {
+          "url": "https://www.csoonline.com/article/4238338/google-mozilla-revoke-emudhra-intermediates-after-private-key-compromise.html",
+          "title": "Google, Mozilla revoke eMudhra intermediates after... | CSO Online"
         }
       ],
       "confidence": 0.75,
