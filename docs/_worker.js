@@ -849,10 +849,17 @@ function cachePolicy(request) {
   return {ttl: 600};
 }
 
-function cacheKey(request) {
+function cacheKey(request, env) {
   const url = new URL(request.url);
   // Leave the old immutable namespace behind when rolling out this policy.
   url.searchParams.set('__bmt_cache', 'mutable-v2');
+  // Cache API entries outlive Worker deployments. Bind cached content to the
+  // trusted immutable code/artifact key so a new site cannot reuse old JSON,
+  // HTML or feeds. Override caller input; standalone hosts keep the fallback.
+  url.searchParams.delete('__bmt_release');
+  if (/^[a-f0-9]{64}$/.test(env?.SITE_BUILD_KEY || '')) {
+    url.searchParams.set('__bmt_release', env.SITE_BUILD_KEY);
+  }
   if (MARKDOWN_ROUTES.has(url.pathname)) {
     url.searchParams.set(
       '__bmt_variant',
@@ -901,7 +908,7 @@ export async function handleRequest(request, env, ctx) {
   const cache = globalThis.caches?.default;
   if (!policy || !cache) return handleOriginRequest(request, env);
 
-  const key = cacheKey(request);
+  const key = cacheKey(request, env);
   const hit = await cache.match(key).catch(() => undefined);
   if (hit) return cachedResponse(hit, 'HIT', policy);
 

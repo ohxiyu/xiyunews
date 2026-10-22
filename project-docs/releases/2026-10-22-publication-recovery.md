@@ -24,6 +24,16 @@
 
 修复前 Worker version: e1d9fc95-60a5-4793-8ac7-43f77c174e96；Artifact commit: 7bc2f6039bde075f5a4818fe2203ab4621814783。
 
-Deployment: pending。Verification: 2026-10-22 12:20 上海，仅完成故障调查，不宣称恢复上线。
+Deployment: PR294 合并为 d4d89453e4f7504397e46d5043ecd6b909af8d94；CI39722103810 的治理、web、edge-build 与外部 Pages 检查通过，其他正确按范围跳过。统一部署 [39722786056](https://github.com/ohxiyu/xiyunews/actions/runs/39722786056) 于 04:35:24Z 成功（4 分 34 秒）。
+
+Verification: 2026-10-22 12:36 上海，中英文首页为 22/21 日各 14 条，canonical 正确。新 Worker ece1c144-636e-4910-bec9-c77b2f943b7c；Artifact 14cee6f84b30567b95f6d07dee5d787320f8e79f。普通 latest API 仍命中旧缓存，故尚不认定全链路验收完成。
+
+## 生产验收发现的缓存一致性问题
+
+[Issue295](https://github.com/ohxiyu/xiyunews/issues/295)：12:36 普通 /api/latest.json 返回 20 日，响应为 HIT / age 69 / CDN max-age=600；加全新查询参数立即为 22 日。/api/editions.json 与 22 日独立 edition.json 已为新内容。根因是 Cache API 键只包含固定 mutable-v2 命名空间，未绑定发布版本，缓存可以跨 Worker 更新保留。
+
+将缓存 key 加入已有可信 SITE_BUILD_KEY（代码与出版产物的组合哈希），并覆盖调用方传入的同名内部查询参数，避免客户端选择旧命名空间。无该变量的独立托管保持既有兼容逻辑；统一生产工作流每次都设置该值。保留 TTL、Markdown/HTML 变体、鉴权/后台/PWA 元数据绕过与隐私策略，不进行账户级缓存清理或配置变更。
+
+新增同一公开 URL 的发布前后缓存回归：旧版为 20 日，新版立即为 22 日，同版第二次请求命中，新版本客户端无法指定旧版缓存。覆盖 latest/index API、首页、RSS。135 项 Worker 测试、118 项网页 Node 测试、安全审计（0 漏洞）、类型、dry-run 与治理检查通过；缓存修复的远端 CI、合并、部署与最终普通地址验收待完成。
 
 Rollback: 不自动回退或手写 gh-pages。如修复发布失败，保留现生产版本，先检查工作流日志；回退需运营者明确授权，旧依赖不能作为绕过安全检查的恢复方案。
