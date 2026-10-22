@@ -159,6 +159,36 @@ test('edge cache varies homepage markdown and HTML without repeating asset work'
   }
 });
 
+test('deployments never reuse prior publication content at the same public URL', async () => {
+  const stored = new Map();
+  globalThis.caches = {default: {
+    async match(request) { return stored.get(request.url)?.clone(); },
+    async put(request, response) { stored.set(request.url, response.clone()); }
+  }};
+  try {
+    for (const path of ['/api/latest.json', '/api/editions.json', '/', '/feed-zh.xml']) {
+      const oldEnv = {SITE_BUILD_KEY: 'a'.repeat(64),
+        ASSETS: {fetch: async () => Response.json({date: '2026-10-20'})}};
+      const newEnv = {SITE_BUILD_KEY: 'b'.repeat(64),
+        ASSETS: {fetch: async () => Response.json({date: '2026-10-22'})}};
+      const request = new Request('https://xiyu.news' + path);
+      const old = await worker.handleRequest(request, oldEnv);
+      assert.equal((await old.json()).date, '2026-10-20');
+      const fresh = await worker.handleRequest(request, newEnv);
+      assert.equal(fresh.headers.get('X-xiyu.news-Cache'), 'MISS');
+      assert.equal((await fresh.json()).date, '2026-10-22');
+      const repeated = await worker.handleRequest(request, newEnv);
+      assert.equal(repeated.headers.get('X-xiyu.news-Cache'), 'HIT');
+      assert.equal((await repeated.json()).date, '2026-10-22');
+      const spoofed = new Request(request.url + '?__bmt_release=' + 'a'.repeat(64));
+      const safe = await worker.handleRequest(spoofed, newEnv);
+      assert.equal(safe.headers.get('X-xiyu.news-Cache'), 'HIT');
+      assert.equal((await safe.json()).date, '2026-10-22');
+      assert.equal(fresh.headers.get('Cache-Control'), repeated.headers.get('Cache-Control'));
+    }
+  } finally { delete globalThis.caches; }
+});
+
 test('versioned CSS and JavaScript revalidate while images remain immutable', async () => {
   const stored = new Map();
   globalThis.caches = {
