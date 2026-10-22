@@ -1,53 +1,41 @@
 # 当前交接
 
-当前任务：[Issue290](https://github.com/ohxiyu/xiyunews/issues/290) 接入 Cloudflare Web Analytics（无 Cookie 访问统计）。PR291 已合并部署，令牌待运营者提供。上一轮周报停用、导航精简与分享图精简已经上线并验收，见 [2026-10-14-reader-simplify.md](releases/2026-10-14-reader-simplify.md)。架构仍以[系统架构](system-architecture.md)为唯一入口。
+当前任务：[Issue293](https://github.com/ohxiyu/xiyunews/issues/293) 修复网站停在 10 月 20 日的问题。21、22 日日报已经生成，统一部署被依赖安全审计阻塞；只更新存在漏洞的构建测试依赖，通过现有发布链路恢复，不重复生成或补发历史消息。架构入口为[系统架构](system-architecture.md)。访问统计的公开令牌仍待运营者提供，原记录保留在[访问统计发布记录](releases/2026-10-18-web-analytics.md)。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "公开页面接入 Cloudflare Web Analytics：令牌为空时不输出，非空时只加载官方 beacon",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/290",
+  "goal": "修复依赖安全审计阻塞，恢复 10 月 21–22 日网站内容",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/293",
   "owner": "当前会话唯一编辑与生产整合负责人",
-  "branch": "agent/web-analytics-evidence",
-  "last_verified_commit": "d22034fe02be77bc07f351762c179d35556dd71c",
-  "pr": "PR291 已合并为 d22034fe；当前为证据文档 PR",
+  "branch": "agent/publication-recovery",
+  "last_verified_commit": "2f69a7a8e2dc01691e78660c9a364e2cacd625de",
+  "pr": "待创建恢复 PR，本地验证全部通过",
   "completed": [
-    "docs/_config.yml 新增 cloudflare_web_analytics_token（公开站点令牌，空则停用）",
-    "head-custom 加入受令牌控制的官方 beacon；来源控制台不加载",
-    "/legal/ 中英文访问统计说明；tests/test_web_analytics.py",
-    "PR291 合并；Deploy Docs 39101269168 与统一部署 163/164 成功；gh-pages a76d9082 回读确认"
+    "核对生产 API 为 2026-10-20，gh-pages 最新为 2026-10-22 的 14 条",
+    "确认 21、22 日 Daily Edition 成功，中英文刊期在归档中存在",
+    "定位统一部署 39711109423 被 Vitest/Vite 安全审计阻塞"
   ],
-  "unfinished": [
-    "运营者在 Cloudflare Web Analytics 添加 xiyu.news（手动片段）并提供站点令牌",
-    "单行 PR 写入令牌并上线"
-  ],
-  "validation": [
-    "uv run pytest 1118 passed / 4 skipped；治理检查通过",
-    "Ruby Liquid 渲染：空/缺失/控制台不输出，有效令牌只输出一个 beacon",
-    "gh-pages a76d9082 回读：head-custom 令牌判断、空令牌、法律页说明均在"
-  ],
-  "unverified": [
-    "生产 HTML 含 beacon 与 Cloudflare 后台出现数据（需令牌，且本环境无法访问 xiyu.news）"
-  ],
+  "unfinished": ["远端 CI", "PR 检查通过后合并并正常部署", "公网首页/API/详情验收及证据归档"],
+  "validation": ["只读核对 Actions、gh-pages、生产 health/API 与东京服务器磁盘和服务", "npm 安全审计 0 漏洞，135 项 Worker / 117 项网页 Node 测试、类型与 dry-run 通过；治理通过"],
+  "unverified": ["修复后的 CI、部署和公网最新内容尚未验证"],
   "production": {
-    "source_commit": "d22034fe02be77bc07f351762c179d35556dd71c",
-    "artifact_commit": "gh-pages a76d9082",
-    "edition": "2026-10-18",
-    "generated_at": "2026-10-18 07:26 上海",
-    "worker_version": "未改动 Worker 代码；统一部署 164 成功",
-    "verified_at": "2026-10-18 14:06 上海，Actions 结论与 gh-pages 回读；主域页面未回读"
+    "source_commit": "2f69a7a8e2dc01691e78660c9a364e2cacd625de",
+    "artifact_commit": "7bc2f6039bde075f5a4818fe2203ab4621814783",
+    "edition": "2026-10-20",
+    "generated_at": "2026-10-19T23:30:24.609893Z",
+    "worker_version": "e1d9fc95-60a5-4793-8ac7-43f77c174e96（修复前）",
+    "verified_at": "2026-10-22 12:20 上海，正式域 health/API 回读"
   },
-  "blockers": [
-    "站点令牌需运营者从 Cloudflare 后台提供"
-  ],
-  "next_action": "合并本证据 PR；收到站点令牌后单行 PR 写入并请运营者在后台确认数据",
+  "blockers": ["生产依赖安全审计失败，等待本次修复"],
+  "next_action": "最小更新 Vitest/Vite 并完整验证；合并 PR 后正常部署现有 22 日产物，无需 AI 补跑",
   "states": {
     "code": "complete",
     "tests": "complete",
-    "pr_merged": "complete",
-    "deployed": "complete",
+    "pr_merged": "pending",
+    "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-10-18-web-analytics.md"
+  "evidence": "project-docs/releases/2026-10-22-publication-recovery.md"
 }
 ```
