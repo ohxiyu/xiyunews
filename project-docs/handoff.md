@@ -10,13 +10,13 @@
   "owner": "当前会话唯一编辑与生产整合负责人",
   "branch": "agent/publication-recovery",
   "last_verified_commit": "2f69a7a8e2dc01691e78660c9a364e2cacd625de",
-  "pr": "待创建恢复 PR",
+  "pr": "待创建恢复 PR，本地验证全部通过",
   "completed": [
     "核对生产 API 为 2026-10-20，gh-pages 最新为 2026-10-22 的 14 条",
     "确认 21、22 日 Daily Edition 成功，中英文刊期在归档中存在",
     "定位统一部署 39711109423 被 Vitest/Vite 安全审计阻塞"
   ],
-  "unfinished": ["Python 回归及远端 CI", "PR 检查通过后合并并正常部署", "公网首页/API/详情验收及证据归档"],
+  "unfinished": ["远端 CI", "PR 检查通过后合并并正常部署", "公网首页/API/详情验收及证据归档"],
   "validation": ["只读核对 Actions、gh-pages、生产 health/API 与东京服务器磁盘和服务", "npm 安全审计 0 漏洞，135 项 Worker / 117 项网页 Node 测试、类型与 dry-run 通过；治理通过"],
   "unverified": ["修复后的 CI、部署和公网最新内容尚未验证"],
   "production": {
@@ -31,7 +31,7 @@
   "next_action": "最小更新 Vitest/Vite 并完整验证；合并 PR 后正常部署现有 22 日产物，无需 AI 补跑",
   "states": {
     "code": "complete",
-    "tests": "pending",
+    "tests": "complete",
     "pr_merged": "pending",
     "deployed": "pending",
     "production_verified": "pending"

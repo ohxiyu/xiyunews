@@ -15,7 +15,7 @@
 ## 交付状态
 
 - 代码：Vitest 4.1.12、Vite 8.3.5 已完成最小更新，相关传递依赖与完整性哈希同步更新。
-- 验证：npm ci/audit 为 0 漏洞；类型、TypeScript、135 项 Worker 测试、Wrangler dry-run、117 项网页 Node 测试和治理检查通过；Python 回归进行中，远端 CI 待运行。
+- 验证：npm ci/audit 为 0 漏洞；类型、TypeScript、135 项 Worker 测试、Wrangler dry-run、117 项网页 Node 测试和治理检查通过；Python 1118 passed / 4 个既有 skipped，远端 CI 待运行。
 - PR 合并：待 CI。
 - 部署：待合并后按现有授权执行统一工作流。
 - 公网验收：待核对首页、21/22 日详情、中英 API、RSS 和 health 版本。
