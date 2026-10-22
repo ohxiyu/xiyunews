@@ -7,24 +7,27 @@
   "status": "developing",
   "category": "technology",
   "title": {
-    "zh": "EMudhra 中间 CA 遭入侵",
+    "zh": "eMudhra中间CA私钥脆弱导致证书伪造，浏览器撤销并引发退出SSL/TLS业务",
     "en": "EMudhra Intermediate CA Compromise"
   },
   "current_state": {
-    "zh": "8 个受影响的 eMudhra 中间 CA 已被主要浏览器、Cloudflare 及多个开发语言/框架生态紧急封堵，eMudhra 也已正式吊销相关证书；尚未发现脆弱私钥被用于签发伪造证书的证据，但物联网设备和未更新旧系统仍存在清理与暴露风险。",
-    "en": "The eight affected eMudhra intermediate CAs have been emergency-blocked by major browsers, Cloudflare, and several developer language/framework ecosystems, and eMudhra has formally revoked the certificates; no evidence yet shows the weak keys were used to forge certificates, but IoT devices and unpatched legacy systems remain exposed and cleanup is ongoing."
+    "zh": "eMudhra 将退出其全球 SSL/TLS 证书业务，此前一起事件引发严格审查和浏览器厂商的质疑，据报道其股价下跌 20%，公司正将受影响业务与其他业务分离。",
+    "en": "eMudhra is exiting its global SSL/TLS certificate business after an incident triggered intense scrutiny and browser-vendor questions, with its stock reportedly falling 20% as the company separates the affected operation from its other businesses."
   },
   "first_seen_at": "2026-10-20T17:25:49.327432+00:00",
-  "last_updated_at": "2026-10-21T09:29:57.659443+00:00",
-  "last_material_change_at": "2026-10-21T09:29:57.659443+00:00",
+  "last_updated_at": "2026-10-22T17:28:46.235960+00:00",
+  "last_material_change_at": "2026-10-22T17:28:46.235960+00:00",
   "confidence": 0.75,
-  "updates_count": 3,
-  "sources_count": 3,
+  "updates_count": 4,
+  "sources_count": 4,
   "entities": [
     "compromise",
     "emudhra",
     "intermediate",
-    "tech"
+    "ssl",
+    "ssl-tls",
+    "tech",
+    "tls"
   ],
   "identifiers": [],
   "topics": [
@@ -36,6 +39,7 @@
     "pki",
     "revocation",
     "security-incident",
+    "ssl-tls",
     "tls",
     "tls-certificates"
   ],
@@ -167,6 +171,49 @@
           "url": "https://m.theblockbeats.info/flash/372933?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_ce1cbbf221ffff27",
+      "event_id": "evt_b556f6f05750ec0d",
+      "occurred_at": "2026-10-22T13:33:39Z",
+      "published_at": "2026-10-22T13:33:39Z",
+      "first_seen_at": "2026-10-22T17:28:46.235960Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "eMudhra 将退出全球 SSL/TLS 证书业务",
+      "title_en": "eMudhra to exit global SSL/TLS certificate business",
+      "what_changed_zh": "eMudhra 将退出其全球 SSL/TLS 证书业务，此前一起事件引发严格审查和浏览器厂商的质疑，据报道其股价下跌 20%，公司正将受影响业务与其他业务分离。",
+      "what_changed_en": "eMudhra is exiting its global SSL/TLS certificate business after an incident triggered intense scrutiny and browser-vendor questions, with its stock reportedly falling 20% as the company separates the affected operation from its other businesses.",
+      "current_state_zh": "eMudhra 将退出其全球 SSL/TLS 证书业务，此前一起事件引发严格审查和浏览器厂商的质疑，据报道其股价下跌 20%，公司正将受影响业务与其他业务分离。",
+      "current_state_en": "eMudhra is exiting its global SSL/TLS certificate business after an incident triggered intense scrutiny and browser-vendor questions, with its stock reportedly falling 20% as the company separates the affected operation from its other businesses.",
+      "detailed_summary_zh": "eMudhra is exiting its global SSL/TLS certificate business after an incident triggered intense scrutiny and browser-vendor questions, with its stock reportedly falling 20% as the company separates the affected operation from its other businesses.",
+      "detailed_summary_en": "eMudhra is exiting its global SSL/TLS certificate business after an incident triggered intense scrutiny and browser-vendor questions, with its stock reportedly falling 20% as the company separates the affected operation from its other businesses.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [
+        {
+          "url": "https://news.ycombinator.com/item?id=50195110",
+          "title": "Community discussion"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "hackernews:story:50195110"
+      ],
+      "sources": [
+        {
+          "url": "https://emudhra.com/en/press-release/emudhra-to-exit-global-ssl-tls-certificate-business",
+          "label": "bo0tzz",
+          "source_type": "hackernews",
           "official": false
         }
       ]

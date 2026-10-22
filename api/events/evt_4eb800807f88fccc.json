@@ -7,19 +7,19 @@
   "status": "developing",
   "category": "technology",
   "title": {
-    "zh": "PHP披露两个严重远程代码执行漏洞并发布紧急补丁",
+    "zh": "PHP 披露并紧急修复两项严重远程代码执行漏洞，公开前已遭利用",
     "en": "PHP discloses two critical RCE vulnerabilities and releases emergency patches"
   },
   "current_state": {
-    "zh": "PHP 基金会已发布紧急补丁；Cloudflare 报告称针对两个关键 PHP 漏洞的利用尝试达数百万次，其中数千次发生在公开披露之前；亚马逊进一步报告其 MadPot 蜜罐在公开披露前约四天已观测到利用尝试，但尚不清楚禁运期内利用信息如何泄露，也未证实真实系统被攻破。",
-    "en": "The PHP Foundation has released emergency patches; Cloudflare reported millions of exploit attempts against the two critical PHP vulnerabilities, including thousands before public disclosure; Amazon further reported that its MadPot honeypot observed exploitation attempts about four days before public disclosure, though it remains unclear how exploit information leaked during the embargo and no real-system compromise has been confirmed."
+    "zh": "PHP 基金会已发布紧急补丁；Cloudflare 报告称针对两个关键 PHP 漏洞的利用尝试达数百万次，其中数千次发生在公开披露之前；亚马逊称其 MadPot 蜜罐在公开披露前约四天已观测到利用尝试；另有报道称 DeviantArt 和 4Chan 等网站因该漏洞短暂下线，但尚不清楚禁运期内利用信息如何泄露，也未证实真实系统被攻破。",
+    "en": "The PHP Foundation has released emergency patches; Cloudflare reported millions of exploit attempts against the two critical PHP vulnerabilities, including thousands before public disclosure; Amazon said its MadPot honeypot observed exploitation attempts about four days before public disclosure; reports also say sites including DeviantArt and 4Chan were temporarily shut down in connection with the vulnerability, though it remains unclear how exploit information leaked during the embargo and no real-system compromise has been confirmed."
   },
   "first_seen_at": "2026-10-21T06:41:27.640635+00:00",
-  "last_updated_at": "2026-10-22T13:44:19.185781+00:00",
-  "last_material_change_at": "2026-10-22T13:44:19.185781+00:00",
+  "last_updated_at": "2026-10-22T17:29:02.055096+00:00",
+  "last_material_change_at": "2026-10-22T17:29:02.055096+00:00",
   "confidence": 0.75,
-  "updates_count": 17,
-  "sources_count": 26,
+  "updates_count": 19,
+  "sources_count": 28,
   "entities": [
     "alert",
     "bug",
@@ -67,6 +67,7 @@
     "warns",
     "websites",
     "who",
+    "wiz",
     "wordpress"
   ],
   "identifiers": [
@@ -75,6 +76,7 @@
     "cve-2026-109619"
   ],
   "topics": [
+    "active-exploitation",
     "ai-assisted-attacks",
     "ai-security",
     "cloudflare",
@@ -105,12 +107,14 @@
     "patching",
     "php",
     "php-vulnerability",
+    "php2shell",
     "rce",
     "remote-code-execution",
     "security-advisories",
     "security-advisory",
     "security-patching",
     "security-release",
+    "service-outages",
     "slowmist",
     "tencent-cloud",
     "vulnerabilities",
@@ -857,6 +861,82 @@
           "url": "https://m.theblockbeats.info/flash/373221?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_2798bc12f987cf01",
+      "event_id": "evt_4eb800807f88fccc",
+      "occurred_at": "2026-10-22T11:45:49Z",
+      "published_at": "2026-10-22T11:45:49Z",
+      "first_seen_at": "2026-10-22T13:44:18.540577Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "【PHP 两项漏洞公开前已遭黑客利用，Wiz 估计漏洞波及范围可能覆盖约 70% 的互联网】",
+      "title_en": "【PHP 两项漏洞公开前已遭黑客利用，Wiz 估计漏洞波及范围可能覆盖约 70% 的互联网】",
+      "what_changed_zh": "两个 PHP 安全漏洞在公开披露前已被在野利用，已识别出超过 2260 万个暴露实例，研究人员警告受影响系统可能已被入侵。",
+      "what_changed_en": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
+      "current_state_zh": "两个 PHP 安全漏洞在公开披露前已被在野利用，已识别出超过 2260 万个暴露实例，研究人员警告受影响系统可能已被入侵。",
+      "current_state_en": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
+      "detailed_summary_zh": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
+      "detailed_summary_en": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:121074"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/115774",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_537a92114ff90dbc",
+      "event_id": "evt_4eb800807f88fccc",
+      "occurred_at": "2026-10-22T15:12:27Z",
+      "published_at": "2026-10-22T15:12:27Z",
+      "first_seen_at": "2026-10-22T17:29:02.055096Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "PHP：这三个字母正在网络上肆虐",
+      "title_en": "PHP: The three little letters wreaking havoc across the web",
+      "what_changed_zh": "The Verge 报道称，PHP2Shell 两个 PHP 漏洞导致包括 DeviantArt 和 4Chan 在内的网站短暂下线。",
+      "what_changed_en": "The Verge reported that the two PHP vulnerabilities dubbed PHP2Shell contributed to temporary shutdowns of sites including DeviantArt and 4Chan.",
+      "current_state_zh": "PHP 基金会已发布紧急补丁；Cloudflare 报告称针对两个关键 PHP 漏洞的利用尝试达数百万次，其中数千次发生在公开披露之前；亚马逊称其 MadPot 蜜罐在公开披露前约四天已观测到利用尝试；另有报道称 DeviantArt 和 4Chan 等网站因该漏洞短暂下线，但尚不清楚禁运期内利用信息如何泄露，也未证实真实系统被攻破。",
+      "current_state_en": "The PHP Foundation has released emergency patches; Cloudflare reported millions of exploit attempts against the two critical PHP vulnerabilities, including thousands before public disclosure; Amazon said its MadPot honeypot observed exploitation attempts about four days before public disclosure; reports also say sites including DeviantArt and 4Chan were temporarily shut down in connection with the vulnerability, though it remains unclear how exploit information leaked during the embargo and no real-system compromise has been confirmed.",
+      "detailed_summary_zh": "Two PHP vulnerabilities, dubbed PHP2Shell, exposed a vast portion of the web to risk and contributed to temporary shutdowns of sites including DeviantArt and 4Chan.",
+      "detailed_summary_en": "Two PHP vulnerabilities, dubbed PHP2Shell, exposed a vast portion of the web to risk and contributed to temporary shutdowns of sites including DeviantArt and 4Chan.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:6ad15ed588fc823a"
+      ],
+      "sources": [
+        {
+          "url": "https://www.theverge.com/tech/1016574/php2shell-security-vulnerability-websites-down",
+          "label": "The Verge AI",
+          "source_type": "rss",
           "official": false
         }
       ]

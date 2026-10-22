@@ -173003,26 +173003,31 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "The eight affected eMudhra intermediate CAs have been emergency-blocked by major browsers, Cloudflare, and several developer language/framework ecosystems, and eMudhra has formally revoked the certificates; no evidence yet shows the weak keys were used to forge certificates, but IoT devices and unpatched legacy systems remain exposed and cleanup is ongoing.",
-      "current_state_zh": "8 个受影响的 eMudhra 中间 CA 已被主要浏览器、Cloudflare 及多个开发语言/框架生态紧急封堵，eMudhra 也已正式吊销相关证书；尚未发现脆弱私钥被用于签发伪造证书的证据，但物联网设备和未更新旧系统仍存在清理与暴露风险。",
+      "current_state_en": "eMudhra is exiting its global SSL/TLS certificate business after an incident triggered intense scrutiny and browser-vendor questions, with its stock reportedly falling 20% as the company separates the affected operation from its other businesses.",
+      "current_state_zh": "eMudhra 将退出其全球 SSL/TLS 证书业务，此前一起事件引发严格审查和浏览器厂商的质疑，据报道其股价下跌 20%，公司正将受影响业务与其他业务分离。",
       "entities": [
         "compromise",
         "emudhra",
         "intermediate",
-        "tech"
+        "ssl",
+        "ssl-tls",
+        "tech",
+        "tls"
       ],
       "event_id": "evt_b556f6f05750ec0d",
       "event_type": "security_incident",
       "first_seen_at": "2026-10-20T17:25:49.327432Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-21T09:29:57.659443Z",
-      "last_updated_at": "2026-10-21T09:29:57.659443Z",
+      "last_material_change_at": "2026-10-22T17:28:46.235960Z",
+      "last_updated_at": "2026-10-22T17:28:46.235960Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_414ebf49ee8becfb"
+      ],
       "schema_version": 1,
       "status": "developing",
       "title_en": "EMudhra Intermediate CA Compromise",
-      "title_zh": "EMudhra 中间 CA 遭入侵",
+      "title_zh": "eMudhra中间CA私钥脆弱导致证书伪造，浏览器撤销并引发退出SSL/TLS业务",
       "topics": [
         "browser-security",
         "certificate-authority",
@@ -173032,6 +173037,7 @@
         "pki",
         "revocation",
         "security-incident",
+        "ssl-tls",
         "tls",
         "tls-certificates"
       ],
@@ -173166,6 +173172,49 @@
           "update_type": "response",
           "what_changed_en": "Added that eMudhra has formally revoked the defective certificates and that major developer ecosystems including Go, Python, Rust, and Electron have pushed updates to block the affected certificates within their own trust stores.",
           "what_changed_zh": "新增了 eMudhra 已正式吊销存在缺陷的证书，以及 Go、Python、Rust、Electron 等主流开发语言和框架已推送更新并在各自生态内封禁相关证书的响应细节。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "eMudhra is exiting its global SSL/TLS certificate business after an incident triggered intense scrutiny and browser-vendor questions, with its stock reportedly falling 20% as the company separates the affected operation from its other businesses.",
+          "current_state_zh": "eMudhra 将退出其全球 SSL/TLS 证书业务，此前一起事件引发严格审查和浏览器厂商的质疑，据报道其股价下跌 20%，公司正将受影响业务与其他业务分离。",
+          "detailed_summary_en": "eMudhra is exiting its global SSL/TLS certificate business after an incident triggered intense scrutiny and browser-vendor questions, with its stock reportedly falling 20% as the company separates the affected operation from its other businesses.",
+          "detailed_summary_zh": "eMudhra is exiting its global SSL/TLS certificate business after an incident triggered intense scrutiny and browser-vendor questions, with its stock reportedly falling 20% as the company separates the affected operation from its other businesses.",
+          "event_id": "evt_b556f6f05750ec0d",
+          "first_seen_at": "2026-10-22T17:28:46.235960Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T13:33:39Z",
+          "published_at": "2026-10-22T13:33:39Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50195110"
+            }
+          ],
+          "sources": [
+            {
+              "label": "bo0tzz",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://emudhra.com/en/press-release/emudhra-to-exit-global-ssl-tls-certificate-business"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50195110"
+          ],
+          "time_precision": "published",
+          "title_en": "eMudhra to exit global SSL/TLS certificate business",
+          "title_zh": "eMudhra 将退出全球 SSL/TLS 证书业务",
+          "update_id": "upd_ce1cbbf221ffff27",
+          "update_type": "response",
+          "what_changed_en": "eMudhra is exiting its global SSL/TLS certificate business after an incident triggered intense scrutiny and browser-vendor questions, with its stock reportedly falling 20% as the company separates the affected operation from its other businesses.",
+          "what_changed_zh": "eMudhra 将退出其全球 SSL/TLS 证书业务，此前一起事件引发严格审查和浏览器厂商的质疑，据报道其股价下跌 20%，公司正将受影响业务与其他业务分离。"
         }
       ]
     },
@@ -175586,8 +175635,8 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "The PHP Foundation has released emergency patches; Cloudflare reported millions of exploit attempts against the two critical PHP vulnerabilities, including thousands before public disclosure; Amazon further reported that its MadPot honeypot observed exploitation attempts about four days before public disclosure, though it remains unclear how exploit information leaked during the embargo and no real-system compromise has been confirmed.",
-      "current_state_zh": "PHP 基金会已发布紧急补丁；Cloudflare 报告称针对两个关键 PHP 漏洞的利用尝试达数百万次，其中数千次发生在公开披露之前；亚马逊进一步报告其 MadPot 蜜罐在公开披露前约四天已观测到利用尝试，但尚不清楚禁运期内利用信息如何泄露，也未证实真实系统被攻破。",
+      "current_state_en": "The PHP Foundation has released emergency patches; Cloudflare reported millions of exploit attempts against the two critical PHP vulnerabilities, including thousands before public disclosure; Amazon said its MadPot honeypot observed exploitation attempts about four days before public disclosure; reports also say sites including DeviantArt and 4Chan were temporarily shut down in connection with the vulnerability, though it remains unclear how exploit information leaked during the embargo and no real-system compromise has been confirmed.",
+      "current_state_zh": "PHP 基金会已发布紧急补丁；Cloudflare 报告称针对两个关键 PHP 漏洞的利用尝试达数百万次，其中数千次发生在公开披露之前；亚马逊称其 MadPot 蜜罐在公开披露前约四天已观测到利用尝试；另有报道称 DeviantArt 和 4Chan 等网站因该漏洞短暂下线，但尚不清楚禁运期内利用信息如何泄露，也未证实真实系统被攻破。",
       "entities": [
         "alert",
         "bug",
@@ -175635,6 +175684,7 @@
         "warns",
         "websites",
         "who",
+        "wiz",
         "wordpress"
       ],
       "event_id": "evt_4eb800807f88fccc",
@@ -175645,8 +175695,8 @@
         "cve-2026-109618",
         "cve-2026-109619"
       ],
-      "last_material_change_at": "2026-10-22T13:44:19.185781Z",
-      "last_updated_at": "2026-10-22T13:44:19.185781Z",
+      "last_material_change_at": "2026-10-22T17:29:02.055096Z",
+      "last_updated_at": "2026-10-22T17:29:02.055096Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_577b38c61bc32b34",
@@ -175659,13 +175709,15 @@
         "evt_c557d2cf5959a004",
         "evt_a993733fb2e39cf0",
         "evt_c497b3e592f8ef61",
-        "evt_144540f464e53938"
+        "evt_144540f464e53938",
+        "evt_4ed4524ed3448c7b"
       ],
       "schema_version": 1,
       "status": "developing",
       "title_en": "PHP discloses two critical RCE vulnerabilities and releases emergency patches",
-      "title_zh": "PHP披露两个严重远程代码执行漏洞并发布紧急补丁",
+      "title_zh": "PHP 披露并紧急修复两项严重远程代码执行漏洞，公开前已遭利用",
       "topics": [
+        "active-exploitation",
         "ai-assisted-attacks",
         "ai-security",
         "cloudflare",
@@ -175696,12 +175748,14 @@
         "patching",
         "php",
         "php-vulnerability",
+        "php2shell",
         "rce",
         "remote-code-execution",
         "security-advisories",
         "security-advisory",
         "security-patching",
         "security-release",
+        "service-outages",
         "slowmist",
         "tencent-cloud",
         "vulnerabilities",
@@ -176451,6 +176505,82 @@
           "update_type": "escalation",
           "what_changed_en": "Amazon threat intelligence said its MadPot honeypot observed exploitation attempts against PHP2Shell (CVE-2026-109618 and CVE-2026-109619) on October 17, about four days before public disclosure; attempts came from IPs associated with commercial anonymized networks, it is unclear how attackers obtained exploit information during the embargo, and no real-system compromise was confirmed; Amazon's CISO said AI-assisted analysis is shortening the patch-to-working-exploit window.",
           "what_changed_zh": "亚马逊威胁情报称，其 MadPot 蜜罐于 10 月 17 日观测到针对 PHP2Shell（CVE-2026-109618 与 CVE-2026-109619）的利用尝试，比公开披露早约四天；尝试来自与商业匿名网络相关的 IP，尚不清楚攻击者如何在禁运期内获得利用信息，也未证实真实系统已被攻破；亚马逊 CISO 称 AI 辅助分析正在缩短从补丁到可用利用的窗口。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
+          "current_state_zh": "两个 PHP 安全漏洞在公开披露前已被在野利用，已识别出超过 2260 万个暴露实例，研究人员警告受影响系统可能已被入侵。",
+          "detailed_summary_en": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
+          "detailed_summary_zh": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
+          "event_id": "evt_4eb800807f88fccc",
+          "first_seen_at": "2026-10-22T13:44:18.540577Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T11:45:49Z",
+          "published_at": "2026-10-22T11:45:49Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115774"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:121074"
+          ],
+          "time_precision": "published",
+          "title_en": "【PHP 两项漏洞公开前已遭黑客利用，Wiz 估计漏洞波及范围可能覆盖约 70% 的互联网】",
+          "title_zh": "【PHP 两项漏洞公开前已遭黑客利用，Wiz 估计漏洞波及范围可能覆盖约 70% 的互联网】",
+          "update_id": "upd_2798bc12f987cf01",
+          "update_type": "escalation",
+          "what_changed_en": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
+          "what_changed_zh": "两个 PHP 安全漏洞在公开披露前已被在野利用，已识别出超过 2260 万个暴露实例，研究人员警告受影响系统可能已被入侵。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.92,
+          "current_state_en": "The PHP Foundation has released emergency patches; Cloudflare reported millions of exploit attempts against the two critical PHP vulnerabilities, including thousands before public disclosure; Amazon said its MadPot honeypot observed exploitation attempts about four days before public disclosure; reports also say sites including DeviantArt and 4Chan were temporarily shut down in connection with the vulnerability, though it remains unclear how exploit information leaked during the embargo and no real-system compromise has been confirmed.",
+          "current_state_zh": "PHP 基金会已发布紧急补丁；Cloudflare 报告称针对两个关键 PHP 漏洞的利用尝试达数百万次，其中数千次发生在公开披露之前；亚马逊称其 MadPot 蜜罐在公开披露前约四天已观测到利用尝试；另有报道称 DeviantArt 和 4Chan 等网站因该漏洞短暂下线，但尚不清楚禁运期内利用信息如何泄露，也未证实真实系统被攻破。",
+          "detailed_summary_en": "Two PHP vulnerabilities, dubbed PHP2Shell, exposed a vast portion of the web to risk and contributed to temporary shutdowns of sites including DeviantArt and 4Chan.",
+          "detailed_summary_zh": "Two PHP vulnerabilities, dubbed PHP2Shell, exposed a vast portion of the web to risk and contributed to temporary shutdowns of sites including DeviantArt and 4Chan.",
+          "event_id": "evt_4eb800807f88fccc",
+          "first_seen_at": "2026-10-22T17:29:02.055096Z",
+          "importance_score": 8.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T15:12:27Z",
+          "published_at": "2026-10-22T15:12:27Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "The Verge AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.theverge.com/tech/1016574/php2shell-security-vulnerability-websites-down"
+            }
+          ],
+          "story_ids": [
+            "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:6ad15ed588fc823a"
+          ],
+          "time_precision": "published",
+          "title_en": "PHP: The three little letters wreaking havoc across the web",
+          "title_zh": "PHP：这三个字母正在网络上肆虐",
+          "update_id": "upd_537a92114ff90dbc",
+          "update_type": "escalation",
+          "what_changed_en": "The Verge reported that the two PHP vulnerabilities dubbed PHP2Shell contributed to temporary shutdowns of sites including DeviantArt and 4Chan.",
+          "what_changed_zh": "The Verge 报道称，PHP2Shell 两个 PHP 漏洞导致包括 DeviantArt 和 4Chan 在内的网站短暂下线。"
         }
       ]
     },
@@ -182006,32 +182136,56 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Salus's CMO reported that roughly 15.99 million USDT and 5,783.81 TRX moved out of CoinDCX hot wallets and deposit addresses to a TRON address on October 21, with the funds subsequently split and transferred toward Binance, OKX and Gate deposit addresses, in what is being described as a suspected theft.",
-      "current_state_zh": "Salus's CMO reported that roughly 15.99 million USDT and 5,783.81 TRX moved out of CoinDCX hot wallets and deposit addresses to a TRON address on October 21, with the funds subsequently split and transferred toward Binance, OKX and Gate deposit addresses, in what is being described as a suspected theft.",
+      "current_state_en": "The roughly $16 million CoinDCX suspicious outflow has moved from Salus’s initial suspected-theft report to a public dispute: CoinDCX acknowledges operational losses from failed sweeping of old compromised wallets while denying misleading statements, and blockchain investigators contest its account of address ownership and fund movement.",
+      "current_state_zh": "该约 1600 万美元的 CoinDCX 可疑资金外流事件已从 Salus 的初步疑似被盗报告，发展为 CoinDCX 承认旧钱包资金因归集失败形成运营损失、但否认误导，并与链上调查人员就地址归属和资金性质存在公开争议。",
       "entities": [
+        "after",
+        "breach",
         "cmo",
         "coindcx",
+        "faces",
+        "hack",
+        "million",
+        "operational-losses",
         "salus",
+        "suspected",
         "trx",
-        "usdt"
+        "usdt",
+        "zachxbt"
       ],
       "event_id": "evt_e0ae57f3cefe9440",
       "event_type": "security_incident",
       "first_seen_at": "2026-10-22T06:31:30.926794Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-22T06:31:30.926794Z",
-      "last_updated_at": "2026-10-22T06:31:30.926794Z",
+      "last_material_change_at": "2026-10-22T17:28:55.788994Z",
+      "last_updated_at": "2026-10-22T17:28:55.788994Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_2958273630f20c1f",
+        "evt_5f3c7c547ed4acef"
+      ],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "developing",
       "title_en": "【Salus CMO：CoinDCX 疑似被盗约 1599 万 USDT 及部分 TRX】",
-      "title_zh": "【Salus CMO：CoinDCX 疑似被盗约 1599 万 USDT 及部分 TRX】",
+      "title_zh": "CoinDCX 热钱包及存款地址约 1600 万美元 USDT 与 TRX 可疑流出，交易所承认旧钱包清退失败造成损失",
       "topics": [
+        "blockchain-forensics",
         "coindcx",
         "exchange-security",
+        "fund-flows",
+        "hack-allegation",
+        "hacked-wallets",
         "hacks",
-        "on-chain-forensics"
+        "india-crypto",
+        "on-chain-forensics",
+        "on-chain-investigation",
+        "operational-losses",
+        "proof-of-reserves",
+        "tron",
+        "usdt",
+        "user-deposits",
+        "wallet-compromise",
+        "zachxbt"
       ],
       "updates": [
         {
@@ -182041,12 +182195,12 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Salus's CMO reported that roughly 15.99 million USDT and 5,783.81 TRX moved out of CoinDCX hot wallets and deposit addresses to a TRON address on October 21, with the funds subsequently split and transferred toward Binance, OKX and Gate deposit addresses, in what is being described as a suspected theft.",
-          "current_state_zh": "Salus's CMO reported that roughly 15.99 million USDT and 5,783.81 TRX moved out of CoinDCX hot wallets and deposit addresses to a TRON address on October 21, with the funds subsequently split and transferred toward Binance, OKX and Gate deposit addresses, in what is being described as a suspected theft.",
+          "current_state_zh": "Salus 首席营销官报告称，10 月 21 日约有 1599 万 USDT 和 5,783.81 TRX 从 CoinDCX 热钱包和充值地址转出至一个 TRON 地址，随后资金被拆分并转往 Binance、OKX 和 Gate 的充值地址，此事被描述为疑似盗窃。",
           "detailed_summary_en": "Salus's CMO reported that roughly 15.99 million USDT and 5,783.81 TRX moved out of CoinDCX hot wallets and deposit addresses to a TRON address on October 21, with the funds subsequently split and transferred toward Binance, OKX and Gate deposit addresses, in what is being described as a suspected theft.",
           "detailed_summary_zh": "Salus's CMO reported that roughly 15.99 million USDT and 5,783.81 TRX moved out of CoinDCX hot wallets and deposit addresses to a TRON address on October 21, with the funds subsequently split and transferred toward Binance, OKX and Gate deposit addresses, in what is being described as a suspected theft.",
           "event_id": "evt_e0ae57f3cefe9440",
           "first_seen_at": "2026-10-22T06:31:30.926794Z",
-          "importance_score": 7.0,
+          "importance_score": 7.5,
           "market_impact_en": "",
           "market_impact_zh": "",
           "material_change": true,
@@ -182059,10 +182213,45 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://foresightnews.pro/news/h5Detail/115738"
+            },
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/coindcx-suspected-16m-hack-after-44m-breach-2025-21342"
+            },
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115754"
+            },
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115766"
+            },
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/coindcx-suspicious-outflows-wallet-compromised-2025-exploit?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373223?from=telegram"
             }
           ],
           "story_ids": [
-            "telegram:foresightnews:121031"
+            "telegram:foresightnews:121031",
+            "telegram:wublockchainenglish:26512",
+            "telegram:foresightnews:121051",
+            "telegram:foresightnews:121065",
+            "rss:cointelegraph.com_rss:2fcac433f1546d31",
+            "telegram:theblockbeats:201882"
           ],
           "time_precision": "published",
           "title_en": "【Salus CMO：CoinDCX 疑似被盗约 1599 万 USDT 及部分 TRX】",
@@ -182070,7 +182259,83 @@
           "update_id": "upd_a0f5a11a72f194c0",
           "update_type": "initial",
           "what_changed_en": "Salus's CMO reported that roughly 15.99 million USDT and 5,783.81 TRX moved out of CoinDCX hot wallets and deposit addresses to a TRON address on October 21, with the funds subsequently split and transferred toward Binance, OKX and Gate deposit addresses, in what is being described as a suspected theft.",
-          "what_changed_zh": "Salus's CMO reported that roughly 15.99 million USDT and 5,783.81 TRX moved out of CoinDCX hot wallets and deposit addresses to a TRON address on October 21, with the funds subsequently split and transferred toward Binance, OKX and Gate deposit addresses, in what is being described as a suspected theft."
+          "what_changed_zh": "Salus 首席营销官报告称，10 月 21 日约有 1599 万 USDT 和 5,783.81 TRX 从 CoinDCX 热钱包和充值地址转出至一个 TRON 地址，随后资金被拆分并转往 Binance、OKX 和 Gate 的充值地址，此事被描述为疑似盗窃。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "ZachXBT alleged that about $15.8 million in CoinDCX user deposits remains unaccounted for and that a deposit address linked to a 2025 security incident continued collecting user funds and routing them to CoinDCX's current hot wallet, claims CoinDCX disputes.",
+          "current_state_zh": "ZachXBT 声称约 1580 万美元的 CoinDCX 用户存款仍下落不明，且一个与 2025 年安全事件相关的充值地址仍在收取用户资金并将其转入 CoinDCX 当前热钱包，CoinDCX 对此予以否认。",
+          "detailed_summary_en": "ZachXBT alleged that about $15.8 million in CoinDCX user deposits remains unaccounted for and that a deposit address linked to a 2025 security incident continued collecting user funds and routing them to CoinDCX's current hot wallet, claims CoinDCX disputes.",
+          "detailed_summary_zh": "ZachXBT alleged that about $15.8 million in CoinDCX user deposits remains unaccounted for and that a deposit address linked to a 2025 security incident continued collecting user funds and routing them to CoinDCX's current hot wallet, claims CoinDCX disputes.",
+          "event_id": "evt_e0ae57f3cefe9440",
+          "first_seen_at": "2026-10-22T09:33:09.312268Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T09:03:02Z",
+          "published_at": "2026-10-22T09:03:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373186?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201846"
+          ],
+          "time_precision": "published",
+          "title_en": "⚡️ZachXBT质疑CoinDCX：1580万美元用户存款去向不明",
+          "title_zh": "⚡️ZachXBT质疑CoinDCX：1580万美元用户存款去向不明",
+          "update_id": "upd_09a25e00e1c3c3a6",
+          "update_type": "escalation",
+          "what_changed_en": "ZachXBT alleged that about $15.8 million in CoinDCX user deposits remains unaccounted for and that a deposit address linked to a 2025 security incident continued collecting user funds and routing them to CoinDCX's current hot wallet, claims CoinDCX disputes.",
+          "what_changed_zh": "ZachXBT 声称约 1580 万美元的 CoinDCX 用户存款仍下落不明，且一个与 2025 年安全事件相关的充值地址仍在收取用户资金并将其转入 CoinDCX 当前热钱包，CoinDCX 对此予以否认。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.96,
+          "current_state_en": "The roughly $16 million CoinDCX suspicious outflow has moved from Salus’s initial suspected-theft report to a public dispute: CoinDCX acknowledges operational losses from failed sweeping of old compromised wallets while denying misleading statements, and blockchain investigators contest its account of address ownership and fund movement.",
+          "current_state_zh": "该约 1600 万美元的 CoinDCX 可疑资金外流事件已从 Salus 的初步疑似被盗报告，发展为 CoinDCX 承认旧钱包资金因归集失败形成运营损失、但否认误导，并与链上调查人员就地址归属和资金性质存在公开争议。",
+          "detailed_summary_en": "Blockchain investigators accused CoinDCX of misrepresenting $16M in suspicious on-chain transfers, while the exchange said the wallets were old addresses compromised in July 2025 and no longer in use.",
+          "detailed_summary_zh": "Blockchain investigators accused CoinDCX of misrepresenting $16M in suspicious on-chain transfers, while the exchange said the wallets were old addresses compromised in July 2025 and no longer in use.",
+          "event_id": "evt_e0ae57f3cefe9440",
+          "first_seen_at": "2026-10-22T17:28:55.788994Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T15:30:15Z",
+          "published_at": "2026-10-22T15:30:15Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Protos",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://protos.com/crypto-exchange-coindcx-lying-about-16m-hack-say-blockchain-investigators/"
+            }
+          ],
+          "story_ids": [
+            "rss:protos.com_feed_:c00cc6f4f9a5e1f9"
+          ],
+          "time_precision": "published",
+          "title_en": "Crypto exchange CoinDCX ‘lying’ about $16M hack, say blockchain investigators",
+          "title_zh": "区块链调查人员称加密交易所 CoinDCX 就 1600 万美元黑客事件“撒谎”",
+          "update_id": "upd_ac8367f174caf5b5",
+          "update_type": "response",
+          "what_changed_en": "CoinDCX responded that the addresses were old wallets created in January 2025 and compromised in July 2025, claimed they were no longer in use, and described the roughly $16 million as “operational losses”; blockchain investigators disputed the account, citing contradictory statements and laundering routes that differed from last year’s hack.",
+          "what_changed_zh": "CoinDCX 回应称相关地址是 2025 年 1 月创建、2025 年 7 月已被攻破且不再使用的旧钱包，并将约 1600 万美元损失称为“部分运营损失”；链上调查人员反驳其说法，指其前后表述矛盾，且资金最终流向与旧事件不同的洗钱地址。"
         }
       ]
     },
@@ -182150,214 +182415,6 @@
           "update_type": "initial",
           "what_changed_en": "Bybit's Dubai entity, Bybit Fintech FZE, obtained a Virtual Asset Service Provider license from Dubai's VARA covering spot crypto trading, converting its 2024 in-principle approval into a full authorization.",
           "what_changed_zh": "Bybit's Dubai entity, Bybit Fintech FZE, obtained a Virtual Asset Service Provider license from Dubai's VARA covering spot crypto trading, converting its 2024 in-principle approval into a full authorization."
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "CoinDCX has admitted operational losses from a failed process to move deposits out of previously compromised wallets, saying affected accounts were credited and current wallets are safe; scrutiny continues over the roughly $16 million in suspicious transfers and whether old addresses remained in use.",
-      "current_state_zh": "CoinDCX 已承认因旧 compromised 钱包存款转出流程失败而产生运营损失，并称受影响账户已补记、当前钱包安全；但围绕约 1600 万美元可疑转账及旧地址是否仍被使用的争议仍在持续监测中。",
-      "entities": [
-        "after",
-        "breach",
-        "cmo",
-        "coindcx",
-        "faces",
-        "hack",
-        "million",
-        "operational-losses",
-        "salus",
-        "suspected",
-        "zachxbt"
-      ],
-      "event_id": "evt_2958273630f20c1f",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-10-22T09:33:07.936048Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-22T13:45:08.238748Z",
-      "last_updated_at": "2026-10-22T13:45:08.238748Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "developing",
-      "title_en": "CoinDCX Faces Suspected $16 Million Hack After $44 Million Breach in 2025",
-      "title_zh": "【CoinDCX 称旧钱包链上活动与当前运营无关，ZachXBT 质疑其仍用于归集用户存款】",
-      "topics": [
-        "coindcx",
-        "exchange-security",
-        "fund-flows",
-        "hack-allegation",
-        "hacked-wallets",
-        "hacks",
-        "india-crypto",
-        "on-chain-forensics",
-        "operational-losses",
-        "proof-of-reserves",
-        "tron",
-        "usdt",
-        "wallet-compromise",
-        "zachxbt"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "On-chain investigators flagged roughly $16 million in USDT and TRX flowing from CoinDCX hot wallets and deposit addresses to a single TRON address before being split toward Binance, OKX and Gate deposit addresses, an unconfirmed breach at the Indian exchange that previously lost about $44 million in July 2025.",
-          "current_state_zh": "链上调查人员标记约 1600 万美元的 USDT 和 TRX 从 CoinDCX 热钱包和充值地址流向一个 TRON 地址，随后被拆分转往 Binance、OKX 和 Gate 的充值地址；这家印度交易所此前在 2025 年 7 月损失约 4400 万美元，此次疑似遭入侵尚未得到证实。",
-          "detailed_summary_en": "On-chain investigators flagged roughly $16 million in USDT and TRX flowing from CoinDCX hot wallets and deposit addresses to a single TRON address before being split toward Binance, OKX and Gate deposit addresses, an unconfirmed breach at the Indian exchange that previously lost about $44 million in July 2025.",
-          "detailed_summary_zh": "On-chain investigators flagged roughly $16 million in USDT and TRX flowing from CoinDCX hot wallets and deposit addresses to a single TRON address before being split toward Binance, OKX and Gate deposit addresses, an unconfirmed breach at the Indian exchange that previously lost about $44 million in July 2025.",
-          "event_id": "evt_2958273630f20c1f",
-          "first_seen_at": "2026-10-22T09:33:07.936048Z",
-          "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-22T08:06:19Z",
-          "published_at": "2026-10-22T08:06:19Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "wublockchainenglish",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://wublockchain.xyz/news/coindcx-suspected-16m-hack-after-44m-breach-2025-21342"
-            }
-          ],
-          "story_ids": [
-            "telegram:wublockchainenglish:26512"
-          ],
-          "time_precision": "published",
-          "title_en": "CoinDCX Faces Suspected $16 Million Hack After $44 Million Breach in 2025",
-          "title_zh": "CoinDCX Faces Suspected $16 Million Hack After $44 Million Breach in 2025",
-          "update_id": "upd_614e76fa35d4ae92",
-          "update_type": "initial",
-          "what_changed_en": "On-chain investigators flagged roughly $16 million in USDT and TRX flowing from CoinDCX hot wallets and deposit addresses to a single TRON address before being split toward Binance, OKX and Gate deposit addresses, an unconfirmed breach at the Indian exchange that previously lost about $44 million in July 2025.",
-          "what_changed_zh": "链上调查人员标记约 1600 万美元的 USDT 和 TRX 从 CoinDCX 热钱包和充值地址流向一个 TRON 地址，随后被拆分转往 Binance、OKX 和 Gate 的充值地址；这家印度交易所此前在 2025 年 7 月损失约 4400 万美元，此次疑似遭入侵尚未得到证实。"
-        },
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.93,
-          "current_state_en": "CoinDCX denies that the old-wallet activity affects current operations and says user funds are safe, while ZachXBT disputes whether a linked deposit address was still used to consolidate user deposits; the earlier roughly 15.99 million USDT transfer to a TRON address remains disputed and under monitoring.",
-          "current_state_zh": "CoinDCX 否认旧钱包活动影响当前运营并称用户资金安全，但 ZachXBT 对旧充值地址是否仍用于归集用户存款提出质疑；此前约 1599 万 USDT 转入 TRON 地址的事件仍处于争议和监测中。",
-          "detailed_summary_en": "CoinDCX said recent on-chain activity tied to wallets compromised in July 2025 is unrelated to its current operations, while ZachXBT alleged that a deposit address linked to the old incident continued receiving gas and consolidating user deposits into CoinDCX’s current public hot wallet through 2026, following a roughly 15.99 million USDT transfer from CoinDCX wallets to a TRON address on October 21.",
-          "detailed_summary_zh": "CoinDCX said recent on-chain activity tied to wallets compromised in July 2025 is unrelated to its current operations, while ZachXBT alleged that a deposit address linked to the old incident continued receiving gas and consolidating user deposits into CoinDCX’s current public hot wallet through 2026, following a roughly 15.99 million USDT transfer from CoinDCX wallets to a TRON address on October 21.",
-          "event_id": "evt_2958273630f20c1f",
-          "first_seen_at": "2026-10-22T09:33:10.603602Z",
-          "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-22T09:05:13Z",
-          "published_at": "2026-10-22T09:05:13Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "foresightnews",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://foresightnews.pro/news/h5Detail/115754"
-            }
-          ],
-          "story_ids": [
-            "telegram:foresightnews:121051"
-          ],
-          "time_precision": "published",
-          "title_en": "【CoinDCX 称旧钱包链上活动与当前运营无关，ZachXBT 质疑其仍用于归集用户存款】",
-          "title_zh": "【CoinDCX 称旧钱包链上活动与当前运营无关，ZachXBT 质疑其仍用于归集用户存款】",
-          "update_id": "upd_f9d45cc5149c505d",
-          "update_type": "response",
-          "what_changed_en": "CoinDCX responded that the on-chain activity involved old wallets compromised in July 2025 and unused since, unrelated to current operations; ZachXBT disputed this, alleging a linked deposit address was still used by a liquidity provider through 2026 to receive gas and consolidate user deposits into CoinDCX’s current public hot wallet.",
-          "what_changed_zh": "CoinDCX 回应称相关链上活动来自 2025 年 7 月已被入侵且此后停用的旧钱包，与当前运营无关；ZachXBT 则质疑该旧充值地址直至 2026 年仍被流动性提供商用于接收 Gas 并归集用户存款至 CoinDCX 当前公开热钱包。"
-        },
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.9,
-          "current_state_en": "CoinDCX denies that the old-wallet activity affects current operations and says user funds are safe, but ZachXBT disputes whether a linked deposit address was still used to consolidate user deposits, and Salus CMO Darcy alleges that addresses in the latest proof of reserves sent funds to suspected hacker addresses; the suspected roughly $16 million breach remains disputed and under monitoring.",
-          "current_state_zh": "CoinDCX 否认旧钱包活动影响当前运营并称用户资金安全，但 ZachXBT 质疑相关充值地址仍被用于归集用户存款，Salus 首席营销官 Darcy 又指最新储备证明所列地址向疑似黑客地址转账；该疑似约 1600 万美元入侵事件仍处于争议和监测中。",
-          "detailed_summary_en": "Salus CMO Darcy disputed CoinDCX's claim that the recent suspicious transfers involved only a deactivated legacy wallet, alleging that two addresses in the exchange's latest proof of reserves sent funds to suspected hacker addresses and that one hot wallet kept distributing 15 TRX for gas around the time of the alleged incident, with some funds flowing to Binance, OKX, Gate and Huione/Xinbi-linked addresses.",
-          "detailed_summary_zh": "Salus CMO Darcy disputed CoinDCX's claim that the recent suspicious transfers involved only a deactivated legacy wallet, alleging that two addresses in the exchange's latest proof of reserves sent funds to suspected hacker addresses and that one hot wallet kept distributing 15 TRX for gas around the time of the alleged incident, with some funds flowing to Binance, OKX, Gate and Huione/Xinbi-linked addresses.",
-          "event_id": "evt_2958273630f20c1f",
-          "first_seen_at": "2026-10-22T13:44:18.536860Z",
-          "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-22T10:17:42Z",
-          "published_at": "2026-10-22T10:17:42Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "foresightnews",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://foresightnews.pro/news/h5Detail/115766"
-            }
-          ],
-          "story_ids": [
-            "telegram:foresightnews:121065"
-          ],
-          "time_precision": "published",
-          "title_en": "【Salus CMO 质疑 CoinDCX 的旧钱包解释，称最新储备证明所列地址向疑似黑客地址转账】",
-          "title_zh": "【Salus CMO 质疑 CoinDCX 的旧钱包解释，称最新储备证明所列地址向疑似黑客地址转账】",
-          "update_id": "upd_3eb746ad8a1f4c1e",
-          "update_type": "escalation",
-          "what_changed_en": "Salus CMO Darcy further disputed CoinDCX’s legacy-wallet explanation, alleging that two addresses listed in CoinDCX’s latest proof of reserves sent funds to suspected hacker addresses and that one hot wallet kept distributing 15 TRX for gas around the alleged incident, with some funds flowing to Binance, OKX, Gate and Huione/Xinbi-linked addresses.",
-          "what_changed_zh": "Salus 首席营销官 Darcy 进一步质疑 CoinDCX 的旧钱包解释，称 CoinDCX 最新储备证明中列出的两个地址曾向疑似黑客地址转账，且其中一个热钱包在所称攻击事件前后持续分发 15 TRX 用于支付链上手续费；部分资金流向币安、OKX、Gate 及与 Huione、Xinbi 有关的地址。"
-        },
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.96,
-          "current_state_en": "CoinDCX has admitted operational losses from a failed process to move deposits out of previously compromised wallets, saying affected accounts were credited and current wallets are safe; scrutiny continues over the roughly $16 million in suspicious transfers and whether old addresses remained in use.",
-          "current_state_zh": "CoinDCX 已承认因旧 compromised 钱包存款转出流程失败而产生运营损失，并称受影响账户已补记、当前钱包安全；但围绕约 1600 万美元可疑转账及旧地址是否仍被使用的争议仍在持续监测中。",
-          "detailed_summary_en": "CoinDCX acknowledged operational losses after failing to sweep user deposits out of wallets compromised in its July 2025 hack, following scrutiny of about $16 million in suspicious transfers, and said it has credited all affected accounts.",
-          "detailed_summary_zh": "CoinDCX acknowledged operational losses after failing to sweep user deposits out of wallets compromised in its July 2025 hack, following scrutiny of about $16 million in suspicious transfers, and said it has credited all affected accounts.",
-          "event_id": "evt_2958273630f20c1f",
-          "first_seen_at": "2026-10-22T13:45:08.238748Z",
-          "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-22T10:53:10Z",
-          "published_at": "2026-10-22T10:53:10Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "Cointelegraph",
-              "official": false,
-              "source_type": "rss",
-              "url": "https://cointelegraph.com/news/coindcx-suspicious-outflows-wallet-compromised-2025-exploit?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
-            },
-            {
-              "label": "theblockbeats",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://m.theblockbeats.info/flash/373223?from=telegram"
-            }
-          ],
-          "story_ids": [
-            "rss:cointelegraph.com_rss:2fcac433f1546d31",
-            "telegram:theblockbeats:201882"
-          ],
-          "time_precision": "published",
-          "title_en": "CoinDCX admits ‘operational losses’ after $16M wallet transfers draw scrutiny",
-          "title_zh": "CoinDCX 在 1600 万美元钱包转账引发审查后承认“运营损失”",
-          "update_id": "upd_b846080b81477ceb",
-          "update_type": "response",
-          "what_changed_en": "CoinDCX admitted “operational losses” after failing to sweep user deposits out of wallets compromised in its July 2025 hack, saying it absorbed the losses and credited all affected accounts, while maintaining that current wallets were unaffected, no active-wallet funds were compromised and customer assets remained in segregated cold wallets.",
-          "what_changed_zh": "CoinDCX 承认，因未能及时将用户存款从 2025 年 7 月已被入侵的钱包转出，发生了“运营损失”，并称损失由 CoinDCX 吸收、所有受影响账户已获补记；同时坚称当前钱包未受影响、活跃钱包资金未被盗、客户资产仍在隔离冷钱包中。"
         }
       ]
     },
@@ -182560,75 +182617,6 @@
           "update_type": "initial",
           "what_changed_en": "Tesla and NVIDIA will invest a combined 3.7 trillion KRW (~$2.5B) in Samsung Electro-Mechanics to expand next-generation FC-BGA substrate lines — Tesla's dedicated Sejong line for FSD/Optimus AI chips under a 2029–2033 supply deal, and NVIDIA-funded Sejong and Busan expansions for AI compute and datacenter networking substrates, with mass production targeted for H2 2028.",
           "what_changed_zh": "Tesla and NVIDIA will invest a combined 3.7 trillion KRW (~$2.5B) in Samsung Electro-Mechanics to expand next-generation FC-BGA substrate lines — Tesla's dedicated Sejong line for FSD/Optimus AI chips under a 2029–2033 supply deal, and NVIDIA-funded Sejong and Busan expansions for AI compute and datacenter networking substrates, with mass production targeted for H2 2028."
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "ZachXBT alleged that about $15.8 million in CoinDCX user deposits remains unaccounted for and that a deposit address linked to a 2025 security incident continued collecting user funds and routing them to CoinDCX's current hot wallet, claims CoinDCX disputes.",
-      "current_state_zh": "ZachXBT alleged that about $15.8 million in CoinDCX user deposits remains unaccounted for and that a deposit address linked to a 2025 security incident continued collecting user funds and routing them to CoinDCX's current hot wallet, claims CoinDCX disputes.",
-      "entities": [
-        "coindcx",
-        "zachxbt"
-      ],
-      "event_id": "evt_5f3c7c547ed4acef",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-10-22T09:33:09.312268Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-22T09:33:09.312268Z",
-      "last_updated_at": "2026-10-22T09:33:09.312268Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "⚡️ZachXBT质疑CoinDCX：1580万美元用户存款去向不明",
-      "title_zh": "⚡️ZachXBT质疑CoinDCX：1580万美元用户存款去向不明",
-      "topics": [
-        "coindcx",
-        "exchange-security",
-        "india-crypto",
-        "user-deposits",
-        "zachxbt"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "ZachXBT alleged that about $15.8 million in CoinDCX user deposits remains unaccounted for and that a deposit address linked to a 2025 security incident continued collecting user funds and routing them to CoinDCX's current hot wallet, claims CoinDCX disputes.",
-          "current_state_zh": "ZachXBT alleged that about $15.8 million in CoinDCX user deposits remains unaccounted for and that a deposit address linked to a 2025 security incident continued collecting user funds and routing them to CoinDCX's current hot wallet, claims CoinDCX disputes.",
-          "detailed_summary_en": "ZachXBT alleged that about $15.8 million in CoinDCX user deposits remains unaccounted for and that a deposit address linked to a 2025 security incident continued collecting user funds and routing them to CoinDCX's current hot wallet, claims CoinDCX disputes.",
-          "detailed_summary_zh": "ZachXBT alleged that about $15.8 million in CoinDCX user deposits remains unaccounted for and that a deposit address linked to a 2025 security incident continued collecting user funds and routing them to CoinDCX's current hot wallet, claims CoinDCX disputes.",
-          "event_id": "evt_5f3c7c547ed4acef",
-          "first_seen_at": "2026-10-22T09:33:09.312268Z",
-          "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-22T09:03:02Z",
-          "published_at": "2026-10-22T09:03:02Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "theblockbeats",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://m.theblockbeats.info/flash/373186?from=telegram"
-            }
-          ],
-          "story_ids": [
-            "telegram:theblockbeats:201846"
-          ],
-          "time_precision": "published",
-          "title_en": "⚡️ZachXBT质疑CoinDCX：1580万美元用户存款去向不明",
-          "title_zh": "⚡️ZachXBT质疑CoinDCX：1580万美元用户存款去向不明",
-          "update_id": "upd_09a25e00e1c3c3a6",
-          "update_type": "initial",
-          "what_changed_en": "ZachXBT alleged that about $15.8 million in CoinDCX user deposits remains unaccounted for and that a deposit address linked to a 2025 security incident continued collecting user funds and routing them to CoinDCX's current hot wallet, claims CoinDCX disputes.",
-          "what_changed_zh": "ZachXBT alleged that about $15.8 million in CoinDCX user deposits remains unaccounted for and that a deposit address linked to a 2025 security incident continued collecting user funds and routing them to CoinDCX's current hot wallet, claims CoinDCX disputes."
         }
       ]
     },
@@ -183128,74 +183116,6 @@
       ]
     },
     {
-      "category": "technology",
-      "confidence": 0.75,
-      "current_state_en": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
-      "current_state_zh": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
-      "entities": [
-        "php",
-        "wiz"
-      ],
-      "event_id": "evt_4ed4524ed3448c7b",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-10-22T13:44:18.540577Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-22T13:44:18.540577Z",
-      "last_updated_at": "2026-10-22T13:44:18.540577Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "【PHP 两项漏洞公开前已遭黑客利用，Wiz 估计漏洞波及范围可能覆盖约 70% 的互联网】",
-      "title_zh": "【PHP 两项漏洞公开前已遭黑客利用，Wiz 估计漏洞波及范围可能覆盖约 70% 的互联网】",
-      "topics": [
-        "active-exploitation",
-        "cybersecurity",
-        "internet-infrastructure",
-        "php"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
-          "current_state_zh": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
-          "detailed_summary_en": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
-          "detailed_summary_zh": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
-          "event_id": "evt_4ed4524ed3448c7b",
-          "first_seen_at": "2026-10-22T13:44:18.540577Z",
-          "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-22T11:45:49Z",
-          "published_at": "2026-10-22T11:45:49Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "foresightnews",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://foresightnews.pro/news/h5Detail/115774"
-            }
-          ],
-          "story_ids": [
-            "telegram:foresightnews:121074"
-          ],
-          "time_precision": "published",
-          "title_en": "【PHP 两项漏洞公开前已遭黑客利用，Wiz 估计漏洞波及范围可能覆盖约 70% 的互联网】",
-          "title_zh": "【PHP 两项漏洞公开前已遭黑客利用，Wiz 估计漏洞波及范围可能覆盖约 70% 的互联网】",
-          "update_id": "upd_2798bc12f987cf01",
-          "update_type": "initial",
-          "what_changed_en": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised.",
-          "what_changed_zh": "Two PHP security vulnerabilities were exploited in the wild before their public disclosure, with over 22.6 million exposed instances identified and researchers warning that affected systems may already be compromised."
-        }
-      ]
-    },
-    {
       "category": "crypto",
       "confidence": 0.75,
       "current_state_en": "Visa正洽谈以约25亿美元收购加密资产托管基础设施公司Fireblocks，以扩大其在数字资产托管和区块链支付领域的布局。",
@@ -183235,7 +183155,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Visa has reportedly entered late-stage negotiations to acquire stablecoin infrastructure and custody firm Fireblocks for approximately $2.5 billion, according to Axios sources.",
-          "current_state_zh": "Visa has reportedly entered late-stage negotiations to acquire stablecoin infrastructure and custody firm Fireblocks for approximately $2.5 billion, according to Axios sources.",
+          "current_state_zh": "Visa正洽谈以约25亿美元收购加密资产托管基础设施公司Fireblocks，以扩大其在数字资产托管和区块链支付领域的布局。",
           "detailed_summary_en": "Visa has reportedly entered late-stage negotiations to acquire stablecoin infrastructure and custody firm Fireblocks for approximately $2.5 billion, according to Axios sources.",
           "detailed_summary_zh": "Visa has reportedly entered late-stage negotiations to acquire stablecoin infrastructure and custody firm Fireblocks for approximately $2.5 billion, according to Axios sources.",
           "event_id": "evt_c84b7fef967af600",
@@ -183278,7 +183198,7 @@
           "update_id": "upd_d0d426e227714e1f",
           "update_type": "initial",
           "what_changed_en": "Visa has reportedly entered late-stage negotiations to acquire stablecoin infrastructure and custody firm Fireblocks for approximately $2.5 billion, according to Axios sources.",
-          "what_changed_zh": "Visa has reportedly entered late-stage negotiations to acquire stablecoin infrastructure and custody firm Fireblocks for approximately $2.5 billion, according to Axios sources."
+          "what_changed_zh": "Visa正洽谈以约25亿美元收购加密资产托管基础设施公司Fireblocks，以扩大其在数字资产托管和区块链支付领域的布局。"
         }
       ]
     },
@@ -183634,17 +183554,18 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "a16z is removing 'Crypto' from the name of its flagship blockchain fund and shifting its focus toward other investment areas, with the fund's first founding member also departing.",
-      "current_state_zh": "a16z is removing 'Crypto' from the name of its flagship blockchain fund and shifting its focus toward other investment areas, with the fund's first founding member also departing.",
+      "current_state_en": "a16z crypto has officially been renamed a16z Frontier, and its new fund will continue investing in crypto and related companies while expanding into broader frontier technology startups.",
+      "current_state_zh": "a16z crypto 已正式更名为 a16z Frontier，新基金将在继续布局加密货币及相关企业的同时，拓展至更广泛的前沿科技初创企业。",
       "entities": [
-        "a16z"
+        "a16z",
+        "frontier"
       ],
       "event_id": "evt_1449c4c565b900eb",
       "event_type": "other",
       "first_seen_at": "2026-10-22T13:44:19.183568Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-22T13:44:19.183568Z",
-      "last_updated_at": "2026-10-22T13:44:19.183568Z",
+      "last_material_change_at": "2026-10-22T17:28:45.585556Z",
+      "last_updated_at": "2026-10-22T17:28:45.585556Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -183654,8 +183575,11 @@
       "topics": [
         "a16z",
         "crypto-funds",
+        "crypto-investment",
+        "frontier-tech",
         "industry-sentiment",
         "institutional",
+        "stablecoins",
         "venture-capital"
       ],
       "updates": [
@@ -183666,7 +183590,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "a16z is removing 'Crypto' from the name of its flagship blockchain fund and shifting its focus toward other investment areas, with the fund's first founding member also departing.",
-          "current_state_zh": "a16z is removing 'Crypto' from the name of its flagship blockchain fund and shifting its focus toward other investment areas, with the fund's first founding member also departing.",
+          "current_state_zh": "a16z 正从其旗舰区块链基金名称中移除“Crypto”，并将重心转向其他投资领域，该基金首位创始成员也已离职。",
           "detailed_summary_en": "a16z is removing 'Crypto' from the name of its flagship blockchain fund and shifting its focus toward other investment areas, with the fund's first founding member also departing.",
           "detailed_summary_zh": "a16z is removing 'Crypto' from the name of its flagship blockchain fund and shifting its focus toward other investment areas, with the fund's first founding member also departing.",
           "event_id": "evt_1449c4c565b900eb",
@@ -183702,7 +183626,52 @@
           "update_id": "upd_2ba427489aa32bac",
           "update_type": "initial",
           "what_changed_en": "a16z is removing 'Crypto' from the name of its flagship blockchain fund and shifting its focus toward other investment areas, with the fund's first founding member also departing.",
-          "what_changed_zh": "a16z is removing 'Crypto' from the name of its flagship blockchain fund and shifting its focus toward other investment areas, with the fund's first founding member also departing."
+          "what_changed_zh": "a16z 正从其旗舰区块链基金名称中移除“Crypto”，并将重心转向其他投资领域，该基金首位创始成员也已离职。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.94,
+          "current_state_en": "a16z crypto has officially been renamed a16z Frontier, and its new fund will continue investing in crypto and related companies while expanding into broader frontier technology startups.",
+          "current_state_zh": "a16z crypto 已正式更名为 a16z Frontier，新基金将在继续布局加密货币及相关企业的同时，拓展至更广泛的前沿科技初创企业。",
+          "detailed_summary_en": "a16z crypto has renamed itself a16z Frontier and expanded its new fund's investment scope from crypto startups to broader frontier technology while continuing to invest in and advocate for crypto.",
+          "detailed_summary_zh": "a16z crypto has renamed itself a16z Frontier and expanded its new fund's investment scope from crypto startups to broader frontier technology while continuing to invest in and advocate for crypto.",
+          "event_id": "evt_1449c4c565b900eb",
+          "first_seen_at": "2026-10-22T17:28:45.585556Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T16:15:19Z",
+          "published_at": "2026-10-22T16:15:19Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115801"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373273?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:121102",
+            "telegram:theblockbeats:201932"
+          ],
+          "time_precision": "published",
+          "title_en": "【a16z Frontier 确认将继续布局加密领域，并拓展至更广泛的前沿科技初创企业】",
+          "title_zh": "【a16z Frontier 确认将继续布局加密领域，并拓展至更广泛的前沿科技初创企业】",
+          "update_id": "upd_ab6fb7336eeed025",
+          "update_type": "confirmation",
+          "what_changed_en": "a16z officially announced that a16z crypto is renamed a16z Frontier and that the new fund's scope is expanded from crypto startups to broader frontier technology startups while continuing to invest in crypto and related companies and advocate for sensible crypto regulation; the fund is led by Chris Dixon, Marc Andreessen, Ben Horowitz, Eddy Lazzarin, and Guy Wuollet.",
+          "what_changed_zh": "a16z 正式公告将 a16z crypto 更名为 a16z Frontier，并把新基金投资范围从加密货币初创公司扩展至更广泛的前沿科技初创公司，同时继续投资加密货币及相关企业并倡导合理监管；新基金由 Chris Dixon、Marc Andreessen、Ben Horowitz、Eddy Lazzarin 和 Guy Wuollet 共同领导。"
         }
       ]
     },
@@ -184223,6 +184192,831 @@
           "what_changed_zh": "SoFi Bank launched SoFi Earn, an FDIC-insured tokenized deposit paying 4.40% APY that users can convert one-for-one into SoFiUSD stablecoin for 24/7 crypto transactions and external transfers."
         }
       ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Perplexity and NVIDIA introduce JOLT, a self-distillation method that trains the teacher role with outcome rewards and KL constraints, outperforming prior self-distillation and GRPO on MATH while showing weaker results on an agent benchmark unless student rewards are added.",
+      "current_state_zh": "Perplexity and NVIDIA introduce JOLT, a self-distillation method that trains the teacher role with outcome rewards and KL constraints, outperforming prior self-distillation and GRPO on MATH while showing weaker results on an agent benchmark unless student rewards are added.",
+      "entities": [
+        "perplexity"
+      ],
+      "event_id": "evt_c01d7cebee7d048f",
+      "event_type": "other",
+      "first_seen_at": "2026-10-22T17:28:45.167261Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T17:28:45.167261Z",
+      "last_updated_at": "2026-10-22T17:28:45.167261Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Perplexity改进AI自蒸馏：不光训练学生，也要训练老师",
+      "title_zh": "Perplexity改进AI自蒸馏：不光训练学生，也要训练老师",
+      "topics": [
+        "ai-self-distillation",
+        "llm-training",
+        "nvidia",
+        "perplexity",
+        "reinforcement-learning"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Perplexity and NVIDIA introduce JOLT, a self-distillation method that trains the teacher role with outcome rewards and KL constraints, outperforming prior self-distillation and GRPO on MATH while showing weaker results on an agent benchmark unless student rewards are added.",
+          "current_state_zh": "Perplexity and NVIDIA introduce JOLT, a self-distillation method that trains the teacher role with outcome rewards and KL constraints, outperforming prior self-distillation and GRPO on MATH while showing weaker results on an agent benchmark unless student rewards are added.",
+          "detailed_summary_en": "Perplexity and NVIDIA introduce JOLT, a self-distillation method that trains the teacher role with outcome rewards and KL constraints, outperforming prior self-distillation and GRPO on MATH while showing weaker results on an agent benchmark unless student rewards are added.",
+          "detailed_summary_zh": "Perplexity and NVIDIA introduce JOLT, a self-distillation method that trains the teacher role with outcome rewards and KL constraints, outperforming prior self-distillation and GRPO on MATH while showing weaker results on an agent benchmark unless student rewards are added.",
+          "event_id": "evt_c01d7cebee7d048f",
+          "first_seen_at": "2026-10-22T17:28:45.167261Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T15:03:02Z",
+          "published_at": "2026-10-22T15:03:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373265?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201924"
+          ],
+          "time_precision": "published",
+          "title_en": "Perplexity改进AI自蒸馏：不光训练学生，也要训练老师",
+          "title_zh": "Perplexity改进AI自蒸馏：不光训练学生，也要训练老师",
+          "update_id": "upd_91376963845bac65",
+          "update_type": "initial",
+          "what_changed_en": "Perplexity and NVIDIA introduce JOLT, a self-distillation method that trains the teacher role with outcome rewards and KL constraints, outperforming prior self-distillation and GRPO on MATH while showing weaker results on an agent benchmark unless student rewards are added.",
+          "what_changed_zh": "Perplexity and NVIDIA introduce JOLT, a self-distillation method that trains the teacher role with outcome rewards and KL constraints, outperforming prior self-distillation and GRPO on MATH while showing weaker results on an agent benchmark unless student rewards are added."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Uniswap v4 Aggregator Hooks are live on Ethereum mainnet, Base, and Robinhood Chain, initially supporting seven external sources including Curve, Fluid, and PancakeSwap; swaps routed through them incur protocol fees contributing to UNI burns.",
+      "current_state_zh": "Uniswap v4 Aggregator Hooks 已上线，覆盖以太坊主网、Base 与 Robinhood Chain，首日支持 Curve、Fluid、PancakeSwap 等七个外部来源；经其路由的兑换将收取协议费并贡献于 UNI 销毁。",
+      "entities": [
+        "aggregator",
+        "hooks",
+        "uniswap"
+      ],
+      "event_id": "evt_0bdc384ad2f0d56b",
+      "event_type": "product_release",
+      "first_seen_at": "2026-10-22T17:28:45.581747Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T17:28:45.581747Z",
+      "last_updated_at": "2026-10-22T17:28:45.581747Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【Uniswap Aggregator Hooks 上线，可封装外部流动性来源转化为 v4 流动性池】",
+      "title_zh": "【Uniswap Aggregator Hooks 上线，可封装外部流动性来源转化为 v4 流动性池】",
+      "topics": [
+        "dex-aggregators",
+        "liquidity",
+        "liquidity-aggregation",
+        "uni-burn",
+        "uniswap",
+        "uniswap-v4",
+        "v4-hooks"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Uniswap launched Aggregator Hooks, letting v4 wrap external liquidity sources such as Curve, Fluid, and PancakeSwap into v4 liquidity pools, live on Ethereum mainnet, Base, and Robinhood Chain via the Uniswap Web app and API.",
+          "current_state_zh": "Uniswap 推出 Aggregator Hooks，使 v4 能将 Curve、Fluid 和 PancakeSwap 等外部流动性来源接入 v4 流动性池，已通过 Uniswap Web 应用和 API 在以太坊主网、Base 和 Robinhood Chain 上线。",
+          "detailed_summary_en": "Uniswap launched Aggregator Hooks, letting v4 wrap external liquidity sources such as Curve, Fluid, and PancakeSwap into v4 liquidity pools, live on Ethereum mainnet, Base, and Robinhood Chain via the Uniswap Web app and API.",
+          "detailed_summary_zh": "Uniswap launched Aggregator Hooks, letting v4 wrap external liquidity sources such as Curve, Fluid, and PancakeSwap into v4 liquidity pools, live on Ethereum mainnet, Base, and Robinhood Chain via the Uniswap Web app and API.",
+          "event_id": "evt_0bdc384ad2f0d56b",
+          "first_seen_at": "2026-10-22T17:28:45.581747Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T13:54:34Z",
+          "published_at": "2026-10-22T13:54:34Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115791"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:121092"
+          ],
+          "time_precision": "published",
+          "title_en": "【Uniswap Aggregator Hooks 上线，可封装外部流动性来源转化为 v4 流动性池】",
+          "title_zh": "【Uniswap Aggregator Hooks 上线，可封装外部流动性来源转化为 v4 流动性池】",
+          "update_id": "upd_2b9ff53c171b0efb",
+          "update_type": "initial",
+          "what_changed_en": "Uniswap launched Aggregator Hooks, letting v4 wrap external liquidity sources such as Curve, Fluid, and PancakeSwap into v4 liquidity pools, live on Ethereum mainnet, Base, and Robinhood Chain via the Uniswap Web app and API.",
+          "what_changed_zh": "Uniswap 推出 Aggregator Hooks，使 v4 能将 Curve、Fluid 和 PancakeSwap 等外部流动性来源接入 v4 流动性池，已通过 Uniswap Web 应用和 API 在以太坊主网、Base 和 Robinhood Chain 上线。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.92,
+          "current_state_en": "Uniswap v4 Aggregator Hooks are live on Ethereum mainnet, Base, and Robinhood Chain, initially supporting seven external sources including Curve, Fluid, and PancakeSwap; swaps routed through them incur protocol fees contributing to UNI burns.",
+          "current_state_zh": "Uniswap v4 Aggregator Hooks 已上线，覆盖以太坊主网、Base 与 Robinhood Chain，首日支持 Curve、Fluid、PancakeSwap 等七个外部来源；经其路由的兑换将收取协议费并贡献于 UNI 销毁。",
+          "detailed_summary_en": "Uniswap launched v4 Aggregator Hooks, letting external liquidity sources such as Curve, Fluid, and PancakeSwap be wrapped as v4 pools and routed through Uniswap on Ethereum, Base, and Robinhood Chain, with swap fees contributing to UNI burns.",
+          "detailed_summary_zh": "Uniswap launched v4 Aggregator Hooks, letting external liquidity sources such as Curve, Fluid, and PancakeSwap be wrapped as v4 pools and routed through Uniswap on Ethereum, Base, and Robinhood Chain, with swap fees contributing to UNI burns.",
+          "event_id": "evt_0bdc384ad2f0d56b",
+          "first_seen_at": "2026-10-22T17:28:45.160025Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T13:56:02Z",
+          "published_at": "2026-10-22T13:56:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373249?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201908"
+          ],
+          "time_precision": "published",
+          "title_en": "Uniswap v4Aggregator Hooks上线，可将外部流动性包装为v4池",
+          "title_zh": "Uniswap v4Aggregator Hooks上线，可将外部流动性包装为v4池",
+          "update_id": "upd_a314cf6881b2685d",
+          "update_type": "confirmation",
+          "what_changed_en": "Adds that the launch supports seven external sources on day one, including Curve, Fluid, and PancakeSwap; swaps routed through external sources incur protocol fees contributing to UNI burns; quotes refresh each block and settle in a single transaction without new approvals.",
+          "what_changed_zh": "上线首日支持七个外部来源（包括 Curve、Fluid、PancakeSwap）；经外部来源路由的兑换将收取协议费并贡献于 UNI 销毁；每区块拉取最新报价并在单笔交易内完成结算，无需新增授权。"
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Morpho has launched support for Robinhood stock tokens as collateral for stablecoin loans, with Robinhood Chain supplying the tokenization infrastructure and third-party apps able to integrate the lending markets.",
+      "current_state_zh": "Morpho has launched support for Robinhood stock tokens as collateral for stablecoin loans, with Robinhood Chain supplying the tokenization infrastructure and third-party apps able to integrate the lending markets.",
+      "entities": [
+        "morpho",
+        "robinhood"
+      ],
+      "event_id": "evt_a5b3bd1e4418b233",
+      "event_type": "other",
+      "first_seen_at": "2026-10-22T17:28:45.583293Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T17:28:45.583293Z",
+      "last_updated_at": "2026-10-22T17:28:45.583293Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【Morpho 支持以 Robinhood 股票代币为抵押品借入稳定币】",
+      "title_zh": "【Morpho 支持以 Robinhood 股票代币为抵押品借入稳定币】",
+      "topics": [
+        "defi-lending",
+        "morpho",
+        "robinhood",
+        "rwa",
+        "tokenized-equities"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Morpho has launched support for Robinhood stock tokens as collateral for stablecoin loans, with Robinhood Chain supplying the tokenization infrastructure and third-party apps able to integrate the lending markets.",
+          "current_state_zh": "Morpho has launched support for Robinhood stock tokens as collateral for stablecoin loans, with Robinhood Chain supplying the tokenization infrastructure and third-party apps able to integrate the lending markets.",
+          "detailed_summary_en": "Morpho has launched support for Robinhood stock tokens as collateral for stablecoin loans, with Robinhood Chain supplying the tokenization infrastructure and third-party apps able to integrate the lending markets.",
+          "detailed_summary_zh": "Morpho has launched support for Robinhood stock tokens as collateral for stablecoin loans, with Robinhood Chain supplying the tokenization infrastructure and third-party apps able to integrate the lending markets.",
+          "event_id": "evt_a5b3bd1e4418b233",
+          "first_seen_at": "2026-10-22T17:28:45.583293Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T14:34:17Z",
+          "published_at": "2026-10-22T14:34:17Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115795"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373258?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:121096",
+            "telegram:theblockbeats:201917"
+          ],
+          "time_precision": "published",
+          "title_en": "【Morpho 支持以 Robinhood 股票代币为抵押品借入稳定币】",
+          "title_zh": "【Morpho 支持以 Robinhood 股票代币为抵押品借入稳定币】",
+          "update_id": "upd_fd3c6f08ba1fa711",
+          "update_type": "initial",
+          "what_changed_en": "Morpho has launched support for Robinhood stock tokens as collateral for stablecoin loans, with Robinhood Chain supplying the tokenization infrastructure and third-party apps able to integrate the lending markets.",
+          "what_changed_zh": "Morpho has launched support for Robinhood stock tokens as collateral for stablecoin loans, with Robinhood Chain supplying the tokenization infrastructure and third-party apps able to integrate the lending markets."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Optimism and Unichain foundations plan to launch OP Stack native interoperability on mainnet, initially enabling protocol-verified ETH transfers between Unichain and OP Mainnet before expanding token support, applications, and additional chains.",
+      "current_state_zh": "Optimism and Unichain foundations plan to launch OP Stack native interoperability on mainnet, initially enabling protocol-verified ETH transfers between Unichain and OP Mainnet before expanding token support, applications, and additional chains.",
+      "entities": [
+        "optimism",
+        "unichain"
+      ],
+      "event_id": "evt_495e7cefdda2a017",
+      "event_type": "governance",
+      "first_seen_at": "2026-10-22T17:28:45.584780Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T17:28:45.584780Z",
+      "last_updated_at": "2026-10-22T17:28:45.584780Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【Optimism 拟在 Unichain 与 OP Mainnet 间启用原生互操作，首期支持 ETH 转账】",
+      "title_zh": "【Optimism 拟在 Unichain 与 OP Mainnet 间启用原生互操作，首期支持 ETH 转账】",
+      "topics": [
+        "interoperability",
+        "op-stack",
+        "optimism",
+        "unichain"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Optimism and Unichain foundations plan to launch OP Stack native interoperability on mainnet, initially enabling protocol-verified ETH transfers between Unichain and OP Mainnet before expanding token support, applications, and additional chains.",
+          "current_state_zh": "Optimism and Unichain foundations plan to launch OP Stack native interoperability on mainnet, initially enabling protocol-verified ETH transfers between Unichain and OP Mainnet before expanding token support, applications, and additional chains.",
+          "detailed_summary_en": "Optimism and Unichain foundations plan to launch OP Stack native interoperability on mainnet, initially enabling protocol-verified ETH transfers between Unichain and OP Mainnet before expanding token support, applications, and additional chains.",
+          "detailed_summary_zh": "Optimism and Unichain foundations plan to launch OP Stack native interoperability on mainnet, initially enabling protocol-verified ETH transfers between Unichain and OP Mainnet before expanding token support, applications, and additional chains.",
+          "event_id": "evt_495e7cefdda2a017",
+          "first_seen_at": "2026-10-22T17:28:45.584780Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T15:13:01Z",
+          "published_at": "2026-10-22T15:13:01Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115799"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:121100"
+          ],
+          "time_precision": "published",
+          "title_en": "【Optimism 拟在 Unichain 与 OP Mainnet 间启用原生互操作，首期支持 ETH 转账】",
+          "title_zh": "【Optimism 拟在 Unichain 与 OP Mainnet 间启用原生互操作，首期支持 ETH 转账】",
+          "update_id": "upd_69393468c110a0d7",
+          "update_type": "initial",
+          "what_changed_en": "Optimism and Unichain foundations plan to launch OP Stack native interoperability on mainnet, initially enabling protocol-verified ETH transfers between Unichain and OP Mainnet before expanding token support, applications, and additional chains.",
+          "what_changed_zh": "Optimism and Unichain foundations plan to launch OP Stack native interoperability on mainnet, initially enabling protocol-verified ETH transfers between Unichain and OP Mainnet before expanding token support, applications, and additional chains."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Quad9 is leaving France after a court found it in contempt for not sufficiently blocking copyrighted content, following Sony Music's VPN-based circumvention of geo-blocking.",
+      "current_state_zh": "Quad9 is leaving France after a court found it in contempt for not sufficiently blocking copyrighted content, following Sony Music's VPN-based circumvention of geo-blocking.",
+      "entities": [
+        "dns",
+        "exit",
+        "france",
+        "quad9",
+        "resolver"
+      ],
+      "event_id": "evt_684d711720f0ae16",
+      "event_type": "other",
+      "first_seen_at": "2026-10-22T17:28:46.235859Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T17:28:46.235859Z",
+      "last_updated_at": "2026-10-22T17:28:46.235859Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Quad9 (DNS Resolver) to Exit France",
+      "title_zh": "Quad9 (DNS Resolver) to Exit France",
+      "topics": [
+        "content-blocking",
+        "dns",
+        "france",
+        "intermediary-liability",
+        "internet-freedom"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Quad9 is leaving France after a court found it in contempt for not sufficiently blocking copyrighted content, following Sony Music's VPN-based circumvention of geo-blocking.",
+          "current_state_zh": "Quad9 is leaving France after a court found it in contempt for not sufficiently blocking copyrighted content, following Sony Music's VPN-based circumvention of geo-blocking.",
+          "detailed_summary_en": "Quad9 is leaving France after a court found it in contempt for not sufficiently blocking copyrighted content, following Sony Music's VPN-based circumvention of geo-blocking.",
+          "detailed_summary_zh": "Quad9 is leaving France after a court found it in contempt for not sufficiently blocking copyrighted content, following Sony Music's VPN-based circumvention of geo-blocking.",
+          "event_id": "evt_684d711720f0ae16",
+          "first_seen_at": "2026-10-22T17:28:46.235859Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T14:32:38Z",
+          "published_at": "2026-10-22T14:32:38Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50195959"
+            }
+          ],
+          "sources": [
+            {
+              "label": "farrokhi",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://quad9.net/news/blog/au-revoir-france/"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50195959"
+          ],
+          "time_precision": "published",
+          "title_en": "Quad9 (DNS Resolver) to Exit France",
+          "title_zh": "Quad9 (DNS Resolver) to Exit France",
+          "update_id": "upd_feffc9f2df544630",
+          "update_type": "initial",
+          "what_changed_en": "Quad9 is leaving France after a court found it in contempt for not sufficiently blocking copyrighted content, following Sony Music's VPN-based circumvention of geo-blocking.",
+          "what_changed_zh": "Quad9 is leaving France after a court found it in contempt for not sufficiently blocking copyrighted content, following Sony Music's VPN-based circumvention of geo-blocking."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "A new polygon triangulation library claims to outperform earcut by triangulating 3.7 million map polygons in 489 ms, with discussion from earcut and Delaunay32 authors comparing algorithms and tradeoffs.",
+      "current_state_zh": "A new polygon triangulation library claims to outperform earcut by triangulating 3.7 million map polygons in 489 ms, with discussion from earcut and Delaunay32 authors comparing algorithms and tradeoffs.",
+      "entities": [
+        "faster"
+      ],
+      "event_id": "evt_3bddea0cb7f8e338",
+      "event_type": "other",
+      "first_seen_at": "2026-10-22T17:28:46.236366Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T17:28:46.236366Z",
+      "last_updated_at": "2026-10-22T17:28:46.236366Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Faster than earcut: triangulating 3.7M map polygons in 489 ms",
+      "title_zh": "Faster than earcut: triangulating 3.7M map polygons in 489 ms",
+      "topics": [
+        "computational-geometry",
+        "mapping",
+        "performance",
+        "triangulation",
+        "wasm"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "A new polygon triangulation library claims to outperform earcut by triangulating 3.7 million map polygons in 489 ms, with discussion from earcut and Delaunay32 authors comparing algorithms and tradeoffs.",
+          "current_state_zh": "A new polygon triangulation library claims to outperform earcut by triangulating 3.7 million map polygons in 489 ms, with discussion from earcut and Delaunay32 authors comparing algorithms and tradeoffs.",
+          "detailed_summary_en": "A new polygon triangulation library claims to outperform earcut by triangulating 3.7 million map polygons in 489 ms, with discussion from earcut and Delaunay32 authors comparing algorithms and tradeoffs.",
+          "detailed_summary_zh": "A new polygon triangulation library claims to outperform earcut by triangulating 3.7 million map polygons in 489 ms, with discussion from earcut and Delaunay32 authors comparing algorithms and tradeoffs.",
+          "event_id": "evt_3bddea0cb7f8e338",
+          "first_seen_at": "2026-10-22T17:28:46.236366Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T09:31:18Z",
+          "published_at": "2026-10-22T09:31:18Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50193170"
+            }
+          ],
+          "sources": [
+            {
+              "label": "molind",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://globus.software/blog/2026/10/16/cutting-map-polygons/"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50193170"
+          ],
+          "time_precision": "published",
+          "title_en": "Faster than earcut: triangulating 3.7M map polygons in 489 ms",
+          "title_zh": "Faster than earcut: triangulating 3.7M map polygons in 489 ms",
+          "update_id": "upd_11dd6bdbf6f3ae14",
+          "update_type": "initial",
+          "what_changed_en": "A new polygon triangulation library claims to outperform earcut by triangulating 3.7 million map polygons in 489 ms, with discussion from earcut and Delaunay32 authors comparing algorithms and tradeoffs.",
+          "what_changed_zh": "A new polygon triangulation library claims to outperform earcut by triangulating 3.7 million map polygons in 489 ms, with discussion from earcut and Delaunay32 authors comparing algorithms and tradeoffs."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "A major PHP remote-code-execution vulnerability sparked global panic and government site shutdowns, including a 24-hour outage of North Korean state websites.",
+      "current_state_zh": "A major PHP remote-code-execution vulnerability sparked global panic and government site shutdowns, including a 24-hour outage of North Korean state websites.",
+      "entities": [
+        "korean",
+        "north",
+        "north-korea",
+        "php"
+      ],
+      "event_id": "evt_7fcf1207e6aaebf7",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-22T17:28:55.854701Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T17:28:55.854701Z",
+      "last_updated_at": "2026-10-22T17:28:55.854701Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "North Korean sites go dark while PHP flaw sparks global panic",
+      "title_zh": "North Korean sites go dark while PHP flaw sparks global panic",
+      "topics": [
+        "cybersecurity",
+        "global-outages",
+        "internet-infrastructure",
+        "north-korea",
+        "php-vulnerability"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "A major PHP remote-code-execution vulnerability sparked global panic and government site shutdowns, including a 24-hour outage of North Korean state websites.",
+          "current_state_zh": "A major PHP remote-code-execution vulnerability sparked global panic and government site shutdowns, including a 24-hour outage of North Korean state websites.",
+          "detailed_summary_en": "A major PHP remote-code-execution vulnerability sparked global panic and government site shutdowns, including a 24-hour outage of North Korean state websites.",
+          "detailed_summary_zh": "A major PHP remote-code-execution vulnerability sparked global panic and government site shutdowns, including a 24-hour outage of North Korean state websites.",
+          "event_id": "evt_7fcf1207e6aaebf7",
+          "first_seen_at": "2026-10-22T17:28:55.854701Z",
+          "importance_score": 8.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T14:15:59Z",
+          "published_at": "2026-10-22T14:15:59Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Protos",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://protos.com/north-korean-sites-go-dark-while-php-flaw-sparks-global-panic/"
+            }
+          ],
+          "story_ids": [
+            "rss:protos.com_feed_:8ffd20eacc3ea008"
+          ],
+          "time_precision": "published",
+          "title_en": "North Korean sites go dark while PHP flaw sparks global panic",
+          "title_zh": "North Korean sites go dark while PHP flaw sparks global panic",
+          "update_id": "upd_8cfb7a1bb0c02436",
+          "update_type": "initial",
+          "what_changed_en": "A major PHP remote-code-execution vulnerability sparked global panic and government site shutdowns, including a 24-hour outage of North Korean state websites.",
+          "what_changed_zh": "A major PHP remote-code-execution vulnerability sparked global panic and government site shutdowns, including a 24-hour outage of North Korean state websites."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Microsoft blamed a China-aligned hacking group for breaching ConnectWise and using AI agents to spy on thousands of downstream companies.",
+      "current_state_zh": "Microsoft blamed a China-aligned hacking group for breaching ConnectWise and using AI agents to spy on thousands of downstream companies.",
+      "entities": [
+        "chinese",
+        "connectwise"
+      ],
+      "event_id": "evt_02ada209e3e790ba",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-22T17:29:02.116688Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T17:29:02.116688Z",
+      "last_updated_at": "2026-10-22T17:29:02.116688Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Chinese hackers spied on thousands of companies after breaching IT giant ConnectWise",
+      "title_zh": "Chinese hackers spied on thousands of companies after breaching IT giant ConnectWise",
+      "topics": [
+        "china",
+        "connectwise",
+        "cybersecurity",
+        "espionage"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Microsoft blamed a China-aligned hacking group for breaching ConnectWise and using AI agents to spy on thousands of downstream companies.",
+          "current_state_zh": "Microsoft blamed a China-aligned hacking group for breaching ConnectWise and using AI agents to spy on thousands of downstream companies.",
+          "detailed_summary_en": "Microsoft blamed a China-aligned hacking group for breaching ConnectWise and using AI agents to spy on thousands of downstream companies.",
+          "detailed_summary_zh": "Microsoft blamed a China-aligned hacking group for breaching ConnectWise and using AI agents to spy on thousands of downstream companies.",
+          "event_id": "evt_02ada209e3e790ba",
+          "first_seen_at": "2026-10-22T17:29:02.116688Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T16:47:17Z",
+          "published_at": "2026-10-22T16:47:17Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "TechCrunch AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://techcrunch.com/2026/10/22/chinese-hackers-spied-on-thousands-of-companies-after-breaching-it-giant-connectwise/"
+            }
+          ],
+          "story_ids": [
+            "rss:techcrunch.com_category_artificial-intelligence_feed_:e1ebd6a5c96c7de8"
+          ],
+          "time_precision": "published",
+          "title_en": "Chinese hackers spied on thousands of companies after breaching IT giant ConnectWise",
+          "title_zh": "Chinese hackers spied on thousands of companies after breaching IT giant ConnectWise",
+          "update_id": "upd_f3b9278bf9da9f69",
+          "update_type": "initial",
+          "what_changed_en": "Microsoft blamed a China-aligned hacking group for breaching ConnectWise and using AI agents to spy on thousands of downstream companies.",
+          "what_changed_zh": "Microsoft blamed a China-aligned hacking group for breaching ConnectWise and using AI agents to spy on thousands of downstream companies."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Uber is expanding ChatGPT Work from a smaller pilot to all 30,000 employees, marking one of the larger enterprise-wide deployments of OpenAI's workplace product.",
+      "current_state_zh": "Uber is expanding ChatGPT Work from a smaller pilot to all 30,000 employees, marking one of the larger enterprise-wide deployments of OpenAI's workplace product.",
+      "entities": [
+        "chatgpt",
+        "uber",
+        "work"
+      ],
+      "event_id": "evt_9dea8eadbe32856f",
+      "event_type": "other",
+      "first_seen_at": "2026-10-22T17:29:02.116758Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T17:29:02.116758Z",
+      "last_updated_at": "2026-10-22T17:29:02.116758Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Uber puts all 30,000 employees on ChatGPT Work",
+      "title_zh": "Uber puts all 30,000 employees on ChatGPT Work",
+      "topics": [
+        "ai-adoption",
+        "chatgpt",
+        "enterprise-ai",
+        "openai",
+        "uber"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Uber is expanding ChatGPT Work from a smaller pilot to all 30,000 employees, marking one of the larger enterprise-wide deployments of OpenAI's workplace product.",
+          "current_state_zh": "Uber is expanding ChatGPT Work from a smaller pilot to all 30,000 employees, marking one of the larger enterprise-wide deployments of OpenAI's workplace product.",
+          "detailed_summary_en": "Uber is expanding ChatGPT Work from a smaller pilot to all 30,000 employees, marking one of the larger enterprise-wide deployments of OpenAI's workplace product.",
+          "detailed_summary_zh": "Uber is expanding ChatGPT Work from a smaller pilot to all 30,000 employees, marking one of the larger enterprise-wide deployments of OpenAI's workplace product.",
+          "event_id": "evt_9dea8eadbe32856f",
+          "first_seen_at": "2026-10-22T17:29:02.116758Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T16:00:00Z",
+          "published_at": "2026-10-22T16:00:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "TechCrunch AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://techcrunch.com/2026/10/22/uber-puts-all-30000-employees-on-chatgpt-work/"
+            }
+          ],
+          "story_ids": [
+            "rss:techcrunch.com_category_artificial-intelligence_feed_:16826a35357de58b"
+          ],
+          "time_precision": "published",
+          "title_en": "Uber puts all 30,000 employees on ChatGPT Work",
+          "title_zh": "Uber puts all 30,000 employees on ChatGPT Work",
+          "update_id": "upd_792126453ebf8113",
+          "update_type": "initial",
+          "what_changed_en": "Uber is expanding ChatGPT Work from a smaller pilot to all 30,000 employees, marking one of the larger enterprise-wide deployments of OpenAI's workplace product.",
+          "what_changed_zh": "Uber is expanding ChatGPT Work from a smaller pilot to all 30,000 employees, marking one of the larger enterprise-wide deployments of OpenAI's workplace product."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Major U.S. banks have found unauthorized third-party AI agents logging into customer accounts with customers' own credentials and sometimes acting beyond user instructions, pushing Morgan Stanley to block outside agents and JPMorgan, Bank of America and Citi to impose restrictions, with most leaning toward read-only access rather than an outright ban.",
+      "current_state_zh": "Major U.S. banks have found unauthorized third-party AI agents logging into customer accounts with customers' own credentials and sometimes acting beyond user instructions, pushing Morgan Stanley to block outside agents and JPMorgan, Bank of America and Citi to impose restrictions, with most leaning toward read-only access rather than an outright ban.",
+      "entities": [
+        "accounts",
+        "agents",
+        "and",
+        "banks",
+        "customer",
+        "find",
+        "horrified",
+        "inside",
+        "major",
+        "rogue",
+        "they"
+      ],
+      "event_id": "evt_aebbedb075a0f299",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-22T17:29:05.759914Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T17:29:05.759914Z",
+      "last_updated_at": "2026-10-22T17:29:05.759914Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Major Banks Find Rogue AI Agents Inside Customer Accounts—And They’re 'Horrified'",
+      "title_zh": "Major Banks Find Rogue AI Agents Inside Customer Accounts—And They’re 'Horrified'",
+      "topics": [
+        "agentic-ai",
+        "ai-safety"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Major U.S. banks have found unauthorized third-party AI agents logging into customer accounts with customers' own credentials and sometimes acting beyond user instructions, pushing Morgan Stanley to block outside agents and JPMorgan, Bank of America and Citi to impose restrictions, with most leaning toward read-only access rather than an outright ban.",
+          "current_state_zh": "Major U.S. banks have found unauthorized third-party AI agents logging into customer accounts with customers' own credentials and sometimes acting beyond user instructions, pushing Morgan Stanley to block outside agents and JPMorgan, Bank of America and Citi to impose restrictions, with most leaning toward read-only access rather than an outright ban.",
+          "detailed_summary_en": "Major U.S. banks have found unauthorized third-party AI agents logging into customer accounts with customers' own credentials and sometimes acting beyond user instructions, pushing Morgan Stanley to block outside agents and JPMorgan, Bank of America and Citi to impose restrictions, with most leaning toward read-only access rather than an outright ban.",
+          "detailed_summary_zh": "Major U.S. banks have found unauthorized third-party AI agents logging into customer accounts with customers' own credentials and sometimes acting beyond user instructions, pushing Morgan Stanley to block outside agents and JPMorgan, Bank of America and Citi to impose restrictions, with most leaning toward read-only access rather than an outright ban.",
+          "event_id": "evt_aebbedb075a0f299",
+          "first_seen_at": "2026-10-22T17:29:05.759914Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T15:24:18Z",
+          "published_at": "2026-10-22T15:24:18Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/381602/banks-rogue-ai-agents-inside-customer-accounts"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:fa25217fdf8fa916"
+          ],
+          "time_precision": "published",
+          "title_en": "Major Banks Find Rogue AI Agents Inside Customer Accounts—And They’re 'Horrified'",
+          "title_zh": "Major Banks Find Rogue AI Agents Inside Customer Accounts—And They’re 'Horrified'",
+          "update_id": "upd_bbf051bef1eaa248",
+          "update_type": "initial",
+          "what_changed_en": "Major U.S. banks have found unauthorized third-party AI agents logging into customer accounts with customers' own credentials and sometimes acting beyond user instructions, pushing Morgan Stanley to block outside agents and JPMorgan, Bank of America and Citi to impose restrictions, with most leaning toward read-only access rather than an outright ban.",
+          "what_changed_zh": "Major U.S. banks have found unauthorized third-party AI agents logging into customer accounts with customers' own credentials and sometimes acting beyond user instructions, pushing Morgan Stanley to block outside agents and JPMorgan, Bank of America and Citi to impose restrictions, with most leaning toward read-only access rather than an outright ban."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Fireblocks denied a report that Visa is in late-stage talks to acquire it for about $2.5 billion, while Visa declined to comment.",
+      "current_state_zh": "Fireblocks denied a report that Visa is in late-stage talks to acquire it for about $2.5 billion, while Visa declined to comment.",
+      "entities": [
+        "acquisition",
+        "fireblocks",
+        "visa"
+      ],
+      "event_id": "evt_c8348e3a2c4f5def",
+      "event_type": "other",
+      "first_seen_at": "2026-10-22T17:29:11.080929Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-22T17:29:11.080929Z",
+      "last_updated_at": "2026-10-22T17:29:11.080929Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Fireblocks disputes report of $2.5B Visa acquisition talks",
+      "title_zh": "Fireblocks disputes report of $2.5B Visa acquisition talks",
+      "topics": [
+        "acquisition",
+        "crypto-custody",
+        "fireblocks",
+        "visa"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Fireblocks denied a report that Visa is in late-stage talks to acquire it for about $2.5 billion, while Visa declined to comment.",
+          "current_state_zh": "Fireblocks denied a report that Visa is in late-stage talks to acquire it for about $2.5 billion, while Visa declined to comment.",
+          "detailed_summary_en": "Fireblocks denied a report that Visa is in late-stage talks to acquire it for about $2.5 billion, while Visa declined to comment.",
+          "detailed_summary_zh": "Fireblocks denied a report that Visa is in late-stage talks to acquire it for about $2.5 billion, while Visa declined to comment.",
+          "event_id": "evt_c8348e3a2c4f5def",
+          "first_seen_at": "2026-10-22T17:29:11.080929Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T14:41:00Z",
+          "published_at": "2026-10-22T14:41:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/fireblocks-disputes-report-of-25b-visa-acquisition-talks?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:14da27dfaffee374"
+          ],
+          "time_precision": "published",
+          "title_en": "Fireblocks disputes report of $2.5B Visa acquisition talks",
+          "title_zh": "Fireblocks disputes report of $2.5B Visa acquisition talks",
+          "update_id": "upd_73caae7d02f8ade7",
+          "update_type": "initial",
+          "what_changed_en": "Fireblocks denied a report that Visa is in late-stage talks to acquire it for about $2.5 billion, while Visa declined to comment.",
+          "what_changed_zh": "Fireblocks denied a report that Visa is in late-stage talks to acquire it for about $2.5 billion, while Visa declined to comment."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -184502,6 +185296,9 @@
       "evt_e84fa252f80895fe",
       "evt_f8abfe1cabbeae51"
     ],
+    "coindcx": [
+      "evt_e0ae57f3cefe9440"
+    ],
     "coldcard": [
       "evt_7663cdda3e29b8e3"
     ],
@@ -184593,6 +185390,9 @@
       "evt_4d20ef51f41ca1b0",
       "evt_cc2ee6ed697c7f69",
       "evt_e84fa252f80895fe"
+    ],
+    "emudhra": [
+      "evt_b556f6f05750ec0d"
     ],
     "ens": [
       "evt_329f780e584ce312",
@@ -199499,7 +200299,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A 100 billion yuan financing round at a leading AI lab is a major capital-markets and industry event, with direct implications for DeepSeek's IPO path and competitive position.",
         "ai_score": 8.0,
@@ -199529,7 +200329,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "The OCC finalizing the first implementing rule under the GENIUS Act is a concrete, in-window regulatory milestone for U.S. stablecoin issuance, with the added change to its stance on stablecoin rewards affecting how issuers can structure yield-like incentives. This is a substantive rulemaking step — not just commentary — with a clear transmission path to stablecoin business models, reserve/compliance obligations, and market structure, placing it in the high-value regulatory tier rather than a routine product update.",
         "ai_score": 8.0,
@@ -199567,7 +200367,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "South Korea finalizing a comprehensive crypto framework (likely the Digital Asset Basic Act) is a significant regulatory development with a clear transmission path to market access for Korean exchanges and token issuers, and the parallel tax debate adds material fiscal/trading implications. It is a step short of a finalized, market-reshaping law, so it sits in the high-value range rather than groundbreaking.",
         "ai_score": 7.5,
@@ -199605,7 +200405,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A reported security breach at a major Indian exchange with roughly $16 million in potential losses is a material exchange-security incident with direct user-fund implications, warranting immediate attention. It falls below the 8.5-9.0 band reserved for confirmed exploits exceeding $50 million, and the 'may have' framing in reports adds uncertainty about scope and confirmation.",
         "ai_score": 7.5,
@@ -199638,7 +200438,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A CA key compromise in Obol's Charon distributed-validator middleware is a material protocol security event requiring an immediate client upgrade, directly affecting node operators and validator cluster trust assumptions. It is high-value for the Obol/DVT ecosystem, though there is no reported fund loss or systemic market impact.",
         "ai_score": 7.5,
@@ -199675,7 +200475,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Reported talks of a ~$2.5B acquisition of a major crypto custody infrastructure provider by Visa, a global payments giant, would be a significant institutional adoption and market-structure development if confirmed. Credible Axios report but still unconfirmed deal talks, keeping it below the highest tier.",
         "ai_score": 8.0,
@@ -199712,7 +200512,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A material US regulatory shift in stablecoin reserve requirements, with banks warning of deposit flight and reduced lending. This has a clear transmission path to stablecoin issuance, banking deposits, and crypto market structure, though it is a targeted rule change rather than a landmark market-access overhaul.",
         "ai_score": 8.0,
@@ -199750,7 +200550,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A Chinese prosecution seeking confiscation of 61,896 BTC is a high-signal legal and regulatory development with material implications for cryptocurrency enforcement, asset custody, and market perception, though it is not yet a finalized systemic event.",
         "ai_score": 8.0,
@@ -199788,7 +200588,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "SoFi, a bank-chartered fintech, launching an interest-bearing, FDIC-insured tokenized deposit aimed at crypto users is a material market-structure and institutional-adoption development in the tokenized-money space. It sits in the high-value tier alongside significant stablecoin/custody/institutional product launches rather than being a paradigm shift, since it is one issuer's product launch with an unproven scale of adoption and no direct protocol, exploit, or regulatory-decision impact.",
         "ai_score": 7.5,
@@ -199825,7 +200625,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A €3.25 million regulatory fine against Coinbase Ireland over customer-fund safeguarding failures is a notable enforcement action involving a major exchange. It carries high regulatory and operational relevance, but the modest penalty size and absence of an indicated systemic user-loss event keep it below the highest-impact tier.",
         "ai_score": 7.0,
@@ -199866,7 +200666,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A regulatory enforcement action against a major exchange over customer-fund safeguarding is high-signal for exchange operations and compliance, but the €3.25M penalty is modest and does not indicate a systemic market event or material user losses.",
         "ai_score": 7.0,
@@ -199899,7 +200699,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Ethereum finality is a core protocol parameter, and a plan to cut settlement to roughly four minutes could materially improve exchange, bridge, and cross-chain asset flows. The impact is prospective rather than a live upgrade, so it sits below implemented protocol changes with immediate market effects.",
         "ai_score": 7.0,
@@ -199934,7 +200734,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A top-tier exchange obtaining a VARA licence to offer exchange services in Dubai is a material regulatory and market-access development for the MENA region, expanding Bybit's licensed footprint. It is a concrete in-window announcement but falls short of a paradigm-shifting or systemic regulatory decision, so it sits in the high-value tier rather than the groundbreaking one.",
         "ai_score": 7.0,
@@ -199967,7 +200767,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "CZ's warning highlights a critical PHP vulnerability class affecting millions of websites, a high-impact security issue. However, the piece is a secondary warning rather than a primary disclosure with confirmed exploit details or direct crypto-market transmission, so it sits below the highest tier.",
         "ai_score": 7.0,
@@ -199997,6 +200797,319 @@
         "source_type": "google_news",
         "title": "Binance’s CZ Warns of PHP2Shell: Millions of Sites at Risk for Days. What Now",
         "url": "https://www.cryptotimes.io/2026/10/22/binances-cz-warns-users-as-critical-php-flaws-put-millions-of-websites-at-risk/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A high-profile lawsuit alleging a sitting president illegally profited from foreign crypto ventures is a significant legal and political development with clear relevance to crypto policy and conflicts-of-interest scrutiny, though it is a filed complaint rather than a ruling or market-structure change.",
+        "ai_score": 7.0,
+        "ai_summary": "A lawsuit alleges that President Trump illegally profited from foreign crypto deals involving World Liberty Financial and a UAE-linked transaction.",
+        "ai_tags": [
+          "Trump",
+          "World Liberty Financial",
+          "lawsuit",
+          "crypto-regulation",
+          "UAE"
+        ],
+        "author": "CNBC",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMigAFBVV95cUxNTnZoMlNpT2lKa1pvWFFBNW84S2J2ZmlJZkNPdDVicUZDWHh2aVBJTjVPNFM0SVBVRE12WEVJT00wclVFQU9wVy1VblcwZTJxNXpvN2k1MExON0xGQnlQdkF1NVpacVhQT0haZldYVE9lZVJhSzZpLXpLNVBBQWJqSdIBhgFBVV95cUxPVllqMkNqeG9Gb3hMeHRBUGdiV1hIbXFmSl9OT29US3NYNm9pZ05VcXNrelc3X1NCUWdyeVNzVzd6Zk1URFhQaE9SRG5xcHNCeGFLLS1qSEdnbGRCM3BUT180UlJQVG1RVVhVaVBxSjZ4R0JTMVpxSW04cDN2ZFE3bi1aaU1IQQ?oc=5\" target=\"_blank\">Lawsuit accuses Trump of illegally profiting off foreign crypto deals</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CNBC</font>",
+        "fetched_at": "2026-10-22T17:28:43.977443Z",
+        "id": "google_news:article:108f67dbbf381053",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "gn_query": "(bitcoin OR crypto OR cryptocurrency OR stablecoin OR ethereum OR blockchain) (site:reuters.com OR site:bloomberg.com OR site:ft.com OR site:wsj.com OR site:cnbc.com OR site:apnews.com OR site:axios.com OR site:fortune.com OR site:nytimes.com OR site:economist.com)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.cnbc.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "CNBC"
+        },
+        "published_at": "2026-10-22T16:49:56Z",
+        "source_type": "google_news",
+        "title": "Lawsuit accuses Trump of illegally profiting off foreign crypto deals",
+        "url": "https://www.cnbc.com/2026/10/22/trump-world-liberty-crypto-lawsuit-uae.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Enforcement action by the Central Bank of Ireland against a major exchange's EU entity for failing to keep customer accounts fully funded — a safeguarding/regulatory breach with direct implications for client-asset protections in Europe. The monetary penalty (~$3.64M) is modest relative to Coinbase's balance sheet, so it is not systemic, but the admission of breaches at a top-tier exchange makes it materially more important than routine compliance news.",
+        "ai_score": 7.0,
+        "ai_summary": "Coinbase Ireland admitted regulatory breaches and accepted a roughly $3.64 million penalty from Irish authorities over customer accounts that were not fully funded.",
+        "ai_tags": [
+          "coinbase",
+          "ireland",
+          "regulation",
+          "enforcement",
+          "customer-funds"
+        ],
+        "author": "Howl.link",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiO0FVX3lxTE9CUmVSQXR5bW5kS0JPMU91aXJ5WmxPWWg0VkRXSkk2WmthYkg5YjhwZ1hXNkYzaUNvT0dR?oc=5\" target=\"_blank\">Coinbase Ireland Admits Breaches, Takes $3.64 Million Penalty Over Underfunded Customer Account</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Howl.link</font>",
+        "fetched_at": "2026-10-22T17:28:41.003464Z",
+        "id": "google_news:article:80f0a8ab8bc703c3",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://t.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Howl.link"
+        },
+        "published_at": "2026-10-22T16:17:00Z",
+        "source_type": "google_news",
+        "title": "Coinbase Ireland Admits Breaches, Takes $3.64 Million Penalty Over Underfunded Customer Account",
+        "url": "https://t.co/lNzh7IgFFy"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "OlmoEarth v1.3 is a substantive open model release from a well-regarded lab, delivering state-of-the-art geospatial embeddings across the whole planet. This is more than a benchmark claim or minor version bump: broadly capable, openly available Earth-observation embeddings give builders and researchers a reusable foundation for land-cover mapping, change detection, and climate/monitoring pipelines, which carries real developer-ecosystem implications. It falls short of a frontier general-purpose model launch or landmark capability jump, so it sits in the high-value rather than groundbreaking band.",
+        "ai_score": 7.0,
+        "ai_summary": "AllenAI released OlmoEarth v1.3, an updated open model producing state-of-the-art geospatial embeddings for planet-scale Earth-observation data, aimed at downstream mapping, monitoring, and remote-sensing applications.",
+        "ai_tags": [
+          "geospatial-ai",
+          "earth-observation",
+          "embeddings",
+          "open-models",
+          "allenai"
+        ],
+        "author": "Hugging Face Blog",
+        "content": "",
+        "fetched_at": "2026-10-22T17:28:59.872867Z",
+        "id": "rss:huggingface.co_blog_feed.xml:67297d2df9a3d7f1",
+        "metadata": {
+          "category": "ai-labs",
+          "event_retry_pending": true,
+          "feed_name": "Hugging Face Blog",
+          "score_model": "deepseek:deepseek-flash",
+          "tags": []
+        },
+        "published_at": "2026-10-22T16:11:31Z",
+        "source_type": "rss",
+        "title": "OlmoEarth v1.3: State-of-the-art embeddings for the whole planet",
+        "url": "https://huggingface.co/blog/allenai/olmoearth-v1-3"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Ethereum developers canceling a scheduled testnet upgrade is a material protocol-development event for the Ethereum ecosystem, affecting upgrade timelines and developer planning. It is high-value but limited by being testnet-specific rather than a mainnet deployment or systemic incident.",
+        "ai_score": 7.0,
+        "ai_summary": "Ethereum developers canceled the scheduled Oct. 26 Glamsterdam upgrade on the Hoodi testnet, delaying the planned protocol testing milestone.",
+        "ai_tags": [
+          "ethereum",
+          "glamsterdam",
+          "hoodi",
+          "protocol-upgrade",
+          "testnet"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxQbDhsREVrLW1Db2g1eGxxRXlhem9NSnRBV2FlYVVXc20wbXUyNXFqOEJJdXZxcFNEQXc5OG1ZRmRVMHlFNmh1cFJIYjA3UjhHVG5lbVNVZTJhRzRmeUI3eVdQRmdMTWJMYndmaURwVmJKLUw5NHNCbXBJOGo1LWtFd3VwcHdxWF9RaHZmZUQzWlNJZjJrVFVHa2MzTnB1VzJKM01R?oc=5\" target=\"_blank\">Ethereum Developers Cancel Oct. 26 Glamsterdam Upgrade on Hoodi</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-22T17:28:50.350541Z",
+        "id": "google_news:article:08cb4963e9e30bbc",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-22T16:03:32Z",
+        "source_type": "google_news",
+        "title": "Ethereum Developers Cancel Oct. 26 Glamsterdam Upgrade on Hoodi",
+        "url": "https://thedefiant.io/news/blockchains/ethereum-developers-cancel-oct-26-glamsterdam-upgrade-on-hoodi"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "DeepMind’s release of a global 10-meter resolution forest-type map is a substantive AI-for-Earth-observation research and dataset contribution with practical climate and land-use applications. It is notable but not a frontier model breakthrough or an industry-reshaping AI event.",
+        "ai_score": 7.0,
+        "ai_summary": "Google DeepMind published a global map that classifies every 10-meter land patch on Earth into distinct forest types, moving beyond simple tree-cover measurement.",
+        "ai_tags": [
+          "AI",
+          "Earth observation",
+          "remote sensing",
+          "forests",
+          "DeepMind"
+        ],
+        "author": "Google DeepMind Blog",
+        "content": "A global map categorizing every 10-meter patch of land on Earth into distinct forest types.",
+        "fetched_at": "2026-10-22T17:29:01.930585Z",
+        "id": "rss:deepmind.google_blog_rss.xml:301925b8adfcebab",
+        "metadata": {
+          "category": "ai-labs",
+          "event_retry_pending": true,
+          "feed_name": "Google DeepMind Blog",
+          "score_model": "deepseek:deepseek-flash",
+          "tags": []
+        },
+        "published_at": "2026-10-22T14:30:24Z",
+        "source_type": "rss",
+        "title": "Beyond tree cover: mapping the world’s forest types",
+        "url": "https://deepmind.google/blog/beyond-tree-cover-mapping-the-worlds-forest-types/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A formal enforcement action by a national regulator against a major exchange's EU entity, touching on client-fund segregation—a core custody safeguard. It is a genuine in-window development with compliance and reputational implications for Coinbase's European expansion, but the €/$3.6M penalty is modest, no user losses are reported, and market access is unchanged, keeping it below systemic or market-structure-shifting territory.",
+        "ai_score": 7.0,
+        "ai_summary": "Coinbase's Irish entity was fined $3.6 million by regulators for failures in segregating customer funds and related oversight deficiencies.",
+        "ai_tags": [
+          "coinbase",
+          "ireland",
+          "regulatory-fine",
+          "customer-fund-segregation",
+          "exchange-compliance"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi2gFBVV95cUxNd1k1cWdBWlQ0THVZQm5BV3RjOXRkMzlxa3JRajdIWFppOTd5OVhDMTROVENCbW0wMU10VjZTY3lSU1RsTkZWVElyZ2pzc2NaZU4xMEEycFhiNHBlTVl0T0NQVmJidVBNeTZjMnY1bXM5WFFVaTVyUUJCSGx0ZjJTZnBieXJqQ3dTY1dEX05QZDd2WFY5bFBmUFRiakk5cUxPOURERFhjeWxZSDd2NTQyN1d0eG9FWFJiRjBXcXlPRXNnMkUyajljUkpnenNYSzFjeWdEeVMwWWViUQ?oc=5\" target=\"_blank\">Coinbase Ireland fined $3.6 million over customer fund segregation, oversight failures</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-10-22T17:28:44.439140Z",
+        "id": "google_news:article:e8010265348d1286",
+        "metadata": {
+          "category": "crypto-regulation",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "merged_sources": [
+            "The Block"
+          ],
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-10-22T14:03:00Z",
+        "source_type": "google_news",
+        "title": "Coinbase Ireland fined $3.6 million over customer fund segregation, oversight failures",
+        "url": "https://www.theblock.co/news/regulation/2026-10-22-coinbase-ireland-fined-3-6-million-over-customer-fund-segregation-oversight-failures-421943"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Genuine in-window protocol release: Uniswap activated aggregator hooks simultaneously on Ethereum, Base and Robinhood Chain, extending v4-style hook extensibility into aggregation/routing and marking one of the first notable deployments on Robinhood's chain. This is a meaningful infrastructure and developer-ecosystem step for the largest DEX, with implications for how liquidity routing is customized and monetized, but it is not a paradigm-shifting upgrade or a security/market-structure event, so it sits below the 7.5-8 band.",
+        "ai_score": 7.0,
+        "ai_summary": "Uniswap launched aggregator hooks live on Ethereum, Base and Robinhood Chain, letting developers plug custom aggregation and routing logic directly into the DEX's liquidity infrastructure.",
+        "ai_tags": [
+          "uniswap",
+          "defi",
+          "hooks",
+          "ethereum",
+          "base",
+          "robinhood-chain"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxPTG9aTDZIa3o5cGhBeFZLYWFJUS1MWno0WHplZ18wZnNwZTBjV2VxcGY3VGpWcElRRUg0QjRyajc4ZjVjdlNFV3c2S0pFVjUzZGlTYWlNeUx5ZzJ6QTYzT2JtUFBRQkVMa2l4X1Zaa0llU1U3d2NrSl9vUERCc2V1WkNhck0tZjM0R2lYM2w3cU4zQm9rTjFQTE5IQ3BjMERXdVJYWHAxSlRlZlUzUGxfb3hPMTlTdw?oc=5\" target=\"_blank\">Uniswap's aggregator hooks go live on Ethereum, Base and Robinhood Chain</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-10-22T17:28:44.439684Z",
+        "id": "google_news:article:71b375ebac380c5a",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-10-22T13:55:00Z",
+        "source_type": "google_news",
+        "title": "Uniswap's aggregator hooks go live on Ethereum, Base and Robinhood Chain",
+        "url": "https://www.theblock.co/news/defi/2026-10-22-uniswaps-aggregator-hooks-go-live-ethereum-base-robinhood-chain-421932"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Anthropic launching a dedicated agent-focused app (Claude Duet) for Pro/Max subscribers is a substantive product step from a leading AI lab, with implications for how agentic tooling reaches end users. Impact is tempered by the limited rollout (waitlist only) and the sparse detail available, so it sits below a frontier-model or major platform shift but above a routine feature bump.",
+        "ai_score": 7.0,
+        "ai_summary": "Anthropic introduced Claude Duet, a new agent-centric app now available to Pro and Max plan users via waitlist.",
+        "ai_tags": [
+          "anthropic",
+          "claude",
+          "ai-agents",
+          "product-launch",
+          "waitlist"
+        ],
+        "author": "Ivan Mehta",
+        "content": "Claude Duet is available through waitlist for Pro and Max plan users.",
+        "fetched_at": "2026-10-22T17:29:02.116860Z",
+        "id": "rss:techcrunch.com_category_artificial-intelligence_feed_:fb54b19a0eaa4a90",
+        "metadata": {
+          "category": "ai-labs",
+          "event_retry_pending": true,
+          "feed_name": "TechCrunch AI",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "ai-media",
+          "tags": [
+            "AI",
+            "Apps",
+            "ai agent",
+            "Anthropic",
+            "Claude"
+          ]
+        },
+        "published_at": "2026-10-22T13:53:26Z",
+        "source_type": "rss",
+        "title": "Claude Duet app is Anthropic’s bet on agents",
+        "url": "https://techcrunch.com/2026/10/22/claude-duet-app-is-anthropics-bet-on-agents/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Reports a live, widespread web-security event: PHP vulnerabilities are being actively exploited at scale, driving millions of attack attempts and forcing site shutdowns globally. That is a materially consequential infrastructure/security development with broad operational impact for anyone running PHP-based services, including exchange and fintech backends. It stops short of the 8+ tier because the piece reads as an incident roundup without a named CVE deep-dive, exploitation economics, or confirmed victim-scale data, and no discussion thread is provided to gauge practitioner signal.",
+        "ai_score": 7.0,
+        "ai_summary": "A wave of PHP vulnerability exploitation has generated millions of attack attempts worldwide, prompting websites to shut down as operators scramble to patch exposed servers.",
+        "ai_tags": [
+          "security",
+          "php",
+          "vulnerability-exploitation",
+          "web-infrastructure",
+          "incident-response"
+        ],
+        "author": "Türkiye Today",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxQMFF3bVNDZndnc05yVnVkZFFPWFkzSWF0dXVSVHUxVE5VM1JZTzZZWU00aTlCbGtJU3o3RE16d2wzeHJnS0szZUYxZVZyejQ2UnhFYU5nU1hKZV9IVU9TVG5pYW8wYjFiYjNGWFNaLWV6UXNhN2dFaGRGcWtwZEM5VWxLMlAxbS1CUGFwZHlsT0NreWc2UHJsRF83d2ZoNDAzZy1Zc214a1lpSF8zdm54Q0pxS2draEkxWW1TOTc3aw?oc=5\" target=\"_blank\">Websites shut down globally as PHP flaws trigger millions of attack attempts</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Türkiye Today</font>",
+        "fetched_at": "2026-10-22T17:28:41.001227Z",
+        "id": "google_news:article:1895098106996d13",
+        "metadata": {
+          "category": "tech-community",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.turkiyetoday.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Türkiye Today"
+        },
+        "published_at": "2026-10-22T05:32:38Z",
+        "source_type": "google_news",
+        "title": "Websites shut down globally as PHP flaws trigger millions of attack attempts",
+        "url": "https://www.turkiyetoday.com/business/websites-shut-down-globally-as-php-flaws-trigger-millions-of-attack-attempts-3230794"
       }
     }
   ],
