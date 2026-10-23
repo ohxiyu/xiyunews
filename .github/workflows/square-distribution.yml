@@ -37,7 +37,7 @@ jobs:
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: main # Never execute triggering-run artifacts or untrusted branch code.
       - name: Restore isolated delivery queue

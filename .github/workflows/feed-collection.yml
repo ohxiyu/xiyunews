@@ -33,7 +33,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Restore published event state
         shell: bash
@@ -53,7 +53,7 @@ jobs:
           done
 
       - name: Restore staged source items
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: |
             data/staging-items.json
@@ -111,7 +111,7 @@ jobs:
 
       - name: Preserve successful AI work even after publication failure
         if: ${{ always() }}
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         with:
           path: |
             data/staging-items.json
@@ -120,7 +120,7 @@ jobs:
 
       - name: Keep machine-readable cost and health report
         if: ${{ always() }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: run-report-${{ github.run_id }}-${{ github.run_attempt }}
           path: data/run-report.json
@@ -152,7 +152,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Recover a missing daily edition
         env:
