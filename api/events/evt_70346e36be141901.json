@@ -4,23 +4,24 @@
   "url": "https://xiyu.news/events/evt_70346e36be141901/",
   "json": "https://xiyu.news/api/events/evt_70346e36be141901.json",
   "type": "product_release",
-  "status": "monitoring",
+  "status": "resolved",
   "category": "technology",
   "title": {
     "zh": "MiniMax正式发布M3.1 Flash：每百万Token最低0.15美元，23日开源",
     "en": "MiniMax正式发布M3.1 Flash：每百万Token最低0.15美元，23日开源"
   },
   "current_state": {
-    "zh": "MiniMax officially released M3.1 Flash, confirming it was the anonymous 'Space Bunny' model, publishing benchmarks (62.2% Automation-Bench, 73.7% DeepSWE, 91.0% BabyVision), setting API pricing at $0.15 per million input tokens and $0.60 output, and planning to open the weights on October 23.",
-    "en": "MiniMax officially released M3.1 Flash, confirming it was the anonymous 'Space Bunny' model, publishing benchmarks (62.2% Automation-Bench, 73.7% DeepSWE, 91.0% BabyVision), setting API pricing at $0.15 per million input tokens and $0.60 output, and planning to open the weights on October 23."
+    "zh": "MiniMax M3.1 Flash 已完成发布并开源权重：4280亿参数 MoE、Agent 成本降70%、社区许可含收入限制，DeepSWE v1.1 得分73.7%。",
+    "en": "MiniMax M3.1 Flash is fully released with open weights: 428B-parameter MoE, 70% lower agent-task cost, community license with revenue restrictions, and a 73.7% DeepSWE v1.1 score."
   },
   "first_seen_at": "2026-10-19T14:11:31.526792+00:00",
-  "last_updated_at": "2026-10-19T18:47:59.932815+00:00",
-  "last_material_change_at": "2026-10-19T14:11:31.526792+00:00",
+  "last_updated_at": "2026-10-23T01:51:15.144941+00:00",
+  "last_material_change_at": "2026-10-23T01:51:15.144941+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 2,
+  "updates_count": 2,
+  "sources_count": 3,
   "entities": [
+    "agent",
     "flash",
     "minimax",
     "token"
@@ -29,8 +30,11 @@
   "topics": [
     "api-pricing",
     "benchmarks",
+    "inference-cost",
+    "llm",
     "minimax",
     "model-release",
+    "moe",
     "open-weights"
   ],
   "updates": [
@@ -45,9 +49,9 @@
       "material_change": true,
       "title_zh": "MiniMax正式发布M3.1 Flash：每百万Token最低0.15美元，23日开源",
       "title_en": "MiniMax正式发布M3.1 Flash：每百万Token最低0.15美元，23日开源",
-      "what_changed_zh": "MiniMax officially released M3.1 Flash, confirming it was the anonymous 'Space Bunny' model, publishing benchmarks (62.2% Automation-Bench, 73.7% DeepSWE, 91.0% BabyVision), setting API pricing at $0.15 per million input tokens and $0.60 output, and planning to open the weights on October 23.",
+      "what_changed_zh": "MiniMax正式发布M3.1 Flash，确认其就是匿名“Space Bunny”模型，公布基准测试成绩（Automation-Bench 62.2%、DeepSWE 73.7%、BabyVision 91.0%），API定价为每百万输入token 0.15美元、输出0.60美元，并计划于10月23日开放权重。",
       "what_changed_en": "MiniMax officially released M3.1 Flash, confirming it was the anonymous 'Space Bunny' model, publishing benchmarks (62.2% Automation-Bench, 73.7% DeepSWE, 91.0% BabyVision), setting API pricing at $0.15 per million input tokens and $0.60 output, and planning to open the weights on October 23.",
-      "current_state_zh": "MiniMax officially released M3.1 Flash, confirming it was the anonymous 'Space Bunny' model, publishing benchmarks (62.2% Automation-Bench, 73.7% DeepSWE, 91.0% BabyVision), setting API pricing at $0.15 per million input tokens and $0.60 output, and planning to open the weights on October 23.",
+      "current_state_zh": "MiniMax正式发布M3.1 Flash，确认其就是匿名“Space Bunny”模型，公布基准测试成绩（Automation-Bench 62.2%、DeepSWE 73.7%、BabyVision 91.0%），API定价为每百万输入token 0.15美元、输出0.60美元，并计划于10月23日开放权重。",
       "current_state_en": "MiniMax officially released M3.1 Flash, confirming it was the anonymous 'Space Bunny' model, publishing benchmarks (62.2% Automation-Bench, 73.7% DeepSWE, 91.0% BabyVision), setting API pricing at $0.15 per million input tokens and $0.60 output, and planning to open the weights on October 23.",
       "detailed_summary_zh": "MiniMax officially released M3.1 Flash, confirming it was the anonymous 'Space Bunny' model, publishing benchmarks (62.2% Automation-Bench, 73.7% DeepSWE, 91.0% BabyVision), setting API pricing at $0.15 per million input tokens and $0.60 output, and planning to open the weights on October 23.",
       "detailed_summary_en": "MiniMax officially released M3.1 Flash, confirming it was the anonymous 'Space Bunny' model, publishing benchmarks (62.2% Automation-Bench, 73.7% DeepSWE, 91.0% BabyVision), setting API pricing at $0.15 per million input tokens and $0.60 output, and planning to open the weights on October 23.",
@@ -80,6 +84,44 @@
           "url": "https://www.minimax.io/blog/minimax-m31f",
           "label": "jtg",
           "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_2495bc3bdc881cb1",
+      "event_id": "evt_70346e36be141901",
+      "occurred_at": "2026-10-23T01:38:03Z",
+      "published_at": "2026-10-23T01:38:03Z",
+      "first_seen_at": "2026-10-23T01:51:15.144941Z",
+      "time_precision": "published",
+      "update_type": "resolution",
+      "material_change": true,
+      "title_zh": "MiniMax M3.1 Flash开源：4280亿参数，Agent任务成本降70%",
+      "title_en": "MiniMax M3.1 Flash开源：4280亿参数，Agent任务成本降70%",
+      "what_changed_zh": "MiniMax 于10月23日按计划开源 M3.1 Flash 权重，已上架 Hugging Face 和魔搭；披露模型为4280亿总参数 MoE（每次激活约230亿），采用稀疏注意力、量化训练与 DSpark 推测解码，Agent 任务成本较上代降70%、生成速度近3倍，权重采用 MiniMax Community License（年收入超2000万美元需书面授权）。",
+      "what_changed_en": "MiniMax released the open weights for M3.1 Flash on October 23 as planned, listed on Hugging Face and ModelScope; disclosed a 428B-total-parameter MoE (~23B active) with sparse attention, quantized training and DSpark speculative decoding, 70% lower agent-task cost and ~3x generation speed, under the MiniMax Community License (written authorization required above $20M annual revenue).",
+      "current_state_zh": "MiniMax M3.1 Flash 已完成发布并开源权重：4280亿参数 MoE、Agent 成本降70%、社区许可含收入限制，DeepSWE v1.1 得分73.7%。",
+      "current_state_en": "MiniMax M3.1 Flash is fully released with open weights: 428B-parameter MoE, 70% lower agent-task cost, community license with revenue restrictions, and a 73.7% DeepSWE v1.1 score.",
+      "detailed_summary_zh": "MiniMax released open weights for M3.1 Flash, a 428B-parameter MoE model featuring sparse attention and speculative decoding that cuts agent-task costs by 70% and nearly triples generation speed, under a community license with revenue-based commercial restrictions.",
+      "detailed_summary_en": "MiniMax released open weights for M3.1 Flash, a 428B-parameter MoE model featuring sparse attention and speculative decoding that cuts agent-task costs by 70% and nearly triples generation speed, under a community license with revenue-based commercial restrictions.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.9,
+      "story_ids": [
+        "telegram:theblockbeats:201960"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/373302?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]
