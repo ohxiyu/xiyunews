@@ -7,11 +7,11 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "CVE-2026-111943: Compromised Intermediate Certificate Authority",
+    "zh": "CVE-2026-111943：中间证书颁发机构遭攻陷",
     "en": "CVE-2026-111943: Compromised Intermediate Certificate Authority"
   },
   "current_state": {
-    "zh": "A compromised eMudhra intermediate certificate authority allowed private signing keys to be recovered from public certificates, enabling attackers to mint valid HTTPS certificates for any domain and prompting urgent certificate-store updates.",
+    "zh": "美国国家标准与技术研究院的国家漏洞数据库发布了 CVE-2026-111943，针对 eMudhra 中间证书颁发机构证书遭攻陷一事。此前，Mozilla 与谷歌 Chrome 根证书计划于 2026 年 10 月 20 日确认，eMudhra 的 8 个中间证书的私钥可以直接从公开证书中还原。Chrome 随后将 emSign ECC Root CA - G3 从 Chrome 根证书库中移除，以保护那些不接收 CRLSet 更新的使用方。\n\n由于任何人都能从公开材料中推导出这些私钥，攻击者可以伪造出对任意域名都看似有效的证书，冒充银行、GitHub 或 PyPI 等站点，这迫使操作系统和浏览器厂商紧急推送信任库更新。\n\neMudhra 在事件声明中表示，受影响的中间证书是在 2025 年 4 月的一次密钥生成仪式中创建的，其根 CA 私钥和其他中间证书颁发机构未受影响，并称未签发任何终端实体证书。Mozilla 表示已在 UTC 21:48 独立还原出受影响证书的私钥，确认密钥生成过程存在缺陷且极易被利用。",
     "en": "A compromised eMudhra intermediate certificate authority allowed private signing keys to be recovered from public certificates, enabling attackers to mint valid HTTPS certificates for any domain and prompting urgent certificate-store updates."
   },
   "first_seen_at": "2026-10-22T13:44:17.248620+00:00",

@@ -11,15 +11,15 @@
     "en": "【Initia 链疑遭无限铸币攻击，攻击者已套现约 260 万美元】"
   },
   "current_state": {
-    "zh": "Initia L1 主网及所有 Rollup 仍处于暂停状态；联合创始人称漏洞可能源于 MoveVM Day 0 漏洞，原生代币 INIT 未受影响，团队仍在调查影响及后续细节。",
-    "en": "Initia's L1 mainnet and all Rollups remain paused; the co-founder said the exploit likely stemmed from a MoveVM Day 0 vulnerability, the native INIT token was unaffected, and the team is still investigating the impact and further details."
+    "zh": "Initia L1 主网及所有 Rollup 仍处于暂停状态；团队正与安全团队、验证者和交易所评估影响，尚未公开确认损失规模或精确原因，恢复时间不明；D2 Finance 已披露无抵押 AUSD 铸造及跨链资金流细节。",
+    "en": "Initia's L1 mainnet and all Rollups remain paused; the team is coordinating with security researchers, validators and exchanges to assess impact, has not publicly confirmed the loss size or precise cause, and the restoration timeline is unclear; D2 Finance has disclosed details of the unbacked AUSD mint and cross-chain fund flows."
   },
   "first_seen_at": "2026-10-23T17:21:46.311242+00:00",
-  "last_updated_at": "2026-10-23T17:21:46.311242+00:00",
-  "last_material_change_at": "2026-10-23T17:21:46.311242+00:00",
+  "last_updated_at": "2026-10-23T21:31:49.568967+00:00",
+  "last_material_change_at": "2026-10-23T21:31:49.568967+00:00",
   "confidence": 0.75,
-  "updates_count": 3,
-  "sources_count": 4,
+  "updates_count": 4,
+  "sources_count": 5,
   "entities": [
     "init",
     "initia",
@@ -28,6 +28,7 @@
   ],
   "identifiers": [],
   "topics": [
+    "blockchain-halt",
     "chain-halt",
     "cosmos-sdk",
     "infinite-mint",
@@ -37,7 +38,8 @@
     "movevm",
     "rollups",
     "security-incident",
-    "stablecoins"
+    "stablecoins",
+    "token-minting"
   ],
   "updates": [
     {
@@ -157,6 +159,44 @@
           "url": "https://m.theblockbeats.info/flash/373459?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_951f478c118d94d9",
+      "event_id": "evt_7c181150da557b5c",
+      "occurred_at": "2026-10-23T18:39:02Z",
+      "published_at": "2026-10-23T18:39:02Z",
+      "first_seen_at": "2026-10-23T21:31:49.568967Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Initia 在据报漏洞利用导致逾 260 万美元资金流失后暂停区块链",
+      "title_en": "Initia halts blockchain after exploit reportedly drains over $2.6M",
+      "what_changed_zh": "D2 Finance 报告称，攻击者利用 Move 函数漏洞无抵押铸造 200 万 AUSD，并通过跨链转出约 140 万 AUSD、105 ETH 和 108 万 USDC 至以太坊，随后归集约 1,135.5 ETH（约 273 万美元）；INIT 价格短时跌至约 0.115 美元后回升。",
+      "what_changed_en": "D2 Finance reported that the attacker exploited a Move function vulnerability to mint 2 million AUSD without backing and bridged approximately 1.4 million AUSD, 105 ETH and 1.08 million USDC to Ethereum, later consolidating about 1,135.5 ETH (~$2.73M); INIT briefly fell to around $0.115 before rebounding.",
+      "current_state_zh": "Initia L1 主网及所有 Rollup 仍处于暂停状态；团队正与安全团队、验证者和交易所评估影响，尚未公开确认损失规模或精确原因，恢复时间不明；D2 Finance 已披露无抵押 AUSD 铸造及跨链资金流细节。",
+      "current_state_en": "Initia's L1 mainnet and all Rollups remain paused; the team is coordinating with security researchers, validators and exchanges to assess impact, has not publicly confirmed the loss size or precise cause, and the restoration timeline is unclear; D2 Finance has disclosed details of the unbacked AUSD mint and cross-chain fund flows.",
+      "detailed_summary_zh": "Initia halted its layer-1 blockchain and rollups after an attacker exploited unauthorized token minting and drained more than $2.6 million in assets.",
+      "detailed_summary_en": "Initia halted its layer-1 blockchain and rollups after an attacker exploited unauthorized token minting and drained more than $2.6 million in assets.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.9,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:adff9db565dc2d46"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/initia-halts-blockchain-exploit-drained?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
           "official": false
         }
       ]
