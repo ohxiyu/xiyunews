@@ -11,30 +11,38 @@
     "en": "Ethereum Glamsterdam Upgrade Testnet Deployments and Risk Warning"
   },
   "current_state": {
-    "zh": "Lido 工程负责人警告称，在以太坊 Glamsterdam 硬分叉期间，节点运营者可能利用以 0xB0 开头的构建者提款凭证抢先处理委托质押存款，导致用户的验证者从未出现，而存款被记入拥有相同公钥的构建者名下，并敦促质押协议采用存款前检查。",
-    "en": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks."
+    "zh": "Hoodi 测试网的 Glamsterdam 升级已推迟至原定 10 月 26 日之后，配套的 2 亿 Gas 上限提升被取消，等待对 EIP-8037 与 EIP-8038 的 Gas 计费变更、兼容性及“gas 不足 griefing”安全风险的调查；新的测试网与主网激活日期均未确定，主网时间表存在不确定性。",
+    "en": "The Hoodi testnet Glamsterdam upgrade has been postponed beyond its originally scheduled October 26 date, and the accompanying 200 million gas-limit increase has been canceled pending investigation of EIP-8037 and EIP-8038 gas-accounting changes, compatibility, and insufficient-gas griefing security risks; no new testnet or mainnet activation dates are set, and the mainnet timeline is uncertain."
   },
   "first_seen_at": "2026-09-17T17:11:45.183417+00:00",
-  "last_updated_at": "2026-10-20T09:34:14.170374+00:00",
-  "last_material_change_at": "2026-10-20T09:34:14.170374+00:00",
+  "last_updated_at": "2026-10-23T06:05:34.373870+00:00",
+  "last_material_change_at": "2026-10-23T06:05:34.373870+00:00",
   "confidence": 0.75,
-  "updates_count": 9,
-  "sources_count": 15,
+  "updates_count": 11,
+  "sources_count": 17,
   "entities": [
     "activates",
+    "compatibil",
+    "eip",
+    "eip-8037",
     "gas",
     "glamsterdam",
     "hoodi",
     "lido",
     "october",
+    "over",
+    "postpones",
     "raising",
     "sepolia",
     "sets",
     "testnet",
     "upgrade"
   ],
-  "identifiers": [],
+  "identifiers": [
+    "eip-8037"
+  ],
   "topics": [
+    "eip-8037",
     "epbs",
     "gas-limit",
     "glamsterdam",
@@ -442,6 +450,82 @@
           "url": "https://foresightnews.pro/news/h5Detail/115552",
           "label": "foresightnews",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_d3ee5e9d4f1de7a7",
+      "event_id": "evt_0f8b132b10a6f10f",
+      "occurred_at": "2026-10-23T02:35:18Z",
+      "published_at": "2026-10-23T02:35:18Z",
+      "first_seen_at": "2026-10-23T06:02:04.551971Z",
+      "time_precision": "published",
+      "update_type": "correction",
+      "material_change": true,
+      "title_zh": "以太坊因 EIP-8037 兼容性问题推迟 Hoodi 测试网 Glamsterdam 升级",
+      "title_en": "Ethereum Postpones Glamsterdam Upgrade on Hoodi Testnet Over EIP-8037 Compatibil",
+      "what_changed_zh": "以太坊核心开发者推迟了原定 10 月 26 日的 Hoodi 测试网 Glamsterdam 升级，并取消了将 Hoodi Gas 上限提高至 2 亿的计划，以调查 EIP-8037 的 Gas 计费变更与现有主网智能合约的兼容性问题；节点运营者需更新客户端以避免按原定时间激活分叉，新的测试网与主网激活日期均未确定。",
+      "what_changed_en": "Ethereum core developers postponed the Glamsterdam upgrade on the Hoodi testnet, originally scheduled for October 26, and canceled the planned increase of Hoodi's gas limit to 200 million in order to investigate compatibility concerns between EIP-8037's gas-accounting changes and existing mainnet smart contracts; node operators must update clients to prevent activation as originally scheduled, and no new Hoodi or mainnet activation dates have been set.",
+      "current_state_zh": "Hoodi 测试网的 Glamsterdam 升级及配套的 2 亿 Gas 上限提升已被推迟/取消，等待 EIP-8037 兼容性调查结果，测试网与主网的新激活日期均未确定。",
+      "current_state_en": "The Hoodi testnet Glamsterdam upgrade and its accompanying 200 million gas-limit increase have been postponed/canceled pending investigation of EIP-8037 compatibility, with no new testnet or mainnet activation dates determined.",
+      "detailed_summary_zh": "Ethereum core developers postponed the Hoodi testnet Glamsterdam upgrade and its planned gas-limit increase to 200 million pending investigation of EIP-8037 gas-accounting compatibility with existing mainnet smart contracts, with new testnet and mainnet dates undetermined.",
+      "detailed_summary_en": "Ethereum core developers postponed the Hoodi testnet Glamsterdam upgrade and its planned gas-limit increase to 200 million pending investigation of EIP-8037 gas-accounting compatibility with existing mainnet smart contracts, with new testnet and mainnet dates undetermined.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.9,
+      "story_ids": [
+        "telegram:wublockchainenglish:26521"
+      ],
+      "sources": [
+        {
+          "url": "https://wublockchain.xyz/news/ethereum-postpones-glamsterdam-upgrade-hoodi-testnet-eip-8037-compatibility-21351",
+          "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_e4fb9928d7895619",
+      "event_id": "evt_0f8b132b10a6f10f",
+      "occurred_at": "2026-10-23T05:09:41Z",
+      "published_at": "2026-10-23T05:09:41Z",
+      "first_seen_at": "2026-10-23T06:05:34.373870Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "以太坊因安全风险推迟 Glamsterdam Hoodi 测试网上线",
+      "title_en": "Ethereum delays Glamsterdam Hoodi testnet launch over security risks",
+      "what_changed_zh": "安全公司 ChainSecurity 指出 Glamsterdam 中的 EIP-8037 与 EIP-8038 可能削弱对“gas 不足 griefing”攻击的防护，并称已发现 13 个可能受影响的真实智能合约案例，正与相关项目协调负责任披露；这使 Hoodi 升级推迟的原因从兼容性调查扩展为具体安全风险，主网时间表（此前考虑 12 月初）也因此更不确定。",
+      "what_changed_en": "Security firm ChainSecurity warned that Glamsterdam's EIP-8037 and EIP-8038 could weaken safeguards against insufficient-gas griefing attacks, said it identified 13 real-world smart contracts potentially affected, and is coordinating responsible disclosure with affected projects; this broadens the stated reason for the Hoodi postponement from compatibility investigation to specific security risks and adds uncertainty to the mainnet timeline, previously considering early December.",
+      "current_state_zh": "Hoodi 测试网的 Glamsterdam 升级已推迟至原定 10 月 26 日之后，配套的 2 亿 Gas 上限提升被取消，等待对 EIP-8037 与 EIP-8038 的 Gas 计费变更、兼容性及“gas 不足 griefing”安全风险的调查；新的测试网与主网激活日期均未确定，主网时间表存在不确定性。",
+      "current_state_en": "The Hoodi testnet Glamsterdam upgrade has been postponed beyond its originally scheduled October 26 date, and the accompanying 200 million gas-limit increase has been canceled pending investigation of EIP-8037 and EIP-8038 gas-accounting changes, compatibility, and insufficient-gas griefing security risks; no new testnet or mainnet activation dates are set, and the mainnet timeline is uncertain.",
+      "detailed_summary_zh": "Ethereum developers delayed the Glamsterdam hard fork on the Hoodi testnet beyond its Oct. 26 date after ChainSecurity warned that gas-related EIPs 8037 and 8038 could enable insufficient gas griefing against existing smart contracts, putting the mainnet timeline in question.",
+      "detailed_summary_en": "Ethereum developers delayed the Glamsterdam hard fork on the Hoodi testnet beyond its Oct. 26 date after ChainSecurity warned that gas-related EIPs 8037 and 8038 could enable insufficient gas griefing against existing smart contracts, putting the mainnet timeline in question.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.96,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:6dbd1895d124278c"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/ethereum-delays-glamsterdam-testnet-fork-gas-security-risks?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
           "official": false
         }
       ]

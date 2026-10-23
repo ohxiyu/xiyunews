@@ -70081,15 +70081,20 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks.",
-      "current_state_zh": "Lido 工程负责人警告称，在以太坊 Glamsterdam 硬分叉期间，节点运营者可能利用以 0xB0 开头的构建者提款凭证抢先处理委托质押存款，导致用户的验证者从未出现，而存款被记入拥有相同公钥的构建者名下，并敦促质押协议采用存款前检查。",
+      "current_state_en": "The Hoodi testnet Glamsterdam upgrade has been postponed beyond its originally scheduled October 26 date, and the accompanying 200 million gas-limit increase has been canceled pending investigation of EIP-8037 and EIP-8038 gas-accounting changes, compatibility, and insufficient-gas griefing security risks; no new testnet or mainnet activation dates are set, and the mainnet timeline is uncertain.",
+      "current_state_zh": "Hoodi 测试网的 Glamsterdam 升级已推迟至原定 10 月 26 日之后，配套的 2 亿 Gas 上限提升被取消，等待对 EIP-8037 与 EIP-8038 的 Gas 计费变更、兼容性及“gas 不足 griefing”安全风险的调查；新的测试网与主网激活日期均未确定，主网时间表存在不确定性。",
       "entities": [
         "activates",
+        "compatibil",
+        "eip",
+        "eip-8037",
         "gas",
         "glamsterdam",
         "hoodi",
         "lido",
         "october",
+        "over",
+        "postpones",
         "raising",
         "sepolia",
         "sets",
@@ -70099,9 +70104,11 @@
       "event_id": "evt_0f8b132b10a6f10f",
       "event_type": "protocol_change",
       "first_seen_at": "2026-09-17T17:11:45.183417Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-20T09:34:14.170374Z",
-      "last_updated_at": "2026-10-20T09:34:14.170374Z",
+      "identifiers": [
+        "eip-8037"
+      ],
+      "last_material_change_at": "2026-10-23T06:05:34.373870Z",
+      "last_updated_at": "2026-10-23T06:05:34.373870Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_606b48228f302527",
@@ -70115,6 +70122,7 @@
       "title_en": "Ethereum Glamsterdam Upgrade Testnet Deployments and Risk Warning",
       "title_zh": "以太坊 Glamsterdam 升级测试网部署与风险警示",
       "topics": [
+        "eip-8037",
         "epbs",
         "gas-limit",
         "glamsterdam",
@@ -70525,6 +70533,82 @@
           "update_type": "escalation",
           "what_changed_en": "Lido's engineering lead warned that during Ethereum's Glamsterdam hard fork a node operator could front-run delegated staking deposits using 0xB0-prefixed builder withdrawal credentials so the user's validator never appears and the deposit is credited to a builder with the same public key, urging staking protocols to adopt pre-deposit checks.",
           "what_changed_zh": "Lido 工程负责人警告称，在以太坊 Glamsterdam 硬分叉期间，节点运营者可能利用以 0xB0 开头的构建者提款凭证抢先处理委托质押存款，导致用户的验证者从未出现，而存款被记入拥有相同公钥的构建者名下，并敦促质押协议采用存款前检查。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.9,
+          "current_state_en": "The Hoodi testnet Glamsterdam upgrade and its accompanying 200 million gas-limit increase have been postponed/canceled pending investigation of EIP-8037 compatibility, with no new testnet or mainnet activation dates determined.",
+          "current_state_zh": "Hoodi 测试网的 Glamsterdam 升级及配套的 2 亿 Gas 上限提升已被推迟/取消，等待 EIP-8037 兼容性调查结果，测试网与主网的新激活日期均未确定。",
+          "detailed_summary_en": "Ethereum core developers postponed the Hoodi testnet Glamsterdam upgrade and its planned gas-limit increase to 200 million pending investigation of EIP-8037 gas-accounting compatibility with existing mainnet smart contracts, with new testnet and mainnet dates undetermined.",
+          "detailed_summary_zh": "Ethereum core developers postponed the Hoodi testnet Glamsterdam upgrade and its planned gas-limit increase to 200 million pending investigation of EIP-8037 gas-accounting compatibility with existing mainnet smart contracts, with new testnet and mainnet dates undetermined.",
+          "event_id": "evt_0f8b132b10a6f10f",
+          "first_seen_at": "2026-10-23T06:02:04.551971Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T02:35:18Z",
+          "published_at": "2026-10-23T02:35:18Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/ethereum-postpones-glamsterdam-upgrade-hoodi-testnet-eip-8037-compatibility-21351"
+            }
+          ],
+          "story_ids": [
+            "telegram:wublockchainenglish:26521"
+          ],
+          "time_precision": "published",
+          "title_en": "Ethereum Postpones Glamsterdam Upgrade on Hoodi Testnet Over EIP-8037 Compatibil",
+          "title_zh": "以太坊因 EIP-8037 兼容性问题推迟 Hoodi 测试网 Glamsterdam 升级",
+          "update_id": "upd_d3ee5e9d4f1de7a7",
+          "update_type": "correction",
+          "what_changed_en": "Ethereum core developers postponed the Glamsterdam upgrade on the Hoodi testnet, originally scheduled for October 26, and canceled the planned increase of Hoodi's gas limit to 200 million in order to investigate compatibility concerns between EIP-8037's gas-accounting changes and existing mainnet smart contracts; node operators must update clients to prevent activation as originally scheduled, and no new Hoodi or mainnet activation dates have been set.",
+          "what_changed_zh": "以太坊核心开发者推迟了原定 10 月 26 日的 Hoodi 测试网 Glamsterdam 升级，并取消了将 Hoodi Gas 上限提高至 2 亿的计划，以调查 EIP-8037 的 Gas 计费变更与现有主网智能合约的兼容性问题；节点运营者需更新客户端以避免按原定时间激活分叉，新的测试网与主网激活日期均未确定。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.96,
+          "current_state_en": "The Hoodi testnet Glamsterdam upgrade has been postponed beyond its originally scheduled October 26 date, and the accompanying 200 million gas-limit increase has been canceled pending investigation of EIP-8037 and EIP-8038 gas-accounting changes, compatibility, and insufficient-gas griefing security risks; no new testnet or mainnet activation dates are set, and the mainnet timeline is uncertain.",
+          "current_state_zh": "Hoodi 测试网的 Glamsterdam 升级已推迟至原定 10 月 26 日之后，配套的 2 亿 Gas 上限提升被取消，等待对 EIP-8037 与 EIP-8038 的 Gas 计费变更、兼容性及“gas 不足 griefing”安全风险的调查；新的测试网与主网激活日期均未确定，主网时间表存在不确定性。",
+          "detailed_summary_en": "Ethereum developers delayed the Glamsterdam hard fork on the Hoodi testnet beyond its Oct. 26 date after ChainSecurity warned that gas-related EIPs 8037 and 8038 could enable insufficient gas griefing against existing smart contracts, putting the mainnet timeline in question.",
+          "detailed_summary_zh": "Ethereum developers delayed the Glamsterdam hard fork on the Hoodi testnet beyond its Oct. 26 date after ChainSecurity warned that gas-related EIPs 8037 and 8038 could enable insufficient gas griefing against existing smart contracts, putting the mainnet timeline in question.",
+          "event_id": "evt_0f8b132b10a6f10f",
+          "first_seen_at": "2026-10-23T06:05:34.373870Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T05:09:41Z",
+          "published_at": "2026-10-23T05:09:41Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/ethereum-delays-glamsterdam-testnet-fork-gas-security-risks?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:6dbd1895d124278c"
+          ],
+          "time_precision": "published",
+          "title_en": "Ethereum delays Glamsterdam Hoodi testnet launch over security risks",
+          "title_zh": "以太坊因安全风险推迟 Glamsterdam Hoodi 测试网上线",
+          "update_id": "upd_e4fb9928d7895619",
+          "update_type": "escalation",
+          "what_changed_en": "Security firm ChainSecurity warned that Glamsterdam's EIP-8037 and EIP-8038 could weaken safeguards against insufficient-gas griefing attacks, said it identified 13 real-world smart contracts potentially affected, and is coordinating responsible disclosure with affected projects; this broadens the stated reason for the Hoodi postponement from compatibility investigation to specific security risks and adds uncertainty to the mainnet timeline, previously considering early December.",
+          "what_changed_zh": "安全公司 ChainSecurity 指出 Glamsterdam 中的 EIP-8037 与 EIP-8038 可能削弱对“gas 不足 griefing”攻击的防护，并称已发现 13 个可能受影响的真实智能合约案例，正与相关项目协调负责任披露；这使 Hoodi 升级推迟的原因从兼容性调查扩展为具体安全风险，主网时间表（此前考虑 12 月初）也因此更不确定。"
         }
       ]
     },
@@ -104081,17 +104165,22 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "HSBC is positioning its HKD-backed RedCoin stablecoin to target the roughly 74% of Hong Kong respondents aware of stablecoins ahead of an anticipated launch under the city's new licensing framework.",
-      "current_state_zh": "汇丰银行正将其与港元挂钩的RedCoin稳定币定位为瞄准约74%了解稳定币的香港受访者，准备在该市新的发牌框架下推出。",
+      "current_state_en": "HSBC's RedCoin stablecoin is now in phased rollout to PayMe users, with initial P2P transfers and merchant payments, expected full availability before the weekend, and planned expansion to tokenized money market fund subscriptions by year-end.",
+      "current_state_zh": "汇丰的RedCoin稳定币已进入面向PayMe用户的分阶段推出阶段，首阶段支持P2P转账和商户支付，预计周末前全面可用，并计划年底前扩展至代币化货币市场基金认购。",
       "entities": [
         "ahead",
         "aware",
+        "backed",
+        "hkd",
         "hong",
         "hong-kong",
         "hsbc",
         "kong",
         "launch",
+        "launches",
+        "million",
         "names",
+        "payme",
         "redcoin",
         "retail",
         "rollout",
@@ -104103,8 +104192,8 @@
       "event_type": "other",
       "first_seen_at": "2026-09-30T10:38:05.148266Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-04T23:28:59.190008Z",
-      "last_updated_at": "2026-10-04T23:28:59.190008Z",
+      "last_material_change_at": "2026-10-23T06:02:04.551177Z",
+      "last_updated_at": "2026-10-23T06:02:09.783717Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_84530ab2363494e7",
@@ -104218,6 +104307,58 @@
           "update_type": "escalation",
           "what_changed_en": "HSBC is positioning its HKD-backed RedCoin stablecoin to target the roughly 74% of Hong Kong respondents aware of stablecoins ahead of an anticipated launch under the city's new licensing framework.",
           "what_changed_zh": "汇丰银行正将其与港元挂钩的RedCoin稳定币定位为瞄准约74%了解稳定币的香港受访者，准备在该市新的发牌框架下推出。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.95,
+          "current_state_en": "HSBC's RedCoin stablecoin is now in phased rollout to PayMe users, with initial P2P transfers and merchant payments, expected full availability before the weekend, and planned expansion to tokenized money market fund subscriptions by year-end.",
+          "current_state_zh": "汇丰的RedCoin稳定币已进入面向PayMe用户的分阶段推出阶段，首阶段支持P2P转账和商户支付，预计周末前全面可用，并计划年底前扩展至代币化货币市场基金认购。",
+          "detailed_summary_en": "HSBC began rolling out its HKMA-licensed, Hong Kong dollar-backed RedCoin stablecoin to more than 3.3 million PayMe users on October 23, starting with peer-to-peer and merchant payments and with plans to add tokenized money market fund subscriptions via its mobile banking app by year-end.",
+          "detailed_summary_zh": "HSBC began rolling out its HKMA-licensed, Hong Kong dollar-backed RedCoin stablecoin to more than 3.3 million PayMe users on October 23, starting with peer-to-peer and merchant payments and with plans to add tokenized money market fund subscriptions via its mobile banking app by year-end.",
+          "event_id": "evt_77a55c26343e2806",
+          "first_seen_at": "2026-10-23T06:02:04.551177Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T02:18:06Z",
+          "published_at": "2026-10-23T02:18:06Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/hsbc-launches-hkd-backed-redcoin-stablecoin-for-payme-users-21349"
+            },
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115837"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373339?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:wublockchainenglish:26519",
+            "telegram:foresightnews:121140",
+            "telegram:theblockbeats:202001"
+          ],
+          "time_precision": "published",
+          "title_en": "HSBC Launches HKD-Backed RedCoin Stablecoin for 3.3 Million PayMe Users in Hong",
+          "title_zh": "HSBC Launches HKD-Backed RedCoin Stablecoin for 3.3 Million PayMe Users in Hong",
+          "update_id": "upd_0e011481d9483a1c",
+          "update_type": "escalation",
+          "what_changed_en": "HSBC began rolling out its HKMA-licensed HKD-backed RedCoin stablecoin to more than 3.3 million PayMe users on October 23, starting with P2P transfers and merchant payments and planning to add tokenized money market fund subscriptions via its mobile banking app by year-end.",
+          "what_changed_zh": "汇丰已于10月23日开始向超过330万PayMe用户推出其获香港金管局发牌的港元挂钩RedCoin稳定币，首阶段支持P2P转账和商户支付，并计划年底前通过手机银行应用接入代币化货币市场基金认购。"
         }
       ]
     },
@@ -185930,8 +186071,8 @@
     {
       "category": "policy",
       "confidence": 0.75,
-      "current_state_en": "Polymarket dismissed CMO Matthew Modabber after an internal investigation into allegedly fake trading-profit promotional content and influencer payments made via personal accounts, with the matter now under an ongoing CFTC investigation.",
-      "current_state_zh": "Polymarket dismissed CMO Matthew Modabber after an internal investigation into allegedly fake trading-profit promotional content and influencer payments made via personal accounts, with the matter now under an ongoing CFTC investigation.",
+      "current_state_en": "Polymarket dismissed its chief marketing officer Matthew Modabber after an internal investigation into his team's creation of fake webpages and staged videos showing users earning illusory trading profits, conduct already reported by the WSJ and under CFTC investigation.",
+      "current_state_zh": "Polymarket dismissed its chief marketing officer Matthew Modabber after an internal investigation into his team's creation of fake webpages and staged videos showing users earning illusory trading profits, conduct already reported by the WSJ and under CFTC investigation.",
       "entities": [
         "amid",
         "cftc",
@@ -185949,17 +186090,21 @@
       "event_type": "regulatory_action",
       "first_seen_at": "2026-10-23T01:51:12.390743Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-23T01:51:12.390743Z",
-      "last_updated_at": "2026-10-23T01:51:12.390743Z",
+      "last_material_change_at": "2026-10-23T01:51:15.143014Z",
+      "last_updated_at": "2026-10-23T01:51:15.143014Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_b62a91fb2308b7ed"
+      ],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "Polymarket Fires CMO Matthew Modabber Amid Fake Promotion Claims and CFTC Probe",
-      "title_zh": "Polymarket Fires CMO Matthew Modabber Amid Fake Promotion Claims and CFTC Probe",
+      "title_zh": "Polymarket因虚假获利宣传内容解雇首席营销官，CFTC展开调查",
       "topics": [
         "cftc",
         "influencer-marketing",
+        "misconduct",
+        "personnel",
         "polymarket",
         "prediction-markets"
       ],
@@ -185989,10 +186134,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://wublockchain.xyz/news/polymarket-fires-cmo-matthew-modabber-fake-promo-claims-cftc-probe-21348"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373298?from=telegram"
             }
           ],
           "story_ids": [
-            "telegram:wublockchainenglish:26518"
+            "telegram:wublockchainenglish:26518",
+            "telegram:theblockbeats:201956"
           ],
           "time_precision": "published",
           "title_en": "Polymarket Fires CMO Matthew Modabber Amid Fake Promotion Claims and CFTC Probe",
@@ -186007,8 +186159,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Aave founder Stani Kulechov said Aavenomics 3.0 will include AAVE buybacks, staking, and burning, while Aave V4's first external curator markets went live with Sentora-provided strategies.",
-      "current_state_zh": "Aave founder Stani Kulechov said Aavenomics 3.0 will include AAVE buybacks, staking, and burning, while Aave V4's first external curator markets went live with Sentora-provided strategies.",
+      "current_state_en": "Aave founder Stani announced that the upcoming Aavenomics 3.0 will introduce AAVE buybacks, staking, and token burns, following the earlier pause of buybacks after the rsETH exploit.",
+      "current_state_zh": "Aave founder Stani announced that the upcoming Aavenomics 3.0 will introduce AAVE buybacks, staking, and token burns, following the earlier pause of buybacks after the rsETH exploit.",
       "entities": [
         "aave",
         "aavenomics",
@@ -186018,18 +186170,23 @@
       "event_type": "other",
       "first_seen_at": "2026-10-23T01:51:14.407536Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-23T01:51:14.407536Z",
-      "last_updated_at": "2026-10-23T01:51:14.407536Z",
+      "last_material_change_at": "2026-10-23T01:51:15.140588Z",
+      "last_updated_at": "2026-10-23T01:51:15.140588Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_9461d6b81be76b9d"
+      ],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "【Aave 创始人：Aavenomics 3.0 将包含 AAVE 回购、质押及销毁】",
-      "title_zh": "【Aave 创始人：Aavenomics 3.0 将包含 AAVE 回购、质押及销毁】",
+      "title_zh": "Aave创始人宣布Aavenomics 3.0将包含AAVE回购、质押及销毁",
       "topics": [
         "aave",
         "aave-buyback",
         "aavenomics-30",
+        "buyback",
+        "staking",
+        "token-burn",
         "tokenomics"
       ],
       "updates": [
@@ -186058,10 +186215,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://foresightnews.pro/news/h5Detail/115811"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373293?from=telegram"
             }
           ],
           "story_ids": [
-            "telegram:foresightnews:121112"
+            "telegram:foresightnews:121112",
+            "telegram:theblockbeats:201951"
           ],
           "time_precision": "published",
           "title_en": "【Aave 创始人：Aavenomics 3.0 将包含 AAVE 回购、质押及销毁】",
@@ -186208,142 +186372,6 @@
       ]
     },
     {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "Aave founder Stani announced that the upcoming Aavenomics 3.0 will introduce AAVE buybacks, staking, and token burns, following the earlier pause of buybacks after the rsETH exploit.",
-      "current_state_zh": "Aave founder Stani announced that the upcoming Aavenomics 3.0 will introduce AAVE buybacks, staking, and token burns, following the earlier pause of buybacks after the rsETH exploit.",
-      "entities": [
-        "aave"
-      ],
-      "event_id": "evt_9461d6b81be76b9d",
-      "event_type": "other",
-      "first_seen_at": "2026-10-23T01:51:15.140588Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-23T01:51:15.140588Z",
-      "last_updated_at": "2026-10-23T01:51:15.140588Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Aave创始人：新版代币经济学将包括AAVE回购、质押及销毁",
-      "title_zh": "Aave创始人：新版代币经济学将包括AAVE回购、质押及销毁",
-      "topics": [
-        "aave",
-        "buyback",
-        "staking",
-        "token-burn",
-        "tokenomics"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Aave founder Stani announced that the upcoming Aavenomics 3.0 will introduce AAVE buybacks, staking, and token burns, following the earlier pause of buybacks after the rsETH exploit.",
-          "current_state_zh": "Aave founder Stani announced that the upcoming Aavenomics 3.0 will introduce AAVE buybacks, staking, and token burns, following the earlier pause of buybacks after the rsETH exploit.",
-          "detailed_summary_en": "Aave founder Stani announced that the upcoming Aavenomics 3.0 will introduce AAVE buybacks, staking, and token burns, following the earlier pause of buybacks after the rsETH exploit.",
-          "detailed_summary_zh": "Aave founder Stani announced that the upcoming Aavenomics 3.0 will introduce AAVE buybacks, staking, and token burns, following the earlier pause of buybacks after the rsETH exploit.",
-          "event_id": "evt_9461d6b81be76b9d",
-          "first_seen_at": "2026-10-23T01:51:15.140588Z",
-          "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-23T00:42:02Z",
-          "published_at": "2026-10-23T00:42:02Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "theblockbeats",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://m.theblockbeats.info/flash/373293?from=telegram"
-            }
-          ],
-          "story_ids": [
-            "telegram:theblockbeats:201951"
-          ],
-          "time_precision": "published",
-          "title_en": "Aave创始人：新版代币经济学将包括AAVE回购、质押及销毁",
-          "title_zh": "Aave创始人：新版代币经济学将包括AAVE回购、质押及销毁",
-          "update_id": "upd_0036e31abadc8ea1",
-          "update_type": "initial",
-          "what_changed_en": "Aave founder Stani announced that the upcoming Aavenomics 3.0 will introduce AAVE buybacks, staking, and token burns, following the earlier pause of buybacks after the rsETH exploit.",
-          "what_changed_zh": "Aave founder Stani announced that the upcoming Aavenomics 3.0 will introduce AAVE buybacks, staking, and token burns, following the earlier pause of buybacks after the rsETH exploit."
-        }
-      ]
-    },
-    {
-      "category": "policy",
-      "confidence": 0.75,
-      "current_state_en": "Polymarket dismissed its chief marketing officer Matthew Modabber after an internal investigation into his team's creation of fake webpages and staged videos showing users earning illusory trading profits, conduct already reported by the WSJ and under CFTC investigation.",
-      "current_state_zh": "Polymarket dismissed its chief marketing officer Matthew Modabber after an internal investigation into his team's creation of fake webpages and staged videos showing users earning illusory trading profits, conduct already reported by the WSJ and under CFTC investigation.",
-      "entities": [
-        "polymarket"
-      ],
-      "event_id": "evt_b62a91fb2308b7ed",
-      "event_type": "regulatory_action",
-      "first_seen_at": "2026-10-23T01:51:15.143014Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-23T01:51:15.143014Z",
-      "last_updated_at": "2026-10-23T01:51:15.143014Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "⚡️Polymarket首席营销官遭解雇，或因主导制造摆拍虚假获利场景",
-      "title_zh": "⚡️Polymarket首席营销官遭解雇，或因主导制造摆拍虚假获利场景",
-      "topics": [
-        "cftc",
-        "misconduct",
-        "personnel",
-        "polymarket",
-        "prediction-markets"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Polymarket dismissed its chief marketing officer Matthew Modabber after an internal investigation into his team's creation of fake webpages and staged videos showing users earning illusory trading profits, conduct already reported by the WSJ and under CFTC investigation.",
-          "current_state_zh": "Polymarket dismissed its chief marketing officer Matthew Modabber after an internal investigation into his team's creation of fake webpages and staged videos showing users earning illusory trading profits, conduct already reported by the WSJ and under CFTC investigation.",
-          "detailed_summary_en": "Polymarket dismissed its chief marketing officer Matthew Modabber after an internal investigation into his team's creation of fake webpages and staged videos showing users earning illusory trading profits, conduct already reported by the WSJ and under CFTC investigation.",
-          "detailed_summary_zh": "Polymarket dismissed its chief marketing officer Matthew Modabber after an internal investigation into his team's creation of fake webpages and staged videos showing users earning illusory trading profits, conduct already reported by the WSJ and under CFTC investigation.",
-          "event_id": "evt_b62a91fb2308b7ed",
-          "first_seen_at": "2026-10-23T01:51:15.143014Z",
-          "importance_score": 7.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-23T01:17:02Z",
-          "published_at": "2026-10-23T01:17:02Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "theblockbeats",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://m.theblockbeats.info/flash/373298?from=telegram"
-            }
-          ],
-          "story_ids": [
-            "telegram:theblockbeats:201956"
-          ],
-          "time_precision": "published",
-          "title_en": "⚡️Polymarket首席营销官遭解雇，或因主导制造摆拍虚假获利场景",
-          "title_zh": "⚡️Polymarket首席营销官遭解雇，或因主导制造摆拍虚假获利场景",
-          "update_id": "upd_8579b65fd1d5c0b2",
-          "update_type": "initial",
-          "what_changed_en": "Polymarket dismissed its chief marketing officer Matthew Modabber after an internal investigation into his team's creation of fake webpages and staged videos showing users earning illusory trading profits, conduct already reported by the WSJ and under CFTC investigation.",
-          "what_changed_zh": "Polymarket dismissed its chief marketing officer Matthew Modabber after an internal investigation into his team's creation of fake webpages and staged videos showing users earning illusory trading profits, conduct already reported by the WSJ and under CFTC investigation."
-        }
-      ]
-    },
-    {
       "category": "policy",
       "confidence": 0.75,
       "current_state_en": "Pentagon chief Pete Hegseth issued a memo prohibiting all Department of War personnel from using classified or nonpublic information to place wagers on military actions via prediction markets such as Kalshi and Polymarket, citing operational security and judgment risks.",
@@ -186417,6 +186445,915 @@
           "what_changed_zh": "Pentagon chief Pete Hegseth issued a memo prohibiting all Department of War personnel from using classified or nonpublic information to place wagers on military actions via prediction markets such as Kalshi and Polymarket, citing operational security and judgment risks."
         }
       ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "JPMorgan Asset Management opened its tokenized money market funds MONY (a 506(c) private fund) and JLTXX (a US-registered government money market fund aimed at GENIUS Act-compliant stablecoin issuers) to qualified US investors on Solana, with subscriptions and redemptions via the Morgan Money liquidity platform and token balances delivered to on-chain addresses.",
+      "current_state_zh": "JPMorgan Asset Management opened its tokenized money market funds MONY (a 506(c) private fund) and JLTXX (a US-registered government money market fund aimed at GENIUS Act-compliant stablecoin issuers) to qualified US investors on Solana, with subscriptions and redemptions via the Morgan Money liquidity platform and token balances delivered to on-chain addresses.",
+      "entities": [
+        "solana"
+      ],
+      "event_id": "evt_8864f7b04b51d920",
+      "event_type": "market_structure",
+      "first_seen_at": "2026-10-23T06:02:07.343893Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-23T06:02:07.343893Z",
+      "last_updated_at": "2026-10-23T06:02:09.762427Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【摩根大通资管公司将代币化货币市场基金扩展至 Solana】",
+      "title_zh": "【摩根大通资管公司将代币化货币市场基金扩展至 Solana】",
+      "topics": [
+        "money-market-funds",
+        "solana",
+        "stablecoins"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "JPMorgan Asset Management opened its tokenized money market funds MONY (a 506(c) private fund) and JLTXX (a US-registered government money market fund aimed at GENIUS Act-compliant stablecoin issuers) to qualified US investors on Solana, with subscriptions and redemptions via the Morgan Money liquidity platform and token balances delivered to on-chain addresses.",
+          "current_state_zh": "JPMorgan Asset Management opened its tokenized money market funds MONY (a 506(c) private fund) and JLTXX (a US-registered government money market fund aimed at GENIUS Act-compliant stablecoin issuers) to qualified US investors on Solana, with subscriptions and redemptions via the Morgan Money liquidity platform and token balances delivered to on-chain addresses.",
+          "detailed_summary_en": "JPMorgan Asset Management opened its tokenized money market funds MONY (a 506(c) private fund) and JLTXX (a US-registered government money market fund aimed at GENIUS Act-compliant stablecoin issuers) to qualified US investors on Solana, with subscriptions and redemptions via the Morgan Money liquidity platform and token balances delivered to on-chain addresses.",
+          "detailed_summary_zh": "JPMorgan Asset Management opened its tokenized money market funds MONY (a 506(c) private fund) and JLTXX (a US-registered government money market fund aimed at GENIUS Act-compliant stablecoin issuers) to qualified US investors on Solana, with subscriptions and redemptions via the Morgan Money liquidity platform and token balances delivered to on-chain addresses.",
+          "event_id": "evt_8864f7b04b51d920",
+          "first_seen_at": "2026-10-23T06:02:07.343893Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T02:07:53Z",
+          "published_at": "2026-10-23T02:07:53Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115823"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373308?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:121125",
+            "telegram:theblockbeats:201967"
+          ],
+          "time_precision": "published",
+          "title_en": "【摩根大通资管公司将代币化货币市场基金扩展至 Solana】",
+          "title_zh": "【摩根大通资管公司将代币化货币市场基金扩展至 Solana】",
+          "update_id": "upd_b1655d746ab32e4c",
+          "update_type": "initial",
+          "what_changed_en": "JPMorgan Asset Management opened its tokenized money market funds MONY (a 506(c) private fund) and JLTXX (a US-registered government money market fund aimed at GENIUS Act-compliant stablecoin issuers) to qualified US investors on Solana, with subscriptions and redemptions via the Morgan Money liquidity platform and token balances delivered to on-chain addresses.",
+          "what_changed_zh": "JPMorgan Asset Management opened its tokenized money market funds MONY (a 506(c) private fund) and JLTXX (a US-registered government money market fund aimed at GENIUS Act-compliant stablecoin issuers) to qualified US investors on Solana, with subscriptions and redemptions via the Morgan Money liquidity platform and token balances delivered to on-chain addresses."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "South Korea's central bank and government plan to revise the Foreign Exchange Transactions Act within the year to regulate stablecoins as payment methods and strengthen cross-border digital asset monitoring.",
+      "current_state_zh": "South Korea's central bank and government plan to revise the Foreign Exchange Transactions Act within the year to regulate stablecoins as payment methods and strengthen cross-border digital asset monitoring.",
+      "entities": [],
+      "event_id": "evt_5b9d1d5478e94963",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-23T06:02:07.344679Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-23T06:02:07.344679Z",
+      "last_updated_at": "2026-10-23T06:02:07.344679Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【韩国央行与政府计划年内修订《外汇交易法》，拟将稳定币作为支付手段进行监管】",
+      "title_zh": "【韩国央行与政府计划年内修订《外汇交易法》，拟将稳定币作为支付手段进行监管】",
+      "topics": [
+        "cross-border-payments",
+        "crypto-regulation",
+        "foreign-exchange-law",
+        "south-korea",
+        "stablecoin-regulation"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "South Korea's central bank and government plan to revise the Foreign Exchange Transactions Act within the year to regulate stablecoins as payment methods and strengthen cross-border digital asset monitoring.",
+          "current_state_zh": "South Korea's central bank and government plan to revise the Foreign Exchange Transactions Act within the year to regulate stablecoins as payment methods and strengthen cross-border digital asset monitoring.",
+          "detailed_summary_en": "South Korea's central bank and government plan to revise the Foreign Exchange Transactions Act within the year to regulate stablecoins as payment methods and strengthen cross-border digital asset monitoring.",
+          "detailed_summary_zh": "South Korea's central bank and government plan to revise the Foreign Exchange Transactions Act within the year to regulate stablecoins as payment methods and strengthen cross-border digital asset monitoring.",
+          "event_id": "evt_5b9d1d5478e94963",
+          "first_seen_at": "2026-10-23T06:02:07.344679Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T02:32:11Z",
+          "published_at": "2026-10-23T02:32:11Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115825"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:121127"
+          ],
+          "time_precision": "published",
+          "title_en": "【韩国央行与政府计划年内修订《外汇交易法》，拟将稳定币作为支付手段进行监管】",
+          "title_zh": "【韩国央行与政府计划年内修订《外汇交易法》，拟将稳定币作为支付手段进行监管】",
+          "update_id": "upd_5b5904d05986cd25",
+          "update_type": "initial",
+          "what_changed_en": "South Korea's central bank and government plan to revise the Foreign Exchange Transactions Act within the year to regulate stablecoins as payment methods and strengthen cross-border digital asset monitoring.",
+          "what_changed_zh": "South Korea's central bank and government plan to revise the Foreign Exchange Transactions Act within the year to regulate stablecoins as payment methods and strengthen cross-border digital asset monitoring."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "The UAE announced results of the 30-country 'Confrontation Ghost' operation (July 1–Sept 30), which identified over $39 billion in fraud-related funds including crypto, arrested more than 960 suspects, raided 29 scam centers and flagged 4,100+ fraudulent bank accounts.",
+      "current_state_zh": "The UAE announced results of the 30-country 'Confrontation Ghost' operation (July 1–Sept 30), which identified over $39 billion in fraud-related funds including crypto, arrested more than 960 suspects, raided 29 scam centers and flagged 4,100+ fraudulent bank accounts.",
+      "entities": [],
+      "event_id": "evt_1af0e521e8c06638",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-23T06:02:09.765743Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-23T06:02:09.765743Z",
+      "last_updated_at": "2026-10-23T06:02:09.765743Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "阿联酋牵头30国反诈行动：识别超390亿美元涉诈资金，逮捕逾960人",
+      "title_zh": "阿联酋牵头30国反诈行动：识别超390亿美元涉诈资金，逮捕逾960人",
+      "topics": [
+        "crypto-crime",
+        "fraud-enforcement",
+        "illicit-finance",
+        "interpol",
+        "uae"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "The UAE announced results of the 30-country 'Confrontation Ghost' operation (July 1–Sept 30), which identified over $39 billion in fraud-related funds including crypto, arrested more than 960 suspects, raided 29 scam centers and flagged 4,100+ fraudulent bank accounts.",
+          "current_state_zh": "The UAE announced results of the 30-country 'Confrontation Ghost' operation (July 1–Sept 30), which identified over $39 billion in fraud-related funds including crypto, arrested more than 960 suspects, raided 29 scam centers and flagged 4,100+ fraudulent bank accounts.",
+          "detailed_summary_en": "The UAE announced results of the 30-country 'Confrontation Ghost' operation (July 1–Sept 30), which identified over $39 billion in fraud-related funds including crypto, arrested more than 960 suspects, raided 29 scam centers and flagged 4,100+ fraudulent bank accounts.",
+          "detailed_summary_zh": "The UAE announced results of the 30-country 'Confrontation Ghost' operation (July 1–Sept 30), which identified over $39 billion in fraud-related funds including crypto, arrested more than 960 suspects, raided 29 scam centers and flagged 4,100+ fraudulent bank accounts.",
+          "event_id": "evt_1af0e521e8c06638",
+          "first_seen_at": "2026-10-23T06:02:09.765743Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T02:30:02Z",
+          "published_at": "2026-10-23T02:30:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373311?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201972"
+          ],
+          "time_precision": "published",
+          "title_en": "阿联酋牵头30国反诈行动：识别超390亿美元涉诈资金，逮捕逾960人",
+          "title_zh": "阿联酋牵头30国反诈行动：识别超390亿美元涉诈资金，逮捕逾960人",
+          "update_id": "upd_dd84a327ccebc302",
+          "update_type": "initial",
+          "what_changed_en": "The UAE announced results of the 30-country 'Confrontation Ghost' operation (July 1–Sept 30), which identified over $39 billion in fraud-related funds including crypto, arrested more than 960 suspects, raided 29 scam centers and flagged 4,100+ fraudulent bank accounts.",
+          "what_changed_zh": "The UAE announced results of the 30-country 'Confrontation Ghost' operation (July 1–Sept 30), which identified over $39 billion in fraud-related funds including crypto, arrested more than 960 suspects, raided 29 scam centers and flagged 4,100+ fraudulent bank accounts."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "BIT's asset management arm received FINMA approval to list BBIT, described as Europe's first spot Bitcoin ETF, on the SIX Swiss Exchange in November, while BIT also expands equities and Swiss custody services.",
+      "current_state_zh": "BIT's asset management arm received FINMA approval to list BBIT, described as Europe's first spot Bitcoin ETF, on the SIX Swiss Exchange in November, while BIT also expands equities and Swiss custody services.",
+      "entities": [
+        "bit",
+        "etf"
+      ],
+      "event_id": "evt_e253f42945b04384",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-23T06:02:09.768887Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-23T06:02:09.768887Z",
+      "last_updated_at": "2026-10-23T06:02:09.768887Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "欧洲唯一现货比特币ETF获瑞士监管批准，BIT持续深化合规与多资产布局",
+      "title_zh": "欧洲唯一现货比特币ETF获瑞士监管批准，BIT持续深化合规与多资产布局",
+      "topics": [
+        "bitcoin-etf",
+        "custody",
+        "finma",
+        "switzerland"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "BIT's asset management arm received FINMA approval to list BBIT, described as Europe's first spot Bitcoin ETF, on the SIX Swiss Exchange in November, while BIT also expands equities and Swiss custody services.",
+          "current_state_zh": "BIT's asset management arm received FINMA approval to list BBIT, described as Europe's first spot Bitcoin ETF, on the SIX Swiss Exchange in November, while BIT also expands equities and Swiss custody services.",
+          "detailed_summary_en": "BIT's asset management arm received FINMA approval to list BBIT, described as Europe's first spot Bitcoin ETF, on the SIX Swiss Exchange in November, while BIT also expands equities and Swiss custody services.",
+          "detailed_summary_zh": "BIT's asset management arm received FINMA approval to list BBIT, described as Europe's first spot Bitcoin ETF, on the SIX Swiss Exchange in November, while BIT also expands equities and Swiss custody services.",
+          "event_id": "evt_e253f42945b04384",
+          "first_seen_at": "2026-10-23T06:02:09.768887Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T03:05:02Z",
+          "published_at": "2026-10-23T03:05:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373316?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201978"
+          ],
+          "time_precision": "published",
+          "title_en": "欧洲唯一现货比特币ETF获瑞士监管批准，BIT持续深化合规与多资产布局",
+          "title_zh": "欧洲唯一现货比特币ETF获瑞士监管批准，BIT持续深化合规与多资产布局",
+          "update_id": "upd_450dfb6b65ef55a7",
+          "update_type": "initial",
+          "what_changed_en": "BIT's asset management arm received FINMA approval to list BBIT, described as Europe's first spot Bitcoin ETF, on the SIX Swiss Exchange in November, while BIT also expands equities and Swiss custody services.",
+          "what_changed_zh": "BIT's asset management arm received FINMA approval to list BBIT, described as Europe's first spot Bitcoin ETF, on the SIX Swiss Exchange in November, while BIT also expands equities and Swiss custody services."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Anthropic donated its Agent Skills format — the SKILL.md-based 'work manual' standard already used by ChatGPT, Cursor and GitHub Copilot among 70+ platforms — to the Linux Foundation's Agentic AI Foundation, transferring the name, logo, GitHub organization and domain to joint multi-company maintenance alongside MCP, while proposing versioning, a formal proposal process and security guidance amid reports of malicious skills in the ecosystem.",
+      "current_state_zh": "Anthropic donated its Agent Skills format — the SKILL.md-based 'work manual' standard already used by ChatGPT, Cursor and GitHub Copilot among 70+ platforms — to the Linux Foundation's Agentic AI Foundation, transferring the name, logo, GitHub organization and domain to joint multi-company maintenance alongside MCP, while proposing versioning, a formal proposal process and security guidance amid reports of malicious skills in the ecosystem.",
+      "entities": [
+        "agent",
+        "anthropic",
+        "linux",
+        "mcp",
+        "skills"
+      ],
+      "event_id": "evt_f5bb8abb36392b8b",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-23T06:02:09.770777Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-23T06:02:09.770777Z",
+      "last_updated_at": "2026-10-23T06:02:09.770777Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Anthropic把Skills也捐给Linux基金会，继MCP后再交出一套Agent标准",
+      "title_zh": "Anthropic把Skills也捐给Linux基金会，继MCP后再交出一套Agent标准",
+      "topics": [
+        "agent-security",
+        "anthropic",
+        "linux-foundation",
+        "open-standards"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Anthropic donated its Agent Skills format — the SKILL.md-based 'work manual' standard already used by ChatGPT, Cursor and GitHub Copilot among 70+ platforms — to the Linux Foundation's Agentic AI Foundation, transferring the name, logo, GitHub organization and domain to joint multi-company maintenance alongside MCP, while proposing versioning, a formal proposal process and security guidance amid reports of malicious skills in the ecosystem.",
+          "current_state_zh": "Anthropic donated its Agent Skills format — the SKILL.md-based 'work manual' standard already used by ChatGPT, Cursor and GitHub Copilot among 70+ platforms — to the Linux Foundation's Agentic AI Foundation, transferring the name, logo, GitHub organization and domain to joint multi-company maintenance alongside MCP, while proposing versioning, a formal proposal process and security guidance amid reports of malicious skills in the ecosystem.",
+          "detailed_summary_en": "Anthropic donated its Agent Skills format — the SKILL.md-based 'work manual' standard already used by ChatGPT, Cursor and GitHub Copilot among 70+ platforms — to the Linux Foundation's Agentic AI Foundation, transferring the name, logo, GitHub organization and domain to joint multi-company maintenance alongside MCP, while proposing versioning, a formal proposal process and security guidance amid reports of malicious skills in the ecosystem.",
+          "detailed_summary_zh": "Anthropic donated its Agent Skills format — the SKILL.md-based 'work manual' standard already used by ChatGPT, Cursor and GitHub Copilot among 70+ platforms — to the Linux Foundation's Agentic AI Foundation, transferring the name, logo, GitHub organization and domain to joint multi-company maintenance alongside MCP, while proposing versioning, a formal proposal process and security guidance amid reports of malicious skills in the ecosystem.",
+          "event_id": "evt_f5bb8abb36392b8b",
+          "first_seen_at": "2026-10-23T06:02:09.770777Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T03:19:02Z",
+          "published_at": "2026-10-23T03:19:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "http://xn--,skills-sj5ss23g.sh/"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201981"
+          ],
+          "time_precision": "published",
+          "title_en": "Anthropic把Skills也捐给Linux基金会，继MCP后再交出一套Agent标准",
+          "title_zh": "Anthropic把Skills也捐给Linux基金会，继MCP后再交出一套Agent标准",
+          "update_id": "upd_3c505af7480b849f",
+          "update_type": "initial",
+          "what_changed_en": "Anthropic donated its Agent Skills format — the SKILL.md-based 'work manual' standard already used by ChatGPT, Cursor and GitHub Copilot among 70+ platforms — to the Linux Foundation's Agentic AI Foundation, transferring the name, logo, GitHub organization and domain to joint multi-company maintenance alongside MCP, while proposing versioning, a formal proposal process and security guidance amid reports of malicious skills in the ecosystem.",
+          "what_changed_zh": "Anthropic donated its Agent Skills format — the SKILL.md-based 'work manual' standard already used by ChatGPT, Cursor and GitHub Copilot among 70+ platforms — to the Linux Foundation's Agentic AI Foundation, transferring the name, logo, GitHub organization and domain to joint multi-company maintenance alongside MCP, while proposing versioning, a formal proposal process and security guidance amid reports of malicious skills in the ecosystem."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "DeepSeek and MiniMax became the first Chinese AI labs to complete registration under China's new AI technology export management system, securing clearance for open-source releases and overseas licensing while a temporary registration regime remains in force ahead of the final catalogue.",
+      "current_state_zh": "DeepSeek and MiniMax became the first Chinese AI labs to complete registration under China's new AI technology export management system, securing clearance for open-source releases and overseas licensing while a temporary registration regime remains in force ahead of the final catalogue.",
+      "entities": [
+        "deepseek",
+        "minimax"
+      ],
+      "event_id": "evt_b02ff48444a36fdb",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-23T06:02:09.771332Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-23T06:02:09.771332Z",
+      "last_updated_at": "2026-10-23T06:02:09.771332Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "DeepSeek、MiniMax完成AI技术出口登记，开源和海外授权已获放行",
+      "title_zh": "DeepSeek、MiniMax完成AI技术出口登记，开源和海外授权已获放行",
+      "topics": [
+        "ai-export-controls",
+        "ai-regulation",
+        "china",
+        "deepseek",
+        "minimax",
+        "open-source"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "DeepSeek and MiniMax became the first Chinese AI labs to complete registration under China's new AI technology export management system, securing clearance for open-source releases and overseas licensing while a temporary registration regime remains in force ahead of the final catalogue.",
+          "current_state_zh": "DeepSeek and MiniMax became the first Chinese AI labs to complete registration under China's new AI technology export management system, securing clearance for open-source releases and overseas licensing while a temporary registration regime remains in force ahead of the final catalogue.",
+          "detailed_summary_en": "DeepSeek and MiniMax became the first Chinese AI labs to complete registration under China's new AI technology export management system, securing clearance for open-source releases and overseas licensing while a temporary registration regime remains in force ahead of the final catalogue.",
+          "detailed_summary_zh": "DeepSeek and MiniMax became the first Chinese AI labs to complete registration under China's new AI technology export management system, securing clearance for open-source releases and overseas licensing while a temporary registration regime remains in force ahead of the final catalogue.",
+          "event_id": "evt_b02ff48444a36fdb",
+          "first_seen_at": "2026-10-23T06:02:09.771332Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T03:34:02Z",
+          "published_at": "2026-10-23T03:34:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373320?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201982"
+          ],
+          "time_precision": "published",
+          "title_en": "DeepSeek、MiniMax完成AI技术出口登记，开源和海外授权已获放行",
+          "title_zh": "DeepSeek、MiniMax完成AI技术出口登记，开源和海外授权已获放行",
+          "update_id": "upd_90700b371c47025b",
+          "update_type": "initial",
+          "what_changed_en": "DeepSeek and MiniMax became the first Chinese AI labs to complete registration under China's new AI technology export management system, securing clearance for open-source releases and overseas licensing while a temporary registration regime remains in force ahead of the final catalogue.",
+          "what_changed_zh": "DeepSeek and MiniMax became the first Chinese AI labs to complete registration under China's new AI technology export management system, securing clearance for open-source releases and overseas licensing while a temporary registration regime remains in force ahead of the final catalogue."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "SlowMist warned that two critical, already-exploited PHP vulnerabilities (CVSS 9.2) affect all PHP 5.4–8.5.11 deployments and pose systemic risk to Web3 off-chain infrastructure, noting that over half of the 1,488 crypto-related domains it scanned show PHP fingerprints, and urged projects to upgrade immediately to patched releases.",
+      "current_state_zh": "SlowMist warned that two critical, already-exploited PHP vulnerabilities (CVSS 9.2) affect all PHP 5.4–8.5.11 deployments and pose systemic risk to Web3 off-chain infrastructure, noting that over half of the 1,488 crypto-related domains it scanned show PHP fingerprints, and urged projects to upgrade immediately to patched releases.",
+      "entities": [
+        "php",
+        "web3"
+      ],
+      "event_id": "evt_21a453da85710f98",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-23T06:02:09.772934Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-23T06:02:09.772934Z",
+      "last_updated_at": "2026-10-23T06:02:09.772934Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "⚡️慢雾PHP漏洞报告：波及Web3链下基础设施，项目方应立即升级至最新版",
+      "title_zh": "⚡️慢雾PHP漏洞报告：波及Web3链下基础设施，项目方应立即升级至最新版",
+      "topics": [
+        "php",
+        "slowmist",
+        "vulnerability",
+        "web3-infrastructure"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "SlowMist warned that two critical, already-exploited PHP vulnerabilities (CVSS 9.2) affect all PHP 5.4–8.5.11 deployments and pose systemic risk to Web3 off-chain infrastructure, noting that over half of the 1,488 crypto-related domains it scanned show PHP fingerprints, and urged projects to upgrade immediately to patched releases.",
+          "current_state_zh": "SlowMist warned that two critical, already-exploited PHP vulnerabilities (CVSS 9.2) affect all PHP 5.4–8.5.11 deployments and pose systemic risk to Web3 off-chain infrastructure, noting that over half of the 1,488 crypto-related domains it scanned show PHP fingerprints, and urged projects to upgrade immediately to patched releases.",
+          "detailed_summary_en": "SlowMist warned that two critical, already-exploited PHP vulnerabilities (CVSS 9.2) affect all PHP 5.4–8.5.11 deployments and pose systemic risk to Web3 off-chain infrastructure, noting that over half of the 1,488 crypto-related domains it scanned show PHP fingerprints, and urged projects to upgrade immediately to patched releases.",
+          "detailed_summary_zh": "SlowMist warned that two critical, already-exploited PHP vulnerabilities (CVSS 9.2) affect all PHP 5.4–8.5.11 deployments and pose systemic risk to Web3 off-chain infrastructure, noting that over half of the 1,488 crypto-related domains it scanned show PHP fingerprints, and urged projects to upgrade immediately to patched releases.",
+          "event_id": "evt_21a453da85710f98",
+          "first_seen_at": "2026-10-23T06:02:09.772934Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T03:45:02Z",
+          "published_at": "2026-10-23T03:45:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373322?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201985"
+          ],
+          "time_precision": "published",
+          "title_en": "⚡️慢雾PHP漏洞报告：波及Web3链下基础设施，项目方应立即升级至最新版",
+          "title_zh": "⚡️慢雾PHP漏洞报告：波及Web3链下基础设施，项目方应立即升级至最新版",
+          "update_id": "upd_c9efbea87e3922cb",
+          "update_type": "initial",
+          "what_changed_en": "SlowMist warned that two critical, already-exploited PHP vulnerabilities (CVSS 9.2) affect all PHP 5.4–8.5.11 deployments and pose systemic risk to Web3 off-chain infrastructure, noting that over half of the 1,488 crypto-related domains it scanned show PHP fingerprints, and urged projects to upgrade immediately to patched releases.",
+          "what_changed_zh": "SlowMist warned that two critical, already-exploited PHP vulnerabilities (CVSS 9.2) affect all PHP 5.4–8.5.11 deployments and pose systemic risk to Web3 off-chain infrastructure, noting that over half of the 1,488 crypto-related domains it scanned show PHP fingerprints, and urged projects to upgrade immediately to patched releases."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Vercel will mark Marketplace services that still rely on long-lived API keys as insecure starting November 30, 2026, and delist non-compliant providers by January 2027 as it pushes OIDC-based short-lived credentials.",
+      "current_state_zh": "Vercel will mark Marketplace services that still rely on long-lived API keys as insecure starting November 30, 2026, and delist non-compliant providers by January 2027 as it pushes OIDC-based short-lived credentials.",
+      "entities": [
+        "api",
+        "vercel"
+      ],
+      "event_id": "evt_58cef028550f09e7",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-23T06:02:09.775696Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-23T06:02:09.775696Z",
+      "last_updated_at": "2026-10-23T06:02:09.775696Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Vercel向长期API密钥开刀：年底标「不安全」，明年直接下架",
+      "title_zh": "Vercel向长期API密钥开刀：年底标「不安全」，明年直接下架",
+      "topics": [
+        "api-security",
+        "developer-tools",
+        "oidc",
+        "static-credentials",
+        "vercel"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Vercel will mark Marketplace services that still rely on long-lived API keys as insecure starting November 30, 2026, and delist non-compliant providers by January 2027 as it pushes OIDC-based short-lived credentials.",
+          "current_state_zh": "Vercel will mark Marketplace services that still rely on long-lived API keys as insecure starting November 30, 2026, and delist non-compliant providers by January 2027 as it pushes OIDC-based short-lived credentials.",
+          "detailed_summary_en": "Vercel will mark Marketplace services that still rely on long-lived API keys as insecure starting November 30, 2026, and delist non-compliant providers by January 2027 as it pushes OIDC-based short-lived credentials.",
+          "detailed_summary_zh": "Vercel will mark Marketplace services that still rely on long-lived API keys as insecure starting November 30, 2026, and delist non-compliant providers by January 2027 as it pushes OIDC-based short-lived credentials.",
+          "event_id": "evt_58cef028550f09e7",
+          "first_seen_at": "2026-10-23T06:02:09.775696Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T04:04:02Z",
+          "published_at": "2026-10-23T04:04:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "http://context.ai/"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201990"
+          ],
+          "time_precision": "published",
+          "title_en": "Vercel向长期API密钥开刀：年底标「不安全」，明年直接下架",
+          "title_zh": "Vercel向长期API密钥开刀：年底标「不安全」，明年直接下架",
+          "update_id": "upd_37804f72108e17be",
+          "update_type": "initial",
+          "what_changed_en": "Vercel will mark Marketplace services that still rely on long-lived API keys as insecure starting November 30, 2026, and delist non-compliant providers by January 2027 as it pushes OIDC-based short-lived credentials.",
+          "what_changed_zh": "Vercel will mark Marketplace services that still rely on long-lived API keys as insecure starting November 30, 2026, and delist non-compliant providers by January 2027 as it pushes OIDC-based short-lived credentials."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Samsung began follow-on equipment investment at its Taylor, Texas Fab 1, ordering tools for an initial ~6,000 wafers per month as it targets 20,000 wpm of 2nm capacity by late 2027, backed by full 2nm orders from Tesla, Broadcom, and Arm.",
+      "current_state_zh": "Samsung began follow-on equipment investment at its Taylor, Texas Fab 1, ordering tools for an initial ~6,000 wafers per month as it targets 20,000 wpm of 2nm capacity by late 2027, backed by full 2nm orders from Tesla, Broadcom, and Arm.",
+      "entities": [],
+      "event_id": "evt_44a6dcb9662b0809",
+      "event_type": "other",
+      "first_seen_at": "2026-10-23T06:02:09.780611Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-23T06:02:09.780611Z",
+      "last_updated_at": "2026-10-23T06:02:09.780611Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "三星泰勒1号晶圆厂启动后续设备投资，冲刺2纳米量产",
+      "title_zh": "三星泰勒1号晶圆厂启动后续设备投资，冲刺2纳米量产",
+      "topics": [
+        "2nm",
+        "ai-chips",
+        "samsung",
+        "semiconductor-manufacturing",
+        "tesla"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Samsung began follow-on equipment investment at its Taylor, Texas Fab 1, ordering tools for an initial ~6,000 wafers per month as it targets 20,000 wpm of 2nm capacity by late 2027, backed by full 2nm orders from Tesla, Broadcom, and Arm.",
+          "current_state_zh": "Samsung began follow-on equipment investment at its Taylor, Texas Fab 1, ordering tools for an initial ~6,000 wafers per month as it targets 20,000 wpm of 2nm capacity by late 2027, backed by full 2nm orders from Tesla, Broadcom, and Arm.",
+          "detailed_summary_en": "Samsung began follow-on equipment investment at its Taylor, Texas Fab 1, ordering tools for an initial ~6,000 wafers per month as it targets 20,000 wpm of 2nm capacity by late 2027, backed by full 2nm orders from Tesla, Broadcom, and Arm.",
+          "detailed_summary_zh": "Samsung began follow-on equipment investment at its Taylor, Texas Fab 1, ordering tools for an initial ~6,000 wafers per month as it targets 20,000 wpm of 2nm capacity by late 2027, backed by full 2nm orders from Tesla, Broadcom, and Arm.",
+          "event_id": "evt_44a6dcb9662b0809",
+          "first_seen_at": "2026-10-23T06:02:09.780611Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T04:27:02Z",
+          "published_at": "2026-10-23T04:27:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373334?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201997"
+          ],
+          "time_precision": "published",
+          "title_en": "三星泰勒1号晶圆厂启动后续设备投资，冲刺2纳米量产",
+          "title_zh": "三星泰勒1号晶圆厂启动后续设备投资，冲刺2纳米量产",
+          "update_id": "upd_d8853aa9958cb8de",
+          "update_type": "initial",
+          "what_changed_en": "Samsung began follow-on equipment investment at its Taylor, Texas Fab 1, ordering tools for an initial ~6,000 wafers per month as it targets 20,000 wpm of 2nm capacity by late 2027, backed by full 2nm orders from Tesla, Broadcom, and Arm.",
+          "what_changed_zh": "Samsung began follow-on equipment investment at its Taylor, Texas Fab 1, ordering tools for an initial ~6,000 wafers per month as it targets 20,000 wpm of 2nm capacity by late 2027, backed by full 2nm orders from Tesla, Broadcom, and Arm."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "The Wall Street Journal reported that OpenAI fired three safety researchers in late September after an internal investigation into leaks of model-architecture secrets to external security expert Ryan Greenblatt, with the dismissed employees denying wrongdoing and alleging the move was retaliation for pushing AI-safety oversight.",
+      "current_state_zh": "The Wall Street Journal reported that OpenAI fired three safety researchers in late September after an internal investigation into leaks of model-architecture secrets to external security expert Ryan Greenblatt, with the dismissed employees denying wrongdoing and alleging the move was retaliation for pushing AI-safety oversight.",
+      "entities": [
+        "openai"
+      ],
+      "event_id": "evt_debaf7b7b95fdb9f",
+      "event_type": "governance",
+      "first_seen_at": "2026-10-23T06:02:09.781626Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-23T06:02:09.781626Z",
+      "last_updated_at": "2026-10-23T06:02:09.781626Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "OpenAI解雇3名安全研究员内幕：外部审计合作卷入泄密调查",
+      "title_zh": "OpenAI解雇3名安全研究员内幕：外部审计合作卷入泄密调查",
+      "topics": [
+        "ai-labs",
+        "ai-safety",
+        "openai",
+        "whistleblower"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "The Wall Street Journal reported that OpenAI fired three safety researchers in late September after an internal investigation into leaks of model-architecture secrets to external security expert Ryan Greenblatt, with the dismissed employees denying wrongdoing and alleging the move was retaliation for pushing AI-safety oversight.",
+          "current_state_zh": "The Wall Street Journal reported that OpenAI fired three safety researchers in late September after an internal investigation into leaks of model-architecture secrets to external security expert Ryan Greenblatt, with the dismissed employees denying wrongdoing and alleging the move was retaliation for pushing AI-safety oversight.",
+          "detailed_summary_en": "The Wall Street Journal reported that OpenAI fired three safety researchers in late September after an internal investigation into leaks of model-architecture secrets to external security expert Ryan Greenblatt, with the dismissed employees denying wrongdoing and alleging the move was retaliation for pushing AI-safety oversight.",
+          "detailed_summary_zh": "The Wall Street Journal reported that OpenAI fired three safety researchers in late September after an internal investigation into leaks of model-architecture secrets to external security expert Ryan Greenblatt, with the dismissed employees denying wrongdoing and alleging the move was retaliation for pushing AI-safety oversight.",
+          "event_id": "evt_debaf7b7b95fdb9f",
+          "first_seen_at": "2026-10-23T06:02:09.781626Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T04:41:02Z",
+          "published_at": "2026-10-23T04:41:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373336?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201998"
+          ],
+          "time_precision": "published",
+          "title_en": "OpenAI解雇3名安全研究员内幕：外部审计合作卷入泄密调查",
+          "title_zh": "OpenAI解雇3名安全研究员内幕：外部审计合作卷入泄密调查",
+          "update_id": "upd_c0d85e6b2949c3e9",
+          "update_type": "initial",
+          "what_changed_en": "The Wall Street Journal reported that OpenAI fired three safety researchers in late September after an internal investigation into leaks of model-architecture secrets to external security expert Ryan Greenblatt, with the dismissed employees denying wrongdoing and alleging the move was retaliation for pushing AI-safety oversight.",
+          "what_changed_zh": "The Wall Street Journal reported that OpenAI fired three safety researchers in late September after an internal investigation into leaks of model-architecture secrets to external security expert Ryan Greenblatt, with the dismissed employees denying wrongdoing and alleging the move was retaliation for pushing AI-safety oversight."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Bitcoin Core is revising its security vulnerability policy because large language models make some flaws easier to rediscover, reducing the value of lengthy embargoes and delaying fixed releases.",
+      "current_state_zh": "Bitcoin Core is revising its security vulnerability policy because large language models make some flaws easier to rediscover, reducing the value of lengthy embargoes and delaying fixed releases.",
+      "entities": [
+        "bitcoin-core",
+        "core",
+        "security-policy"
+      ],
+      "event_id": "evt_f2f3dde4c0bad37c",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-23T06:02:09.783100Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-23T06:05:34.442688Z",
+      "last_updated_at": "2026-10-23T06:05:34.442688Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [
+        "evt_eabb7b1356c15d2a"
+      ],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Bitcoin Core正调整其安全政策，部分漏洞将立即修复并公开",
+      "title_zh": "Bitcoin Core调整安全漏洞披露政策以应对AI发现漏洞",
+      "topics": [
+        "ai-security",
+        "bitcoin-core",
+        "llm",
+        "open-source",
+        "open-source-security",
+        "security-policy",
+        "vulnerability-disclosure"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Bitcoin Core is revising its security vulnerability disclosure policy so that flaws easily discoverable via LLM prompts are fixed across maintained releases and publicly disclosed as soon as possible, while other vulnerabilities retain severity-based staged disclosure.",
+          "current_state_zh": "Bitcoin Core is revising its security vulnerability disclosure policy so that flaws easily discoverable via LLM prompts are fixed across maintained releases and publicly disclosed as soon as possible, while other vulnerabilities retain severity-based staged disclosure.",
+          "detailed_summary_en": "Bitcoin Core is revising its security vulnerability disclosure policy so that flaws easily discoverable via LLM prompts are fixed across maintained releases and publicly disclosed as soon as possible, while other vulnerabilities retain severity-based staged disclosure.",
+          "detailed_summary_zh": "Bitcoin Core is revising its security vulnerability disclosure policy so that flaws easily discoverable via LLM prompts are fixed across maintained releases and publicly disclosed as soon as possible, while other vulnerabilities retain severity-based staged disclosure.",
+          "event_id": "evt_f2f3dde4c0bad37c",
+          "first_seen_at": "2026-10-23T06:02:09.783100Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T04:48:02Z",
+          "published_at": "2026-10-23T04:48:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373337?from=telegram"
+            },
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/bitcoin-core-changes-security-policy-as-ai-makes-bugs-easier-to-find?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:202000",
+            "rss:cointelegraph.com_rss:79a7891814efb7ba"
+          ],
+          "time_precision": "published",
+          "title_en": "Bitcoin Core正调整其安全政策，部分漏洞将立即修复并公开",
+          "title_zh": "Bitcoin Core正调整其安全政策，部分漏洞将立即修复并公开",
+          "update_id": "upd_f9b8b187c883c571",
+          "update_type": "initial",
+          "what_changed_en": "Bitcoin Core is revising its security vulnerability disclosure policy so that flaws easily discoverable via LLM prompts are fixed across maintained releases and publicly disclosed as soon as possible, while other vulnerabilities retain severity-based staged disclosure.",
+          "what_changed_zh": "Bitcoin Core is revising its security vulnerability disclosure policy so that flaws easily discoverable via LLM prompts are fixed across maintained releases and publicly disclosed as soon as possible, while other vulnerabilities retain severity-based staged disclosure."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset.",
+      "current_state_zh": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset.",
+      "entities": [
+        "day18",
+        "openai",
+        "reset"
+      ],
+      "event_id": "evt_db98985293a58c8d",
+      "event_type": "other",
+      "first_seen_at": "2026-10-23T06:02:09.784231Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-23T06:02:09.784231Z",
+      "last_updated_at": "2026-10-23T06:02:09.784231Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "OpenAI 28天产品冲刺Day18：连发多项更新，最后还是又送了一次Reset",
+      "title_zh": "OpenAI 28天产品冲刺Day18：连发多项更新，最后还是又送了一次Reset",
+      "topics": [
+        "api",
+        "developer-tools",
+        "enterprise-adoption",
+        "open-standards",
+        "openai"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset.",
+          "current_state_zh": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset.",
+          "detailed_summary_en": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset.",
+          "detailed_summary_zh": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset.",
+          "event_id": "evt_db98985293a58c8d",
+          "first_seen_at": "2026-10-23T06:02:09.784231Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-23T04:57:02Z",
+          "published_at": "2026-10-23T04:57:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373338?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:202002"
+          ],
+          "time_precision": "published",
+          "title_en": "OpenAI 28天产品冲刺Day18：连发多项更新，最后还是又送了一次Reset",
+          "title_zh": "OpenAI 28天产品冲刺Day18：连发多项更新，最后还是又送了一次Reset",
+          "update_id": "upd_b40da5eeb496d294",
+          "update_type": "initial",
+          "what_changed_en": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset.",
+          "what_changed_zh": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Anthropic research contends that LLMs make formal software verification practical at far larger scale, and Hacker News commenters describe using models to generate Lean proofs for real codebases and Alloy models for security verification.",
+      "current_state_zh": "Anthropic research contends that LLMs make formal software verification practical at far larger scale, and Hacker News commenters describe using models to generate Lean proofs for real codebases and Alloy models for security verification.",
+      "entities": [
+        "llm",
+        "llms"
+      ],
+      "event_id": "evt_f62002ff5053909e",
+      "event_type": "other",
+      "first_seen_at": "2026-10-23T06:02:24.564160Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-23T06:02:24.564160Z",
+      "last_updated_at": "2026-10-23T06:02:24.564160Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "LLMs are making formal software verification feasible at a much larger scale",
+      "title_zh": "LLMs are making formal software verification feasible at a much larger scale",
+      "topics": [
+        "ai-research",
+        "formal-verification",
+        "lean",
+        "llm",
+        "software-engineering"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Anthropic research contends that LLMs make formal software verification practical at far larger scale, and Hacker News commenters describe using models to generate Lean proofs for real codebases and Alloy models for security verification.",
+          "current_state_zh": "Anthropic research contends that LLMs make formal software verification practical at far larger scale, and Hacker News commenters describe using models to generate Lean proofs for real codebases and Alloy models for security verification.",
+          "detailed_summary_en": "Anthropic research contends that LLMs make formal software verification practical at far larger scale, and Hacker News commenters describe using models to generate Lean proofs for real codebases and Alloy models for security verification.",
+          "detailed_summary_zh": "Anthropic research contends that LLMs make formal software verification practical at far larger scale, and Hacker News commenters describe using models to generate Lean proofs for real codebases and Alloy models for security verification.",
+          "event_id": "evt_f62002ff5053909e",
+          "first_seen_at": "2026-10-23T06:02:24.564160Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-22T22:54:43Z",
+          "published_at": "2026-10-22T22:54:43Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50202217"
+            }
+          ],
+          "sources": [
+            {
+              "label": "johnbender",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://www.anthropic.com/research/formal-verification"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50202217"
+          ],
+          "time_precision": "published",
+          "title_en": "LLMs are making formal software verification feasible at a much larger scale",
+          "title_zh": "LLMs are making formal software verification feasible at a much larger scale",
+          "update_id": "upd_b3f4d6fd26219e27",
+          "update_type": "initial",
+          "what_changed_en": "Anthropic research contends that LLMs make formal software verification practical at far larger scale, and Hacker News commenters describe using models to generate Lean proofs for real codebases and Alloy models for security verification.",
+          "what_changed_zh": "Anthropic research contends that LLMs make formal software verification practical at far larger scale, and Hacker News commenters describe using models to generate Lean proofs for real codebases and Alloy models for security verification."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -186426,9 +187363,8 @@
       "evt_8a17099ac904e1d4"
     ],
     "aave": [
-      "evt_0ad3db019baf1cc2",
-      "evt_67d38ff5aa58ac30",
-      "evt_8fca4d5c4b0173a2"
+      "evt_56efd190c36c1458",
+      "evt_67d38ff5aa58ac30"
     ],
     "abracadabra": [
       "evt_7240d43ce6617553"
@@ -186516,6 +187452,9 @@
     "bitbank": [
       "evt_d034de03d227aa9f",
       "evt_f28ee03d3060fa04"
+    ],
+    "bitcoin-core": [
+      "evt_f2f3dde4c0bad37c"
     ],
     "bitcoin-etf": [
       "evt_08af92ed8a7478e8",
@@ -187216,11 +188155,9 @@
       "evt_cdd9da4e6059f216"
     ],
     "polymarket": [
-      "evt_1f2b6fadaa0a74a3",
-      "evt_2b9296639032a854",
       "evt_583f52deb63823c7",
-      "evt_9033f39ccff62e41",
-      "evt_ba0fb6138631988e"
+      "evt_c207fc887b8acebb",
+      "evt_fc6eac4328de9ea5"
     ],
     "post-quantum": [
       "evt_0002147175c620c0",
@@ -202844,7 +203781,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Ethereum's next major network upgrade encountering 13 security risks is a material protocol-development issue for the largest smart-contract ecosystem, affecting upgrade timeline and validator/developer planning, though it is a pre-deployment roadblock rather than a live exploit or confirmed failure.",
         "ai_score": 7.5,
@@ -202882,7 +203819,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "JPMorgan expanding tokenized money-market funds onto a public chain is a material institutional/RWA market-structure development with a clear transmission path to DeFi and tokenization markets. It is a concrete new deployment (not a recap), though its immediate market impact is moderate compared with systemic or security events, so it lands in the high-value band rather than groundbreaking.",
         "ai_score": 7.5,
@@ -202919,7 +203856,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "The XRPL network slowdown and subsequent recovery, combined with a two-week delay to a critical security upgrade, is a material protocol-operations development for a widely used network. It warrants attention due to security and liveness implications, though there is no reported loss of funds or systemic market impact.",
         "ai_score": 7.0,
@@ -202956,7 +203893,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A high-signal Anthropic technical appendix showing LLMs can expand the scale of formal software verification. It has clear implications for AI-assisted software engineering and safety-critical systems, though as supplemental research it is not a standalone frontier-model or industry-reshaping announcement.",
         "ai_score": 7.0,
@@ -202987,7 +203924,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A top-tier exchange securing a VARA license in Dubai is a concrete regulatory milestone that expands its licensed market access in the UAE and sets up a derivatives push. It is a genuine new development rather than a recap, but it is a licensing step for a single venue rather than a market-wide structural change, so it lands in the high-value-but-not-groundbreaking band.",
         "ai_score": 7.0,
@@ -203020,7 +203957,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A concrete regulatory development from the OCC: it withdrew a proposed affiliate-rewards presumption while retaining the ban on stablecoin yield, directly shaping how banks and stablecoin issuers can structure rewards and yield products. This has a clear transmission path to stablecoin markets and banking-crypto integration, though it is a partial adjustment rather than a landmark reshaping of market access.",
         "ai_score": 7.0,
@@ -203058,7 +203995,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Tether-backed Utexo setting a concrete launch date (Nov 28) for a bridged USDT on Bitcoin is a meaningful stablecoin and Bitcoin-infrastructure development, with a named institutional backer and a fixed timeline rather than vague roadmap talk. It expands USDT issuance rails onto Bitcoin and could affect liquidity and DeFi activity there, but it is still a pre-launch announcement with no live supply, audited reserves detail, or immediate market impact — hence high-value rather than groundbreaking.",
         "ai_score": 7.0,
@@ -203095,7 +204032,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A $16M transfer flagged from CoinDCX hot wallets is a material exchange security/operations signal, but it is an unconfirmed on-chain observation by a third-party analyst (Darcy) rather than a verified exploit or confirmed loss, so it warrants high attention without reaching confirmed-incident severity.",
         "ai_score": 7.0,
@@ -203125,6 +204062,152 @@
         "source_type": "google_news",
         "title": "Darcy Flags $16 Million Transfer From CoinDCX Hot Wallets",
         "url": "https://www.tokenpost.com/news/technology/38214"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A large cross-border anti-scam enforcement action identifying over $39 billion in fraud-related funds and crypto is a significant regulatory and security development with clear industry relevance. It falls short of a landmark market-access decision or confirmed systemic loss event because the reported figure concerns identified funds rather than seized assets or a protocol/exchange failure.",
+        "ai_score": 7.5,
+        "ai_summary": "A UAE-led international scam crackdown has identified more than $39 billion in illicit funds and cryptocurrency, highlighting a major cross-border enforcement effort against crypto-enabled fraud.",
+        "ai_tags": [
+          "crypto-fraud",
+          "scam-crackdown",
+          "UAE",
+          "law-enforcement",
+          "AML"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxQaDJSNWh2WXV2M0x2cmlieGJXVzVoYk5lZG8zR0lBWGVDbzNJTUNIVWt5dDdadTBzMVJ1cmZuX1NzRk9WUmd0cmNzbmhtcmNGWERDbElLUVlNOVdYQklnMWlDODBOdWg2WXpBOTJqUWtXOFBpZGotcURkRDZyZWwwQ1hxMU9QZ2dvNlhQTG1Tb0NkMXd4cG9UbHVlNGVJMGhSZlVGYW45RWc?oc=5\" target=\"_blank\">UAE-Led Scam Crackdown Identifies Over $39 Billion in Funds and Crypto</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-23T06:03:34.759633Z",
+        "id": "google_news:article:cbf0cc4a4d7e6b88",
+        "metadata": {
+          "category": "crypto-regulation",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-protocols",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-23T00:05:19Z",
+        "source_type": "google_news",
+        "title": "UAE-Led Scam Crackdown Identifies Over $39 Billion in Funds and Crypto",
+        "url": "https://thedefiant.io/news/security/uae-led-scam-crackdown-identifies-over-39-billion-in-funds-and-crypto"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A concrete in-window protocol development: Ethereum's Glamsterdam upgrade testing was pushed back after security researchers flagged a change that could break or endanger existing deployed contracts. This is a substantive technical/security signal for the Ethereum roadmap and for teams maintaining live contracts, though it affects a test milestone rather than mainnet activation, so it falls short of the 8+ tier reserved for network-wide failures or shipped upgrades.",
+        "ai_score": 7.0,
+        "ai_summary": "Ethereum core developers delayed a Glamsterdam upgrade test after security developers warned that a proposed change poses risks to already-deployed contracts.",
+        "ai_tags": [
+          "ethereum",
+          "glamsterdam",
+          "protocol-upgrade",
+          "smart-contracts",
+          "security"
+        ],
+        "author": "Shaurya Malwa",
+        "content": "",
+        "fetched_at": "2026-10-23T06:02:04.612551Z",
+        "id": "rss:www.coindesk.com_arc_outboundfeeds_rss_:58caff1decd1d3f4",
+        "metadata": {
+          "category": "crypto-protocols",
+          "event_retry_pending": true,
+          "feed_name": "CoinDesk",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "tags": [
+            "Tech",
+            "News"
+          ]
+        },
+        "published_at": "2026-10-23T04:59:34Z",
+        "source_type": "rss",
+        "title": "Ethereum delays Glamsterdam test after security devs flag risk to existing contracts",
+        "url": "https://www.coindesk.com/tech/2026/10/23/ethereum-delays-glamsterdam-test-after-security-devs-flag-risk-to-existing-contracts"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A reported strategic shift by one of crypto's most prominent venture funds — dropping crypto branding and redirecting a $2.2B vehicle toward AI and frontier tech — is a high-signal institutional/market-structure development with implications for crypto startup funding and talent flows. It falls short of 8+ because the report is framed as a pivot 'reportedly' underway rather than a confirmed, detailed restructuring, and the linked item provides headline-level substance only.",
+        "ai_score": 7.0,
+        "ai_summary": "Andreessen Horowitz is reportedly dropping the crypto branding on its $2.2B fund and widening its mandate into AI and frontier technology investments.",
+        "ai_tags": [
+          "a16z",
+          "venture-capital",
+          "crypto-funding",
+          "ai-investment",
+          "frontier-tech"
+        ],
+        "author": "CryptoSlate",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxOVEI2OV9EZEZuS044Q1dUaFZwdGRUbjcwMFo2WWFaVDgwVmFlNUxBVkpuX0VZZXZ5VFZnNEd1NHFsWDhrajdPZF9vXzdvZjVpWXVPMkltSXpfQ3RtQ1otTDZiVjdNWUxvVHhLcXhiMWd0WG5QaFJfbHpBcnVRVnB2emJGOWFzYnJ5?oc=5\" target=\"_blank\">a16z drops crypto branding, expands $2.2B fund into AI and frontier tech</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoSlate</font>",
+        "fetched_at": "2026-10-23T06:04:38.885315Z",
+        "id": "google_news:article:1204e872245fd821",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "CryptoSlate",
+          "gn_query": "site:cryptoslate.com",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://cryptoslate.com/feed/",
+          "publisher_url": "https://cryptoslate.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "CryptoSlate"
+        },
+        "published_at": "2026-10-23T01:50:52Z",
+        "source_type": "google_news",
+        "title": "a16z drops crypto branding, expands $2.2B fund into AI and frontier tech",
+        "url": "https://cryptoslate.com/a16z-reportedly-pivots-2-2b-fund-but-hides-its-next-play/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Circle launching USDC auctions with rebates for minters is a notable stablecoin market-structure development that could affect issuance pricing, allocation, and liquidity incentives. It is high-value but not a systemic or paradigm-shifting event on the level of a major exploit or landmark regulation.",
+        "ai_score": 7.0,
+        "ai_summary": "Circle introduced a USDC auction mechanism that pays rebates to minters, changing how the stablecoin's issuance is priced and allocated.",
+        "ai_tags": [
+          "USDC",
+          "Circle",
+          "stablecoins",
+          "minting",
+          "market-structure"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxNMEl4cTc4SkFBc1FUY1hqdGhZWDhWNXBIOVlGVGhNNDh3LTRSVk9yNy1sSUdUNUVOLTZfTHV3c1VWZ0RkU2NpZWRFNGFKX0NkSnJjckk0dmFjWndKNnJqNDNPSmhSaWFYX1ZkLWc3NGJUSmpReHBJYWhScjJGMlgwZjZxcVIwb3NDY3JJOVFQYlJBZ0xmVEE1bC1fZGdTSUR6dXJjZA?oc=5\" target=\"_blank\">Circle Opens USDC Auctions That Pay Minters a Rebate</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-23T06:03:34.759205Z",
+        "id": "google_news:article:18c2a97b8cef156a",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-protocols",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-22T23:10:17Z",
+        "source_type": "google_news",
+        "title": "Circle Opens USDC Auctions That Pay Minters a Rebate",
+        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMEl4cTc4SkFBc1FUY1hqdGhZWDhWNXBIOVlGVGhNNDh3LTRSVk9yNy1sSUdUNUVOLTZfTHV3c1VWZ0RkU2NpZWRFNGFKX0NkSnJjckk0dmFjWndKNnJqNDNPSmhSaWFYX1ZkLWc3NGJUSmpReHBJYWhScjJGMlgwZjZxcVIwb3NDY3JJOVFQYlJBZ0xmVEE1bC1fZGdTSUR6dXJjZA?oc=5"
       }
     }
   ],
