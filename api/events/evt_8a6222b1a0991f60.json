@@ -42,25 +42,33 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Dessa: the most authentic full-duplex speech model ever built",
+      "title_zh": "Dessa：迄今最逼真的全双工语音模型",
       "title_en": "Dessa: the most authentic full-duplex speech model ever built",
-      "what_changed_zh": "Block's Dessa is presented as the most authentic full-duplex speech model yet, combining low-latency expressive conversation with local inference on a MacBook Pro M4 Max and training on just one NVIDIA GB200 NVL72.",
+      "what_changed_zh": "Block 发布 Dessa，一款可同时聆听与说话的全双工语音模型，并称其为迄今最逼真的同类模型。该公司表示，Dessa 可在 MacBook Pro M4 Max 或更高配置的设备上本地运行，并且仅用一台 NVIDIA GB200 NVL72 完成训练。\n\n如果这些说法成立，把自然的打断处理与低时延和消费级笔记本上的本地推理结合起来，将是语音 AI 在部署层面的一次重要进展，使实时语音智能体不再依赖云端基础设施。不过该发布属于厂商公告，尚未有第三方基准测试支撑。\n\nBlock 将该模型描述为兼具高表现力与低时延，并强调仅使用一台 GB200 NVL72 机架完成训练的效率。公告未提供独立的时延、质量或硬件需求测量数据。",
       "what_changed_en": "Block's Dessa is presented as the most authentic full-duplex speech model yet, combining low-latency expressive conversation with local inference on a MacBook Pro M4 Max and training on just one NVIDIA GB200 NVL72.",
-      "current_state_zh": "Block's Dessa is presented as the most authentic full-duplex speech model yet, combining low-latency expressive conversation with local inference on a MacBook Pro M4 Max and training on just one NVIDIA GB200 NVL72.",
+      "current_state_zh": "Block 发布 Dessa，一款可同时聆听与说话的全双工语音模型，并称其为迄今最逼真的同类模型。该公司表示，Dessa 可在 MacBook Pro M4 Max 或更高配置的设备上本地运行，并且仅用一台 NVIDIA GB200 NVL72 完成训练。\n\n如果这些说法成立，把自然的打断处理与低时延和消费级笔记本上的本地推理结合起来，将是语音 AI 在部署层面的一次重要进展，使实时语音智能体不再依赖云端基础设施。不过该发布属于厂商公告，尚未有第三方基准测试支撑。\n\nBlock 将该模型描述为兼具高表现力与低时延，并强调仅使用一台 GB200 NVL72 机架完成训练的效率。公告未提供独立的时延、质量或硬件需求测量数据。",
       "current_state_en": "Block's Dessa is presented as the most authentic full-duplex speech model yet, combining low-latency expressive conversation with local inference on a MacBook Pro M4 Max and training on just one NVIDIA GB200 NVL72.",
       "detailed_summary_zh": "Block's Dessa is presented as the most authentic full-duplex speech model yet, combining low-latency expressive conversation with local inference on a MacBook Pro M4 Max and training on just one NVIDIA GB200 NVL72.",
       "detailed_summary_en": "Block's Dessa is presented as the most authentic full-duplex speech model yet, combining low-latency expressive conversation with local inference on a MacBook Pro M4 Max and training on just one NVIDIA GB200 NVL72.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "background_zh": "全双工语音模型在生成语音的同时处理输入音频，从而支持对话重叠和动态轮流发言，而非严格的轮流对话。NVIDIA GB200 NVL72 是液冷机架级系统，通过 NVLink-C2C 连接 36 颗 Grace CPU 与 72 颗 Blackwell GPU，属于 NVIDIA Blackwell 平台的一部分。",
+      "background_en": "Full-duplex speech models process incoming audio while generating speech, allowing overlapping dialogue and dynamic turn-taking rather than strict turn-based exchanges. The NVIDIA GB200 NVL72 is a liquid-cooled, rack-scale system that links 36 Grace CPUs and 72 Blackwell GPUs via NVLink-C2C, introduced as part of NVIDIA's Blackwell platform.",
+      "community_discussion_zh": "Hacker News 的评论者对“MacBook Pro 上低时延本地推理”加上“单机架训练”的说法印象深刻，认为这对非头部团队的 AI 工作而言是了不起的成就。也有人对演示提出质疑，认为模型打断得过于频繁，第一个示例中额外加入的笑声显得做作；还有多位评论者担心，这类语音在诈骗电话中几乎无法与真人区分。",
+      "community_discussion_en": "Hacker News commenters were struck by the claim of low-latency local inference on a MacBook Pro paired with single-rack training, calling it an impressive feat for smaller-scale AI work. Others pushed back on the demos, arguing the model interrupts too aggressively and the added laugh in the first sample felt artificial, and several raised concern that such voices would be hard to distinguish from humans on a fraudulent call.",
+      "market_impact_zh": "与加密市场最直接的传导渠道是语音诈骗风险：可在本地运行、表现力极强的全双工语音会降低冒充攻击的成本，而这类攻击针对的正是交易所账户找回、客服热线和钱包持有人身份核验。更广泛的影响则取决于语音智能体部署是否转向端侧推理，从而减少对云端语音基础设施的依赖。",
+      "market_impact_en": "The direct channel to crypto markets is voice-fraud risk: locally run, highly expressive duplex speech lowers the cost of impersonation attacks that target exchange account recovery, customer-support lines and wallet-holder verification. Any broader effect depends on whether voice-agent deployments shift toward on-device inference, which would reduce reliance on cloud voice infrastructure.",
       "importance_score": 7.0,
       "references": [
         {
           "url": "https://news.ycombinator.com/item?id=50213925",
           "title": "Community discussion"
+        },
+        {
+          "url": "https://www.emergentmind.com/topics/full-duplex-speech-llms",
+          "title": "Full-Duplex Speech LLMs"
+        },
+        {
+          "url": "https://www.nvidia.com/en-us/data-center/gb200-nvl72/",
+          "title": "GB200 NVL72 | NVIDIA"
         }
       ],
       "confidence": 0.75,

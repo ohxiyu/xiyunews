@@ -44,20 +44,33 @@
       "material_change": true,
       "title_zh": "【Lido 上线 0x02 CSM，支持节点运营商无需许可运行 0x02 验证器】",
       "title_en": "【Lido 上线 0x02 CSM，支持节点运营商无需许可运行 0x02 验证器】",
-      "what_changed_zh": "Lido launched 0x02 CSM, letting permissionless node operators run 0x02 validators with up to 2048 ETH effective balance by posting only a bond of 32 ETH for the first key and 30 ETH for each subsequent key, under an initial cap of 0.01% of Lido Core TVL, or about 32 keys.",
+      "what_changed_zh": "Lido 宣布上线 0x02 CSM，节点运营商可通过 Lido 协议无需许可地运行单个最大有效余额达 2048 ETH 的 0x02 验证器。运营商无需自行提供全部质押资金，只需缴纳保证金——首个验证器密钥需 32 ETH，后续每个密钥需 30 ETH——其余质押由 Lido 协议分配。\n\nLido 表示，与独立质押相比，验证器达到 2048 ETH 有效余额后，运营商的资本乘数约为 2.18 倍至 2.26 倍。该模块初期质押份额上限为 Lido Core TVL 的 0.01%，预计可为约 32 个验证器密钥提供初始存款，此后将逐步扩容。\n\n现有 0x01 CSM 将继续并行运行，现有运营商无需切换。",
       "what_changed_en": "Lido launched 0x02 CSM, letting permissionless node operators run 0x02 validators with up to 2048 ETH effective balance by posting only a bond of 32 ETH for the first key and 30 ETH for each subsequent key, under an initial cap of 0.01% of Lido Core TVL, or about 32 keys.",
-      "current_state_zh": "Lido launched 0x02 CSM, letting permissionless node operators run 0x02 validators with up to 2048 ETH effective balance by posting only a bond of 32 ETH for the first key and 30 ETH for each subsequent key, under an initial cap of 0.01% of Lido Core TVL, or about 32 keys.",
+      "current_state_zh": "Lido 宣布上线 0x02 CSM，节点运营商可通过 Lido 协议无需许可地运行单个最大有效余额达 2048 ETH 的 0x02 验证器。运营商无需自行提供全部质押资金，只需缴纳保证金——首个验证器密钥需 32 ETH，后续每个密钥需 30 ETH——其余质押由 Lido 协议分配。\n\nLido 表示，与独立质押相比，验证器达到 2048 ETH 有效余额后，运营商的资本乘数约为 2.18 倍至 2.26 倍。该模块初期质押份额上限为 Lido Core TVL 的 0.01%，预计可为约 32 个验证器密钥提供初始存款，此后将逐步扩容。\n\n现有 0x01 CSM 将继续并行运行，现有运营商无需切换。",
       "current_state_en": "Lido launched 0x02 CSM, letting permissionless node operators run 0x02 validators with up to 2048 ETH effective balance by posting only a bond of 32 ETH for the first key and 30 ETH for each subsequent key, under an initial cap of 0.01% of Lido Core TVL, or about 32 keys.",
       "detailed_summary_zh": "Lido launched 0x02 CSM, letting permissionless node operators run 0x02 validators with up to 2048 ETH effective balance by posting only a bond of 32 ETH for the first key and 30 ETH for each subsequent key, under an initial cap of 0.01% of Lido Core TVL, or about 32 keys.",
       "detailed_summary_en": "Lido launched 0x02 CSM, letting permissionless node operators run 0x02 validators with up to 2048 ETH effective balance by posting only a bond of 32 ETH for the first key and 30 ETH for each subsequent key, under an initial cap of 0.01% of Lido Core TVL, or about 32 keys.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "0x02 验证器基于 EIP-7251，该提案随以太坊 Pectra 升级引入，将验证器的最大有效余额从 32 ETH 提高到 2048 ETH，同时保留 32 ETH 的最低门槛。Lido 此前的文档曾提到计划推出独立的 0x02 CSM 模块，用于支持余额最高 2048 ETH 的复利验证器，但当时尚未上线。",
+      "background_en": "0x02 validators follow EIP-7251, introduced in Ethereum's Pectra upgrade, which raised the maximum effective balance of a validator from 32 ETH to 2,048 ETH while keeping the 32 ETH minimum. Lido's documentation had previously described a separate 0x02 CSM module for compounding validators with balances up to 2,048 ETH as planned but not yet live.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "这一变化影响 ETH 质押的供给侧：Lido 是规模最大的流动性质押协议，面向无需许可运营商、支持整合式 0x02 验证器的更低保证金路径，可能改变带保证金质押的扩张方式以及与 LDO 相关的经济分配。由于初期容量上限仅为约 32 个密钥，短期资金流动影响有限，主要暴露在于质押容量与流动性质押代币情绪层面，而非短期 ETH 流动性。",
+      "market_impact_en": "The change touches the supply side of ETH staking: Lido is the largest liquid staking protocol, and a cheaper bond path for permissionless operators with consolidated 0x02 validators could alter how bonded stake scales and how LDO-linked economics are shared. With initial capacity capped at about 32 keys, immediate flow effects are limited and the main exposure is to staking-capacity and liquid-staking-token sentiment rather than near-term ETH liquidity.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://docs.lido.fi/staking-modules/csm/intro/",
+          "title": "Intro | Lido Docs"
+        },
+        {
+          "url": "https://www.theblock.co/post/284189/ethereums-pectra-upgrade-to-raise-validator-stake-to-between-32-and-2048-eth",
+          "title": "Ethereum Pectra upgrade to raise validator stake to... | The Block"
+        },
+        {
+          "url": "https://research.4pillars.io/en/research/lido-csm-v3-from-permissionless-module-to-protocol-foundation",
+          "title": "[Issue] Lido CSM v3: From Permissionless Module to... | FP RESEARCH"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:foresightnews:121190"

@@ -41,25 +41,33 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Today, we hacked what we'd set out to hack: the iPhone",
+      "title_zh": "今天，我们攻破了最初就想攻破的目标：iPhone",
       "title_en": "Today, we hacked what we'd set out to hack: the iPhone",
-      "what_changed_zh": "A researcher publishes a detailed account of a successful iPhone hacking effort, covering the exploit chain used to gain deep access to iOS, with community debate on sandboxing, PDF attack surfaces, and the practical limits of jailbreaking under Apple's ecosystem controls.",
+      "what_changed_zh": "Calif 博客发布的一篇安全研究文章宣布成功实现了针对 iPhone 的漏洞利用链，作者称这正是团队最初设定的攻击目标。该文在 Hacker News 上引发大量讨论，获得 607 分和 408 条评论。\n\n评论者的关注点集中在两点：苹果的“锁定模式”是否真能防御这类攻击链；以及前沿 AI 红队模型的访问权限仅向少数获准机构开放——有评论者称这一准入计划更像是护城河而非安全保障。\n\n现有材料将该成果描述为一项研究声明：并未同时报告在野利用或用户损失。参与讨论者认为演示在技术上令人印象深刻，但希望看到锁定模式在真实环境中有效性的证据。",
       "what_changed_en": "A researcher publishes a detailed account of a successful iPhone hacking effort, covering the exploit chain used to gain deep access to iOS, with community debate on sandboxing, PDF attack surfaces, and the practical limits of jailbreaking under Apple's ecosystem controls.",
-      "current_state_zh": "A researcher publishes a detailed account of a successful iPhone hacking effort, covering the exploit chain used to gain deep access to iOS, with community debate on sandboxing, PDF attack surfaces, and the practical limits of jailbreaking under Apple's ecosystem controls.",
+      "current_state_zh": "Calif 博客发布的一篇安全研究文章宣布成功实现了针对 iPhone 的漏洞利用链，作者称这正是团队最初设定的攻击目标。该文在 Hacker News 上引发大量讨论，获得 607 分和 408 条评论。\n\n评论者的关注点集中在两点：苹果的“锁定模式”是否真能防御这类攻击链；以及前沿 AI 红队模型的访问权限仅向少数获准机构开放——有评论者称这一准入计划更像是护城河而非安全保障。\n\n现有材料将该成果描述为一项研究声明：并未同时报告在野利用或用户损失。参与讨论者认为演示在技术上令人印象深刻，但希望看到锁定模式在真实环境中有效性的证据。",
       "current_state_en": "A researcher publishes a detailed account of a successful iPhone hacking effort, covering the exploit chain used to gain deep access to iOS, with community debate on sandboxing, PDF attack surfaces, and the practical limits of jailbreaking under Apple's ecosystem controls.",
       "detailed_summary_zh": "A researcher publishes a detailed account of a successful iPhone hacking effort, covering the exploit chain used to gain deep access to iOS, with community debate on sandboxing, PDF attack surfaces, and the practical limits of jailbreaking under Apple's ecosystem controls.",
       "detailed_summary_en": "A researcher publishes a detailed account of a successful iPhone hacking effort, covering the exploit chain used to gain deep access to iOS, with community debate on sandboxing, PDF attack surfaces, and the practical limits of jailbreaking under Apple's ecosystem controls.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
-      "importance_score": 7.0,
+      "background_zh": "锁定模式（Lockdown Mode）是苹果提供的一项可选安全功能，自 iOS 16、iPadOS 16、watchOS 10 和 macOS Ventura 起可用，通过限制部分应用、功能和网络连接，大幅降低遭受复杂攻击的风险。iOS 漏洞利用链通常会将浏览器或 WebKit 入口、沙箱逃逸、权限提升和后续利用步骤组合起来，因此常与移动设备加固和快速打补丁一起被讨论。",
+      "background_en": "Lockdown Mode is an optional Apple security feature, available from iOS 16, iPadOS 16, watchOS 10 and macOS Ventura onward, that greatly reduces exposure to sophisticated attacks by restricting certain apps, features and network connections. iOS exploit chains typically combine a browser or WebKit entry point, a sandbox escape, privilege escalation and post-exploitation steps, which is why they are discussed alongside mobile hardening and rapid patching.",
+      "community_discussion_zh": "整体情绪是“印象深刻但存疑”。一位评论者询问开启锁定模式是否对这些漏洞利用有任何帮助；另一位指出 iOS 多次被 PDF 类攻击向量攻破，并将其与 Pegasus 的 ForcedEntry 攻击链相比。还有人抱怨圈子外的研究者无法获得前沿 AI 红队模型，另有一位用户无奈表示，越狱 iPhone 可能会失去 iCloud 和 iMessage 访问权限。",
+      "community_discussion_en": "Sentiment was impressed but skeptical. One commenter asked whether enabling Lockdown Mode helps at all against these exploits; another noted that iOS has repeatedly been compromised through PDF-based vectors, comparing it to the Pegasus ForcedEntry chain. Others lamented that researchers outside a closed circle cannot access frontier AI red-team models, and one user expressed resignation that jailbreaking an iPhone risks losing iCloud and iMessage access.",
+      "market_impact_zh": "传导路径在于移动端资产托管：iPhone 是加密钱包和交易所应用的常见载体，因此被演示出的 iOS 漏洞利用链会影响市场对自托管和移动交易环境安全性的看法，而锁定模式是高危用户的主要加固手段。由于这仍只是一项研究声明、并未报告在野利用，直接的市场影响仅限于围绕移动安全实践的舆论层面。",
+      "market_impact_en": "The transmission path runs through mobile custody: iPhones are a common host for crypto wallets and exchange apps, so demonstrated iOS exploit chains bear on the perceived security of self-custody and mobile trading setups, with Lockdown Mode as the main hardening control for high-risk users. Because this remains a research claim without reported in-the-wild exploitation, the direct market effect is limited to sentiment around mobile security practices.",
+      "importance_score": 8.0,
       "references": [
         {
           "url": "https://news.ycombinator.com/item?id=50211474",
           "title": "Community discussion"
+        },
+        {
+          "url": "https://support.apple.com/en-us/105120",
+          "title": "About Lockdown Mode - Apple Support"
+        },
+        {
+          "url": "https://nhimg.org/glossary/ios-exploit-chain/",
+          "title": "What Is iOS exploit chain? Definition & Examples - nhimg.org"
         }
       ],
       "confidence": 0.75,
