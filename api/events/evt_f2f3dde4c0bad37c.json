@@ -11,23 +11,33 @@
     "en": "Bitcoin Core正调整其安全政策，部分漏洞将立即修复并公开"
   },
   "current_state": {
-    "zh": "Bitcoin Core is revising its security vulnerability policy because large language models make some flaws easier to rediscover, reducing the value of lengthy embargoes and delaying fixed releases.",
-    "en": "Bitcoin Core is revising its security vulnerability policy because large language models make some flaws easier to rediscover, reducing the value of lengthy embargoes and delaying fixed releases."
+    "zh": "Bitcoin Core 已通过合并政策更新正式调整漏洞披露流程，对 AI/LLM 可轻易发现的漏洞采取快速修复、全维护版本回移并公开安全公告的方式。",
+    "en": "Bitcoin Core has formally changed its vulnerability disclosure process by merging the policy update, adopting rapid fixes, backports to all maintained releases, and public security advisories for flaws easily discoverable by AI/LLMs."
   },
   "first_seen_at": "2026-10-23T06:02:09.783100+00:00",
-  "last_updated_at": "2026-10-23T06:05:34.442688+00:00",
-  "last_material_change_at": "2026-10-23T06:05:34.442688+00:00",
+  "last_updated_at": "2026-10-23T17:22:07.525362+00:00",
+  "last_material_change_at": "2026-10-23T17:22:07.525362+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 2,
+  "updates_count": 2,
+  "sources_count": 3,
   "entities": [
     "bitcoin-core",
+    "bugs",
     "core",
-    "security-policy"
+    "finds",
+    "its",
+    "one",
+    "policy",
+    "prompt",
+    "rewrites",
+    "security-policy",
+    "where",
+    "world"
   ],
   "identifiers": [],
   "topics": [
     "ai-security",
+    "ai-threats",
     "bitcoin-core",
     "llm",
     "open-source",
@@ -47,9 +57,9 @@
       "material_change": true,
       "title_zh": "Bitcoin Core正调整其安全政策，部分漏洞将立即修复并公开",
       "title_en": "Bitcoin Core正调整其安全政策，部分漏洞将立即修复并公开",
-      "what_changed_zh": "Bitcoin Core is revising its security vulnerability disclosure policy so that flaws easily discoverable via LLM prompts are fixed across maintained releases and publicly disclosed as soon as possible, while other vulnerabilities retain severity-based staged disclosure.",
+      "what_changed_zh": "Bitcoin Core 正在修订其安全漏洞披露政策：对于通过 LLM 提示即可轻易发现的漏洞，将在所有受维护版本中修复并尽快公开披露；其他漏洞则继续按严重程度分阶段披露。",
       "what_changed_en": "Bitcoin Core is revising its security vulnerability disclosure policy so that flaws easily discoverable via LLM prompts are fixed across maintained releases and publicly disclosed as soon as possible, while other vulnerabilities retain severity-based staged disclosure.",
-      "current_state_zh": "Bitcoin Core is revising its security vulnerability disclosure policy so that flaws easily discoverable via LLM prompts are fixed across maintained releases and publicly disclosed as soon as possible, while other vulnerabilities retain severity-based staged disclosure.",
+      "current_state_zh": "Bitcoin Core 正在修订其安全漏洞披露政策：对于通过 LLM 提示即可轻易发现的漏洞，将在所有受维护版本中修复并尽快公开披露；其他漏洞则继续按严重程度分阶段披露。",
       "current_state_en": "Bitcoin Core is revising its security vulnerability disclosure policy so that flaws easily discoverable via LLM prompts are fixed across maintained releases and publicly disclosed as soon as possible, while other vulnerabilities retain severity-based staged disclosure.",
       "detailed_summary_zh": "Bitcoin Core is revising its security vulnerability disclosure policy so that flaws easily discoverable via LLM prompts are fixed across maintained releases and publicly disclosed as soon as possible, while other vulnerabilities retain severity-based staged disclosure.",
       "detailed_summary_en": "Bitcoin Core is revising its security vulnerability disclosure policy so that flaws easily discoverable via LLM prompts are fixed across maintained releases and publicly disclosed as soon as possible, while other vulnerabilities retain severity-based staged disclosure.",
@@ -76,6 +86,44 @@
         {
           "url": "https://cointelegraph.com/news/bitcoin-core-changes-security-policy-as-ai-makes-bugs-easier-to-find?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
           "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_137792f58947e3bb",
+      "event_id": "evt_f2f3dde4c0bad37c",
+      "occurred_at": "2026-10-23T17:16:03Z",
+      "published_at": "2026-10-23T17:16:03Z",
+      "first_seen_at": "2026-10-23T17:22:07.525362Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "Bitcoin Core 重写安全政策，以应对 AI 一句话即可发现漏洞的时代",
+      "title_en": "Bitcoin Core Rewrites Its Security Policy for a World Where AI Finds Bugs in One Prompt",
+      "what_changed_zh": "Bitcoin Core 已合并该安全政策更新：对于 LLM 可轻易发现的漏洞，将把修复向后移植到所有受维护版本，并尽快发布新版本及安全公告，而不再长期禁运。",
+      "what_changed_en": "Bitcoin Core merged the security policy update: vulnerabilities easily discoverable by LLMs will be backported to all maintained releases and shipped as a new version with a security advisory as soon as possible, rather than held under a long embargo.",
+      "current_state_zh": "Bitcoin Core 已通过合并政策更新正式调整漏洞披露流程，对 AI/LLM 可轻易发现的漏洞采取快速修复、全维护版本回移并公开安全公告的方式。",
+      "current_state_en": "Bitcoin Core has formally changed its vulnerability disclosure process by merging the policy update, adopting rapid fixes, backports to all maintained releases, and public security advisories for flaws easily discoverable by AI/LLMs.",
+      "detailed_summary_zh": "Bitcoin Core merged a policy update stating that bugs which LLMs make easily discoverable will be fixed and released quickly with a public advisory across all maintained versions, instead of being kept under a long embargo.",
+      "detailed_summary_en": "Bitcoin Core merged a policy update stating that bugs which LLMs make easily discoverable will be fixed and released quickly with a public advisory across all maintained versions, instead of being kept under a long embargo.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.94,
+      "story_ids": [
+        "rss:decrypt.co_feed:1281bc6ea25bdc75"
+      ],
+      "sources": [
+        {
+          "url": "https://decrypt.co/381715/bitcoin-core-security-policy-ai-threats",
+          "label": "Decrypt",
           "source_type": "rss",
           "official": false
         }
