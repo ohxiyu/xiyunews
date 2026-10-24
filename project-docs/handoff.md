@@ -1,23 +1,23 @@
 # 当前交接
 
-当前任务：[Issue300](https://github.com/ohxiyu/xiyunews/issues/300) 10-24 日报已生成但网站未更新：统一部署被 npm audit（undici / zod 新公告）拦截，修复依赖并恢复上线。上一轮网站延迟恢复见 [PR298 记录](releases/2026-10-22-publication-recovery.md)。访问统计令牌仍待运营者提供，见[访问统计发布记录](releases/2026-10-18-web-analytics.md)。架构入口为[系统架构](system-architecture.md)。
+当前任务：[Issue300](https://github.com/ohxiyu/xiyunews/issues/300) 10-24 日报已生成但网站未更新：统一部署被 npm audit（undici / zod 新公告）拦截，修复依赖并恢复上线。PR301 已合并，统一部署 230/231 成功，10-24 刊期已上线。上一轮网站延迟恢复见 [PR298 记录](releases/2026-10-22-publication-recovery.md)。访问统计令牌仍待运营者提供，见[访问统计发布记录](releases/2026-10-18-web-analytics.md)。架构入口为[系统架构](system-architecture.md)。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "10-24 日报已生成但网站未更新：修复统一部署的依赖审计拦截并恢复上线",
+  "goal": "10-24 网站更新已恢复，归档依赖审计修复的上线证据",
   "issue": "https://github.com/ohxiyu/xiyunews/issues/300",
   "owner": "当前会话唯一编辑与生产整合负责人",
-  "branch": "agent/edge-audit-recovery",
-  "last_verified_commit": "0fba2287e9ebf1d37653a5b7a73c4a94f29e6442",
-  "pr": "PR301 open, CI pending",
+  "branch": "agent/edge-audit-recovery-evidence",
+  "last_verified_commit": "3b5ee933e9d40e9a3fdbf0f0fe34f1759b15793d",
+  "pr": "PR301 已合并为 3b5ee93；当前为证据文档 PR",
   "completed": [
     "定位：统一部署 222–229 均因 npm audit（undici ≤7.30.0、zod <4.6.6）失败；日报 run 40039703759 本身成功",
-    "overrides：undici 7.30.1、zod 4.6.7；lockfile 仅两包变化"
+    "overrides：undici 7.30.1、zod 4.6.7；lockfile 仅两包变化",
+    "PR301 合并；运营者手动运行统一部署 230 success（artifact c70b818，Worker f8099963）；自动部署 231 success"
   ],
   "unfinished": [
-    "CI、合并",
-    "手动运行既有 cloudflare-unified.yml 并确认 10-24 上线",
+    "发布阶段审计策略是否改为只告警，等待运营者决定",
     "访问统计站点令牌仍待运营者提供（独立待办）"
   ],
   "validation": [
@@ -25,24 +25,24 @@
     "uv run pytest 1118 passed / 4 skipped；治理通过"
   ],
   "unverified": [
-    "正式域显示 10-24（需部署成功；本环境无法访问 xiyu.news）"
+    "正式域页面显示由运营者浏览确认（本环境无法访问 xiyu.news）"
   ],
   "production": {
-    "source_commit": "0fba2287e9ebf1d37653a5b7a73c4a94f29e6442",
-    "artifact_commit": "gh-pages c70b818（含 2026-10-24，14 条）",
-    "edition": "2026-10-24 已生成，网站未更新",
+    "source_commit": "3b5ee933e9d40e9a3fdbf0f0fe34f1759b15793d",
+    "artifact_commit": "gh-pages c70b818",
+    "edition": "2026-10-24，14 条",
     "generated_at": "2026-10-23T23:31:34Z",
-    "worker_version": "未改动；最近成功部署见 PR298 记录",
-    "verified_at": "2026-10-24，Actions 结论与 gh-pages 回读"
+    "worker_version": "f8099963-2bb3-42e5-bb44-2cda6435d1ca",
+    "verified_at": "2026-10-25 02:06 上海，部署 230/231 日志与结论"
   },
   "blockers": [],
-  "next_action": "CI 通过后合并，手动运行 cloudflare-unified.yml 恢复上线，再回写证据",
+  "next_action": "合并本证据 PR；等待运营者决定发布阶段审计策略",
   "states": {
     "code": "complete",
     "tests": "complete",
-    "pr_merged": "pending",
-    "deployed": "pending",
-    "production_verified": "pending"
+    "pr_merged": "complete",
+    "deployed": "complete",
+    "production_verified": "complete"
   },
   "evidence": "project-docs/releases/2026-10-24-edge-audit-recovery.md"
 }
