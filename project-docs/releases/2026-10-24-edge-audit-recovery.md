@@ -28,10 +28,14 @@ PR: https://github.com/ohxiyu/xiyunews/pull/301
 
 ## 上线
 
-合并后改动只在 ops/，不会触发 Deploy Docs，统一部署要等下一次 Feed Collection 才会自动运行。为尽快恢复，合并后按运营者要求手动运行既有 `cloudflare-unified.yml`（workflow_dispatch，main），这是现有的同一条部署路径。
+- PR301 于 2026-10-24 14:29Z 合并为 3b5ee933e9d40e9a3fdbf0f0fe34f1759b15793d，合并前全部适用检查通过（governance、realtime-paths、edge-build、web）。
+- 会话令牌无权调用 workflow_dispatch（403），重跑旧失败运行仍会使用旧 lockfile，因此请运营者手动运行。
+- 运营者手动运行的统一部署 230（40103860043，workflow_dispatch）success：`npm run audit` 通过，渲染 artifact c70b818a93114abe5b550b36fe9a2777fdafbfdb（含 2026-10-24），上传 1216 个变更资产，14:49:16Z 部署到 xiyu.news 自定义域，Worker 版本 f8099963-2bb3-42e5-bb44-2cda6435d1ca，三条 Cron 不变。群组快照步骤输出 "Prepared published group snapshot for 2026-10-24; no AI, no sends"。
+- 随后由采集触发的统一部署 231（40110483140）也 success（16:17Z）。
 
-Source commit: 现役 0fba2287e9ebf1d37653a5b7a73c4a94f29e6442，本修复未合并。
-Artifact commit: gh-pages c70b818（含 10-24 刊期）。
-Deployment: pending。
-Verification: pending（本环境代理无法访问 xiyu.news，以统一部署结论与运营者浏览为准）。
+Source commit: 3b5ee933e9d40e9a3fdbf0f0fe34f1759b15793d。
+Artifact commit: gh-pages c70b818（含 2026-10-24，14 条）。
+Worker version: f8099963-2bb3-42e5-bb44-2cda6435d1ca（部署 230）。
+Deployment: complete。
+Verification: 部署日志确认 10-24 产物已上传到正式域；本环境代理无法直接访问 xiyu.news，页面显示以运营者浏览为准。
 Rollback: 恢复 overrides 原值即可，但会重新被审计拦截；不涉及状态或数据。
