@@ -47,22 +47,35 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Swell Pauses swETH and rswETH Deposits and Withdrawals Amid Abnormally High Cont",
+      "title_zh": "合约汇率异常偏高，Swell 暂停 swETH 与 rswETH 的存取款",
       "title_en": "Swell Pauses swETH and rswETH Deposits and Withdrawals Amid Abnormally High Cont",
-      "what_changed_zh": "Swell paused swETH and rswETH deposits and withdrawals after the tokens' contract exchange rates ran abnormally high, with an analyst suspecting compromised admin keys and a not-yet-executed malicious upgrade contract affecting around 2,500 ETH.",
+      "what_changed_zh": "以太坊质押协议 Swell 已暂停 swETH 与 rswETH 的存款和取款，直至两个代币的净资产值（NAV）与汇率得到修正。数据显示，swETH 与 rswETH 合约报告的汇率分别约为 1.203 ETH 和 1.138 ETH，比正常水平高出约 6% 和 5%。\n\n链上分析师 Spreek 怀疑相关代币的管理私钥已被攻破，并指认出一份可能影响约 2,500 ETH 的恶意升级合约，但该升级尚未被执行。暂停存取款意味着两种代币的持有者暂时无法通过该协议赎回资产。\n\nSwell 表示，目前没有 ETH 从受影响合约中被转出，确切原因仍在调查中。截至报道时，被怀疑的恶意升级尚未执行。",
       "what_changed_en": "Swell paused swETH and rswETH deposits and withdrawals after the tokens' contract exchange rates ran abnormally high, with an analyst suspecting compromised admin keys and a not-yet-executed malicious upgrade contract affecting around 2,500 ETH.",
-      "current_state_zh": "Swell paused swETH and rswETH deposits and withdrawals after the tokens' contract exchange rates ran abnormally high, with an analyst suspecting compromised admin keys and a not-yet-executed malicious upgrade contract affecting around 2,500 ETH.",
+      "current_state_zh": "以太坊质押协议 Swell 已暂停 swETH 与 rswETH 的存款和取款，直至两个代币的净资产值（NAV）与汇率得到修正。数据显示，swETH 与 rswETH 合约报告的汇率分别约为 1.203 ETH 和 1.138 ETH，比正常水平高出约 6% 和 5%。\n\n链上分析师 Spreek 怀疑相关代币的管理私钥已被攻破，并指认出一份可能影响约 2,500 ETH 的恶意升级合约，但该升级尚未被执行。暂停存取款意味着两种代币的持有者暂时无法通过该协议赎回资产。\n\nSwell 表示，目前没有 ETH 从受影响合约中被转出，确切原因仍在调查中。截至报道时，被怀疑的恶意升级尚未执行。",
       "current_state_en": "Swell paused swETH and rswETH deposits and withdrawals after the tokens' contract exchange rates ran abnormally high, with an analyst suspecting compromised admin keys and a not-yet-executed malicious upgrade contract affecting around 2,500 ETH.",
       "detailed_summary_zh": "Swell paused swETH and rswETH deposits and withdrawals after the tokens' contract exchange rates ran abnormally high, with an analyst suspecting compromised admin keys and a not-yet-executed malicious upgrade contract affecting around 2,500 ETH.",
       "detailed_summary_en": "Swell paused swETH and rswETH deposits and withdrawals after the tokens' contract exchange rates ran abnormally high, with an analyst suspecting compromised admin keys and a not-yet-executed malicious upgrade contract affecting around 2,500 ETH.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "swETH 是 Swell 的流动性质押代币，代表在以太坊上质押的 ETH 的可交易凭证，其价值通过不断上升的汇率而非再基准（rebase）来累积；rswETH 则是再质押版本，其底层 ETH 同时被投入再质押市场。由于这类代币通过合约报告的汇率定价，汇率异常会直接影响到 DeFi 估值与抵押品计算。Swell 已从纯粹的流动性质押扩展到再质押业务。",
+      "background_en": "swETH is Swell's liquid staking token, a tradable receipt for ETH staked on Ethereum that accrues value through a rising exchange rate rather than rebasing; rswETH is the restaked version, whose underlying ETH is also deployed in restaking markets. Because these tokens price via a contract-reported exchange rate, an abnormal rate feeds directly into DeFi valuations and collateral calculations. Swell has expanded from pure liquid staking into restaking as part of its product line.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "swETH 与 rswETH 被广泛用作 DeFi 抵押品，因此在修复完成前，赎回通道暂停叠加汇率错报，可能扰动相关借贷市场的估值以及这两种代币的二级市场价格。目前被指出的风险敞口约为 2,500 ETH，局限于 Swell 自身合约，尚不属于波及整个协议或全市场的事件。",
+      "market_impact_en": "swETH and rswETH are widely used as DeFi collateral, so a paused redemption window plus a mispriced exchange rate can disrupt lending-market valuations and secondary-market pricing for the two tokens while the fix is pending. The flagged exposure of roughly 2,500 ETH is confined to Swell's own contracts rather than a protocol-wide or market-wide event at this stage.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://www.ainvest.com/news/swell-sweth-freeze-shows-trust-buried-liquid-staking-2610/",
+          "title": "Swell's swETH freeze shows the trust buried inside liquid staking"
+        },
+        {
+          "url": "https://www.fieldelevate.com/blog/smart-contract-upgrade-risk-proxy-keys",
+          "title": "Smart Contract Upgrade Risk: Who Holds the Keys? - Field Elevate"
+        },
+        {
+          "url": "https://dapp.expert/analytics/what-is-swell-network-liquid-staking-sweth-rsweth-and-the-swell-token-explained-1772742772-891812",
+          "title": "What Is Swell Network? Liquid Staking, swETH, rswETH and the ..."
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:wublockchainenglish:26539"

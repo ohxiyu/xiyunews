@@ -45,25 +45,37 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Node2Shell evolves to HTTP2Shell, blast radius affects many HTTP libs and apps",
+      "title_zh": "Node2Shell 演变为 HTTP2Shell，影响范围波及大量 HTTP 库与应用",
       "title_en": "Node2Shell evolves to HTTP2Shell, blast radius affects many HTTP libs and apps",
-      "what_changed_zh": "The Node2Shell vulnerability has evolved into HTTP2Shell, tracked as Brotli CVE-2026-111497, an unauthenticated remote code execution issue in Brotli decoding that affects many Python HTTP libraries and applications and is now driving patching and deployment checks.",
+      "what_changed_zh": "编号为 CVE-2026-111497 的 Brotli 解码器漏洞此前以“Node2Shell”之名传播，如今又以“HTTP2Shell”的名义流传；相关报道称这是一个无需认证即可远程执行代码的漏洞，影响范围覆盖大量 HTTP 库与应用，而不只是 Node.js。Aikido 的文章称，其检测能力可以在代码仓库和容器镜像中标记出受影响的 Node.js 版本。\n\n该漏洞位于 Brotli 解码环节，而这一压缩路径在 HTTP 处理中被广泛使用，因此受影响面并不局限于单一运行时；Vercel 表示其 WAF 已部署规则，用于检测并阻断针对该漏洞的利用尝试。\n\n讨论中有评论者指出，Ubuntu 仍将 libbrotli1 的补丁标注为“审核中”、严重级别为中等，这拖慢了 libcurl 乃至 git 等一系列软件包的更新。也有评论者质疑：据称 2 月就已发布的修复，当时为何未被当作安全问题处理。",
       "what_changed_en": "The Node2Shell vulnerability has evolved into HTTP2Shell, tracked as Brotli CVE-2026-111497, an unauthenticated remote code execution issue in Brotli decoding that affects many Python HTTP libraries and applications and is now driving patching and deployment checks.",
-      "current_state_zh": "The Node2Shell vulnerability has evolved into HTTP2Shell, tracked as Brotli CVE-2026-111497, an unauthenticated remote code execution issue in Brotli decoding that affects many Python HTTP libraries and applications and is now driving patching and deployment checks.",
+      "current_state_zh": "编号为 CVE-2026-111497 的 Brotli 解码器漏洞此前以“Node2Shell”之名传播，如今又以“HTTP2Shell”的名义流传；相关报道称这是一个无需认证即可远程执行代码的漏洞，影响范围覆盖大量 HTTP 库与应用，而不只是 Node.js。Aikido 的文章称，其检测能力可以在代码仓库和容器镜像中标记出受影响的 Node.js 版本。\n\n该漏洞位于 Brotli 解码环节，而这一压缩路径在 HTTP 处理中被广泛使用，因此受影响面并不局限于单一运行时；Vercel 表示其 WAF 已部署规则，用于检测并阻断针对该漏洞的利用尝试。\n\n讨论中有评论者指出，Ubuntu 仍将 libbrotli1 的补丁标注为“审核中”、严重级别为中等，这拖慢了 libcurl 乃至 git 等一系列软件包的更新。也有评论者质疑：据称 2 月就已发布的修复，当时为何未被当作安全问题处理。",
       "current_state_en": "The Node2Shell vulnerability has evolved into HTTP2Shell, tracked as Brotli CVE-2026-111497, an unauthenticated remote code execution issue in Brotli decoding that affects many Python HTTP libraries and applications and is now driving patching and deployment checks.",
       "detailed_summary_zh": "The Node2Shell vulnerability has evolved into HTTP2Shell, tracked as Brotli CVE-2026-111497, an unauthenticated remote code execution issue in Brotli decoding that affects many Python HTTP libraries and applications and is now driving patching and deployment checks.",
       "detailed_summary_en": "The Node2Shell vulnerability has evolved into HTTP2Shell, tracked as Brotli CVE-2026-111497, an unauthenticated remote code execution issue in Brotli decoding that affects many Python HTTP libraries and applications and is now driving patching and deployment checks.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "background_zh": "Brotli 是由 Jyrki Alakuijala 与 Zoltán Szabadka 开发的无损压缩算法，结合了 LZ77、霍夫曼编码与二阶上下文建模，常被用作 HTTP 内容编码。CVE-2026-111497 此前被报道为 Node.js 中 Brotli 解码器的缺陷，研究人员曾向官方 Node.js 24.22.0 的 Linux arm64 镜像内置的 Brotli 解码器投喂构造数据，成功演示了概念验证利用。",
+      "background_en": "Brotli is a lossless compression algorithm developed by Jyrki Alakuijala and Zoltán Szabadka, combining LZ77, Huffman coding and second-order context modeling, and it is commonly offered as an HTTP content-encoding. CVE-2026-111497 was previously reported as a Brotli decoder flaw in Node.js, and researchers demonstrated a proof of concept on the official Node.js 24.22.0 Linux arm64 image by feeding crafted data to the bundled Brotli decoder.",
+      "community_discussion_zh": "评论者对“HTTP2Shell”这一命名提出强烈质疑，认为它过于宽泛、未能描述实际问题，更偏好用“Broccoli2Shell”指代同一漏洞，并指出即使不经过 HTTP、只要手工做 Brotli 解码也可能触发。也有人质疑严重性叙事：一位评论者称，真正令人意外的是竟有这么多实现支持 Brotli 压缩的请求体；另一位则抱怨报道过度渲染，且没有说清有多少项目是在常见配置下受影响，而不是 Brotli 的其他（虽有问题但远没那么严重）用法。",
+      "community_discussion_en": "Commenters pushed back hard on the \"HTTP2Shell\" name, calling it broad and undescriptive and preferring \"Broccoli2Shell\" for the same vulnerability, noting it can be triggered through manual Brotli decoding without HTTP at all. Others questioned the severity framing: one commenter said the surprising part is how many implementations support Brotli-compressed request bodies, while another complained the coverage is sensationalized and does not make clear how many projects are affected in common configurations versus other, less critical uses of Brotli.",
+      "market_impact_zh": "传导路径更多体现为运营风险而非价格驱动：加密服务、节点运营方以及自托管的 RPC 或 API 基础设施普遍运行 Node.js 以及基于 libbrotli/libcurl 的其他 HTTP 栈，而发行版补丁仍在审核中，意味着在维护者发布更新前这条依赖链仍处于未修补状态。实际暴露程度取决于面向公网的服务是否启用了对 Brotli 压缩请求体的处理，以及运营方采用上游修复的速度。",
+      "market_impact_en": "The transmission path is operational rather than price-driven: crypto services, node operators and self-hosted RPC or API infrastructure commonly run Node.js and other HTTP stacks built on libbrotli/libcurl, and a distro patch still under review leaves that dependency chain unpatched until maintainers ship updates. Exposure depends on whether internet-facing services enable Brotli-compressed request handling and on how quickly operators apply upstream fixes.",
       "importance_score": 8.0,
       "references": [
         {
           "url": "https://news.ycombinator.com/item?id=50219177",
           "title": "Community discussion"
+        },
+        {
+          "url": "https://www.aikido.dev/blog/node2shell-nodejs-brotli-rce-cve-2026-111497",
+          "title": "Node2Shell: Node.js Brotli vulnerability allows remote code execution..."
+        },
+        {
+          "url": "https://thehackernews.com/2026/10/researchers-demonstrate-node2shell-rce.html",
+          "title": "Researchers Demonstrate Node2Shell RCE Exploit on Node.js Build..."
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Brotli",
+          "title": "Brotli - Wikipedia"
         }
       ],
       "confidence": 0.75,

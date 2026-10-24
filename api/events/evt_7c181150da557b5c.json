@@ -229,14 +229,27 @@
       "current_state_en": "Initia's L1 mainnet and all Rollups remain paused; the official disclosure confirms a MoveVM script-caching vulnerability was used to forge state and move about $2.7M, with related token total supply unaffected; a fix is expected within days and will be audited, asset recovery is ongoing, and a full postmortem has not yet been published.",
       "detailed_summary_zh": "Initia disclosed that attackers exploited a MoveVM script-caching vulnerability to forge state and drain about $2.7 million in WETH, AUSD0, and USDC, prompting a network-wide pause while fixes and asset recovery proceed.",
       "detailed_summary_en": "Initia disclosed that attackers exploited a MoveVM script-caching vulnerability to forge state and drain about $2.7 million in WETH, AUSD0, and USDC, prompting a network-wide pause while fixes and asset recovery proceed.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "Initia 是一个允许开发者在同一互操作网络中选择 EVM、MoveVM 和 WasmVM 的区块链平台，MoveVM 是为 Move 语言构建的虚拟机。LayerZero 是用于跨链资产流转的消息协议，Noble 与 Circle 的 CCTP 则是跨网络转移 USDC 的通道。Initia 称安全修复预计将在数天内完成并通过审计，后续将发布完整事后复盘报告。",
+      "background_en": "Initia is a blockchain network that lets developers choose among EVM, MoveVM and WasmVM within a single interoperable system; MoveVM is the virtual machine built for the Move language. LayerZero is a cross-chain messaging protocol used for asset movement between chains, while Noble and Circle's CCTP are rails for transferring USDC across networks. Initia said the security fix is expected to be completed and audited within a few days, and that a full post-mortem report will follow.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "被盗资产经由 LayerZero、Noble 和 CCTP 转出 Initia，并在以太坊上归集为 1135.52 枚 ETH，使损失与 ETH 流动性以及相关跨链消息和 USDC 转账通道产生关联。尽管 INIT 供应量未受影响，L1 及 Rollup 仍处暂停状态，Initia 生态内的链上活动与资产流转随之中断。",
+      "market_impact_en": "The stolen assets left Initia through LayerZero, Noble and CCTP and were consolidated into 1,135.52 ETH on Ethereum, linking the loss to ETH liquidity and to the cross-chain messaging and USDC transfer rails involved. Although INIT's supply is unaffected, the continued L1 and Rollup pause halts on-chain activity and asset movement within the Initia ecosystem.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://github.com/initia-labs/movevm",
+          "title": "GitHub - initia-labs/movevm: Go bindings for Aptos MoveVM..."
+        },
+        {
+          "url": "https://bex.co/blog/2026/03/02/multi-vm-blockchain-era-initia",
+          "title": "The Multi-VM Blockchain Era: Why Initia’s EVM+MoveVM+WasmVM..."
+        },
+        {
+          "url": "https://layerzero.network/",
+          "title": "LayerZero"
+        }
+      ],
       "confidence": 0.96,
       "story_ids": [
         "telegram:foresightnews:121219"
