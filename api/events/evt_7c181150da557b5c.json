@@ -11,15 +11,15 @@
     "en": "【Initia 链疑遭无限铸币攻击，攻击者已套现约 260 万美元】"
   },
   "current_state": {
-    "zh": "Initia L1 主网及所有 Rollup 仍处于暂停状态；团队正与安全团队、验证者和交易所评估影响，尚未公开确认损失规模或精确原因，恢复时间不明；D2 Finance 已披露无抵押 AUSD 铸造及跨链资金流细节。",
-    "en": "Initia's L1 mainnet and all Rollups remain paused; the team is coordinating with security researchers, validators and exchanges to assess impact, has not publicly confirmed the loss size or precise cause, and the restoration timeline is unclear; D2 Finance has disclosed details of the unbacked AUSD mint and cross-chain fund flows."
+    "zh": "Initia L1 主网及所有 Rollup 仍处于暂停状态；官方已确认漏洞为 MoveVM 脚本缓存漏洞，攻击者伪造状态转出约 270 万美元资产，相关代币总供应量未受影响；安全修复预计数日内完成并通过审计，资产追回进行中，完整事后复盘报告尚未发布。",
+    "en": "Initia's L1 mainnet and all Rollups remain paused; the official disclosure confirms a MoveVM script-caching vulnerability was used to forge state and move about $2.7M, with related token total supply unaffected; a fix is expected within days and will be audited, asset recovery is ongoing, and a full postmortem has not yet been published."
   },
   "first_seen_at": "2026-10-23T17:21:46.311242+00:00",
-  "last_updated_at": "2026-10-24T01:55:29.474146+00:00",
-  "last_material_change_at": "2026-10-23T21:31:49.568967+00:00",
+  "last_updated_at": "2026-10-24T13:41:49.852808+00:00",
+  "last_material_change_at": "2026-10-24T13:41:49.852808+00:00",
   "confidence": 0.75,
-  "updates_count": 4,
-  "sources_count": 6,
+  "updates_count": 5,
+  "sources_count": 7,
   "entities": [
     "init",
     "initia",
@@ -31,11 +31,15 @@
     "blockchain-halt",
     "chain-halt",
     "cosmos-sdk",
+    "cross-chain-bridge",
     "infinite-mint",
     "initia",
     "layer1",
     "mainnet-halt",
     "movevm",
+    "movevm-exploit",
+    "network-pause",
+    "protocol-security",
     "rollups",
     "security-incident",
     "stablecoins",
@@ -204,6 +208,44 @@
           "url": "https://cointelegraph.com/news/initia-halts-blockchain-exploit-drained?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
           "label": "Cointelegraph",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_fd9a64ff9a2f6e90",
+      "event_id": "evt_7c181150da557b5c",
+      "occurred_at": "2026-10-24T10:24:23Z",
+      "published_at": "2026-10-24T10:24:23Z",
+      "first_seen_at": "2026-10-24T13:41:49.852808Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "【Initia 披露攻击细节：MoveVM 缓存漏洞致约 270 万美元被转出】",
+      "title_en": "【Initia 披露攻击细节：MoveVM 缓存漏洞致约 270 万美元被转出】",
+      "what_changed_zh": "Initia 官方披露漏洞为 MoveVM 脚本缓存（script caching）漏洞，攻击者借此绕过安全检查并伪造 MoveVM 状态，记入无实际支撑的 WETH、iUSD/USDC 等资产，相关代币总供应量未发生变化；约 270 万美元资产经 LayerZero、Noble 和 CCTP 转出，随后兑换为 1,135.52 ETH 并存放于以太坊地址 0x358ef0130f7a5aa516dcd81bdc80b18cde41cac8；安全修复预计数日内完成并通过审计，资产追回工作仍在推进，L1 及 Rollup 继续暂停，完整事后复盘报告待发布。",
+      "what_changed_en": "Initia officially disclosed that the exploit was a MoveVM script-caching vulnerability that bypassed security checks and forged MoveVM state to credit unbacked WETH and USDC/iUSD-like assets without changing the related tokens' total supply; about $2.7M was moved out via LayerZero, Noble and CCTP and later consolidated into 1,135.52 ETH held at Ethereum address 0x358ef0130f7a5aa516dcd81bdc80b18cde41cac8; a security fix is expected within days and will be audited, asset recovery is ongoing, L1 and Rollups remain paused, and a full postmortem is pending.",
+      "current_state_zh": "Initia L1 主网及所有 Rollup 仍处于暂停状态；官方已确认漏洞为 MoveVM 脚本缓存漏洞，攻击者伪造状态转出约 270 万美元资产，相关代币总供应量未受影响；安全修复预计数日内完成并通过审计，资产追回进行中，完整事后复盘报告尚未发布。",
+      "current_state_en": "Initia's L1 mainnet and all Rollups remain paused; the official disclosure confirms a MoveVM script-caching vulnerability was used to forge state and move about $2.7M, with related token total supply unaffected; a fix is expected within days and will be audited, asset recovery is ongoing, and a full postmortem has not yet been published.",
+      "detailed_summary_zh": "Initia disclosed that attackers exploited a MoveVM script-caching vulnerability to forge state and drain about $2.7 million in WETH, AUSD0, and USDC, prompting a network-wide pause while fixes and asset recovery proceed.",
+      "detailed_summary_en": "Initia disclosed that attackers exploited a MoveVM script-caching vulnerability to forge state and drain about $2.7 million in WETH, AUSD0, and USDC, prompting a network-wide pause while fixes and asset recovery proceed.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.96,
+      "story_ids": [
+        "telegram:foresightnews:121219"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/115912",
+          "label": "foresightnews",
+          "source_type": "telegram",
           "official": false
         }
       ]
