@@ -10,7 +10,7 @@
   "owner": "当前会话唯一编辑与生产整合负责人",
   "branch": "agent/edge-audit-recovery",
   "last_verified_commit": "0fba2287e9ebf1d37653a5b7a73c4a94f29e6442",
-  "pr": "pending: PR for agent/edge-audit-recovery",
+  "pr": "PR301 open, CI pending",
   "completed": [
     "定位：统一部署 222–229 均因 npm audit（undici ≤7.30.0、zod <4.6.6）失败；日报 run 40039703759 本身成功",
     "overrides：undici 7.30.1、zod 4.6.7；lockfile 仅两包变化"

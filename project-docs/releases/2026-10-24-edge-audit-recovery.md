@@ -2,7 +2,7 @@
 
 Issue: https://github.com/ohxiyu/xiyunews/issues/300；branch agent/edge-audit-recovery，当前会话唯一 owner。运营者报告"今天的日报还是没生成"，要求排查并解决。
 
-PR: pending
+PR: https://github.com/ohxiyu/xiyunews/pull/301
 
 ## 现象与根因
 
