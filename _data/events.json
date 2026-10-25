@@ -70289,15 +70289,17 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "The Hoodi testnet Glamsterdam upgrade has been postponed beyond its originally scheduled October 26 date, and the accompanying 200 million gas-limit increase has been canceled pending investigation of EIP-8037 and EIP-8038 gas-accounting changes, compatibility, and insufficient-gas griefing security risks; no new testnet or mainnet activation dates are set, and the mainnet timeline is uncertain.",
-      "current_state_zh": "Hoodi 测试网的 Glamsterdam 升级已推迟至原定 10 月 26 日之后，配套的 2 亿 Gas 上限提升被取消，等待对 EIP-8037 与 EIP-8038 的 Gas 计费变更、兼容性及“gas 不足 griefing”安全风险的调查；新的测试网与主网激活日期均未确定，主网时间表存在不确定性。",
+      "current_state_en": "Ethereum's second and final Glamsterdam hard fork testnet on Hoodi was cancelled this week after ChainSecurity found vulnerabilities in the gas-scaling EIPs 8037 and 8038 that could break at least 13 DeFi contracts when a call runs out of gas. Researchers at Eth Labs and the Ethereum Foundation independently spun up AI agents to scan contracts for the flaws, then set up a shared message board in the form of a GitHub repo to coordinate the agents' work.\n\nThe cancellation postpones the dress rehearsal for an upgrade that Ethereum DeFi operators depend on, and Eth Labs' Derek Chiang said protocols designers should in future do \"much more thorough analysis of potential breakages\" much earlier in the process. He added that the agent exercise proved effective enough that a second board has been opened to study EIP-8198, or \"Quick Slots\", proposed for the follow-up Hegota fork.\n\nChiang said the vulnerability was found \"a few minutes to midnight,\" causing everyone to scramble, and the Hoodi testnet is not expected to be rescheduled until all of the fork's second-order effects have been properly analyzed. He likened the setup to the OpenAI–Hugging Face hack, where rogue agents coordinated through a message board, noting \"the same pattern is useful for the good agents too.\"",
+      "current_state_zh": "以太坊Glamsterdam硬分叉的第二个、也是最后一个测试网Hoodi本周被取消，原因是ChainSecurity发现gas扩容类以太坊改进提案EIP-8037与EIP-8038存在漏洞，可能导致至少13个DeFi合约在调用耗尽gas时出错。Eth Labs与以太坊基金会的研究人员各自独立部署了一批AI代理来扫描合约漏洞，随后以GitHub仓库的形式搭建了一个共享“留言板”，用于协调这些代理的工作。\n\n此次取消使得一次关键升级的“彩排”被迫延后，而该升级是以太坊DeFi运营方所依赖的基础设施。Eth Labs的Derek Chiang表示，未来协议设计者应当在流程更早的阶段“对可能引入的破坏做更彻底的分析”。他还表示，AI代理的排查方式成效显著，因此已开设第二个留言板，用于研究拟纳入后续Hegota分叉的EIP-8198（“Quick Slots”）。\n\nChiang称该漏洞是在“临近午夜的最后几分钟”被发现的，导致所有人紧急应对；在分叉的所有二阶影响被充分推演之前，Hoodi测试网预计不会重新排期。他把这一做法类比于OpenAI与Hugging Face被攻击事件中恶意代理通过留言板协同行动的情形，并表示“同样的模式对‘好代理’同样有用”。",
       "entities": [
         "activates",
         "compatibil",
+        "digest",
         "eip",
         "eip-8037",
         "gas",
         "glamsterdam",
+        "hodler",
         "hoodi",
         "lido",
         "october",
@@ -70306,6 +70308,7 @@
         "raising",
         "sepolia",
         "sets",
+        "steal",
         "testnet",
         "upgrade"
       ],
@@ -70313,22 +70316,24 @@
       "event_type": "protocol_change",
       "first_seen_at": "2026-09-17T17:11:45.183417Z",
       "identifiers": [
-        "eip-8037"
+        "eip-8037",
+        "eip-8198"
       ],
-      "last_material_change_at": "2026-10-23T06:05:34.373870Z",
-      "last_updated_at": "2026-10-23T13:32:53.456970Z",
+      "last_material_change_at": "2026-10-25T23:28:08.430086Z",
+      "last_updated_at": "2026-10-25T23:28:08.430086Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_606b48228f302527",
         "evt_217ff2e06eedf331",
         "evt_e4d4f67602172913",
         "evt_130c6dec11baf570",
-        "evt_a73448857c927050"
+        "evt_a73448857c927050",
+        "evt_09677e4cbc4f27c1"
       ],
       "schema_version": 1,
       "status": "developing",
-      "title_en": "Ethereum Glamsterdam Upgrade Testnet Deployments and Risk Warning",
-      "title_zh": "以太坊 Glamsterdam 升级测试网部署与风险警示",
+      "title_en": "Ethereum Glamsterdam upgrade testnet deployment disrupted and postponed",
+      "title_zh": "以太坊Glamsterdam升级测试网部署受阻并推迟",
       "topics": [
         "eip-8037",
         "epbs",
@@ -70824,6 +70829,57 @@
           "update_type": "escalation",
           "what_changed_en": "Security firm ChainSecurity warned that Glamsterdam's EIP-8037 and EIP-8038 could weaken safeguards against insufficient-gas griefing attacks, said it identified 13 real-world smart contracts potentially affected, and is coordinating responsible disclosure with affected projects; this broadens the stated reason for the Hoodi postponement from compatibility investigation to specific security risks and adds uncertainty to the mainnet timeline, previously considering early December.",
           "what_changed_zh": "安全公司 ChainSecurity 指出 Glamsterdam 中的 EIP-8037 与 EIP-8038 可能削弱对“gas 不足 griefing”攻击的防护，并称已发现 13 个可能受影响的真实智能合约案例，正与相关项目协调负责任披露；这使 Hoodi 升级推迟的原因从兼容性调查扩展为具体安全风险，主网时间表（此前考虑 12 月初）也因此更不确定。"
+        },
+        {
+          "background_en": "Glamsterdam is Ethereum's next scheduled hard fork after Pectra and Fusaka, with published estimates pointing to mainnet in 2026 and its confirmed headliners being EIP-7732 (enshrined proposer-builder separation) and EIP-7928 (block-level access lists). EIP-8037 and EIP-8038 would raise the cost of creating and accessing state so that fees better reflect resource consumption under a proposed throughput scaling plan — the changes at the centre of the cancelled test.",
+          "background_zh": "Glamsterdam是以太坊在Pectra和Fusaka之后的下一个计划中的硬分叉，公开预测指向2026年上线主网，已确认的核心内容包括EIP-7732（内嵌提议者-构建者分离）和EIP-7928（区块级访问列表）。EIP-8037与EIP-8038则拟提高创建和访问状态的gas成本，使费用更贴近实际资源消耗，属于一项吞吐量扩容计划的组成部分——也正是此次被取消的测试所涉及的核心改动。",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Ethereum's second and final Glamsterdam hard fork testnet on Hoodi was cancelled this week after ChainSecurity found vulnerabilities in the gas-scaling EIPs 8037 and 8038 that could break at least 13 DeFi contracts when a call runs out of gas. Researchers at Eth Labs and the Ethereum Foundation independently spun up AI agents to scan contracts for the flaws, then set up a shared message board in the form of a GitHub repo to coordinate the agents' work.\n\nThe cancellation postpones the dress rehearsal for an upgrade that Ethereum DeFi operators depend on, and Eth Labs' Derek Chiang said protocols designers should in future do \"much more thorough analysis of potential breakages\" much earlier in the process. He added that the agent exercise proved effective enough that a second board has been opened to study EIP-8198, or \"Quick Slots\", proposed for the follow-up Hegota fork.\n\nChiang said the vulnerability was found \"a few minutes to midnight,\" causing everyone to scramble, and the Hoodi testnet is not expected to be rescheduled until all of the fork's second-order effects have been properly analyzed. He likened the setup to the OpenAI–Hugging Face hack, where rogue agents coordinated through a message board, noting \"the same pattern is useful for the good agents too.\"",
+          "current_state_zh": "以太坊Glamsterdam硬分叉的第二个、也是最后一个测试网Hoodi本周被取消，原因是ChainSecurity发现gas扩容类以太坊改进提案EIP-8037与EIP-8038存在漏洞，可能导致至少13个DeFi合约在调用耗尽gas时出错。Eth Labs与以太坊基金会的研究人员各自独立部署了一批AI代理来扫描合约漏洞，随后以GitHub仓库的形式搭建了一个共享“留言板”，用于协调这些代理的工作。\n\n此次取消使得一次关键升级的“彩排”被迫延后，而该升级是以太坊DeFi运营方所依赖的基础设施。Eth Labs的Derek Chiang表示，未来协议设计者应当在流程更早的阶段“对可能引入的破坏做更彻底的分析”。他还表示，AI代理的排查方式成效显著，因此已开设第二个留言板，用于研究拟纳入后续Hegota分叉的EIP-8198（“Quick Slots”）。\n\nChiang称该漏洞是在“临近午夜的最后几分钟”被发现的，导致所有人紧急应对；在分叉的所有二阶影响被充分推演之前，Hoodi测试网预计不会重新排期。他把这一做法类比于OpenAI与Hugging Face被攻击事件中恶意代理通过留言板协同行动的情形，并表示“同样的模式对‘好代理’同样有用”。",
+          "detailed_summary_en": "Ethereum's second and final Glamsterdam hard fork testnet on Hoodi was cancelled this week after ChainSecurity found vulnerabilities in the gas-scaling EIPs 8037 and 8038 that could break at least 13 DeFi contracts when a call runs out of gas. Researchers at Eth Labs and the Ethereum Foundation independently spun up AI agents to scan contracts for the flaws, then set up a shared message board in the form of a GitHub repo to coordinate the agents' work.\n\nThe cancellation postpones the dress rehearsal for an upgrade that Ethereum DeFi operators depend on, and Eth Labs' Derek Chiang said protocols designers should in future do \"much more thorough analysis of potential breakages\" much earlier in the process. He added that the agent exercise proved effective enough that a second board has been opened to study EIP-8198, or \"Quick Slots\", proposed for the follow-up Hegota fork.\n\nChiang said the vulnerability was found \"a few minutes to midnight,\" causing everyone to scramble, and the Hoodi testnet is not expected to be rescheduled until all of the fork's second-order effects have been properly analyzed. He likened the setup to the OpenAI–Hugging Face hack, where rogue agents coordinated through a message board, noting \"the same pattern is useful for the good agents too.\"",
+          "detailed_summary_zh": "以太坊Glamsterdam硬分叉的第二个、也是最后一个测试网Hoodi本周被取消，原因是ChainSecurity发现gas扩容类以太坊改进提案EIP-8037与EIP-8038存在漏洞，可能导致至少13个DeFi合约在调用耗尽gas时出错。Eth Labs与以太坊基金会的研究人员各自独立部署了一批AI代理来扫描合约漏洞，随后以GitHub仓库的形式搭建了一个共享“留言板”，用于协调这些代理的工作。\n\n此次取消使得一次关键升级的“彩排”被迫延后，而该升级是以太坊DeFi运营方所依赖的基础设施。Eth Labs的Derek Chiang表示，未来协议设计者应当在流程更早的阶段“对可能引入的破坏做更彻底的分析”。他还表示，AI代理的排查方式成效显著，因此已开设第二个留言板，用于研究拟纳入后续Hegota分叉的EIP-8198（“Quick Slots”）。\n\nChiang称该漏洞是在“临近午夜的最后几分钟”被发现的，导致所有人紧急应对；在分叉的所有二阶影响被充分推演之前，Hoodi测试网预计不会重新排期。他把这一做法类比于OpenAI与Hugging Face被攻击事件中恶意代理通过留言板协同行动的情形，并表示“同样的模式对‘好代理’同样有用”。",
+          "event_id": "evt_0f8b132b10a6f10f",
+          "first_seen_at": "2026-10-25T23:28:08.430086Z",
+          "importance_score": 7.5,
+          "market_impact_en": "The transmission runs through the upgrade timeline rather than a live exploit: the flaw surfaced during a Hoodi testnet rehearsal, but DeFi contracts that rely on current gas behavior face review before the fork can be rescheduled. A delay to Glamsterdam also defers the expected effects of enshrined proposer-builder separation and block-level access lists on block building and staking economics.",
+          "market_impact_zh": "影响传导主要经由升级时间表，而非已发生的攻击：漏洞是在Hoodi测试网演练中暴露的，但依赖当前gas行为的DeFi合约需先接受排查，分叉才能重新排期。Glamsterdam的延后也会推迟内嵌提议者-构建者分离与区块级访问列表对区块构建和质押经济模型本应产生的影响。",
+          "material_change": true,
+          "occurred_at": "2026-10-25T22:48:40Z",
+          "published_at": "2026-10-25T22:48:40Z",
+          "references": [
+            {
+              "title": "EIP-8037: State Creation Gas Cost Increase",
+              "url": "https://eips.ethereum.org/EIPS/eip-8037"
+            },
+            {
+              "title": "Glamsterdam: Ethereum's Next Hard Fork Explained",
+              "url": "https://www.kiln.fi/post/glamsterdam-ethereums-next-hard-fork-explained"
+            },
+            {
+              "title": "Ethereum 2026: Glamsterdam and Hegota Forks, L1 Scaling",
+              "url": "https://cointelegraph.com/magazine/ethereum-2026-glamsterdam-hegota-fork-scaling"
+            }
+          ],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/magazine/ai-agents-help-rescue-eths-glamsterdam-fork-steal-my-bitcoin-site-hodlers-digest?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:2be683fcae6bcbfc"
+          ],
+          "time_precision": "published",
+          "title_en": "AI agents help rescue ETH’s Glamsterdam fork, ‘Steal My Bitcoin’ site: Hodler’s Digest",
+          "title_zh": "AI代理协助抢救ETH的Glamsterdam分叉，“Steal My Bitcoin”网站上线：Hodler's Digest",
+          "update_id": "upd_79d250fac41d4950",
+          "update_type": "escalation",
+          "what_changed_en": "Ethereum's second and final Glamsterdam hard fork testnet on Hoodi was cancelled this week after ChainSecurity found vulnerabilities in the gas-scaling EIPs 8037 and 8038 that could break at least 13 DeFi contracts when a call runs out of gas. Researchers at Eth Labs and the Ethereum Foundation independently spun up AI agents to scan contracts for the flaws, then set up a shared message board in the form of a GitHub repo to coordinate the agents' work.\n\nThe cancellation postpones the dress rehearsal for an upgrade that Ethereum DeFi operators depend on, and Eth Labs' Derek Chiang said protocols designers should in future do \"much more thorough analysis of potential breakages\" much earlier in the process. He added that the agent exercise proved effective enough that a second board has been opened to study EIP-8198, or \"Quick Slots\", proposed for the follow-up Hegota fork.\n\nChiang said the vulnerability was found \"a few minutes to midnight,\" causing everyone to scramble, and the Hoodi testnet is not expected to be rescheduled until all of the fork's second-order effects have been properly analyzed. He likened the setup to the OpenAI–Hugging Face hack, where rogue agents coordinated through a message board, noting \"the same pattern is useful for the good agents too.\"",
+          "what_changed_zh": "以太坊Glamsterdam硬分叉的第二个、也是最后一个测试网Hoodi本周被取消，原因是ChainSecurity发现gas扩容类以太坊改进提案EIP-8037与EIP-8038存在漏洞，可能导致至少13个DeFi合约在调用耗尽gas时出错。Eth Labs与以太坊基金会的研究人员各自独立部署了一批AI代理来扫描合约漏洞，随后以GitHub仓库的形式搭建了一个共享“留言板”，用于协调这些代理的工作。\n\n此次取消使得一次关键升级的“彩排”被迫延后，而该升级是以太坊DeFi运营方所依赖的基础设施。Eth Labs的Derek Chiang表示，未来协议设计者应当在流程更早的阶段“对可能引入的破坏做更彻底的分析”。他还表示，AI代理的排查方式成效显著，因此已开设第二个留言板，用于研究拟纳入后续Hegota分叉的EIP-8198（“Quick Slots”）。\n\nChiang称该漏洞是在“临近午夜的最后几分钟”被发现的，导致所有人紧急应对；在分叉的所有二阶影响被充分推演之前，Hoodi测试网预计不会重新排期。他把这一做法类比于OpenAI与Hugging Face被攻击事件中恶意代理通过留言板协同行动的情形，并表示“同样的模式对‘好代理’同样有用”。"
         }
       ]
     },
@@ -175774,16 +175830,19 @@
       "last_updated_at": "2026-10-21T21:41:48.968923Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
-        "evt_8f444164812f198f"
+        "evt_8f444164812f198f",
+        "evt_e309c31100219869"
       ],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "developing",
       "title_en": "SpaceX and Tesla form special committees to explore potential merger",
-      "title_zh": "SpaceX与特斯拉成立特别委员会探讨合并可能性",
+      "title_zh": "SpaceX与特斯拉成立特别委员会探讨潜在合并",
       "topics": [
         "ai-infrastructure",
         "elon-musk",
+        "liquidations",
         "merger",
+        "perpetual-futures",
         "spacex",
         "tesla",
         "xai"
@@ -175871,6 +175930,44 @@
           "update_type": "confirmation",
           "what_changed_en": "Musk publicly said a SpaceX-Tesla merger is a 'good idea' and that special committees are discussing it at shareholder request, while stressing no terms have been agreed, no deal is guaranteed, and Tesla would need 50% of all shares to approve.",
           "what_changed_zh": "马斯克公开表示SpaceX与特斯拉合并是“好主意”，并称双方特别委员会应股东要求讨论该想法；但他强调委员会尚未就交易条款达成一致，也不能保证会达成，且特斯拉侧需全部股份的50%支持。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "SpaceX and Tesla have set up a special committee to explore a potential merger backed by Musk, sending SPCX perpetual futures volume up nearly 130% to $3.15B with $4.26M in liquidations and $10.5B open interest.",
+          "current_state_zh": "SpaceX与特斯拉已成立特别委员会，探讨由马斯克支持的潜在合并，推动SPCX永续合约成交量上涨近130%至31.5亿美元，清算金额426万美元，未平仓合约105亿美元。",
+          "detailed_summary_en": "SpaceX and Tesla have set up a special committee to explore a potential merger backed by Musk, sending SPCX perpetual futures volume up nearly 130% to $3.15B with $4.26M in liquidations and $10.5B open interest.",
+          "detailed_summary_zh": "SpaceX and Tesla have set up a special committee to explore a potential merger backed by Musk, sending SPCX perpetual futures volume up nearly 130% to $3.15B with $4.26M in liquidations and $10.5B open interest.",
+          "event_id": "evt_cfcdb539c4e7e478",
+          "first_seen_at": "2026-10-21T02:31:25.313772Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T02:28:02Z",
+          "published_at": "2026-10-21T02:28:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/372864?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:201523"
+          ],
+          "time_precision": "published",
+          "title_en": "SpaceX与特斯拉合并提上日程，合约成交额单日环比大增近130%",
+          "title_zh": "SpaceX与特斯拉合并提上日程，合约成交额单日环比大增近130%",
+          "update_id": "upd_f8db2af7a190507b",
+          "update_type": "escalation",
+          "what_changed_en": "SpaceX and Tesla have set up a special committee to explore a potential merger backed by Musk, sending SPCX perpetual futures volume up nearly 130% to $3.15B with $4.26M in liquidations and $10.5B open interest.",
+          "what_changed_zh": "SpaceX与特斯拉已成立特别委员会，探讨由马斯克支持的潜在合并，推动SPCX永续合约成交量上涨近130%至31.5亿美元，清算金额426万美元，未平仓合约105亿美元。"
         }
       ]
     },
@@ -176337,74 +176434,6 @@
           "update_type": "initial",
           "what_changed_en": "Binance will roll out USDT-margined, 24/7 perpetual contracts on four US stocks — Constellation Energy, Bank of America, Interactive Brokers and Medtronic — with up to 20x leverage starting 17:00 on October 21.",
           "what_changed_zh": "Binance will roll out USDT-margined, 24/7 perpetual contracts on four US stocks — Constellation Energy, Bank of America, Interactive Brokers and Medtronic — with up to 20x leverage starting 17:00 on October 21."
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "SpaceX and Tesla have set up a special committee to explore a potential merger backed by Musk, sending SPCX perpetual futures volume up nearly 130% to $3.15B with $4.26M in liquidations and $10.5B open interest.",
-      "current_state_zh": "SpaceX and Tesla have set up a special committee to explore a potential merger backed by Musk, sending SPCX perpetual futures volume up nearly 130% to $3.15B with $4.26M in liquidations and $10.5B open interest.",
-      "entities": [
-        "spacex"
-      ],
-      "event_id": "evt_e309c31100219869",
-      "event_type": "other",
-      "first_seen_at": "2026-10-21T02:31:25.313772Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-21T02:31:25.313772Z",
-      "last_updated_at": "2026-10-21T02:31:25.313772Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "SpaceX与特斯拉合并提上日程，合约成交额单日环比大增近130%",
-      "title_zh": "SpaceX与特斯拉合并提上日程，合约成交额单日环比大增近130%",
-      "topics": [
-        "liquidations",
-        "merger",
-        "perpetual-futures",
-        "spacex",
-        "tesla"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "SpaceX and Tesla have set up a special committee to explore a potential merger backed by Musk, sending SPCX perpetual futures volume up nearly 130% to $3.15B with $4.26M in liquidations and $10.5B open interest.",
-          "current_state_zh": "SpaceX and Tesla have set up a special committee to explore a potential merger backed by Musk, sending SPCX perpetual futures volume up nearly 130% to $3.15B with $4.26M in liquidations and $10.5B open interest.",
-          "detailed_summary_en": "SpaceX and Tesla have set up a special committee to explore a potential merger backed by Musk, sending SPCX perpetual futures volume up nearly 130% to $3.15B with $4.26M in liquidations and $10.5B open interest.",
-          "detailed_summary_zh": "SpaceX and Tesla have set up a special committee to explore a potential merger backed by Musk, sending SPCX perpetual futures volume up nearly 130% to $3.15B with $4.26M in liquidations and $10.5B open interest.",
-          "event_id": "evt_e309c31100219869",
-          "first_seen_at": "2026-10-21T02:31:25.313772Z",
-          "importance_score": 7.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-21T02:28:02Z",
-          "published_at": "2026-10-21T02:28:02Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "theblockbeats",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://m.theblockbeats.info/flash/372864?from=telegram"
-            }
-          ],
-          "story_ids": [
-            "telegram:theblockbeats:201523"
-          ],
-          "time_precision": "published",
-          "title_en": "SpaceX与特斯拉合并提上日程，合约成交额单日环比大增近130%",
-          "title_zh": "SpaceX与特斯拉合并提上日程，合约成交额单日环比大增近130%",
-          "update_id": "upd_f8db2af7a190507b",
-          "update_type": "initial",
-          "what_changed_en": "SpaceX and Tesla have set up a special committee to explore a potential merger backed by Musk, sending SPCX perpetual futures volume up nearly 130% to $3.15B with $4.26M in liquidations and $10.5B open interest.",
-          "what_changed_zh": "SpaceX and Tesla have set up a special committee to explore a potential merger backed by Musk, sending SPCX perpetual futures volume up nearly 130% to $3.15B with $4.26M in liquidations and $10.5B open interest."
         }
       ]
     },
@@ -191097,20 +191126,20 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
+          "background_en": "Cerebras builds wafer-scale engines — the WSE-3, and the WSE-3T that powers its CS-4 rack-scale system — and sells access to them through AI training and inference cloud APIs. Serving models of trillion-parameter scale typically involves disaggregated prefill and decode workers that exchange KV-cache data over a network, a pattern the Cerebras post discusses for its own hardware.",
+          "background_zh": "Cerebras 研发晶圆级引擎——包括 WSE-3，以及用于驱动 CS-4 机架级系统的 WSE-3T——并通过 AI 训练云与推理云 API 对外提供算力访问。服务万亿参数级模型通常需要将预填充与解码拆分为不同的工作节点，并通过网络交换 KV 缓存数据，Cerebras 的文章正是围绕其自有硬件讨论这一模式。",
+          "community_discussion_en": "Sentiment was skeptical but technically engaged. One user said Cerebras is fast in practice but often wrong on the models they can access (GPT OSS 120B, Qwen3 27B) and that OpenRouter offers better models at roughly one-fifth the throughput; others challenged the use of full-precision benchmarks alongside 4-bit serving and the unexplained prefill latency over the interconnect.",
+          "community_discussion_zh": "讨论整体持怀疑态度，但技术性较强。一位用户表示，Cerebras 在实际使用中速度确实很快，但对其可访问的模型（GPT OSS 120B、Qwen3 27B）来说答案经常出错，而 OpenRouter 提供的模型更好、吞吐约为其五分之一；其他人则质疑文章一边引用全精度基准、一边以 4 比特精度服务模型，以及互连上未加解释的预填充延迟。",
           "confidence": 0.75,
           "current_state_en": "Cerebras detailed how it deploys trillion-parameter frontier AI models on its wafer-scale systems, covering pipeline streaming and hardware utilization for high-throughput inference.",
-          "current_state_zh": "Cerebras detailed how it deploys trillion-parameter frontier AI models on its wafer-scale systems, covering pipeline streaming and hardware utilization for high-throughput inference.",
+          "current_state_zh": "Cerebras 发布技术博客，说明其如何在其晶圆级系统上部署并服务万亿参数前沿模型，内容涵盖流水线架构、晶圆之间仅通过以太网 RDMA 传递激活值的互连策略，以及不同于 GPU 批处理的持续请求流式处理方式。该文章在 Hacker News 引发讨论（223 分、69 条评论），对其基准测试方法与预填充性能的说法提出质疑。\n\n该文罕见地公开描述了如何在非 GPU 的晶圆级硬件上服务前沿规模模型，而 Hacker News 的评论者对其性能论证的部分内容提出了直接质疑。\n\n评论者指出，文章引用了全精度基准测试结果，但实际服务的模型采用的是 4 比特量化；文章也未说明预填充阶段如何在 RDMA 互连上保持高速。还有人追问，所谓“不同于 GPU 批处理”的流式行为究竟是 GPU 的硬件限制，还是缺少相应的软件支撑框架。",
           "detailed_summary_en": "Cerebras detailed how it deploys trillion-parameter frontier AI models on its wafer-scale systems, covering pipeline streaming and hardware utilization for high-throughput inference.",
           "detailed_summary_zh": "Cerebras detailed how it deploys trillion-parameter frontier AI models on its wafer-scale systems, covering pipeline streaming and hardware utilization for high-throughput inference.",
           "event_id": "evt_8014c8b29a9b0622",
           "first_seen_at": "2026-10-25T09:17:53.826736Z",
           "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The claims sit on the inference-cost side of the AI compute market: if wafer-scale serving delivers the stated throughput, it competes with GPU-based serving stacks for hosted inference of large open-weight models, a segment where per-token pricing is the main competitive lever. The disputed benchmark and prefill points mean the efficiency comparison remains unverified by independent measurement.",
+          "market_impact_zh": "相关说法落在 AI 算力市场的推理成本环节：若晶圆级服务能达到其所称的吞吐，它将在大型开放权重模型的托管推理上与基于 GPU 的服务栈展开竞争，而该领域的主要竞争杠杆正是每 token 价格。由于基准测试与预填充性能存在争议，这一效率对比尚未经过独立测度验证。",
           "material_change": true,
           "occurred_at": "2026-10-25T01:33:49Z",
           "published_at": "2026-10-25T01:33:49Z",
@@ -191118,6 +191147,14 @@
             {
               "title": "Community discussion",
               "url": "https://news.ycombinator.com/item?id=50227356"
+            },
+            {
+              "title": "Cerebras Systems - Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Cerebras"
+            },
+            {
+              "title": "Cerebras WSE-3 Turbo | Wafer-Scale AI Chip",
+              "url": "https://www.cerebras.ai/chip"
             }
           ],
           "sources": [
@@ -191133,11 +191170,11 @@
           ],
           "time_precision": "published",
           "title_en": "Cerebras Deploys Trillion-Parameter AI Models",
-          "title_zh": "Cerebras Deploys Trillion-Parameter AI Models",
+          "title_zh": "Cerebras 部署万亿参数 AI 模型",
           "update_id": "upd_e3b0ae76f30154f2",
           "update_type": "initial",
           "what_changed_en": "Cerebras detailed how it deploys trillion-parameter frontier AI models on its wafer-scale systems, covering pipeline streaming and hardware utilization for high-throughput inference.",
-          "what_changed_zh": "Cerebras detailed how it deploys trillion-parameter frontier AI models on its wafer-scale systems, covering pipeline streaming and hardware utilization for high-throughput inference."
+          "what_changed_zh": "Cerebras 发布技术博客，说明其如何在其晶圆级系统上部署并服务万亿参数前沿模型，内容涵盖流水线架构、晶圆之间仅通过以太网 RDMA 传递激活值的互连策略，以及不同于 GPU 批处理的持续请求流式处理方式。该文章在 Hacker News 引发讨论（223 分、69 条评论），对其基准测试方法与预填充性能的说法提出质疑。\n\n该文罕见地公开描述了如何在非 GPU 的晶圆级硬件上服务前沿规模模型，而 Hacker News 的评论者对其性能论证的部分内容提出了直接质疑。\n\n评论者指出，文章引用了全精度基准测试结果，但实际服务的模型采用的是 4 比特量化；文章也未说明预填充阶段如何在 RDMA 互连上保持高速。还有人追问，所谓“不同于 GPU 批处理”的流式行为究竟是 GPU 的硬件限制，还是缺少相应的软件支撑框架。"
         }
       ]
     },
@@ -191310,24 +191347,33 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Reth is the Ethereum execution client developed by Paradigm, Foundry is an EVM smart-contract development framework, and Tempo is a payments chain incubated by Stripe and Paradigm. All three are currently built on revm, a widely used Rust EVM implementation that is integrated into Reth, multiple Layer 2 networks and much of the ecosystem's tooling and block-building infrastructure.",
+          "background_zh": "Reth 是 Paradigm 开发的以太坊执行客户端，Foundry 是 EVM 智能合约开发框架，Tempo 是 Stripe 与 Paradigm 孵化的支付公链。三者目前均基于 revm 构建，而 revm 是被广泛使用的 Rust EVM 实现，已被集成进 Reth、多个 Layer 2 网络以及生态内大量工具与区块构建基础设施中。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Paradigm has open-sourced evm2, an audited Rust EVM with built-in JIT compilation that claims up to 2x the execution speed of revm and allows customizing opcodes, gas rules, transaction types and precompiles, with planned adoption across Foundry, Reth and Tempo.",
-          "current_state_zh": "Paradigm has open-sourced evm2, an audited Rust EVM with built-in JIT compilation that claims up to 2x the execution speed of revm and allows customizing opcodes, gas rules, transaction types and precompiles, with planned adoption across Foundry, Reth and Tempo.",
+          "current_state_zh": "Paradigm 合伙人兼首席技术官 Georgios Konstantopoulos 在 X 上表示，团队即将推出一款已完成审计、内置即时编译（JIT）的新 EVM，名为 evm2，代码已在 GitHub 公开。evm2 是一个用 Rust 编写的 EVM 实现，开发者可在不改动核心代码的情况下自定义操作码、Gas 规则、交易类型和预编译合约；其 README 页面称执行速度最高可达当前主流 Rust EVM 实现 revm 的 2 倍。\n\n据 Konstantopoulos 的说法，evm2 未来将应用于 Foundry、Reth、Tempo 以及所有采用其技术栈的 EVM 生态项目，而这三者目前均基于 revm 构建。\n\n审计被描述为已完成，但发布口径是“即将推出”，而非已经上线。2 倍的速度数字来自仓库 README 的表述，并非经独立验证的基准测试结果。",
           "detailed_summary_en": "Paradigm has open-sourced evm2, an audited Rust EVM with built-in JIT compilation that claims up to 2x the execution speed of revm and allows customizing opcodes, gas rules, transaction types and precompiles, with planned adoption across Foundry, Reth and Tempo.",
           "detailed_summary_zh": "Paradigm has open-sourced evm2, an audited Rust EVM with built-in JIT compilation that claims up to 2x the execution speed of revm and allows customizing opcodes, gas rules, transaction types and precompiles, with planned adoption across Foundry, Reth and Tempo.",
           "event_id": "evt_28b6c8d823f8fc1a",
           "first_seen_at": "2026-10-25T16:41:28.275331Z",
           "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The transmission path runs through execution-client and developer-tooling performance rather than through any asset: faster EVM execution and configurable gas rules or precompiles affect node operators, block builders and teams building on Reth, Foundry or Tempo. Because this is an infrastructure release and not a live protocol change, it does not directly alter on-chain supply, custody or liquidity conditions.",
+          "market_impact_zh": "传导路径在于执行客户端与开发者工具的性能，而非某一资产本身：更快的 EVM 执行速度以及可自定义的 Gas 规则和预编译合约，会影响节点运营方、区块构建者以及基于 Reth、Foundry 或 Tempo 开发的团队。由于这是一次基础设施层面的发布而非线上协议变更，它不会直接改变链上供应、托管或流动性状况。",
           "material_change": true,
           "occurred_at": "2026-10-25T15:00:50Z",
           "published_at": "2026-10-25T15:00:50Z",
-          "references": [],
+          "references": [
+            {
+              "title": "GitHub - bluealloy/revm: Rust implementation of the Ethereum ...",
+              "url": "https://github.com/bluealloy/revm"
+            },
+            {
+              "title": "Go Ethereum’s JIT-EVM | Ethereum Foundation Blog",
+              "url": "https://blog.ethereum.org/2016/06/02/go-ethereums-jit-evm"
+            }
+          ],
           "sources": [
             {
               "label": "foresightnews",
@@ -191345,7 +191391,7 @@
           "update_id": "upd_3d7a34b630fbd210",
           "update_type": "initial",
           "what_changed_en": "Paradigm has open-sourced evm2, an audited Rust EVM with built-in JIT compilation that claims up to 2x the execution speed of revm and allows customizing opcodes, gas rules, transaction types and precompiles, with planned adoption across Foundry, Reth and Tempo.",
-          "what_changed_zh": "Paradigm has open-sourced evm2, an audited Rust EVM with built-in JIT compilation that claims up to 2x the execution speed of revm and allows customizing opcodes, gas rules, transaction types and precompiles, with planned adoption across Foundry, Reth and Tempo."
+          "what_changed_zh": "Paradigm 合伙人兼首席技术官 Georgios Konstantopoulos 在 X 上表示，团队即将推出一款已完成审计、内置即时编译（JIT）的新 EVM，名为 evm2，代码已在 GitHub 公开。evm2 是一个用 Rust 编写的 EVM 实现，开发者可在不改动核心代码的情况下自定义操作码、Gas 规则、交易类型和预编译合约；其 README 页面称执行速度最高可达当前主流 Rust EVM 实现 revm 的 2 倍。\n\n据 Konstantopoulos 的说法，evm2 未来将应用于 Foundry、Reth、Tempo 以及所有采用其技术栈的 EVM 生态项目，而这三者目前均基于 revm 构建。\n\n审计被描述为已完成，但发布口径是“即将推出”，而非已经上线。2 倍的速度数字来自仓库 README 的表述，并非经独立验证的基准测试结果。"
         }
       ]
     },
@@ -191447,24 +191493,37 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "Hyperliquid operates 300+ perpetual and spot markets fully onchain and non-custodial, according to its own platform description. Tokenized equities have expanded over the past year through products such as Backed Finance's xStocks, which are backed 1:1 by underlying equities held in custody and distributed via venues including Kraken and Bybit.",
+          "background_zh": "据 Hyperliquid 平台自述，其运营 300 多个永续与现货市场，全部在链上运行且为非托管模式。过去一年代币化股票持续扩张，例如 Backed Finance 的 xStocks 由托管持有的标的股票 1:1 支持，并通过 Kraken、Bybit 等平台分发。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Hyperliquid will list 11 USDC-denominated HIP-1 spot markets for EQX Labs-issued tokenized US stocks and ETFs, including S&P 500 and Nasdaq-100 trackers and single-name exposure to Nvidia, Tesla, Apple, Microsoft, Amazon, Alphabet, Meta, Micron and SpaceX, with trading opening October 26 at 21:30 Beijing time.",
-          "current_state_zh": "Hyperliquid will list 11 USDC-denominated HIP-1 spot markets for EQX Labs-issued tokenized US stocks and ETFs, including S&P 500 and Nasdaq-100 trackers and single-name exposure to Nvidia, Tesla, Apple, Microsoft, Amazon, Alphabet, Meta, Micron and SpaceX, with trading opening October 26 at 21:30 Beijing time.",
+          "current_state_zh": "Hyperliquid 将上线由 EQX Labs 发行的代币化美股与 ETF，首批共 11 个以 USDC 计价的 HIP-1 现货市场，标的包括追踪标普 500 与纳斯达克 100 的 EQSPY、EQQQQ，以及对应英伟达、特斯拉、苹果、微软、亚马逊、Alphabet、Meta、美光与 SpaceX 的单一标的。相关代币已在 Hyperliquid 主网注册上线，但撮合交易要到北京时间 10 月 26 日 21:30（美东时间同日 9:30）才正式开启。\n\n此次上线使这一大型链上衍生品交易平台新增代币化股票资产类别，让主要美股与指数追踪标的在传统交易时段之外也能在链上交易。不过交易尚未开始，流动性和监管反应均未经过检验。\n\nEQX 称每个代币由真实股份 1:1 支持，但法律结构为英属维尔京群岛隔离组合公司发行的有限追索权债务凭证，而非直接持有股票，且不对美国人士开放。",
           "detailed_summary_en": "Hyperliquid will list 11 USDC-denominated HIP-1 spot markets for EQX Labs-issued tokenized US stocks and ETFs, including S&P 500 and Nasdaq-100 trackers and single-name exposure to Nvidia, Tesla, Apple, Microsoft, Amazon, Alphabet, Meta, Micron and SpaceX, with trading opening October 26 at 21:30 Beijing time.",
           "detailed_summary_zh": "Hyperliquid will list 11 USDC-denominated HIP-1 spot markets for EQX Labs-issued tokenized US stocks and ETFs, including S&P 500 and Nasdaq-100 trackers and single-name exposure to Nvidia, Tesla, Apple, Microsoft, Amazon, Alphabet, Meta, Micron and SpaceX, with trading opening October 26 at 21:30 Beijing time.",
           "event_id": "evt_ea1a992b78c18d56",
           "first_seen_at": "2026-10-25T16:41:30.373712Z",
           "importance_score": 7.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The move channels spot demand for US equity and index exposure into Hyperliquid's USDC-settled order books, tying the venue's spot liquidity and HYPE-denominated activity to tokenized-equity flows that can run around the clock. The BVI debt-note structure and exclusion of US persons mean the exposure sits with offshore and non-US participants, leaving the product's regulatory footing a variable for the broader tokenized-equity segment.",
+          "market_impact_zh": "这一举措把对美股与指数敞口的现货需求引入 Hyperliquid 以 USDC 结算的订单簿，使该平台的现货流动性与以 HYPE 计价的活动同可全天候运行的代币化股票资金流挂钩。BVI 债务凭证结构与排除美国人士意味着敞口主要落在离岸及非美国参与者身上，产品监管基础仍是整个代币化股票赛道的一个变量。",
           "material_change": true,
           "occurred_at": "2026-10-25T15:03:02Z",
           "published_at": "2026-10-25T15:03:02Z",
-          "references": [],
+          "references": [
+            {
+              "title": "Hyperliquid to List 11 Tokenized US Stocks and ETFs on October 26",
+              "url": "https://bingx.com/en/flash-news/post/hyperliquid-to-list-tokenized-us-stocks-and-etfs-on-october"
+            },
+            {
+              "title": "Hyperliquid",
+              "url": "https://app.hyperliquid.xyz/"
+            },
+            {
+              "title": "RWA.xyz | Tokenized Stocks",
+              "url": "https://app.rwa.xyz/stocks"
+            }
+          ],
           "sources": [
             {
               "label": "theblockbeats",
@@ -191482,7 +191541,96 @@
           "update_id": "upd_6c43acc5faeee5cb",
           "update_type": "initial",
           "what_changed_en": "Hyperliquid will list 11 USDC-denominated HIP-1 spot markets for EQX Labs-issued tokenized US stocks and ETFs, including S&P 500 and Nasdaq-100 trackers and single-name exposure to Nvidia, Tesla, Apple, Microsoft, Amazon, Alphabet, Meta, Micron and SpaceX, with trading opening October 26 at 21:30 Beijing time.",
-          "what_changed_zh": "Hyperliquid will list 11 USDC-denominated HIP-1 spot markets for EQX Labs-issued tokenized US stocks and ETFs, including S&P 500 and Nasdaq-100 trackers and single-name exposure to Nvidia, Tesla, Apple, Microsoft, Amazon, Alphabet, Meta, Micron and SpaceX, with trading opening October 26 at 21:30 Beijing time."
+          "what_changed_zh": "Hyperliquid 将上线由 EQX Labs 发行的代币化美股与 ETF，首批共 11 个以 USDC 计价的 HIP-1 现货市场，标的包括追踪标普 500 与纳斯达克 100 的 EQSPY、EQQQQ，以及对应英伟达、特斯拉、苹果、微软、亚马逊、Alphabet、Meta、美光与 SpaceX 的单一标的。相关代币已在 Hyperliquid 主网注册上线，但撮合交易要到北京时间 10 月 26 日 21:30（美东时间同日 9:30）才正式开启。\n\n此次上线使这一大型链上衍生品交易平台新增代币化股票资产类别，让主要美股与指数追踪标的在传统交易时段之外也能在链上交易。不过交易尚未开始，流动性和监管反应均未经过检验。\n\nEQX 称每个代币由真实股份 1:1 支持，但法律结构为英属维尔京群岛隔离组合公司发行的有限追索权债务凭证，而非直接持有股票，且不对美国人士开放。"
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Elon Musk said SpaceX has completed $40 billion of redeemable GPU debt financing, with the proceeds mainly earmarked for GPUs scheduled to arrive in the first and second quarters. According to BlockBeats, Musk credited the company's investment-grade credit rating and revenue from its Starlink satellite-internet and launch businesses with keeping its access to credit open.\n\nAs described, the package would be among the largest disclosed debt raises aimed specifically at buying AI compute, indicating that GPU purchases are being funded through credit markets rather than only from operating cash flow. Musk said the spending will have little impact on the current quarter because the hardware has not yet arrived.\n\nMusk described the instrument as redeemable debt — borrowing with a defined repayment date — but the flash report did not disclose lenders, coupon, maturity or other terms, and there was no independent confirmation of the financing. BlockBeats listed the borrower under the ticker SPCX.O, although SpaceX is not a publicly listed company.",
+      "current_state_zh": "马斯克表示，SpaceX 已完成 400 亿美元的可赎回 GPU 债务融资，资金主要用于购买将于第一季度和第二季度到货的 GPU。据 BlockBeats 报道，马斯克称公司的投资级信用评级，以及来自 Starlink 卫星互联网和发射业务的收入，有助于其维持信贷渠道畅通。\n\n按目前披露的说法，这将是专门用于采购 AI 算力的规模最大的债务融资之一，说明 GPU 采购正通过信贷市场而非仅靠经营现金流来支撑。马斯克表示，由于硬件尚未到货，这笔支出对本季度影响不大。\n\n马斯克将该工具称为可赎回债务，即设有既定偿还日期的借款；但该快讯未披露贷款方、票息、期限等条款，也没有独立消息证实这笔融资。BlockBeats 在快讯中以 SPCX.O 代码指代该借款主体，而 SpaceX 并非上市公司。",
+      "entities": [
+        "billion",
+        "buy",
+        "gpu",
+        "gpus",
+        "musk",
+        "raised",
+        "says",
+        "spacex"
+      ],
+      "event_id": "evt_0efdbb0f2805c119",
+      "event_type": "other",
+      "first_seen_at": "2026-10-25T23:27:37.764124Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-25T23:27:37.764124Z",
+      "last_updated_at": "2026-10-25T23:27:37.764124Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Musk Says SpaceX Raised $40 Billion to Buy GPUs",
+      "title_zh": "马斯克称SpaceX为采购GPU融资400亿美元",
+      "topics": [
+        "ai-compute",
+        "ai-infrastructure",
+        "debt-financing",
+        "gpu",
+        "spacex",
+        "starlink"
+      ],
+      "updates": [
+        {
+          "background_en": "Redeemable debt carries a fixed maturity date on which the issuer must repay the principal to holders. GPU-backed lending and project-level debt for AI data centers have grown into a distinct financing channel as AI compute build-outs scale, with lenders focusing on hardware commitments, delivery timing and counterparty credit quality. An investment-grade rating generally broadens access to such credit by signaling a relatively lower assessed default risk.",
+          "background_zh": "可赎回债务设有固定到期日，发行方须在该日期向持有人偿还本金。随着 AI 算力建设规模扩大，以 GPU 为抵押的贷款以及面向 AI 数据中心的项目级债务已发展为独立的融资渠道，贷款方关注硬件采购承诺、交付时点和交易对手的信用质量。投资级评级通常意味着被评估的违约风险相对较低，从而拓宽此类信贷的可获得性。",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Elon Musk said SpaceX has completed $40 billion of redeemable GPU debt financing, with the proceeds mainly earmarked for GPUs scheduled to arrive in the first and second quarters. According to BlockBeats, Musk credited the company's investment-grade credit rating and revenue from its Starlink satellite-internet and launch businesses with keeping its access to credit open.\n\nAs described, the package would be among the largest disclosed debt raises aimed specifically at buying AI compute, indicating that GPU purchases are being funded through credit markets rather than only from operating cash flow. Musk said the spending will have little impact on the current quarter because the hardware has not yet arrived.\n\nMusk described the instrument as redeemable debt — borrowing with a defined repayment date — but the flash report did not disclose lenders, coupon, maturity or other terms, and there was no independent confirmation of the financing. BlockBeats listed the borrower under the ticker SPCX.O, although SpaceX is not a publicly listed company.",
+          "current_state_zh": "马斯克表示，SpaceX 已完成 400 亿美元的可赎回 GPU 债务融资，资金主要用于购买将于第一季度和第二季度到货的 GPU。据 BlockBeats 报道，马斯克称公司的投资级信用评级，以及来自 Starlink 卫星互联网和发射业务的收入，有助于其维持信贷渠道畅通。\n\n按目前披露的说法，这将是专门用于采购 AI 算力的规模最大的债务融资之一，说明 GPU 采购正通过信贷市场而非仅靠经营现金流来支撑。马斯克表示，由于硬件尚未到货，这笔支出对本季度影响不大。\n\n马斯克将该工具称为可赎回债务，即设有既定偿还日期的借款；但该快讯未披露贷款方、票息、期限等条款，也没有独立消息证实这笔融资。BlockBeats 在快讯中以 SPCX.O 代码指代该借款主体，而 SpaceX 并非上市公司。",
+          "detailed_summary_en": "Elon Musk said SpaceX has completed $40 billion of redeemable GPU debt financing, with the proceeds mainly earmarked for GPUs scheduled to arrive in the first and second quarters. According to BlockBeats, Musk credited the company's investment-grade credit rating and revenue from its Starlink satellite-internet and launch businesses with keeping its access to credit open.\n\nAs described, the package would be among the largest disclosed debt raises aimed specifically at buying AI compute, indicating that GPU purchases are being funded through credit markets rather than only from operating cash flow. Musk said the spending will have little impact on the current quarter because the hardware has not yet arrived.\n\nMusk described the instrument as redeemable debt — borrowing with a defined repayment date — but the flash report did not disclose lenders, coupon, maturity or other terms, and there was no independent confirmation of the financing. BlockBeats listed the borrower under the ticker SPCX.O, although SpaceX is not a publicly listed company.",
+          "detailed_summary_zh": "马斯克表示，SpaceX 已完成 400 亿美元的可赎回 GPU 债务融资，资金主要用于购买将于第一季度和第二季度到货的 GPU。据 BlockBeats 报道，马斯克称公司的投资级信用评级，以及来自 Starlink 卫星互联网和发射业务的收入，有助于其维持信贷渠道畅通。\n\n按目前披露的说法，这将是专门用于采购 AI 算力的规模最大的债务融资之一，说明 GPU 采购正通过信贷市场而非仅靠经营现金流来支撑。马斯克表示，由于硬件尚未到货，这笔支出对本季度影响不大。\n\n马斯克将该工具称为可赎回债务，即设有既定偿还日期的借款；但该快讯未披露贷款方、票息、期限等条款，也没有独立消息证实这笔融资。BlockBeats 在快讯中以 SPCX.O 代码指代该借款主体，而 SpaceX 并非上市公司。",
+          "event_id": "evt_0efdbb0f2805c119",
+          "first_seen_at": "2026-10-25T23:27:37.764124Z",
+          "importance_score": 8.0,
+          "market_impact_en": "The transmission channel runs through AI-compute sentiment rather than any direct crypto venue: if large GPU purchases are increasingly financed with investment-grade corporate debt, headlines about AI capital expenditure and credit conditions become a bigger input for how traders price AI-adjacent crypto tokens and decentralized compute networks. The report names no crypto lender, custodian or protocol exposure.",
+          "market_impact_zh": "传导渠道主要经由 AI 算力情绪，而非任何直接的加密场所：若大规模 GPU 采购越来越多地依靠投资级公司债融资，那么有关 AI 资本开支与信贷环境的新闻，就会成为交易者给 AI 相关加密代币和去中心化算力网络定价时更重要的输入变量。该报道未点名任何加密贷款机构、托管方或协议敞口。",
+          "material_change": true,
+          "occurred_at": "2026-10-25T22:48:02Z",
+          "published_at": "2026-10-25T22:48:02Z",
+          "references": [
+            {
+              "title": "GPU infrastructure – financing and contracting for AI compute ...",
+              "url": "https://www.cliffordchance.com/content/dam/cliffordchance/briefings/2026/07/tl-gpu-infrastructure-v3.pdf"
+            },
+            {
+              "title": "AI Infrastructure Financing: State of the Market",
+              "url": "https://ai-physical-infra-debt-analysis.vercel.app/"
+            },
+            {
+              "title": "Redeemable Debenture - Features, Advantages and Disadvantages",
+              "url": "https://groww.in/p/redeemable-debentures"
+            }
+          ],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373612?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:202248"
+          ],
+          "time_precision": "published",
+          "title_en": "Musk Says SpaceX Raised $40 Billion to Buy GPUs",
+          "title_zh": "马斯克称SpaceX为采购GPU融资400亿美元",
+          "update_id": "upd_eac96ec279cb1a15",
+          "update_type": "initial",
+          "what_changed_en": "Elon Musk said SpaceX has completed $40 billion of redeemable GPU debt financing, with the proceeds mainly earmarked for GPUs scheduled to arrive in the first and second quarters. According to BlockBeats, Musk credited the company's investment-grade credit rating and revenue from its Starlink satellite-internet and launch businesses with keeping its access to credit open.\n\nAs described, the package would be among the largest disclosed debt raises aimed specifically at buying AI compute, indicating that GPU purchases are being funded through credit markets rather than only from operating cash flow. Musk said the spending will have little impact on the current quarter because the hardware has not yet arrived.\n\nMusk described the instrument as redeemable debt — borrowing with a defined repayment date — but the flash report did not disclose lenders, coupon, maturity or other terms, and there was no independent confirmation of the financing. BlockBeats listed the borrower under the ticker SPCX.O, although SpaceX is not a publicly listed company.",
+          "what_changed_zh": "马斯克表示，SpaceX 已完成 400 亿美元的可赎回 GPU 债务融资，资金主要用于购买将于第一季度和第二季度到货的 GPU。据 BlockBeats 报道，马斯克称公司的投资级信用评级，以及来自 Starlink 卫星互联网和发射业务的收入，有助于其维持信贷渠道畅通。\n\n按目前披露的说法，这将是专门用于采购 AI 算力的规模最大的债务融资之一，说明 GPU 采购正通过信贷市场而非仅靠经营现金流来支撑。马斯克表示，由于硬件尚未到货，这笔支出对本季度影响不大。\n\n马斯克将该工具称为可赎回债务，即设有既定偿还日期的借款；但该快讯未披露贷款方、票息、期限等条款，也没有独立消息证实这笔融资。BlockBeats 在快讯中以 SPCX.O 代码指代该借款主体，而 SpaceX 并非上市公司。"
         }
       ]
     }
@@ -191973,6 +192121,10 @@
     "gpt-6": [
       "evt_c1df07c0fff95914"
     ],
+    "gpu": [
+      "evt_0efdbb0f2805c119",
+      "evt_b5f8016ea0eafafa"
+    ],
     "gsr": [
       "evt_192ae77bc28978c4"
     ],
@@ -192427,10 +192579,9 @@
       "evt_fd41a059eae8ffb6"
     ],
     "spacex": [
+      "evt_0efdbb0f2805c119",
       "evt_13e978be7de31c4e",
-      "evt_349d38f34bca409e",
       "evt_82421e563484ff8d",
-      "evt_b348186a1a66d404",
       "evt_c765a0bcd269aec3",
       "evt_cfcdb539c4e7e478"
     ],
@@ -210621,36 +210772,69 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Confirmed bridge exploit on Initia that drained the USDC bridge reserve to $63 and caused withdrawals to fail, representing a material protocol security incident with direct user impact. It falls short of the 8.5-9 range only because the available evidence does not establish systemic scale or losses above $50M.",
         "ai_score": 8.0,
         "ai_summary": "Initia suffered a hack that reduced its USDC bridge reserve to $63 and disrupted withdrawals.",
         "ai_tags": [
           "Initia",
-          "bridge exploit",
           "USDC",
+          "bridge exploit",
           "withdrawal failure",
           "security"
         ],
         "author": "CryptoSlate",
         "content": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxOaENhMXpMZnUxZ0Y0ZkY1cXhJMXluYzg1UWVtNWtkdWFVY0JpRXF4TmNmc0dFYWJQMXVvYVhRWlNLZUlmVWkxWmFERHNQMkVZNGJiQjFUQkNtb1c4bnpwWDVhV3lDcElDeXJaejdoUVg1SS1NbDZGLUwtV2RqOU1rT0xvaUhwd1d1MFI4OGRKemNvbVFIRlBjX2t2OGtTZzZ4?oc=5\" target=\"_blank\">Initia hack drove its USDC bridge reserve down to $63 as withdrawals failed</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoSlate</font>",
-        "fetched_at": "2026-10-25T20:41:39.114863Z",
+        "fetched_at": "2026-10-25T22:44:30.099891Z",
         "id": "google_news:article:7c232deb70d6e77a",
         "metadata": {
+          "background": "Initia is a Layer 1 blockchain built with the Cosmos SDK that aims to link a main network with a set of interwoven application rollups. Its native bridge is designed to move assets between Initia, its rollups and other blockchains, which made the bridge reserve a single point of dependency for users moving USDC. Bridge exploits have been a recurring attack vector across crypto, with on-chain trackers such as DefiLlama maintaining databases of such incidents.",
+          "background_en": "Initia is a Layer 1 blockchain built with the Cosmos SDK that aims to link a main network with a set of interwoven application rollups. Its native bridge is designed to move assets between Initia, its rollups and other blockchains, which made the bridge reserve a single point of dependency for users moving USDC. Bridge exploits have been a recurring attack vector across crypto, with on-chain trackers such as DefiLlama maintaining databases of such incidents.",
+          "background_zh": "Initia 是一条基于 Cosmos SDK 构建的 Layer 1 区块链，目标是把主网与一组交织的应用 rollup 连接起来。其原生跨链桥用于在 Initia、各 rollup 与其他区块链之间转移资产，因此该桥的储备金成为用户转移 USDC 时的单点依赖。跨链桥攻击一直是加密行业的常见攻击面，DefiLlama 等链上数据平台专门收录此类事件。",
           "category": "crypto-protocols",
           "collection_method": "google_news_fallback",
+          "community_discussion": "",
+          "detailed_summary": "Initia suffered a bridge exploit on October 23 that drained its USDC bridge reserve down to $63, with users unable to complete withdrawals. Reporting on the incident states roughly $3 million in real assets exited through bridges against $7 million in unbacked balances.\n\nThe reserve depletion left the bridge unable to honor user withdrawals, turning a protocol security breach into a direct loss of access for holders who relied on the bridge to move USDC on and off Initia.\n\nThe reported gap between the ~$3 million in real assets that left through bridges and the $7 million in unbacked balances indicates the shortfall exceeds the value actually withdrawn. The incident reduced the USDC bridge reserve to $63.",
+          "detailed_summary_en": "Initia suffered a bridge exploit on October 23 that drained its USDC bridge reserve down to $63, with users unable to complete withdrawals. Reporting on the incident states roughly $3 million in real assets exited through bridges against $7 million in unbacked balances.\n\nThe reserve depletion left the bridge unable to honor user withdrawals, turning a protocol security breach into a direct loss of access for holders who relied on the bridge to move USDC on and off Initia.\n\nThe reported gap between the ~$3 million in real assets that left through bridges and the $7 million in unbacked balances indicates the shortfall exceeds the value actually withdrawn. The incident reduced the USDC bridge reserve to $63.",
+          "detailed_summary_zh": "Initia 于 10 月 23 日遭到跨链桥攻击，其 USDC 桥储备金被抽干至 63 美元，用户提现无法完成。相关报道称，约 300 万美元真实资产通过跨链桥流出，而对应的是 700 万美元无背书余额。\n\n储备金被抽干使跨链桥无法兑付用户提现，这使一起协议安全事故直接演变为依赖该桥进出 USDC 的持有者的资金可取回性问题。\n\n报道指出，约 300 万美元真实资产通过跨链桥流出，而对应 700 万美元无背书余额，这一缺口超过了实际被提取的资产价值。该事件使 USDC 跨链桥储备金降至 63 美元。",
+          "editorial_tags": [
+            "Initia",
+            "USDC",
+            "bridge exploit",
+            "withdrawal failure",
+            "security"
+          ],
+          "enrichment_status": "complete",
           "event_retry_pending": true,
           "feed_name": "CryptoSlate",
           "gn_query": "site:cryptoslate.com",
           "google_news_link_resolved": true,
           "headline_only": true,
+          "market_impact_en": "The incident concentrates on Initia's bridge and stablecoin liquidity: users seeking to exit via USDC on that route face a reserve that can no longer cover redemptions, and the $7 million in unbacked balances reported implies a shortfall to be resolved rather than a simple liquidity crunch. It also feeds the broader narrative risk attached to cross-chain bridges, which custody or move user assets on behalf of holders.",
+          "market_impact_zh": "该事件集中于 Initia 的跨链桥与稳定币流动性：希望通过该通道以 USDC 退出的用户面对的是已无法覆盖赎回的储备金，而报道的 700 万美元无背书余额意味着存在需要被消化的缺口，而非单纯的流动性紧张。这也会加剧市场对跨链桥这一类代为用户托管或转移资产的基础设施的叙事性风险担忧。",
           "original_feed_error": "HTTP 403",
           "original_feed_url": "https://cryptoslate.com/feed/",
           "publisher_url": "https://cryptoslate.com",
           "score_model": "deepseek:deepseek-flash",
           "source_category": "crypto-markets",
-          "source_name": "CryptoSlate"
+          "source_name": "CryptoSlate",
+          "sources": [
+            {
+              "title": "Initia Exploit Drains USDC Bridge Reserve to $63",
+              "url": "https://bingx.com/en/flash-news/post/initia-exploit-drains-usdc-bridge-reserve-to"
+            },
+            {
+              "title": "Initia",
+              "url": "https://initia.xyz/"
+            },
+            {
+              "title": "DeFi Hacks & Exploits Database - DefiLlama",
+              "url": "https://defillama.com/hacks"
+            }
+          ],
+          "title_en": "Initia hack drove its USDC bridge reserve down to $63 as withdrawals failed",
+          "title_zh": "Initia 遭黑客攻击，USDC 跨链桥储备金降至 63 美元，提现失败"
         },
         "published_at": "2026-10-25T19:45:11Z",
         "source_type": "google_news",
@@ -210659,7 +210843,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Confirmed exchange security incident with a material $16 million loss, compounded by the CEO previously dismissing breach reports as a 'false alarm.' While below the threshold for a systemic or >$50M exploit, the confirmed loss and reputational/credibility implications make this high-value and urgent for exchange users.",
         "ai_score": 8.0,
@@ -210697,68 +210881,130 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
-        "ai_reason": "A major exchange delisting 13 assets is a material trading-rule and access change for holders, warranting immediate attention, though it is not systemic or a top-tier asset event.",
+        "ai_reason": "Kraken is delisting 13 tokens with a defined withdrawal deadline, a material operational change for affected holders and a significant exchange announcement. Impact is meaningful but limited to the specific assets rather than platform-wide or systemic market structure.",
         "ai_score": 7.0,
-        "ai_summary": "Kraken is delisting 13 tokens and has set a January 29 deadline for holders to withdraw the affected assets.",
+        "ai_summary": "Kraken is delisting 13 assets and giving holders until January 29 to withdraw their tokens.",
         "ai_tags": [
           "Kraken",
           "delisting",
           "exchange",
           "withdrawals",
-          "tokens"
+          "trading"
         ],
         "author": "Cryptonews.net",
         "content": "<a href=\"https://news.google.com/rss/articles/CBMiV0FVX3lxTE1yYVkyNC1UQ0xHdXFVYlJzckRmSkN3RVBrbnBGVWZqSEJ4dWRPRDQ4SEZiZXRaSUtnbnNxRFgzQm5lTmlZWlBGZV9qejFqQ0lHOXNodWMzaw?oc=5\" target=\"_blank\">Kraken’s token delisting gives holders until Jan. 29 to withdraw 13 assets</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Cryptonews.net</font>",
-        "fetched_at": "2026-10-25T20:41:30.010212Z",
+        "fetched_at": "2026-10-25T23:27:33.224408Z",
         "id": "google_news:article:535cca66a403c668",
         "metadata": {
+          "background": "Exchange delistings typically unfold in stages: trading is halted first, a withdrawal window follows, and any remaining balances are then handled under the venue's own policy. Kraken has carried out delistings before, including a 2025 plan to remove stablecoins not compliant with the EU's MiCA rules — Tether (USDT), Tether EURt (EURT), PayPal USD (PYUSD) and TrueUSD (TUSD) — with activity in those assets set to stop by March 31.",
+          "background_en": "Exchange delistings typically unfold in stages: trading is halted first, a withdrawal window follows, and any remaining balances are then handled under the venue's own policy. Kraken has carried out delistings before, including a 2025 plan to remove stablecoins not compliant with the EU's MiCA rules — Tether (USDT), Tether EURt (EURT), PayPal USD (PYUSD) and TrueUSD (TUSD) — with activity in those assets set to stop by March 31.",
+          "background_zh": "交易所下架通常分阶段进行：先停止交易，随后开启提取窗口，剩余余额最终按平台自身政策处理。Kraken 此前已有过下架先例，包括 2025 年计划移除不符合欧盟 MiCA 规则的稳定币——Tether（USDT）、Tether EURt（EURT）、PayPal USD（PYUSD）和 TrueUSD（TUSD），相关业务原定于 3 月 31 日前停止。",
           "category": "exchange-announcements",
+          "community_discussion": "",
+          "detailed_summary": "Kraken is delisting 13 assets and has set January 29 as the deadline for holders to withdraw those tokens from the exchange. The move removes the affected tokens from Kraken's tradable lineup.\n\nHolders of the 13 affected assets have a fixed window ending January 29 to move their tokens off Kraken; after that deadline the exchange's delisting process governs what happens to remaining balances.\n\nThe delisting covers 13 assets specifically, not a platform-wide change, and the January 29 withdrawal deadline is the operative date for affected holders.",
+          "detailed_summary_en": "Kraken is delisting 13 assets and has set January 29 as the deadline for holders to withdraw those tokens from the exchange. The move removes the affected tokens from Kraken's tradable lineup.\n\nHolders of the 13 affected assets have a fixed window ending January 29 to move their tokens off Kraken; after that deadline the exchange's delisting process governs what happens to remaining balances.\n\nThe delisting covers 13 assets specifically, not a platform-wide change, and the January 29 withdrawal deadline is the operative date for affected holders.",
+          "detailed_summary_zh": "Kraken 正在下架 13 种资产，并将 1 月 29 日设为持有者从该交易所提取这些代币的截止日期。此举使受影响代币退出 Kraken 的可交易资产列表。\n\n这 13 种受影响资产的持有者必须在 1 月 29 日截止前将代币转出 Kraken；截止之后，剩余余额将按交易所的下架处理流程处置。\n\n此次下架仅涉及 13 种特定资产，并非平台范围的调整，1 月 29 日的提取截止日期是受影响持有者的关键时间节点。",
+          "editorial_tags": [
+            "Kraken",
+            "delisting",
+            "exchange",
+            "withdrawals",
+            "trading"
+          ],
+          "enrichment_status": "complete",
           "event_retry_pending": true,
           "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
           "google_news_link_resolved": true,
+          "market_impact_en": "The effect is concentrated in the 13 named tokens: Kraken's order books for them lose liquidity, and holders who want to keep trading must move the assets to other venues before the January 29 deadline. The scope is asset-specific rather than a platform-wide or systemic change to market structure.",
+          "market_impact_zh": "影响集中在被下架的 13 种代币上：Kraken 上这些代币的订单簿将失去流动性，希望继续交易的持有者须在 1 月 29 日前把资产转移到其他平台。影响范围限于特定资产，而非平台层面或系统性的市场结构变化。",
           "publisher_url": "https://cryptonews.net",
           "score_model": "deepseek:deepseek-flash",
-          "source_name": "Cryptonews.net"
+          "source_name": "Cryptonews.net",
+          "sources": [
+            {
+              "title": "Delisting: What Happens to Your Tokens on an Exchange",
+              "url": "https://cryptoticker.io/en/crypto-exchange-delisting-token-withdrawal-deadline/"
+            },
+            {
+              "title": "Kraken is ready to delist USDT and other stablecoins not compliant...",
+              "url": "https://en.cryptonomist.ch/2025/02/21/kraken-is-ready-to-delist-usdt-and-other-stablecoins-not-compliant-with-mica/"
+            }
+          ],
+          "title_en": "Kraken’s token delisting gives holders until Jan. 29 to withdraw 13 assets",
+          "title_zh": "Kraken 下架部分代币，持有者须在 1 月 29 日前提取 13 种资产"
         },
-        "published_at": "2026-10-25T19:17:19Z",
+        "published_at": "2026-10-25T19:16:51Z",
         "source_type": "google_news",
         "title": "Kraken’s token delisting gives holders until Jan. 29 to withdraw 13 assets",
         "url": "https://cryptonews.net/news/market/33648259/"
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Substantive investigative reporting on how $37M in stolen funds was laundered through a Bahamas bank into Tether’s USDT, with clear implications for stablecoin compliance and illicit-finance oversight. It falls short of a landmark enforcement action or systemic event, but is more significant than routine market or product news.",
         "ai_score": 7.0,
         "ai_summary": "A CryptoSlate report details how $37 million stolen from Americans was moved through a Bahamas-based bank and converted into Tether’s USDT.",
         "ai_tags": [
           "Tether",
-          "money-laundering",
-          "stablecoins",
+          "USDT",
+          "money laundering",
           "Bahamas",
-          "financial-crime"
+          "stablecoins"
         ],
         "author": "CryptoSlate",
         "content": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxONElpWnRFM3VWazJNb1QtbkQxQzlIcTBvSEpXbjF4Mkd0T3F5Vk5BWGlYMnI4dlRoMkdNcnpoZFlNU3hFX0NyYjVZQ2FfOENLUWNDUjlBNUJOVGVsNV84TGhtVUxRRTI3V0tiMTRTTkx2WWl1a013Vy0xSFFQQlowVVJrZTk4blM2cHpKVmhQR0dVYUlQMmlsWkEySDZJbllBVDZ6OXJvYUYyTjIz?oc=5\" target=\"_blank\">How $37 million stolen from Americans moved through a Bahamas bank into Tether’s USDT</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoSlate</font>",
-        "fetched_at": "2026-10-25T20:41:39.113851Z",
+        "fetched_at": "2026-10-25T23:27:48.543733Z",
         "id": "google_news:article:00cf6631a6ad4bb7",
         "metadata": {
+          "background": "USDT is a dollar-pegged stablecoin widely used for trading and cross-border transfers. AML research has documented criminals moving stolen funds through exchanges with weak KYC/AML controls and converting them into stablecoins. The Bahamas banking sector has previously drawn scrutiny over money-laundering vulnerabilities.",
+          "background_en": "USDT is a dollar-pegged stablecoin widely used for trading and cross-border transfers. AML research has documented criminals moving stolen funds through exchanges with weak KYC/AML controls and converting them into stablecoins. The Bahamas banking sector has previously drawn scrutiny over money-laundering vulnerabilities.",
+          "background_zh": "USDT 是一种与美元挂钩的稳定币，广泛用于交易和跨境转账。反洗钱研究显示，犯罪分子会通过 KYC/AML 管控薄弱的交易所转移窃取资金并兑换成稳定币。巴哈马的银行业此前也曾因洗钱风险受到审视。",
           "category": "crypto-regulation",
           "collection_method": "google_news_fallback",
+          "community_discussion": "",
+          "detailed_summary": "CryptoSlate published a report detailing how $37 million stolen from Americans was moved through a Bahamas-based bank and converted into Tether’s USDT.\n\nThe report adds a concrete case to a channel already documented by AML researchers: criminals using weak-KYC venues to convert stolen funds into stablecoins.\n\nThe report traces $37 million in stolen funds from U.S. victims through a Bahamas-based bank and into Tether’s USDT.",
+          "detailed_summary_en": "CryptoSlate published a report detailing how $37 million stolen from Americans was moved through a Bahamas-based bank and converted into Tether’s USDT.\n\nThe report adds a concrete case to a channel already documented by AML researchers: criminals using weak-KYC venues to convert stolen funds into stablecoins.\n\nThe report traces $37 million in stolen funds from U.S. victims through a Bahamas-based bank and into Tether’s USDT.",
+          "detailed_summary_zh": "CryptoSlate 发布报道，详述从美国人处窃取的3700万美元如何通过一家巴哈马银行转移，并被转换为 Tether 的 USDT。\n\n该报道为反洗钱研究机构已记录的渠道增添了具体案例：犯罪分子利用 KYC/AML 薄弱的场所将窃取资金转换为稳定币。\n\n报道追踪了从美国受害者处窃取的3700万美元，经一家巴哈马银行转入 Tether 的 USDT 的路径。",
+          "editorial_tags": [
+            "Tether",
+            "USDT",
+            "money laundering",
+            "Bahamas",
+            "stablecoins"
+          ],
+          "enrichment_status": "complete",
           "event_retry_pending": true,
           "feed_name": "CryptoSlate",
           "gn_query": "site:cryptoslate.com",
           "google_news_link_resolved": true,
           "headline_only": true,
+          "market_impact_en": "For crypto markets, the main transmission channel is regulatory and compliance scrutiny of USDT and the offshore banking and exchange rails used to move fiat into stablecoins; any enforcement or issuer freeze would affect stablecoin liquidity and counterparty risk at venues handling such flows.",
+          "market_impact_zh": "对加密市场而言，主要传导渠道是围绕 USDT 以及将法币转入稳定币的离岸银行和交易所通道的监管与合规审查；相关执法或发行方冻结（如发生）将影响处理此类资金流的场所的稳定币流动性与交易对手风险。",
           "original_feed_error": "HTTP 403",
           "original_feed_url": "https://cryptoslate.com/feed/",
           "publisher_url": "https://cryptoslate.com",
           "score_model": "deepseek:deepseek-flash",
           "source_category": "crypto-markets",
-          "source_name": "CryptoSlate"
+          "source_name": "CryptoSlate",
+          "sources": [
+            {
+              "title": "Stablecoin Report: USDT and USDC Illicit Activity Study by AMLBot",
+              "url": "https://blog.amlbot.com/stablecoin-report-usdt-and-usdc-illicit-activity-study/"
+            },
+            {
+              "title": "Caribbean 2001: Money Laundering, Elite Networks, and the Power of...",
+              "url": "https://www.occvi.org/single-post/caribbean-2001-money-laundering-elite-networks-and-the-power-of-corruption-in-the-bahamas"
+            },
+            {
+              "title": "What Is Tether? Why Crypto Uses Digital Dollars — LimeRank",
+              "url": "https://limerank.com/crypto/what-is-tether/"
+            }
+          ],
+          "title_en": "How $37 million stolen from Americans moved through a Bahamas bank into Tether’s USDT",
+          "title_zh": "从美国人手中窃取的3700万美元如何经由巴哈马一家银行流入Tether的USDT"
         },
         "published_at": "2026-10-25T18:40:29Z",
         "source_type": "google_news",
@@ -210767,7 +211013,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A confirmed exchange security incident resulting in a $16 million loss is materially important for users and market confidence, especially after the exchange initially denied it. However, the loss is below the threshold for a systemic or top-tier exploit, so it does not reach the highest severity band.",
         "ai_score": 7.5,
@@ -210781,22 +211027,123 @@
         ],
         "author": "Koin Bülteni",
         "content": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxPX1NXMTlxajZQZExfNjVGZmJNT3lodUQ5anZFRllSeVc3UmVrMW9TY2JlTTFqYzh1UHZxWWRjcW9DZW1aTzhpNlJnTnBiMWVKY0dNSXhCeG84U2F3MGRLZG1JbG9rQ1FTSjZTZG9JRnFuQmlBaDByZXR0VzJpYXR6QUVNTy1zOG94OTFENE9RMkRLTTFORjVLZkpqSDBvRnEzNU1ON1VCam5EeGk4aHdNaUY4bHJnNm5UWS1j?oc=5\" target=\"_blank\">Crypto Exchange First Called It a “False Alarm,” Then Admitted to a $16 Million Loss</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Koin Bülteni</font>",
-        "fetched_at": "2026-10-25T22:44:21.484399Z",
+        "fetched_at": "2026-10-25T23:27:33.230472Z",
         "id": "google_news:article:f78c2d7888a795eb",
         "metadata": {
+          "background": "Exchange breaches have followed a recurring pattern in recent years, with attackers often targeting custody and key-management weaknesses and with post-incident disclosure becoming a focal point for users and researchers. Security analysts generally treat clear, timely incident communication as part of exchange risk management alongside cold storage and multi-signature controls.",
+          "background_en": "Exchange breaches have followed a recurring pattern in recent years, with attackers often targeting custody and key-management weaknesses and with post-incident disclosure becoming a focal point for users and researchers. Security analysts generally treat clear, timely incident communication as part of exchange risk management alongside cold storage and multi-signature controls.",
+          "background_zh": "近年来交易所被盗事件反复出现相似模式，攻击者往往瞄准托管与密钥管理上的薄弱环节，而事件后的信息披露也成为用户和研究人员关注的焦点。安全分析人士通常认为，与冷存储、多签控制一样，清晰及时的事件沟通也是交易所风险管理的一部分。",
           "category": "exchange-operations",
+          "community_discussion": "",
+          "detailed_summary": "A cryptocurrency exchange initially dismissed a security incident as a false alarm before later acknowledging that it had suffered a $16 million loss, according to Koin Bülteni. The exchange was not identified in the report, and no timeline or technical details of the incident were disclosed.\n\nThe reversal from denial to confirmed loss puts the focus on how exchanges communicate during incidents, since initial statements shape how users judge whether their funds are at risk.\n\nThe reported loss figure is $16 million. The report does not name the exchange or specify whether user funds, corporate funds or a hot wallet were affected.",
+          "detailed_summary_en": "A cryptocurrency exchange initially dismissed a security incident as a false alarm before later acknowledging that it had suffered a $16 million loss, according to Koin Bülteni. The exchange was not identified in the report, and no timeline or technical details of the incident were disclosed.\n\nThe reversal from denial to confirmed loss puts the focus on how exchanges communicate during incidents, since initial statements shape how users judge whether their funds are at risk.\n\nThe reported loss figure is $16 million. The report does not name the exchange or specify whether user funds, corporate funds or a hot wallet were affected.",
+          "detailed_summary_zh": "据 Koin Bülteni 报道，一家加密货币交易所最初将一起安全事件称为“虚惊一场”，随后承认该事件造成1600万美元损失。报道未披露该交易所的名称，也未说明事件发生的时间线或技术细节。\n\n从否认到承认损失的反转，使外界关注交易所在事件期间的沟通方式，因为最初的表态会影响用户判断自身资金是否面临风险。\n\n报道提及的损失金额为1600万美元。报道未点名该交易所，也未说明受影响的是用户资金、公司自有资金还是热钱包。",
+          "editorial_tags": [
+            "exchange-security",
+            "crypto-exchange",
+            "hack",
+            "loss",
+            "incident-response"
+          ],
+          "enrichment_status": "complete",
           "event_retry_pending": true,
           "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
           "google_news_link_resolved": true,
+          "market_impact_en": "Because the exchange is unnamed, the immediate transmission path runs through sentiment rather than a specific asset: confirmed exchange losses can weigh on confidence in centralized custody and renew scrutiny of proof-of-reserves and withdrawal practices across the segment.",
+          "market_impact_zh": "由于未点名具体交易所，直接传导路径主要作用于市场情绪而非某一特定资产：交易所确认损失可能削弱市场对中心化托管的信心，并促使外界重新审视该领域的储备证明与提现机制。",
           "publisher_url": "https://koinbulteni.com",
           "score_model": "deepseek:deepseek-flash",
           "source_category": "exchange-announcements",
-          "source_name": "Koin Bülteni"
+          "source_name": "Koin Bülteni",
+          "sources": [
+            {
+              "title": "Galaxy: Bitget Breach Follows Well-Worn Exchange Hack Script",
+              "url": "https://mempoolbrief.com/articles/galaxy-bitget-breach-follows-a-well-worn-exchange-hack-script-f21673ba"
+            },
+            {
+              "title": "Incident Response in Crypto: Readiness & Resilience",
+              "url": "https://www.sygnia.co/blog/incident-response-in-crypto/"
+            },
+            {
+              "title": "Crypto Exchange Security Incident Case Studies: Lessons... |Hibt",
+              "url": "https://hibt.com/news/47-844"
+            }
+          ],
+          "title_en": "Crypto Exchange First Called It a “False Alarm,” Then Admitted to a $16 Million Loss",
+          "title_zh": "一家加密交易所起初称其为“虚惊一场”，随后承认损失1600万美元"
         },
         "published_at": "2026-10-25T18:57:24Z",
         "source_type": "google_news",
         "title": "Crypto Exchange First Called It a “False Alarm,” Then Admitted to a $16 Million Loss",
         "url": "https://koinbulteni.com/en/crypto-exchange-first-called-it-a-false-alarm-then-admitted-to-a-16-million-loss-290924.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A founder of a major public crypto exchange securing majority voting control is a material corporate-governance development affecting Coinbase strategy and shareholder influence, though it is not a market-structure, security, or regulatory event with immediate market-wide impact.",
+        "ai_score": 7.0,
+        "ai_summary": "Coinbase founder Brian Armstrong has obtained majority voting control of the company through its share structure despite owning less than half of its equity.",
+        "ai_tags": [
+          "Coinbase",
+          "Brian Armstrong",
+          "corporate governance",
+          "voting control",
+          "dual-class shares",
+          "shareholder rights"
+        ],
+        "author": "Coinpaper",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxOVnZqckVoY3FpV0hJTWM4VzgxdEpLaTFJQ0p4QlF0NUtSRDFoZ3hBUGptdTFPR0puMXBlQ2p6SFp3OElyUF9Bc2NyN1BqaTJtU3N5MEJIMjZmQnNYcGJSX0YwRms1Q3NEWUdDeXV0WGt0VldUNzBRNnNTZzIxWEJLWnJFVGpTeG9TU0ZsT2dLT1VYWGhwV0RMcUlMdU1MNnNfbTRfdmRxRFhXNWlIdlV3NERKOURaWjc5ekg5N2JpV1I1T0c2aXY5SzZ3VjRtZw?oc=5\" target=\"_blank\">Coinbase Founder Brian Armstrong Gained Majority Voting Control Without Buying More Than Half the Company</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Coinpaper</font>",
+        "fetched_at": "2026-10-25T16:41:27.092128Z",
+        "id": "google_news:article:918c8f00a00f4001",
+        "metadata": {
+          "background": "Dual-class share structures split equity into classes with different voting rights, letting select shareholders exert influence disproportionate to their economic ownership. Meta's Mark Zuckerberg, for example, controlled 53% of voting power while holding about 13% of outstanding shares as of April 2019, according to Quartz.",
+          "background_en": "Dual-class share structures split equity into classes with different voting rights, letting select shareholders exert influence disproportionate to their economic ownership. Meta's Mark Zuckerberg, for example, controlled 53% of voting power while holding about 13% of outstanding shares as of April 2019, according to Quartz.",
+          "background_zh": "双重股权结构将股权分为投票权不同的类别，使部分股东能以有限的经济所有权获得不成比例的影响力。例如，据 Quartz 报道，截至 2019 年 4 月，Meta 的马克·扎克伯格仅持有约 13% 的流通股，却控制着 53% 的投票权。",
+          "category": "exchange-operations",
+          "community_discussion": "",
+          "detailed_summary": "Coinbase founder Brian Armstrong has gained majority voting control of the company through its share structure even though he owns less than half of its equity, according to Coinpaper.\n\nIt means control of Coinbase's corporate decisions is concentrated in its founder despite his minority economic stake.\n\nThe control is attributed to Coinbase's share structure rather than additional purchases; dual-class arrangements commonly separate economic ownership from voting rights by assigning different votes per share.",
+          "detailed_summary_en": "Coinbase founder Brian Armstrong has gained majority voting control of the company through its share structure even though he owns less than half of its equity, according to Coinpaper.\n\nIt means control of Coinbase's corporate decisions is concentrated in its founder despite his minority economic stake.\n\nThe control is attributed to Coinbase's share structure rather than additional purchases; dual-class arrangements commonly separate economic ownership from voting rights by assigning different votes per share.",
+          "detailed_summary_zh": "据 Coinpaper 报道，Coinbase 创始人布莱恩·阿姆斯特朗已通过公司股权结构获得多数投票控制权，尽管他持有的股权不足公司一半。\n\n这意味着，尽管阿姆斯特朗的经济持股占少数，Coinbase 的公司决策控制权却集中在其手中。\n\n报道将这一控制权归因于 Coinbase 的股权结构，而非进一步收购；双重股权结构通常通过赋予不同类别股份不同投票权，使经济所有权与投票权分离。",
+          "editorial_tags": [
+            "Coinbase",
+            "Brian Armstrong",
+            "corporate governance",
+            "voting control",
+            "dual-class shares",
+            "shareholder rights"
+          ],
+          "enrichment_status": "complete",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "market_impact_en": "The direct exposure is to COIN equity holders: the change affects governance and shareholder influence rather than crypto asset liquidity, custody, or token supply. Any read-through to crypto markets would run through Coinbase's strategy and sentiment as a listed exchange, not through on-chain asset mechanics.",
+          "market_impact_zh": "直接影响体现在 COIN 股票持有人层面：这一变化涉及治理和股东影响力，而非加密资产流动性、托管或代币供应。对加密市场的任何传导都将通过 Coinbase 作为上市交易所的战略与情绪体现，而非链上资产机制。",
+          "publisher_url": "https://coinpaper.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Coinpaper",
+          "sources": [
+            {
+              "title": "Voting Rights Imbalance in Dual-Class Share Structures",
+              "url": "https://aaronhall.com/voting-rights-imbalance-dual-class-share-structures/"
+            },
+            {
+              "title": "Who really controls a tech company once it goes public",
+              "url": "https://qz.com/1595853/who-controls-pinterest-lyft-and-zoom-now-that-theyre-public"
+            },
+            {
+              "title": "Brian Armstrong (businessman) - Wikipedia",
+              "url": "https://en.wikipedia.org/wiki/Brian_Armstrong_(businessman)"
+            }
+          ],
+          "title_en": "Coinbase Founder Brian Armstrong Gained Majority Voting Control Without Buying More Than Half the Company",
+          "title_zh": "Coinbase 创始人布莱恩·阿姆斯特朗未购买公司半数以上股份即获得多数投票控制权"
+        },
+        "published_at": "2026-10-25T05:05:42Z",
+        "source_type": "google_news",
+        "title": "Coinbase Founder Brian Armstrong Gained Majority Voting Control Without Buying More Than Half the Company",
+        "url": "https://coinpaper.com/37838/coinbase-founder-brian-armstrong-gained-majority-voting-control-without-buying-more-than-half-the-company"
       }
     }
   ],

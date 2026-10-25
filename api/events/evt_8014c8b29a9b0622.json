@@ -45,25 +45,33 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Cerebras Deploys Trillion-Parameter AI Models",
+      "title_zh": "Cerebras 部署万亿参数 AI 模型",
       "title_en": "Cerebras Deploys Trillion-Parameter AI Models",
-      "what_changed_zh": "Cerebras detailed how it deploys trillion-parameter frontier AI models on its wafer-scale systems, covering pipeline streaming and hardware utilization for high-throughput inference.",
+      "what_changed_zh": "Cerebras 发布技术博客，说明其如何在其晶圆级系统上部署并服务万亿参数前沿模型，内容涵盖流水线架构、晶圆之间仅通过以太网 RDMA 传递激活值的互连策略，以及不同于 GPU 批处理的持续请求流式处理方式。该文章在 Hacker News 引发讨论（223 分、69 条评论），对其基准测试方法与预填充性能的说法提出质疑。\n\n该文罕见地公开描述了如何在非 GPU 的晶圆级硬件上服务前沿规模模型，而 Hacker News 的评论者对其性能论证的部分内容提出了直接质疑。\n\n评论者指出，文章引用了全精度基准测试结果，但实际服务的模型采用的是 4 比特量化；文章也未说明预填充阶段如何在 RDMA 互连上保持高速。还有人追问，所谓“不同于 GPU 批处理”的流式行为究竟是 GPU 的硬件限制，还是缺少相应的软件支撑框架。",
       "what_changed_en": "Cerebras detailed how it deploys trillion-parameter frontier AI models on its wafer-scale systems, covering pipeline streaming and hardware utilization for high-throughput inference.",
-      "current_state_zh": "Cerebras detailed how it deploys trillion-parameter frontier AI models on its wafer-scale systems, covering pipeline streaming and hardware utilization for high-throughput inference.",
+      "current_state_zh": "Cerebras 发布技术博客，说明其如何在其晶圆级系统上部署并服务万亿参数前沿模型，内容涵盖流水线架构、晶圆之间仅通过以太网 RDMA 传递激活值的互连策略，以及不同于 GPU 批处理的持续请求流式处理方式。该文章在 Hacker News 引发讨论（223 分、69 条评论），对其基准测试方法与预填充性能的说法提出质疑。\n\n该文罕见地公开描述了如何在非 GPU 的晶圆级硬件上服务前沿规模模型，而 Hacker News 的评论者对其性能论证的部分内容提出了直接质疑。\n\n评论者指出，文章引用了全精度基准测试结果，但实际服务的模型采用的是 4 比特量化；文章也未说明预填充阶段如何在 RDMA 互连上保持高速。还有人追问，所谓“不同于 GPU 批处理”的流式行为究竟是 GPU 的硬件限制，还是缺少相应的软件支撑框架。",
       "current_state_en": "Cerebras detailed how it deploys trillion-parameter frontier AI models on its wafer-scale systems, covering pipeline streaming and hardware utilization for high-throughput inference.",
       "detailed_summary_zh": "Cerebras detailed how it deploys trillion-parameter frontier AI models on its wafer-scale systems, covering pipeline streaming and hardware utilization for high-throughput inference.",
       "detailed_summary_en": "Cerebras detailed how it deploys trillion-parameter frontier AI models on its wafer-scale systems, covering pipeline streaming and hardware utilization for high-throughput inference.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "background_zh": "Cerebras 研发晶圆级引擎——包括 WSE-3，以及用于驱动 CS-4 机架级系统的 WSE-3T——并通过 AI 训练云与推理云 API 对外提供算力访问。服务万亿参数级模型通常需要将预填充与解码拆分为不同的工作节点，并通过网络交换 KV 缓存数据，Cerebras 的文章正是围绕其自有硬件讨论这一模式。",
+      "background_en": "Cerebras builds wafer-scale engines — the WSE-3, and the WSE-3T that powers its CS-4 rack-scale system — and sells access to them through AI training and inference cloud APIs. Serving models of trillion-parameter scale typically involves disaggregated prefill and decode workers that exchange KV-cache data over a network, a pattern the Cerebras post discusses for its own hardware.",
+      "community_discussion_zh": "讨论整体持怀疑态度，但技术性较强。一位用户表示，Cerebras 在实际使用中速度确实很快，但对其可访问的模型（GPT OSS 120B、Qwen3 27B）来说答案经常出错，而 OpenRouter 提供的模型更好、吞吐约为其五分之一；其他人则质疑文章一边引用全精度基准、一边以 4 比特精度服务模型，以及互连上未加解释的预填充延迟。",
+      "community_discussion_en": "Sentiment was skeptical but technically engaged. One user said Cerebras is fast in practice but often wrong on the models they can access (GPT OSS 120B, Qwen3 27B) and that OpenRouter offers better models at roughly one-fifth the throughput; others challenged the use of full-precision benchmarks alongside 4-bit serving and the unexplained prefill latency over the interconnect.",
+      "market_impact_zh": "相关说法落在 AI 算力市场的推理成本环节：若晶圆级服务能达到其所称的吞吐，它将在大型开放权重模型的托管推理上与基于 GPU 的服务栈展开竞争，而该领域的主要竞争杠杆正是每 token 价格。由于基准测试与预填充性能存在争议，这一效率对比尚未经过独立测度验证。",
+      "market_impact_en": "The claims sit on the inference-cost side of the AI compute market: if wafer-scale serving delivers the stated throughput, it competes with GPU-based serving stacks for hosted inference of large open-weight models, a segment where per-token pricing is the main competitive lever. The disputed benchmark and prefill points mean the efficiency comparison remains unverified by independent measurement.",
       "importance_score": 7.5,
       "references": [
         {
           "url": "https://news.ycombinator.com/item?id=50227356",
           "title": "Community discussion"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Cerebras",
+          "title": "Cerebras Systems - Wikipedia"
+        },
+        {
+          "url": "https://www.cerebras.ai/chip",
+          "title": "Cerebras WSE-3 Turbo | Wafer-Scale AI Chip"
         }
       ],
       "confidence": 0.75,

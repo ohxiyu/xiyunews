@@ -47,20 +47,29 @@
       "material_change": true,
       "title_zh": "【Paradigm CTO：内置 JIT 编译的新 EVM 已完成审计】",
       "title_en": "【Paradigm CTO：内置 JIT 编译的新 EVM 已完成审计】",
-      "what_changed_zh": "Paradigm has open-sourced evm2, an audited Rust EVM with built-in JIT compilation that claims up to 2x the execution speed of revm and allows customizing opcodes, gas rules, transaction types and precompiles, with planned adoption across Foundry, Reth and Tempo.",
+      "what_changed_zh": "Paradigm 合伙人兼首席技术官 Georgios Konstantopoulos 在 X 上表示，团队即将推出一款已完成审计、内置即时编译（JIT）的新 EVM，名为 evm2，代码已在 GitHub 公开。evm2 是一个用 Rust 编写的 EVM 实现，开发者可在不改动核心代码的情况下自定义操作码、Gas 规则、交易类型和预编译合约；其 README 页面称执行速度最高可达当前主流 Rust EVM 实现 revm 的 2 倍。\n\n据 Konstantopoulos 的说法，evm2 未来将应用于 Foundry、Reth、Tempo 以及所有采用其技术栈的 EVM 生态项目，而这三者目前均基于 revm 构建。\n\n审计被描述为已完成，但发布口径是“即将推出”，而非已经上线。2 倍的速度数字来自仓库 README 的表述，并非经独立验证的基准测试结果。",
       "what_changed_en": "Paradigm has open-sourced evm2, an audited Rust EVM with built-in JIT compilation that claims up to 2x the execution speed of revm and allows customizing opcodes, gas rules, transaction types and precompiles, with planned adoption across Foundry, Reth and Tempo.",
-      "current_state_zh": "Paradigm has open-sourced evm2, an audited Rust EVM with built-in JIT compilation that claims up to 2x the execution speed of revm and allows customizing opcodes, gas rules, transaction types and precompiles, with planned adoption across Foundry, Reth and Tempo.",
+      "current_state_zh": "Paradigm 合伙人兼首席技术官 Georgios Konstantopoulos 在 X 上表示，团队即将推出一款已完成审计、内置即时编译（JIT）的新 EVM，名为 evm2，代码已在 GitHub 公开。evm2 是一个用 Rust 编写的 EVM 实现，开发者可在不改动核心代码的情况下自定义操作码、Gas 规则、交易类型和预编译合约；其 README 页面称执行速度最高可达当前主流 Rust EVM 实现 revm 的 2 倍。\n\n据 Konstantopoulos 的说法，evm2 未来将应用于 Foundry、Reth、Tempo 以及所有采用其技术栈的 EVM 生态项目，而这三者目前均基于 revm 构建。\n\n审计被描述为已完成，但发布口径是“即将推出”，而非已经上线。2 倍的速度数字来自仓库 README 的表述，并非经独立验证的基准测试结果。",
       "current_state_en": "Paradigm has open-sourced evm2, an audited Rust EVM with built-in JIT compilation that claims up to 2x the execution speed of revm and allows customizing opcodes, gas rules, transaction types and precompiles, with planned adoption across Foundry, Reth and Tempo.",
       "detailed_summary_zh": "Paradigm has open-sourced evm2, an audited Rust EVM with built-in JIT compilation that claims up to 2x the execution speed of revm and allows customizing opcodes, gas rules, transaction types and precompiles, with planned adoption across Foundry, Reth and Tempo.",
       "detailed_summary_en": "Paradigm has open-sourced evm2, an audited Rust EVM with built-in JIT compilation that claims up to 2x the execution speed of revm and allows customizing opcodes, gas rules, transaction types and precompiles, with planned adoption across Foundry, Reth and Tempo.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "Reth 是 Paradigm 开发的以太坊执行客户端，Foundry 是 EVM 智能合约开发框架，Tempo 是 Stripe 与 Paradigm 孵化的支付公链。三者目前均基于 revm 构建，而 revm 是被广泛使用的 Rust EVM 实现，已被集成进 Reth、多个 Layer 2 网络以及生态内大量工具与区块构建基础设施中。",
+      "background_en": "Reth is the Ethereum execution client developed by Paradigm, Foundry is an EVM smart-contract development framework, and Tempo is a payments chain incubated by Stripe and Paradigm. All three are currently built on revm, a widely used Rust EVM implementation that is integrated into Reth, multiple Layer 2 networks and much of the ecosystem's tooling and block-building infrastructure.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "传导路径在于执行客户端与开发者工具的性能，而非某一资产本身：更快的 EVM 执行速度以及可自定义的 Gas 规则和预编译合约，会影响节点运营方、区块构建者以及基于 Reth、Foundry 或 Tempo 开发的团队。由于这是一次基础设施层面的发布而非线上协议变更，它不会直接改变链上供应、托管或流动性状况。",
+      "market_impact_en": "The transmission path runs through execution-client and developer-tooling performance rather than through any asset: faster EVM execution and configurable gas rules or precompiles affect node operators, block builders and teams building on Reth, Foundry or Tempo. Because this is an infrastructure release and not a live protocol change, it does not directly alter on-chain supply, custody or liquidity conditions.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://github.com/bluealloy/revm",
+          "title": "GitHub - bluealloy/revm: Rust implementation of the Ethereum ..."
+        },
+        {
+          "url": "https://blog.ethereum.org/2016/06/02/go-ethereums-jit-evm",
+          "title": "Go Ethereum’s JIT-EVM | Ethereum Foundation Blog"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:foresightnews:121250"
