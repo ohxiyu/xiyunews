@@ -167408,8 +167408,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Vitalik Buterin argues Ethereum should adopt EIP-8288, having clients perform complex cryptography and submit recursively aggregated STARK proofs so the chain only verifies results, keeping the chain lightweight and reducing the need for new precompile contracts.",
-      "current_state_zh": "Vitalik Buterin argues Ethereum should adopt EIP-8288, having clients perform complex cryptography and submit recursively aggregated STARK proofs so the chain only verifies results, keeping the chain lightweight and reducing the need for new precompile contracts.",
+      "current_state_en": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
+      "current_state_zh": "Vitalik Buterin 提出了“EIP-8288 最大化”方案，将把以太坊的密码学策略转向该标准，并可能停止新增预编译合约；此举正值他与 a16z 和 StarkWare 就最佳密码学路线展开争论之际。",
       "entities": [
         "arbitrary",
         "eip",
@@ -167420,6 +167420,7 @@
         "never",
         "schemes",
         "signature",
+        "starkware",
         "vitalik"
       ],
       "event_id": "evt_9a2795c305f4c9e8",
@@ -167428,23 +167429,25 @@
       "identifiers": [
         "eip-8288"
       ],
-      "last_material_change_at": "2026-10-19T05:41:23.825302Z",
-      "last_updated_at": "2026-10-19T05:41:23.825302Z",
+      "last_material_change_at": "2026-10-21T10:01:29.551436Z",
+      "last_updated_at": "2026-10-21T10:01:29.551436Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
-        "evt_24a311ed2fa54900"
+        "evt_24a311ed2fa54900",
+        "evt_3c185917c5599b82"
       ],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "developing",
       "title_en": "Vitalik: EIP-8288 Enables Arbitrary Signature Schemes, Ethereum May Never Need N",
-      "title_zh": "Vitalik提出EIP-8288以STARK证明实现通用密码学支持，减少预编译合约需求",
+      "title_zh": "Vitalik 提出 EIP-8288 最大化方案，主张以 STARK 支持任意签名方案并可能停止新增预编译",
       "topics": [
         "cryptography",
         "eip-8288",
         "precompiles",
         "protocol-design",
         "stark-proofs",
-        "starks"
+        "starks",
+        "vitalik-buterin"
       ],
       "updates": [
         {
@@ -167454,7 +167457,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Vitalik Buterin said EIP-8288 would let users prove arbitrary signature schemes with STARKs and an aggregator, potentially sparing Ethereum from ever adding new signature precompiles.",
-          "current_state_zh": "Vitalik Buterin said EIP-8288 would let users prove arbitrary signature schemes with STARKs and an aggregator, potentially sparing Ethereum from ever adding new signature precompiles.",
+          "current_state_zh": "Vitalik Buterin 表示，EIP-8288 将允许用户通过 STARK 和聚合器证明任意签名方案，从而可能使以太坊永远无需新增签名预编译合约。",
           "detailed_summary_en": "Vitalik Buterin said EIP-8288 would let users prove arbitrary signature schemes with STARKs and an aggregator, potentially sparing Ethereum from ever adding new signature precompiles.",
           "detailed_summary_zh": "Vitalik Buterin said EIP-8288 would let users prove arbitrary signature schemes with STARKs and an aggregator, potentially sparing Ethereum from ever adding new signature precompiles.",
           "event_id": "evt_9a2795c305f4c9e8",
@@ -167486,11 +167489,49 @@
           ],
           "time_precision": "published",
           "title_en": "Vitalik: EIP-8288 Enables Arbitrary Signature Schemes, Ethereum May Never Need N",
-          "title_zh": "Vitalik: EIP-8288 Enables Arbitrary Signature Schemes, Ethereum May Never Need N",
+          "title_zh": "Vitalik：EIP-8288 支持任意签名方案，以太坊可能永远无需 N",
           "update_id": "upd_f5cb6e3dda2ce51b",
           "update_type": "initial",
           "what_changed_en": "Vitalik Buterin said EIP-8288 would let users prove arbitrary signature schemes with STARKs and an aggregator, potentially sparing Ethereum from ever adding new signature precompiles.",
-          "what_changed_zh": "Vitalik Buterin said EIP-8288 would let users prove arbitrary signature schemes with STARKs and an aggregator, potentially sparing Ethereum from ever adding new signature precompiles."
+          "what_changed_zh": "Vitalik Buterin 表示，EIP-8288 将允许用户通过 STARK 和聚合器证明任意签名方案，从而可能使以太坊永远无需新增签名预编译合约。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
+          "current_state_zh": "Vitalik Buterin 提出了“EIP-8288 最大化”方案，将把以太坊的密码学策略转向该标准，并可能停止新增预编译合约；此举正值他与 a16z 和 StarkWare 就最佳密码学路线展开争论之际。",
+          "detailed_summary_en": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
+          "detailed_summary_zh": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
+          "event_id": "evt_9a2795c305f4c9e8",
+          "first_seen_at": "2026-10-21T10:01:29.551436Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-21T09:58:56Z",
+          "published_at": "2026-10-21T09:58:56Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/article/detail/101095"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:120948"
+          ],
+          "time_precision": "published",
+          "title_en": "FN 速递丨a16z 和 StarkWare 争吵密码学路线，Vitalik 想都交给 EIP-8288",
+          "title_zh": "FN 速递丨a16z 和 StarkWare 争吵密码学路线，Vitalik 想都交给 EIP-8288",
+          "update_id": "upd_f526c3d8050d0cc9",
+          "update_type": "escalation",
+          "what_changed_en": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
+          "what_changed_zh": "Vitalik Buterin 提出了“EIP-8288 最大化”方案，将把以太坊的密码学策略转向该标准，并可能停止新增预编译合约；此举正值他与 a16z 和 StarkWare 就最佳密码学路线展开争论之际。"
         }
       ]
     },
@@ -172357,30 +172398,36 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
-      "current_state_zh": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
+      "current_state_en": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
+      "current_state_zh": "DeepSeek 开源了其 DeepInfer 推理框架，并披露其集群每天处理约 155 万亿个 token，相当于每 GPU 小时约 38 美元的理论可计费收入，但该数字未考虑利用率、付费请求占比以及硬件和电力成本。",
       "entities": [
         "deepinfer",
-        "deepseek"
+        "deepseek",
+        "gpu"
       ],
       "event_id": "evt_987c4b4be04c5507",
       "event_type": "other",
       "first_seen_at": "2026-10-20T09:34:13.396948Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-20T09:34:13.396948Z",
-      "last_updated_at": "2026-10-20T13:41:32.208363Z",
+      "last_material_change_at": "2026-10-24T06:41:26.801415Z",
+      "last_updated_at": "2026-10-24T06:41:26.801415Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_4438413df4ab1113"
+      ],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "DeepSeek开源内部推理引擎DeepInfer：支持昇腾950，但还不是完整的在线服务",
-      "title_zh": "DeepSeek开源内部推理引擎DeepInfer：支持昇腾950，但还不是完整的在线服务",
+      "title_zh": "DeepSeek开源DeepInfer推理框架并披露集群计费收入数据",
       "topics": [
+        "ai-inference",
         "ai-infrastructure",
         "ascend-950",
         "deepseek",
+        "gpu-economics",
         "inference-engine",
-        "open-source"
+        "open-source",
+        "open-source-framework"
       ],
       "updates": [
         {
@@ -172390,7 +172437,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
-          "current_state_zh": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
+          "current_state_zh": "DeepSeek 开源了 DeepInfer，这是用于 DeepSeek V4.1 Flash 的 Apache 2.0 推理框架，支持 Nvidia SM100 和华为昇腾 950，但目前仅限离线推理，关键服务组件仍然缺失。",
           "detailed_summary_en": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
           "detailed_summary_zh": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
           "event_id": "evt_987c4b4be04c5507",
@@ -172431,7 +172478,45 @@
           "update_id": "upd_31b72f24afa5cc66",
           "update_type": "initial",
           "what_changed_en": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
-          "what_changed_zh": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing."
+          "what_changed_zh": "DeepSeek 开源了 DeepInfer，这是用于 DeepSeek V4.1 Flash 的 Apache 2.0 推理框架，支持 Nvidia SM100 和华为昇腾 950，但目前仅限离线推理，关键服务组件仍然缺失。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
+          "current_state_zh": "DeepSeek 开源了其 DeepInfer 推理框架，并披露其集群每天处理约 155 万亿个 token，相当于每 GPU 小时约 38 美元的理论可计费收入，但该数字未考虑利用率、付费请求占比以及硬件和电力成本。",
+          "detailed_summary_en": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
+          "detailed_summary_zh": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
+          "event_id": "evt_987c4b4be04c5507",
+          "first_seen_at": "2026-10-24T06:41:26.801415Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-24T05:08:02Z",
+          "published_at": "2026-10-24T05:08:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373499?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:202155"
+          ],
+          "time_precision": "published",
+          "title_en": "DeepSeek披露单GPU每小时可创造38美元计费收入，AI推理盈利能力引发关注",
+          "title_zh": "DeepSeek披露单GPU每小时可创造38美元计费收入，AI推理盈利能力引发关注",
+          "update_id": "upd_6a425ea7a0c9b992",
+          "update_type": "confirmation",
+          "what_changed_en": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
+          "what_changed_zh": "DeepSeek 开源了其 DeepInfer 推理框架，并披露其集群每天处理约 155 万亿个 token，相当于每 GPU 小时约 38 美元的理论可计费收入，但该数字未考虑利用率、付费请求占比以及硬件和电力成本。"
         }
       ]
     },
@@ -178328,78 +178413,6 @@
           "update_type": "initial",
           "what_changed_en": "Bittensor's Opentensor Foundation launched eTAO, letting subnet owners customize how alpha emissions are split among owners, validators, and miners while preserving root-network TAO staker protections.",
           "what_changed_zh": "Bittensor's Opentensor Foundation launched eTAO, letting subnet owners customize how alpha emissions are split among owners, validators, and miners while preserving root-network TAO staker protections."
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
-      "current_state_zh": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
-      "entities": [
-        "eip",
-        "eip-8288",
-        "starkware",
-        "vitalik"
-      ],
-      "event_id": "evt_3c185917c5599b82",
-      "event_type": "other",
-      "first_seen_at": "2026-10-21T10:01:29.551436Z",
-      "identifiers": [
-        "eip-8288"
-      ],
-      "last_material_change_at": "2026-10-21T10:01:29.551436Z",
-      "last_updated_at": "2026-10-21T10:01:29.551436Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "FN 速递丨a16z 和 StarkWare 争吵密码学路线，Vitalik 想都交给 EIP-8288",
-      "title_zh": "FN 速递丨a16z 和 StarkWare 争吵密码学路线，Vitalik 想都交给 EIP-8288",
-      "topics": [
-        "cryptography",
-        "eip-8288",
-        "precompiles",
-        "vitalik-buterin"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
-          "current_state_zh": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
-          "detailed_summary_en": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
-          "detailed_summary_zh": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
-          "event_id": "evt_3c185917c5599b82",
-          "first_seen_at": "2026-10-21T10:01:29.551436Z",
-          "importance_score": 7.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-21T09:58:56Z",
-          "published_at": "2026-10-21T09:58:56Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "foresightnews",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://foresightnews.pro/article/detail/101095"
-            }
-          ],
-          "story_ids": [
-            "telegram:foresightnews:120948"
-          ],
-          "time_precision": "published",
-          "title_en": "FN 速递丨a16z 和 StarkWare 争吵密码学路线，Vitalik 想都交给 EIP-8288",
-          "title_zh": "FN 速递丨a16z 和 StarkWare 争吵密码学路线，Vitalik 想都交给 EIP-8288",
-          "update_id": "upd_f526c3d8050d0cc9",
-          "update_type": "initial",
-          "what_changed_en": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap.",
-          "what_changed_zh": "Vitalik Buterin has proposed an 'EIP-8288 maximization' approach that would shift Ethereum's cryptography strategy toward the standard and potentially stop adding new precompiles, amid debate with a16z and StarkWare over the best cryptographic roadmap."
         }
       ]
     },
@@ -190191,75 +190204,6 @@
       ]
     },
     {
-      "category": "technology",
-      "confidence": 0.75,
-      "current_state_en": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
-      "current_state_zh": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
-      "entities": [
-        "deepseek",
-        "gpu"
-      ],
-      "event_id": "evt_4438413df4ab1113",
-      "event_type": "other",
-      "first_seen_at": "2026-10-24T06:41:26.801415Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-24T06:41:26.801415Z",
-      "last_updated_at": "2026-10-24T06:41:26.801415Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "DeepSeek披露单GPU每小时可创造38美元计费收入，AI推理盈利能力引发关注",
-      "title_zh": "DeepSeek披露单GPU每小时可创造38美元计费收入，AI推理盈利能力引发关注",
-      "topics": [
-        "ai-inference",
-        "ai-infrastructure",
-        "deepseek",
-        "gpu-economics",
-        "open-source-framework"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
-          "current_state_zh": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
-          "detailed_summary_en": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
-          "detailed_summary_zh": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
-          "event_id": "evt_4438413df4ab1113",
-          "first_seen_at": "2026-10-24T06:41:26.801415Z",
-          "importance_score": 7.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-24T05:08:02Z",
-          "published_at": "2026-10-24T05:08:02Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "theblockbeats",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://m.theblockbeats.info/flash/373499?from=telegram"
-            }
-          ],
-          "story_ids": [
-            "telegram:theblockbeats:202155"
-          ],
-          "time_precision": "published",
-          "title_en": "DeepSeek披露单GPU每小时可创造38美元计费收入，AI推理盈利能力引发关注",
-          "title_zh": "DeepSeek披露单GPU每小时可创造38美元计费收入，AI推理盈利能力引发关注",
-          "update_id": "upd_6a425ea7a0c9b992",
-          "update_type": "initial",
-          "what_changed_en": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
-          "what_changed_zh": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs."
-        }
-      ]
-    },
-    {
       "category": "policy",
       "confidence": 0.75,
       "current_state_en": "Brent crude hit $117.45 for the first time since April amid escalating US-Iran tensions, reports of planned strikes and Strait of Hormuz tanker incidents, sending shockwaves through inflation expectations, Treasury yields, and broader markets.",
@@ -191603,8 +191547,7 @@
       "evt_f335efa8291ad66f"
     ],
     "claude-code": [
-      "evt_3831cf3930ea99de",
-      "evt_747ad758295c5a6d",
+      "evt_43e7d927847911a2",
       "evt_879f81179e75bf8e",
       "evt_e47094e6760a360d",
       "evt_eb56a02846741ca3"
@@ -210369,7 +210312,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A coalition of 24 major firms — including Microsoft, Google and Goldman Sachs — publicly opposing tokenized stock trading is a meaningful market-structure and policy development: it signals coordinated pushback from incumbents against a fast-growing crypto-adjacent product category, with a plausible transmission path to how tokenized equities are permitted to operate. It is not a binding regulatory decision, so it falls short of the 8+ tier, but it carries more weight than routine industry commentary.",
         "ai_score": 7.0,
@@ -210402,7 +210345,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A notable stablecoin payments partnership involving a major exchange and a global payments network, supporting institutional adoption and cross-border settlement expansion; high-value but not a systemic or groundbreaking event.",
         "ai_score": 7.0,
@@ -210431,6 +210374,39 @@
         "source_type": "google_news",
         "title": "Stablecoin Payments Scale Up: Coinbase-Thunes Partnership",
         "url": "https://www.onesafe.io/blog/stablecoin-payments-coinbase-thunes-partnership-analysis"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A Reuters-reported political/regulatory controversy centered on using crypto to circumvent economic sanctions, a high-stakes use case that directly touches sanctions enforcement, exchange compliance obligations, and market access risk. It is a concrete in-window development (public rebuke of a sitting leader's plan) rather than recycled background, though the impact is prospective and policy-level rather than an immediate market or protocol event, placing it in the high-value but not groundbreaking band.",
+        "ai_score": 7.0,
+        "ai_summary": "Israeli Prime Minister Netanyahu faced public rebuke over a proposal to use cryptocurrency to bypass international economic sanctions, drawing criticism from officials and sanctions-compliance observers.",
+        "ai_tags": [
+          "sanctions-evasion",
+          "crypto-regulation",
+          "geopolitics",
+          "compliance",
+          "israel"
+        ],
+        "author": "Reuters",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxOdEZIYi1YYkZXSDlUeWN0cUgzdzdudTFUNlF5bHE1eVM4Z1NZeUFxVWZrVXp3d0N1dnRRWU5iYzZSc3J5QlJiQ3c4bllDUXFJcFFFdjNGeTFPbGhxc2VRZjYzV1dLSmtKX2JqQlpfd2U4RTFmWUhoRGFtVUVtVWRSc0NBZjc0NjhUdUVLNmM2dDVBYUxLOWRob3BwWkY2bnBKSlhnSGc0aXVfTEZ5RjBsTDJ3?oc=5\" target=\"_blank\">Netanyahu rebuked for plan to use crypto to bypass economic sanctions</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Reuters</font>",
+        "fetched_at": "2026-10-25T13:21:27.876213Z",
+        "id": "google_news:article:bafa4f96c45bf4ec",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "gn_query": "(bitcoin OR crypto OR cryptocurrency OR stablecoin OR ethereum OR blockchain) (site:reuters.com OR site:bloomberg.com OR site:ft.com OR site:wsj.com OR site:cnbc.com OR site:apnews.com OR site:axios.com OR site:fortune.com OR site:nytimes.com OR site:economist.com)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.reuters.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "Reuters"
+        },
+        "published_at": "2026-10-25T12:15:33Z",
+        "source_type": "google_news",
+        "title": "Netanyahu rebuked for plan to use crypto to bypass economic sanctions",
+        "url": "https://www.reuters.com/business/finance/netanyahu-rebuked-plan-use-crypto-bypass-economic-sanctions-2026-10-25/"
       }
     }
   ],

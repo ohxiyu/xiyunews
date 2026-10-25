@@ -7,30 +7,34 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "DeepSeek开源内部推理引擎DeepInfer：支持昇腾950，但还不是完整的在线服务",
+    "zh": "DeepSeek开源DeepInfer推理框架并披露集群计费收入数据",
     "en": "DeepSeek开源内部推理引擎DeepInfer：支持昇腾950，但还不是完整的在线服务"
   },
   "current_state": {
-    "zh": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
-    "en": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing."
+    "zh": "DeepSeek 开源了其 DeepInfer 推理框架，并披露其集群每天处理约 155 万亿个 token，相当于每 GPU 小时约 38 美元的理论可计费收入，但该数字未考虑利用率、付费请求占比以及硬件和电力成本。",
+    "en": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs."
   },
   "first_seen_at": "2026-10-20T09:34:13.396948+00:00",
-  "last_updated_at": "2026-10-20T13:41:32.208363+00:00",
-  "last_material_change_at": "2026-10-20T09:34:13.396948+00:00",
+  "last_updated_at": "2026-10-24T06:41:26.801415+00:00",
+  "last_material_change_at": "2026-10-24T06:41:26.801415+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 2,
+  "updates_count": 2,
+  "sources_count": 3,
   "entities": [
     "deepinfer",
-    "deepseek"
+    "deepseek",
+    "gpu"
   ],
   "identifiers": [],
   "topics": [
+    "ai-inference",
     "ai-infrastructure",
     "ascend-950",
     "deepseek",
+    "gpu-economics",
     "inference-engine",
-    "open-source"
+    "open-source",
+    "open-source-framework"
   ],
   "updates": [
     {
@@ -44,9 +48,9 @@
       "material_change": true,
       "title_zh": "DeepSeek开源内部推理引擎DeepInfer：支持昇腾950，但还不是完整的在线服务",
       "title_en": "DeepSeek开源内部推理引擎DeepInfer：支持昇腾950，但还不是完整的在线服务",
-      "what_changed_zh": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
+      "what_changed_zh": "DeepSeek 开源了 DeepInfer，这是用于 DeepSeek V4.1 Flash 的 Apache 2.0 推理框架，支持 Nvidia SM100 和华为昇腾 950，但目前仅限离线推理，关键服务组件仍然缺失。",
       "what_changed_en": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
-      "current_state_zh": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
+      "current_state_zh": "DeepSeek 开源了 DeepInfer，这是用于 DeepSeek V4.1 Flash 的 Apache 2.0 推理框架，支持 Nvidia SM100 和华为昇腾 950，但目前仅限离线推理，关键服务组件仍然缺失。",
       "current_state_en": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
       "detailed_summary_zh": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
       "detailed_summary_en": "DeepSeek open-sourced DeepInfer, its Apache 2.0 inference framework used for DeepSeek V4.1 Flash, supporting Nvidia SM100 and Huawei Ascend 950 but currently limited to offline inference with key serving components still missing.",
@@ -79,6 +83,44 @@
           "url": "https://github.com/deepseek-ai/DeepInfer",
           "label": "ggcr",
           "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_6a425ea7a0c9b992",
+      "event_id": "evt_987c4b4be04c5507",
+      "occurred_at": "2026-10-24T05:08:02Z",
+      "published_at": "2026-10-24T05:08:02Z",
+      "first_seen_at": "2026-10-24T06:41:26.801415Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "DeepSeek披露单GPU每小时可创造38美元计费收入，AI推理盈利能力引发关注",
+      "title_en": "DeepSeek披露单GPU每小时可创造38美元计费收入，AI推理盈利能力引发关注",
+      "what_changed_zh": "DeepSeek 开源了其 DeepInfer 推理框架，并披露其集群每天处理约 155 万亿个 token，相当于每 GPU 小时约 38 美元的理论可计费收入，但该数字未考虑利用率、付费请求占比以及硬件和电力成本。",
+      "what_changed_en": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
+      "current_state_zh": "DeepSeek 开源了其 DeepInfer 推理框架，并披露其集群每天处理约 155 万亿个 token，相当于每 GPU 小时约 38 美元的理论可计费收入，但该数字未考虑利用率、付费请求占比以及硬件和电力成本。",
+      "current_state_en": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
+      "detailed_summary_zh": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
+      "detailed_summary_en": "DeepSeek open-sourced its DeepInfer inference framework and disclosed that its cluster handles about 155 trillion tokens per day, equivalent to roughly $38 in theoretical billable revenue per GPU-hour, though this figure does not account for utilization, paid-request share, or hardware and power costs.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:theblockbeats:202155"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/373499?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]
