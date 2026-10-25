@@ -1,17 +1,12 @@
 ---
 layout: default
-title: "Node2Shell evolves to HTTP2Shell, blast radius affects many HTTP libs and apps"
+title: "Node.js 发布安全更新修复含 Brotli 解码器缺陷在内的多个高危漏洞"
 permalink: /events/evt_193b4c217fb77273/
 interface_language: zh
-description: "The Node2Shell vulnerability has evolved into HTTP2Shell, tracked as Brotli CVE-2026-111497, an unauthenticated remote code execution issue in Brotli decoding that affects many Pyt"
+description: "这条报道已并入同一事件的完整时间线。"
 page_type: archive
-alternate_url: /en/events/evt_193b4c217fb77273/
-page_class: event-detail-page
+redirect_to: /events/evt_334c8ea2d1e2fa1d/
 noindex: true
 ---
 
-<div class="event-detail-layout"><article class="event-detail-stream"><div class="event-detail-orientation"><div class="event-status-line"><span class="event-status" data-status="monitoring">持续观察</span><span class="category-pill" data-category="technology">AI 科技</span><span>安全事件</span><span>首次追踪 2026.10.24</span><span>最近变化 2026.10.24</span></div><section class="event-current-state"><h2>目前结论</h2><p>The Node2Shell vulnerability has evolved into HTTP2Shell, tracked as Brotli CVE-2026-111497, an unauthenticated remote code execution issue in Brotli decoding that affects many Python HTTP libraries and applications and is now driving patching and deployment checks.</p></section></div><div class="event-timeline-heading"><h2>进展时间线</h2><span>1 次实质进展</span></div><ol class="event-timeline"><li class="event-update event-stream-item" id="upd_1d331cb6df96780b"><div class="event-update-rail"><strong>#01</strong><time datetime="2026-10-24T08:06:39+00:00">10.24</time><span class="event-update-marker" aria-hidden="true"></span></div><div class="event-update-content"><div class="digest-item-meta"><div><span class="event-update-type">首次出现</span><span class="event-update-precision">2026.10.24 08:06 · 报道时间</span></div></div><h3>Node2Shell 演变为 HTTP2Shell，影响范围波及大量 HTTP 库与应用</h3><p class="event-update-change">编号为 CVE-2026-111497 的 Brotli 解码器漏洞此前以“Node2Shell”之名传播，如今又以“HTTP2Shell”的名义流传；相关报道称这是一个无需认证即可远程执行代码的漏洞，影响范围覆盖大量 HTTP 库与应用，而不只是 Node.js。Aikido 的文章称，其检测能力可以在代码仓库和容器镜像中标记出受影响的 Node.js 版本。
-
-该漏洞位于 Brotli 解码环节，而这一压缩路径在 HTTP 处理中被广泛使用，因此受影响面并不局限于单一运行时；Vercel 表示其 WAF 已部署规则，用于检测并阻断针对该漏洞的利用尝试。
-
-讨论中有评论者指出，Ubuntu 仍将 libbrotli1 的补丁标注为“审核中”、严重级别为中等，这拖慢了 libcurl 乃至 git 等一系列软件包的更新。也有评论者质疑：据称 2 月就已发布的修复，当时为何未被当作安全问题处理。</p><p class="source-line event-update-sources"><strong>来源依据：</strong><a href="https://www.aikido.dev/blog/python-packages-vulnerable-node2shell-brotli-cve-2026-111497" target="_blank" rel="noopener noreferrer">theanonymousone</a></p></div></li></ol><p class="archive-back"><a href="/threads/">全部追踪</a> · <a href="/">返回首页</a></p></article><aside class="headline-rail event-detail-rail" aria-label="事件概览"><details class="headline-index event-facts-panel" open><summary><span>事件概览</span><small>1</small></summary><dl class="event-facts"><div><dt>状态</dt><dd>持续观察</dd></div><div><dt>事件类型</dt><dd>安全事件</dd></div><div><dt>实质进展</dt><dd>1</dd></div><div><dt>来源</dt><dd>1</dd></div><div><dt>首次追踪</dt><dd>2026.10.24</dd></div><div><dt>最近变化</dt><dd>2026.10.24</dd></div></dl></details><details class="headline-index event-node-panel" open><summary><span>节点导航</span><small>1</small></summary><ol class="headline-list event-node-list"><li><a href="#upd_1d331cb6df96780b"><span>10.24</span>Node2Shell 演变为 HTTP2Shell，影响范围波及大量 HTTP 库与应用</a></li></ol></details><p class="event-data-link"><span>数据接口</span><a href="/api/events/evt_193b4c217fb77273.json">JSON 数据</a></p></aside></div>
+<p class="archive-lede">这条报道已并入同一事件的完整时间线。</p><p><a href="/events/evt_334c8ea2d1e2fa1d/">查看事件</a></p>
