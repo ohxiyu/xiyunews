@@ -2,6 +2,25 @@
   "version": 1,
   "events": [
     {
+      "event_id": "evt_0f8b132b10a6f10f",
+      "url": "https://xiyu.news/events/evt_0f8b132b10a6f10f/",
+      "json": "https://xiyu.news/api/events/evt_0f8b132b10a6f10f.json",
+      "status": "developing",
+      "type": "protocol_change",
+      "title": {
+        "zh": "Glamsterdam 升级因 EIP-8037 合约兼容性问题推迟 Hoodi 测试网部署",
+        "en": "Ethereum Glamsterdam upgrade testnet deployment disrupted and postponed"
+      },
+      "current_state": {
+        "zh": "以太坊基金会研究员 Toni Wahrstätter 详细说明了 ChainSecurity 对 Glamsterdam 升级中 EIP-8037 的审计发现——gas 重新定价影响硬编码的 gas 转发合约，并存在不变量被破坏的问题：已消耗的 gas 可在交易中途被退还、gasleft() 读数失真、失败的子调用会返还 gas——他呼吁应用开发者和审计人员检查合约，并指出 Hoodi 的延迟争取了时间但并未解决问题，最终可能仍需修改规范。",
+        "en": "Ethereum Foundation researcher Toni Wahrstätter detailed what ChainSecurity's audit found about EIP-8037 in the Glamsterdam upgrade — gas repricing affecting hardcoded gas-forwarding contracts plus broken invariants where consumed gas can be refunded mid-transaction, skewed gasleft() readings and failed subcalls returning gas — and called on app developers and auditors to check contracts, noting the Hoodi delay bought time but did not solve the issue and that spec changes may ultimately be needed."
+      },
+      "first_seen_at": "2026-09-17T17:11:45.183417+00:00",
+      "last_material_change_at": "2026-10-26T09:51:24.702761+00:00",
+      "updates_count": 13,
+      "sources_count": 21
+    },
+    {
       "event_id": "evt_c765a0bcd269aec3",
       "url": "https://xiyu.news/events/evt_c765a0bcd269aec3/",
       "json": "https://xiyu.news/api/events/evt_c765a0bcd269aec3.json",
@@ -57,25 +76,6 @@
       "last_material_change_at": "2026-10-26T01:35:40.493515+00:00",
       "updates_count": 30,
       "sources_count": 72
-    },
-    {
-      "event_id": "evt_0f8b132b10a6f10f",
-      "url": "https://xiyu.news/events/evt_0f8b132b10a6f10f/",
-      "json": "https://xiyu.news/api/events/evt_0f8b132b10a6f10f.json",
-      "status": "developing",
-      "type": "protocol_change",
-      "title": {
-        "zh": "以太坊Glamsterdam升级测试网部署受阻并推迟",
-        "en": "Ethereum Glamsterdam upgrade testnet deployment disrupted and postponed"
-      },
-      "current_state": {
-        "zh": "以太坊Glamsterdam硬分叉的第二个、也是最后一个测试网Hoodi本周被取消，原因是ChainSecurity发现gas扩容类以太坊改进提案EIP-8037与EIP-8038存在漏洞，可能导致至少13个DeFi合约在调用耗尽gas时出错。Eth Labs与以太坊基金会的研究人员各自独立部署了一批AI代理来扫描合约漏洞，随后以GitHub仓库的形式搭建了一个共享“留言板”，用于协调这些代理的工作。\n\n此次取消使得一次关键升级的“彩排”被迫延后，而该升级是以太坊DeFi运营方所依赖的基础设施。Eth Labs的Derek Chiang表示，未来协议设计者应当在流程更早的阶段“对可能引入的破坏做更彻底的分析”。他还表示，AI代理的排查方式成效显著，因此已开设第二个留言板，用于研究拟纳入后续Hegota分叉的EIP-8198（“Quick Slots”）。\n\nChiang称该漏洞是在“临近午夜的最后几分钟”被发现的，导致所有人紧急应对；在分叉的所有二阶影响被充分推演之前，Hoodi测试网预计不会重新排期。他把这一做法类比于OpenAI与Hugging Face被攻击事件中恶意代理通过留言板协同行动的情形，并表示“同样的模式对‘好代理’同样有用”。",
-        "en": "Ethereum's second and final Glamsterdam hard fork testnet on Hoodi was cancelled this week after ChainSecurity found vulnerabilities in the gas-scaling EIPs 8037 and 8038 that could break at least 13 DeFi contracts when a call runs out of gas. Researchers at Eth Labs and the Ethereum Foundation independently spun up AI agents to scan contracts for the flaws, then set up a shared message board in the form of a GitHub repo to coordinate the agents' work.\n\nThe cancellation postpones the dress rehearsal for an upgrade that Ethereum DeFi operators depend on, and Eth Labs' Derek Chiang said protocols designers should in future do \"much more thorough analysis of potential breakages\" much earlier in the process. He added that the agent exercise proved effective enough that a second board has been opened to study EIP-8198, or \"Quick Slots\", proposed for the follow-up Hegota fork.\n\nChiang said the vulnerability was found \"a few minutes to midnight,\" causing everyone to scramble, and the Hoodi testnet is not expected to be rescheduled until all of the fork's second-order effects have been properly analyzed. He likened the setup to the OpenAI–Hugging Face hack, where rogue agents coordinated through a message board, noting \"the same pattern is useful for the good agents too.\""
-      },
-      "first_seen_at": "2026-09-17T17:11:45.183417+00:00",
-      "last_material_change_at": "2026-10-25T23:28:08.430086+00:00",
-      "updates_count": 12,
-      "sources_count": 19
     },
     {
       "event_id": "evt_e0ae57f3cefe9440",

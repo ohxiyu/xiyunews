@@ -70300,8 +70300,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Ethereum's second and final Glamsterdam hard fork testnet on Hoodi was cancelled this week after ChainSecurity found vulnerabilities in the gas-scaling EIPs 8037 and 8038 that could break at least 13 DeFi contracts when a call runs out of gas. Researchers at Eth Labs and the Ethereum Foundation independently spun up AI agents to scan contracts for the flaws, then set up a shared message board in the form of a GitHub repo to coordinate the agents' work.\n\nThe cancellation postpones the dress rehearsal for an upgrade that Ethereum DeFi operators depend on, and Eth Labs' Derek Chiang said protocols designers should in future do \"much more thorough analysis of potential breakages\" much earlier in the process. He added that the agent exercise proved effective enough that a second board has been opened to study EIP-8198, or \"Quick Slots\", proposed for the follow-up Hegota fork.\n\nChiang said the vulnerability was found \"a few minutes to midnight,\" causing everyone to scramble, and the Hoodi testnet is not expected to be rescheduled until all of the fork's second-order effects have been properly analyzed. He likened the setup to the OpenAI–Hugging Face hack, where rogue agents coordinated through a message board, noting \"the same pattern is useful for the good agents too.\"",
-      "current_state_zh": "以太坊Glamsterdam硬分叉的第二个、也是最后一个测试网Hoodi本周被取消，原因是ChainSecurity发现gas扩容类以太坊改进提案EIP-8037与EIP-8038存在漏洞，可能导致至少13个DeFi合约在调用耗尽gas时出错。Eth Labs与以太坊基金会的研究人员各自独立部署了一批AI代理来扫描合约漏洞，随后以GitHub仓库的形式搭建了一个共享“留言板”，用于协调这些代理的工作。\n\n此次取消使得一次关键升级的“彩排”被迫延后，而该升级是以太坊DeFi运营方所依赖的基础设施。Eth Labs的Derek Chiang表示，未来协议设计者应当在流程更早的阶段“对可能引入的破坏做更彻底的分析”。他还表示，AI代理的排查方式成效显著，因此已开设第二个留言板，用于研究拟纳入后续Hegota分叉的EIP-8198（“Quick Slots”）。\n\nChiang称该漏洞是在“临近午夜的最后几分钟”被发现的，导致所有人紧急应对；在分叉的所有二阶影响被充分推演之前，Hoodi测试网预计不会重新排期。他把这一做法类比于OpenAI与Hugging Face被攻击事件中恶意代理通过留言板协同行动的情形，并表示“同样的模式对‘好代理’同样有用”。",
+      "current_state_en": "Ethereum Foundation researcher Toni Wahrstätter detailed what ChainSecurity's audit found about EIP-8037 in the Glamsterdam upgrade — gas repricing affecting hardcoded gas-forwarding contracts plus broken invariants where consumed gas can be refunded mid-transaction, skewed gasleft() readings and failed subcalls returning gas — and called on app developers and auditors to check contracts, noting the Hoodi delay bought time but did not solve the issue and that spec changes may ultimately be needed.",
+      "current_state_zh": "以太坊基金会研究员 Toni Wahrstätter 详细说明了 ChainSecurity 对 Glamsterdam 升级中 EIP-8037 的审计发现——gas 重新定价影响硬编码的 gas 转发合约，并存在不变量被破坏的问题：已消耗的 gas 可在交易中途被退还、gasleft() 读数失真、失败的子调用会返还 gas——他呼吁应用开发者和审计人员检查合约，并指出 Hoodi 的延迟争取了时间但并未解决问题，最终可能仍需修改规范。",
       "entities": [
         "activates",
         "compatibil",
@@ -70330,8 +70330,8 @@
         "eip-8037",
         "eip-8198"
       ],
-      "last_material_change_at": "2026-10-25T23:28:08.430086Z",
-      "last_updated_at": "2026-10-25T23:28:08.430086Z",
+      "last_material_change_at": "2026-10-26T09:51:24.702761Z",
+      "last_updated_at": "2026-10-26T09:51:24.702761Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_606b48228f302527",
@@ -70339,16 +70339,19 @@
         "evt_e4d4f67602172913",
         "evt_130c6dec11baf570",
         "evt_a73448857c927050",
-        "evt_09677e4cbc4f27c1"
+        "evt_09677e4cbc4f27c1",
+        "evt_36e8de6c22bce9d4",
+        "evt_9638bff9dc8b8db0"
       ],
       "schema_version": 1,
       "status": "developing",
       "title_en": "Ethereum Glamsterdam upgrade testnet deployment disrupted and postponed",
-      "title_zh": "以太坊Glamsterdam升级测试网部署受阻并推迟",
+      "title_zh": "Glamsterdam 升级因 EIP-8037 合约兼容性问题推迟 Hoodi 测试网部署",
       "topics": [
         "eip-8037",
         "epbs",
         "gas-limit",
+        "gas-repricing",
         "glamsterdam",
         "lido",
         "mev",
@@ -70357,6 +70360,8 @@
         "scalability",
         "scaling",
         "sepolia",
+        "smart-contract-security",
+        "smart-contracts",
         "staking",
         "testnet"
       ],
@@ -70891,6 +70896,51 @@
           "update_type": "escalation",
           "what_changed_en": "Ethereum's second and final Glamsterdam hard fork testnet on Hoodi was cancelled this week after ChainSecurity found vulnerabilities in the gas-scaling EIPs 8037 and 8038 that could break at least 13 DeFi contracts when a call runs out of gas. Researchers at Eth Labs and the Ethereum Foundation independently spun up AI agents to scan contracts for the flaws, then set up a shared message board in the form of a GitHub repo to coordinate the agents' work.\n\nThe cancellation postpones the dress rehearsal for an upgrade that Ethereum DeFi operators depend on, and Eth Labs' Derek Chiang said protocols designers should in future do \"much more thorough analysis of potential breakages\" much earlier in the process. He added that the agent exercise proved effective enough that a second board has been opened to study EIP-8198, or \"Quick Slots\", proposed for the follow-up Hegota fork.\n\nChiang said the vulnerability was found \"a few minutes to midnight,\" causing everyone to scramble, and the Hoodi testnet is not expected to be rescheduled until all of the fork's second-order effects have been properly analyzed. He likened the setup to the OpenAI–Hugging Face hack, where rogue agents coordinated through a message board, noting \"the same pattern is useful for the good agents too.\"",
           "what_changed_zh": "以太坊Glamsterdam硬分叉的第二个、也是最后一个测试网Hoodi本周被取消，原因是ChainSecurity发现gas扩容类以太坊改进提案EIP-8037与EIP-8038存在漏洞，可能导致至少13个DeFi合约在调用耗尽gas时出错。Eth Labs与以太坊基金会的研究人员各自独立部署了一批AI代理来扫描合约漏洞，随后以GitHub仓库的形式搭建了一个共享“留言板”，用于协调这些代理的工作。\n\n此次取消使得一次关键升级的“彩排”被迫延后，而该升级是以太坊DeFi运营方所依赖的基础设施。Eth Labs的Derek Chiang表示，未来协议设计者应当在流程更早的阶段“对可能引入的破坏做更彻底的分析”。他还表示，AI代理的排查方式成效显著，因此已开设第二个留言板，用于研究拟纳入后续Hegota分叉的EIP-8198（“Quick Slots”）。\n\nChiang称该漏洞是在“临近午夜的最后几分钟”被发现的，导致所有人紧急应对；在分叉的所有二阶影响被充分推演之前，Hoodi测试网预计不会重新排期。他把这一做法类比于OpenAI与Hugging Face被攻击事件中恶意代理通过留言板协同行动的情形，并表示“同样的模式对‘好代理’同样有用”。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Ethereum Foundation researcher Toni Wahrstätter said the Hoodi testnet upgrade to Glamsterdam is delayed after ChainSecurity found EIP-8037 causes gas-accounting compatibility and safety problems in real contracts, with 13 confirmed cases and possible protocol-spec changes still under review.",
+          "current_state_zh": "以太坊基金会研究员 Toni Wahrstätter 表示，Hoodi 测试网升级至 Glamsterdam 已被推迟，此前 ChainSecurity 发现 EIP-8037 在真实合约中造成 gas 记账兼容性和安全问题，已确认 13 个案例，可能的协议规范修改仍在审查中。",
+          "detailed_summary_en": "Ethereum Foundation researcher Toni Wahrstätter said the Hoodi testnet upgrade to Glamsterdam is delayed after ChainSecurity found EIP-8037 causes gas-accounting compatibility and safety problems in real contracts, with 13 confirmed cases and possible protocol-spec changes still under review.",
+          "detailed_summary_zh": "Ethereum Foundation researcher Toni Wahrstätter said the Hoodi testnet upgrade to Glamsterdam is delayed after ChainSecurity found EIP-8037 causes gas-accounting compatibility and safety problems in real contracts, with 13 confirmed cases and possible protocol-spec changes still under review.",
+          "event_id": "evt_0f8b132b10a6f10f",
+          "first_seen_at": "2026-10-26T09:51:23.401601Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-26T08:50:02Z",
+          "published_at": "2026-10-26T08:50:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373710?from=telegram"
+            },
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115989"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:202343",
+            "telegram:foresightnews:121301"
+          ],
+          "time_precision": "published",
+          "title_en": "以太坊基金会研究员：Glamsterdam测试网升级推迟，EIP-8037引发合约兼容性问题",
+          "title_zh": "以太坊基金会研究员：Glamsterdam测试网升级推迟，EIP-8037引发合约兼容性问题",
+          "update_id": "upd_7b52aae8b4faf82e",
+          "update_type": "escalation",
+          "what_changed_en": "Ethereum Foundation researcher Toni Wahrstätter said the Hoodi testnet upgrade to Glamsterdam is delayed after ChainSecurity found EIP-8037 causes gas-accounting compatibility and safety problems in real contracts, with 13 confirmed cases and possible protocol-spec changes still under review.",
+          "what_changed_zh": "以太坊基金会研究员 Toni Wahrstätter 表示，Hoodi 测试网升级至 Glamsterdam 已被推迟，此前 ChainSecurity 发现 EIP-8037 在真实合约中造成 gas 记账兼容性和安全问题，已确认 13 个案例，可能的协议规范修改仍在审查中。"
         }
       ]
     },
@@ -192343,6 +192393,368 @@
           "what_changed_zh": "Keystone disclosed a website breach in which an unauthorized third party accessed customer shipping information, prompting warnings about targeted phishing and physical attacks."
         }
       ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "MEXC is winding down Netherlands services by November 16 due to lacking MiCA authorization and is discontinuing Russia and Belarus access while maintaining a 13-jurisdiction restricted list.",
+      "current_state_zh": "MEXC is winding down Netherlands services by November 16 due to lacking MiCA authorization and is discontinuing Russia and Belarus access while maintaining a 13-jurisdiction restricted list.",
+      "entities": [
+        "mexc",
+        "netherlands"
+      ],
+      "event_id": "evt_d5a7c82420a48019",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-26T09:51:20.472250Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-26T09:51:20.472250Z",
+      "last_updated_at": "2026-10-26T09:51:20.472250Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "MEXC winds down Netherlands, expands restricted-market list",
+      "title_zh": "MEXC winds down Netherlands, expands restricted-market list",
+      "topics": [
+        "exchange-restrictions",
+        "mexc",
+        "mica",
+        "netherlands",
+        "regulatory-compliance"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "MEXC is winding down Netherlands services by November 16 due to lacking MiCA authorization and is discontinuing Russia and Belarus access while maintaining a 13-jurisdiction restricted list.",
+          "current_state_zh": "MEXC is winding down Netherlands services by November 16 due to lacking MiCA authorization and is discontinuing Russia and Belarus access while maintaining a 13-jurisdiction restricted list.",
+          "detailed_summary_en": "MEXC is winding down Netherlands services by November 16 due to lacking MiCA authorization and is discontinuing Russia and Belarus access while maintaining a 13-jurisdiction restricted list.",
+          "detailed_summary_zh": "MEXC is winding down Netherlands services by November 16 due to lacking MiCA authorization and is discontinuing Russia and Belarus access while maintaining a 13-jurisdiction restricted list.",
+          "event_id": "evt_d5a7c82420a48019",
+          "first_seen_at": "2026-10-26T09:51:20.472250Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-26T09:33:10Z",
+          "published_at": "2026-10-26T09:33:10Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/mexc-exits-netherlands-expands-restricted-market-list-21380"
+            }
+          ],
+          "story_ids": [
+            "telegram:wublockchainenglish:26548"
+          ],
+          "time_precision": "published",
+          "title_en": "MEXC winds down Netherlands, expands restricted-market list",
+          "title_zh": "MEXC winds down Netherlands, expands restricted-market list",
+          "update_id": "upd_f0b26b54846b8a7d",
+          "update_type": "initial",
+          "what_changed_en": "MEXC is winding down Netherlands services by November 16 due to lacking MiCA authorization and is discontinuing Russia and Belarus access while maintaining a 13-jurisdiction restricted list.",
+          "what_changed_zh": "MEXC is winding down Netherlands services by November 16 due to lacking MiCA authorization and is discontinuing Russia and Belarus access while maintaining a 13-jurisdiction restricted list."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Franklin Templeton filed Form 8-A with the SEC for two Nasdaq-listed index ETFs (FBEQ, FIBT) that hold roughly 95% US equities and 5% bitcoin exposure, automatically reinvesting stock dividends into bitcoin-linked instruments.",
+      "current_state_zh": "Franklin Templeton filed Form 8-A with the SEC for two Nasdaq-listed index ETFs (FBEQ, FIBT) that hold roughly 95% US equities and 5% bitcoin exposure, automatically reinvesting stock dividends into bitcoin-linked instruments.",
+      "entities": [
+        "etf"
+      ],
+      "event_id": "evt_8f0f1556a1f2e31e",
+      "event_type": "market_structure",
+      "first_seen_at": "2026-10-26T09:51:23.388198Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-26T09:51:23.388198Z",
+      "last_updated_at": "2026-10-26T09:51:23.388198Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "富兰克林邓普顿拟推两只「股息再投资比特币」ETF",
+      "title_zh": "富兰克林邓普顿拟推两只「股息再投资比特币」ETF",
+      "topics": [
+        "bitcoin-etf",
+        "franklin-templeton",
+        "sec-filing"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Franklin Templeton filed Form 8-A with the SEC for two Nasdaq-listed index ETFs (FBEQ, FIBT) that hold roughly 95% US equities and 5% bitcoin exposure, automatically reinvesting stock dividends into bitcoin-linked instruments.",
+          "current_state_zh": "Franklin Templeton filed Form 8-A with the SEC for two Nasdaq-listed index ETFs (FBEQ, FIBT) that hold roughly 95% US equities and 5% bitcoin exposure, automatically reinvesting stock dividends into bitcoin-linked instruments.",
+          "detailed_summary_en": "Franklin Templeton filed Form 8-A with the SEC for two Nasdaq-listed index ETFs (FBEQ, FIBT) that hold roughly 95% US equities and 5% bitcoin exposure, automatically reinvesting stock dividends into bitcoin-linked instruments.",
+          "detailed_summary_zh": "Franklin Templeton filed Form 8-A with the SEC for two Nasdaq-listed index ETFs (FBEQ, FIBT) that hold roughly 95% US equities and 5% bitcoin exposure, automatically reinvesting stock dividends into bitcoin-linked instruments.",
+          "event_id": "evt_8f0f1556a1f2e31e",
+          "first_seen_at": "2026-10-26T09:51:23.388198Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-26T06:28:02Z",
+          "published_at": "2026-10-26T06:28:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373673?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:202312"
+          ],
+          "time_precision": "published",
+          "title_en": "富兰克林邓普顿拟推两只「股息再投资比特币」ETF",
+          "title_zh": "富兰克林邓普顿拟推两只「股息再投资比特币」ETF",
+          "update_id": "upd_310f5469aa015c37",
+          "update_type": "initial",
+          "what_changed_en": "Franklin Templeton filed Form 8-A with the SEC for two Nasdaq-listed index ETFs (FBEQ, FIBT) that hold roughly 95% US equities and 5% bitcoin exposure, automatically reinvesting stock dividends into bitcoin-linked instruments.",
+          "what_changed_zh": "Franklin Templeton filed Form 8-A with the SEC for two Nasdaq-listed index ETFs (FBEQ, FIBT) that hold roughly 95% US equities and 5% bitcoin exposure, automatically reinvesting stock dividends into bitcoin-linked instruments."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Soneium, Sony's Ethereum Layer 2, plans to launch an ecosystem token SONEIUM and reposition around an on-chain entertainment economy built on tokenized IP, IP vaults, and tokenized IP bonds.",
+      "current_state_zh": "Soneium, Sony's Ethereum Layer 2, plans to launch an ecosystem token SONEIUM and reposition around an on-chain entertainment economy built on tokenized IP, IP vaults, and tokenized IP bonds.",
+      "entities": [
+        "soneium"
+      ],
+      "event_id": "evt_d82c277f73fd7285",
+      "event_type": "product_release",
+      "first_seen_at": "2026-10-26T09:51:23.401200Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-26T09:51:24.703888Z",
+      "last_updated_at": "2026-10-26T09:51:24.703888Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [
+        "evt_fc28b2e8b9f155e5"
+      ],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Soneium plans to issue ecosystem token SONEIUM and build on-chain IP economy",
+      "title_zh": "Soneium 计划发行生态代币 SONEIUM 并布局链上 IP 经济",
+      "topics": [
+        "ip-tokenization",
+        "layer-2",
+        "soneium",
+        "sony",
+        "token-launch",
+        "tokenized-ip"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Soneium announced it will issue a native ecosystem token, SONEIUM, and build out an on-chain IP economy with a Portal for IP issuance and royalty distribution, IP Vault and IP Bond investment products, and initial partners including Japan's Moriusa character IP and Korean K-pop firm DayOneDream.",
+          "current_state_zh": "Soneium announced it will issue a native ecosystem token, SONEIUM, and build out an on-chain IP economy with a Portal for IP issuance and royalty distribution, IP Vault and IP Bond investment products, and initial partners including Japan's Moriusa character IP and Korean K-pop firm DayOneDream.",
+          "detailed_summary_en": "Soneium announced it will issue a native ecosystem token, SONEIUM, and build out an on-chain IP economy with a Portal for IP issuance and royalty distribution, IP Vault and IP Bond investment products, and initial partners including Japan's Moriusa character IP and Korean K-pop firm DayOneDream.",
+          "detailed_summary_zh": "Soneium announced it will issue a native ecosystem token, SONEIUM, and build out an on-chain IP economy with a Portal for IP issuance and royalty distribution, IP Vault and IP Bond investment products, and initial partners including Japan's Moriusa character IP and Korean K-pop firm DayOneDream.",
+          "event_id": "evt_d82c277f73fd7285",
+          "first_seen_at": "2026-10-26T09:51:23.401200Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-26T08:43:01Z",
+          "published_at": "2026-10-26T08:43:01Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373709?from=telegram"
+            },
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115992"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:202342",
+            "telegram:foresightnews:121304"
+          ],
+          "time_precision": "published",
+          "title_en": "Soneium计划推出原生生态代币SONEIUM，并布局IP代币化",
+          "title_zh": "Soneium计划推出原生生态代币SONEIUM，并布局IP代币化",
+          "update_id": "upd_11305e9969451a01",
+          "update_type": "initial",
+          "what_changed_en": "Soneium announced it will issue a native ecosystem token, SONEIUM, and build out an on-chain IP economy with a Portal for IP issuance and royalty distribution, IP Vault and IP Bond investment products, and initial partners including Japan's Moriusa character IP and Korean K-pop firm DayOneDream.",
+          "what_changed_zh": "Soneium announced it will issue a native ecosystem token, SONEIUM, and build out an on-chain IP economy with a Portal for IP issuance and royalty distribution, IP Vault and IP Bond investment products, and initial partners including Japan's Moriusa character IP and Korean K-pop firm DayOneDream."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Paradigm CTO Georgios Konstantopoulos said the team will release Solar's EVM code-generation feature this week, claiming compilation over 100x faster than solc and more gas-efficient bytecode without requiring assembly, following earlier teasers of a JIT-based evm2.",
+      "current_state_zh": "Paradigm CTO Georgios Konstantopoulos said the team will release Solar's EVM code-generation feature this week, claiming compilation over 100x faster than solc and more gas-efficient bytecode without requiring assembly, following earlier teasers of a JIT-based evm2.",
+      "entities": [
+        "cto",
+        "evm",
+        "paradigm",
+        "solar",
+        "solidity"
+      ],
+      "event_id": "evt_06e4ac1a6406ed51",
+      "event_type": "product_release",
+      "first_seen_at": "2026-10-26T09:51:24.702388Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-26T09:51:24.702388Z",
+      "last_updated_at": "2026-10-26T09:51:24.702388Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【Paradigm CTO：本周将发布 Solidity 编译器 Solar 的 EVM 代码生成功能】",
+      "title_zh": "【Paradigm CTO：本周将发布 Solidity 编译器 Solar 的 EVM 代码生成功能】",
+      "topics": [
+        "compiler",
+        "developer-tools",
+        "paradigm",
+        "solidity"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Paradigm CTO Georgios Konstantopoulos said the team will release Solar's EVM code-generation feature this week, claiming compilation over 100x faster than solc and more gas-efficient bytecode without requiring assembly, following earlier teasers of a JIT-based evm2.",
+          "current_state_zh": "Paradigm CTO Georgios Konstantopoulos said the team will release Solar's EVM code-generation feature this week, claiming compilation over 100x faster than solc and more gas-efficient bytecode without requiring assembly, following earlier teasers of a JIT-based evm2.",
+          "detailed_summary_en": "Paradigm CTO Georgios Konstantopoulos said the team will release Solar's EVM code-generation feature this week, claiming compilation over 100x faster than solc and more gas-efficient bytecode without requiring assembly, following earlier teasers of a JIT-based evm2.",
+          "detailed_summary_zh": "Paradigm CTO Georgios Konstantopoulos said the team will release Solar's EVM code-generation feature this week, claiming compilation over 100x faster than solc and more gas-efficient bytecode without requiring assembly, following earlier teasers of a JIT-based evm2.",
+          "event_id": "evt_06e4ac1a6406ed51",
+          "first_seen_at": "2026-10-26T09:51:24.702388Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-26T08:41:03Z",
+          "published_at": "2026-10-26T08:41:03Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115988"
+            },
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/373712?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:121300",
+            "telegram:theblockbeats:202345"
+          ],
+          "time_precision": "published",
+          "title_en": "【Paradigm CTO：本周将发布 Solidity 编译器 Solar 的 EVM 代码生成功能】",
+          "title_zh": "【Paradigm CTO：本周将发布 Solidity 编译器 Solar 的 EVM 代码生成功能】",
+          "update_id": "upd_c9507f9750889c85",
+          "update_type": "initial",
+          "what_changed_en": "Paradigm CTO Georgios Konstantopoulos said the team will release Solar's EVM code-generation feature this week, claiming compilation over 100x faster than solc and more gas-efficient bytecode without requiring assembly, following earlier teasers of a JIT-based evm2.",
+          "what_changed_zh": "Paradigm CTO Georgios Konstantopoulos said the team will release Solar's EVM code-generation feature this week, claiming compilation over 100x faster than solc and more gas-efficient bytecode without requiring assembly, following earlier teasers of a JIT-based evm2."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Aviva Investors launched a tokenized share class of its £22bn Sterling Liquidity Fund on the XRP Ledger, its second tokenized fund after July's USD version, with combined tokenized investments exceeding $116M including $66M from Aviva itself.",
+      "current_state_zh": "Aviva Investors launched a tokenized share class of its £22bn Sterling Liquidity Fund on the XRP Ledger, its second tokenized fund after July's USD version, with combined tokenized investments exceeding $116M including $66M from Aviva itself.",
+      "entities": [
+        "aviva",
+        "investors",
+        "ledger",
+        "xrp",
+        "xrp-ledger"
+      ],
+      "event_id": "evt_48b68e6ecb1d11d2",
+      "event_type": "market_structure",
+      "first_seen_at": "2026-10-26T09:51:24.704282Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-26T09:51:24.704282Z",
+      "last_updated_at": "2026-10-26T09:51:24.704282Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "【英国 Aviva Investors 在 XRP Ledger 推出英镑流动性基金代币化份额】",
+      "title_zh": "【英国 Aviva Investors 在 XRP Ledger 推出英镑流动性基金代币化份额】",
+      "topics": [
+        "custody",
+        "money-market-funds",
+        "rwa-tokenization",
+        "xrp-ledger"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Aviva Investors launched a tokenized share class of its £22bn Sterling Liquidity Fund on the XRP Ledger, its second tokenized fund after July's USD version, with combined tokenized investments exceeding $116M including $66M from Aviva itself.",
+          "current_state_zh": "Aviva Investors launched a tokenized share class of its £22bn Sterling Liquidity Fund on the XRP Ledger, its second tokenized fund after July's USD version, with combined tokenized investments exceeding $116M including $66M from Aviva itself.",
+          "detailed_summary_en": "Aviva Investors launched a tokenized share class of its £22bn Sterling Liquidity Fund on the XRP Ledger, its second tokenized fund after July's USD version, with combined tokenized investments exceeding $116M including $66M from Aviva itself.",
+          "detailed_summary_zh": "Aviva Investors launched a tokenized share class of its £22bn Sterling Liquidity Fund on the XRP Ledger, its second tokenized fund after July's USD version, with combined tokenized investments exceeding $116M including $66M from Aviva itself.",
+          "event_id": "evt_48b68e6ecb1d11d2",
+          "first_seen_at": "2026-10-26T09:51:24.704282Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-26T09:48:19Z",
+          "published_at": "2026-10-26T09:48:19Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "foresightnews",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://foresightnews.pro/news/h5Detail/115993"
+            }
+          ],
+          "story_ids": [
+            "telegram:foresightnews:121305"
+          ],
+          "time_precision": "published",
+          "title_en": "【英国 Aviva Investors 在 XRP Ledger 推出英镑流动性基金代币化份额】",
+          "title_zh": "【英国 Aviva Investors 在 XRP Ledger 推出英镑流动性基金代币化份额】",
+          "update_id": "upd_143e0799a2e89c62",
+          "update_type": "initial",
+          "what_changed_en": "Aviva Investors launched a tokenized share class of its £22bn Sterling Liquidity Fund on the XRP Ledger, its second tokenized fund after July's USD version, with combined tokenized investments exceeding $116M including $66M from Aviva itself.",
+          "what_changed_zh": "Aviva Investors launched a tokenized share class of its £22bn Sterling Liquidity Fund on the XRP Ledger, its second tokenized fund after July's USD version, with combined tokenized investments exceeding $116M including $66M from Aviva itself."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -192708,6 +193120,9 @@
     "ecb": [
       "evt_1851f7d38a8f886b",
       "evt_93077ad0ca930996"
+    ],
+    "eip-8037": [
+      "evt_0f8b132b10a6f10f"
     ],
     "eip-8288": [
       "evt_9a2795c305f4c9e8"
@@ -193283,6 +193698,9 @@
       "evt_5ce852ffb58811eb",
       "evt_8864f7b04b51d920",
       "evt_c5d7cfc109bef6ba"
+    ],
+    "soneium": [
+      "evt_d82c277f73fd7285"
     ],
     "south-korea": [
       "evt_2f72043596111bde",
@@ -211859,7 +212277,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Headline concerns a concrete regulatory/market-structure development: 22 issuers publicly objecting to OKX-ICE's tokenized stock products while major blue-chip companies decline to participate in the SEC's tokenization sandbox. This has a clear transmission path to how tokenized equities can be offered and accessed in the US, making it high-value rather than routine. It falls short of a landmark decision because it is industry pushback and voluntary non-participation rather than a binding rule change, and the item provides only headline-level detail with no discussion to assess.",
         "ai_score": 7.0,
@@ -211892,7 +212310,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "马斯克宣称筹集400亿美元，并将算力公司的竞争归结为债务融资成本，这对AI基础设施融资格局具有重要信号意义；但该信息以表态为主，尚非完整披露或已改变行业结构的里程碑事件。",
         "ai_score": 7.5,
@@ -211923,7 +212341,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Institutional pushback from major corporates (Wells Fargo, Arm, Intuit) against tokenized stock products is a material market-structure and regulatory signal, with a clear transmission path to how equity tokenization is permitted and offered. It falls short of a landmark decision since it is advocacy/opposition rather than a binding rule change.",
         "ai_score": 7.0,
@@ -211956,7 +212374,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Substantive protocol and staking-infrastructure development from Lido, a major liquid staking provider. The introduction of larger Ethereum validators with a 32 ETH operator bond materially affects validator operations, capital requirements, and Lido's staking capacity, though it is not a systemic market event or network-wide upgrade.",
         "ai_score": 7.0,
@@ -211994,7 +212412,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A broad corporate block on OKXICE tokenized stocks is a material market-structure and compliance setback for tokenized equities, pressuring an exchange-backed 63-share crypto plan. It is significant for tokenization and exchange operations but not a systemic market event.",
         "ai_score": 7.0,
@@ -212024,6 +212442,210 @@
         "source_type": "google_news",
         "title": "22 Companies Block OKXICE Tokenized Stocks, Putting 63-Share Crypto Plan Under Pressure",
         "url": "https://www.cryptoninjas.net/news/22-companies-block-okxice-tokenized-stocks-putting-63-share-crypto-plan-under-pressure/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Blast's wind-down hits a hard milestone: the withdrawal interface deadline passes with roughly $40 million still sitting in the bridge, leaving holders facing a manual/contract-level exit path. That is a material, evidenced user-impact event for a widely used L2 and a notable negative signal for the rollup ecosystem, though it is a planned shutdown rather than an exploit or systemic market event, so it falls short of the 8.5-9 tier.",
+        "ai_score": 8.0,
+        "ai_summary": "Blast reached its withdrawal-interface deadline with about $40 million in user funds still held in its bridge, forcing remaining holders to exit through fallback contract methods as the L2 winds down.",
+        "ai_tags": [
+          "blast",
+          "layer-2",
+          "bridge-withdrawals",
+          "protocol-shutdown",
+          "user-funds"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxNeGdIcDdGLV9WTFA4Um14VlMzb1FHZFlkUFJweVFXV0h0cFhyTE9yQlNxX1h6WExUa29XTlU1Vmd4dnNubVNWc1ZpZFZlU1E5OXl4S011Z1BIRWVSdVo5elB6RlIyQmp1TkRpckV5U0tiVW5KVnpNay1vRnRIbDVOSHN0NmYzN2Jqd19qeE1YVktqRXhwZG5IQVE5dmd6MzhxVnNfdHhRUTIyRkFEbVlNc05yUV8?oc=5\" target=\"_blank\">Blast Reaches Withdrawal Interface Deadline With $40 Million Still in Bridge</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-26T09:51:24.927034Z",
+        "id": "google_news:article:7260146a53582018",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-26T09:49:17Z",
+        "source_type": "google_news",
+        "title": "Blast Reaches Withdrawal Interface Deadline With $40 Million Still in Bridge",
+        "url": "https://thedefiant.io/news/blockchains/blast-reaches-withdrawal-interface-deadline-with-40-million-still-in-bridge"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A group of major listed companies — Microsoft, McDonald's, Alphabet among them — publicly rejecting crypto platforms' tokenized-equity offerings is a meaningful market-structure and legal development: issuer consent is the central fault line for tokenized stocks, and coordinated corporate pushback could constrain how exchanges and platforms bring equity tokens to market. It is not a binding regulatory ruling or a systemic event, so it sits below the 8+ tier, but it is materially more consequential than routine listing or product news.",
+        "ai_score": 7.0,
+        "ai_summary": "A coalition of large public companies including Microsoft, McDonald's and Alphabet is publicly opposing crypto platforms' plans to issue tokenized versions of their shares, pushing back on the tokenized-equity wave.",
+        "ai_tags": [
+          "tokenized-stocks",
+          "equities",
+          "market-structure",
+          "issuer-consent",
+          "regulation"
+        ],
+        "author": "Tech Times",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi0wFBVV95cUxNRG5HczhoYmJhZFJDOGhubnRpR0dBcmZNaFdZUWdZZEZUVTY4cDdQaGJ2M2Vad3gwdTkwaWFMSURPWEh5REdDTmVwWmhfd0stblFrLXE0OGN1WUtaQzFxanIzMHozM09OaDJvMnhtaVhJcEtROGVIaUl4UUVRRXg0dDBOTzZjVm9ndlNvRzJrM3QtWlNyQ0szeEQzV2YzWDhqeVZPX2JRMnZVNkRTUmUyN0lUNktzMTBsQ2hUTFVndmFSTzJtUVZUNUpWemFHM19QUE5J?oc=5\" target=\"_blank\">Microsoft, McDonald's, Alphabet, and More Say No to Crypto Platforms' Stock Tokenization Plans</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Tech Times</font>",
+        "fetched_at": "2026-10-26T09:51:19.692848Z",
+        "id": "google_news:article:44e40bdbfc82fde9",
+        "metadata": {
+          "category": "crypto-regulation",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.techtimes.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Tech Times"
+        },
+        "published_at": "2026-10-26T07:00:02Z",
+        "source_type": "google_news",
+        "title": "Microsoft, McDonald's, Alphabet, and More Say No to Crypto Platforms' Stock Tokenization Plans",
+        "url": "https://www.techtimes.com/articles/329481/20261026/microsoft-mcdonalds-alphabet-more-say-no-crypto-platforms-stock-tokenization-plans.htm"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "An open-source model release from HKUST, CMU and YanShan Technology that claims a 99% KV cache reduction and ~6x single-GPU throughput, enabling 512 concurrent long-context inference streams on one card. If the claimed numbers hold up, this is a substantive inference-efficiency result with clear implications for builders deploying long-context LLMs; however, it is an early research/engineering release with vendor-reported benchmarks rather than a validated ecosystem-wide breakthrough.",
+        "ai_score": 7.0,
+        "ai_summary": "HKUST, CMU and YanShan Technology have open-sourced a model that cuts KV cache by 99% and raises single-GPU throughput roughly 6x, allowing 512 concurrent long-reasoning streams on a single card.",
+        "ai_tags": [
+          "open-source-models",
+          "KV-cache",
+          "inference-optimization",
+          "long-context",
+          "LLM-efficiency"
+        ],
+        "author": "一水",
+        "content": "一张卡，512路长推理同时跑",
+        "fetched_at": "2026-10-26T09:51:33.783673Z",
+        "id": "rss:www.qbitai.com_feed:fd2a45bd3e7c814e",
+        "metadata": {
+          "category": "ai-labs",
+          "event_retry_pending": true,
+          "feed_name": "QbitAI 量子位",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "ai-media",
+          "tags": [
+            "资讯",
+            "首页轮播",
+            "KV Cache优化"
+          ]
+        },
+        "published_at": "2026-10-26T06:45:25Z",
+        "source_type": "rss",
+        "title": "KV Cache砍掉99%，单卡吞吐飙6倍，港科CMU联手岩山科技开源新模型",
+        "url": "https://www.qbitai.com/2026/10/505407.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A wallet provider security incident involving compromised third-party API keys and phishing emails is high-value for user safety, but it falls short of a confirmed exploit or material fund-loss event.",
+        "ai_score": 7.0,
+        "ai_summary": "Foundation disclosed that compromised Cloudflare API keys were used to send phishing emails to Passport Wallet users.",
+        "ai_tags": [
+          "security",
+          "phishing",
+          "Cloudflare",
+          "Passport Wallet",
+          "API keys"
+        ],
+        "author": "The Crypto Times",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiwwFBVV95cUxPSURZazRPOEpWa0RvRFBvdmQ2UFJ6d3FYUW43dlJLdFk0WVFEaUo1Zl9KMVN5NHNEUDh1QW91X3NhMW1ZZGw3ZjY3OU5YNEswOG5BQk5fbEpLa3NnN29WMmw2dkpyYUFGLXRqQ3NjYWxSYTczSjdQOVhOWmtPSzNQZTViQTJTYm5wWEtxbVhfbnFwSFlob3dQeU5nZjhPS1AtWEo4cGo0S0lQQUwyVXRGMEt5bk1WUGhHcWE3SDFaNDQ4aUE?oc=5\" target=\"_blank\">Foundation Says Compromised Cloudflare API Keys Fueled Passport Wallet Phishing Emails</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Crypto Times</font>",
+        "fetched_at": "2026-10-26T09:51:19.693149Z",
+        "id": "google_news:article:8bbf2124f9d714bf",
+        "metadata": {
+          "category": "crypto-protocols",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.cryptotimes.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "The Crypto Times"
+        },
+        "published_at": "2026-10-26T06:35:28Z",
+        "source_type": "google_news",
+        "title": "Foundation Says Compromised Cloudflare API Keys Fueled Passport Wallet Phishing Emails",
+        "url": "https://www.cryptotimes.io/2026/10/26/foundation-says-compromised-cloudflare-api-keys-fueled-passport-wallet-phishing-emails/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Reports a substantive Tesla Optimus initiative: building robot training infrastructure and repurposing vehicle production capacity for mass production while applying the FSD training approach. This could materially accelerate humanoid robotics, but disclosed technical and operational specifics remain limited, keeping it below breakthrough tier.",
+        "ai_score": 7.0,
+        "ai_summary": "Tesla is creating a training 'school' for Optimus humanoid robots and repurposing vehicle production capacity for mass production, with Optimus expected to follow the FSD training approach.",
+        "ai_tags": [
+          "Tesla Optimus",
+          "humanoid robots",
+          "embodied AI",
+          "mass production",
+          "FSD"
+        ],
+        "author": "杰西卡",
+        "content": "擎天柱将复制FSD训练思路",
+        "fetched_at": "2026-10-26T09:51:33.783846Z",
+        "id": "rss:www.qbitai.com_feed:25216c64174d1619",
+        "metadata": {
+          "category": "ai-labs",
+          "event_retry_pending": true,
+          "feed_name": "QbitAI 量子位",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "ai-media",
+          "tags": [
+            "智能车参考",
+            "特斯拉"
+          ]
+        },
+        "published_at": "2026-10-26T06:32:23Z",
+        "source_type": "rss",
+        "title": "马斯克给机器人建了个学校！腾出百万车型产线来量产",
+        "url": "https://www.qbitai.com/2026/10/505271.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Coinbase setting a conversion deadline affecting Tether USDt is a material exchange operational change for a top stablecoin, but the article is framed as price commentary and provides limited substantiated impact detail.",
+        "ai_score": 7.0,
+        "ai_summary": "Coinbase has set an October 30 conversion involving Tether USDt, a development with potential implications for USDT holders and pricing.",
+        "ai_tags": [
+          "Coinbase",
+          "Tether",
+          "USDT",
+          "stablecoins",
+          "exchange-operations"
+        ],
+        "author": "ad-hoc-news.de",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxOelc3OURaY19MWmJtS3dIMVR4SUw3Q1ZwNURJYVA5d3laSG50V0RjWXh0aTZaQkpZQTBlMXZwcVBYbHpXV0pHQzdVenFNMS1BNmhhLWMwSWhzcFJ0VVNlYnJ3SXFNVlFHbmZyOVBXY2xuMzZSM2Z1S3RSNm80cXNDX1pxXzEzemEzMUEwVzlvTlllYnZOT2ZJWXZTc0pjY2c2TWhzakMwMVNLOTRqQkxIWmExYTZ3eFpsN3ZPZHB0ZUpSLWlKWGtfTHpRWjA1Zw?oc=5\" target=\"_blank\">Coinbase sets October 30 conversion: What it means for Tether USDt price</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">ad-hoc-news.de</font>",
+        "fetched_at": "2026-10-26T09:51:19.692430Z",
+        "id": "google_news:article:bb7c057267e939f8",
+        "metadata": {
+          "category": "exchange-announcements",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.ad-hoc-news.de",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "ad-hoc-news.de"
+        },
+        "published_at": "2026-10-26T06:07:19Z",
+        "source_type": "google_news",
+        "title": "Coinbase sets October 30 conversion: What it means for Tether USDt price",
+        "url": "https://www.ad-hoc-news.de/boerse/news/marktberichte/coinbase-sets-october-30-conversion-what-it-means-for-tether-usdt-price/70411759"
       }
     }
   ],
