@@ -4,7 +4,40 @@
   <link href="https://xiyu.news/feeds/technology-en.xml" rel="self"/>
   <link href="https://xiyu.news/"/>
   <id>https://xiyu.news/feeds/technology-en.xml</id>
-  <updated>2026-10-26T00:00:00Z</updated>
+  <updated>2026-10-27T00:00:00Z</updated>
+  <entry>
+    <title>Working with academic communities to build scientific understanding</title>
+    <link href="https://openai.com/index/building-scientific-understanding-with-academic-communities/"/>
+    <id>https://xiyu.news/editions/2026-10-27/#hackernews:story:50251344</id>
+    <updated>2026-10-27T00:00:00Z</updated>
+    <summary>OpenAI announced on October 26, 2026 that its models produced natural-language proofs of three long-standing open results: local smoothing for the Kakeya conjecture, the falsity of the Exponential Time Hypothesis (ETH), and the existence of quantum chromodynamics and completions of the Standard Model. The Yang–Mills existence proof was generated on September 9, 2026 and the QCD proof on September 18, 2026, with the release held back until Lean formalization of the Yang–Mills result was completed on October 16, 2026.
+
+OpenAI framed the release around how researchers can verify and build on the results, and said the volume and complexity of the work was why publication waited on Lean formalization. Commenters with complexity-theory background treated an ETH refutation as the most consequential item, since ETH underpins many hardness and lower-bound results.
+
+The local smoothing claim is presented as settling Kakeya and Stein&#x27;s restriction conjecture in every dimension, a problem open since 1991. No independent verification of the proofs has been reported; coverage at the time of the announcement described the results as still unverified.</summary>
+  </entry>
+  <entry>
+    <title>Google, Amazon and Broadcom Provide $77 Billion in Financing to Anthropic</title>
+    <link href="https://m.theblockbeats.info/flash/373788?from=telegram"/>
+    <id>https://xiyu.news/editions/2026-10-27/#telegram:theblockbeats:202419</id>
+    <updated>2026-10-27T00:00:00Z</updated>
+    <summary>Anthropic has secured a total of $77 billion in additional financing from Google, Amazon and Broadcom, according to a BlockBeats report dated October 26. Each agreement carries its own conditions: Amazon&#x27;s tranche is tied to Anthropic reaching specific compute-capacity milestones, while Google&#x27;s $20 billion commitment is partly contingent on Anthropic meeting certain revenue targets.
+
+The commitments tie Anthropic&#x27;s funding directly to compute buildout and revenue performance, linking capital to measurable operational milestones rather than a single lump-sum investment. Google and Amazon have now collectively invested tens of billions of dollars in Anthropic and are its largest shareholders.
+
+Of the total, Google&#x27;s portion is a $20 billion commitment that is partly conditional on revenue targets; Amazon&#x27;s agreement is structured around compute-capacity milestones. The report characterizes Google and Amazon as simultaneously investors in and competitors of Anthropic.</summary>
+  </entry>
+  <entry>
+    <title>Anthropic is burning gas to feed the AI boom</title>
+    <link href="https://www.theverge.com/ai-artificial-intelligence/1018994/anthropic-ipo-ai-data-center-energy-climate-risk"/>
+    <id>https://xiyu.news/editions/2026-10-27/#rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:b47f04e886ebe647</id>
+    <updated>2026-10-27T00:00:00Z</updated>
+    <summary>Anthropic&#x27;s public S-1 filing with the US Securities and Exchange Commission on Monday discloses that its data center buildout is increasingly reliant on natural gas, and states that &quot;competition for access to electrical supply and data center locations with adequate power availability is intense.&quot; The filing also sets out plans to list on the Nasdaq under the ticker ANT.
+
+The filing makes AI&#x27;s energy supply and climate exposure an explicit risk factor for public-market investors ahead of a frontier lab&#x27;s listing, rather than a background concern raised by outside critics.
+
+The quoted language appears as a risk disclosure rather than a committed procurement plan. Coverage of the same filing noted that roughly one-fifth of Anthropic&#x27;s revenue came from two customers.</summary>
+  </entry>
   <entry>
     <title>Musk Says SpaceX Raised $40 Billion to Buy GPUs</title>
     <link href="https://m.theblockbeats.info/flash/373612?from=telegram"/>
@@ -411,38 +444,5 @@ Claude developed a reversible modular inversion algorithm that eliminates the ne
 Reflection positions Beam as a model users can own, customize and scale, which puts a frontier-scale open-weight option in the hands of builders who want to fine-tune or self-host rather than rely solely on hosted APIs.
 
 Beam supports a context window of 1 million tokens and was developed predominantly for English; it takes text as input and generates text as output.</summary>
-  </entry>
-  <entry>
-    <title>Anthropic Says Claude Traced NIST Curve Seeds to 1990s Timestamps</title>
-    <link href="https://thedefiant.io/news/security/anthropic-says-claude-traced-nist-curve-seeds-to-1990s-timestamps"/>
-    <id>https://xiyu.news/editions/2026-10-17/#google_news:article:cf80280130ab47d4</id>
-    <updated>2026-10-17T00:00:00Z</updated>
-    <summary>Anthropic&#x27;s Frontier Red Team reported that Claude traced the seed constants behind the NIST elliptic curves P-192, P-224, P-256, P-384 and P-521 to the C library random-number generator lrand48(), seeded with a Unix timestamp, rather than to a hashed arbitrary phrase as the standards described. According to Filippo Valsorda&#x27;s post &quot;The NIST Elliptic Curves Seeds Bounty Has Been Claimed,&quot; the derivation was identified in under half an hour, and five NIST prime-curve seeds plus five seeds from the ANSI X9.62 standard all shared the pattern lrand48() &gt;&gt; 23.
-
-The result offers a concrete, independently checkable explanation for the &quot;nothing up my sleeve&quot; constants that cryptographers have questioned since the curves were published. As the source and commenters note, however, it establishes the method of generation rather than whether the parameters were selected for a hidden property.
-
-The NIST prime curves were published in FIPS 186-2 in 2000 and, per ANSI X9.62, were supposed to be generated by hashing an arbitrary seed with SHA-1. Each recovered 48-bit lrand48() state regenerates all 160 bits of its seed, a match the source says does not happen by chance; the binary seed B-163 remains unexplained.</summary>
-  </entry>
-  <entry>
-    <title>How the Claude Code team does code review</title>
-    <link href="https://claude.dev/blog/solving-code-review-at-anthropic/"/>
-    <id>https://xiyu.news/editions/2026-10-17/#hackernews:story:50122951</id>
-    <updated>2026-10-17T00:00:00Z</updated>
-    <summary>Anthropic&#x27;s Claude Code team published a post describing how it runs code review at scale, reporting roughly 30,000 pull requests per day, with most of the path automated and human attention directed to high-risk changes. Low-risk changes — docs, copy, internal-only features and additive changes behind a flag — require no human approval once automated review and security checks are green.
-
-According to the team&#x27;s own framing, the pipeline is designed to send scarce human review attention only where the risk is, while the reviewer&#x27;s eval suite grows with every incident and every change to the reviewer is scored against all of it.
-
-The ~30k PRs/day figure and the low-risk categories (docs, copy, internal-only features, additive changes behind a flag) come from the team&#x27;s own blog post rather than independent measurement.</summary>
-  </entry>
-  <entry>
-    <title>Welcome Muse Spark Open: open-weight frontier multimodal mixture-of-experts model from Meta</title>
-    <link href="https://huggingface.co/blog/meta-muse-spark-open"/>
-    <id>https://xiyu.news/editions/2026-10-16/#rss:huggingface.co_blog_feed.xml:ff0cf28c5d753057</id>
-    <updated>2026-10-16T00:00:00Z</updated>
-    <summary>Meta announced Muse Spark Open, an open-weight frontier multimodal mixture-of-experts model that it describes as &quot;the most capable US open-weight model to date.&quot; Meta says it is the first model in its class that can run on a desktop using two Apple M5 Ultra Mac Studios with the latest MLX framework, and the Hugging Face listing names it Muse-Spark-Open-816B-A42B.
-
-Because the weights are published, frontier-class multimodal parameters can be downloaded, fine-tuned and self-hosted rather than accessed only through Meta&#x27;s services. Meta also frames Apple silicon as a target deployment platform, presenting local desktop inference as viable for a model of this class.
-
-Meta and Apple teamed up for the launch, with the model optimized to run locally on Apple silicon; a community-linked Meta deployment page lists support across multiple model runners, including Unsloth and MLX. The published model identifier is Muse-Spark-Open-816B-A42B.</summary>
   </entry>
 </feed>

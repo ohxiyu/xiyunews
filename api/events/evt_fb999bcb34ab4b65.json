@@ -42,20 +42,29 @@
       "material_change": true,
       "title_zh": "【Keystone：设备验证密钥遭泄露，将销毁 18,835 台库存设备】",
       "title_en": "【Keystone：设备验证密钥遭泄露，将销毁 18,835 台库存设备】",
-      "what_changed_zh": "Keystone reported that attackers exploited a third-party site analytics tool to obtain the WebAuth keys used to verify device authenticity, prompting it to destroy 18,835 in-stock hardware wallets made with the old keys, halt unshipped orders in favor of pre-sales, and shorten personal-data retention after 25,964 Shopify purchase records and 12,873 abandoned checkouts were exposed.",
+      "what_changed_zh": "Keystone 表示，调查发现入侵其网站的攻击者获取了用于验证硬件钱包真伪的 WebAuth 设备认证密钥，这可能让仿冒设备通过官方真伪校验。公司将销毁 18,835 台使用旧密钥的未售出设备，暂停未发货订单，并将新生产切换至替换密钥；此次事件涉及 25,964 条购买记录和 12,873 条未完成的结账记录。\n\n密钥泄露削弱了用户用来确认真伪的设备校验环节，尽管 Keystone 表示助记词、私钥和交易签名均未受影响。泄露的购买数据（姓名、联系方式、收货地址和订单详情）带来钓鱼风险，已有用户报告有人利用 Keystone 订单信息实施社会工程学电话诈骗。\n\nKeystone 表示，受影响记录仅限于通过其官网 Shopify 完成的购买，并承认其自动数据删除工具“运行不可靠”，导致部分个人信息在承诺期限之后仍被保留；公司还称另有约 25,000 条记录已按保留政策被永久删除。",
       "what_changed_en": "Keystone reported that attackers exploited a third-party site analytics tool to obtain the WebAuth keys used to verify device authenticity, prompting it to destroy 18,835 in-stock hardware wallets made with the old keys, halt unshipped orders in favor of pre-sales, and shorten personal-data retention after 25,964 Shopify purchase records and 12,873 abandoned checkouts were exposed.",
-      "current_state_zh": "Keystone reported that attackers exploited a third-party site analytics tool to obtain the WebAuth keys used to verify device authenticity, prompting it to destroy 18,835 in-stock hardware wallets made with the old keys, halt unshipped orders in favor of pre-sales, and shorten personal-data retention after 25,964 Shopify purchase records and 12,873 abandoned checkouts were exposed.",
+      "current_state_zh": "Keystone 表示，调查发现入侵其网站的攻击者获取了用于验证硬件钱包真伪的 WebAuth 设备认证密钥，这可能让仿冒设备通过官方真伪校验。公司将销毁 18,835 台使用旧密钥的未售出设备，暂停未发货订单，并将新生产切换至替换密钥；此次事件涉及 25,964 条购买记录和 12,873 条未完成的结账记录。\n\n密钥泄露削弱了用户用来确认真伪的设备校验环节，尽管 Keystone 表示助记词、私钥和交易签名均未受影响。泄露的购买数据（姓名、联系方式、收货地址和订单详情）带来钓鱼风险，已有用户报告有人利用 Keystone 订单信息实施社会工程学电话诈骗。\n\nKeystone 表示，受影响记录仅限于通过其官网 Shopify 完成的购买，并承认其自动数据删除工具“运行不可靠”，导致部分个人信息在承诺期限之后仍被保留；公司还称另有约 25,000 条记录已按保留政策被永久删除。",
       "current_state_en": "Keystone reported that attackers exploited a third-party site analytics tool to obtain the WebAuth keys used to verify device authenticity, prompting it to destroy 18,835 in-stock hardware wallets made with the old keys, halt unshipped orders in favor of pre-sales, and shorten personal-data retention after 25,964 Shopify purchase records and 12,873 abandoned checkouts were exposed.",
       "detailed_summary_zh": "Keystone reported that attackers exploited a third-party site analytics tool to obtain the WebAuth keys used to verify device authenticity, prompting it to destroy 18,835 in-stock hardware wallets made with the old keys, halt unshipped orders in favor of pre-sales, and shorten personal-data retention after 25,964 Shopify purchase records and 12,873 abandoned checkouts were exposed.",
       "detailed_summary_en": "Keystone reported that attackers exploited a third-party site analytics tool to obtain the WebAuth keys used to verify device authenticity, prompting it to destroy 18,835 in-stock hardware wallets made with the old keys, halt unshipped orders in favor of pre-sales, and shorten personal-data retention after 25,964 Shopify purchase records and 12,873 abandoned checkouts were exposed.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "Keystone 于周六在 X 上确认了客户收货信息疑似泄露一事，此前约 18 小时，一名用户报告接到使用 Keystone 订单信息的社会工程学电话。该公司此前承诺订单完成后 180 天永久删除收货数据，而最先指出疑似泄露的用户称其设备购于 2024 年。此事叠加了硬件钱包领域近期一系列数据与供应链问题，包括 Foundation Passport 在 Cloudflare API 密钥被入侵后从其官方域名发出的钓鱼邮件，以及此前与 Ledger 相关的事件。",
+      "background_en": "Keystone confirmed the suspected breach of customer shipping information on X on Saturday, roughly 18 hours after a customer reported a social-engineering call in which Keystone order data was used. The company had previously promised that shipping data is permanently deleted 180 days after an order, and the user who first flagged the potential breach said their device was purchased in 2024. The incident adds to a run of hardware-wallet data and supply-chain problems, including phishing emails sent from Foundation Passport's official domain after compromised Cloudflare API keys, and earlier Ledger-related incidents.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "这里的传导渠道是托管信任而非流动性：硬件钱包是自托管领域的真伪验证层，验证密钥泄露意味着用户在二手或经销商渠道购买设备时，不能再仅依赖官方校验。由于助记词和私钥未被泄露，直接资金损失的路径比私钥被窃类事件更窄，但订单数据外泄提高了现有 Keystone 用户遭遇钓鱼的风险。",
+      "market_impact_en": "The channel here is custody trust rather than liquidity: hardware wallets are the self-custody segment's authenticity layer, and a leaked verification key means users can no longer rely solely on the official check when buying devices second-hand or from resellers. Because seed phrases and private keys were not exposed, the direct fund-loss path is narrower than in a key-extraction breach, but the exposed order data raises phishing risk for existing Keystone owners.",
       "importance_score": 8.0,
-      "references": [],
+      "references": [
+        {
+          "url": "https://keyst.one/",
+          "title": "Keystone Wallet | Secure Open Source Crypto Solution"
+        },
+        {
+          "url": "https://webauthn.guide/",
+          "title": "Guide to Web Authentication"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:foresightnews:121332",
