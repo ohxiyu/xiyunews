@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_5e0ff89b9b3aed1e/",
   "json": "https://xiyu.news/api/events/evt_5e0ff89b9b3aed1e.json",
   "type": "security_incident",
-  "status": "closed",
+  "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "XRP Ledger 披露并修复可无限铸造 XRP 的支付路径漏洞",
+    "zh": "XRP Ledger 修复可凭空铸造 XRP 的旧漏洞，相关安全补丁因验证器支持率下降而推迟生效",
     "en": "XRP Ledger patched old flaw that could create XRP from nothing"
   },
   "current_state": {
-    "zh": "XRP Ledger 已披露并修复支付引擎中的整数溢出漏洞，该漏洞自 2015 年起潜伏且普通支付不会触发；3.4.1 补丁于 9 月 25 日发布，超过 80% 可信验证者当日已运行该补丁；无证据表明漏洞曾被利用。",
-    "en": "The XRP Ledger disclosed and patched an integer overflow in the payment engine that had been dormant since 2015 and is not triggered by normal payments; the 3.4.1 fix shipped on Sept. 25, and more than 80% of trusted validators were running it that day; there is no evidence the bug was ever exploited."
+    "zh": "XRP Ledger 针对代币创建漏洞和借贷贷款逻辑缺陷的安全修复被推迟至 11 月 4 日，此前验证者支持一度降至 35 个中的 26 个，重置了两周激活倒计时；此后支持已恢复至 31 个。",
+    "en": "The XRP Ledger's security fix for a token-creation vulnerability and lending-loan logic flaw was pushed to Nov 4 after validator support briefly fell to 26 of 35, resetting the two-week activation countdown; support has since recovered to 31."
   },
   "first_seen_at": "2026-10-10T06:40:40.291436+00:00",
-  "last_updated_at": "2026-10-12T16:21:16.629913+00:00",
-  "last_material_change_at": "2026-10-12T16:21:16.629913+00:00",
+  "last_updated_at": "2026-10-22T09:33:10.601622+00:00",
+  "last_material_change_at": "2026-10-22T09:33:10.601622+00:00",
   "confidence": 0.75,
-  "updates_count": 8,
-  "sources_count": 13,
+  "updates_count": 9,
+  "sources_count": 14,
   "entities": [
     "bug",
     "could",
@@ -46,6 +46,7 @@
   "topics": [
     "ai-security",
     "ai-security-agent",
+    "amendment-activation",
     "blockchain-security",
     "bug-bounty",
     "bug-disclosure",
@@ -62,9 +63,11 @@
     "protocol-vulnerability",
     "ripple",
     "supply-cap",
+    "validator-governance",
     "vulnerability-disclosure",
     "xrp",
-    "xrp-ledger"
+    "xrp-ledger",
+    "xrpld"
   ],
   "updates": [
     {
@@ -402,6 +405,44 @@
           "url": "https://decrypt.co/380693/xrp-ledger-payment-engine-counterfeiting-bug-hiding",
           "label": "Decrypt",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_abe1c1fceb258107",
+      "event_id": "evt_5e0ff89b9b3aed1e",
+      "occurred_at": "2026-10-22T08:25:08Z",
+      "published_at": "2026-10-22T08:25:08Z",
+      "first_seen_at": "2026-10-22T09:33:10.601622Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "【XRP Ledger 漏洞修复补丁因验证器支持率下降而推迟至 11 月生效】",
+      "title_en": "【XRP Ledger 漏洞修复补丁因验证器支持率下降而推迟至 11 月生效】",
+      "what_changed_zh": "XRP Ledger 针对代币创建漏洞和借贷贷款逻辑缺陷的安全修复被推迟至 11 月 4 日，此前验证者支持一度降至 35 个中的 26 个，重置了两周激活倒计时；此后支持已恢复至 31 个。",
+      "what_changed_en": "The XRP Ledger's security fix for a token-creation vulnerability and lending-loan logic flaw was pushed to Nov 4 after validator support briefly fell to 26 of 35, resetting the two-week activation countdown; support has since recovered to 31.",
+      "current_state_zh": "XRP Ledger 针对代币创建漏洞和借贷贷款逻辑缺陷的安全修复被推迟至 11 月 4 日，此前验证者支持一度降至 35 个中的 26 个，重置了两周激活倒计时；此后支持已恢复至 31 个。",
+      "current_state_en": "The XRP Ledger's security fix for a token-creation vulnerability and lending-loan logic flaw was pushed to Nov 4 after validator support briefly fell to 26 of 35, resetting the two-week activation countdown; support has since recovered to 31.",
+      "detailed_summary_zh": "The XRP Ledger's security fix for a token-creation vulnerability and lending-loan logic flaw was pushed to Nov 4 after validator support briefly fell to 26 of 35, resetting the two-week activation countdown; support has since recovered to 31.",
+      "detailed_summary_en": "The XRP Ledger's security fix for a token-creation vulnerability and lending-loan logic flaw was pushed to Nov 4 after validator support briefly fell to 26 of 35, resetting the two-week activation countdown; support has since recovered to 31.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:121047"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/115751",
+          "label": "foresightnews",
+          "source_type": "telegram",
           "official": false
         }
       ]
