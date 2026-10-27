@@ -4,31 +4,34 @@
   "url": "https://xiyu.news/events/evt_5507427d5ee39066/",
   "json": "https://xiyu.news/api/events/evt_5507427d5ee39066.json",
   "type": "other",
-  "status": "monitoring",
+  "status": "developing",
   "category": "crypto",
   "title": {
     "zh": "Keystone 称网站遭入侵，暴露硬件钱包买家的地址",
     "en": "Keystone says website breach exposed hardware wallet buyers’ addresses"
   },
   "current_state": {
-    "zh": "Keystone 正在对 10 月 20 日官网漏洞导致的数据泄露进行处置：旧设备认证密钥作废，库存 18,835 台设备销毁，官网发货暂停至新密钥设备投产，并已向 Shopify 申请删除数据（预计 11 月 3 日完成）。",
-    "en": "Keystone is remediating the October 20 website breach: old device-authentication keys are revoked, 18,835 inventory devices are being destroyed, website shipments are paused until new-key devices are produced, and a Shopify data-deletion request is expected to complete by November 3."
+    "zh": "Keystone 正在处置 10 月 20 日官网入侵事件：认证密钥被窃，旧密钥设备认证失效，库存 18,835 台设备将销毁，官网发货暂停至新密钥设备投产；已确认 25,964 条买家记录及 12,873 条结账记录泄露，并请求 Shopify 删除相关数据；10 月 20 日前交付设备仍视为安全，此后交付设备需额外验证。",
+    "en": "Keystone is remediating the October 20 website breach: the authentication key was stolen, old-key device authentication is invalid, 18,835 inventory devices are to be destroyed, and website shipments are paused until new-key devices are produced; it confirmed 25,964 buyer records and 12,873 checkout records were leaked and has requested Shopify delete related data; devices delivered before October 20 are considered safe, while devices delivered afterward require additional verification."
   },
   "first_seen_at": "2026-10-26T05:41:44.141709+00:00",
-  "last_updated_at": "2026-10-26T18:53:03.921794+00:00",
-  "last_material_change_at": "2026-10-26T18:53:03.921794+00:00",
+  "last_updated_at": "2026-10-27T02:38:16.787004+00:00",
+  "last_material_change_at": "2026-10-27T02:38:16.787004+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 2,
+  "updates_count": 3,
+  "sources_count": 3,
   "entities": [
+    "hackers",
     "keystone"
   ],
   "identifiers": [],
   "topics": [
+    "counterfeit-devices",
     "customer-privacy",
     "data-breach",
     "keystone",
     "phishing",
+    "security-breach",
     "security-incident",
     "supply-chain"
   ],
@@ -105,6 +108,44 @@
           "url": "https://m.theblockbeats.info/flash/373792?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_5ac3fbb37927309a",
+      "event_id": "evt_5507427d5ee39066",
+      "occurred_at": "2026-10-27T01:55:03Z",
+      "published_at": "2026-10-27T01:55:03Z",
+      "first_seen_at": "2026-10-27T02:38:16.787004Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "Keystone 漏洞事件升级：黑客窃取了用于验证钱包真伪的密钥",
+      "title_en": "Keystone breach deepens: Hackers stole key used to verify wallets as genuine",
+      "what_changed_zh": "Keystone 进一步披露：攻击者利用第三方监控工具漏洞提权，除客户信息外还窃取了设备认证密钥，可能让伪造钱包通过真伪校验；泄露的买家记录为 25,964 条，另有 12,873 条未完成结账记录被 Shopify 保留并遭窃取；10 月 20 日前已生产交付的设备仍视为安全，此后交付的设备真伪无法保证。",
+      "what_changed_en": "Keystone further disclosed that the attacker escalated privileges via a third-party monitoring tool vulnerability and stole a device-authentication key that could let counterfeit wallets pass authenticity checks; 25,964 buyer records were stolen, along with 12,873 incomplete checkout records retained by Shopify; devices manufactured and delivered before the October 20 incident are considered safe, while authenticity of devices delivered after that date cannot be guaranteed.",
+      "current_state_zh": "Keystone 正在处置 10 月 20 日官网入侵事件：认证密钥被窃，旧密钥设备认证失效，库存 18,835 台设备将销毁，官网发货暂停至新密钥设备投产；已确认 25,964 条买家记录及 12,873 条结账记录泄露，并请求 Shopify 删除相关数据；10 月 20 日前交付设备仍视为安全，此后交付设备需额外验证。",
+      "current_state_en": "Keystone is remediating the October 20 website breach: the authentication key was stolen, old-key device authentication is invalid, 18,835 inventory devices are to be destroyed, and website shipments are paused until new-key devices are produced; it confirmed 25,964 buyer records and 12,873 checkout records were leaked and has requested Shopify delete related data; devices delivered before October 20 are considered safe, while devices delivered afterward require additional verification.",
+      "detailed_summary_zh": "Keystone disclosed that attackers who breached its website also stole an authentication key that could allow counterfeit hardware wallets to pass genuineness checks, widening a customer-data leak into a device-supply-chain risk.",
+      "detailed_summary_en": "Keystone disclosed that attackers who breached its website also stole an authentication key that could allow counterfeit hardware wallets to pass genuineness checks, widening a customer-data leak into a device-supply-chain risk.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.96,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:84e73b643dd945ea"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/keystone-breach-deepens-hackers-stole-key-used-to-verify-wallets-as-genuine?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
           "official": false
         }
       ]
