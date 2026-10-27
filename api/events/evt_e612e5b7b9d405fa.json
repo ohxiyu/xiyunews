@@ -4,30 +4,32 @@
   "url": "https://xiyu.news/events/evt_e612e5b7b9d405fa/",
   "json": "https://xiyu.news/api/events/evt_e612e5b7b9d405fa.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "developing",
   "category": "crypto",
   "title": {
     "zh": "部分Bloom Trading用户集体被盗共计95万美元，官方称已着手调查",
     "en": "部分Bloom Trading用户集体被盗共计95万美元，官方称已着手调查"
   },
   "current_state": {
-    "zh": "Blooming cross-chain trading automation tool Bloom Trading suffered a batch wallet compromise in which about $954,000 in SOL (9,408 SOL across 49 victims, largest single loss 1,636 SOL) was moved to suspected attacker addresses, prompting the team to open an investigation and temporarily disable some services.",
-    "en": "Blooming cross-chain trading automation tool Bloom Trading suffered a batch wallet compromise in which about $954,000 in SOL (9,408 SOL across 49 victims, largest single loss 1,636 SOL) was moved to suspected attacker addresses, prompting the team to open an investigation and temporarily disable some services."
+    "zh": "Bloom被盗事件仍在监测中；公司已将攻击归因于第三方模块远程代码执行漏洞，承诺向九名受影响交易者全额赔偿，并称私钥未被泄露。此前启动调查及临时限制部分服务的状态未被报道为已恢复。",
+    "en": "The Bloom compromise remains under monitoring; the company attributed the attack to a remote code execution vulnerability in a third-party module, pledged full reimbursement to nine affected traders, and said private keys were not compromised. The earlier investigation and temporary service restrictions are not reported as restored."
   },
   "first_seen_at": "2026-10-26T05:41:28.628877+00:00",
-  "last_updated_at": "2026-10-26T05:41:28.628877+00:00",
-  "last_material_change_at": "2026-10-26T05:41:28.628877+00:00",
+  "last_updated_at": "2026-10-27T09:58:15.313950+00:00",
+  "last_material_change_at": "2026-10-27T09:58:15.313950+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "bloom",
     "trading"
   ],
   "identifiers": [],
   "topics": [
+    "reimbursement",
     "security-incident",
     "solana",
+    "telegram-trading-bot",
     "wallet-security"
   ],
   "updates": [
@@ -42,9 +44,9 @@
       "material_change": true,
       "title_zh": "部分Bloom Trading用户集体被盗共计95万美元，官方称已着手调查",
       "title_en": "部分Bloom Trading用户集体被盗共计95万美元，官方称已着手调查",
-      "what_changed_zh": "Blooming cross-chain trading automation tool Bloom Trading suffered a batch wallet compromise in which about $954,000 in SOL (9,408 SOL across 49 victims, largest single loss 1,636 SOL) was moved to suspected attacker addresses, prompting the team to open an investigation and temporarily disable some services.",
+      "what_changed_zh": "跨链交易自动化工具 Bloom Trading 遭遇批量钱包被盗事件，约 95.4 万美元的 SOL（涉及 49 名受害者共 9,408 SOL，单笔最大损失 1,636 SOL）被转移至疑似攻击者地址，团队已展开调查并暂时停用部分服务。",
       "what_changed_en": "Blooming cross-chain trading automation tool Bloom Trading suffered a batch wallet compromise in which about $954,000 in SOL (9,408 SOL across 49 victims, largest single loss 1,636 SOL) was moved to suspected attacker addresses, prompting the team to open an investigation and temporarily disable some services.",
-      "current_state_zh": "Blooming cross-chain trading automation tool Bloom Trading suffered a batch wallet compromise in which about $954,000 in SOL (9,408 SOL across 49 victims, largest single loss 1,636 SOL) was moved to suspected attacker addresses, prompting the team to open an investigation and temporarily disable some services.",
+      "current_state_zh": "跨链交易自动化工具 Bloom Trading 遭遇批量钱包被盗事件，约 95.4 万美元的 SOL（涉及 49 名受害者共 9,408 SOL，单笔最大损失 1,636 SOL）被转移至疑似攻击者地址，团队已展开调查并暂时停用部分服务。",
       "current_state_en": "Blooming cross-chain trading automation tool Bloom Trading suffered a batch wallet compromise in which about $954,000 in SOL (9,408 SOL across 49 victims, largest single loss 1,636 SOL) was moved to suspected attacker addresses, prompting the team to open an investigation and temporarily disable some services.",
       "detailed_summary_zh": "Blooming cross-chain trading automation tool Bloom Trading suffered a batch wallet compromise in which about $954,000 in SOL (9,408 SOL across 49 victims, largest single loss 1,636 SOL) was moved to suspected attacker addresses, prompting the team to open an investigation and temporarily disable some services.",
       "detailed_summary_en": "Blooming cross-chain trading automation tool Bloom Trading suffered a batch wallet compromise in which about $954,000 in SOL (9,408 SOL across 49 victims, largest single loss 1,636 SOL) was moved to suspected attacker addresses, prompting the team to open an investigation and temporarily disable some services.",
@@ -65,6 +67,44 @@
           "url": "https://m.theblockbeats.info/flash/373657?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_dea0bc96fe088185",
+      "event_id": "evt_e612e5b7b9d405fa",
+      "occurred_at": "2026-10-27T09:07:37Z",
+      "published_at": "2026-10-27T09:07:37Z",
+      "first_seen_at": "2026-10-27T09:58:15.313950Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "Bloom 机器人黑客窃取 95.3 万美元，速度快过微波爆米花",
+      "title_en": "Bloom bot hackers loot $953K faster than you can microwave popcorn",
+      "what_changed_zh": "新报道补充了同一Bloom被盗事件的关键细节：攻击在94秒内通过第三方模块的远程代码执行漏洞完成，涉及48个钱包、9名交易者，约95.3万美元；Bloom承诺向所有受影响交易者全额赔偿，并称私钥未被访问或泄露。",
+      "what_changed_en": "The report adds key details to the same Bloom compromise: the attack drained about $953,000 in 94 seconds via a remote code execution vulnerability in a third-party module, affecting 48 wallets belonging to nine traders; Bloom pledged full reimbursement to all affected traders and said no private keys were accessed or compromised.",
+      "current_state_zh": "Bloom被盗事件仍在监测中；公司已将攻击归因于第三方模块远程代码执行漏洞，承诺向九名受影响交易者全额赔偿，并称私钥未被泄露。此前启动调查及临时限制部分服务的状态未被报道为已恢复。",
+      "current_state_en": "The Bloom compromise remains under monitoring; the company attributed the attack to a remote code execution vulnerability in a third-party module, pledged full reimbursement to nine affected traders, and said private keys were not compromised. The earlier investigation and temporary service restrictions are not reported as restored.",
+      "detailed_summary_zh": "Hackers drained $953,000 from 48 Solana wallets tied to Telegram trading bot Bloom in 94 seconds via a third-party module remote code execution vulnerability, prompting Bloom to pledge full reimbursement to nine affected traders.",
+      "detailed_summary_en": "Hackers drained $953,000 from 48 Solana wallets tied to Telegram trading bot Bloom in 94 seconds via a third-party module remote code execution vulnerability, prompting Bloom to pledge full reimbursement to nine affected traders.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.96,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:47cac5ceb3e066c7"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/bloom-bot-hackers-953k-faster-popcorn?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
           "official": false
         }
       ]
