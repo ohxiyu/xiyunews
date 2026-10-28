@@ -4,31 +4,44 @@
   "url": "https://xiyu.news/events/evt_cc7b0e1f4c63428c/",
   "json": "https://xiyu.news/api/events/evt_cc7b0e1f4c63428c.json",
   "type": "market_structure",
-  "status": "monitoring",
+  "status": "disputed",
   "category": "crypto",
   "title": {
-    "zh": "DTCC代币化服务上线，首批支持25种证券",
-    "en": "DTCC tokenization service launches with initial 25 securities"
+    "zh": "DTCC代币化服务正式上线",
+    "en": "DTCC Tokenization Service goes live"
   },
   "current_state": {
-    "zh": "据 DTCC 公布的代币化服务资料，该服务首批开放 25 种可代币化证券，底层为 DTC 托管的证券，规模约 30 万亿美元。代币与原证券保持 1:1 对应并使用相同 CUSIP，可在 DTC 注册钱包之间进行 24/7 点对点转账，且带有合规转让限制，官方账簿记录仍由 DTC 保管。\n\n由于代币沿用相同的 CUSIP，其权利与投资者保护与簿记证券一致，因此一部分 DTC 托管资产（包括美国国债的派息与到期服务）开始在链上运行，而 DTC 仍保留官方账簿记录的角色。\n\n首批支持的资产包括罗素 1000 成分股（从部分大盘股开始）、部分 ETF 和美国国债；美国国债的派息和到期服务将在链上进行，款项以法币支付至参与者的传统账户。首批上线网络为 Canton Network（CIP-56）和 DTCC 私有 Besu 网络（ERC-20），Stellar（SEP-41）与 Circle 的 Arc（ERC-20）预计于 2027 年接入。",
-    "en": "DTCC's tokenization service launched with an initial 25 securities representing about $30 trillion in underlying DTC-custodied assets, offering 1:1 CUSIP-matched tokens, 24/7 compliant wallet transfers, and on-chain Treasury payment servicing on Canton Network and private Besu, with Stellar and Circle Arc planned for 2027."
+    "zh": "DTC的DTCC代币化服务已正式上线，允许合资格客户在传统与代币化证券形式之间转换并保留同等所有权和投资者保护；已有20家客户签约接入，服务当前集成Canton Network和Besu私有网络。",
+    "en": "DTC's DTCC Tokenization Service is officially launched, allowing eligible clients to convert between traditional and tokenized securities with equivalent ownership and investor protections; 20 clients have signed on, and the service is currently integrated with Canton Network and Besu private network."
   },
   "first_seen_at": "2026-10-17T12:51:27.197685+00:00",
-  "last_updated_at": "2026-10-17T12:51:28.570083+00:00",
-  "last_material_change_at": "2026-10-17T12:51:28.570083+00:00",
+  "last_updated_at": "2026-10-28T14:52:22.667016+00:00",
+  "last_material_change_at": "2026-10-28T14:52:22.667016+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 2,
+  "updates_count": 2,
+  "sources_count": 7,
   "entities": [
-    "dtcc"
+    "dtcc",
+    "initially",
+    "launches",
+    "ondo",
+    "ondo-finance",
+    "securitie",
+    "securities",
+    "service",
+    "supporting",
+    "tokenization"
   ],
   "identifiers": [],
   "topics": [
+    "custody",
     "dtcc",
     "market-infrastructure",
+    "ondo-finance",
     "rwa",
-    "securities-settlement"
+    "securities",
+    "securities-settlement",
+    "tokenized-securities"
   ],
   "updates": [
     {
@@ -72,7 +85,11 @@
       "confidence": 0.75,
       "story_ids": [
         "telegram:foresightnews:120656",
-        "telegram:theblockbeats:201020"
+        "telegram:theblockbeats:201020",
+        "telegram:wublockchainenglish:26586",
+        "telegram:theblockbeats:202796",
+        "telegram:theblockbeats:202810",
+        "rss:cointelegraph.com_rss:de4b9e54bb7f3b74"
       ],
       "sources": [
         {
@@ -84,6 +101,68 @@
         {
           "url": "https://m.theblockbeats.info/flash/372359?from=telegram",
           "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://wublockchain.xyz/news/dtcc-launches-securities-tokenization-service-supporting-34-securities-21418",
+          "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://m.theblockbeats.info/flash/374170?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://m.theblockbeats.info/flash/374185?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://cointelegraph.com/news/dtcc-subsidiary-launches-tokenization-services?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_db4cdbab4e83d8f9",
+      "event_id": "evt_cc7b0e1f4c63428c",
+      "occurred_at": "2026-10-28T11:32:31Z",
+      "published_at": "2026-10-28T11:32:31Z",
+      "first_seen_at": "2026-10-28T14:51:51.059198Z",
+      "time_precision": "published",
+      "update_type": "correction",
+      "material_change": true,
+      "title_zh": "【DTCC 已上线代币化服务，首批支持 34 只证券】",
+      "title_en": "【DTCC 已上线代币化服务，首批支持 34 只证券】",
+      "what_changed_zh": "首批可代币化证券数量由 25 只更正/更新为 34 只；并披露首批钱包及应用合作方包括 BitGo、Blockdaemon、Fireblocks、HashKey Group、Kaleido、Prometheum、Talos、Temple 和 Tradeweb。",
+      "what_changed_en": "The initial tokenizable securities count is corrected/updated from 25 to 34, and the first wallet/application partners are named: BitGo, Blockdaemon, Fireblocks, HashKey Group, Kaleido, Prometheum, Talos, Temple and Tradeweb.",
+      "current_state_zh": "DTCC 代币化服务已上线，首批支持 34 只证券，代币由 DTC 托管证券 1:1 支持，与传统工具共用 CUSIP，并可在 DTC 注册钱包间 24/7 转账；首批钱包及应用合作方包括 BitGo、Blockdaemon、Fireblocks、HashKey Group、Kaleido、Prometheum、Talos、Temple 和 Tradeweb。",
+      "current_state_en": "DTCC's tokenization service is live with 34 initially supported securities, tokens fully backed 1:1 by DTC-custodied securities, sharing the same CUSIP and transferable 24/7 between DTC-registered wallets; initial wallet/application partners include BitGo, Blockdaemon, Fireblocks, HashKey Group, Kaleido, Prometheum, Talos, Temple and Tradeweb.",
+      "detailed_summary_zh": "DTCC has launched its tokenization service with 34 securities initially supported, each token fully backed 1:1 by DTC-custodied shares, carrying identical legal and economic rights, sharing the same CUSIP as the traditional instrument, and transferable 24/7 between DTC-registered wallets via partners including BitGo, Blockdaemon, Fireblocks, HashKey Group, Kaleido, Prometheum, Talos, Temple and Tradeweb.",
+      "detailed_summary_en": "DTCC has launched its tokenization service with 34 securities initially supported, each token fully backed 1:1 by DTC-custodied shares, carrying identical legal and economic rights, sharing the same CUSIP as the traditional instrument, and transferable 24/7 between DTC-registered wallets via partners including BitGo, Blockdaemon, Fireblocks, HashKey Group, Kaleido, Prometheum, Talos, Temple and Tradeweb.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.93,
+      "story_ids": [
+        "telegram:foresightnews:121504"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116184",
+          "label": "foresightnews",
           "source_type": "telegram",
           "official": false
         }
