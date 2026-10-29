@@ -68,14 +68,19 @@
       "current_state_en": "Polymarket users reported unauthorized fund transfers and hundreds of thousands of dollars in losses, prompting the platform to enter cancel-only mode, halt relayer actions, and open an investigation into a suspected frontend compromise.",
       "detailed_summary_zh": "Polymarket users reported unauthorized fund transfers and hundreds of thousands of dollars in losses, prompting the platform to enter cancel-only mode, halt relayer actions, and open an investigation into a suspected frontend compromise.",
       "detailed_summary_en": "Polymarket users reported unauthorized fund transfers and hundreds of thousands of dollars in losses, prompting the platform to enter cancel-only mode, halt relayer actions, and open an investigation into a suspected frontend compromise.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "Polymarket是一个预测市场平台，用户就未来事件的结果进行交易。今年6月，该公司披露黑客通过入侵一个第三方服务商窃取逾290万美元用户资金；Polymarket称该漏洞已修复、相关服务商已从其网站移除，受影响用户将获全额赔付，损失低于1万美元的钱包将在10月30日前自动收到退款，损失更大者需签署免责/放款文件。前端入侵——即将盗取钱包的代码注入网站或其第三方脚本——此前也曾冲击其他DeFi平台，包括Balancer和Aerodrome。",
+      "background_en": "Polymarket is a prediction-market platform where users trade on the outcomes of future events. In June, the company reported that hackers drained more than $2.9 million in user funds by compromising a third-party vendor; it said that vulnerability was fixed, the vendor has been removed from its website and affected users would be fully reimbursed, with wallets losing under $10,000 receiving automatic refunds by October 30 and larger losses requiring a signed release form. Frontend compromises — in which wallet-draining code is injected into a site or its third-party scripts — have also hit other DeFi venues, including Balancer and Aerodrome.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "风险传导集中于Polymarket基于Polygon的链路：用户钱包中的USDC.e存款与POL持仓，以及负责提交签名交易的中继器通道，是直接受影响的环节，交易暂停也使该平台各预测市场的下单冻结。疑似前端/第三方服务商入侵的路径，还将供应链风险扩散至其他依赖外部托管脚本与中继器的DeFi平台。",
+      "market_impact_en": "The exposure runs through Polymarket's Polygon-based rails: USDC.e deposits and POL holdings in user wallets, plus the relayer channel that submits signed transactions, are the directly affected segments, and the halt froze order placement across its prediction markets. The suspected frontend/third-party vendor vector extends supply-chain risk to other DeFi venues that rely on externally hosted scripts and relayers.",
       "importance_score": 8.0,
-      "references": [],
+      "references": [
+        {
+          "url": "https://cryptonews.com/news/bases-top-dex-aerodrome-hit-by-a-suspected-frontend-security-breach/",
+          "title": "Base's Top DEX Aerodrome Hit by a Suspected Frontend Security..."
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
         "telegram:wublockchainenglish:26608"
