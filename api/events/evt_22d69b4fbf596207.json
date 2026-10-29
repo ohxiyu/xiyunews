@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_22d69b4fbf596207/",
   "json": "https://xiyu.news/api/events/evt_22d69b4fbf596207.json",
   "type": "product_release",
-  "status": "monitoring",
+  "status": "developing",
   "category": "technology",
   "title": {
     "zh": "Mistral AI 发布旗舰模型 Mistral Large 4（Le Chonk）",
     "en": "Mistral AI Releases Flagship Model Mistral Large 4 (Le Chonk)"
   },
   "current_state": {
-    "zh": "Mistral 已发布旗舰模型 Mistral Large 4（内部昵称 Le Chonk），采用 MoE 架构，总参数1.05万亿、激活490亿，支持多模态和100万token上下文；API已开放预览，权重计划10月27日公开，Mistral 称其为美欧最强开放权重模型并公布自测基准。",
-    "en": "Mistral AI launched Mistral Large 4, a 1-trillion-parameter model activating 49 billion parameters per query at $1.36/$4.18 per million input/output tokens, which it says will become the strongest open-weight model yet with weights due by end of October."
+    "zh": "Mistral Large 4 已从 API 预览推进到开放权重发布阶段：权重可在 Hugging Face 下载（含 NVFP4 检查点），API 价格较预览版约减半。",
+    "en": "Mistral Large 4 has moved from API preview to an open-weight release: weights are downloadable on Hugging Face including NVFP4 checkpoints, and API pricing is roughly halved versus the preview."
   },
   "first_seen_at": "2026-10-06T15:31:12.954622+00:00",
-  "last_updated_at": "2026-10-06T18:32:48.200942+00:00",
-  "last_material_change_at": "2026-10-06T18:32:48.200942+00:00",
+  "last_updated_at": "2026-10-29T15:01:32.447793+00:00",
+  "last_material_change_at": "2026-10-29T15:01:32.447793+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 5,
+  "updates_count": 3,
+  "sources_count": 6,
   "entities": [
     "after",
     "cat",
@@ -30,14 +30,18 @@
     "meme",
     "mistral",
     "model",
-    "named"
+    "named",
+    "open",
+    "weight"
   ],
   "identifiers": [],
   "topics": [
     "ai-benchmarks",
     "ai-labs",
+    "api-pricing",
     "europe-ai",
     "frontier-models",
+    "large-language-models",
     "llm",
     "mistral",
     "model-release",
@@ -161,6 +165,49 @@
           "url": "https://techcrunch.com/2026/10/06/mistrals-new-1t-model-aims-to-leapfrog-closed-and-open-rivals/",
           "label": "TechCrunch AI",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_7917d1d400f12a42",
+      "event_id": "evt_22d69b4fbf596207",
+      "occurred_at": "2026-10-29T14:13:21Z",
+      "published_at": "2026-10-29T14:13:21Z",
+      "first_seen_at": "2026-10-29T15:01:32.447793Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "Mistral Large 4（Le Chonk）现已开放权重",
+      "title_en": "Mistral Large 4 (Le Chonk) is now Open Weight",
+      "what_changed_zh": "Mistral Large 4 已开放权重，Hugging Face 可下载（含 NVFP4 检查点），并将 API 价格较预览版下调约一半（输入 $0.7/百万 token、输出 $2.1/百万 token）。",
+      "what_changed_en": "Mistral Large 4 is now open-weight, with downloadable Hugging Face weights including NVFP4 checkpoints, and API pricing roughly halved versus the preview ($0.70/$2.10 per million input/output tokens).",
+      "current_state_zh": "Mistral Large 4 已从 API 预览推进到开放权重发布阶段：权重可在 Hugging Face 下载（含 NVFP4 检查点），API 价格较预览版约减半。",
+      "current_state_en": "Mistral Large 4 has moved from API preview to an open-weight release: weights are downloadable on Hugging Face including NVFP4 checkpoints, and API pricing is roughly halved versus the preview.",
+      "detailed_summary_zh": "Mistral released Mistral Large 4 (a 1T-parameter, 52B-active open-weight MoE) with downloadable Hugging Face weights and NVFP4 checkpoints, alongside roughly halved API pricing versus the preview.",
+      "detailed_summary_en": "Mistral released Mistral Large 4 (a 1T-parameter, 52B-active open-weight MoE) with downloadable Hugging Face weights and NVFP4 checkpoints, alongside roughly halved API pricing versus the preview.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [
+        {
+          "url": "https://news.ycombinator.com/item?id=50289418",
+          "title": "Community discussion"
+        }
+      ],
+      "confidence": 0.96,
+      "story_ids": [
+        "hackernews:story:50289418"
+      ],
+      "sources": [
+        {
+          "url": "https://mistral.ai/news/mistral-large-4-oss/",
+          "label": "kuberwastaken",
+          "source_type": "hackernews",
           "official": false
         }
       ]
