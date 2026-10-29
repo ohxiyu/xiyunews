@@ -4,37 +4,49 @@
   "url": "https://xiyu.news/events/evt_e1850993abfe2cf7/",
   "json": "https://xiyu.news/api/events/evt_e1850993abfe2cf7.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "developing",
   "category": "technology",
   "title": {
-    "zh": "GitLab Remote Code Execution - Integer Overflow issue",
+    "zh": "GitLab 修复 Ruby 整数溢出远程代码执行漏洞并披露利用尝试",
     "en": "GitLab Remote Code Execution - Integer Overflow issue"
   },
   "current_state": {
-    "zh": "GitLab released patch 19.5.1 addressing an integer-overflow vulnerability that could enable remote code execution, with community discussion emphasizing its severity and unauthenticated attack surface.",
-    "en": "GitLab released patch 19.5.1 addressing an integer-overflow vulnerability that could enable remote code execution, with community discussion emphasizing its severity and unauthenticated attack surface."
+    "zh": "Alpine Linux披露有人试图利用CVE-2026-97229，这是Ruby正则表达式引擎中的整数溢出远程代码执行漏洞，GitLab仅在其自有软件包中修复，导致源码构建的镜像在10月27日以Ruby 3.3.13重建前一直停留在19.3.6版本并存在漏洞。",
+    "en": "Alpine Linux disclosed an attempted exploitation of CVE-2026-97229, an integer-overflow remote code execution flaw in Ruby's regular expression engine that GitLab only patches in its own packages, leaving source-built images on version 19.3.6 vulnerable until the image was rebuilt with Ruby 3.3.13 on October 27."
   },
   "first_seen_at": "2026-10-21T21:41:28.736625+00:00",
-  "last_updated_at": "2026-10-21T21:41:28.736625+00:00",
-  "last_material_change_at": "2026-10-21T21:41:28.736625+00:00",
+  "last_updated_at": "2026-10-29T06:51:30.535288+00:00",
+  "last_material_change_at": "2026-10-29T06:51:30.535288+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
+    "attempted",
     "code",
+    "cve",
     "execution",
+    "exploitation",
     "gitlab",
+    "incident",
     "integer",
     "overflow",
     "remote",
-    "remote-code-execution"
+    "remote-code-execution",
+    "security-incident"
   ],
-  "identifiers": [],
+  "identifiers": [
+    "cve-2026",
+    "cve-2026-97229"
+  ],
   "topics": [
     "gitlab",
     "patching",
     "remote-code-execution",
-    "vulnerability"
+    "ruby",
+    "security-incident",
+    "supply-chain",
+    "vulnerability",
+    "vulnerability-disclosure"
   ],
   "updates": [
     {
@@ -46,11 +58,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "GitLab Remote Code Execution - Integer Overflow issue",
+      "title_zh": "GitLab远程代码执行——整数溢出问题",
       "title_en": "GitLab Remote Code Execution - Integer Overflow issue",
-      "what_changed_zh": "GitLab released patch 19.5.1 addressing an integer-overflow vulnerability that could enable remote code execution, with community discussion emphasizing its severity and unauthenticated attack surface.",
+      "what_changed_zh": "GitLab发布19.5.1补丁，修复一个可能导致远程代码执行的整数溢出漏洞，社区讨论强调其严重性及无需认证的攻击面。",
       "what_changed_en": "GitLab released patch 19.5.1 addressing an integer-overflow vulnerability that could enable remote code execution, with community discussion emphasizing its severity and unauthenticated attack surface.",
-      "current_state_zh": "GitLab released patch 19.5.1 addressing an integer-overflow vulnerability that could enable remote code execution, with community discussion emphasizing its severity and unauthenticated attack surface.",
+      "current_state_zh": "GitLab发布19.5.1补丁，修复一个可能导致远程代码执行的整数溢出漏洞，社区讨论强调其严重性及无需认证的攻击面。",
       "current_state_en": "GitLab released patch 19.5.1 addressing an integer-overflow vulnerability that could enable remote code execution, with community discussion emphasizing its severity and unauthenticated attack surface.",
       "detailed_summary_zh": "GitLab released patch 19.5.1 addressing an integer-overflow vulnerability that could enable remote code execution, with community discussion emphasizing its severity and unauthenticated attack surface.",
       "detailed_summary_en": "GitLab released patch 19.5.1 addressing an integer-overflow vulnerability that could enable remote code execution, with community discussion emphasizing its severity and unauthenticated attack surface.",
@@ -75,6 +87,49 @@
         {
           "url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-5-1-released/",
           "label": "artooro",
+          "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_f3b5adb44f140375",
+      "event_id": "evt_e1850993abfe2cf7",
+      "occurred_at": "2026-10-28T23:45:46Z",
+      "published_at": "2026-10-28T23:45:46Z",
+      "first_seen_at": "2026-10-29T06:51:30.535288Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "GitLab安全事件：CVE-2026-97229遭利用尝试",
+      "title_en": "GitLab Security Incident: Attempted Exploitation of CVE-2026-97229",
+      "what_changed_zh": "Alpine Linux披露有人试图利用CVE-2026-97229，这是Ruby正则表达式引擎中的整数溢出远程代码执行漏洞，GitLab仅在其自有软件包中修复，导致源码构建的镜像在10月27日以Ruby 3.3.13重建前一直停留在19.3.6版本并存在漏洞。",
+      "what_changed_en": "Alpine Linux disclosed an attempted exploitation of CVE-2026-97229, an integer-overflow remote code execution flaw in Ruby's regular expression engine that GitLab only patches in its own packages, leaving source-built images on version 19.3.6 vulnerable until the image was rebuilt with Ruby 3.3.13 on October 27.",
+      "current_state_zh": "Alpine Linux披露有人试图利用CVE-2026-97229，这是Ruby正则表达式引擎中的整数溢出远程代码执行漏洞，GitLab仅在其自有软件包中修复，导致源码构建的镜像在10月27日以Ruby 3.3.13重建前一直停留在19.3.6版本并存在漏洞。",
+      "current_state_en": "Alpine Linux disclosed an attempted exploitation of CVE-2026-97229, an integer-overflow remote code execution flaw in Ruby's regular expression engine that GitLab only patches in its own packages, leaving source-built images on version 19.3.6 vulnerable until the image was rebuilt with Ruby 3.3.13 on October 27.",
+      "detailed_summary_zh": "Alpine Linux disclosed an attempted exploitation of CVE-2026-97229, an integer-overflow remote code execution flaw in Ruby's regular expression engine that GitLab only patches in its own packages, leaving source-built images on version 19.3.6 vulnerable until the image was rebuilt with Ruby 3.3.13 on October 27.",
+      "detailed_summary_en": "Alpine Linux disclosed an attempted exploitation of CVE-2026-97229, an integer-overflow remote code execution flaw in Ruby's regular expression engine that GitLab only patches in its own packages, leaving source-built images on version 19.3.6 vulnerable until the image was rebuilt with Ruby 3.3.13 on October 27.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [
+        {
+          "url": "https://news.ycombinator.com/item?id=50282544",
+          "title": "Community discussion"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "hackernews:story:50282544"
+      ],
+      "sources": [
+        {
+          "url": "https://alpinelinux.org/posts/GitLab-security-incident-CVE-2026-97229.html",
+          "label": "sashk",
           "source_type": "hackernews",
           "official": false
         }
