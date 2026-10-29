@@ -7,37 +7,48 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Multiple Polymarket Users Report Stolen Funds as Platform Restricts Trading and",
+    "zh": "多名Polymarket用户报告资金被盗，平台限制交易并",
     "en": "Multiple Polymarket Users Report Stolen Funds as Platform Restricts Trading and"
   },
   "current_state": {
-    "zh": "Polymarket users reported unauthorized fund transfers and hundreds of thousands of dollars in losses, prompting the platform to enter cancel-only mode, halt relayer actions, and open an investigation into a suspected frontend compromise.",
-    "en": "Polymarket users reported unauthorized fund transfers and hundreds of thousands of dollars in losses, prompting the platform to enter cancel-only mode, halt relayer actions, and open an investigation into a suspected frontend compromise."
+    "zh": "Polymarket 在第三方服务商被入侵导致临时暂停交易和仅取消模式后，系统已恢复并恢复正常运行；受影响用户已获承诺赔偿，相关执法转介仍在背景下进行。",
+    "en": "Polymarket's systems were restored and operational after a temporary trading halt and cancel-only mode caused by a compromised third-party provider; impacted users were promised reimbursement, with law enforcement referral in the background."
   },
   "first_seen_at": "2026-10-29T18:36:19.046340+00:00",
-  "last_updated_at": "2026-10-29T18:36:19.046340+00:00",
-  "last_material_change_at": "2026-10-29T18:36:19.046340+00:00",
+  "last_updated_at": "2026-10-29T22:41:48.569452+00:00",
+  "last_material_change_at": "2026-10-29T22:41:48.569452+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 3,
+  "sources_count": 3,
   "entities": [
     "funds",
+    "incident",
+    "investigates",
+    "market",
     "multiple",
+    "pauses",
     "platform",
     "polymarket",
+    "prediction",
     "report",
     "restricts",
+    "security-incident",
     "stolen",
     "trading",
+    "user-funds",
     "users"
   ],
   "identifiers": [],
   "topics": [
+    "api-outage",
+    "exchange-outage",
     "fund-losses",
     "polymarket",
     "prediction-markets",
     "security-incident",
-    "trading-halt"
+    "trading-halt",
+    "user-funds",
+    "wallet-drainer"
   ],
   "updates": [
     {
@@ -49,11 +60,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Multiple Polymarket Users Report Stolen Funds as Platform Restricts Trading and",
+      "title_zh": "多名Polymarket用户报告资金被盗，平台限制交易并",
       "title_en": "Multiple Polymarket Users Report Stolen Funds as Platform Restricts Trading and",
-      "what_changed_zh": "Polymarket users reported unauthorized fund transfers and hundreds of thousands of dollars in losses, prompting the platform to enter cancel-only mode, halt relayer actions, and open an investigation into a suspected frontend compromise.",
+      "what_changed_zh": "Polymarket用户报告未经授权的资金转移和数十万美元损失，促使平台进入仅可取消模式，暂停中继器操作，并对疑似前端遭入侵展开调查。",
       "what_changed_en": "Polymarket users reported unauthorized fund transfers and hundreds of thousands of dollars in losses, prompting the platform to enter cancel-only mode, halt relayer actions, and open an investigation into a suspected frontend compromise.",
-      "current_state_zh": "Polymarket users reported unauthorized fund transfers and hundreds of thousands of dollars in losses, prompting the platform to enter cancel-only mode, halt relayer actions, and open an investigation into a suspected frontend compromise.",
+      "current_state_zh": "Polymarket用户报告未经授权的资金转移和数十万美元损失，促使平台进入仅可取消模式，暂停中继器操作，并对疑似前端遭入侵展开调查。",
       "current_state_en": "Polymarket users reported unauthorized fund transfers and hundreds of thousands of dollars in losses, prompting the platform to enter cancel-only mode, halt relayer actions, and open an investigation into a suspected frontend compromise.",
       "detailed_summary_zh": "Polymarket users reported unauthorized fund transfers and hundreds of thousands of dollars in losses, prompting the platform to enter cancel-only mode, halt relayer actions, and open an investigation into a suspected frontend compromise.",
       "detailed_summary_en": "Polymarket users reported unauthorized fund transfers and hundreds of thousands of dollars in losses, prompting the platform to enter cancel-only mode, halt relayer actions, and open an investigation into a suspected frontend compromise.",
@@ -63,7 +74,7 @@
       "community_discussion_en": "",
       "market_impact_zh": "",
       "market_impact_en": "",
-      "importance_score": 7.5,
+      "importance_score": 8.0,
       "references": [],
       "confidence": 0.75,
       "story_ids": [
@@ -74,6 +85,82 @@
           "url": "https://wublockchain.xyz/news/polymarket-users-report-stolen-funds-trading-restricted-investigation-21440",
           "label": "wublockchainenglish",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_bcb2f414b3bc6a2c",
+      "event_id": "evt_a93f6f830eba8b2c",
+      "occurred_at": "2026-10-29T18:53:44Z",
+      "published_at": "2026-10-29T18:53:44Z",
+      "first_seen_at": "2026-10-29T22:41:45.288207Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "预测市场Polymarket调查安全事件期间暂停交易",
+      "title_en": "Polymarket Pauses Trading as Prediction Market Investigates Security Incident",
+      "what_changed_zh": "Polymarket确认一家第三方提供商遭入侵，已将此事移交执法部门，并表示受影响用户将获得全额补偿；研究人员将一个由DebugBear托管的钱包盗取脚本与一个持有约265万美元POL的疑似攻击者钱包关联起来。",
+      "what_changed_en": "Polymarket confirmed a third-party provider was compromised, referred the matter to law enforcement, and said affected users will be made whole; researchers linked a DebugBear-hosted wallet-draining script to a suspected attacker wallet holding about $2.65 million in POL.",
+      "current_state_zh": "Polymarket在调查已确认的第三方提供商入侵事件期间仍处于仅可取消模式，中继器操作暂停；执法部门已获通知，受影响用户获承诺补偿，一个疑似攻击者钱包和恶意前端脚本已被识别。",
+      "current_state_en": "Polymarket remains in cancel-only mode with relayer actions paused while investigating a confirmed third-party provider compromise; law enforcement has been notified, affected users are promised reimbursement, and a suspected attacker wallet and malicious frontend script have been identified.",
+      "detailed_summary_zh": "Polymarket halted trading and paused its relayer after confirming a third-party provider was compromised, as users reported unauthorized wallet withdrawals linked to a suspected attacker address holding about $2.65M in POL and a wallet-draining script traced to a vendor-hosted frontend dependency.",
+      "detailed_summary_en": "Polymarket halted trading and paused its relayer after confirming a third-party provider was compromised, as users reported unauthorized wallet withdrawals linked to a suspected attacker address holding about $2.65M in POL and a wallet-draining script traced to a vendor-hosted frontend dependency.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.96,
+      "story_ids": [
+        "rss:decrypt.co_feed:b9c8107aadce75be"
+      ],
+      "sources": [
+        {
+          "url": "https://decrypt.co/382185/polymarket-pauses-trading-prediction-market-security-incident",
+          "label": "Decrypt",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_c98a272b7920b45a",
+      "event_id": "evt_a93f6f830eba8b2c",
+      "occurred_at": "2026-10-29T19:23:03Z",
+      "published_at": "2026-10-29T19:23:03Z",
+      "first_seen_at": "2026-10-29T22:41:48.569452Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "Polymarket在用户资金被窃取的报道中暂停交易",
+      "title_en": "Polymarket suspended trading amid reports of user funds being drained",
+      "what_changed_zh": "Polymarket 的系统已恢复，截至 UTC 19:05 所有系统均正常运行；此前因第三方服务商被入侵而暂停交易并进入仅取消模式。",
+      "what_changed_en": "Polymarket's systems were restored and all were reported operational as of 19:05 UTC after trading was temporarily halted and the platform entered cancel-only mode due to a compromised third-party provider.",
+      "current_state_zh": "Polymarket 在第三方服务商被入侵导致临时暂停交易和仅取消模式后，系统已恢复并恢复正常运行；受影响用户已获承诺赔偿，相关执法转介仍在背景下进行。",
+      "current_state_en": "Polymarket's systems were restored and operational after a temporary trading halt and cancel-only mode caused by a compromised third-party provider; impacted users were promised reimbursement, with law enforcement referral in the background.",
+      "detailed_summary_zh": "Polymarket temporarily halted trading and entered cancel-only mode after a third-party provider was compromised, as users reported unauthorized position sales and drained accounts; systems were later restored and impacted users were promised reimbursement.",
+      "detailed_summary_en": "Polymarket temporarily halted trading and entered cancel-only mode after a third-party provider was compromised, as users reported unauthorized position sales and drained accounts; systems were later restored and impacted users were promised reimbursement.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:8d275b9040513b96"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/polymarket-suspends-trading-user-funds-compromised?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
           "official": false
         }
       ]
