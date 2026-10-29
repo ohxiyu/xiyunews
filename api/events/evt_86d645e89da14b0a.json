@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_86d645e89da14b0a/",
   "json": "https://xiyu.news/api/events/evt_86d645e89da14b0a.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "developing",
   "category": "crypto",
   "title": {
     "zh": "Bithumb内部移动办公系统遭外部入侵致个人信息泄露",
     "en": "South Korea’s Second-Largest Crypto Exchange Bithumb Confirms Security Breach"
   },
   "current_state": {
-    "zh": "Coinbase and Bithumb both disclosed user data leaks — Coinbase through third-party analytics vendor Amplitude and Bithumb through an external breach of its internal mobile groupware — with contact information exposed but no customer funds or core exchange systems affected.",
-    "en": "Coinbase and Bithumb both disclosed user data leaks — Coinbase through third-party analytics vendor Amplitude and Bithumb through an external breach of its internal mobile groupware — with contact information exposed but no customer funds or core exchange systems affected."
+    "zh": "Bithumb内部Daou Office移动办公系统遭外部非授权访问，泄露规模已确认为6444名用户（其中844人信息可读）及715名员工/合作方信息；交易所账户、资产与交易系统未被入侵，相关访问已被阻断、系统已停用，并已向韩国监管机构完成申报。",
+    "en": "Bithumb's internal Daou Office mobile system was breached by an unauthorized external party, with confirmed exposure limited to 6,444 users (844 readable) and 715 employee/partner records; exchange accounts, assets and trading systems were not compromised, access was blocked, the system was disabled, and the incident was reported to Korean authorities."
   },
   "first_seen_at": "2026-10-28T02:33:31.037391+00:00",
-  "last_updated_at": "2026-10-28T18:26:34.124727+00:00",
-  "last_material_change_at": "2026-10-28T18:26:34.124727+00:00",
+  "last_updated_at": "2026-10-29T11:01:17.410792+00:00",
+  "last_material_change_at": "2026-10-29T11:01:16.506751+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 7,
+  "updates_count": 2,
+  "sources_count": 9,
   "entities": [
     "accessed",
     "bithumb",
@@ -53,6 +53,7 @@
     "exchanges",
     "privacy",
     "security-breach",
+    "security-incident",
     "south-korea"
   ],
   "updates": [
@@ -65,7 +66,7 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "South Korea’s Second-Largest Crypto Exchange Bithumb Confirms Security Breach",
+      "title_zh": "韩国第二大加密交易所Bithumb确认发生安全漏洞",
       "title_en": "South Korea’s Second-Largest Crypto Exchange Bithumb Confirms Security Breach",
       "what_changed_zh": "Bithumb confirmed that an unauthorized external party breached its internal mobile groupware system and leaked personal data, an incident discovered on October 27 that is now under investigation alongside cyber intrusions at Mirae Asset Global Investments and Daishin Securities, the latter exposing data on 38,490 customers, with South Korea's Financial Supervisory Service reviewing all three cases.",
       "what_changed_en": "Bithumb confirmed that an unauthorized external party breached its internal mobile groupware system and leaked personal data, an incident discovered on October 27 that is now under investigation alongside cyber intrusions at Mirae Asset Global Investments and Daishin Securities, the latter exposing data on 38,490 customers, with South Korea's Financial Supervisory Service reviewing all three cases.",
@@ -132,6 +133,51 @@
           "url": "https://protos.com/coinbase-and-bithumb-users-hit-by-data-leaks/",
           "label": "Protos",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_3f97ad139adb7e03",
+      "event_id": "evt_86d645e89da14b0a",
+      "occurred_at": "2026-10-29T08:55:02Z",
+      "published_at": "2026-10-29T08:55:02Z",
+      "first_seen_at": "2026-10-29T11:01:16.506751Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "Bithumb更新黑客事件后续：共有6444名用户信息被盗，大部分用户信息无法读取",
+      "title_en": "Bithumb更新黑客事件后续：共有6444名用户信息被盗，大部分用户信息无法读取",
+      "what_changed_zh": "Bithumb公布了泄露的具体规模：共6444名用户信息受影响，其中5600人信息已加密无法读取、844人信息可读；另有715名员工/合作方人员信息泄露，涉及姓名、手机号、邮箱、居民登记号、驾驶证号、银行账号等，并已完成向韩国互联网振兴院及个人信息保护委员会的事故申报，同时加强了异常交易与出金实时监控。",
+      "what_changed_en": "Bithumb quantified the exposure: 6,444 users' data affected (5,600 encrypted/unreadable, 844 readable) plus 715 employee/partner records including names, phone numbers, emails, resident registration numbers, driver's license numbers and bank account numbers; the company reported the incident to KISA and the Personal Information Protection Commission and tightened real-time monitoring of abnormal transactions and withdrawals.",
+      "current_state_zh": "Bithumb内部Daou Office移动办公系统遭外部非授权访问，泄露规模已确认为6444名用户（其中844人信息可读）及715名员工/合作方信息；交易所账户、资产与交易系统未被入侵，相关访问已被阻断、系统已停用，并已向韩国监管机构完成申报。",
+      "current_state_en": "Bithumb's internal Daou Office mobile system was breached by an unauthorized external party, with confirmed exposure limited to 6,444 users (844 readable) and 715 employee/partner records; exchange accounts, assets and trading systems were not compromised, access was blocked, the system was disabled, and the incident was reported to Korean authorities.",
+      "detailed_summary_zh": "Bithumb disclosed that an unauthorized intrusion into its internal Daou Office mobile system exposed personal data of 6,444 users — though 5,600 of those records are encrypted and unreadable, leaving 844 readable — along with 715 employee/partner records, while stating that exchange accounts, assets and trading systems were not compromised and that the incident has been reported to Korean authorities.",
+      "detailed_summary_en": "Bithumb disclosed that an unauthorized intrusion into its internal Daou Office mobile system exposed personal data of 6,444 users — though 5,600 of those records are encrypted and unreadable, leaving 844 readable — along with 715 employee/partner records, while stating that exchange accounts, assets and trading systems were not compromised and that the incident has been reported to Korean authorities.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.93,
+      "story_ids": [
+        "telegram:theblockbeats:202976",
+        "telegram:foresightnews:121582"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/374352?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116260",
+          "label": "foresightnews",
+          "source_type": "telegram",
           "official": false
         }
       ]

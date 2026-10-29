@@ -7,19 +7,19 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "Qwenputer: A functioning, deterministic RISC-V CPU inside Qwen3.5",
+    "zh": "Qwenputer：Qwen3.5内部一个可运行、确定性的RISC-V CPU",
     "en": "Qwenputer: A functioning, deterministic RISC-V CPU inside Qwen3.5"
   },
   "current_state": {
-    "zh": "A developer implemented a functioning, deterministic RISC-V CPU and filesystem inside Qwen3.5 by exploiting gated delta network layers as exact RAM-like storage.",
-    "en": "A developer implemented a functioning, deterministic RISC-V CPU and filesystem inside Qwen3.5 by exploiting gated delta network layers as exact RAM-like storage."
+    "zh": "Qwenputer已在Qwen3.5-4B权重内实现可运行的32位RISC-V虚拟CPU和可精确读写内存，能执行编译后的C程序并通过RISC-V指令测试，大数乘法测试得分39/40；但模型体积增至18.8GB且计算速度远不如外部工具。",
+    "en": "Qwenputer has implemented a working 32-bit RISC-V virtual CPU and exact read/write memory inside Qwen3.5-4B weights, can execute compiled C programs and pass RISC-V instruction tests, and scores 39/40 on large-number multiplication; however, the model grows to 18.8GB and is much slower than external tools."
   },
   "first_seen_at": "2026-10-29T06:51:30.535162+00:00",
-  "last_updated_at": "2026-10-29T06:51:30.535162+00:00",
-  "last_material_change_at": "2026-10-29T06:51:30.535162+00:00",
+  "last_updated_at": "2026-10-29T11:01:16.505757+00:00",
+  "last_material_change_at": "2026-10-29T11:01:16.505757+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "cpu",
     "qwen3",
@@ -33,6 +33,9 @@
     "deterministic-computation",
     "gated-delta-networks",
     "llm",
+    "model-architecture",
+    "qwen",
+    "research",
     "risc-v"
   ],
   "updates": [
@@ -45,11 +48,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Qwenputer: A functioning, deterministic RISC-V CPU inside Qwen3.5",
+      "title_zh": "Qwenputer：Qwen3.5内部一个可运行、确定性的RISC-V CPU",
       "title_en": "Qwenputer: A functioning, deterministic RISC-V CPU inside Qwen3.5",
-      "what_changed_zh": "A developer implemented a functioning, deterministic RISC-V CPU and filesystem inside Qwen3.5 by exploiting gated delta network layers as exact RAM-like storage.",
+      "what_changed_zh": "一名开发者利用门控增量网络层作为精确的类RAM存储，在Qwen3.5内部实现了一个可运行、确定性的RISC-V CPU和文件系统。",
       "what_changed_en": "A developer implemented a functioning, deterministic RISC-V CPU and filesystem inside Qwen3.5 by exploiting gated delta network layers as exact RAM-like storage.",
-      "current_state_zh": "A developer implemented a functioning, deterministic RISC-V CPU and filesystem inside Qwen3.5 by exploiting gated delta network layers as exact RAM-like storage.",
+      "current_state_zh": "一名开发者利用门控增量网络层作为精确的类RAM存储，在Qwen3.5内部实现了一个可运行、确定性的RISC-V CPU和文件系统。",
       "current_state_en": "A developer implemented a functioning, deterministic RISC-V CPU and filesystem inside Qwen3.5 by exploiting gated delta network layers as exact RAM-like storage.",
       "detailed_summary_zh": "A developer implemented a functioning, deterministic RISC-V CPU and filesystem inside Qwen3.5 by exploiting gated delta network layers as exact RAM-like storage.",
       "detailed_summary_en": "A developer implemented a functioning, deterministic RISC-V CPU and filesystem inside Qwen3.5 by exploiting gated delta network layers as exact RAM-like storage.",
@@ -75,6 +78,44 @@
           "url": "https://divagr.com/blog/qwenputer",
           "label": "csmantle",
           "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_99fac4b99ac883e8",
+      "event_id": "evt_b083109812b31e54",
+      "occurred_at": "2026-10-29T08:40:01Z",
+      "published_at": "2026-10-29T08:40:01Z",
+      "first_seen_at": "2026-10-29T11:01:16.505757Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "开发者把32位CPU编进千问权重：大模型内部直接运行计算机程序",
+      "title_en": "开发者把32位CPU编进千问权重：大模型内部直接运行计算机程序",
+      "what_changed_zh": "报道补充了Qwenputer的实现细节和测试结果：开发者为Divyansh Agrawal，在Qwen3.5-4B原有32层前增加11层，将32位RISC-V虚拟CPU编码进权重，并利用Gated DeltaNet实现可精确读写内存；该CPU可运行编译后的C程序，累计执行约1800万条指令未发现错误，在DeepMind 40道大数乘法题中Qwenputer答对39道，而原版Qwen答对22道。方案效率较低，模型文件因大量零值参数增至18.8GB，约为原版两倍。",
+      "what_changed_en": "The report adds implementation details and test results for Qwenputer: developer Divyansh Agrawal prepended 11 layers to Qwen3.5-4B's original 32 layers to encode a 32-bit RISC-V virtual CPU into the weights, using Gated DeltaNet for exact read/write memory; the CPU runs compiled C programs, executed about 18 million instructions without detected errors, and scored 39/40 on DeepMind's large-number multiplication test versus 22/40 for base Qwen. The approach is inefficient, with the model file growing to 18.8GB, about twice the original, due to many zero-valued parameters.",
+      "current_state_zh": "Qwenputer已在Qwen3.5-4B权重内实现可运行的32位RISC-V虚拟CPU和可精确读写内存，能执行编译后的C程序并通过RISC-V指令测试，大数乘法测试得分39/40；但模型体积增至18.8GB且计算速度远不如外部工具。",
+      "current_state_en": "Qwenputer has implemented a working 32-bit RISC-V virtual CPU and exact read/write memory inside Qwen3.5-4B weights, can execute compiled C programs and pass RISC-V instruction tests, and scores 39/40 on large-number multiplication; however, the model grows to 18.8GB and is much slower than external tools.",
+      "detailed_summary_zh": "Independent developer Divyansh Agrawal built Qwenputer by prepending 11 layers to Qwen3.5-4B that encode a 32-bit RISC-V virtual CPU directly into model weights, letting the LLM execute compiled C programs and exact arithmetic internally and scoring 39/40 on DeepMind's large-number multiplication test versus 22/40 for base Qwen.",
+      "detailed_summary_en": "Independent developer Divyansh Agrawal built Qwenputer by prepending 11 layers to Qwen3.5-4B that encode a 32-bit RISC-V virtual CPU directly into model weights, letting the LLM execute compiled C programs and exact arithmetic internally and scoring 39/40 on DeepMind's large-number multiplication test versus 22/40 for base Qwen.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "telegram:theblockbeats:202974"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/374349?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]
