@@ -7,8 +7,8 @@
   "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "币安热钱包疑遭大规模异常转出，交易所确认安全事件并暂停存取款",
-    "en": "Binance suspected hack with ~$5.6B stolen; some funds frozen"
+    "zh": "Binance 疑似遭黑客攻击，约 56 亿美元被盗",
+    "en": "Binance suspected hack with ~$5.6B stolen"
   },
   "current_state": {
     "zh": "Binance 事件仍在调查中；此前初步指向 DevOps 设备被入侵和签名基础设施被滥用，影响估计约63亿美元，约30亿美元已冻结，存取款曾暂停，受影响地址授权已撤销，损失将由 SAFU 和公司资金覆盖。Blockaid 进一步分析称，攻击者利用 EIP-7702 授权机制，通过单笔交易提交 50 个不同 nonce 的授权，仅一个成功，使 Binance 14 热钱包被委托给恶意 sweep 合约。",
@@ -18,8 +18,8 @@
   "last_updated_at": "2026-10-30T02:53:48.354749+00:00",
   "last_material_change_at": "2026-10-30T02:53:48.354749+00:00",
   "confidence": 0.75,
-  "updates_count": 12,
-  "sources_count": 21,
+  "updates_count": 13,
+  "sources_count": 22,
   "entities": [
     "addresses",
     "arbitrum",
@@ -61,6 +61,7 @@
     "suspected",
     "tether",
     "took",
+    "update",
     "wallet",
     "withdrawals"
   ],
@@ -99,6 +100,7 @@
     "stolen-funds",
     "systemic-risk",
     "tether",
+    "unauthorized-withdrawals",
     "usd1",
     "withdrawal-suspension",
     "withdrawals",
@@ -587,6 +589,44 @@
         {
           "url": "https://foresightnews.pro/news/h5Detail/116371",
           "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_a66e7d8935fc8bfb",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T02:26:14Z",
+      "published_at": "2026-10-30T02:26:14Z",
+      "first_seen_at": "2026-10-30T02:53:11.770587Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "安全事件更新",
+      "title_en": "Security Incident Update",
+      "what_changed_zh": "币安表示，一名攻击者显然入侵了一名 DevOps 工程师的笔记本电脑，以访问服务容器并提交未经授权的提现交易，没有证据表明私钥泄露，完整的技术复盘报告即将发布。",
+      "what_changed_en": "Binance reported that an attacker apparently compromised a DevOps engineer's laptop to access a service container and submit unauthorized withdrawal transactions, with no evidence of private key leakage and a full technical post-mortem forthcoming.",
+      "current_state_zh": "币安表示，一名攻击者显然入侵了一名 DevOps 工程师的笔记本电脑，以访问服务容器并提交未经授权的提现交易，没有证据表明私钥泄露，完整的技术复盘报告即将发布。",
+      "current_state_en": "Binance reported that an attacker apparently compromised a DevOps engineer's laptop to access a service container and submit unauthorized withdrawal transactions, with no evidence of private key leakage and a full technical post-mortem forthcoming.",
+      "detailed_summary_zh": "Binance reported that an attacker apparently compromised a DevOps engineer's laptop to access a service container and submit unauthorized withdrawal transactions, with no evidence of private key leakage and a full technical post-mortem forthcoming.",
+      "detailed_summary_en": "Binance reported that an attacker apparently compromised a DevOps engineer's laptop to access a service container and submit unauthorized withdrawal transactions, with no evidence of private key leakage and a full technical post-mortem forthcoming.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:binance_announcements:9100"
+      ],
+      "sources": [
+        {
+          "url": "https://www.binance.com/en/support/announcement/detail/c5a8729a97ac486d963784d96c5642d7?utm_source=EnglishTelegram&amp;utm_medium=GlobalCommunity&amp;utm_campaign=AnnouncementBot",
+          "label": "binance_announcements",
           "source_type": "telegram",
           "official": false
         }

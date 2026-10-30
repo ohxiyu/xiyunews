@@ -7,9 +7,9 @@
       "latest_at": "2026-10-30T10:53:48.354749+08:00",
       "first_date": "2026-10-30",
       "days": 1,
-      "entries": 12,
-      "updates_count": 12,
-      "sources_count": 21,
+      "entries": 13,
+      "updates_count": 13,
+      "sources_count": 22,
       "category": "crypto",
       "status": "developing",
       "status_zh": "进展中",
@@ -17,8 +17,8 @@
       "event_type": "security_incident",
       "event_type_zh": "安全事件",
       "event_type_en": "Security incident",
-      "title_zh": "币安热钱包疑遭大规模异常转出，交易所确认安全事件并暂停存取款",
-      "title_en": "Binance suspected hack with ~$5.6B stolen; some funds frozen",
+      "title_zh": "Binance 疑似遭黑客攻击，约 56 亿美元被盗",
+      "title_en": "Binance suspected hack with ~$5.6B stolen",
       "summary_zh": "Binance 事件仍在调查中；此前初步指向 DevOps 设备被入侵和签名基础设施被滥用，影响估计约63亿美元，约30亿美元已冻结，存取款曾暂停，受影响地址授权已撤销，损失将由 SAFU 和公司资金覆盖。Blockaid 进一步分析称，攻击者利用 EIP-7702 授权机制，通过单笔交易提交 50 个不同 nonce 的授权，仅一个成功，使 Binance 14 热钱包被委托给恶意 sweep 合约。",
       "summary_en": "The Binance incident remains under investigation; preliminary findings pointed to a compromised DevOps device and signing-infrastructure misuse, with estimated impact about $6.3B, about $3B frozen, deposits/withdrawals temporarily suspended, the affected address authorization revoked, and losses to be covered by SAFU and company funds. Blockaid further analyzed that the attacker exploited EIP-7702 authorization by submitting 50 different-nonce authorizations in one transaction; only one succeeded, delegating the Binance 14 hot wallet to a malicious sweep contract.",
       "latest_update_zh": "Blockaid 分析披露攻击者通过单笔 Type-4 交易提交 50 个不同 nonce 的 EIP-7702 授权，仅一个匹配成功，将 Binance 14 热钱包委托给未经验证的恶意转账合约；该合约仅允许攻击者指定地址调用 sweep()，可转走 ETH 和 ERC-20 代币并保留 1 ETH 作为 gas。",
@@ -36,6 +36,11 @@
         {
           "url": "https://wublockchain.xyz/news/news-21448",
           "title": "wublockchainenglish",
+          "official": false
+        },
+        {
+          "url": "https://www.binance.com/en/support/announcement/detail/c5a8729a97ac486d963784d96c5642d7?utm_source=EnglishTelegram&amp;utm_medium=GlobalCommunity&amp;utm_campaign=AnnouncementBot",
+          "title": "binance_announcements",
           "official": false
         },
         {
@@ -159,6 +164,23 @@
           ]
         },
         {
+          "update_id": "upd_a66e7d8935fc8bfb",
+          "date": "2026-10-30",
+          "time_precision": "published",
+          "type_zh": "确认",
+          "type_en": "Confirmation",
+          "text_zh": "币安表示，一名攻击者显然入侵了一名 DevOps 工程师的笔记本电脑，以访问服务容器并提交未经授权的提现交易，没有证据表明私钥泄露，完整的技术复盘报告即将发布。",
+          "text_en": "Binance reported that an attacker apparently compromised a DevOps engineer's laptop to access a service container and submit unauthorized withdrawal transactions, with no evidence of private key leakage and a full technical post-mortem forthcoming.",
+          "sources": [
+            {
+              "url": "https://www.binance.com/en/support/announcement/detail/c5a8729a97ac486d963784d96c5642d7?utm_source=EnglishTelegram&amp;utm_medium=GlobalCommunity&amp;utm_campaign=AnnouncementBot",
+              "label": "binance_announcements",
+              "source_type": "telegram",
+              "official": false
+            }
+          ]
+        },
+        {
           "update_id": "upd_72755477a1d50740",
           "date": "2026-10-30",
           "time_precision": "published",
@@ -174,30 +196,13 @@
               "official": false
             }
           ]
-        },
-        {
-          "update_id": "upd_dea6cd66f1fe005c",
-          "date": "2026-10-30",
-          "time_precision": "published",
-          "type_zh": "修复",
-          "type_en": "Remediation",
-          "text_zh": "Arbitrum冻结了约3050万美元与币安被盗资金相关的ARB，Paxos冻结了约21.57万美元USDP，使一位链上分析师估算的累计冻结金额达到约28.29亿美元，该数字尚未获官方确认。",
-          "text_en": "Arbitrum froze about $30.5 million in ARB and Paxos about $215,700 in USDP linked to Binance stolen funds, bringing an on-chain analyst's estimated cumulative freeze to about $2.829 billion, a figure not yet officially confirmed.",
-          "sources": [
-            {
-              "url": "https://m.theblockbeats.info/flash/374504?from=telegram",
-              "label": "theblockbeats",
-              "source_type": "telegram",
-              "official": false
-            }
-          ]
         }
       ],
-      "effective_updates_count": 12,
+      "effective_updates_count": 13,
       "latest_confidence": 0.94,
-      "age_days": 0.0,
+      "age_days": 0.2,
       "lifecycle": "active",
-      "heat": 35.144,
+      "heat": 33.808,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -594,9 +599,9 @@
       ],
       "effective_updates_count": 44,
       "latest_confidence": 0.75,
-      "age_days": 0.5,
+      "age_days": 0.7,
       "lifecycle": "active",
-      "heat": 28.215,
+      "heat": 27.143,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -1115,9 +1120,9 @@
       ],
       "effective_updates_count": 34,
       "latest_confidence": 0.97,
-      "age_days": 0.5,
+      "age_days": 0.7,
       "lifecycle": "active",
-      "heat": 28.214,
+      "heat": 27.142,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -1684,9 +1689,148 @@
       ],
       "effective_updates_count": 48,
       "latest_confidence": 0.93,
-      "age_days": 0.8,
+      "age_days": 1.0,
       "lifecycle": "active",
-      "heat": 24.631,
+      "heat": 23.695,
+      "watch_pending": false,
+      "watch_zh": "",
+      "watch_en": "",
+      "watch_source": "",
+      "focus_excluded": false
+    },
+    {
+      "thread_id": "evt_a93f6f830eba8b2c",
+      "event_id": "evt_a93f6f830eba8b2c",
+      "latest_date": "2026-10-30",
+      "latest_at": "2026-10-30T15:01:32.542095+08:00",
+      "first_date": "2026-10-30",
+      "days": 1,
+      "entries": 6,
+      "updates_count": 6,
+      "sources_count": 7,
+      "category": "crypto",
+      "status": "closed",
+      "status_zh": "已结束",
+      "status_en": "Closed",
+      "event_type": "security_incident",
+      "event_type_zh": "安全事件",
+      "event_type_en": "Security incident",
+      "title_zh": "多名Polymarket用户报告资金被盗，平台限制交易并",
+      "title_en": "Multiple Polymarket Users Report Stolen Funds as Platform Restricts Trading and",
+      "summary_zh": "Polymarket 第三方服务商遭入侵后的赔付进入分档执行阶段：小额损失拟直接恢复，大额索赔需签署免责/和解文件并据报道提交身份信息；链上分析显示约 710 余个钱包、合计约 270 万美元被转出，平台此前承诺全额赔付并已向执法机构报案。",
+      "summary_en": "Polymarket's reimbursement after the third-party provider breach has moved into tiered execution: smaller losses are to be restored directly, while larger claims require a release/waiver and reportedly identity details; on-chain analysis shows about 710 wallets and roughly $2.7 million transferred out, after the platform pledged full reimbursement and reported the matter to law enforcement.",
+      "latest_update_zh": "Polymarket 的赔付执行方案新增分档安排：损失低于 1 万美元的用户拟于 10 月 30 日前直接补回；超过该门槛者需先签署和解/免责协议，并被报道要求提交身份信息后方可获得赔付。",
+      "latest_update_en": "Polymarket's reimbursement plan adds tiered execution: losses under $10K are to be restored directly by Oct 30, while larger claimants must sign a release/waiver and, per reports, submit identity details before being made whole.",
+      "background_zh": "Polymarket是一个预测市场平台，用户就未来事件的结果进行交易。今年6月，该公司披露黑客通过入侵一个第三方服务商窃取逾290万美元用户资金；Polymarket称该漏洞已修复、相关服务商已从其网站移除，受影响用户将获全额赔付，损失低于1万美元的钱包将在10月30日前自动收到退款，损失更大者需签署免责/放款文件。前端入侵——即将盗取钱包的代码注入网站或其第三方脚本——此前也曾冲击其他DeFi平台，包括Balancer和Aerodrome。",
+      "background_en": "Polymarket is a prediction-market platform where users trade on the outcomes of future events. In June, the company reported that hackers drained more than $2.9 million in user funds by compromising a third-party vendor; it said that vulnerability was fixed, the vendor has been removed from its website and affected users would be fully reimbursed, with wallets losing under $10,000 receiving automatic refunds by October 30 and larger losses requiring a signed release form. Frontend compromises — in which wallet-draining code is injected into a site or its third-party scripts — have also hit other DeFi venues, including Balancer and Aerodrome.",
+      "latest_summary_zh": "After a third-party provider breach drained about $2.7M from roughly 710 user wallets, Polymarket pledged full reimbursement, restoring losses under $10K directly while requiring larger claimants to sign a release/waiver and reportedly submit identity details before being made whole.",
+      "latest_summary_en": "After a third-party provider breach drained about $2.7M from roughly 710 user wallets, Polymarket pledged full reimbursement, restoring losses under $10K directly while requiring larger claimants to sign a release/waiver and reportedly submit identity details before being made whole.",
+      "discussion_zh": "",
+      "discussion_en": "",
+      "market_impact_zh": "风险传导集中于Polymarket基于Polygon的链路：用户钱包中的USDC.e存款与POL持仓，以及负责提交签名交易的中继器通道，是直接受影响的环节，交易暂停也使该平台各预测市场的下单冻结。疑似前端/第三方服务商入侵的路径，还将供应链风险扩散至其他依赖外部托管脚本与中继器的DeFi平台。",
+      "market_impact_en": "The exposure runs through Polymarket's Polygon-based rails: USDC.e deposits and POL holdings in user wallets, plus the relayer channel that submits signed transactions, are the directly affected segments, and the halt froze order placement across its prediction markets. The suspected frontend/third-party vendor vector extends supply-chain risk to other DeFi venues that rely on externally hosted scripts and relayers.",
+      "score": 8.0,
+      "source_links": [
+        {
+          "url": "https://m.theblockbeats.info/flash/374579?from=telegram",
+          "title": "theblockbeats",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116378",
+          "title": "foresightnews",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116372",
+          "title": "foresightnews",
+          "official": false
+        },
+        {
+          "url": "https://cointelegraph.com/news/polymarket-suspends-trading-user-funds-compromised?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "title": "Cointelegraph",
+          "official": false
+        },
+        {
+          "url": "https://decrypt.co/382185/polymarket-pauses-trading-prediction-market-security-incident",
+          "title": "Decrypt",
+          "official": false
+        },
+        {
+          "url": "https://wublockchain.xyz/news/polymarket-users-report-stolen-funds-trading-restricted-investigation-21440",
+          "title": "wublockchainenglish",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116373",
+          "title": "foresightnews",
+          "official": false
+        }
+      ],
+      "reference_links": [
+        {
+          "url": "https://cryptonews.com/news/bases-top-dex-aerodrome-hit-by-a-suspected-frontend-security-breach/",
+          "title": "Base's Top DEX Aerodrome Hit by a Suspected Frontend Security..."
+        }
+      ],
+      "timeline": [
+        {
+          "update_id": "upd_265218a6850ca2bc",
+          "date": "2026-10-30",
+          "time_precision": "published",
+          "type_zh": "修复",
+          "type_en": "Remediation",
+          "text_zh": "Polymarket 的赔付执行方案新增分档安排：损失低于 1 万美元的用户拟于 10 月 30 日前直接补回；超过该门槛者需先签署和解/免责协议，并被报道要求提交身份信息后方可获得赔付。",
+          "text_en": "Polymarket's reimbursement plan adds tiered execution: losses under $10K are to be restored directly by Oct 30, while larger claimants must sign a release/waiver and, per reports, submit identity details before being made whole.",
+          "sources": [
+            {
+              "url": "https://m.theblockbeats.info/flash/374579?from=telegram",
+              "label": "theblockbeats",
+              "source_type": "telegram",
+              "official": false
+            }
+          ]
+        },
+        {
+          "update_id": "upd_5a088c80f1c87231",
+          "date": "2026-10-30",
+          "time_precision": "published",
+          "type_zh": "后续影响",
+          "type_en": "Aftermath",
+          "text_zh": "Bubblemaps 监测显示被盗总额约 346 万美元，而非此前约 270 万美元；其中约 270 万美元已换成 POL 转出，约 75 万美元仍留在 Polymarket。",
+          "text_en": "Bubblemaps monitoring indicates total stolen funds were about $3.46 million, rather than the earlier ~$2.7 million figure; about $2.7 million was converted to POL and transferred out, while about $750,000 remains on Polymarket.",
+          "sources": [
+            {
+              "url": "https://foresightnews.pro/news/h5Detail/116378",
+              "label": "foresightnews",
+              "source_type": "telegram",
+              "official": false
+            }
+          ]
+        },
+        {
+          "update_id": "upd_dbfabeb94394a6f3",
+          "date": "2026-10-30",
+          "time_precision": "published",
+          "type_zh": "后续影响",
+          "type_en": "Aftermath",
+          "text_zh": "据 Bubblemaps 监测，此次事件影响超过 700 名用户，被盗资金约 270 万美元；状态页已将事件标记为已解决。",
+          "text_en": "Bubblemaps monitoring indicates more than 700 users were affected and about $2.7 million in funds were stolen; the status page marked the incident as resolved.",
+          "sources": [
+            {
+              "url": "https://foresightnews.pro/news/h5Detail/116372",
+              "label": "foresightnews",
+              "source_type": "telegram",
+              "official": false
+            }
+          ]
+        }
+      ],
+      "effective_updates_count": 6,
+      "latest_confidence": 0.93,
+      "age_days": 0.0,
+      "lifecycle": "active",
+      "heat": 16.93,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -1878,9 +2022,9 @@
       ],
       "effective_updates_count": 6,
       "latest_confidence": 0.9,
-      "age_days": 0.8,
+      "age_days": 1.0,
       "lifecycle": "active",
-      "heat": 17.389,
+      "heat": 16.728,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -2140,143 +2284,9 @@
       ],
       "effective_updates_count": 21,
       "latest_confidence": 0.75,
-      "age_days": 2.4,
+      "age_days": 2.5,
       "lifecycle": "active",
-      "heat": 17.302,
-      "watch_pending": false,
-      "watch_zh": "",
-      "watch_en": "",
-      "watch_source": "",
-      "focus_excluded": false
-    },
-    {
-      "thread_id": "evt_a93f6f830eba8b2c",
-      "event_id": "evt_a93f6f830eba8b2c",
-      "latest_date": "2026-10-30",
-      "latest_at": "2026-10-30T10:53:16.166397+08:00",
-      "first_date": "2026-10-30",
-      "days": 1,
-      "entries": 5,
-      "updates_count": 5,
-      "sources_count": 6,
-      "category": "crypto",
-      "status": "closed",
-      "status_zh": "已结束",
-      "status_en": "Closed",
-      "event_type": "security_incident",
-      "event_type_zh": "安全事件",
-      "event_type_en": "Security incident",
-      "title_zh": "多名Polymarket用户报告资金被盗，平台限制交易并",
-      "title_en": "Multiple Polymarket Users Report Stolen Funds as Platform Restricts Trading and",
-      "summary_zh": "Polymarket 第三方服务商遭入侵事件已标记为解决，超过 700 名用户受影响，被盗总额约 346 万美元，其中约 270 万美元已换成 POL 转出、约 75 万美元仍留在平台；平台此前承诺全额补偿并已移交执法部门。",
-      "summary_en": "The Polymarket third-party provider breach is marked resolved, with over 700 users affected and about $3.46 million stolen in total; roughly $2.7 million was converted to POL and transferred out, while about $750,000 remains on the platform. The platform previously promised full compensation and referred the matter to law enforcement.",
-      "latest_update_zh": "Bubblemaps 监测显示被盗总额约 346 万美元，而非此前约 270 万美元；其中约 270 万美元已换成 POL 转出，约 75 万美元仍留在 Polymarket。",
-      "latest_update_en": "Bubblemaps monitoring indicates total stolen funds were about $3.46 million, rather than the earlier ~$2.7 million figure; about $2.7 million was converted to POL and transferred out, while about $750,000 remains on Polymarket.",
-      "background_zh": "Polymarket是一个预测市场平台，用户就未来事件的结果进行交易。今年6月，该公司披露黑客通过入侵一个第三方服务商窃取逾290万美元用户资金；Polymarket称该漏洞已修复、相关服务商已从其网站移除，受影响用户将获全额赔付，损失低于1万美元的钱包将在10月30日前自动收到退款，损失更大者需签署免责/放款文件。前端入侵——即将盗取钱包的代码注入网站或其第三方脚本——此前也曾冲击其他DeFi平台，包括Balancer和Aerodrome。",
-      "background_en": "Polymarket is a prediction-market platform where users trade on the outcomes of future events. In June, the company reported that hackers drained more than $2.9 million in user funds by compromising a third-party vendor; it said that vulnerability was fixed, the vendor has been removed from its website and affected users would be fully reimbursed, with wallets losing under $10,000 receiving automatic refunds by October 30 and larger losses requiring a signed release form. Frontend compromises — in which wallet-draining code is injected into a site or its third-party scripts — have also hit other DeFi venues, including Balancer and Aerodrome.",
-      "latest_summary_zh": "A breach at a Polymarket third-party service provider led to the theft of about $3.46 million from more than 700 users, with roughly $2.7 million converted to POL and transferred out.",
-      "latest_summary_en": "A breach at a Polymarket third-party service provider led to the theft of about $3.46 million from more than 700 users, with roughly $2.7 million converted to POL and transferred out.",
-      "discussion_zh": "",
-      "discussion_en": "",
-      "market_impact_zh": "风险传导集中于Polymarket基于Polygon的链路：用户钱包中的USDC.e存款与POL持仓，以及负责提交签名交易的中继器通道，是直接受影响的环节，交易暂停也使该平台各预测市场的下单冻结。疑似前端/第三方服务商入侵的路径，还将供应链风险扩散至其他依赖外部托管脚本与中继器的DeFi平台。",
-      "market_impact_en": "The exposure runs through Polymarket's Polygon-based rails: USDC.e deposits and POL holdings in user wallets, plus the relayer channel that submits signed transactions, are the directly affected segments, and the halt froze order placement across its prediction markets. The suspected frontend/third-party vendor vector extends supply-chain risk to other DeFi venues that rely on externally hosted scripts and relayers.",
-      "score": 8.0,
-      "source_links": [
-        {
-          "url": "https://foresightnews.pro/news/h5Detail/116378",
-          "title": "foresightnews",
-          "official": false
-        },
-        {
-          "url": "https://foresightnews.pro/news/h5Detail/116372",
-          "title": "foresightnews",
-          "official": false
-        },
-        {
-          "url": "https://cointelegraph.com/news/polymarket-suspends-trading-user-funds-compromised?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
-          "title": "Cointelegraph",
-          "official": false
-        },
-        {
-          "url": "https://decrypt.co/382185/polymarket-pauses-trading-prediction-market-security-incident",
-          "title": "Decrypt",
-          "official": false
-        },
-        {
-          "url": "https://wublockchain.xyz/news/polymarket-users-report-stolen-funds-trading-restricted-investigation-21440",
-          "title": "wublockchainenglish",
-          "official": false
-        },
-        {
-          "url": "https://foresightnews.pro/news/h5Detail/116373",
-          "title": "foresightnews",
-          "official": false
-        }
-      ],
-      "reference_links": [
-        {
-          "url": "https://cryptonews.com/news/bases-top-dex-aerodrome-hit-by-a-suspected-frontend-security-breach/",
-          "title": "Base's Top DEX Aerodrome Hit by a Suspected Frontend Security..."
-        }
-      ],
-      "timeline": [
-        {
-          "update_id": "upd_5a088c80f1c87231",
-          "date": "2026-10-30",
-          "time_precision": "published",
-          "type_zh": "后续影响",
-          "type_en": "Aftermath",
-          "text_zh": "Bubblemaps 监测显示被盗总额约 346 万美元，而非此前约 270 万美元；其中约 270 万美元已换成 POL 转出，约 75 万美元仍留在 Polymarket。",
-          "text_en": "Bubblemaps monitoring indicates total stolen funds were about $3.46 million, rather than the earlier ~$2.7 million figure; about $2.7 million was converted to POL and transferred out, while about $750,000 remains on Polymarket.",
-          "sources": [
-            {
-              "url": "https://foresightnews.pro/news/h5Detail/116378",
-              "label": "foresightnews",
-              "source_type": "telegram",
-              "official": false
-            }
-          ]
-        },
-        {
-          "update_id": "upd_dbfabeb94394a6f3",
-          "date": "2026-10-30",
-          "time_precision": "published",
-          "type_zh": "后续影响",
-          "type_en": "Aftermath",
-          "text_zh": "据 Bubblemaps 监测，此次事件影响超过 700 名用户，被盗资金约 270 万美元；状态页已将事件标记为已解决。",
-          "text_en": "Bubblemaps monitoring indicates more than 700 users were affected and about $2.7 million in funds were stolen; the status page marked the incident as resolved.",
-          "sources": [
-            {
-              "url": "https://foresightnews.pro/news/h5Detail/116372",
-              "label": "foresightnews",
-              "source_type": "telegram",
-              "official": false
-            }
-          ]
-        },
-        {
-          "update_id": "upd_c98a272b7920b45a",
-          "date": "2026-10-30",
-          "time_precision": "published",
-          "type_zh": "修复",
-          "type_en": "Remediation",
-          "text_zh": "Polymarket 的系统已恢复，截至 UTC 19:05 所有系统均正常运行；此前因第三方服务商被入侵而暂停交易并进入仅取消模式。",
-          "text_en": "Polymarket's systems were restored and all were reported operational as of 19:05 UTC after trading was temporarily halted and the platform entered cancel-only mode due to a compromised third-party provider.",
-          "sources": [
-            {
-              "url": "https://cointelegraph.com/news/polymarket-suspends-trading-user-funds-compromised?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
-              "label": "Cointelegraph",
-              "source_type": "rss",
-              "official": false
-            }
-          ]
-        }
-      ],
-      "effective_updates_count": 5,
-      "latest_confidence": 0.96,
-      "age_days": 0.0,
-      "lifecycle": "active",
-      "heat": 15.078,
+      "heat": 16.644,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -2603,9 +2613,9 @@
       ],
       "effective_updates_count": 17,
       "latest_confidence": 0.75,
-      "age_days": 3.3,
+      "age_days": 3.5,
       "lifecycle": "active",
-      "heat": 14.641,
+      "heat": 14.084,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -2727,9 +2737,9 @@
       ],
       "effective_updates_count": 5,
       "latest_confidence": 0.75,
-      "age_days": 0.4,
+      "age_days": 0.5,
       "lifecycle": "active",
-      "heat": 14.418,
+      "heat": 13.87,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -2863,9 +2873,9 @@
       ],
       "effective_updates_count": 3,
       "latest_confidence": 0.9,
-      "age_days": 0.7,
+      "age_days": 0.8,
       "lifecycle": "active",
-      "heat": 11.53,
+      "heat": 11.091,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -3023,9 +3033,9 @@
       ],
       "effective_updates_count": 3,
       "latest_confidence": 0.75,
-      "age_days": 0.4,
+      "age_days": 0.5,
       "lifecycle": "active",
-      "heat": 11.313,
+      "heat": 10.883,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -3252,9 +3262,9 @@
       ],
       "effective_updates_count": 13,
       "latest_confidence": 0.75,
-      "age_days": 3.7,
+      "age_days": 3.9,
       "lifecycle": "active",
-      "heat": 11.185,
+      "heat": 10.76,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -3444,9 +3454,9 @@
       ],
       "effective_updates_count": 8,
       "latest_confidence": 0.95,
-      "age_days": 3.7,
+      "age_days": 3.9,
       "lifecycle": "active",
-      "heat": 10.982,
+      "heat": 10.565,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -3608,9 +3618,9 @@
       ],
       "effective_updates_count": 3,
       "latest_confidence": 0.96,
-      "age_days": 0.5,
+      "age_days": 0.7,
       "lifecycle": "active",
-      "heat": 10.929,
+      "heat": 10.514,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -3733,9 +3743,9 @@
       ],
       "effective_updates_count": 3,
       "latest_confidence": 0.92,
-      "age_days": 0.5,
+      "age_days": 0.7,
       "lifecycle": "active",
-      "heat": 10.373,
+      "heat": 9.979,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -3954,9 +3964,9 @@
       ],
       "effective_updates_count": 6,
       "latest_confidence": 0.75,
-      "age_days": 3.1,
+      "age_days": 3.3,
       "lifecycle": "active",
-      "heat": 10.315,
+      "heat": 9.923,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -4101,9 +4111,101 @@
       ],
       "effective_updates_count": 7,
       "latest_confidence": 0.75,
-      "age_days": 2.5,
+      "age_days": 2.7,
       "lifecycle": "active",
-      "heat": 10.245,
+      "heat": 9.856,
+      "watch_pending": false,
+      "watch_zh": "",
+      "watch_en": "",
+      "watch_source": "",
+      "focus_excluded": false
+    },
+    {
+      "thread_id": "evt_4df13f82695b6f88",
+      "event_id": "evt_4df13f82695b6f88",
+      "latest_date": "2026-10-30",
+      "latest_at": "2026-10-30T15:01:32.543349+08:00",
+      "first_date": "2026-10-30",
+      "days": 1,
+      "entries": 2,
+      "updates_count": 2,
+      "sources_count": 2,
+      "category": "crypto",
+      "status": "monitoring",
+      "status_zh": "持续观察",
+      "status_en": "Monitoring",
+      "event_type": "security_incident",
+      "event_type_zh": "安全事件",
+      "event_type_en": "Security incident",
+      "title_zh": "【PeckShield：Polymarket UI 可能被入侵，不要与网站交互】",
+      "title_en": "【PeckShield：Polymarket UI 可能被入侵，不要与网站交互】",
+      "summary_zh": "Polymarket 表示已修复供应链污染问题并恢复服务，承诺全额赔付受影响交易者；实际赔付进度仍待官方后续公告。",
+      "summary_en": "Polymarket says it has fixed the supply-chain compromise and restored service, and has promised full compensation to affected traders; actual compensation progress remains subject to official follow-up announcements.",
+      "latest_update_zh": "GoPlus 将 Polymarket 国际站用户资产被盗（约 271 万美元，涉及 710 个 DepositWallet、731 个地址）归因于第三方性能监控服务商 DebugBear 的 RUM 脚本遭供应链污染；Polymarket 表示已修复问题、恢复服务，并承诺全额赔付受影响交易者。",
+      "latest_update_en": "GoPlus attributed the Polymarket international-site user asset theft (~$2.71M across 710 DepositWallets and 731 addresses) to a supply-chain compromise of third-party performance-monitoring vendor DebugBear's RUM script; Polymarket said it fixed the issue, restored service, and promised full compensation to affected traders.",
+      "background_zh": "",
+      "background_en": "",
+      "latest_summary_zh": "GoPlus traced the Polymarket international-site user asset theft (~$2.71M across 710 DepositWallets and 731 addresses) to a supply-chain compromise of third-party performance-monitoring vendor DebugBear's RUM script, which injected malicious code into user pages to abuse trading and signing permissions; Polymarket says it fixed the issue, restored service and promised full compensation to affected traders.",
+      "latest_summary_en": "GoPlus traced the Polymarket international-site user asset theft (~$2.71M across 710 DepositWallets and 731 addresses) to a supply-chain compromise of third-party performance-monitoring vendor DebugBear's RUM script, which injected malicious code into user pages to abuse trading and signing permissions; Polymarket says it fixed the issue, restored service and promised full compensation to affected traders.",
+      "discussion_zh": "",
+      "discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "score": 8.0,
+      "source_links": [
+        {
+          "url": "https://m.theblockbeats.info/flash/374581?from=telegram",
+          "title": "theblockbeats",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116376",
+          "title": "foresightnews",
+          "official": false
+        }
+      ],
+      "reference_links": [],
+      "timeline": [
+        {
+          "update_id": "upd_cbcbe416a3e6f167",
+          "date": "2026-10-30",
+          "time_precision": "published",
+          "type_zh": "修复",
+          "type_en": "Remediation",
+          "text_zh": "GoPlus 将 Polymarket 国际站用户资产被盗（约 271 万美元，涉及 710 个 DepositWallet、731 个地址）归因于第三方性能监控服务商 DebugBear 的 RUM 脚本遭供应链污染；Polymarket 表示已修复问题、恢复服务，并承诺全额赔付受影响交易者。",
+          "text_en": "GoPlus attributed the Polymarket international-site user asset theft (~$2.71M across 710 DepositWallets and 731 addresses) to a supply-chain compromise of third-party performance-monitoring vendor DebugBear's RUM script; Polymarket said it fixed the issue, restored service, and promised full compensation to affected traders.",
+          "sources": [
+            {
+              "url": "https://m.theblockbeats.info/flash/374581?from=telegram",
+              "label": "theblockbeats",
+              "source_type": "telegram",
+              "official": false
+            }
+          ]
+        },
+        {
+          "update_id": "upd_9ff3fc97b5ea2204",
+          "date": "2026-10-30",
+          "time_precision": "published",
+          "type_zh": "首次出现",
+          "type_en": "Initial",
+          "text_zh": "PeckShield 警告称 Polymarket 的用户界面可能已被入侵，并敦促用户停止与该网站交互。",
+          "text_en": "PeckShield warned that Polymarket's user interface may have been compromised and urged users to stop interacting with the website.",
+          "sources": [
+            {
+              "url": "https://foresightnews.pro/news/h5Detail/116376",
+              "label": "foresightnews",
+              "source_type": "telegram",
+              "official": false
+            }
+          ]
+        }
+      ],
+      "effective_updates_count": 2,
+      "latest_confidence": 0.92,
+      "age_days": 0.0,
+      "lifecycle": "active",
+      "heat": 9.746,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -4270,9 +4372,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.93,
-      "age_days": 0.7,
+      "age_days": 0.8,
       "lifecycle": "active",
-      "heat": 9.386,
+      "heat": 9.03,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -4406,9 +4508,9 @@
       ],
       "effective_updates_count": 3,
       "latest_confidence": 0.75,
-      "age_days": 0.8,
+      "age_days": 1.0,
       "lifecycle": "active",
-      "heat": 9.231,
+      "heat": 8.88,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -4498,9 +4600,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.96,
-      "age_days": 0.0,
+      "age_days": 0.2,
       "lifecycle": "active",
-      "heat": 9.127,
+      "heat": 8.78,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -4675,9 +4777,9 @@
       ],
       "effective_updates_count": 5,
       "latest_confidence": 0.75,
-      "age_days": 3.2,
+      "age_days": 3.3,
       "lifecycle": "active",
-      "heat": 9.077,
+      "heat": 8.732,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -4834,9 +4936,9 @@
       ],
       "effective_updates_count": 5,
       "latest_confidence": 0.92,
-      "age_days": 2.5,
+      "age_days": 2.7,
       "lifecycle": "active",
-      "heat": 8.627,
+      "heat": 8.299,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -5002,9 +5104,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.93,
-      "age_days": 1.5,
+      "age_days": 1.7,
       "lifecycle": "active",
-      "heat": 8.348,
+      "heat": 8.031,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -5132,9 +5234,9 @@
       ],
       "effective_updates_count": 4,
       "latest_confidence": 0.92,
-      "age_days": 2.4,
+      "age_days": 2.5,
       "lifecycle": "active",
-      "heat": 8.196,
+      "heat": 7.885,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -5237,9 +5339,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.96,
-      "age_days": 0.5,
+      "age_days": 0.7,
       "lifecycle": "active",
-      "heat": 8.142,
+      "heat": 7.833,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -5334,9 +5436,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.75,
-      "age_days": 0.8,
+      "age_days": 1.0,
       "lifecycle": "active",
-      "heat": 7.526,
+      "heat": 7.24,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -5497,9 +5599,9 @@
       ],
       "effective_updates_count": 6,
       "latest_confidence": 0.97,
-      "age_days": 3.5,
+      "age_days": 3.7,
       "lifecycle": "active",
-      "heat": 7.387,
+      "heat": 7.106,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -5589,9 +5691,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.95,
-      "age_days": 0.7,
+      "age_days": 0.8,
       "lifecycle": "active",
-      "heat": 7.312,
+      "heat": 7.034,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -5681,9 +5783,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.95,
-      "age_days": 1.0,
+      "age_days": 1.2,
       "lifecycle": "active",
-      "heat": 7.236,
+      "heat": 6.961,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -5773,9 +5875,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.93,
-      "age_days": 1.0,
+      "age_days": 1.2,
       "lifecycle": "active",
-      "heat": 7.236,
+      "heat": 6.961,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -5898,9 +6000,9 @@
       ],
       "effective_updates_count": 3,
       "latest_confidence": 0.75,
-      "age_days": 2.4,
+      "age_days": 2.5,
       "lifecycle": "active",
-      "heat": 7.157,
+      "heat": 6.885,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -6014,9 +6116,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.97,
-      "age_days": 1.8,
+      "age_days": 2.0,
       "lifecycle": "active",
-      "heat": 6.951,
+      "heat": 6.686,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -6106,9 +6208,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.93,
-      "age_days": 1.8,
+      "age_days": 2.0,
       "lifecycle": "active",
-      "heat": 6.759,
+      "heat": 6.502,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -6220,9 +6322,9 @@
       ],
       "effective_updates_count": 3,
       "latest_confidence": 0.93,
-      "age_days": 1.7,
+      "age_days": 1.8,
       "lifecycle": "active",
-      "heat": 6.728,
+      "heat": 6.472,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -6434,9 +6536,9 @@
       ],
       "effective_updates_count": 14,
       "latest_confidence": 0.96,
-      "age_days": 6.2,
+      "age_days": 6.4,
       "lifecycle": "active",
-      "heat": 6.424,
+      "heat": 6.18,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -6526,9 +6628,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.75,
-      "age_days": 1.4,
+      "age_days": 1.5,
       "lifecycle": "active",
-      "heat": 6.233,
+      "heat": 5.997,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -6669,142 +6771,9 @@
       ],
       "effective_updates_count": 4,
       "latest_confidence": 0.95,
-      "age_days": 3.3,
-      "lifecycle": "active",
-      "heat": 6.168,
-      "watch_pending": false,
-      "watch_zh": "",
-      "watch_en": "",
-      "watch_source": "",
-      "focus_excluded": false
-    },
-    {
-      "thread_id": "evt_554c09b8c4f576cb",
-      "event_id": "evt_554c09b8c4f576cb",
-      "latest_date": "2026-10-26",
-      "latest_at": "2026-10-26T22:31:49.681163+08:00",
-      "first_date": "2026-09-15",
-      "days": 5,
-      "entries": 5,
-      "updates_count": 5,
-      "sources_count": 5,
-      "category": "crypto",
-      "status": "developing",
-      "status_zh": "进展中",
-      "status_en": "Developing",
-      "event_type": "market_structure",
-      "event_type_zh": "市场结构",
-      "event_type_en": "Market structure",
-      "title_zh": "Strategy斥资9.508亿美元回购STRC，远超同期比特币买入",
-      "title_en": "Strategy prioritizes $950 million STRC buyback over expanding its Bitcoin treasury",
-      "summary_zh": "截至2026年10月25日，Strategy在持续优先回购STRC的资本配置下进一步消耗现金：USD Cash降至2.424亿美元，USD Reserve为48.3亿美元，比特币持仓848,517枚；公司暂停每周比特币买入和ATM售股，30亿美元STRC回购授权尚余9.568亿美元。公司同时面临MSCI拟自11月30日收盘起将非运营型数字资产金库公司排除出相关指数的风险。",
-      "summary_en": "As of Oct 25, 2026, Strategy has further depleted cash while prioritizing STRC buybacks: USD Cash fell to $242.4 million, the USD Reserve was $4.83 billion, and BTC holdings were 848,517. It paused weekly Bitcoin purchases and ATM sales, with $956.8 million remaining under its $3 billion STRC repurchase authorization. It also faces MSCI's finalized rule to exclude non-operating digital-asset treasury companies from its indexes from the close of Nov 30.",
-      "latest_update_zh": "2026年10月19日至25日，Strategy首次自9月中旬以来暂停每周比特币买入，也未通过ATM出售股份；同期斥资2.049亿美元回购2,068,459股STRC。USD Cash从一周前的4.473亿美元降至2.424亿美元，USD Reserve为48.3亿美元。公司已将优先股回购授权从20亿美元提高至30亿美元，尚余9.568亿美元；比特币持仓为848,517枚。",
-      "latest_update_en": "During Oct 19–25, 2026, Strategy paused weekly Bitcoin purchases for the first time since mid-September and sold no shares via its ATM; it spent $204.9 million repurchasing 2,068,459 STRC shares. USD Cash fell to $242.4 million from $447.3 million a week earlier, and the USD Reserve was $4.83 billion. The preferred repurchase authorization was raised from $2 billion to $3 billion, with $956.8 million remaining; BTC holdings were 848,517.",
-      "background_zh": "Strategy 于 8 月 24 日设立了“美元现金”这一资金池，其大部分资金来自前一周出售约 20 亿美元 MSTR 股票所得的约 15.7 亿美元。公司当时表示，美元现金“与美元储备形成互补，为管理层提供更灵活的流动性来源”。较早设立的美元储备有更严格的使用限制，除董事会正式另行授权外，只能用于支付优先股股息和利息；例如在 10 月 4 日当周，Strategy 为此支付了 1.425 亿美元。",
-      "background_en": "Strategy created the USD Cash bucket on August 24, funding most of it with about $1.57 billion from the sale of roughly $2 billion of MSTR stock the prior week. The company said at the time that USD Cash “complements the USD Reserve by providing management with a more flexible source of liquidity.” The older USD Reserve carries stricter limits and may be used for preferred dividends and interest payments unless the board formally authorizes otherwise; Strategy paid out $142.5 million for those purposes during the week of October 4.",
-      "latest_summary_zh": "Strategy paused weekly Bitcoin purchases and ATM share sales, spending $204.9 million to repurchase 2,068,459 STRC preferred shares while holding 848,517 BTC.",
-      "latest_summary_en": "Strategy paused weekly Bitcoin purchases and ATM share sales, spending $204.9 million to repurchase 2,068,459 STRC preferred shares while holding 848,517 BTC.",
-      "discussion_zh": "",
-      "discussion_en": "",
-      "market_impact_zh": "Strategy 是最大的企业级比特币持有者，因此其美元缓冲变薄会通过“储备增持能力”这一渠道影响市场上来自企业金库的边际买盘，而非通过协议或供给层面的变化。同时，STRC 回购的成本直接落在优先股持有人与 MSTR 普通股股东身上，因为所用现金主要来自普通股增发稀释。",
-      "market_impact_en": "Strategy is the largest corporate holder of bitcoin, so a thinner dollar cushion affects the marginal corporate bid for BTC through treasury-accumulation capacity rather than through protocol or supply changes. The STRC buybacks also put preferred holders and MSTR common shareholders directly on the hook for the capital-structure cost, since the cash used was largely raised via common-share dilution.",
-      "score": 7.5,
-      "source_links": [
-        {
-          "url": "https://decrypt.co/381811/strategy-pauses-bitcoin-buying-spends-205m-buying-back-strc",
-          "title": "Decrypt",
-          "official": false
-        },
-        {
-          "url": "https://protos.com/strategys-usd-cash-down-60-in-seven-weeks/",
-          "title": "Protos",
-          "official": false
-        },
-        {
-          "url": "https://cointelegraph.com/news/strategy-848k-bitcoin-strc-buybacks-outpace-btc-buys?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
-          "title": "Cointelegraph",
-          "official": false
-        },
-        {
-          "url": "https://protos.com/strategy-has-burned-through-64-of-its-strc-rescue-fund/",
-          "title": "Protos",
-          "official": false
-        },
-        {
-          "url": "https://cryptoslate.com/strategy-prioritizes-950-million-strc-buyback-over-expanding-its-bitcoin-treasury/",
-          "title": "CryptoSlate",
-          "official": false
-        }
-      ],
-      "reference_links": [
-        {
-          "url": "https://grokipedia.com/page/Strategy_STRC_Perpetual_Preferred_Stock",
-          "title": "Strategy STRC Perpetual Preferred Stock"
-        },
-        {
-          "url": "https://247wallst.com/investing/cryptocurrency/2026/09/09/strategy-put-176-3-million-into-its-own-preferred-stock-instead-of-bitcoin-with-its-last-btc-purchase-already-underwater/",
-          "title": "Strategy Put $176.3 Million Into Its Own Preferred Stock Instead of..."
-        }
-      ],
-      "timeline": [
-        {
-          "update_id": "upd_7c3b9292200653f4",
-          "date": "2026-10-26",
-          "time_precision": "published",
-          "type_zh": "升级",
-          "type_en": "Escalation",
-          "text_zh": "2026年10月19日至25日，Strategy首次自9月中旬以来暂停每周比特币买入，也未通过ATM出售股份；同期斥资2.049亿美元回购2,068,459股STRC。USD Cash从一周前的4.473亿美元降至2.424亿美元，USD Reserve为48.3亿美元。公司已将优先股回购授权从20亿美元提高至30亿美元，尚余9.568亿美元；比特币持仓为848,517枚。",
-          "text_en": "During Oct 19–25, 2026, Strategy paused weekly Bitcoin purchases for the first time since mid-September and sold no shares via its ATM; it spent $204.9 million repurchasing 2,068,459 STRC shares. USD Cash fell to $242.4 million from $447.3 million a week earlier, and the USD Reserve was $4.83 billion. The preferred repurchase authorization was raised from $2 billion to $3 billion, with $956.8 million remaining; BTC holdings were 848,517.",
-          "sources": [
-            {
-              "url": "https://decrypt.co/381811/strategy-pauses-bitcoin-buying-spends-205m-buying-back-strc",
-              "label": "Decrypt",
-              "source_type": "rss",
-              "official": false
-            }
-          ]
-        },
-        {
-          "update_id": "upd_190e16cb3f34370e",
-          "date": "2026-10-15",
-          "time_precision": "published",
-          "type_zh": "升级",
-          "type_en": "Escalation",
-          "text_zh": "截至2026年10月11日，Strategy的USD Cash从8月30日的16.1亿美元降至6.405亿美元，降幅60%；20亿美元STRC回购授权仅剩3.548亿美元；独立USD Reserve同期从51.0亿美元降至48.8亿美元。按近七周约9.7亿美元的消耗速度，若不补充，USD Cash约四周内耗尽。",
-          "text_en": "As of Oct 11, 2026, Strategy's USD Cash fell 60% from $1.61B on Aug 30 to $640.5M; only $354.8M of its $2B STRC buyback authorization remained; the separate USD Reserve declined from $5.10B to $4.88B. At the ~$970M burn pace over less than seven weeks, USD Cash could run out in about four weeks absent replenishment.",
-          "sources": [
-            {
-              "url": "https://protos.com/strategys-usd-cash-down-60-in-seven-weeks/",
-              "label": "Protos",
-              "source_type": "rss",
-              "official": false
-            }
-          ]
-        },
-        {
-          "update_id": "upd_048b605dcb9736a2",
-          "date": "2026-10-05",
-          "time_precision": "published",
-          "type_zh": "升级",
-          "type_en": "Escalation",
-          "text_zh": "2026年9月29日至10月5日当周，Strategy买入334枚BTC（花费2870万美元），同时以1.763亿美元回购约177万股STRC；比特币持仓增至848,000枚。此外，公司提交代理文件寻求股东批准将STRC、STRF、STRK和STRD的股息支付改为每个工作日支付，特别股东大会定于10月28日。Q3比特币持仓仅净增1,666枚，因当季买入7,218枚并卖出5,553枚；Q3回购STRC支出约13.8亿美元。",
-          "text_en": "During the week of Sept 29–Oct 5, Strategy bought 334 BTC for $28.7 million while repurchasing about 1.77 million STRC shares for $176.3 million; BTC holdings reached 848,000. It also filed a proxy seeking shareholder approval to move STRC, STRF, STRK and STRD to daily dividend payments, with a special meeting set for Oct. 28. Q3 BTC holdings rose only 1,666 BTC net as it bought 7,218 and sold 5,553; Q3 STRC repurchases totaled about $1.38 billion.",
-          "sources": [
-            {
-              "url": "https://cointelegraph.com/news/strategy-848k-bitcoin-strc-buybacks-outpace-btc-buys?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
-              "label": "Cointelegraph",
-              "source_type": "rss",
-              "official": false
-            }
-          ]
-        }
-      ],
-      "effective_updates_count": 5,
-      "latest_confidence": 0.96,
       "age_days": 3.5,
       "lifecycle": "active",
-      "heat": 6.116,
+      "heat": 5.934,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -6939,9 +6908,9 @@
       ],
       "effective_updates_count": 5,
       "latest_confidence": 0.92,
-      "age_days": 3.5,
+      "age_days": 3.7,
       "lifecycle": "active",
-      "heat": 6.115,
+      "heat": 5.883,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -6949,232 +6918,132 @@
       "focus_excluded": false
     },
     {
-      "thread_id": "evt_f90e7e488826e7d6",
-      "event_id": "evt_f90e7e488826e7d6",
-      "latest_date": "2026-10-23",
-      "latest_at": "2026-10-23T14:02:09.784231+08:00",
-      "first_date": "2026-09-30",
-      "days": 8,
-      "entries": 15,
-      "updates_count": 15,
-      "sources_count": 25,
-      "category": "technology",
+      "thread_id": "evt_554c09b8c4f576cb",
+      "event_id": "evt_554c09b8c4f576cb",
+      "latest_date": "2026-10-26",
+      "latest_at": "2026-10-26T22:31:49.681163+08:00",
+      "first_date": "2026-09-15",
+      "days": 5,
+      "entries": 5,
+      "updates_count": 5,
+      "sources_count": 5,
+      "category": "crypto",
       "status": "developing",
       "status_zh": "进展中",
       "status_en": "Developing",
-      "event_type": "product_release",
-      "event_type_zh": "产品发布",
-      "event_type_en": "Product release",
-      "title_zh": "OpenAI产品冲刺：GPT-6.1 Sol发布与缓存更新",
-      "title_en": "OpenAI product sprint: GPT-6.1 Sol launch and caching updates",
-      "summary_zh": "OpenAI 第 18 天产品冲刺将 Decisions API 正式发布为 GA，把 Open Responses 跨模型 API 规范捐赠给 Linux 基金会的 Agentic AI 基金会，新增性能优化，Uber 将 ChatGPT Work 从 1000 人试点扩展至超过 30000 名员工，同时再次重置了速率限制。",
-      "summary_en": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset.",
-      "latest_update_zh": "OpenAI 第 18 天产品冲刺将 Decisions API 正式发布为 GA，把 Open Responses 跨模型 API 规范捐赠给 Linux 基金会的 Agentic AI 基金会，新增性能优化，Uber 将 ChatGPT Work 从 1000 人试点扩展至超过 30000 名员工，同时再次重置了速率限制。",
-      "latest_update_en": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset.",
-      "background_zh": "GPT-6是OpenAI在GPT-5系列之后推出的新一代主力模型。“智能界面”这一思路延续了生成式界面（generative UI）的概念，即由模型根据提示或上下文生成界面元素，而不仅仅是文字。",
-      "background_en": "GPT-6 is OpenAI's next major model in the GPT series, following the GPT-5 family. The 'Intelligent UI' concept extends the idea of generative UI, in which a model generates interface elements — not just text — in response to a prompt or context.",
-      "latest_summary_zh": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset.",
-      "latest_summary_en": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset.",
+      "event_type": "market_structure",
+      "event_type_zh": "市场结构",
+      "event_type_en": "Market structure",
+      "title_zh": "Strategy斥资9.508亿美元回购STRC，远超同期比特币买入",
+      "title_en": "Strategy prioritizes $950 million STRC buyback over expanding its Bitcoin treasury",
+      "summary_zh": "截至2026年10月25日，Strategy在持续优先回购STRC的资本配置下进一步消耗现金：USD Cash降至2.424亿美元，USD Reserve为48.3亿美元，比特币持仓848,517枚；公司暂停每周比特币买入和ATM售股，30亿美元STRC回购授权尚余9.568亿美元。公司同时面临MSCI拟自11月30日收盘起将非运营型数字资产金库公司排除出相关指数的风险。",
+      "summary_en": "As of Oct 25, 2026, Strategy has further depleted cash while prioritizing STRC buybacks: USD Cash fell to $242.4 million, the USD Reserve was $4.83 billion, and BTC holdings were 848,517. It paused weekly Bitcoin purchases and ATM sales, with $956.8 million remaining under its $3 billion STRC repurchase authorization. It also faces MSCI's finalized rule to exclude non-operating digital-asset treasury companies from its indexes from the close of Nov 30.",
+      "latest_update_zh": "2026年10月19日至25日，Strategy首次自9月中旬以来暂停每周比特币买入，也未通过ATM出售股份；同期斥资2.049亿美元回购2,068,459股STRC。USD Cash从一周前的4.473亿美元降至2.424亿美元，USD Reserve为48.3亿美元。公司已将优先股回购授权从20亿美元提高至30亿美元，尚余9.568亿美元；比特币持仓为848,517枚。",
+      "latest_update_en": "During Oct 19–25, 2026, Strategy paused weekly Bitcoin purchases for the first time since mid-September and sold no shares via its ATM; it spent $204.9 million repurchasing 2,068,459 STRC shares. USD Cash fell to $242.4 million from $447.3 million a week earlier, and the USD Reserve was $4.83 billion. The preferred repurchase authorization was raised from $2 billion to $3 billion, with $956.8 million remaining; BTC holdings were 848,517.",
+      "background_zh": "Strategy 于 8 月 24 日设立了“美元现金”这一资金池，其大部分资金来自前一周出售约 20 亿美元 MSTR 股票所得的约 15.7 亿美元。公司当时表示，美元现金“与美元储备形成互补，为管理层提供更灵活的流动性来源”。较早设立的美元储备有更严格的使用限制，除董事会正式另行授权外，只能用于支付优先股股息和利息；例如在 10 月 4 日当周，Strategy 为此支付了 1.425 亿美元。",
+      "background_en": "Strategy created the USD Cash bucket on August 24, funding most of it with about $1.57 billion from the sale of roughly $2 billion of MSTR stock the prior week. The company said at the time that USD Cash “complements the USD Reserve by providing management with a more flexible source of liquidity.” The older USD Reserve carries stricter limits and may be used for preferred dividends and interest payments unless the board formally authorizes otherwise; Strategy paid out $142.5 million for those purposes during the week of October 4.",
+      "latest_summary_zh": "Strategy paused weekly Bitcoin purchases and ATM share sales, spending $204.9 million to repurchase 2,068,459 STRC preferred shares while holding 848,517 BTC.",
+      "latest_summary_en": "Strategy paused weekly Bitcoin purchases and ATM share sales, spending $204.9 million to repurchase 2,068,459 STRC preferred shares while holding 848,517 BTC.",
       "discussion_zh": "",
       "discussion_en": "",
-      "market_impact_zh": "ChatGPT是消费级AI的重要分发渠道，因此其平台层面转向可交互、可渲染的回答形式，主要通过情绪面对加密市场中的AI叙事板块产生关联，而非源于任何已公布的加密集成。现有材料中未提及直接的托管、流动性或链上关联。",
-      "market_impact_en": "ChatGPT is a major distribution channel for consumer AI, so a platform-wide shift toward interactive, rendered answers touches the AI-narrative segment of crypto markets mainly through sentiment rather than any announced crypto integration. No direct custody, liquidity or on-chain linkage is described in the available material.",
-      "score": 8.5,
+      "market_impact_zh": "Strategy 是最大的企业级比特币持有者，因此其美元缓冲变薄会通过“储备增持能力”这一渠道影响市场上来自企业金库的边际买盘，而非通过协议或供给层面的变化。同时，STRC 回购的成本直接落在优先股持有人与 MSTR 普通股股东身上，因为所用现金主要来自普通股增发稀释。",
+      "market_impact_en": "Strategy is the largest corporate holder of bitcoin, so a thinner dollar cushion affects the marginal corporate bid for BTC through treasury-accumulation capacity rather than through protocol or supply changes. The STRC buybacks also put preferred holders and MSTR common shareholders directly on the hook for the capital-structure cost, since the cash used was largely raised via common-share dilution.",
+      "score": 7.5,
       "source_links": [
         {
-          "url": "https://m.theblockbeats.info/flash/373338?from=telegram",
-          "title": "theblockbeats",
+          "url": "https://decrypt.co/381811/strategy-pauses-bitcoin-buying-spends-205m-buying-back-strc",
+          "title": "Decrypt",
           "official": false
         },
         {
-          "url": "https://m.theblockbeats.info/flash/372912?from=telegram",
-          "title": "theblockbeats",
+          "url": "https://protos.com/strategys-usd-cash-down-60-in-seven-weeks/",
+          "title": "Protos",
           "official": false
         },
         {
-          "url": "https://m.theblockbeats.info/flash/370899?from=telegram",
-          "title": "theblockbeats",
+          "url": "https://cointelegraph.com/news/strategy-848k-bitcoin-strc-buybacks-outpace-btc-buys?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "title": "Cointelegraph",
           "official": false
         },
         {
-          "url": "https://foresightnews.pro/news/h5Detail/114710",
-          "title": "foresightnews",
+          "url": "https://protos.com/strategy-has-burned-through-64-of-its-strc-rescue-fund/",
+          "title": "Protos",
           "official": false
         },
         {
-          "url": "https://m.theblockbeats.info/flash/370682?from=telegram",
-          "title": "theblockbeats",
-          "official": false
-        },
-        {
-          "url": "https://m.theblockbeats.info/flash/370676?from=telegram",
-          "title": "theblockbeats",
-          "official": false
-        },
-        {
-          "url": "https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6",
-          "title": "The Verge AI",
-          "official": false
-        },
-        {
-          "url": "https://openai.com/index/gpt-6-for-everyone/",
-          "title": "joshuawright11",
-          "official": false
-        },
-        {
-          "url": "https://m.theblockbeats.info/flash/370440?from=telegram",
-          "title": "theblockbeats",
-          "official": false
-        },
-        {
-          "url": "https://www.theverge.com/ai-artificial-intelligence/1004096/openai-chatgpt-dots-hands-on-agent",
-          "title": "The Verge AI",
-          "official": false
-        },
-        {
-          "url": "https://openai.com/index/practical-guide-building-gpt-6",
-          "title": "OpenAI Blog",
-          "official": false
-        },
-        {
-          "url": "https://www.theverge.com/ai-artificial-intelligence/1003399/meta-openai-ai-agents-muse-dots-battle",
-          "title": "The Verge AI",
-          "official": false
-        },
-        {
-          "url": "https://www.qbitai.com/2026/09/499493.html",
-          "title": "QbitAI 量子位",
-          "official": false
-        },
-        {
-          "url": "https://m.theblockbeats.info/flash/369650?from=telegram",
-          "title": "theblockbeats",
-          "official": false
-        },
-        {
-          "url": "https://openai.com/index/introducing-gpt-6-1-sol/",
-          "title": "OpenAI Blog",
-          "official": false
-        },
-        {
-          "url": "https://www.theverge.com/ai-artificial-intelligence/1002033/openai-dots-launch-muse-competitor",
-          "title": "The Verge AI",
-          "official": false
-        },
-        {
-          "url": "https://m.theblockbeats.info/flash/369635?from=telegram",
-          "title": "theblockbeats",
-          "official": false
-        },
-        {
-          "url": "https://foresightnews.pro/news/h5Detail/114276",
-          "title": "foresightnews",
-          "official": false
-        },
-        {
-          "url": "https://m.theblockbeats.info/flash/369665?from=telegram",
-          "title": "theblockbeats",
-          "official": false
-        },
-        {
-          "url": "https://techcrunch.com/2026/09/29/openai-takes-on-microsoft-with-the-launch-of-what-feels-a-whole-lot-like-chatgpts-own-office-suite/",
-          "title": "TechCrunch AI",
-          "official": false
-        },
-        {
-          "url": "https://techcrunch.com/2026/09/29/openai-expands-chatgpts-plugins-with-app-like-interfaces-and-automations/",
-          "title": "TechCrunch AI",
-          "official": false
-        },
-        {
-          "url": "https://techcrunch.com/2026/09/29/openai-gives-codex-reusable-cloud-environments-that-work-across-devices/",
-          "title": "TechCrunch AI",
-          "official": false
-        },
-        {
-          "url": "https://m.theblockbeats.info/flash/369656?from=telegram",
-          "title": "theblockbeats",
-          "official": false
-        },
-        {
-          "url": "https://m.theblockbeats.info/flash/369659?from=telegram",
-          "title": "theblockbeats",
-          "official": false
-        },
-        {
-          "url": "https://www.qbitai.com/2026/09/499246.html",
-          "title": "QbitAI 量子位",
+          "url": "https://cryptoslate.com/strategy-prioritizes-950-million-strc-buyback-over-expanding-its-bitcoin-treasury/",
+          "title": "CryptoSlate",
           "official": false
         }
       ],
       "reference_links": [
         {
-          "url": "https://dev.to/alifar/openai-rolls-out-gpt-6-and-intelligent-ui-across-chatgpt-tiers-47b4",
-          "title": "OpenAI Rolls Out GPT-6 and Intelligent UI Across ChatGPT Tiers"
+          "url": "https://grokipedia.com/page/Strategy_STRC_Perpetual_Preferred_Stock",
+          "title": "Strategy STRC Perpetual Preferred Stock"
         },
         {
-          "url": "https://scalevise.com/resources/gpt-6-intelligent-ui-chatgpt-custom-interfaces/",
-          "title": "GPT-6 Intelligent UI Brings Custom Interfaces to ChatGPT"
+          "url": "https://247wallst.com/investing/cryptocurrency/2026/09/09/strategy-put-176-3-million-into-its-own-preferred-stock-instead-of-bitcoin-with-its-last-btc-purchase-already-underwater/",
+          "title": "Strategy Put $176.3 Million Into Its Own Preferred Stock Instead of..."
         }
       ],
       "timeline": [
         {
-          "update_id": "upd_b40da5eeb496d294",
-          "date": "2026-10-23",
+          "update_id": "upd_7c3b9292200653f4",
+          "date": "2026-10-26",
           "time_precision": "published",
           "type_zh": "升级",
           "type_en": "Escalation",
-          "text_zh": "OpenAI 第 18 天产品冲刺将 Decisions API 正式发布为 GA，把 Open Responses 跨模型 API 规范捐赠给 Linux 基金会的 Agentic AI 基金会，新增性能优化，Uber 将 ChatGPT Work 从 1000 人试点扩展至超过 30000 名员工，同时再次重置了速率限制。",
-          "text_en": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset.",
+          "text_zh": "2026年10月19日至25日，Strategy首次自9月中旬以来暂停每周比特币买入，也未通过ATM出售股份；同期斥资2.049亿美元回购2,068,459股STRC。USD Cash从一周前的4.473亿美元降至2.424亿美元，USD Reserve为48.3亿美元。公司已将优先股回购授权从20亿美元提高至30亿美元，尚余9.568亿美元；比特币持仓为848,517枚。",
+          "text_en": "During Oct 19–25, 2026, Strategy paused weekly Bitcoin purchases for the first time since mid-September and sold no shares via its ATM; it spent $204.9 million repurchasing 2,068,459 STRC shares. USD Cash fell to $242.4 million from $447.3 million a week earlier, and the USD Reserve was $4.83 billion. The preferred repurchase authorization was raised from $2 billion to $3 billion, with $956.8 million remaining; BTC holdings were 848,517.",
           "sources": [
             {
-              "url": "https://m.theblockbeats.info/flash/373338?from=telegram",
-              "label": "theblockbeats",
-              "source_type": "telegram",
+              "url": "https://decrypt.co/381811/strategy-pauses-bitcoin-buying-spends-205m-buying-back-strc",
+              "label": "Decrypt",
+              "source_type": "rss",
               "official": false
             }
           ]
         },
         {
-          "update_id": "upd_95cd08645ce81113",
-          "date": "2026-10-21",
+          "update_id": "upd_190e16cb3f34370e",
+          "date": "2026-10-15",
           "time_precision": "published",
-          "type_zh": "确认",
-          "type_en": "Confirmation",
-          "text_zh": "OpenAI第16天冲刺更新使已登录的Codex和ChatGPT Work会话的提示缓存永久生效，并将Responses API缓存有效期从30分钟延长至12小时，写入成本为2.5倍，后续缓存命中可享大幅折扣。",
-          "text_en": "OpenAI's Day 16 sprint update makes prompt caching permanent for logged-in Codex and ChatGPT Work sessions and extends Responses API cache lifetime from 30 minutes to 12 hours, at 2.5x write cost with steep discounts on subsequent cache hits.",
+          "type_zh": "升级",
+          "type_en": "Escalation",
+          "text_zh": "截至2026年10月11日，Strategy的USD Cash从8月30日的16.1亿美元降至6.405亿美元，降幅60%；20亿美元STRC回购授权仅剩3.548亿美元；独立USD Reserve同期从51.0亿美元降至48.8亿美元。按近七周约9.7亿美元的消耗速度，若不补充，USD Cash约四周内耗尽。",
+          "text_en": "As of Oct 11, 2026, Strategy's USD Cash fell 60% from $1.61B on Aug 30 to $640.5M; only $354.8M of its $2B STRC buyback authorization remained; the separate USD Reserve declined from $5.10B to $4.88B. At the ~$970M burn pace over less than seven weeks, USD Cash could run out in about four weeks absent replenishment.",
           "sources": [
             {
-              "url": "https://m.theblockbeats.info/flash/372912?from=telegram",
-              "label": "theblockbeats",
-              "source_type": "telegram",
+              "url": "https://protos.com/strategys-usd-cash-down-60-in-seven-weeks/",
+              "label": "Protos",
+              "source_type": "rss",
               "official": false
             }
           ]
         },
         {
-          "update_id": "upd_e4700bc4f35486f7",
-          "date": "2026-10-09",
+          "update_id": "upd_048b605dcb9736a2",
+          "date": "2026-10-05",
           "time_precision": "published",
           "type_zh": "升级",
           "type_en": "Escalation",
-          "text_zh": "OpenAI 在 28 天产品冲刺第 4 天推出 GPT-6.1 Sol Ultrafast，向 API、Codex 和 ChatGPT Work 推送，Codex 中生成速度最高达标准模式的 8 倍，API 价格为标准档的 6 倍；同时改进 Codex 中途纠偏功能，允许用户在 Agent 执行任务时补充要求或纠正方向。",
-          "text_en": "On Day 4 of OpenAI's 28-day product sprint, OpenAI rolled out GPT-6.1 Sol Ultrafast to API, Codex, and ChatGPT Work, with up to 8x faster generation in Codex and API pricing at 6x standard; it also improved Codex mid-task redirect, letting users add requests or correct direction while the agent is executing.",
+          "text_zh": "2026年9月29日至10月5日当周，Strategy买入334枚BTC（花费2870万美元），同时以1.763亿美元回购约177万股STRC；比特币持仓增至848,000枚。此外，公司提交代理文件寻求股东批准将STRC、STRF、STRK和STRD的股息支付改为每个工作日支付，特别股东大会定于10月28日。Q3比特币持仓仅净增1,666枚，因当季买入7,218枚并卖出5,553枚；Q3回购STRC支出约13.8亿美元。",
+          "text_en": "During the week of Sept 29–Oct 5, Strategy bought 334 BTC for $28.7 million while repurchasing about 1.77 million STRC shares for $176.3 million; BTC holdings reached 848,000. It also filed a proxy seeking shareholder approval to move STRC, STRF, STRK and STRD to daily dividend payments, with a special meeting set for Oct. 28. Q3 BTC holdings rose only 1,666 BTC net as it bought 7,218 and sold 5,553; Q3 STRC repurchases totaled about $1.38 billion.",
           "sources": [
             {
-              "url": "https://m.theblockbeats.info/flash/370899?from=telegram",
-              "label": "theblockbeats",
-              "source_type": "telegram",
+              "url": "https://cointelegraph.com/news/strategy-848k-bitcoin-strc-buybacks-outpace-btc-buys?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+              "label": "Cointelegraph",
+              "source_type": "rss",
               "official": false
             }
           ]
         }
       ],
-      "effective_updates_count": 15,
-      "latest_confidence": 0.75,
-      "age_days": 6.9,
+      "effective_updates_count": 5,
+      "latest_confidence": 0.96,
+      "age_days": 3.7,
       "lifecycle": "active",
-      "heat": 6.109,
+      "heat": 5.883,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -7361,9 +7230,9 @@
       ],
       "effective_updates_count": 6,
       "latest_confidence": 0.92,
-      "age_days": 4.7,
+      "age_days": 4.9,
       "lifecycle": "active",
-      "heat": 6.102,
+      "heat": 5.87,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -7453,9 +7322,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.92,
-      "age_days": 1.5,
+      "age_days": 1.7,
       "lifecycle": "active",
-      "heat": 6.022,
+      "heat": 5.793,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -7545,9 +7414,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.96,
-      "age_days": 1.5,
+      "age_days": 1.7,
       "lifecycle": "active",
-      "heat": 6.022,
+      "heat": 5.793,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -7637,9 +7506,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.96,
-      "age_days": 1.8,
+      "age_days": 2.0,
       "lifecycle": "active",
-      "heat": 5.964,
+      "heat": 5.737,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -7751,9 +7620,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.96,
-      "age_days": 2.2,
+      "age_days": 2.4,
       "lifecycle": "active",
-      "heat": 5.807,
+      "heat": 5.586,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -7843,9 +7712,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.75,
-      "age_days": 1.7,
+      "age_days": 1.8,
       "lifecycle": "active",
-      "heat": 5.788,
+      "heat": 5.568,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -7957,9 +7826,9 @@
       ],
       "effective_updates_count": 3,
       "latest_confidence": 0.96,
-      "age_days": 3.0,
+      "age_days": 3.2,
       "lifecycle": "active",
-      "heat": 5.645,
+      "heat": 5.43,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -8049,9 +7918,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.9,
-      "age_days": 2.5,
+      "age_days": 2.7,
       "lifecycle": "active",
-      "heat": 5.433,
+      "heat": 5.226,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -8141,9 +8010,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.93,
-      "age_days": 2.0,
+      "age_days": 2.2,
       "lifecycle": "active",
-      "heat": 5.349,
+      "heat": 5.146,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -8233,9 +8102,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.96,
-      "age_days": 2.0,
+      "age_days": 2.2,
       "lifecycle": "active",
-      "heat": 5.349,
+      "heat": 5.146,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -8336,9 +8205,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.93,
-      "age_days": 2.9,
+      "age_days": 3.0,
       "lifecycle": "active",
-      "heat": 5.184,
+      "heat": 4.987,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -8496,9 +8365,9 @@
       ],
       "effective_updates_count": 3,
       "latest_confidence": 0.93,
-      "age_days": 3.5,
+      "age_days": 3.7,
       "lifecycle": "active",
-      "heat": 5.098,
+      "heat": 4.905,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -8599,9 +8468,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.75,
-      "age_days": 2.7,
+      "age_days": 2.9,
       "lifecycle": "active",
-      "heat": 5.024,
+      "heat": 4.833,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -8691,9 +8560,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.91,
-      "age_days": 2.5,
+      "age_days": 2.7,
       "lifecycle": "active",
-      "heat": 4.753,
+      "heat": 4.573,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -8794,9 +8663,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.94,
-      "age_days": 3.1,
+      "age_days": 3.2,
       "lifecycle": "active",
-      "heat": 4.645,
+      "heat": 4.468,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -8958,9 +8827,9 @@
       ],
       "effective_updates_count": 6,
       "latest_confidence": 0.75,
-      "age_days": 6.0,
+      "age_days": 6.2,
       "lifecycle": "active",
-      "heat": 4.5,
+      "heat": 4.329,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -9110,9 +8979,9 @@
       ],
       "effective_updates_count": 7,
       "latest_confidence": 0.75,
-      "age_days": 6.6,
+      "age_days": 6.7,
       "lifecycle": "active",
-      "heat": 4.395,
+      "heat": 4.228,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -9257,9 +9126,9 @@
       ],
       "effective_updates_count": 5,
       "latest_confidence": 0.96,
-      "age_days": 5.6,
+      "age_days": 5.7,
       "lifecycle": "active",
-      "heat": 4.289,
+      "heat": 4.126,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -9426,9 +9295,9 @@
       ],
       "effective_updates_count": 4,
       "latest_confidence": 0.92,
-      "age_days": 5.6,
+      "age_days": 5.7,
       "lifecycle": "active",
-      "heat": 4.08,
+      "heat": 3.925,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -9590,9 +9459,9 @@
       ],
       "effective_updates_count": 6,
       "latest_confidence": 0.75,
-      "age_days": 6.4,
+      "age_days": 6.6,
       "lifecycle": "active",
-      "heat": 3.953,
+      "heat": 3.803,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -9721,9 +9590,9 @@
       ],
       "effective_updates_count": 3,
       "latest_confidence": 0.93,
-      "age_days": 4.9,
+      "age_days": 5.1,
       "lifecycle": "active",
-      "heat": 3.662,
+      "heat": 3.523,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -9813,9 +9682,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.92,
-      "age_days": 4.1,
+      "age_days": 4.2,
       "lifecycle": "active",
-      "heat": 3.339,
+      "heat": 3.212,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -9945,9 +9814,9 @@
       ],
       "effective_updates_count": 4,
       "latest_confidence": 0.75,
-      "age_days": 6.0,
+      "age_days": 6.2,
       "lifecycle": "active",
-      "heat": 3.213,
+      "heat": 3.091,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -10037,9 +9906,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.93,
-      "age_days": 5.1,
+      "age_days": 5.2,
       "lifecycle": "active",
-      "heat": 2.838,
+      "heat": 2.73,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -10142,9 +10011,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.9,
-      "age_days": 4.9,
+      "age_days": 5.1,
       "lifecycle": "active",
-      "heat": 2.757,
+      "heat": 2.652,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -10298,9 +10167,9 @@
       ],
       "effective_updates_count": 3,
       "latest_confidence": 0.75,
-      "age_days": 6.6,
+      "age_days": 6.7,
       "lifecycle": "active",
-      "heat": 2.525,
+      "heat": 2.429,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -10401,9 +10270,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.75,
-      "age_days": 5.8,
+      "age_days": 6.0,
       "lifecycle": "active",
-      "heat": 2.434,
+      "heat": 2.341,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -10493,9 +10362,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.9,
-      "age_days": 6.0,
+      "age_days": 6.2,
       "lifecycle": "active",
-      "heat": 2.261,
+      "heat": 2.175,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -10618,9 +10487,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.94,
-      "age_days": 6.4,
+      "age_days": 6.6,
       "lifecycle": "active",
-      "heat": 2.259,
+      "heat": 2.173,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -10721,9 +10590,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.9,
-      "age_days": 6.6,
+      "age_days": 6.7,
       "lifecycle": "active",
-      "heat": 2.064,
+      "heat": 1.985,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -10826,9 +10695,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.96,
-      "age_days": 6.6,
+      "age_days": 6.7,
       "lifecycle": "active",
-      "heat": 1.873,
+      "heat": 1.802,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -10918,9 +10787,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.92,
-      "age_days": 6.6,
+      "age_days": 6.7,
       "lifecycle": "active",
-      "heat": 1.873,
+      "heat": 1.802,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -10936,9 +10805,9 @@
       "latest_at": "2026-10-30T10:53:48.354749+08:00",
       "first_date": "2026-10-30",
       "days": 1,
-      "entries": 12,
-      "updates_count": 12,
-      "sources_count": 21,
+      "entries": 13,
+      "updates_count": 13,
+      "sources_count": 22,
       "category": "crypto",
       "status": "developing",
       "status_zh": "进展中",
@@ -10946,8 +10815,8 @@
       "event_type": "security_incident",
       "event_type_zh": "安全事件",
       "event_type_en": "Security incident",
-      "title_zh": "币安热钱包疑遭大规模异常转出，交易所确认安全事件并暂停存取款",
-      "title_en": "Binance suspected hack with ~$5.6B stolen; some funds frozen",
+      "title_zh": "Binance 疑似遭黑客攻击，约 56 亿美元被盗",
+      "title_en": "Binance suspected hack with ~$5.6B stolen",
       "summary_zh": "Binance 事件仍在调查中；此前初步指向 DevOps 设备被入侵和签名基础设施被滥用，影响估计约63亿美元，约30亿美元已冻结，存取款曾暂停，受影响地址授权已撤销，损失将由 SAFU 和公司资金覆盖。Blockaid 进一步分析称，攻击者利用 EIP-7702 授权机制，通过单笔交易提交 50 个不同 nonce 的授权，仅一个成功，使 Binance 14 热钱包被委托给恶意 sweep 合约。",
       "summary_en": "The Binance incident remains under investigation; preliminary findings pointed to a compromised DevOps device and signing-infrastructure misuse, with estimated impact about $6.3B, about $3B frozen, deposits/withdrawals temporarily suspended, the affected address authorization revoked, and losses to be covered by SAFU and company funds. Blockaid further analyzed that the attacker exploited EIP-7702 authorization by submitting 50 different-nonce authorizations in one transaction; only one succeeded, delegating the Binance 14 hot wallet to a malicious sweep contract.",
       "latest_update_zh": "Blockaid 分析披露攻击者通过单笔 Type-4 交易提交 50 个不同 nonce 的 EIP-7702 授权，仅一个匹配成功，将 Binance 14 热钱包委托给未经验证的恶意转账合约；该合约仅允许攻击者指定地址调用 sweep()，可转走 ETH 和 ERC-20 代币并保留 1 ETH 作为 gas。",
@@ -10965,6 +10834,11 @@
         {
           "url": "https://wublockchain.xyz/news/news-21448",
           "title": "wublockchainenglish",
+          "official": false
+        },
+        {
+          "url": "https://www.binance.com/en/support/announcement/detail/c5a8729a97ac486d963784d96c5642d7?utm_source=EnglishTelegram&amp;utm_medium=GlobalCommunity&amp;utm_campaign=AnnouncementBot",
+          "title": "binance_announcements",
           "official": false
         },
         {
@@ -11088,6 +10962,23 @@
           ]
         },
         {
+          "update_id": "upd_a66e7d8935fc8bfb",
+          "date": "2026-10-30",
+          "time_precision": "published",
+          "type_zh": "确认",
+          "type_en": "Confirmation",
+          "text_zh": "币安表示，一名攻击者显然入侵了一名 DevOps 工程师的笔记本电脑，以访问服务容器并提交未经授权的提现交易，没有证据表明私钥泄露，完整的技术复盘报告即将发布。",
+          "text_en": "Binance reported that an attacker apparently compromised a DevOps engineer's laptop to access a service container and submit unauthorized withdrawal transactions, with no evidence of private key leakage and a full technical post-mortem forthcoming.",
+          "sources": [
+            {
+              "url": "https://www.binance.com/en/support/announcement/detail/c5a8729a97ac486d963784d96c5642d7?utm_source=EnglishTelegram&amp;utm_medium=GlobalCommunity&amp;utm_campaign=AnnouncementBot",
+              "label": "binance_announcements",
+              "source_type": "telegram",
+              "official": false
+            }
+          ]
+        },
+        {
           "update_id": "upd_72755477a1d50740",
           "date": "2026-10-30",
           "time_precision": "published",
@@ -11103,30 +10994,13 @@
               "official": false
             }
           ]
-        },
-        {
-          "update_id": "upd_dea6cd66f1fe005c",
-          "date": "2026-10-30",
-          "time_precision": "published",
-          "type_zh": "修复",
-          "type_en": "Remediation",
-          "text_zh": "Arbitrum冻结了约3050万美元与币安被盗资金相关的ARB，Paxos冻结了约21.57万美元USDP，使一位链上分析师估算的累计冻结金额达到约28.29亿美元，该数字尚未获官方确认。",
-          "text_en": "Arbitrum froze about $30.5 million in ARB and Paxos about $215,700 in USDP linked to Binance stolen funds, bringing an on-chain analyst's estimated cumulative freeze to about $2.829 billion, a figure not yet officially confirmed.",
-          "sources": [
-            {
-              "url": "https://m.theblockbeats.info/flash/374504?from=telegram",
-              "label": "theblockbeats",
-              "source_type": "telegram",
-              "official": false
-            }
-          ]
         }
       ],
-      "effective_updates_count": 12,
+      "effective_updates_count": 13,
       "latest_confidence": 0.94,
-      "age_days": 0.0,
+      "age_days": 0.2,
       "lifecycle": "active",
-      "heat": 35.144,
+      "heat": 33.808,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -11645,9 +11519,9 @@
       ],
       "effective_updates_count": 34,
       "latest_confidence": 0.97,
-      "age_days": 0.5,
+      "age_days": 0.7,
       "lifecycle": "active",
-      "heat": 28.214,
+      "heat": 27.142,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -11781,9 +11655,9 @@
       ],
       "effective_updates_count": 3,
       "latest_confidence": 0.9,
-      "age_days": 0.7,
+      "age_days": 0.8,
       "lifecycle": "active",
-      "heat": 11.53,
+      "heat": 11.091,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -11975,9 +11849,9 @@
       ],
       "effective_updates_count": 6,
       "latest_confidence": 0.9,
-      "age_days": 0.8,
+      "age_days": 1.0,
       "lifecycle": "active",
-      "heat": 17.389,
+      "heat": 16.728,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -12544,9 +12418,9 @@
       ],
       "effective_updates_count": 48,
       "latest_confidence": 0.93,
-      "age_days": 0.8,
+      "age_days": 1.0,
       "lifecycle": "active",
-      "heat": 24.631,
+      "heat": 23.695,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -12712,9 +12586,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.93,
-      "age_days": 1.5,
+      "age_days": 1.7,
       "lifecycle": "active",
-      "heat": 8.348,
+      "heat": 8.031,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -12730,9 +12604,9 @@
       "latest_at": "2026-10-30T10:53:48.354749+08:00",
       "first_date": "2026-10-30",
       "days": 1,
-      "entries": 12,
-      "updates_count": 12,
-      "sources_count": 21,
+      "entries": 13,
+      "updates_count": 13,
+      "sources_count": 22,
       "category": "crypto",
       "status": "developing",
       "status_zh": "进展中",
@@ -12740,8 +12614,8 @@
       "event_type": "security_incident",
       "event_type_zh": "安全事件",
       "event_type_en": "Security incident",
-      "title_zh": "币安热钱包疑遭大规模异常转出，交易所确认安全事件并暂停存取款",
-      "title_en": "Binance suspected hack with ~$5.6B stolen; some funds frozen",
+      "title_zh": "Binance 疑似遭黑客攻击，约 56 亿美元被盗",
+      "title_en": "Binance suspected hack with ~$5.6B stolen",
       "summary_zh": "Binance 事件仍在调查中；此前初步指向 DevOps 设备被入侵和签名基础设施被滥用，影响估计约63亿美元，约30亿美元已冻结，存取款曾暂停，受影响地址授权已撤销，损失将由 SAFU 和公司资金覆盖。Blockaid 进一步分析称，攻击者利用 EIP-7702 授权机制，通过单笔交易提交 50 个不同 nonce 的授权，仅一个成功，使 Binance 14 热钱包被委托给恶意 sweep 合约。",
       "summary_en": "The Binance incident remains under investigation; preliminary findings pointed to a compromised DevOps device and signing-infrastructure misuse, with estimated impact about $6.3B, about $3B frozen, deposits/withdrawals temporarily suspended, the affected address authorization revoked, and losses to be covered by SAFU and company funds. Blockaid further analyzed that the attacker exploited EIP-7702 authorization by submitting 50 different-nonce authorizations in one transaction; only one succeeded, delegating the Binance 14 hot wallet to a malicious sweep contract.",
       "latest_update_zh": "Blockaid 分析披露攻击者通过单笔 Type-4 交易提交 50 个不同 nonce 的 EIP-7702 授权，仅一个匹配成功，将 Binance 14 热钱包委托给未经验证的恶意转账合约；该合约仅允许攻击者指定地址调用 sweep()，可转走 ETH 和 ERC-20 代币并保留 1 ETH 作为 gas。",
@@ -12759,6 +12633,11 @@
         {
           "url": "https://wublockchain.xyz/news/news-21448",
           "title": "wublockchainenglish",
+          "official": false
+        },
+        {
+          "url": "https://www.binance.com/en/support/announcement/detail/c5a8729a97ac486d963784d96c5642d7?utm_source=EnglishTelegram&amp;utm_medium=GlobalCommunity&amp;utm_campaign=AnnouncementBot",
+          "title": "binance_announcements",
           "official": false
         },
         {
@@ -12882,6 +12761,23 @@
           ]
         },
         {
+          "update_id": "upd_a66e7d8935fc8bfb",
+          "date": "2026-10-30",
+          "time_precision": "published",
+          "type_zh": "确认",
+          "type_en": "Confirmation",
+          "text_zh": "币安表示，一名攻击者显然入侵了一名 DevOps 工程师的笔记本电脑，以访问服务容器并提交未经授权的提现交易，没有证据表明私钥泄露，完整的技术复盘报告即将发布。",
+          "text_en": "Binance reported that an attacker apparently compromised a DevOps engineer's laptop to access a service container and submit unauthorized withdrawal transactions, with no evidence of private key leakage and a full technical post-mortem forthcoming.",
+          "sources": [
+            {
+              "url": "https://www.binance.com/en/support/announcement/detail/c5a8729a97ac486d963784d96c5642d7?utm_source=EnglishTelegram&amp;utm_medium=GlobalCommunity&amp;utm_campaign=AnnouncementBot",
+              "label": "binance_announcements",
+              "source_type": "telegram",
+              "official": false
+            }
+          ]
+        },
+        {
           "update_id": "upd_72755477a1d50740",
           "date": "2026-10-30",
           "time_precision": "published",
@@ -12897,30 +12793,13 @@
               "official": false
             }
           ]
-        },
-        {
-          "update_id": "upd_dea6cd66f1fe005c",
-          "date": "2026-10-30",
-          "time_precision": "published",
-          "type_zh": "修复",
-          "type_en": "Remediation",
-          "text_zh": "Arbitrum冻结了约3050万美元与币安被盗资金相关的ARB，Paxos冻结了约21.57万美元USDP，使一位链上分析师估算的累计冻结金额达到约28.29亿美元，该数字尚未获官方确认。",
-          "text_en": "Arbitrum froze about $30.5 million in ARB and Paxos about $215,700 in USDP linked to Binance stolen funds, bringing an on-chain analyst's estimated cumulative freeze to about $2.829 billion, a figure not yet officially confirmed.",
-          "sources": [
-            {
-              "url": "https://m.theblockbeats.info/flash/374504?from=telegram",
-              "label": "theblockbeats",
-              "source_type": "telegram",
-              "official": false
-            }
-          ]
         }
       ],
-      "effective_updates_count": 12,
+      "effective_updates_count": 13,
       "latest_confidence": 0.94,
-      "age_days": 0.0,
+      "age_days": 0.2,
       "lifecycle": "active",
-      "heat": 35.144,
+      "heat": 33.808,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -13439,9 +13318,9 @@
       ],
       "effective_updates_count": 34,
       "latest_confidence": 0.97,
-      "age_days": 0.5,
+      "age_days": 0.7,
       "lifecycle": "active",
-      "heat": 28.214,
+      "heat": 27.142,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -13575,9 +13454,9 @@
       ],
       "effective_updates_count": 3,
       "latest_confidence": 0.9,
-      "age_days": 0.7,
+      "age_days": 0.8,
       "lifecycle": "active",
-      "heat": 11.53,
+      "heat": 11.091,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -13769,9 +13648,9 @@
       ],
       "effective_updates_count": 6,
       "latest_confidence": 0.9,
-      "age_days": 0.8,
+      "age_days": 1.0,
       "lifecycle": "active",
-      "heat": 17.389,
+      "heat": 16.728,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -14338,9 +14217,9 @@
       ],
       "effective_updates_count": 48,
       "latest_confidence": 0.93,
-      "age_days": 0.8,
+      "age_days": 1.0,
       "lifecycle": "active",
-      "heat": 24.631,
+      "heat": 23.695,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -14506,9 +14385,9 @@
       ],
       "effective_updates_count": 2,
       "latest_confidence": 0.93,
-      "age_days": 1.5,
+      "age_days": 1.7,
       "lifecycle": "active",
-      "heat": 8.348,
+      "heat": 8.031,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -14524,9 +14403,9 @@
       "latest_at": "2026-10-30T10:53:48.354749+08:00",
       "first_date": "2026-10-30",
       "days": 1,
-      "entries": 12,
-      "updates_count": 12,
-      "sources_count": 21,
+      "entries": 13,
+      "updates_count": 13,
+      "sources_count": 22,
       "category": "crypto",
       "status": "developing",
       "status_zh": "进展中",
@@ -14534,8 +14413,8 @@
       "event_type": "security_incident",
       "event_type_zh": "安全事件",
       "event_type_en": "Security incident",
-      "title_zh": "币安热钱包疑遭大规模异常转出，交易所确认安全事件并暂停存取款",
-      "title_en": "Binance suspected hack with ~$5.6B stolen; some funds frozen",
+      "title_zh": "Binance 疑似遭黑客攻击，约 56 亿美元被盗",
+      "title_en": "Binance suspected hack with ~$5.6B stolen",
       "summary_zh": "Binance 事件仍在调查中；此前初步指向 DevOps 设备被入侵和签名基础设施被滥用，影响估计约63亿美元，约30亿美元已冻结，存取款曾暂停，受影响地址授权已撤销，损失将由 SAFU 和公司资金覆盖。Blockaid 进一步分析称，攻击者利用 EIP-7702 授权机制，通过单笔交易提交 50 个不同 nonce 的授权，仅一个成功，使 Binance 14 热钱包被委托给恶意 sweep 合约。",
       "summary_en": "The Binance incident remains under investigation; preliminary findings pointed to a compromised DevOps device and signing-infrastructure misuse, with estimated impact about $6.3B, about $3B frozen, deposits/withdrawals temporarily suspended, the affected address authorization revoked, and losses to be covered by SAFU and company funds. Blockaid further analyzed that the attacker exploited EIP-7702 authorization by submitting 50 different-nonce authorizations in one transaction; only one succeeded, delegating the Binance 14 hot wallet to a malicious sweep contract.",
       "latest_update_zh": "Blockaid 分析披露攻击者通过单笔 Type-4 交易提交 50 个不同 nonce 的 EIP-7702 授权，仅一个匹配成功，将 Binance 14 热钱包委托给未经验证的恶意转账合约；该合约仅允许攻击者指定地址调用 sweep()，可转走 ETH 和 ERC-20 代币并保留 1 ETH 作为 gas。",
@@ -14553,6 +14432,11 @@
         {
           "url": "https://wublockchain.xyz/news/news-21448",
           "title": "wublockchainenglish",
+          "official": false
+        },
+        {
+          "url": "https://www.binance.com/en/support/announcement/detail/c5a8729a97ac486d963784d96c5642d7?utm_source=EnglishTelegram&amp;utm_medium=GlobalCommunity&amp;utm_campaign=AnnouncementBot",
+          "title": "binance_announcements",
           "official": false
         },
         {
@@ -14676,6 +14560,23 @@
           ]
         },
         {
+          "update_id": "upd_a66e7d8935fc8bfb",
+          "date": "2026-10-30",
+          "time_precision": "published",
+          "type_zh": "确认",
+          "type_en": "Confirmation",
+          "text_zh": "币安表示，一名攻击者显然入侵了一名 DevOps 工程师的笔记本电脑，以访问服务容器并提交未经授权的提现交易，没有证据表明私钥泄露，完整的技术复盘报告即将发布。",
+          "text_en": "Binance reported that an attacker apparently compromised a DevOps engineer's laptop to access a service container and submit unauthorized withdrawal transactions, with no evidence of private key leakage and a full technical post-mortem forthcoming.",
+          "sources": [
+            {
+              "url": "https://www.binance.com/en/support/announcement/detail/c5a8729a97ac486d963784d96c5642d7?utm_source=EnglishTelegram&amp;utm_medium=GlobalCommunity&amp;utm_campaign=AnnouncementBot",
+              "label": "binance_announcements",
+              "source_type": "telegram",
+              "official": false
+            }
+          ]
+        },
+        {
           "update_id": "upd_72755477a1d50740",
           "date": "2026-10-30",
           "time_precision": "published",
@@ -14691,30 +14592,13 @@
               "official": false
             }
           ]
-        },
-        {
-          "update_id": "upd_dea6cd66f1fe005c",
-          "date": "2026-10-30",
-          "time_precision": "published",
-          "type_zh": "修复",
-          "type_en": "Remediation",
-          "text_zh": "Arbitrum冻结了约3050万美元与币安被盗资金相关的ARB，Paxos冻结了约21.57万美元USDP，使一位链上分析师估算的累计冻结金额达到约28.29亿美元，该数字尚未获官方确认。",
-          "text_en": "Arbitrum froze about $30.5 million in ARB and Paxos about $215,700 in USDP linked to Binance stolen funds, bringing an on-chain analyst's estimated cumulative freeze to about $2.829 billion, a figure not yet officially confirmed.",
-          "sources": [
-            {
-              "url": "https://m.theblockbeats.info/flash/374504?from=telegram",
-              "label": "theblockbeats",
-              "source_type": "telegram",
-              "official": false
-            }
-          ]
         }
       ],
-      "effective_updates_count": 12,
+      "effective_updates_count": 13,
       "latest_confidence": 0.94,
-      "age_days": 0.0,
+      "age_days": 0.2,
       "lifecycle": "active",
-      "heat": 35.144,
+      "heat": 33.808,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -15233,9 +15117,9 @@
       ],
       "effective_updates_count": 34,
       "latest_confidence": 0.97,
-      "age_days": 0.5,
+      "age_days": 0.7,
       "lifecycle": "active",
-      "heat": 28.214,
+      "heat": 27.142,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -15369,9 +15253,9 @@
       ],
       "effective_updates_count": 3,
       "latest_confidence": 0.9,
-      "age_days": 0.7,
+      "age_days": 0.8,
       "lifecycle": "active",
-      "heat": 11.53,
+      "heat": 11.091,
       "watch_pending": false,
       "watch_zh": "",
       "watch_en": "",
@@ -15386,9 +15270,9 @@
     "latest_at": "2026-10-30T10:53:48.354749+08:00",
     "first_date": "2026-10-30",
     "days": 1,
-    "entries": 12,
-    "updates_count": 12,
-    "sources_count": 21,
+    "entries": 13,
+    "updates_count": 13,
+    "sources_count": 22,
     "category": "crypto",
     "status": "developing",
     "status_zh": "进展中",
@@ -15396,8 +15280,8 @@
     "event_type": "security_incident",
     "event_type_zh": "安全事件",
     "event_type_en": "Security incident",
-    "title_zh": "币安热钱包疑遭大规模异常转出，交易所确认安全事件并暂停存取款",
-    "title_en": "Binance suspected hack with ~$5.6B stolen; some funds frozen",
+    "title_zh": "Binance 疑似遭黑客攻击，约 56 亿美元被盗",
+    "title_en": "Binance suspected hack with ~$5.6B stolen",
     "summary_zh": "Binance 事件仍在调查中；此前初步指向 DevOps 设备被入侵和签名基础设施被滥用，影响估计约63亿美元，约30亿美元已冻结，存取款曾暂停，受影响地址授权已撤销，损失将由 SAFU 和公司资金覆盖。Blockaid 进一步分析称，攻击者利用 EIP-7702 授权机制，通过单笔交易提交 50 个不同 nonce 的授权，仅一个成功，使 Binance 14 热钱包被委托给恶意 sweep 合约。",
     "summary_en": "The Binance incident remains under investigation; preliminary findings pointed to a compromised DevOps device and signing-infrastructure misuse, with estimated impact about $6.3B, about $3B frozen, deposits/withdrawals temporarily suspended, the affected address authorization revoked, and losses to be covered by SAFU and company funds. Blockaid further analyzed that the attacker exploited EIP-7702 authorization by submitting 50 different-nonce authorizations in one transaction; only one succeeded, delegating the Binance 14 hot wallet to a malicious sweep contract.",
     "latest_update_zh": "Blockaid 分析披露攻击者通过单笔 Type-4 交易提交 50 个不同 nonce 的 EIP-7702 授权，仅一个匹配成功，将 Binance 14 热钱包委托给未经验证的恶意转账合约；该合约仅允许攻击者指定地址调用 sweep()，可转走 ETH 和 ERC-20 代币并保留 1 ETH 作为 gas。",
@@ -15415,6 +15299,11 @@
       {
         "url": "https://wublockchain.xyz/news/news-21448",
         "title": "wublockchainenglish",
+        "official": false
+      },
+      {
+        "url": "https://www.binance.com/en/support/announcement/detail/c5a8729a97ac486d963784d96c5642d7?utm_source=EnglishTelegram&amp;utm_medium=GlobalCommunity&amp;utm_campaign=AnnouncementBot",
+        "title": "binance_announcements",
         "official": false
       },
       {
@@ -15538,6 +15427,23 @@
         ]
       },
       {
+        "update_id": "upd_a66e7d8935fc8bfb",
+        "date": "2026-10-30",
+        "time_precision": "published",
+        "type_zh": "确认",
+        "type_en": "Confirmation",
+        "text_zh": "币安表示，一名攻击者显然入侵了一名 DevOps 工程师的笔记本电脑，以访问服务容器并提交未经授权的提现交易，没有证据表明私钥泄露，完整的技术复盘报告即将发布。",
+        "text_en": "Binance reported that an attacker apparently compromised a DevOps engineer's laptop to access a service container and submit unauthorized withdrawal transactions, with no evidence of private key leakage and a full technical post-mortem forthcoming.",
+        "sources": [
+          {
+            "url": "https://www.binance.com/en/support/announcement/detail/c5a8729a97ac486d963784d96c5642d7?utm_source=EnglishTelegram&amp;utm_medium=GlobalCommunity&amp;utm_campaign=AnnouncementBot",
+            "label": "binance_announcements",
+            "source_type": "telegram",
+            "official": false
+          }
+        ]
+      },
+      {
         "update_id": "upd_72755477a1d50740",
         "date": "2026-10-30",
         "time_precision": "published",
@@ -15553,30 +15459,13 @@
             "official": false
           }
         ]
-      },
-      {
-        "update_id": "upd_dea6cd66f1fe005c",
-        "date": "2026-10-30",
-        "time_precision": "published",
-        "type_zh": "修复",
-        "type_en": "Remediation",
-        "text_zh": "Arbitrum冻结了约3050万美元与币安被盗资金相关的ARB，Paxos冻结了约21.57万美元USDP，使一位链上分析师估算的累计冻结金额达到约28.29亿美元，该数字尚未获官方确认。",
-        "text_en": "Arbitrum froze about $30.5 million in ARB and Paxos about $215,700 in USDP linked to Binance stolen funds, bringing an on-chain analyst's estimated cumulative freeze to about $2.829 billion, a figure not yet officially confirmed.",
-        "sources": [
-          {
-            "url": "https://m.theblockbeats.info/flash/374504?from=telegram",
-            "label": "theblockbeats",
-            "source_type": "telegram",
-            "official": false
-          }
-        ]
       }
     ],
-    "effective_updates_count": 12,
+    "effective_updates_count": 13,
     "latest_confidence": 0.94,
-    "age_days": 0.0,
+    "age_days": 0.2,
     "lifecycle": "active",
-    "heat": 35.144,
+    "heat": 33.808,
     "watch_pending": false,
     "watch_zh": "",
     "watch_en": "",
@@ -15584,6 +15473,19 @@
     "focus_excluded": false
   },
   "dormant": [
+    {
+      "event_id": "evt_f90e7e488826e7d6",
+      "title_zh": "OpenAI产品冲刺：GPT-6.1 Sol发布与缓存更新",
+      "title_en": "OpenAI product sprint: GPT-6.1 Sol launch and caching updates",
+      "latest_date": "2026-10-23",
+      "category": "technology",
+      "status": "developing",
+      "status_zh": "进展中",
+      "status_en": "Developing",
+      "updates_count": 15,
+      "latest_update_zh": "OpenAI 第 18 天产品冲刺将 Decisions API 正式发布为 GA，把 Open Responses 跨模型 API 规范捐赠给 Linux 基金会的 Agentic AI 基金会，新增性能优化，Uber 将 ChatGPT Work 从 1000 人试点扩展至超过 30000 名员工，同时再次重置了速率限制。",
+      "latest_update_en": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset."
+    },
     {
       "event_id": "evt_e37f95e1cb818c7d",
       "title_zh": "俄罗斯央行发放首批加密交易所与托管牌照并推进零售交易",
@@ -18878,6 +18780,19 @@
       "latest_update_en": "Kraken parent Payward is reportedly set to lead Hyperliquid's HIP-3 initiative, opening a US compliance path for the perpetuals DEX after Trump publicly named it."
     },
     {
+      "event_id": "evt_4df13f82695b6f88",
+      "title_zh": "【PeckShield：Polymarket UI 可能被入侵，不要与网站交互】",
+      "title_en": "【PeckShield：Polymarket UI 可能被入侵，不要与网站交互】",
+      "latest_date": "2026-10-30",
+      "category": "crypto",
+      "status": "monitoring",
+      "status_zh": "持续观察",
+      "status_en": "Monitoring",
+      "updates_count": 2,
+      "latest_update_zh": "GoPlus 将 Polymarket 国际站用户资产被盗（约 271 万美元，涉及 710 个 DepositWallet、731 个地址）归因于第三方性能监控服务商 DebugBear 的 RUM 脚本遭供应链污染；Polymarket 表示已修复问题、恢复服务，并承诺全额赔付受影响交易者。",
+      "latest_update_en": "GoPlus attributed the Polymarket international-site user asset theft (~$2.71M across 710 DepositWallets and 731 addresses) to a supply-chain compromise of third-party performance-monitoring vendor DebugBear's RUM script; Polymarket said it fixed the issue, restored service, and promised full compensation to affected traders."
+    },
+    {
       "event_id": "evt_86d645e89da14b0a",
       "title_zh": "Bithumb内部移动办公系统遭外部入侵致个人信息泄露",
       "title_en": "South Korea’s Second-Largest Crypto Exchange Bithumb Confirms Security Breach",
@@ -19086,19 +19001,6 @@
       "latest_update_en": "The new report adds key structure to the same roughly $40 billion GPU financing: SpaceX signed a binding commitment letter with an Apollo-managed entity that will buy the GPUs and lease them to SpaceX; the regulatory filing describes it as a finance lease, with about $40 billion principal repaid quarterly over roughly five years plus fixed-rate interest, GPU batches arriving and leases starting in H1 2027, and the master lease expected to close before end-2026."
     },
     {
-      "event_id": "evt_554c09b8c4f576cb",
-      "title_zh": "Strategy斥资9.508亿美元回购STRC，远超同期比特币买入",
-      "title_en": "Strategy prioritizes $950 million STRC buyback over expanding its Bitcoin treasury",
-      "latest_date": "2026-10-26",
-      "category": "crypto",
-      "status": "developing",
-      "status_zh": "进展中",
-      "status_en": "Developing",
-      "updates_count": 5,
-      "latest_update_zh": "2026年10月19日至25日，Strategy首次自9月中旬以来暂停每周比特币买入，也未通过ATM出售股份；同期斥资2.049亿美元回购2,068,459股STRC。USD Cash从一周前的4.473亿美元降至2.424亿美元，USD Reserve为48.3亿美元。公司已将优先股回购授权从20亿美元提高至30亿美元，尚余9.568亿美元；比特币持仓为848,517枚。",
-      "latest_update_en": "During Oct 19–25, 2026, Strategy paused weekly Bitcoin purchases for the first time since mid-September and sold no shares via its ATM; it spent $204.9 million repurchasing 2,068,459 STRC shares. USD Cash fell to $242.4 million from $447.3 million a week earlier, and the USD Reserve was $4.83 billion. The preferred repurchase authorization was raised from $2 billion to $3 billion, with $956.8 million remaining; BTC holdings were 848,517."
-    },
-    {
       "event_id": "evt_ebc4aa526531f4eb",
       "title_zh": "Strive 完成 6.3 亿美元 SATS 优先股 IPO 并增持比特币",
       "title_en": "Strive closes $630M SATS preferred stock IPO and increases Bitcoin holdings",
@@ -19112,17 +19014,17 @@
       "latest_update_en": "Strive bought 6,182 BTC at an average of about $82,732 in the Oct 17-23 period, raising total holdings to 43,000 BTC, and disclosed about $504.4M in cash and cash equivalents plus 505,000 Strategy STRC preferred shares."
     },
     {
-      "event_id": "evt_f90e7e488826e7d6",
-      "title_zh": "OpenAI产品冲刺：GPT-6.1 Sol发布与缓存更新",
-      "title_en": "OpenAI product sprint: GPT-6.1 Sol launch and caching updates",
-      "latest_date": "2026-10-23",
-      "category": "technology",
+      "event_id": "evt_554c09b8c4f576cb",
+      "title_zh": "Strategy斥资9.508亿美元回购STRC，远超同期比特币买入",
+      "title_en": "Strategy prioritizes $950 million STRC buyback over expanding its Bitcoin treasury",
+      "latest_date": "2026-10-26",
+      "category": "crypto",
       "status": "developing",
       "status_zh": "进展中",
       "status_en": "Developing",
-      "updates_count": 15,
-      "latest_update_zh": "OpenAI 第 18 天产品冲刺将 Decisions API 正式发布为 GA，把 Open Responses 跨模型 API 规范捐赠给 Linux 基金会的 Agentic AI 基金会，新增性能优化，Uber 将 ChatGPT Work 从 1000 人试点扩展至超过 30000 名员工，同时再次重置了速率限制。",
-      "latest_update_en": "OpenAI's Day 18 product sprint shipped the Decisions API as GA, donated the Open Responses cross-model API specification to the Linux Foundation's Agentic AI Foundation, added performance optimizations, and saw Uber expand ChatGPT Work from a 1,000-person pilot to over 30,000 employees, alongside another rate-limit reset."
+      "updates_count": 5,
+      "latest_update_zh": "2026年10月19日至25日，Strategy首次自9月中旬以来暂停每周比特币买入，也未通过ATM出售股份；同期斥资2.049亿美元回购2,068,459股STRC。USD Cash从一周前的4.473亿美元降至2.424亿美元，USD Reserve为48.3亿美元。公司已将优先股回购授权从20亿美元提高至30亿美元，尚余9.568亿美元；比特币持仓为848,517枚。",
+      "latest_update_en": "During Oct 19–25, 2026, Strategy paused weekly Bitcoin purchases for the first time since mid-September and sold no shares via its ATM; it spent $204.9 million repurchasing 2,068,459 STRC shares. USD Cash fell to $242.4 million from $447.3 million a week earlier, and the USD Reserve was $4.83 billion. The preferred repurchase authorization was raised from $2 billion to $3 billion, with $956.8 million remaining; BTC holdings were 848,517."
     },
     {
       "event_id": "evt_e0ae57f3cefe9440",
@@ -20097,14 +19999,14 @@
       "status": "closed",
       "status_zh": "已结束",
       "status_en": "Closed",
-      "updates_count": 5,
-      "latest_update_zh": "Bubblemaps 监测显示被盗总额约 346 万美元，而非此前约 270 万美元；其中约 270 万美元已换成 POL 转出，约 75 万美元仍留在 Polymarket。",
-      "latest_update_en": "Bubblemaps monitoring indicates total stolen funds were about $3.46 million, rather than the earlier ~$2.7 million figure; about $2.7 million was converted to POL and transferred out, while about $750,000 remains on Polymarket."
+      "updates_count": 6,
+      "latest_update_zh": "Polymarket 的赔付执行方案新增分档安排：损失低于 1 万美元的用户拟于 10 月 30 日前直接补回；超过该门槛者需先签署和解/免责协议，并被报道要求提交身份信息后方可获得赔付。",
+      "latest_update_en": "Polymarket's reimbursement plan adds tiered execution: losses under $10K are to be restored directly by Oct 30, while larger claimants must sign a release/waiver and, per reports, submit identity details before being made whole."
     }
   ],
   "counts": {
     "active": 72,
-    "dormant": 177,
+    "dormant": 178,
     "archived": 104,
     "focus": 6
   },

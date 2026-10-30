@@ -2,23 +2,23 @@
   "version": 1,
   "events": [
     {
-      "event_id": "evt_349ae44c04b4d209",
-      "url": "https://xiyu.news/events/evt_349ae44c04b4d209/",
-      "json": "https://xiyu.news/api/events/evt_349ae44c04b4d209.json",
-      "status": "developing",
+      "event_id": "evt_4df13f82695b6f88",
+      "url": "https://xiyu.news/events/evt_4df13f82695b6f88/",
+      "json": "https://xiyu.news/api/events/evt_4df13f82695b6f88.json",
+      "status": "monitoring",
       "type": "security_incident",
       "title": {
-        "zh": "币安热钱包疑遭大规模异常转出，交易所确认安全事件并暂停存取款",
-        "en": "Binance suspected hack with ~$5.6B stolen; some funds frozen"
+        "zh": "【PeckShield：Polymarket UI 可能被入侵，不要与网站交互】",
+        "en": "【PeckShield：Polymarket UI 可能被入侵，不要与网站交互】"
       },
       "current_state": {
-        "zh": "Binance 事件仍在调查中；此前初步指向 DevOps 设备被入侵和签名基础设施被滥用，影响估计约63亿美元，约30亿美元已冻结，存取款曾暂停，受影响地址授权已撤销，损失将由 SAFU 和公司资金覆盖。Blockaid 进一步分析称，攻击者利用 EIP-7702 授权机制，通过单笔交易提交 50 个不同 nonce 的授权，仅一个成功，使 Binance 14 热钱包被委托给恶意 sweep 合约。",
-        "en": "The Binance incident remains under investigation; preliminary findings pointed to a compromised DevOps device and signing-infrastructure misuse, with estimated impact about $6.3B, about $3B frozen, deposits/withdrawals temporarily suspended, the affected address authorization revoked, and losses to be covered by SAFU and company funds. Blockaid further analyzed that the attacker exploited EIP-7702 authorization by submitting 50 different-nonce authorizations in one transaction; only one succeeded, delegating the Binance 14 hot wallet to a malicious sweep contract."
+        "zh": "Polymarket 表示已修复供应链污染问题并恢复服务，承诺全额赔付受影响交易者；实际赔付进度仍待官方后续公告。",
+        "en": "Polymarket says it has fixed the supply-chain compromise and restored service, and has promised full compensation to affected traders; actual compensation progress remains subject to official follow-up announcements."
       },
-      "first_seen_at": "2026-10-29T22:41:25.752360+00:00",
-      "last_material_change_at": "2026-10-30T02:53:48.354749+00:00",
-      "updates_count": 12,
-      "sources_count": 21
+      "first_seen_at": "2026-10-30T02:53:16.165137+00:00",
+      "last_material_change_at": "2026-10-30T07:01:32.543349+00:00",
+      "updates_count": 2,
+      "sources_count": 2
     },
     {
       "event_id": "evt_a93f6f830eba8b2c",
@@ -31,13 +31,32 @@
         "en": "Multiple Polymarket Users Report Stolen Funds as Platform Restricts Trading and"
       },
       "current_state": {
-        "zh": "Polymarket 第三方服务商遭入侵事件已标记为解决，超过 700 名用户受影响，被盗总额约 346 万美元，其中约 270 万美元已换成 POL 转出、约 75 万美元仍留在平台；平台此前承诺全额补偿并已移交执法部门。",
-        "en": "The Polymarket third-party provider breach is marked resolved, with over 700 users affected and about $3.46 million stolen in total; roughly $2.7 million was converted to POL and transferred out, while about $750,000 remains on the platform. The platform previously promised full compensation and referred the matter to law enforcement."
+        "zh": "Polymarket 第三方服务商遭入侵后的赔付进入分档执行阶段：小额损失拟直接恢复，大额索赔需签署免责/和解文件并据报道提交身份信息；链上分析显示约 710 余个钱包、合计约 270 万美元被转出，平台此前承诺全额赔付并已向执法机构报案。",
+        "en": "Polymarket's reimbursement after the third-party provider breach has moved into tiered execution: smaller losses are to be restored directly, while larger claims require a release/waiver and reportedly identity details; on-chain analysis shows about 710 wallets and roughly $2.7 million transferred out, after the platform pledged full reimbursement and reported the matter to law enforcement."
       },
       "first_seen_at": "2026-10-29T18:36:19.046340+00:00",
-      "last_material_change_at": "2026-10-30T02:53:16.166397+00:00",
-      "updates_count": 5,
-      "sources_count": 6
+      "last_material_change_at": "2026-10-30T07:01:32.542095+00:00",
+      "updates_count": 6,
+      "sources_count": 7
+    },
+    {
+      "event_id": "evt_349ae44c04b4d209",
+      "url": "https://xiyu.news/events/evt_349ae44c04b4d209/",
+      "json": "https://xiyu.news/api/events/evt_349ae44c04b4d209.json",
+      "status": "developing",
+      "type": "security_incident",
+      "title": {
+        "zh": "Binance 疑似遭黑客攻击，约 56 亿美元被盗",
+        "en": "Binance suspected hack with ~$5.6B stolen"
+      },
+      "current_state": {
+        "zh": "Binance 事件仍在调查中；此前初步指向 DevOps 设备被入侵和签名基础设施被滥用，影响估计约63亿美元，约30亿美元已冻结，存取款曾暂停，受影响地址授权已撤销，损失将由 SAFU 和公司资金覆盖。Blockaid 进一步分析称，攻击者利用 EIP-7702 授权机制，通过单笔交易提交 50 个不同 nonce 的授权，仅一个成功，使 Binance 14 热钱包被委托给恶意 sweep 合约。",
+        "en": "The Binance incident remains under investigation; preliminary findings pointed to a compromised DevOps device and signing-infrastructure misuse, with estimated impact about $6.3B, about $3B frozen, deposits/withdrawals temporarily suspended, the affected address authorization revoked, and losses to be covered by SAFU and company funds. Blockaid further analyzed that the attacker exploited EIP-7702 authorization by submitting 50 different-nonce authorizations in one transaction; only one succeeded, delegating the Binance 14 hot wallet to a malicious sweep contract."
+      },
+      "first_seen_at": "2026-10-29T22:41:25.752360+00:00",
+      "last_material_change_at": "2026-10-30T02:53:48.354749+00:00",
+      "updates_count": 13,
+      "sources_count": 22
     },
     {
       "event_id": "evt_09daa6e2f60f34cd",
