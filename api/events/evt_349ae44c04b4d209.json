@@ -4,49 +4,65 @@
   "url": "https://xiyu.news/events/evt_349ae44c04b4d209/",
   "json": "https://xiyu.news/api/events/evt_349ae44c04b4d209.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "币安疑似遭大规模黑客攻击，Tether与Circle冻结相关稳定币",
-    "en": "Binance-hacker-1029 – $5.6B stolen from Binance"
+    "zh": "币安疑遭黑客攻击，约56亿美元资产被盗，部分资金被冻结",
+    "en": "Binance suspected hack with ~$5.6B stolen; some funds frozen"
   },
   "current_state": {
-    "zh": "Binance仍在调查一起潜在安全事件，CZ称其似乎遭到攻击但用户资金安全；Tether已冻结15.67亿USDT，Circle冻结超过8亿USDC，合计超过23亿美元。",
-    "en": "Binance is still investigating a potential security incident; CZ said it appeared to have been hacked but that user funds are safe; Tether has frozen 1.567 billion USDT and Circle has frozen more than 800 million USDC, totaling over $2.3 billion."
+    "zh": "神鱼警告 Binance 14 热钱包的 EIP-7702 委托两小时后仍未撤销，一笔约 2,961 ETH 的待处理转账一旦上链可能被攻击者扫走。",
+    "en": "神鱼警告 Binance 14 热钱包的 EIP-7702 委托两小时后仍未撤销，一笔约 2,961 ETH 的待处理转账一旦上链可能被攻击者扫走。"
   },
   "first_seen_at": "2026-10-29T22:41:25.752360+00:00",
-  "last_updated_at": "2026-10-29T22:41:48.375601+00:00",
-  "last_material_change_at": "2026-10-29T22:41:48.375601+00:00",
+  "last_updated_at": "2026-10-30T00:05:53.680599+00:00",
+  "last_material_change_at": "2026-10-30T00:05:53.680599+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 4,
+  "updates_count": 6,
+  "sources_count": 9,
   "entities": [
+    "addresses",
+    "arkham",
+    "assets",
     "been",
     "billion",
     "binance",
     "circle",
+    "confirms",
     "drained",
     "freeze",
     "hack",
     "hacked",
+    "hacker",
     "have",
+    "hold",
+    "linked",
     "may",
     "over",
     "stabl",
     "suspected",
     "tether"
   ],
-  "identifiers": [],
+  "identifiers": [
+    "eip-7702"
+  ],
   "topics": [
+    "asset-freezing",
     "binance",
     "circle",
+    "eip-7702",
     "exchange-hack",
     "exchange-security",
+    "hot-wallet-security",
     "market-selloff",
+    "on-chain-forensics",
     "security-incident",
     "stablecoin-freeze",
     "systemic-risk",
-    "tether"
+    "tether",
+    "usd1",
+    "withdrawal-suspension",
+    "wlfi"
   ],
   "updates": [
     {
@@ -58,11 +74,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Binance-hacker-1029 – $5.6B stolen from Binance",
+      "title_zh": "Binance-hacker-1029 – Binance 被盗 56 亿美元",
       "title_en": "Binance-hacker-1029 – $5.6B stolen from Binance",
-      "what_changed_zh": "Binance suffered a $5.6B hack — the largest exchange theft ever — that reportedly wiped out its ~$1B SAFU insurance fund, with about $2.4B of the stolen USDT/USDC already frozen by Tether and Circle.",
+      "what_changed_zh": "Binance 遭遇 56 亿美元黑客攻击，为史上最大交易所盗窃案，据报道其约 10 亿美元的 SAFU 保险基金被清空，约 24 亿美元被盗 USDT/USDC 已被 Tether 和 Circle 冻结。",
       "what_changed_en": "Binance suffered a $5.6B hack — the largest exchange theft ever — that reportedly wiped out its ~$1B SAFU insurance fund, with about $2.4B of the stolen USDT/USDC already frozen by Tether and Circle.",
-      "current_state_zh": "Binance suffered a $5.6B hack — the largest exchange theft ever — that reportedly wiped out its ~$1B SAFU insurance fund, with about $2.4B of the stolen USDT/USDC already frozen by Tether and Circle.",
+      "current_state_zh": "Binance 遭遇 56 亿美元黑客攻击，为史上最大交易所盗窃案，据报道其约 10 亿美元的 SAFU 保险基金被清空，约 24 亿美元被盗 USDT/USDC 已被 Tether 和 Circle 冻结。",
       "current_state_en": "Binance suffered a $5.6B hack — the largest exchange theft ever — that reportedly wiped out its ~$1B SAFU insurance fund, with about $2.4B of the stolen USDT/USDC already frozen by Tether and Circle.",
       "detailed_summary_zh": "Binance suffered a $5.6B hack — the largest exchange theft ever — that reportedly wiped out its ~$1B SAFU insurance fund, with about $2.4B of the stolen USDT/USDC already frozen by Tether and Circle.",
       "detailed_summary_en": "Binance suffered a $5.6B hack — the largest exchange theft ever — that reportedly wiped out its ~$1B SAFU insurance fund, with about $2.4B of the stolen USDT/USDC already frozen by Tether and Circle.",
@@ -108,6 +124,196 @@
         {
           "url": "https://x.com/binance/status/2115918888429133902?a=Rom3K5sqpKGtjixYHmM&amp;s=20",
           "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_a412a3d0fd6202c0",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-29T23:47:02Z",
+      "published_at": "2026-10-29T23:47:02Z",
+      "first_seen_at": "2026-10-30T00:05:52.922487Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "Binance黑客集群持仓监控：涉案65个币种总计58.75亿美元，其中25.4亿美元已被冻结",
+      "title_en": "Binance黑客集群持仓监控：涉案65个币种总计58.75亿美元，其中25.4亿美元已被冻结",
+      "what_changed_zh": "Arkham数据显示，Binance黑客集群地址现持有约58.75亿美元、覆盖65个币种；Binance称已联合多方冻结约25.4亿美元涉案资金。",
+      "what_changed_en": "Arkham data shows the Binance hacker cluster now holds about $5.875 billion across 65 tokens, and Binance says it has coordinated the freezing of about $2.54 billion in stolen funds.",
+      "current_state_zh": "Binance仍在调查该起黑客事件；黑客集群地址持有约58.75亿美元、65个币种资产，Binance称已联合冻结约25.4亿美元涉案资金。",
+      "current_state_en": "Binance is still investigating the hack; the hacker cluster holds about $5.875 billion across 65 tokens, and Binance says about $2.54 billion of the stolen funds has been frozen through coordination.",
+      "detailed_summary_zh": "Arkham data shows the Binance hacker cluster now holds $5.875B across 65 tokens — led by $1.77B USDT, 18.27K BTC, 460.6K ETH, and $823M USDC — while Binance says it has coordinated the freezing of $2.54B of the stolen funds.",
+      "detailed_summary_en": "Arkham data shows the Binance hacker cluster now holds $5.875B across 65 tokens — led by $1.77B USDT, 18.27K BTC, 460.6K ETH, and $823M USDC — while Binance says it has coordinated the freezing of $2.54B of the stolen funds.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 9.5,
+      "references": [],
+      "confidence": 0.96,
+      "story_ids": [
+        "telegram:theblockbeats:203102"
+      ],
+      "sources": [
+        {
+          "url": "https://web3.binance.com/referral?ref=QRJ0IWHG",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_eee960bf7152a8da",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-29T23:51:48Z",
+      "published_at": "2026-10-29T23:51:48Z",
+      "first_seen_at": "2026-10-30T00:05:49.898342Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "Arkham：与 Binance 黑客关联的地址持有 58.8 亿美元资产；Binance 证实",
+      "title_en": "Arkham: Binance Hacker-Linked Addresses Hold $5.88B in Assets; Binance Confirms",
+      "what_changed_zh": "Arkham 识别出与“binance-hacker-1029”实体相关的 66 个地址，持有约 58.8 亿美元加密资产，包括 17.68 亿 USDT、18,270 BTC、466,622 ETH 和 8.2456 亿 USDC，同时 Binance 证实已冻结 25.4 亿美元与黑客相关的资产，追回工作仍在进行。",
+      "what_changed_en": "Arkham identified 66 addresses tied to the 'binance-hacker-1029' entity holding roughly $5.88B in crypto, including 1.768B USDT, 18,270 BTC, 466,622 ETH and 824.56M USDC, while Binance confirmed $2.54B of hack-linked assets have been frozen with recovery ongoing.",
+      "current_state_zh": "Arkham 识别出与“binance-hacker-1029”实体相关的 66 个地址，持有约 58.8 亿美元加密资产，包括 17.68 亿 USDT、18,270 BTC、466,622 ETH 和 8.2456 亿 USDC，同时 Binance 证实已冻结 25.4 亿美元与黑客相关的资产，追回工作仍在进行。",
+      "current_state_en": "Arkham identified 66 addresses tied to the 'binance-hacker-1029' entity holding roughly $5.88B in crypto, including 1.768B USDT, 18,270 BTC, 466,622 ETH and 824.56M USDC, while Binance confirmed $2.54B of hack-linked assets have been frozen with recovery ongoing.",
+      "detailed_summary_zh": "Arkham identified 66 addresses tied to the 'binance-hacker-1029' entity holding roughly $5.88B in crypto, including 1.768B USDT, 18,270 BTC, 466,622 ETH and 824.56M USDC, while Binance confirmed $2.54B of hack-linked assets have been frozen with recovery ongoing.",
+      "detailed_summary_en": "Arkham identified 66 addresses tied to the 'binance-hacker-1029' entity holding roughly $5.88B in crypto, including 1.768B USDT, 18,270 BTC, 466,622 ETH and 824.56M USDC, while Binance confirmed $2.54B of hack-linked assets have been frozen with recovery ongoing.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:wublockchainenglish:26610"
+      ],
+      "sources": [
+        {
+          "url": "https://wublockchain.xyz/news/news-21442",
+          "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_910722e456b909b3",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-29T23:52:55Z",
+      "published_at": "2026-10-29T23:52:55Z",
+      "first_seen_at": "2026-10-30T00:05:53.679308Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "【CZ：Binance 疑遭黑客攻击，用户资金安全】",
+      "title_en": "【CZ：Binance 疑遭黑客攻击，用户资金安全】",
+      "what_changed_zh": "Binance 创始人 CZ 表示 Binance 疑似遭到黑客攻击，但用户资金安全，并感谢 Tether（约 9.71 亿美元）和 Circle（约 8.23 亿美元）迅速冻结相关资金。",
+      "what_changed_en": "Binance founder CZ stated that Binance was suspected of being hacked while user funds remain safe, thanking Tether (~$971M) and Circle (~$823M) for rapidly freezing the related funds.",
+      "current_state_zh": "Binance 创始人 CZ 表示 Binance 疑似遭到黑客攻击，但用户资金安全，并感谢 Tether（约 9.71 亿美元）和 Circle（约 8.23 亿美元）迅速冻结相关资金。",
+      "current_state_en": "Binance founder CZ stated that Binance was suspected of being hacked while user funds remain safe, thanking Tether (~$971M) and Circle (~$823M) for rapidly freezing the related funds.",
+      "detailed_summary_zh": "Binance founder CZ stated that Binance was suspected of being hacked while user funds remain safe, thanking Tether (~$971M) and Circle (~$823M) for rapidly freezing the related funds.",
+      "detailed_summary_en": "Binance founder CZ stated that Binance was suspected of being hacked while user funds remain safe, thanking Tether (~$971M) and Circle (~$823M) for rapidly freezing the related funds.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:121643"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116320",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_6e47292504ace904",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-29T23:55:58Z",
+      "published_at": "2026-10-29T23:55:58Z",
+      "first_seen_at": "2026-10-30T00:05:53.680200Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "【何一：Binance 暂停提币，直至确认环境安全，用户资金安全】",
+      "title_en": "【何一：Binance 暂停提币，直至确认环境安全，用户资金安全】",
+      "what_changed_zh": "币安联合创始人何一表示，币安已暂停提币直至确认相关环境安全，并称用户资金安全（SAFU）；World Liberty Financial 协助冻结 2700 万美元 USD1 及 4800 万枚 WLFI（价值约 200 万美元）。",
+      "what_changed_en": "Binance co-founder Yi He said the exchange has paused withdrawals until it confirms the environment is secure, asserted user funds remain safe under SAFU, and thanked World Liberty Financial for helping freeze $27 million in USD1 plus 48 million WLFI tokens (worth about $2 million).",
+      "current_state_zh": "币安已暂停提币直至确认相关环境安全；黑客事件仍在调查中，此前币安称已联合冻结约25.4亿美元涉案资金，World Liberty Financial 协助冻结2700万美元USD1及4800万枚WLFI（约200万美元）。",
+      "current_state_en": "Binance has paused withdrawals until it confirms the environment is secure; the hack remains under investigation, with Binance previously saying about $2.54 billion in stolen funds had been frozen through coordination, and World Liberty Financial helped freeze $27 million in USD1 plus 48 million WLFI tokens (about $2 million).",
+      "detailed_summary_zh": "Binance co-founder Yi He announced the exchange has halted withdrawals until it confirms its environment is secure, asserting user funds remain safe under SAFU and thanking World Liberty Financial for helping freeze $27 million in USD1 plus 48 million WLFI tokens.",
+      "detailed_summary_en": "Binance co-founder Yi He announced the exchange has halted withdrawals until it confirms its environment is secure, asserting user funds remain safe under SAFU and thanking World Liberty Financial for helping freeze $27 million in USD1 plus 48 million WLFI tokens.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 9.0,
+      "references": [],
+      "confidence": 0.9,
+      "story_ids": [
+        "telegram:foresightnews:121645"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116322",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_0fdddd30be1cc220",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-29T23:57:02Z",
+      "published_at": "2026-10-29T23:57:02Z",
+      "first_seen_at": "2026-10-30T00:05:53.680599Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "【神鱼：Binance 14 热钱包仍未撤销 7702 委托，一笔 2961 ETH 的交易正转向该钱包】",
+      "title_en": "【神鱼：Binance 14 热钱包仍未撤销 7702 委托，一笔 2961 ETH 的交易正转向该钱包】",
+      "what_changed_zh": "神鱼警告 Binance 14 热钱包的 EIP-7702 委托两小时后仍未撤销，一笔约 2,961 ETH 的待处理转账一旦上链可能被攻击者扫走。",
+      "what_changed_en": "神鱼警告 Binance 14 热钱包的 EIP-7702 委托两小时后仍未撤销，一笔约 2,961 ETH 的待处理转账一旦上链可能被攻击者扫走。",
+      "current_state_zh": "神鱼警告 Binance 14 热钱包的 EIP-7702 委托两小时后仍未撤销，一笔约 2,961 ETH 的待处理转账一旦上链可能被攻击者扫走。",
+      "current_state_en": "神鱼警告 Binance 14 热钱包的 EIP-7702 委托两小时后仍未撤销，一笔约 2,961 ETH 的待处理转账一旦上链可能被攻击者扫走。",
+      "detailed_summary_zh": "神鱼警告 Binance 14 热钱包的 EIP-7702 委托两小时后仍未撤销，一笔约 2,961 ETH 的待处理转账一旦上链可能被攻击者扫走。",
+      "detailed_summary_en": "神鱼警告 Binance 14 热钱包的 EIP-7702 委托两小时后仍未撤销，一笔约 2,961 ETH 的待处理转账一旦上链可能被攻击者扫走。",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:121646"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116323",
+          "label": "foresightnews",
           "source_type": "telegram",
           "official": false
         }
