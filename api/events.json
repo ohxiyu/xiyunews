@@ -8,36 +8,55 @@
       "status": "developing",
       "type": "security_incident",
       "title": {
-        "zh": "币安疑遭黑客攻击，约56亿美元资产被盗，部分资金被冻结",
+        "zh": "币安热钱包疑遭大规模异常转出，交易所确认安全事件并暂停存取款",
         "en": "Binance suspected hack with ~$5.6B stolen; some funds frozen"
       },
       "current_state": {
-        "zh": "神鱼警告 Binance 14 热钱包的 EIP-7702 委托两小时后仍未撤销，一笔约 2,961 ETH 的待处理转账一旦上链可能被攻击者扫走。",
-        "en": "神鱼警告 Binance 14 热钱包的 EIP-7702 委托两小时后仍未撤销，一笔约 2,961 ETH 的待处理转账一旦上链可能被攻击者扫走。"
+        "zh": "Binance 事件仍在调查中；此前初步指向 DevOps 设备被入侵和签名基础设施被滥用，影响估计约63亿美元，约30亿美元已冻结，存取款曾暂停，受影响地址授权已撤销，损失将由 SAFU 和公司资金覆盖。Blockaid 进一步分析称，攻击者利用 EIP-7702 授权机制，通过单笔交易提交 50 个不同 nonce 的授权，仅一个成功，使 Binance 14 热钱包被委托给恶意 sweep 合约。",
+        "en": "The Binance incident remains under investigation; preliminary findings pointed to a compromised DevOps device and signing-infrastructure misuse, with estimated impact about $6.3B, about $3B frozen, deposits/withdrawals temporarily suspended, the affected address authorization revoked, and losses to be covered by SAFU and company funds. Blockaid further analyzed that the attacker exploited EIP-7702 authorization by submitting 50 different-nonce authorizations in one transaction; only one succeeded, delegating the Binance 14 hot wallet to a malicious sweep contract."
       },
       "first_seen_at": "2026-10-29T22:41:25.752360+00:00",
-      "last_material_change_at": "2026-10-30T00:05:53.680599+00:00",
-      "updates_count": 6,
-      "sources_count": 9
+      "last_material_change_at": "2026-10-30T02:53:48.354749+00:00",
+      "updates_count": 12,
+      "sources_count": 21
     },
     {
       "event_id": "evt_a93f6f830eba8b2c",
       "url": "https://xiyu.news/events/evt_a93f6f830eba8b2c/",
       "json": "https://xiyu.news/api/events/evt_a93f6f830eba8b2c.json",
-      "status": "monitoring",
+      "status": "closed",
       "type": "security_incident",
       "title": {
         "zh": "多名Polymarket用户报告资金被盗，平台限制交易并",
         "en": "Multiple Polymarket Users Report Stolen Funds as Platform Restricts Trading and"
       },
       "current_state": {
-        "zh": "Polymarket 在第三方服务商被入侵导致临时暂停交易和仅取消模式后，系统已恢复并恢复正常运行；受影响用户已获承诺赔偿，相关执法转介仍在背景下进行。",
-        "en": "Polymarket's systems were restored and operational after a temporary trading halt and cancel-only mode caused by a compromised third-party provider; impacted users were promised reimbursement, with law enforcement referral in the background."
+        "zh": "Polymarket 第三方服务商遭入侵事件已标记为解决，超过 700 名用户受影响，被盗总额约 346 万美元，其中约 270 万美元已换成 POL 转出、约 75 万美元仍留在平台；平台此前承诺全额补偿并已移交执法部门。",
+        "en": "The Polymarket third-party provider breach is marked resolved, with over 700 users affected and about $3.46 million stolen in total; roughly $2.7 million was converted to POL and transferred out, while about $750,000 remains on the platform. The platform previously promised full compensation and referred the matter to law enforcement."
       },
       "first_seen_at": "2026-10-29T18:36:19.046340+00:00",
-      "last_material_change_at": "2026-10-29T22:41:48.569452+00:00",
-      "updates_count": 3,
-      "sources_count": 3
+      "last_material_change_at": "2026-10-30T02:53:16.166397+00:00",
+      "updates_count": 5,
+      "sources_count": 6
+    },
+    {
+      "event_id": "evt_09daa6e2f60f34cd",
+      "url": "https://xiyu.news/events/evt_09daa6e2f60f34cd/",
+      "json": "https://xiyu.news/api/events/evt_09daa6e2f60f34cd.json",
+      "status": "monitoring",
+      "type": "exchange_operation",
+      "title": {
+        "zh": "Coinbase Q3财报：营收约12.16亿美元同比降35%，调整后EBITDA约3.33亿美元",
+        "en": "Coinbase Q3财报：营收约12.16亿美元同比降35%，调整后EBITDA约3.33亿美元"
+      },
+      "current_state": {
+        "zh": "Coinbase 2026年Q3财报显示净利润7.19亿美元，调整后EBITDA为3.329亿美元、环比增长60%，USDC平均余额达220亿美元创纪录，预测市场年化收入超2亿美元，Base代币化股票累计交易量超10亿美元，加密交易市场份额升至10.7%。",
+        "en": "Coinbase's Q3 2026 earnings show $719M net income, $332.9M adjusted EBITDA up 60% QoQ, record $22B average USDC balances, over $200M prediction-market annualized revenue, over $1B cumulative tokenized-equity volume on Base, and crypto trading market share at 10.7%."
+      },
+      "first_seen_at": "2026-10-30T00:05:52.921012+00:00",
+      "last_material_change_at": "2026-10-30T02:53:16.164219+00:00",
+      "updates_count": 2,
+      "sources_count": 2
     },
     {
       "event_id": "evt_90e6b7b9337429f2",

@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_a93f6f830eba8b2c/",
   "json": "https://xiyu.news/api/events/evt_a93f6f830eba8b2c.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "closed",
   "category": "crypto",
   "title": {
     "zh": "多名Polymarket用户报告资金被盗，平台限制交易并",
     "en": "Multiple Polymarket Users Report Stolen Funds as Platform Restricts Trading and"
   },
   "current_state": {
-    "zh": "Polymarket 在第三方服务商被入侵导致临时暂停交易和仅取消模式后，系统已恢复并恢复正常运行；受影响用户已获承诺赔偿，相关执法转介仍在背景下进行。",
-    "en": "Polymarket's systems were restored and operational after a temporary trading halt and cancel-only mode caused by a compromised third-party provider; impacted users were promised reimbursement, with law enforcement referral in the background."
+    "zh": "Polymarket 第三方服务商遭入侵事件已标记为解决，超过 700 名用户受影响，被盗总额约 346 万美元，其中约 270 万美元已换成 POL 转出、约 75 万美元仍留在平台；平台此前承诺全额补偿并已移交执法部门。",
+    "en": "The Polymarket third-party provider breach is marked resolved, with over 700 users affected and about $3.46 million stolen in total; roughly $2.7 million was converted to POL and transferred out, while about $750,000 remains on the platform. The platform previously promised full compensation and referred the matter to law enforcement."
   },
   "first_seen_at": "2026-10-29T18:36:19.046340+00:00",
-  "last_updated_at": "2026-10-29T22:41:48.569452+00:00",
-  "last_material_change_at": "2026-10-29T22:41:48.569452+00:00",
+  "last_updated_at": "2026-10-30T02:53:16.166397+00:00",
+  "last_material_change_at": "2026-10-30T02:53:16.166397+00:00",
   "confidence": 0.75,
-  "updates_count": 3,
-  "sources_count": 3,
+  "updates_count": 5,
+  "sources_count": 6,
   "entities": [
     "funds",
     "incident",
@@ -43,9 +43,14 @@
     "api-outage",
     "exchange-outage",
     "fund-losses",
+    "incident-response",
     "polymarket",
+    "prediction-market",
     "prediction-markets",
+    "security-breach",
     "security-incident",
+    "stolen-funds",
+    "third-party-provider",
     "trading-halt",
     "user-funds",
     "wallet-drainer"
@@ -83,12 +88,19 @@
       ],
       "confidence": 0.75,
       "story_ids": [
-        "telegram:wublockchainenglish:26608"
+        "telegram:wublockchainenglish:26608",
+        "telegram:foresightnews:121696"
       ],
       "sources": [
         {
           "url": "https://wublockchain.xyz/news/polymarket-users-report-stolen-funds-trading-restricted-investigation-21440",
           "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116373",
+          "label": "foresightnews",
           "source_type": "telegram",
           "official": false
         }
@@ -166,6 +178,82 @@
           "url": "https://cointelegraph.com/news/polymarket-suspends-trading-user-funds-compromised?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
           "label": "Cointelegraph",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_dbfabeb94394a6f3",
+      "event_id": "evt_a93f6f830eba8b2c",
+      "occurred_at": "2026-10-30T00:46:22Z",
+      "published_at": "2026-10-30T00:46:22Z",
+      "first_seen_at": "2026-10-30T02:53:16.161873Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "【Polymarket 今晨第三方服务商被入侵，交易暂停约一小时】",
+      "title_en": "【Polymarket 今晨第三方服务商被入侵，交易暂停约一小时】",
+      "what_changed_zh": "据 Bubblemaps 监测，此次事件影响超过 700 名用户，被盗资金约 270 万美元；状态页已将事件标记为已解决。",
+      "what_changed_en": "Bubblemaps monitoring indicates more than 700 users were affected and about $2.7 million in funds were stolen; the status page marked the incident as resolved.",
+      "current_state_zh": "Polymarket 系统已恢复，事件被标记为已解决；据 Bubblemaps 监测，超过 700 名用户受影响、约 270 万美元资金被盗，平台承诺全额补偿并已将此事移交执法部门。",
+      "current_state_en": "Polymarket's systems are restored and the incident is marked resolved; Bubblemaps monitoring indicates over 700 users were affected and about $2.7 million was stolen, with the platform promising full compensation and referring the matter to law enforcement.",
+      "detailed_summary_zh": "Polymarket paused trading for about an hour after a third-party service provider was compromised, affecting more than 700 users and roughly $2.7 million in funds, with the platform promising full compensation and referring the matter to law enforcement.",
+      "detailed_summary_en": "Polymarket paused trading for about an hour after a third-party service provider was compromised, affecting more than 700 users and roughly $2.7 million in funds, with the platform promising full compensation and referring the matter to law enforcement.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "telegram:foresightnews:121695"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116372",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_5a088c80f1c87231",
+      "event_id": "evt_a93f6f830eba8b2c",
+      "occurred_at": "2026-10-30T00:53:39Z",
+      "published_at": "2026-10-30T00:53:39Z",
+      "first_seen_at": "2026-10-30T02:53:16.166397Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "【Polymarket 被盗涉超 700 名用户，损失约 346 万美元】",
+      "title_en": "【Polymarket 被盗涉超 700 名用户，损失约 346 万美元】",
+      "what_changed_zh": "Bubblemaps 监测显示被盗总额约 346 万美元，而非此前约 270 万美元；其中约 270 万美元已换成 POL 转出，约 75 万美元仍留在 Polymarket。",
+      "what_changed_en": "Bubblemaps monitoring indicates total stolen funds were about $3.46 million, rather than the earlier ~$2.7 million figure; about $2.7 million was converted to POL and transferred out, while about $750,000 remains on Polymarket.",
+      "current_state_zh": "Polymarket 第三方服务商遭入侵事件已标记为解决，超过 700 名用户受影响，被盗总额约 346 万美元，其中约 270 万美元已换成 POL 转出、约 75 万美元仍留在平台；平台此前承诺全额补偿并已移交执法部门。",
+      "current_state_en": "The Polymarket third-party provider breach is marked resolved, with over 700 users affected and about $3.46 million stolen in total; roughly $2.7 million was converted to POL and transferred out, while about $750,000 remains on the platform. The platform previously promised full compensation and referred the matter to law enforcement.",
+      "detailed_summary_zh": "A breach at a Polymarket third-party service provider led to the theft of about $3.46 million from more than 700 users, with roughly $2.7 million converted to POL and transferred out.",
+      "detailed_summary_en": "A breach at a Polymarket third-party service provider led to the theft of about $3.46 million from more than 700 users, with roughly $2.7 million converted to POL and transferred out.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.96,
+      "story_ids": [
+        "telegram:foresightnews:121701"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116378",
+          "label": "foresightnews",
+          "source_type": "telegram",
           "official": false
         }
       ]

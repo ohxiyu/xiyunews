@@ -7,61 +7,102 @@
   "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "币安疑遭黑客攻击，约56亿美元资产被盗，部分资金被冻结",
+    "zh": "币安热钱包疑遭大规模异常转出，交易所确认安全事件并暂停存取款",
     "en": "Binance suspected hack with ~$5.6B stolen; some funds frozen"
   },
   "current_state": {
-    "zh": "神鱼警告 Binance 14 热钱包的 EIP-7702 委托两小时后仍未撤销，一笔约 2,961 ETH 的待处理转账一旦上链可能被攻击者扫走。",
-    "en": "神鱼警告 Binance 14 热钱包的 EIP-7702 委托两小时后仍未撤销，一笔约 2,961 ETH 的待处理转账一旦上链可能被攻击者扫走。"
+    "zh": "Binance 事件仍在调查中；此前初步指向 DevOps 设备被入侵和签名基础设施被滥用，影响估计约63亿美元，约30亿美元已冻结，存取款曾暂停，受影响地址授权已撤销，损失将由 SAFU 和公司资金覆盖。Blockaid 进一步分析称，攻击者利用 EIP-7702 授权机制，通过单笔交易提交 50 个不同 nonce 的授权，仅一个成功，使 Binance 14 热钱包被委托给恶意 sweep 合约。",
+    "en": "The Binance incident remains under investigation; preliminary findings pointed to a compromised DevOps device and signing-infrastructure misuse, with estimated impact about $6.3B, about $3B frozen, deposits/withdrawals temporarily suspended, the affected address authorization revoked, and losses to be covered by SAFU and company funds. Blockaid further analyzed that the attacker exploited EIP-7702 authorization by submitting 50 different-nonce authorizations in one transaction; only one succeeded, delegating the Binance 14 hot wallet to a malicious sweep contract."
   },
   "first_seen_at": "2026-10-29T22:41:25.752360+00:00",
-  "last_updated_at": "2026-10-30T00:05:53.680599+00:00",
-  "last_material_change_at": "2026-10-30T00:05:53.680599+00:00",
+  "last_updated_at": "2026-10-30T02:53:48.354749+00:00",
+  "last_material_change_at": "2026-10-30T02:53:48.354749+00:00",
   "confidence": 0.75,
-  "updates_count": 6,
-  "sources_count": 9,
+  "updates_count": 12,
+  "sources_count": 21,
   "entities": [
     "addresses",
+    "arbitrum",
     "arkham",
     "assets",
     "been",
     "billion",
     "binance",
+    "blockaid",
     "circle",
+    "compromised",
     "confirms",
+    "control",
+    "devops",
     "drained",
+    "eip",
+    "eip-7702",
     "freeze",
+    "from",
     "hack",
     "hacked",
     "hacker",
     "have",
     "hold",
+    "how",
+    "incident",
+    "laptop",
     "linked",
+    "live",
     "may",
+    "one",
     "over",
+    "paxos",
+    "reveals",
+    "says",
+    "security-incident",
     "stabl",
+    "stem",
     "suspected",
-    "tether"
+    "tether",
+    "took",
+    "wallet",
+    "withdrawals"
   ],
   "identifiers": [
-    "eip-7702"
+    "eip-7702",
+    "erc-20"
   ],
   "topics": [
+    "arbitrum",
+    "asset-freeze",
     "asset-freezing",
     "binance",
+    "binance-hack",
+    "bnb",
     "circle",
+    "devops-compromise",
     "eip-7702",
     "exchange-hack",
+    "exchange-operations",
     "exchange-security",
+    "hack",
+    "hot-wallet",
     "hot-wallet-security",
+    "hot-wallets",
+    "market-impact",
     "market-selloff",
     "on-chain-forensics",
+    "on-chain-outflow",
+    "paxos",
+    "safu",
+    "security-breach",
     "security-incident",
+    "signing-infrastructure",
+    "slowmist",
     "stablecoin-freeze",
+    "stolen-funds",
     "systemic-risk",
     "tether",
     "usd1",
     "withdrawal-suspension",
+    "withdrawals",
+    "withdrawals-suspended",
     "wlfi"
   ],
   "updates": [
@@ -100,7 +141,8 @@
         "hackernews:story:50296470",
         "rss:cointelegraph.com_rss:be449102e8a6a9e5",
         "rss:decrypt.co_feed:e45b00a906e44626",
-        "telegram:wublockchainenglish:26609"
+        "telegram:wublockchainenglish:26609",
+        "rss:protos.com_feed_:4a649a11c74fe608"
       ],
       "sources": [
         {
@@ -125,6 +167,12 @@
           "url": "https://x.com/binance/status/2115918888429133902?a=Rom3K5sqpKGtjixYHmM&amp;s=20",
           "label": "wublockchainenglish",
           "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://protos.com/live-binance-suspends-withdrawals-amid-massive-crypto-hack/",
+          "label": "Protos",
+          "source_type": "rss",
           "official": false
         }
       ]
@@ -190,16 +238,23 @@
       "community_discussion_en": "",
       "market_impact_zh": "",
       "market_impact_en": "",
-      "importance_score": 7.5,
+      "importance_score": 9.5,
       "references": [],
       "confidence": 0.75,
       "story_ids": [
-        "telegram:wublockchainenglish:26610"
+        "telegram:wublockchainenglish:26610",
+        "telegram:foresightnews:121685"
       ],
       "sources": [
         {
           "url": "https://wublockchain.xyz/news/news-21442",
           "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116362",
+          "label": "foresightnews",
           "source_type": "telegram",
           "official": false
         }
@@ -270,11 +325,18 @@
       "references": [],
       "confidence": 0.9,
       "story_ids": [
-        "telegram:foresightnews:121645"
+        "telegram:foresightnews:121645",
+        "telegram:foresightnews:121690"
       ],
       "sources": [
         {
           "url": "https://foresightnews.pro/news/h5Detail/116322",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116367",
           "label": "foresightnews",
           "source_type": "telegram",
           "official": false
@@ -314,6 +376,255 @@
         {
           "url": "https://foresightnews.pro/news/h5Detail/116323",
           "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_acc2b58990385147",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T00:11:26Z",
+      "published_at": "2026-10-30T00:11:26Z",
+      "first_seen_at": "2026-10-30T02:53:48.354749Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "币安将63亿美元被盗事件归咎于工程师被入侵的笔记本电脑",
+      "title_en": "Binance points to engineer’s hacked laptop in $6.3B breach",
+      "what_changed_zh": "Binance初步调查称，攻击者可能通过被入侵的DevOps工程师笔记本电脑进入服务容器并提交未经授权的提币交易，未发现私钥泄露证据；Binance将影响估计上调至约63亿美元，并称已冻结约30亿美元资产，计划用SAFU和公司资金覆盖损失、撤销受影响地址授权并更新储备证明。",
+      "what_changed_en": "Binance's preliminary investigation says attackers may have used a compromised DevOps engineer laptop to access a service container and submit unauthorized withdrawal transactions, with no evidence of private-key leakage; Binance raised the estimated impact to about $6.3 billion, said about $3 billion was frozen, and plans to cover losses via SAFU and company funds, revoke the affected address authorization, and publish updated Proof of Reserves.",
+      "current_state_zh": "Binance事件仍在调查中；初步指向DevOps设备被入侵和签名基础设施被滥用，而非私钥泄露。影响估计约63亿美元，约30亿美元已冻结，存取款曾暂停，受影响地址授权已撤销，损失将由SAFU和公司资金覆盖，详细技术复盘待发布。",
+      "current_state_en": "The Binance incident remains under investigation; preliminary findings point to a compromised DevOps device and signing-infrastructure misuse rather than private-key leakage. Estimated impact is about $6.3 billion, about $3 billion has been frozen, deposits/withdrawals were temporarily suspended, the affected address authorization was revoked, losses will be covered by SAFU and company funds, and a detailed technical post-mortem is pending.",
+      "detailed_summary_zh": "Binance's preliminary investigation into its $6.3B breach points to a hacked DevOps engineer's laptop used to access internal infrastructure and push unauthorized withdrawal transactions, with no evidence found of a private-key leak.",
+      "detailed_summary_en": "Binance's preliminary investigation into its $6.3B breach points to a hacked DevOps engineer's laptop used to access internal infrastructure and push unauthorized withdrawal transactions, with no evidence found of a private-key leak.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 10.0,
+      "references": [],
+      "confidence": 0.93,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:a3dd9ab83acc560f",
+        "telegram:foresightnews:121702",
+        "telegram:foresightnews:121734"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/binance-hack-may-involve-private-key-misuse-not-theft-blockaid-ceo?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116379",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116410",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_53ed38064b787a0c",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T00:15:54Z",
+      "published_at": "2026-10-30T00:15:54Z",
+      "first_seen_at": "2026-10-30T02:53:11.596963Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "何一：币安将承担所有黑客损失，充提暂时停止",
+      "title_en": "He Yi: Binance will cover all hacking losses, deposits and withdrawals are tempo",
+      "what_changed_zh": "币安联合创始人何一确认交易所遭黑客攻击，称用户资金安全、币安将承担全部损失，充提在安全检查、资金冻结和配合执法期间暂时停止。",
+      "what_changed_en": "Binance co-founder Yi He confirmed the exchange suffered a hack, said user funds are safe and Binance will cover all losses, and that deposits and withdrawals are temporarily suspended while security checks, fund freezing and law-enforcement coordination proceed.",
+      "current_state_zh": "币安联合创始人何一确认交易所遭黑客攻击，称用户资金安全、币安将承担全部损失，充提在安全检查、资金冻结和配合执法期间暂时停止。",
+      "current_state_en": "Binance co-founder Yi He confirmed the exchange suffered a hack, said user funds are safe and Binance will cover all losses, and that deposits and withdrawals are temporarily suspended while security checks, fund freezing and law-enforcement coordination proceed.",
+      "detailed_summary_zh": "Binance co-founder Yi He confirmed the exchange suffered a hack, said user funds are safe and Binance will cover all losses, and that deposits and withdrawals are temporarily suspended while security checks, fund freezing and law-enforcement coordination proceed.",
+      "detailed_summary_en": "Binance co-founder Yi He confirmed the exchange suffered a hack, said user funds are safe and Binance will cover all losses, and that deposits and withdrawals are temporarily suspended while security checks, fund freezing and law-enforcement coordination proceed.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 9.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:wublockchainenglish:26611",
+        "telegram:wublockchainenglish:26614"
+      ],
+      "sources": [
+        {
+          "url": "https://wublockchain.xyz/news/binance-will-cover-hacking-losses-deposits-withdrawals-suspended-21443",
+          "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://wublockchain.xyz/news/binance-6-3b-security-incident-compromised-devops-laptop-no-key-leak-21446",
+          "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_23c095466b5e4153",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T00:32:03Z",
+      "published_at": "2026-10-30T00:32:03Z",
+      "first_seen_at": "2026-10-30T02:53:16.152655Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "【Binance 热钱包疑遭异常转出，新地址已持超 20 亿美元资产】",
+      "title_en": "【Binance 热钱包疑遭异常转出，新地址已持超 20 亿美元资产】",
+      "what_changed_zh": "据报道，币安热钱包在北京时间04:24左右开始出现大额异常流出，一个新地址持有超过20亿美元资产，BNB一小时内下跌约6%，而币安尚未确认遭到攻击。",
+      "what_changed_en": "Binance's hot wallet reportedly began large anomalous outflows around 04:24 Beijing time, with a new address holding more than $2 billion in assets and BNB dropping about 6% in an hour, while Binance has not confirmed an attack.",
+      "current_state_zh": "据报道，币安热钱包在北京时间04:24左右开始出现大额异常流出，一个新地址持有超过20亿美元资产，BNB一小时内下跌约6%，而币安尚未确认遭到攻击。",
+      "current_state_en": "Binance's hot wallet reportedly began large anomalous outflows around 04:24 Beijing time, with a new address holding more than $2 billion in assets and BNB dropping about 6% in an hour, while Binance has not confirmed an attack.",
+      "detailed_summary_zh": "Binance's hot wallet reportedly began large anomalous outflows around 04:24 Beijing time, with a new address holding more than $2 billion in assets and BNB dropping about 6% in an hour, while Binance has not confirmed an attack.",
+      "detailed_summary_en": "Binance's hot wallet reportedly began large anomalous outflows around 04:24 Beijing time, with a new address holding more than $2 billion in assets and BNB dropping about 6% in an hour, while Binance has not confirmed an attack.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:121683"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116360",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_dea6cd66f1fe005c",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T00:43:02Z",
+      "published_at": "2026-10-30T00:43:02Z",
+      "first_seen_at": "2026-10-30T02:53:15.433255Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "🔍  链上侦探 |  Binance被盗资金更新：累计冻结约28.29亿美元，Arbitrum、Paxos再冻结相关资产",
+      "title_en": "🔍  链上侦探 |  Binance被盗资金更新：累计冻结约28.29亿美元，Arbitrum、Paxos再冻结相关资产",
+      "what_changed_zh": "Arbitrum冻结了约3050万美元与币安被盗资金相关的ARB，Paxos冻结了约21.57万美元USDP，使一位链上分析师估算的累计冻结金额达到约28.29亿美元，该数字尚未获官方确认。",
+      "what_changed_en": "Arbitrum froze about $30.5 million in ARB and Paxos about $215,700 in USDP linked to Binance stolen funds, bringing an on-chain analyst's estimated cumulative freeze to about $2.829 billion, a figure not yet officially confirmed.",
+      "current_state_zh": "Arbitrum冻结了约3050万美元与币安被盗资金相关的ARB，Paxos冻结了约21.57万美元USDP，使一位链上分析师估算的累计冻结金额达到约28.29亿美元，该数字尚未获官方确认。",
+      "current_state_en": "Arbitrum froze about $30.5 million in ARB and Paxos about $215,700 in USDP linked to Binance stolen funds, bringing an on-chain analyst's estimated cumulative freeze to about $2.829 billion, a figure not yet officially confirmed.",
+      "detailed_summary_zh": "Arbitrum froze about $30.5 million in ARB and Paxos about $215,700 in USDP linked to Binance stolen funds, bringing an on-chain analyst's estimated cumulative freeze to about $2.829 billion, a figure not yet officially confirmed.",
+      "detailed_summary_en": "Arbitrum froze about $30.5 million in ARB and Paxos about $215,700 in USDP linked to Binance stolen funds, bringing an on-chain analyst's estimated cumulative freeze to about $2.829 billion, a figure not yet officially confirmed.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:theblockbeats:203132"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/374504?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_72755477a1d50740",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T00:44:20Z",
+      "published_at": "2026-10-30T00:44:20Z",
+      "first_seen_at": "2026-10-30T02:53:16.160884Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "【慢雾余弦：币安黑客在以太坊使用 EIP-7702 仅为方便批量清扫相关热钱包代币】",
+      "title_en": "【慢雾余弦：币安黑客在以太坊使用 EIP-7702 仅为方便批量清扫相关热钱包代币】",
+      "what_changed_zh": "SlowMist创始人Cos表示，币安黑客仅利用以太坊EIP-7702在经过数小时演练后批量从相关热钱包转走代币，协议机制本身并无过错。",
+      "what_changed_en": "SlowMist founder Cos said the Binance hacker used Ethereum's EIP-7702 only to batch drain tokens from related hot wallets after hours of rehearsal, and that the protocol mechanism itself is not at fault.",
+      "current_state_zh": "SlowMist创始人Cos表示，币安黑客仅利用以太坊EIP-7702在经过数小时演练后批量从相关热钱包转走代币，协议机制本身并无过错。",
+      "current_state_en": "SlowMist founder Cos said the Binance hacker used Ethereum's EIP-7702 only to batch drain tokens from related hot wallets after hours of rehearsal, and that the protocol mechanism itself is not at fault.",
+      "detailed_summary_zh": "SlowMist founder Cos said the Binance hacker used Ethereum's EIP-7702 only to batch drain tokens from related hot wallets after hours of rehearsal, and that the protocol mechanism itself is not at fault.",
+      "detailed_summary_en": "SlowMist founder Cos said the Binance hacker used Ethereum's EIP-7702 only to batch drain tokens from related hot wallets after hours of rehearsal, and that the protocol mechanism itself is not at fault.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:121694"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116371",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_a77d23081b8d70ad",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T02:46:04Z",
+      "published_at": "2026-10-30T02:46:04Z",
+      "first_seen_at": "2026-10-30T02:53:11.599978Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "Blockaid披露黑客如何控制币安钱包：50个EIP-7702账户之一",
+      "title_en": "Blockaid Reveals How Hacker Took Control of Binance Wallet: One of 50 EIP-7702 A",
+      "what_changed_zh": "Blockaid 分析披露攻击者通过单笔 Type-4 交易提交 50 个不同 nonce 的 EIP-7702 授权，仅一个匹配成功，将 Binance 14 热钱包委托给未经验证的恶意转账合约；该合约仅允许攻击者指定地址调用 sweep()，可转走 ETH 和 ERC-20 代币并保留 1 ETH 作为 gas。",
+      "what_changed_en": "Blockaid analysis disclosed that the attacker submitted 50 EIP-7702 authorizations with different nonces in a single Type-4 transaction; only one matched, delegating the Binance 14 hot wallet to an unverified malicious transfer contract. The contract only lets the attacker-designated address call sweep(), allowing ETH and ERC-20 tokens to be transferred while retaining 1 ETH for gas.",
+      "current_state_zh": "Binance 事件仍在调查中；此前初步指向 DevOps 设备被入侵和签名基础设施被滥用，影响估计约63亿美元，约30亿美元已冻结，存取款曾暂停，受影响地址授权已撤销，损失将由 SAFU 和公司资金覆盖。Blockaid 进一步分析称，攻击者利用 EIP-7702 授权机制，通过单笔交易提交 50 个不同 nonce 的授权，仅一个成功，使 Binance 14 热钱包被委托给恶意 sweep 合约。",
+      "current_state_en": "The Binance incident remains under investigation; preliminary findings pointed to a compromised DevOps device and signing-infrastructure misuse, with estimated impact about $6.3B, about $3B frozen, deposits/withdrawals temporarily suspended, the affected address authorization revoked, and losses to be covered by SAFU and company funds. Blockaid further analyzed that the attacker exploited EIP-7702 authorization by submitting 50 different-nonce authorizations in one transaction; only one succeeded, delegating the Binance 14 hot wallet to a malicious sweep contract.",
+      "detailed_summary_zh": "Blockaid detailed how an attacker gained control of Binance's Binance 14 hot wallet by submitting 50 EIP-7702 authorizations with different nonces in a single Type-4 transaction, with the one matching authorization delegating the account to a malicious contract capable of sweeping ETH and ERC-20 tokens while leaving 1 ETH for gas.",
+      "detailed_summary_en": "Blockaid detailed how an attacker gained control of Binance's Binance 14 hot wallet by submitting 50 EIP-7702 authorizations with different nonces in a single Type-4 transaction, with the one matching authorization delegating the account to a malicious contract capable of sweeping ETH and ERC-20 tokens while leaving 1 ETH for gas.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.94,
+      "story_ids": [
+        "telegram:wublockchainenglish:26616"
+      ],
+      "sources": [
+        {
+          "url": "https://wublockchain.xyz/news/news-21448",
+          "label": "wublockchainenglish",
           "source_type": "telegram",
           "official": false
         }
