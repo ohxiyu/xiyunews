@@ -127189,8 +127189,8 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "Mistral Large 4 has moved from API preview to an open-weight release: weights are downloadable on Hugging Face including NVFP4 checkpoints, and API pricing is roughly halved versus the preview.",
-      "current_state_zh": "Mistral Large 4 已从 API 预览推进到开放权重发布阶段：权重可在 Hugging Face 下载（含 NVFP4 检查点），API 价格较预览版约减半。",
+      "current_state_en": "Mistral Large 4 weights are open on Hugging Face (including FP8/NVFP4), API pricing is roughly halved; Mistral reports coding and efficiency gains, but independent testing did not reproduce the coding score and overall capability scores remain lower.",
+      "current_state_zh": "Mistral Large 4 权重已在 Hugging Face 开放（含 FP8/NVFP4），API 价格约减半；官方公布编程与效率提升，但独立评测未复现其编程分数，综合能力评分仍偏低。",
       "entities": [
         "after",
         "cat",
@@ -127209,22 +127209,24 @@
       "event_type": "product_release",
       "first_seen_at": "2026-10-06T15:31:12.954622Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-29T15:01:32.447793Z",
-      "last_updated_at": "2026-10-29T15:01:32.447793Z",
+      "last_material_change_at": "2026-10-30T10:58:38.513595Z",
+      "last_updated_at": "2026-10-30T10:58:38.513595Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_86431c4daec0dd16"
       ],
       "schema_version": 1,
-      "status": "developing",
+      "status": "closed",
       "title_en": "Mistral AI Releases Flagship Model Mistral Large 4 (Le Chonk)",
       "title_zh": "Mistral AI 发布旗舰模型 Mistral Large 4（Le Chonk）",
       "topics": [
         "ai-benchmarks",
         "ai-labs",
         "api-pricing",
+        "benchmarks",
         "europe-ai",
         "frontier-models",
+        "inference-efficiency",
         "large-language-models",
         "llm",
         "mistral",
@@ -127395,6 +127397,44 @@
           "update_type": "escalation",
           "what_changed_en": "Mistral Large 4 is now open-weight, with downloadable Hugging Face weights including NVFP4 checkpoints, and API pricing roughly halved versus the preview ($0.70/$2.10 per million input/output tokens).",
           "what_changed_zh": "Mistral Large 4 已开放权重，Hugging Face 可下载（含 NVFP4 检查点），并将 API 价格较预览版下调约一半（输入 $0.7/百万 token、输出 $2.1/百万 token）。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.93,
+          "current_state_en": "Mistral Large 4 weights are open on Hugging Face (including FP8/NVFP4), API pricing is roughly halved; Mistral reports coding and efficiency gains, but independent testing did not reproduce the coding score and overall capability scores remain lower.",
+          "current_state_zh": "Mistral Large 4 权重已在 Hugging Face 开放（含 FP8/NVFP4），API 价格约减半；官方公布编程与效率提升，但独立评测未复现其编程分数，综合能力评分仍偏低。",
+          "detailed_summary_en": "Mistral open-sourced the weights of its 1.05T-parameter (49B active) Large 4 flagship, reporting a Terminal-Bench 4.0 coding gain from 28% to 41%, a 63% drop in per-task cost from reduced token usage and halved API pricing, and a hallucination rate cut from 41% to 28%, though independent testing found weaker overall capability and could not reproduce the coding score.",
+          "detailed_summary_zh": "Mistral open-sourced the weights of its 1.05T-parameter (49B active) Large 4 flagship, reporting a Terminal-Bench 4.0 coding gain from 28% to 41%, a 63% drop in per-task cost from reduced token usage and halved API pricing, and a hallucination rate cut from 41% to 28%, though independent testing found weaker overall capability and could not reproduce the coding score.",
+          "event_id": "evt_22d69b4fbf596207",
+          "first_seen_at": "2026-10-30T10:58:38.513595Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T10:33:02Z",
+          "published_at": "2026-10-30T10:33:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/374669?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:203293"
+          ],
+          "time_precision": "published",
+          "title_en": "Mistral开源万亿参数Large 4权重：编程自测涨13个百分点，单题成本降63%",
+          "title_zh": "Mistral开源万亿参数Large 4权重：编程自测涨13个百分点，单题成本降63%",
+          "update_id": "upd_cbe13351e8cfd4d8",
+          "update_type": "aftermath",
+          "what_changed_en": "Added post-release evaluation details: Mistral reports Terminal-Bench 4.0 coding score rising from 28% to 41%, while Artificial Analysis measured only 25%; per-task cost fell 63% to $2.06, hallucination rate dropped from 41% to 28%, and weights are offered in FP8 and NVFP4 versions.",
+          "what_changed_zh": "新增开源后评测细节：官方称 Terminal-Bench 4.0 编程成绩从28%升至41%，但 Artificial Analysis 仅测得25%；单题成本降63%至2.06美元，幻觉率从41%降至28%，权重提供 FP8 和 NVFP4 版本。"
         }
       ]
     },
@@ -154420,8 +154460,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Upbit placed Blur (BLUR) on its trading caution/watchlist, suspending deposit and withdrawal services for the token.",
-      "current_state_zh": "Upbit placed Blur (BLUR) on its trading caution/watchlist, suspending deposit and withdrawal services for the token.",
+      "current_state_en": "Upbit escalated Blur (BLUR) from trading caution/watchlist to termination of trading support; BLUR's listing on Upbit will end on November 30 at 14:00.",
+      "current_state_zh": "Upbit 已将 Blur（BLUR）从交易警示/观察状态升级为终止交易支持；BLUR 在 Upbit 的上市将于 11 月 30 日 14:00 结束。",
       "entities": [
         "blur",
         "upbit"
@@ -154430,17 +154470,20 @@
       "event_type": "exchange_operation",
       "first_seen_at": "2026-10-13T06:33:48.577299Z",
       "identifiers": [],
-      "last_material_change_at": "2026-10-13T06:33:48.577299Z",
-      "last_updated_at": "2026-10-13T06:33:48.577299Z",
+      "last_material_change_at": "2026-10-30T10:58:38.487531Z",
+      "last_updated_at": "2026-10-30T10:58:38.487531Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
-      "status": "monitoring",
+      "status": "developing",
       "title_en": "【Upbit 将 Blur（BLUR）列入交易警示品种】",
       "title_zh": "【Upbit 将 Blur（BLUR）列入交易警示品种】",
       "topics": [
         "blur",
+        "delisting",
+        "exchange-announcement",
         "exchange-listing",
+        "korea",
         "south-korea",
         "trading-suspension",
         "upbit"
@@ -154453,7 +154496,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "Upbit placed Blur (BLUR) on its trading caution/watchlist, suspending deposit and withdrawal services for the token.",
-          "current_state_zh": "Upbit placed Blur (BLUR) on its trading caution/watchlist, suspending deposit and withdrawal services for the token.",
+          "current_state_zh": "Upbit 将 Blur（BLUR）列入交易 caution/观察名单，暂停该代币的充提服务。",
           "detailed_summary_en": "Upbit placed Blur (BLUR) on its trading caution/watchlist, suspending deposit and withdrawal services for the token.",
           "detailed_summary_zh": "Upbit placed Blur (BLUR) on its trading caution/watchlist, suspending deposit and withdrawal services for the token.",
           "event_id": "evt_5e8576e57a4b3ce4",
@@ -154489,7 +154532,45 @@
           "update_id": "upd_3247b746210d45fe",
           "update_type": "initial",
           "what_changed_en": "Upbit placed Blur (BLUR) on its trading caution/watchlist, suspending deposit and withdrawal services for the token.",
-          "what_changed_zh": "Upbit placed Blur (BLUR) on its trading caution/watchlist, suspending deposit and withdrawal services for the token."
+          "what_changed_zh": "Upbit 将 Blur（BLUR）列入交易 caution/观察名单，暂停该代币的充提服务。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.93,
+          "current_state_en": "Upbit escalated Blur (BLUR) from trading caution/watchlist to termination of trading support; BLUR's listing on Upbit will end on November 30 at 14:00.",
+          "current_state_zh": "Upbit 已将 Blur（BLUR）从交易警示/观察状态升级为终止交易支持；BLUR 在 Upbit 的上市将于 11 月 30 日 14:00 结束。",
+          "detailed_summary_en": "Upbit announced it will terminate trading support for Blur (BLUR) on November 30 at 14:00, ending the token's listing on the Korean exchange.",
+          "detailed_summary_zh": "Upbit announced it will terminate trading support for Blur (BLUR) on November 30 at 14:00, ending the token's listing on the Korean exchange.",
+          "event_id": "evt_5e8576e57a4b3ce4",
+          "first_seen_at": "2026-10-30T10:58:38.487531Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T07:04:02Z",
+          "published_at": "2026-10-30T07:04:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/374614?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:203239"
+          ],
+          "time_precision": "published",
+          "title_en": "⚡️Upbit将终止Blur（BLUR）交易支持",
+          "title_zh": "⚡️Upbit将终止Blur（BLUR）交易支持",
+          "update_id": "upd_9336c37dd5b601c2",
+          "update_type": "escalation",
+          "what_changed_en": "Upbit announced it will terminate trading support for Blur (BLUR) on November 30 at 14:00, ending the token's listing on the Korean exchange.",
+          "what_changed_zh": "Upbit 宣布将于 11 月 30 日 14:00 终止 Blur（BLUR）交易支持，结束该代币在韩国交易所的上市。"
         }
       ]
     },
@@ -210292,27 +210373,38 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "The Binance incident remains under investigation; preliminary findings pointed to a compromised DevOps device and signing-infrastructure misuse, with estimated impact about $6.3B, about $3B frozen, deposits/withdrawals temporarily suspended, the affected address authorization revoked, and losses to be covered by SAFU and company funds. Blockaid further analyzed that the attacker exploited EIP-7702 authorization by submitting 50 different-nonce authorizations in one transaction; only one succeeded, delegating the Binance 14 hot wallet to a malicious sweep contract.",
-      "current_state_zh": "Binance 事件仍在调查中；此前初步指向 DevOps 设备被入侵和签名基础设施被滥用，影响估计约63亿美元，约30亿美元已冻结，存取款曾暂停，受影响地址授权已撤销，损失将由 SAFU 和公司资金覆盖。Blockaid 进一步分析称，攻击者利用 EIP-7702 授权机制，通过单笔交易提交 50 个不同 nonce 的授权，仅一个成功，使 Binance 14 热钱包被委托给恶意 sweep 合约。",
+      "current_state_en": "The Binance ~$6.3B hack remains under investigation; preliminary findings pointed to a compromised DevOps engineer laptop, but additional breach points have been found and the incident was not a single 'one-click' action. About $3B in assets has been frozen, deposits are operating normally, and withdrawals are paused with resumption expected within about 48 hours. Analysts attribute the attack to North Korea's TraderTraitor, some stolen funds were commingled with Bitget exploit funds, and losses will be covered by SAFU and company funds.",
+      "current_state_zh": "币安约63亿美元黑客事件仍在调查中；初步指向DevOps工程师笔记本电脑被入侵，但已发现更多入侵点，且并非单一“一键式”操作。约30亿美元资产已冻结，存款正常，提现暂停并预计约48小时内恢复。分析人士将攻击归因于朝鲜 TraderTraitor，部分被盗资金与 Bitget 事件资金混同；损失将由 SAFU 和公司资金覆盖。",
       "entities": [
+        "aave",
+        "additional",
         "addresses",
+        "after",
         "arbitrum",
         "arkham",
         "assets",
         "been",
         "billion",
         "binance",
+        "bitget",
         "blockaid",
+        "breach",
         "circle",
         "compromised",
         "confirms",
         "control",
+        "deposits",
         "devops",
         "drained",
         "eip",
         "eip-7702",
+        "exploit",
+        "exploiter",
+        "finds",
         "freeze",
+        "freezes",
         "from",
+        "funds",
         "hack",
         "hacked",
         "hacker",
@@ -210323,21 +210415,26 @@
         "laptop",
         "linked",
         "live",
+        "markets",
         "may",
         "one",
         "over",
         "paxos",
+        "points",
         "reveals",
         "says",
         "security-incident",
         "stabl",
         "stem",
+        "stolen",
         "suspected",
         "tether",
         "took",
         "update",
+        "usdt",
         "wallet",
-        "withdrawals"
+        "withdrawals",
+        "zachxbt"
       ],
       "event_id": "evt_349ae44c04b4d209",
       "event_type": "security_incident",
@@ -210346,8 +210443,8 @@
         "eip-7702",
         "erc-20"
       ],
-      "last_material_change_at": "2026-10-30T02:53:48.354749Z",
-      "last_updated_at": "2026-10-30T02:53:48.354749Z",
+      "last_material_change_at": "2026-10-30T10:59:32.967288Z",
+      "last_updated_at": "2026-10-30T10:59:32.967288Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_f59febcac933a8f9",
@@ -210360,34 +210457,46 @@
         "evt_c3c5ab9d895c65b6",
         "evt_3779e2a393e74636",
         "evt_12d1c358fc005fff",
-        "evt_4d5f3adca1f2f777"
+        "evt_4d5f3adca1f2f777",
+        "evt_8a550b8d6723e7d0",
+        "evt_a896ae731b6d8083",
+        "evt_a54a7ce3eb50346b"
       ],
       "schema_version": 1,
-      "status": "developing",
+      "status": "disputed",
       "title_en": "Binance suspected hack with ~$5.6B stolen",
-      "title_zh": "Binance 疑似遭黑客攻击，约 56 亿美元被盗",
+      "title_zh": "币安疑似遭黑客攻击，约56亿美元被盗",
       "topics": [
+        "aave",
         "arbitrum",
         "asset-freeze",
         "asset-freezing",
         "binance",
         "binance-hack",
+        "bitget",
         "bnb",
         "circle",
+        "collateral",
+        "defi-exploit",
         "devops-compromise",
         "eip-7702",
         "exchange-hack",
         "exchange-operations",
         "exchange-security",
+        "exploits",
+        "fund-freezing",
+        "fund-recovery",
         "hack",
         "hot-wallet",
         "hot-wallet-security",
         "hot-wallets",
         "market-impact",
         "market-selloff",
+        "north-korea",
         "on-chain-forensics",
         "on-chain-outflow",
         "paxos",
+        "protocol-freeze",
         "safu",
         "security-breach",
         "security-incident",
@@ -210966,6 +211075,196 @@
           "update_type": "escalation",
           "what_changed_en": "Blockaid analysis disclosed that the attacker submitted 50 EIP-7702 authorizations with different nonces in a single Type-4 transaction; only one matched, delegating the Binance 14 hot wallet to an unverified malicious transfer contract. The contract only lets the attacker-designated address call sweep(), allowing ETH and ERC-20 tokens to be transferred while retaining 1 ETH for gas.",
           "what_changed_zh": "Blockaid 分析披露攻击者通过单笔 Type-4 交易提交 50 个不同 nonce 的 EIP-7702 授权，仅一个匹配成功，将 Binance 14 热钱包委托给未经验证的恶意转账合约；该合约仅允许攻击者指定地址调用 sweep()，可转走 ETH 和 ERC-20 代币并保留 1 ETH 作为 gas。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "ZachXBT reported that stolen funds from the $6.3B Binance exploit and the $388M Bitget exploit were bridged through THORChain and commingled at the same address, indicating a single North Korea-linked actor also tied to the Phemex hack.",
+          "current_state_zh": "ZachXBT 报告称，63亿美元币安攻击和3.88亿美元Bitget攻击的被盗资金通过 THORChain 跨链转移，并在同一地址混合，表明这是同一个与朝鲜有关联的行为者，也与 Phemex 黑客事件有关。",
+          "detailed_summary_en": "ZachXBT reported that stolen funds from the $6.3B Binance exploit and the $388M Bitget exploit were bridged through THORChain and commingled at the same address, indicating a single North Korea-linked actor also tied to the Phemex hack.",
+          "detailed_summary_zh": "ZachXBT reported that stolen funds from the $6.3B Binance exploit and the $388M Bitget exploit were bridged through THORChain and commingled at the same address, indicating a single North Korea-linked actor also tied to the Phemex hack.",
+          "event_id": "evt_349ae44c04b4d209",
+          "first_seen_at": "2026-10-30T07:01:30.799204Z",
+          "importance_score": 8.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T05:27:04Z",
+          "published_at": "2026-10-30T05:27:04Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/news-21451"
+            }
+          ],
+          "story_ids": [
+            "telegram:wublockchainenglish:26619"
+          ],
+          "time_precision": "published",
+          "title_en": "ZachXBT: Stolen Funds from the $6.3B Binance Exploit and $388M Bitget Exploit Co",
+          "title_zh": "ZachXBT：63亿美元币安攻击与3.88亿美元Bitget攻击的被盗资金被合并",
+          "update_id": "upd_1a8df9b30deae540",
+          "update_type": "confirmation",
+          "what_changed_en": "ZachXBT reported that stolen funds from the $6.3B Binance exploit and the $388M Bitget exploit were bridged through THORChain and commingled at the same address, indicating a single North Korea-linked actor also tied to the Phemex hack.",
+          "what_changed_zh": "ZachXBT 报告称，63亿美元币安攻击和3.88亿美元Bitget攻击的被盗资金通过 THORChain 跨链转移，并在同一地址混合，表明这是同一个与朝鲜有关联的行为者，也与 Phemex 黑客事件有关。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Aave froze every DAO-operated V3 and V4 market after a wallet linked to the Binance exploiter deposited about 60 million USDT and borrowed 19,762 WETH (roughly $44.6M) minutes earlier, with the position still open but over-collateralized and Aave's contracts reportedly unaffected.",
+          "current_state_zh": "在一个与币安攻击者关联的钱包存入约6000万美元USDT并在几分钟前借出19762枚WETH（约合4460万美元）后，Aave 冻结了所有由 DAO 运营的 V3 和 V4 市场；该头寸仍处于开放状态但超额抵押，据称 Aave 的合约未受影响。",
+          "detailed_summary_en": "Aave froze every DAO-operated V3 and V4 market after a wallet linked to the Binance exploiter deposited about 60 million USDT and borrowed 19,762 WETH (roughly $44.6M) minutes earlier, with the position still open but over-collateralized and Aave's contracts reportedly unaffected.",
+          "detailed_summary_zh": "Aave froze every DAO-operated V3 and V4 market after a wallet linked to the Binance exploiter deposited about 60 million USDT and borrowed 19,762 WETH (roughly $44.6M) minutes earlier, with the position still open but over-collateralized and Aave's contracts reportedly unaffected.",
+          "event_id": "evt_349ae44c04b4d209",
+          "first_seen_at": "2026-10-30T07:01:30.799602Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T06:53:16Z",
+          "published_at": "2026-10-30T06:53:16Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/aave-freezes-v3-v4-markets-after-binance-exploiter-deposits-60m-usdt-borrows-19762-weth-21452"
+            }
+          ],
+          "story_ids": [
+            "telegram:wublockchainenglish:26620"
+          ],
+          "time_precision": "published",
+          "title_en": "Aave Freezes V3 and V4 Markets After Binance Exploiter Deposits $60M USDT and Bo",
+          "title_zh": "币安攻击者存入6000万美元USDT并借出后，Aave 冻结 V3 和 V4 市场",
+          "update_id": "upd_b37f026f1284a9de",
+          "update_type": "escalation",
+          "what_changed_en": "Aave froze every DAO-operated V3 and V4 market after a wallet linked to the Binance exploiter deposited about 60 million USDT and borrowed 19,762 WETH (roughly $44.6M) minutes earlier, with the position still open but over-collateralized and Aave's contracts reportedly unaffected.",
+          "what_changed_zh": "在一个与币安攻击者关联的钱包存入约6000万美元USDT并在几分钟前借出19762枚WETH（约合4460万美元）后，Aave 冻结了所有由 DAO 运营的 V3 和 V4 市场；该头寸仍处于开放状态但超额抵押，据称 Aave 的合约未受影响。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.97,
+          "current_state_en": "The Binance ~$6.3B hack remains under investigation; preliminary findings pointed to a compromised DevOps engineer laptop, but additional breach points have been found and the incident was not a single 'one-click' action. About $3B in assets has been frozen, deposits are operating normally, and withdrawals are paused with resumption expected within about 48 hours. Analysts attribute the attack to North Korea's TraderTraitor, some stolen funds were commingled with Bitget exploit funds, and losses will be covered by SAFU and company funds.",
+          "current_state_zh": "币安约63亿美元黑客事件仍在调查中；初步指向DevOps工程师笔记本电脑被入侵，但已发现更多入侵点，且并非单一“一键式”操作。约30亿美元资产已冻结，存款正常，提现暂停并预计约48小时内恢复。分析人士将攻击归因于朝鲜 TraderTraitor，部分被盗资金与 Bitget 事件资金混同；损失将由 SAFU 和公司资金覆盖。",
+          "detailed_summary_en": "Binance disclosed an estimated $6.3 billion hack, reported about $3 billion in stolen assets already frozen across stablecoins, tokenized gold and ETH derivatives, said deposits remain operational with withdrawals expected to resume within 48 hours, and identified additional breach points while analysts attributed the attack to North Korea's TraderTraitor group.",
+          "detailed_summary_zh": "Binance disclosed an estimated $6.3 billion hack, reported about $3 billion in stolen assets already frozen across stablecoins, tokenized gold and ETH derivatives, said deposits remain operational with withdrawals expected to resume within 48 hours, and identified additional breach points while analysts attributed the attack to North Korea's TraderTraitor group.",
+          "event_id": "evt_349ae44c04b4d209",
+          "first_seen_at": "2026-10-30T10:59:32.967288Z",
+          "importance_score": 9.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T09:08:25Z",
+          "published_at": "2026-10-30T09:08:25Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/live-updates-binance-63b-hack-linked-to-north-koreas-tradertraitor?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:61942ebf8875e91a"
+          ],
+          "time_precision": "published",
+          "title_en": "Live updates: Binance uncovers more breach points in $6.3B hack",
+          "title_zh": "实时更新：币安在63亿美元黑客事件中发现更多入侵点",
+          "update_id": "upd_640b90387bc7b56c",
+          "update_type": "escalation",
+          "what_changed_en": "Binance's investigation uncovered additional breach points beyond the initially cited engineer laptop; co-CEO Richard Teng said the incident was not a single 'one-click' action and did not attribute responsibility to any individual; deposits remain normal while withdrawals are paused and expected to resume within about 48 hours; analysts attributed the attack to North Korea's TraderTraitor and said stolen funds were commingled with Bitget exploit funds in the same address.",
+          "what_changed_zh": "币安调查发现除最初指向的工程师笔记本电脑外还有更多入侵点；联合CEO Richard Teng 表示这不是单一“一键式”操作，未将责任归咎于任何个人；存款正常运行，提现仍暂停并预计约48小时内恢复；分析人士将攻击归因于朝鲜 TraderTraitor，并称被盗资金与 Bitget 事件资金在同一地址混同。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Binance uncovered additional breach points in a security incident estimated at $6.3 billion, with about $3 billion frozen onchain, deposits reopened, withdrawals still suspended, and losses covered by SAFU and company funds.",
+          "current_state_zh": "币安在一桩估计达63亿美元的安全事件中发现了更多入侵点，约30亿美元已在链上冻结，存款已恢复，提现仍暂停，损失由 SAFU 和公司资金覆盖。",
+          "detailed_summary_en": "Binance uncovered additional breach points in a security incident estimated at $6.3 billion, with about $3 billion frozen onchain, deposits reopened, withdrawals still suspended, and losses covered by SAFU and company funds.",
+          "detailed_summary_zh": "Binance uncovered additional breach points in a security incident estimated at $6.3 billion, with about $3 billion frozen onchain, deposits reopened, withdrawals still suspended, and losses covered by SAFU and company funds.",
+          "event_id": "evt_349ae44c04b4d209",
+          "first_seen_at": "2026-10-30T10:59:31.815502Z",
+          "importance_score": 9.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T09:31:59Z",
+          "published_at": "2026-10-30T09:31:59Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/382203/binance-finds-additional-points-of-breach-in-6-3b-hack"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:b07679483c6bb903"
+          ],
+          "time_precision": "published",
+          "title_en": "Binance Finds 'Additional Points of Breach' in $6.3B Hack",
+          "title_zh": "币安在63亿美元黑客事件中发现“更多入侵点”",
+          "update_id": "upd_1e00b1c971d1d0e4",
+          "update_type": "escalation",
+          "what_changed_en": "Binance uncovered additional breach points in a security incident estimated at $6.3 billion, with about $3 billion frozen onchain, deposits reopened, withdrawals still suspended, and losses covered by SAFU and company funds.",
+          "what_changed_zh": "币安在一桩估计达63亿美元的安全事件中发现了更多入侵点，约30亿美元已在链上冻结，存款已恢复，提现仍暂停，损失由 SAFU 和公司资金覆盖。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.92,
+          "current_state_en": "Aave's DAO-operated V3 and V4 markets remain frozen; the $60 million USDT collateral is not fully frozen, the exploiter actually withdrew about $46 million in ETH, and roughly $14 million more may be recoverable through law enforcement unfreezing.",
+          "current_state_zh": "Aave 的 DAO 运营 V3 和 V4 市场仍处于冻结状态；涉事 6000 万 USDT 抵押品并非完全冻结，黑客实际取走约 4600 万美元 ETH，另有约 1400 万美元可能通过执法解冻追回。",
+          "detailed_summary_en": "He Yi clarified that the $60 million USDT collateral in AAVE is not fully frozen, the hacker actually withdrew about $46 million in ETH, and roughly $14 million more may be recoverable after law enforcement unfreezes assets.",
+          "detailed_summary_zh": "He Yi clarified that the $60 million USDT collateral in AAVE is not fully frozen, the hacker actually withdrew about $46 million in ETH, and roughly $14 million more may be recoverable after law enforcement unfreezes assets.",
+          "event_id": "evt_349ae44c04b4d209",
+          "first_seen_at": "2026-10-30T10:58:38.513021Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T10:32:02Z",
+          "published_at": "2026-10-30T10:32:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/374668?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:203292"
+          ],
+          "time_precision": "published",
+          "title_en": "何一：AAVE抵押的6000万USDT不在完全冻结范围内，黑客实际仅取走4600万美元ETH",
+          "title_zh": "何一：AAVE抵押的6000万USDT不在完全冻结范围内，黑客实际仅取走4600万美元ETH",
+          "update_id": "upd_08c11643d0953bf0",
+          "update_type": "correction",
+          "what_changed_en": "He Yi clarified that the $60 million USDT collateral in Aave is not fully frozen; the hacker actually withdrew about $46 million in ETH, with roughly $14 million more potentially recoverable after law enforcement unfreezes assets.",
+          "what_changed_zh": "何一澄清：AAVE 中抵押的 6000 万 USDT 并非完全冻结，黑客实际取走约 4600 万美元 ETH；执法解冻后可能额外追回约 1400 万美元。"
         }
       ]
     },
@@ -211815,7 +212114,7 @@
       "first_seen_at": "2026-10-30T00:05:52.921012Z",
       "identifiers": [],
       "last_material_change_at": "2026-10-30T02:53:16.164219Z",
-      "last_updated_at": "2026-10-30T02:53:16.164219Z",
+      "last_updated_at": "2026-10-30T10:58:35.927994Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -211895,10 +212194,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "https://foresightnews.pro/news/h5Detail/116375"
+            },
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/coinbase-q3-revenue-down-35-to-1-22b-profit-719m-prediction-markets-200m-21454"
             }
           ],
           "story_ids": [
-            "telegram:foresightnews:121698"
+            "telegram:foresightnews:121698",
+            "telegram:wublockchainenglish:26622"
           ],
           "time_precision": "published",
           "title_en": "【Coinbase Q3 财报：三季度净利润为 7.19 亿美元，预测市场年化收入突破 2 亿美元】",
@@ -213816,152 +214122,6 @@
       ]
     },
     {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "ZachXBT reported that stolen funds from the $6.3B Binance exploit and the $388M Bitget exploit were bridged through THORChain and commingled at the same address, indicating a single North Korea-linked actor also tied to the Phemex hack.",
-      "current_state_zh": "ZachXBT reported that stolen funds from the $6.3B Binance exploit and the $388M Bitget exploit were bridged through THORChain and commingled at the same address, indicating a single North Korea-linked actor also tied to the Phemex hack.",
-      "entities": [
-        "binance",
-        "bitget",
-        "exploit",
-        "funds",
-        "stolen",
-        "zachxbt"
-      ],
-      "event_id": "evt_a54a7ce3eb50346b",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-10-30T07:01:30.799204Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-30T07:01:30.799204Z",
-      "last_updated_at": "2026-10-30T07:01:30.799204Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "ZachXBT: Stolen Funds from the $6.3B Binance Exploit and $388M Bitget Exploit Co",
-      "title_zh": "ZachXBT: Stolen Funds from the $6.3B Binance Exploit and $388M Bitget Exploit Co",
-      "topics": [
-        "binance",
-        "bitget",
-        "exploits",
-        "north-korea",
-        "on-chain-forensics"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "ZachXBT reported that stolen funds from the $6.3B Binance exploit and the $388M Bitget exploit were bridged through THORChain and commingled at the same address, indicating a single North Korea-linked actor also tied to the Phemex hack.",
-          "current_state_zh": "ZachXBT reported that stolen funds from the $6.3B Binance exploit and the $388M Bitget exploit were bridged through THORChain and commingled at the same address, indicating a single North Korea-linked actor also tied to the Phemex hack.",
-          "detailed_summary_en": "ZachXBT reported that stolen funds from the $6.3B Binance exploit and the $388M Bitget exploit were bridged through THORChain and commingled at the same address, indicating a single North Korea-linked actor also tied to the Phemex hack.",
-          "detailed_summary_zh": "ZachXBT reported that stolen funds from the $6.3B Binance exploit and the $388M Bitget exploit were bridged through THORChain and commingled at the same address, indicating a single North Korea-linked actor also tied to the Phemex hack.",
-          "event_id": "evt_a54a7ce3eb50346b",
-          "first_seen_at": "2026-10-30T07:01:30.799204Z",
-          "importance_score": 8.5,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-30T05:27:04Z",
-          "published_at": "2026-10-30T05:27:04Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "wublockchainenglish",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://wublockchain.xyz/news/news-21451"
-            }
-          ],
-          "story_ids": [
-            "telegram:wublockchainenglish:26619"
-          ],
-          "time_precision": "published",
-          "title_en": "ZachXBT: Stolen Funds from the $6.3B Binance Exploit and $388M Bitget Exploit Co",
-          "title_zh": "ZachXBT: Stolen Funds from the $6.3B Binance Exploit and $388M Bitget Exploit Co",
-          "update_id": "upd_1a8df9b30deae540",
-          "update_type": "initial",
-          "what_changed_en": "ZachXBT reported that stolen funds from the $6.3B Binance exploit and the $388M Bitget exploit were bridged through THORChain and commingled at the same address, indicating a single North Korea-linked actor also tied to the Phemex hack.",
-          "what_changed_zh": "ZachXBT reported that stolen funds from the $6.3B Binance exploit and the $388M Bitget exploit were bridged through THORChain and commingled at the same address, indicating a single North Korea-linked actor also tied to the Phemex hack."
-        }
-      ]
-    },
-    {
-      "category": "crypto",
-      "confidence": 0.75,
-      "current_state_en": "Aave froze every DAO-operated V3 and V4 market after a wallet linked to the Binance exploiter deposited about 60 million USDT and borrowed 19,762 WETH (roughly $44.6M) minutes earlier, with the position still open but over-collateralized and Aave's contracts reportedly unaffected.",
-      "current_state_zh": "Aave froze every DAO-operated V3 and V4 market after a wallet linked to the Binance exploiter deposited about 60 million USDT and borrowed 19,762 WETH (roughly $44.6M) minutes earlier, with the position still open but over-collateralized and Aave's contracts reportedly unaffected.",
-      "entities": [
-        "aave",
-        "after",
-        "binance",
-        "deposits",
-        "exploiter",
-        "freezes",
-        "markets",
-        "usdt"
-      ],
-      "event_id": "evt_a896ae731b6d8083",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-10-30T07:01:30.799602Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-30T07:01:30.799602Z",
-      "last_updated_at": "2026-10-30T07:01:30.799602Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Aave Freezes V3 and V4 Markets After Binance Exploiter Deposits $60M USDT and Bo",
-      "title_zh": "Aave Freezes V3 and V4 Markets After Binance Exploiter Deposits $60M USDT and Bo",
-      "topics": [
-        "aave",
-        "binance",
-        "protocol-freeze"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "Aave froze every DAO-operated V3 and V4 market after a wallet linked to the Binance exploiter deposited about 60 million USDT and borrowed 19,762 WETH (roughly $44.6M) minutes earlier, with the position still open but over-collateralized and Aave's contracts reportedly unaffected.",
-          "current_state_zh": "Aave froze every DAO-operated V3 and V4 market after a wallet linked to the Binance exploiter deposited about 60 million USDT and borrowed 19,762 WETH (roughly $44.6M) minutes earlier, with the position still open but over-collateralized and Aave's contracts reportedly unaffected.",
-          "detailed_summary_en": "Aave froze every DAO-operated V3 and V4 market after a wallet linked to the Binance exploiter deposited about 60 million USDT and borrowed 19,762 WETH (roughly $44.6M) minutes earlier, with the position still open but over-collateralized and Aave's contracts reportedly unaffected.",
-          "detailed_summary_zh": "Aave froze every DAO-operated V3 and V4 market after a wallet linked to the Binance exploiter deposited about 60 million USDT and borrowed 19,762 WETH (roughly $44.6M) minutes earlier, with the position still open but over-collateralized and Aave's contracts reportedly unaffected.",
-          "event_id": "evt_a896ae731b6d8083",
-          "first_seen_at": "2026-10-30T07:01:30.799602Z",
-          "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-30T06:53:16Z",
-          "published_at": "2026-10-30T06:53:16Z",
-          "references": [],
-          "sources": [
-            {
-              "label": "wublockchainenglish",
-              "official": false,
-              "source_type": "telegram",
-              "url": "https://wublockchain.xyz/news/aave-freezes-v3-v4-markets-after-binance-exploiter-deposits-60m-usdt-borrows-19762-weth-21452"
-            }
-          ],
-          "story_ids": [
-            "telegram:wublockchainenglish:26620"
-          ],
-          "time_precision": "published",
-          "title_en": "Aave Freezes V3 and V4 Markets After Binance Exploiter Deposits $60M USDT and Bo",
-          "title_zh": "Aave Freezes V3 and V4 Markets After Binance Exploiter Deposits $60M USDT and Bo",
-          "update_id": "upd_b37f026f1284a9de",
-          "update_type": "initial",
-          "what_changed_en": "Aave froze every DAO-operated V3 and V4 market after a wallet linked to the Binance exploiter deposited about 60 million USDT and borrowed 19,762 WETH (roughly $44.6M) minutes earlier, with the position still open but over-collateralized and Aave's contracts reportedly unaffected.",
-          "what_changed_zh": "Aave froze every DAO-operated V3 and V4 market after a wallet linked to the Binance exploiter deposited about 60 million USDT and borrowed 19,762 WETH (roughly $44.6M) minutes earlier, with the position still open but over-collateralized and Aave's contracts reportedly unaffected."
-        }
-      ]
-    },
-    {
       "category": "technology",
       "confidence": 0.75,
       "current_state_en": "ServiceNow stock plunged 26.95% (~$42B market cap) on slowing forward contract-revenue growth guidance, the same day AI startup Serval raised $150M led by Sequoia at a $3B valuation with AI agents designed to replace ServiceNow's IT ticketing and workflow software.",
@@ -214232,6 +214392,886 @@
           "update_type": "initial",
           "what_changed_en": "TRM Labs, Chainalysis, and onchain investigator ZachXBT linked the $6.3B Binance hack to North Korea’s TraderTraitor group, citing commingled Binance and Bitget funds moved through THORChain.",
           "what_changed_zh": "TRM Labs, Chainalysis, and onchain investigator ZachXBT linked the $6.3B Binance hack to North Korea’s TraderTraitor group, citing commingled Binance and Bitget funds moved through THORChain."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Trezor still treats this as a credible but not lab-verified suspected hardware implant and has advised anyone who bought its wallets from CryptoBilis since March 2026 to move funds to a new recovery phrase; it has not received the affected Safe 5, found no tampering in four inspected CryptoBilis devices, and no CryptoBilis buyer has reported lost funds.",
+      "current_state_zh": "Trezor仍将此事视为可信但未经实验室验证的疑似硬件植入事件，已建议自2026年3月起从CryptoBilis购买其钱包的用户尽快迁移到新助记词钱包；公司尚未收到涉事Safe 5，已检查的四台CryptoBilis设备未发现篡改，且尚无CryptoBilis买家报告资金损失。",
+      "entities": [
+        "after",
+        "buyers",
+        "cryptobilis",
+        "hardware",
+        "implant",
+        "largest",
+        "maker",
+        "report",
+        "safe",
+        "second",
+        "suspected",
+        "trezor",
+        "wallet",
+        "warns",
+        "world"
+      ],
+      "event_id": "evt_ef55a9b094f31e63",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-30T10:58:35.927660Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-30T10:59:31.648928Z",
+      "last_updated_at": "2026-10-30T10:59:31.648928Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "developing",
+      "title_en": "World’s Second-Largest Hardware Wallet Maker Trezor Warns of Suspected Hardware",
+      "title_zh": "全球第二大硬件钱包制造商 Trezor 警告疑似硬件植入",
+      "topics": [
+        "security-incident",
+        "self-custody",
+        "supply-chain-attack",
+        "supply-chain-security",
+        "trezor"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Trezor disclosed a credible report of a suspected hardware implant in a Trezor Safe 5 purchased from reseller CryptoBilis in August 2026 and urged anyone who bought from that reseller since March 2026 to move funds to wallets with newly generated recovery seeds, while noting the device has not been received for verification and no customer has reported lost funds.",
+          "current_state_zh": "Trezor 披露了一份可信报告，称2026年8月从经销商 CryptoBilis 处购买的一台 Trezor Safe 5 中疑似存在硬件植入，并敦促自2026年3月起从该经销商处购买过产品的用户将资金转移到使用新生成恢复种子的钱包，同时指出该设备尚未收到以进行验证，也没有客户报告资金损失。",
+          "detailed_summary_en": "Trezor disclosed a credible report of a suspected hardware implant in a Trezor Safe 5 purchased from reseller CryptoBilis in August 2026 and urged anyone who bought from that reseller since March 2026 to move funds to wallets with newly generated recovery seeds, while noting the device has not been received for verification and no customer has reported lost funds.",
+          "detailed_summary_zh": "Trezor disclosed a credible report of a suspected hardware implant in a Trezor Safe 5 purchased from reseller CryptoBilis in August 2026 and urged anyone who bought from that reseller since March 2026 to move funds to wallets with newly generated recovery seeds, while noting the device has not been received for verification and no customer has reported lost funds.",
+          "event_id": "evt_ef55a9b094f31e63",
+          "first_seen_at": "2026-10-30T10:58:35.927660Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T07:31:24Z",
+          "published_at": "2026-10-30T07:31:24Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/trezor-warns-suspected-hardware-implant-device-sold-by-reseller-21453"
+            }
+          ],
+          "story_ids": [
+            "telegram:wublockchainenglish:26621"
+          ],
+          "time_precision": "published",
+          "title_en": "World’s Second-Largest Hardware Wallet Maker Trezor Warns of Suspected Hardware",
+          "title_zh": "全球第二大硬件钱包制造商 Trezor 警告疑似硬件植入",
+          "update_id": "upd_d321f48d977a4a30",
+          "update_type": "initial",
+          "what_changed_en": "Trezor disclosed a credible report of a suspected hardware implant in a Trezor Safe 5 purchased from reseller CryptoBilis in August 2026 and urged anyone who bought from that reseller since March 2026 to move funds to wallets with newly generated recovery seeds, while noting the device has not been received for verification and no customer has reported lost funds.",
+          "what_changed_zh": "Trezor 披露了一份可信报告，称2026年8月从经销商 CryptoBilis 处购买的一台 Trezor Safe 5 中疑似存在硬件植入，并敦促自2026年3月起从该经销商处购买过产品的用户将资金转移到使用新生成恢复种子的钱包，同时指出该设备尚未收到以进行验证，也没有客户报告资金损失。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.96,
+          "current_state_en": "Trezor still treats this as a credible but not lab-verified suspected hardware implant and has advised anyone who bought its wallets from CryptoBilis since March 2026 to move funds to a new recovery phrase; it has not received the affected Safe 5, found no tampering in four inspected CryptoBilis devices, and no CryptoBilis buyer has reported lost funds.",
+          "current_state_zh": "Trezor仍将此事视为可信但未经实验室验证的疑似硬件植入事件，已建议自2026年3月起从CryptoBilis购买其钱包的用户尽快迁移到新助记词钱包；公司尚未收到涉事Safe 5，已检查的四台CryptoBilis设备未发现篡改，且尚无CryptoBilis买家报告资金损失。",
+          "detailed_summary_en": "Trezor urged customers who bought wallets from reseller CryptoBilis since March 2026 to move funds to a new seed after an Indonesian buyer reported a hardware implant in a Safe 5 that allegedly captures the backup from the screen and transmits it over a mobile network.",
+          "detailed_summary_zh": "Trezor urged customers who bought wallets from reseller CryptoBilis since March 2026 to move funds to a new seed after an Indonesian buyer reported a hardware implant in a Safe 5 that allegedly captures the backup from the screen and transmits it over a mobile network.",
+          "event_id": "evt_ef55a9b094f31e63",
+          "first_seen_at": "2026-10-30T10:59:31.648928Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T10:07:29Z",
+          "published_at": "2026-10-30T10:07:29Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/382216/trezor-warns-cryptobilis-buyers-after-report-of-hardware-implant-in-safe-5"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:21298acebe8004e5"
+          ],
+          "time_precision": "published",
+          "title_en": "Trezor Warns CryptoBilis Buyers After Report of Hardware Implant in Safe 5",
+          "title_zh": "Trezor 在 Safe 5 硬件植入报告后警告 CryptoBilis 买家",
+          "update_id": "upd_c132d9797fd1053c",
+          "update_type": "escalation",
+          "what_changed_en": "The report adds disclosure details: an Indonesian buyer reported it on October 28, 2026 via responsible disclosure; the Safe 5 was bought from CryptoBilis via Tokopedia in August 2026. The implant is described as an extra circuit board between the main board and screen, with a cellular module and antenna, able to read screen contents including the backup and transmit over a mobile network when plugged in. Trezor says it has not received the device but treats the report as credible based on the description and a video interview; it had removed CryptoBilis on October 9 and inspected four devices bought from it (a Safe 7, two Safe 5s, and a Safe 3) finding no tampering, with no CryptoBilis buyer reporting lost funds.",
+          "what_changed_zh": "报道补充了披露细节：印尼买家于2026年10月28日通过负责任披露项目报告，涉事Safe 5于2026年8月通过Tokopedia从CryptoBilis购买；植入物被描述为夹在主board与屏幕之间的额外电路板，带蜂窝模块和天线，可读取屏幕内容（包括助记词备份）并在设备插电时通过移动网络发送。Trezor称尚未收到设备，但基于描述和视频采访认为报告可信；此前已于10月9日下架CryptoBilis，并检查了从其购买的4台设备（Safe 7、两台Safe 5、Safe 3）未发现篡改，且无CryptoBilis买家报告资金损失。"
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "ECB's Zigman said the central bank could raise rates as soon as its next policy meeting, arguing gradual tightening is appropriate as the eurozone enters the ECB's adverse scenario amid a longer-than-expected energy shock.",
+      "current_state_zh": "ECB's Zigman said the central bank could raise rates as soon as its next policy meeting, arguing gradual tightening is appropriate as the eurozone enters the ECB's adverse scenario amid a longer-than-expected energy shock.",
+      "entities": [],
+      "event_id": "evt_2d394b7af5006c06",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-30T10:58:38.494445Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-30T10:58:38.494445Z",
+      "last_updated_at": "2026-10-30T10:58:38.494445Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "欧洲央行齐格曼：最早可能在下次会议上加息",
+      "title_zh": "欧洲央行齐格曼：最早可能在下次会议上加息",
+      "topics": [
+        "ecb",
+        "eurozone",
+        "interest-rates",
+        "macro",
+        "monetary-policy"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "ECB's Zigman said the central bank could raise rates as soon as its next policy meeting, arguing gradual tightening is appropriate as the eurozone enters the ECB's adverse scenario amid a longer-than-expected energy shock.",
+          "current_state_zh": "ECB's Zigman said the central bank could raise rates as soon as its next policy meeting, arguing gradual tightening is appropriate as the eurozone enters the ECB's adverse scenario amid a longer-than-expected energy shock.",
+          "detailed_summary_en": "ECB's Zigman said the central bank could raise rates as soon as its next policy meeting, arguing gradual tightening is appropriate as the eurozone enters the ECB's adverse scenario amid a longer-than-expected energy shock.",
+          "detailed_summary_zh": "ECB's Zigman said the central bank could raise rates as soon as its next policy meeting, arguing gradual tightening is appropriate as the eurozone enters the ECB's adverse scenario amid a longer-than-expected energy shock.",
+          "event_id": "evt_2d394b7af5006c06",
+          "first_seen_at": "2026-10-30T10:58:38.494445Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T08:01:02Z",
+          "published_at": "2026-10-30T08:01:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/374628?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:203254"
+          ],
+          "time_precision": "published",
+          "title_en": "欧洲央行齐格曼：最早可能在下次会议上加息",
+          "title_zh": "欧洲央行齐格曼：最早可能在下次会议上加息",
+          "update_id": "upd_710121dc83281ec0",
+          "update_type": "initial",
+          "what_changed_en": "ECB's Zigman said the central bank could raise rates as soon as its next policy meeting, arguing gradual tightening is appropriate as the eurozone enters the ECB's adverse scenario amid a longer-than-expected energy shock.",
+          "what_changed_zh": "ECB's Zigman said the central bank could raise rates as soon as its next policy meeting, arguing gradual tightening is appropriate as the eurozone enters the ECB's adverse scenario amid a longer-than-expected energy shock."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Cognition has acquired AI code-security startup Corridor to combine real-time vulnerability blocking with Devin Security's scanning and automated remediation capabilities.",
+      "current_state_zh": "Cognition has acquired AI code-security startup Corridor to combine real-time vulnerability blocking with Devin Security's scanning and automated remediation capabilities.",
+      "entities": [
+        "cognition",
+        "corridor"
+      ],
+      "event_id": "evt_7afb3cbdb8ef1ce0",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-30T10:58:38.498389Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-30T10:58:38.498389Z",
+      "last_updated_at": "2026-10-30T10:58:38.498389Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Cognition收购Corridor：先请来安全主管，再把他的老东家买下",
+      "title_zh": "Cognition收购Corridor：先请来安全主管，再把他的老东家买下",
+      "topics": [
+        "acquisition",
+        "ai-coding",
+        "ai-devtools",
+        "devin"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Cognition has acquired AI code-security startup Corridor to combine real-time vulnerability blocking with Devin Security's scanning and automated remediation capabilities.",
+          "current_state_zh": "Cognition has acquired AI code-security startup Corridor to combine real-time vulnerability blocking with Devin Security's scanning and automated remediation capabilities.",
+          "detailed_summary_en": "Cognition has acquired AI code-security startup Corridor to combine real-time vulnerability blocking with Devin Security's scanning and automated remediation capabilities.",
+          "detailed_summary_zh": "Cognition has acquired AI code-security startup Corridor to combine real-time vulnerability blocking with Devin Security's scanning and automated remediation capabilities.",
+          "event_id": "evt_7afb3cbdb8ef1ce0",
+          "first_seen_at": "2026-10-30T10:58:38.498389Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T08:33:02Z",
+          "published_at": "2026-10-30T08:33:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/374639?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:203262"
+          ],
+          "time_precision": "published",
+          "title_en": "Cognition收购Corridor：先请来安全主管，再把他的老东家买下",
+          "title_zh": "Cognition收购Corridor：先请来安全主管，再把他的老东家买下",
+          "update_id": "upd_d684e7c7de224291",
+          "update_type": "initial",
+          "what_changed_en": "Cognition has acquired AI code-security startup Corridor to combine real-time vulnerability blocking with Devin Security's scanning and automated remediation capabilities.",
+          "what_changed_zh": "Cognition has acquired AI code-security startup Corridor to combine real-time vulnerability blocking with Devin Security's scanning and automated remediation capabilities."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Circle will begin cutting legacy CCTP V1 burn limits on October 31 and pause the old contracts on December 1, 2026, forcing apps, wallets, and bridges onto the non-backward-compatible new CCTP, with Noble's USDC contracts and cross-chain routes set to pause January 12, 2027 ahead of manual redemption.",
+      "current_state_zh": "Circle will begin cutting legacy CCTP V1 burn limits on October 31 and pause the old contracts on December 1, 2026, forcing apps, wallets, and bridges onto the non-backward-compatible new CCTP, with Noble's USDC contracts and cross-chain routes set to pause January 12, 2027 ahead of manual redemption.",
+      "entities": [
+        "cctp",
+        "circle",
+        "usdc"
+      ],
+      "event_id": "evt_8e7365aae311c493",
+      "event_type": "other",
+      "first_seen_at": "2026-10-30T10:58:38.499208Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-30T10:58:38.499208Z",
+      "last_updated_at": "2026-10-30T10:58:38.499208Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Circle将自10月31日起削减旧版USDC跨链协议CCTP V1限额，12月1日暂停合约",
+      "title_zh": "Circle将自10月31日起削减旧版USDC跨链协议CCTP V1限额，12月1日暂停合约",
+      "topics": [
+        "cctp",
+        "circle",
+        "cross-chain",
+        "usdc"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Circle will begin cutting legacy CCTP V1 burn limits on October 31 and pause the old contracts on December 1, 2026, forcing apps, wallets, and bridges onto the non-backward-compatible new CCTP, with Noble's USDC contracts and cross-chain routes set to pause January 12, 2027 ahead of manual redemption.",
+          "current_state_zh": "Circle will begin cutting legacy CCTP V1 burn limits on October 31 and pause the old contracts on December 1, 2026, forcing apps, wallets, and bridges onto the non-backward-compatible new CCTP, with Noble's USDC contracts and cross-chain routes set to pause January 12, 2027 ahead of manual redemption.",
+          "detailed_summary_en": "Circle will begin cutting legacy CCTP V1 burn limits on October 31 and pause the old contracts on December 1, 2026, forcing apps, wallets, and bridges onto the non-backward-compatible new CCTP, with Noble's USDC contracts and cross-chain routes set to pause January 12, 2027 ahead of manual redemption.",
+          "detailed_summary_zh": "Circle will begin cutting legacy CCTP V1 burn limits on October 31 and pause the old contracts on December 1, 2026, forcing apps, wallets, and bridges onto the non-backward-compatible new CCTP, with Noble's USDC contracts and cross-chain routes set to pause January 12, 2027 ahead of manual redemption.",
+          "event_id": "evt_8e7365aae311c493",
+          "first_seen_at": "2026-10-30T10:58:38.499208Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T08:35:02Z",
+          "published_at": "2026-10-30T08:35:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/374640?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:203264"
+          ],
+          "time_precision": "published",
+          "title_en": "Circle将自10月31日起削减旧版USDC跨链协议CCTP V1限额，12月1日暂停合约",
+          "title_zh": "Circle将自10月31日起削减旧版USDC跨链协议CCTP V1限额，12月1日暂停合约",
+          "update_id": "upd_14a5e401f0bc3a8e",
+          "update_type": "initial",
+          "what_changed_en": "Circle will begin cutting legacy CCTP V1 burn limits on October 31 and pause the old contracts on December 1, 2026, forcing apps, wallets, and bridges onto the non-backward-compatible new CCTP, with Noble's USDC contracts and cross-chain routes set to pause January 12, 2027 ahead of manual redemption.",
+          "what_changed_zh": "Circle will begin cutting legacy CCTP V1 burn limits on October 31 and pause the old contracts on December 1, 2026, forcing apps, wallets, and bridges onto the non-backward-compatible new CCTP, with Noble's USDC contracts and cross-chain routes set to pause January 12, 2027 ahead of manual redemption."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "On Strategy's Q3 earnings call, Michael Saylor said the company could create up to $30 billion in 'digital credit' from its balance sheet—including via STRC preferred stock—to buy more bitcoin without issuing common equity, as the firm reported 848,517 BTC held and announced a CFO transition.",
+      "current_state_zh": "On Strategy's Q3 earnings call, Michael Saylor said the company could create up to $30 billion in 'digital credit' from its balance sheet—including via STRC preferred stock—to buy more bitcoin without issuing common equity, as the firm reported 848,517 BTC held and announced a CFO transition.",
+      "entities": [
+        "saylor",
+        "strategy"
+      ],
+      "event_id": "evt_e1c0d448503d5e5c",
+      "event_type": "other",
+      "first_seen_at": "2026-10-30T10:58:38.501084Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-30T10:58:38.501084Z",
+      "last_updated_at": "2026-10-30T10:58:38.501084Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Strategy计划通过优先股融资增持比特币，Saylor称最高可创造300亿美元数字信贷",
+      "title_zh": "Strategy计划通过优先股融资增持比特币，Saylor称最高可创造300亿美元数字信贷",
+      "topics": [
+        "bitcoin-treasury",
+        "michael-saylor",
+        "preferred-stock",
+        "strategy"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "On Strategy's Q3 earnings call, Michael Saylor said the company could create up to $30 billion in 'digital credit' from its balance sheet—including via STRC preferred stock—to buy more bitcoin without issuing common equity, as the firm reported 848,517 BTC held and announced a CFO transition.",
+          "current_state_zh": "On Strategy's Q3 earnings call, Michael Saylor said the company could create up to $30 billion in 'digital credit' from its balance sheet—including via STRC preferred stock—to buy more bitcoin without issuing common equity, as the firm reported 848,517 BTC held and announced a CFO transition.",
+          "detailed_summary_en": "On Strategy's Q3 earnings call, Michael Saylor said the company could create up to $30 billion in 'digital credit' from its balance sheet—including via STRC preferred stock—to buy more bitcoin without issuing common equity, as the firm reported 848,517 BTC held and announced a CFO transition.",
+          "detailed_summary_zh": "On Strategy's Q3 earnings call, Michael Saylor said the company could create up to $30 billion in 'digital credit' from its balance sheet—including via STRC preferred stock—to buy more bitcoin without issuing common equity, as the firm reported 848,517 BTC held and announced a CFO transition.",
+          "event_id": "evt_e1c0d448503d5e5c",
+          "first_seen_at": "2026-10-30T10:58:38.501084Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T08:38:02Z",
+          "published_at": "2026-10-30T08:38:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/374642?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:203267"
+          ],
+          "time_precision": "published",
+          "title_en": "Strategy计划通过优先股融资增持比特币，Saylor称最高可创造300亿美元数字信贷",
+          "title_zh": "Strategy计划通过优先股融资增持比特币，Saylor称最高可创造300亿美元数字信贷",
+          "update_id": "upd_72da643662cacbe0",
+          "update_type": "initial",
+          "what_changed_en": "On Strategy's Q3 earnings call, Michael Saylor said the company could create up to $30 billion in 'digital credit' from its balance sheet—including via STRC preferred stock—to buy more bitcoin without issuing common equity, as the firm reported 848,517 BTC held and announced a CFO transition.",
+          "what_changed_zh": "On Strategy's Q3 earnings call, Michael Saylor said the company could create up to $30 billion in 'digital credit' from its balance sheet—including via STRC preferred stock—to buy more bitcoin without issuing common equity, as the firm reported 848,517 BTC held and announced a CFO transition."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Cursor removed a malicious Claude Code 2.1.313 extension from its marketplace after it was found to install an SSH backdoor and persistence mechanism, potentially affecting up to 5,000 users.",
+      "current_state_zh": "Cursor removed a malicious Claude Code 2.1.313 extension from its marketplace after it was found to install an SSH backdoor and persistence mechanism, potentially affecting up to 5,000 users.",
+      "entities": [
+        "claude",
+        "claude-code",
+        "code",
+        "cursor",
+        "ssh"
+      ],
+      "event_id": "evt_bd8f6b7115b53b58",
+      "event_type": "other",
+      "first_seen_at": "2026-10-30T10:58:38.504930Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-30T10:58:38.504930Z",
+      "last_updated_at": "2026-10-30T10:58:38.504930Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Cursor扩展商店遭投毒：Claude Code被植入SSH后门，最多波及5000人",
+      "title_zh": "Cursor扩展商店遭投毒：Claude Code被植入SSH后门，最多波及5000人",
+      "topics": [
+        "ai-developer-tools",
+        "claude-code",
+        "cursor",
+        "ssh-backdoor",
+        "supply-chain-attack"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Cursor removed a malicious Claude Code 2.1.313 extension from its marketplace after it was found to install an SSH backdoor and persistence mechanism, potentially affecting up to 5,000 users.",
+          "current_state_zh": "Cursor removed a malicious Claude Code 2.1.313 extension from its marketplace after it was found to install an SSH backdoor and persistence mechanism, potentially affecting up to 5,000 users.",
+          "detailed_summary_en": "Cursor removed a malicious Claude Code 2.1.313 extension from its marketplace after it was found to install an SSH backdoor and persistence mechanism, potentially affecting up to 5,000 users.",
+          "detailed_summary_zh": "Cursor removed a malicious Claude Code 2.1.313 extension from its marketplace after it was found to install an SSH backdoor and persistence mechanism, potentially affecting up to 5,000 users.",
+          "event_id": "evt_bd8f6b7115b53b58",
+          "first_seen_at": "2026-10-30T10:58:38.504930Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T08:58:01Z",
+          "published_at": "2026-10-30T08:58:01Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/374652?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:203275"
+          ],
+          "time_precision": "published",
+          "title_en": "Cursor扩展商店遭投毒：Claude Code被植入SSH后门，最多波及5000人",
+          "title_zh": "Cursor扩展商店遭投毒：Claude Code被植入SSH后门，最多波及5000人",
+          "update_id": "upd_94ac33c4f89b34de",
+          "update_type": "initial",
+          "what_changed_en": "Cursor removed a malicious Claude Code 2.1.313 extension from its marketplace after it was found to install an SSH backdoor and persistence mechanism, potentially affecting up to 5,000 users.",
+          "what_changed_zh": "Cursor removed a malicious Claude Code 2.1.313 extension from its marketplace after it was found to install an SSH backdoor and persistence mechanism, potentially affecting up to 5,000 users."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Neuralink showed a prototype letting an ALS patient wake and instruct a Grok agent purely through imagined speech, alongside neural intent detection and speech restoration results of 75 words per minute at 5.8% word error rate.",
+      "current_state_zh": "Neuralink showed a prototype letting an ALS patient wake and instruct a Grok agent purely through imagined speech, alongside neural intent detection and speech restoration results of 75 words per minute at 5.8% word error rate.",
+      "entities": [
+        "agent",
+        "grok",
+        "neuralink"
+      ],
+      "event_id": "evt_7f21cee7d201fa2c",
+      "event_type": "other",
+      "first_seen_at": "2026-10-30T10:58:38.506826Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-30T10:58:38.506826Z",
+      "last_updated_at": "2026-10-30T10:58:38.506826Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Neuralink用意念唤醒Grok干活，脑机接口开始接入AI Agent",
+      "title_zh": "Neuralink用意念唤醒Grok干活，脑机接口开始接入AI Agent",
+      "topics": [
+        "assistive-technology",
+        "brain-computer-interface",
+        "grok",
+        "neuralink"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Neuralink showed a prototype letting an ALS patient wake and instruct a Grok agent purely through imagined speech, alongside neural intent detection and speech restoration results of 75 words per minute at 5.8% word error rate.",
+          "current_state_zh": "Neuralink showed a prototype letting an ALS patient wake and instruct a Grok agent purely through imagined speech, alongside neural intent detection and speech restoration results of 75 words per minute at 5.8% word error rate.",
+          "detailed_summary_en": "Neuralink showed a prototype letting an ALS patient wake and instruct a Grok agent purely through imagined speech, alongside neural intent detection and speech restoration results of 75 words per minute at 5.8% word error rate.",
+          "detailed_summary_zh": "Neuralink showed a prototype letting an ALS patient wake and instruct a Grok agent purely through imagined speech, alongside neural intent detection and speech restoration results of 75 words per minute at 5.8% word error rate.",
+          "event_id": "evt_7f21cee7d201fa2c",
+          "first_seen_at": "2026-10-30T10:58:38.506826Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T09:32:02Z",
+          "published_at": "2026-10-30T09:32:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/374657?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:203279"
+          ],
+          "time_precision": "published",
+          "title_en": "Neuralink用意念唤醒Grok干活，脑机接口开始接入AI Agent",
+          "title_zh": "Neuralink用意念唤醒Grok干活，脑机接口开始接入AI Agent",
+          "update_id": "upd_d1715a15f3885406",
+          "update_type": "initial",
+          "what_changed_en": "Neuralink showed a prototype letting an ALS patient wake and instruct a Grok agent purely through imagined speech, alongside neural intent detection and speech restoration results of 75 words per minute at 5.8% word error rate.",
+          "what_changed_zh": "Neuralink showed a prototype letting an ALS patient wake and instruct a Grok agent purely through imagined speech, alongside neural intent detection and speech restoration results of 75 words per minute at 5.8% word error rate."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Pika released H3 Flex, a distilled version of MiniMax H3 that compresses video generation from 50 denoising steps to 6, ranks first among open-weights models on DesignArena's text-to-video leaderboard, and ships open adapted weights and inference code runnable locally via ComfyUI and Diffusers at up to 768p.",
+      "current_state_zh": "Pika released H3 Flex, a distilled version of MiniMax H3 that compresses video generation from 50 denoising steps to 6, ranks first among open-weights models on DesignArena's text-to-video leaderboard, and ships open adapted weights and inference code runnable locally via ComfyUI and Diffusers at up to 768p.",
+      "entities": [
+        "minimax",
+        "pika"
+      ],
+      "event_id": "evt_f3c8d27ff0c1e1a1",
+      "event_type": "other",
+      "first_seen_at": "2026-10-30T10:58:38.510148Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-30T10:58:38.510148Z",
+      "last_updated_at": "2026-10-30T10:58:38.510148Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Pika造出极速版MiniMax H3：生成步骤从50步压到6步，画质还更好",
+      "title_zh": "Pika造出极速版MiniMax H3：生成步骤从50步压到6步，画质还更好",
+      "topics": [
+        "diffusion-models",
+        "inference-optimization",
+        "model-distillation",
+        "open-weights",
+        "video-generation"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Pika released H3 Flex, a distilled version of MiniMax H3 that compresses video generation from 50 denoising steps to 6, ranks first among open-weights models on DesignArena's text-to-video leaderboard, and ships open adapted weights and inference code runnable locally via ComfyUI and Diffusers at up to 768p.",
+          "current_state_zh": "Pika released H3 Flex, a distilled version of MiniMax H3 that compresses video generation from 50 denoising steps to 6, ranks first among open-weights models on DesignArena's text-to-video leaderboard, and ships open adapted weights and inference code runnable locally via ComfyUI and Diffusers at up to 768p.",
+          "detailed_summary_en": "Pika released H3 Flex, a distilled version of MiniMax H3 that compresses video generation from 50 denoising steps to 6, ranks first among open-weights models on DesignArena's text-to-video leaderboard, and ships open adapted weights and inference code runnable locally via ComfyUI and Diffusers at up to 768p.",
+          "detailed_summary_zh": "Pika released H3 Flex, a distilled version of MiniMax H3 that compresses video generation from 50 denoising steps to 6, ranks first among open-weights models on DesignArena's text-to-video leaderboard, and ships open adapted weights and inference code runnable locally via ComfyUI and Diffusers at up to 768p.",
+          "event_id": "evt_f3c8d27ff0c1e1a1",
+          "first_seen_at": "2026-10-30T10:58:38.510148Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T10:08:02Z",
+          "published_at": "2026-10-30T10:08:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/374663?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:203286"
+          ],
+          "time_precision": "published",
+          "title_en": "Pika造出极速版MiniMax H3：生成步骤从50步压到6步，画质还更好",
+          "title_zh": "Pika造出极速版MiniMax H3：生成步骤从50步压到6步，画质还更好",
+          "update_id": "upd_7b0519ada2bf7fbc",
+          "update_type": "initial",
+          "what_changed_en": "Pika released H3 Flex, a distilled version of MiniMax H3 that compresses video generation from 50 denoising steps to 6, ranks first among open-weights models on DesignArena's text-to-video leaderboard, and ships open adapted weights and inference code runnable locally via ComfyUI and Diffusers at up to 768p.",
+          "what_changed_zh": "Pika released H3 Flex, a distilled version of MiniMax H3 that compresses video generation from 50 denoising steps to 6, ranks first among open-weights models on DesignArena's text-to-video leaderboard, and ships open adapted weights and inference code runnable locally via ComfyUI and Diffusers at up to 768p."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Ahead of the November 3 US midterms, CNN, CBS News, Dow Jones and CNBC struck commercial deals with prediction markets Kalshi and Polymarket to cite election trading odds in coverage — including a CNBC revenue-share and minority equity investment in Kalshi and a WSJ odds column powered by Polymarket — with roughly $1.5B traded across the two platforms' election markets.",
+      "current_state_zh": "Ahead of the November 3 US midterms, CNN, CBS News, Dow Jones and CNBC struck commercial deals with prediction markets Kalshi and Polymarket to cite election trading odds in coverage — including a CNBC revenue-share and minority equity investment in Kalshi and a WSJ odds column powered by Polymarket — with roughly $1.5B traded across the two platforms' election markets.",
+      "entities": [
+        "cnbc",
+        "cnn",
+        "kalshi",
+        "polymarket"
+      ],
+      "event_id": "evt_757f2f1f1c70317f",
+      "event_type": "market_structure",
+      "first_seen_at": "2026-10-30T10:58:38.511681Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-30T10:58:38.511681Z",
+      "last_updated_at": "2026-10-30T10:58:38.511681Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Kalshi、Polymarket中期选举前密集与CNN、CNBC等媒体合作",
+      "title_zh": "Kalshi、Polymarket中期选举前密集与CNN、CNBC等媒体合作",
+      "topics": [
+        "election-betting",
+        "kalshi",
+        "media-partnerships",
+        "polymarket",
+        "prediction-markets"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Ahead of the November 3 US midterms, CNN, CBS News, Dow Jones and CNBC struck commercial deals with prediction markets Kalshi and Polymarket to cite election trading odds in coverage — including a CNBC revenue-share and minority equity investment in Kalshi and a WSJ odds column powered by Polymarket — with roughly $1.5B traded across the two platforms' election markets.",
+          "current_state_zh": "Ahead of the November 3 US midterms, CNN, CBS News, Dow Jones and CNBC struck commercial deals with prediction markets Kalshi and Polymarket to cite election trading odds in coverage — including a CNBC revenue-share and minority equity investment in Kalshi and a WSJ odds column powered by Polymarket — with roughly $1.5B traded across the two platforms' election markets.",
+          "detailed_summary_en": "Ahead of the November 3 US midterms, CNN, CBS News, Dow Jones and CNBC struck commercial deals with prediction markets Kalshi and Polymarket to cite election trading odds in coverage — including a CNBC revenue-share and minority equity investment in Kalshi and a WSJ odds column powered by Polymarket — with roughly $1.5B traded across the two platforms' election markets.",
+          "detailed_summary_zh": "Ahead of the November 3 US midterms, CNN, CBS News, Dow Jones and CNBC struck commercial deals with prediction markets Kalshi and Polymarket to cite election trading odds in coverage — including a CNBC revenue-share and minority equity investment in Kalshi and a WSJ odds column powered by Polymarket — with roughly $1.5B traded across the two platforms' election markets.",
+          "event_id": "evt_757f2f1f1c70317f",
+          "first_seen_at": "2026-10-30T10:58:38.511681Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T10:26:02Z",
+          "published_at": "2026-10-30T10:26:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/374666?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:203289"
+          ],
+          "time_precision": "published",
+          "title_en": "Kalshi、Polymarket中期选举前密集与CNN、CNBC等媒体合作",
+          "title_zh": "Kalshi、Polymarket中期选举前密集与CNN、CNBC等媒体合作",
+          "update_id": "upd_1fc1639eba83700a",
+          "update_type": "initial",
+          "what_changed_en": "Ahead of the November 3 US midterms, CNN, CBS News, Dow Jones and CNBC struck commercial deals with prediction markets Kalshi and Polymarket to cite election trading odds in coverage — including a CNBC revenue-share and minority equity investment in Kalshi and a WSJ odds column powered by Polymarket — with roughly $1.5B traded across the two platforms' election markets.",
+          "what_changed_zh": "Ahead of the November 3 US midterms, CNN, CBS News, Dow Jones and CNBC struck commercial deals with prediction markets Kalshi and Polymarket to cite election trading odds in coverage — including a CNBC revenue-share and minority equity investment in Kalshi and a WSJ odds column powered by Polymarket — with roughly $1.5B traded across the two platforms' election markets."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "The Wikimedia Foundation urged courts in major AI copyright cases to protect LLM training on copyrighted works while preventing chatbots from regurgitating that material, warning that an overly broad ruling could threaten the open web.",
+      "current_state_zh": "The Wikimedia Foundation urged courts in major AI copyright cases to protect LLM training on copyrighted works while preventing chatbots from regurgitating that material, warning that an overly broad ruling could threaten the open web.",
+      "entities": [
+        "ai-copyright",
+        "open-web",
+        "wikipedia"
+      ],
+      "event_id": "evt_c7a2f30049642762",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-10-30T10:59:30.408256Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-30T10:59:30.408256Z",
+      "last_updated_at": "2026-10-30T10:59:30.408256Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Wikipedia’s operator says a bad AI copyright ruling could threaten the open web",
+      "title_zh": "Wikipedia’s operator says a bad AI copyright ruling could threaten the open web",
+      "topics": [
+        "ai-copyright",
+        "llm-training",
+        "open-web",
+        "wikimedia"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "The Wikimedia Foundation urged courts in major AI copyright cases to protect LLM training on copyrighted works while preventing chatbots from regurgitating that material, warning that an overly broad ruling could threaten the open web.",
+          "current_state_zh": "The Wikimedia Foundation urged courts in major AI copyright cases to protect LLM training on copyrighted works while preventing chatbots from regurgitating that material, warning that an overly broad ruling could threaten the open web.",
+          "detailed_summary_en": "The Wikimedia Foundation urged courts in major AI copyright cases to protect LLM training on copyrighted works while preventing chatbots from regurgitating that material, warning that an overly broad ruling could threaten the open web.",
+          "detailed_summary_zh": "The Wikimedia Foundation urged courts in major AI copyright cases to protect LLM training on copyrighted works while preventing chatbots from regurgitating that material, warning that an overly broad ruling could threaten the open web.",
+          "event_id": "evt_c7a2f30049642762",
+          "first_seen_at": "2026-10-30T10:59:30.408256Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T09:00:00Z",
+          "published_at": "2026-10-30T09:00:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "The Verge AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.theverge.com/policy/1022880/wikipedia-openai-new-york-times-copyright"
+            }
+          ],
+          "story_ids": [
+            "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:ad306531b4543e25"
+          ],
+          "time_precision": "published",
+          "title_en": "Wikipedia’s operator says a bad AI copyright ruling could threaten the open web",
+          "title_zh": "Wikipedia’s operator says a bad AI copyright ruling could threaten the open web",
+          "update_id": "upd_fba3c6fcb7d87fc5",
+          "update_type": "initial",
+          "what_changed_en": "The Wikimedia Foundation urged courts in major AI copyright cases to protect LLM training on copyrighted works while preventing chatbots from regurgitating that material, warning that an overly broad ruling could threaten the open web.",
+          "what_changed_zh": "The Wikimedia Foundation urged courts in major AI copyright cases to protect LLM training on copyrighted works while preventing chatbots from regurgitating that material, warning that an overly broad ruling could threaten the open web."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Binance confirmed a record $6.3 billion hack, and THORChain’s RUNE rose 13% as on-chain investigators traced stolen Binance and Bitget funds through the protocol.",
+      "current_state_zh": "Binance confirmed a record $6.3 billion hack, and THORChain’s RUNE rose 13% as on-chain investigators traced stolen Binance and Bitget funds through the protocol.",
+      "entities": [
+        "binance",
+        "rune",
+        "thorchain"
+      ],
+      "event_id": "evt_c4554d2f88f40256",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-30T10:59:32.803801Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-30T10:59:32.803801Z",
+      "last_updated_at": "2026-10-30T10:59:32.803801Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "THORChain’s RUNE jumps 13% after Binance’s record $6.3B hack",
+      "title_zh": "THORChain’s RUNE jumps 13% after Binance’s record $6.3B hack",
+      "topics": [
+        "binance-hack",
+        "crypto-laundering",
+        "north-korea",
+        "rune",
+        "thorchain"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Binance confirmed a record $6.3 billion hack, and THORChain’s RUNE rose 13% as on-chain investigators traced stolen Binance and Bitget funds through the protocol.",
+          "current_state_zh": "Binance confirmed a record $6.3 billion hack, and THORChain’s RUNE rose 13% as on-chain investigators traced stolen Binance and Bitget funds through the protocol.",
+          "detailed_summary_en": "Binance confirmed a record $6.3 billion hack, and THORChain’s RUNE rose 13% as on-chain investigators traced stolen Binance and Bitget funds through the protocol.",
+          "detailed_summary_zh": "Binance confirmed a record $6.3 billion hack, and THORChain’s RUNE rose 13% as on-chain investigators traced stolen Binance and Bitget funds through the protocol.",
+          "event_id": "evt_c4554d2f88f40256",
+          "first_seen_at": "2026-10-30T10:59:32.803801Z",
+          "importance_score": 9.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T09:52:29Z",
+          "published_at": "2026-10-30T09:52:29Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/markets/rune-token-surges-binance-hack?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:8d976e1d965617ab"
+          ],
+          "time_precision": "published",
+          "title_en": "THORChain’s RUNE jumps 13% after Binance’s record $6.3B hack",
+          "title_zh": "THORChain’s RUNE jumps 13% after Binance’s record $6.3B hack",
+          "update_id": "upd_04d07110b2a5d5bc",
+          "update_type": "initial",
+          "what_changed_en": "Binance confirmed a record $6.3 billion hack, and THORChain’s RUNE rose 13% as on-chain investigators traced stolen Binance and Bitget funds through the protocol.",
+          "what_changed_zh": "Binance confirmed a record $6.3 billion hack, and THORChain’s RUNE rose 13% as on-chain investigators traced stolen Binance and Bitget funds through the protocol."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Trezor warned customers who bought Safe 5 devices from former reseller CryptoBilis since March to move their funds after a reported unauthorized circuit board capable of capturing screen data and recovery phrases was found in one device.",
+      "current_state_zh": "Trezor warned customers who bought Safe 5 devices from former reseller CryptoBilis since March to move their funds after a reported unauthorized circuit board capable of capturing screen data and recovery phrases was found in one device.",
+      "entities": [
+        "cryptobilis",
+        "trezor"
+      ],
+      "event_id": "evt_124d1c701c09042a",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-30T10:59:32.879026Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-30T10:59:32.879026Z",
+      "last_updated_at": "2026-10-30T10:59:32.879026Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Trezor warns CryptoBilis buyers to move funds over suspected implant",
+      "title_zh": "Trezor warns CryptoBilis buyers to move funds over suspected implant",
+      "topics": [
+        "cryptobilis",
+        "hardware-wallets",
+        "supply-chain-security",
+        "trezor",
+        "wallet-security"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Trezor warned customers who bought Safe 5 devices from former reseller CryptoBilis since March to move their funds after a reported unauthorized circuit board capable of capturing screen data and recovery phrases was found in one device.",
+          "current_state_zh": "Trezor warned customers who bought Safe 5 devices from former reseller CryptoBilis since March to move their funds after a reported unauthorized circuit board capable of capturing screen data and recovery phrases was found in one device.",
+          "detailed_summary_en": "Trezor warned customers who bought Safe 5 devices from former reseller CryptoBilis since March to move their funds after a reported unauthorized circuit board capable of capturing screen data and recovery phrases was found in one device.",
+          "detailed_summary_zh": "Trezor warned customers who bought Safe 5 devices from former reseller CryptoBilis since March to move their funds after a reported unauthorized circuit board capable of capturing screen data and recovery phrases was found in one device.",
+          "event_id": "evt_124d1c701c09042a",
+          "first_seen_at": "2026-10-30T10:59:32.879026Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-30T09:26:45Z",
+          "published_at": "2026-10-30T09:26:45Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/trezor-cryptobilis-wallet-implant-funds-warning?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:4cd4299e75d3ecdb"
+          ],
+          "time_precision": "published",
+          "title_en": "Trezor warns CryptoBilis buyers to move funds over suspected implant",
+          "title_zh": "Trezor warns CryptoBilis buyers to move funds over suspected implant",
+          "update_id": "upd_f3a795397f2abae7",
+          "update_type": "initial",
+          "what_changed_en": "Trezor warned customers who bought Safe 5 devices from former reseller CryptoBilis since March to move their funds after a reported unauthorized circuit board capable of capturing screen data and recovery phrases was found in one device.",
+          "what_changed_zh": "Trezor warned customers who bought Safe 5 devices from former reseller CryptoBilis since March to move their funds after a reported unauthorized circuit board capable of capturing screen data and recovery phrases was found in one device."
         }
       ]
     }
@@ -214749,8 +215789,7 @@
       "evt_192ae77bc28978c4"
     ],
     "hack": [
-      "evt_1cf36734246e006d",
-      "evt_6655595dc1e36e0b"
+      "evt_349ae44c04b4d209"
     ],
     "hong-kong": [
       "evt_77a55c26343e2806",
@@ -215331,8 +216370,8 @@
       "evt_fba1206dac1afdc4"
     ],
     "thorchain": [
-      "evt_6655595dc1e36e0b",
-      "evt_852be42bf77f39e0"
+      "evt_61d35f6737d9404c",
+      "evt_c4554d2f88f40256"
     ],
     "tokenized-deposits": [
       "evt_4c0e928637670550",
@@ -242833,7 +243872,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "The article reports a notable market move—crypto markets down 3.3% and BNB down 7%—driven by Binance security fears. While the price action is concrete, the underlying incident remains unconfirmed, limiting its immediate impact compared to a verified exchange exploit.",
         "ai_score": 7.0,
@@ -242866,7 +243905,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A reported $5.6 billion drain from Binance's hot wallet in roughly 40 minutes would be one of the largest exchange security failures ever, with systemic implications for user funds, market liquidity, and trust in centralized custody. The item is a live-updating timeline published inside the news window, so it covers an active, in-window development rather than an old recap. Scoring at the systemic-event anchor rather than 10 because the available text is a headline/live blog without confirmed on-chain figures, remediation status, or withdrawal impact details.",
         "ai_score": 9.5,
@@ -242900,7 +243939,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "The reported $6.3B Binance theft is a systemic exchange-security event, and the argument over whether EIP-7702 or signature acquisition was the root cause is high-signal for understanding the attack vector. It is an analytical follow-up rather than a primary incident disclosure, so it sits just below the top tier.",
         "ai_score": 9.0,
@@ -242931,7 +243970,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A confirmed security breach at Binance — the largest global exchange — with immediate, material market transmission (BTC breaking below $77,000 and BNB selling off). Exchange-level compromises at this scale carry systemic counterparty and liquidity risk, making this a paradigm-level event rather than routine market commentary.",
         "ai_score": 9.0,
@@ -242969,7 +244008,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Headline reports a security breach at the world's largest crypto exchange with billions in customer assets frozen — a material, systemic-impact incident affecting withdrawals and market access for a very large user base. Even at headline stage, exchange breaches of this scale are the highest-severity class of crypto operational event; limited sourcing detail keeps it from the very top of the range.",
         "ai_score": 9.0,
@@ -243002,7 +244041,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A major security incident at Binance, the world's largest crypto exchange, with $3 billion frozen and withdrawals suspended, represents a high-impact exchange-security event with material user-access and systemic-market implications.",
         "ai_score": 9.0,
@@ -243035,7 +244074,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A potential security issue at the world's largest exchange, with $2.54bn in user funds frozen, is a systemic-scale operational event with direct transmission to market liquidity, withdrawal confidence and counterparty risk. It falls just short of the 9.5-10 tier because the report frames the funds as frozen amid an investigation rather than a confirmed loss or insolvency, leaving the loss magnitude unresolved.",
         "ai_score": 9.0,
@@ -243068,7 +244107,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Reports a material stablecoin-issuer freeze totaling $2.6 billion involving USD1, Tether, Circle, and Ripple, tied to Binance hack-related outflows approaching $6 billion. This is a major security and market-liquidity event with direct user impact, though the exact stolen amount and recovery status are not fully established in the headline.",
         "ai_score": 9.0,
@@ -243105,7 +244144,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A major exchange reporting a security incident that triggered $2.38 billion in stablecoin freezes by Tether and Circle is a systemic-scale event with direct implications for exchange solvency, user funds, and stablecoin issuer intervention powers. Freezes of this magnitude rank alongside the largest security incidents in crypto history and warrant immediate attention across markets and operations.",
         "ai_score": 9.0,
@@ -243138,7 +244177,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A reported security incident at Binance, the world's largest crypto exchange, triggered roughly $3 billion in asset freezes, including about $2.38 billion by Tether and Circle. This is a major exchange security event with systemic market implications, though the hack remains described as possible rather than fully confirmed.",
         "ai_score": 9.0,
@@ -243171,7 +244210,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Simultaneous hack investigations at two major venues — Binance, the largest global exchange, and Polymarket, the dominant prediction market — with Binance reportedly freezing roughly $3 billion is a high-severity security event with direct user-fund and market-integrity implications. It falls just short of the 9+ band because the breaches are still described as 'potential' and under investigation rather than confirmed, and the item is a headline-level report without technical detail on the attack vector or confirmed losses.",
         "ai_score": 8.5,
@@ -243204,7 +244243,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A deposit and withdrawal freeze on Binance, the largest global exchange, tied to a potential security issue is a high-impact operational and security event with immediate transmission to market liquidity and user access. It falls short of the 9.5-10 tier because losses, the root cause, and the scope of affected users or assets are not yet confirmed — the incident is still being investigated rather than resolved as a material theft or insolvency.",
         "ai_score": 8.5,
@@ -243237,7 +244276,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Withdrawal suspension at the world's largest exchange following an apparent hack is a high-impact security and operational event with direct implications for user funds and market confidence. Scored below the 9+ tier because the report characterizes the breach as 'apparent' and does not establish confirmed loss magnitude or scope of user impact.",
         "ai_score": 8.5,
@@ -243270,7 +244309,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A major centralized exchange disclosing a security incident with $2.54 billion in assets frozen is a high-impact operational and security event with material user and market implications. It falls just short of the systemic 9.5-10 tier because the headline indicates frozen/protected assets under investigation rather than confirmed loss of funds or an insolvency-type event.",
         "ai_score": 8.5,
@@ -243303,7 +244342,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A potential exploit at the world's largest exchange with over $2B frozen across firms is a systemic market event with material user impact, warranting top-tier coverage. Confidence is tempered slightly because the claim is hedged ('may have been hacked') and the report lacks confirmed loss figures or attribution, but the scale of counterparty freezes alone places it well above routine exchange news.",
         "ai_score": 8.5,
@@ -243336,7 +244375,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Headline indicates a major security-related event involving Binance and over $2.5 billion in frozen funds, suggesting a significant coordinated response with material market and user impact. The lack of article detail limits full confirmation, but the scale and involvement of a top exchange warrant a high score.",
         "ai_score": 8.5,
@@ -243369,7 +244408,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A reported 'potential security issue' at the world's largest exchange, with stablecoin issuers freezing millions in funds, is a material exchange security incident with direct user-fund implications. It falls just short of the systemic threshold because the headline indicates issuer-level freezes rather than confirmed platform-wide insolvency or a >$500M loss, and the report gives limited technical detail. Impact and novelty are high; popularity alone is not the basis for the score.",
         "ai_score": 8.5,
@@ -243402,7 +244441,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Headline-level report of a $2.54 billion asset freeze at the world's largest exchange tied to a security probe. This is a materially significant exchange security/operations event with real implications for frozen funds and enforcement cooperation, warranting high attention; however, the item provides only a headline with no confirmed exploit details, loss attribution, or timeline, keeping it below the 8.5-9.0 tier reserved for confirmed, large-scale exploits. No discussion or comments were provided to assess.",
         "ai_score": 8.0,
@@ -243435,7 +244474,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A major exchange flagging a potential security issue alongside more than $2.5 billion in coordinated crypto-firm asset freezes is a high-impact operational and market-security development. The impact is substantial, though the potential nature of the issue and limited confirmed loss details keep it below the most severe exploit-level scores.",
         "ai_score": 8.0,
@@ -243467,7 +244506,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A security issue at Binance, the largest crypto exchange, triggered a broad cryptocurrency price decline. The market-wide reaction and systemic importance of Binance make this high-impact, though confirmed loss figures and full scope are not yet established.",
         "ai_score": 8.0,
@@ -243500,7 +244539,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A security incident at Binance, the largest exchange by volume, is a high-impact operational event with an immediate, market-wide transmission path evidenced by falling crypto prices. Binance incidents historically carry systemic risk (withdrawal halts, contagion), so this warrants immediate attention; it falls short of the 8.5-9 band because the scope of any user fund loss or outage is not yet established.",
         "ai_score": 8.0,
@@ -243533,7 +244572,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A top exchange security scare coinciding with Bitcoin falling below $78,000 is a high-value, market-moving development with clear crypto-market impact, though it falls short of a confirmed material exchange exploit with quantified user losses.",
         "ai_score": 8.0,
@@ -243566,7 +244605,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Binance, the largest crypto exchange by volume, publicly confirming it is investigating reports of a potential security incident is high-signal and market-moving for exchange risk, but the item stops short of a confirmed exploit, quantified losses, or suspension of withdrawals, so it sits below the 8.5-9 anchor reserved for confirmed material-loss incidents.",
         "ai_score": 8.0,
@@ -243599,7 +244638,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A reported security incident at Binance, the largest centralized exchange, is high-value market-structure news with potential direct user-fund and withdrawal implications. The score is held below the 8.5-9.0 confirmed-exploit tier because the report is an in-progress investigation with no confirmed scope, losses, or user impact disclosed, and discussion beyond the headline statement is limited.",
         "ai_score": 8.0,
@@ -243632,7 +244671,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A coordinated action in which Binance flagged a security issue and industry firms froze over $2.5B is a material security/compliance development with clear market-structure and enforcement implications. It falls short of the 8.5+ band because there is no confirmation of an exploit causing direct user losses or a systemic failure, but the scale of frozen funds and multi-firm coordination puts it well above routine exchange updates.",
         "ai_score": 7.5,
@@ -245011,6 +246050,896 @@
         "source_type": "google_news",
         "title": "SEC Charges BG Wealth and DSJ Exchange in Alleged $130 Million Crypto Fraud",
         "url": "https://thedefiant.io/news/regulation/sec-charges-bg-wealth-and-dsj-exchange-in-alleged-130-million-crypto-fraud"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A reported $6.3B security incident at Binance, one of the world’s largest exchanges, is a systemic-scale event with immediate market impact as reflected by the BNB sell-off. This is far beyond routine exchange news and warrants top-tier attention pending confirmation and details.",
+        "ai_score": 9.5,
+        "ai_summary": "Binance experienced a reported $6.3 billion security incident that triggered a sell-off in BNB and broader concerns about exchange safety.",
+        "ai_tags": [
+          "Binance",
+          "BNB",
+          "security-incident",
+          "sell-off",
+          "exchange-security"
+        ],
+        "author": "Cryptonews.net",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE1oOHJvR2l0ZDY1dlhfbWlmQ0Z6OEJjYVJMQVZUYnVEZndoYkUyMFBBNzJxS1Y5NnB1Zkl4SHp0U0haR0JQV2pIUzJUMXI3ZDhLSmFhWkdmU1dTUHc?oc=5\" target=\"_blank\">Why Is BNB Price Falling? Binance’s $6.3B Security Incident Triggers Sell-Off</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Cryptonews.net</font>",
+        "fetched_at": "2026-10-30T10:58:35.671647Z",
+        "id": "google_news:article:dead0a8004797529",
+        "metadata": {
+          "category": "crypto-markets",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://cryptonews.net",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Cryptonews.net"
+        },
+        "published_at": "2026-10-30T10:40:52Z",
+        "source_type": "google_news",
+        "title": "Why Is BNB Price Falling? Binance’s $6.3B Security Incident Triggers Sell-Off",
+        "url": "https://cryptonews.net/news/analytics/33675257/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A $6.3 billion hack tied to Binance and a platform-wide withdrawal suspension is a systemic exchange security event with immediate market impact, including falling Bitcoin and crypto stocks. This is among the highest-impact categories of crypto news.",
+        "ai_score": 9.5,
+        "ai_summary": "Binance suspended withdrawals following a $6.3 billion cryptocurrency hack, triggering declines in Bitcoin and crypto-related stocks.",
+        "ai_tags": [
+          "Binance",
+          "hack",
+          "withdrawals suspended",
+          "Bitcoin",
+          "market selloff"
+        ],
+        "author": "Yahoo Finance",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxNMlVPZmV3MjVIUUtKSTUwdGo3UDhINUI3TWdUQzUwSHJVRFljSDFpZVpzSVN2Ml9jZWpFdHNDNzFGX1BzdnJBTUkxNVJ1U1NWMzkxVXRsbGdXeC1rSGFMQk91eXNrOXFBWlEwRk9XMV9fSW1zWlZ2aG1kSXh1cVR3b2ZnM0l3U21TWlVQUkprOThCb2NtSVMwd2g1RDVxQQ?oc=5\" target=\"_blank\">Binance Suspends Withdrawals After $6.3 Billion Cryptocurrency Hack as Bitcoin and Crypto Stocks Fall</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Yahoo Finance</font>",
+        "fetched_at": "2026-10-30T10:58:35.669725Z",
+        "id": "google_news:article:0f6ea658bf0c6536",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://finance.yahoo.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Yahoo Finance"
+        },
+        "published_at": "2026-10-30T10:24:32Z",
+        "source_type": "google_news",
+        "title": "Binance Suspends Withdrawals After $6.3 Billion Cryptocurrency Hack as Bitcoin and Crypto Stocks Fall",
+        "url": "https://finance.yahoo.com/markets/crypto/articles/binance-suspends-withdrawals-6-3-102432013.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Headline reports a security breach at Binance with an estimated $6.3 billion impact, which is a landmark exchange security incident with systemic market and user-impact implications. The scale far exceeds the threshold for major exploits and directly affects one of the largest crypto exchanges.",
+        "ai_score": 9.5,
+        "ai_summary": "Binance estimated that a security breach caused $6.3 billion in impact.",
+        "ai_tags": [
+          "binance",
+          "security-breach",
+          "exchange-operations",
+          "crypto-security",
+          "market-impact"
+        ],
+        "author": "ABC News - Breaking News, Latest News and Videos",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxQbWplWmZ3M1Q5UXdvUi1IekhiRjN1UzhGVXRBX09zU1c2ODNsSC05X1JlSUU1ZGR3SmdlOWZ6Y1VEZ0JCdUNXZjMyQ3p1REt5STVHcHdyQ2o4Z01FN3g2Y3JMcndwelBiX2x2VHpkWVpoSWh5ckhuZ1FpYWhMdG5TSWNodEsyMnRvRC1KeVVsNmNqMWNPeHRCa3hmWlJpUFRj0gGmAUFVX3lxTE1uMkdZMjBvODNDTkhZd2RtaWFyMnBzU3NfY1JVS1hLNEhybjN2Tnl0YU9wc2Q0S2I2STQwSjM2ZEJOMWo1WTlaY25kUHQ4VjRhNGtBWUhYZlp6R2JIYVZidVdIWkZJNm02NHVETWt1M0xRYTZ5NDFjOVdVQ0hFUXhVcWE5MUpRTzFJVHBNOE15UGVEUmk3eXBFTW5sbENRZUFXUHZ5NHc?oc=5\" target=\"_blank\">Binance estimates security breach impact at $6.3 billion</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">ABC News - Breaking News, Latest News and Videos</font>",
+        "fetched_at": "2026-10-30T10:58:35.667493Z",
+        "id": "google_news:article:0bce76eae1a477ba",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://abcnews.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "ABC News - Breaking News, Latest News and Videos"
+        },
+        "published_at": "2026-10-30T09:42:20Z",
+        "source_type": "google_news",
+        "title": "Binance estimates security breach impact at $6.3 billion",
+        "url": "https://abcnews.com/Business/binance-estimates-security-breach-impact-63-billion/story?id=137698510"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A $6.3B Binance hack attributed to North Korea is a landmark exchange security incident with systemic scale and material user-impact implications, well above the threshold for major exploits.",
+        "ai_score": 9.5,
+        "ai_summary": "Blockchain intelligence firms have linked North Korea to a $6.3 billion hack on Binance, marking one of the largest exchange security incidents on record.",
+        "ai_tags": [
+          "Binance",
+          "North Korea",
+          "exchange hack",
+          "security",
+          "blockchain intelligence"
+        ],
+        "author": "Ottumwa Courier",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi-AFBVV95cUxPZjVTbnpRRG1sSkNReXNTZ3ZTcDN1djVYRVZlR0tFVWZlV1JMa1BCci13VUZJdGVGTmlfb2VQZWlQQ09HY1FCMkF1YmEwMXMxS2pST09QTU9GdEpZQXFBRzk2dGw5R0c3eDBxUWhCX2Y1a0J1cGNvWTRDMnVRaHRyM25taXozUXZiZl9EeWVLRDRCazNhZkplQXF2VDNvVmp5UXVQN0h4QUNkOFdMNThBMlFydVRfSTVMckZCd1BnUVhieXhEcF9Cb1h1Qm42dDdEOFJ1VkEzUXVKVVcwQTNSV0dHbWdTX1lBcVVLY0d0b2V0MHNLMVVacw?oc=5\" target=\"_blank\">Blockchain intelligence firms link North Korea to $6.3B hack on Binance</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Ottumwa Courier</font>",
+        "fetched_at": "2026-10-30T10:58:35.671165Z",
+        "id": "google_news:article:36f9c786469f1eed",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.ottumwacourier.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Ottumwa Courier"
+        },
+        "published_at": "2026-10-30T08:23:58Z",
+        "source_type": "google_news",
+        "title": "Blockchain intelligence firms link North Korea to $6.3B hack on Binance",
+        "url": "https://www.ottumwacourier.com/news/business/blockchain-intelligence-firms-link-north-korea-to-6-3b-hack-on-binance/article_37097b50-4eca-59bf-b38f-30ed7c0b02f2.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A $6.3B exchange hack attributed to North Korea is a systemic security incident with material user and market impact, far exceeding the threshold for major exploits.",
+        "ai_score": 9.5,
+        "ai_summary": "Blockchain intelligence firms have linked North Korea to a $6.3 billion hack on Binance, according to AP News.",
+        "ai_tags": [
+          "North Korea",
+          "Binance",
+          "exchange hack",
+          "blockchain intelligence",
+          "security"
+        ],
+        "author": "AP News",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxQaS1PbC12ckM5dTFzWDZISy0zcmVfWjc2ODREc1dFMnlOem5RUmpWWGdxR2dKSlNQS0JrZXVvZGI4VDN2aXRQQkpIaHF4bWdwSjJvYjduMkFQUmdDaEdGS01lQThMQXpjTS02SW5YenA5U0ZQZUZsazg5SnhyZzFZel9YWTZqUmVVYUcxYTEyTDl3V3Z5dEZ6RTZCS3U5ZkUwWFBna2hDNnZ3dHo0?oc=5\" target=\"_blank\">Blockchain intelligence firms link North Korea to $6.3B hack on Binance</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">AP News</font>",
+        "fetched_at": "2026-10-30T10:58:35.668899Z",
+        "id": "google_news:article:9cf091aa5fe3512b",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://apnews.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "AP News"
+        },
+        "published_at": "2026-10-30T08:23:00Z",
+        "source_type": "google_news",
+        "title": "Blockchain intelligence firms link North Korea to $6.3B hack on Binance",
+        "url": "https://apnews.com/article/binance-cryptocurrency-security-hack-north-korea-550e9b876550f71f07098494fe735beb"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A reported multibillion-dollar breach at Binance, the world's largest exchange, is a systemic security incident well beyond the >$500M threshold that anchors the top of the scale; losses of that magnitude would trigger withdrawal halts, contagion across venues, and immediate regulatory scrutiny, making it the dominant market event of the window.",
+        "ai_score": 9.5,
+        "ai_summary": "Binance reported a multibillion-dollar cryptocurrency hack, one of the largest exchange security breaches on record.",
+        "ai_tags": [
+          "Binance",
+          "hack",
+          "exchange-security",
+          "bitcoin",
+          "market-contagion"
+        ],
+        "author": "finews.com",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxPNjhKV0o4VmhId2FaZVBHanY1cFpZaDc5T1ZTb2t3Rk1nVGRuWDl3bnhvUmZBd1pMYzA5UXBQSEVhNTRXMEdWMHJOR1o0NUd4amk0M2VUU0lKb3lSR051bWYwMm1uVGJOZ19XRW95em5UbGJ0eW5xbmhOY2RRaWNwODZPNFNxWExmYVRF?oc=5\" target=\"_blank\">Binance reports multibillion-dollar crypto hack</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">finews.com</font>",
+        "fetched_at": "2026-10-30T10:58:35.671845Z",
+        "id": "google_news:article:469c43db82dd787d",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.finews.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "finews.com"
+        },
+        "published_at": "2026-10-30T08:10:06Z",
+        "source_type": "google_news",
+        "title": "Binance reports multibillion-dollar crypto hack",
+        "url": "https://www.finews.com/news/english-news/74250-binance-hacker-attack-damage-bitcoin"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Chainalysis attributing a $6.4 billion Binance hack to North Korea is a major exchange security and state-sponsored cybercrime development with systemic market and geopolitical implications. The scale exceeds the threshold for a highly significant incident, though it is an attribution of an existing breach rather than a newly disclosed exploit.",
+        "ai_score": 9.5,
+        "ai_summary": "Chainalysis has linked a $6.4 billion Binance hack to North Korean actors.",
+        "ai_tags": [
+          "Binance",
+          "North Korea",
+          "Chainalysis",
+          "exchange hack",
+          "security"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxOeDE0RUhGaG1VMklKeDl2NF9OOGxBV1c4S19fS2tKQ1B2YU5nU1VrSFJVWjludVgtYkxuNmltWXVpeEk2dGtzTGdoa1pWemRuTlpMRmp0SVFnV2Z1QzUyZGoxcld1VU9FcURkZ09sb2owc013OHI2N1otS2NSd05kVllfZHdVYjdOdHhoUnpJbWV1Z1Q2?oc=5\" target=\"_blank\">Chainalysis Links $6.4 Billion Binance Hack to North Korea</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-30T10:58:42.217159Z",
+        "id": "google_news:article:ff60e135fdceb917",
+        "metadata": {
+          "category": "exchange-operations",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-protocols",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-30T04:56:22Z",
+        "source_type": "google_news",
+        "title": "Chainalysis Links $6.4 Billion Binance Hack to North Korea",
+        "url": "https://thedefiant.io/news/hacks/chainalysis-links-6-4-billion-binance-hack-to-north-korea"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A security breach at the world's largest exchange affecting $6.3 billion in assets with nearly $3 billion frozen is a systemic event for crypto markets, matching the top calibration band for major exchange incidents and withdrawal restrictions. The report is headline-level with limited technical detail on attack vector or remediation, but the scale of impacted assets and frozen funds alone carries industry-wide market, custody, and counterparty implications.",
+        "ai_score": 9.5,
+        "ai_summary": "Binance reportedly suffered a security breach exposing roughly $6.3 billion in assets, with nearly $3 billion subsequently frozen.",
+        "ai_tags": [
+          "binance",
+          "security-breach",
+          "exchange-operations",
+          "asset-freeze",
+          "hacking"
+        ],
+        "author": "The Hacker News",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiekFVX3lxTE80VjhXOXk0Y3pjb2EtV0tEOWdlcU5zSVlKV0ZuMzhodHB2X21URE92Tmtaem1IcGpBWUFFNnRBSW5NWlRDRFFzeURwMnFyeG1pa0FKaElTZml6Wm5OeE1NT0cwUnhBVGFBNFp6emNnMEVDTkNhanZOdm93?oc=5\" target=\"_blank\">Binance Suffers Security Breach Affecting $6.3 Billion in Assets, Nearly $3 Billion Frozen</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Hacker News</font>",
+        "fetched_at": "2026-10-30T10:58:35.667809Z",
+        "id": "google_news:article:6530986bce89491b",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://thehackernews.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "The Hacker News"
+        },
+        "published_at": "2026-10-30T04:14:00Z",
+        "source_type": "google_news",
+        "title": "Binance Suffers Security Breach Affecting $6.3 Billion in Assets, Nearly $3 Billion Frozen",
+        "url": "https://thehackernews.com/2026/10/binance-suffers-security-breach.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A security incident flagged by the world's largest exchange with roughly $6.3 billion in impacted value is a systemic-scale event: it directly threatens user funds, could trigger withdrawal halts and contagion across venues, and sits at the top of the impact scale alongside major exchange insolvencies and >$500M thefts. The disclosure is attributed to Binance itself rather than anonymous rumor, which supports the high score despite the 'potential' framing.",
+        "ai_score": 9.5,
+        "ai_summary": "Binance flagged a potential security issue affecting approximately $6.3 billion, putting user funds and platform operations at the center of a systemic-scale exchange incident.",
+        "ai_tags": [
+          "Binance",
+          "security-incident",
+          "exchange-operations",
+          "user-funds",
+          "systemic-risk"
+        ],
+        "author": "Clinton Herald",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiiAJBVV95cUxOVmltbmV2alJmZkx6WXpCemsxbno2ZGtIR2tpc1ZVT3l1el9ULWdTUEZPX3JLaG5ERlg4SmptREJManpTcTRuUU90SnJMaE9nM0FCR19vU1o2RkExb0Y5T3ppX0ZpRGlua2lQQnZRSTRtR2JPNHdiVTRhXzYxcVNzc1NoX2duaS14RDB0eGlVWHcwUWJ2QW5BZmg4MUpHNGZPdkcydnZMazA1QUJtTEFNV3NRMEFoRFhWODNvYU56a1dJaG1JUWlVRTJtR0tMRThkcDZxcFFaeUFVQ3R0Q21zNXdZeWZQMlp3WTlFcUt4ekZ6SkJfcDBpYWVKbnd4Vkhqdm1JbFNuenY?oc=5\" target=\"_blank\">Binance flags 'potential security issue,' says approximately $6.3 billion impacted</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Clinton Herald</font>",
+        "fetched_at": "2026-10-30T10:58:35.670052Z",
+        "id": "google_news:article:f69e7b2b225ab6b7",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.clintonherald.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Clinton Herald"
+        },
+        "published_at": "2026-10-30T03:32:53Z",
+        "source_type": "google_news",
+        "title": "Binance flags 'potential security issue,' says approximately $6.3 billion impacted",
+        "url": "https://www.clintonherald.com/news/national_news/binance-flags-potential-security-issue-says-approximately-6-3-billion-impacted/article_349d7976-8046-5eb4-aa47-c3e273f904b8.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "The headline reports a record-breaking crypto heist at Binance, a top global exchange. A confirmed security breach of this scale has severe implications for user funds, exchange security, and market confidence, consistent with a systemic-level incident.",
+        "ai_score": 9.5,
+        "ai_summary": "Binance suffered a record-breaking cryptocurrency heist, marking one of the largest security breaches ever for a major exchange.",
+        "ai_tags": [
+          "Binance",
+          "exchange security",
+          "crypto heist",
+          "cybersecurity",
+          "market impact"
+        ],
+        "author": "Financial Times",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxOUkswLUlVN2JBYUxGSHRyZmZBS0d1QWVjU2hxUV96V3djZnNMSFAxeUE2OHpZamtoUFhlN2Fycmg3VFBLajhob1ppVVp3aHZuNFdQZTJZYlBDMnk2am5CZ2dXSGdqOUZGZzVQdW5FVTBGZkxNbkF4SmF4UHZXUWZDSlhpMHU?oc=5\" target=\"_blank\">FirstFT: Binance falls victim to record crypto heist</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Financial Times</font>",
+        "fetched_at": "2026-10-30T10:58:39.574260Z",
+        "id": "google_news:article:e52c4c602f789470",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(bitcoin OR crypto OR cryptocurrency OR stablecoin OR ethereum OR blockchain) (site:reuters.com OR site:bloomberg.com OR site:ft.com OR site:wsj.com OR site:cnbc.com OR site:apnews.com OR site:axios.com OR site:fortune.com OR site:nytimes.com OR site:economist.com)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.ft.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "Financial Times"
+        },
+        "published_at": "2026-10-29T21:22:45Z",
+        "source_type": "google_news",
+        "title": "FirstFT: Binance falls victim to record crypto heist",
+        "url": "https://www.ft.com/content/1e319b52-f31f-4dde-90b7-e01e2f199817?syn-25a6b1a6=1"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A reported Binance security breach with a claimed $6.3 billion impact would be one of the largest crypto heists ever and a systemic exchange-security event; the score reflects the extraordinary scale but is tempered by the headline's 'potential' framing and single-source report.",
+        "ai_score": 9.0,
+        "ai_summary": "A reported Binance security breach is said to have had a $6.3 billion impact, potentially making it the largest crypto heist on record.",
+        "ai_tags": [
+          "Binance",
+          "security-breach",
+          "crypto-heist",
+          "exchange-security",
+          "market-impact"
+        ],
+        "author": "Modern Ghana",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxPZzN1bnRxX3NsU2xWOXEtWU1wM3F4VXd2eDUyazhkSGxIdkhxcHBQZTdXVDhrTGNLZVNjZ3VyRTdUQWlmck1ldFBBdUx4eER4WTJ5MHFCOWE3Ym1hT3NYSG1rS0d2UTJEdUMwV21ua2VuRG1PU1Z4bzJ2SmNYY29kTDFVdUw0cVNKMTJzZGxxb3lGcmNxMUHSAZQBQVVfeXFMUGZ0emdYQ1FPWW1VbWFhVmpPaDUxUGNTdlNLTzgtTEljTm9rVDNVRk5rQktqSGlDR0t6V2xWbE43cXJsVVVMeTl4QUhDLUdNZkk3d2NGcnBuN0Y5cGdyOEUxX3paVkRUT1c1S0R3MTRZYW9rVnVodmdQejNMbkFabFRNSEpJanBWcFFQYW9lTEF6Q3JjaA?oc=5\" target=\"_blank\">Binance security breach has $6.3 billion impact in potential record crypto heist</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Modern Ghana</font>",
+        "fetched_at": "2026-10-30T10:58:35.671081Z",
+        "id": "google_news:article:32c3843ca7b1f223",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.modernghana.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Modern Ghana"
+        },
+        "published_at": "2026-10-30T09:39:00Z",
+        "source_type": "google_news",
+        "title": "Binance security breach has $6.3 billion impact in potential record crypto heist",
+        "url": "https://www.modernghana.com/news/1540528/binance-security-breach-has-63-billion-impact.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A reported security scare at the world's largest exchange that led to suspended trading and roughly $3 billion in client funds being frozen is a systemic-level market event with material user impact and potential contagion across venues; the 'suspected hack' framing keeps it just short of a confirmed multi-hundred-million-dollar theft, so 9.0 rather than 9.5+.",
+        "ai_score": 9.0,
+        "ai_summary": "Binance suspended trading and crypto firms moved to freeze about $3 billion on the platform as fears grew over a suspected large-scale hack, putting withdrawal access and counterparty exposure across the exchange's clients in question.",
+        "ai_tags": [
+          "binance",
+          "exchange-security",
+          "hack",
+          "withdrawals",
+          "market-impact"
+        ],
+        "author": "DW.com",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxOZm1OejZPcG1qRUtwb2JrTTV3d1BhQUFoc0JzdTV3MGhvVGNxSXdRRDgwUWIyTzlHZUp1N29WS25tMjFzZGZjNUVHTlZrMXdMTHFCVjFadUdtbU5zd1hfaTNfRDhSRERycDdDbU1pOS1FQi1OZVhZanpFY2x2WjJrS0xzWEFrT1V5NGt5UmpOVm9VcFRMZi1v0gGXAUFVX3lxTFBtRVB6Z01QZy1RVUllY0N6T01YanJFajRRYlkzc1B5Vlp5TkliYzktMkdBSWxNTEluOGoxSnNIOHdubU9uRE5ZWFlHN3I4dXJtQXVfc2ljZEJ6a1hGb1ljQWVBdFBrbmw0UHhNN3NDQ0NSOVIweFVnUjhnTkt4c1p0cWZJX01FQXlNVEVNZ3Z1ekNPeEZBT1E?oc=5\" target=\"_blank\">Crypto companies freeze $3 billion on Binance platform amid fears of major hack</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">DW.com</font>",
+        "fetched_at": "2026-10-30T10:58:35.668734Z",
+        "id": "google_news:article:4340e25529ebf650",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.dw.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "DW.com"
+        },
+        "published_at": "2026-10-30T05:15:47Z",
+        "source_type": "google_news",
+        "title": "Crypto companies freeze $3 billion on Binance platform amid fears of major hack",
+        "url": "https://www.dw.com/en/binance-crypto-platform-suspends-trades-amid-suspected-hack/a-79803280"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A reported security incident at the world's largest exchange with roughly $6.3 billion in exposure crosses the systemic threshold; even though the disclosure is preliminary ('potential' issue under investigation), the scale of affected value makes this a market-structure-level event rather than routine exchange news.",
+        "ai_score": 9.0,
+        "ai_summary": "Binance said it is investigating reports of a potential security incident, with approximately $6.3 billion in value said to be impacted.",
+        "ai_tags": [
+          "binance",
+          "security-incident",
+          "exchange",
+          "systemic-risk",
+          "funds-safety"
+        ],
+        "author": "U.S. News & World Report",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi3wFBVV95cUxQZnVPbFVCbkYyaEdaWW9sMEZmQ19tRTVVMlJaMkNka1Y3ek91bHppdlRyalpmbFZTeG1vcUJBdE5wZm0yYnlSYl9ZNHlMRHZNSzJDY08talY2OFdxZlZRdk81WkFzWjZPaWJFRXcwMEVEMm9uaV9yemdWbm5RVTBGekdYQ0Y4TEx1dS0tUTVHT0MxalJoOWkwZldIR0dqeklYVGEzSGFpNlFXY2phQUpVNFczY0VHSHU4RGE0dzZ1WlpTaFg3MFVFNmxyVkJfVnM2aGxPUXFhZmI3VFpRUWZR?oc=5\" target=\"_blank\">Binance Flags 'Potential Security Issue,' Says Approximately $6.3 Billion Impacted</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">U.S. News & World Report</font>",
+        "fetched_at": "2026-10-30T10:58:35.669057Z",
+        "id": "google_news:article:cd2756ffa17a330f",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.usnews.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "U.S. News & World Report"
+        },
+        "published_at": "2026-10-29T23:28:00Z",
+        "source_type": "google_news",
+        "title": "Binance Flags 'Potential Security Issue,' Says Approximately $6.3 Billion Impacted",
+        "url": "https://www.usnews.com/news/us/articles/2026-10-29/cryptocurrency-exchange-binance-says-its-investigating-reports-of-a-potential-security-incident"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A $2.54 billion freeze of customer funds at the world's largest exchange due to a potential security issue is a material, systemic-scale operational event with direct user impact, placing it at the high end of the scale (a confirmed >$50M loss exploit anchors 8.5-9.0). It ranks below a catastrophic 9.5-10 because the funds are reported frozen rather than confirmed lost, but the scale and the venue make it immediately consequential for market confidence, withdrawal behavior, and counterparty risk.",
+        "ai_score": 8.5,
+        "ai_summary": "Binance reported that roughly $2.54 billion in crypto funds has been frozen following a 'potential security issue,' raising immediate concerns about user withdrawals and counterparty risk at the largest exchange.",
+        "ai_tags": [
+          "binance",
+          "exchange-security",
+          "withdrawals",
+          "custody-risk",
+          "market-impact"
+        ],
+        "author": "Al Jazeera",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxQTXlLNDI3UHVxZ2tLWVIyVkxoSjRYUllXNFNrNG1Vam1QM1VFWVFnd1puUXlXTFZDNVR2RlBYVkhPc2t1RURtakJxdHBibE10N1o2SmxDekp1MUwya2IwTXdHOHkxUEFBXzBXVmdPYnJ4S0VNMHo1bkgyRzhVZlR0RjBlRjg1S1dCLUpTOXlnSFVISUdRelBKXzhRVENxaFR5N0FETWI2LTNNVUk4SS00VlZXXzZpakRTOFczWEVB0gG-AUFVX3lxTFBNeUs0MjdQdXFna0tZUjJWTGhKNFhSWVc0U2s0bVVqbVAzVUVZUWd3Wm5ReVdMVkM1VHZGUFhWSE9za3VFRG1qQnF0cGJsTXQ3WjZKbEN6SnUxTDJrYjBNd0c4eTFQQUFfMFdWZ09icnhLRU0wejVuSDJHOFVmVHRGMGVGODVLV0ItSlM5eWdIVUhJR1F6UEpfOFFUQ3FoVHk3QURNYjYtM01VSThJLTRWVldfNmlqRFM4VzNYRUE?oc=5\" target=\"_blank\">Binance says $2.54bn in crypto funds frozen amid ‘potential security issue’</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Al Jazeera</font>",
+        "fetched_at": "2026-10-30T10:58:35.670890Z",
+        "id": "google_news:article:e309a2f11c92f36e",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.aljazeera.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Al Jazeera"
+        },
+        "published_at": "2026-10-30T00:29:53Z",
+        "source_type": "google_news",
+        "title": "Binance says $2.54bn in crypto funds frozen amid ‘potential security issue’",
+        "url": "https://www.aljazeera.com/amp/economy/2026/10/30/binance-says-2-54bn-in-crypto-funds-frozen-amid-potential-security-issue"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A second multimillion-dollar security breach at Polymarket within four months points to systemic security weaknesses at a high-profile prediction market with real user funds at stake — a material exploit story, though the confirmed loss magnitude falls short of the >$50M tier that would warrant 8.5-9.0.",
+        "ai_score": 8.0,
+        "ai_summary": "Polymarket has been hit by its second multimillion-dollar security breach in four months, renewing concerns about the platform's security posture and user fund safety.",
+        "ai_tags": [
+          "polymarket",
+          "security-breach",
+          "prediction-markets",
+          "defi",
+          "exploits"
+        ],
+        "author": "CryptoSlate",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxQOEpnS3NFaG5ib2lhX1ppeW55bTRfMEIyZzZfR3V1dDdvNlpGOFJtYlM2X1kxZVFuQzFNMFROUncxRzNTdlExOTVwaDhrNGd6YnVKZ0pqcHQtQU9tLW1MZmlIMlFBSzAwQkZfbHFzLU93MnZ4MDJwa0U2Z3hUd3h6M2F6S1pwZ3hVaGZ1b0pwQm5xMmlOZGdoMGk4cFFva0w0cVI5TEh6RVJYdw?oc=5\" target=\"_blank\">Polymarket suffers second multimillion-dollar security breach in just four months</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoSlate</font>",
+        "fetched_at": "2026-10-30T10:58:50.450704Z",
+        "id": "google_news:article:5eb6abad5661742d",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "CryptoSlate",
+          "gn_query": "site:cryptoslate.com",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://cryptoslate.com/feed/",
+          "publisher_url": "https://cryptoslate.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "CryptoSlate"
+        },
+        "published_at": "2026-10-30T10:30:57Z",
+        "source_type": "google_news",
+        "title": "Polymarket suffers second multimillion-dollar security breach in just four months",
+        "url": "https://cryptoslate.com/polymarket-suffers-second-multimillion-dollar-security-breach-in-just-four-months/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A leading hardware-wallet vendor reporting a suspected physical implant in Safe 5 units sold through a third-party reseller is a supply-chain security incident with direct implications for self-custody funds; it is a concrete, in-window disclosure rather than rumor, though scope (number of affected devices, confirmed thefts) keeps it below systemic severity.",
+        "ai_score": 8.0,
+        "ai_summary": "Trezor disclosed a suspected hardware implant in Safe 5 devices sold by reseller CryptoBilis, raising supply-chain tampering concerns for users who bought hardware wallets through third-party channels.",
+        "ai_tags": [
+          "hardware-wallet",
+          "supply-chain-attack",
+          "trezor",
+          "security",
+          "self-custody"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxPSV9fMDBqaFlCaDUyaXFUelo1UGFFUHFtaWRTLUFYcy10b1UyZ0lMeFNad2pTWmVNWU5yMUtrbXpaMnA5Q3JwMXRjLTFIbFNZR0ppMGpFeHhISWxjbFpMUmxwSE95UENkaWJOb1RRUzE4U3hDLUtwZ1ZLTlZTSTBUclU1ZEstRll5ZWJ1MmpzR25mZHM0WDd0czJBc3JabWFY?oc=5\" target=\"_blank\">Trezor reports suspected hardware implant in Safe 5 sold by CryptoBilis</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-10-30T10:58:37.835385Z",
+        "id": "google_news:article:33b56581d81b31cd",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-10-30T08:55:00Z",
+        "source_type": "google_news",
+        "title": "Trezor reports suspected hardware implant in Safe 5 sold by CryptoBilis",
+        "url": "https://www.theblock.co/news/ecosystems/2026-10-30-trezor-reports-suspected-hardware-implant-432196"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A reported $6.3B security concern at Binance is high-impact for exchange operations and market confidence, with notable commentary from Nikita Bier and ZachXBT. It falls below systemic-event scores because the item centers on security concerns and social commentary rather than a clearly confirmed loss.",
+        "ai_score": 8.0,
+        "ai_summary": "A reported $6.3B security issue at Binance draws mockery from Nikita Bier and a warning from ZachXBT about a larger threat.",
+        "ai_tags": [
+          "Binance",
+          "security",
+          "ZachXBT",
+          "CZ",
+          "exchange-operations"
+        ],
+        "author": "CryptoPotato",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRm9hbXM1NXgtTEdmNGdBTlpEdFB1SkpzZHZhcC1FOHdoeHFaTVZqSDVWRmpTc2xPcnR4dklJTGQ3WFZ3TjZHNy1hSXZmeThrRHVLNHlEY2FZbW15aVlCWHYzYlV0a3VCQ0Qyc2hweF9XWjhTZG5BZExIZWtCQTBodDVsbHFoWU5xaEFwT3R4eF8taHZDam1Xb1c2R2Y0WXEtRzNIMGEwNUFhZjdLUUdjRmZ2T2NuX3ROSElWMVA4ZU8?oc=5\" target=\"_blank\">Binance Hit by a $6.3B Security Nightmare: Nikita Bier Mocks CZ, While ZachXBT Spots a Bigger Threat</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoPotato</font>",
+        "fetched_at": "2026-10-30T10:58:35.670797Z",
+        "id": "google_news:article:0f0e0f135b3ca794",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://cryptopotato.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "CryptoPotato"
+        },
+        "published_at": "2026-10-30T07:40:00Z",
+        "source_type": "google_news",
+        "title": "Binance Hit by a $6.3B Security Nightmare: Nikita Bier Mocks CZ, While ZachXBT Spots a Bigger Threat",
+        "url": "https://cryptopotato.com/binance-hit-by-a-6-3b-security-nightmare-nikita-bier-mocks-cz-while-zachxbt-spots-a-bigger-threat/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A security incident at Binance, the largest exchange by volume, prompting stablecoin issuers Circle and Tether to freeze affected funds is a high-impact exchange-operations event with direct implications for user assets and market confidence. It falls short of the 8.5-9.0 band because the scale of losses and the precise nature of the compromise remain unconfirmed at publication, but the involvement of top-tier stablecoin issuers in an active fund freeze elevates it well above routine operational news.",
+        "ai_score": 8.0,
+        "ai_summary": "Circle and Tether froze funds tied to addresses affected by an apparent security compromise at Binance, signaling an active incident response at the world's largest crypto exchange.",
+        "ai_tags": [
+          "binance",
+          "security-incident",
+          "tether",
+          "usdc",
+          "stablecoin-freeze"
+        ],
+        "author": "CNBC",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxPR05JOTdXRHY0dmVXdVllb1ZYRXh5UUI5NGtoQkNiTDZxRFd0aGxkMkVGRVdvdFplYU5SMzVNbU5mdzh3c1ZGQUNxaC1CNU8yWjhmTjBPbkJqM2VtTDJnMmxYVkRuSWFCcUdQN3RIV0hIRUVsQ3RKb0pVMmREUUN3YS1ZeTQ2bXFhQXdBTzJVZHlEOXpSQ1cxY0R0RUI1THhHWnptRTVuXzBGRUdDVFRUb3lR0gGyAUFVX3lxTE9HTkk5N1dEdjR2ZVd1WWVvVlhFeHlRQjk0a2hCQ2JMNnFEV3RobGQyRUZFV290WmVhTlIzNU1tTmZ3OHdzVkZBQ3FoLUI1TzJaOGZOME9uQmozZW1MMmcybFhWRG5JYUJxR1A3dEhXSEhFRWxDdEpvSlUyZERRQ3dhLVl5NDZtcWFBd0FPMlVkeUQ5elJDVzFjRHRFQjVMeEdaem1FNW5fMEZFR0NUVFRveVE?oc=5\" target=\"_blank\">Circle, Tether freeze funds impacted by potential Binance 'security issue'</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CNBC</font>",
+        "fetched_at": "2026-10-30T10:58:35.671284Z",
+        "id": "google_news:article:27d2b26e3a171614",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.cnbc.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "CNBC"
+        },
+        "published_at": "2026-10-29T22:01:00Z",
+        "source_type": "google_news",
+        "title": "Circle, Tether freeze funds impacted by potential Binance 'security issue'",
+        "url": "https://www.cnbc.com/amp/2026/10/29/circle-tether-freeze-funds-impacted-by-potential-binance-security-issue.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A concrete market-structure development: major blue-chip issuers actively pushing back on an NYSE-backed platform's plan to tokenize their equity, signaling that legal/issuer-consent friction — not technology — is now the binding constraint on tokenized equities. Materially relevant to RWA and tokenization narratives with a clear transmission path, but short of a systemic or regulatory landmark. No community discussion provided.",
+        "ai_score": 7.5,
+        "ai_summary": "Walmart, Microsoft and JPMorgan moved to block an NYSE-backed venture from issuing tokenized representations of their shares, underscoring issuer-consent and legal hurdles facing tokenized-equity market structure.",
+        "ai_tags": [
+          "tokenization",
+          "tokenized-equities",
+          "RWA",
+          "market-structure",
+          "NYSE"
+        ],
+        "author": "CryptoSlate",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxPdmxTUGphRDNWcEh6TEtwOXk4SkhZWUQ0Zkp2Yjg2emRRTDVGVWR4LURSZ0NOOU9uaUVPcmVWZk5iTFBDMDVMdUw3MzdQN093c0dDZWJ5bmRZRWZXaHpTNy15NnpVYWFEODZza2RJX3pyZzhJWEVBSS1rNnpJVElqWm9Ua3dBRFpsSFFRWmRjek9SNzhSekx1Ui13UE1hN0dkWmZwdW9JMWpEcXNNWE9n?oc=5\" target=\"_blank\">Walmart, Microsoft and JPMorgan block NYSE-backed venture from tokenizing their shares</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoSlate</font>",
+        "fetched_at": "2026-10-30T10:58:50.449937Z",
+        "id": "google_news:article:a123dc2bfbdb4210",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "CryptoSlate",
+          "gn_query": "site:cryptoslate.com",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://cryptoslate.com/feed/",
+          "publisher_url": "https://cryptoslate.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "CryptoSlate"
+        },
+        "published_at": "2026-10-30T09:10:06Z",
+        "source_type": "google_news",
+        "title": "Walmart, Microsoft and JPMorgan block NYSE-backed venture from tokenizing their shares",
+        "url": "https://cryptoslate.com/walmart-microsoft-and-jpmorgan-block-nyse-backed-venture-from-tokenizing-their-shares/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "CoinDCX, one of India's largest exchanges, suspending new futures positions due to a liquidity provider issue is a material trading-rule and access change for its derivatives users, with potential knock-on effects for liquidity on the platform. It is a significant operational restriction rather than a systemic, market-wide failure, so it sits in the high-value range rather than the groundbreaking tier.",
+        "ai_score": 7.5,
+        "ai_summary": "CoinDCX has stopped users from opening new futures positions, attributing the halt to a problem with its liquidity provider, while existing positions and other trading services remain available.",
+        "ai_tags": [
+          "CoinDCX",
+          "futures trading",
+          "exchange operations",
+          "liquidity provider",
+          "India crypto"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxPejVja2VpVHN0TXE4RWtyekJ1dDUxNlF4MnBudWVHbXJYend1cDNCMjNJeTRQV2V6ZWdZYjdrYnlEWmJZRGg4QXFjYkVkclpRWEI4eWFUWF85U0pJaU50ay02SWZES2ZrS2dFd2JkdGdWVTlJUjBaVjRMMW11cGFvUzY5eVc4MWo2M0NEbjcyTTNDb0hqZTRTTg?oc=5\" target=\"_blank\">CoinDCX Halts New Futures Positions, Citing Liquidity Provider</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-30T10:58:42.216944Z",
+        "id": "google_news:article:f4e95dccc6446f2f",
+        "metadata": {
+          "category": "exchange-operations",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-protocols",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-30T04:46:22Z",
+        "source_type": "google_news",
+        "title": "CoinDCX Halts New Futures Positions, Citing Liquidity Provider",
+        "url": "https://thedefiant.io/news/cefi/coindcx-halts-new-futures-positions-citing-liquidity-provider"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A named blockchain-analytics attribution linking North Korea's state-linked actors to a theft at Binance is a high-signal security development with direct implications for exchange risk controls and sanctions enforcement, and it goes beyond recycled market commentary. It falls short of the 8.5-9.0 band because the underlying incident's scale and the recovery/enforcement path are not established in the report itself, making it a strong attribution story rather than a fresh systemic loss event.",
+        "ai_score": 7.5,
+        "ai_summary": "Blockchain intelligence firm TRM Labs has attributed a crypto theft from Binance to North Korean actors, adding a formal attribution to the exchange security incident.",
+        "ai_tags": [
+          "North Korea",
+          "Binance",
+          "exchange hack",
+          "blockchain analytics",
+          "crypto security"
+        ],
+        "author": "Reuters",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxQc01IcXZiYm9zemhhbHhBenBOeFE4NDlHMC1TNGxUOHNlVFJIQmY3QTF1cnpqZmRBcGlic184TnhyRVEtSEVkSTNGdzBxejNaUVlqSEkyMllicG50YkY1TURzUWtnVE5nVlhSYk1ROWwwdDdwQWg2NlZVVEgxc2NuQVZwUWxrOVBmRzNHb2dYUUJiQ2tmTFhfT3NGblYtTjhPdDNmUE5VVFJ1RnRTbnJnRXdSNm55VzRBSVBySTc2Wnc3aDJ2?oc=5\" target=\"_blank\">Blockchain analysis firm TRM says North Korea behind Binance crypto theft</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Reuters</font>",
+        "fetched_at": "2026-10-30T10:58:39.574759Z",
+        "id": "google_news:article:1566e6f9450325ab",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(bitcoin OR crypto OR cryptocurrency OR stablecoin OR ethereum OR blockchain) (site:reuters.com OR site:bloomberg.com OR site:ft.com OR site:wsj.com OR site:cnbc.com OR site:apnews.com OR site:axios.com OR site:fortune.com OR site:nytimes.com OR site:economist.com)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.reuters.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "Reuters"
+        },
+        "published_at": "2026-10-30T04:26:00Z",
+        "source_type": "google_news",
+        "title": "Blockchain analysis firm TRM says North Korea behind Binance crypto theft",
+        "url": "https://www.reuters.com/legal/government/blockchain-analysis-firm-trm-says-north-korea-behind-binance-crypto-theft-2026-10-30/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A sharp market-wide selloff that pushed BTC below $77,000 and liquidated roughly $1.5B is a material, in-window market event with clear transmission across venues. It falls short of the 8.5-9 tier because the trigger is described as a 'security scare' — an unconfirmed incident narrative rather than a verified exchange breach with demonstrated loss of funds — so the durable structural impact is uncertain despite the large liquidation figure.",
+        "ai_score": 7.5,
+        "ai_summary": "Bitcoin dropped below $77,000 as a security scare surrounding Binance triggered a broad crypto selloff and about $1.5 billion in leveraged liquidations.",
+        "ai_tags": [
+          "bitcoin",
+          "binance",
+          "liquidations",
+          "market-selloff",
+          "security-fud"
+        ],
+        "author": "TradingView",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi0wFBVV95cUxOOVNLMTdkYkFuZU1WbUZaSjNvMG5qVVVzbUF6amR2SEtraEFtdzlWRE5acWc3X3RiVGViVTNyQTlDeWtJdFJ1Zzd2bWVkdV9QS2pwaURjRnVwb3dIcWtOWGdtS0dRbGNTb3dBNk96NExIVUttcVl6VFRXd1ZfNjdHb3RveUJEazVWSTZWa3VmdjZfN1hkU0ZVMjZTNXBuWGRSQTVoV0R0ekRBQV9XWWRhTVRPaUg0LTVZbTFpQ1gyMjN1NjZZRy1jOGVQOVdWTFlWWlpn?oc=5\" target=\"_blank\">Bitcoin price crashes below $77,000 as Binance security scare sparks $1.5B wipeout</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">TradingView</font>",
+        "fetched_at": "2026-10-30T10:58:35.671970Z",
+        "id": "google_news:article:91900489cea60d37",
+        "metadata": {
+          "category": "crypto-markets",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.tradingview.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "TradingView"
+        },
+        "published_at": "2026-10-30T03:38:21Z",
+        "source_type": "google_news",
+        "title": "Bitcoin price crashes below $77,000 as Binance security scare sparks $1.5B wipeout",
+        "url": "https://www.tradingview.com/news/invezz:a356579b4094b:0-bitcoin-price-crashes-below-77-000-as-binance-security-scare-sparks-1-5b-wipeout/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Official hardware-wallet security warning tied to a reseller and reported device tampering. It is a high-signal supply-chain security development for affected Trezor buyers, though the scope appears limited rather than systemic.",
+        "ai_score": 7.5,
+        "ai_summary": "Trezor advised customers who bought devices through reseller CryptoBilis to move their funds after a report of implanted hardware, raising supply-chain security concerns for affected users.",
+        "ai_tags": [
+          "Trezor",
+          "hardware wallets",
+          "supply-chain security",
+          "CryptoBilis",
+          "security advisory"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxNTHF2OEl0VjlTeXN5OFJvZjZxa21GcUhNeExBTnYwcDBOYzJJNjNvYk45S25LeUZoQ2xjdVllQWpLQUtqSGVjUjg3ekVEVVR0MzdJNlRtRVZiYjMtWVJxWFF4Y0F4ZUliQVlyQ1Y1b2ZvRVc3bnFuVzA1ZHphX3lJeW1NV2dWbVdpR2tMd3ZQRHVkdmpCeWR3Rkh3eFhualphZkNoXw?oc=5\" target=\"_blank\">Trezor Urges CryptoBilis Buyers to Move Funds After Implant Report</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-30T10:58:42.216273Z",
+        "id": "google_news:article:383dd911fc06c301",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-30T02:07:41Z",
+        "source_type": "google_news",
+        "title": "Trezor Urges CryptoBilis Buyers to Move Funds After Implant Report",
+        "url": "https://thedefiant.io/news/security/trezor-urges-cryptobilis-buyers-to-move-funds-after-implant-report"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A security issue disclosed by Binance, the largest centralized exchange, coincides with a broad crypto price decline, giving it a clear transmission path to market structure and user confidence. The item is headline-level with no confirmed scope, fund impact, or remediation detail, so it sits below a confirmed material exploit (8.5-9.0) but well above routine exchange updates.",
+        "ai_score": 7.5,
+        "ai_summary": "Bitcoin and broader cryptocurrency prices dropped after Binance reported a security issue affecting its platform.",
+        "ai_tags": [
+          "binance",
+          "security-incident",
+          "bitcoin",
+          "market-selloff",
+          "exchange"
+        ],
+        "author": "WTVB",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxPckhtdXlZQ2RXTHJYa3hITDh5WlZEa3A3Q05CZmN6anJoRHAyblFKLTN3WXA4amJnRGxyek5zS2xjQ1NMT3FvclpsaDlDeVlGd01mTkJReldwQmxxdkFMMTRqRUwxeXh4amw5NWNidkxXaWIwUVJkR2V0cWNGbjdlUzQxcmtjZG9aRTc0SnQ5LVpRbjU2Vmg2Zml2ckdBSlQweV84Ng?oc=5\" target=\"_blank\">Bitcoin, cryptocurrency prices fall after Binance reports security issue</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">WTVB</font>",
+        "fetched_at": "2026-10-30T10:58:35.670410Z",
+        "id": "google_news:article:87f3d039a772baac",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://wtvbam.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "WTVB"
+        },
+        "published_at": "2026-10-30T00:43:48Z",
+        "source_type": "google_news",
+        "title": "Bitcoin, cryptocurrency prices fall after Binance reports security issue",
+        "url": "https://wtvbam.com/2026/10/29/bitcoin-cryptocurrency-prices-fall-after-binance-reports-security-issue/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Coinbase's Q3 earnings showing a 66% net income jump and growing prediction-market traction is a high-value exchange business development with implications for crypto market structure and revenue diversification, though it is not a systemic or paradigm-shifting event.",
+        "ai_score": 7.0,
+        "ai_summary": "Coinbase reported a 66% year-over-year jump in Q3 net income, helped by gaining traction in prediction markets.",
+        "ai_tags": [
+          "Coinbase",
+          "Q3 earnings",
+          "prediction markets",
+          "crypto exchange",
+          "financial results"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxPT0d1b01ydFJxZExyOEZaRlNnaGQ1V2dJNzVLTzVNdTIzbnVuYlVkdVJqRS1TcjNHUXlPNVZaV1locGt4RU9MV2JJMXB6Ymt4ZDRPanNYQm1JcjliYzhETl83dndmRG5tejJlMlJQV2E3cklRZWY0QTg3NnZUb001dGNqWTY1dk5mUlptdw?oc=5\" target=\"_blank\">Coinbase Q3 net income jumps 66% as prediction markets gain traction</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-10-30T10:58:37.835650Z",
+        "id": "google_news:article:a4fc1f77a5b0888e",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-10-30T08:57:00Z",
+        "source_type": "google_news",
+        "title": "Coinbase Q3 net income jumps 66% as prediction markets gain traction",
+        "url": "https://www.theblock.co/news/business/2026-10-30-coinbase-q3-net-income-jumps-432189"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A top exchange acknowledging a potential security incident warrants immediate attention, but the report only states an investigation is underway with no confirmed compromise, scope, or user-fund impact — so it sits below confirmed exploit territory (8.5-9.0) and above routine operational news. Value hinges on follow-up confirmation of material impact.",
+        "ai_score": 7.0,
+        "ai_summary": "Binance said it is investigating reports of a potential security incident on its platform, without confirming any breach, scope of compromise, or impact on user funds.",
+        "ai_tags": [
+          "binance",
+          "security-incident",
+          "exchange-operations",
+          "cybersecurity",
+          "crypto"
+        ],
+        "author": "Spectrum News NY1",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi5gFBVV95cUxQd3duOHpiZ0NyNFZCcXJwQWp4ZHFubHN3SzhJb3ZvSGpQN2w4alg0VlZVLUYtLVdQMGgwUEtJMVlVWkxnS3UwWmE3SVFoUUtWeVB2QnlqNlVWbG9LeE13LVRhMlNSR055MTM1ZlVNNHJjc2hJbzQ4WDd0UjVzQ0dSZXRzMDVrU213UHFhc1FGUm5TbGJDU3FuY3lya21Nd053WGs1dFhJZkNGSkxuVS1YdXJhbHg1NUJJNkM0VGJTbXZkWkV0cm1KcXduQy1la3VpcExBUkduOHRxaDNYcFdnUW96ODE1UQ?oc=5\" target=\"_blank\">Cryptocurrency exchange Binance says it's investigating reports of a potential security incident</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Spectrum News NY1</font>",
+        "fetched_at": "2026-10-30T10:58:35.668344Z",
+        "id": "google_news:article:ee7451a6cb66ff49",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://ny1.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Spectrum News NY1"
+        },
+        "published_at": "2026-10-30T00:32:00Z",
+        "source_type": "google_news",
+        "title": "Cryptocurrency exchange Binance says it's investigating reports of a potential security incident",
+        "url": "https://ny1.com/nyc/all-boroughs/ap-top-news/2026/10/29/cryptocurrency-exchange-binance-says-its-investigating-reports-of-a-potential-security-incident"
       }
     }
   ],

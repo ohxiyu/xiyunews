@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_22d69b4fbf596207/",
   "json": "https://xiyu.news/api/events/evt_22d69b4fbf596207.json",
   "type": "product_release",
-  "status": "developing",
+  "status": "closed",
   "category": "technology",
   "title": {
     "zh": "Mistral AI 发布旗舰模型 Mistral Large 4（Le Chonk）",
     "en": "Mistral AI Releases Flagship Model Mistral Large 4 (Le Chonk)"
   },
   "current_state": {
-    "zh": "Mistral Large 4 已从 API 预览推进到开放权重发布阶段：权重可在 Hugging Face 下载（含 NVFP4 检查点），API 价格较预览版约减半。",
-    "en": "Mistral Large 4 has moved from API preview to an open-weight release: weights are downloadable on Hugging Face including NVFP4 checkpoints, and API pricing is roughly halved versus the preview."
+    "zh": "Mistral Large 4 权重已在 Hugging Face 开放（含 FP8/NVFP4），API 价格约减半；官方公布编程与效率提升，但独立评测未复现其编程分数，综合能力评分仍偏低。",
+    "en": "Mistral Large 4 weights are open on Hugging Face (including FP8/NVFP4), API pricing is roughly halved; Mistral reports coding and efficiency gains, but independent testing did not reproduce the coding score and overall capability scores remain lower."
   },
   "first_seen_at": "2026-10-06T15:31:12.954622+00:00",
-  "last_updated_at": "2026-10-29T15:01:32.447793+00:00",
-  "last_material_change_at": "2026-10-29T15:01:32.447793+00:00",
+  "last_updated_at": "2026-10-30T10:58:38.513595+00:00",
+  "last_material_change_at": "2026-10-30T10:58:38.513595+00:00",
   "confidence": 0.75,
-  "updates_count": 3,
-  "sources_count": 6,
+  "updates_count": 4,
+  "sources_count": 7,
   "entities": [
     "after",
     "cat",
@@ -39,8 +39,10 @@
     "ai-benchmarks",
     "ai-labs",
     "api-pricing",
+    "benchmarks",
     "europe-ai",
     "frontier-models",
+    "inference-efficiency",
     "large-language-models",
     "llm",
     "mistral",
@@ -208,6 +210,44 @@
           "url": "https://mistral.ai/news/mistral-large-4-oss/",
           "label": "kuberwastaken",
           "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_cbe13351e8cfd4d8",
+      "event_id": "evt_22d69b4fbf596207",
+      "occurred_at": "2026-10-30T10:33:02Z",
+      "published_at": "2026-10-30T10:33:02Z",
+      "first_seen_at": "2026-10-30T10:58:38.513595Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "Mistral开源万亿参数Large 4权重：编程自测涨13个百分点，单题成本降63%",
+      "title_en": "Mistral开源万亿参数Large 4权重：编程自测涨13个百分点，单题成本降63%",
+      "what_changed_zh": "新增开源后评测细节：官方称 Terminal-Bench 4.0 编程成绩从28%升至41%，但 Artificial Analysis 仅测得25%；单题成本降63%至2.06美元，幻觉率从41%降至28%，权重提供 FP8 和 NVFP4 版本。",
+      "what_changed_en": "Added post-release evaluation details: Mistral reports Terminal-Bench 4.0 coding score rising from 28% to 41%, while Artificial Analysis measured only 25%; per-task cost fell 63% to $2.06, hallucination rate dropped from 41% to 28%, and weights are offered in FP8 and NVFP4 versions.",
+      "current_state_zh": "Mistral Large 4 权重已在 Hugging Face 开放（含 FP8/NVFP4），API 价格约减半；官方公布编程与效率提升，但独立评测未复现其编程分数，综合能力评分仍偏低。",
+      "current_state_en": "Mistral Large 4 weights are open on Hugging Face (including FP8/NVFP4), API pricing is roughly halved; Mistral reports coding and efficiency gains, but independent testing did not reproduce the coding score and overall capability scores remain lower.",
+      "detailed_summary_zh": "Mistral open-sourced the weights of its 1.05T-parameter (49B active) Large 4 flagship, reporting a Terminal-Bench 4.0 coding gain from 28% to 41%, a 63% drop in per-task cost from reduced token usage and halved API pricing, and a hallucination rate cut from 41% to 28%, though independent testing found weaker overall capability and could not reproduce the coding score.",
+      "detailed_summary_en": "Mistral open-sourced the weights of its 1.05T-parameter (49B active) Large 4 flagship, reporting a Terminal-Bench 4.0 coding gain from 28% to 41%, a 63% drop in per-task cost from reduced token usage and halved API pricing, and a hallucination rate cut from 41% to 28%, though independent testing found weaker overall capability and could not reproduce the coding score.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.93,
+      "story_ids": [
+        "telegram:theblockbeats:203293"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/374669?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]
