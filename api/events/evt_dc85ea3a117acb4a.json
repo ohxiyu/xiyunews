@@ -4,34 +4,41 @@
   "url": "https://xiyu.news/events/evt_dc85ea3a117acb4a/",
   "json": "https://xiyu.news/api/events/evt_dc85ea3a117acb4a.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "North Korea’s TraderTraitor linked to $6.3B Binance hack",
+    "zh": "朝鲜TraderTraitor组织被指与币安63亿美元黑客事件有关",
     "en": "North Korea’s TraderTraitor linked to $6.3B Binance hack"
   },
   "current_state": {
-    "zh": "TRM Labs, Chainalysis, and onchain investigator ZachXBT linked the $6.3B Binance hack to North Korea’s TraderTraitor group, citing commingled Binance and Bitget funds moved through THORChain.",
-    "en": "TRM Labs, Chainalysis, and onchain investigator ZachXBT linked the $6.3B Binance hack to North Korea’s TraderTraitor group, citing commingled Binance and Bitget funds moved through THORChain."
+    "zh": "TRM Labs与Chainalysis将约63.6亿美元Binance黑客事件归因于朝鲜TraderTraitor；Binance已预留超过63.4亿美元弥补损失并正在恢复资产，约30亿美元已被冻结。",
+    "en": "TRM Labs and Chainalysis attribute the ~$6.36B Binance hack to North Korea's TraderTraitor; Binance has reserved over $6.34B to cover losses and is recovering assets, with about $3B frozen."
   },
   "first_seen_at": "2026-10-30T07:01:58.732040+00:00",
-  "last_updated_at": "2026-10-30T07:01:58.732040+00:00",
-  "last_material_change_at": "2026-10-30T07:01:58.732040+00:00",
+  "last_updated_at": "2026-10-30T15:01:59.796388+00:00",
+  "last_material_change_at": "2026-10-30T15:01:59.796388+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "binance",
     "binance-hack",
+    "chainalysis",
+    "hack",
     "korea",
     "north",
     "north-korea",
-    "tradertraitor"
+    "tie",
+    "tradertraitor",
+    "trm"
   ],
   "identifiers": [],
   "topics": [
+    "binance",
     "binance-hack",
+    "blockchain-forensics",
     "crypto-security",
+    "exchange-hack",
     "north-korea",
     "onchain-forensics",
     "tradertraitor"
@@ -46,11 +53,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "North Korea’s TraderTraitor linked to $6.3B Binance hack",
+      "title_zh": "朝鲜TraderTraitor组织被指与币安63亿美元黑客事件有关",
       "title_en": "North Korea’s TraderTraitor linked to $6.3B Binance hack",
-      "what_changed_zh": "TRM Labs, Chainalysis, and onchain investigator ZachXBT linked the $6.3B Binance hack to North Korea’s TraderTraitor group, citing commingled Binance and Bitget funds moved through THORChain.",
+      "what_changed_zh": "TRM Labs、Chainalysis和链上调查员ZachXBT将币安63亿美元黑客事件与朝鲜TraderTraitor组织联系起来，称币安和Bitget的资金被混同后通过THORChain转移。",
       "what_changed_en": "TRM Labs, Chainalysis, and onchain investigator ZachXBT linked the $6.3B Binance hack to North Korea’s TraderTraitor group, citing commingled Binance and Bitget funds moved through THORChain.",
-      "current_state_zh": "TRM Labs, Chainalysis, and onchain investigator ZachXBT linked the $6.3B Binance hack to North Korea’s TraderTraitor group, citing commingled Binance and Bitget funds moved through THORChain.",
+      "current_state_zh": "TRM Labs、Chainalysis和链上调查员ZachXBT将币安63亿美元黑客事件与朝鲜TraderTraitor组织联系起来，称币安和Bitget的资金被混同后通过THORChain转移。",
       "current_state_en": "TRM Labs, Chainalysis, and onchain investigator ZachXBT linked the $6.3B Binance hack to North Korea’s TraderTraitor group, citing commingled Binance and Bitget funds moved through THORChain.",
       "detailed_summary_zh": "TRM Labs, Chainalysis, and onchain investigator ZachXBT linked the $6.3B Binance hack to North Korea’s TraderTraitor group, citing commingled Binance and Bitget funds moved through THORChain.",
       "detailed_summary_en": "TRM Labs, Chainalysis, and onchain investigator ZachXBT linked the $6.3B Binance hack to North Korea’s TraderTraitor group, citing commingled Binance and Bitget funds moved through THORChain.",
@@ -70,6 +77,44 @@
         {
           "url": "https://cointelegraph.com/news/north-korea-linked-to-63b-binance-hack-by-crypto-investigators?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
           "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_de195c7f5a078259",
+      "event_id": "evt_dc85ea3a117acb4a",
+      "occurred_at": "2026-10-30T12:22:04Z",
+      "published_at": "2026-10-30T12:22:04Z",
+      "first_seen_at": "2026-10-30T15:01:59.796388Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "TRM和Chainalysis将币安64亿美元黑客事件与朝鲜TraderTraitor组织关联",
+      "title_en": "TRM and Chainalysis Tie $6.4B Binance Hack to North Korea's TraderTraitor",
+      "what_changed_zh": "Binance表示已预留超过63.4亿美元公司资金弥补损失，并已开始恢复用户受影响资产；报道补充了攻击手法、洗钱与冻结等细节，并称TRM与Chainalysis高置信度归因于TraderTraitor。",
+      "what_changed_en": "Binance said it reserved over $6.34B of company funds to cover losses and began recovering affected assets; reporting added attack mechanics, laundering/freeze details, and high-confidence TraderTraitor attribution.",
+      "current_state_zh": "TRM Labs与Chainalysis将约63.6亿美元Binance黑客事件归因于朝鲜TraderTraitor；Binance已预留超过63.4亿美元弥补损失并正在恢复资产，约30亿美元已被冻结。",
+      "current_state_en": "TRM Labs and Chainalysis attribute the ~$6.36B Binance hack to North Korea's TraderTraitor; Binance has reserved over $6.34B to cover losses and is recovering assets, with about $3B frozen.",
+      "detailed_summary_zh": "TRM Labs and Chainalysis attributed this week's ~$6.36B Binance hack — the largest crypto theft on record — to North Korea's TraderTraitor group, noting commingling with proceeds of the earlier Bitget exploit, while Binance said it has reserved over $6.34B of company funds to cover losses.",
+      "detailed_summary_en": "TRM Labs and Chainalysis attributed this week's ~$6.36B Binance hack — the largest crypto theft on record — to North Korea's TraderTraitor group, noting commingling with proceeds of the earlier Bitget exploit, while Binance said it has reserved over $6.34B of company funds to cover losses.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 9.5,
+      "references": [],
+      "confidence": 0.96,
+      "story_ids": [
+        "rss:decrypt.co_feed:f192a81e8b59b746"
+      ],
+      "sources": [
+        {
+          "url": "https://decrypt.co/382224/trm-and-chainalysis-tie-6-4b-binance-hack-to-north-koreas-tradertraitor",
+          "label": "Decrypt",
           "source_type": "rss",
           "official": false
         }

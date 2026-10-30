@@ -4,23 +4,24 @@
   "url": "https://xiyu.news/events/evt_349ae44c04b4d209/",
   "json": "https://xiyu.news/api/events/evt_349ae44c04b4d209.json",
   "type": "security_incident",
-  "status": "disputed",
+  "status": "developing",
   "category": "crypto",
   "title": {
     "zh": "币安疑似遭黑客攻击，约56亿美元被盗",
     "en": "Binance suspected hack with ~$5.6B stolen"
   },
   "current_state": {
-    "zh": "币安约63亿美元黑客事件仍在调查中；初步指向DevOps工程师笔记本电脑被入侵，但已发现更多入侵点，且并非单一“一键式”操作。约30亿美元资产已冻结，存款正常，提现暂停并预计约48小时内恢复。分析人士将攻击归因于朝鲜 TraderTraitor，部分被盗资金与 Bitget 事件资金混同；损失将由 SAFU 和公司资金覆盖。",
-    "en": "The Binance ~$6.3B hack remains under investigation; preliminary findings pointed to a compromised DevOps engineer laptop, but additional breach points have been found and the incident was not a single 'one-click' action. About $3B in assets has been frozen, deposits are operating normally, and withdrawals are paused with resumption expected within about 48 hours. Analysts attribute the attack to North Korea's TraderTraitor, some stolen funds were commingled with Bitget exploit funds, and losses will be covered by SAFU and company funds."
+    "zh": "币安约63亿美元黑客事件仍在调查中；币安联席 CEO Richard Teng 表示将在下周一前公布完整储备金证明，并有望在周日前恢复用户提现；攻击者利用 EIP-7702 获取热钱包链上执行授权，调查发现更多入侵点及自毁机制；币安已预留超过63.4亿美元公司资金覆盖损失，其中50亿美元为受影响同类代币，正通过市场和OTC渠道购入剩余部分，并与执法机构合作追回资产。",
+    "en": "The Binance ~$6.3B hack remains under investigation; Binance co-CEO Richard Teng said a complete proof-of-reserves report will be released by Monday and user withdrawals are expected to resume by Sunday; attackers used EIP-7702 to obtain on-chain execution authorization over a hot wallet, and additional breach points and self-destruct mechanisms were found. Binance has reserved over $6.34B in company funds to cover losses, including $5B in affected tokens, is buying the remainder through market and OTC channels, and is working with law enforcement to recover assets."
   },
   "first_seen_at": "2026-10-29T22:41:25.752360+00:00",
-  "last_updated_at": "2026-10-30T10:59:32.967288+00:00",
-  "last_material_change_at": "2026-10-30T10:59:32.967288+00:00",
+  "last_updated_at": "2026-10-30T15:02:05.840167+00:00",
+  "last_material_change_at": "2026-10-30T15:02:05.840167+00:00",
   "confidence": 0.75,
-  "updates_count": 18,
-  "sources_count": 27,
+  "updates_count": 25,
+  "sources_count": 37,
   "entities": [
+    "1inch",
     "aave",
     "additional",
     "addresses",
@@ -34,10 +35,14 @@
     "bitget",
     "blockaid",
     "breach",
+    "ceo",
     "circle",
+    "coinbase",
+    "company",
     "compromised",
     "confirms",
     "control",
+    "cover",
     "deposits",
     "devops",
     "drained",
@@ -45,27 +50,32 @@
     "eip-7702",
     "exploit",
     "exploiter",
+    "fbi",
     "finds",
     "freeze",
     "freezes",
     "from",
     "funds",
     "hack",
+    "hack-losses",
     "hacked",
     "hacker",
     "have",
     "hold",
     "how",
     "incident",
+    "including",
     "laptop",
     "linked",
     "live",
+    "losses",
     "markets",
     "may",
     "one",
     "over",
     "paxos",
     "points",
+    "reserves",
     "reveals",
     "says",
     "security-incident",
@@ -86,35 +96,47 @@
     "erc-20"
   ],
   "topics": [
+    "1inch",
     "aave",
     "arbitrum",
     "asset-freeze",
     "asset-freezing",
+    "asset-recovery",
     "binance",
     "binance-hack",
     "bitget",
     "bnb",
+    "borrow-caps",
     "circle",
+    "coinbase",
     "collateral",
+    "cybersecurity",
     "defi-exploit",
+    "defi-risk-management",
     "devops-compromise",
     "eip-7702",
+    "erc-20",
     "exchange-hack",
     "exchange-operations",
+    "exchange-reserves",
     "exchange-security",
     "exploits",
     "fund-freezing",
     "fund-recovery",
     "hack",
+    "hack-losses",
     "hot-wallet",
     "hot-wallet-security",
     "hot-wallets",
+    "law-enforcement",
     "market-impact",
     "market-selloff",
     "north-korea",
     "on-chain-forensics",
     "on-chain-outflow",
+    "otc-token-purchases",
     "paxos",
+    "proof-of-reserves",
     "protocol-freeze",
     "safu",
     "security-breach",
@@ -696,6 +718,44 @@
       ]
     },
     {
+      "update_id": "upd_cd3bcb483e2744e6",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T05:15:01Z",
+      "published_at": "2026-10-30T05:15:01Z",
+      "first_seen_at": "2026-10-30T15:01:34.165023Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "【1inch 封锁币安攻击者相关地址，但 1INCH 代币无法冻结】",
+      "title_en": "【1inch 封锁币安攻击者相关地址，但 1INCH 代币无法冻结】",
+      "what_changed_zh": "1inch 在币安攻击发生后 1 小时内将与攻击者相关的地址从 1inch DApp、1inch Wallet 和 1inch API 中封锁，并持续向解析器与集成方同步新识别地址；但由于 1INCH 是标准 ERC-20 代币且没有冻结或黑名单功能，被盗的 1INCH 代币无法被冻结。",
+      "what_changed_en": "Within one hour of the Binance hack, 1inch blocked attacker-associated addresses from its DApp, Wallet, and API and is sharing newly identified addresses with resolvers and integrators; however, because 1INCH is a standard ERC-20 token without freeze or blacklist functionality, stolen 1INCH tokens cannot be frozen.",
+      "current_state_zh": "币安约63亿美元黑客事件仍在调查中；1inch 已封锁攻击者相关地址，但无法冻结被盗的 1INCH 代币；约30亿美元资产已冻结，存款正常，提现暂停并预计约48小时内恢复；分析人士将攻击归因于朝鲜 TraderTraitor，部分被盗资金与 Bitget 事件资金混同；损失将由 SAFU 和公司资金覆盖。",
+      "current_state_en": "The Binance ~$6.3B hack remains under investigation; 1inch has blocked attacker-associated addresses but cannot freeze stolen 1INCH tokens; about $3B in assets has been frozen, deposits are operating normally, and withdrawals are paused with resumption expected within about 48 hours; analysts attribute the attack to North Korea's TraderTraitor, some stolen funds were commingled with Bitget exploit funds, and losses will be covered by SAFU and company funds.",
+      "detailed_summary_zh": "1inch blocked attacker-associated addresses from its DApp, wallet, and API within an hour of the Binance hack and is sharing newly identified addresses with resolvers and integrators, but cannot freeze the stolen ERC-20 1INCH tokens because the token has no blacklist function.",
+      "detailed_summary_en": "1inch blocked attacker-associated addresses from its DApp, wallet, and API within an hour of the Binance hack and is sharing newly identified addresses with resolvers and integrators, but cannot freeze the stolen ERC-20 1INCH tokens because the token has no blacklist function.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "telegram:foresightnews:121763"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116436",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
       "update_id": "upd_1a8df9b30deae540",
       "event_id": "evt_349ae44c04b4d209",
       "occurred_at": "2026-10-30T05:27:04Z",
@@ -722,12 +782,19 @@
       "references": [],
       "confidence": 0.75,
       "story_ids": [
-        "telegram:wublockchainenglish:26619"
+        "telegram:wublockchainenglish:26619",
+        "telegram:foresightnews:121762"
       ],
       "sources": [
         {
           "url": "https://wublockchain.xyz/news/news-21451",
           "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116435",
+          "label": "foresightnews",
           "source_type": "telegram",
           "official": false
         }
@@ -848,6 +915,44 @@
       ]
     },
     {
+      "update_id": "upd_c04101a6aace1b40",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T10:23:42Z",
+      "published_at": "2026-10-30T10:23:42Z",
+      "first_seen_at": "2026-10-30T15:01:34.182245Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "【Aave 分阶段解冻前将下调借款上限，防止币安被盗事件攻击者建立大额仓位】",
+      "title_en": "【Aave 分阶段解冻前将下调借款上限，防止币安被盗事件攻击者建立大额仓位】",
+      "what_changed_zh": "LlamaRisk 宣布将在 Aave V3 和 V4 分阶段解冻前，通过 Risk Steward 下调约 38 亿美元闲置借款上限，以防止币安被盗事件攻击者在解冻后的最初区块利用剩余额度建立大额仓位；其中 Aave V3 Core 的 WETH 借款上限拟从 240 万枚降至 179 万枚，USDT 从 30.9 亿枚降至 25.6 亿枚。",
+      "what_changed_en": "LlamaRisk announced it will use the Risk Steward to cut roughly $3.8B of idle borrow caps across Aave V3 and V4 before phased unfreezing, aiming to prevent the Binance-hack attacker from opening large positions in the first blocks after unfreezing; Aave V3 Core's WETH borrow cap is set to drop from 2.4M to 1.79M and USDT from 3.09B to 2.56B.",
+      "current_state_zh": "Aave V3 和 V4 储备仍因币安被盗事件处于冻结状态；LlamaRisk 已宣布在分阶段解冻前实施约 38 亿美元的借款上限下调计划，攻击者此前已在 Aave V3 Core 借出 19,762 枚 WETH。币安约 63 亿美元黑客事件仍在调查中，约 30 亿美元资产已冻结，提现暂停并预计约 48 小时内恢复。",
+      "current_state_en": "Aave V3 and V4 reserves remain frozen due to the Binance exploit; LlamaRisk has announced a planned ~$3.8B borrow-cap reduction before phased unfreezing, while the attacker has already borrowed 19,762 WETH on Aave V3 Core. The Binance ~$6.3B hack remains under investigation, about $3B in assets has been frozen, and withdrawals are paused with resumption expected within about 48 hours.",
+      "detailed_summary_zh": "LlamaRisk will cut roughly $3.8B of idle borrow caps across Aave V3 and V4 via the Risk Steward before reserves are gradually unfrozen, aiming to stop the Binance-hack attacker from opening large positions in the first blocks after unfreezing.",
+      "detailed_summary_en": "LlamaRisk will cut roughly $3.8B of idle borrow caps across Aave V3 and V4 via the Risk Steward before reserves are gradually unfrozen, aiming to stop the Binance-hack attacker from opening large positions in the first blocks after unfreezing.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "telegram:foresightnews:121793"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116465",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
       "update_id": "upd_08c11643d0953bf0",
       "event_id": "evt_349ae44c04b4d209",
       "occurred_at": "2026-10-30T10:32:02Z",
@@ -870,16 +975,220 @@
       "community_discussion_en": "",
       "market_impact_zh": "",
       "market_impact_en": "",
-      "importance_score": 7.5,
+      "importance_score": 8.0,
       "references": [],
       "confidence": 0.92,
       "story_ids": [
-        "telegram:theblockbeats:203292"
+        "telegram:theblockbeats:203292",
+        "telegram:foresightnews:121795"
       ],
       "sources": [
         {
           "url": "https://m.theblockbeats.info/flash/374668?from=telegram",
           "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116467",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_1428e684e0cdd566",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T10:54:30Z",
+      "published_at": "2026-10-30T10:54:30Z",
+      "first_seen_at": "2026-10-30T15:02:05.840167Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "币安黑客的比特币所得超过Coinbase的公司储备",
+      "title_en": "Binance hacker’s Bitcoin haul tops Coinbase’s corporate treasury",
+      "what_changed_zh": "区块链分析显示，与币安攻击者关联的19个地址持有18,270枚BTC（约14亿美元），超过Coinbase截至9月30日合计18,071枚BTC的投资与运营持仓；同一批攻击者地址还持有508,621枚ETH，其中最初盗取200,630枚ETH，其余通过兑换被盗稳定币和其他代币累积。",
+      "what_changed_en": "Blockchain analytics traced 18,270 BTC (about $1.4B) across 19 attacker-linked addresses, exceeding Coinbase's combined 18,071 BTC investment and operational holdings as of Sept. 30; the same attacker cluster held 508,621 ETH, including 200,630 ETH initially stolen and the rest accumulated by swapping stolen stablecoins and other tokens.",
+      "current_state_zh": "币安约63亿美元黑客事件仍在调查中；确认存在多个入侵点，约30亿美元资产已冻结，损失将由公司承担；分析人士归因于朝鲜 TraderTraitor。最新链上分析显示攻击者关联地址持有18,270枚BTC和508,621枚ETH。",
+      "current_state_en": "The Binance ~$6.3B hack remains under investigation; multiple breach points have been confirmed, about $3B in assets has been frozen, losses will be covered by the company, and analysts attribute the attack to North Korea's TraderTraitor. New onchain analysis shows attacker-linked addresses holding 18,270 BTC and 508,621 ETH.",
+      "detailed_summary_zh": "Binance confirmed a $6.3 billion hack, and blockchain analytics showed attacker-linked addresses holding 18,270 BTC—more than Coinbase’s reported corporate Bitcoin treasury—plus over 500,000 ETH.",
+      "detailed_summary_en": "Binance confirmed a $6.3 billion hack, and blockchain analytics showed attacker-linked addresses holding 18,270 BTC—more than Coinbase’s reported corporate Bitcoin treasury—plus over 500,000 ETH.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 9.5,
+      "references": [],
+      "confidence": 0.91,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:f510101101af6526"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/binance-hacker-bitcoin-holdings-exceed-coinbase-btc-treasury?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_0b603fa8baa2faa7",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T11:00:10Z",
+      "published_at": "2026-10-30T11:00:10Z",
+      "first_seen_at": "2026-10-30T15:02:05.100143Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "EIP-7702并未导致币安被黑，但可能放大了损失",
+      "title_en": "EIP-7702 didn’t cause Binance hack, but may have amplified losses",
+      "what_changed_zh": "Blockaid 分析指出，币安黑客事件的根本原因是签名系统被入侵，EIP-7702 可能帮助攻击者绕过安全检查并在单次交易中清空钱包，但并非攻击的必要条件。",
+      "what_changed_en": "Blockaid analysis indicated that compromised signing systems were the root cause of the Binance hack, and EIP-7702 may have helped attackers bypass security checks and drain wallets in a single sweep, though it was not necessary for the attack.",
+      "current_state_zh": "币安约63亿美元黑客事件仍在调查中；确认存在多个入侵点，约30亿美元资产已冻结，损失将由公司承担；分析人士归因于朝鲜 TraderTraitor。最新链上分析显示攻击者关联地址持有18,270枚BTC和508,621枚ETH。安全公司 Blockaid 指出签名系统被入侵是根本原因，EIP-7702 可能放大了损失但并非必要条件。",
+      "current_state_en": "The Binance ~$6.3B hack remains under investigation; multiple breach points have been confirmed, about $3B in assets has been frozen, losses will be covered by the company, and analysts attribute the attack to North Korea's TraderTraitor. New onchain analysis shows attacker-linked addresses holding 18,270 BTC and 508,621 ETH. Security firm Blockaid indicated that compromised signing systems were the root cause, and EIP-7702 may have amplified losses but was not necessary.",
+      "detailed_summary_zh": "Binance confirmed a $6.3 billion hack — the largest in crypto history — and pledged to cover losses, while Blockaid said compromised signing systems were the root cause and that Ethereum's EIP-7702 upgrade may have helped attackers bypass security checks and drain wallets in a single sweep.",
+      "detailed_summary_en": "Binance confirmed a $6.3 billion hack — the largest in crypto history — and pledged to cover losses, while Blockaid said compromised signing systems were the root cause and that Ethereum's EIP-7702 upgrade may have helped attackers bypass security checks and drain wallets in a single sweep.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 9.5,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:4ad9c4a17f03dc47"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/binance-hack-security-ethereum-eip-7702-role?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_792e7c5054bc0871",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T11:08:09Z",
+      "published_at": "2026-10-30T11:08:09Z",
+      "first_seen_at": "2026-10-30T15:01:32.438631Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "币安拨备逾63.4亿美元公司资金以覆盖黑客损失，其中包括50亿美元",
+      "title_en": "Binance Reserves Over $6.34B in Company Funds to Cover Hack Losses, Including $5",
+      "what_changed_zh": "币安表示已预留超过63.4亿美元公司资金用于覆盖黑客损失，其中50亿美元为受影响代币；其余代币将通过市场和OTC渠道购买，并称预留资金与约30亿美元已冻结资产分开，后续将通过储备证明公开验证用户资产。",
+      "what_changed_en": "Binance said it has reserved over $6.34 billion in company funds to cover hack losses, including $5 billion already held in affected tokens; it is purchasing the remaining tokens through market and OTC channels, said the reserved funds are separate from about $3 billion in frozen assets, and will publicly verify user assets through Proof of Reserves.",
+      "current_state_zh": "币安约63亿美元黑客事件仍在调查中；确认存在多个入侵点，约30亿美元资产已冻结，损失将由公司承担；币安已预留超过63.4亿美元公司资金用于覆盖损失，其中50亿美元为受影响代币，其余将通过市场和OTC渠道购买，并将通过储备证明验证用户资产；分析人士归因于朝鲜 TraderTraitor。最新链上分析显示攻击者关联地址持有18,270枚BTC和508,621枚ETH。安全公司 Blockaid 指出签名系统被入侵是根本原因，EIP-7702 可能放大了损失但并非必要条件。",
+      "current_state_en": "The Binance ~$6.3B hack remains under investigation; multiple breach points have been confirmed, about $3B in assets has been frozen, and losses will be covered by the company. Binance has reserved over $6.34B in company funds to cover losses, including $5B in affected tokens, is buying the remainder through market and OTC channels, and will verify user assets via Proof of Reserves. Analysts attribute the attack to North Korea's TraderTraitor. New onchain analysis shows attacker-linked addresses holding 18,270 BTC and 508,621 ETH. Security firm Blockaid indicated that compromised signing systems were the root cause, and EIP-7702 may have amplified losses but was not necessary.",
+      "detailed_summary_zh": "Binance has reserved more than $6.34 billion in company funds—including $5 billion in affected tokens—to cover hack losses, is purchasing the remaining tokens through market and OTC channels, and will verify user assets via Proof of Reserves.",
+      "detailed_summary_en": "Binance has reserved more than $6.34 billion in company funds—including $5 billion in affected tokens—to cover hack losses, is purchasing the remaining tokens through market and OTC channels, and will verify user assets via Proof of Reserves.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.94,
+      "story_ids": [
+        "telegram:wublockchainenglish:26623",
+        "rss:cointelegraph.com_rss:db4ecf0721aa0379"
+      ],
+      "sources": [
+        {
+          "url": "https://wublockchain.xyz/news/binance-reserves-6-34b-company-funds-cover-hack-losses-5b-tokens-21455",
+          "label": "wublockchainenglish",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://cointelegraph.com/news/binance-5-billion-replacement-crypto-in-custody?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_985fb804616898b7",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T13:11:10Z",
+      "published_at": "2026-10-30T13:11:10Z",
+      "first_seen_at": "2026-10-30T15:02:03.001201Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "币安正与FBI合作，追回63亿美元黑客事件后的资产",
+      "title_en": "Binance working with FBI to recover assets following $6.3B hack",
+      "what_changed_zh": "币安确认正与 FBI 及其他执法机构合作追回被盗资产，并称行业伙伴已冻结约30亿美元；公司已预留超过63.4亿美元自有资金，其中50亿美元为被盗的同种代币。",
+      "what_changed_en": "Binance confirmed it is working with the FBI and other law enforcement to recover stolen assets, saying industry partners have frozen about $3 billion and that it has reserved over $6.34 billion in company funds, $5 billion of which is in the exact stolen tokens.",
+      "current_state_zh": "币安约63亿美元黑客事件仍在调查中；确认存在多个入侵点，约30亿美元资产已冻结，损失将由公司承担；币安已预留超过63.4亿美元公司资金用于覆盖损失，其中50亿美元为受影响代币，其余将通过市场和OTC渠道购买，并将通过储备证明验证用户资产；币安正与 FBI 及其他执法机构合作追回被冻结及被盗资产；分析人士归因于朝鲜 TraderTraitor。最新链上分析显示攻击者关联地址持有18,270枚BTC和508,621枚ETH。安全公司 Blockaid 指出签名系统被入侵是根本原因，EIP-7702 可能放大了损失但并非必要条件。",
+      "current_state_en": "The Binance ~$6.3B hack remains under investigation; multiple breach points have been confirmed, about $3B in assets has been frozen, and losses will be covered by the company. Binance has reserved over $6.34B in company funds to cover losses, including $5B in affected tokens, is buying the remainder through market and OTC channels, and will verify user assets via Proof of Reserves. Binance is working with the FBI and other law enforcement to recover frozen and stolen assets. Analysts attribute the attack to North Korea's TraderTraitor. New onchain analysis shows attacker-linked addresses holding 18,270 BTC and 508,621 ETH. Security firm Blockaid indicated that compromised signing systems were the root cause, and EIP-7702 may have amplified losses but was not necessary.",
+      "detailed_summary_zh": "Binance confirmed it is working with the FBI and other law enforcement to recover stolen assets after a record $6.3 billion exploit, saying $3 billion has already been frozen by industry partners and that it has reserved more than $6.34 billion of company funds — $5 billion of it in the exact tokens taken — to cover the shortfall.",
+      "detailed_summary_en": "Binance confirmed it is working with the FBI and other law enforcement to recover stolen assets after a record $6.3 billion exploit, saying $3 billion has already been frozen by industry partners and that it has reserved more than $6.34 billion of company funds — $5 billion of it in the exact tokens taken — to cover the shortfall.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 9.5,
+      "references": [],
+      "confidence": 0.96,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:fb2d6ac7e136c51c"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/binance-fbi-recover-assets-hack?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_bcbfacf79ef049d4",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T14:41:53Z",
+      "published_at": "2026-10-30T14:41:53Z",
+      "first_seen_at": "2026-10-30T15:01:34.195665Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "【币安联席 CEO：将于下周一前公布完整储备金证明】",
+      "title_en": "【币安联席 CEO：将于下周一前公布完整储备金证明】",
+      "what_changed_zh": "币安联席 CEO Richard Teng 表示，币安将在下周一前发布完整储备金证明报告，并可能先发布初步版本；用户提现仍按原计划有望在周日前恢复。他还披露攻击者利用 EIP-7702 获取对一个热钱包的链上执行授权，绕过常规审批流程，并发现更多入侵点及自毁机制。",
+      "what_changed_en": "Binance co-CEO Richard Teng said Binance will release a complete proof-of-reserves report by Monday, possibly with an initial version beforehand, and user withdrawals remain expected to resume by Sunday. He also disclosed that attackers used EIP-7702 to gain on-chain execution authorization over a hot wallet, bypassing normal approval processes, and that additional breach points and self-destruct mechanisms were found.",
+      "current_state_zh": "币安约63亿美元黑客事件仍在调查中；币安联席 CEO Richard Teng 表示将在下周一前公布完整储备金证明，并有望在周日前恢复用户提现；攻击者利用 EIP-7702 获取热钱包链上执行授权，调查发现更多入侵点及自毁机制；币安已预留超过63.4亿美元公司资金覆盖损失，其中50亿美元为受影响同类代币，正通过市场和OTC渠道购入剩余部分，并与执法机构合作追回资产。",
+      "current_state_en": "The Binance ~$6.3B hack remains under investigation; Binance co-CEO Richard Teng said a complete proof-of-reserves report will be released by Monday and user withdrawals are expected to resume by Sunday; attackers used EIP-7702 to obtain on-chain execution authorization over a hot wallet, and additional breach points and self-destruct mechanisms were found. Binance has reserved over $6.34B in company funds to cover losses, including $5B in affected tokens, is buying the remainder through market and OTC channels, and is working with law enforcement to recover assets.",
+      "detailed_summary_zh": "Binance co-CEO Richard Teng says the exchange will release a complete proof-of-reserves report by Monday and restore withdrawals by Sunday, after attackers used EIP-7702 to gain on-chain execution authorization over a hot wallet, with more than $6.34B in corporate funds set aside to fully cover losses.",
+      "detailed_summary_en": "Binance co-CEO Richard Teng says the exchange will release a complete proof-of-reserves report by Monday and restore withdrawals by Sunday, after attackers used EIP-7702 to gain on-chain execution authorization over a hot wallet, with more than $6.34B in corporate funds set aside to fully cover losses.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "telegram:foresightnews:121816"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116488",
+          "label": "foresightnews",
           "source_type": "telegram",
           "official": false
         }

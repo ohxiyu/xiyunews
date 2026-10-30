@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_5507427d5ee39066/",
   "json": "https://xiyu.news/api/events/evt_5507427d5ee39066.json",
   "type": "other",
-  "status": "developing",
+  "status": "monitoring",
   "category": "crypto",
   "title": {
     "zh": "Keystone 称网站遭入侵，暴露硬件钱包买家的地址",
     "en": "Keystone says website breach exposed hardware wallet buyers’ addresses"
   },
   "current_state": {
-    "zh": "Keystone 正在处置 10 月 20 日官网入侵事件：认证密钥被窃，旧密钥设备认证失效，库存 18,835 台设备将销毁，官网发货暂停至新密钥设备投产；已确认 25,964 条买家记录及 12,873 条结账记录泄露，并请求 Shopify 删除相关数据；10 月 20 日前交付设备仍视为安全，此后交付设备需额外验证。",
-    "en": "Keystone is remediating the October 20 website breach: the authentication key was stolen, old-key device authentication is invalid, 18,835 inventory devices are to be destroyed, and website shipments are paused until new-key devices are produced; it confirmed 25,964 buyer records and 12,873 checkout records were leaked and has requested Shopify delete related data; devices delivered before October 20 are considered safe, while devices delivered afterward require additional verification."
+    "zh": "Keystone 正在处置 10 月 20 日官网入侵事件：认证密钥被窃，旧密钥设备认证失效，18,835 台库存设备将销毁；所有发货已暂停，受影响设备在包括亚马逊在内的所有仓库被隔离；已确认 25,964 条买家记录及 12,873 条结账记录泄露，并请求 Shopify 删除相关数据；物流数据保留期缩短至 90 天并支持收货后按请求删除；10 月 20 日前交付设备仍视为安全，此后交付设备需额外验证。",
+    "en": "Keystone is remediating the October 20 website breach: the authentication key was stolen, old-key device authentication is invalid, and 18,835 inventory devices are to be destroyed; all shipments are suspended and affected devices are quarantined across all warehouses, including Amazon; it confirmed 25,964 buyer records and 12,873 checkout records were leaked and has requested Shopify delete related data; logistics data retention is cut to 90 days with on-request deletion after order receipt; devices delivered before October 20 are considered safe, while devices delivered afterward require additional verification."
   },
   "first_seen_at": "2026-10-26T05:41:44.141709+00:00",
-  "last_updated_at": "2026-10-27T02:38:16.787004+00:00",
-  "last_material_change_at": "2026-10-27T02:38:16.787004+00:00",
+  "last_updated_at": "2026-10-30T15:01:34.189774+00:00",
+  "last_material_change_at": "2026-10-30T15:01:34.189774+00:00",
   "confidence": 0.75,
-  "updates_count": 3,
-  "sources_count": 3,
+  "updates_count": 4,
+  "sources_count": 5,
   "entities": [
     "hackers",
     "keystone"
@@ -33,7 +33,9 @@
     "phishing",
     "security-breach",
     "security-incident",
-    "supply-chain"
+    "self-custody",
+    "supply-chain",
+    "supply-chain-security"
   ],
   "updates": [
     {
@@ -146,6 +148,51 @@
           "url": "https://cointelegraph.com/news/keystone-breach-deepens-hackers-stole-key-used-to-verify-wallets-as-genuine?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
           "label": "Cointelegraph",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_3ec920b4ce3bdaa9",
+      "event_id": "evt_5507427d5ee39066",
+      "occurred_at": "2026-10-30T13:08:23Z",
+      "published_at": "2026-10-30T13:08:23Z",
+      "first_seen_at": "2026-10-30T15:01:34.189774Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "【Keystone 硬件钱包暂停所有发货，隔离各仓库受影响设备】",
+      "title_en": "【Keystone 硬件钱包暂停所有发货，隔离各仓库受影响设备】",
+      "what_changed_zh": "Keystone 已暂停所有发货，并在包括亚马逊在内的所有使用仓库中隔离受影响设备；已通过 support@keyst.one 通知受影响用户，并提醒绝不会索要助记词；物流数据保留期缩短至 90 天，用户收货后可要求立即删除数据。",
+      "what_changed_en": "Keystone has suspended all shipments and quarantined potentially affected devices across every warehouse it uses, including Amazon; it notified affected customers via support@keyst.one and warned it will never request seed phrases; logistics data retention is cut to 90 days, with on-request deletion after order receipt.",
+      "current_state_zh": "Keystone 正在处置 10 月 20 日官网入侵事件：认证密钥被窃，旧密钥设备认证失效，18,835 台库存设备将销毁；所有发货已暂停，受影响设备在包括亚马逊在内的所有仓库被隔离；已确认 25,964 条买家记录及 12,873 条结账记录泄露，并请求 Shopify 删除相关数据；物流数据保留期缩短至 90 天并支持收货后按请求删除；10 月 20 日前交付设备仍视为安全，此后交付设备需额外验证。",
+      "current_state_en": "Keystone is remediating the October 20 website breach: the authentication key was stolen, old-key device authentication is invalid, and 18,835 inventory devices are to be destroyed; all shipments are suspended and affected devices are quarantined across all warehouses, including Amazon; it confirmed 25,964 buyer records and 12,873 checkout records were leaked and has requested Shopify delete related data; logistics data retention is cut to 90 days with on-request deletion after order receipt; devices delivered before October 20 are considered safe, while devices delivered afterward require additional verification.",
+      "detailed_summary_zh": "Keystone has suspended all hardware wallet shipments and quarantined potentially affected devices across every warehouse it uses, including Amazon, while notifying impacted customers via support@keyst.one, warning that it will never request seed phrases, and cutting logistics data retention from 180 to 90 days with on-request deletion.",
+      "detailed_summary_en": "Keystone has suspended all hardware wallet shipments and quarantined potentially affected devices across every warehouse it uses, including Amazon, while notifying impacted customers via support@keyst.one, warning that it will never request seed phrases, and cutting logistics data retention from 180 to 90 days with on-request deletion.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "telegram:foresightnews:121807",
+        "telegram:theblockbeats:203323"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116479",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://m.theblockbeats.info/flash/374699?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
           "official": false
         }
       ]

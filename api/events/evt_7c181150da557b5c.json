@@ -11,15 +11,15 @@
     "en": "【Initia 链疑遭无限铸币攻击，攻击者已套现约 260 万美元】"
   },
   "current_state": {
-    "zh": "Initia L1 主网及所有 Rollup 仍处于暂停状态；官方已确认漏洞为 MoveVM 脚本缓存漏洞，攻击者伪造状态转出约 270 万美元资产，相关代币总供应量未受影响；安全修复预计数日内完成并通过审计，资产追回进行中，完整事后复盘报告尚未发布。",
-    "en": "Initia's L1 mainnet and all Rollups remain paused; the official disclosure confirms a MoveVM script-caching vulnerability was used to forge state and move about $2.7M, with related token total supply unaffected; a fix is expected within days and will be audited, asset recovery is ongoing, and a full postmortem has not yet been published."
+    "zh": "Initia L1 及所有 Rollup 仍处于暂停状态，但已公布具体恢复计划：定于 11 月 2 日通过经审计的 MoveVM 补丁重启，不回滚交易历史、隔离攻击者剩余伪造余额并恢复 AUSD0、USDC.n、WETH 支撑资产，随后再平衡 DEX 并逐步恢复跨链桥与交易所转账。",
+    "en": "Initia's L1 and all Rollups remain paused, but a concrete recovery plan is now published: restart on November 2 with an audited MoveVM patch, no transaction-history rollback, isolation of the attacker's remaining forged balances, restoration of AUSD0/USDC.n/WETH backing, followed by DEX rebalancing and phased resumption of bridge and exchange transfers."
   },
   "first_seen_at": "2026-10-23T17:21:46.311242+00:00",
-  "last_updated_at": "2026-10-24T13:41:49.852808+00:00",
-  "last_material_change_at": "2026-10-24T13:41:49.852808+00:00",
+  "last_updated_at": "2026-10-30T15:01:34.178976+00:00",
+  "last_material_change_at": "2026-10-30T15:01:34.178976+00:00",
   "confidence": 0.75,
-  "updates_count": 5,
-  "sources_count": 7,
+  "updates_count": 6,
+  "sources_count": 8,
   "entities": [
     "init",
     "initia",
@@ -34,14 +34,17 @@
     "cross-chain-bridge",
     "infinite-mint",
     "initia",
+    "l1-and-rollups",
     "layer1",
     "mainnet-halt",
     "movevm",
     "movevm-exploit",
     "network-pause",
+    "protocol-recovery",
     "protocol-security",
     "rollups",
     "security-incident",
+    "security-patch",
     "stablecoins",
     "token-minting"
   ],
@@ -257,6 +260,44 @@
       "sources": [
         {
           "url": "https://foresightnews.pro/news/h5Detail/115912",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_ae0082eefafda8e9",
+      "event_id": "evt_7c181150da557b5c",
+      "occurred_at": "2026-10-30T08:46:28Z",
+      "published_at": "2026-10-30T08:46:28Z",
+      "first_seen_at": "2026-10-30T15:01:34.178976Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "【Initia：L1 及 Rollup 计划于 11 月 2 日恢复运行，不回滚交易历史】",
+      "title_en": "【Initia：L1 及 Rollup 计划于 11 月 2 日恢复运行，不回滚交易历史】",
+      "what_changed_zh": "Initia 宣布 L1 及 Rollup 计划于 11 月 2 日恢复运行：升级将部署经独立审计的 MoveVM 补丁，隔离攻击者剩余的伪造余额并启用额外安全措施，且不回滚交易历史；AUSD0、USDC.n 及 WETH 的支撑资产将在重启前全部恢复，用户无需操作；Initia DEX 重启后将短暂暂停以由指定账户再平衡资金池价格并将收益返还受影响 LP；跨链桥与交易所将在网络监测一段时间后恢复转账，LayerZero OFT 版 WETH 及 AUSD0 提现时间设为 24 小时。",
+      "what_changed_en": "Initia announced that its L1 and Rollups are scheduled to resume on November 2: the upgrade will deploy an independently audited MoveVM patch that isolates the attacker's remaining forged balances with additional safeguards and without rolling back transaction history; backing for AUSD0, USDC.n and WETH will be fully restored before restart with no user action required; the Initia DEX will pause briefly after restart for a designated account to rebalance pool prices to market with proceeds returned to affected LPs; bridges and exchanges will resume transfers after a period of network monitoring, and LayerZero OFT WETH and AUSD0 withdrawals will have a 24-hour delay.",
+      "current_state_zh": "Initia L1 及所有 Rollup 仍处于暂停状态，但已公布具体恢复计划：定于 11 月 2 日通过经审计的 MoveVM 补丁重启，不回滚交易历史、隔离攻击者剩余伪造余额并恢复 AUSD0、USDC.n、WETH 支撑资产，随后再平衡 DEX 并逐步恢复跨链桥与交易所转账。",
+      "current_state_en": "Initia's L1 and all Rollups remain paused, but a concrete recovery plan is now published: restart on November 2 with an audited MoveVM patch, no transaction-history rollback, isolation of the attacker's remaining forged balances, restoration of AUSD0/USDC.n/WETH backing, followed by DEX rebalancing and phased resumption of bridge and exchange transfers.",
+      "detailed_summary_zh": "Initia plans to restore its L1 and rollups on November 2 with an audited MoveVM patch that isolates the attacker's remaining forged balances without rolling back transaction history, while restoring AUSD0, USDC.n, and WETH backing and rebalancing the DEX.",
+      "detailed_summary_en": "Initia plans to restore its L1 and rollups on November 2 with an audited MoveVM patch that isolates the attacker's remaining forged balances without rolling back transaction history, while restoring AUSD0, USDC.n, and WETH backing and rebalancing the DEX.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "telegram:foresightnews:121787"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116460",
           "label": "foresightnews",
           "source_type": "telegram",
           "official": false
