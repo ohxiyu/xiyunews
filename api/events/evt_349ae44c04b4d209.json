@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_349ae44c04b4d209/",
   "json": "https://xiyu.news/api/events/evt_349ae44c04b4d209.json",
   "type": "security_incident",
-  "status": "developing",
+  "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "币安遭大规模黑客攻击，Circle应执法要求冻结逾8亿美元USDC",
+    "zh": "Binance遭大规模黑客攻击，公司储备覆盖损失",
     "en": "Binance hit by large-scale hack, losses covered by company reserves"
   },
   "current_state": {
-    "zh": "币安约64亿美元黑客事件仍在调查中；FBI 与特勤局参与，TRM Labs 和 Chainalysis 将其归因于朝鲜关联组织 TraderTraitor；Circle 与 Tether 分别冻结约8.23亿美元 USDC 和约9.751亿美元 USDT；币安称约30亿美元已冻结、正买入缺失代币，并已预留超过63.4亿美元覆盖损失；最新调查显示除被入侵的 DevOps 工程师笔记本电脑外还存在“更多入侵点”，CFTC 主席借此推动离岸交易所接受美国监管。",
-    "en": "The Binance ~$6.4B hack remains under investigation; the FBI and Secret Service are involved, and TRM Labs and Chainalysis attributed it to North Korea-linked TraderTraitor; Circle and Tether froze about $823M in USDC and $975.1M in USDT respectively; Binance says about $3B is frozen, it is buying missing tokens, and it has reserved over $6.34B to cover losses; the latest investigation indicates “additional points of breach” beyond the compromised DevOps engineer's laptop, and the CFTC chair is citing the hack to push for U.S. oversight of offshore exchanges."
+    "zh": "币安约64亿美元黑客事件仍在调查中；币安称已覆盖约80%损失，已拨出超63.4亿美元（含50亿美元代币）用于全额补偿，约30亿美元被盗资金已在链上冻结，并正通过场外交易等方式购买剩余代币；FBI 与特勤局参与，TRM Labs 和 Chainalysis 将其归因于朝鲜关联组织 TraderTraitor；Circle 与 Tether 分别冻结约8.23亿美元 USDC 和约9.751亿美元 USDT；调查发现除被入侵的 DevOps 工程师笔记本电脑外还有“更多入侵点”，但尚未发现钱包私钥泄露证据；CFTC 主席借此推动离岸交易所接受美国监管。",
+    "en": "The Binance ~$6.4B hack remains under investigation; Binance says it has covered about 80% of losses, allocated over $6.34B including $5B in tokens for full compensation, about $3B in stolen funds has been frozen on-chain, and it is buying remaining tokens via OTC and other means; the FBI and Secret Service are involved, and TRM Labs and Chainalysis attributed it to North Korea-linked TraderTraitor; Circle and Tether froze about $823M in USDC and $975.1M in USDT respectively; the investigation found “additional points of breach” beyond the compromised DevOps engineer's laptop but no evidence of wallet private-key leakage; the CFTC chair is citing the hack to push for U.S. oversight of offshore exchanges."
   },
   "first_seen_at": "2026-10-29T22:41:25.752360+00:00",
-  "last_updated_at": "2026-10-30T22:11:50.176836+00:00",
-  "last_material_change_at": "2026-10-30T22:11:50.176836+00:00",
+  "last_updated_at": "2026-10-31T02:41:20.885149+00:00",
+  "last_material_change_at": "2026-10-31T02:41:20.884337+00:00",
   "confidence": 0.75,
-  "updates_count": 37,
-  "sources_count": 50,
+  "updates_count": 40,
+  "sources_count": 55,
   "entities": [
     "1inch",
     "aave",
@@ -71,6 +71,7 @@
     "freezes",
     "from",
     "funds",
+    "group",
     "hack",
     "hack-losses",
     "hacked",
@@ -85,6 +86,8 @@
     "korea",
     "labs",
     "laptop",
+    "lazarus",
+    "lazarus-group",
     "like",
     "linked",
     "liquidations",
@@ -124,6 +127,7 @@
     "stolen",
     "suspected",
     "tether",
+    "thorchain",
     "tie",
     "took",
     "trade",
@@ -159,6 +163,7 @@
     "circle",
     "coinbase",
     "collateral",
+    "compensation",
     "crypto-regulation",
     "crypto-security",
     "crypto-stocks",
@@ -176,11 +181,13 @@
     "exploits",
     "fund-freezing",
     "fund-recovery",
+    "fund-safety",
     "hack",
     "hack-losses",
     "hot-wallet",
     "hot-wallet-security",
     "hot-wallets",
+    "incident-response",
     "law-enforcement",
     "lazarus-group",
     "liquidations",
@@ -206,6 +213,7 @@
     "stolen-funds",
     "systemic-risk",
     "tether",
+    "thorchain",
     "tradertraitor",
     "unauthorized-withdrawals",
     "usd1",
@@ -214,7 +222,8 @@
     "withdrawal-suspension",
     "withdrawals",
     "withdrawals-suspended",
-    "wlfi"
+    "wlfi",
+    "zachxbt"
   ],
   "updates": [
     {
@@ -781,6 +790,51 @@
         {
           "url": "https://www.binance.com/en/support/announcement/detail/c5a8729a97ac486d963784d96c5642d7?utm_source=EnglishTelegram&amp;utm_medium=GlobalCommunity&amp;utm_campaign=AnnouncementBot",
           "label": "binance_announcements",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_68dd05994d00bc3e",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T02:42:12Z",
+      "published_at": "2026-10-30T02:42:12Z",
+      "first_seen_at": "2026-10-30T02:53:16.186910Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "【ZachXBT：币安黑客疑似为朝鲜黑客组织 Lazarus Group】",
+      "title_en": "【ZachXBT：币安黑客疑似为朝鲜黑客组织 Lazarus Group】",
+      "what_changed_zh": "链上调查员 ZachXBT 表示，币安攻击事件很可能是由朝鲜 Lazarus 组织实施的。",
+      "what_changed_en": "Chain investigator ZachXBT said the Binance attack was likely carried out by North Korea's Lazarus Group.",
+      "current_state_zh": "链上调查员 ZachXBT 表示，币安攻击事件很可能是由朝鲜 Lazarus 组织实施的。",
+      "current_state_en": "Chain investigator ZachXBT said the Binance attack was likely carried out by North Korea's Lazarus Group.",
+      "detailed_summary_zh": "Chain investigator ZachXBT said the Binance attack was likely carried out by North Korea's Lazarus Group.",
+      "detailed_summary_en": "Chain investigator ZachXBT said the Binance attack was likely carried out by North Korea's Lazarus Group.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:121737",
+        "telegram:foresightnews:121798"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116413",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116470",
+          "label": "foresightnews",
           "source_type": "telegram",
           "official": false
         }
@@ -1682,6 +1736,44 @@
       ]
     },
     {
+      "update_id": "upd_79a0d23ac9b89117",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-30T19:37:40Z",
+      "published_at": "2026-10-30T19:37:40Z",
+      "first_seen_at": "2026-10-30T22:11:26.750113Z",
+      "time_precision": "published",
+      "update_type": "response",
+      "material_change": true,
+      "title_zh": "安全事件更新 #2（2026-10-30）",
+      "title_en": "Security Incident Update #2 (2026-10-30)",
+      "what_changed_zh": "币安发布第二份安全事件更新，通报调查、基础设施加固以及防范和追回资金损失方面的 24 小时进展，并将此事列为最高优先级。",
+      "what_changed_en": "Binance issued a second security incident update, reporting 24-hour progress on investigation, infrastructure hardening, and efforts to prevent and recover fund losses while treating the matter as its top priority.",
+      "current_state_zh": "币安发布第二份安全事件更新，通报调查、基础设施加固以及防范和追回资金损失方面的 24 小时进展，并将此事列为最高优先级。",
+      "current_state_en": "Binance issued a second security incident update, reporting 24-hour progress on investigation, infrastructure hardening, and efforts to prevent and recover fund losses while treating the matter as its top priority.",
+      "detailed_summary_zh": "Binance issued a second security incident update, reporting 24-hour progress on investigation, infrastructure hardening, and efforts to prevent and recover fund losses while treating the matter as its top priority.",
+      "detailed_summary_en": "Binance issued a second security incident update, reporting 24-hour progress on investigation, infrastructure hardening, and efforts to prevent and recover fund losses while treating the matter as its top priority.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:binance_announcements:9102"
+      ],
+      "sources": [
+        {
+          "url": "https://www.binance.com/en/support/announcement/detail/d3306d9dca5243548c813b605e1d1751?utm_source=EnglishTelegram&amp;utm_medium=GlobalCommunity&amp;utm_campaign=AnnouncementBot",
+          "label": "binance_announcements",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
       "update_id": "upd_dffd04ebb0f9555c",
       "event_id": "evt_349ae44c04b4d209",
       "occurred_at": "2026-10-30T21:16:04Z",
@@ -1721,13 +1813,58 @@
       ],
       "confidence": 0.9,
       "story_ids": [
-        "rss:decrypt.co_feed:cb3f94d88f8e4792"
+        "rss:decrypt.co_feed:cb3f94d88f8e4792",
+        "telegram:foresightnews:121826"
       ],
       "sources": [
         {
           "url": "https://decrypt.co/382285/binance-hack-why-offshore-exchanges-need-us-oversight-cftc-chair",
           "label": "Decrypt",
           "source_type": "rss",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116498",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_05b79361b8a28168",
+      "event_id": "evt_349ae44c04b4d209",
+      "occurred_at": "2026-10-31T01:11:04Z",
+      "published_at": "2026-10-31T01:11:04Z",
+      "first_seen_at": "2026-10-31T02:41:20.884337Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "【币安：已覆盖约 80% 的损失，正在用公司资金购买代币以全额弥补损失】",
+      "title_en": "【币安：已覆盖约 80% 的损失，正在用公司资金购买代币以全额弥补损失】",
+      "what_changed_zh": "币安表示已覆盖约80%的黑客损失，并称未来几天将重点恢复提现、通过储备金证明加强透明度、追回被冻结资金并发布事件分析报告；初步调查仍未发现钱包私钥泄露证据。",
+      "what_changed_en": "Binance said it has covered about 80% of the hack losses and that in the coming days it will focus on restoring withdrawals, strengthening transparency via proof of reserves, recovering frozen funds, and publishing an incident analysis; the preliminary investigation has still found no evidence of wallet private-key leakage.",
+      "current_state_zh": "币安约64亿美元黑客事件仍在调查中；币安称已覆盖约80%损失，已拨出超63.4亿美元（含50亿美元代币）用于全额补偿，约30亿美元被盗资金已在链上冻结，并正通过场外交易等方式购买剩余代币；FBI 与特勤局参与，TRM Labs 和 Chainalysis 将其归因于朝鲜关联组织 TraderTraitor；Circle 与 Tether 分别冻结约8.23亿美元 USDC 和约9.751亿美元 USDT；调查发现除被入侵的 DevOps 工程师笔记本电脑外还有“更多入侵点”，但尚未发现钱包私钥泄露证据；CFTC 主席借此推动离岸交易所接受美国监管。",
+      "current_state_en": "The Binance ~$6.4B hack remains under investigation; Binance says it has covered about 80% of losses, allocated over $6.34B including $5B in tokens for full compensation, about $3B in stolen funds has been frozen on-chain, and it is buying remaining tokens via OTC and other means; the FBI and Secret Service are involved, and TRM Labs and Chainalysis attributed it to North Korea-linked TraderTraitor; Circle and Tether froze about $823M in USDC and $975.1M in USDT respectively; the investigation found “additional points of breach” beyond the compromised DevOps engineer's laptop but no evidence of wallet private-key leakage; the CFTC chair is citing the hack to push for U.S. oversight of offshore exchanges.",
+      "detailed_summary_zh": "Binance said it has covered about 80% of losses from a security incident, allocating more than $6.34B in SAFU and corporate funds and buying tokens to fully compensate users, while $3B in stolen funds has been frozen on-chain.",
+      "detailed_summary_en": "Binance said it has covered about 80% of losses from a security incident, allocating more than $6.34B in SAFU and corporate funds and buying tokens to fully compensate users, while $3B in stolen funds has been frozen on-chain.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 9.0,
+      "references": [],
+      "confidence": 0.9,
+      "story_ids": [
+        "telegram:foresightnews:121824"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116496",
+          "label": "foresightnews",
+          "source_type": "telegram",
           "official": false
         }
       ]
