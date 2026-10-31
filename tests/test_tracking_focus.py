@@ -26,7 +26,7 @@ def test_focus_limits_six_prioritizes_crypto_and_keeps_all_other_history():
     assert len(payload["other"]) + len(payload["focus"]) == 16
     assert payload["ranking"] == payload["focus"]
     assert payload["featured"] == payload["focus"][:3]
-    assert all(len(row["timeline"]) <= 3 for row in payload["focus"])
+    assert all(len(row["timeline"]) <= 10 for row in payload["focus"])
 
 
 def test_completed_low_confidence_minor_and_review_excluded_do_not_fill_slots():
@@ -91,14 +91,54 @@ def test_display_dedup_preserves_numbers_corrections_ids_and_occurrence_dates():
     assert len(event.updates) == 2
 
 
-def test_republish_changes_only_reader_index_and_never_catalog(tmp_path):
+def test_republish_refreshes_reader_pages_without_catalog_api_or_redirect_changes(tmp_path):
     event = ongoing("evt_republish01")
     data = tmp_path / "_data"
     data.mkdir()
     catalog = data / "events.json"
     catalog.write_text(json.dumps({"schema_version": 1, "events": [event.model_dump(mode="json")]}))
     before = catalog.read_bytes()
+    event_dir = tmp_path / "events"
+    event_dir.mkdir()
+    alias = event_dir / "evt_legacy01.html"
+    alias.write_text("keep merged redirect")
+    api = tmp_path / "api" / "events.json"
+    api.parent.mkdir()
+    api.write_text("keep API evidence")
     path = republish_tracking(tmp_path, now=event.last_updated_at)
     assert catalog.read_bytes() == before
     assert json.loads(path.read_text())["focus"][0]["event_id"] == event.event_id
     assert sorted(p.name for p in data.iterdir()) == ["events.json", "threads.json"]
+    for prefix in ("", "en-"):
+        page = (event_dir / f"{prefix}{event.event_id}.html").read_text()
+        assert page.index('id="upd_example2"') < page.index('id="upd_example1"')
+    assert alias.read_text() == "keep merged redirect"
+    assert api.read_text() == "keep API evidence"
+
+
+def test_reader_timeline_keeps_ten_newest_distinct_updates_and_full_detail_history():
+    from src.site_pages import render_event_page
+
+    event = make_event("evt_dense01", updates=12)
+    event.status = EventStatus.DEVELOPING
+    before = event.model_dump(mode="json")
+    payload = build_event_index_data([event], now=event.last_material_change_at)
+    timeline = payload["focus"][0]["timeline"]
+    assert [row["update_id"] for row in timeline] == [f"upd_example{i}" for i in range(12, 2, -1)]
+    page = render_event_page(event, "zh")
+    assert page.count('class="event-update event-stream-item') == 12
+    assert page.index('id="upd_example12"') < page.index('id="upd_example1"')
+    assert event.model_dump(mode="json") == before
+
+
+def test_focus_is_recent_first_without_promoting_minor_stories_into_home_spotlight():
+    major = ongoing("evt_major01", score=9.5)
+    major.updates.append(major.updates[-1].model_copy(update={
+        "update_id": "upd_third01", "occurred_at": major.last_material_change_at + timedelta(hours=1),
+        "what_changed_en": "A third material development", "what_changed_zh": "第三次实质变化"}))
+    major.last_material_change_at = major.updates[-1].occurred_at
+    newer = ongoing("evt_recent01", score=7.5)
+    newer.last_material_change_at = major.last_material_change_at + timedelta(hours=2)
+    payload = build_event_index_data([major, newer], now=newer.last_material_change_at)
+    assert [r["event_id"] for r in payload["focus"]] == [newer.event_id, major.event_id]
+    assert payload["spotlight"]["event_id"] == major.event_id

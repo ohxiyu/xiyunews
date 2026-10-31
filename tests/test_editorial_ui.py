@@ -48,7 +48,8 @@ def test_beautiful_surface_preserves_reading_and_responsive_boundaries():
     assert '.story-summary-body { max-width: none; }' in css
     assert 'var(--control-radius)' in css
     assert ':focus-visible' in css
-    assert '.event-update-rail time { white-space: nowrap; }' in css
+    time_rule = css.split('.event-update-rail time {', 1)[1].split('}', 1)[0]
+    assert 'white-space: nowrap;' in time_rule
     assert '.event-feed-compact .digest-item { padding: 9px 14px; }' in css
     reader = (ROOT / 'docs/assets/js/pwa-reader.js').read_text()
     assert 'Default text size: desktop 16px, mobile 15px' in reader

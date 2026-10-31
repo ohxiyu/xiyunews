@@ -450,6 +450,7 @@ def render_event_page(event: TrackedEvent, language: str) -> str:
     ordered_updates = sorted(
         event.updates,
         key=lambda update: (update.occurred_at, update.first_seen_at, update.update_id),
+        reverse=True,
     )
     for index, update in enumerate(ordered_updates, start=1):
         changed = _event_update_value(update, "what_changed", normalized)
@@ -758,7 +759,7 @@ def _distinct_developments(material: Sequence[EventUpdate]) -> list[EventUpdate]
     return list(reversed(kept))
 
 
-def _timeline(material: Sequence[EventUpdate], limit: int = 3) -> list[dict]:
+def _timeline(material: Sequence[EventUpdate], limit: int = 10) -> list[dict]:
     """The newest developments, newest first, for the featured cards."""
     local_zone = ZoneInfo("Asia/Shanghai")
     rows = []
@@ -967,17 +968,15 @@ def build_event_index_data(
     preferred_ids = {r["event_id"] for r in preferred}
     selected = preferred + [r for r in candidates if r["event_id"] not in preferred_ids][:FOCUS_LIMIT - len(preferred)]
     selected_ids = {r["event_id"] for r in selected}
-    focus = [r for r in candidates if r["event_id"] in selected_ids]
+    # Eligibility still uses importance and confidence; reader order follows
+    # the last material change, not score or discovery of historical evidence.
+    focus = sorted((r for r in candidates if r["event_id"] in selected_ids),
+                   key=newest, reverse=True)
     featured = focus[:FEATURED_MAX]
-    top = focus[0] if focus else None
-    spotlight = (
-        top
-        if top
-        and (top["score"] or 0) >= SPOTLIGHT_MIN_SCORE
-        and top["updates_count"] >= SPOTLIGHT_MIN_UPDATES
-        and top["age_days"] <= SPOTLIGHT_MAX_AGE_DAYS
-        else None
-    )
+    spotlight = next((r for r in focus
+                if (r["score"] or 0) >= SPOTLIGHT_MIN_SCORE
+                and r["updates_count"] >= SPOTLIGHT_MIN_UPDATES
+                and r["age_days"] <= SPOTLIGHT_MAX_AGE_DAYS), None)
     compact = ("event_id", "title_zh", "title_en", "latest_date", "category",
                "status", "status_zh", "status_en", "updates_count",
                "latest_update_zh", "latest_update_en")
@@ -1001,7 +1000,8 @@ def build_event_index_data(
             "focus": len(focus),
         },
         "rules": {"active_days": ACTIVE_DAYS, "dormant_days": DORMANT_DAYS,
-                  "focus_limit": FOCUS_LIMIT, "timeline_limit": 3},
+                  "focus_limit": FOCUS_LIMIT, "timeline_limit": 10,
+                  "preview_limit": 3},
     }
 
 

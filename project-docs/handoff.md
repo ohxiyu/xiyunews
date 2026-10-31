@@ -1,49 +1,36 @@
 # 当前交接
 
-当前任务：[Issue300](https://github.com/ohxiyu/xiyunews/issues/300) 10-24 日报已生成但网站未更新：统一部署被 npm audit（undici / zod 新公告）拦截，修复依赖并恢复上线。PR301 已合并，统一部署 230/231 成功，10-24 刊期已上线。上一轮网站延迟恢复见 [PR298 记录](releases/2026-10-22-publication-recovery.md)。访问统计令牌仍待运营者提供，见[访问统计发布记录](releases/2026-10-18-web-analytics.md)。架构入口为[系统架构](system-architecture.md)。
+当前任务：[Issue305](https://github.com/ohxiyu/xiyunews/issues/305) 优化事件追踪密度、最新优先顺序和详情连续时间线，并部署验收。当前会话为唯一编辑与生产整合负责人，分支 agent/tracking-density；不接续旧任务或改变发布审计策略。架构入口为[系统架构](system-architecture.md)，访问统计令牌仍为[独立待办](releases/2026-10-18-web-analytics.md)。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "10-24 网站更新已恢复，归档依赖审计修复的上线证据",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/300",
+  "goal": "追踪首卡最近 10 条、首页重点最近 3 条、最新优先与连续时间线一致性优化并上线",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/305",
   "owner": "当前会话唯一编辑与生产整合负责人",
-  "branch": "agent/edge-audit-recovery-evidence",
-  "last_verified_commit": "3b5ee933e9d40e9a3fdbf0f0fe34f1759b15793d",
-  "pr": "PR301 已合并为 3b5ee93；当前为证据文档 PR",
+  "branch": "agent/tracking-density",
+  "last_verified_commit": "6eb1b9f1bb8af30417f5573cdf57e9c74ddc84e6",
+  "pr": "待创建实现 PR",
   "completed": [
-    "定位：统一部署 222–229 均因 npm audit（undici ≤7.30.0、zod <4.6.6）失败；日报 run 40039703759 本身成功",
-    "overrides：undici 7.30.1、zod 4.6.7；lockfile 仅两包变化",
-    "PR301 合并；运营者手动运行统一部署 230 success（artifact c70b818，Worker f8099963）；自动部署 231 success"
+    "核对正式域、远端 main、开放任务与旧工作区，保留用户未跟踪文件",
+    "定位数据/模板三条限制、详情旧到新排序、圆点遮挡与逐条独立卡片样式",
+    "实现首卡 10 条、其他 3 条与首页 3 条，事件/节点最新优先，稳定锚点保留",
+    "补齐无 AI 重建中英文详情页，避免旧详情页留存"
   ],
-  "unfinished": [
-    "发布阶段审计策略是否改为只告警，等待运营者决定",
-    "访问统计站点令牌仍待运营者提供（独立待办）"
-  ],
-  "validation": [
-    "npm audit 0 漏洞；Worker 135 项测试、types/tsc、两份 wrangler dry-run 通过",
-    "uv run pytest 1118 passed / 4 skipped；治理通过"
-  ],
-  "unverified": [
-    "正式域页面显示由运营者浏览确认（本环境无法访问 xiyu.news）"
-  ],
+  "unfinished": ["远端 CI", "CI 通过后合并、正常部署与正式域验收"],
+  "validation": ["完整 Python 回归 1120 passed / 4 个既有 skipped；最后 CSS 细节按针对性测试核对", "135 项 Worker、118 项 Node、类型、dry-run、安全审计 0 漏洞、治理通过", "真实归档 Jekyll 整站构建成功；12 组中英/明暗/宽度浏览器检查通过，首卡 10/其他 3、首页 3、详情 43 节点倒序/锚点/无日期遮挡与横向溢出；前后截图已归档"],
+  "unverified": ["本次改动尚未合并或部署，不能将旧生产版本视为本次完成"],
   "production": {
-    "source_commit": "3b5ee933e9d40e9a3fdbf0f0fe34f1759b15793d",
-    "artifact_commit": "gh-pages c70b818",
-    "edition": "2026-10-24，14 条",
-    "generated_at": "2026-10-23T23:31:34Z",
-    "worker_version": "f8099963-2bb3-42e5-bb44-2cda6435d1ca",
-    "verified_at": "2026-10-25 02:06 上海，部署 230/231 日志与结论"
+    "source_commit": "6eb1b9f1bb8af30417f5573cdf57e9c74ddc84e6",
+    "artifact_commit": "1494083fe3ba4c822a46b622549e839cbc669d94",
+    "edition": "待本次上线回读",
+    "generated_at": "本次未触发日报生成",
+    "worker_version": "ae340dcf-0094-4edf-8baa-ba36a1689d08（改动前）",
+    "verified_at": "2026-10-31，正式域 health 与追踪页面改前回读"
   },
   "blockers": [],
-  "next_action": "合并本证据 PR；等待运营者决定发布阶段审计策略",
-  "states": {
-    "code": "complete",
-    "tests": "complete",
-    "pr_merged": "complete",
-    "deployed": "complete",
-    "production_verified": "complete"
-  },
-  "evidence": "project-docs/releases/2026-10-24-edge-audit-recovery.md"
+  "next_action": "远端 CI 通过并同步 main 后合并，等待 Deploy Docs 与统一部署，正式域回读",
+  "states": {"code": "complete", "tests": "complete", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
+  "evidence": "project-docs/releases/2026-10-31-tracking-density.md"
 }
 ```

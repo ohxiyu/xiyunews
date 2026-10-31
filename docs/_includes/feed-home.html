@@ -13,17 +13,21 @@
   {% if spotlight %}
     {% assign spotlight_prefix = "" %}
     {% assign spotlight_title = spotlight.title_zh | default: spotlight.title_en %}
-    {% assign spotlight_update = spotlight.latest_update_zh | default: spotlight.latest_update_en %}
     {% if include.language == "en" %}
       {% assign spotlight_prefix = "/en" %}
       {% assign spotlight_title = spotlight.title_en | default: spotlight.title_zh %}
-      {% assign spotlight_update = spotlight.latest_update_en | default: spotlight.latest_update_zh %}
     {% endif %}
-    <a class="event-spotlight-banner" href="{{ spotlight_prefix }}/events/{{ spotlight.event_id | escape }}/">
+    <section class="event-spotlight-banner" aria-labelledby="home-spotlight-title">
       <span class="event-spotlight-banner__label">{% if include.language == "en" %}Top story · {{ spotlight.updates_count | escape }} updates{% else %}重点追踪 · {{ spotlight.updates_count | escape }} 次进展{% endif %}</span>
-      <strong>{{ spotlight_title | escape }}</strong>
-      {% if spotlight_update and spotlight_update != "" %}<span class="event-spotlight-banner__latest">{% if include.language == "en" %}Latest: {% else %}最新：{% endif %}{{ spotlight_update | escape }}</span>{% endif %}
-    </a>
+      <h2 id="home-spotlight-title"><a href="{{ spotlight_prefix }}/events/{{ spotlight.event_id | escape }}/">{{ spotlight_title | escape }}</a></h2>
+      <ol class="event-spotlight-banner__updates">
+        {% for step in spotlight.timeline limit: 3 %}
+          {% assign step_text = step.text_zh | default: step.text_en %}
+          {% if include.language == "en" %}{% assign step_text = step.text_en | default: step.text_zh %}{% endif %}
+          <li><time datetime="{{ step.date | escape }}">{{ step.date | date: "%m.%d" | escape }}</time><a href="{{ spotlight_prefix }}/events/{{ spotlight.event_id | escape }}/#{{ step.update_id | escape }}">{{ step_text | escape }}</a></li>
+        {% endfor %}
+      </ol>
+    </section>
   {% endif %}
 
   {% if latest_post %}
