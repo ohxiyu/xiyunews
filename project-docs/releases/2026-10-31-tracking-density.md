@@ -40,6 +40,12 @@ Verification: 2026-10-31 改前浏览器截图与 health 核对，本次生产�
 
 依据：[aiohttp 公告](https://github.com/advisories/GHSA-2g87-pp6c-29x5)、[Brotli](https://pypi.org/project/brotli/1.2.1/)、[certifi](https://pypi.org/project/certifi/2026.10.18/)、[pyasn1](https://pypi.org/project/pyasn1/0.6.5/)。更新后 all-extras pip-audit 为 No known vulnerabilities found，完整 pytest 再次 1120 passed / 4 skipped，未降低或跳过安全检查。
 
+## 服务器构建时限前置修复
+
+CI41216824913 的治理与 web 通过，但 edge-build124584577445 在 2026-10-31 16:13:47–16:28:56Z 达到 15 分钟上限而取消。约 10 分钟用于两次精确 checkout，随后 Ruby 依赖下载仍未完成，尚未进入 Jekyll，不是页面测试失败。原有生产 X 任务也曾因下载缓慢耗尽自己的时限；未手动取消、重启或改写发送状态。
+
+仅把整站 CI 的 15 分钟和统一纯部署的 20 分钟总上限放宽到 30 分钟，保留 CPU/内存限制、全部检查与安全审计、串行执行和生产权限，不增加机器、并行或套餐。工作流变更按现有保守范围规则运行完整 CI，包括独立 realtime 的只测试任务（TELEGRAM_ENABLED=false），而不是绕过相关检查。
+
 | 对比 | 截图 |
 | --- | --- |
 | 详情桌面改前（1440×1100） | [改前](images/2026-10-31-tracking/before-detail-desktop.png) |
