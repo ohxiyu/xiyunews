@@ -7,31 +7,35 @@
   "status": "monitoring",
   "category": "technology",
   "title": {
-    "zh": "Cursor扩展商店遭投毒：Claude Code被植入SSH后门，最多波及5000人",
-    "en": "Cursor扩展商店遭投毒：Claude Code被植入SSH后门，最多波及5000人"
+    "zh": "Cursor市场中的Claude Code VS Code扩展被植入SSH后门",
+    "en": "Claude Code VS Code extension on Cursor Marketplace backdoored with SSH key"
   },
   "current_state": {
-    "zh": "Cursor removed a malicious Claude Code 2.1.313 extension from its marketplace after it was found to install an SSH backdoor and persistence mechanism, potentially affecting up to 5,000 users.",
-    "en": "Cursor removed a malicious Claude Code 2.1.313 extension from its marketplace after it was found to install an SSH backdoor and persistence mechanism, potentially affecting up to 5,000 users."
+    "zh": "A maliciously modified copy of the Claude Code VS Code extension was published on Cursor's marketplace for about 11 hours, backdooring affected users by appending an attacker-controlled SSH key to their authorized_keys files.",
+    "en": "A maliciously modified copy of the Claude Code VS Code extension was published on Cursor's marketplace for about 11 hours, backdooring affected users by appending an attacker-controlled SSH key to their authorized_keys files."
   },
   "first_seen_at": "2026-10-30T10:58:38.504930+00:00",
-  "last_updated_at": "2026-10-30T10:58:38.504930+00:00",
-  "last_material_change_at": "2026-10-30T10:58:38.504930+00:00",
+  "last_updated_at": "2026-10-30T18:08:43.032168+00:00",
+  "last_material_change_at": "2026-10-30T18:08:43.032168+00:00",
   "confidence": 0.75,
   "updates_count": 1,
-  "sources_count": 1,
+  "sources_count": 2,
   "entities": [
+    "backdoor",
     "claude",
     "claude-code",
     "code",
     "cursor",
+    "marketplace",
     "ssh"
   ],
   "identifiers": [],
   "topics": [
     "ai-developer-tools",
+    "ai-devtools",
     "claude-code",
     "cursor",
+    "security-incident",
     "ssh-backdoor",
     "supply-chain-attack"
   ],
@@ -60,16 +64,28 @@
       "market_impact_zh": "",
       "market_impact_en": "",
       "importance_score": 8.0,
-      "references": [],
+      "references": [
+        {
+          "url": "https://news.ycombinator.com/item?id=50300683",
+          "title": "Community discussion"
+        }
+      ],
       "confidence": 0.75,
       "story_ids": [
-        "telegram:theblockbeats:203275"
+        "telegram:theblockbeats:203275",
+        "hackernews:story:50300683"
       ],
       "sources": [
         {
           "url": "https://m.theblockbeats.info/flash/374652?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://phorion.io/blog/offical-claude-code-vsx-compromise/",
+          "label": "_chall",
+          "source_type": "hackernews",
           "official": false
         }
       ]
