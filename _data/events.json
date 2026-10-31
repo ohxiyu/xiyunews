@@ -179742,13 +179742,14 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "Wiz details early PHP2Shell exploitation and remediation trends, noting scanner activity against honeypots and CISA KEV listing, while researchers and commenters report working and potentially universal exploits against the PHP vulnerability.",
-      "current_state_zh": "Wiz 详述 PHP2Shell 早期利用与修复趋势，指出针对蜜罐的扫描活动及 CISA KEV 收录情况，同时研究人员和评论者报告了针对该 PHP 漏洞的有效且可能通用的利用方式。",
+      "current_state_en": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
+      "current_state_zh": "攻击者利用串联的 PHP2Shell 与 Linux XFRM ESP-in-TCP 漏洞攻陷了 25 台服务器，其中包括美国政府系统，凸显了暴露的 PHP 服务与内核攻击面带来的风险。",
       "entities": [
         "alert",
         "bug",
         "bugs",
         "ceo",
+        "chained",
         "chatgpt",
         "cloudflare",
         "course",
@@ -179761,6 +179762,7 @@
         "freaking",
         "github",
         "global",
+        "government",
         "governments",
         "how",
         "internet",
@@ -179804,8 +179806,8 @@
         "cve-2026-109618",
         "cve-2026-109619"
       ],
-      "last_material_change_at": "2026-10-27T18:10:08.636336Z",
-      "last_updated_at": "2026-10-27T18:10:08.636336Z",
+      "last_material_change_at": "2026-10-29T18:36:22.733169Z",
+      "last_updated_at": "2026-10-29T18:36:22.733169Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_577b38c61bc32b34",
@@ -179821,12 +179823,13 @@
         "evt_144540f464e53938",
         "evt_4ed4524ed3448c7b",
         "evt_21a453da85710f98",
-        "evt_db5bd950d6c96efc"
+        "evt_db5bd950d6c96efc",
+        "evt_c4c247a6afd3fb92"
       ],
       "schema_version": 1,
       "status": "developing",
       "title_en": "PHP discloses two critical RCE vulnerabilities and releases emergency patches",
-      "title_zh": "PHP披露两个严重远程代码执行漏洞并发布紧急补丁，随后出现利用尝试",
+      "title_zh": "PHP披露两个严重远程代码执行漏洞并发布紧急补丁，随后PHP2Shell漏洞遭利用",
       "topics": [
         "active-exploitation",
         "ai-assisted-attacks",
@@ -179847,10 +179850,12 @@
         "financial-institutions",
         "frontier-models",
         "go",
+        "government-systems",
         "government-websites",
         "infrastructure-security",
         "internet-infrastructure",
         "japan",
+        "linux-kernel",
         "nodejs",
         "nvdb",
         "open-source",
@@ -180774,6 +180779,49 @@
           "update_type": "escalation",
           "what_changed_en": "Wiz details early PHP2Shell exploitation and remediation trends, noting scanner activity against honeypots and CISA KEV listing, while researchers and commenters report working and potentially universal exploits against the PHP vulnerability.",
           "what_changed_zh": "Wiz 详述 PHP2Shell 早期利用与修复趋势，指出针对蜜罐的扫描活动及 CISA KEV 收录情况，同时研究人员和评论者报告了针对该 PHP 漏洞的有效且可能通用的利用方式。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
+          "current_state_zh": "攻击者利用串联的 PHP2Shell 与 Linux XFRM ESP-in-TCP 漏洞攻陷了 25 台服务器，其中包括美国政府系统，凸显了暴露的 PHP 服务与内核攻击面带来的风险。",
+          "detailed_summary_en": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
+          "detailed_summary_zh": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
+          "event_id": "evt_4eb800807f88fccc",
+          "first_seen_at": "2026-10-29T18:36:22.733169Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-29T10:42:41Z",
+          "published_at": "2026-10-29T10:42:41Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50286987"
+            }
+          ],
+          "sources": [
+            {
+              "label": "882542F3884314B",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://dreamgroup.com/blog/chained-php2shell-exploit-roots-25-servers"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50286987"
+          ],
+          "time_precision": "published",
+          "title_en": "Chained PHP2Shell exploit roots 25 servers, including US Government servers",
+          "title_zh": "串联 PHP2Shell 漏洞攻陷 25 台服务器，包括美国政府服务器",
+          "update_id": "upd_d8da65f607988b9d",
+          "update_type": "escalation",
+          "what_changed_en": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
+          "what_changed_zh": "攻击者利用串联的 PHP2Shell 与 Linux XFRM ESP-in-TCP 漏洞攻陷了 25 台服务器，其中包括美国政府系统，凸显了暴露的 PHP 服务与内核攻击面带来的风险。"
         }
       ]
     },
@@ -206500,7 +206548,7 @@
       "category": "technology",
       "confidence": 0.75,
       "current_state_en": "Alphabet reported Q3 2026 revenue of $127.6B (+25%) with Google Cloud up 103% to $30.7B, disclosed Gemini app reached 1B monthly users and model APIs serve ~32B tokens/minute, unveiled the Gemini 4 Carbon frontier model and Genie 4 progress, while guiding to sharply higher capex next year and posting negative free cash flow — sending shares down 9-10% after hours.",
-      "current_state_zh": "Alphabet reported Q3 2026 revenue of $127.6B (+25%) with Google Cloud up 103% to $30.7B, disclosed Gemini app reached 1B monthly users and model APIs serve ~32B tokens/minute, unveiled the Gemini 4 Carbon frontier model and Genie 4 progress, while guiding to sharply higher capex next year and posting negative free cash flow — sending shares down 9-10% after hours.",
+      "current_state_zh": "在 Alphabet 2026 年第三季度财报电话会上，首席执行官桑达尔·皮查伊表示 Gemini 应用月活用户已达 10 亿，成为 Google 历史上增长最快的产品；第一方模型 API 处理量达到每分钟近 320 亿 tokens，环比增长 40%，较一年前提升超四倍。公司同时正式宣布推出新一代前沿模型 Gemini 4 Carbon，并公布世界模型 Genie 4 的进展，同时预计 2027 年资本开支将「大幅增加」。\n\n当季营收 1276 亿美元（同比增长 25%）与利润均略低于华尔街预期，财报公布后股价在盘后交易中下跌约 9% 至 10%，投资者在云业务创纪录增长与高额投入、自由现金流为负之间进行权衡。\n\n受企业对 AI 基础设施、AI 解决方案及 TPU 系统的需求推动，Google Cloud 营收同比增长 103% 至 307 亿美元，Google Services 营收增长 11% 至 963 亿美元。公司维持 2026 年 1950 亿至 2050 亿美元的资本开支指引不变，未披露 2027 年具体金额；自由现金流连续第二个季度为负，首席财务官称部分原因是 TPU 库存增加及 52 亿美元欧盟罚款付款。",
       "entities": [
         "gemini"
       ],
@@ -207664,8 +207712,8 @@
       ],
       "updates": [
         {
-          "background_en": "",
-          "background_zh": "",
+          "background_en": "HIP-3, or \"Builder-Deployed Perpetuals\", is a Hyperliquid upgrade that went live on mainnet on October 13, 2025, allowing independent operators to permissionlessly launch their own perpetual futures markets on Hyperliquid's infrastructure. Perpetual futures are derivative contracts that track an asset's price without an expiration date, and Hyperliquid is the largest decentralized exchange for such instruments by DefiLlama data. According to the reporting, President Donald Trump said on Aug. 19 that CFTC Chair Michael Selig was working to bring Hyperliquid into the US in a \"fully compliant and legal fashion.\" Billionaire investor Stanley Druckenmiller, listed as a trade[XYZ] investor, said he was \"excited to be an investor in trade(xyz)\", and ICE has made a strategic investment.",
+          "background_zh": "HIP-3（即“构建者部署永续合约”）是 Hyperliquid 的一项升级，于 2025 年 10 月 13 日在主网上线，允许独立运营者在 Hyperliquid 基础设施上无需许可地创建自己的永续合约市场。永续合约是没有到期日、跟踪标的资产价格的衍生品合约，据 DefiLlama 数据，Hyperliquid 是此类合约全球最大的去中心化交易所。据报道，美国总统特朗普曾在 8 月 19 日表示，CFTC 主席 Michael Selig 正在推动以“完全合规且合法的方式”将 Hyperliquid 引入美国。被列为 trade[XYZ] 投资人的亿万富翁投资者 Stanley Druckenmiller 表示“很高兴成为 trade(xyz) 的投资者”，ICE 也进行了战略投资。",
           "community_discussion_en": "",
           "community_discussion_zh": "",
           "confidence": 0.75,
@@ -207676,8 +207724,8 @@
           "event_id": "evt_8d1fc68ab9cbd38f",
           "first_seen_at": "2026-10-29T11:01:12.753982Z",
           "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
+          "market_impact_en": "The announcement moved Hyperliquid's native token HYPE, which rose about 20% over 24 hours to trade above $96, approaching September's all-time high of $97.96, reflecting how the HYPE token and Hyperliquid's onchain perps venue are the most direct market exposure to the news. Any shift toward a regulated US venue would transmit through the regulatory and clearing channel rather than through immediate liquidity changes, since the plan remains subject to approvals and no market is live.",
+          "market_impact_zh": "该消息直接影响了 Hyperliquid 原生代币 HYPE，其 24 小时内上涨约 20%，价格突破 96 美元，逼近 9 月创下的 97.96 美元历史高点，显示 HYPE 代币与 Hyperliquid 链上永续合约场所是市场对该消息最直接的敞口。由于该计划仍需监管批准且尚未上线，任何向美国受监管场所的推进都将通过监管与清算渠道传导，而非立竿见影的流动性变化。",
           "material_change": true,
           "occurred_at": "2026-10-29T10:47:21Z",
           "published_at": "2026-10-29T10:47:21Z",
@@ -208413,7 +208461,7 @@
       "category": "crypto",
       "confidence": 0.75,
       "current_state_en": "ZachXBT alleges AXIS insiders received over 76M tokens (~$12M) from the team multisig and dumped roughly 42M (~$5.04M) via DEXs into Bitget, crashing the price 40% days after Binance, Coinbase and Upbit listings.",
-      "current_state_zh": "ZachXBT alleges AXIS insiders received over 76M tokens (~$12M) from the team multisig and dumped roughly 42M (~$5.04M) via DEXs into Bitget, crashing the price 40% days after Binance, Coinbase and Upbit listings.",
+      "current_state_zh": "链上调查员 ZachXBT 称，Axis Robotics 的疑似内部人士从团队多签钱包获得逾 7600 万枚 AXIS 代币（价值超过 1200 万美元），随后通过去中心化交易所抛售，并将资金存入 Bitget。据 ZachXBT 说法，其中一名内部人士直接从团队多签钱包抛售约 4200 万枚代币（约合 504 万 USDC），导致 AXIS 在登陆 Coinbase、Upbit 和 Binance 约一周后价格暴跌 40%。\n\nAxis Robotics 对此作出回应，称团队和投资者持有的 83.5% 代币仍锁定在由 Binance 共同管理的归属合约中，12 个月内不会解锁，并称被抛售的代币来自初始流通的生态分配额度，已交给一家场外交易对手方，而该对手方违反了锁仓条款。公司表示已暂停与该对手方的关系、启动法律程序，并承诺未来生态代币仅通过链上归属机制发放。\n\nZachXBT 质疑团队为何花了整整两天才注意到约 25% 的代币生成事件（TGE）流通量被抛售，以及为何在他发帖前团队既未阻止抛售、也未发布公开声明。双方对代币来源说法不一：ZachXBT 将其归因于团队多签钱包，而 Axis 归因于场外交易对手方违约。",
       "entities": [
         "axis",
         "crash",
@@ -208437,7 +208485,7 @@
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "ZachXBT: AXIS Insiders Dump ~42M Tokens From Team Multisig, Triggering 40% Crash",
-      "title_zh": "ZachXBT: AXIS Insiders Dump ~42M Tokens From Team Multisig, Triggering 40% Crash",
+      "title_zh": "ZachXBT：AXIS 内部人士从团队多签钱包抛售约 4200 万枚代币，引发 40% 暴跌",
       "topics": [
         "axis",
         "insider-dumping",
@@ -210094,7 +210142,7 @@
       "category": "technology",
       "confidence": 0.75,
       "current_state_en": "DoorDash announced it will acquire Instacart, consolidating two major delivery platforms and raising antitrust and competition questions in grocery and local commerce.",
-      "current_state_zh": "DoorDash announced it will acquire Instacart, consolidating two major delivery platforms and raising antitrust and competition questions in grocery and local commerce.",
+      "current_state_zh": "DoorDash 在其企业新闻中心宣布将收购 Instacart，把美国两家主要配送平台合并到同一家公司旗下。公告将这笔交易定位为帮助本地商家提升竞争力。\n\n这笔交易将把两个大型本地配送品牌集中到一家公司手中，社区讨论中随即出现了关于反垄断审查以及生鲜杂货与本地商业竞争格局将受到何种影响的问题。\n\nDoorDash 的公告称此次收购旨在帮助本地商家取胜。交易将把一家以餐饮外卖为主的平台与一家以生鲜杂货为主的平台合并。",
       "entities": [
         "doordash",
         "instacart"
@@ -210110,7 +210158,7 @@
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "DoorDash to acquire Instacart",
-      "title_zh": "DoorDash to acquire Instacart",
+      "title_zh": "DoorDash 宣布将收购 Instacart",
       "topics": [
         "acquisitions",
         "antitrust",
@@ -210165,81 +210213,6 @@
           "update_type": "initial",
           "what_changed_en": "DoorDash announced it will acquire Instacart, consolidating two major delivery platforms and raising antitrust and competition questions in grocery and local commerce.",
           "what_changed_zh": "DoorDash 在其企业新闻中心宣布将收购 Instacart，把美国两家主要配送平台合并到同一家公司旗下。公告将这笔交易定位为帮助本地商家提升竞争力。\n\n这笔交易将把两个大型本地配送品牌集中到一家公司手中，社区讨论中随即出现了关于反垄断审查以及生鲜杂货与本地商业竞争格局将受到何种影响的问题。\n\nDoorDash 的公告称此次收购旨在帮助本地商家取胜。交易将把一家以餐饮外卖为主的平台与一家以生鲜杂货为主的平台合并。"
-        }
-      ]
-    },
-    {
-      "category": "technology",
-      "confidence": 0.75,
-      "current_state_en": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
-      "current_state_zh": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
-      "entities": [
-        "chained",
-        "government",
-        "php",
-        "php2shell"
-      ],
-      "event_id": "evt_c4c247a6afd3fb92",
-      "event_type": "security_incident",
-      "first_seen_at": "2026-10-29T18:36:22.733169Z",
-      "identifiers": [],
-      "last_material_change_at": "2026-10-29T18:36:22.733169Z",
-      "last_updated_at": "2026-10-29T18:36:22.733169Z",
-      "legacy_thread_ids": [],
-      "merged_event_ids": [],
-      "schema_version": 1,
-      "status": "monitoring",
-      "title_en": "Chained PHP2Shell exploit roots 25 servers, including US Government servers",
-      "title_zh": "Chained PHP2Shell exploit roots 25 servers, including US Government servers",
-      "topics": [
-        "cybersecurity",
-        "government-systems",
-        "linux-kernel",
-        "php"
-      ],
-      "updates": [
-        {
-          "background_en": "",
-          "background_zh": "",
-          "community_discussion_en": "",
-          "community_discussion_zh": "",
-          "confidence": 0.75,
-          "current_state_en": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
-          "current_state_zh": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
-          "detailed_summary_en": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
-          "detailed_summary_zh": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
-          "event_id": "evt_c4c247a6afd3fb92",
-          "first_seen_at": "2026-10-29T18:36:22.733169Z",
-          "importance_score": 8.0,
-          "market_impact_en": "",
-          "market_impact_zh": "",
-          "material_change": true,
-          "occurred_at": "2026-10-29T10:42:41Z",
-          "published_at": "2026-10-29T10:42:41Z",
-          "references": [
-            {
-              "title": "Community discussion",
-              "url": "https://news.ycombinator.com/item?id=50286987"
-            }
-          ],
-          "sources": [
-            {
-              "label": "882542F3884314B",
-              "official": false,
-              "source_type": "hackernews",
-              "url": "https://dreamgroup.com/blog/chained-php2shell-exploit-roots-25-servers"
-            }
-          ],
-          "story_ids": [
-            "hackernews:story:50286987"
-          ],
-          "time_precision": "published",
-          "title_en": "Chained PHP2Shell exploit roots 25 servers, including US Government servers",
-          "title_zh": "Chained PHP2Shell exploit roots 25 servers, including US Government servers",
-          "update_id": "upd_d8da65f607988b9d",
-          "update_type": "initial",
-          "what_changed_en": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
-          "what_changed_zh": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface."
         }
       ]
     },
@@ -210324,7 +210297,7 @@
       "category": "crypto",
       "confidence": 0.75,
       "current_state_en": "Bitcoin developers moved quickly to patch three security vulnerabilities in the protocol's code after an AI system identified them, highlighting both the value and the risks of AI-driven vulnerability research on critical cryptocurrency infrastructure.",
-      "current_state_zh": "Bitcoin developers moved quickly to patch three security vulnerabilities in the protocol's code after an AI system identified them, highlighting both the value and the risks of AI-driven vulnerability research on critical cryptocurrency infrastructure.",
+      "current_state_zh": "据CryptoSlate报道，一个AI系统在比特币协议代码中发现了三个安全漏洞，开发者随后迅速完成了修复。这些漏洞是在AI辅助下被发现的，并由负责该代码库的开发者进行了修补。\n\n这一事件被视为一次双重示范：既体现了AI驱动漏洞研究对关键加密货币基础设施的价值，也暴露了其中的风险。",
       "entities": [],
       "event_id": "evt_d8cceaf710003a06",
       "event_type": "security_incident",
@@ -210337,7 +210310,7 @@
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "Bitcoin developers rush to fix 3 security flaws after AI uncovers them",
-      "title_zh": "Bitcoin developers rush to fix 3 security flaws after AI uncovers them",
+      "title_zh": "AI发现3个安全漏洞后，比特币开发者紧急修复",
       "topics": [
         "ai-security-research",
         "bitcoin-core",
@@ -214066,7 +214039,7 @@
       "category": "crypto",
       "confidence": 0.75,
       "current_state_en": "Ripple froze approximately $200 million in RLUSD linked to a suspected hack, while the attackers routed funds through Uniswap and Aave to convert freezable stablecoins into ETH and Kamino paused borrowing in its SOL/BTC markets.",
-      "current_state_zh": "Ripple froze approximately $200 million in RLUSD linked to a suspected hack, while the attackers routed funds through Uniswap and Aave to convert freezable stablecoins into ETH and Kamino paused borrowing in its SOL/BTC markets.",
+      "current_state_zh": "据 Decrypt 报道，币安联席 CEO 何一表示 Ripple 已冻结约 2 亿美元 RLUSD。疑似黑客正通过 Uniswap 和 Aave 将可被冻结的稳定币兑换为 ETH，Kamino 已暂停其 SOL/BTC 市场的借贷。\n\n此次冻结显示发行方大规模动用黑名单能力处置疑似被盗资金；而攻击者经由去中心化交易所和借贷协议换成 ETH，说明可冻结稳定币正被转换为发行方无法冻结的资产。Kamino 暂停借贷则表明应对措施已外溢至 Solana 借贷市场。\n\n该金额来自币安联席 CEO 何一的说法，并由 Decrypt 引述，完整损失归因仍在形成中。Kamino 的暂停措施针对其 SOL/BTC 市场的借贷。",
       "entities": [
         "dex",
         "ripple",
@@ -218001,7 +217974,7 @@
       "category": "technology",
       "confidence": 0.75,
       "current_state_en": "Intel shares fell nearly 30% to $65.76 — its worst one-day drop in more than 50 years — after Q4 revenue guidance of $15-16B and EPS of $0.25 badly missed estimates, wiping out over $146 billion in market value even as AI server chip demand stays strong but is constrained by manufacturing and packaging shortages.",
-      "current_state_zh": "Intel shares fell nearly 30% to $65.76 — its worst one-day drop in more than 50 years — after Q4 revenue guidance of $15-16B and EPS of $0.25 badly missed estimates, wiping out over $146 billion in market value even as AI server chip demand stays strong but is constrained by manufacturing and packaging shortages.",
+      "current_state_zh": "英特尔股价周五暴跌近30%至65.76美元，创下50多年来最大单日跌幅，市值蒸发逾1460亿美元。此前公司给出的第四季度指引为营收150亿至160亿美元（中值155亿美元）、调整后每股收益0.25美元，远低于分析师预期的170.7亿美元和0.43美元。\n\n英特尔表示，其AI服务器处理器需求旺盛，但制造和封装环节的短缺限制了芯片产量，因此AI基础设施建设的需求未能转化为近期营收。公司还预计PC市场将持续萎缩至2027年。\n\n第三季度业绩超出指引：营收同比增长21%至165亿美元，调整后每股收益0.52美元，高于华尔街预期的0.40美元，其中数据中心与AI部门营收73亿美元，同比增长78%。英特尔预计第四季度非GAAP毛利率将从44.1%降至38%；首席财务官Dave Zinsner将毛利率下滑归因于PC需求疲软、服务器处理器制造受限以及以色列一座工厂发生事故，并警告公司明年很可能无法产生正的自由现金流。",
       "entities": [
         "chip",
         "crash",
@@ -218026,7 +217999,7 @@
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "Intel Stock Suffers Worst Crash in 50 Years as Weak Forecast Overshadows AI Chip Demand",
-      "title_zh": "Intel Stock Suffers Worst Crash in 50 Years as Weak Forecast Overshadows AI Chip Demand",
+      "title_zh": "英特尔股价遭遇50年来最惨烈暴跌，疲软业绩指引盖过AI芯片需求",
       "topics": [
         "ai-hardware",
         "earnings-guidance",
@@ -218642,6 +218615,235 @@
           "what_changed_zh": "Iran's Supreme Leader Mojtaba Khamenei ordered his armed forces to respond immediately and effectively to any enemy threat without geographic restriction, and to refresh target lists to cover US and Israeli assets, signaling a more aggressive deterrence posture."
         }
       ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance.",
+      "current_state_zh": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance.",
+      "entities": [
+        "chainalysis",
+        "delaying",
+        "emergency",
+        "launder",
+        "pause",
+        "reorg",
+        "thorchain",
+        "triggers"
+      ],
+      "event_id": "evt_3d860f1dc144e46c",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-31T21:21:29.634560Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-31T21:21:29.634560Z",
+      "last_updated_at": "2026-10-31T21:21:29.634560Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Chainalysis: Ethereum Reorg Triggers THORChain Emergency Pause, Delaying Launder",
+      "title_zh": "Chainalysis: Ethereum Reorg Triggers THORChain Emergency Pause, Delaying Launder",
+      "topics": [
+        "chain-reorg",
+        "cross-chain",
+        "security-incident",
+        "thorchain"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance.",
+          "current_state_zh": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance.",
+          "detailed_summary_en": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance.",
+          "detailed_summary_zh": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance.",
+          "event_id": "evt_3d860f1dc144e46c",
+          "first_seen_at": "2026-10-31T21:21:29.634560Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-31T17:58:19Z",
+          "published_at": "2026-10-31T17:58:19Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/chainalysis-ethereum-reorg-thorchain-emergency-pause-delays-binance-hack-laundering-21467"
+            }
+          ],
+          "story_ids": [
+            "telegram:wublockchainenglish:26635"
+          ],
+          "time_precision": "published",
+          "title_en": "Chainalysis: Ethereum Reorg Triggers THORChain Emergency Pause, Delaying Launder",
+          "title_zh": "Chainalysis: Ethereum Reorg Triggers THORChain Emergency Pause, Delaying Launder",
+          "update_id": "upd_50a4e7505f5f2aa3",
+          "update_type": "initial",
+          "what_changed_en": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance.",
+          "what_changed_zh": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements.",
+      "current_state_zh": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements.",
+      "entities": [
+        "after",
+        "cve",
+        "cvss",
+        "free",
+        "tcp",
+        "use",
+        "use-after-free"
+      ],
+      "event_id": "evt_302c05cd2149ece0",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-10-31T21:21:32.820414Z",
+      "identifiers": [
+        "cve-2026",
+        "cve-2026-98432"
+      ],
+      "last_material_change_at": "2026-10-31T21:21:32.820414Z",
+      "last_updated_at": "2026-10-31T21:21:32.820414Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "TCP Use-After-Free: CVE-2026-98432 / CVSS 9.8",
+      "title_zh": "TCP Use-After-Free: CVE-2026-98432 / CVSS 9.8",
+      "topics": [
+        "cve",
+        "linux-kernel",
+        "tcp",
+        "use-after-free"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements.",
+          "current_state_zh": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements.",
+          "detailed_summary_en": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements.",
+          "detailed_summary_zh": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements.",
+          "event_id": "evt_302c05cd2149ece0",
+          "first_seen_at": "2026-10-31T21:21:32.820414Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-31T19:16:30Z",
+          "published_at": "2026-10-31T19:16:30Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50319143"
+            }
+          ],
+          "sources": [
+            {
+              "label": "oger",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://atlasum.net/blog/cve-2026-98432-linux-ipv4-tcp-uaf"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50319143"
+          ],
+          "time_precision": "published",
+          "title_en": "TCP Use-After-Free: CVE-2026-98432 / CVSS 9.8",
+          "title_zh": "TCP Use-After-Free: CVE-2026-98432 / CVSS 9.8",
+          "update_id": "upd_6d8b40c59452073b",
+          "update_type": "initial",
+          "what_changed_en": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements.",
+          "what_changed_zh": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Jepsen's audit of ParticleDB 1.1.4 documents 96 defects — including lost committed writes, aborted and intermediate reads, lost updates, invisible undeletable rows and WHERE 4 = 5 — finds no evidence for the project's advertised TLA+ formal proof, and recommends users halt deployment and migrate to other databases.",
+      "current_state_zh": "Jepsen's audit of ParticleDB 1.1.4 documents 96 defects — including lost committed writes, aborted and intermediate reads, lost updates, invisible undeletable rows and WHERE 4 = 5 — finds no evidence for the project's advertised TLA+ formal proof, and recommends users halt deployment and migrate to other databases.",
+      "entities": [
+        "jepsen",
+        "particledb"
+      ],
+      "event_id": "evt_026f10f0f4dc9964",
+      "event_type": "other",
+      "first_seen_at": "2026-10-31T21:21:32.820560Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-10-31T21:21:32.820560Z",
+      "last_updated_at": "2026-10-31T21:21:32.820560Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Jepsen: ParticleDB 1.1.4",
+      "title_zh": "Jepsen: ParticleDB 1.1.4",
+      "topics": [
+        "databases",
+        "distributed-systems",
+        "jepsen-analysis",
+        "software-quality",
+        "transactional-consistency"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Jepsen's audit of ParticleDB 1.1.4 documents 96 defects — including lost committed writes, aborted and intermediate reads, lost updates, invisible undeletable rows and WHERE 4 = 5 — finds no evidence for the project's advertised TLA+ formal proof, and recommends users halt deployment and migrate to other databases.",
+          "current_state_zh": "Jepsen's audit of ParticleDB 1.1.4 documents 96 defects — including lost committed writes, aborted and intermediate reads, lost updates, invisible undeletable rows and WHERE 4 = 5 — finds no evidence for the project's advertised TLA+ formal proof, and recommends users halt deployment and migrate to other databases.",
+          "detailed_summary_en": "Jepsen's audit of ParticleDB 1.1.4 documents 96 defects — including lost committed writes, aborted and intermediate reads, lost updates, invisible undeletable rows and WHERE 4 = 5 — finds no evidence for the project's advertised TLA+ formal proof, and recommends users halt deployment and migrate to other databases.",
+          "detailed_summary_zh": "Jepsen's audit of ParticleDB 1.1.4 documents 96 defects — including lost committed writes, aborted and intermediate reads, lost updates, invisible undeletable rows and WHERE 4 = 5 — finds no evidence for the project's advertised TLA+ formal proof, and recommends users halt deployment and migrate to other databases.",
+          "event_id": "evt_026f10f0f4dc9964",
+          "first_seen_at": "2026-10-31T21:21:32.820560Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-10-31T13:39:52Z",
+          "published_at": "2026-10-31T13:39:52Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50316100"
+            }
+          ],
+          "sources": [
+            {
+              "label": "aphyr",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://jepsen.io/analyses/particledb-1.1.4"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50316100"
+          ],
+          "time_precision": "published",
+          "title_en": "Jepsen: ParticleDB 1.1.4",
+          "title_zh": "Jepsen: ParticleDB 1.1.4",
+          "update_id": "upd_19ef51a00bbf8ae8",
+          "update_type": "initial",
+          "what_changed_en": "Jepsen's audit of ParticleDB 1.1.4 documents 96 defects — including lost committed writes, aborted and intermediate reads, lost updates, invisible undeletable rows and WHERE 4 = 5 — finds no evidence for the project's advertised TLA+ formal proof, and recommends users halt deployment and migrate to other databases.",
+          "what_changed_zh": "Jepsen's audit of ParticleDB 1.1.4 documents 96 defects — including lost committed writes, aborted and intermediate reads, lost updates, invisible undeletable rows and WHERE 4 = 5 — finds no evidence for the project's advertised TLA+ formal proof, and recommends users halt deployment and migrate to other databases."
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -218970,6 +219172,10 @@
       "evt_512138b79ed24289",
       "evt_58a4143bdf8ddcea",
       "evt_6d708c31a6b3a559"
+    ],
+    "cve": [
+      "evt_302c05cd2149ece0",
+      "evt_94999c20d2abb3e4"
     ],
     "dao": [
       "evt_329f780e584ce312",
@@ -219658,8 +219864,8 @@
       "evt_9702149cefb7d640"
     ],
     "spyware": [
-      "evt_a320523f413b5d32",
-      "evt_c594d0e29e7b400b"
+      "evt_c594d0e29e7b400b",
+      "evt_ef55a9b094f31e63"
     ],
     "stablecoins": [
       "evt_0c4cae1c3aaeb057",
@@ -251589,7 +251795,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Tether's quarterly attestation shows $1.5B in Q3 net operating profit and a reserve buffer (excess reserves) roughly doubling to nearly $8B, a material strengthening of the largest stablecoin issuer's balance sheet. This is a genuine in-window disclosure with clear market-structure relevance for USDT holders and counterparties, though it is a scheduled financial update rather than a paradigm shift, so it sits below systemic-event territory.",
         "ai_score": 7.0,
@@ -251626,7 +251832,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A concrete market-access development: MEXC is withdrawing services from four countries, forcing affected users to move funds and lose access to a large offshore exchange. This is a material exchange-operations and jurisdictional-compliance event with direct user impact, though it falls short of a systemic or industry-structure-shaping event (no insolvency, no platform-wide fee or product change).",
         "ai_score": 7.0,
@@ -251664,7 +251870,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A statement by the CFTC Chair defending federal jurisdiction over Kalshi against state-level prosecution carries a clear transmission path to prediction-market and crypto-adjacent derivatives oversight, signaling a likely federal-state legal conflict. It is a notable regulatory development but a rhetorical/policy position rather than a binding ruling, so it falls short of the landmark-regulation tier.",
         "ai_score": 7.0,
@@ -251702,7 +251908,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A record $6.3 billion theft from Binance linked to North Korean hackers is a systemic exchange-security event with massive user and market impact, far exceeding the threshold for a top-severity incident.",
         "ai_score": 10.0,
@@ -251735,7 +251941,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A reported multi-billion-dollar theft from Binance, described as the largest-ever crypto hack, is a landmark exchange security incident with systemic market implications; Binance's assurance that user funds are safe and that stolen assets will be covered mitigates but does not erase the severity.",
         "ai_score": 9.5,
@@ -251768,7 +251974,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "A reported $6 billion heist at Binance — the world's largest exchange — with FBI involvement represents a systemic security and market event far exceeding the >$500M theft threshold, with material user and market-wide impact.",
         "ai_score": 9.5,
@@ -251801,7 +252007,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A reported $6.3B loss at Binance — the largest exchange by volume — is a systemic-scale security incident with direct implications for customer fund safety, withdrawal access and market confidence, placing it at the top of the scale (a >$500M theft / major exchange failure tier event). The CNBC piece is an explainer on what happens to user money when an exchange is hacked, but it is anchored to a concrete, material in-window development rather than recycled background. No community discussion is provided, so the score reflects the magnitude of the underlying event rather than commentary quality.",
         "ai_score": 9.5,
@@ -251834,7 +252040,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A multibillion-dollar compromise of Binance, the largest exchange by volume, is a systemic security event well past the >$500M theft threshold, with immediate transmission to spot prices and counterparty confidence. The article is a market-reaction piece, but the underlying development is a concrete, in-window exchange breach rather than recycled background, so it warrants top-tier scoring.",
         "ai_score": 9.5,
@@ -251867,7 +252073,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A $6.3B exchange security incident would be one of the largest crypto thefts ever and systemically important; new attribution by blockchain intelligence firms to North Korea adds material significance. No comments were provided to assess discussion quality.",
         "ai_score": 9.5,
@@ -251900,7 +252106,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A reported $6.3B theft at Binance — the largest exchange by volume — with withdrawals suspended is a systemic-scale security and market-structure event, well beyond the $500M threshold for top-tier scoring. It combines a confirmed platform-level exploit, frozen user funds, and direct contagion risk for broader crypto markets. Only the lack of granular on-chain or official confirmation in the item itself keeps it just under a perfect 10.",
         "ai_score": 9.5,
@@ -251933,7 +252139,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A confirmed $6.3 billion theft at Binance, the largest crypto exchange, with a pledge to cover losses, is a systemic security and market-structure event with material user and industry impact. It exceeds the threshold for a >$500M theft and warrants top-tier importance.",
         "ai_score": 9.5,
@@ -251966,7 +252172,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A reported $6.3 billion security breach at Binance, the largest crypto exchange, accompanied by a withdrawal halt is a systemic event with severe market-access, liquidity, and contagion implications. The scale exceeds major exchange incident thresholds and could materially reshape industry structure and user trust.",
         "ai_score": 9.5,
@@ -251999,7 +252205,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A simultaneous trading suspension at Binance, the largest global exchange, and Polymarket, the dominant prediction market, following hacks is a systemic-scale security event with direct user impact — squarely in the 9-10 band. Even without loss figures in the headline, halting trading on two market-structure-critical platforms transmits immediately to liquidity, collateral, and price discovery across the industry.",
         "ai_score": 9.5,
@@ -252032,7 +252238,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A sitting U.S. president publicly confirming a probe into a Binance hack elevates an exchange security incident into a systemic market and policy event, with clear transmission to industry-wide rulemaking. The combination of a top-exchange compromise and presidential/regulatory escalation places this well above routine security news, though the lack of quantified losses or confirmed scope keeps it short of the 9.5+ systemic tier.",
         "ai_score": 8.5,
@@ -252070,7 +252276,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "The headline reports a massive $6.3 billion theft linked to Binance hackers and novel laundering methods used to conceal proceeds, making it a high-impact exchange security and illicit-finance development.",
         "ai_score": 8.5,
@@ -252108,7 +252314,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Headline reports a hack at Binance — the largest exchange — triggering roughly $1.5B in liquidations and a broad hit to market confidence. If borne out, an exchange security breach of this scale is a systemic, market-wide event that clears the threshold for a high-severity security incident (>$50M impact) and is far above routine exchange news. The item is scored just below the top band because only the headline framing is available and the specific attack vector, loss figure, and confirmation status are not yet established.",
         "ai_score": 8.5,
@@ -252141,7 +252347,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A hack at Binance, the largest crypto exchange, is a high-impact security event with potential material user and market consequences, and the North Korea link adds sanctions/enforcement dimensions. However, the item is only a CNN video segment headline with no confirmed loss figures, affected assets, or remediation details, so it cannot be scored at the level of a confirmed >$50M exploit. Impact is high but evidentiary specificity is thin.",
         "ai_score": 8.0,
@@ -252174,7 +252380,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A confirmed security incident at Binance, the largest crypto exchange, with a pledge to cover all user losses is a high-impact operational and security event. The severity depends on the scale of losses and scope, but a top-exchange incident directly affecting users warrants immediate attention.",
         "ai_score": 8.0,
@@ -252206,7 +252412,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Withdrawal delays at Jupiter Lend, a major Solana DeFi lending venue, are a material protocol-level stress event: liquidity crunches that block user exits directly impair depositor access to funds and can spill over into broader Solana DeFi sentiment. It falls short of the 8.5-9.0 band reserved for confirmed exploits or systemic insolvency because the report frames it as a liquidity shortfall rather than a loss of funds, but it is far more consequential than routine product updates.",
         "ai_score": 8.0,
@@ -252278,7 +252484,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Intel is a major semiconductor firm, and a stock crash that erases $12B from a government stake is a materially significant market development with clear implications for AI hardware demand, PC pricing, and public investment exposure. However, it is a market reaction to demand and component-supply pressures rather than a structural breakthrough or systemic industry event.",
         "ai_score": 7.5,
@@ -252312,7 +252518,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A concrete financial-market development around a leading AI lab's IPO process: reports that Anthropic is expected to draw a high junk credit rating signals progress toward a public listing and sets an important valuation/funding-cost benchmark for the frontier AI sector. It is not a model or safety breakthrough, and the underlying report is second-hand, which keeps it below the 8+ tier, but the implications for AI-lab financing and IPO markets are material.",
         "ai_score": 7.5,
@@ -252348,7 +252554,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Headline points to a major exchange allocating a multi-billion-dollar reserve against a hack, which implies a materially large security incident and balance-sheet response with direct user-confidence implications for the largest venue. Delivered as a daily-newsletter link with limited detail, so it sits below the confirmed >$50M exploit tier and is scored as high-value rather than groundbreaking pending loss/restoration specifics.",
         "ai_score": 7.5,
@@ -252386,7 +252592,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Aave, the largest DeFi lending protocol, reopening its markets after a disruption while imposing zero loan-to-value on nine assets is a material risk-management and market-structure development for DeFi users and integrators. The zero-LTV constraint effectively disables borrowing against those collateral assets, signaling lingering solvency/oracle concerns; it is a concrete in-window protocol operations decision rather than routine maintenance, though it falls short of a systemic or widely-impacting exploit in its own right.",
         "ai_score": 7.5,
@@ -252423,7 +252629,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A major exchange publicly flagging a 'potential security issue' alongside a stated $2.5 billion in frozen funds across crypto firms is a material security/operations development with real market and user-protection implications, putting it in high-value territory. The score is held below the 8.5+ exploit threshold because the item is a short video news segment with no confirmed loss figure, named affected protocol, or attack vector, leaving the direct user impact unverified.",
         "ai_score": 7.5,
@@ -252456,7 +252662,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A withdrawal deadline/target imposed by the largest exchange is a material operational change with direct implications for user fund access, warranting immediate attention. However, the development stops short of a confirmed insolvency, exploit, or systemic failure, and the report provides no evidence of losses or platform-wide withdrawal suspension, keeping it below the 8+ tier.",
         "ai_score": 7.0,
@@ -253906,6 +254112,417 @@
         "source_type": "google_news",
         "title": "Chainalysis says hacker using 'offensive agentic techniques' accessed its customers' names and emails",
         "url": "https://www.theblock.co/news/business/2026-10-31-chainalysis-says-hacker-using-offensive-agentic-techniques-accessed-its-customers-names-and-emails-432244"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A record-breaking heist at Binance is a systemic exchange security event with material user impact; the confirmation that losses have been replenished and withdrawals will resume is a highly significant in-window development for market confidence and platform solvency.",
+        "ai_score": 9.5,
+        "ai_summary": "Binance said it has replenished losses from a record-breaking heist and will soon restore user withdrawals.",
+        "ai_tags": [
+          "Binance",
+          "exchange hack",
+          "withdrawals",
+          "security incident",
+          "user funds"
+        ],
+        "author": "Business Insider",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMif0FVX3lxTE5BX3pUMmxhdFRRT0tvNWVBNmk5V0dMV1E5TjM0M194YlNvdDJ4MDZ5V2x2OE1uTkVzZ2dGVjBqeW9rZVl0Z1NUSEFiZldwNGk2a19nVlZrakV2SkZlTFBSMDR3cjU2dlAzZTh4YzUzNmo1Y0ZUcHlqN1Bvb3VpN00?oc=5\" target=\"_blank\">Binance says it's replenished losses after a record-breaking heist and will soon let users withdraw funds</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Business Insider</font>",
+        "fetched_at": "2026-10-31T21:21:29.201636Z",
+        "id": "google_news:article:b01531c3f6812ee2",
+        "metadata": {
+          "category": "exchange-announcements",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.businessinsider.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "Business Insider"
+        },
+        "published_at": "2026-10-31T16:46:28Z",
+        "source_type": "google_news",
+        "title": "Binance says it's replenished losses after a record-breaking heist and will soon let users withdraw funds",
+        "url": "https://www.businessinsider.com/binance-hack-heist-crypto-security-2026-10"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "This is a major update on a systemic exchange security incident involving $6.3 billion in losses. The announcement that 90% of losses are covered and withdrawals will resume Sunday has direct material impact on user access, market confidence, and exchange solvency perceptions, making it one of the most consequential exchange developments in the window.",
+        "ai_score": 9.5,
+        "ai_summary": "Binance announced that 90% of the $6.3 billion in hack-related losses has been covered and that withdrawals will resume on Sunday.",
+        "ai_tags": [
+          "binance",
+          "exchange-security",
+          "hack-recovery",
+          "withdrawals",
+          "exchange-operations"
+        ],
+        "author": "CNBC",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiggFBVV95cUxQZDA1ck9VUktfdWl0NkxvRWlCdjYxLU1CdDdjNmxkbXRObGN4d2phU2xaSWJFRWdtOHlWOFhTSUZfRlJQbjhSZGJBYVFOOTVkTkhqb0I5ZHJZelcwdVFWSmlGRjNyU203cGMxRzMyeFhKQVhxaEFIdHFmdGtMLUp1ZUhR0gGHAUFVX3lxTFBiTEZkazA0N0NudVJaM0ZGb0pQLWJ5QkFzd1N2UkJFZzkwYll3aTdFZC1ZOEIyS0FPOHRONVNMejR3RjRFdFpRVnZ6eTRmQ0FDZEg5TndvN1ZNM3pxNWZQcWo2MlN6MWxGRk10b19UVFgtd3M5dUVKVlBGZFBFNnZaQ2dtVWtaTQ?oc=5\" target=\"_blank\">Binance says 90% of $6.3 billion hack losses are now covered, plans to resume withdrawals Sunday</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CNBC</font>",
+        "fetched_at": "2026-10-31T21:21:29.202078Z",
+        "id": "google_news:article:55b1c3f33e19267e",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.cnbc.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "CNBC"
+        },
+        "published_at": "2026-10-31T16:03:24Z",
+        "source_type": "google_news",
+        "title": "Binance says 90% of $6.3 billion hack losses are now covered, plans to resume withdrawals Sunday",
+        "url": "https://www.cnbc.com/2026/10/31/binance-hack-asset-coverage-withdrawals.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A reported $6.3 billion Binance hack is a systemic exchange security incident with material user and market impact, and the centralization paradox adds significant structural implications. The scale far exceeds the >$500M threshold for a landmark event.",
+        "ai_score": 9.5,
+        "ai_summary": "A $6.3 billion Binance hack highlights how centralized exchange control enabled the breach while also reportedly saving $3 billion, exposing major trade-offs in crypto market structure.",
+        "ai_tags": [
+          "Binance",
+          "exchange hack",
+          "security incident",
+          "centralization",
+          "market impact"
+        ],
+        "author": "CoinDesk",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi5AFBVV95cUxOSk9hTW14SnI5eGtpZktoWTVBM0VTX081anlJSkZkOHhxMzlGd0dxNGxiSnlsb2d0SEhuQXVuQWgtUjB0a0otWnJycUhyWXdtSHJfZXhIS19ieXRETlZTcnFneU5yYXFxVUxKb2ZZbC1IeVFWdVB4VWJxTkZJekVia2QtRndqLWZ4b0xubmFIRGVwUFQxSUhUaHpJd1FyVmJXbHRad055NTdPdDdZal8tNGZ2aEl0RVpFNWJtUXMtNlh1Y3QyVkNUTjVDanpUQkNlUXZkTVQ5NzRLdllpVk92a0doSDE?oc=5\" target=\"_blank\">The $6.3 billion Binance hack paradox: Centralization made the hack possible, but also saved $3 billion</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CoinDesk</font>",
+        "fetched_at": "2026-10-31T21:21:29.202684Z",
+        "id": "google_news:article:91b87af9dfcb404f",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.coindesk.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "CoinDesk"
+        },
+        "published_at": "2026-10-31T12:00:00Z",
+        "source_type": "google_news",
+        "title": "The $6.3 billion Binance hack paradox: Centralization made the hack possible, but also saved $3 billion",
+        "url": "https://www.coindesk.com/business/2026/10/31/the-usd6-3-billion-binance-hack-paradox-centralization-made-the-hack-possible-but-also-saved-usd3-billion"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Reports a $6.3bn Binance heist and an industry-wide rush by crypto exchanges to tighten security. The scale far exceeds systemic thresholds for exchange security incidents, with material implications for user funds, custody practices, and market confidence. The in-window development is the broad security response, while the underlying heist makes the event systemic rather than routine.",
+        "ai_score": 9.5,
+        "ai_summary": "Financial Times reports that crypto exchanges are tightening security following a $6.3bn Binance heist, underscoring systemic concerns over exchange custody and operational resilience.",
+        "ai_tags": [
+          "Binance",
+          "exchange security",
+          "heist",
+          "crypto exchanges",
+          "market impact"
+        ],
+        "author": "Financial Times",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxPMlhkZVRjcVo3aTIxVDNSSUp2NlJDWTdpbnJSWEpuLTU4dm5Qd3Y5VUJMNWpGVHB0R19VTW1BbzA5a2ZUaURtLUNLdGVnUVJRcHZCOUV0UWVyUnlSaDE0QkVqcXltY1hhbW1NZ2t1ZXV3TGxSNDdBVkFEWHRQbjRBczRULTI?oc=5\" target=\"_blank\">Crypto exchanges rush to tighten security after $6.3bn Binance heist</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Financial Times</font>",
+        "fetched_at": "2026-10-31T21:21:29.201152Z",
+        "id": "google_news:article:3fa7f9c9ab8afab8",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.ft.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Financial Times"
+        },
+        "published_at": "2026-10-31T10:38:18Z",
+        "source_type": "google_news",
+        "title": "Crypto exchanges rush to tighten security after $6.3bn Binance heist",
+        "url": "https://www.ft.com/content/c7062e37-86fd-45ef-8f58-573de0fcaaf0?syn-25a6b1a6=1"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A $6.3 billion theft at Binance — the largest exchange, and an order of magnitude beyond prior exchange hacks — is a systemic-market event with direct user-fund and contagion implications. The piece is an explainer rather than a breaking-news scoop, which slightly caps the score relative to original reporting, but the underlying development (attribution to cybercriminals/North Korea-linked actors, scale of losses) is squarely in the top tier of exchange security incidents. No comment thread was provided, so discussion quality cannot be assessed.",
+        "ai_score": 9.0,
+        "ai_summary": "NPR publishes a plain-language explainer on a $6.3 billion crypto theft from Binance, breaking down how the attack unfolded and how cybercriminals linked to North Korea carried it out.",
+        "ai_tags": [
+          "binance",
+          "exchange-security",
+          "crypto-hacks",
+          "north-korea",
+          "market-contagion"
+        ],
+        "author": "NPR",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxOMnR5TTFvMkN1Z0ZLOVdZSGZkRUYyMkhNNldJU19Yb2ZXV2NqT2YxUUFuN2RyNWdjUEwwVzJSbVpxbXFzbC12OGdYdzk5RDVnaE8zTGNaN01PakU2VW5vUzVFblBmRlI1VVlyaWZjcmFwZjdYZW1ScTM2cktHc0FPeXhYSXE1ZTdhOWtfR01ucjJpQVA0Nl9HMQ?oc=5\" target=\"_blank\">A simple explainer of the massive $6.3 billion crypto heist at Binance</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">NPR</font>",
+        "fetched_at": "2026-10-31T21:21:29.200743Z",
+        "id": "google_news:article:6b4d5e0cc4c36480",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.npr.org",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "NPR"
+        },
+        "published_at": "2026-10-31T18:11:02Z",
+        "source_type": "google_news",
+        "title": "A simple explainer of the massive $6.3 billion crypto heist at Binance",
+        "url": "https://www.npr.org/2026/10/31/nx-s1-6024426/binance-crypto-heist-cyber-criminals-north-korea"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A planned draw of roughly half of Binance's SAFU user-protection fund to cover breach losses signals a security incident of systemic scale at the largest exchange, with direct implications for user funds and exchange solvency/insurance practices. Impact is high given the size of SAFU, though the source is a single headline-level report without independently verified loss figures, so it sits below the 9.0+ tier reserved for confirmed multi-hundred-million-dollar thefts.",
+        "ai_score": 8.5,
+        "ai_summary": "Binance intends to draw down approximately half of its Secure Asset Fund for Users (SAFU) to cover losses from a breach, a move that would mark one of the largest deployments of exchange insurance reserves to date.",
+        "ai_tags": [
+          "binance",
+          "safu",
+          "security-breach",
+          "exchange-operations",
+          "user-funds"
+        ],
+        "author": "TOKENPOST",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTFA5UkxWdlFWeDF6SDNjZWxrRmtYTHBYSlpvdE02WEEzTF9VemotaEM4U1gxWlo2aHRtSVN0WVMzSEdlY3ZrNUFQVVBuTHR4QS1XNFN6XzBZdXUxU28?oc=5\" target=\"_blank\">Binance Plans to Draw Half of SAFU Fund for Breach Losses</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">TOKENPOST</font>",
+        "fetched_at": "2026-10-31T21:21:29.204116Z",
+        "id": "google_news:article:a4aa00019c196624",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.tokenpost.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "TOKENPOST"
+        },
+        "published_at": "2026-10-31T19:03:23Z",
+        "source_type": "google_news",
+        "title": "Binance Plans to Draw Half of SAFU Fund for Breach Losses",
+        "url": "https://www.tokenpost.com/news/technology/45593"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Confirmed security incident in which roughly 97 million CORE tokens were drained from b14g, forcing the protocol to pause its contracts. A nine-figure token loss and emergency contract shutdown give this material user impact and clear implications for DeFi security on Core; it falls short of the 8.5-9.0 band only because the USD-equivalent loss and the extent of contagion to wider markets are not yet established.",
+        "ai_score": 8.0,
+        "ai_summary": "b14g reported that about 97 million CORE tokens were drained in an exploit and paused its smart contracts in response.",
+        "ai_tags": [
+          "exploit",
+          "security",
+          "CORE",
+          "DeFi",
+          "contract-pause"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxQdVBpRlZkcXctUG9ETHRiMDZ1STA4S1lubTFmRHN0Wmxua0RPUk5PTUhSSTlYTXRFRjZXS21BT19hV0o2cDJHMXFQMUI4NEtFT2ptdjc3XzNRSDhWTVBnSnctYl96V2o4RVE0VUdEZTBRYzJyQU1ZcU5MUWV4MkR6dGFkOVp5X2oydXVF?oc=5\" target=\"_blank\">b14g Says 97 Million CORE Drained, Pauses Contracts</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-31T21:21:36.597151Z",
+        "id": "google_news:article:09273bc9716bc6ac",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-31T10:29:00Z",
+        "source_type": "google_news",
+        "title": "b14g Says 97 Million CORE Drained, Pauses Contracts",
+        "url": "https://thedefiant.io/news/hacks/b14g-says-97-million-core-drained-pauses-contracts"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "The item reports a material exchange-security response: exchanges are tightening protections and OKX is calling for real-time alerts after a $6.3B Binance hack. The new development is the industry security push rather than a fresh hack disclosure, making it high-value exchange-operations news but not a standalone systemic event.",
+        "ai_score": 7.5,
+        "ai_summary": "Crypto exchanges are strengthening security and OKX is urging real-time alerts following a $6.3 billion Binance hack.",
+        "ai_tags": [
+          "Binance hack",
+          "exchange security",
+          "OKX",
+          "real-time alerts",
+          "crypto exchanges"
+        ],
+        "author": "CryptoRank",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMizAFBVV95cUxOQ1JPTFhzNm95UlJNXzBXS3hYWTRPSFZkNDRDNFVaMDFsdFZmWVdGNUtSVVVqV1c0Q0t4T0RDZnRIUkNPUnctazdIN3JlY1VsUDJCY3JiVWpNUTN3Yk05a0xWZHM3dTN5YlFnS3dvaVFEbTdyckRQMDZzRnJ5MlR1MWtsTV91M2JuZk1CM1c5ZGhEVWtvZV8tM0VvdVVMbmlLSzNfeFV5dl9nNFRZalJncGZMVXV3SXVjMWtYODdpV2hHc0xsNXdDNERsWk0?oc=5\" target=\"_blank\">Crypto Exchanges Strengthen Security After $6.3B Binance Hack as OKX Calls for Real-Time Alerts</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoRank</font>",
+        "fetched_at": "2026-10-31T21:21:29.202200Z",
+        "id": "google_news:article:00137dce02b4e3c5",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://cryptorank.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "CryptoRank"
+        },
+        "published_at": "2026-10-31T17:04:59Z",
+        "source_type": "google_news",
+        "title": "Crypto Exchanges Strengthen Security After $6.3B Binance Hack as OKX Calls for Real-Time Alerts",
+        "url": "https://cryptorank.io/news/feed/7f38c-crypto-exchanges-strengthen-security-after-6-3b-binance-hack-as-okx-calls-for-real-time-alerts"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "The item surfaces a materially significant event — a $6.3B Binance hack, an order of magnitude beyond any prior exchange breach — but the article itself is a CNBC video segment of Bitwise's Matt Hougan offering forward-looking opinion that Bitcoin's long-term trajectory is unaffected. It adds a credible institutional voice and market-impact framing rather than new incident facts (attack vector, reimbursement, withdrawal status), so it carries high contextual value but is commentary, not the primary disclosure of the breach.",
+        "ai_score": 7.5,
+        "ai_summary": "Bitwise CIO Matt Hougan argues that the $6.3 billion Binance hack is a short-term shock that will not damage Bitcoin's long-term investment case.",
+        "ai_tags": [
+          "binance",
+          "exchange-hack",
+          "bitcoin",
+          "market-commentary",
+          "security"
+        ],
+        "author": "CNBC",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxPajFCREZZWjlidFVPY29BUU4zcm10UmhxdUgxeVZfbERKYVYxVnlRQjFNOVUyeURZUnRVdFdYa3pnUFF2TnBsc2tCb0dZNjVXTjRvLUF4ckxTY0dlNkxBNU9XWTc4Q1VlRHlGUXVkQ3ZEMjVfSzh5TXNaRXFtdVlfdl9ReXZuRVhNcE9PaldfQ05xRklSTllIV1J1WTJEMmtsekJYQzZqR3dLc21reGtieDZhLVE?oc=5\" target=\"_blank\">Bitwise's Matt Hougan: $6.3 billion Binance hack won't hurt Bitcoin long-term</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CNBC</font>",
+        "fetched_at": "2026-10-31T21:21:31.795254Z",
+        "id": "google_news:article:9b5480ed1d3f72e3",
+        "metadata": {
+          "category": "crypto-markets",
+          "event_retry_pending": true,
+          "gn_query": "(bitcoin OR crypto OR cryptocurrency OR stablecoin OR ethereum OR blockchain) (site:reuters.com OR site:bloomberg.com OR site:ft.com OR site:wsj.com OR site:cnbc.com OR site:apnews.com OR site:axios.com OR site:fortune.com OR site:nytimes.com OR site:economist.com)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.cnbc.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "CNBC"
+        },
+        "published_at": "2026-10-30T22:18:00Z",
+        "source_type": "google_news",
+        "title": "Bitwise's Matt Hougan: $6.3 billion Binance hack won't hurt Bitcoin long-term",
+        "url": "https://www.cnbc.com/video/2026/10/30/bitwises-matt-hogan-6-point-3b-binance-hack-wont-hurt-bitcoin-long-term.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A protocol-level security and operational update: tBTC's bridge remains paused while Threshold asserts the token is fully backed. This is material for tBTC holders and bridge users, but there is no confirmed loss, exploit size, or systemic market impact, so it does not reach the highest severity tier. No community discussion was provided to assess.",
+        "ai_score": 7.0,
+        "ai_summary": "Threshold says tBTC remains fully backed while its bridge is still paused, addressing user concerns about the protocol's Bitcoin-backed asset.",
+        "ai_tags": [
+          "tBTC",
+          "Threshold Network",
+          "bridge security",
+          "Bitcoin DeFi",
+          "protocol pause"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxPVGlKcmZtdDUxYl9tNng3alEyNkwzSVlrUjFkQmlZZHN2cVpBM0tZcDh4cllCUDhadUJxUlRCRmtsUUVaSmNWNHd5ZHVUUVBoRjByVjJ3cFVORW5nVU5xdHRTSFBaUE43cUhuc1MtVzZqSUNFWU5MTUZrNTlJVk9YR09fTlk1czRuaEM2dFpURGJzaHZaMWVId3A0UTZCQQ?oc=5\" target=\"_blank\">Threshold Says tBTC Is Fully Backed as Bridge Pause Continues</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-31T21:21:36.596729Z",
+        "id": "google_news:article:99efbd2b195f502c",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-31T18:28:26Z",
+        "source_type": "google_news",
+        "title": "Threshold Says tBTC Is Fully Backed as Bridge Pause Continues",
+        "url": "https://thedefiant.io/news/security/threshold-says-tbtc-is-fully-backed-as-bridge-pause-continues"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "The headline points to a material macro credit-risk development: banks reportedly have $349B of exposure to private credit funds that may not be collecting cash from borrowers. That has a plausible transmission path to broader risk assets, including crypto, but the item is a risk warning rather than a confirmed systemic loss event.",
+        "ai_score": 7.0,
+        "ai_summary": "Banks reportedly face $349B in exposure to private credit funds that may not be collecting cash from their borrowers, raising concerns about credit risk and broader market contagion.",
+        "ai_tags": [
+          "private credit",
+          "bank exposure",
+          "credit risk",
+          "macro risk",
+          "crypto markets"
+        ],
+        "author": "CryptoSlate",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxNZVd5NGNONEdXcWZHWWMtbkZtdUs2WGxEMm1FZVBTRGxQZVljTng0NjNpNk5XS3JITU1ocHZwQmEydnFNR09kWWM5MXZBV2t6cENMZG9KeE5ybzVFbkF4WDJiSFc2MnhfbGVJajlQLTRjY0U0aENic2FSdGxuTzdUMWk1eHJISTA5cVlkU1h0SzNEQUpNbUswX0FYUEdjRDlhcEhPSnZnSjZNVGxlOGNNSzlhdHhrZw?oc=5\" target=\"_blank\">Banks are owed $349B by private credit funds that may not be collecting cash from borrowers</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoSlate</font>",
+        "fetched_at": "2026-10-31T21:21:39.817172Z",
+        "id": "google_news:article:b18eb2eb6bdd8891",
+        "metadata": {
+          "category": "macro-regulation",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "CryptoSlate",
+          "gn_query": "site:cryptoslate.com",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://cryptoslate.com/feed/",
+          "publisher_url": "https://cryptoslate.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "CryptoSlate"
+        },
+        "published_at": "2026-10-31T18:10:29Z",
+        "source_type": "google_news",
+        "title": "Banks are owed $349B by private credit funds that may not be collecting cash from borrowers",
+        "url": "https://cryptoslate.com/banks-are-owed-349b-by-private-credit-funds-that-may-not-be-collecting-cash-from-borrowers/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Security incident affecting a live DeFi protocol: a DNS compromise (apparent hijack of the front end) followed by restored DNS while vaults stay paused. Pausing user-facing vaults and the phishing risk to depositors make this materially actionable for Origami users, but no confirmed loss figures or protocol-level fund impact are evident, keeping it below the major-exploit tier.",
+        "ai_score": 7.0,
+        "ai_summary": "Origami reported that its DNS had been restored after an apparent compromise, but kept its vaults paused as a precaution while assessing the incident.",
+        "ai_tags": [
+          "DeFi security",
+          "DNS hijack",
+          "vaults paused",
+          "Origami",
+          "front-end attack"
+        ],
+        "author": "The Defiant",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxNYVQ0TlJaQ1BLeGotRHpacXZ3VjdfQmpiTTBuZW42OWZfOEtwQnR3NXhzV3FHcXlyVjltYllLdHNWTEUwT0lJaldEbkJ5S3ZwRkd5NDlKNW9pUGtsOGxuUEJDeG1IdzFXaFVjX2hfQTg5U2hNNkdzOVJqSHRTRWpLYXR2ZnFwa2JjdjA0dHpiQ2hFWjA?oc=5\" target=\"_blank\">Origami Says DNS Is Restored but Vaults Remain Paused</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Defiant</font>",
+        "fetched_at": "2026-10-31T21:21:36.597025Z",
+        "id": "google_news:article:684673930716336b",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "gn_query": "site:thedefiant.io",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://thedefiant.io/api/feed",
+          "publisher_url": "https://thedefiant.io",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Defiant"
+        },
+        "published_at": "2026-10-31T16:58:07Z",
+        "source_type": "google_news",
+        "title": "Origami Says DNS Is Restored but Vaults Remain Paused",
+        "url": "https://thedefiant.io/news/security/origami-says-dns-is-restored-but-vaults-remain-paused"
       }
     }
   ],

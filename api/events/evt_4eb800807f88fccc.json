@@ -7,24 +7,25 @@
   "status": "developing",
   "category": "technology",
   "title": {
-    "zh": "PHP披露两个严重远程代码执行漏洞并发布紧急补丁，随后出现利用尝试",
+    "zh": "PHP披露两个严重远程代码执行漏洞并发布紧急补丁，随后PHP2Shell漏洞遭利用",
     "en": "PHP discloses two critical RCE vulnerabilities and releases emergency patches"
   },
   "current_state": {
-    "zh": "Wiz 详述 PHP2Shell 早期利用与修复趋势，指出针对蜜罐的扫描活动及 CISA KEV 收录情况，同时研究人员和评论者报告了针对该 PHP 漏洞的有效且可能通用的利用方式。",
-    "en": "Wiz details early PHP2Shell exploitation and remediation trends, noting scanner activity against honeypots and CISA KEV listing, while researchers and commenters report working and potentially universal exploits against the PHP vulnerability."
+    "zh": "攻击者利用串联的 PHP2Shell 与 Linux XFRM ESP-in-TCP 漏洞攻陷了 25 台服务器，其中包括美国政府系统，凸显了暴露的 PHP 服务与内核攻击面带来的风险。",
+    "en": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface."
   },
   "first_seen_at": "2026-10-21T06:41:27.640635+00:00",
-  "last_updated_at": "2026-10-27T18:10:08.636336+00:00",
-  "last_material_change_at": "2026-10-27T18:10:08.636336+00:00",
+  "last_updated_at": "2026-10-29T18:36:22.733169+00:00",
+  "last_material_change_at": "2026-10-29T18:36:22.733169+00:00",
   "confidence": 0.75,
-  "updates_count": 21,
-  "sources_count": 30,
+  "updates_count": 22,
+  "sources_count": 31,
   "entities": [
     "alert",
     "bug",
     "bugs",
     "ceo",
+    "chained",
     "chatgpt",
     "cloudflare",
     "course",
@@ -37,6 +38,7 @@
     "freaking",
     "github",
     "global",
+    "government",
     "governments",
     "how",
     "internet",
@@ -97,10 +99,12 @@
     "financial-institutions",
     "frontier-models",
     "go",
+    "government-systems",
     "government-websites",
     "infrastructure-security",
     "internet-infrastructure",
     "japan",
+    "linux-kernel",
     "nodejs",
     "nvdb",
     "open-source",
@@ -1020,6 +1024,49 @@
         {
           "url": "https://www.wiz.io/blog/php2shell-exploitation-so-far",
           "label": "acossta",
+          "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_d8da65f607988b9d",
+      "event_id": "evt_4eb800807f88fccc",
+      "occurred_at": "2026-10-29T10:42:41Z",
+      "published_at": "2026-10-29T10:42:41Z",
+      "first_seen_at": "2026-10-29T18:36:22.733169Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "串联 PHP2Shell 漏洞攻陷 25 台服务器，包括美国政府服务器",
+      "title_en": "Chained PHP2Shell exploit roots 25 servers, including US Government servers",
+      "what_changed_zh": "攻击者利用串联的 PHP2Shell 与 Linux XFRM ESP-in-TCP 漏洞攻陷了 25 台服务器，其中包括美国政府系统，凸显了暴露的 PHP 服务与内核攻击面带来的风险。",
+      "what_changed_en": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
+      "current_state_zh": "攻击者利用串联的 PHP2Shell 与 Linux XFRM ESP-in-TCP 漏洞攻陷了 25 台服务器，其中包括美国政府系统，凸显了暴露的 PHP 服务与内核攻击面带来的风险。",
+      "current_state_en": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
+      "detailed_summary_zh": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
+      "detailed_summary_en": "A chained PHP2Shell and Linux XFRM ESP-in-TCP exploit was used to root 25 servers, including US government systems, underscoring risks from exposed PHP services and kernel attack surface.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [
+        {
+          "url": "https://news.ycombinator.com/item?id=50286987",
+          "title": "Community discussion"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "hackernews:story:50286987"
+      ],
+      "sources": [
+        {
+          "url": "https://dreamgroup.com/blog/chained-php2shell-exploit-roots-25-servers",
+          "label": "882542F3884314B",
           "source_type": "hackernews",
           "official": false
         }
