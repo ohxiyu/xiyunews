@@ -7,31 +7,35 @@
   "status": "closed",
   "category": "crypto",
   "title": {
-    "zh": "多名Polymarket用户报告资金被盗，平台限制交易并",
+    "zh": "Polymarket 前端疑似遭入侵，用户资金被盗后平台暂停交易并承诺全额赔偿",
     "en": "Multiple Polymarket Users Report Stolen Funds as Platform Restricts Trading and"
   },
   "current_state": {
-    "zh": "Polymarket 第三方服务商遭入侵后的赔付进入分档执行阶段：小额损失拟直接恢复，大额索赔需签署免责/和解文件并据报道提交身份信息；链上分析显示约 710 余个钱包、合计约 270 万美元被转出，平台此前承诺全额赔付并已向执法机构报案。",
-    "en": "Polymarket's reimbursement after the third-party provider breach has moved into tiered execution: smaller losses are to be restored directly, while larger claims require a release/waiver and reportedly identity details; on-chain analysis shows about 710 wallets and roughly $2.7 million transferred out, after the platform pledged full reimbursement and reported the matter to law enforcement."
+    "zh": "Polymarket 表示已修复供应链污染问题并恢复服务，承诺全额赔付受影响交易者；实际赔付进度仍待官方后续公告。",
+    "en": "Polymarket says it has fixed the supply-chain compromise and restored service, and has promised full compensation to affected traders; actual compensation progress remains subject to official follow-up announcements."
   },
   "first_seen_at": "2026-10-29T18:36:19.046340+00:00",
-  "last_updated_at": "2026-10-30T07:01:32.542095+00:00",
-  "last_material_change_at": "2026-10-30T07:01:32.542095+00:00",
+  "last_updated_at": "2026-10-30T07:01:32.543349+00:00",
+  "last_material_change_at": "2026-10-30T07:01:32.543349+00:00",
   "confidence": 0.75,
-  "updates_count": 6,
-  "sources_count": 7,
+  "updates_count": 9,
+  "sources_count": 10,
   "entities": [
+    "debugbear",
     "funds",
+    "goplus",
     "incident",
     "investigates",
     "market",
     "multiple",
     "pauses",
+    "peckshield",
     "platform",
     "polymarket",
     "prediction",
     "report",
     "restricts",
+    "rum",
     "security-incident",
     "stolen",
     "trading",
@@ -41,16 +45,22 @@
   "identifiers": [],
   "topics": [
     "api-outage",
+    "exchange-operations",
     "exchange-outage",
+    "frontend-compromise",
     "fund-losses",
     "hack",
     "incident-response",
+    "on-chain-analysis",
+    "peckshield",
+    "platform-outage",
     "polymarket",
     "prediction-market",
     "prediction-markets",
     "security-breach",
     "security-incident",
     "stolen-funds",
+    "supply-chain-attack",
     "third-party-provider",
     "trading-halt",
     "user-compensation",
@@ -223,6 +233,82 @@
       ]
     },
     {
+      "update_id": "upd_64cc803c6e91cf6f",
+      "event_id": "evt_a93f6f830eba8b2c",
+      "occurred_at": "2026-10-30T00:51:02Z",
+      "published_at": "2026-10-30T00:51:02Z",
+      "first_seen_at": "2026-10-30T02:53:16.163510Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "【Polymarket：交易现已全面恢复上线，平台将全额补偿所有受影响交易者】",
+      "title_en": "【Polymarket：交易现已全面恢复上线，平台将全额补偿所有受影响交易者】",
+      "what_changed_zh": "Polymarket 宣布平台交易已全面恢复，并将全额补偿所有受中断影响的交易者。",
+      "what_changed_en": "Polymarket announced that trading has been fully restored across the platform and that it will fully compensate all traders affected by the disruption.",
+      "current_state_zh": "Polymarket 宣布平台交易已全面恢复，并将全额补偿所有受中断影响的交易者。",
+      "current_state_en": "Polymarket announced that trading has been fully restored across the platform and that it will fully compensate all traders affected by the disruption.",
+      "detailed_summary_zh": "Polymarket announced that trading has been fully restored across the platform and that it will fully compensate all traders affected by the disruption.",
+      "detailed_summary_en": "Polymarket announced that trading has been fully restored across the platform and that it will fully compensate all traders affected by the disruption.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:121697"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116374",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_9ff3fc97b5ea2204",
+      "event_id": "evt_a93f6f830eba8b2c",
+      "occurred_at": "2026-10-30T00:52:34Z",
+      "published_at": "2026-10-30T00:52:34Z",
+      "first_seen_at": "2026-10-30T02:53:16.165137Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "【PeckShield：Polymarket UI 可能被入侵，不要与网站交互】",
+      "title_en": "【PeckShield：Polymarket UI 可能被入侵，不要与网站交互】",
+      "what_changed_zh": "PeckShield 警告称 Polymarket 的用户界面可能已被入侵，并敦促用户停止与该网站交互。",
+      "what_changed_en": "PeckShield warned that Polymarket's user interface may have been compromised and urged users to stop interacting with the website.",
+      "current_state_zh": "PeckShield 警告称 Polymarket 的用户界面可能已被入侵，并敦促用户停止与该网站交互。",
+      "current_state_en": "PeckShield warned that Polymarket's user interface may have been compromised and urged users to stop interacting with the website.",
+      "detailed_summary_zh": "PeckShield warned that Polymarket's user interface may have been compromised and urged users to stop interacting with the website.",
+      "detailed_summary_en": "PeckShield warned that Polymarket's user interface may have been compromised and urged users to stop interacting with the website.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [],
+      "confidence": 0.75,
+      "story_ids": [
+        "telegram:foresightnews:121699"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116376",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
       "update_id": "upd_5a088c80f1c87231",
       "event_id": "evt_a93f6f830eba8b2c",
       "occurred_at": "2026-10-30T00:53:39Z",
@@ -292,6 +378,44 @@
       "sources": [
         {
           "url": "https://m.theblockbeats.info/flash/374579?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_cbcbe416a3e6f167",
+      "event_id": "evt_a93f6f830eba8b2c",
+      "occurred_at": "2026-10-30T04:28:02Z",
+      "published_at": "2026-10-30T04:28:02Z",
+      "first_seen_at": "2026-10-30T07:01:32.543349Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "GoPlus：Polymarket被盗因服务商DebugBear的RUM脚本遭供应链污染",
+      "title_en": "GoPlus：Polymarket被盗因服务商DebugBear的RUM脚本遭供应链污染",
+      "what_changed_zh": "GoPlus 将 Polymarket 国际站用户资产被盗（约 271 万美元，涉及 710 个 DepositWallet、731 个地址）归因于第三方性能监控服务商 DebugBear 的 RUM 脚本遭供应链污染；Polymarket 表示已修复问题、恢复服务，并承诺全额赔付受影响交易者。",
+      "what_changed_en": "GoPlus attributed the Polymarket international-site user asset theft (~$2.71M across 710 DepositWallets and 731 addresses) to a supply-chain compromise of third-party performance-monitoring vendor DebugBear's RUM script; Polymarket said it fixed the issue, restored service, and promised full compensation to affected traders.",
+      "current_state_zh": "Polymarket 表示已修复供应链污染问题并恢复服务，承诺全额赔付受影响交易者；实际赔付进度仍待官方后续公告。",
+      "current_state_en": "Polymarket says it has fixed the supply-chain compromise and restored service, and has promised full compensation to affected traders; actual compensation progress remains subject to official follow-up announcements.",
+      "detailed_summary_zh": "GoPlus traced the Polymarket international-site user asset theft (~$2.71M across 710 DepositWallets and 731 addresses) to a supply-chain compromise of third-party performance-monitoring vendor DebugBear's RUM script, which injected malicious code into user pages to abuse trading and signing permissions; Polymarket says it fixed the issue, restored service and promised full compensation to affected traders.",
+      "detailed_summary_en": "GoPlus traced the Polymarket international-site user asset theft (~$2.71M across 710 DepositWallets and 731 addresses) to a supply-chain compromise of third-party performance-monitoring vendor DebugBear's RUM script, which injected malicious code into user pages to abuse trading and signing permissions; Polymarket says it fixed the issue, restored service and promised full compensation to affected traders.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "telegram:theblockbeats:203209"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/374581?from=telegram",
           "label": "theblockbeats",
           "source_type": "telegram",
           "official": false
