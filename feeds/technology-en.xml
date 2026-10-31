@@ -4,7 +4,51 @@
   <link href="https://xiyu.news/feeds/technology-en.xml" rel="self"/>
   <link href="https://xiyu.news/"/>
   <id>https://xiyu.news/feeds/technology-en.xml</id>
-  <updated>2026-10-31T00:00:00Z</updated>
+  <updated>2026-11-01T00:00:00Z</updated>
+  <entry>
+    <title>OpenAI&#x27;s funding target drops by $10 billion, valuation cut to $1.25 trillion in tandem</title>
+    <link href="https://m.theblockbeats.info/flash/374743?from=telegram"/>
+    <id>https://xiyu.news/editions/2026-11-01/#telegram:theblockbeats:203367</id>
+    <updated>2026-11-01T00:00:00Z</updated>
+    <summary>OpenAI has cut the target size of its latest funding round by $10 billion and is now seeking roughly $20 billion at a $1.25 trillion valuation, down from an earlier plan of $30 billion at $1.4 trillion, according to the Financial Times. The investor subscription deadline was last Friday, and people familiar said the first close is expected to come in below the $20 billion target because some investors have reduced their commitments.
+
+The downward revision at the world&#x27;s most closely watched AI lab indicates investors are trimming commitments to AI valuations, as described by the FT, at a time when listed AI-related stocks are being sold off.
+
+OpenAI had justified the earlier valuation of $1.4 trillion — nearly double a prior $852 billion mark — by pointing to rapid revenue growth since July, and had pitched the round as investors&#x27; last chance to buy in before a planned IPO next year. The FT report says the first close will fall short of the $20 billion target.</summary>
+  </entry>
+  <entry>
+    <title>Jepsen: ParticleDB 1.1.4</title>
+    <link href="https://jepsen.io/analyses/particledb-1.1.4"/>
+    <id>https://xiyu.news/editions/2026-11-01/#hackernews:story:50316100</id>
+    <updated>2026-11-01T00:00:00Z</updated>
+    <summary>Jepsen published an analysis of ParticleDB, a multi-model database marketed for AI workloads, testing versions 1.1.4 through 1.1.18.11.rc-22 and finding that its &quot;Full ACID&quot; claims did not hold. The report documents loss of committed writes, internal consistency violations, G1a (aborted read), G1b (intermediate read) and P4 (lost update) anomalies, and states that Jepsen filed 96 issues against the system.
+
+Jepsen explicitly recommended that users halt further deployment of ParticleDB and migrate to other databases as soon as possible, and suggested checking or rebuilding database state from more reliable sources where possible.
+
+Jepsen said ParticleDB&#x27;s home page advertised the system as &quot;formally proven&quot; with a TLA+ proof, but that no TLA+ specification was available during the collaboration, leaving it unclear which properties were proven or whether they described ParticleDB as built. The report also lists failures of the claimed Postgres compatibility, including partially invisible rows that could not be deleted, dropped tables re-emerging in distorted forms, confused columns and strings turning into integers.</summary>
+  </entry>
+  <entry>
+    <title>Do the math: How we took over ChatGPT accounts</title>
+    <link href="https://www.parameter.ai/labs/we-found-a-gap-at-openai"/>
+    <id>https://xiyu.news/editions/2026-11-01/#hackernews:story:50314699</id>
+    <updated>2026-11-01T00:00:00Z</updated>
+    <summary>Security researchers at Parameter disclosed a ChatGPT account-takeover chain that abused the product&#x27;s Preview content and layered frontend defenses. OpenAI confirmed that both frontends rejected the reported messages, resolved the issue on October 26 as a P1-severity bug, and awarded a total bounty of $5,000.
+
+A confirmed account-takeover path in ChatGPT means a single clicked share link could run code inside a victim&#x27;s authenticated session, exposing conversation lists and private content. The chain required user interaction and no in-the-wild exploitation has been reported.
+
+According to the researchers&#x27; account, the Preview sandbox itself held — code rendered there could not read the main page — and the bypass instead worked through other layers such as postMessage, CSP and JSONP gadgets. The disclosed chain depended on the victim clicking a public share link.</summary>
+  </entry>
+  <entry>
+    <title>Just now, DeepSeek made a major open-source release: the Agent base architecture!</title>
+    <link href="https://www.qbitai.com/2026/10/506904.html"/>
+    <id>https://xiyu.news/editions/2026-11-01/#rss:www.qbitai.com_feed:429bf7758a2cec2f</id>
+    <updated>2026-11-01T00:00:00Z</updated>
+    <summary>DeepSeek has open-sourced its Agent base architecture, according to QbitAI, which framed the release around AI agents that can autonomously locate bugs and submit pull requests. Search descriptions identify the released component as DeepSeek Harness, an open-source agent runtime rather than a new model.
+
+An open-source agent runtime from a major model lab gives developers a self-hostable base for building coding agents instead of assembling that scaffolding themselves or depending on a vendor&#x27;s hosted product.
+
+Descriptions of the harness say it is built on Cordis&#x27;s “everything is a plugin” architecture and provides sessions, tools, workspaces, sandboxing, plugins, agent loops, plus web and terminal interfaces; experimental items listed include agent teams, auto approval review and scheduled tasks. The QbitAI item itself carries little technical detail beyond the autonomous bug-finding and PR-submission claim.</summary>
+  </entry>
   <entry>
     <title>Intel Stock Suffers Worst Crash in 50 Years as Weak Forecast Overshadows AI Chip Demand</title>
     <link href="https://decrypt.co/382287/intel-stock-suffers-worst-crash-in-50-years-as-weak-forecast-overshadows-ai-chip-demand"/>
@@ -400,49 +444,5 @@ In Mozilla bug 2083449, eMudhra said its preliminary assessment found &quot;a fl
 The pause is a product-level response to a privacy exposure involving conversations users may have assumed were shared narrowly.
 
 According to the reporting, the links were located through public DNS records rather than through any internal disclosure by Meta. Meta describes the sharing feature as paused, not permanently removed.</summary>
-  </entry>
-  <entry>
-    <title>Google open-sources TorchTPU, a native PyTorch back end for TPUs</title>
-    <link href="https://github.com/google-pytorch/torch_tpu"/>
-    <id>https://xiyu.news/editions/2026-10-21/#hackernews:story:50169053</id>
-    <updated>2026-10-21T00:00:00Z</updated>
-    <summary>Google has open-sourced TorchTPU, a native PyTorch backend that lets PyTorch workloads run directly on its Tensor Processing Units (TPUs). Google detailed the project on its developer blog, describing an &quot;Eager First&quot; design and XLA integration intended to simplify migrating models to TPU infrastructure.
-
-PyTorch is the dominant framework for model development, so first-party support removes a long-standing barrier that forced teams to bridge through XLA or stay on TensorFlow/JAX to use TPUs. Community commenters framed the release as accelerating the shift away from TensorFlow and widening the set of accelerators PyTorch code can target.
-
-The project was first reported by Reuters in December, and Google has now officially confirmed and detailed it; The Stack reports that multiple Google staff were dedicated to building the backend. Google&#x27;s developer blog highlights XLA integration and peak-efficiency execution on TPU infrastructure as core goals.</summary>
-  </entry>
-  <entry>
-    <title>OpenAI acquires Orchestra Bio</title>
-    <link href="https://openai.com/index/openai-to-acquire-orchestra-bio"/>
-    <id>https://xiyu.news/editions/2026-10-21/#rss:openai.com_blog_rss.xml:1cfb6291fa158d05</id>
-    <updated>2026-10-21T00:00:00Z</updated>
-    <summary>OpenAI announced Tuesday that it has acquired Orchestra Bio, a San Francisco startup whose AI agents track and coordinate drug development programs, and will fold its team and platform into Rosalind, OpenAI&#x27;s suite of AI models and tools for biologists and chemists. Financial terms were not disclosed.
-
-OpenAI said the goal is to help scientists make discoveries and manage the work needed to turn them into treatments that reach patients sooner, and that the combined team will build agents connecting scientific findings with the decisions and follow-up studies required to turn a promising result into a medicine.
-
-Orchestra&#x27;s agents map how setbacks such as a failed manufacturing batch ripple through a drug program and compare possible responses, while scientists and program leaders keep the final decision. Founded in the fall of 2022, Orchestra raised a seed round from Andreessen Horowitz, Definition Capital, Insight Partners and 8VC totaling about $20 million; it is unrelated to Nasdaq-listed medical device maker Orchestra BioMed (ticker OBIO).</summary>
-  </entry>
-  <entry>
-    <title>Character.AI bankruptcy details emerge: Disney plans to spend $180 million over three years to keep staff, platform down to 18 people</title>
-    <link href="http://xn--,character-cm3tq513b.ai/"/>
-    <id>https://xiyu.news/editions/2026-10-20/#telegram:theblockbeats:201151</id>
-    <updated>2026-10-20T00:00:00Z</updated>
-    <summary>Bankruptcy court filings show Disney had already offered jobs to 66 Character.AI employees before the company filed, with 56 having left and 10 awaiting work-visa adjustments; Disney expects to spend about $180 million on the group over three years, including $30 million in retention bonuses. Character.AI had only 18 full-time employees remaining when it filed for bankruptcy.
-
-Forty state attorneys general have intervened in the bankruptcy proceedings to protect users&#x27; private chat logs from misuse after any asset sale. Other buyers can submit bids until November 20, and the service will be shut down if no one is willing to keep operating it.
-
-Disney&#x27;s $20 million bid covers a perpetual, non-exclusive license to parts of Character.AI&#x27;s technology and patents, and explicitly excludes the existing app, brand, user chat logs and finished models. About 8 staff are expected to remain through the key stage of the proceedings, roughly 6 of them on safety-related work, and Disney will temporarily bring back some already-transferred employees to help keep the original platform running.</summary>
-  </entry>
-  <entry>
-    <title>Anthropic Gives 5% of Itself to the Public. Musk Answers by Giving Away SpaceX Shares</title>
-    <link href="https://decrypt.co/381371/anthropic-gives-public-musk-answers-spacex-shares"/>
-    <id>https://xiyu.news/editions/2026-10-20/#rss:decrypt.co_feed:35f425bc8d436ef2</id>
-    <updated>2026-10-20T00:00:00Z</updated>
-    <summary>Anthropic said Sunday it will commit 5% of its shares to a new Public Benefit Fund, subject to stockholder approval, and says roughly 20% of its stock will go to public causes once co-founder and employee pledges are counted. Less than a day later, Elon Musk posted on X that he will give one of his SpaceX shares to every child in the United States next year, calling it &quot;the first of many.&quot;
-
-The move puts a slice of a frontier AI lab&#x27;s equity into a vehicle for public-benefit giving, and Musk&#x27;s counter-pledge redirected the discussion toward distributing shares directly to individuals rather than routing them through a fund.
-
-The fund is structured as a wholly owned limited-liability company rather than a nonprofit, which Anthropic says gives it room to switch between types of giving; the board can add another 2% of shares each time the company&#x27;s value rises 50% above an undisclosed baseline, and none of the fund&#x27;s equity may be used for lobbying or political donations. Musk&#x27;s pledge covers roughly 72 million US children, about $10.5 billion at SpaceX&#x27;s price of roughly $147 a share — just over 1% of the 6.42 billion shares he held as of June 30, per an SEC filing.</summary>
   </entry>
 </feed>

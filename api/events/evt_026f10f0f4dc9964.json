@@ -44,23 +44,35 @@
       "material_change": true,
       "title_zh": "Jepsen: ParticleDB 1.1.4",
       "title_en": "Jepsen: ParticleDB 1.1.4",
-      "what_changed_zh": "Jepsen's audit of ParticleDB 1.1.4 documents 96 defects — including lost committed writes, aborted and intermediate reads, lost updates, invisible undeletable rows and WHERE 4 = 5 — finds no evidence for the project's advertised TLA+ formal proof, and recommends users halt deployment and migrate to other databases.",
+      "what_changed_zh": "Jepsen 发布了对 ParticleDB 的分析报告。ParticleDB 是一款面向 AI 工作负载的多模型数据库，Jepsen 测试了 1.1.4 至 1.1.18.11.rc-22 的多个版本，认定其“完整 ACID”的宣称并不成立。报告记录了已提交写入丢失、内部一致性违规，以及 G1a（读到已中止事务）、G1b（读到中间状态）和 P4（更新丢失）等异常，并称共向该项目提交了 96 个问题。\n\nJepsen 明确建议用户停止继续部署 ParticleDB，并尽快迁移到其他数据库；同时建议在可能的情况下，从更可靠的数据源核对或重建数据库状态。\n\nJepsen 表示，ParticleDB 官网曾宣称该系统已通过 TLA+ 获得“形式化证明”，但在双方合作期间并未提供任何 TLA+ 规范，因此无法确定究竟证明了哪些性质，也无法确定这些性质描述的是否是实际构建出的 ParticleDB。报告还列举了其宣称的 Postgres 兼容性失效的具体表现，包括部分不可见且无法删除的行、被删除的表以扭曲形态重新出现、列错乱以及字符串变成整数等。",
       "what_changed_en": "Jepsen's audit of ParticleDB 1.1.4 documents 96 defects — including lost committed writes, aborted and intermediate reads, lost updates, invisible undeletable rows and WHERE 4 = 5 — finds no evidence for the project's advertised TLA+ formal proof, and recommends users halt deployment and migrate to other databases.",
-      "current_state_zh": "Jepsen's audit of ParticleDB 1.1.4 documents 96 defects — including lost committed writes, aborted and intermediate reads, lost updates, invisible undeletable rows and WHERE 4 = 5 — finds no evidence for the project's advertised TLA+ formal proof, and recommends users halt deployment and migrate to other databases.",
+      "current_state_zh": "Jepsen 发布了对 ParticleDB 的分析报告。ParticleDB 是一款面向 AI 工作负载的多模型数据库，Jepsen 测试了 1.1.4 至 1.1.18.11.rc-22 的多个版本，认定其“完整 ACID”的宣称并不成立。报告记录了已提交写入丢失、内部一致性违规，以及 G1a（读到已中止事务）、G1b（读到中间状态）和 P4（更新丢失）等异常，并称共向该项目提交了 96 个问题。\n\nJepsen 明确建议用户停止继续部署 ParticleDB，并尽快迁移到其他数据库；同时建议在可能的情况下，从更可靠的数据源核对或重建数据库状态。\n\nJepsen 表示，ParticleDB 官网曾宣称该系统已通过 TLA+ 获得“形式化证明”，但在双方合作期间并未提供任何 TLA+ 规范，因此无法确定究竟证明了哪些性质，也无法确定这些性质描述的是否是实际构建出的 ParticleDB。报告还列举了其宣称的 Postgres 兼容性失效的具体表现，包括部分不可见且无法删除的行、被删除的表以扭曲形态重新出现、列错乱以及字符串变成整数等。",
       "current_state_en": "Jepsen's audit of ParticleDB 1.1.4 documents 96 defects — including lost committed writes, aborted and intermediate reads, lost updates, invisible undeletable rows and WHERE 4 = 5 — finds no evidence for the project's advertised TLA+ formal proof, and recommends users halt deployment and migrate to other databases.",
       "detailed_summary_zh": "Jepsen's audit of ParticleDB 1.1.4 documents 96 defects — including lost committed writes, aborted and intermediate reads, lost updates, invisible undeletable rows and WHERE 4 = 5 — finds no evidence for the project's advertised TLA+ formal proof, and recommends users halt deployment and migrate to other databases.",
       "detailed_summary_en": "Jepsen's audit of ParticleDB 1.1.4 documents 96 defects — including lost committed writes, aborted and intermediate reads, lost updates, invisible undeletable rows and WHERE 4 = 5 — finds no evidence for the project's advertised TLA+ formal proof, and recommends users halt deployment and migrate to other databases.",
-      "background_zh": "",
-      "background_en": "",
-      "community_discussion_zh": "",
-      "community_discussion_en": "",
+      "background_zh": "Jepsen 由 Kyle Kingsbury 创立，是一家分布式系统安全性研究机构，维护开源测试库并发布针对数据库、队列和共识系统的深度分析，检验这些系统是否达到了其文档中的宣称。ParticleDB 自称是面向 AI 智能体的多模型数据库，允许用户在数据旁运行智能体、工作流和自己的代码。TLA+ 是 Leslie Lamport 提出的形式化规范语言，用于对并发系统和分布式系统进行建模与验证。",
+      "background_en": "Jepsen, founded by Kyle Kingsbury, is a distributed-systems safety research group that maintains an open-source testing library and publishes in-depth analyses of databases, queues and consensus systems, checking whether systems live up to their documentation's claims. ParticleDB describes itself as a multi-model database for AI agents, letting users run agents, workflows and their own code beside the data. TLA+ is Leslie Lamport's formal specification language for modeling and verifying concurrent and distributed systems.",
+      "community_discussion_zh": "评论者反应强烈，纷纷引用“停止部署”的建议，并调侃这就是“凭感觉写出来的”（vibecode）数据库的下场。讨论重点之一是缺乏依据的 TLA+ 宣称；还有人提出一种区分：一类软件是“构造即正确”，失效只是局部缺陷；另一类软件是“构造即错误”，只能依靠运气和在代码路径中绕开错误设计来运转。",
+      "community_discussion_en": "Commenters reacted with alarm, quoting the recommendation to halt deployment and joking that this is what happens when a database is \"vibecoded.\" Several focused on the unsubstantiated TLA+ claim, and one drew a distinction between software that is \"correct by construction\" — where failures are local bugs — and software that is \"incorrect by construction\" and only works through luck and workarounds.",
       "market_impact_zh": "",
       "market_impact_en": "",
-      "importance_score": 7.5,
+      "importance_score": 8.0,
       "references": [
         {
           "url": "https://news.ycombinator.com/item?id=50316100",
           "title": "Community discussion"
+        },
+        {
+          "url": "https://jepsen.io/analyses/particledb-1.1.4",
+          "title": "Jepsen: ParticleDB 1.1.4"
+        },
+        {
+          "url": "https://particledb.ai/",
+          "title": "ParticleDB | The database for AI agents"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/TLA+",
+          "title": "TLA+ - Wikipedia"
         }
       ],
       "confidence": 0.75,

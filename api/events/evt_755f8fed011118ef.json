@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "event_id": "evt_755f8fed011118ef",
+  "url": "https://xiyu.news/events/evt_755f8fed011118ef/",
+  "json": "https://xiyu.news/api/events/evt_755f8fed011118ef.json",
+  "type": "security_incident",
+  "status": "monitoring",
+  "category": "technology",
+  "title": {
+    "zh": "自己算算：我们是如何接管 ChatGPT 账户的",
+    "en": "Do the math: How we took over ChatGPT accounts"
+  },
+  "current_state": {
+    "zh": "安全研究团队 Parameter 披露了一条针对 ChatGPT 的账户接管攻击链，利用了产品的 Preview 内容以及多层前端防御机制。OpenAI 确认两个前端均拦截了报告中所述的消息，已于 10 月 26 日以 P1 级严重性修复该问题，并支付了总额 5000 美元的赏金。\n\nChatGPT 中被确认的账户接管路径意味着，受害者只需点击一个分享链接，攻击代码就可能在其已登录的会话中执行，从而暴露会话列表和私密内容。不过该攻击链需要用户交互，目前也没有在野利用的报告。\n\n根据研究人员的说法，Preview 沙箱本身并未被突破——在其中渲染的代码无法读取主页面——绕过实际发生在 postMessage、CSP 和 JSONP 等其它环节。所披露的攻击链依赖受害者点击公开的分享链接。",
+    "en": "Security researchers at Parameter disclosed a ChatGPT account-takeover chain that abused the product's Preview content and layered frontend defenses. OpenAI confirmed that both frontends rejected the reported messages, resolved the issue on October 26 as a P1-severity bug, and awarded a total bounty of $5,000.\n\nA confirmed account-takeover path in ChatGPT means a single clicked share link could run code inside a victim's authenticated session, exposing conversation lists and private content. The chain required user interaction and no in-the-wild exploitation has been reported.\n\nAccording to the researchers' account, the Preview sandbox itself held — code rendered there could not read the main page — and the bypass instead worked through other layers such as postMessage, CSP and JSONP gadgets. The disclosed chain depended on the victim clicking a public share link."
+  },
+  "first_seen_at": "2026-10-31T23:27:34.515907+00:00",
+  "last_updated_at": "2026-10-31T23:27:34.515907+00:00",
+  "last_material_change_at": "2026-10-31T23:27:34.515907+00:00",
+  "confidence": 0.75,
+  "updates_count": 1,
+  "sources_count": 1,
+  "entities": [
+    "chatgpt",
+    "how"
+  ],
+  "identifiers": [],
+  "topics": [
+    "account-takeover",
+    "bug-bounty",
+    "chatgpt",
+    "openai",
+    "vulnerability-disclosure",
+    "web-security"
+  ],
+  "updates": [
+    {
+      "update_id": "upd_55c08be0b64c6eea",
+      "event_id": "evt_755f8fed011118ef",
+      "occurred_at": "2026-10-31T10:30:11Z",
+      "published_at": "2026-10-31T10:30:11Z",
+      "first_seen_at": "2026-10-31T23:27:34.515907Z",
+      "time_precision": "published",
+      "update_type": "initial",
+      "material_change": true,
+      "title_zh": "自己算算：我们是如何接管 ChatGPT 账户的",
+      "title_en": "Do the math: How we took over ChatGPT accounts",
+      "what_changed_zh": "安全研究团队 Parameter 披露了一条针对 ChatGPT 的账户接管攻击链，利用了产品的 Preview 内容以及多层前端防御机制。OpenAI 确认两个前端均拦截了报告中所述的消息，已于 10 月 26 日以 P1 级严重性修复该问题，并支付了总额 5000 美元的赏金。\n\nChatGPT 中被确认的账户接管路径意味着，受害者只需点击一个分享链接，攻击代码就可能在其已登录的会话中执行，从而暴露会话列表和私密内容。不过该攻击链需要用户交互，目前也没有在野利用的报告。\n\n根据研究人员的说法，Preview 沙箱本身并未被突破——在其中渲染的代码无法读取主页面——绕过实际发生在 postMessage、CSP 和 JSONP 等其它环节。所披露的攻击链依赖受害者点击公开的分享链接。",
+      "what_changed_en": "Security researchers at Parameter disclosed a ChatGPT account-takeover chain that abused the product's Preview content and layered frontend defenses. OpenAI confirmed that both frontends rejected the reported messages, resolved the issue on October 26 as a P1-severity bug, and awarded a total bounty of $5,000.\n\nA confirmed account-takeover path in ChatGPT means a single clicked share link could run code inside a victim's authenticated session, exposing conversation lists and private content. The chain required user interaction and no in-the-wild exploitation has been reported.\n\nAccording to the researchers' account, the Preview sandbox itself held — code rendered there could not read the main page — and the bypass instead worked through other layers such as postMessage, CSP and JSONP gadgets. The disclosed chain depended on the victim clicking a public share link.",
+      "current_state_zh": "安全研究团队 Parameter 披露了一条针对 ChatGPT 的账户接管攻击链，利用了产品的 Preview 内容以及多层前端防御机制。OpenAI 确认两个前端均拦截了报告中所述的消息，已于 10 月 26 日以 P1 级严重性修复该问题，并支付了总额 5000 美元的赏金。\n\nChatGPT 中被确认的账户接管路径意味着，受害者只需点击一个分享链接，攻击代码就可能在其已登录的会话中执行，从而暴露会话列表和私密内容。不过该攻击链需要用户交互，目前也没有在野利用的报告。\n\n根据研究人员的说法，Preview 沙箱本身并未被突破——在其中渲染的代码无法读取主页面——绕过实际发生在 postMessage、CSP 和 JSONP 等其它环节。所披露的攻击链依赖受害者点击公开的分享链接。",
+      "current_state_en": "Security researchers at Parameter disclosed a ChatGPT account-takeover chain that abused the product's Preview content and layered frontend defenses. OpenAI confirmed that both frontends rejected the reported messages, resolved the issue on October 26 as a P1-severity bug, and awarded a total bounty of $5,000.\n\nA confirmed account-takeover path in ChatGPT means a single clicked share link could run code inside a victim's authenticated session, exposing conversation lists and private content. The chain required user interaction and no in-the-wild exploitation has been reported.\n\nAccording to the researchers' account, the Preview sandbox itself held — code rendered there could not read the main page — and the bypass instead worked through other layers such as postMessage, CSP and JSONP gadgets. The disclosed chain depended on the victim clicking a public share link.",
+      "detailed_summary_zh": "安全研究团队 Parameter 披露了一条针对 ChatGPT 的账户接管攻击链，利用了产品的 Preview 内容以及多层前端防御机制。OpenAI 确认两个前端均拦截了报告中所述的消息，已于 10 月 26 日以 P1 级严重性修复该问题，并支付了总额 5000 美元的赏金。\n\nChatGPT 中被确认的账户接管路径意味着，受害者只需点击一个分享链接，攻击代码就可能在其已登录的会话中执行，从而暴露会话列表和私密内容。不过该攻击链需要用户交互，目前也没有在野利用的报告。\n\n根据研究人员的说法，Preview 沙箱本身并未被突破——在其中渲染的代码无法读取主页面——绕过实际发生在 postMessage、CSP 和 JSONP 等其它环节。所披露的攻击链依赖受害者点击公开的分享链接。",
+      "detailed_summary_en": "Security researchers at Parameter disclosed a ChatGPT account-takeover chain that abused the product's Preview content and layered frontend defenses. OpenAI confirmed that both frontends rejected the reported messages, resolved the issue on October 26 as a P1-severity bug, and awarded a total bounty of $5,000.\n\nA confirmed account-takeover path in ChatGPT means a single clicked share link could run code inside a victim's authenticated session, exposing conversation lists and private content. The chain required user interaction and no in-the-wild exploitation has been reported.\n\nAccording to the researchers' account, the Preview sandbox itself held — code rendered there could not read the main page — and the bypass instead worked through other layers such as postMessage, CSP and JSONP gadgets. The disclosed chain depended on the victim clicking a public share link.",
+      "background_zh": "ChatGPT 的 Preview 功能会把 HTML 代码块渲染成一个可运行的小网页，并在独立源的受限框架中运行。OpenAI 自 2023 年起运行漏洞赏金计划，奖励向其报告系统漏洞的研究人员。",
+      "background_en": "ChatGPT's Preview feature turns an HTML code block into a small working webpage, which the product runs inside a restricted frame on a separate web origin. OpenAI has run a bug bounty program since 2023 to reward researchers who report vulnerabilities in its systems.",
+      "community_discussion_zh": "Hacker News 的评论者认为这篇技术文章难以理解，有人指出 JSONP 部分讲的是该机制如何运作，而不是他们如何绕过它。多位评论者认为 5000 美元的赏金过低，可能打击后续报告漏洞的积极性；还有人贴出了另一份报告，称 ChatGPT 桌面版中启动过“Work”对话的电脑存在远程访问文件系统的可能。",
+      "community_discussion_en": "Hacker News commenters found the writeup hard to follow, with one noting the JSONP section explained how the mechanism works rather than how it was bypassed. Several argued the $5,000 payout is too low and could discourage future reports, and one commenter linked a separate report of remote file-system access via 'Work' chats in the ChatGPT desktop app.",
+      "market_impact_zh": "此事对加密市场没有直接传导路径，影响主要限于 AI 概念代币的市场情绪——AI 平台反复出现的高关注度安全披露可能对该板块叙事形成压力。本次披露不涉及任何交易平台、托管安排或链上机制。",
+      "market_impact_en": "There is no direct transmission to crypto markets; the read-across is limited to sentiment around AI-themed tokens, where recurring high-profile AI platform security disclosures can weigh on the sector narrative. No trading venue, custody arrangement or on-chain mechanism is implicated by this disclosure.",
+      "importance_score": 7.5,
+      "references": [
+        {
+          "url": "https://dev.to/damiano_builds/the-sandbox-held-the-mail-slot-didnt-one-chatgpt-share-link-to-account-takeover-8n9",
+          "title": "The Sandbox Held. The Mail Slot Didn't: One ChatGPT Share ..."
+        },
+        {
+          "url": "https://explainx.ai/blog/chatgpt-share-link-account-takeover-mathlive-postmessage-csp-youtube-jsonp-fixed-oct-26-2026",
+          "title": "ChatGPT Account Takeover via Share Link: P1 Bug, $5,000 ..."
+        },
+        {
+          "url": "https://todayforai.com/en/items/art-0bf24676-15f",
+          "title": "Critical ChatGPT Flaw Allows Account Takeover via Shared ..."
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=50314699",
+          "title": "Community discussion"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "hackernews:story:50314699"
+      ],
+      "sources": [
+        {
+          "url": "https://www.parameter.ai/labs/we-found-a-gap-at-openai",
+          "label": "armcat",
+          "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    }
+  ]
+}

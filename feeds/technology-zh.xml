@@ -4,7 +4,51 @@
   <link href="https://xiyu.news/feeds/technology-zh.xml" rel="self"/>
   <link href="https://xiyu.news/"/>
   <id>https://xiyu.news/feeds/technology-zh.xml</id>
-  <updated>2026-10-31T00:00:00Z</updated>
+  <updated>2026-11-01T00:00:00Z</updated>
+  <entry>
+    <title>OpenAI融资目标骤降100亿美元，估值同步下调至1.25万亿美元</title>
+    <link href="https://m.theblockbeats.info/flash/374743?from=telegram"/>
+    <id>https://xiyu.news/editions/2026-11-01/#telegram:theblockbeats:203367</id>
+    <updated>2026-11-01T00:00:00Z</updated>
+    <summary>据英国《金融时报》报道，OpenAI 将最新一轮融资的目标规模下调 100 亿美元，目前寻求以 1.25 万亿美元估值融资约 200 亿美元，低于此前以 1.4 万亿美元估值融资 300 亿美元的计划。投资者认购截止日期为上周五，知情人士称由于部分投资者下调了认购额度，预计首轮交割（first close）的融资额将低于 200 亿美元的目标。
+
+据《金融时报》描述，这家全球最受关注的 AI 实验室下调融资预期，表明投资者正在削减对 AI 估值的投入，而此时公开市场的 AI 相关股票正遭遇抛售。
+
+OpenAI 此前以 7 月以来营收快速增长为由，为其 1.4 万亿美元估值提供依据——这一估值较此前的 8520 亿美元接近翻倍，并将该轮融资宣传为投资者在明年 IPO 前最后一次入股的机会。《金融时报》报道称，首轮交割的融资额将低于 200 亿美元的目标。</summary>
+  </entry>
+  <entry>
+    <title>Jepsen：ParticleDB 1.1.4</title>
+    <link href="https://jepsen.io/analyses/particledb-1.1.4"/>
+    <id>https://xiyu.news/editions/2026-11-01/#hackernews:story:50316100</id>
+    <updated>2026-11-01T00:00:00Z</updated>
+    <summary>Jepsen 发布了对 ParticleDB 的分析报告。ParticleDB 是一款面向 AI 工作负载的多模型数据库，Jepsen 测试了 1.1.4 至 1.1.18.11.rc-22 的多个版本，认定其“完整 ACID”的宣称并不成立。报告记录了已提交写入丢失、内部一致性违规，以及 G1a（读到已中止事务）、G1b（读到中间状态）和 P4（更新丢失）等异常，并称共向该项目提交了 96 个问题。
+
+Jepsen 明确建议用户停止继续部署 ParticleDB，并尽快迁移到其他数据库；同时建议在可能的情况下，从更可靠的数据源核对或重建数据库状态。
+
+Jepsen 表示，ParticleDB 官网曾宣称该系统已通过 TLA+ 获得“形式化证明”，但在双方合作期间并未提供任何 TLA+ 规范，因此无法确定究竟证明了哪些性质，也无法确定这些性质描述的是否是实际构建出的 ParticleDB。报告还列举了其宣称的 Postgres 兼容性失效的具体表现，包括部分不可见且无法删除的行、被删除的表以扭曲形态重新出现、列错乱以及字符串变成整数等。</summary>
+  </entry>
+  <entry>
+    <title>自己算算：我们是如何接管 ChatGPT 账户的</title>
+    <link href="https://www.parameter.ai/labs/we-found-a-gap-at-openai"/>
+    <id>https://xiyu.news/editions/2026-11-01/#hackernews:story:50314699</id>
+    <updated>2026-11-01T00:00:00Z</updated>
+    <summary>安全研究团队 Parameter 披露了一条针对 ChatGPT 的账户接管攻击链，利用了产品的 Preview 内容以及多层前端防御机制。OpenAI 确认两个前端均拦截了报告中所述的消息，已于 10 月 26 日以 P1 级严重性修复该问题，并支付了总额 5000 美元的赏金。
+
+ChatGPT 中被确认的账户接管路径意味着，受害者只需点击一个分享链接，攻击代码就可能在其已登录的会话中执行，从而暴露会话列表和私密内容。不过该攻击链需要用户交互，目前也没有在野利用的报告。
+
+根据研究人员的说法，Preview 沙箱本身并未被突破——在其中渲染的代码无法读取主页面——绕过实际发生在 postMessage、CSP 和 JSONP 等其它环节。所披露的攻击链依赖受害者点击公开的分享链接。</summary>
+  </entry>
+  <entry>
+    <title>刚刚，DeepSeek重磅开源：Agent底座架构！</title>
+    <link href="https://www.qbitai.com/2026/10/506904.html"/>
+    <id>https://xiyu.news/editions/2026-11-01/#rss:www.qbitai.com_feed:429bf7758a2cec2f</id>
+    <updated>2026-11-01T00:00:00Z</updated>
+    <summary>据量子位报道，DeepSeek 将其 Agent 底座架构开源，报道以“AI 已经自己找到 Bug 并提交 PR”作为核心看点。搜索结果显示，此次开源的对象是 DeepSeek Harness，即一套开源的 Agent 运行时，而不是新的模型。
+
+头部模型厂商开源 Agent 运行时，意味着开发者可以直接在可自托管的底座上构建编码智能体，而不必自行拼装这套脚手架，也不必依赖厂商的托管产品。
+
+对这套 Harness 的介绍称，它基于 Cordis 的“一切皆插件”架构，提供会话、工具、工作区、沙箱、插件、Agent 循环以及网页与终端界面；被标注为实验性的功能包括 Agent 团队、自动审批审核和定时任务。量子位的报道本身除“自主找 Bug 并提交 PR”之外，技术细节较少。</summary>
+  </entry>
   <entry>
     <title>英特尔股价遭遇50年来最惨烈暴跌，疲软业绩指引盖过AI芯片需求</title>
     <link href="https://decrypt.co/382287/intel-stock-suffers-worst-crash-in-50-years-as-weak-forecast-overshadows-ai-chip-demand"/>
@@ -400,49 +444,5 @@ Duet使Anthropic进入与Meta的Muse、OpenAI的Dots相同的消费级与小企�
 这次暂停是针对一起隐私暴露事件的产品层面应对，而用户此前可能以为这些对话只在小范围内被分享。
 
 据报道，这些链接是通过公开的 DNS 记录被定位到的，而非由 Meta 主动披露。Meta 称该分享功能为“暂停”，并非永久移除。</summary>
-  </entry>
-  <entry>
-    <title>谷歌开源 TorchTPU：面向 TPU 的原生 PyTorch 后端</title>
-    <link href="https://github.com/google-pytorch/torch_tpu"/>
-    <id>https://xiyu.news/editions/2026-10-21/#hackernews:story:50169053</id>
-    <updated>2026-10-21T00:00:00Z</updated>
-    <summary>谷歌已开源 TorchTPU，这是一个原生 PyTorch 后端，可让 PyTorch 工作负载直接在谷歌的张量处理器（TPU）上运行。谷歌在开发者博客中详细介绍了该项目，称其采用“Eager First（优先即时执行）”设计并集成 XLA，目的是简化模型向 TPU 基础设施的迁移。
-
-PyTorch 是模型开发的主流框架，官方一方支持消除了一个长期障碍——此前团队若要用 TPU，往往需要绕过 XLA 适配，或干脆留在 TensorFlow/JAX 上。社区评论认为，这一发布加速了开发者远离 TensorFlow 的趋势，并扩大了 PyTorch 代码可适配的加速器范围。
-
-该项目最早由路透社在去年 12 月报道，如今谷歌正式确认并披露了细节；The Stack 报道称，谷歌投入了多名员工专职构建该后端。谷歌开发者博客将 XLA 集成以及在 TPU 基础设施上实现峰值效率作为核心目标。</summary>
-  </entry>
-  <entry>
-    <title>OpenAI 收购 Orchestra Bio</title>
-    <link href="https://openai.com/index/openai-to-acquire-orchestra-bio"/>
-    <id>https://xiyu.news/editions/2026-10-21/#rss:openai.com_blog_rss.xml:1cfb6291fa158d05</id>
-    <updated>2026-10-21T00:00:00Z</updated>
-    <summary>OpenAI 周二宣布收购旧金山初创公司 Orchestra Bio，该公司的人工智能代理用于跟踪和协调药物研发项目；其团队与平台将被并入 OpenAI 面向生物学家和化学家的 AI 模型与工具套件 Rosalind。交易金额未披露。
-
-OpenAI 表示，目标是帮助科学家做出发现，并管理将这些发现转化为更快惠及患者的疗法所需的工作；合并后的团队将构建智能代理，把科学发现与把有希望的结果转化为药物所需的决策和后续研究连接起来。
-
-Orchestra 的智能代理会推演诸如生产批次失败等挫折如何在药物项目中传导，并比较可能的应对方案，最终决定权仍掌握在科学家和项目负责人手中。Orchestra 成立于 2022 年秋季，种子轮融资来自 Andreessen Horowitz、Definition Capital、Insight Partners 和 8VC，累计约 2000 万美元；该公司与在纳斯达克上市、代码为 OBIO 的医疗器械公司 Orchestra BioMed 无关。</summary>
-  </entry>
-  <entry>
-    <title>Character.AI破产细节曝光：迪士尼三年拟花1.8亿美元留人，平台只剩18人</title>
-    <link href="http://xn--,character-cm3tq513b.ai/"/>
-    <id>https://xiyu.news/editions/2026-10-20/#telegram:theblockbeats:201151</id>
-    <updated>2026-10-20T00:00:00Z</updated>
-    <summary>破产法院文件显示，Character.AI 申请破产前，迪士尼已向其 66 名员工发出工作邀请，其中 56 人已离职，另有 10 人正在等待工作签证调整；迪士尼预计未来三年为这批员工投入约 1.8 亿美元，其中包括 3000 万美元留任奖励。Character.AI 申请破产时仅剩 18 名全职员工。
-
-美国 40 名州级总检察长已介入破产程序，要求保护用户私人聊天记录，防止这些数据在资产出售后被滥用。其他买家可在 11 月 20 日前提交竞购报价，若最终无人愿意继续运营，Character.AI 将关闭服务。
-
-迪士尼对 Character.AI 部分技术和专利的报价仅 2000 万美元，换取永久、非独家的使用权，协议明确排除现有 App、品牌、用户聊天记录和成品模型。公司预计只有约 8 人留到破产程序关键阶段，其中约 6 人负责安全相关工作；迪士尼还将让部分已转岗员工临时回来，协助维持原平台运营。</summary>
-  </entry>
-  <entry>
-    <title>Anthropic 将自身 5% 股份献给公众，马斯克回应：送出 SpaceX 股票</title>
-    <link href="https://decrypt.co/381371/anthropic-gives-public-musk-answers-spacex-shares"/>
-    <id>https://xiyu.news/editions/2026-10-20/#rss:decrypt.co_feed:35f425bc8d436ef2</id>
-    <updated>2026-10-20T00:00:00Z</updated>
-    <summary>Anthropic 周日表示，将把公司 5% 的股份投入新设立的“公共利益基金”（Public Benefit Fund），该安排尚需股东批准；若计入联合创始人及员工的捐赠承诺，公司约 20% 的股份将用于公共事业。不到一天后，埃隆·马斯克在 X 上发文称，明年将向全美每一名儿童赠送一股他持有的 SpaceX 股票，并称这“只是众多举措中的第一个”。
-
-此举将一家前沿 AI 实验室的部分股权纳入了面向公共利益的捐赠载体；而马斯克的对抗性承诺把讨论引向了另一条路径——把股票直接分发给个人，而非通过基金来做。
-
-该基金设立为一家全资有限责任公司，而非非营利组织，Anthropic 称这使其可以在不同捐赠方式之间灵活切换；每当公司估值较未披露的基准上涨 50%，董事会可再追加 2% 的股份，且基金持有的股权不得用于游说或政治捐款。马斯克的承诺覆盖约 7200 万名美国儿童，按 SpaceX 每股约 147 美元计算价值约 105 亿美元，仅为其截至 6 月 30 日持有的 64.2 亿股（据 SEC 文件）的 1% 出头。</summary>
   </entry>
 </feed>
