@@ -21,7 +21,9 @@ jobs:
     needs: realtime-paths
     if: needs.realtime-paths.outputs.edge == 'true'
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
-    timeout-minutes: 15
+    # Two exact checkouts and Ruby downloads can exceed fifteen minutes on
+    # the bounded Tokyo runner before rendering even starts. Keep all checks.
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v6
         with:
