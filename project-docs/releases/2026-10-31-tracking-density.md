@@ -15,7 +15,7 @@ src/tracking_republish.py 原来只刷新索引，现同时从受信的出版目
 ## 验证与交付
 
 - 代码：已实现，包括标题对齐、侧栏重复分隔线收敛；资源版本 sha256-a83a2ecb89e0。
-- 测试：Python 1120 passed / 4 个既有 skipped；135 项 Worker、118 项网页 Node、类型、dry-run、安全审计 0 漏洞、治理均通过。数量、倒序、稳定锚点、重建保持 API/目录/跳转不变与模板转义有回归覆盖。
+- 测试：Python 1120 passed / 4 个既有 skipped；135 项 Worker、118 项网页 Node、类型、dry-run、npm 与 Python 安全审计 0 漏洞、治理均通过。数量、倒序、稳定锚点、重建保持 API/目录/跳转不变与模板转义有回归覆盖。
 - 合并：待 PR 与 CI。
 - 部署：待正常 Deploy Docs → 统一 Cloudflare 工作流。
 - 生产验收：待正式域数量、顺序、日期/圆点边界、手机/桌面明暗及版本回读。
@@ -33,6 +33,12 @@ Verification: 2026-10-31 改前浏览器截图与 health 核对，本次生产�
 从 gh-pages 1494083f 导出完整出版快照，覆盖本次模板/CSS，执行 tracking_republish 重建后用 Ruby 3.3 / Jekyll 3.10 渲染整站成功。浏览器对中英 × 明暗 × 1440、390、320px 共 12 组检查：首页最新 3 条各有稳定节点链接，首卡 10 条、其他 3 条；详情 43 个节点全部保留、发生时间倒序、节点导航同序；每个节点日期矩形与圆点矩形无交叠，逐条卡片边框/圆角已移除，没有横向溢出或网页脚本错误。分类筛选、桌面节点导航和首页到具体节点点击成功，手机继续使用正文与首页锚点入口。
 
 本地静态预览的 Quick Post API 由只读生产空列表快照提供，用于还原正常页面显示；不代表后台编辑验收，也没有写入 Quick Post。自动化浏览器检查不是实际手机 PWA 安装测试，本次未改变 PWA 协议或离线行为。
+
+## 合并前安全依赖前置修复
+
+当前 main 的 Python 锁文件在全 extras 审计中报告 4 个包的已知漏洞，会阻止本次 PR 合并。仅通过 uv 的锁定更新补齐 aiohttp 3.14.4、Brotli 1.2.1、certifi 2026.10.18、pyasn1 0.6.5；aiohttp 的约束同时要求传递包 yarl 1.25.1。两份锁文件包名/版本集合对比确认只更换上述五个版本，不合并独立 Dependabot PR 的其他升级，不改 pyproject、Python 支持范围或实时项目依赖。
+
+依据：[aiohttp 公告](https://github.com/advisories/GHSA-2g87-pp6c-29x5)、[Brotli](https://pypi.org/project/brotli/1.2.1/)、[certifi](https://pypi.org/project/certifi/2026.10.18/)、[pyasn1](https://pypi.org/project/pyasn1/0.6.5/)。更新后 all-extras pip-audit 为 No known vulnerabilities found，完整 pytest 再次 1120 passed / 4 skipped，未降低或跳过安全检查。
 
 | 对比 | 截图 |
 | --- | --- |

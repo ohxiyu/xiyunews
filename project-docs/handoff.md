@@ -10,7 +10,7 @@
   "owner": "当前会话唯一编辑与生产整合负责人",
   "branch": "agent/tracking-density",
   "last_verified_commit": "6eb1b9f1bb8af30417f5573cdf57e9c74ddc84e6",
-  "pr": "待创建实现 PR",
+  "pr": "PR306，等待远端检查通过后合并",
   "completed": [
     "核对正式域、远端 main、开放任务与旧工作区，保留用户未跟踪文件",
     "定位数据/模板三条限制、详情旧到新排序、圆点遮挡与逐条独立卡片样式",
