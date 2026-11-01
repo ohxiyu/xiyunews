@@ -425,6 +425,8 @@
 .headline-index[open] > summary::after { content: "−"; }
 .headline-index > summary > span { margin-right: auto; }
 .event-quiet-list > summary { display: flex; align-items: center; min-height: 40px; }
+.event-quiet-list > summary::after { content: "+"; margin-left: auto; padding-left: 12px; }
+.event-quiet-list[open] > summary::after { content: "−"; }
 .theme-toggle { display: inline-grid; place-items: center; width: 36px; height: 36px; }
 .reader-open, .reading-context-expand, .reader-item-actions button { min-height: 36px; }
 .reader-item-actions button { padding-inline: 5px; border-radius: 5px; }
