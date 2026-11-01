@@ -4,6 +4,18 @@
   var mainScriptSource = document.currentScript ? document.currentScript.src : '';
   var storyCardModulePromise = null;
   var contextSequence = 0;
+  var backgroundObserver = typeof ResizeObserver === 'function' ? new ResizeObserver(function (entries) {
+    entries.forEach(function (entry) { updateBackgroundControl(entry.target); });
+  }) : null;
+
+  function updateBackgroundControl(paragraph) {
+    var section = paragraph.closest('[data-context-kind="background"]');
+    var control = section && section.querySelector('.reading-context-expand');
+    if (control && paragraph.clientHeight) {
+      control.hidden = !section.classList.contains('is-expanded') &&
+        paragraph.scrollHeight <= paragraph.clientHeight + 2;
+    }
+  }
 
   function contextKind(section) {
     if (section.classList.contains('tag-line')) return 'tags';
@@ -70,6 +82,7 @@
       });
       line.appendChild(expand);
       section.insertBefore(line, paragraph);
+      if (backgroundObserver) backgroundObserver.observe(paragraph);
     });
     function group(nodes, placement) {
       if (!nodes.length) return null;
@@ -866,7 +879,17 @@
       tocItems.forEach(function (item) {
         item.classList.toggle('active', item === active);
       });
-      if (active) active.scrollIntoView({block: 'nearest'});
+      // Scroll only the rail's own viewport. scrollIntoView also moves the
+      // document, causing reading to jump when another edition becomes active.
+      var rail = active && active.closest('.headline-rail');
+      if (rail && window.matchMedia('(min-width: 1101px)').matches) {
+        var bounds = rail.getBoundingClientRect();
+        var position = active.getBoundingClientRect();
+        if (bounds.top >= 0 && bounds.top < window.innerHeight) {
+          if (position.top < bounds.top) rail.scrollTop -= bounds.top - position.top;
+          else if (position.bottom > bounds.bottom) rail.scrollTop += position.bottom - bounds.bottom;
+        }
+      }
     }, {
       rootMargin: '-16% 0px -70% 0px',
       threshold: 0
@@ -1109,16 +1132,21 @@
     var idleLabel = language === 'zh' ? '加载更早' : 'Load earlier';
     var loadingLabel = language === 'zh' ? '正在加载…' : 'Loading…';
     var errorLabel = language === 'zh' ? '加载失败，重试' : 'Could not load. Retry';
+    var status = document.createElement('p');
+    status.className = 'visually-hidden';
+    status.setAttribute('role', 'status');
+    button.parentElement.appendChild(status);
 
     button.addEventListener('click', async function () {
       var entries = Array.prototype.slice.call(manifest.querySelectorAll(':scope > span')).slice(0, 2);
       if (!entries.length) {
-        button.closest('.load-earlier-wrap').remove();
+        button.hidden = true;
         return;
       }
 
       button.disabled = true;
       button.textContent = loadingLabel;
+      stream.setAttribute('aria-busy', 'true');
       try {
         var loaded = await Promise.all(entries.map(async function (entry) {
           var url = new URL(entry.dataset.url, window.location.href);
@@ -1144,9 +1172,15 @@
         entries.forEach(function (entry) {
           entry.remove();
         });
+        status.textContent = language === 'zh' ? '已加载 ' + loaded.length + ' 期更早日报。' :
+          'Loaded ' + loaded.length + ' earlier editions.';
+        var firstDay = loaded[0];
+        firstDay.setAttribute('tabindex', '-1');
+        firstDay.focus({preventScroll: true});
+        firstDay.scrollIntoView({block: 'start'});
 
         if (!manifest.querySelector(':scope > span')) {
-          button.closest('.load-earlier-wrap').remove();
+          button.hidden = true;
         } else {
           button.disabled = false;
           button.textContent = idleLabel;
@@ -1154,6 +1188,9 @@
       } catch (error) {
         button.disabled = false;
         button.textContent = errorLabel;
+        status.textContent = language === 'zh' ? '未能加载更早日报，请重试。' : 'Earlier editions could not be loaded. Please retry.';
+      } finally {
+        stream.removeAttribute('aria-busy');
       }
     });
   }
@@ -1363,7 +1400,8 @@
       if (
         target &&
         (target.tagName === 'INPUT' ||
-          target.tagName === 'TEXTAREA' ||
+          target.tagName === 'TEXTAREA' || target.tagName === 'SELECT' ||
+          target.closest('button, summary, dialog') ||
           target.isContentEditable)
       ) {
         return;
@@ -1375,7 +1413,8 @@
         }
       );
       if (!articles.length) return;
-      var line = 70;
+      var header = document.querySelector('.site-header');
+      var line = header ? header.getBoundingClientRect().bottom + 12 : 70;
       var current = -1;
       for (var i = 0; i < articles.length; i++) {
         if (articles[i].getBoundingClientRect().top <= line + 1) {
@@ -1387,8 +1426,56 @@
       var next = event.key === 'j'
         ? Math.min(current + 1, articles.length - 1)
         : Math.max(current - 1, 0);
-      articles[next].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      event.preventDefault();
+      articles[next].scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
     });
+  }
+
+  function setupReaderNavigation() {
+    var header = document.querySelector('.site-header');
+    function measureHeader() {
+      if (header) document.documentElement.style.setProperty('--reader-header-offset', header.getBoundingClientRect().height + 'px');
+    }
+    measureHeader();
+    if (header && typeof ResizeObserver === 'function') new ResizeObserver(measureHeader).observe(header);
+    else window.addEventListener('resize', measureHeader);
+
+    function reveal(hash, moveFocus) {
+      var id;
+      try { id = decodeURIComponent(hash.slice(1)); } catch (_) { return; }
+      var target = id && document.getElementById(id);
+      if (!target || !target.closest('main, .main-content, .continuous-feed')) return;
+      var card = target.closest('.digest-item');
+      if (card && card.hidden) {
+        var scope = card.closest('.daily-feed-content, .event-index-layout');
+        var reset = scope && scope.querySelector('.category-filters button[data-category="all"]');
+        if (reset) reset.click();
+      }
+      for (var parent = target.parentElement; parent; parent = parent.parentElement) {
+        if (parent.tagName === 'DETAILS') parent.open = true;
+      }
+      if (target.hidden || (card && card.hidden)) return;
+      requestAnimationFrame(function () {
+        target.scrollIntoView({block: 'start'});
+        if (moveFocus) {
+          if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+          target.focus({preventScroll: true});
+        }
+      });
+    }
+    document.addEventListener('click', function (event) {
+      if (event.defaultPrevented || event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      var link = event.target.closest('a[href^="#"]');
+      if (link && link.hash) reveal(link.hash, true);
+    });
+    window.addEventListener('hashchange', function () { reveal(window.location.hash, true); });
+    if (window.location.hash) reveal(window.location.hash, false);
+
+    // Keep the day's own lead report first, without clamping or removing any
+    // of the three tracking developments. No-JS retains the complete panel.
+    var spotlight = document.querySelector('.home-page .event-spotlight-banner');
+    var lead = document.querySelector('.home-page .daily-day .daily-story-stream > .digest-item');
+    if (spotlight && lead) lead.insertAdjacentElement('afterend', spotlight);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -1398,6 +1485,7 @@
     setupStorySharing();
     setupEventPages();
     enhanceDailyFeeds();
+    setupReaderNavigation();
     setupScrollspy();
     setupKeyboardNav();
     document.documentElement.classList.add('feed-ready');

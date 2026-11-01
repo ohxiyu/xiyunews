@@ -1,38 +1,38 @@
 # 当前交接
 
-当前任务：[Issue305](https://github.com/ohxiyu/xiyunews/issues/305) 的事件追踪优化已合并并通过正式域验收；[Issue307](https://github.com/ohxiyu/xiyunews/issues/307) 仅归档上线证据。当前会话为唯一编辑与生产整合负责人，文档分支 agent/tracking-density-evidence；不接续旧任务或改变发布审计策略。架构入口为[系统架构](system-architecture.md)，访问统计令牌仍为[独立待办](releases/2026-10-18-web-analytics.md)。
+当前任务：[Issue309](https://github.com/ohxiyu/xiyunews/issues/309) 自查并修复公开阅读路径的 UI/UX，验证后部署。当前会话为唯一编辑与生产整合负责人，分支 agent/reader-ux；不接续旧任务或改变发布审计策略。架构入口为[系统架构](system-architecture.md)，访问统计令牌仍为[独立待办](releases/2026-10-18-web-analytics.md)。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "追踪首卡最近 10 条、首页重点最近 3 条、最新优先与连续时间线一致性优化并上线",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/307",
+  "goal": "修复公开阅读路径的布局、触控、筛选锚点和历史加载体验，保持信息密度并上线",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/309",
   "owner": "当前会话唯一编辑与生产整合负责人",
-  "branch": "agent/tracking-density-evidence",
-  "last_verified_commit": "0291c7ff86b56847ffbde20e756561bce381a242",
-  "pr": "PR306 已合并；Issue307 通过后续文档 PR 归档正式域验收",
+  "branch": "agent/reader-ux",
+  "last_verified_commit": "ff9902f9b013c2fa70989a4a20610379b45d6944",
+  "pr": "PR310，等待远端检查通过后合并",
   "completed": [
     "核对正式域、远端 main、开放任务与旧工作区，保留用户未跟踪文件",
-    "定位数据/模板三条限制、详情旧到新排序、圆点遮挡与逐条独立卡片样式",
-    "实现首卡 10 条、其他 3 条与首页 3 条，事件/节点最新优先，稳定锚点保留",
-    "补齐无 AI 重建中英文详情页，避免旧详情页留存",
-    "远端 CI 全部通过，PR306 于 2026-10-31 18:32:58Z 合并",
-    "Deploy Docs41229957178 与统一部署41230062324 成功；正式域 12 组浏览器及无 JS 检查通过"
+    "确认首页追踪挤占首屏、筛选后锚点目标隐藏、操作触控过小与详情重复日期等问题",
+    "首页先当日头条后重点三条，修复跨分类锚点、折叠反馈、短背景与历史加载定位",
+    "详情手机日期横排与正文宽度优化，保留时间口径、完整历史与稳定节点",
+    "完整 Python 1121 passed / 4 个既有 skipped；120 项 Node、资源指纹与治理通过",
+    "真实快照 12 组浏览器检查通过，另验证 52 节点长时间线与无 JS 原生折叠"
   ],
-  "unfinished": [],
-  "validation": ["完整 Python 回归 1120 passed / 4 个既有 skipped；最后 CSS 细节按针对性测试核对", "135 项 Worker、118 项 Node、类型、dry-run、安全审计 0 漏洞、治理通过", "真实归档 Jekyll 整站构建成功；12 组中英/明暗/宽度浏览器检查通过，首卡 10/其他 3、首页 3、详情 43 节点倒序/锚点/无日期遮挡与横向溢出；前后截图已归档"],
-  "unverified": ["手机检查使用浏览器尺寸模拟，不代表实机 PWA 安装验收；本次未修改 PWA 协议", "未来自然采集与下一刊生成不属于本次 UI 验收"],
+  "unfinished": ["远端检查、合并、正常部署与正式域验收"],
+  "validation": ["完整 Python 1121 passed / 4 个既有 skipped，最终资源指纹及针对性测试通过", "120 项网页 Node 通过，npm ci 审计 0 漏洞，治理与差异检查通过", "真实出版快照 Jekyll 构建与 12 组中英/明暗/宽度浏览器通过；过滤锚点、页眉稳定、收藏面板、加载失败/重试、长时间线、无 JS 折叠通过"],
+  "unverified": ["前次任务的测试与生产结果不代表本次修复已上线", "手机尺寸模拟不代表实机 PWA 安装验收"],
   "production": {
-    "source_commit": "0291c7ff86b56847ffbde20e756561bce381a242",
-    "artifact_commit": "73fcbcc0aae9971a7841af04207da0e4e4d06e97",
-    "edition": "2026-10-31（上海 11 月 1 日凌晨，07:26 新刊生成前）",
-    "generated_at": "2026-10-30T23:31:35.388801Z；本次未触发日报生成",
-    "worker_version": "e20bf912-c89c-4ba1-85f5-df7fcdc85a67",
-    "verified_at": "2026-11-01 02:40–02:42 Asia/Shanghai，正式域普通 URL、health、ready、API 与浏览器回读"
+    "source_commit": "ff9902f9b013c2fa70989a4a20610379b45d6944",
+    "artifact_commit": "9cb9fc05409dfa0db0ad8d3c7d0840a17b934e30",
+    "edition": "2026-11-01（改前回读）",
+    "generated_at": "2026-10-31T23:30:49.446140Z；本次未触发日报生成",
+    "worker_version": "4a4b53e8-0df1-4e76-8ae2-742de5e4c397（改前）",
+    "verified_at": "2026-11-01，正式域改前核对；本次代码待部署"
   },
   "blockers": [],
-  "next_action": "本次 UI 五阶段已完成；文档 PR 检查通过后合并归档，不自动扩大到其他待办",
-  "states": {"code": "complete", "tests": "complete", "pr_merged": "complete", "deployed": "complete", "production_verified": "complete"},
-  "evidence": "project-docs/releases/2026-10-31-tracking-density.md"
+  "next_action": "完成 Issue309 的实际交互回归与本地视觉检查，正常 PR 发布后验收",
+  "states": {"code": "complete", "tests": "complete", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
+  "evidence": "project-docs/releases/2026-11-01-reader-ux.md"
 }
 ```

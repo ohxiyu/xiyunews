@@ -142,3 +142,24 @@ def test_focus_is_recent_first_without_promoting_minor_stories_into_home_spotlig
     payload = build_event_index_data([major, newer], now=newer.last_material_change_at)
     assert [r["event_id"] for r in payload["focus"]] == [newer.event_id, major.event_id]
     assert payload["spotlight"]["event_id"] == major.event_id
+
+
+def test_detail_time_keeps_full_machine_stamp_without_repeating_visible_date():
+    from bs4 import BeautifulSoup
+    from src.events import EventTimePrecision
+    from src.site_pages import render_event_page
+
+    event = ongoing("evt_clock01")
+    event.updates[-1].time_precision = EventTimePrecision.PUBLISHED
+    before = event.model_dump(mode="json")
+    for language in ("zh", "en"):
+        page = BeautifulSoup(render_event_page(event, language), "html.parser")
+        node = page.select_one(".event-update")
+        stamp = node.select_one("time")
+        precision = node.select_one(".event-update-precision").get_text()
+        assert stamp["datetime"] == event.updates[-1].occurred_at.isoformat()
+        assert stamp["title"].startswith("2026")
+        assert "UTC" in precision
+        assert "2026" not in precision
+        assert stamp.get_text() not in precision
+    assert event.model_dump(mode="json") == before
