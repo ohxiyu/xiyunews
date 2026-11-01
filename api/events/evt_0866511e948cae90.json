@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_0866511e948cae90/",
   "json": "https://xiyu.news/api/events/evt_0866511e948cae90.json",
   "type": "security_incident",
-  "status": "developing",
+  "status": "monitoring",
   "category": "crypto",
   "title": {
     "zh": "【Spreek：Swell DAO 的 swETH 与 rswETH 管理员密钥疑似泄露，分析报告由 Claude 辅助撰写】",
     "en": "【Spreek：Swell DAO 的 swETH 与 rswETH 管理员密钥疑似泄露，分析报告由 Claude 辅助撰写】"
   },
   "current_state": {
-    "zh": "Swell 正在调查 swETH 与 rswETH 合约可疑活动，暂无 ETH 从相关存款或提款合约流出；此前 Spreek 报告的疑似管理员密钥泄露和四个恶意升级合约仍处于调查中。",
-    "en": "Swell is investigating suspicious swETH and rswETH contract activity and says no ETH has flowed out of the relevant deposit or withdrawal contracts; the suspected admin-key leak and four malicious upgrade contracts reported by Spreek remain under investigation."
+    "zh": "Swell 在暂停存取款以调查 swETH 与 rswETH 合约可疑活动后，已重新开放存取款并将汇率恢复至正确水平，同时承诺下周内补偿按虚高汇率存入的用户；安全调查的最终结论尚未公布。",
+    "en": "After pausing deposits and withdrawals amid the suspicious swETH/rswETH contract activity, Swell has reopened them, restored the exchange rate to its correct level, and pledged to compensate users who deposited at the inflated rate within the following week; final findings of the security investigation have not been published."
   },
   "first_seen_at": "2026-10-22T06:31:30.918080+00:00",
-  "last_updated_at": "2026-10-22T09:33:10.599498+00:00",
-  "last_material_change_at": "2026-10-22T09:33:10.599498+00:00",
+  "last_updated_at": "2026-11-01T15:31:40.431723+00:00",
+  "last_material_change_at": "2026-11-01T15:31:40.431723+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 3,
+  "updates_count": 3,
+  "sources_count": 4,
   "entities": [
     "claude",
     "dao",
@@ -33,7 +33,9 @@
   "topics": [
     "defi-security",
     "key-compromise",
+    "liquid-restaking",
     "rsweth",
+    "security-incident",
     "swell",
     "swell-dao",
     "sweth"
@@ -116,6 +118,44 @@
       "sources": [
         {
           "url": "https://foresightnews.pro/news/h5Detail/115747",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_b6b4bdd756dc5eed",
+      "event_id": "evt_0866511e948cae90",
+      "occurred_at": "2026-11-01T11:52:22Z",
+      "published_at": "2026-11-01T11:52:22Z",
+      "first_seen_at": "2026-11-01T15:31:40.431723Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "【Swell 开放 swETH 与 rswETH 存取款，将补偿虚高汇率存入用户】",
+      "title_en": "【Swell 开放 swETH 与 rswETH 存取款，将补偿虚高汇率存入用户】",
+      "what_changed_zh": "Swell 已重新开放 swETH 与 rswETH 的存取款，汇率恢复至正确水平，并表示按虚高汇率存入的用户将在下周内获得补偿。",
+      "what_changed_en": "Swell has reopened swETH and rswETH deposits and withdrawals, restored the exchange rate to its correct level, and said users who deposited at the inflated rate will be compensated within the following week.",
+      "current_state_zh": "Swell 在暂停存取款以调查 swETH 与 rswETH 合约可疑活动后，已重新开放存取款并将汇率恢复至正确水平，同时承诺下周内补偿按虚高汇率存入的用户；安全调查的最终结论尚未公布。",
+      "current_state_en": "After pausing deposits and withdrawals amid the suspicious swETH/rswETH contract activity, Swell has reopened them, restored the exchange rate to its correct level, and pledged to compensate users who deposited at the inflated rate within the following week; final findings of the security investigation have not been published.",
+      "detailed_summary_zh": "Swell reopened swETH and rswETH deposits and withdrawals after pausing them over suspicious contract activity, restored the exchange rate to its correct level, and said users who deposited at the inflated rate will be compensated within the following week.",
+      "detailed_summary_en": "Swell reopened swETH and rswETH deposits and withdrawals after pausing them over suspicious contract activity, restored the exchange rate to its correct level, and said users who deposited at the inflated rate will be compensated within the following week.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.93,
+      "story_ids": [
+        "telegram:foresightnews:121888"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116559",
           "label": "foresightnews",
           "source_type": "telegram",
           "official": false
