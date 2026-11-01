@@ -1,373 +1,410 @@
 {
   "version": 1,
   "content_revision_version": 1,
-  "date": "2026-11-01",
-  "generated_at": "2026-10-31T23:30:49.446140Z",
+  "date": "2026-11-02",
+  "generated_at": "2026-11-01T23:30:49.361329Z",
   "site": "https://xiyu.news",
   "window": {
-    "start": "2026-10-30T23:00:00Z",
-    "end": "2026-10-31T23:00:00Z"
+    "start": "2026-10-31T23:00:00Z",
+    "end": "2026-11-01T23:00:00Z"
   },
   "stats": {
-    "candidates": 312,
+    "candidates": 316,
     "analyzed": 140,
-    "displayed": 13,
+    "displayed": 12,
     "high_priority": 0
   },
   "overview": {
-    "zh": "加密与AI领域同日暴露信任缺口：交易所动用保险储备、跨链与封装资产停摆，AI融资预期同步下调。 加密安全：币安拟动用SAFU约一半资金弥补安全事件损失，该基金2026年持有加密资产约10亿美元。 DeFi中断：Threshold暂停tBTC铸造与赎回后，Aave冻结tBTC储备，禁止新增存款与借款但保留还款提现。 AI融资：OpenAI将融资目标下调100亿美元至约200亿美元，估值由1.4万亿美元降至1.25万亿美元。",
-    "en": "Crypto and AI both showed trust gaps: an exchange tapped its insurance reserve while AI funding expectations were cut. Crypto security：Binance plans to draw about half of SAFU, a fund holding roughly $1 billion in crypto assets as of 2026. DeFi halt：After Threshold paused tBTC minting and redemptions, Aave froze the tBTC reserve, blocking new supply and borrows. AI funding：OpenAI cut its round target by $10 billion to about $20 billion, with valuation falling to $1.25 trillion."
+    "zh": "加密领域多起钱包与跨链桥资金被盗事件集中爆发，安全漏洞成为当日主线。 自托管支付：BTCPay Server 建议运营者关闭实例并升级至 2.4.2，事件疑与闪电网络凭证漏洞有关。 质押层失窃：b14g 约 9700 万枚 CORE 被未经授权提取，交易所已冻结约 900 万枚，多数资金仍在链上。 AI 工具链：Cursor 在 Claude Code 市场出现恶意更新后建议用户重置凭证，受影响范围尚未确认。",
+    "en": "A cluster of wallet and bridge exploits made security the day's dominant thread across crypto. Self-hosted payments：BTCPay Server told operators to shut down instances and update to 2.4.2, with the incident tied to a Lightning credential flaw. Staking layer：About 97 million CORE were withdrawn without authorization from b14g; exchanges froze roughly 9 million, with most funds still on-chain. AI toolchain：Cursor advised users to reset credentials after a malicious update spread through the Claude Code marketplace, with scope unconfirmed."
   },
   "market": {
-    "btc_usd": 77467.0,
-    "btc_change_24h": 0.5659126151334025,
-    "eth_usd": 2254.18,
-    "eth_change_24h": 0.6094553769284947,
-    "fear_greed": 30,
+    "btc_usd": 78030.0,
+    "btc_change_24h": 0.7498338346678164,
+    "eth_usd": 2265.35,
+    "eth_change_24h": 0.4913114670509252,
+    "fear_greed": 34,
     "fear_greed_label": "Fear"
   },
   "items": [
     {
       "rank": 1,
-      "url": "https://www.tokenpost.com/news/technology/45593",
+      "url": "https://thedefiant.io/news/hacks/btcpay-server-urges-shutdown-after-reports-of-hot-wallet-sweeps",
       "title": {
-        "zh": "币安计划动用一半SAFU基金以弥补安全事件损失",
-        "en": "Binance Plans to Draw Half of SAFU Fund for Breach Losses"
+        "zh": "BTCPay Server 在热钱包被扫空报告后敦促用户关闭实例",
+        "en": "BTCPay Server Urges Shutdown After Reports of Hot-Wallet Sweeps"
       },
       "summary": {
-        "zh": "据TOKENPOST报道，币安计划动用其“用户安全资产基金”（SAFU）中约一半的资金，用于弥补一次安全事件造成的损失。若付诸实施，这将是迄今规模最大的交易所保险储备动用案例之一。\n\nSAFU是币安用于用户赔付的最后一道防线，因此如此规模的动用意味着此次事件的损失相对于交易所为此专门预留的储备而言规模较大。\n\nSAFU成立于2018年7月，资金来源为币安按一定比例划拨的交易手续费；币安学院称，截至2026年该基金持有的加密资产价值约10亿美元，且该数值会随市场波动。",
-        "en": "Binance intends to draw down approximately half of its Secure Asset Fund for Users (SAFU) to cover losses stemming from a breach, according to a TOKENPOST report. If carried out, it would be one of the largest deployments of an exchange insurance reserve to date.\n\nSAFU is Binance's last-resort user compensation pool, so a draw of this size signals that the incident's losses are large relative to the reserve the exchange maintains for exactly this purpose.\n\nSAFU was set up in July 2018 and is funded by allocating a percentage of Binance's trading fees; Binance Academy describes the fund as holding crypto assets valued at roughly US$1 billion as of 2026, a figure that fluctuates with the market."
+        "zh": "开源自托管的比特币支付处理器 BTCPay Server 在出现其相关热钱包被“扫空”的报告后，建议运营者关闭自己的实例，表明这是一起正在发生的、影响比特币商户的安全事件。该项目的指引还要求运营者升级至 2.4.2 版本，该版本会一并更新 LND 并重新生成其 admin macaroon。\n\n自行运行 BTCPay 实例的商户掌握着服务器所控制资金的私钥，因此在资金被持续盗取的情况下，在关闭或升级之前他们将直接面临损失风险。BTCPay 是托管式支付处理器之外被广泛采用的自托管方案，这使得该警告涉及的运营范围异常广泛。\n\n该事件似乎与 2.4.2 之前版本中的一个闪电网络凭证漏洞有关，攻击者可借此获取控制商店闪电网络资金的凭证。该项目表示，若运营者不确定升级是否已正确生效，应通过用户界面或 btcpay-update.sh 重新执行更新；目前报道中尚未厘清具体损失规模与根本原因。",
+        "en": "BTCPay Server, the open-source self-hosted Bitcoin payment processor, advised operators to shut down their instances after reports that hot wallets tied to the software were being swept, indicating an active security incident affecting Bitcoin merchants. The project's guidance also directed operators to update to version 2.4.2, which refreshes LND and regenerates its admin macaroon.\n\nMerchants running their own BTCPay instances hold the keys to the funds those servers control, so an active draining incident exposes them to direct loss until they shut down or update. BTCPay is a widely used self-hosted alternative to custodial payment processors, giving the advisory an unusually large operational footprint.\n\nThe incident appears tied to a Lightning credential flaw in versions before 2.4.2 that let attackers obtain the credentials controlling a store's Lightning funds. The project said operators unsure whether an update applied correctly should re-run it via the user interface or btcpay-update.sh; the exact loss magnitude and root cause have not been resolved in reporting."
       },
       "content_revision": {
-        "zh": "f808620b87c3dadc439e7a957b73dcb71c7923e1282649da9de06d84c690662e",
-        "en": "cfb02ed68b2f1c4bbdd23f4de5492d37d54b762570c211264b4e97634151a102"
+        "zh": "4317ac99451855ca5ea55bae2d8258650d8352d5920c5ec0a283994de0abcfb3",
+        "en": "caafff2bb007386ce41695d57084e14a9c06781ce456d1a30f6f7a4606d30469"
       },
-      "score": 8.5,
-      "category": "exchange-operations",
+      "score": 8.0,
+      "category": "crypto-protocols",
       "top_category": "crypto",
       "source": {
         "type": "google_news",
-        "label": "TOKENPOST"
+        "label": "The Defiant"
       },
       "tags": [
-        "binance",
-        "safu",
-        "security-breach",
-        "exchange-operations",
-        "user-funds"
+        "btcpay-server",
+        "security-incident",
+        "hot-wallet",
+        "bitcoin",
+        "lightning-network",
+        "lnd"
       ],
       "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "tab9358f171",
+        "id": "t1bf68d4c08",
         "day": 1,
-        "url": "https://xiyu.news/threads/tab9358f171/"
+        "url": "https://xiyu.news/threads/t1bf68d4c08/"
       },
       "event": null
     },
     {
       "rank": 2,
-      "url": "https://thedefiant.io/news/defi/thorchain-swaps-remain-paused-on-12-chains-after-reported-refund-error",
+      "url": "https://simplywall.st/stocks/jp/software/tse-4258/amiya-shares/news/cybersecurity-stocks-in-focus-after-binance-hack-raises-digi/amp",
       "title": {
-        "zh": "THORChain 跨链兑换在报告出现退款错误后于 12 条链上持续暂停",
-        "en": "THORChain Swaps Remain Paused on 12 Chains After Reported Refund Error"
+        "zh": "币安遭黑客攻击引发数字资产安全疑问，网络安全股受关注",
+        "en": "Cybersecurity Stocks In Focus After Binance Hack Raises Digital Asset Security Questions"
       },
       "summary": {
-        "zh": "在报告出现退款机制错误后，THORChain 的跨链兑换功能在 12 条支持的链上仍处于暂停状态。据 Chainalysis 称，10 月 31 日上午（美国东部时间）以太坊发生的一次链重组，导致 THORChain 错误地向一名存入 10 ETH 的用户进行了双重退款，从而触发了紧急暂停。\n\n此次暂停使所有用户在 THORChain 的大部分桥上无法进行跨链兑换。Chainalysis 表示，这一暂停也意外延缓了一笔从 Binance 窃取的大额资金的洗钱活动。\n\nChainalysis 将触发原因具体归结为以太坊链重组，即此前已被接受的区块被竞争链上的区块所取代的事件。在现有材料中，尚未确认该事件造成的损失金额。",
-        "en": "THORChain's cross-chain swap functionality remains suspended across 12 supported chains following a reported error in its refund mechanism. According to Chainalysis, an Ethereum chain reorganization on the morning of October 31 (EDT) caused THORChain to mistakenly issue a double refund to a user who had deposited 10 ETH, prompting an emergency pause.\n\nThe pause blocks cross-chain swaps for all users across most of THORChain's bridges. Chainalysis said the halt also inadvertently delayed the laundering of a significant amount of funds stolen from Binance.\n\nChainalysis attributed the trigger specifically to an Ethereum chain reorganization, a event in which previously accepted blocks are replaced by a competing chain. No loss figures for the incident have been confirmed in the supplied material."
+        "zh": "Simply Wall St 发布市场评论，指出在币安遭遇黑客攻击、重新引发对数字资产安全与交易所防护措施的担忧后，网络安全类股票成为关注焦点。该文属于二级市场评论而非第一手事件报道，未明确损失规模或受影响用户数量。\n\n该文把交易所安全事件与投资者对上市网络安全厂商的关注联系起来，将加密事件风险视为该板块潜在的需求驱动因素。\n\n搜索结果中出现的其他报道将 2026 年币安被攻击事件描述为史上最大规模的加密货币盗窃案，规模超过 2025 年 Bybit 的 15 亿美元黑客事件，并称投资者已撤出 36 亿美元资金；这些数据来自其他媒体，并非 Simply Wall St 评论的内容。",
+        "en": "Simply Wall St published a market commentary item flagging cybersecurity stocks as a focus of attention after a hack at Binance renewed concerns about digital-asset security and exchange safeguards. The piece is secondary stock-market commentary rather than primary incident reporting, and it does not establish the size of the loss or the number of users affected.\n\nThe item links an exchange security failure to investor attention on listed cybersecurity vendors, framing crypto-incident risk as a potential demand driver for that sector.\n\nOther reporting surfaced in search results describes a 2026 Binance breach as the largest-ever cryptocurrency heist, surpassing the $1.5 billion Bybit hack in 2025, with investors withdrawing $3.6 billion in funds; those figures come from separate outlets and are not part of the Simply Wall St commentary."
       },
       "content_revision": {
-        "zh": "c13d556df8cda443d97893fb7440be7c7c0e097a7da4746f17c98935c8557974",
-        "en": "3dcb609fd28b22130967c532570fa082af4fc4bf0892501c96d4c76cee22f8c4"
+        "zh": "a3530741f12b3d3d2ee38b9b89db30966563e020da0b3f6bd90a5a1608cc1108",
+        "en": "9c6de9c95a726d302442d7052c10089ba8bcb43be505c38e65a6e008084679a3"
       },
       "score": 8.0,
-      "category": "crypto-protocols",
+      "category": "crypto-markets",
       "top_category": "crypto",
       "source": {
         "type": "google_news",
-        "label": "The Defiant"
+        "label": "Simply Wall St"
       },
       "tags": [
-        "thorchain",
-        "dex",
-        "cross-chain",
-        "protocol-incident",
-        "defi"
+        "Binance",
+        "exchange hack",
+        "cybersecurity",
+        "crypto security",
+        "market reaction"
       ],
-      "sources_count": 2,
+      "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "t656deb0385",
-        "day": 1,
-        "url": "https://xiyu.news/threads/t656deb0385/"
+        "id": "t2335b3e218",
+        "day": 3,
+        "url": "https://xiyu.news/threads/t2335b3e218/"
       },
       "event": null
     },
     {
       "rank": 3,
-      "url": "https://thedefiant.io/news/defi/aave-freezes-tbtc-reserve-after-threshold-pauses-minting-and-redemptions",
+      "url": "https://foresightnews.pro/news/h5Detail/116531",
       "title": {
-        "zh": "Threshold 暂停 tBTC 铸造与赎回后，Aave 冻结其 tBTC 储备",
-        "en": "Aave Freezes tBTC Reserve After Threshold Pauses Minting and Redemptions"
+        "zh": "【b14g 遭未经授权提取 9700 万枚 CORE，已暂停合约并冻结部分资金】",
+        "en": "b14g Suffers Unauthorized Withdrawal of 97 Million CORE, Pauses Contracts and Freezes Some Funds"
       },
       "summary": {
-        "zh": "Threshold 暂停了其封装比特币资产 tBTC 的铸造与赎回，Aave 随后冻结了 tBTC 储备，作为防范坏账与抵押品风险的一项预防性措施。此次暂停涉及的封装比特币资产已被多个 DeFi 平台集成，其中包括 Aave 的借贷市场。\n\nAave 的举措使这一中断在其 tBTC 被使用的主要借贷平台上直接显现，因为冻结储备属于针对单一资产的风险处置，而非例行的参数调整。Threshold 暂停所造成的损失目前尚未量化。\n\n在 Aave 上，冻结储备会关闭单一市场的新增存款与借款操作，但保留还款与提现功能，因此现有 tBTC 头寸在流动性允许的情况下仍可退出。Threshold 的跨链桥依赖一组使用门限密码学的去中心化节点运营商来完成 tBTC 的铸造与赎回。",
-        "en": "Threshold paused minting and redemptions of tBTC, its wrapped-Bitcoin asset, and Aave responded by freezing its tBTC reserve as a precautionary measure against bad debt and collateral risk. The halt affects a wrapped-Bitcoin asset that is integrated across multiple DeFi venues, including Aave's lending market.\n\nAave's action makes the disruption visible on the largest lending venue where tBTC is used, since a reserve freeze is an asset-specific risk action rather than a routine parameter adjustment. Losses from the Threshold halt have not been quantified.\n\nOn Aave, a reserve freeze disables new supply and borrow operations for a single market while leaving repayments and withdrawals active, so existing tBTC positions can still be unwound subject to liquidity. Threshold's bridge relies on a decentralized set of node operators using threshold cryptography to mint and redeem tBTC."
+        "zh": "比特币双质押层 b14g 表示，北京时间 10 月 31 日 17:29，约 9700 万枚通过 b14g 质押的 CORE 被未经授权提取并转入攻击者地址。该协议称已在发现后立即暂停受影响合约，并正与 Core 团队、安全伙伴及交易所合作追踪资金、协调冻结与恢复。\n\nCore DAO 表示，影响 b14g 的漏洞不影响 Core 网络本身，共识、验证者及质押合约全程正常运行，直接与验证者质押或通过其他协议质押的 CORE 不受影响。追踪显示约 6800 万枚 CORE 仍留在 Core 链上，交易所已冻结约 900 万枚与该事件相关的 CORE。\n\nCryptoSlate 报道称，攻击者利用了“零代币提取”方式从该比特币质押平台转走 CORE。资金追回仍在进行中：交易所冻结的约 900 万枚 CORE 只是部分金额，大部分资金仍留在链上而未被追回。",
+        "en": "b14g, a Bitcoin dual-staking layer, said that at 17:29 Beijing time on October 31, roughly 97 million CORE tokens staked through its protocol were withdrawn without authorization and transferred to an attacker's address. The protocol said it immediately paused the affected contracts and is working with the Core team, security partners and exchanges to trace the funds and coordinate freezes and recovery.\n\nCore DAO said the vulnerability affecting b14g does not affect the Core network itself: consensus, validators and staking contracts ran normally throughout, and CORE staked directly with validators or through other protocols is unaffected. Tracking shows about 68 million CORE is still on the Core chain, with exchanges having frozen roughly 9 million CORE tied to the incident.\n\nCryptoSlate reported that \"zero-token withdrawals\" allowed the attacker to drain the CORE from the Bitcoin staking platform. Recovery is still in progress: the roughly 9 million CORE frozen by exchanges is a partial amount, and the majority of the funds remains on-chain rather than recovered."
       },
       "content_revision": {
-        "zh": "07b0ba6da85f1d9052c91c676d2269aa311eb063bc7cd3348377780d5cf082a3",
-        "en": "1b8d9553760a18b1483736ad6b7c51dc5b2f4e27b911ab321eeb10fa48a10b86"
+        "zh": "21451f8d81d43c12941a94af5c0222c4135b40cdcdfa583083b8a3acac162813",
+        "en": "30a1ff57de49bcee16733f57b8b9d7d1742da391d1121bdbbe198f68d514bc8a"
       },
       "score": 8.0,
       "category": "crypto-protocols",
       "top_category": "crypto",
       "source": {
-        "type": "google_news",
-        "label": "The Defiant"
+        "type": "telegram",
+        "label": "foresightnews"
       },
       "tags": [
-        "tBTC",
-        "Aave",
-        "Threshold Network",
-        "wrapped bitcoin",
-        "DeFi risk"
+        "security-incident",
+        "CORE",
+        "b14g",
+        "staking",
+        "fund-freeze"
       ],
-      "sources_count": 1,
+      "sources_count": 2,
       "editorial": false,
       "thread": {
-        "id": "t8691e8a1ab",
+        "id": "tde53ac0925",
         "day": 1,
-        "url": "https://xiyu.news/threads/t8691e8a1ab/"
+        "url": "https://xiyu.news/threads/tde53ac0925/"
       },
-      "event": null
+      "event": {
+        "event_id": "evt_483fb7e851cf3d08",
+        "update_id": "upd_73dad2b5ce72083d",
+        "url": "https://xiyu.news/events/evt_483fb7e851cf3d08/#upd_73dad2b5ce72083d",
+        "json": "https://xiyu.news/api/events/evt_483fb7e851cf3d08.json"
+      }
     },
     {
       "rank": 4,
-      "url": "https://m.theblockbeats.info/flash/374743?from=telegram",
+      "url": "https://m.theblockbeats.info/flash/374842?from=telegram",
       "title": {
-        "zh": "OpenAI融资目标骤降100亿美元，估值同步下调至1.25万亿美元",
-        "en": "OpenAI's funding target drops by $10 billion, valuation cut to $1.25 trillion in tandem"
+        "zh": "SOON生态两座跨链桥出现异常提款，官方已暂停服务并展开调查",
+        "en": "Two cross-chain bridges in the SOON ecosystem see abnormal withdrawals; officials suspend service and open investigation"
       },
       "summary": {
-        "zh": "据英国《金融时报》报道，OpenAI 将最新一轮融资的目标规模下调 100 亿美元，目前寻求以 1.25 万亿美元估值融资约 200 亿美元，低于此前以 1.4 万亿美元估值融资 300 亿美元的计划。投资者认购截止日期为上周五，知情人士称由于部分投资者下调了认购额度，预计首轮交割（first close）的融资额将低于 200 亿美元的目标。\n\n据《金融时报》描述，这家全球最受关注的 AI 实验室下调融资预期，表明投资者正在削减对 AI 估值的投入，而此时公开市场的 AI 相关股票正遭遇抛售。\n\nOpenAI 此前以 7 月以来营收快速增长为由，为其 1.4 万亿美元估值提供依据——这一估值较此前的 8520 亿美元接近翻倍，并将该轮融资宣传为投资者在明年 IPO 前最后一次入股的机会。《金融时报》报道称，首轮交割的融资额将低于 200 亿美元的目标。",
-        "en": "OpenAI has cut the target size of its latest funding round by $10 billion and is now seeking roughly $20 billion at a $1.25 trillion valuation, down from an earlier plan of $30 billion at $1.4 trillion, according to the Financial Times. The investor subscription deadline was last Friday, and people familiar said the first close is expected to come in below the $20 billion target because some investors have reduced their commitments.\n\nThe downward revision at the world's most closely watched AI lab indicates investors are trimming commitments to AI valuations, as described by the FT, at a time when listed AI-related stocks are being sold off.\n\nOpenAI had justified the earlier valuation of $1.4 trillion — nearly double a prior $852 billion mark — by pointing to rapid revenue growth since July, and had pitched the round as investors' last chance to buy in before a planned IPO next year. The FT report says the first close will fall short of the $20 billion target."
+        "zh": "SOON Foundation 表示，2026 年 10 月 31 日约 11:00（UTC），svmBNB 与 SOON 主网两座跨链桥出现异常提款活动。基金会在当日 14:00（UTC）发现异常后立即关闭桥接服务，并称目前已控制相关跨链桥，调查完成前两座桥将持续暂停运行。\n\n在调查期间，svmBNB 与 SOON 主网之间的跨链通道被冻结，用户暂时无法通过这两条路径桥接资产。\n\n公告未披露异常提款涉及的资产规模及具体损失。SOON 表示将根据调查进展公布更多信息。",
+        "en": "SOON Foundation said that at roughly 11:00 UTC on 31 October 2026, abnormal withdrawal activity occurred on the svmBNB and SOON Mainnet cross-chain bridges. The foundation detected the anomaly at 14:00 UTC that day and immediately shut down the bridging services, saying both bridges remain under its control and will stay offline pending an investigation.\n\nThe halt freezes cross-chain movement between svmBNB and SOON Mainnet while the foundation investigates, leaving users unable to bridge assets through either route.\n\nThe announcement did not disclose the scale of assets involved in the abnormal withdrawals or any specific losses. SOON said it will publish further information as the investigation progresses."
       },
       "content_revision": {
-        "zh": "e98ef42cb4e990691c5a8922587ed6d3dba74aecae0838d371a4e37910cb21d4",
-        "en": "1f5e75d10edda1c85580bd9a2fa3ff9a82e696a90878bb00defe8d8ffb8fc52c"
+        "zh": "a6ee33bcd47ba1038f2bbb43306fedd01f12835715513ad99663e3afdd351069",
+        "en": "817f6438011832737df9632cbc3b17c5dcc949d69035a1a49fc1183757e074e8"
       },
       "score": 8.0,
-      "category": "ai-labs",
-      "top_category": "technology",
+      "category": "crypto-protocols",
+      "top_category": "crypto",
       "source": {
         "type": "telegram",
         "label": "theblockbeats"
       },
       "tags": [
-        "openai",
-        "funding",
-        "valuation",
-        "ai-markets",
-        "anthropic"
+        "SOON",
+        "svmBNB",
+        "cross-chain bridge",
+        "security incident",
+        "protocol halt"
       ],
-      "sources_count": 1,
+      "sources_count": 2,
       "editorial": false,
       "thread": {
-        "id": "t6fd72bb72a",
-        "day": 2,
-        "url": "https://xiyu.news/threads/t6fd72bb72a/"
+        "id": "t96dfc28186",
+        "day": 1,
+        "url": "https://xiyu.news/threads/t96dfc28186/"
       },
       "event": {
-        "event_id": "evt_85b8850df81f687c",
-        "update_id": "upd_2d1b08c9e05360ad",
-        "url": "https://xiyu.news/events/evt_85b8850df81f687c/#upd_2d1b08c9e05360ad",
-        "json": "https://xiyu.news/api/events/evt_85b8850df81f687c.json"
+        "event_id": "evt_b9b332716f063f82",
+        "update_id": "upd_a8a67c9ce77d0251",
+        "url": "https://xiyu.news/events/evt_b9b332716f063f82/#upd_a8a67c9ce77d0251",
+        "json": "https://xiyu.news/api/events/evt_b9b332716f063f82.json"
       }
     },
     {
       "rank": 5,
-      "url": "https://jepsen.io/analyses/particledb-1.1.4",
+      "url": "https://startupfortune.com/coinbases-third-party-vendor-problem-strikes-again-with-amplitude-leak/",
       "title": {
-        "zh": "Jepsen：ParticleDB 1.1.4",
-        "en": "Jepsen: ParticleDB 1.1.4"
+        "zh": "Coinbase 第三方供应商问题再度上演：Amplitude 数据泄露",
+        "en": "Coinbase's Third-Party Vendor Problem Strikes Again With Amplitude Leak"
       },
       "summary": {
-        "zh": "Jepsen 发布了对 ParticleDB 的分析报告。ParticleDB 是一款面向 AI 工作负载的多模型数据库，Jepsen 测试了 1.1.4 至 1.1.18.11.rc-22 的多个版本，认定其“完整 ACID”的宣称并不成立。报告记录了已提交写入丢失、内部一致性违规，以及 G1a（读到已中止事务）、G1b（读到中间状态）和 P4（更新丢失）等异常，并称共向该项目提交了 96 个问题。\n\nJepsen 明确建议用户停止继续部署 ParticleDB，并尽快迁移到其他数据库；同时建议在可能的情况下，从更可靠的数据源核对或重建数据库状态。\n\nJepsen 表示，ParticleDB 官网曾宣称该系统已通过 TLA+ 获得“形式化证明”，但在双方合作期间并未提供任何 TLA+ 规范，因此无法确定究竟证明了哪些性质，也无法确定这些性质描述的是否是实际构建出的 ParticleDB。报告还列举了其宣称的 Postgres 兼容性失效的具体表现，包括部分不可见且无法删除的行、被删除的表以扭曲形态重新出现、列错乱以及字符串变成整数等。",
-        "en": "Jepsen published an analysis of ParticleDB, a multi-model database marketed for AI workloads, testing versions 1.1.4 through 1.1.18.11.rc-22 and finding that its \"Full ACID\" claims did not hold. The report documents loss of committed writes, internal consistency violations, G1a (aborted read), G1b (intermediate read) and P4 (lost update) anomalies, and states that Jepsen filed 96 issues against the system.\n\nJepsen explicitly recommended that users halt further deployment of ParticleDB and migrate to other databases as soon as possible, and suggested checking or rebuilding database state from more reliable sources where possible.\n\nJepsen said ParticleDB's home page advertised the system as \"formally proven\" with a TLA+ proof, but that no TLA+ specification was available during the collaboration, leaving it unclear which properties were proven or whether they described ParticleDB as built. The report also lists failures of the claimed Postgres compatibility, including partially invisible rows that could not be deleted, dropped tables re-emerging in distorted forms, confused columns and strings turning into integers."
+        "zh": "Coinbase 证实其第三方产品分析服务商 Amplitude 发生安全事件，导致一小部分 Coinbase 客户的联系人信息与其他 Amplitude 客户的数据一同外泄。Coinbase 表示其自身平台并未遭到入侵，并否认了流传的“7 万名用户受影响”的说法。\n\n该事件延续了原报道标题所称的 Coinbase 反复出现的问题：客户数据是经由外部供应商流出，而非 Coinbase 自身系统被攻破。泄露的联系方式为攻击者针对交易所用户实施钓鱼和社工攻击提供了素材。\n\n据 The CyberSec Guru 报道，Coinbase 于 10 月 28 日披露了这起 Amplitude 事件。相关报道同时指出，Coinbase 的立场是自身“并未发生数据泄露”，影响源于 Amplitude，且仅限于小部分客户联系人数据。",
+        "en": "Coinbase acknowledged a security incident at Amplitude, its third-party product analytics provider, which exposed contact information belonging to a small subset of Coinbase customers alongside other Amplitude customers. Coinbase says its own platform was not breached, and the company has pushed back on circulating claims that 70,000 users were affected.\n\nThe incident extends a pattern the source headline frames as recurring for Coinbase: customer data leaving the exchange through outside vendors rather than through a breach of Coinbase's own systems. Exposed contact details give attackers material for phishing and social-engineering attempts aimed at exchange users.\n\nAccording to The CyberSec Guru, Coinbase disclosed the Amplitude incident on October 28. Reporting also notes that Coinbase's position is that it \"has not had a data breach,\" with the impact attributed to Amplitude and limited to a small subset of customer contact data."
       },
       "content_revision": {
-        "zh": "325963ca29205835ce10f7f481f5c330be4e426c3897be7d01e4120a5f96530c",
-        "en": "2b8d6b942f826eefb778891942102e855b0af2f214324b40b2b880ef43126d16"
-      },
-      "score": 8.0,
-      "category": "tech-community",
-      "top_category": "technology",
-      "source": {
-        "type": "hackernews",
-        "label": "aphyr"
-      },
-      "tags": [
-        "ParticleDB",
-        "Jepsen",
-        "distributed systems",
-        "database correctness",
-        "TLA+",
-        "ACID"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "t26ad248a14",
-        "day": 1,
-        "url": "https://xiyu.news/threads/t26ad248a14/"
-      },
-      "event": {
-        "event_id": "evt_026f10f0f4dc9964",
-        "update_id": "upd_19ef51a00bbf8ae8",
-        "url": "https://xiyu.news/events/evt_026f10f0f4dc9964/#upd_19ef51a00bbf8ae8",
-        "json": "https://xiyu.news/api/events/evt_026f10f0f4dc9964.json"
-      }
-    },
-    {
-      "rank": 6,
-      "url": "https://cryptorank.io/news/feed/cf6f2-chainalysis-confirms-security-breach-customer-details-exposed",
-      "title": {
-        "zh": "Chainalysis 证实发生安全漏洞，客户信息遭泄露",
-        "en": "Chainalysis Confirms Security Breach, Customer Details Exposed"
-      },
-      "summary": {
-        "zh": "据 CryptoRank 报道，Chainalysis 已证实发生一起安全漏洞事件，导致客户信息被泄露。这使得这家区块链分析与合规服务供应商成为加密行业中又一家承认客户信息遭泄露的第三方服务商。\n\nChainalysis 为交易所、金融机构和政府机构提供交易追踪与合规工具，因此其客户信息泄露会给这些客户带来数据保护与交易对手风险方面的疑问。\n\n报道称，此次事件的影响限于客户信息，并未涉及资金损失，已确认的泄露数据范围被描述为有限。",
-        "en": "Chainalysis has confirmed a security breach in which customer details were exposed, CryptoRank reported. The disclosure makes the blockchain-analytics and compliance vendor the latest third-party provider in the crypto industry to acknowledge a compromise of client information.\n\nChainalysis supplies transaction-tracing and compliance tooling to exchanges, financial institutions and government agencies, so exposure of its customer details raises data-protection and counterparty-risk questions for those clients.\n\nThe report describes the impact as confined to customer details rather than any loss of funds, with the confirmed scope of exposed data described as limited."
-      },
-      "content_revision": {
-        "zh": "3d94fab607b0a0346f3254c0802684f3f08dd7283cfe2a24825bd2759d5cd269",
-        "en": "77d7ed4d6b472c595b1b17d3578a96c1778a4a56fc9f171062626c1a13ee3bac"
+        "zh": "2422ad908faa1cb9362b738f3239a988f71fdc47e2f4e0dbfcf761a0ebf4c657",
+        "en": "2cb5ffb102fa3b1a597f2d645f4e8a0e8b752d97b23fdd122d9afc1105bc91e0"
       },
       "score": 7.5,
       "category": "exchange-operations",
       "top_category": "crypto",
       "source": {
         "type": "google_news",
-        "label": "CryptoRank"
+        "label": "Startup Fortune"
       },
       "tags": [
-        "chainalysis",
-        "security-breach",
-        "data-privacy",
-        "kyc",
-        "compliance"
+        "Coinbase",
+        "Amplitude",
+        "data breach",
+        "third-party vendor",
+        "exchange security"
       ],
       "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "t5d2f11312c",
-        "day": 4,
-        "url": "https://xiyu.news/threads/t5d2f11312c/"
+        "id": "t820537ff24",
+        "day": 2,
+        "url": "https://xiyu.news/threads/t820537ff24/"
+      },
+      "event": null
+    },
+    {
+      "rank": 6,
+      "url": "https://cryptoslate.com/bitcoin-redemption-freeze-puts-136-million-aave-market-under-scrutiny/",
+      "title": {
+        "zh": "比特币赎回冻结令 1.36 亿美元 Aave 市场受到审视",
+        "en": "Bitcoin redemption freeze puts $136 million Aave market under scrutiny"
+      },
+      "summary": {
+        "zh": "据 CryptoSlate 报道，一项比特币赎回冻结令一个敞口约 1.36 亿美元的 Aave 借贷市场受到审视。此次赎回暂停引发了对该比特币锚定资产发行方偿付能力，以及该市场抵押品质量的质疑。\n\n如果该比特币锚定资产的持有者无法将其兑换为原生 BTC，那么该 Aave 市场上作为贷款抵押品的资产，其实际价值可能低于链上价格所反映的水平，从而使该市场的贷款方面临潜在缺口。\n\n1.36 亿美元指的是该 Aave 市场的敞口规模，而非已确认的损失。此次冻结涉及的是作为抵押品的比特币锚定代币的赎回，而非 Aave 协议本身出现故障。",
+        "en": "A freeze on Bitcoin redemptions has put an Aave lending market holding roughly $136 million in exposure under scrutiny, according to CryptoSlate. The halt raises questions about the solvency of the Bitcoin-pegged asset's issuer and the quality of collateral backing that market.\n\nIf holders of the affected Bitcoin-pegged asset cannot redeem it for native BTC, the collateral backing loans on that Aave market may be worth less than its on-chain price implies, exposing lenders on that market to potential shortfalls.\n\nThe $136 million figure refers to the size of the Aave market's exposure, not a confirmed loss. The freeze concerns redemption of a Bitcoin-pegged token used as collateral rather than a failure of Aave itself."
+      },
+      "content_revision": {
+        "zh": "9f243dfcfa74ef91af2300c383d68b37d9b749cb8e2571b8cce9a99fce2c88d4",
+        "en": "b2e192d1086b0828fa1409eb70b9bb699978933583c6b19235d9f96370702f46"
+      },
+      "score": 7.5,
+      "category": "crypto-protocols",
+      "top_category": "crypto",
+      "source": {
+        "type": "google_news",
+        "label": "CryptoSlate"
+      },
+      "tags": [
+        "aave",
+        "defi",
+        "redemption-freeze",
+        "wrapped-bitcoin",
+        "lending"
+      ],
+      "sources_count": 1,
+      "editorial": false,
+      "thread": {
+        "id": "t8691e8a1ab",
+        "day": 2,
+        "url": "https://xiyu.news/threads/t8691e8a1ab/"
       },
       "event": null
     },
     {
       "rank": 7,
-      "url": "https://www.parameter.ai/labs/we-found-a-gap-at-openai",
+      "url": "https://cryptoslate.com/cursor-urges-credential-resets-after-malicious-claude-code-marketplace-update/",
       "title": {
-        "zh": "自己算算：我们是如何接管 ChatGPT 账户的",
-        "en": "Do the math: How we took over ChatGPT accounts"
+        "zh": "Cursor 在 Claude Code 市场出现恶意更新后敦促用户重置凭证",
+        "en": "Cursor urges credential resets after malicious Claude Code marketplace update"
       },
       "summary": {
-        "zh": "安全研究团队 Parameter 披露了一条针对 ChatGPT 的账户接管攻击链，利用了产品的 Preview 内容以及多层前端防御机制。OpenAI 确认两个前端均拦截了报告中所述的消息，已于 10 月 26 日以 P1 级严重性修复该问题，并支付了总额 5000 美元的赏金。\n\nChatGPT 中被确认的账户接管路径意味着，受害者只需点击一个分享链接，攻击代码就可能在其已登录的会话中执行，从而暴露会话列表和私密内容。不过该攻击链需要用户交互，目前也没有在野利用的报告。\n\n根据研究人员的说法，Preview 沙箱本身并未被突破——在其中渲染的代码无法读取主页面——绕过实际发生在 postMessage、CSP 和 JSONP 等其它环节。所披露的攻击链依赖受害者点击公开的分享链接。",
-        "en": "Security researchers at Parameter disclosed a ChatGPT account-takeover chain that abused the product's Preview content and layered frontend defenses. OpenAI confirmed that both frontends rejected the reported messages, resolved the issue on October 26 as a P1-severity bug, and awarded a total bounty of $5,000.\n\nA confirmed account-takeover path in ChatGPT means a single clicked share link could run code inside a victim's authenticated session, exposing conversation lists and private content. The chain required user interaction and no in-the-wild exploitation has been reported.\n\nAccording to the researchers' account, the Preview sandbox itself held — code rendered there could not read the main page — and the bypass instead worked through other layers such as postMessage, CSP and JSONP gadgets. The disclosed chain depended on the victim clicking a public share link."
+        "zh": "CryptoSlate 报道称，在 Claude Code 市场分发了一个恶意更新后，Cursor 建议用户重置凭证。目前尚未确认受影响用户数量或损失金额。\n\n该事件使 AI 编程工具使用的开发者凭证和密钥面临风险，凸显了这些工具所依赖的插件生态中的供应链信任问题。\n\n恶意更新通过 Claude Code 市场传播，Cursor 的回应是通知用户重置凭证。入侵范围，包括哪些凭证可能暴露，尚未得到确认。",
+        "en": "CryptoSlate reported that Cursor advised users to reset credentials after a malicious update was distributed through the Claude Code marketplace. No affected-user count or loss figure has been confirmed.\n\nThe incident puts developer credentials and secrets used with AI coding tools at risk, underscoring supply-chain trust in the plugin ecosystems those tools rely on.\n\nThe malicious update came through the Claude Code marketplace, and Cursor's response was to tell users to reset credentials. The scope of the compromise, including which credentials were exposed, has not been confirmed."
       },
       "content_revision": {
-        "zh": "f025b2d72a788a6cbe749cbaddcacd0bbf5a282178b60848253f235e34ab5912",
-        "en": "69b46d415ec326ff8246f125ffce863be8d42097ff878780940a54aff11d659f"
+        "zh": "7fadddc65081caa42deff3cb20c1ae3a510b232d8bf91827075123f68821c266",
+        "en": "f744d3dcea596cb287affda8e3036e391c872f2833a16356376e340886ffca0f"
+      },
+      "score": 7.5,
+      "category": "ai-devtools",
+      "top_category": "technology",
+      "source": {
+        "type": "google_news",
+        "label": "CryptoSlate"
+      },
+      "tags": [
+        "supply-chain-attack",
+        "ai-devtools",
+        "security",
+        "cursor",
+        "claude-code"
+      ],
+      "sources_count": 1,
+      "editorial": false,
+      "thread": {
+        "id": "t91a584d20a",
+        "day": 1,
+        "url": "https://xiyu.news/threads/t91a584d20a/"
+      },
+      "event": null
+    },
+    {
+      "rank": 8,
+      "url": "https://m.theblockbeats.info/flash/374857?from=telegram",
+      "title": {
+        "zh": "马斯克称Colossus 2年底将部署120万块Blackwell，20万块专门跑推理",
+        "en": "Musk says Colossus 2 will deploy 1.2 million Blackwell GPUs by year-end, with 200,000 dedicated to inference"
+      },
+      "summary": {
+        "zh": "马斯克披露，xAI位于孟菲斯的超级计算集群 Colossus 2 计划在年底前部署约 120 万块英伟达 Blackwell GPU。接下来还有两座设施投运：Gun Range 预计 11 月底上线 22 万块 GB300，用于模型训练；Spam 由一座原本存放午餐肉等食品的仓库改造而来，计划部署约 20 万块 GB300，专门用于 AI 推理。\n\n马斯克称，目前 Macrohard 配有 11 万块 GB200 和 22 万块 GB300，Macroharder、Minihard 各有 22 万块 GB300；加上计划新增的 42 万块，五个集群合计约 119 万块。他表示，Macroharder、Minihard 和 Gun Range 均采用 800Gbps 网卡，而 Spam 的推理任务网络配置更简单，所需光纤不到训练设施的一半。",
+        "en": "Elon Musk disclosed that xAI's Memphis supercomputing cluster Colossus 2 plans to deploy roughly 1.2 million Nvidia Blackwell GPUs by the end of the year. Two additional facilities are slated to come online: Gun Range, expected around late November with 220,000 GB300s for model training, and Spam, converted from a warehouse that previously stored canned food such as luncheon meat, planned to host about 200,000 GB300s dedicated to AI inference.\n\nMusk said Macrohard currently runs 110,000 GB200 and 220,000 GB300 GPUs, while Macroharder and Minihard each have 220,000 GB300s; adding the planned 420,000 brings the five clusters to about 1.19 million GPUs. Macroharder, Minihard and Gun Range all use 800Gbps network cards, whereas the Spam inference site needs a simpler network and less than half the fiber of the training facilities, he said."
+      },
+      "content_revision": {
+        "zh": "aec7bf8e69567ee709daa72931002461d159ec29299cd7eb774ad37b5de7c258",
+        "en": "8caf6408093fd3a35a3a5f6f350a41780b309d95cec2a0274c8bf20f2dd1a3d4"
       },
       "score": 7.5,
       "category": "ai-labs",
       "top_category": "technology",
       "source": {
-        "type": "hackernews",
-        "label": "armcat"
-      },
-      "tags": [
-        "ChatGPT",
-        "account takeover",
-        "vulnerability disclosure",
-        "OpenAI",
-        "bug bounty",
-        "web security"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "t1c640f88e0",
-        "day": 1,
-        "url": "https://xiyu.news/threads/t1c640f88e0/"
-      },
-      "event": {
-        "event_id": "evt_755f8fed011118ef",
-        "update_id": "upd_55c08be0b64c6eea",
-        "url": "https://xiyu.news/events/evt_755f8fed011118ef/#upd_55c08be0b64c6eea",
-        "json": "https://xiyu.news/api/events/evt_755f8fed011118ef.json"
-      }
-    },
-    {
-      "rank": 8,
-      "url": "https://m.theblockbeats.info/flash/374784?from=telegram",
-      "title": {
-        "zh": "Kintsu官网已恢复，但团队仍提醒暂勿连接钱包",
-        "en": "Kintsu Website Restored, but Team Still Warns Users Not to Connect Wallets"
-      },
-      "summary": {
-        "zh": "基于 Monad 区块链的流动性质押协议 Kintsu 于 10 月 31 日表示，其官网 kintsu.xyz 已恢复正常并重新指向项目方自有基础设施。团队提醒用户，在 DNS 缓存完全刷新、官方发布安全确认之前，继续避免访问该网站并不要连接钱包，并称部分网络在未来一小时内仍可能访问到恶意网站。\n\n最先披露此次正在进行的前端攻击的安全机构 Blockaid 建议用户暂时不要使用受影响的去中心化应用，并表示正在调查。Kintsu 的提醒说明，即便域名已恢复，风险也尚未完全解除，因为 DNS 传播延迟仍可能让部分用户访问到恶意版本。\n\n据 Blockaid 称，受影响网站被植入恶意脚本，用户点击\"Connect Wallet\"（连接钱包）后可能被重定向至恶意的资产转移页面。Blockaid 表示该攻击与 StepDrainer 工具包有关，涉及 kintsu、flap 和 stonkbrokers 三个网站。",
-        "en": "Kintsu, a liquid staking protocol on the Monad blockchain, said on October 31 that its official website kintsu.xyz has been restored and again points to the project's own infrastructure. The team warned users to keep avoiding the site and not to connect wallets until DNS caches fully refresh and it issues an official security confirmation, noting that some networks may still reach the malicious site for up to an hour.\n\nSecurity firm Blockaid, which flagged the ongoing front-end attack, advised users not to use the affected decentralized applications while it investigates. Kintsu's warning indicates the risk is not fully cleared even after the domain was restored, because DNS propagation delays can keep serving the malicious version.\n\nAccording to Blockaid, malicious scripts were injected into the affected sites so that users who clicked \"Connect Wallet\" could be redirected to a page designed to move their assets. Blockaid said the attack was linked to the StepDrainer toolkit and involved three sites: kintsu, flap and stonkbrokers."
-      },
-      "content_revision": {
-        "zh": "59f514199bc70ec25a1536f713987fd9cb4150666c07632944c233e967aa11ca",
-        "en": "895799683d533e4f9aabe0ded3b50ba8cf4175ff78e52d9c15665ea22df331c3"
-      },
-      "score": 7.0,
-      "category": "crypto-protocols",
-      "top_category": "crypto",
-      "source": {
         "type": "telegram",
         "label": "theblockbeats"
       },
       "tags": [
-        "Kintsu",
-        "Monad",
-        "StepDrainer",
-        "front-end attack",
-        "wallet drainer",
-        "DeFi"
+        "xAI",
+        "Nvidia Blackwell",
+        "GB300",
+        "AI infrastructure",
+        "inference"
       ],
       "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "t041370b66b",
+        "id": "t70721958bf",
         "day": 1,
-        "url": "https://xiyu.news/threads/t041370b66b/"
+        "url": "https://xiyu.news/threads/t70721958bf/"
       },
       "event": {
-        "event_id": "evt_db5288c7dacde443",
-        "update_id": "upd_78d7a8fd84281fd4",
-        "url": "https://xiyu.news/events/evt_db5288c7dacde443/#upd_78d7a8fd84281fd4",
-        "json": "https://xiyu.news/api/events/evt_db5288c7dacde443.json"
+        "event_id": "evt_ba08ae06a71572c2",
+        "update_id": "upd_c3df1b1652eca2c8",
+        "url": "https://xiyu.news/events/evt_ba08ae06a71572c2/#upd_c3df1b1652eca2c8",
+        "json": "https://xiyu.news/api/events/evt_ba08ae06a71572c2.json"
       }
     },
     {
       "rank": 9,
-      "url": "https://wublockchain.xyz/news/news-21465",
+      "url": "https://foresightnews.pro/news/h5Detail/116523",
       "title": {
-        "zh": "ICE 重新发布与 Trade[XYZ] 的合作公告，强调“计划引入”与“有待监管批准”",
-        "en": "ICE Reposts Trade[XYZ] Partnership Announcement, Emphasizing \"Plans to Bring\" an"
+        "zh": "【NXTT 拟出售或抵押 5833 枚比特币，价值约 4.49 亿美元】",
+        "en": "NXTT Plans to Sell or Collateralize 5,833 Bitcoin Worth About $449 Million"
       },
       "summary": {
-        "zh": "洲际交易所（ICE）在删除早前发布的贴文后重新发布了与 Trade[XYZ] 的合作公告，并修改了措辞，称双方“计划将基于 Hyperliquid 的永续合约引入美国”，而任何“美国受监管版本”仍严格“有待监管批准”。更新后的公告称，双方正在申请批准以推出一个基于 Hyperliquid 的新市场，用于运营符合 KYC 要求的永续合约市场，其中包括支持杠杆交易所需的批准。\n\n修改后的措辞表明该安排尚未获批：基于 Hyperliquid 的永续合约市场尚无确认推出的美国受监管版本，而杠杆交易还需要单独的监管批准。\n\n原公告在修改后重新发布之前已被撤下，新文本一致将该美国市场表述为“计划中”而非“已获批”。申请范围既包括市场本身，也单独包括杠杆交易。",
-        "en": "After deleting its earlier post, Intercontinental Exchange (ICE) republished its partnership announcement with Trade[XYZ] with amended wording, stating the two parties \"plan to bring Hyperliquid-based perps to the U.S.\" and that any \"U.S. regulated versions\" remain strictly \"subject to regulatory approvals.\" The revised post says both parties are seeking approvals to launch a new Hyperliquid-based market for KYC-compliant perpetual futures, including approvals needed to support leveraged trading.\n\nThe amended language shows the arrangement has not been approved: no U.S. regulated version of the Hyperliquid-based perpetuals market is confirmed to launch, and leveraged trading would require separate regulatory sign-off.\n\nThe original announcement was taken down before being reposted in revised form, and the new text consistently frames the U.S. venue as planned rather than approved. Approval is being sought both for the market itself and specifically for leveraged trading."
+        "zh": "纳斯达克上市软件公司 Next Technology Holding（NXTT）表示，其董事会已授权分批出售或抵押其约 5833 枚比特币（约 4.49 亿美元）。公司给出的理由包括交易所漏洞（含币安攻击事件）以及量子计算对比特币密码学的潜在威胁；首席执行官 Weihong Liu 将决定交易的时机、价格和规模。\n\n一家纳斯达克上市公司的企业金库公开以交易所交易对手风险和量子风险为由，出售或抵押其比特币，这标志着企业持币方对托管风险的表述出现明显变化。公司同时表示，该授权并不保证任何交易会最终完成。\n\nNXTT 称其比特币并未存放在币安，也未通过币安持有；该授权涵盖交易所出售、私下协商交易以及比特币抵押融资。公司大部分比特币来自 2025 年 3 月的一笔交易，当时以股份、认股权证和现金预付款收购 5000 枚 BTC，总对价 1.581 亿美元，约合每枚 31600 美元。",
+        "en": "Next Technology Holding (NXTT), a Nasdaq-listed software company, said its board has authorized the phased sale or collateralization of roughly 5,833 bitcoin, worth about $449 million. The company cited exchange vulnerabilities, including the Binance attack, and the potential threat quantum computing poses to Bitcoin's cryptography, with CEO Weihong Liu to decide the timing, pricing and size of any transactions.\n\nA Nasdaq-listed corporate treasury publicly citing exchange counterparty risk and quantum risk as grounds to sell or pledge its bitcoin marks a notable shift in how corporate holders frame custody risk. The company said the authorization does not guarantee that any transactions will be completed.\n\nNXTT said its bitcoin is not held at or through Binance, and the authorization covers exchange sales, privately negotiated transactions and bitcoin-collateralized financing. Most of the holdings came from a March 2025 deal in which it acquired 5,000 BTC for total consideration of $158.1 million, about $31,600 per coin, paid in shares, warrants and a cash prepayment."
       },
       "content_revision": {
-        "zh": "36ee166a9e3be8109bc61d64a98904c4b3692bb1a55442908a86e8d1934429cb",
-        "en": "0a6912742bce05050ca1aa787390503bcc9cecf217b244385f601c84de99989b"
+        "zh": "4fb57f2e2c0a94c8d9887ae271b278e25c5962721925fd1b260698a6122ddafd",
+        "en": "4f8e124b22fc1c7921db8bc71aabf68b915b4b13cd47435b42703bd0670bb1b3"
+      },
+      "score": 7.0,
+      "category": "crypto-markets",
+      "top_category": "crypto",
+      "source": {
+        "type": "telegram",
+        "label": "foresightnews"
+      },
+      "tags": [
+        "bitcoin",
+        "corporate-treasury",
+        "selling-pressure",
+        "custody-risk",
+        "quantum-computing",
+        "NXTT"
+      ],
+      "sources_count": 1,
+      "editorial": false,
+      "thread": {
+        "id": "t68ec18d16a",
+        "day": 1,
+        "url": "https://xiyu.news/threads/t68ec18d16a/"
+      },
+      "event": {
+        "event_id": "evt_c21bc7e7744b6374",
+        "update_id": "upd_891b982336a33894",
+        "url": "https://xiyu.news/events/evt_c21bc7e7744b6374/#upd_891b982336a33894",
+        "json": "https://xiyu.news/api/events/evt_c21bc7e7744b6374.json"
+      }
+    },
+    {
+      "rank": 10,
+      "url": "https://wublockchain.xyz/news/spot-ethereum-etfs-record-23-day-net-outflow-streak-21469",
+      "title": {
+        "zh": "美国现货以太坊ETF创下自推出以来最长的23个交易日连续净流出纪录",
+        "en": "U.S. Spot Ethereum ETFs Hit Record 23-Day Net Outflow Streak Since Launch"
+      },
+      "summary": {
+        "zh": "Glassnode 报告称，美国现货以太坊ETF已连续23个交易日出现净流出，创下这类基金推出以来最长的连续净流出纪录。这家链上分析机构表示，持续的资金撤出反映出传统金融投资者的需求正在走弱。\n\nGlassnode 将这一连续净流出与在8月和9月大幅增持ETH的传统金融投资者转为撤出联系起来，使这组资金流数据成为衡量机构对以太坊敞口需求的指标。\n\n净流出意味着在这些交易日中，基金份额的赎回规模超过新份额的创设规模，即资金在流出这些ETF，而不是流入。",
+        "en": "Glassnode reported that U.S. spot Ethereum ETFs have posted 23 consecutive trading days of net outflows, their longest such streak since the funds launched. The on-chain analytics firm said the sustained withdrawals point to weakening demand from traditional-finance investors.\n\nGlassnode linked the streak to a pullback by traditional-finance investors who had accumulated ETH heavily in August and September, making the flow data a gauge of institutional appetite for ether exposure.\n\nA net outflow means redemptions from the funds exceeded new share creation on those trading days, so capital was leaving the ETFs rather than entering them."
+      },
+      "content_revision": {
+        "zh": "29eec96449c515b27fb20606753e70bd7375ce2399fa32f366a7236ffd68967c",
+        "en": "d36276f8caaa6ee323b54bfa1a55bb7dafcf82beee60600a89979481aab5d1f4"
       },
       "score": 7.0,
       "category": "crypto-markets",
@@ -377,188 +414,104 @@
         "label": "wublockchainenglish"
       },
       "tags": [
-        "hyperliquid",
-        "ICE",
-        "Trade[XYZ]",
-        "perpetual-futures",
-        "institutional-adoption",
-        "crypto-regulation"
+        "ethereum",
+        "etf",
+        "institutional-flows",
+        "market-structure",
+        "glassnode"
       ],
       "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "t2caf8bed21",
-        "day": 6,
-        "url": "https://xiyu.news/threads/t2caf8bed21/"
-      },
-      "event": {
-        "event_id": "evt_8d1fc68ab9cbd38f",
-        "update_id": "upd_389ab9784a189c48",
-        "url": "https://xiyu.news/events/evt_8d1fc68ab9cbd38f/#upd_389ab9784a189c48",
-        "json": "https://xiyu.news/api/events/evt_8d1fc68ab9cbd38f.json"
-      }
-    },
-    {
-      "rank": 10,
-      "url": "https://foresightnews.pro/news/h5Detail/116517",
-      "title": {
-        "zh": "【OnePay 支持 USDC 直接转入支票账户余额】",
-        "en": "OnePay Now Supports Direct USDC Transfers Into Checking-Account Balance"
-      },
-      "summary": {
-        "zh": "沃尔玛旗下金融科技应用 OnePay 宣布，用户现在可以将 USDC 稳定币直接发送至 OnePay 账户，资金会自动进入其现有的支票账户余额，用于支付账单和转账，无需再经过交易所转换。\n\n该功能省去了交易所兑换环节，使这一锚定美元的稳定币持有者可以直接在沃尔玛支持的消费级应用内将资金用于账单支付和转账。\n\nOnePay 表示，相关银行服务由 Coastal Community Bank 或 Lead Bank 提供。",
-        "en": "Walmart-backed fintech app OnePay announced that users can now send USDC stablecoins directly to their OnePay account, with the funds automatically credited to their existing checking-account balance for bill payments and transfers, without going through an exchange conversion.\n\nThe feature removes the exchange-conversion step, letting holders of the dollar-pegged stablecoin apply funds directly to bill payments and transfers inside a Walmart-backed consumer app.\n\nOnePay said the related banking services are provided by Coastal Community Bank or Lead Bank."
-      },
-      "content_revision": {
-        "zh": "dd4d115deb5b14e6b79f17ef563a88415ce40d38ab80eaac004b92190b447d45",
-        "en": "5af43327e22f8512a9f807394e7953b5d1e08e2faf478c460d9ce479cf552c6c"
-      },
-      "score": 7.0,
-      "category": "crypto-markets",
-      "top_category": "crypto",
-      "source": {
-        "type": "telegram",
-        "label": "foresightnews"
-      },
-      "tags": [
-        "USDC",
-        "stablecoin-payments",
-        "OnePay",
-        "Walmart",
-        "Coastal Community Bank",
-        "fintech"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "tb8e855a6ef",
+        "id": "t0dd66c4624",
         "day": 1,
-        "url": "https://xiyu.news/threads/tb8e855a6ef/"
+        "url": "https://xiyu.news/threads/t0dd66c4624/"
       },
       "event": {
-        "event_id": "evt_83ee522809ac4c73",
-        "update_id": "upd_ac1f6f1e2b08bccb",
-        "url": "https://xiyu.news/events/evt_83ee522809ac4c73/#upd_ac1f6f1e2b08bccb",
-        "json": "https://xiyu.news/api/events/evt_83ee522809ac4c73.json"
+        "event_id": "evt_102d838502d815ed",
+        "update_id": "upd_d7e82e4eda217e0f",
+        "url": "https://xiyu.news/events/evt_102d838502d815ed/#upd_d7e82e4eda217e0f",
+        "json": "https://xiyu.news/api/events/evt_102d838502d815ed.json"
       }
     },
     {
       "rank": 11,
-      "url": "https://foresightnews.pro/news/h5Detail/116512",
+      "url": "https://terrytao.wordpress.com/2026/11/01/mathematics-has-changed-lets-act-like-it/",
       "title": {
-        "zh": "【多个 Web3 项目网站遭到 DNS 劫持攻击】",
-        "en": "Websites of several Web3 projects hit by DNS hijacking attack"
+        "zh": "数学已经改变，让我们也这样行动",
+        "en": "Mathematics has changed. Let's act like it"
       },
       "summary": {
-        "zh": "Blockaid 在 X 上发推称，检测到包括 Flap、Stonk 等在内的多个 Web3 项目网站遭到 DNS 劫持攻击，用户访问时会被重定向到黑客设置的、包含恶意软件的页面。\n\n通过被劫持的域名访问这些项目前端的用户，可能被导向攻击者控制的页面而非真实网站，从而面临恶意软件风险，而无法与原本的应用进行交互。\n\nBlockaid 描述的这起事件影响的是项目网站的 DNS 解析环节，而非链上合约；该推文未说明受影响项目的具体数量或受影响用户规模。",
-        "en": "Blockaid said in a post on X that it detected DNS hijacking attacks on the websites of several Web3 projects, including Flap and Stonk, so that visitors are redirected to hacker-controlled pages containing malware.\n\nAnyone who reached these project front-ends through the hijacked domains could be routed to attacker infrastructure rather than the genuine site, exposing visitors to malware rather than interacting with the intended application.\n\nThe compromise described by Blockaid affects the DNS resolution of the projects' websites rather than their on-chain contracts, and Blockaid did not state in the post how many projects or how many users were affected."
+        "zh": "陶哲轩（Terence Tao）发表了一篇题为《数学已经改变，让我们也这样行动》的文章，认为人工智能已经足以改变数学研究的实践方式，研究者必须重新思考功劳归属、问题选择以及成果如何被领域消化吸收。该文在 Hacker News 上引发高热度讨论，议题聚焦于数学正从“手工艺”式研究转向工业化规模生产。\n\n评论者认为，这篇文章延续了陶哲轩近几个月来的论点：在数学中，选择一个有价值的问题、完全借助人工智能得到证明、彻底理解该证明并由此提出新的问题，本身就可以构成实质性贡献，即使没有为原始证明提供任何新的要素。\n\n讨论者用数学从“手工艺时代”走向“工业化生产时代”来形容这一变化，并质疑为何多数关于人工智能与数学的文章都假定其能力不会超越定理证明，而不会延伸到判断哪些问题值得研究、指挥大规模研究工作以及向外界解释发现等任务。",
+        "en": "Terence Tao published an essay titled \"Mathematics has changed. Let's act like it,\" arguing that AI has transformed mathematical practice enough that researchers must rethink how credit is assigned, how problems are selected, and how results are digested by the field. The post drew high-engagement discussion on Hacker News about mathematics shifting from craftsmanship toward industrial-scale production.\n\nCommenters framed the essay as part of Tao's longer-running argument that, in mathematics, choosing a worthwhile problem, obtaining a proof entirely with AI, understanding it thoroughly and developing further questions from it can itself constitute a substantial contribution — even without supplying a new ingredient to the original proof.\n\nDiscussants described the shift in terms of mathematics moving from an age of craftsmanship to an age of industrial production, and questioned why most writing on AI in mathematics assumes capabilities will not extend beyond theorem proving to tasks such as choosing which problems are worth pursuing, steering large-scale efforts, and explaining findings."
       },
       "content_revision": {
-        "zh": "0b9c37c27d7ead9fbba44242e047df306175250567e4f20be5c6d488700f74d1",
-        "en": "89f641fb2e17c0733e5378b5b9041ca42ee8a8b4d267dc4804a663a89fac1ae4"
+        "zh": "745a835150cfbc44b74c56256e47c8f2f1ebfc78247e16a093afd249f35a3d8a",
+        "en": "32c866b7cafb5d8382bc9edb447cd0692358b15fd588256f60ace1ff72b3ffd4"
       },
       "score": 7.0,
-      "category": "crypto-protocols",
-      "top_category": "crypto",
+      "category": "tech-community",
+      "top_category": "technology",
       "source": {
-        "type": "telegram",
-        "label": "foresightnews"
+        "type": "hackernews",
+        "label": "smilelamp"
       },
       "tags": [
-        "DNS hijacking",
-        "Blockaid",
-        "Flap",
-        "Stonk",
-        "malware",
-        "phishing"
+        "AI",
+        "mathematics",
+        "research culture",
+        "LLMs",
+        "Terence Tao"
       ],
       "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "t04da18f05d",
+        "id": "teced6d7fe4",
         "day": 1,
-        "url": "https://xiyu.news/threads/t04da18f05d/"
+        "url": "https://xiyu.news/threads/teced6d7fe4/"
       },
       "event": {
-        "event_id": "evt_cf7cbbba05c2bbbd",
-        "update_id": "upd_2aa95771d36584f7",
-        "url": "https://xiyu.news/events/evt_cf7cbbba05c2bbbd/#upd_2aa95771d36584f7",
-        "json": "https://xiyu.news/api/events/evt_cf7cbbba05c2bbbd.json"
+        "event_id": "evt_663dd87970266ed3",
+        "update_id": "upd_e8a7cf19e45df370",
+        "url": "https://xiyu.news/events/evt_663dd87970266ed3/#upd_e8a7cf19e45df370",
+        "json": "https://xiyu.news/api/events/evt_663dd87970266ed3.json"
       }
     },
     {
       "rank": 12,
-      "url": "https://www.qbitai.com/2026/10/506904.html",
+      "url": "https://thedefiant.io/converge/tradfi-and-fintech/okxice-stock-token-objections-reach-50-including-nvidia",
       "title": {
-        "zh": "刚刚，DeepSeek重磅开源：Agent底座架构！",
-        "en": "Just now, DeepSeek made a major open-source release: the Agent base architecture!"
+        "zh": "OKXICE 股票代币反对企业增至 50 家，英伟达在列",
+        "en": "OKXICE Stock-Token Objections Reach 50, Including Nvidia"
       },
       "summary": {
-        "zh": "据量子位报道，DeepSeek 将其 Agent 底座架构开源，报道以“AI 已经自己找到 Bug 并提交 PR”作为核心看点。搜索结果显示，此次开源的对象是 DeepSeek Harness，即一套开源的 Agent 运行时，而不是新的模型。\n\n头部模型厂商开源 Agent 运行时，意味着开发者可以直接在可自托管的底座上构建编码智能体，而不必自行拼装这套脚手架，也不必依赖厂商的托管产品。\n\n对这套 Harness 的介绍称，它基于 Cordis 的“一切皆插件”架构，提供会话、工具、工作区、沙箱、插件、Agent 循环以及网页与终端界面；被标注为实验性的功能包括 Agent 团队、自动审批审核和定时任务。量子位的报道本身除“自主找 Bug 并提交 PR”之外，技术细节较少。",
-        "en": "DeepSeek has open-sourced its Agent base architecture, according to QbitAI, which framed the release around AI agents that can autonomously locate bugs and submit pull requests. Search descriptions identify the released component as DeepSeek Harness, an open-source agent runtime rather than a new model.\n\nAn open-source agent runtime from a major model lab gives developers a self-hostable base for building coding agents instead of assembling that scaffolding themselves or depending on a vendor's hosted product.\n\nDescriptions of the harness say it is built on Cordis's “everything is a plugin” architecture and provides sessions, tools, workspaces, sandboxing, plugins, agent loops, plus web and terminal interfaces; experimental items listed include agent teams, auto approval review and scheduled tasks. The QbitAI item itself carries little technical detail beyond the autonomous bug-finding and PR-submission claim."
+        "zh": "据 The Defiant 报道，反对自身股票在 OKX-ICE 平台以代币形式交易的企业数量已升至 50 家，英伟达（Nvidia）位列其中。此前的报道显示这一数字为 26 家，当时甲骨文、IBM、英特尔和 IonQ 加入了反对行列。\n\n反对名单的扩大表明企业对代币化股票的抵制正在加强。这一品类在国际市场持续扩张，但美国企业对在本土发行锚定自身股票的代币持抗拒态度。\n\n此前的报道称反对企业为 26 家，当时甲骨文、IBM、英特尔和 IonQ 反对其股票在 OKX-ICE 平台以代币形式交易。相关报道的关注点集中在 SEC 关于代币化股票需获得发行方同意的规则上。",
+        "en": "The number of companies objecting to their shares being traded as tokens on the OKX-ICE venue has risen to 50, according to The Defiant, with Nvidia among the objectors. The figure is up from the 26 objections reported earlier, when Oracle, IBM, Intel and IonQ joined the list.\n\nThe widening list signals growing corporate pushback against tokenized equities, a segment that has been expanding in international markets even as U.S. companies resist domestic issuance of tokens tied to their shares.\n\nEarlier reporting put the objection count at 26, after Oracle, IBM, Intel and IonQ objected to their stock trading as tokens on the OKX-ICE venue. Coverage of those objections has focused on SEC rules concerning issuer consent for tokenized equities."
       },
       "content_revision": {
-        "zh": "1ef90de53d42d20e57cd0f318443a077669410a5635a43899846b49057ab201b",
-        "en": "457e35d3d0a2e823bc70add141511f5fcac4506f41c44b0a0928bc5f4ed34542"
+        "zh": "435475be255c72ab20a0349e2600dc05e350abc554ae6f00bf1531c254efc2b7",
+        "en": "d8281104ea35cd3f70123c02c9835ba8fe14ba7d837fd8a23ffabdf83d371a78"
       },
       "score": 7.0,
-      "category": "ai-devtools",
-      "top_category": "technology",
-      "source": {
-        "type": "rss",
-        "label": "QbitAI 量子位"
-      },
-      "tags": [
-        "DeepSeek",
-        "open source",
-        "AI agents",
-        "agent harness",
-        "AI coding"
-      ],
-      "sources_count": 1,
-      "editorial": false,
-      "thread": {
-        "id": "t53329debad",
-        "day": 1,
-        "url": "https://xiyu.news/threads/t53329debad/"
-      },
-      "event": null
-    },
-    {
-      "rank": 13,
-      "url": "https://cryptoslate.com/banks-are-owed-349b-by-private-credit-funds-that-may-not-be-collecting-cash-from-borrowers/",
-      "title": {
-        "zh": "私人信贷基金欠银行3490亿美元，而这些基金可能并未从借款人处收回现金",
-        "en": "Banks are owed $349B by private credit funds that may not be collecting cash from borrowers"
-      },
-      "summary": {
-        "zh": "CryptoSlate报道称，私人信贷基金欠银行约3490亿美元，而这些基金可能并未从借款人处实际收取现金。报道将该敞口描述为信用风险来源，而非已确认的损失事件。\n\n报道称，考虑到银行融资与私人信贷放贷之间的相互关联，这一敞口引发了对信用风险及更广泛市场蔓延的担忧。\n\n该说法呈现的是被报道的敞口规模，而非已确认的违约或已实现损失。核心担忧在于借款人是否以现金偿付，而非仅累积债务。",
-        "en": "CryptoSlate reported that banks are owed roughly $349 billion by private credit funds, which may not be collecting cash from their borrowers. The report frames the exposure as a source of credit risk rather than a confirmed loss event.\n\nThe report says the exposure raises concerns about credit risk and broader market contagion, given how bank financing and private credit lending are interlinked.\n\nThe claim is presented as a reported exposure figure, not as a confirmed default or realized loss. The concern centers on whether borrowers are paying cash, rather than accruing obligations."
-      },
-      "content_revision": {
-        "zh": "6522225fe29a0f995e4979582786b7d736cecaf4d7e9db81244b3cff8fd89d64",
-        "en": "84ad5bcb2eea3a7709273d2198510a0f3f5abf171c3f35f6fcca7873c1170083"
-      },
-      "score": 7.0,
-      "category": "macro-regulation",
+      "category": "crypto-regulation",
       "top_category": "policy",
       "source": {
         "type": "google_news",
-        "label": "CryptoSlate"
+        "label": "The Defiant"
       },
       "tags": [
-        "private credit",
-        "bank exposure",
-        "credit risk",
-        "macro risk",
-        "crypto markets"
+        "tokenized stocks",
+        "OKXICE",
+        "Nvidia",
+        "corporate objections",
+        "SEC issuer consent"
       ],
       "sources_count": 1,
       "editorial": false,
       "thread": {
-        "id": "t316da47c9b",
-        "day": 1,
-        "url": "https://xiyu.news/threads/t316da47c9b/"
+        "id": "t46c3091a7e",
+        "day": 6,
+        "url": "https://xiyu.news/threads/t46c3091a7e/"
       },
       "event": null
     }
