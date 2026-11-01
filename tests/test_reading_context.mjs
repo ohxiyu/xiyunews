@@ -53,7 +53,7 @@ class Node {
 const source = await readFile(new URL('../docs/assets/js/bmtnews-ui.js', import.meta.url), 'utf8');
 const controller = source.slice(source.indexOf('  function contextKind('), source.indexOf('  var CATEGORY_ORDER'));
 const context = {document: {createElement: tag => new Node(tag)}, textOf: node => node ? node.textContent.trim() : ''};
-vm.runInNewContext('var contextSequence = 0;\n' + controller + '\nthis.enhance = enhanceReadingContext;', context);
+vm.runInNewContext('var contextSequence = 0; var backgroundObserver = null;\n' + controller + '\nthis.enhance = enhanceReadingContext;', context);
 
 function fixture({event=false, background=true, discussion=true, impact=true, refs=true}={}) {
   const host=new Node('article',event?'event-feed-item':'digest-item');
@@ -124,4 +124,43 @@ test('already split new markup is normalized once without duplicate or dropped s
   assert.equal(host.querySelectorAll('.story-more').length,0);
   assert.equal(host.querySelectorAll('h3').filter(h=>h.textContent==='背景').length,1);
   assert.ok(host.textContent.includes('完整影响内容'));
+});
+
+function navigationFixture() {
+  const handlers={}, events={}, properties={}, attributes={};
+  let resets=0, scrolls=0, focuses=0;
+  const details={tagName:'DETAILS',open:false,parentElement:null};
+  const card={hidden:true,closest:()=>({querySelector:()=>({click:()=>{resets++;card.hidden=false;}})})};
+  const target={hidden:false,parentElement:details,
+    closest:selector=>selector==='.digest-item'?card:{},
+    hasAttribute:key=>key in attributes,setAttribute:(key,value)=>{attributes[key]=value;},
+    scrollIntoView:()=>{scrolls++;},focus:()=>{focuses++;}};
+  const document={documentElement:{style:{setProperty:(key,value)=>{properties[key]=value;}}},
+    querySelector:selector=>selector==='.site-header'?{getBoundingClientRect:()=>({height:102})}:null,
+    getElementById:id=>id==='focus-example'?target:null,
+    addEventListener:(name,callback)=>{handlers[name]=callback;}};
+  const window={location:{hash:''},addEventListener:(name,callback)=>{events[name]=callback;}};
+  const navigation=source.slice(source.indexOf('  function setupReaderNavigation()'),source.indexOf("  document.addEventListener('DOMContentLoaded'"));
+  vm.runInNewContext(navigation+'\nsetupReaderNavigation();',{document,window,requestAnimationFrame:callback=>callback()});
+  return {handlers,events,window,card,details,properties,attributes,counts:()=>({resets,scrolls,focuses})};
+}
+
+test('a cross-category context link reveals the filtered event and keeps navigation usable',()=>{
+  const fixture=navigationFixture();
+  fixture.handlers.click({target:{closest:()=>({hash:'#focus-example'})}});
+  assert.equal(fixture.card.hidden,false);
+  assert.equal(fixture.details.open,true);
+  assert.deepEqual(fixture.counts(),{resets:1,scrolls:1,focuses:1});
+  assert.equal(fixture.attributes.tabindex,'-1');
+  assert.equal(fixture.properties['--reader-header-offset'],'102px');
+  assert.equal(fixture.properties['--header-h'],undefined,'measuring the border box must not grow the header min-height');
+});
+
+test('back/forward hash navigation reveals its target and malformed fragments fail harmlessly',()=>{
+  const fixture=navigationFixture();
+  fixture.window.location.hash='#focus-example';fixture.events.hashchange();
+  assert.equal(fixture.card.hidden,false);assert.equal(fixture.details.open,true);
+  fixture.window.location.hash='#%broken';assert.doesNotThrow(()=>fixture.events.hashchange());
+  fixture.handlers.click({ctrlKey:true,target:{closest:()=>({hash:'#focus-example'})}});
+  assert.equal(fixture.counts().scrolls,1,'modified clicks must retain native browser behavior');
 });

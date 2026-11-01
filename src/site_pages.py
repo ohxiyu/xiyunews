@@ -468,9 +468,7 @@ def render_event_page(event: TrackedEvent, language: str) -> str:
         source_html = " · ".join(sources)
         stamp = update.occurred_at.isoformat()
         include_time = update.time_precision.value != "edition"
-        display_stamp = _event_stamp(
-            update.occurred_at, normalized, include_time=include_time
-        )
+        display_stamp = update.occurred_at.strftime("%H:%M %Z") if include_time else ""
         precision = labels[f"precision_{update.time_precision.value}"]
         update_label = _UPDATE_LABELS[update.update_type.value][normalized]
         correction = " is-correction" if update.update_type.value == "correction" else ""
@@ -485,12 +483,12 @@ def render_event_page(event: TrackedEvent, language: str) -> str:
             f'id="{escape_text(update.update_id)}">'
             '<div class="event-update-rail">'
             f'<strong>#{index:02d}</strong>'
-            f'<time datetime="{escape_text(stamp)}">{escape_text(short_stamp)}</time>'
+            f'<time datetime="{escape_text(stamp)}" title="{escape_text(_event_stamp(update.occurred_at, normalized, include_time=include_time))}">{escape_text(short_stamp)}</time>'
             '<span class="event-update-marker" aria-hidden="true"></span></div>'
             '<div class="event-update-content">'
             '<div class="digest-item-meta"><div>'
             f'<span class="event-update-type">{escape_text(update_label)}</span>'
-            f'<span class="event-update-precision">{escape_text(display_stamp)} · '
+            f'<span class="event-update-precision">{escape_text(display_stamp + " · " if display_stamp else "")}'
             f'{escape_text(precision)}</span></div></div>'
             f'<h3>{escape_text(update_title)}</h3>'
             + changed_html

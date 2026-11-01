@@ -8,6 +8,7 @@
   <div data-quick-post-unplaced></div>
   <noscript>Quick Post 需要启用 JavaScript 查看实时内容。<a href="/api/quick-posts.json">Quick Post API</a></noscript>
 
+  {% capture home_spotlight %}
   {% comment %}Only a major, fast-developing event earns this line (src/site_pages.py SPOTLIGHT_*).{% endcomment %}
   {% assign spotlight = site.data.threads.spotlight %}
   {% if spotlight %}
@@ -29,6 +30,7 @@
       </ol>
     </section>
   {% endif %}
+  {% endcapture %}
 
   {% if latest_post %}
     <section
@@ -115,6 +117,7 @@
             </div>
           {% endcapture %}
           {% include section-divider.html content=day_metadata %}
+          {% if forloop.first %}{{ home_spotlight }}{% endif %}
           <div class="daily-feed-content" data-language="{{ include.language }}" data-date="{{ post_key }}">
             {{ post.content }}
           </div>
