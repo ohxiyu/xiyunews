@@ -434,6 +434,8 @@
 .event-feed-item:target { outline: 2px solid var(--accent); outline-offset: 3px; }
 .event-update-content .digest-item-meta > div { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px 8px; }
 .reader-dialog { overscroll-behavior: contain; }
+[data-quick-post-status]:not(:empty) { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 8px 12px; margin-block: 8px; border: 1px solid var(--border); border-radius: var(--control-radius); background: var(--surface); color: var(--text-soft); font-size: 12px; }
+[data-quick-post-status] button { min-height: 36px; padding: 4px 10px; font: inherit; color: var(--accent); background: var(--accent-soft); border: 0; border-radius: var(--control-radius); cursor: pointer; }
 @media (max-width: 760px) {
   .site-actions { gap: 4px; }
   .theme-toggle { width: 40px; height: 40px; }
@@ -449,4 +451,6 @@
   .event-update-content { grid-column: 2; }
   .event-update-marker { left: 0; right: auto; top: 21px; }
   .event-update:not(:last-child) .event-update-rail::after { left: 4px; right: auto; top: 29px; bottom: -16px; }
+  .daily-feed-layout > .headline-rail:not(:has(.headline-index[open])) { padding: 0 12px; margin-block: 6px; }
+  [data-quick-post-status] button { min-height: 44px; }
 }
