@@ -4774,8 +4774,9 @@
     "2026-11-01": {
       "26ad248a14cd0c08c34bfb49f065282dcf51996ed90aa53fa798e0aa1978b046": {
         "attempted_at": "2026-11-01T13:50:47.976432+08:00",
+        "post_id": "383471825175229",
         "rank": 5,
-        "status": "pending",
+        "status": "sent",
         "text_hash": "0b28d1ffd103014dd0924c9db35ab11c1c0219629fc59a52b0b256d3121765af"
       },
       "64ef3133859594c99c701c259ce2032be1f1027ada3617bde22ba5a6aa61db9b": {
@@ -5204,12 +5205,6 @@
     },
     "2026-11-01": {
       "jobs": [
-        {
-          "due_at": "2026-11-01T13:46:00+08:00",
-          "id": "26ad248a14cd0c08c34bfb49f065282dcf51996ed90aa53fa798e0aa1978b046",
-          "rank": 5,
-          "text": "Jepsen：ParticleDB 1.1.4\n\nJepsen 发布了对 ParticleDB 的分析报告。ParticleDB 是一款面向 AI 工作负载的多模型数据库，Jepsen 测试了 1.1.4 至 1.1.18.11.rc-22 的多个版本，认定其“完整 ACID”的宣称并不成立。报告记录了已提交写入丢失、内部一致性违规，以及 G1a（读到已中止事务）、G1b（读到中间状态）和 P4（更新丢失）等异常，并称共向该项目提交了 96 个问题。\n\nJepsen 明确建议用户停止继续部署 ParticleDB，并尽快迁移到其他数据库；同时建议在可能的情况下，从更可靠的数据源核对或重建数据库状态。\n\nJepsen 表示，ParticleDB 官网曾宣称该系统已通过 TLA+ 获得“形式化证明”，但在双方合作期间并未提供任何 TLA+ 规范，因此无法确定究竟证明了哪些性质，也无法确定这些性质描述的是否是实际构建出的 ParticleDB。报告还列举了其宣称的 Postgres 兼容性失效的具体表现，包括部分不可见且无法删除的行、被删除的表以扭曲形态重新出现、列错乱以及字符串变成整数等。\n\n来源：https://jepsen.io/analyses/particledb-1.1.4\nxiyu.news · 2026-11-01 · https://xiyu.news"
-        },
         {
           "due_at": "2026-11-01T14:38:00+08:00",
           "id": "7c333dda1e2c51f71a1d320dcd2d25af1e21d30f0c0ba6065477fd7577472254",
