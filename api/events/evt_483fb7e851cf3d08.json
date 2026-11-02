@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_483fb7e851cf3d08/",
   "json": "https://xiyu.news/api/events/evt_483fb7e851cf3d08.json",
   "type": "security_incident",
-  "status": "developing",
+  "status": "monitoring",
   "category": "crypto",
   "title": {
     "zh": "【b14g 遭未经授权提取 9700 万枚 CORE，已暂停合约并冻结部分资金】",
     "en": "【b14g 遭未经授权提取 9700 万枚 CORE，已暂停合约并冻结部分资金】"
   },
   "current_state": {
-    "zh": "b14g 漏洞导致约 9700 万枚质押 CORE 被未经授权提取；b14g 已暂停受影响合约。Core DAO 表示 Core 网络安全未受影响，并正与 b14g 及交易所合作追踪和冻结资金，大部分被盗 CORE 仍在 Core 链上。",
-    "en": "The b14g vulnerability led to the unauthorized extraction of about 97 million staked CORE; b14g paused affected contracts. Core DAO says Core network security is unaffected and is coordinating with b14g and exchanges to trace and freeze funds, with most stolen CORE still on the Core chain."
+    "zh": "b14g 事件涉及约 9705 万枚 CORE；Core 网络硬分叉已追回约 6815 万枚 CORE 并转入指定恢复地址，未回滚交易或改变总供应量。追回资金尚未分发给受影响用户，剩余冻结资产仍在与交易所及执法部门协调追回中。",
+    "en": "About 97.05M CORE was involved in the b14g incident; a Core network hard fork has recovered roughly 68.15M CORE to a designated recovery address without rolling back transactions or altering total supply. Recovered funds have not yet been distributed to affected users, and remaining frozen assets are still being pursued with exchanges and law enforcement."
   },
   "first_seen_at": "2026-11-01T06:31:29.797093+00:00",
-  "last_updated_at": "2026-11-01T06:31:29.798227+00:00",
-  "last_material_change_at": "2026-11-01T06:31:29.798227+00:00",
+  "last_updated_at": "2026-11-02T11:42:35.817287+00:00",
+  "last_material_change_at": "2026-11-02T11:42:35.817287+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 2,
+  "updates_count": 3,
+  "sources_count": 3,
   "entities": [
     "b14g",
     "core",
@@ -31,7 +31,10 @@
     "b14g",
     "core",
     "core-dao",
+    "core-network",
+    "exploit-recovery",
     "fund-freeze",
+    "hard-fork",
     "security-incident",
     "staking"
   ],
@@ -119,6 +122,44 @@
       "sources": [
         {
           "url": "https://foresightnews.pro/news/h5Detail/116534",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_4900046da37669d1",
+      "event_id": "evt_483fb7e851cf3d08",
+      "occurred_at": "2026-11-02T07:58:25Z",
+      "published_at": "2026-11-02T07:58:25Z",
+      "first_seen_at": "2026-11-02T11:42:35.817287Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "【b14g：通过 Core 网络硬分叉已追回约 6815 万枚 CORE】",
+      "title_en": "【b14g：通过 Core 网络硬分叉已追回约 6815 万枚 CORE】",
+      "what_changed_zh": "Core 网络针对该事件完成硬分叉恢复，通过一次性状态调整从三个攻击者控制地址追回 68,146,177.22 枚 CORE（事件总量约 9705 万枚），未回滚交易、未增发代币、未改变总供应量；追回资金尚未分发给受影响用户，团队正与交易所及执法部门协调剩余冻结资产并制定透明分配计划。",
+      "what_changed_en": "The Core network completed a hard-fork recovery for the incident, reclaiming 68,146,177.22 CORE from three attacker-controlled addresses (of roughly 97.05M CORE involved) via a one-time state adjustment that did not roll back transactions, mint new tokens, or change total supply; recovered funds are not yet distributed to affected users, and the team is coordinating with exchanges and law enforcement on remaining frozen assets and a transparent distribution plan.",
+      "current_state_zh": "b14g 事件涉及约 9705 万枚 CORE；Core 网络硬分叉已追回约 6815 万枚 CORE 并转入指定恢复地址，未回滚交易或改变总供应量。追回资金尚未分发给受影响用户，剩余冻结资产仍在与交易所及执法部门协调追回中。",
+      "current_state_en": "About 97.05M CORE was involved in the b14g incident; a Core network hard fork has recovered roughly 68.15M CORE to a designated recovery address without rolling back transactions or altering total supply. Recovered funds have not yet been distributed to affected users, and remaining frozen assets are still being pursued with exchanges and law enforcement.",
+      "detailed_summary_zh": "b14g announced that the Core network's hard fork recovery has reclaimed 68,146,177.22 CORE from three attacker-controlled addresses following a security incident involving roughly 97.05M CORE, using a one-time state adjustment that did not roll back transactions or alter total supply, with distribution to affected users still pending alongside coordination with exchanges and law enforcement over remaining frozen assets.",
+      "detailed_summary_en": "b14g announced that the Core network's hard fork recovery has reclaimed 68,146,177.22 CORE from three attacker-controlled addresses following a security incident involving roughly 97.05M CORE, using a one-time state adjustment that did not roll back transactions or alter total supply, with distribution to affected users still pending alongside coordination with exchanges and law enforcement over remaining frozen assets.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.93,
+      "story_ids": [
+        "telegram:foresightnews:121942"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116609",
           "label": "foresightnews",
           "source_type": "telegram",
           "official": false
