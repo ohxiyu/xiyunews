@@ -7,19 +7,19 @@
   "status": "monitoring",
   "category": "crypto",
   "title": {
-    "zh": "Chainalysis: Ethereum Reorg Triggers THORChain Emergency Pause, Delaying Launder",
+    "zh": "Chainalysis：以太坊重组触发THORChain紧急暂停，延迟洗钱",
     "en": "Chainalysis: Ethereum Reorg Triggers THORChain Emergency Pause, Delaying Launder"
   },
   "current_state": {
-    "zh": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance.",
-    "en": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance."
+    "zh": "THORChain 金库已因用户退回 10 ETH 恢复偿付能力，但多数受影响链的交易仍处于紧急暂停状态，核心开发团队正在修复，节点运营商将在确认各链安全后决定是否重新启用。",
+    "en": "THORChain treasury solvency has been restored after a user returned the 10 ETH, but trading remains paused across most affected chains while core developers work on fixes and node operators decide whether to re-enable each chain after safety checks."
   },
   "first_seen_at": "2026-10-31T21:21:29.634560+00:00",
-  "last_updated_at": "2026-11-01T02:31:07.180705+00:00",
-  "last_material_change_at": "2026-10-31T21:21:29.634560+00:00",
+  "last_updated_at": "2026-11-02T02:43:08.953465+00:00",
+  "last_material_change_at": "2026-11-02T02:43:08.953465+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 2,
+  "updates_count": 2,
+  "sources_count": 4,
   "entities": [
     "chainalysis",
     "delaying",
@@ -32,8 +32,11 @@
   ],
   "identifiers": [],
   "topics": [
+    "chain-halt",
     "chain-reorg",
     "cross-chain",
+    "ethereum-reorg",
+    "protocol-incident",
     "security-incident",
     "thorchain"
   ],
@@ -47,11 +50,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "Chainalysis: Ethereum Reorg Triggers THORChain Emergency Pause, Delaying Launder",
+      "title_zh": "Chainalysis：以太坊重组触发THORChain紧急暂停，延迟洗钱",
       "title_en": "Chainalysis: Ethereum Reorg Triggers THORChain Emergency Pause, Delaying Launder",
-      "what_changed_zh": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance.",
+      "what_changed_zh": "Chainalysis报告称，10月31日上午的一次以太坊重组导致THORChain对一笔10 ETH存款错误地进行了双重退款，引发紧急暂停，切断了其大多数桥接器上所有用户的跨链兑换，并意外拖延了从币安窃取资金的洗钱活动。",
       "what_changed_en": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance.",
-      "current_state_zh": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance.",
+      "current_state_zh": "Chainalysis报告称，10月31日上午的一次以太坊重组导致THORChain对一笔10 ETH存款错误地进行了双重退款，引发紧急暂停，切断了其大多数桥接器上所有用户的跨链兑换，并意外拖延了从币安窃取资金的洗钱活动。",
       "current_state_en": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance.",
       "detailed_summary_zh": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance.",
       "detailed_summary_en": "Chainalysis reported that an Ethereum reorganization on the morning of October 31 caused THORChain to mistakenly issue a double refund on a 10 ETH deposit, prompting an emergency pause that cut off cross-chain swaps across most of its bridges for all users and inadvertently stalled laundering of funds stolen from Binance.",
@@ -77,6 +80,51 @@
         },
         {
           "url": "https://foresightnews.pro/news/h5Detail/116528",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_97b38fced7dc3e0e",
+      "event_id": "evt_3d860f1dc144e46c",
+      "occurred_at": "2026-11-02T00:21:02Z",
+      "published_at": "2026-11-02T00:21:02Z",
+      "first_seen_at": "2026-11-02T02:43:08.953465Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "THORChain：某用户主动退回10枚ETH，金库已恢复偿付能力",
+      "title_en": "THORChain：某用户主动退回10枚ETH，金库已恢复偿付能力",
+      "what_changed_zh": "THORChain 表示，误付的 10 ETH 已由用户主动退回，金库恢复偿付能力；但 AVAX、BASE、RUNE、XRPL 之外的多条链交易仍暂停，包括 ATOM、BCH、BSC、BTC、DOGE、ETH、LTC、SOL、TRON、ZEC，待核心开发团队修复并由节点运营商确认安全后决定是否重启。",
+      "what_changed_en": "THORChain said the erroneously paid 10 ETH was voluntarily returned by a user and treasury solvency was restored; however, trading remained paused on ten chains—ATOM, BCH, BSC, BTC, DOGE, ETH, LTC, SOL, TRON and ZEC—while AVAX, BASE, RUNE and XRPL stayed active, pending fixes and node-operator safety confirmation before re-enabling.",
+      "current_state_zh": "THORChain 金库已因用户退回 10 ETH 恢复偿付能力，但多数受影响链的交易仍处于紧急暂停状态，核心开发团队正在修复，节点运营商将在确认各链安全后决定是否重新启用。",
+      "current_state_en": "THORChain treasury solvency has been restored after a user returned the 10 ETH, but trading remains paused across most affected chains while core developers work on fixes and node operators decide whether to re-enable each chain after safety checks.",
+      "detailed_summary_zh": "THORChain resumed treasury solvency after a user returned 10 ETH that was erroneously paid out following an Ethereum block reorganization, while trading remained paused across ten chains pending safety checks and fixes.",
+      "detailed_summary_en": "THORChain resumed treasury solvency after a user returned 10 ETH that was erroneously paid out following an Ethereum block reorganization, while trading remained paused across ten chains pending safety checks and fixes.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.96,
+      "story_ids": [
+        "telegram:theblockbeats:203547",
+        "telegram:foresightnews:121901"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/374924?from=telegram",
+          "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116572",
           "label": "foresightnews",
           "source_type": "telegram",
           "official": false
