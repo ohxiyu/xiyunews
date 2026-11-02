@@ -11,15 +11,15 @@
     "en": "BTCPay Server：热钱包遭未经授权攻击，建议用户暂停运行服务"
   },
   "current_state": {
-    "zh": "BTCPay Server reported that attackers are unauthorizedly moving funds from hot wallets on live instances and urged all operators to shut down their servers until the investigation concludes.",
-    "en": "BTCPay Server reported that attackers are unauthorizedly moving funds from hot wallets on live instances and urged all operators to shut down their servers until the investigation concludes."
+    "zh": "调查已识别出影响 2.4.1 及更早版本的攻击向量；团队建议升级至 2.4.7，并称最新版本用户尚无热钱包被盗的可信报告。",
+    "en": "The investigation identified an attack vector affecting versions 2.4.1 and earlier; the team advises upgrading to 2.4.7 and says there are no credible reports of hot-wallet theft for users on the latest release."
   },
   "first_seen_at": "2026-11-01T23:06:41.578026+00:00",
-  "last_updated_at": "2026-11-02T02:43:05.955525+00:00",
-  "last_material_change_at": "2026-11-01T23:06:41.578026+00:00",
+  "last_updated_at": "2026-11-02T07:31:51.421305+00:00",
+  "last_material_change_at": "2026-11-02T07:31:31.565875+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 2,
+  "updates_count": 2,
+  "sources_count": 4,
   "entities": [
     "btcpay",
     "btcpay-server",
@@ -30,8 +30,11 @@
     "bitcoin-payments",
     "btcpay-server",
     "hot-wallet-exploit",
+    "security-advisory",
     "security-incident",
-    "self-custody"
+    "self-custody",
+    "self-hosted-payments",
+    "vulnerability"
   ],
   "updates": [
     {
@@ -45,9 +48,9 @@
       "material_change": true,
       "title_zh": "BTCPay Server：热钱包遭未经授权攻击，建议用户暂停运行服务",
       "title_en": "BTCPay Server：热钱包遭未经授权攻击，建议用户暂停运行服务",
-      "what_changed_zh": "BTCPay Server reported that attackers are unauthorizedly moving funds from hot wallets on live instances and urged all operators to shut down their servers until the investigation concludes.",
+      "what_changed_zh": "BTCPay Server 报告称，攻击者正在未经授权地从在线实例的热钱包中转移资金，并敦促所有运营者在调查结束前关闭服务器。",
       "what_changed_en": "BTCPay Server reported that attackers are unauthorizedly moving funds from hot wallets on live instances and urged all operators to shut down their servers until the investigation concludes.",
-      "current_state_zh": "BTCPay Server reported that attackers are unauthorizedly moving funds from hot wallets on live instances and urged all operators to shut down their servers until the investigation concludes.",
+      "current_state_zh": "BTCPay Server 报告称，攻击者正在未经授权地从在线实例的热钱包中转移资金，并敦促所有运营者在调查结束前关闭服务器。",
       "current_state_en": "BTCPay Server reported that attackers are unauthorizedly moving funds from hot wallets on live instances and urged all operators to shut down their servers until the investigation concludes.",
       "detailed_summary_zh": "BTCPay Server reported that attackers are unauthorizedly moving funds from hot wallets on live instances and urged all operators to shut down their servers until the investigation concludes.",
       "detailed_summary_en": "BTCPay Server reported that attackers are unauthorizedly moving funds from hot wallets on live instances and urged all operators to shut down their servers until the investigation concludes.",
@@ -75,6 +78,51 @@
           "url": "https://foresightnews.pro/news/h5Detail/116579",
           "label": "foresightnews",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_4813b72d6b350736",
+      "event_id": "evt_cb90cde2ac959507",
+      "occurred_at": "2026-11-02T05:33:31Z",
+      "published_at": "2026-11-02T05:33:31Z",
+      "first_seen_at": "2026-11-02T07:31:31.565875Z",
+      "time_precision": "published",
+      "update_type": "remediation",
+      "material_change": true,
+      "title_zh": "【BTCPay Server 已识别针对旧版本的攻击向量并提醒用户更新】",
+      "title_en": "【BTCPay Server 已识别针对旧版本的攻击向量并提醒用户更新】",
+      "what_changed_zh": "BTCPay Server 已识别出针对 2.4.1 或更早版本实例的攻击向量，建议用户升级至 2.4.7，并表示尚无运行最新版本的用户热钱包被盗的可信报告。",
+      "what_changed_en": "BTCPay Server identified an attack vector affecting instances running version 2.4.1 or earlier, advised upgrading to 2.4.7, and said there are no credible reports of hot-wallet theft for users on the latest release.",
+      "current_state_zh": "调查已识别出影响 2.4.1 及更早版本的攻击向量；团队建议升级至 2.4.7，并称最新版本用户尚无热钱包被盗的可信报告。",
+      "current_state_en": "The investigation identified an attack vector affecting versions 2.4.1 and earlier; the team advises upgrading to 2.4.7 and says there are no credible reports of hot-wallet theft for users on the latest release.",
+      "detailed_summary_zh": "BTPay Server disclosed an attack vector affecting instances on version 2.4.1 or earlier, urged users to upgrade to 2.4.7, and said no credible reports of hot-wallet theft exist for users on the latest release.",
+      "detailed_summary_en": "BTPay Server disclosed an attack vector affecting instances on version 2.4.1 or earlier, urged users to upgrade to 2.4.7, and said no credible reports of hot-wallet theft exist for users on the latest release.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.9,
+      "story_ids": [
+        "telegram:foresightnews:121930",
+        "rss:cointelegraph.com_rss:400f9d8c50c44cfa"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116599",
+          "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://cointelegraph.com/news/btcpay-server-hot-wallet-thefts-older-versions?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
           "official": false
         }
       ]
