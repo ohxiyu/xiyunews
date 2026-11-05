@@ -51,10 +51,11 @@ def hydrate(*, batch_size=4, attempts=3):
         # Read-only job token exists only in this process and its Git child.
         # No credentials in arguments, files, output, or later test steps.
         count = int(env.get('GIT_CONFIG_COUNT', '0'))
-        env[f'GIT_CONFIG_KEY_{count}'] = 'http.https://github.com/ohxiyu/xiyunews.extraheader'
         encoded = base64.b64encode(('x-access-token:' + token).encode()).decode()
-        env[f'GIT_CONFIG_VALUE_{count}'] = 'AUTHORIZATION: basic ' + encoded
-        env['GIT_CONFIG_COUNT'] = str(count + 1)
+        for index, suffix in enumerate(('', '.git'), start=count):
+            env[f'GIT_CONFIG_KEY_{index}'] = 'http.https://github.com/ohxiyu/xiyunews' + suffix + '.extraheader'
+            env[f'GIT_CONFIG_VALUE_{index}'] = 'AUTHORIZATION: basic ' + encoded
+        env['GIT_CONFIG_COUNT'] = str(count + 2)
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'])
     cache = cache_root()
     needed = []
