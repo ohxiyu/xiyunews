@@ -7,7 +7,8 @@ import pytest
 from scripts import hydrate_checkout
 
 
-def test_bounded_fetch_restores_exact_full_tree_and_retries_one_failed_batch(tmp_path, monkeypatch):
+@pytest.mark.parametrize('token', ['', 'fixture-token-never-on-command-line'])
+def test_bounded_fetch_restores_exact_full_tree_and_retries_one_failed_batch(tmp_path, monkeypatch, token):
     git = lambda *args: subprocess.run(['git', *map(str, args)], check=True, capture_output=True)
     origin = tmp_path / 'origin.git'
     source = tmp_path / 'source'
@@ -30,7 +31,7 @@ def test_bounded_fetch_restores_exact_full_tree_and_retries_one_failed_batch(tmp
     git('-C', checkout, 'checkout')
     assert not (checkout / 'project-docs').exists()
     monkeypatch.chdir(checkout)
-    monkeypatch.setenv('GH_TOKEN', 'fixture-token-never-on-command-line')
+    monkeypatch.setenv('GH_TOKEN', token)
     cache = tmp_path / 'cache'
     monkeypatch.setenv('XIYUNEWS_DOCUMENT_CACHE', str(cache))
     calls, failed = [], False
