@@ -11,12 +11,14 @@ Deploy Docs42074503443连续两次在精确检查点ACK时达到20分钟总时�
 ## 五阶段
 
 - 代码：完成，仅工作流时限及交接记录。
-- 测试：待适用本地检查与完整远端CI，不跳过任何检查。
+- 测试：既有预算测试对应期望值同步为30；完整本地Python回归、治理与差异检查通过，完整远端CI待完成，不跳过任何检查。
 - 合并：待同步main、检查通过后正常合并。
 - 部署：待新main自动触发正常Deploy Docs并完整确认检查点，已有统一Cloudflare42078138315继续执行，不取消它。
 - 生产验收：待检查点成功、已恢复刊期幂等、最新日报/消息回执不变与普通正式页面验证。
 
 Source commit: 基线88da72c5465a223160a51c805a7d3ce7ec4fbae8；本修复合并待记录。
+
+Application PR: [PR323](https://github.com/ohxiyu/xiyunews/pull/323)。
 
 Worker version: 待现有统一Cloudflare42078138315完成回读；本改动不更改Worker代码或绑定。
 
