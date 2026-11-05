@@ -27,14 +27,22 @@ publication_editions独立保存每次选稿的规范JSON和SHA-256，当前dail
 - 代码：已实现。
 - 测试：最终完整Python1182 passed/4既有skipped，8项定向真实CLI/跨日、幂等、真实Git、latest保护及构建退出回归通过；治理、编译和差异检查通过。最终head bda3a950614dc8018d20801240f651d8c7ad937a的[CI42061327289](https://github.com/ohxiyu/xiyunews/actions/runs/42061327289)全部通过，包括test/web/edge-build和realtime双Python兼容性检查。edge-build下载期间记录了early EOF并由既有动作重试恢复，最终26分20秒成功；没有跳过检查或放宽时限。
 - 合并：[PR320](https://github.com/ohxiyu/xiyunews/pull/320)于2026-11-05T17:25:36Z合并，88da72c5465a223160a51c805a7d3ce7ec4fbae8；合并树与已检查head一致，且为origin/main祖先。
-- 部署：待正常Deploy Docs，不手写gh-pages。
-- 生产验收：待3日14条、近14天连续性、双语页面/日期选择/加载更早、事件锚点及5日正文/消息队列不变验证。
+- 部署：正常出版快照及统一Cloudflare42078138315已上线；两次旧20分钟任务的最后ACK取消，独立PR323修复时限，完整新预算闭环见[检查点时限记录](2026-11-06-publication-checkpoint-budget.md)。没有手写gh-pages。
+- 生产验收：普通URL近14期连续性、中英文JSON/片段、3日14条、12处事件引用及HTML节点、桌面/手机尺寸的日期切换/加载更早和最新日报保护均已通过。新预算检查点另行验收，不将网站恢复等同于旧publisher完整成功。
 
 ## 正常发布的恢复证据
 
 [Deploy Docs42074503443](https://github.com/ohxiyu/xiyunews/actions/runs/42074503443)第一次执行在2026-11-05T17:40:11Z输出：从delivery-20261105T031411Z导入3日14条、补齐五个入口文件，ai_calls=0、channel_calls=0。它已成功提交出版快照c23e9014ee7ea3bde869e5066aa82e0628dce65b，但在最后确认检查点时达到20分钟时限，整个任务cancelled，不能记为完整成功。随后仅重试该正常发布任务；另外启动现有统一Cloudflare工作流发布已经完整校验的快照，没有手写出版分支或从本地上传产物。
 
 第一次执行后的只读核对：主数据库和写入前备份integrity_check均为ok，publication_editions包含3日14条、5日13条且摘要校验通过；daily、x_queue、square_queue三份规范JSON与恢复前字节一致。新出版快照中12个事件引用及HTML节点全部存在，api/latest.json与基线e1bb9198及前一出版fdf5107f逐字节一致，完整文件SHA256仍为abf1cef3296611beb4f50510a79467080fa6b06e5c27faa8ee226ffd887e99ce。临时验收脚本最初混用了Python默认空格与JavaScript紧凑JSON的items摘要，已改为对照原始快照独立计算的紧凑摘要；文件逐字节比较也独立通过，没有把脚本断言失败算作通过。
+
+## 首次正式站点验收
+
+[统一Cloudflare42078138315](https://github.com/ohxiyu/xiyunews/actions/runs/42078138315)于2026-11-05T18:08:19Z开始、18:30:58Z成功结束，正常读取已生成快照，没有重新采集或调用AI。普通/health回读source88da72c5465a223160a51c805a7d3ce7ec4fbae8、artifactdf4161dd00ea191a3038897d18b0604670fb0007、Worker54193230-bff2-4ab9-bfb9-c049a64aa83a、build key0635be3c54767dc09c5619d2687d648f89685becfd44b3f892602e8b5e4a57c3。
+
+截至2026-11-06凌晨，普通正式URL验证2026-10-23至11-05共14期JSON及中英文片段均200、日期/条数相符：3日14条，最新5日13条且items不变。12个恢复新闻的事件引用与节点均可访问。Playwright中英×1440/390四组均验证首页日期入口11.03能打开14条、加载更早能加载3日14条，aria-current正确、无横向溢出或pageerror；手机为浏览器尺寸模拟，不声称实机PWA验收。3日summary-zh.html/summary-en.html均200且canonical为xiyu.news；/ready、/feed.xml、/sitemap.xml均200。辅助URL核对首次出现客户端TLS握手重置，同普通URL按三次重试策略通过，不将网络断开当作缺刊。
+
+这时尚未到6日07:26出刊时间，因此不把最新仍为5日当作漏发，也不声称下一次自然定时日报已成功。没有补发历史X/Telegram；当前daily/X/Square记录与备份不变，群组快照仍以最新5日为输入且发送门控拒绝非本日快照。
 
 部署入口适配：Deploy Docs已将出版快照检出到current-site，应用根不一定有origin/gh-pages；恢复器使用该独立检出的准确HEAD读取历史，日报/采集则固定origin/gh-pages SHA。只恢复近期15天及日志所需日期，避免逐个下载整站多年历史；不覆盖本轮已生成文件。真实独立Git仓库回归覆盖根目录无远端ref、第二checkout读取和日期过滤。
 
@@ -44,10 +52,10 @@ publication_editions独立保存每次选稿的规范JSON和SHA-256，当前dail
 
 Source commit: 88da72c5465a223160a51c805a7d3ce7ec4fbae8（PR320）；基线ffc4dc2464f955ff644798bc38effbdb728b3aaa。
 
-Worker version: not changed；只读基线ba1bf907-6399-476b-b437-a8bcda0ef199，正常部署后回读。
+Worker version: 最终自动发布05b8d129-2253-4759-b4ef-441bc6bc9708；首次恢复上线54193230-bff2-4ab9-bfb9-c049a64aa83a。
 
-Deployment: 合并后由正常Deploy Docs写出版分支，再自动统一Cloudflare发布，不重跑历史采集或渠道。
+Deployment: 正常Deploy Docs写入恢复快照后，因旧20分钟总时限在ACK取消，使用现有统一Cloudflare手动入口正常部署完整快照；PR323已合并，30分钟新main正常发布42089412376完整ACK已成功，后续自动统一Cloudflare42093318854成功且最终普通URL/浏览器复核通过。不重跑历史采集或渠道。
 
-Verification: 2026-11-05已完成真实备份只读恢复演练；写入前online backup edition-20261105T151912Z完整性ok，daily散列0b73b6d5b4f3b094830b044dfb51be2f2d07dda59ac7cd99217e138c4ea8fd39、X散列12ff4d09a4cd4bea74562979b7e101b946b5996ec712fc5975b8adc598dae5ee、Square散列8ba81d5d2cba01ec0565358679079e6d410bf106c86cf8703824ab9b95194d55。正式补齐尚待。
+Verification: 真实备份只读恢复演练、首次及最终自动发布后的正式站点验收均通过；写入前online backup edition-20261105T151912Z完整性ok，最终daily散列仍为0b73b6d5b4f3b094830b044dfb51be2f2d07dda59ac7cd99217e138c4ea8fd39、X仍为12ff4d09a4cd4bea74562979b7e101b946b5996ec712fc5975b8adc598dae5ee、Square仍为8ba81d5d2cba01ec0565358679079e6d410bf106c86cf8703824ab9b95194d55。[新预算完整检查点与最终精确版本](2026-11-06-publication-checkpoint-budget.md)均已归档，应用五阶段完成；下一次自然定时出刊未冒充为本次已验证项目。
 
 Rollback: 不自动回滚或恢复整库；保留online backup和Git历史，冲突保留双方并停止，不清回执、不重发消息。
