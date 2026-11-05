@@ -4,7 +4,40 @@
   <link href="https://xiyu.news/feeds/technology-en.xml" rel="self"/>
   <link href="https://xiyu.news/"/>
   <id>https://xiyu.news/feeds/technology-en.xml</id>
-  <updated>2026-11-02T00:00:00Z</updated>
+  <updated>2026-11-04T00:00:00Z</updated>
+  <entry>
+    <title>Anthropic is working on a system to prove AI models’ identity</title>
+    <link href="https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/"/>
+    <id>https://xiyu.news/editions/2026-11-04/#rss:techcrunch.com_category_artificial-intelligence_feed_:ab54f7dba8206ae5</id>
+    <updated>2026-11-04T00:00:00Z</updated>
+    <summary>Anthropic is developing FlashProve, an open source system that would let anyone verify which AI model produced a given output, according to a company blog post published Tuesday. The company demonstrated the approach using Llama 4 Maverick, a 400-billion-parameter mixture-of-experts model, running on a single NVIDIA H100 GPU.
+
+The effort targets model-identity and impersonation concerns, aiming to give developers and platforms a way to check that a response genuinely came from the model it claims to originate from.
+
+Anthropic describes FlashProve as an open source system, and the demo produced proofs on a single NVIDIA H100 GPU with Llama 4 Maverick. The system is still in development, with no shipped or widely adopted implementation yet.</summary>
+  </entry>
+  <entry>
+    <title>Crypto Docs Host GitBook Hit by AI Agent Security Breach, Urges Users to Rotate Keys</title>
+    <link href="https://decrypt.co/382465/crypto-docs-gitbook-ai-agent-security-breach"/>
+    <id>https://xiyu.news/editions/2026-11-04/#rss:decrypt.co_feed:e214053d0c834134</id>
+    <updated>2026-11-04T00:00:00Z</updated>
+    <summary>GitBook disclosed that a &quot;sophisticated, highly targeted attack using AI agents&quot; gained unauthorized access to some of its infrastructure credentials at 7 p.m. Central European Time on November 2. The documentation platform, widely used by crypto projects, took authentication-gated sites offline, revoked personal API tokens and urged customers to replace connected credentials.
+
+GitBook&#x27;s connections to customer accounts and external services mean the blast radius extends to crypto teams&#x27; integration tokens, Git Sync secrets and API tokens. PancakeSwap responded by temporarily taking its documentation offline before moving it off the platform, while saying its own systems were not compromised.
+
+GitBook said its investigation found no evidence that hosted content was modified, and that potentially exposed data includes integration tokens, Git Sync secrets, API tokens and questions submitted to its AI assistant. By Tuesday afternoon the company said its application, API and published documentation were accessible again, though some services could remain degraded; it has not explained how the attacker used the AI tools, which AI systems were involved, or how the credentials were obtained.</summary>
+  </entry>
+  <entry>
+    <title>Qwen 3.8 27B on my laptop can interpret model weights, too</title>
+    <link href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/"/>
+    <id>https://xiyu.news/editions/2026-11-04/#rss:simonwillison.net_atom_entries_:f1a111e72742f0df</id>
+    <updated>2026-11-04T00:00:00Z</updated>
+    <summary>Simon Willison reported that Qwen 3.8 27B, running locally on his laptop, could interpret raw model weights in a replication of an example from the paper &quot;Sparks of Weight-Space Programming: LLMs can natively read &amp; write neural network weights&quot; by Rikiya Takehi, Jayden Teoh, Alex Zhang and Omar Khattab. That paper had demonstrated the capability with frontier models, specifically GPT-6 Astra.
+
+The demonstration indicates that no-tools weight reading is not confined to frontier systems such as GPT-6 Astra, since an open-weight model running on a laptop reproduced one of the paper&#x27;s examples. It remains an exploratory blog-post replication rather than a formal result or peer-reviewed finding.
+
+The paper&#x27;s first experiment trained four neural networks to play 10x10 grid versions of Breakout, Pong, Pac-Man and Freeway, then supplied the weights as floating-point numbers to an LLM with the instruction that it had no tools, no code execution and a single response to identify which game each network was trained on. Willison focused on this no-tools question, noting that critics Matthew Honnibal and Sean Goedecke disputed the paper&#x27;s framing of code-assisted model editing.</summary>
+  </entry>
   <entry>
     <title>Cursor urges credential resets after malicious Claude Code marketplace update</title>
     <link href="https://cryptoslate.com/cursor-urges-credential-resets-after-malicious-claude-code-marketplace-update/"/>
@@ -409,38 +442,5 @@ The report did not disclose valuation, investor identities or whether the round 
 The result appeared in a peer-reviewed journal rather than a company demo, which gives Microsoft&#x27;s claim more weight than a typical product announcement. The comparison, however, was against generalist physicians on difficult cases, not specialist doctors.
 
 Microsoft&#x27;s system, described as a diagnostic orchestrator (MAI-DxO), was reported at 83.2% accuracy in the Science study. Coverage notes that much of the improvement appears to come from the underlying AI models rather than from Microsoft&#x27;s system itself.</summary>
-  </entry>
-  <entry>
-    <title>Eight Bits of Trust: eMudhra&#x27;s CA keys cracked in milliseconds</title>
-    <link href="https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/"/>
-    <id>https://xiyu.news/editions/2026-10-22/#hackernews:story:50177916</id>
-    <updated>2026-10-22T00:00:00Z</updated>
-    <summary>The private keys behind eight of eMudhra&#x27;s intermediate CA certificates were found to be integers smaller than 256 — effectively eight bits of entropy — and all eight were recovered in about 11 milliseconds. The finding was disclosed on October 20 at emudhra.we-have-a-problem.com, and major browsers and software platforms have begun blocking the affected certificates.
-
-Because the weak keys were effectively public from the day the certificates were issued, anyone could have forged certificates chaining to a trusted root — and devices that cannot update their CA bundles remain exposed.
-
-According to the original reporter, the discovery came out of Google&#x27;s open-source paranoid_crypto tool, run essentially out of the box against the CCADB corpus before subscriber certificates were examined. A follow-up sweep of all existing CCADB certificates reportedly turned up no further hits, and Chrome found no rogue certificates in Certificate Transparency logs.</summary>
-  </entry>
-  <entry>
-    <title>Who Found the PHP Bug That Made Governments Unplug Their Websites? ChatGPT, Of Course</title>
-    <link href="https://decrypt.co/381567/who-found-php-bug-governments-unplug-websites-chatgpt"/>
-    <id>https://xiyu.news/editions/2026-10-22/#rss:decrypt.co_feed:b7b0afeb6f4ee1e5</id>
-    <updated>2026-10-22T00:00:00Z</updated>
-    <summary>OpenAI President Greg Brockman said the company led a two-month coalition to find and fix the PHP2Shell flaws in core PHP using its own models, under its Patch the Planet initiative. Security firm Calif used OpenAI&#x27;s GPT-5.6 Sol to find one version of the bug in August, OpenAI&#x27;s own team found a fuller version in September, and cloud security firm Wiz independently found both flaws.
-
-The flaws, rated CVSS 9.2, let unauthenticated attackers run their own code on servers running PHP, the language behind roughly 70% of websites whose server-side language is known, and PHP shipped fixes only a day after details leaked; Finland, the Netherlands and France pulled government websites offline on Wednesday. Brockman argued defenders need access to stronger models than attackers and floated a future in which authorized defenders such as governments scan for vulnerable servers and, in extreme cases, patch them remotely.
-
-Brockman said the bug sat in PHP for 14 years, with a limited version surfacing in 2024 that &quot;wasn&#x27;t considered significant at the time,&quot; and the release was moved up from an original October 22 target to October 21 after details began leaking. OpenAI said it is also fixing &quot;several other significant bugs,&quot; including a Node.js remote code execution flaw announced Wednesday, and has committed $1 billion in subsidized access to Daybreak, its program for defenders of critical infrastructure.</summary>
-  </entry>
-  <entry>
-    <title>LiteLLM Poisoned for the Second Time This Year: Steals Credentials Without Even Being Invoked</title>
-    <link href="https://m.theblockbeats.info/flash/373048?from=telegram"/>
-    <id>https://xiyu.news/editions/2026-10-22/#telegram:theblockbeats:201703</id>
-    <updated>2026-10-22T00:00:00Z</updated>
-    <summary>Security firm JFrog found that LiteLLM version 1.107.0 and its official Docker images were compromised in a supply chain attack, with three extra files hidden in the Python package. Once the Python environment starts, the malicious code runs even if LiteLLM is never called, harvesting browser passwords, SSH private keys, AWS and other cloud credentials, and authentication data for tools such as Claude, Codex and Cursor, then sending it to a server disguised as an official domain.
-
-JFrog advises anyone who installed or ran 1.107.0 to treat the related credentials as potentially leaked, isolate and rebuild the environment, and rotate API keys rather than simply uninstalling the software; version 1.106.2 is the confirmed safe rollback. The attacker also left a persistent backdoor that checks for remote instructions once an hour and can download and execute new code.
-
-PyPI has removed the malicious version and Docker Hub has taken down the affected images. The official source code on GitHub does not contain the malicious files, yet all seven platform packages published to PyPI were implanted with the trojan; Docker build records show the release system pulled source from a look-alike repository whose name differs from the official one by a single hyphen, and how it entered the release pipeline remains unclear.</summary>
   </entry>
 </feed>

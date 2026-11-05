@@ -4,7 +4,40 @@
   <link href="https://xiyu.news/feeds/technology-zh.xml" rel="self"/>
   <link href="https://xiyu.news/"/>
   <id>https://xiyu.news/feeds/technology-zh.xml</id>
-  <updated>2026-11-02T00:00:00Z</updated>
+  <updated>2026-11-04T00:00:00Z</updated>
+  <entry>
+    <title>Anthropic 正在研发一套可证明 AI 模型身份的系统</title>
+    <link href="https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/"/>
+    <id>https://xiyu.news/editions/2026-11-04/#rss:techcrunch.com_category_artificial-intelligence_feed_:ab54f7dba8206ae5</id>
+    <updated>2026-11-04T00:00:00Z</updated>
+    <summary>据 Anthropic 周二发布的一篇博客文章，该公司正在研发一套名为 FlashProve 的开源系统，可让任何人验证某段 AI 输出究竟由哪个模型生成。Anthropic 用 Llama 4 Maverick（一个 4000 亿参数的混合专家模型）在单块 NVIDIA H100 GPU 上演示了该方案。
+
+该计划针对模型身份伪造与冒名问题，目标是让开发者和平台能够核验某段回复是否确实来自其所声称的模型。
+
+Anthropic 将 FlashProve 描述为一套开源系统，演示中它借助单块 NVIDIA H100 GPU 与 Llama 4 Maverick 生成证明。该系统仍处于研发阶段，尚未发布或获得广泛采用的实现。</summary>
+  </entry>
+  <entry>
+    <title>加密项目文档托管平台 GitBook 遭 AI 智能体安全攻击，敦促用户轮换密钥</title>
+    <link href="https://decrypt.co/382465/crypto-docs-gitbook-ai-agent-security-breach"/>
+    <id>https://xiyu.news/editions/2026-11-04/#rss:decrypt.co_feed:e214053d0c834134</id>
+    <updated>2026-11-04T00:00:00Z</updated>
+    <summary>GitBook 披露，一起“使用 AI 智能体的复杂、高度定向攻击”于欧洲中部时间 11 月 2 日晚 7 点未经授权访问了其部分基础设施凭证。这家被加密项目广泛使用的文档平台下线了需登录访问的站点，撤销了个人 API 令牌，并敦促客户更换已连接的凭证。
+
+GitBook 与客户账户及外部服务的连接意味着影响范围波及加密团队的集成令牌、Git Sync 密钥和 API 令牌。PancakeSwap 的回应是先暂时下线其文档，随后将其迁出该平台，同时表示自身系统并未被入侵。
+
+GitBook 表示调查未发现托管内容被篡改的证据，可能暴露的数据包括集成令牌、Git Sync 密钥、API 令牌以及提交给其 AI 助手的问题。公司称截至周二下午其应用、API 和已发布文档已恢复访问，但部分服务在恢复期间仍可能降级；它尚未解释攻击者如何使用这些 AI 工具、涉及哪些 AI 系统，以及凭证是如何被获取的。</summary>
+  </entry>
+  <entry>
+    <title>我笔记本电脑上的 Qwen 3.8 27B 也能解读模型权重</title>
+    <link href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/"/>
+    <id>https://xiyu.news/editions/2026-11-04/#rss:simonwillison.net_atom_entries_:f1a111e72742f0df</id>
+    <updated>2026-11-04T00:00:00Z</updated>
+    <summary>Simon Willison 报告称，他在自己笔记本电脑上本地运行的 Qwen 3.8 27B 能够解读原始模型权重，复现了 Rikiya Takehi、Jayden Teoh、Alex Zhang 与 Omar Khattab 合著的论文《Sparks of Weight-Space Programming: LLMs can natively read &amp; write neural network weights》中的一个示例。该论文此前是以 GPT-6 Astra 等前沿模型展示这一能力的。
+
+这一演示表明，无需工具即可读取权重的能力并不局限于 GPT-6 Astra 等前沿系统——一个在笔记本上运行的开放权重模型复现了论文中的一个示例。不过它仍属于探索性的博客复现，而非正式成果或同行评审结论。
+
+论文的第一个实验训练了四个神经网络，让它们玩 10x10 网格版的 Breakout、Pong、Pac-Man 和 Freeway，随后把权重以浮点数形式交给大模型，并说明模型没有工具、不能执行代码、只有一次回答机会，要求其判断每个网络是为哪款游戏训练的。Willison 聚焦于这个“无工具”问题，并提到批评者 Matthew Honnibal 与 Sean Goedecke 对论文将借助代码编辑模型的做法归入同一概念提出质疑。</summary>
+  </entry>
   <entry>
     <title>Cursor 在 Claude Code 市场出现恶意更新后敦促用户重置凭证</title>
     <link href="https://cryptoslate.com/cursor-urges-credential-resets-after-malicious-claude-code-marketplace-update/"/>
@@ -409,38 +442,5 @@ eMudhra 在事件声明中表示，受影响的中间证书是在 2025 年 4 月
 该结果发表在同行评审期刊而非公司演示中，使微软的说法比一般产品发布更具分量。不过，对照对象是在疑难病例上的一般内科医生，而非专科医生。
 
 微软该系统被称为“诊断编排器”（MAI-DxO），在《Science》研究中报告的准确率为83.2%。相关报道指出，性能提升的很大一部分似乎来自底层AI模型，而非微软的系统本身。</summary>
-  </entry>
-  <entry>
-    <title>八比特的信任：eMudhra 的 CA 密钥在毫秒内被破解</title>
-    <link href="https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/"/>
-    <id>https://xiyu.news/editions/2026-10-22/#hackernews:story:50177916</id>
-    <updated>2026-10-22T00:00:00Z</updated>
-    <summary>eMudhra 八个中间 CA 证书对应的私钥被发现是小于 256 的整数，实际上只有约八比特的熵，全部八把密钥在约 11 毫秒内即被还原。该发现于 10 月 20 日在 emudhra.we-have-a-problem.com 上公开，主流浏览器与软件平台已开始封禁这些受影响的证书。
-
-由于这些弱密钥自证书签发之日起实际上就等于公开，任何人都可以伪造能链接到受信任根证书的证书；而无法更新 CA 证书包的设备将持续处于暴露状态。
-
-据最初报告者称，该发现来自谷歌开源工具 paranoid_crypto，在检查用户证书之前，直接以默认配置对 CCADB 证书库跑了一遍。据称随后对所有现有 CCADB 证书的更全面排查未再发现其他命中项，Chrome 也在证书透明度（CT）日志中未发现恶意签发的证书。</summary>
-  </entry>
-  <entry>
-    <title>谁发现了那个让各国政府下线网站的 PHP 漏洞？当然是 ChatGPT</title>
-    <link href="https://decrypt.co/381567/who-found-php-bug-governments-unplug-websites-chatgpt"/>
-    <id>https://xiyu.news/editions/2026-10-22/#rss:decrypt.co_feed:b7b0afeb6f4ee1e5</id>
-    <updated>2026-10-22T00:00:00Z</updated>
-    <summary>OpenAI 总裁 Greg Brockman 表示，公司在其“Patch the Planet”计划下，用自家模型主导了一个为期两个月的联盟，发现并修复了 PHP 核心中的 PHP2Shell 漏洞。安全公司 Calif 于 8 月使用 OpenAI 的 GPT-5.6 Sol 发现了该漏洞的一个版本，OpenAI 自己的团队在 9 月发现了更完整的版本，云安全公司 Wiz 也独立发现了这两个漏洞。
-
-这些漏洞的 CVSS 评分为 9.2，可让未通过身份验证的攻击者在运行 PHP 的服务器上执行任意代码；在已知服务端语言的网站中，约 70% 使用 PHP。细节泄露一天后 PHP 才发布修复。芬兰、荷兰和法国于周三下线了政府网站。Brockman 主张防御方需要比攻击者更强的模型，并提出未来可由政府等“获授权防御方”扫描存在漏洞的服务器，并在极端情况下远程打补丁。
-
-Brockman 称该漏洞在 PHP 中存在了 14 年，2024 年曾出现一个有限版本，但“当时未被认为影响重大”；细节开始泄露后，发布时间从原定的 10 月 22 日提前到 10 月 21 日。OpenAI 表示还在修复“若干其他重大漏洞”，包括周三公布的 Node.js 远程代码执行漏洞，并承诺为其关键基础设施防御者计划 Daybreak 提供价值 10 亿美元的补贴访问额度。</summary>
-  </entry>
-  <entry>
-    <title>LiteLLM今年第二次遭投毒：不调用也能偷密钥</title>
-    <link href="https://m.theblockbeats.info/flash/373048?from=telegram"/>
-    <id>https://xiyu.news/editions/2026-10-22/#telegram:theblockbeats:201703</id>
-    <updated>2026-10-22T00:00:00Z</updated>
-    <summary>安全公司 JFrog 发现，热门开源 AI 模型网关 LiteLLM 的 1.107.0 版本及官方 Docker 镜像遭到供应链攻击，Python 安装包中被藏入三个额外文件。用户安装后只要启动相关 Python 环境，即使不调用 LiteLLM，恶意代码也会自动运行，搜集浏览器密码、SSH 私钥、AWS 等云平台凭证，以及 Claude、Codex、Cursor 等工具的认证信息，并发送到伪装成官方域名的服务器。
-
-JFrog 提醒，安装或运行过 1.107.0 的用户应将相关凭证视为可能泄露，隔离并重建环境、轮换 API 密钥等敏感凭证，而不是简单卸载软件；已确认安全的回退版本为 1.106.2。攻击者还留下了一个持久化后门，每小时检查一次远程指令，必要时下载并执行新的代码。
-
-目前 PyPI 已移除恶意版本，Docker Hub 也已撤下受影响镜像。GitHub 上的正式版本源码没有这些恶意文件，但发布到 PyPI 的全部七个平台安装包都被植入木马；社区通过 Docker 构建记录发现，发布系统使用的源码地址指向一个与官方仓库名称只差一个连字符的仿冒仓库，它究竟如何混入发布流程仍未查清。</summary>
   </entry>
 </feed>

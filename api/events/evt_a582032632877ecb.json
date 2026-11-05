@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "event_id": "evt_a582032632877ecb",
+  "url": "https://xiyu.news/events/evt_a582032632877ecb/",
+  "json": "https://xiyu.news/api/events/evt_a582032632877ecb.json",
+  "type": "other",
+  "status": "monitoring",
+  "category": "technology",
+  "title": {
+    "zh": "我笔记本电脑上的 Qwen 3.8 27B 也能解读模型权重",
+    "en": "Qwen 3.8 27B on my laptop can interpret model weights, too"
+  },
+  "current_state": {
+    "zh": "Simon Willison 报告称，他在自己笔记本电脑上本地运行的 Qwen 3.8 27B 能够解读原始模型权重，复现了 Rikiya Takehi、Jayden Teoh、Alex Zhang 与 Omar Khattab 合著的论文《Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights》中的一个示例。该论文此前是以 GPT-6 Astra 等前沿模型展示这一能力的。\n\n这一演示表明，无需工具即可读取权重的能力并不局限于 GPT-6 Astra 等前沿系统——一个在笔记本上运行的开放权重模型复现了论文中的一个示例。不过它仍属于探索性的博客复现，而非正式成果或同行评审结论。\n\n论文的第一个实验训练了四个神经网络，让它们玩 10x10 网格版的 Breakout、Pong、Pac-Man 和 Freeway，随后把权重以浮点数形式交给大模型，并说明模型没有工具、不能执行代码、只有一次回答机会，要求其判断每个网络是为哪款游戏训练的。Willison 聚焦于这个“无工具”问题，并提到批评者 Matthew Honnibal 与 Sean Goedecke 对论文将借助代码编辑模型的做法归入同一概念提出质疑。",
+    "en": "Simon Willison reported that Qwen 3.8 27B, running locally on his laptop, could interpret raw model weights in a replication of an example from the paper \"Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights\" by Rikiya Takehi, Jayden Teoh, Alex Zhang and Omar Khattab. That paper had demonstrated the capability with frontier models, specifically GPT-6 Astra.\n\nThe demonstration indicates that no-tools weight reading is not confined to frontier systems such as GPT-6 Astra, since an open-weight model running on a laptop reproduced one of the paper's examples. It remains an exploratory blog-post replication rather than a formal result or peer-reviewed finding.\n\nThe paper's first experiment trained four neural networks to play 10x10 grid versions of Breakout, Pong, Pac-Man and Freeway, then supplied the weights as floating-point numbers to an LLM with the instruction that it had no tools, no code execution and a single response to identify which game each network was trained on. Willison focused on this no-tools question, noting that critics Matthew Honnibal and Sean Goedecke disputed the paper's framing of code-assisted model editing."
+  },
+  "first_seen_at": "2026-11-05T03:00:26.112639+00:00",
+  "last_updated_at": "2026-11-05T03:00:26.112639+00:00",
+  "last_material_change_at": "2026-11-05T03:00:26.112639+00:00",
+  "confidence": 0.75,
+  "updates_count": 1,
+  "sources_count": 1,
+  "entities": [
+    "qwen",
+    "qwen-38-27b"
+  ],
+  "identifiers": [
+    "gpt-6"
+  ],
+  "topics": [
+    "gpt-6-astra",
+    "local-llms",
+    "model-interpretability",
+    "qwen-38-27b",
+    "weight-space-programming"
+  ],
+  "updates": [
+    {
+      "update_id": "upd_60383c8d2f8860e4",
+      "event_id": "evt_a582032632877ecb",
+      "occurred_at": "2026-11-03T16:29:48Z",
+      "published_at": "2026-11-03T16:29:48Z",
+      "first_seen_at": "2026-11-05T03:00:26.112639Z",
+      "time_precision": "published",
+      "update_type": "initial",
+      "material_change": true,
+      "title_zh": "我笔记本电脑上的 Qwen 3.8 27B 也能解读模型权重",
+      "title_en": "Qwen 3.8 27B on my laptop can interpret model weights, too",
+      "what_changed_zh": "Simon Willison 报告称，他在自己笔记本电脑上本地运行的 Qwen 3.8 27B 能够解读原始模型权重，复现了 Rikiya Takehi、Jayden Teoh、Alex Zhang 与 Omar Khattab 合著的论文《Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights》中的一个示例。该论文此前是以 GPT-6 Astra 等前沿模型展示这一能力的。\n\n这一演示表明，无需工具即可读取权重的能力并不局限于 GPT-6 Astra 等前沿系统——一个在笔记本上运行的开放权重模型复现了论文中的一个示例。不过它仍属于探索性的博客复现，而非正式成果或同行评审结论。\n\n论文的第一个实验训练了四个神经网络，让它们玩 10x10 网格版的 Breakout、Pong、Pac-Man 和 Freeway，随后把权重以浮点数形式交给大模型，并说明模型没有工具、不能执行代码、只有一次回答机会，要求其判断每个网络是为哪款游戏训练的。Willison 聚焦于这个“无工具”问题，并提到批评者 Matthew Honnibal 与 Sean Goedecke 对论文将借助代码编辑模型的做法归入同一概念提出质疑。",
+      "what_changed_en": "Simon Willison reported that Qwen 3.8 27B, running locally on his laptop, could interpret raw model weights in a replication of an example from the paper \"Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights\" by Rikiya Takehi, Jayden Teoh, Alex Zhang and Omar Khattab. That paper had demonstrated the capability with frontier models, specifically GPT-6 Astra.\n\nThe demonstration indicates that no-tools weight reading is not confined to frontier systems such as GPT-6 Astra, since an open-weight model running on a laptop reproduced one of the paper's examples. It remains an exploratory blog-post replication rather than a formal result or peer-reviewed finding.\n\nThe paper's first experiment trained four neural networks to play 10x10 grid versions of Breakout, Pong, Pac-Man and Freeway, then supplied the weights as floating-point numbers to an LLM with the instruction that it had no tools, no code execution and a single response to identify which game each network was trained on. Willison focused on this no-tools question, noting that critics Matthew Honnibal and Sean Goedecke disputed the paper's framing of code-assisted model editing.",
+      "current_state_zh": "Simon Willison 报告称，他在自己笔记本电脑上本地运行的 Qwen 3.8 27B 能够解读原始模型权重，复现了 Rikiya Takehi、Jayden Teoh、Alex Zhang 与 Omar Khattab 合著的论文《Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights》中的一个示例。该论文此前是以 GPT-6 Astra 等前沿模型展示这一能力的。\n\n这一演示表明，无需工具即可读取权重的能力并不局限于 GPT-6 Astra 等前沿系统——一个在笔记本上运行的开放权重模型复现了论文中的一个示例。不过它仍属于探索性的博客复现，而非正式成果或同行评审结论。\n\n论文的第一个实验训练了四个神经网络，让它们玩 10x10 网格版的 Breakout、Pong、Pac-Man 和 Freeway，随后把权重以浮点数形式交给大模型，并说明模型没有工具、不能执行代码、只有一次回答机会，要求其判断每个网络是为哪款游戏训练的。Willison 聚焦于这个“无工具”问题，并提到批评者 Matthew Honnibal 与 Sean Goedecke 对论文将借助代码编辑模型的做法归入同一概念提出质疑。",
+      "current_state_en": "Simon Willison reported that Qwen 3.8 27B, running locally on his laptop, could interpret raw model weights in a replication of an example from the paper \"Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights\" by Rikiya Takehi, Jayden Teoh, Alex Zhang and Omar Khattab. That paper had demonstrated the capability with frontier models, specifically GPT-6 Astra.\n\nThe demonstration indicates that no-tools weight reading is not confined to frontier systems such as GPT-6 Astra, since an open-weight model running on a laptop reproduced one of the paper's examples. It remains an exploratory blog-post replication rather than a formal result or peer-reviewed finding.\n\nThe paper's first experiment trained four neural networks to play 10x10 grid versions of Breakout, Pong, Pac-Man and Freeway, then supplied the weights as floating-point numbers to an LLM with the instruction that it had no tools, no code execution and a single response to identify which game each network was trained on. Willison focused on this no-tools question, noting that critics Matthew Honnibal and Sean Goedecke disputed the paper's framing of code-assisted model editing.",
+      "detailed_summary_zh": "Simon Willison 报告称，他在自己笔记本电脑上本地运行的 Qwen 3.8 27B 能够解读原始模型权重，复现了 Rikiya Takehi、Jayden Teoh、Alex Zhang 与 Omar Khattab 合著的论文《Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights》中的一个示例。该论文此前是以 GPT-6 Astra 等前沿模型展示这一能力的。\n\n这一演示表明，无需工具即可读取权重的能力并不局限于 GPT-6 Astra 等前沿系统——一个在笔记本上运行的开放权重模型复现了论文中的一个示例。不过它仍属于探索性的博客复现，而非正式成果或同行评审结论。\n\n论文的第一个实验训练了四个神经网络，让它们玩 10x10 网格版的 Breakout、Pong、Pac-Man 和 Freeway，随后把权重以浮点数形式交给大模型，并说明模型没有工具、不能执行代码、只有一次回答机会，要求其判断每个网络是为哪款游戏训练的。Willison 聚焦于这个“无工具”问题，并提到批评者 Matthew Honnibal 与 Sean Goedecke 对论文将借助代码编辑模型的做法归入同一概念提出质疑。",
+      "detailed_summary_en": "Simon Willison reported that Qwen 3.8 27B, running locally on his laptop, could interpret raw model weights in a replication of an example from the paper \"Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights\" by Rikiya Takehi, Jayden Teoh, Alex Zhang and Omar Khattab. That paper had demonstrated the capability with frontier models, specifically GPT-6 Astra.\n\nThe demonstration indicates that no-tools weight reading is not confined to frontier systems such as GPT-6 Astra, since an open-weight model running on a laptop reproduced one of the paper's examples. It remains an exploratory blog-post replication rather than a formal result or peer-reviewed finding.\n\nThe paper's first experiment trained four neural networks to play 10x10 grid versions of Breakout, Pong, Pac-Man and Freeway, then supplied the weights as floating-point numbers to an LLM with the instruction that it had no tools, no code execution and a single response to identify which game each network was trained on. Willison focused on this no-tools question, noting that critics Matthew Honnibal and Sean Goedecke disputed the paper's framing of code-assisted model editing.",
+      "background_zh": "权重空间编程（Weight-Space Programming）指通用大模型在不使用梯度下降或训练循环的情况下，读取、解读并直接写入另一个神经网络的权重；该术语由 Takehi 等人的论文提出，作者本人将其归类为博客文章。GPT-6 Astra 是 OpenAI 的前沿模型，于 2026 年 9 月 3 日向获批用户开放。Qwen 3.8 27B 是 Qwen 推出的开放权重稠密视觉语言模型，基于 Qwen3.5 架构构建。",
+      "background_en": "Weight-space programming refers to a general-purpose LLM reading, interpreting and directly writing another neural network's weights without gradient descent or a training loop; the term was coined in the Takehi et al. paper, which the authors classify as a blog post. GPT-6 Astra is OpenAI's frontier model, released to approved users on September 3, 2026. Qwen 3.8 27B is an open-weight dense vision-language model from Qwen built on the Qwen3.5 architecture.",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "该成果属于开放权重模型研究与本地推理范畴，并不涉及任何代币或协议，因此对加密资产没有直接传导路径；若有影响，也仅通过围绕开放权重与去中心化 AI 叙事的情绪面体现。它是一项解读性演示，而非产品或网络层面的变更。",
+      "market_impact_en": "The result concerns open-weight model research and local inference rather than any token or protocol, so there is no direct transmission to crypto assets; any effect would run only through sentiment around open-weight and decentralized-AI narratives. It is an interpretive demonstration, not a product or network change.",
+      "importance_score": 7.0,
+      "references": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Weight-space_programming",
+          "title": "Weight-space programming - Wikipedia"
+        },
+        {
+          "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+          "title": "Qwen/Qwen3.8-27B · Hugging Face"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/GPT-6_Astra",
+          "title": "GPT-6 Astra - Wikipedia"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "rss:simonwillison.net_atom_entries_:f1a111e72742f0df"
+      ],
+      "sources": [
+        {
+          "url": "https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/",
+          "label": "Simon Willison",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    }
+  ]
+}

@@ -4,31 +4,34 @@
   "url": "https://xiyu.news/events/evt_79bba8183886c6d8/",
   "json": "https://xiyu.news/api/events/evt_79bba8183886c6d8.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "ZachXBT: EU entity suspected of losing over $106M in crypto theft",
+    "zh": "ZachXBT：疑似欧盟实体在加密盗窃中损失超 1.06 亿美元",
     "en": "ZachXBT: EU entity suspected of losing over $106M in crypto theft"
   },
   "current_state": {
-    "zh": "On-chain investigator ZachXBT reported that an unidentified EU-based entity appears to have lost more than $106 million from multiple centralized exchange accounts, with the suspected attacker converting stablecoins to ETH, swapping into privacy coin XMR, and bridging funds across chains to obscure the trail.",
-    "en": "On-chain investigator ZachXBT reported that an unidentified EU-based entity appears to have lost more than $106 million from multiple centralized exchange accounts, with the suspected attacker converting stablecoins to ETH, swapping into privacy coin XMR, and bridging funds across chains to obscure the trail."
+    "zh": "ZachXBT 已进一步披露该欧盟实体被盗超1.06亿美元的资金流向、兑换路径及11个相关地址，事件仍在监测中。",
+    "en": "ZachXBT has further disclosed the fund-flow route, swap path, and 11 related addresses for the EU entity's suspected loss of over $106 million; the incident remains under monitoring."
   },
   "first_seen_at": "2026-11-02T12:45:43.724516+00:00",
   "last_updated_at": "2026-11-02T12:45:44.706619+00:00",
   "last_material_change_at": "2026-11-02T12:45:43.724516+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 2,
+  "updates_count": 2,
+  "sources_count": 3,
   "entities": [
     "zachxbt"
   ],
   "identifiers": [],
   "topics": [
     "cross-chain-bridge",
+    "fund-theft",
+    "monero",
     "money-laundering",
     "security-incident",
     "stablecoin-theft",
+    "stablecoins",
     "zachxbt"
   ],
   "updates": [
@@ -41,11 +44,11 @@
       "time_precision": "published",
       "update_type": "initial",
       "material_change": true,
-      "title_zh": "ZachXBT: EU entity suspected of losing over $106M in crypto theft",
+      "title_zh": "ZachXBT：疑似欧盟实体在加密盗窃中损失超 1.06 亿美元",
       "title_en": "ZachXBT: EU entity suspected of losing over $106M in crypto theft",
-      "what_changed_zh": "On-chain investigator ZachXBT reported that an unidentified EU-based entity appears to have lost more than $106 million from multiple centralized exchange accounts, with the suspected attacker converting stablecoins to ETH, swapping into privacy coin XMR, and bridging funds across chains to obscure the trail.",
+      "what_changed_zh": "链上调查员 ZachXBT 报告称，一个身份不明的欧盟实体似乎从多个中心化交易所账户中损失了超过 1.06 亿美元，疑似攻击者将稳定币兑换为 ETH，再兑换为隐私币 XMR，并跨链转移资金以掩盖踪迹。",
       "what_changed_en": "On-chain investigator ZachXBT reported that an unidentified EU-based entity appears to have lost more than $106 million from multiple centralized exchange accounts, with the suspected attacker converting stablecoins to ETH, swapping into privacy coin XMR, and bridging funds across chains to obscure the trail.",
-      "current_state_zh": "On-chain investigator ZachXBT reported that an unidentified EU-based entity appears to have lost more than $106 million from multiple centralized exchange accounts, with the suspected attacker converting stablecoins to ETH, swapping into privacy coin XMR, and bridging funds across chains to obscure the trail.",
+      "current_state_zh": "链上调查员 ZachXBT 报告称，一个身份不明的欧盟实体似乎从多个中心化交易所账户中损失了超过 1.06 亿美元，疑似攻击者将稳定币兑换为 ETH，再兑换为隐私币 XMR，并跨链转移资金以掩盖踪迹。",
       "current_state_en": "On-chain investigator ZachXBT reported that an unidentified EU-based entity appears to have lost more than $106 million from multiple centralized exchange accounts, with the suspected attacker converting stablecoins to ETH, swapping into privacy coin XMR, and bridging funds across chains to obscure the trail.",
       "detailed_summary_zh": "On-chain investigator ZachXBT reported that an unidentified EU-based entity appears to have lost more than $106 million from multiple centralized exchange accounts, with the suspected attacker converting stablecoins to ETH, swapping into privacy coin XMR, and bridging funds across chains to obscure the trail.",
       "detailed_summary_en": "On-chain investigator ZachXBT reported that an unidentified EU-based entity appears to have lost more than $106 million from multiple centralized exchange accounts, with the suspected attacker converting stablecoins to ETH, swapping into privacy coin XMR, and bridging funds across chains to obscure the trail.",
@@ -72,6 +75,44 @@
         {
           "url": "https://m.theblockbeats.info/flash/375048?from=telegram",
           "label": "theblockbeats",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_357132907548accb",
+      "event_id": "evt_79bba8183886c6d8",
+      "occurred_at": "2026-11-02T12:39:23Z",
+      "published_at": "2026-11-02T12:39:23Z",
+      "first_seen_at": "2026-11-02T12:45:43.230841Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "【ZachXBT：欧盟某实体疑从多个中心化交易所账户被盗超 1.06 亿美元】",
+      "title_en": "【ZachXBT：欧盟某实体疑从多个中心化交易所账户被盗超 1.06 亿美元】",
+      "what_changed_zh": "新增披露被盗时间为11月1日，资金以USDC/USDT提出，经WellWallet、Kyrrex等即时兑换平台换成ETH，并通过Wagyu兑换为XMR，同时公布11个相关被盗地址。",
+      "what_changed_en": "Added details that the theft occurred on Nov. 1, funds were withdrawn as USDC/USDT, swapped into ETH via instant-exchange services including WellWallet and Kyrrex, converted to XMR through Wagyu, and 11 related addresses were published.",
+      "current_state_zh": "ZachXBT 已进一步披露该欧盟实体被盗超1.06亿美元的资金流向、兑换路径及11个相关地址，事件仍在监测中。",
+      "current_state_en": "ZachXBT has further disclosed the fund-flow route, swap path, and 11 related addresses for the EU entity's suspected loss of over $106 million; the incident remains under monitoring.",
+      "detailed_summary_zh": "ZachXBT warned that an EU-based entity appears to have had more than $106 million drained from several centralized exchange accounts, with the stolen USDC and USDT being swapped into ETH, routed through instant-exchange services like WellWallet and Kyrrex, converted to XMR via Wagyu, and moved across multiple chains, with 11 associated addresses published.",
+      "detailed_summary_en": "ZachXBT warned that an EU-based entity appears to have had more than $106 million drained from several centralized exchange accounts, with the stolen USDC and USDT being swapped into ETH, routed through instant-exchange services like WellWallet and Kyrrex, converted to XMR via Wagyu, and moved across multiple chains, with 11 associated addresses published.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.5,
+      "references": [],
+      "confidence": 0.95,
+      "story_ids": [
+        "telegram:foresightnews:121971"
+      ],
+      "sources": [
+        {
+          "url": "https://foresightnews.pro/news/h5Detail/116636",
+          "label": "foresightnews",
           "source_type": "telegram",
           "official": false
         }

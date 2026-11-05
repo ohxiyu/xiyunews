@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_c8eeb2561cb07df2/",
   "json": "https://xiyu.news/api/events/evt_c8eeb2561cb07df2.json",
   "type": "security_incident",
-  "status": "closed",
+  "status": "resolved",
   "category": "crypto",
   "title": {
     "zh": "Liquid Network 遭约3.2亿美元比特币提取后暂停并恢复出块",
     "en": "Liquid Network pauses after purported ‘white-hat’ hackers withdraw $320 million in bitcoin"
   },
   "current_state": {
-    "zh": "Liquid Network 处于恢复最后阶段；联盟节点软件已升级，半自动化 BTC/LBTC 兑换正通过兑换服务商逐步重启，但联盟直接 peg-out 仍受限，1:1 比特币储备重建及 PAK 密钥持有者正常兑出尚未完成。",
-    "en": "The Liquid Network is in the final recovery stage; federation node software has been upgraded and semi-automated BTC/LBTC conversions are being reopened through swap providers, but direct federation peg-outs remain restricted, and rebuilding 1:1 bitcoin backing and restoring normal peg-out access for PAK key holders are not yet complete."
+    "zh": "Liquid 比特币储备已全部恢复，LBTC 恢复 1:1 BTC 全额支撑，用户可通过参与互换的服务商按 1:1 进行 BTC↔Liquid 转移；公告未明确说明联盟直接 peg-out 或 PAK 密钥持有者兑出是否已完全恢复正常。",
+    "en": "Liquid's bitcoin reserves are fully restored and LBTC is again fully backed 1:1 by BTC; users can move BTC↔Liquid at a 1:1 ratio through participating swap providers. The announcement did not explicitly confirm whether direct federation peg-outs or normal PAK key holder redemption access are fully restored."
   },
   "first_seen_at": "2026-09-06T22:13:15.375035+00:00",
-  "last_updated_at": "2026-10-20T13:41:31.689657+00:00",
-  "last_material_change_at": "2026-10-20T13:41:31.689657+00:00",
+  "last_updated_at": "2026-11-03T04:00:26.647899+00:00",
+  "last_material_change_at": "2026-11-03T04:00:26.647899+00:00",
   "confidence": 0.75,
-  "updates_count": 11,
-  "sources_count": 20,
+  "updates_count": 12,
+  "sources_count": 21,
   "entities": [
     "after",
     "attacker",
@@ -62,6 +62,7 @@
     "peg",
     "peg-out",
     "peg-out-suspension",
+    "peg-restoration",
     "recovery",
     "redemptions",
     "reserves",
@@ -639,6 +640,57 @@
         {
           "url": "https://foresightnews.pro/news/h5Detail/115576",
           "label": "foresightnews",
+          "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_2c509c0c4c115aae",
+      "event_id": "evt_c8eeb2561cb07df2",
+      "occurred_at": "2026-11-03T00:10:01Z",
+      "published_at": "2026-11-03T00:10:01Z",
+      "first_seen_at": "2026-11-03T04:00:26.647899Z",
+      "time_precision": "published",
+      "update_type": "resolution",
+      "material_change": true,
+      "title_zh": "Liquid：比特币储备已全部恢复，LBTC重回1:1支撑",
+      "title_en": "Liquid: Bitcoin reserves fully restored, LBTC returns to 1:1 backing",
+      "what_changed_zh": "Liquid Federation 于 11 月 3 日宣布网络比特币储备已全部恢复，所有流通 LBTC 重新获得 1:1 BTC 支撑；用户可通过参与互换的服务商按 1:1 在比特币与 Liquid 之间转移。",
+      "what_changed_en": "On November 3, the Liquid Federation announced that the network's bitcoin reserves were fully restored, re-establishing 1:1 BTC backing for all circulating LBTC; users can again move between bitcoin and Liquid at a 1:1 ratio through participating swap providers.",
+      "current_state_zh": "Liquid 比特币储备已全部恢复，LBTC 恢复 1:1 BTC 全额支撑，用户可通过参与互换的服务商按 1:1 进行 BTC↔Liquid 转移；公告未明确说明联盟直接 peg-out 或 PAK 密钥持有者兑出是否已完全恢复正常。",
+      "current_state_en": "Liquid's bitcoin reserves are fully restored and LBTC is again fully backed 1:1 by BTC; users can move BTC↔Liquid at a 1:1 ratio through participating swap providers. The announcement did not explicitly confirm whether direct federation peg-outs or normal PAK key holder redemption access are fully restored.",
+      "detailed_summary_zh": "11 月 3 日，Liquid Federation 宣布网络比特币储备已全部恢复，为全部 LBTC 重新确立 1:1 的 BTC 支撑。用户已可通过参与互换的服务商，按 1:1 比例在比特币与 Liquid 之间转移。\n\n此次公告重新确立了此前因储备缺口而受影响的 1:1 锚定关系，使流通中的 LBTC 恢复全额支撑，并重新开放用户按 1:1 进行 BTC 与 Liquid 之间的转移。\n\n据援引 Liquid Federation 的报道，储备可通过节点校验和公共数据面板公开验证。公告未披露缺口规模及补救过程。",
+      "detailed_summary_en": "On November 3, the Liquid Federation announced that the network's Bitcoin reserves have been fully restored, re-establishing 1:1 BTC backing for all LBTC. Users can again move between bitcoin and Liquid at a 1:1 ratio through participating swap providers.\n\nThe announcement re-establishes the 1:1 peg that had been disrupted by a reserve shortfall, restoring full backing for LBTC in circulation and reopening 1:1 BTC↔Liquid transfers for users.\n\nAccording to reports citing the Federation, the reserves can be publicly verified through node checks and a public dashboard. The announcement did not disclose the size of the shortfall or the remediation process.",
+      "background_zh": "Liquid 是基于 Elements 构建的联邦式比特币侧链与二层网络，通过 1:1 双向锚定与比特币连接：主链上每锁定一枚比特币，Liquid 上便铸造等量 LBTC，赎回时 LBTC 被销毁。该网络由 Liquid Federation 治理，成员包括交易所、基础设施公司与资产管理机构等分布在全球的比特币生态参与者。",
+      "background_en": "Liquid is a federated Bitcoin sidechain and layer-2 built on Elements, connected to Bitcoin through a 1:1 two-way peg: for every bitcoin locked on the main chain an equivalent amount of LBTC is minted on Liquid, and LBTC is destroyed on peg-out. The network is governed by the Liquid Federation, a globally distributed group of bitcoin-focused members including exchanges, infrastructure firms and asset managers.",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "LBTC 是 Liquid 上用于资产发行与交易的比特币计价资产，因此储备全额恢复主要影响赎回风险，以及持有者、互换服务商和以 BTC 计价 LBTC 的平台的定价。该公告解决的是支撑与兑付信心问题，而非引入新的流动性或功能。",
+      "market_impact_en": "LBTC is used as the bitcoin-denominated asset on Liquid for issuance and trading venues, so full restoration of reserves mainly affects peg-out risk and pricing for holders, swap providers and platforms that quote LBTC against BTC. The announcement addresses backing and redemption confidence rather than introducing new liquidity or capability.",
+      "importance_score": 7.5,
+      "references": [
+        {
+          "url": "https://docs.liquid.net/docs/advanced-pegin-pegout",
+          "title": "Peg-in and Peg-out - docs.liquid.net"
+        },
+        {
+          "url": "https://liquid.net/federation",
+          "title": "Liquid Network Federation: Globally Distributed Consensus"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/liquid-announces-full-recovery-of-bitcoin-reserves-lbtc-reinstates-1-1-btc-peg",
+          "title": "Liquid announces full recovery of Bitcoin reserves; LBTC ..."
+        }
+      ],
+      "confidence": 0.97,
+      "story_ids": [
+        "telegram:theblockbeats:203732"
+      ],
+      "sources": [
+        {
+          "url": "https://m.theblockbeats.info/flash/375113?from=telegram",
+          "label": "theblockbeats",
           "source_type": "telegram",
           "official": false
         }
