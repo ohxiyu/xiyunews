@@ -11,19 +11,31 @@ Deploy Docs42074503443连续两次在精确检查点ACK时达到20分钟总时�
 ## 五阶段
 
 - 代码：完成，仅工作流时限及交接记录。
-- 测试：既有预算测试对应期望值同步为30；完整本地Python回归、治理与差异检查通过，完整远端CI待完成，不跳过任何检查。
-- 合并：待同步main、检查通过后正常合并。
-- 部署：待新main自动触发正常Deploy Docs并完整确认检查点，已有统一Cloudflare42078138315继续执行，不取消它。
-- 生产验收：待检查点成功、已恢复刊期幂等、最新日报/消息回执不变与普通正式页面验证。
+- 测试：既有预算测试对应期望值同步为30；完整本地Python回归、治理与差异检查通过，最终head163b90eef77ec1be2af0abbd7676af24fa9a80f1的[CI42082248062](https://github.com/ohxiyu/xiyunews/actions/runs/42082248062)全部必需检查通过，包括Python、web、edge-build及realtime双Python；没有跳过任何检查。
+- 合并：[PR323](https://github.com/ohxiyu/xiyunews/pull/323)于2026-11-05T18:58:35Z正常合并dca841fd0e112cbec3917f382682acb41fb800bf，已确认合并树与检查head相同且为origin/main祖先。
+- 部署：新main自动[Deploy Docs42089412376](https://github.com/ohxiyu/xiyunews/actions/runs/42089412376)已成功，精确检查点已确认；后续自动统一Cloudflare42093318854也成功。此前统一Cloudflare42078138315已正常上线恢复内容，没有取消正常任务。
+- 生产验收：正常发布检查点、实际重复恢复幂等、最新日报及消息回执不变，以及自动统一发布后的最终普通URL/四组浏览器验收均通过，五阶段完成。
 
-Source commit: 基线88da72c5465a223160a51c805a7d3ce7ec4fbae8；本修复合并待记录。
+Source commit: dca841fd0e112cbec3917f382682acb41fb800bf；基线88da72c5465a223160a51c805a7d3ce7ec4fbae8。
 
 Application PR: [PR323](https://github.com/ohxiyu/xiyunews/pull/323)。
 
-Worker version: 待现有统一Cloudflare42078138315完成回读；本改动不更改Worker代码或绑定。
+Worker version: 最终05b8d129-2253-4759-b4ef-441bc6bc9708；首次恢复54193230-bff2-4ab9-bfb9-c049a64aa83a。本改动不更改Worker代码或绑定。
 
 Deployment: 仅通过正常Actions；不手动执行生产ACK、不改生成分支。
 
-Verification: 当前仅确认两次20分钟任务均在ACK取消，不能宣称已经完成正常发布闭环。
+Verification: 新30分钟正常任务已完整执行到精确ACK成功，自动统一发布后的最终普通URL、四组浏览器、持久日志和回执保护复核也通过，详见下文。
+
+## 正常发布闭环
+
+42089412376的job127463202701于2026-11-05T18:58:41Z开始、19:22:46Z成功结束，共24分05秒，超过旧20分钟上限且在新30分钟预算内。19:11:21Z补缺步骤返回repaired=[]、imported=[]、ai_calls=0、channel_calls=0，确认已有3日14条直接复用。19:22:36Z精确ACK回读确认events，出版提交82929893a36f9e1a4dfde5c9b6df2f8048df3cb9；没有手工确认数据库或将本地相等视作已发布。
+
+之后只读核对主库/备份完整性均ok，刊期日志3日14条/5日13条校验和正确；daily、event_urls、events及X/Square均clean且与已确认源摘要相同。daily/X/Square三份JSON与恢复前备份逐字节一致。staging保持既有primary缓存的dirty标记：load_staging_state使用primary=True，正常staging持久化独立于本次网页ACK；没有为制造全clean结果清理缓存或回执。
+
+## 最终自动统一发布
+
+[Cloudflare42093318854](https://github.com/ohxiyu/xiyunews/actions/runs/42093318854)于2026-11-05T19:22:52Z开始、19:42:50Z成功结束，完全由前述正常publisher成功触发。普通/health回读source dca841fd0e112cbec3917f382682acb41fb800bf、artifact 82929893a36f9e1a4dfde5c9b6df2f8048df3cb9、Worker05b8d129-2253-4759-b4ef-441bc6bc9708、build key956185e6393c9632747c22cd3912daf9b3f2d818caeadc8119b493bc7781d669；dispatcher_enabled与realtime_watchdog_enabled均true，/ready状态ready。
+
+新版本再次完整验证2026-10-23至11-05共14期普通JSON/中英文片段和条数；3日14条、12个事件引用及HTML节点，中英×1440/390日期切换/加载更早仍为14条，无横向溢出或脚本错误。最新5日仍13条，items紧凑JSON摘要5e77c2ddb424adb444b6e8f660f26798822d234dfe4d6271b795f293b61ec080不变。出版82929893与前一df4161dd中的latest.json、3日整组JSON/片段和刊期日志逐字节一致，只更新派生追踪归类/索引；最终再次只读核对数据库完整性、刊期摘要与daily/X/Square不变。没有触发历史AI、消息补发、手动生产ACK或分支写入。
 
 Rollback: 不自动回滚或恢复整库；原稿日志和Git历史保留，后续合并与部署按现有授权流程。

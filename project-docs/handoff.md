@@ -1,24 +1,24 @@
 # 当前交接
 
-当前任务：[Issue325](https://github.com/ohxiyu/xiyunews/issues/325)，修复刊期日志对X/Square轻量门控的依赖回归。当前会话唯一编辑/生产整合负责人，复用work/xiyunews-edition-continuity，agent/queue-gate-journal分支。日报恢复、完整publisher和网站已验收；PR324证据草稿保留，待本回归修复后统一归档。只恢复存储层stdlib-only约束，不改发送策略、Secrets、来源、费用、Cron或实时服务。架构入口为[系统架构](system-architecture.md)，证据见[门控兼容性记录](releases/2026-11-06-queue-gate-journal.md)。
+当前任务：[Issue321](https://github.com/ohxiyu/xiyunews/issues/321)，统一归档[历史漏期](releases/2026-11-05-edition-continuity.md)、[发布时限](releases/2026-11-06-publication-checkpoint-budget.md)及[门控兼容性](releases/2026-11-06-queue-gate-journal.md)修复。三个应用PR320/323/326五阶段均完成：日报、完整publisher、自动网站发布和两个读取新main的生产门控均已验收。当前会话唯一整合负责人以agent/edition-continuity-evidence、PR324归档并关闭任务；无历史AI重做、历史消息补发，未改Secrets、来源、Cron、费用、服务器资源或实时规则。架构入口为[系统架构](system-architecture.md)。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "恢复无依赖X/Square真实门控，并保留原稿持久化与全部回执",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/325",
+  "goal": "归档3日14条恢复、逐期日志、跨日补缺、完整发布及标准库门控兼容性的生产证据",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/321",
   "owner": "当前会话唯一编辑与生产整合负责人",
-  "branch": "agent/queue-gate-journal",
-  "last_verified_commit": "dca841fd0e112cbec3917f382682acb41fb800bf",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/326",
-  "completed": ["3日14条、近14期连续性和四组中英桌面/手机尺寸阅读已在线验收，正常publisher完整ACK及自动统一发布均成功", "定位X/Square安装依赖前的门控均因PublicationState构造器导入Pydantic失败，尚未发送", "保存层改为标准库记录已验证原始JSON，完整领域模型校验仍在恢复消费者", "两个真实python -S入口回归修复前失败，修复后连同原持久/跨日回归20项通过"],
-  "unfinished": ["完整Python与适用CI、同步main后合并", "真实X/Square轻量门控及原稿/回执保护核对", "Issue321/PR324最终证据更新、转ready并合并"],
-  "validation": ["20项定向通过，含无site-packages、隔离升级前数据库、真实X/Square CLI及不变回执断言", "本兼容性改动完整Python1184 passed/4既有skipped、治理与差异检查通过；适用远端CI待完成；先前PR320/323和两轮实际网站验收已通过"],
-  "unverified": ["新轻量门控兼容代码尚未合并、真实生产入口待验证", "原同分排名无法完全还原；首次3日底层发布错误未取到日志；下一次自然日报尚未发生"],
-  "production": {"source_commit": "dca841fd0e112cbec3917f382682acb41fb800bf", "artifact_commit": "82929893a36f9e1a4dfde5c9b6df2f8048df3cb9", "edition": "2026-11-05，13条；11月3日14条恢复，近14期连续", "generated_at": "2026-11-05T07:37:56.199782Z", "worker_version": "05b8d129-2253-4759-b4ef-441bc6bc9708", "verified_at": "2026-11-06凌晨网站最终验收通过；渠道轻量门控依赖回归待修复"},
+  "branch": "agent/edition-continuity-evidence",
+  "last_verified_commit": "cf878a8cc9023c7aec17e9050f293e368fe14afb",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/324",
+  "completed": ["PR320合并88da72c5，逐期SQLite日志与无AI跨日补缺已运行，3日14条及9个缺失节点恢复", "三个应用PR适用CI通过；PR323合并dca841fd保留30分钟预算与全部检查，PR326合并cf878a8c恢复标准库门控", "正常Deploy Docs42089412376用24分05秒成功，实际重试无需再次修补且AI/渠道调用0，精确ACK确认远端82929893", "自动统一Cloudflare42093318854成功，Worker05b8d129-2253-4759-b4ef-441bc6bc9708，调度和看门狗保持启用", "最终普通URL近14期双语JSON/片段及12事件引用通过；中英×1440/390日期切换/加载更早无溢出或脚本错误；新main实际X/Square gate通过、没有发送、当期与回执不变"],
+  "unfinished": [],
+  "validation": ["最终完整Python1184 passed/4既有skipped，20项持久/恢复/真实无依赖CLI定向及三个应用PR适用CI通过；治理/差异检查通过", "生产普通URL近14期连续；恢复3日14条，中英×1440/390四组无溢出/脚本错误，日期入口与加载更早均14条，12事件引用有效", "新main cf878a8c两个真实gate成功：X work=false且跳过发送，Square attempted=0/sent=0；数据库完整性及刊期摘要ok，daily/X/Square字节及2条X/697条Square确认回执不变"],
+  "unverified": ["原同分新闻精确名次无法完全还原；11月3日首次底层发布日志不可取，不将现时超时倒推为原始原因", "下一次自然定时日报尚未发生，本次不将模拟或历史补期算作下一次Cron成功"],
+  "production": {"source_commit": "dca841fd0e112cbec3917f382682acb41fb800bf", "artifact_commit": "82929893a36f9e1a4dfde5c9b6df2f8048df3cb9", "edition": "2026-11-05，13条；11月3日14条已恢复，近14期连续", "generated_at": "2026-11-05T07:37:56.199782Z", "worker_version": "05b8d129-2253-4759-b4ef-441bc6bc9708", "verified_at": "2026-11-06凌晨，最终自动统一发布及普通URL/四组中英桌面手机尺寸验收通过"},
   "blockers": [],
-  "next_action": "本修复完整验证后正常合并，核对读取新main的真实gate，随后更新PR324最终证据",
-  "states": {"code": "complete", "tests": "pending", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
-  "evidence": "project-docs/releases/2026-11-06-queue-gate-journal.md"
+  "next_action": "本证据PR合并后按既有调度运行；新问题重新核对远端main和线上版本、认领有界Issue，不继续旧补刊任务",
+  "states": {"code": "complete", "tests": "complete", "pr_merged": "complete", "deployed": "complete", "production_verified": "complete"},
+  "evidence": "project-docs/releases/2026-11-05-edition-continuity.md"
 }
 ```
