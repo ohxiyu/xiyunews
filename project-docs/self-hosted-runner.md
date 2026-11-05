@@ -60,6 +60,12 @@ gh variable set XIYUNEWS_RUNNER_LABELS --repo ohxiyu/xiyunews \
 
 ## 验收与交接
 
+### 部署副本与脚本维护
+
+每个合法任务的开始/结束 hooks 和既有维护 timer 回收专用 home 下超过 24 小时的 actions-gh-pages Git 临时副本；只处理匹配时间戳、所属者正确、非软链接/挂载点且未被进程 cwd/fd 引用的副本。数据库、AI 缓存、工具缓存、凭据和实时业务目录不在回收范围。遇到损坏业务快照，保留工作区并继续有界临时副本维护；无法安全检查本账号进程时跳过删除。
+
+首次安装 hooks 仍需执行器空闲。已安装环境仅刷新受审脚本时，从准确合并 SHA 导出 ops/runner 后执行 `sudo bash ops/runner/install-job-hooks.sh --refresh-scripts`：先核对已安装 drop-in 完全一致，再原子替换 helper/hooks/维护脚本，不重启执行器、不改环境或资源限制。用专用用户执行 `python3 /opt/xiyunews-job-hooks/deploy_temp_cleanup.py --dry-run` 可只读查看符合条件的数量；实际自动清理以 job hooks 的 deployment_temp_cleanup 事件和维护 timer 日志验收。详见[磁盘与发推恢复](releases/2026-11-05-delivery-recovery.md)。
+
 2026-10-13 已注册 repo runner21、xiyunews-tokyo-1，变量选择已生效。实际CI与部署均显示该 runner；PR251、PR249与PR254分别在当前head检查通过后合并。缓存工具环境复用，维护timer已启用；无需重新执行首次注册安装，不读取机器凭据。完整证据见[运行记录](releases/2026-10-13-self-hosted-runtime.md)和[持久状态修复](releases/2026-10-13-persistent-checkout.md)。
 
 持久执行器和一次性托管机器不同：浅层Git引用跨任务保留，读取出版状态须使用明确的本地tracking ref更新（`git fetch --depth=1 origin +gh-pages:refs/remotes/origin/gh-pages`），这不是远端强推。初始化前的stdlib门控/恢复/报告用Ubuntu自带python3；其余应用经setup-python/uv固定环境运行。不要靠清空状态历史或重设已发送任务解决环境问题。

@@ -39,7 +39,7 @@ from typing import Awaitable, Callable, Optional
 from zoneinfo import ZoneInfo
 
 from ._file_utils import _atomic_write_text
-from .publication_state import read_document, write_document
+from .publication_state import acknowledge_document, read_document, write_document, StateConflict
 
 DEFAULT_STATE_PATH = Path("data/x-queue.json")
 QUEUE_RELATIVE_PATH = Path("data/x-queue.json")
@@ -300,10 +300,46 @@ def validate(state: object) -> dict:
     return state
 
 
+def reconcile_confirmed_receipts(local: dict, incoming: dict) -> dict:
+    """Retain an exact local X receipt over its own published pending checkpoint.
+
+    Only status/detail/tweet_id may differ, for the same text, slot and attempt.
+    All other changes (including changed IDs, unknown outcomes, or new plans)
+    remain real conflicts and must stop delivery.
+    """
+    validate(local)
+    validate(incoming)
+    restored = copy.deepcopy(incoming)
+    for day, edition in restored["editions"].items():
+        local_edition = local["editions"].get(day)
+        if not local_edition or len(edition["jobs"]) != len(local_edition["jobs"]):
+            raise StateConflict("incompatible X receipt snapshots")
+        for index, remote_job in enumerate(edition["jobs"]):
+            local_job = local_edition["jobs"][index]
+            if local_job == remote_job:
+                continue
+            if not (remote_job["status"] == "pending" and local_job["status"] == "sent"
+                    and not remote_job.get("tweet_id")
+                    and isinstance(local_job.get("tweet_id"), str)
+                    and local_job["tweet_id"].isdigit()
+                    and remote_job.get("attempted_at")
+                    and remote_job.get("text_sha256") == text_digest(remote_job["text"])):
+                raise StateConflict("unproven or conflicting X receipt")
+            exclude = {"status", "tweet_id", "detail"}
+            if {key: value for key, value in remote_job.items() if key not in exclude} != {
+                key: value for key, value in local_job.items() if key not in exclude
+            }:
+                raise StateConflict("X receipt identity or attempt changed")
+            edition["jobs"][index] = copy.deepcopy(local_job)
+    if restored != local:
+        raise StateConflict("unrelated X queue changes")
+    return copy.deepcopy(local)
+
+
 def load(path: Path, now: Optional[datetime] = None) -> dict:
     """Missing means new. Anything unreadable stops delivery."""
     try:
-        payload = read_document(path, name="x_queue")
+        payload = read_document(path, name="x_queue", reconcile=reconcile_confirmed_receipts)
         if payload is None:
             return empty_state()
     except (OSError, ValueError) as exc:
@@ -344,10 +380,14 @@ def git_checkpoint(directory: Path, state: dict) -> None:
         ["git", "-C", str(directory), "diff", "--cached", "--quiet"],
         capture_output=True,
     )
-    if staged.returncode == 0:
-        return
-    git("commit", "-m", "chore: checkpoint X delivery")
+    if staged.returncode not in (0, 1):
+        staged.check_returncode()
+    if staged.returncode == 1:
+        git("commit", "-m", "chore: checkpoint X delivery")
+    # Even an unchanged worktree may contain a commit whose previous push
+    # failed. Confirm the remote checkpoint before acknowledging or sending.
     git("push", "origin", f"HEAD:refs/heads/{QUEUE_BRANCH}")
+    acknowledge_document(directory / QUEUE_RELATIVE_PATH, state, name="x_queue")
 
 
 # ---------------------------------------------------------------------------

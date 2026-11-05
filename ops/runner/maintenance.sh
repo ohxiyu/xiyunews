@@ -5,6 +5,10 @@ set -euo pipefail
 mode="${1:---dry-run}"
 [[ "$mode" == --dry-run || "$mode" == --apply ]] || exit 64
 [[ "$(id -un)" == xiyunews-runner ]] || { echo "Use the dedicated runner user." >&2; exit 1; }
+deployment_cleanup=/opt/xiyunews-job-hooks/deploy_temp_cleanup.py
+if [[ -f "$deployment_cleanup" ]]; then
+  python3 "$deployment_cleanup" --min-age-hours 24 "$mode"
+fi
 runner_diag=/opt/xiyunews-runner/_diag
 if [[ -d "$runner_diag" ]]; then
   [[ ! -L "$runner_diag" && "$(stat -c %U "$runner_diag")" == xiyunews-runner ]]

@@ -54,6 +54,8 @@ top1 是 `unknown` 时 top2 照常按计划发（以 top1 的尝试时间为基�
 
 ## 需要人工处理时
 
+自托管持久状态同时保留 SQLite 回执和 Git 审计快照。普通检查点 push 成功后，必须精确确认同一 payload/digest 并推进 source_digest；失败 push 不确认，下一次即使文件无差异也要重试普通 push。若仅存在已证明的同一任务、同次尝试的 Git pending 与本地 sent 数字 ID 差异，系统保留本地成功回执并通过后续正常检查点恢复；正文、计划、尝试或成功 ID 有任何矛盾则继续停止，不自动合并 unknown/failed，也不清空发送历史。见[恢复证据](releases/2026-11-05-delivery-recovery.md)。
+
 只要队列里有 `pending`/`unknown`/`failed`，每次 X workflow 都会在最后一步变红，
 提醒有人看账号。处理方法：
 

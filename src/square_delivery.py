@@ -17,7 +17,7 @@ from zoneinfo import ZoneInfo
 import httpx
 
 from ._file_utils import _atomic_write_text
-from .publication_state import write_document
+from .publication_state import acknowledge_document, write_document
 
 ENDPOINT = "https://www.binance.com/bapi/composite/v1/public/pgc/openApi/content/add"
 SHANGHAI = ZoneInfo("Asia/Shanghai")
@@ -54,9 +54,14 @@ def git_checkpoint(directory: Path, state: dict) -> None:
     def git(*args: str) -> None:
         subprocess.run(["git", "-C", str(directory), *args], check=True, capture_output=True)
     git("add", "queue.json")
-    git("commit", "-m", "chore: checkpoint Square delivery")
+    staged = subprocess.run(["git", "-C", str(directory), "diff", "--cached", "--quiet"], capture_output=True)
+    if staged.returncode not in (0, 1):
+        staged.check_returncode()
+    if staged.returncode == 1:
+        git("commit", "-m", "chore: checkpoint Square delivery")
     # No force push. A rejected checkpoint MUST prevent the external POST.
     git("push", "origin", "HEAD:refs/heads/square-queue")
+    acknowledge_document(directory / "queue.json", state, name="square_queue")
 
 
 def send(client: httpx.Client, key: str, text: str) -> dict:
