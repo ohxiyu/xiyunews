@@ -24,6 +24,8 @@ X 的 workflow_run 入口补齐 success 条件，避免失败/取消的采集或
 
 ## 五阶段状态
 
+最终 edge 检查的 Jekyll 渲染、群组快照校验、资产准备和 npm 审计均通过，但 dry-run 指出 unified.ts 所需 realtime/scripts/deploy/watchdog/worker.js 被精简 checkout 遗漏。已在 edge/正式 Cloudflare 的下载清单显式补回该目录；仅纠正构建输入，不更改实时业务。该构建失败属于本次清单适配问题，非原生产故障，需最新提交的完整 CI 再通过。
+
 恢复中的生产者/消费者边界：SQLite 已保存今日日报，但 Git 快照尚为昨天。X 生产投递改为只解码本轮经 GitHub 鉴权恢复的出版文件，不从生产者 SQLite 合并未发布选稿或修订；队列回执仍保留其独立持久状态。真实 SQLite + mock publisher 回归验证：昨天的 Git/今天的本地草稿不发帖，同日 Git 旧修订/本地新草稿仅发送 Git 已发布原文，生产者草稿保持原样；不改变编辑、生成和去重规则。
 
 下载反复重来原因已确证：本轮 web job 在 05:20:17Z 报 RPC failed; curl 92 HTTP/2 stream ... CANCEL、unexpected disconnect、early EOF，随后等待 11 秒重新下载，遗留两个各约 15 MB 未完成 pack。七份相关工作流通过进程级 GIT_CONFIG_COUNT/KEY/VALUE 固定 http.version=HTTP/1.1，避免该 HTTP/2 路径；不写系统/global Git 配置，不改变鉴权、TLS 验证或凭据。仍保留正常下载失败与超时防护，实际远端结果待验收。
