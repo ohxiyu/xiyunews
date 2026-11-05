@@ -4,7 +4,40 @@
   <link href="https://xiyu.news/feeds/technology-en.xml" rel="self"/>
   <link href="https://xiyu.news/"/>
   <id>https://xiyu.news/feeds/technology-en.xml</id>
-  <updated>2026-11-04T00:00:00Z</updated>
+  <updated>2026-11-05T00:00:00Z</updated>
+  <entry>
+    <title>Kimi K3.1 Pro model weights are out</title>
+    <link href="https://huggingface.co/moonshotai/Kimi-K3.1-Pro"/>
+    <id>https://xiyu.news/editions/2026-11-05/#hackernews:story:50366999</id>
+    <updated>2026-11-05T00:00:00Z</updated>
+    <summary>Moonshot AI has published the open weights for Kimi K3.1 Pro, with the model repository live on Hugging Face for download and self-hosting. The release drew 426 points and 125 comments on Hacker News, where users noted that third-party inference providers began listing the model within hours.
+
+Commenters reported that third-party providers are already serving the model, with one saying Together offers roughly double the throughput of Moonshot AI&#x27;s own endpoint at the same price and Modal roughly double that again — a sign that hosted access is opening up beyond the releasing lab.
+
+Discussion centered on whether the model is tuned to maximize benchmarks: one commenter argued it does not clearly outpace DeepSeekV4.1-Flash and scores modestly on another lab&#x27;s internal benchmarks, while another said their own testing did not show benchmark-gaming and called it a strong open model slightly off the frontier. One user estimated running it locally would require something like an 8x B300 node.</summary>
+  </entry>
+  <entry>
+    <title>Progress on provable inference for large language models</title>
+    <link href="https://www.anthropic.com/research/provable-inference"/>
+    <id>https://xiyu.news/editions/2026-11-05/#hackernews:story:50368626</id>
+    <updated>2026-11-05T00:00:00Z</updated>
+    <summary>Anthropic published a research approach, called FlashProve, for provable inference of large Mixture-of-Experts (MoE) language models: the model provider commits to its weights, then issues one zkSNARK proof per request so a client can verify which weights actually served it. Anthropic said it demonstrated the system on a 400-billion-parameter model.
+
+The scheme targets a trust gap in hosted model serving — letting a customer confirm which weights ran on a provider&#x27;s servers rather than relying on the provider&#x27;s word. Commenters described it as a significant improvement over earlier zero-knowledge results, while noting the roughly 90-100x compute overhead limits near-term practicality.
+
+According to discussion of the report, the weight commitment is about 6.5 MB and remains valid for roughly 16 million requests before the provider must commit again, with one proof issued per request. Verifying a proof takes about 17 seconds on 24 threads and 21 seconds on a single thread, including the check from the offline phase.</summary>
+  </entry>
+  <entry>
+    <title>Google faces backlash for plan that would turn off Search for schools that restrict AI</title>
+    <link href="https://techcrunch.com/2026/11/04/google-faces-backlash-for-plan-that-would-turn-off-search-for-schools-that-restrict-ai/"/>
+    <id>https://xiyu.news/editions/2026-11-05/#rss:techcrunch.com_category_artificial-intelligence_feed_:bbbf47c695ed3b41</id>
+    <updated>2026-11-05T00:00:00Z</updated>
+    <summary>Google is drawing political backlash over a plan under which schools that bar or fully restrict AI tools would lose access to Google Search. New York City mayor Zohran Mamdani and former FTC chair Lina Khan criticized the move as the behavior of an unregulated monopoly.
+
+The dispute turns a product decision about schools into a public test of how far a dominant platform can link one service to another, and it drew condemnation from prominent antitrust figures rather than regulators themselves.
+
+Google VP of education Chris Phillips told the New York Times that &quot;Search and A.I. are deeply integrated,&quot; and that students at schools banning AI &quot;will not have access to search&quot; and will instead see a message from their school saying it is unavailable. The criticism has so far come as public pressure rather than a formal regulatory or legal complaint.</summary>
+  </entry>
   <entry>
     <title>Anthropic is working on a system to prove AI models’ identity</title>
     <link href="https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/"/>
@@ -409,38 +442,5 @@ Block presents the model as both highly expressive and low-latency, and highligh
 Because the private keys can be derived by anyone from public material, an attacker could mint a certificate that appears valid for any domain and impersonate sites such as banks, GitHub or PyPI, forcing operating system and browser vendors to push emergency trust-store updates.
 
 eMudhra said in its incident statement that the affected intermediates were created during a key-generation ceremony in April 2025 and that its root CA private keys and other intermediate authorities were not affected, adding that no end-entity certificates were issued. Mozilla reported that it independently recovered the private keys for the impacted certificates at 21:48 UTC, confirming the key-generation process was flawed and trivial to exploit.</summary>
-  </entry>
-  <entry>
-    <title>OpenAI Nears Close of New Funding Round, Seeking Up to $30 Billion at a $1.25 Trillion Pre-Money Valuation</title>
-    <link href="https://m.theblockbeats.info/flash/373281?from=telegram"/>
-    <id>https://xiyu.news/editions/2026-10-23/#telegram:theblockbeats:201939</id>
-    <updated>2026-10-23T00:00:00Z</updated>
-    <summary>OpenAI is nearing the close of a new funding round in which it is seeking to raise up to $30 billion at a $1.25 trillion pre-money valuation, with investors from the UAE co-leading alongside investment firm Coatue, according to CNBC-sourced reports. OpenAI told investors on Thursday that it aims to sign the agreements by the end of next week, though the final size of the round is still being determined.
-
-Should the round price OpenAI above a $1 trillion valuation, it would become the most highly valued private company on record. The company is positioning the raise as an &quot;opportunistic bridge financing&quot; ahead of a possible initial public offering.
-
-The $1.25 trillion figure is a pre-money valuation, meaning it excludes the new capital being raised. OpenAI also is negotiating a commercial agreement to obtain additional computing resources from the UAE, and CFO Sarah Friar has previously told employees the company could list in 2027.</summary>
-  </entry>
-  <entry>
-    <title>DeepSeek reportedly raises $15B days after US restrictions</title>
-    <link href="https://techcrunch.com/2026/10/22/deepseek-reportedly-raises-15b-days-after-us-restrictions/"/>
-    <id>https://xiyu.news/editions/2026-10-23/#rss:techcrunch.com_category_artificial-intelligence_feed_:c7df602b5cd2fbf8</id>
-    <updated>2026-10-23T00:00:00Z</updated>
-    <summary>TechCrunch reported on October 22, 2026 that DeepSeek has raised $15 billion, described as one of China&#x27;s largest funding rounds, just days after the U.S. ordered federal agencies to remove its technology. The report is framed as unconfirmed, and the round&#x27;s terms and investor list were not disclosed.
-
-The timing puts the reported raise directly against Washington&#x27;s national-security restrictions on DeepSeek&#x27;s technology, a contrast China&#x27;s government has already pushed back on after the Homeland Security Department&#x27;s removal order.
-
-The report did not disclose valuation, investor identities or whether the round has closed. Earlier coverage of DeepSeek fundraising described different figures, including a sought $7.35 billion round, indicating that reported totals have varied across outlets.</summary>
-  </entry>
-  <entry>
-    <title>Microsoft says its AI tool is better than doctors at diagnosing conditions</title>
-    <link href="https://www.theverge.com/ai-artificial-intelligence/1016690/suleyman-microsoft-diagnostic-orchestrator-science-medical-superintelligence"/>
-    <id>https://xiyu.news/editions/2026-10-23/#rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:c71e635bbe622afa</id>
-    <updated>2026-10-23T00:00:00Z</updated>
-    <summary>Microsoft AI CEO Mustafa Suleyman announced a new AI diagnostic system that the company says can diagnose medical conditions up to four times more accurately than human physicians. The claim is based on a peer-reviewed study published in Science on October 22, 2026.
-
-The result appeared in a peer-reviewed journal rather than a company demo, which gives Microsoft&#x27;s claim more weight than a typical product announcement. The comparison, however, was against generalist physicians on difficult cases, not specialist doctors.
-
-Microsoft&#x27;s system, described as a diagnostic orchestrator (MAI-DxO), was reported at 83.2% accuracy in the Science study. Coverage notes that much of the improvement appears to come from the underlying AI models rather than from Microsoft&#x27;s system itself.</summary>
   </entry>
 </feed>
