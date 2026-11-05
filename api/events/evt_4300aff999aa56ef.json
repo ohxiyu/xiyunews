@@ -4,22 +4,22 @@
   "url": "https://xiyu.news/events/evt_4300aff999aa56ef/",
   "json": "https://xiyu.news/api/events/evt_4300aff999aa56ef.json",
   "type": "security_incident",
-  "status": "monitoring",
+  "status": "closed",
   "category": "crypto",
   "title": {
     "zh": "Crédit Mutuel Arkéa 确认遭网络攻击，此前 ZachXBT 将其与 1.33 亿美元加密货币盗窃案关联",
     "en": "Crédit Mutuel Arkéa Confirms Cyberattack After ZachXBT Ties It to $133M Crypto Theft"
   },
   "current_state": {
-    "zh": "法国银行集团 Crédit Mutuel Arkéa 周三向 Decrypt 发表声明，确认其遭遇了一次使欺诈性操作得以进行的网络攻击，称事件已“关闭并处于控制之下”，业务正在逐步恢复。这一确认出现在链上调查员 ZachXBT 公开指认该行为超过 1.33 亿美元加密货币盗窃案疑似受害方的次日。\n\n该行表示在发现攻击后立即通报了相关监管机构，并作为预防措施暂停了部分交易。ZachXBT 则指责该机构未进行“适当的事件披露”，称这导致执法部门无法冻结约 3000 万美元被盗资金。\n\nCrédit Mutuel Arkéa 未提及加密货币，也未说明被盗金额，称受影响金额仍在评估中，但“无论如何都不足以动摇集团的稳健性与财务健康”；该行称客户资产未受影响，只是部分转账执行被延迟。ZachXBT 最初指出 11 月 1 日有逾 1.06 亿美元从交易所账户被提走，随后追加 2700 万美元，并公布了四个以太坊地址，还表示可以“高度确信”攻击者并非 Lazarus 组织。",
-    "en": "French banking group Crédit Mutuel Arkéa confirmed in a statement to Decrypt on Wednesday that it was hit by a cyberattack that enabled fraudulent operations, saying the incident is \"closed and now under control\" and that operations are resuming gradually. The confirmation came one day after onchain investigator ZachXBT publicly named the bank as the alleged victim of a crypto theft exceeding $133 million.\n\nThe bank said it alerted the relevant supervisory authorities as soon as it detected the attack and temporarily suspended some transactions as a precaution. ZachXBT accused the institution of failing to make a \"proper incident disclosure,\" which he said prevented law enforcement from freezing some $30 million in stolen funds.\n\nCrédit Mutuel Arkéa did not mention crypto or state how much was taken, saying the affected amounts are still being assessed but are \"in any event not of a nature to call into question the solidity and financial health of the group\"; it said customer assets were unaffected and some transfers were only delayed. ZachXBT initially flagged more than $106 million in withdrawals from exchange accounts on November 1, later added $27 million, published four Ethereum addresses, and said he could state \"with a high degree of confidence\" the attacker is not the Lazarus Group."
+    "zh": "Crédit Mutuel Arkéa 在服务提供商平台遭入侵后已基本恢复运营；客户资金未受影响，但银行自有资金被盗并仍在评估损失。部分与交易所提款相关的资金已被冻结，追回工作仍在进行。",
+    "en": "Crédit Mutuel Arkéa has largely resumed operations after a service-provider breach; customer funds were unaffected, but the bank's own funds were stolen and the financial impact is still being assessed. Some funds linked to exchange withdrawals have been frozen, with recovery efforts ongoing."
   },
   "first_seen_at": "2026-11-05T04:42:10.641980+00:00",
-  "last_updated_at": "2026-11-05T04:42:10.641980+00:00",
-  "last_material_change_at": "2026-11-05T04:42:10.641980+00:00",
+  "last_updated_at": "2026-11-05T07:59:29.340668+00:00",
+  "last_material_change_at": "2026-11-05T07:59:29.340668+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "after",
     "ark",
@@ -31,7 +31,12 @@
     "zachxbt"
   ],
   "identifiers": [],
-  "topics": [],
+  "topics": [
+    "blockchain-analytics",
+    "crypto-theft",
+    "cybersecurity",
+    "exchange-withdrawals"
+  ],
   "updates": [
     {
       "update_id": "upd_9309a7831f2df7c4",
@@ -75,6 +80,44 @@
         {
           "url": "https://decrypt.co/382486/zachxbt-names-french-bank-credit-mutuel-arkea-as-alleged-victim-of-133m-crypto-theft",
           "label": "Decrypt",
+          "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_9855056ded96997a",
+      "event_id": "evt_4300aff999aa56ef",
+      "occurred_at": "2026-11-05T07:23:06Z",
+      "published_at": "2026-11-05T07:23:06Z",
+      "first_seen_at": "2026-11-05T07:59:29.340668Z",
+      "time_precision": "published",
+      "update_type": "aftermath",
+      "material_change": true,
+      "title_zh": "Crédit Mutuel Arkéa 在遭受攻击后恢复运营，并评估损失",
+      "title_en": "Crédit Mutuel Arkéa resumes operations after attack, assesses losses",
+      "what_changed_zh": "新报道补充称，攻击者是通过一家服务提供商（而非该行在线银行子公司 Fortuneo）进入系统的，并转走了银行自有资金；该行几乎所有业务已于周三恢复，但仍在评估财务影响。报道还称 Bitquery 追踪到从 Kraken、Crypto.com 和 OKX 账户提走的资金，部分资金已被冻结，后续追回工作正在进行中。",
+      "what_changed_en": "The new report adds that attackers gained access through a service provider, not the bank's online banking subsidiary Fortuneo, and transferred the bank's own funds; nearly all operations resumed Wednesday while the bank is still assessing the financial impact. It also says Bitquery traced withdrawals from accounts at Kraken, Crypto.com and OKX, some funds were frozen, and further recovery efforts are underway.",
+      "current_state_zh": "Crédit Mutuel Arkéa 在服务提供商平台遭入侵后已基本恢复运营；客户资金未受影响，但银行自有资金被盗并仍在评估损失。部分与交易所提款相关的资金已被冻结，追回工作仍在进行。",
+      "current_state_en": "Crédit Mutuel Arkéa has largely resumed operations after a service-provider breach; customer funds were unaffected, but the bank's own funds were stolen and the financial impact is still being assessed. Some funds linked to exchange withdrawals have been frozen, with recovery efforts ongoing.",
+      "detailed_summary_zh": "Crédit Mutuel Arkéa restored nearly all operations after a service-provider breach let attackers steal about $133M of the bank's own funds and push them through crypto exchange withdrawals traced by Bitquery to Kraken, Crypto.com and OKX.",
+      "detailed_summary_en": "Crédit Mutuel Arkéa restored nearly all operations after a service-provider breach let attackers steal about $133M of the bank's own funds and push them through crypto exchange withdrawals traced by Bitquery to Kraken, Crypto.com and OKX.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.5,
+      "references": [],
+      "confidence": 0.93,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:a07c53a85f08e025"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/credit-mutuel-arkea-resumes-operations-133m-crypto-theft?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
           "source_type": "rss",
           "official": false
         }
