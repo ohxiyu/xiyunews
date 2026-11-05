@@ -170,3 +170,6 @@ jobs:
             ${{ github.event_name == 'workflow_dispatch'
                 && format('chore: import published history from {0}@{1}', inputs.history_repository, inputs.history_sha)
                 || github.event.head_commit.message }}
+
+      - name: Confirm exact published state checkpoint
+        run: uv run python -m src.publication_state --acknowledge-published

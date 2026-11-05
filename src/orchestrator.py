@@ -778,6 +778,12 @@ class BMTNewsOrchestrator:
                 >= window.end.astimezone(timezone.utc)
             )
             if already_published and not force_publish:
+                from .event_recovery import recover_catalog_links
+                recovered_nodes = recover_catalog_links(daily_state.items, edition=window.date)
+                if recovered_nodes:
+                    run_report.set_metric("event_published_links_recovered", recovered_nodes)
+                    run_report.add_alert("warning", "event_published_links_recovered",
+                        "按已保存刊期的稳定编号和原文恢复缺失节点；丢失的进展分类不重猜，既有事件状态不变。")
                 run_report.set_metric(
                     "displayed_today",
                     len(daily_state.items),
@@ -796,7 +802,7 @@ class BMTNewsOrchestrator:
                 for language in languages:
                     required += [Path("docs/_posts") / f"{window.date}-summary-{language}.md",
                                  Path("docs/editions") / window.date / f"{language}.html"]
-                if not all(path.is_file() for path in required):
+                if recovered_nodes or not all(path.is_file() for path in required):
                     # The selected edition is durable before Git publication.
                     # Reconstruct lost static output after a failed push, without
                     # calling sources/AI/channels or modifying the saved wording.
