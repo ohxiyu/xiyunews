@@ -26,6 +26,8 @@ X 的 workflow_run 入口补齐 success 条件，避免失败/取消的采集或
 
 下载反复重来原因已确证：本轮 web job 在 05:20:17Z 报 RPC failed; curl 92 HTTP/2 stream ... CANCEL、unexpected disconnect、early EOF，随后等待 11 秒重新下载，遗留两个各约 15 MB 未完成 pack。七份相关工作流通过进程级 GIT_CONFIG_COUNT/KEY/VALUE 固定 http.version=HTTP/1.1，避免该 HTTP/2 路径；不写系统/global Git 配置，不改变鉴权、TLS 验证或凭据。仍保留正常下载失败与超时防护，实际远端结果待验收。
 
+HTTP/1.1 仍在 governance127069138126 的完整文档 checkout 中出现 curl18 transfer closed / early EOF，治理校验尚未执行；协议切换不能当作解决了全部下载故障。完整 CI checkout 因此先读取应用目录，再以每批四个 Git blob、单次 180 秒、最多三次重试恢复 project-docs，最后 disable sparse-checkout，保持同一 HEAD 与完整真实文件/权限/符号链接，之后才执行所有原检查。文档对象缓存按 Git blob SHA 校验后导入 Git，128 MiB 上限，坏对象/不安全路径停止；重复任务无需再次下载相同截图。仅此步骤短时提供只读 job token，经进程环境传给 Git，不进入命令参数、缓存文件、日志或后续测试。真实 bare Git 回归验证一次失败重试、完整工作树、第二次全缓存、坏缓存拒绝与 commit 不变。
+
 今日日报41964081010 的内容生成与 Telegram 正常发送已 success，但 Git 出版步骤在 04:53Z 触及旧三十分钟时限；Git 快照仍为 11 月 4 日，不能把生成成功当成网站更新。复查发现重试因本地已有选稿而直接跳过页面，工作区清理后无法恢复丢失静态产物。重复出刊路径因此增加缺失产物恢复：完整保留已有正文/顺序/时间/回执，复用持久报告中的原候选统计，仅以现有模板恢复双语页面/API/归档及事件页，不调用信源、AI、行情或任何推送渠道。已丢失且未持久保存的行情/今日脉络不重新生成、不虚构；有完整产物时仍完全跳过。新增真实文件回归验证两种语言、完整正文、状态字节不变、第二次重试不修改产物，所有外部调用均设为失败断言。
 
 正常 Cloudflare41959357519 在 2026-11-05 03:35–04:05Z 达到三十分钟总时限。两次 checkout 已完成，npm 安全审计通过；Ruby 缓存下载始终 0 字节后放弃，转在线 bundle install 又触及总时限，未进入生产替换。不能将其描述为页面代码失败或已部署成功。CI edge 与正式发布改用既有服务器的 Ruby 工具依赖缓存，按 ci/producer、Ruby 3.3 ABI 和锁文件 SHA 分路径，冻结依赖、优先离线安装；GitHub 托管环境仍保留原缓存方式。不修改 Gemfile/Gemfile.lock、CPU/内存、套餐或发布内容，不复用 PR 的渲染缓存作为生产输出。
