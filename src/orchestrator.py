@@ -1543,6 +1543,10 @@ class BMTNewsOrchestrator:
                 else:
                     x_queue.save(state, path)
 
+            # Preserve recovered local receipts in the audit branch before
+            # normal planning prunes entries beyond the history window.
+            if queue_dir is not None and x_queue.needs_checkpoint(path, state):
+                persist()
             changed = x_queue.recover_pending(state) > 0
             daily_state = load_daily_feed_state(today, timezone_name)
             if daily_state.items:

@@ -361,6 +361,13 @@ def save(state: dict, path: Path) -> Path:
     return path
 
 
+def needs_checkpoint(path: Path, state: dict) -> bool:
+    """Local receipts must reach Git history before planning can prune them."""
+    if not path.exists():
+        return bool(state["editions"])
+    return json.loads(path.read_text(encoding="utf-8")) != state
+
+
 def git_checkpoint(directory: Path, state: dict) -> None:
     """Persist to the queue branch. A rejected push must stop the caller.
 
@@ -705,9 +712,9 @@ def main(argv: Optional[list[str]] = None) -> None:
             feed_date = str(feed.get("date") or "")
             feed_updated_at = normalize_stamp(feed.get("updated_at"))
     state = load(args.queue, now)
-    work = enabled and has_work(
+    work = enabled and (needs_checkpoint(args.queue, state) or has_work(
         state, now, settings, feed_date=feed_date, feed_updated_at=feed_updated_at
-    )
+    ))
     print(f"work={str(work).lower()}")
     print(f"attention={attention(state)}")
 

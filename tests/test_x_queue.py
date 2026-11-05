@@ -1,6 +1,7 @@
 """Plan-then-send X delivery: schedule, receipts, and failure handling."""
 
 import asyncio
+import copy
 import json
 import subprocess
 from datetime import datetime, timedelta, timezone
@@ -425,6 +426,40 @@ def test_gate_reports_attention(tmp_path, capsys):
     }
     result = _gate(tmp_path, capsys, feed=None, now=ON_TIME, queue=state)
     assert result["attention"] == "1"
+
+
+def test_recovered_old_receipt_wakes_gate_and_is_checkpointed_before_pruning(tmp_path, monkeypatch, capsys):
+    import src.orchestrator as module
+    old_day = (ON_TIME + timedelta(hours=8) - timedelta(days=10)).date().isoformat()
+    job = x_queue._blank_job('zh', 1, 'old-story')
+    job.update(status='pending', text='recorded', text_sha256=x_queue.text_digest('recorded'), attempted_at=ON_TIME.isoformat())
+    remote = {'version': 2, 'editions': {old_day: {'status': 'active', 'published_at': None, 'planned_at': None, 'jobs': [job]}}}
+    local = copy.deepcopy(remote)
+    local['editions'][old_day]['jobs'][0].update(status='sent', tweet_id='123456')
+    monkeypatch.setattr(x_queue, 'load', lambda *args: copy.deepcopy(local))
+    assert not x_queue.has_work(local, ON_TIME, x_queue.Settings(), feed_date='', feed_updated_at='')
+    assert _gate(tmp_path, capsys, feed=None, now=ON_TIME, queue=remote)['work'] == 'true'
+    queue_dir = tmp_path / 'x-state'
+    path = queue_dir / x_queue.QUEUE_RELATIVE_PATH
+    path.parent.mkdir(parents=True)
+    path.write_text(json.dumps(remote))
+    checkpoints = []
+    def checkpoint(directory, state):
+        checkpoints.append(copy.deepcopy(state))
+        path.write_text(json.dumps(state))
+    async def plan(state, **kwargs):
+        assert checkpoints == [local]
+        x_queue._prune(state, DAY, x_queue.Settings())
+        return True
+    publisher = FakePublisher()
+    orchestrator = orchestrator_for(publisher)
+    monkeypatch.setattr(orchestrator, '_plan_x_edition', plan)
+    monkeypatch.setattr(x_queue, 'git_checkpoint', checkpoint)
+    monkeypatch.setattr(module, 'load_daily_feed_state', lambda *args: DailyFeedState(date=DAY, timezone='Asia/Shanghai', updated_at=ON_TIME, items=[item(1)]))
+    monkeypatch.setattr(module, 'save_run_report', lambda report: None)
+    asyncio.run(orchestrator.run_x_slot(now=ON_TIME, queue_dir=queue_dir))
+    assert checkpoints == [local, {'version': 2, 'editions': {}}]
+    assert publisher.posts == []
 
 
 def test_git_checkpoint_pushes_without_force(tmp_path):
