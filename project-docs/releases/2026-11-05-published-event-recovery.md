@@ -21,17 +21,23 @@ PublicationState.load_document 曾将 incoming==current 自动当成 Git 追上�
 本地回归覆盖本地反复读取后重启、失败 push 的旧快照、独立写入冲突、整批确认回滚、真实 bare Git 远端字节核对、后续新状态保护；事件恢复覆盖稳定初始/进展/归并 ID、原文及资料、父状态保留、错误整批失败、无网络正常日报重试和字节幂等。
 
 - 代码：已实现。
-- 测试：最终完整Python1174 passed/4既有skipped；18项恢复/真实Git定向回归、治理、编译与差异检查通过，远端最终head CI待完成。
-- 合并：待当前PR检查通过且同步main。
-- 部署：当前事件恢复未部署；前置PR314已部署。
-- 生产验收：9个缺失节点仍待正常恢复与逐个在线核对；不声称浏览器已通过。
+- 测试：最终完整Python1174 passed/4既有skipped；18项恢复/真实Git定向回归、治理、编译与差异检查通过。远端最终head774df80d9e94efdffdb5acd8e07086772ed74e50的完整CI41986971783、Cloudflare预览全部通过，realtime3.11/3.12、网页与正式构建均成功。
+- 合并：PR316于2026-11-05 07:35:29Z合并，准确SHAe70b686b0d77ee146a4dbfa5abe610de00f96b8a；与最终head的tree均为3a874f78d14cfffa6a2ec572734b26a33100087d，合并SHA为origin/main祖先。前一次CI41986468603被新head替代，曾请求取消时已结束，未取消生产任务。
+- 部署：Deploy Docs41988314544成功；已有刊期正常恢复41988451745于07:36:42–07:38:53Z成功，未使用force_publish。Cloudflare41988491961于07:37:02–07:51:56Z成功，实际上传1239个变更文件、复用8758个既有文件，上传371.34秒；无网络错误。
+- 生产验收：2026-11-05正式域普通URL验证通过，今日13条、9个事件JSON与准确update_id及HTML锚点全部可达；中英×1440/390四组首页均13条、canonical正确、无横向溢出/脚本错误。数据库与出版、普通公共API一致，五阶段完成。
 
-Source commit: 前置准确SHA 35f8db4f22ace7c73fc235dca4dd7afaf2d4286d；本PR待合并。
+## 实际恢复与完整性证据
 
-Worker version: not changed；前置已验证8cc86cf1-3abf-4320-af86-8d918931a5d3，后续正常统一发布待核对。
+Deploy Docs在07:36:01Z导出持久事件目录，07:36:50Z成功回读并确认artifact07fda760d521c2492554fde1b78cb8405249b9c0。日报恢复在07:37:31Z导出daily/event_urls/events，07:38:43Z回读准确artifact6b26e0e45b3113ea221cdb001c0f97cf1f7e9712并整批确认。出版目录由2275增至2280个事件，恢复审计恰为9条、均属2026-11-05；原4493条报道归属全部保留，恰新增9条归属。日报与X队列payload均逐字等于07:13:11Z online backup，原选稿updated_at04:41:35.962958Z未变。daily/events/event_urls/x_queue的dirty均0，quick_check为ok。
 
-Deployment: 正常日报已有刊期重试恢复，不使用force_publish；Cloudflare自动接收gh-pages并发布。
+首条X回执仍为2118229625906348151，第二条planned、due_at11:22:26.370779Z（上海19:22）；本次未变更正文、计划或发送回执。Git与SQLite队列canonical散列均373f064819a68de89d1f6f6b68b10e054c7c7a99dbf69746b32330c8d9497319。未人为发送第二条或补旧消息。生产构建时磁盘50%、约19GiB空余；新增构建工作区会由现有hook清理，不将临时增长解释为再次写满。
 
-Verification: 2026-11-05只读真实演练成功；正式9节点、HTML锚点、中英桌面/手机和回执待验收。
+Source commit: e70b686b0d77ee146a4dbfa5abe610de00f96b8a。
+
+Worker version: 52bb9281-597f-4db6-98cd-812fc67efe8f；普通/health准确回读source e70b686b0d77ee146a4dbfa5abe610de00f96b8a、artifact6b26e0e45b3113ea221cdb001c0f97cf1f7e9712、build key47df55b0f4afeef9449738cffaac457d24ae91641e57bd919f3f2aafa3019512。
+
+Deployment: [正常日报41988451745](https://github.com/ohxiyu/xiyunews/actions/runs/41988451745)与[Cloudflare41988491961](https://github.com/ohxiyu/xiyunews/actions/runs/41988491961)成功；[PR316](https://github.com/ohxiyu/xiyunews/pull/316)已合并。
+
+Verification: 2026-11-05普通正式域首页/API/ready/feed/sitemap/双语刊期、9事件JSON/HTML锚点及4组浏览器阅读通过；/api/latest.json为2026-11-05/13条、generated_at07:37:56.199782Z，items canonical散列0e2b243844cf202fecff3d6592c7001ad27aec2fee95e2bbe6d43f5a32d30e10与修复前完全相同。服务器选稿原updated_at仍04:41:35.962958Z，未混用为重刊时间。第一条X回执已验证，第二条仍待19:22自然到期，不人为提前发帖验证未来调度。
 
 Rollback: 不自动回滚或恢复整库；保留online backup与Git历史，任何冲突停止并保留双方，不清队列或重复发消息。

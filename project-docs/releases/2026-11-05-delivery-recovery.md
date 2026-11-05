@@ -68,10 +68,10 @@ Cloudflare41980811696于06:31:57–06:38:43Z成功，artifact2b0fc8b9b05a7ee63a5
 
 Source commit: 35f8db4f22ace7c73fc235dca4dd7afaf2d4286d。
 
-Worker version: 待刷新，本次不直接修改 Worker。
+Worker version: PR314正式8cc86cf1-3abf-4320-af86-8d918931a5d3；后续事件修复PR316正式52bb9281-597f-4db6-98cd-812fc67efe8f，见上述事件恢复记录。
 
-Deployment: 合并后通过既有正常工作流运行；仅将准确合并 SHA 的受审维护脚本原子刷新到原服务器。
+Deployment: PR314已通过日报41980636280、X41980793927和Cloudflare41980811696完成；维护脚本已按准确合并SHA原子刷新。后续PR316/日报41988451745/Cloudflare41988491961补齐最后9个节点，不手写生产分支。
 
-Verification: 不把执行器在线当成已恢复发推；后续记录正常工作流、队列回执、SQLite/Git 一致性、磁盘和公开页面实际结果。
+Verification: 首条HTTP201及精确数字回执、旧回执先审计再归档、SQLite/Git队列一致、自然hooks、磁盘恢复与新网站均已验证；PR316后正式13条/9节点/API/锚点/中英桌面手机验收全部通过。第二条19:22尚待自然到期，不人为提前发送，不将未来调度当成已经发生。
 
 Rollback: 不自动回滚；失败保留本地与 Git 双方及备份，禁止通过重置队列重发未知结果。

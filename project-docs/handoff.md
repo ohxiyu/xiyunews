@@ -1,31 +1,31 @@
 # 当前交接
 
-当前任务：[Issue315](https://github.com/ohxiyu/xiyunews/issues/315)，继续 [Issue313](https://github.com/ohxiyu/xiyunews/issues/313) 的生产验收并恢复缺失的已发布事件节点。当前会话唯一编辑与生产整合负责人，分支 agent/published-event-recovery。PR314 已恢复发推、磁盘、今日日报和正常部署；验收发现 9 个事件节点缺失，其中 5 个目录 404，当前不能标为全部完成。架构入口为[系统架构](system-architecture.md)，前置证据见[投递恢复](releases/2026-11-05-delivery-recovery.md)，当前见[事件恢复](releases/2026-11-05-published-event-recovery.md)。不改来源、渠道、计划、密钥、费用或实时提醒规则，不重发历史。
+最近完成任务：[Issue315](https://github.com/ohxiyu/xiyunews/issues/315) 与 [Issue313](https://github.com/ohxiyu/xiyunews/issues/313)，自动投递、磁盘维护、今日刊期与缺失事件恢复均已部署验收。当前会话唯一编辑与生产整合负责人；应用 PR314/316 已合并，最终证据由 [Issue317](https://github.com/ohxiyu/xiyunews/issues/317) 的 agent/delivery-recovery-final 分支归档。架构入口为[系统架构](system-architecture.md)，证据见[投递恢复](releases/2026-11-05-delivery-recovery.md)与[事件恢复](releases/2026-11-05-published-event-recovery.md)。不改来源、渠道、计划、密钥、费用或实时提醒规则，不补发历史。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "补齐已发布日报的 9 个事件节点，分离本地读取与 Git 持久确认，完成投递恢复的生产验收",
+  "goal": "已完成自动投递、磁盘与9个已发布事件节点恢复，并部署验收",
   "issue": "https://github.com/ohxiyu/xiyunews/issues/315",
   "owner": "当前会话唯一编辑与生产整合负责人",
   "branch": "agent/published-event-recovery",
-  "last_verified_commit": "35f8db4f22ace7c73fc235dca4dd7afaf2d4286d",
+  "last_verified_commit": "e70b686b0d77ee146a4dbfa5abe610de00f96b8a",
   "pr": "https://github.com/ohxiyu/xiyunews/pull/316",
-  "completed": ["PR314 上线：今日 13 条、X HTTP201 与回执检查点一致，磁盘约 45%", "事件缺失根因已复现：本地同值读取误清 dirty，旧 Git 覆盖未发布目录", "当前 SQLite online backup 完整性通过；真实数据只读演练恢复 9 节点/5 事件，原文与稳定编号不变且幂等", "实现本地读取不确认、成功发布后远端精确回读与整批 CAS 确认"],
-  "unfinished": ["当前修复完整回归与远端 CI", "合并并正常静态恢复/部署", "9 个事件 API/HTML 锚点与浏览器、回执最终验收"],
-  "validation": ["前置 PR314 完整 CI41979313293 通过，Python1161 passed/4既有skipped", "当前最终完整 Python1174 passed/4既有skipped；18项恢复/真实Git定向回归、治理与差异检查通过，远端最终head CI待完成"],
-  "unverified": ["当前事件修复尚未合并或用于生产", "9 个链接尚未在线修复，不将正文已更新当作事件目录完整"],
+  "completed": ["清理196个旧部署副本约20.83GiB；受审维护脚本已原子部署并自然执行", "PR314恢复X成功回执与今日13条，PR316修复本地误确认并在发布前恢复持久源JSON、发布后远端整批CAS确认", "恢复9节点/5事件，原4493条报道归属、选稿全文及时间、X队列均保留", "正常日报41988451745与Cloudflare41988491961成功，正式源/产物/Worker完全匹配", "9个事件API及HTML锚点可达；中英1440/390四组实际阅读、无溢出及脚本错误，正文指纹不变"],
+  "unfinished": [],
+  "validation": ["PR314 CI41979313293通过；PR316最终head774df80d的完整CI41986971783及Cloudflare预览均通过", "最终完整Python1174 passed/4既有skipped，18项恢复/真实Git定向、治理与差异检查通过", "生产online backup/quick_check正常，daily/events/event_urls/x_queue均dirty0；原文与队列等于恢复前备份，9个新增节点全部匹配保存编号"],
+  "unverified": ["未人为造故障验证未来调度；第二条仍按上海19:22正常计划，不提前测试发送", "4个已有事件节点的原分类/置信度不可还原：保守确认标签、置信度0并保留父状态，已留恢复审计，未伪造原分类"],
   "production": {
-    "source_commit": "35f8db4f22ace7c73fc235dca4dd7afaf2d4286d",
-    "artifact_commit": "2b0fc8b9b05a7ee63a5eadf56519aa399509f974",
-    "edition": "2026-11-05，13 条；事件缺失待修复",
-    "generated_at": "2026-11-05T06:29:13.405513Z",
-    "worker_version": "8cc86cf1-3abf-4320-af86-8d918931a5d3",
-    "verified_at": "2026-11-05：普通域 health/latest/feed/sitemap/ready 已核对，浏览器验收被事件404阻断"
+    "source_commit": "e70b686b0d77ee146a4dbfa5abe610de00f96b8a",
+    "artifact_commit": "6b26e0e45b3113ea221cdb001c0f97cf1f7e9712",
+    "edition": "2026-11-05，13条、9个事件链接/节点全部可达",
+    "generated_at": "2026-11-05T07:37:56.199782Z",
+    "worker_version": "52bb9281-597f-4db6-98cd-812fc67efe8f",
+    "verified_at": "2026-11-05：正式域普通URL、精确版本与正文指纹、9事件/锚点、中英桌面手机阅读通过"
   },
   "blockers": [],
-  "next_action": "完整检查通过后合并，正常日报重试只恢复已保存产物，不重做 AI/推送；部署后逐个核对9个节点并文档PR归档",
-  "states": {"code": "complete", "tests": "pending", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
+  "next_action": "本次应用修复已完成；最终证据按Issue317归档，等待新任务，不重复派发日报或补发历史",
+  "states": {"code": "complete", "tests": "complete", "pr_merged": "complete", "deployed": "complete", "production_verified": "complete"},
   "evidence": "project-docs/releases/2026-11-05-published-event-recovery.md"
 }
 ```
