@@ -61,7 +61,7 @@ class PublicationState:
         finally:
             connection.close()
 
-    def load_document(self, name, incoming, *, primary=False):
+    def load_document(self, name, incoming, *, primary=False, reconcile=None):
         text = canonical(incoming) if incoming is not None else None
         digest = signature(text) if text is not None else ""
         with self.connect() as db:
@@ -79,6 +79,20 @@ class PublicationState:
                 db.execute("UPDATE publication_documents SET source_digest=?,dirty=0 WHERE name=?", (digest,name))
                 return json.loads(payload)
             if dirty:
+                if reconcile is not None:
+                    # Only a domain-specific, conservative receipt reconciliation
+                    # may establish a new audit base. Never discard local state.
+                    resolved = canonical(reconcile(json.loads(payload), incoming))
+                    resolved_digest = signature(resolved)
+                    result = db.execute(
+                        "UPDATE publication_documents SET payload=?,digest=?,source_digest=?,dirty=? "
+                        "WHERE name=? AND digest=? AND source_digest=? AND dirty=1",
+                        (resolved, resolved_digest, digest, int(resolved_digest != digest),
+                         name, current, source),
+                    )
+                    if result.rowcount != 1:
+                        raise StateConflict("publication state changed during reconciliation: " + name)
+                    return json.loads(resolved)
                 raise StateConflict("unpublished local state conflicts with a changed audit snapshot: " + name)
             db.execute("UPDATE publication_documents SET payload=?,digest=?,source_digest=?,dirty=0 WHERE name=?", (text,digest,digest,name))
             return incoming
@@ -88,6 +102,19 @@ class PublicationState:
         digest = signature(text)
         with self.connect() as db:
             db.execute("INSERT INTO publication_documents VALUES(?,?,?,?,1) ON CONFLICT(name) DO UPDATE SET payload=excluded.payload,digest=excluded.digest,dirty=1", (name,text,digest,""))
+
+    def acknowledge_document(self, name, value):
+        """Advance the audit base only after the exact Git checkpoint succeeds."""
+        text = canonical(value)
+        digest = signature(text)
+        with self.connect() as db:
+            result = db.execute(
+                "UPDATE publication_documents SET source_digest=?,dirty=0 "
+                "WHERE name=? AND digest=? AND payload=?",
+                (digest, name, digest, text),
+            )
+            if result.rowcount != 1:
+                raise StateConflict("publication state changed before checkpoint acknowledgement: " + name)
 
     def load_cache(self, fallback):
         with self.connect() as db:
@@ -130,6 +157,15 @@ class PublicationState:
         with self.connect() as db:
             db.execute("INSERT OR REPLACE INTO publication_runs VALUES(?,?,?,?,?)", (invocation,report.get("kind","unknown"),report.get("date","unknown"),canonical(report),time.time()))
             db.execute("DELETE FROM publication_runs WHERE id NOT IN (SELECT id FROM publication_runs ORDER BY recorded_at DESC LIMIT 200)")
+
+    def latest_edition_metrics(self, edition):
+        with self.connect() as db:
+            rows = db.execute("SELECT report FROM publication_runs WHERE kind='daily_publish' AND edition=? ORDER BY recorded_at DESC", (edition,))
+            for (raw,) in rows:
+                metrics = json.loads(raw).get("metrics", {})
+                if metrics.get("edition_candidates"):
+                    return metrics
+        return {}
 
     def bootstrap(self, cache, documents):
         # Validate/canonicalize ALL supplied data before a single transaction.
@@ -198,12 +234,19 @@ def document_key(path):
         return None
 
 
-def read_document(path, *, name=None, primary=False):
+def read_document(path, *, name=None, primary=False, reconcile=None):
     path = Path(path)
     key = name or document_key(path)
     store = active_store() if key else None
     incoming = json.loads(path.read_text()) if path.exists() else None
-    return store.load_document(key, incoming, primary=primary) if store else incoming
+    return store.load_document(key, incoming, primary=primary, reconcile=reconcile) if store else incoming
+
+
+def acknowledge_document(path, value, *, name=None):
+    key = name or document_key(path)
+    store = active_store() if key else None
+    if store:
+        store.acknowledge_document(key, value)
 
 
 def write_document(path, value, *, name=None):

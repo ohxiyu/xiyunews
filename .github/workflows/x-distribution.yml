@@ -1,5 +1,12 @@
 name: xiyu.news X Distribution
 
+# Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
+# never change server Git config or credentials.
+env:
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: http.version
+  GIT_CONFIG_VALUE_0: HTTP/1.1
+
 # Posts today's top stories to X from a plan that is written before anything
 # is sent (src/x_queue.py). Only runs when x_delivery.mode is "drip" and the
 # credentials are configured; otherwise every run exits without posting.
@@ -44,9 +51,12 @@ jobs:
   post:
     if: >-
       ${{ github.event_name != 'workflow_run' ||
-          github.event.workflow_run.head_repository.full_name == github.repository }}
+          (github.event.workflow_run.conclusion == 'success' &&
+           github.event.workflow_run.head_repository.full_name == github.repository) }}
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
-    timeout-minutes: 10
+    # Cold source checkout can exceed eight minutes on this runner. Preserve
+    # time for checkpointing; business deadlines remain enforced by x_queue.
+    timeout-minutes: 20
     env:
       TZ: Asia/Shanghai
 
@@ -55,16 +65,25 @@ jobs:
         uses: actions/checkout@v6
         with:
           ref: main # Never run another branch's code against the live account.
+          filter: blob:none
+          sparse-checkout: |
+            src
+            data
 
       - name: Restore published edition state
+        env:
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
-          git fetch --depth=1 origin +gh-pages:refs/remotes/origin/gh-pages
-          if git cat-file -e "origin/gh-pages:_data/bmtnews_state.json" 2>/dev/null; then
-            mkdir -p docs/_data
-            git show "origin/gh-pages:_data/bmtnews_state.json" > docs/_data/bmtnews_state.json
-          fi
+          # Read the one private audit file, not the entire publication tree.
+          # Network/auth/invalid content fails closed, never an empty edition.
+          gh api -H 'Accept: application/vnd.github.raw+json' \
+            "repos/$GITHUB_REPOSITORY/contents/_data/bmtnews_state.json?ref=gh-pages" \
+            > "$RUNNER_TEMP/x-edition.json"
+          python3 -c 'import json,sys; value=json.load(open(sys.argv[1])); sys.exit(0 if isinstance(value,dict) and isinstance(value.get("items"),list) and isinstance(value.get("date"),str) else "Invalid published edition")' "$RUNNER_TEMP/x-edition.json"
+          mkdir -p docs/_data
+          cp "$RUNNER_TEMP/x-edition.json" docs/_data/bmtnews_state.json
 
       - name: Restore isolated delivery queue
         env:

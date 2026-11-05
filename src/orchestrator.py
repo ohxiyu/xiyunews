@@ -57,6 +57,7 @@ from .daily_feed import (
     item_identity,
     items_for_local_date,
     load_daily_feed_state,
+    load_published_daily_feed_state,
     local_date_for,
     merge_daily_items,
     save_daily_feed_state,
@@ -784,12 +785,44 @@ class BMTNewsOrchestrator:
                 run_report.add_alert(
                     "info",
                     "edition_already_published",
-                    "本期日报已经发布；跳过重复采集、AI 分析和页面生成。",
+                    "本期选稿已保存；跳过重复采集与 AI 分析，仅在产物缺失时恢复静态页面。",
                 )
                 self.console.print(
-                    "[green]This edition is already published; "
-                    "skipping the duplicate run.[/green]"
+                    "[green]Reusing the saved edition; "
+                    "no duplicate collection, AI or channel delivery.[/green]"
                 )
+                languages = list(self.config.ai.languages) or ["zh"]
+                required = [Path("docs/editions") / window.date / "edition.json"]
+                for language in languages:
+                    required += [Path("docs/_posts") / f"{window.date}-summary-{language}.md",
+                                 Path("docs/editions") / window.date / f"{language}.html"]
+                if not all(path.is_file() for path in required):
+                    # The selected edition is durable before Git publication.
+                    # Reconstruct lost static output after a failed push, without
+                    # calling sources/AI/channels or modifying the saved wording.
+                    from .publication_state import active_store
+                    store = active_store()
+                    metrics = store.latest_edition_metrics(window.date) if store else {}
+                    for key in ("edition_candidates", "analyzed_today", "high_priority"):
+                        if key in metrics:
+                            run_report.set_metric(key, metrics[key])
+                    save_daily_feed_state(daily_state)
+                    await self._publish_outputs(
+                        daily_state.items, date=window.date,
+                        total_candidates=metrics.get("edition_candidates", 0),
+                        timezone_name=timezone_name, run_report=run_report,
+                        window_start=window.start, window_end=window.end,
+                        static_only=True,
+                    )
+                    self._publish_archive_artifacts(
+                        daily_state.items, date=window.date, run_report=run_report,
+                        window_start=window.start, window_end=window.end,
+                    )
+                    self._publish_current_event_pages()
+                    if not all(path.is_file() for path in required):
+                        raise RuntimeError("Static edition recovery did not produce every required artifact")
+                    run_report.add_alert("warning", "edition_static_recovered",
+                        "从已保存选稿恢复缺失页面，未调用信源/AI/渠道；未保存的行情与今日脉络不重新生成。")
                 return
 
             staging_exists = staging_path.exists()
@@ -1543,8 +1576,13 @@ class BMTNewsOrchestrator:
                 else:
                     x_queue.save(state, path)
 
+            # Preserve recovered local receipts in the audit branch before
+            # normal planning prunes entries beyond the history window.
+            if queue_dir is not None and x_queue.needs_checkpoint(path, state):
+                persist()
             changed = x_queue.recover_pending(state) > 0
-            daily_state = load_daily_feed_state(today, timezone_name)
+            daily_state = (load_published_daily_feed_state(today, timezone_name)
+                           if queue_dir is not None else load_daily_feed_state(today, timezone_name))
             if daily_state.items:
                 changed |= await self._plan_x_edition(
                     state,
@@ -2007,6 +2045,7 @@ class BMTNewsOrchestrator:
         sponsored: List[EditorialEntry] | None = None,
         x_posted_languages: List[str] | None = None,
         skip_telegram: bool = False,
+        static_only: bool = False,
     ) -> Dict[str, object]:
         """Render configured languages and publish static-site artifacts.
 
@@ -2023,7 +2062,7 @@ class BMTNewsOrchestrator:
 
         market_snapshot = None
         overview_client = None
-        if items:
+        if items and not static_only:
             try:
                 market_snapshot = await fetch_market_snapshot()
             except Exception as exc:
@@ -2154,7 +2193,7 @@ class BMTNewsOrchestrator:
                     f"to docs/: {exc}[/yellow]\n"
                 )
 
-            if self.email_manager and self.config.email and self.config.email.enabled:
+            if not static_only and self.email_manager and self.config.email and self.config.email.enabled:
                 self.console.print(f"📧 Sending {lang.upper()} email summary...")
                 subscribers = self.storage.load_subscribers()
                 subject = f"xiyu.news ({lang.upper()}) - {date}"
@@ -2164,7 +2203,7 @@ class BMTNewsOrchestrator:
                     subscribers,
                 )
 
-            if self.webhook_notifier:
+            if not static_only and self.webhook_notifier:
                 await self.webhook_notifier.send_daily_summary(
                     summary=summary,
                     important_items=items,
@@ -2174,6 +2213,9 @@ class BMTNewsOrchestrator:
                     summarizer=summarizer,
                 )
 
+        if static_only:
+            run_report.set_timing("publish_outputs", time.perf_counter() - publish_started)
+            return {"market": None, "overviews": {}, "x_posted": []}
         if skip_telegram:
             run_report.add_alert(
                 "info", "telegram_rebuild_skipped",

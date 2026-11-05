@@ -1,5 +1,12 @@
 name: xiyu.news Schedule Watchdog
 
+# Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
+# never change server Git config or credentials.
+env:
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: http.version
+  GIT_CONFIG_VALUE_0: HTTP/1.1
+
 on:
   schedule:
     # UTC schedules: 07:43, then hourly 08:17-15:17 in Asia/Shanghai.
@@ -19,10 +26,13 @@ permissions:
 jobs:
   watchdog:
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+        with:
+          filter: blob:none
+          sparse-checkout: src
 
       - name: Check daily edition heartbeat
         env:

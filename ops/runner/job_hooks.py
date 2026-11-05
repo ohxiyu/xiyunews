@@ -9,6 +9,11 @@ import sqlite3
 import time
 import uuid
 
+if __package__:
+    from .deploy_temp_cleanup import cleanup as clean_deployment_temps
+else:
+    from deploy_temp_cleanup import cleanup as clean_deployment_temps
+
 WORK = Path("/opt/xiyunews-runner/_work")
 STATE = Path("/home/xiyunews-runner/state")
 PRODUCERS = {"xiyu.news Feed Collection", "xiyu.news Daily Edition", "Deploy Docs", "xiyu.news Weekly Review", "Editorial Rebuild"}
@@ -104,14 +109,19 @@ def main():
         raise ValueError("missing job identity")
     with (STATE / "job-hook.lock").open("w") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        active_file = STATE / "active-job.json"
-        previous = json.loads(active_file.read_text()) if active_file.exists() else None
-        if args.stage == "start" and previous and previous.get("ref") == "refs/heads/main" and previous.get("workflow") in PRODUCERS:
-            export_snapshots(target, STATE)
-        if args.stage == "complete" and os.environ.get("GITHUB_REF") == "refs/heads/main" and metadata["workflow"] in PRODUCERS:
-            export_snapshots(target, STATE)
-        record_job(STATE, args.stage, metadata)
-        clean_workspace(target)
+        try:
+            active_file = STATE / "active-job.json"
+            previous = json.loads(active_file.read_text()) if active_file.exists() else None
+            if args.stage == "start" and previous and previous.get("ref") == "refs/heads/main" and previous.get("workflow") in PRODUCERS:
+                export_snapshots(target, STATE)
+            if args.stage == "complete" and os.environ.get("GITHUB_REF") == "refs/heads/main" and metadata["workflow"] in PRODUCERS:
+                export_snapshots(target, STATE)
+            record_job(STATE, args.stage, metadata)
+            clean_workspace(target)
+        finally:
+            # Even invalid snapshots must not prevent bounded maintenance.
+            # Their workspace remains untouched when export validation fails.
+            print(json.dumps({'event': 'deployment_temp_cleanup', **clean_deployment_temps(apply=True)}))
     print(json.dumps({"event": "job_workspace", "stage": args.stage, "clean": True}))
 
 

@@ -1,5 +1,12 @@
 name: xiyu.news Binance Square Distribution
 
+# Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
+# never change server Git config or credentials.
+env:
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: http.version
+  GIT_CONFIG_VALUE_0: HTTP/1.1
+
 on:
   # Existing production flows provide an independent trigger if this cron is dropped.
   workflow_run:
@@ -35,11 +42,15 @@ jobs:
            (github.event.workflow_run.conclusion == 'success' &&
             github.event.workflow_run.head_repository.full_name == github.repository)) }}
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
         with:
           ref: main # Never execute triggering-run artifacts or untrusted branch code.
+          filter: blob:none
+          sparse-checkout: |
+            src
+            data
       - name: Restore isolated delivery queue
         env:
           EDITION_DATE: ${{ inputs.edition_date }}
@@ -81,16 +92,20 @@ jobs:
         if: steps.gate.outputs.sync == 'true'
         env:
           EDITION_DATE: ${{ inputs.edition_date }}
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
-          git fetch --depth=1 origin gh-pages
           edition_path=api/latest.json
           if [ -n "$EDITION_DATE" ]; then
             [[ "$EDITION_DATE" =~ ^20[0-9]{2}-[0-9]{2}-[0-9]{2}$ ]] || exit 1
             edition_path="editions/$EDITION_DATE/edition.json"
           fi
-          git show "FETCH_HEAD:$edition_path" > "$RUNNER_TEMP/square-edition.json"
+          gh api -H 'Accept: application/vnd.github.raw+json' \
+            "repos/$GITHUB_REPOSITORY/contents/$edition_path?ref=gh-pages" \
+            > "$RUNNER_TEMP/square-edition-download.json"
+          python3 -c 'import json,sys; value=json.load(open(sys.argv[1])); sys.exit(0 if isinstance(value,dict) and isinstance(value.get("items"),list) and isinstance(value.get("date"),str) else "Invalid published edition")' "$RUNNER_TEMP/square-edition-download.json"
+          cp "$RUNNER_TEMP/square-edition-download.json" "$RUNNER_TEMP/square-edition.json"
       - uses: actions/setup-python@v6
         if: steps.gate.outputs.sync == 'true' || steps.gate.outputs.due == 'true'
         with:

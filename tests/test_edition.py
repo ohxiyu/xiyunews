@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import asyncio
-from datetime import date, datetime, timezone
+import json
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -62,6 +63,42 @@ def make_item(
         ai_score=score,
         metadata={"category": "crypto-markets"},
     )
+
+
+def test_retry_restores_missing_static_edition_without_network_or_messages(tmp_path, monkeypatch):
+    import src.orchestrator as module
+    monkeypatch.chdir(tmp_path)
+    now = datetime(2026, 7, 29, 9, 0, tzinfo=SHANGHAI)
+    story = make_item('saved-story', now - timedelta(hours=3))
+    story.metadata.update(title_zh='已保存标题', detailed_summary_zh='原有事实及完整正文。')
+    state = DailyFeedState(date='2026-07-29', timezone='Asia/Shanghai', updated_at=now, items=[story], x_posted_languages=['zh'])
+    save_daily_feed_state(state)
+    before = Path('docs/_data/bmtnews_state.json').read_text()
+    orchestrator = BMTNewsOrchestrator(Config(
+        ai=AIConfig(provider='openai', model='test', api_key_env='TEST_API_KEY', languages=['zh', 'en']),
+        sources=SourcesConfig(), filtering=FilteringConfig(daily_timezone='Asia/Shanghai'),
+    ), storage=StorageManager(data_dir=str(tmp_path / 'data')))
+    def forbidden(*args, **kwargs):
+        pytest.fail('static recovery must not call sources, AI, market or delivery')
+    for name in ('fetch_all_sources', '_analyze_content', '_update_event_timeline', '_deliver_telegram_editions', '_deliver_x_editions'):
+        monkeypatch.setattr(orchestrator, name, forbidden)
+    monkeypatch.setattr(module, 'fetch_market_snapshot', forbidden)
+    monkeypatch.setattr(module, 'create_ai_client', forbidden)
+    asyncio.run(orchestrator.run_daily_edition(now=now))
+    assert Path('docs/_data/bmtnews_state.json').read_text() == before
+    for language in ('zh', 'en'):
+        assert Path(f'docs/_posts/2026-07-29-summary-{language}.md').is_file()
+        assert Path(f'docs/editions/2026-07-29/{language}.html').is_file()
+    edition = json.loads(Path('docs/api/latest.json').read_text())
+    assert edition['date'] == '2026-07-29'
+    assert len(edition['items']) == 1
+    assert edition['items'][0]['title']['zh'] == '已保存标题'
+    assert '原有事实及完整正文。' in Path('docs/editions/2026-07-29/zh.html').read_text()
+    report = load_run_report(Path('data/run-report.json'))
+    assert any(a['code'] == 'edition_static_recovered' for a in report['alerts'])
+    outputs = {str(p): p.read_bytes() for p in Path('docs').rglob('*') if p.is_file()}
+    asyncio.run(orchestrator.run_daily_edition(now=now))
+    assert outputs == {str(p): p.read_bytes() for p in Path('docs').rglob('*') if p.is_file()}
 
 
 def test_edition_window_uses_latest_completed_fixed_cutoff() -> None:

@@ -1,5 +1,12 @@
 name: xiyunews Cloudflare
 
+# Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
+# never change server Git config or credentials.
+env:
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: http.version
+  GIT_CONFIG_VALUE_0: HTTP/1.1
+
 on:
   workflow_dispatch:
     inputs:
@@ -44,6 +51,15 @@ jobs:
         with:
           ref: main
           persist-credentials: false
+          filter: blob:none
+          sparse-checkout: |
+            src
+            docs
+            scripts
+            ops
+            data
+            .github
+            realtime/scripts/deploy/watchdog
       - uses: actions/checkout@v6
         with:
           ref: gh-pages
@@ -95,7 +111,10 @@ jobs:
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         with:
           ruby-version: '3.3'
-          bundler-cache: true
+          bundler-cache: ${{ runner.environment != 'self-hosted' }}
+      - name: Reuse locked Ruby dependencies on the dedicated runner
+        if: runner.environment == 'self-hosted' && steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
+        run: bash ops/runner/setup-ruby-cache.sh producer
       - name: Render published snapshot without collection or AI
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
