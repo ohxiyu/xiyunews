@@ -31,20 +31,27 @@ def snapshots():
     ('{"message":"Not found"}', '0', False),
     ('{"date":"2026-11-05","items":[]}', '1', False),
 ])
-def test_actual_workflow_restores_only_valid_authenticated_edition(tmp_path, payload, api_exit, success):
-    workflow = (Path(__file__).resolve().parents[1] / '.github/workflows/x-distribution.yml').read_text()
-    step = workflow.split('      - name: Restore published edition state\n', 1)[1].split('      - name:', 1)[0]
+@pytest.mark.parametrize('workflow_name,step_name,resource,destination,edition_date', [
+    ('x-distribution.yml', 'Restore published edition state', '_data/bmtnews_state.json', 'docs/_data/bmtnews_state.json', ''),
+    ('square-distribution.yml', 'Read edition only on publication, revision or bootstrap', 'api/latest.json', 'square-edition.json', ''),
+    ('square-distribution.yml', 'Read edition only on publication, revision or bootstrap', 'editions/2026-11-05/edition.json', 'square-edition.json', '2026-11-05'),
+])
+def test_actual_workflow_restores_only_valid_authenticated_edition(tmp_path, payload, api_exit, success, workflow_name, step_name, resource, destination, edition_date):
+    workflow = (Path(__file__).resolve().parents[1] / '.github/workflows' / workflow_name).read_text()
+    step = workflow.split('      - name: ' + step_name + '\n', 1)[1].split('      - ', 1)[0]
     script = textwrap.dedent(step.split('        run: |\n', 1)[1])
     binary = tmp_path / 'bin'; binary.mkdir()
     gh = binary / 'gh'
-    gh.write_text('#!/bin/sh\n[ "$1" = api ] && [ "$GH_TOKEN" = fixture ] || exit 2\ncase "$*" in *"repos/ohxiyu/xiyunews/contents/_data/bmtnews_state.json?ref=gh-pages"*) ;; *) exit 3;; esac\nprintf "%s" "$FIXTURE_EDITION"\nexit "$API_EXIT"\n')
+    gh.write_text('#!/bin/sh\n[ "$1" = api ] && [ "$GH_TOKEN" = fixture ] || exit 2\ncase "$*" in *"$EXPECTED_RESOURCE"*) ;; *) exit 3;; esac\nprintf "%s" "$FIXTURE_EDITION"\nexit "$API_EXIT"\n')
     gh.chmod(0o700)
-    path = tmp_path / 'docs/_data/bmtnews_state.json'
-    path.parent.mkdir(parents=True); path.write_text('original snapshot')
+    path = tmp_path / destination
+    path.parent.mkdir(parents=True, exist_ok=True); path.write_text('original snapshot')
     result = subprocess.run(['bash', '-c', script], cwd=tmp_path, capture_output=True, env={
         **os.environ, 'PATH': str(binary) + os.pathsep + os.environ['PATH'],
         'GH_TOKEN': 'fixture', 'GITHUB_REPOSITORY': 'ohxiyu/xiyunews',
         'RUNNER_TEMP': str(tmp_path), 'FIXTURE_EDITION': payload, 'API_EXIT': api_exit,
+        'EDITION_DATE': edition_date,
+        'EXPECTED_RESOURCE': 'repos/ohxiyu/xiyunews/contents/' + resource + '?ref=gh-pages',
     })
     assert (result.returncode == 0) is success
     assert path.read_text() == (payload if success else 'original snapshot')

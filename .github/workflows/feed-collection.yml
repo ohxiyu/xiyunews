@@ -149,10 +149,13 @@ jobs:
     needs: collect
     if: ${{ always() && github.event_name == 'schedule' }}
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+        with:
+          filter: blob:none
+          sparse-checkout: src
 
       - name: Recover a missing daily edition
         env:
