@@ -78,8 +78,10 @@ def hydrate(*, batch_size=4, attempts=3):
         batch = needed[offset:offset + batch_size]
         for attempt in range(attempts):
             try:
-                subprocess.run(['git', '-c', 'fetch.negotiationAlgorithm=noop', 'fetch', '--quiet', '--no-tags', '--no-write-fetch-head',
-                                '--no-recurse-submodules', '--filter=blob:none', 'origin', *batch],
+                subprocess.run(['git', '-c', 'fetch.negotiationAlgorithm=noop', '-c', 'protocol.version=2',
+                                'fetch', '--quiet', '--no-tags', '--no-write-fetch-head',
+                                '--no-auto-maintenance', '--recurse-submodules=no', '--filter=blob:none', '--stdin', 'origin'],
+                               input=('\n'.join(batch) + '\n').encode(),
                                env=env, check=True, capture_output=True, timeout=180)
                 break
             except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as exc:
@@ -91,7 +93,12 @@ def hydrate(*, batch_size=4, attempts=3):
                                b'unknown option', b'not send all necessary objects',
                                b'early EOF', b'HTTP/2', b'curl 18')
                     kind = next((m.decode() for m in markers if m in detail), type(exc).__name__)
-                    raise RuntimeError('document blob batch download failed: ' + kind) from None
+                    safe = detail.decode('utf-8', errors='replace')
+                    if token:
+                        safe = safe.replace(token, '[hidden]').replace(encoded, '[hidden]')
+                    safe = re.sub(r'https?://\S+', '[URL]', safe)
+                    safe = re.sub(r'(?i)authorization[^\r\n]*', 'authorization: [hidden]', safe)
+                    raise RuntimeError('document blob batch download failed: ' + kind + ': ' + safe[-500:]) from None
                 time.sleep(2)
         for digest in batch:
             body = subprocess.check_output(['git', 'cat-file', 'blob', digest], env=env)

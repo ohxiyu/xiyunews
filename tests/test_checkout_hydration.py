@@ -40,7 +40,7 @@ def test_bounded_fetch_restores_exact_full_tree_and_retries_one_failed_batch(tmp
         assert 'fixture-token-never-on-command-line' not in ' '.join(args)
         if 'fetch' in args:
             calls.append(args)
-            assert len(args[args.index('origin') + 1:]) <= 4
+            assert len(kwargs['input'].splitlines()) <= 4
             assert 'GH_TOKEN' not in kwargs['env']
             if not failed:
                 failed = True
