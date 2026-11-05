@@ -45,7 +45,10 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
-          bundler-cache: true
+          bundler-cache: ${{ runner.environment != 'self-hosted' }}
+      - name: Reuse locked Ruby dependencies on the dedicated runner
+        if: runner.environment == 'self-hosted'
+        run: bash ops/runner/setup-ruby-cache.sh ci
       - run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
       - uses: astral-sh/setup-uv@v7
         with:

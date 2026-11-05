@@ -62,6 +62,8 @@ gh variable set XIYUNEWS_RUNNER_LABELS --repo ohxiyu/xiyunews \
 
 ### 部署副本与脚本维护
 
+整站构建和正式发布在 self-hosted 上使用 ops/runner/setup-ruby-cache.sh：工具依赖位于专用 home 的 .cache/xiyunews-bundle，按 ci/producer、Ruby 3.3 和 Gemfile.lock SHA 分路径，先检查已有安装，再以冻结锁文件从本地 gem 归档安装，缺少归档才正常联网安装。缓存只存锁定依赖，不能当作生产渲染结果或省略安全审计；不修改依赖锁或从 PR 路径读取生产依赖缓存。首次可通过原锁文件下载 gem 归档预热对应路径，仍须由 Bundler 进行锁文件校验；不复制密钥或业务数据。新锁会产生新路径，工具缓存磁盘占用随版本维护定期核对，不能承诺永不增长。
+
 每个合法任务的开始/结束 hooks 和既有维护 timer 回收专用 home 下超过 24 小时的 actions-gh-pages Git 临时副本；只处理匹配时间戳、所属者正确、非软链接/挂载点且未被进程 cwd/fd 引用的副本。数据库、AI 缓存、工具缓存、凭据和实时业务目录不在回收范围。遇到损坏业务快照，保留工作区并继续有界临时副本维护；无法安全检查本账号进程时跳过删除。
 
 首次安装 hooks 仍需执行器空闲。已安装环境仅刷新受审脚本时，从准确合并 SHA 导出 ops/runner 后执行 `sudo bash ops/runner/install-job-hooks.sh --refresh-scripts`：先核对已安装 drop-in 完全一致，再原子替换 helper/hooks/维护脚本，不重启执行器、不改环境或资源限制。用专用用户执行 `python3 /opt/xiyunews-job-hooks/deploy_temp_cleanup.py --dry-run` 可只读查看符合条件的数量；实际自动清理以 job hooks 的 deployment_temp_cleanup 事件和维护 timer 日志验收。详见[磁盘与发推恢复](releases/2026-11-05-delivery-recovery.md)。
