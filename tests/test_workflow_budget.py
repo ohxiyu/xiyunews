@@ -35,7 +35,7 @@ def test_all_hosted_jobs_have_bounded_runtime() -> None:
         "ci.yml": 15,
         "codeql.yml": 15,
         "daily-summary.yml": 30,
-        "deploy-docs.yml": 20,
+        "deploy-docs.yml": 30,
         "event-archive-migration.yml": 10,
         "feed-collection.yml": 30,
         "schedule-watchdog.yml": 10,

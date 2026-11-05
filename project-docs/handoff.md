@@ -1,24 +1,24 @@
 # 当前交接
 
-当前任务：[Issue321](https://github.com/ohxiyu/xiyunews/issues/321)，归档[Issue319](https://github.com/ohxiyu/xiyunews/issues/319)历史漏期恢复的生产验收。当前会话唯一编辑/生产整合负责人，复用 work/xiyunews-edition-continuity，证据分支 agent/edition-continuity-evidence；应用 PR320 已合并。架构入口为[系统架构](system-architecture.md)，本次证据见[刊期连续性记录](releases/2026-11-05-edition-continuity.md)。只归档正常发布与线上验收，不重复发X/Telegram，不重新选稿，不改变来源、Cron、费用、密钥或实时服务。
+当前任务：[Issue321](https://github.com/ohxiyu/xiyunews/issues/321)，归档[历史漏期恢复](releases/2026-11-05-edition-continuity.md)和[发布时限修复](releases/2026-11-06-publication-checkpoint-budget.md)的生产验收。当前会话唯一编辑/生产整合负责人，复用work/xiyunews-edition-continuity，agent/edition-continuity-evidence分支。应用PR320/323均已合并，3日14条已在线上验收；30分钟预算下的正常发布检查点尚待完成。只归档现有流程，不修改来源、Secrets、费用、Cron、服务器资源或实时服务，不重做历史AI或消息推送。架构入口为[系统架构](system-architecture.md)。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "补齐11月3日14条已生成日报，持久保存各刊期并在正常发布中自动补齐跨日缺产物",
+  "goal": "归档3日14条恢复、逐期日志、跨日补缺及30分钟正常发布闭环的正式证据",
   "issue": "https://github.com/ohxiyu/xiyunews/issues/321",
   "owner": "当前会话唯一编辑与生产整合负责人",
   "branch": "agent/edition-continuity-evidence",
-  "last_verified_commit": "88da72c5465a223160a51c805a7d3ce7ec4fbae8",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/320",
-  "completed": ["核对近14天出版清单，仅11月3日缺失；原报告14条，生成成功但Deploy to GitHub Pages失败，重试误跳过页面", "原备份去重记录中找回固定窗口14条完整双语正文和背景，数量/全部来源/分类分布与原报告一致", "服务器只读演练验证14条恢复和9个对应缺失事件节点，无AI/消息调用", "实现逐刊期SQLite选稿日志、现有正常发布前跨日静态修补、完整文件/正文指纹检查及latest不倒退"],
-  "unfinished": ["完整回归与远端CI", "合并及正常Deploy Docs恢复历史", "普通URL/首页日期切换/加载更早/双语片段/事件与当前队列不变验收"],
-  "validation": ["完整Python1180 passed/4既有skipped；最终补充Deploy Docs第二checkout适配后7项真实CLI/跨日恢复/真实Git/幂等/latest保护回归通过，治理/编译/差异检查通过，最终head远端CI待完成", "生产写入前新增online backup edition-20261105T151912Z完整性ok，记录daily/X/Square散列供恢复后核对"],
-  "unverified": ["当前代码尚未合并部署，11月3日仍缺失", "原同分新闻的精确相对名次未保留，按保留分数及原去重记录顺序恢复，不能称逐字节还原原排名", "11月3日首次底层发布错误日志暂不可取，只确认失败步骤，不将其无证据归因于AI或磁盘"],
-  "production": {"source_commit": "ffc4dc2464f955ff644798bc38effbdb728b3aaa", "artifact_commit": "e1bb91986515eb4fa95bc23330c5c3c17ff37333", "edition": "2026-11-05，13条；11月3日缺失待修复", "generated_at": "2026-11-05T07:37:56.199782Z", "worker_version": "ba1bf907-6399-476b-b437-a8bcda0ef199", "verified_at": "2026-11-05只读核对；历史修补待上线"},
+  "last_verified_commit": "dca841fd0e112cbec3917f382682acb41fb800bf",
+  "pr": "待正式发布验收后创建证据PR",
+  "completed": ["PR320合并88da72c5，逐期SQLite日志与无AI跨日补缺已运行，3日14条及9个缺失节点恢复", "统一Cloudflare42078138315成功，近14期双语页面/片段及12个事件引用在线验证；中英×1440/390日期切换/加载更早通过", "最新日报正文和daily/X/Square记录不变；3日中英文canonical、ready/feed/sitemap200", "PR323全量CI42082248062通过，合并dca841fd，正常网页发布预算20改30分钟，保留全部检查"],
+  "unfinished": ["30分钟新main正常Deploy Docs42089412376完整ACK及后续正常发布", "最终普通URL、持久状态与回执不变复核，然后证据PR合并关闭任务"],
+  "validation": ["完整Python1182 passed/4既有skipped，8项定向和两个应用PR完整远端CI通过；治理/差异检查通过", "生产普通URL近14期连续；恢复3日14条，中英×1440/390四组无溢出/脚本错误，日期入口与加载更早均14条，12事件引用有效", "原最新日报完整文件SHA256 abf1cef3296611beb4f50510a79467080fa6b06e5c27faa8ee226ffd887e99ce保持；数据库和备份完整性ok，daily/X/Square JSON字节不变"],
+  "unverified": ["新30分钟发布的精确检查点尚待成功，网站内容恢复与完整publisher成功分开记录", "原同分新闻精确名次无法完全还原；11月3日首次底层发布日志不可取，不将现时超时倒推为原始原因", "下一次自然定时日报尚未发生，本次不将模拟或历史补期算作下一次Cron成功"],
+  "production": {"source_commit": "88da72c5465a223160a51c805a7d3ce7ec4fbae8", "artifact_commit": "df4161dd00ea191a3038897d18b0604670fb0007", "edition": "2026-11-05，13条；11月3日14条已恢复，近14期连续", "generated_at": "2026-11-05T07:37:56.199782Z", "worker_version": "54193230-bff2-4ab9-bfb9-c049a64aa83a", "verified_at": "2026-11-06凌晨，普通URL及四组中英桌面/手机尺寸验收通过；新预算ACK待完成"},
   "blockers": [],
-  "next_action": "完整验证后提交PR并合并，正常Deploy Docs无AI补齐历史；线上验收后文档PR归档",
-  "states": {"code": "complete", "tests": "pending", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
+  "next_action": "等待42089412376正常发布完整ACK，最终站点/状态复核后更新两份release、创建证据PR并合并",
+  "states": {"code": "complete", "tests": "complete", "pr_merged": "complete", "deployed": "pending", "production_verified": "pending"},
   "evidence": "project-docs/releases/2026-11-05-edition-continuity.md"
 }
 ```

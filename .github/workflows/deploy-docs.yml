@@ -36,9 +36,10 @@ concurrency:
 jobs:
   deploy:
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
-    # Two exact checkouts can take several minutes on the Tokyo runner.
-    # Keep a bound, but allow slow downloads before the no-AI rebuild.
-    timeout-minutes: 20
+    # The two checkouts plus the publisher clone exhausted 20 minutes twice
+    # after saving the recovered snapshot but before its exact checkpoint ACK.
+    # Match the bounded edge-build/deploy budget without removing any checks.
+    timeout-minutes: 30
     permissions:
       contents: write
     env:
