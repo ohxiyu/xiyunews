@@ -11,15 +11,15 @@
     "en": "Binance revokes SignalPlus-linked API keys over potential security issue"
   },
   "current_state": {
-    "zh": "在第三方期权交易平台 SignalPlus 报告潜在安全问题后，币安移除了所有与该平台关联的 API 密钥，并表示自身系统和用户资金未受影响。",
-    "en": "Binance removed all API keys linked to third-party options trading platform SignalPlus after SignalPlus reported a potential security issue, saying its own systems and user funds were unaffected."
+    "zh": "币安和Deribit已撤销与SignalPlus关联的API密钥；SignalPlus披露此次入侵通过伪造Microsoft Teams邀请实施，损失低于8.2万美元并已开始全额赔付，服务暂时中止，预计完成安全审查和修补后数日内恢复。",
+    "en": "Binance and Deribit have revoked SignalPlus-linked API keys; SignalPlus disclosed the intrusion was carried out via a fake Microsoft Teams invite, reported losses under $82,000 and has begun full reimbursement, with services temporarily suspended and expected to resume within days after security review and patching."
   },
   "first_seen_at": "2026-11-05T12:01:30.101714+00:00",
-  "last_updated_at": "2026-11-05T12:39:32.003465+00:00",
-  "last_material_change_at": "2026-11-05T12:39:32.003465+00:00",
+  "last_updated_at": "2026-11-05T21:00:53.292974+00:00",
+  "last_material_change_at": "2026-11-05T21:00:53.292974+00:00",
   "confidence": 0.75,
-  "updates_count": 2,
-  "sources_count": 4,
+  "updates_count": 3,
+  "sources_count": 5,
   "entities": [
     "api",
     "api-keys",
@@ -33,6 +33,7 @@
     "platform",
     "potential",
     "signalplus",
+    "teams",
     "trading"
   ],
   "identifiers": [],
@@ -40,9 +41,13 @@
     "api-keys",
     "api-security",
     "binance",
+    "crypto-derivatives",
     "deribit",
     "exchange-operations",
+    "exchanges",
+    "security-breach",
     "signalplus",
+    "social-engineering",
     "third-party-integration"
   ],
   "updates": [
@@ -132,6 +137,44 @@
           "url": "https://foresightnews.pro/news/h5Detail/116938",
           "label": "foresightnews",
           "source_type": "telegram",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_07800d630b62864a",
+      "event_id": "evt_78582eeeb6a74885",
+      "occurred_at": "2026-11-05T19:02:19Z",
+      "published_at": "2026-11-05T19:02:19Z",
+      "first_seen_at": "2026-11-05T21:00:53.292974Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "虚假Teams邀请攻击后，Binance、Deribit撤销SignalPlus API密钥",
+      "title_en": "Binance, Deribit revoke SignalPlus API keys after fake Teams invite attack",
+      "what_changed_zh": "新报道补充了SignalPlus安全事件的原因和影响范围：攻击者通过被入侵的Telegram联系人发送伪造Microsoft Teams会议邀请，入侵一名工程师电脑并进入内部网络；SignalPlus称损失低于8.2万美元、已开始全额赔付，并暂停服务以进行安全审查和修补，预计数日内恢复；Deribit客户通过SignalPlus进行的交易、监控和自动化已停止工作。",
+      "what_changed_en": "The new report adds the cause and scope of the SignalPlus security incident: attackers used a compromised Telegram contact to send a fake Microsoft Teams meeting invite, compromised an engineer’s computer and reached the internal network; SignalPlus said losses were under $82,000, has begun full reimbursement, suspended services for security review and patching, and expects restoration within days; Deribit customers’ trading, monitoring and automation through SignalPlus stopped working.",
+      "current_state_zh": "币安和Deribit已撤销与SignalPlus关联的API密钥；SignalPlus披露此次入侵通过伪造Microsoft Teams邀请实施，损失低于8.2万美元并已开始全额赔付，服务暂时中止，预计完成安全审查和修补后数日内恢复。",
+      "current_state_en": "Binance and Deribit have revoked SignalPlus-linked API keys; SignalPlus disclosed the intrusion was carried out via a fake Microsoft Teams invite, reported losses under $82,000 and has begun full reimbursement, with services temporarily suspended and expected to resume within days after security review and patching.",
+      "detailed_summary_zh": "Binance and Deribit revoked API keys tied to crypto derivatives platform SignalPlus after a fake Microsoft Teams invite attack compromised an engineer's computer, causing under $82,000 in losses that SignalPlus pledged to fully reimburse, while disrupting SignalPlus-based trading and automation for Deribit customers.",
+      "detailed_summary_en": "Binance and Deribit revoked API keys tied to crypto derivatives platform SignalPlus after a fake Microsoft Teams invite attack compromised an engineer's computer, causing under $82,000 in losses that SignalPlus pledged to fully reimburse, while disrupting SignalPlus-based trading and automation for Deribit customers.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [],
+      "confidence": 0.92,
+      "story_ids": [
+        "rss:cointelegraph.com_rss:31f2687c174c4e6a"
+      ],
+      "sources": [
+        {
+          "url": "https://cointelegraph.com/news/binance-deribit-revoke-signalplus-api-fake-teams-attack?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+          "label": "Cointelegraph",
+          "source_type": "rss",
           "official": false
         }
       ]

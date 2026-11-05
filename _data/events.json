@@ -211042,7 +211042,7 @@
         "erc-20"
       ],
       "last_material_change_at": "2026-11-05T16:53:10.546037Z",
-      "last_updated_at": "2026-11-05T16:53:10.546037Z",
+      "last_updated_at": "2026-11-05T21:00:53.584595Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_f59febcac933a8f9",
@@ -213698,10 +213698,17 @@
               "official": false,
               "source_type": "rss",
               "url": "https://protos.com/binance-hack-spooks-us-govt-into-checking-on-banks-report/"
+            },
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/fed-occ-check-us-banks-binance-hack-security-risks?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
             }
           ],
           "story_ids": [
-            "rss:protos.com_feed_:076082754337a354"
+            "rss:protos.com_feed_:076082754337a354",
+            "rss:cointelegraph.com_rss:2883b58c467a2cd4"
           ],
           "time_precision": "published",
           "title_en": "Binance hack spooks US gov’t into checking on banks, report",
@@ -219374,7 +219381,7 @@
       "category": "technology",
       "confidence": 0.75,
       "current_state_en": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements.",
-      "current_state_zh": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements.",
+      "current_state_zh": "一个严重的Linux IPv4 TCP释放后使用漏洞CVE-2026-98432，CVSS评分为9.8，披露时Ubuntu和RHEL等主要发行版尚无补丁，不过实际利用受数据包过滤和多核要求限制。",
       "entities": [
         "after",
         "cve",
@@ -219398,7 +219405,7 @@
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "TCP Use-After-Free: CVE-2026-98432 / CVSS 9.8",
-      "title_zh": "TCP Use-After-Free: CVE-2026-98432 / CVSS 9.8",
+      "title_zh": "TCP释放后使用漏洞：CVE-2026-98432 / CVSS 9.8",
       "topics": [
         "cve",
         "linux-kernel",
@@ -219413,7 +219420,7 @@
           "community_discussion_zh": "",
           "confidence": 0.75,
           "current_state_en": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements.",
-          "current_state_zh": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements.",
+          "current_state_zh": "一个严重的Linux IPv4 TCP释放后使用漏洞CVE-2026-98432，CVSS评分为9.8，披露时Ubuntu和RHEL等主要发行版尚无补丁，不过实际利用受数据包过滤和多核要求限制。",
           "detailed_summary_en": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements.",
           "detailed_summary_zh": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements.",
           "event_id": "evt_302c05cd2149ece0",
@@ -219443,11 +219450,11 @@
           ],
           "time_precision": "published",
           "title_en": "TCP Use-After-Free: CVE-2026-98432 / CVSS 9.8",
-          "title_zh": "TCP Use-After-Free: CVE-2026-98432 / CVSS 9.8",
+          "title_zh": "TCP释放后使用漏洞：CVE-2026-98432 / CVSS 9.8",
           "update_id": "upd_6d8b40c59452073b",
           "update_type": "initial",
           "what_changed_en": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements.",
-          "what_changed_zh": "A critical Linux IPv4 TCP use-after-free, CVE-2026-98432 with CVSS 9.8, left major distributions such as Ubuntu and RHEL without patches at disclosure, though practical exploitation is constrained by packet filtering and multi-core requirements."
+          "what_changed_zh": "一个严重的Linux IPv4 TCP释放后使用漏洞CVE-2026-98432，CVSS评分为9.8，披露时Ubuntu和RHEL等主要发行版尚无补丁，不过实际利用受数据包过滤和多核要求限制。"
         },
         {
           "background_en": "The flaw was fixed upstream on Oct. 15, 2026, according to NVD, which describes the issue as a case where tcp_v4_syn_recv_sock() transfers ownership of ireq->ireq_opt to the child socket without copying it. AWS noted the bug affects kernel versions 4.4 and later, where a remote unauthenticated party could send crafted IPv4 TCP packets carrying IP options to an affected listener. Ubuntu's tracker shows fixes in progress for 22.04, 24.04, 26.04 and 26.10, while 20.04, 18.04 and 16.04 show only \"Vulnerable.\"",
@@ -226636,30 +226643,44 @@
     {
       "category": "technology",
       "confidence": 0.75,
-      "current_state_en": "OpenAI says its autonomous AI security system discovered 948 Linux kernel vulnerabilities, prompting industry discussion about how decentralization and infrastructure diversity could mitigate such systemic risks.",
-      "current_state_zh": "OpenAI says its autonomous AI security system discovered 948 Linux kernel vulnerabilities, prompting industry discussion about how decentralization and infrastructure diversity could mitigate such systemic risks.",
+      "current_state_en": "OpenAI says its autonomous security agents identified 948 Linux kernel privilege-escalation vulnerabilities and generated working exploits plus candidate patches for about $1.21 million in API credits.",
+      "current_state_zh": "OpenAI says its autonomous security agents identified 948 Linux kernel privilege-escalation vulnerabilities and generated working exploits plus candidate patches for about $1.21 million in API credits.",
       "entities": [
+        "and",
+        "exploit",
+        "figured",
+        "flaws",
+        "found",
+        "how",
         "linux",
-        "openai"
+        "openai",
+        "out",
+        "them"
       ],
       "event_id": "evt_4a4d5a5b8914b8c0",
       "event_type": "security_incident",
       "first_seen_at": "2026-11-05T12:01:30.094753Z",
       "identifiers": [],
-      "last_material_change_at": "2026-11-05T12:01:30.094753Z",
-      "last_updated_at": "2026-11-05T12:01:30.094753Z",
+      "last_material_change_at": "2026-11-05T21:00:09.101592Z",
+      "last_updated_at": "2026-11-05T21:00:09.101592Z",
       "legacy_thread_ids": [],
-      "merged_event_ids": [],
+      "merged_event_ids": [
+        "evt_c5840086a451d6fb"
+      ],
       "schema_version": 1,
       "status": "monitoring",
       "title_en": "【OpenAI 称 AI 发现 948 个 Linux 漏洞，行业观点认为去中心化有助于应对风险】",
-      "title_zh": "【OpenAI 称 AI 发现 948 个 Linux 漏洞，行业观点认为去中心化有助于应对风险】",
+      "title_zh": "OpenAI 称其自主安全代理发现 948 个 Linux 内核漏洞",
       "topics": [
+        "ai-security-agents",
         "ai-vulnerability-discovery",
         "blockchain-infrastructure",
+        "cybersecurity",
         "decentralization",
+        "linux-kernel",
         "linux-security",
-        "openai"
+        "openai",
+        "vulnerability-research"
       ],
       "updates": [
         {
@@ -226687,10 +226708,17 @@
               "official": false,
               "source_type": "telegram",
               "url": "http://ethernodes.org/"
+            },
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/382632/openai-linux-security-flaws-exploit"
             }
           ],
           "story_ids": [
-            "telegram:foresightnews:122236"
+            "telegram:foresightnews:122236",
+            "rss:decrypt.co_feed:2d094a0a0d3ecc88"
           ],
           "time_precision": "published",
           "title_en": "【OpenAI 称 AI 发现 948 个 Linux 漏洞，行业观点认为去中心化有助于应对风险】",
@@ -226885,8 +226913,8 @@
     {
       "category": "crypto",
       "confidence": 0.75,
-      "current_state_en": "Binance removed all API keys linked to third-party options trading platform SignalPlus after SignalPlus reported a potential security issue, saying its own systems and user funds were unaffected.",
-      "current_state_zh": "在第三方期权交易平台 SignalPlus 报告潜在安全问题后，币安移除了所有与该平台关联的 API 密钥，并表示自身系统和用户资金未受影响。",
+      "current_state_en": "Binance and Deribit have revoked SignalPlus-linked API keys; SignalPlus disclosed the intrusion was carried out via a fake Microsoft Teams invite, reported losses under $82,000 and has begun full reimbursement, with services temporarily suspended and expected to resume within days after security review and patching.",
+      "current_state_zh": "币安和Deribit已撤销与SignalPlus关联的API密钥；SignalPlus披露此次入侵通过伪造Microsoft Teams邀请实施，损失低于8.2万美元并已开始全额赔付，服务暂时中止，预计完成安全审查和修补后数日内恢复。",
       "entities": [
         "api",
         "api-keys",
@@ -226900,14 +226928,15 @@
         "platform",
         "potential",
         "signalplus",
+        "teams",
         "trading"
       ],
       "event_id": "evt_78582eeeb6a74885",
       "event_type": "security_incident",
       "first_seen_at": "2026-11-05T12:01:30.101714Z",
       "identifiers": [],
-      "last_material_change_at": "2026-11-05T12:39:32.003465Z",
-      "last_updated_at": "2026-11-05T12:39:32.003465Z",
+      "last_material_change_at": "2026-11-05T21:00:53.292974Z",
+      "last_updated_at": "2026-11-05T21:00:53.292974Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [
         "evt_54bd669ccb36d096"
@@ -226920,9 +226949,13 @@
         "api-keys",
         "api-security",
         "binance",
+        "crypto-derivatives",
         "deribit",
         "exchange-operations",
+        "exchanges",
+        "security-breach",
         "signalplus",
+        "social-engineering",
         "third-party-integration"
       ],
       "updates": [
@@ -227015,6 +227048,44 @@
           "update_type": "response",
           "what_changed_en": "Deribit also proactively revoked SignalPlus-linked API keys, saying it found no indication of impact on its systems or data; both exchanges advised users to review positions and open orders and wait for SignalPlus to confirm remediation before reconnecting.",
           "what_changed_zh": "Deribit 也已预防性撤销与 SignalPlus 关联的 API 密钥，并称未发现其系统或数据受到影响；两家交易所均建议用户检查持仓和未成交订单，等待 SignalPlus 确认问题解决后再重新连接。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.92,
+          "current_state_en": "Binance and Deribit have revoked SignalPlus-linked API keys; SignalPlus disclosed the intrusion was carried out via a fake Microsoft Teams invite, reported losses under $82,000 and has begun full reimbursement, with services temporarily suspended and expected to resume within days after security review and patching.",
+          "current_state_zh": "币安和Deribit已撤销与SignalPlus关联的API密钥；SignalPlus披露此次入侵通过伪造Microsoft Teams邀请实施，损失低于8.2万美元并已开始全额赔付，服务暂时中止，预计完成安全审查和修补后数日内恢复。",
+          "detailed_summary_en": "Binance and Deribit revoked API keys tied to crypto derivatives platform SignalPlus after a fake Microsoft Teams invite attack compromised an engineer's computer, causing under $82,000 in losses that SignalPlus pledged to fully reimburse, while disrupting SignalPlus-based trading and automation for Deribit customers.",
+          "detailed_summary_zh": "Binance and Deribit revoked API keys tied to crypto derivatives platform SignalPlus after a fake Microsoft Teams invite attack compromised an engineer's computer, causing under $82,000 in losses that SignalPlus pledged to fully reimburse, while disrupting SignalPlus-based trading and automation for Deribit customers.",
+          "event_id": "evt_78582eeeb6a74885",
+          "first_seen_at": "2026-11-05T21:00:53.292974Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T19:02:19Z",
+          "published_at": "2026-11-05T19:02:19Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/binance-deribit-revoke-signalplus-api-fake-teams-attack?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:31f2687c174c4e6a"
+          ],
+          "time_precision": "published",
+          "title_en": "Binance, Deribit revoke SignalPlus API keys after fake Teams invite attack",
+          "title_zh": "虚假Teams邀请攻击后，Binance、Deribit撤销SignalPlus API密钥",
+          "update_id": "upd_07800d630b62864a",
+          "update_type": "escalation",
+          "what_changed_en": "The new report adds the cause and scope of the SignalPlus security incident: attackers used a compromised Telegram contact to send a fake Microsoft Teams meeting invite, compromised an engineer’s computer and reached the internal network; SignalPlus said losses were under $82,000, has begun full reimbursement, suspended services for security review and patching, and expects restoration within days; Deribit customers’ trading, monitoring and automation through SignalPlus stopped working.",
+          "what_changed_zh": "新报道补充了SignalPlus安全事件的原因和影响范围：攻击者通过被入侵的Telegram联系人发送伪造Microsoft Teams会议邀请，入侵一名工程师电脑并进入内部网络；SignalPlus称损失低于8.2万美元、已开始全额赔付，并暂停服务以进行安全审查和修补，预计数日内恢复；Deribit客户通过SignalPlus进行的交易、监控和自动化已停止工作。"
         }
       ]
     },
@@ -228262,8 +228333,8 @@
     {
       "category": "policy",
       "confidence": 0.75,
-      "current_state_en": "The broad risk-off US equity selloff continued on November 5, with the VIX at 27.03, the Nasdaq down 5.35%, the S&P 500 down 3.57%, and the Dow down 2.38%; the Philadelphia Semiconductor Index was latest down 11.48%, with the report saying it may be its biggest one-day fall since March 2020.",
-      "current_state_zh": "11月5日美股广泛避险抛售持续，VIX升至27.03点，纳指跌5.35%，标普500跌3.57%，道指跌2.38%；费城半导体指数最新跌11.48%，报道称或将创2020年3月以来最大单日跌幅。",
+      "current_state_en": "The broad November 5 US equity selloff continued and deepened, with the S&P 500 down 4%, the Nasdaq down more than 5%, the Nasdaq 100 down over 6%, the Dow down more than 3%, and the semiconductor index down more than 10%.",
+      "current_state_zh": "11月5日美股广泛抛售持续并加深，标普500跌幅扩大至4%，纳指跌超5%，纳斯达克100指数跌超6%，道指跌超3%，半导体指数跌超10%。",
       "entities": [
         "vix"
       ],
@@ -228271,8 +228342,8 @@
       "event_type": "regulatory_action",
       "first_seen_at": "2026-11-05T16:50:43.379932Z",
       "identifiers": [],
-      "last_material_change_at": "2026-11-05T16:50:43.385705Z",
-      "last_updated_at": "2026-11-05T16:50:43.385705Z",
+      "last_material_change_at": "2026-11-05T20:56:27.494214Z",
+      "last_updated_at": "2026-11-05T20:56:27.494214Z",
       "legacy_thread_ids": [],
       "merged_event_ids": [],
       "schema_version": 1,
@@ -228280,6 +228351,7 @@
       "title_en": "英伟达暴跌7.3%，纳指狂泄超千点，美股恐慌指数VIX波动率日内涨40%",
       "title_zh": "英伟达暴跌7.3%，纳指狂泄超千点，美股恐慌指数VIX波动率日内涨40%",
       "topics": [
+        "ai-stocks",
         "equities",
         "equities-selloff",
         "macro",
@@ -228483,6 +228555,82 @@
           "update_type": "escalation",
           "what_changed_en": "The Philadelphia Semiconductor Index was latest down 11.48%, with the report saying it may mark its biggest one-day drop since March 2020; Seagate, Western Digital, Micron, Intel and other chip and storage stocks also fell sharply.",
           "what_changed_zh": "费城半导体指数最新下跌11.48%，报道称或将创2020年3月以来最大单日跌幅；希捷、西部数据、美光、英特尔等半导体与存储股亦出现两位数或接近两位数下跌。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.92,
+          "current_state_en": "The broad November 5 US equity selloff continued, with about $2.3 trillion in market value erased within the first hour; the S&P 500 hit an intraday low of about 7,394, down about 3.83%, while the Philadelphia Semiconductor Index fell 11.48%, near its March 16, 2020 record one-day drop of 15.9%.",
+          "current_state_zh": "11月5日美股广泛抛售持续，开盘一小时内总市值蒸发约2.3万亿美元；标普500盘中最低约7394点、跌约3.83%，费城半导体指数跌11.48%并接近2020年3月16日15.9%的历史最大单日跌幅。",
+          "detailed_summary_en": "US stocks sold off sharply, wiping about $2.3 trillion in market value within the first hour of trading, with the S&P 500 down roughly 3.83% intraday and the Philadelphia Semiconductor Index falling 11.48%, near its March 2020 record single-day decline of 15.9%.",
+          "detailed_summary_zh": "US stocks sold off sharply, wiping about $2.3 trillion in market value within the first hour of trading, with the S&P 500 down roughly 3.83% intraday and the Philadelphia Semiconductor Index falling 11.48%, near its March 2020 record single-day decline of 15.9%.",
+          "event_id": "evt_6e2f26230762200f",
+          "first_seen_at": "2026-11-05T20:56:27.493559Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T17:37:02Z",
+          "published_at": "2026-11-05T17:37:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/375805?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:204436"
+          ],
+          "time_precision": "published",
+          "title_en": "盘点美股史上大崩盘：纳指走出互联网泡沫耗时逾十年，疫情之下半导体指数单日暴跌15.9%",
+          "title_zh": "盘点美股史上大崩盘：纳指走出互联网泡沫耗时逾十年，疫情之下半导体指数单日暴跌15.9%",
+          "update_id": "upd_d2a2484a0524448b",
+          "update_type": "escalation",
+          "what_changed_en": "In the broad US equity selloff, about $2.3 trillion in market value was erased within the first hour; the S&P 500 hit an intraday low of about 7,394, down about 3.83%, deeper than the previously reported 3.57%.",
+          "what_changed_zh": "美股广泛抛售中，开盘一小时内总市值蒸发约2.3万亿美元；标普500盘中最低约7394点、跌约3.83%，较既有报道的3.57%进一步扩大。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.93,
+          "current_state_en": "The broad November 5 US equity selloff continued and deepened, with the S&P 500 down 4%, the Nasdaq down more than 5%, the Nasdaq 100 down over 6%, the Dow down more than 3%, and the semiconductor index down more than 10%.",
+          "current_state_zh": "11月5日美股广泛抛售持续并加深，标普500跌幅扩大至4%，纳指跌超5%，纳斯达克100指数跌超6%，道指跌超3%，半导体指数跌超10%。",
+          "detailed_summary_en": "US stocks sold off sharply, with the S&P 500 down 4%, the Nasdaq down more than 5%, the Dow down over 3%, and the semiconductor index plunging more than 10%.",
+          "detailed_summary_zh": "US stocks sold off sharply, with the S&P 500 down 4%, the Nasdaq down more than 5%, the Dow down over 3%, and the semiconductor index plunging more than 10%.",
+          "event_id": "evt_6e2f26230762200f",
+          "first_seen_at": "2026-11-05T20:56:27.494214Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T18:07:02Z",
+          "published_at": "2026-11-05T18:07:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/375806?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:204437"
+          ],
+          "time_precision": "published",
+          "title_en": "标普500指数跌幅扩大至4%，纳指跌超5%",
+          "title_zh": "标普500指数跌幅扩大至4%，纳指跌超5%",
+          "update_id": "upd_768fd4b0310cff4f",
+          "update_type": "escalation",
+          "what_changed_en": "The November 5 US equity selloff deepened further: the S&P 500 fell 4%, the Nasdaq dropped more than 5%, the Nasdaq 100 fell over 6%, the Dow lost more than 3%, and the semiconductor index fell more than 10%.",
+          "what_changed_zh": "11月5日美股抛售进一步加深，标普500跌幅扩大至4%，纳指跌超5%，纳斯达克100指数跌超6%，道指跌超3%，半导体指数跌超10%。"
         }
       ]
     },
@@ -229326,6 +229474,1338 @@
           "what_changed_zh": "Bitcoin slid about 5% to roughly $76,500, erasing its post-election rally and dragging Ethereum and most major tokens lower, as a Wall Street tech selloff over AI spending triggered ~$428 million in crypto long liquidations within an hour."
         }
       ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Core Scientific announced it is accelerating the shutdown of its Bitcoin mining operations, targeting a complete exit by Q4 2026 while pivoting to high-performance computing colocation, with Q3 colocation revenue reaching $215 million.",
+      "current_state_zh": "Core Scientific announced it is accelerating the shutdown of its Bitcoin mining operations, targeting a complete exit by Q4 2026 while pivoting to high-performance computing colocation, with Q3 colocation revenue reaching $215 million.",
+      "entities": [
+        "bitcoi",
+        "core",
+        "core-scientific",
+        "down",
+        "fully",
+        "largest",
+        "miner",
+        "once",
+        "plans",
+        "scientific",
+        "shut"
+      ],
+      "event_id": "evt_c6ab3f4e4a35c44e",
+      "event_type": "market_structure",
+      "first_seen_at": "2026-11-05T20:56:25.231647Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T20:56:25.231647Z",
+      "last_updated_at": "2026-11-05T20:56:25.231647Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Core Scientific, Once the Largest Bitcoin Miner, Plans to Fully Shut Down Bitcoi",
+      "title_zh": "Core Scientific, Once the Largest Bitcoin Miner, Plans to Fully Shut Down Bitcoi",
+      "topics": [
+        "ai-infrastructure",
+        "bitcoin-mining",
+        "core-scientific",
+        "hpc-colocation"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Core Scientific announced it is accelerating the shutdown of its Bitcoin mining operations, targeting a complete exit by Q4 2026 while pivoting to high-performance computing colocation, with Q3 colocation revenue reaching $215 million.",
+          "current_state_zh": "Core Scientific announced it is accelerating the shutdown of its Bitcoin mining operations, targeting a complete exit by Q4 2026 while pivoting to high-performance computing colocation, with Q3 colocation revenue reaching $215 million.",
+          "detailed_summary_en": "Core Scientific announced it is accelerating the shutdown of its Bitcoin mining operations, targeting a complete exit by Q4 2026 while pivoting to high-performance computing colocation, with Q3 colocation revenue reaching $215 million.",
+          "detailed_summary_zh": "Core Scientific announced it is accelerating the shutdown of its Bitcoin mining operations, targeting a complete exit by Q4 2026 while pivoting to high-performance computing colocation, with Q3 colocation revenue reaching $215 million.",
+          "event_id": "evt_c6ab3f4e4a35c44e",
+          "first_seen_at": "2026-11-05T20:56:25.231647Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T18:08:18Z",
+          "published_at": "2026-11-05T18:08:18Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "wublockchainenglish",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://wublockchain.xyz/news/news-21540"
+            }
+          ],
+          "story_ids": [
+            "telegram:wublockchainenglish:26703"
+          ],
+          "time_precision": "published",
+          "title_en": "Core Scientific, Once the Largest Bitcoin Miner, Plans to Fully Shut Down Bitcoi",
+          "title_zh": "Core Scientific, Once the Largest Bitcoin Miner, Plans to Fully Shut Down Bitcoi",
+          "update_id": "upd_c34ed7be90f255d2",
+          "update_type": "initial",
+          "what_changed_en": "Core Scientific announced it is accelerating the shutdown of its Bitcoin mining operations, targeting a complete exit by Q4 2026 while pivoting to high-performance computing colocation, with Q3 colocation revenue reaching $215 million.",
+          "what_changed_zh": "Core Scientific announced it is accelerating the shutdown of its Bitcoin mining operations, targeting a complete exit by Q4 2026 while pivoting to high-performance computing colocation, with Q3 colocation revenue reaching $215 million."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "US stocks suffered a sharp tech-led selloff, with the Philadelphia Semiconductor Index briefly falling 11.6% and the combined wealth of the five richest people dropping by about $153 billion in a single day.",
+      "current_state_zh": "US stocks suffered a sharp tech-led selloff, with the Philadelphia Semiconductor Index briefly falling 11.6% and the combined wealth of the five richest people dropping by about $153 billion in a single day.",
+      "entities": [],
+      "event_id": "evt_9fea1eab75134c81",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-11-05T20:56:27.490776Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T20:56:27.490776Z",
+      "last_updated_at": "2026-11-05T20:56:27.490776Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "美股史诗级抛售，前五大富豪财富单日蒸发1500亿美元，马斯克损失近千亿",
+      "title_zh": "美股史诗级抛售，前五大富豪财富单日蒸发1500亿美元，马斯克损失近千亿",
+      "topics": [
+        "ai-hardware",
+        "billionaire-wealth",
+        "market-volatility",
+        "tech-selloff",
+        "us-stocks"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "US stocks suffered a sharp tech-led selloff, with the Philadelphia Semiconductor Index briefly falling 11.6% and the combined wealth of the five richest people dropping by about $153 billion in a single day.",
+          "current_state_zh": "US stocks suffered a sharp tech-led selloff, with the Philadelphia Semiconductor Index briefly falling 11.6% and the combined wealth of the five richest people dropping by about $153 billion in a single day.",
+          "detailed_summary_en": "US stocks suffered a sharp tech-led selloff, with the Philadelphia Semiconductor Index briefly falling 11.6% and the combined wealth of the five richest people dropping by about $153 billion in a single day.",
+          "detailed_summary_zh": "US stocks suffered a sharp tech-led selloff, with the Philadelphia Semiconductor Index briefly falling 11.6% and the combined wealth of the five richest people dropping by about $153 billion in a single day.",
+          "event_id": "evt_9fea1eab75134c81",
+          "first_seen_at": "2026-11-05T20:56:27.490776Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T16:50:02Z",
+          "published_at": "2026-11-05T16:50:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/375800?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:204431"
+          ],
+          "time_precision": "published",
+          "title_en": "美股史诗级抛售，前五大富豪财富单日蒸发1500亿美元，马斯克损失近千亿",
+          "title_zh": "美股史诗级抛售，前五大富豪财富单日蒸发1500亿美元，马斯克损失近千亿",
+          "update_id": "upd_bd40644a9558fa37",
+          "update_type": "initial",
+          "what_changed_en": "US stocks suffered a sharp tech-led selloff, with the Philadelphia Semiconductor Index briefly falling 11.6% and the combined wealth of the five richest people dropping by about $153 billion in a single day.",
+          "what_changed_zh": "US stocks suffered a sharp tech-led selloff, with the Philadelphia Semiconductor Index briefly falling 11.6% and the combined wealth of the five richest people dropping by about $153 billion in a single day."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Google committed $17 billion to build its first Wyoming data center in Laramie County, pairing the capital with binding utility agreements and a 702MW Bloom Energy fuel-cell project featuring carbon capture and storage.",
+      "current_state_zh": "Google committed $17 billion to build its first Wyoming data center in Laramie County, pairing the capital with binding utility agreements and a 702MW Bloom Energy fuel-cell project featuring carbon capture and storage.",
+      "entities": [],
+      "event_id": "evt_357c008adf1cbd1c",
+      "event_type": "other",
+      "first_seen_at": "2026-11-05T20:56:27.491701Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T20:56:27.491701Z",
+      "last_updated_at": "2026-11-05T20:56:27.491701Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "谷歌将投资170亿美元，在怀俄明州建设其首个数据中心",
+      "title_zh": "谷歌将投资170亿美元，在怀俄明州建设其首个数据中心",
+      "topics": [
+        "ai-infrastructure",
+        "carbon-capture",
+        "data-centers",
+        "energy",
+        "google"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Google committed $17 billion to build its first Wyoming data center in Laramie County, pairing the capital with binding utility agreements and a 702MW Bloom Energy fuel-cell project featuring carbon capture and storage.",
+          "current_state_zh": "Google committed $17 billion to build its first Wyoming data center in Laramie County, pairing the capital with binding utility agreements and a 702MW Bloom Energy fuel-cell project featuring carbon capture and storage.",
+          "detailed_summary_en": "Google committed $17 billion to build its first Wyoming data center in Laramie County, pairing the capital with binding utility agreements and a 702MW Bloom Energy fuel-cell project featuring carbon capture and storage.",
+          "detailed_summary_zh": "Google committed $17 billion to build its first Wyoming data center in Laramie County, pairing the capital with binding utility agreements and a 702MW Bloom Energy fuel-cell project featuring carbon capture and storage.",
+          "event_id": "evt_357c008adf1cbd1c",
+          "first_seen_at": "2026-11-05T20:56:27.491701Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T17:08:02Z",
+          "published_at": "2026-11-05T17:08:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/375802?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:204433"
+          ],
+          "time_precision": "published",
+          "title_en": "谷歌将投资170亿美元，在怀俄明州建设其首个数据中心",
+          "title_zh": "谷歌将投资170亿美元，在怀俄明州建设其首个数据中心",
+          "update_id": "upd_6ce741eecabd4998",
+          "update_type": "initial",
+          "what_changed_en": "Google committed $17 billion to build its first Wyoming data center in Laramie County, pairing the capital with binding utility agreements and a 702MW Bloom Energy fuel-cell project featuring carbon capture and storage.",
+          "what_changed_zh": "Google committed $17 billion to build its first Wyoming data center in Laramie County, pairing the capital with binding utility agreements and a 702MW Bloom Energy fuel-cell project featuring carbon capture and storage."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "Motorola announced the Signature 27 smartphone with official GrapheneOS support and a $1,599 starting MSRP.",
+      "current_state_zh": "Motorola announced the Signature 27 smartphone with official GrapheneOS support and a $1,599 starting MSRP.",
+      "entities": [
+        "grapheneos",
+        "motorola",
+        "signature"
+      ],
+      "event_id": "evt_f5e80795d2337ee9",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-11-05T20:57:04.111415Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T20:57:04.111415Z",
+      "last_updated_at": "2026-11-05T20:57:04.111415Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Motorola Signature 27 with GrapheneOS support",
+      "title_zh": "Motorola Signature 27 with GrapheneOS support",
+      "topics": [
+        "android",
+        "grapheneos",
+        "mobile-security",
+        "motorola",
+        "privacy"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Motorola announced the Signature 27 smartphone with official GrapheneOS support and a $1,599 starting MSRP.",
+          "current_state_zh": "Motorola announced the Signature 27 smartphone with official GrapheneOS support and a $1,599 starting MSRP.",
+          "detailed_summary_en": "Motorola announced the Signature 27 smartphone with official GrapheneOS support and a $1,599 starting MSRP.",
+          "detailed_summary_zh": "Motorola announced the Signature 27 smartphone with official GrapheneOS support and a $1,599 starting MSRP.",
+          "event_id": "evt_f5e80795d2337ee9",
+          "first_seen_at": "2026-11-05T20:57:04.111415Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T16:01:34Z",
+          "published_at": "2026-11-05T16:01:34Z",
+          "references": [
+            {
+              "title": "Community discussion",
+              "url": "https://news.ycombinator.com/item?id=50380810"
+            }
+          ],
+          "sources": [
+            {
+              "label": "monneyboi",
+              "official": false,
+              "source_type": "hackernews",
+              "url": "https://motorolanews.com/motorola-signature-27-2/"
+            }
+          ],
+          "story_ids": [
+            "hackernews:story:50380810"
+          ],
+          "time_precision": "published",
+          "title_en": "Motorola Signature 27 with GrapheneOS support",
+          "title_zh": "Motorola Signature 27 with GrapheneOS support",
+          "update_id": "upd_ed86d6fa8d500fad",
+          "update_type": "initial",
+          "what_changed_en": "Motorola announced the Signature 27 smartphone with official GrapheneOS support and a $1,599 starting MSRP.",
+          "what_changed_zh": "Motorola announced the Signature 27 smartphone with official GrapheneOS support and a $1,599 starting MSRP."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Anza is requiring Solana validators to upgrade to Agave 4.4.1 by Nov. 6, which alters how loader-v3 program data counts toward transaction limits.",
+      "current_state_zh": "Anza is requiring Solana validators to upgrade to Agave 4.4.1 by Nov. 6, which alters how loader-v3 program data counts toward transaction limits.",
+      "entities": [
+        "agave",
+        "anza",
+        "before",
+        "epoch",
+        "solana",
+        "upgrade",
+        "urges",
+        "validators"
+      ],
+      "event_id": "evt_f2d76bdadbc1a8f2",
+      "event_type": "protocol_change",
+      "first_seen_at": "2026-11-05T20:57:45.489937Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T20:57:45.489937Z",
+      "last_updated_at": "2026-11-05T20:57:45.489937Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Anza Urges Solana Validators to Upgrade Agave Before Epoch 1079",
+      "title_zh": "Anza Urges Solana Validators to Upgrade Agave Before Epoch 1079",
+      "topics": [
+        "agave",
+        "anza",
+        "loader-v3",
+        "protocol-release",
+        "solana",
+        "validator-upgrade"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Anza is requiring Solana validators to upgrade to Agave 4.4.1 by Nov. 6, which alters how loader-v3 program data counts toward transaction limits.",
+          "current_state_zh": "Anza is requiring Solana validators to upgrade to Agave 4.4.1 by Nov. 6, which alters how loader-v3 program data counts toward transaction limits.",
+          "detailed_summary_en": "Anza is requiring Solana validators to upgrade to Agave 4.4.1 by Nov. 6, which alters how loader-v3 program data counts toward transaction limits.",
+          "detailed_summary_zh": "Anza is requiring Solana validators to upgrade to Agave 4.4.1 by Nov. 6, which alters how loader-v3 program data counts toward transaction limits.",
+          "event_id": "evt_f2d76bdadbc1a8f2",
+          "first_seen_at": "2026-11-05T20:57:45.489937Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T19:26:48Z",
+          "published_at": "2026-11-05T19:26:48Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "The Defiant",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://thedefiant.io/news/blockchains/anza-urges-solana-validators-to-upgrade-agave-before-epoch-1079"
+            }
+          ],
+          "story_ids": [
+            "rss:thedefiant.io_api_feed:d99569b062f110f7"
+          ],
+          "time_precision": "published",
+          "title_en": "Anza Urges Solana Validators to Upgrade Agave Before Epoch 1079",
+          "title_zh": "Anza Urges Solana Validators to Upgrade Agave Before Epoch 1079",
+          "update_id": "upd_3b59af00323d0244",
+          "update_type": "initial",
+          "what_changed_en": "Anza is requiring Solana validators to upgrade to Agave 4.4.1 by Nov. 6, which alters how loader-v3 program data counts toward transaction limits.",
+          "what_changed_zh": "Anza is requiring Solana validators to upgrade to Agave 4.4.1 by Nov. 6, which alters how loader-v3 program data counts toward transaction limits."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "The SEC's planned amendments to broker-dealer rules for crypto assets — covering capital requirements, customer-asset safeguards and recordkeeping — have entered White House review, moving the package closer to formal proposal.",
+      "current_state_zh": "The SEC's planned amendments to broker-dealer rules for crypto assets — covering capital requirements, customer-asset safeguards and recordkeeping — have entered White House review, moving the package closer to formal proposal.",
+      "entities": [
+        "broker",
+        "enters",
+        "house",
+        "review",
+        "rule",
+        "sec",
+        "white"
+      ],
+      "event_id": "evt_f0c272d49776216f",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-11-05T20:57:45.490080Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T20:57:45.490080Z",
+      "last_updated_at": "2026-11-05T20:57:45.490080Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "SEC Crypto Broker Rule Enters White House Review",
+      "title_zh": "SEC Crypto Broker Rule Enters White House Review",
+      "topics": [
+        "broker-dealers",
+        "crypto-regulation",
+        "custody",
+        "recordkeeping",
+        "sec"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "The SEC's planned amendments to broker-dealer rules for crypto assets — covering capital requirements, customer-asset safeguards and recordkeeping — have entered White House review, moving the package closer to formal proposal.",
+          "current_state_zh": "The SEC's planned amendments to broker-dealer rules for crypto assets — covering capital requirements, customer-asset safeguards and recordkeeping — have entered White House review, moving the package closer to formal proposal.",
+          "detailed_summary_en": "The SEC's planned amendments to broker-dealer rules for crypto assets — covering capital requirements, customer-asset safeguards and recordkeeping — have entered White House review, moving the package closer to formal proposal.",
+          "detailed_summary_zh": "The SEC's planned amendments to broker-dealer rules for crypto assets — covering capital requirements, customer-asset safeguards and recordkeeping — have entered White House review, moving the package closer to formal proposal.",
+          "event_id": "evt_f0c272d49776216f",
+          "first_seen_at": "2026-11-05T20:57:45.490080Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T18:55:08Z",
+          "published_at": "2026-11-05T18:55:08Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "The Defiant",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://thedefiant.io/converge/regulation/sec-crypto-broker-rule-enters-white-house-review"
+            }
+          ],
+          "story_ids": [
+            "rss:thedefiant.io_api_feed:b257af5e0123fdc9"
+          ],
+          "time_precision": "published",
+          "title_en": "SEC Crypto Broker Rule Enters White House Review",
+          "title_zh": "SEC Crypto Broker Rule Enters White House Review",
+          "update_id": "upd_e2af6f4642f48ee0",
+          "update_type": "initial",
+          "what_changed_en": "The SEC's planned amendments to broker-dealer rules for crypto assets — covering capital requirements, customer-asset safeguards and recordkeeping — have entered White House review, moving the package closer to formal proposal.",
+          "what_changed_zh": "The SEC's planned amendments to broker-dealer rules for crypto assets — covering capital requirements, customer-asset safeguards and recordkeeping — have entered White House review, moving the package closer to formal proposal."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Gauntlet restricted V1 vault deposits and reduced LayerZero-bridged asset exposure after a reported op-reth vulnerability, while noting no exploit had been reported to its knowledge.",
+      "current_state_zh": "Gauntlet restricted V1 vault deposits and reduced LayerZero-bridged asset exposure after a reported op-reth vulnerability, while noting no exploit had been reported to its knowledge.",
+      "entities": [
+        "after",
+        "deposits",
+        "gauntlet",
+        "op-reth",
+        "reported",
+        "restricts",
+        "vault",
+        "vulnerability"
+      ],
+      "event_id": "evt_a8cec8879dea53d0",
+      "event_type": "other",
+      "first_seen_at": "2026-11-05T20:57:45.490485Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T20:57:45.490485Z",
+      "last_updated_at": "2026-11-05T20:57:45.490485Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Gauntlet Restricts V1 Vault Deposits After Reported op-reth Vulnerability",
+      "title_zh": "Gauntlet Restricts V1 Vault Deposits After Reported op-reth Vulnerability",
+      "topics": [
+        "gauntlet",
+        "layerzero",
+        "op-reth",
+        "vulnerability"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Gauntlet restricted V1 vault deposits and reduced LayerZero-bridged asset exposure after a reported op-reth vulnerability, while noting no exploit had been reported to its knowledge.",
+          "current_state_zh": "Gauntlet restricted V1 vault deposits and reduced LayerZero-bridged asset exposure after a reported op-reth vulnerability, while noting no exploit had been reported to its knowledge.",
+          "detailed_summary_en": "Gauntlet restricted V1 vault deposits and reduced LayerZero-bridged asset exposure after a reported op-reth vulnerability, while noting no exploit had been reported to its knowledge.",
+          "detailed_summary_zh": "Gauntlet restricted V1 vault deposits and reduced LayerZero-bridged asset exposure after a reported op-reth vulnerability, while noting no exploit had been reported to its knowledge.",
+          "event_id": "evt_a8cec8879dea53d0",
+          "first_seen_at": "2026-11-05T20:57:45.490485Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T17:51:32Z",
+          "published_at": "2026-11-05T17:51:32Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "The Defiant",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://thedefiant.io/news/defi/gauntlet-restricts-v1-vault-deposits-after-reported-op-reth-vulnerability"
+            }
+          ],
+          "story_ids": [
+            "rss:thedefiant.io_api_feed:32db1e6e7435b085"
+          ],
+          "time_precision": "published",
+          "title_en": "Gauntlet Restricts V1 Vault Deposits After Reported op-reth Vulnerability",
+          "title_zh": "Gauntlet Restricts V1 Vault Deposits After Reported op-reth Vulnerability",
+          "update_id": "upd_8dbbec77a1e86176",
+          "update_type": "initial",
+          "what_changed_en": "Gauntlet restricted V1 vault deposits and reduced LayerZero-bridged asset exposure after a reported op-reth vulnerability, while noting no exploit had been reported to its knowledge.",
+          "what_changed_zh": "Gauntlet restricted V1 vault deposits and reduced LayerZero-bridged asset exposure after a reported op-reth vulnerability, while noting no exploit had been reported to its knowledge."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Aave has scheduled a governance vote on adding Babylon-based native Bitcoin as collateral for V4, with risk provider LlamaRisk proposing a 300 BTC cap and a further onchain vote still required before the market can go live.",
+      "current_state_zh": "Aave has scheduled a governance vote on adding Babylon-based native Bitcoin as collateral for V4, with risk provider LlamaRisk proposing a 300 BTC cap and a further onchain vote still required before the market can go live.",
+      "entities": [
+        "aave",
+        "babylon",
+        "bitcoin-collateral",
+        "collateral",
+        "native",
+        "schedules",
+        "vote"
+      ],
+      "event_id": "evt_f65a4845411053d0",
+      "event_type": "governance",
+      "first_seen_at": "2026-11-05T20:57:45.490632Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T20:57:45.490632Z",
+      "last_updated_at": "2026-11-05T20:57:45.490632Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Aave Schedules Vote on Babylon Native Bitcoin Collateral for V4",
+      "title_zh": "Aave Schedules Vote on Babylon Native Bitcoin Collateral for V4",
+      "topics": [
+        "aave",
+        "babylon",
+        "bitcoin-collateral",
+        "defi-governance",
+        "risk-parameters"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Aave has scheduled a governance vote on adding Babylon-based native Bitcoin as collateral for V4, with risk provider LlamaRisk proposing a 300 BTC cap and a further onchain vote still required before the market can go live.",
+          "current_state_zh": "Aave has scheduled a governance vote on adding Babylon-based native Bitcoin as collateral for V4, with risk provider LlamaRisk proposing a 300 BTC cap and a further onchain vote still required before the market can go live.",
+          "detailed_summary_en": "Aave has scheduled a governance vote on adding Babylon-based native Bitcoin as collateral for V4, with risk provider LlamaRisk proposing a 300 BTC cap and a further onchain vote still required before the market can go live.",
+          "detailed_summary_zh": "Aave has scheduled a governance vote on adding Babylon-based native Bitcoin as collateral for V4, with risk provider LlamaRisk proposing a 300 BTC cap and a further onchain vote still required before the market can go live.",
+          "event_id": "evt_f65a4845411053d0",
+          "first_seen_at": "2026-11-05T20:57:45.490632Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T17:05:47Z",
+          "published_at": "2026-11-05T17:05:47Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "The Defiant",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://thedefiant.io/news/defi/aave-schedules-vote-on-babylon-native-bitcoin-collateral-for-v4"
+            }
+          ],
+          "story_ids": [
+            "rss:thedefiant.io_api_feed:7830f1e80432d1b1"
+          ],
+          "time_precision": "published",
+          "title_en": "Aave Schedules Vote on Babylon Native Bitcoin Collateral for V4",
+          "title_zh": "Aave Schedules Vote on Babylon Native Bitcoin Collateral for V4",
+          "update_id": "upd_ab5494ac27743cab",
+          "update_type": "initial",
+          "what_changed_en": "Aave has scheduled a governance vote on adding Babylon-based native Bitcoin as collateral for V4, with risk provider LlamaRisk proposing a 300 BTC cap and a further onchain vote still required before the market can go live.",
+          "what_changed_zh": "Aave has scheduled a governance vote on adding Babylon-based native Bitcoin as collateral for V4, with risk provider LlamaRisk proposing a 300 BTC cap and a further onchain vote still required before the market can go live."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "A lawsuit by the Capital Markets Alliance against the CFTC has put Kalshi's and Coinbase's stock perpetual futures at risk, with the CFTC facing a deadline to defend its authority to approve such products.",
+      "current_state_zh": "A lawsuit by the Capital Markets Alliance against the CFTC has put Kalshi's and Coinbase's stock perpetual futures at risk, with the CFTC facing a deadline to defend its authority to approve such products.",
+      "entities": [
+        "cftc",
+        "coinbase",
+        "kalshi"
+      ],
+      "event_id": "evt_c96191d926a52d4c",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-11-05T20:59:24.106595Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T20:59:24.106595Z",
+      "last_updated_at": "2026-11-05T20:59:24.106595Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Kalshi, Coinbase stock perps under threat ahead of CFTC deadline",
+      "title_zh": "Kalshi, Coinbase stock perps under threat ahead of CFTC deadline",
+      "topics": [
+        "cftc",
+        "coinbase",
+        "kalshi",
+        "stock-perpetuals"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "A lawsuit by the Capital Markets Alliance against the CFTC has put Kalshi's and Coinbase's stock perpetual futures at risk, with the CFTC facing a deadline to defend its authority to approve such products.",
+          "current_state_zh": "A lawsuit by the Capital Markets Alliance against the CFTC has put Kalshi's and Coinbase's stock perpetual futures at risk, with the CFTC facing a deadline to defend its authority to approve such products.",
+          "detailed_summary_en": "A lawsuit by the Capital Markets Alliance against the CFTC has put Kalshi's and Coinbase's stock perpetual futures at risk, with the CFTC facing a deadline to defend its authority to approve such products.",
+          "detailed_summary_zh": "A lawsuit by the Capital Markets Alliance against the CFTC has put Kalshi's and Coinbase's stock perpetual futures at risk, with the CFTC facing a deadline to defend its authority to approve such products.",
+          "event_id": "evt_c96191d926a52d4c",
+          "first_seen_at": "2026-11-05T20:59:24.106595Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T19:37:33Z",
+          "published_at": "2026-11-05T19:37:33Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Protos",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://protos.com/kalshi-coinbase-stock-perps-under-threat-ahead-of-cftc-deadline/"
+            }
+          ],
+          "story_ids": [
+            "rss:protos.com_feed_:194679e9eea5a7eb"
+          ],
+          "time_precision": "published",
+          "title_en": "Kalshi, Coinbase stock perps under threat ahead of CFTC deadline",
+          "title_zh": "Kalshi, Coinbase stock perps under threat ahead of CFTC deadline",
+          "update_id": "upd_d82663d5add4f1b6",
+          "update_type": "initial",
+          "what_changed_en": "A lawsuit by the Capital Markets Alliance against the CFTC has put Kalshi's and Coinbase's stock perpetual futures at risk, with the CFTC facing a deadline to defend its authority to approve such products.",
+          "what_changed_zh": "A lawsuit by the Capital Markets Alliance against the CFTC has put Kalshi's and Coinbase's stock perpetual futures at risk, with the CFTC facing a deadline to defend its authority to approve such products."
+        }
+      ]
+    },
+    {
+      "category": "technology",
+      "confidence": 0.75,
+      "current_state_en": "OpenAI launched GPT-6 Cyber, a cybersecurity-focused AI model that it says is better at finding vulnerabilities while going out of bounds less than 1 percent of the time during testing.",
+      "current_state_zh": "OpenAI推出GPT-6 Cyber，这是一款专注于网络安全的AI模型，该公司称其在测试中更擅长发现漏洞，越界比例低于1%。",
+      "entities": [
+        "advancing",
+        "cyber",
+        "cybersecurity",
+        "gpt",
+        "gpt-6-cyber",
+        "openai"
+      ],
+      "event_id": "evt_cbba56a14e96e823",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-11-05T20:59:51.716957Z",
+      "identifiers": [
+        "gpt-6"
+      ],
+      "last_material_change_at": "2026-11-05T20:59:55.593014Z",
+      "last_updated_at": "2026-11-05T20:59:55.593014Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [
+        "evt_985a929c64d0b43d"
+      ],
+      "schema_version": 1,
+      "status": "developing",
+      "title_en": "OpenAI releases GPT-6 Cyber cybersecurity model",
+      "title_zh": "OpenAI 发布 GPT-6 Cyber 网络安全模型",
+      "topics": [
+        "ai-safety",
+        "cybersecurity",
+        "frontier-models",
+        "gpt-6-cyber",
+        "openai",
+        "vulnerability-discovery",
+        "vulnerability-research"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "OpenAI introduced GPT-6 Cyber, a cybersecurity-focused model built to find exploitable vulnerabilities and develop fixes while staying within authorized scope.",
+          "current_state_zh": "OpenAI推出GPT-6 Cyber，这是一款专注于网络安全的模型，旨在发现可利用漏洞并开发修复方案，同时保持在授权范围内。",
+          "detailed_summary_en": "OpenAI introduced GPT-6 Cyber, a cybersecurity-focused model built to find exploitable vulnerabilities and develop fixes while staying within authorized scope.",
+          "detailed_summary_zh": "OpenAI introduced GPT-6 Cyber, a cybersecurity-focused model built to find exploitable vulnerabilities and develop fixes while staying within authorized scope.",
+          "event_id": "evt_cbba56a14e96e823",
+          "first_seen_at": "2026-11-05T20:59:51.716957Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T09:00:00Z",
+          "published_at": "2026-11-05T09:00:00Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "OpenAI Blog",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://openai.com/index/introducing-gpt-6-cyber"
+            },
+            {
+              "label": "The Verge AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.theverge.com/ai-artificial-intelligence/1027599/openai-gpt-6-cyber-launch"
+            }
+          ],
+          "story_ids": [
+            "rss:openai.com_blog_rss.xml:14e90e72d3401ddf",
+            "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:16a5bfb286780351"
+          ],
+          "time_precision": "published",
+          "title_en": "GPT‑6 Cyber: Advancing the frontier of aligned cybersecurity agents",
+          "title_zh": "GPT‑6 Cyber：推进对齐网络安全智能体的前沿",
+          "update_id": "upd_5df43381d04daf47",
+          "update_type": "initial",
+          "what_changed_en": "OpenAI introduced GPT-6 Cyber, a cybersecurity-focused model built to find exploitable vulnerabilities and develop fixes while staying within authorized scope.",
+          "what_changed_zh": "OpenAI推出GPT-6 Cyber，这是一款专注于网络安全的模型，旨在发现可利用漏洞并开发修复方案，同时保持在授权范围内。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.92,
+          "current_state_en": "GPT-6 Cyber has been released to vetted security customers, its risk rating has been raised to Critical, and it has demonstrated vulnerability discovery and exploit development; OpenAI plans broader access to approved customers in the coming weeks and is also making an earlier GPT-5.6 Cyber model available.",
+          "current_state_zh": "GPT-6 Cyber已向经过审核的安全客户发布，风险评级升至「关键」，并展示了发现和利用高危漏洞的能力；OpenAI计划未来几周扩展至所有获批客户，同时开放早期GPT-5.6 Cyber模型。",
+          "detailed_summary_en": "OpenAI released GPT-6 Cyber to vetted security customers, raised its cybersecurity risk rating to Critical, and demonstrated the model's ability to uncover high-severity Firefox and Linux kernel vulnerabilities and develop working exploits.",
+          "detailed_summary_zh": "OpenAI released GPT-6 Cyber to vetted security customers, raised its cybersecurity risk rating to Critical, and demonstrated the model's ability to uncover high-severity Firefox and Linux kernel vulnerabilities and develop working exploits.",
+          "event_id": "evt_cbba56a14e96e823",
+          "first_seen_at": "2026-11-05T20:56:27.492270Z",
+          "importance_score": 8.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T17:09:02Z",
+          "published_at": "2026-11-05T17:09:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "theblockbeats",
+              "official": false,
+              "source_type": "telegram",
+              "url": "https://m.theblockbeats.info/flash/375803?from=telegram"
+            }
+          ],
+          "story_ids": [
+            "telegram:theblockbeats:204434"
+          ],
+          "time_precision": "published",
+          "title_en": "OpenAI发布GPT-6 Cyber：专攻网络安全漏洞，风险评级升至「关键」",
+          "title_zh": "OpenAI发布GPT-6 Cyber：专攻网络安全漏洞，风险评级升至「关键」",
+          "update_id": "upd_e39629f9c0f4fd0f",
+          "update_type": "escalation",
+          "what_changed_en": "OpenAI released GPT-6 Cyber to a small set of vetted customers, raised its cybersecurity risk rating from High to Critical, disclosed findings of 81 high-severity Firefox vulnerabilities and working exploits for 948 Linux kernel vulnerabilities, and made it available to select customers in the Daybreak Red tier.",
+          "what_changed_zh": "OpenAI向一小部分经过审核的客户发布了GPT-6 Cyber，并将其网络安全风险评级从上一代「高」上调至「关键」；同时披露该模型发现81个高严重性Firefox漏洞、协助开发针对948个Linux内核漏洞的可用利用程序，并已向「Daybreak Red」层级特定客户开放。"
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "Democrats captured the House and Senate in the midterms, a power shift the article frames as likely to produce a sharp reversal in US AI policy and oversight after the current Republican-led approach.",
+      "current_state_zh": "Democrats captured the House and Senate in the midterms, a power shift the article frames as likely to produce a sharp reversal in US AI policy and oversight after the current Republican-led approach.",
+      "entities": [
+        "total"
+      ],
+      "event_id": "evt_b458ea648258fbb7",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-11-05T20:59:55.592924Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T20:59:55.592924Z",
+      "last_updated_at": "2026-11-05T20:59:55.592924Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "‘Total repudiation’: The blue wave is about to hit AI",
+      "title_zh": "‘Total repudiation’: The blue wave is about to hit AI",
+      "topics": [
+        "ai-policy",
+        "ai-regulation",
+        "congress",
+        "tech-oversight",
+        "us-midterms"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Democrats captured the House and Senate in the midterms, a power shift the article frames as likely to produce a sharp reversal in US AI policy and oversight after the current Republican-led approach.",
+          "current_state_zh": "Democrats captured the House and Senate in the midterms, a power shift the article frames as likely to produce a sharp reversal in US AI policy and oversight after the current Republican-led approach.",
+          "detailed_summary_en": "Democrats captured the House and Senate in the midterms, a power shift the article frames as likely to produce a sharp reversal in US AI policy and oversight after the current Republican-led approach.",
+          "detailed_summary_zh": "Democrats captured the House and Senate in the midterms, a power shift the article frames as likely to produce a sharp reversal in US AI policy and oversight after the current Republican-led approach.",
+          "event_id": "evt_b458ea648258fbb7",
+          "first_seen_at": "2026-11-05T20:59:55.592924Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T17:51:52Z",
+          "published_at": "2026-11-05T17:51:52Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "The Verge AI",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://www.theverge.com/ai-artificial-intelligence/1026927/total-repudiation-the-blue-wave-is-about-to-hit-ai"
+            }
+          ],
+          "story_ids": [
+            "rss:www.theverge.com_rss_ai-artificial-intelligence_index.xml:a6192077540d3a8d"
+          ],
+          "time_precision": "published",
+          "title_en": "‘Total repudiation’: The blue wave is about to hit AI",
+          "title_zh": "‘Total repudiation’: The blue wave is about to hit AI",
+          "update_id": "upd_1fa27fd388a77b88",
+          "update_type": "initial",
+          "what_changed_en": "Democrats captured the House and Senate in the midterms, a power shift the article frames as likely to produce a sharp reversal in US AI policy and oversight after the current Republican-led approach.",
+          "what_changed_zh": "Democrats captured the House and Senate in the midterms, a power shift the article frames as likely to produce a sharp reversal in US AI policy and oversight after the current Republican-led approach."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "The U.S. Department of Justice launched a Super Intelligence Task Force, led by Associate Attorney General Stanley Woodward and Associate Deputy Attorney General Stephen Weiss, to prosecute misuse of advanced AI by foreign actors, criminal organizations and fraudsters and to push AI companies toward stronger internal controls and risk reporting.",
+      "current_state_zh": "The U.S. Department of Justice launched a Super Intelligence Task Force, led by Associate Attorney General Stanley Woodward and Associate Deputy Attorney General Stephen Weiss, to prosecute misuse of advanced AI by foreign actors, criminal organizations and fraudsters and to push AI companies toward stronger internal controls and risk reporting.",
+      "entities": [
+        "abuse",
+        "against",
+        "creates",
+        "doj",
+        "force",
+        "guard",
+        "intelligence",
+        "super",
+        "task"
+      ],
+      "event_id": "evt_00eca967be13daee",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-11-05T20:59:57.172942Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T20:59:57.172942Z",
+      "last_updated_at": "2026-11-05T20:59:57.172942Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "DOJ Creates 'Super Intelligence' Task Force to Guard Against AI Abuse",
+      "title_zh": "DOJ Creates 'Super Intelligence' Task Force to Guard Against AI Abuse",
+      "topics": [
+        "ai-regulation",
+        "ai-safety",
+        "doj",
+        "enforcement",
+        "us-policy"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "The U.S. Department of Justice launched a Super Intelligence Task Force, led by Associate Attorney General Stanley Woodward and Associate Deputy Attorney General Stephen Weiss, to prosecute misuse of advanced AI by foreign actors, criminal organizations and fraudsters and to push AI companies toward stronger internal controls and risk reporting.",
+          "current_state_zh": "The U.S. Department of Justice launched a Super Intelligence Task Force, led by Associate Attorney General Stanley Woodward and Associate Deputy Attorney General Stephen Weiss, to prosecute misuse of advanced AI by foreign actors, criminal organizations and fraudsters and to push AI companies toward stronger internal controls and risk reporting.",
+          "detailed_summary_en": "The U.S. Department of Justice launched a Super Intelligence Task Force, led by Associate Attorney General Stanley Woodward and Associate Deputy Attorney General Stephen Weiss, to prosecute misuse of advanced AI by foreign actors, criminal organizations and fraudsters and to push AI companies toward stronger internal controls and risk reporting.",
+          "detailed_summary_zh": "The U.S. Department of Justice launched a Super Intelligence Task Force, led by Associate Attorney General Stanley Woodward and Associate Deputy Attorney General Stephen Weiss, to prosecute misuse of advanced AI by foreign actors, criminal organizations and fraudsters and to push AI companies toward stronger internal controls and risk reporting.",
+          "event_id": "evt_00eca967be13daee",
+          "first_seen_at": "2026-11-05T20:59:57.172942Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T20:46:02Z",
+          "published_at": "2026-11-05T20:46:02Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/382672/doj-creates-super-intelligence-task-force-to-guard-against-ai-abuse"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:60597ecbcda9f956"
+          ],
+          "time_precision": "published",
+          "title_en": "DOJ Creates 'Super Intelligence' Task Force to Guard Against AI Abuse",
+          "title_zh": "DOJ Creates 'Super Intelligence' Task Force to Guard Against AI Abuse",
+          "update_id": "upd_6d397a4dfc814dc3",
+          "update_type": "initial",
+          "what_changed_en": "The U.S. Department of Justice launched a Super Intelligence Task Force, led by Associate Attorney General Stanley Woodward and Associate Deputy Attorney General Stephen Weiss, to prosecute misuse of advanced AI by foreign actors, criminal organizations and fraudsters and to push AI companies toward stronger internal controls and risk reporting.",
+          "what_changed_zh": "The U.S. Department of Justice launched a Super Intelligence Task Force, led by Associate Attorney General Stanley Woodward and Associate Deputy Attorney General Stephen Weiss, to prosecute misuse of advanced AI by foreign actors, criminal organizations and fraudsters and to push AI companies toward stronger internal controls and risk reporting."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Bitquery's updated blockchain analysis shows Mercado Bitcoin-linked deposit addresses were drained for nearly four hours after the exchange claimed containment, with $48.6 million stolen across 11 networks and withdrawals and trading still suspended.",
+      "current_state_zh": "Bitquery's updated blockchain analysis shows Mercado Bitcoin-linked deposit addresses were drained for nearly four hours after the exchange claimed containment, with $48.6 million stolen across 11 networks and withdrawals and trading still suspended.",
+      "entities": [
+        "but",
+        "contained",
+        "data",
+        "different",
+        "hack",
+        "its",
+        "mercado",
+        "mercado-bitcoin",
+        "said",
+        "story",
+        "tells",
+        "was"
+      ],
+      "event_id": "evt_d8aa987137272be7",
+      "event_type": "security_incident",
+      "first_seen_at": "2026-11-05T21:00:00.701310Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T21:00:00.701310Z",
+      "last_updated_at": "2026-11-05T21:00:00.701310Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Mercado Bitcoin Said Its Hack Was Contained, But Blockchain Data Tells a Different Story",
+      "title_zh": "Mercado Bitcoin Said Its Hack Was Contained, But Blockchain Data Tells a Different Story",
+      "topics": [
+        "blockchain-forensics",
+        "exchange-hack",
+        "mercado-bitcoin",
+        "security-incident"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Bitquery's updated blockchain analysis shows Mercado Bitcoin-linked deposit addresses were drained for nearly four hours after the exchange claimed containment, with $48.6 million stolen across 11 networks and withdrawals and trading still suspended.",
+          "current_state_zh": "Bitquery's updated blockchain analysis shows Mercado Bitcoin-linked deposit addresses were drained for nearly four hours after the exchange claimed containment, with $48.6 million stolen across 11 networks and withdrawals and trading still suspended.",
+          "detailed_summary_en": "Bitquery's updated blockchain analysis shows Mercado Bitcoin-linked deposit addresses were drained for nearly four hours after the exchange claimed containment, with $48.6 million stolen across 11 networks and withdrawals and trading still suspended.",
+          "detailed_summary_zh": "Bitquery's updated blockchain analysis shows Mercado Bitcoin-linked deposit addresses were drained for nearly four hours after the exchange claimed containment, with $48.6 million stolen across 11 networks and withdrawals and trading still suspended.",
+          "event_id": "evt_d8aa987137272be7",
+          "first_seen_at": "2026-11-05T21:00:00.701310Z",
+          "importance_score": 8.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T20:16:03Z",
+          "published_at": "2026-11-05T20:16:03Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/382670/mercado-bitcoin-hack-contained-blockchain-data"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:a63a2ad5031f5307"
+          ],
+          "time_precision": "published",
+          "title_en": "Mercado Bitcoin Said Its Hack Was Contained, But Blockchain Data Tells a Different Story",
+          "title_zh": "Mercado Bitcoin Said Its Hack Was Contained, But Blockchain Data Tells a Different Story",
+          "update_id": "upd_3975f0ab4eea7da0",
+          "update_type": "initial",
+          "what_changed_en": "Bitquery's updated blockchain analysis shows Mercado Bitcoin-linked deposit addresses were drained for nearly four hours after the exchange claimed containment, with $48.6 million stolen across 11 networks and withdrawals and trading still suspended.",
+          "what_changed_zh": "Bitquery's updated blockchain analysis shows Mercado Bitcoin-linked deposit addresses were drained for nearly four hours after the exchange claimed containment, with $48.6 million stolen across 11 networks and withdrawals and trading still suspended."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Zcash's upcoming NU7 upgrade will invalidate v4 transactions and render roughly 12,224 ZEC (about $15–16 million) still sitting in the legacy Sprout privacy pool permanently unspendable unless holders move them before activation, while also tripling confirmation speed and retiring outdated network technology.",
+      "current_state_zh": "Zcash's upcoming NU7 upgrade will invalidate v4 transactions and render roughly 12,224 ZEC (about $15–16 million) still sitting in the legacy Sprout privacy pool permanently unspendable unless holders move them before activation, while also tripling confirmation speed and retiring outdated network technology.",
+      "entities": [
+        "could",
+        "forever",
+        "lock",
+        "million",
+        "upgrade",
+        "zcash"
+      ],
+      "event_id": "evt_2d20942da64b3f4a",
+      "event_type": "protocol_change",
+      "first_seen_at": "2026-11-05T21:00:04.610533Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T21:00:04.610533Z",
+      "last_updated_at": "2026-11-05T21:00:04.610533Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Zcash Upgrade Could Lock $16 Million in Crypto Forever",
+      "title_zh": "Zcash Upgrade Could Lock $16 Million in Crypto Forever",
+      "topics": [
+        "frozen-funds",
+        "privacy",
+        "protocol-upgrade",
+        "sprout-pool",
+        "zcash"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Zcash's upcoming NU7 upgrade will invalidate v4 transactions and render roughly 12,224 ZEC (about $15–16 million) still sitting in the legacy Sprout privacy pool permanently unspendable unless holders move them before activation, while also tripling confirmation speed and retiring outdated network technology.",
+          "current_state_zh": "Zcash's upcoming NU7 upgrade will invalidate v4 transactions and render roughly 12,224 ZEC (about $15–16 million) still sitting in the legacy Sprout privacy pool permanently unspendable unless holders move them before activation, while also tripling confirmation speed and retiring outdated network technology.",
+          "detailed_summary_en": "Zcash's upcoming NU7 upgrade will invalidate v4 transactions and render roughly 12,224 ZEC (about $15–16 million) still sitting in the legacy Sprout privacy pool permanently unspendable unless holders move them before activation, while also tripling confirmation speed and retiring outdated network technology.",
+          "detailed_summary_zh": "Zcash's upcoming NU7 upgrade will invalidate v4 transactions and render roughly 12,224 ZEC (about $15–16 million) still sitting in the legacy Sprout privacy pool permanently unspendable unless holders move them before activation, while also tripling confirmation speed and retiring outdated network technology.",
+          "event_id": "evt_2d20942da64b3f4a",
+          "first_seen_at": "2026-11-05T21:00:04.610533Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T19:46:03Z",
+          "published_at": "2026-11-05T19:46:03Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/382663/zcash-upgrade-could-lock-16-million-crypto"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:e0f9c640b37de163"
+          ],
+          "time_precision": "published",
+          "title_en": "Zcash Upgrade Could Lock $16 Million in Crypto Forever",
+          "title_zh": "Zcash Upgrade Could Lock $16 Million in Crypto Forever",
+          "update_id": "upd_dea27721d2936c9e",
+          "update_type": "initial",
+          "what_changed_en": "Zcash's upcoming NU7 upgrade will invalidate v4 transactions and render roughly 12,224 ZEC (about $15–16 million) still sitting in the legacy Sprout privacy pool permanently unspendable unless holders move them before activation, while also tripling confirmation speed and retiring outdated network technology.",
+          "what_changed_zh": "Zcash's upcoming NU7 upgrade will invalidate v4 transactions and render roughly 12,224 ZEC (about $15–16 million) still sitting in the legacy Sprout privacy pool permanently unspendable unless holders move them before activation, while also tripling confirmation speed and retiring outdated network technology."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "The S&P 500 dropped as much as 3.8% on Thursday, putting market-wide circuit-breaker levels in focus just a day after Trump touted record highs, with AI and semiconductor stocks leading losses as investors digested Democratic midterm wins.",
+      "current_state_zh": "The S&P 500 dropped as much as 3.8% on Thursday, putting market-wide circuit-breaker levels in focus just a day after Trump touted record highs, with AI and semiconductor stocks leading losses as investors digested Democratic midterm wins.",
+      "entities": [
+        "after",
+        "breaker",
+        "celebrated",
+        "circuit",
+        "circuit-breaker",
+        "day",
+        "fears",
+        "highs",
+        "just",
+        "one",
+        "plunges",
+        "record",
+        "street",
+        "trump",
+        "wall"
+      ],
+      "event_id": "evt_d9748650e5fcf48b",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-11-05T21:00:15.718727Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T21:00:15.718727Z",
+      "last_updated_at": "2026-11-05T21:00:15.718727Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "S&#038;P 500 Plunges, Wall Street Fears Circuit Breaker, Just One Day After Trump Celebrated Record Highs",
+      "title_zh": "S&#038;P 500 Plunges, Wall Street Fears Circuit Breaker, Just One Day After Trump Celebrated Record Highs",
+      "topics": [
+        "ai-stocks",
+        "circuit-breaker",
+        "equities",
+        "macro",
+        "market-selloff"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "The S&P 500 dropped as much as 3.8% on Thursday, putting market-wide circuit-breaker levels in focus just a day after Trump touted record highs, with AI and semiconductor stocks leading losses as investors digested Democratic midterm wins.",
+          "current_state_zh": "The S&P 500 dropped as much as 3.8% on Thursday, putting market-wide circuit-breaker levels in focus just a day after Trump touted record highs, with AI and semiconductor stocks leading losses as investors digested Democratic midterm wins.",
+          "detailed_summary_en": "The S&P 500 dropped as much as 3.8% on Thursday, putting market-wide circuit-breaker levels in focus just a day after Trump touted record highs, with AI and semiconductor stocks leading losses as investors digested Democratic midterm wins.",
+          "detailed_summary_zh": "The S&P 500 dropped as much as 3.8% on Thursday, putting market-wide circuit-breaker levels in focus just a day after Trump touted record highs, with AI and semiconductor stocks leading losses as investors digested Democratic midterm wins.",
+          "event_id": "evt_d9748650e5fcf48b",
+          "first_seen_at": "2026-11-05T21:00:15.718727Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T18:05:21Z",
+          "published_at": "2026-11-05T18:05:21Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Decrypt",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://decrypt.co/382637/sp-500-plunges-wall-street-circuit-breaker-trump-record-highs"
+            }
+          ],
+          "story_ids": [
+            "rss:decrypt.co_feed:d90749a1272b2883"
+          ],
+          "time_precision": "published",
+          "title_en": "S&#038;P 500 Plunges, Wall Street Fears Circuit Breaker, Just One Day After Trump Celebrated Record Highs",
+          "title_zh": "S&#038;P 500 Plunges, Wall Street Fears Circuit Breaker, Just One Day After Trump Celebrated Record Highs",
+          "update_id": "upd_1a6ce5c914cef65f",
+          "update_type": "initial",
+          "what_changed_en": "The S&P 500 dropped as much as 3.8% on Thursday, putting market-wide circuit-breaker levels in focus just a day after Trump touted record highs, with AI and semiconductor stocks leading losses as investors digested Democratic midterm wins.",
+          "what_changed_zh": "The S&P 500 dropped as much as 3.8% on Thursday, putting market-wide circuit-breaker levels in focus just a day after Trump touted record highs, with AI and semiconductor stocks leading losses as investors digested Democratic midterm wins."
+        }
+      ]
+    },
+    {
+      "category": "crypto",
+      "confidence": 0.75,
+      "current_state_en": "Amundi launched a tokenized share class of its STOXX Europe 600 equity index fund on Ethereum, built with CACEIS infrastructure, as it expands blockchain-based offerings beyond money market funds and targets institutional and digital-platform distribution.",
+      "current_state_zh": "Amundi launched a tokenized share class of its STOXX Europe 600 equity index fund on Ethereum, built with CACEIS infrastructure, as it expands blockchain-based offerings beyond money market funds and targets institutional and digital-platform distribution.",
+      "entities": [
+        "amundi",
+        "europe"
+      ],
+      "event_id": "evt_7c93dfe71abc02d3",
+      "event_type": "other",
+      "first_seen_at": "2026-11-05T21:00:53.675701Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T21:00:53.675701Z",
+      "last_updated_at": "2026-11-05T21:00:53.675701Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "monitoring",
+      "title_en": "Europe’s largest asset manager Amundi tokenizes equity index fund on Ethereum",
+      "title_zh": "Europe’s largest asset manager Amundi tokenizes equity index fund on Ethereum",
+      "topics": [
+        "asset-management",
+        "rwa"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Amundi launched a tokenized share class of its STOXX Europe 600 equity index fund on Ethereum, built with CACEIS infrastructure, as it expands blockchain-based offerings beyond money market funds and targets institutional and digital-platform distribution.",
+          "current_state_zh": "Amundi launched a tokenized share class of its STOXX Europe 600 equity index fund on Ethereum, built with CACEIS infrastructure, as it expands blockchain-based offerings beyond money market funds and targets institutional and digital-platform distribution.",
+          "detailed_summary_en": "Amundi launched a tokenized share class of its STOXX Europe 600 equity index fund on Ethereum, built with CACEIS infrastructure, as it expands blockchain-based offerings beyond money market funds and targets institutional and digital-platform distribution.",
+          "detailed_summary_zh": "Amundi launched a tokenized share class of its STOXX Europe 600 equity index fund on Ethereum, built with CACEIS infrastructure, as it expands blockchain-based offerings beyond money market funds and targets institutional and digital-platform distribution.",
+          "event_id": "evt_7c93dfe71abc02d3",
+          "first_seen_at": "2026-11-05T21:00:53.675701Z",
+          "importance_score": 7.5,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T18:09:38Z",
+          "published_at": "2026-11-05T18:09:38Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/amundi-tokenizes-european-equity-index-fund-ethereum?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:b51a43ac9a1bbe17"
+          ],
+          "time_precision": "published",
+          "title_en": "Europe’s largest asset manager Amundi tokenizes equity index fund on Ethereum",
+          "title_zh": "Europe’s largest asset manager Amundi tokenizes equity index fund on Ethereum",
+          "update_id": "upd_f13d6e9639bd74e1",
+          "update_type": "initial",
+          "what_changed_en": "Amundi launched a tokenized share class of its STOXX Europe 600 equity index fund on Ethereum, built with CACEIS infrastructure, as it expands blockchain-based offerings beyond money market funds and targets institutional and digital-platform distribution.",
+          "what_changed_zh": "Amundi launched a tokenized share class of its STOXX Europe 600 equity index fund on Ethereum, built with CACEIS infrastructure, as it expands blockchain-based offerings beyond money market funds and targets institutional and digital-platform distribution."
+        }
+      ]
+    },
+    {
+      "category": "policy",
+      "confidence": 0.75,
+      "current_state_en": "President Santiago Peña has resigned amid impeachment proceedings and the Ueno Bank crisis; the central bank has outlined an initial depositor payout group.",
+      "current_state_zh": "总统圣地亚哥·培尼亚在弹劾程序和Ueno银行危机中辞职；央行已公布首批储户赔付名单。",
+      "entities": [
+        "amid",
+        "crisis",
+        "paraguay",
+        "resignation",
+        "submits",
+        "ueno",
+        "ueno-bank"
+      ],
+      "event_id": "evt_a4a43b7b62e1452b",
+      "event_type": "regulatory_action",
+      "first_seen_at": "2026-11-05T21:00:53.963991Z",
+      "identifiers": [],
+      "last_material_change_at": "2026-11-05T21:00:53.963991Z",
+      "last_updated_at": "2026-11-05T21:00:53.963991Z",
+      "legacy_thread_ids": [],
+      "merged_event_ids": [],
+      "schema_version": 1,
+      "status": "developing",
+      "title_en": "Paraguay president resigns after collapse of Ueno digital bank",
+      "title_zh": "Ueno数字银行倒闭后巴拉圭总统辞职",
+      "topics": [
+        "banking-crisis",
+        "depositor-payouts",
+        "impeachment",
+        "macro-regulation",
+        "paraguay",
+        "presidential-resignation",
+        "ueno-bank"
+      ],
+      "updates": [
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.75,
+          "current_state_en": "Paraguayan President Santiago Peña resigned after the collapse of digital lender Ueno Bank, which left millions of customers unable to access their funds and triggered a deepening political crisis.",
+          "current_state_zh": "巴拉圭总统圣地亚哥·培尼亚在数字贷款机构Ueno银行倒闭后辞职，该事件导致数百万客户无法取回资金，并引发不断加深的政治危机。",
+          "detailed_summary_en": "Paraguayan President Santiago Peña resigned after the collapse of digital lender Ueno Bank, which left millions of customers unable to access their funds and triggered a deepening political crisis.",
+          "detailed_summary_zh": "Paraguayan President Santiago Peña resigned after the collapse of digital lender Ueno Bank, which left millions of customers unable to access their funds and triggered a deepening political crisis.",
+          "event_id": "evt_a4a43b7b62e1452b",
+          "first_seen_at": "2026-11-05T21:00:53.963991Z",
+          "importance_score": 8.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T17:40:25Z",
+          "published_at": "2026-11-05T17:40:25Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "Cointelegraph",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://cointelegraph.com/news/paraguay-president-resigns-after-collapse-ueno-digital-bank?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound"
+            }
+          ],
+          "story_ids": [
+            "rss:cointelegraph.com_rss:4d58257fd23f4524"
+          ],
+          "time_precision": "published",
+          "title_en": "Paraguay president resigns after collapse of Ueno digital bank",
+          "title_zh": "Ueno数字银行倒闭后巴拉圭总统辞职",
+          "update_id": "upd_8aae8585f72a5fba",
+          "update_type": "initial",
+          "what_changed_en": "Paraguayan President Santiago Peña resigned after the collapse of digital lender Ueno Bank, which left millions of customers unable to access their funds and triggered a deepening political crisis.",
+          "what_changed_zh": "巴拉圭总统圣地亚哥·培尼亚在数字贷款机构Ueno银行倒闭后辞职，该事件导致数百万客户无法取回资金，并引发不断加深的政治危机。"
+        },
+        {
+          "background_en": "",
+          "background_zh": "",
+          "community_discussion_en": "",
+          "community_discussion_zh": "",
+          "confidence": 0.9,
+          "current_state_en": "President Santiago Peña has resigned amid impeachment proceedings and the Ueno Bank crisis; the central bank has outlined an initial depositor payout group.",
+          "current_state_zh": "总统圣地亚哥·培尼亚在弹劾程序和Ueno银行危机中辞职；央行已公布首批储户赔付名单。",
+          "detailed_summary_en": "Paraguayan President Santiago Peña resigned as lawmakers voted 78 in favor of impeachment proceedings amid the Ueno Bank crisis, while the central bank outlined an initial payout group for depositors.",
+          "detailed_summary_zh": "Paraguayan President Santiago Peña resigned as lawmakers voted 78 in favor of impeachment proceedings amid the Ueno Bank crisis, while the central bank outlined an initial payout group for depositors.",
+          "event_id": "evt_a4a43b7b62e1452b",
+          "first_seen_at": "2026-11-05T20:57:45.490400Z",
+          "importance_score": 7.0,
+          "market_impact_en": "",
+          "market_impact_zh": "",
+          "material_change": true,
+          "occurred_at": "2026-11-05T18:02:18Z",
+          "published_at": "2026-11-05T18:02:18Z",
+          "references": [],
+          "sources": [
+            {
+              "label": "The Defiant",
+              "official": false,
+              "source_type": "rss",
+              "url": "https://thedefiant.io/converge/regulation/paraguay-s-pe-a-submits-resignation-amid-ueno-bank-crisis"
+            }
+          ],
+          "story_ids": [
+            "rss:thedefiant.io_api_feed:716374d3a6b20e96"
+          ],
+          "time_precision": "published",
+          "title_en": "Paraguay’s Peña Submits Resignation Amid Ueno Bank Crisis",
+          "title_zh": "Ueno银行危机之际巴拉圭总统培尼亚提交辞呈",
+          "update_id": "upd_0cc9d7f7796a0ba7",
+          "update_type": "escalation",
+          "what_changed_en": "Paraguayan lawmakers approved impeachment proceedings with 78 votes, and the central bank outlined an initial payout group for Ueno Bank depositors.",
+          "what_changed_zh": "巴拉圭议员以78票通过弹劾程序，央行公布了Ueno银行储户的首批赔付名单。"
+        }
+      ]
     }
   ],
   "merge_reviews": {
@@ -229370,6 +230850,7 @@
     ],
     "anthropic": [
       "evt_0b2fedf77a4d272f",
+      "evt_2087d04dca69ce78",
       "evt_20dba8ac6044ff20",
       "evt_231ac6283b06bfa5",
       "evt_2ca0626b62239ba3",
@@ -229382,6 +230863,7 @@
       "evt_9cf046ab149ca56a",
       "evt_a2c84a2959877d83",
       "evt_b4e128bc7dfce8bd",
+      "evt_bb50e5a3371ff50c",
       "evt_ce738a901785daa7",
       "evt_f5bb8abb36392b8b"
     ],
@@ -230170,6 +231652,7 @@
       "evt_92f4b9a90c5c767c",
       "evt_964c0e1932a239c8",
       "evt_bc009f235a8cdffa",
+      "evt_cbba56a14e96e823",
       "evt_ce738a901785daa7",
       "evt_d4680be8b5847364",
       "evt_debaf7b7b95fdb9f",
@@ -271677,7 +273160,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Coinbase's public confirmation that it has zero exposure to a Binance security breach, plus disclosure that 99% of assets sit in cold storage, is a material market-structure and custody-safety signal in the immediate aftermath of an exchange hack. It matters for counterparty-risk repricing across venues, but it is a secondary confirmation rather than the primary incident report, so it lands below the 8.5+ tier reserved for confirmed large-loss exploits.",
         "ai_score": 7.0,
@@ -271710,7 +273193,7 @@
       }
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "item": {
         "ai_reason": "Agility's Nasdaq debut is a genuine in-window milestone: the first pure-play humanoid robotics company to trade publicly, giving the sector a listed benchmark and a new capital-formation channel. It is high-signal for robotics/AI builders and investors but is a single company's listing rather than a capability or regulatory shift that reshapes the industry, so it sits at strong high-value rather than groundbreaking.",
         "ai_score": 7.0,
@@ -271743,7 +273226,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Reports a $6.3B Binance hack with Fed and OCC bank cybersecurity probes and Wall Street contagion concerns, representing a systemic exchange-security incident and major regulatory response.",
         "ai_score": 9.5,
@@ -271776,7 +273259,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A major exchange pursuing recovery of 8,426 ETH and 74.56 million ARB after a hack is a high-impact security and exchange-operations development, though it is a recovery request rather than a systemic market event or a newly disclosed exploit with confirmed total losses.",
         "ai_score": 8.0,
@@ -271809,7 +273292,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A Binance hack drawing Fed and OCC review signals material exchange-security and regulatory stakes for U.S. banking exposure, though it is not yet a confirmed regulatory decision or a quantified loss event.",
         "ai_score": 8.0,
@@ -271842,27 +273325,26 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
-        "ai_reason": "The headline event (a $6.4B hack) predates the news window, so the scored development is Binance's in-window revocation of SignalPlus API keys — a concrete, material exchange security/operational action that cuts third-party trading access for affected users and signals post-incident containment. It is highly consequential for SignalPlus-integrated traders and for how exchanges treat third-party API providers, but it is a follow-on remediation step rather than a new systemic shock, keeping it below the 8.5+ tier reserved for the underlying exploit itself.",
-        "ai_score": 7.5,
-        "ai_summary": "Binance revoked SignalPlus API keys roughly a week after a $6.4B hack, tightening third-party access as part of post-incident security remediation.",
+        "ai_reason": "This is a concrete in-window development: Binance revoking SignalPlus API keys, an operational/security action taken roughly a week after an enormous $6.4B hack. The underlying exploit predates the news window and is background here, but the key revocation is new and signals that a widely used options/API provider may be implicated in a systemic-scale breach, with direct implications for traders whose integrations depend on those keys. Strong impact and novelty, though this is a follow-on action rather than the primary event.",
+        "ai_score": 8.0,
+        "ai_summary": "Binance revoked SignalPlus API keys about a week after a $6.4B hack, cutting off a third-party options trading and API provider in an apparent containment measure.",
         "ai_tags": [
-          "Binance",
-          "SignalPlus",
-          "API security",
-          "exchange operations",
-          "hack aftermath"
+          "binance",
+          "signalplus",
+          "api-keys",
+          "security",
+          "exchange-operations"
         ],
         "author": "Altcoin Buzz",
         "content": "<a href=\"https://news.google.com/rss/articles/CBMiigFBVV95cUxPM2ZCS2tPemNmVVNOWWZCVVhmRVlkbEtHX3lQQVYxU3NyUHBmZlBuQ0xiSlFkT0l3dHRfSmNyUmV3UFJUYjRMN0ZIbU0yem9lc1JGOFA2SzQyNWgtZC1SY01EWDNPbm5hcVFJRnQ1OUZCMmdRMEh3aUxMUnlLTDZSNnFJOGQ3MFNNZlE?oc=5\" target=\"_blank\">Binance Cuts SignalPlus API Keys a Week After $6.4B Hack</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Altcoin Buzz</font>",
-        "fetched_at": "2026-11-05T16:50:33.685897Z",
+        "fetched_at": "2026-11-05T20:56:22.107422Z",
         "id": "google_news:article:a9db9c0189c5ecfe",
         "metadata": {
           "category": "exchange-operations",
           "event_retry_pending": true,
           "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
-          "google_news_link_resolved": true,
           "publisher_url": "https://www.altcoinbuzz.io",
           "score_model": "deepseek:deepseek-flash",
           "source_category": "exchange-announcements",
@@ -271871,11 +273353,11 @@
         "published_at": "2026-11-05T15:10:56Z",
         "source_type": "google_news",
         "title": "Binance Cuts SignalPlus API Keys a Week After $6.4B Hack",
-        "url": "https://www.altcoinbuzz.io/binance-cuts-signalplus-api-keys-a-week-after-6-4b-hack"
+        "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPM2ZCS2tPemNmVVNOWWZCVVhmRVlkbEtHX3lQQVYxU3NyUHBmZlBuQ0xiSlFkT0l3dHRfSmNyUmV3UFJUYjRMN0ZIbU0yem9lc1JGOFA2SzQyNWgtZC1SY01EWDNPbm5hcVFJRnQ1OUZCMmdRMEh3aUxMUnlLTDZSNnFJOGQ3MFNNZlE?oc=5"
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A major consumer-electronics distribution deal that puts USDC stablecoin accounts on Solana inside Samsung Wallet for US Galaxy users. This is a concrete, in-window mainstream adoption and market-structure development with a clear transmission path for stablecoin payments and Solana ecosystem usage, comparable to significant stablecoin/custody partnerships. It falls short of groundbreaking because no new protocol capability or systemic market change is involved.",
         "ai_score": 7.5,
@@ -271912,7 +273394,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A $28B AI compute lease between Riot Platforms and Anthropic is a material market-structure and institutional-adoption development, tying a listed bitcoin miner's power capacity to a hyperscale AI tenant and giving the tenant contractual veto power over voluntary curtailment. That curtailment-veto term is structurally significant for grid/demand-response dynamics and for how miners reprice their energy assets toward AI hosting, so it merits high-value attention. It falls short of groundbreaking because it is a single corporate deal rather than a systemic or protocol-level event.",
         "ai_score": 7.5,
@@ -271949,7 +273431,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "Binance revoking all SignalPlus API keys after a third-party platform flagged a security risk is a material exchange operations/security action with direct implications for users of Binance's copy-trading and API ecosystem. Forced credential revocation can disrupt trading automation and linked accounts, making this more consequential than routine maintenance, but it falls short of a confirmed exploit with quantified losses, so it sits in the high-value rather than groundbreaking tier.",
         "ai_score": 7.5,
@@ -271982,7 +273464,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A concrete security-driven action by two major derivatives exchanges (Binance and Deribit) revoking a third-party trading platform's API access is a material operational and security development with potential exposure for users of SignalPlus. It sits below systemic-incident level because no confirmed losses or protocol-wide failure are indicated, but it clearly warrants immediate attention for affected traders and counterparties.",
         "ai_score": 7.5,
@@ -272015,7 +273497,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A concrete in-window security development: two major exchanges (Binance and Deribit) proactively revoked SignalPlus API keys, indicating a third-party integration compromise with potential exposure for options traders who connected accounts. This is more than routine maintenance — it is an exchange-level security response affecting a widely used trading platform, though the absence of reported fund losses keeps it below systemic-incident severity.",
         "ai_score": 7.5,
@@ -272048,7 +273530,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "The underlying event — a $6.3 billion theft from Binance, the largest exchange breach on record — is systemic in scale, and Pyongyang's official state denial is a concrete new development inside the window rather than a recap. However, the article's substance is a denial statement that does not itself alter the facts of the hack, attribution evidence, or market conditions, so it sits below the 8.5-10 tier reserved for the incident's confirmed material impact.",
         "ai_score": 7.5,
@@ -272081,7 +273563,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A new staked INJ ETF beginning Nasdaq trading is a meaningful market-structure development, introducing a yield-bearing ETF wrapper for a mid-cap token with a notable fee/reward split. It is a genuine in-window product launch, but limited to a single asset and short on details, so it sits below top-tier ETF or platform-wide developments.",
         "ai_score": 7.0,
@@ -272112,26 +273594,27 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
-        "ai_reason": "A concrete security-driven action by the largest exchange: Binance revoked all SignalPlus API keys, indicating a compromise or vulnerability affecting third-party trading-tool integrations. This is a material operational/security development for users who granted API access to SignalPlus, though the blast radius is confined to that integration rather than the exchange as a whole, keeping it below systemic-incident territory.",
-        "ai_score": 7.0,
-        "ai_summary": "Binance revoked all SignalPlus API keys following a security issue tied to the third-party options trading platform's integration, forcing affected users to re-authorize access and review permissions.",
+        "ai_reason": "Binance proactively revoking all SignalPlus API keys signals a material third-party security issue affecting trading integrations on a major exchange. The action has clear operational and user-security implications, though the scope appears limited to SignalPlus-connected keys and no confirmed losses are reported.",
+        "ai_score": 7.5,
+        "ai_summary": "Binance revoked all API keys associated with SignalPlus following a security issue, disabling the third-party options platform's trading integration for affected users.",
         "ai_tags": [
-          "binance",
-          "signalplus",
-          "api-security",
-          "exchange-operations",
-          "third-party-integration"
+          "Binance",
+          "SignalPlus",
+          "API keys",
+          "security incident",
+          "exchange operations"
         ],
         "author": "marketscreener.com",
         "content": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxOS3psU3RLNkIzUHUwbnVJVTR0eWFSZ2RySkNiYWNublVtanFEajhrakVSSFFNWC1BaHZvc0JIWFo5bzZ5NV9ZNXJlZ3BZZy1yOFNlQ1JRcXU5MklLX3Q3cjZpeUd2UktfZG1yUnUtYU9DWnlBM0FNYkZFLWJrNkItTVFpOERKN1BILU5aSHpoUG14Y3dHUTFtTkJjUEdkbzluMXhEc1BTSFJtb3RYZkpOOW9lcw?oc=5\" target=\"_blank\">Binance removes all SignalPlus API keys after security issue</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">marketscreener.com</font>",
-        "fetched_at": "2026-11-05T16:50:33.683288Z",
+        "fetched_at": "2026-11-05T20:56:22.105045Z",
         "id": "google_news:article:d298f3205040c768",
         "metadata": {
           "category": "exchange-operations",
           "event_retry_pending": true,
           "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
           "publisher_url": "https://www.marketscreener.com",
           "score_model": "deepseek:deepseek-flash",
           "source_category": "exchange-announcements",
@@ -272140,11 +273623,11 @@
         "published_at": "2026-11-05T15:13:39Z",
         "source_type": "google_news",
         "title": "Binance removes all SignalPlus API keys after security issue",
-        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOS3psU3RLNkIzUHUwbnVJVTR0eWFSZ2RySkNiYWNublVtanFEajhrakVSSFFNWC1BaHZvc0JIWFo5bzZ5NV9ZNXJlZ3BZZy1yOFNlQ1JRcXU5MklLX3Q3cjZpeUd2UktfZG1yUnUtYU9DWnlBM0FNYkZFLWJrNkItTVFpOERKN1BILU5aSHpoUG14Y3dHUTFtTkJjUEdkbzluMXhEc1BTSFJtb3RYZkpOOW9lcw?oc=5"
+        "url": "https://www.marketscreener.com/news/binance-removes-all-signalplus-api-keys-after-security-issue-ce785fdcd089f223"
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A top exchange revoking a third-party trading platform's access following a security warning is a material operational and security development with a direct transmission path to affected users' funds and account integrity. It falls short of a confirmed large-scale exploit or systemic incident because the article reports an access cutoff and precautionary account checks rather than quantified losses, but it is well above routine listing or maintenance news.",
         "ai_score": 7.0,
@@ -272177,7 +273660,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A concrete Binance security action affecting a third-party trading platform integration. It is more significant than routine maintenance because API-key revocation can disrupt trading operations, but the threat is described as potential rather than a confirmed exploit with known user losses.",
         "ai_score": 7.0,
@@ -272210,7 +273693,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A concrete security-driven operational action: two major exchanges (Binance and Deribit) revoked SignalPlus API keys, forcing users of a widely used options trading terminal to re-authorize and signaling a real third-party integration risk. It is a meaningful exchange/security operations development, but it is scoped to one third-party platform rather than a systemic or large-loss exploit, and no material fund loss is evidenced, so it sits below the 8+ tier.",
         "ai_score": 7.0,
@@ -272243,7 +273726,7 @@
       }
     },
     {
-      "attempts": 1,
+      "attempts": 2,
       "item": {
         "ai_reason": "A top exchange proactively revoking every API key issued to a third-party trading platform (SignalPlus) is a material security/operational action with direct consequences for users who had delegated trading permissions — it forces key rotation and signals a concrete vulnerability or compromise. Impact is real but bounded to a single integration rather than the exchange's core systems, and no confirmed loss figure is evident, so it sits below systemic-incident territory.",
         "ai_score": 7.0,
@@ -272273,6 +273756,546 @@
         "source_type": "google_news",
         "title": "Binance removes all SignalPlus API keys after security issue",
         "url": "https://sg.finance.yahoo.com/news/binance-removes-signalplus-api-keys-110858051.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Bitcoin falling below $76,000 amid a broader risk-off move that erased $2.5 trillion in Wall Street value is a systemic market event with material impact on crypto positioning, liquidations, and investor sentiment. Immediate, market-wide transmission path rather than routine commentary.",
+        "ai_score": 8.5,
+        "ai_summary": "Bitcoin broke below $76,000 as AI-bubble concerns triggered a $2.5 trillion selloff across Wall Street, dragging crypto into a broad risk-asset drawdown.",
+        "ai_tags": [
+          "bitcoin",
+          "market-selloff",
+          "ai-bubble",
+          "risk-off",
+          "macroeconomics"
+        ],
+        "author": "CryptoSlate",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxNdUcydldibTY2YnBEQk5FNHBCdTNDaE4zZ0t0V3U2TzNsSjRDOTl4MHgzSUVSSlBaUzI4ZVcyYTdqX3MtalI4LXl1d0pCLUhidUdYOWd3ekdPMzVxUXRIX2lxeGRxZ0c1dDY1NzYtZnd6cjN0ZmFJZEQ1XzBKNEkyR1d5emt1ZXpZbk9GY0FiRGdHRTlYQ1ZRUXVYV2l0cDhGWWhXMjFLSEQ3Zw?oc=5\" target=\"_blank\">Bitcoin crashes below $76,000 as AI bubble fears wipe $2.5 trillion from Wall Street</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoSlate</font>",
+        "fetched_at": "2026-11-05T20:58:11.896578Z",
+        "id": "google_news:article:842e4fc700c740ff",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "CryptoSlate",
+          "gn_query": "site:cryptoslate.com",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://cryptoslate.com/feed/",
+          "publisher_url": "https://cryptoslate.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "CryptoSlate"
+        },
+        "published_at": "2026-11-05T18:50:46Z",
+        "source_type": "google_news",
+        "title": "Bitcoin crashes below $76,000 as AI bubble fears wipe $2.5 trillion from Wall Street",
+        "url": "https://cryptoslate.com/bitcoin-crashes-below-76000-as-ai-bubble-fears-wipe-2-5-trillion-from-wall-street/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A confirmed breach at Binance — the largest exchange by volume — that triggers US banking regulators (Fed, OCC) to examine supervised banks' exposure is a material security incident with potential contagion into traditional finance. That cross-over into bank supervision lifts it above a routine exchange incident; it falls short of the 9.5-10 systemic tier only because the loss magnitude and scope of bank exposure are not yet established in the report.",
+        "ai_score": 8.5,
+        "ai_summary": "The Federal Reserve and OCC are reviewing US banks' exposure and security controls following a hack at Binance, as security experts warn of broader risks from the breach.",
+        "ai_tags": [
+          "binance",
+          "exchange-hack",
+          "security",
+          "banking-regulation",
+          "contagion-risk"
+        ],
+        "author": "TradingView",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi0gFBVV95cUxOeHk5TVUtZ0IxdklzTzdkNVd5aWtlcjNmdzI4R0I3Q0RqQ3VySDhXRGY1R1ZJOElRSGd0bXp4eFlOSG10d0dFRXZXZVdUUWQ5TkdWeTZQdWh5SGpJU1dnR0cyLVplT3NsTkgtczkyNzVvY3ptSFZURHBZSC0tNU4wM1gzM1FydFlHeWhfZVlSbEJDbDMyV1YzS3NldEVfYWwwRUdkREtTWUpNdHV0WXM2RkNJSC1PQ1NNbGJIZzByakhEQVVXMWJLQzl5TnJLbDNEVVE?oc=5\" target=\"_blank\">Fed, OCC check US banks after Binance hack as experts flag security risks</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">TradingView</font>",
+        "fetched_at": "2026-11-05T20:56:22.103871Z",
+        "id": "google_news:article:09e1495f0bf1b798",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.tradingview.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "TradingView"
+        },
+        "published_at": "2026-11-05T18:32:45Z",
+        "source_type": "google_news",
+        "title": "Fed, OCC check US banks after Binance hack as experts flag security risks",
+        "url": "https://www.tradingview.com/news/cointelegraph:c30a659ef094b:0-fed-occ-check-us-banks-after-binance-hack-as-experts-flag-security-risks/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "NVIDIA releasing new open-weight Cosmos 3 models for interactive world simulation is a substantive AI lab release with open-weights availability and clear implications for robotics, simulation, and embodied-AI developers. It is a notable developer-ecosystem release rather than a frontier-LLM paradigm shift, so it lands at high-value rather than groundbreaking.",
+        "ai_score": 7.5,
+        "ai_summary": "NVIDIA published new Cosmos 3 open models on Hugging Face aimed at interactive world simulation, expanding open tooling for building simulated environments and embodied-AI applications.",
+        "ai_tags": [
+          "nvidia",
+          "cosmos",
+          "open-weights",
+          "world-models",
+          "simulation"
+        ],
+        "author": "Hugging Face Blog",
+        "content": "",
+        "fetched_at": "2026-11-05T20:59:53.084971Z",
+        "id": "rss:huggingface.co_blog_feed.xml:f25b9201ad6bdcc6",
+        "metadata": {
+          "category": "ai-labs",
+          "event_retry_pending": true,
+          "feed_name": "Hugging Face Blog",
+          "score_model": "deepseek:deepseek-flash",
+          "tags": []
+        },
+        "published_at": "2026-11-05T19:35:16Z",
+        "source_type": "rss",
+        "title": "New NVIDIA Cosmos 3 Open Models for Interactive World Simulation",
+        "url": "https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Base, one of the largest Ethereum L2s by activity, shipped a mainnet protocol upgrade that replaces the Flashblocks preconfirmation mechanism with native 200ms block times — a material change to network infrastructure and transaction UX rather than a routine product update. It falls short of groundbreaking status because no failure, security issue, or market-structure shift is involved, but it is a high-value engineering milestone for builders and users on a widely used network.",
+        "ai_score": 7.5,
+        "ai_summary": "Base activated its Denim upgrade on mainnet, swapping the Flashblocks system for native 200ms block production to speed up transaction confirmation on the L2.",
+        "ai_tags": [
+          "Base",
+          "Layer 2",
+          "protocol upgrade",
+          "block times",
+          "Ethereum scaling"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi1wFBVV95cUxPdlNpQnl0cDJJeU1BbzRFa01KUGFxRWhyMVVVNXc4WUQ5M2FrTERkZjQxOC1fTFVGUDdoWTFPN0tQanJ5Vkl0ZG5QWDBSZ1l0MTNfZWVzZWh4SXhZNmtQZnJCTWs2ekF1Wk9SQVA5NFh2RjBJWTJRN0xzQUxYeVgzM09Mam9XbnUxVEUzVDZqV1ZxdGpOaVlvaEY2NWIxWlZpc0dBNTNtXzZTNGNDU2NCSVRWSUtMU205dmVZd2pjYzBIOHNlQVR5Xy1aVHRGcGJJU0pJZ2d0dw?oc=5\" target=\"_blank\">Base deploys Denim upgrade on mainnet, replacing Flashblocks with 200ms block times</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-11-05T20:56:21.199385Z",
+        "id": "google_news:article:7da778425c95f20a",
+        "metadata": {
+          "category": "crypto-protocols",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-11-05T19:11:00Z",
+        "source_type": "google_news",
+        "title": "Base deploys Denim upgrade on mainnet, replacing Flashblocks with 200ms block times",
+        "url": "https://www.theblock.co/news/ecosystems/2026-11-05-base-deploys-denim-upgrade-on-mainnet-replacing-flashblocks-with-200ms-block-times-434433"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A security incident affecting a widely used third-party options trading platform, prompting two major exchanges (Binance and Deribit) to revoke SignalPlus API keys. Exchange-level revocation of a trading tool's API access is a material operational security action with a credible transmission path to user funds and trading continuity, and the social-engineering vector (fake Microsoft Teams invite) is notable. It falls short of the 8.5+ band because no confirmed loss figure or systemic contagion is evidenced in the headline.",
+        "ai_score": 7.5,
+        "ai_summary": "Binance and Deribit revoked SignalPlus API keys after a social-engineering attack in which attackers used fake Microsoft Teams invitations to compromise the trading platform's credentials.",
+        "ai_tags": [
+          "security-incident",
+          "social-engineering",
+          "api-keys",
+          "exchange-operations",
+          "crypto-options"
+        ],
+        "author": "TradingView",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMi0wFBVV95cUxPUHNnWi0xM2NXLW9lVnQyRGxZSkZsSElMN2dWdlQ0MGhPMTIyYjUydzF4QzYxMXhOcExtWVJMWXpsdEhyTzA5M0w2cDFrcmxzYWQ3OXNLUkFmNFpKc0RkdFVWc2Q0RVN6NWpkM1d0OTdrOVlDbF9ISFozZ2t0QkhWOVQyZS1jOHBmcWNSeDl1RjQ5cG5GODk5WFBTSWpWc0JGcGFxeC1RUXdubU1pZG1ndlJoaVhZbzVLeEFVVEQxdDJsTWx2a3VBWnRtajJ0bFVFUU1r?oc=5\" target=\"_blank\">Binance, Deribit revoke SignalPlus API keys after fake Teams invite attack</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">TradingView</font>",
+        "fetched_at": "2026-11-05T20:56:22.105450Z",
+        "id": "google_news:article:6380306152a01c93",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.tradingview.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "TradingView"
+        },
+        "published_at": "2026-11-05T19:02:19Z",
+        "source_type": "google_news",
+        "title": "Binance, Deribit revoke SignalPlus API keys after fake Teams invite attack",
+        "url": "https://www.tradingview.com/news/cointelegraph:c7d1f99ff094b:0-binance-deribit-revoke-signalplus-api-keys-after-fake-teams-invite-attack/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A security advisory for a widely used Ethereum execution client and OP Stack components is high-value infrastructure news, especially with patched builds and Gauntlet curtailing deposits/allocations. However, there is no confirmed exploit or material loss, keeping it below systemic-event territory.",
+        "ai_score": 7.5,
+        "ai_summary": "Blockaid warned that a Reth bug could produce incorrect state proofs and listed patched builds for reth, op-reth, and Base, while Gauntlet curtailed deposits and allocations as a precaution.",
+        "ai_tags": [
+          "reth",
+          "ethereum",
+          "security",
+          "state-proofs",
+          "base"
+        ],
+        "author": "The Defiant Team",
+        "content": "Blockaid listed patched builds for reth, op-reth and Base, while Gauntlet curtailed deposits and allocations.",
+        "fetched_at": "2026-11-05T20:57:45.490256Z",
+        "id": "rss:thedefiant.io_api_feed:cf8587185aa7a569",
+        "metadata": {
+          "category": "crypto-protocols",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "score_model": "deepseek:deepseek-flash",
+          "tags": []
+        },
+        "published_at": "2026-11-05T18:18:06Z",
+        "source_type": "rss",
+        "title": "Blockaid Warns Reth Bug Can Produce Incorrect State Proofs",
+        "url": "https://thedefiant.io/news/security/blockaid-warns-reth-bug-can-produce-incorrect-state-proofs"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A security breach involving Binance is a high-signal exchange-operations event with direct implications for user trust and centralized-exchange risk. The item is framed as expert commentary on operational risks rather than a primary incident disclosure, so it merits strong attention but not the top tier reserved for confirmed systemic or large-loss breaches.",
+        "ai_score": 7.5,
+        "ai_summary": "A CNBC Africa discussion with Chimezie examines how a Binance security breach underscores operational risks for centralized crypto exchanges.",
+        "ai_tags": [
+          "Binance",
+          "security breach",
+          "exchange operations",
+          "operational risk",
+          "crypto exchanges"
+        ],
+        "author": "CNBC Africa",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxQVUdxdUJENFcyZF9NaVloRnUtSXB2bmtWb0hiV1g4ZVF0SHIzeFltTk1DRkxUWTlTWXNrRF9TLTZhc2NfMlVwR0MwT0otN3JuZzBOUnVBUDVrUl9TOTRWZGJGWlRsRGlJS1JYTEwxWHJodnduNlJvYS1xaXRMM0oyaHExV0JvS3JEdkFrcFp6Z29rTGNxb3lQMEhPQWdBdFZZRUpjV2hGdWVnaTdF?oc=5\" target=\"_blank\">Chimezie: Binance security breach highlights operational risks</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CNBC Africa</font>",
+        "fetched_at": "2026-11-05T20:56:22.103775Z",
+        "id": "google_news:article:b42db4147290129d",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.cnbcafrica.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "CNBC Africa"
+        },
+        "published_at": "2026-11-05T14:53:11Z",
+        "source_type": "google_news",
+        "title": "Chimezie: Binance security breach highlights operational risks",
+        "url": "https://www.cnbcafrica.com/media/7793889085962/chimezie-binance-security-breach-highlights-operational-risks"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Binance revoking SignalPlus API keys over a 'potential security issue' is a consequential exchange-security action affecting a third-party trading platform and its users' ability to trade via API. Concrete, in-window operational development with real access and fund-safety implications, though scope and losses are unconfirmed, keeping it below systemic-incident territory.",
+        "ai_score": 7.5,
+        "ai_summary": "Binance revoked SignalPlus's API keys citing a potential security issue at the third-party trading platform, disrupting automated trading and API access for affected users.",
+        "ai_tags": [
+          "binance",
+          "signalplus",
+          "api-security",
+          "exchange-operations",
+          "third-party-risk"
+        ],
+        "author": "Yahoo Finance",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxOR3pHUnU4aVhmdnZfRHBReklPYlBhNl9CdTdWMlg1enFSakZvR2x4VXMwczRqRDZQMG95bThFNHlEeDF6Mk1uX0RZMXF6elVjUk0weHhkS2pKbnJQQl9vc3EwTlBzaHJKM2NCTEtNRG1uNGJUdnJaV1FnalpOcVpXUU5jZXB1WndHLXpvR1hzOGIzaVhpNWNCVGtNY08?oc=5\" target=\"_blank\">Binance Cuts Off SignalPlus API Keys Over 'Potential Security Issue' at Trading Platform</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Yahoo Finance</font>",
+        "fetched_at": "2026-11-05T20:56:22.103980Z",
+        "id": "google_news:article:6038d4f92d75f6c1",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://finance.yahoo.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Yahoo Finance"
+        },
+        "published_at": "2026-11-05T12:23:24Z",
+        "source_type": "google_news",
+        "title": "Binance Cuts Off SignalPlus API Keys Over 'Potential Security Issue' at Trading Platform",
+        "url": "https://finance.yahoo.com/markets/crypto/articles/binance-cuts-off-signalplus-api-122324492.html"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "Reports a Binance theft traced to a job-interview social-engineering lure, a materially relevant exchange-security development; however, the source is a secondary AI-focused article and provides no verified loss figure or primary incident disclosure, limiting confidence in immediate market impact.",
+        "ai_score": 7.0,
+        "ai_summary": "An article reports that a Binance theft began with a job-interview lure, highlighting access control as the critical factor in the breach.",
+        "ai_tags": [
+          "Binance",
+          "exchange security",
+          "social engineering",
+          "access control",
+          "crypto theft"
+        ],
+        "author": "Unite.AI",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMieEFVX3lxTE9xcERDTUh5SG13UFY2ellQMzlUNmZmY21jRk9vdzQyZWloZGNmeElnTXBGVjlUVURqck9Zb2JDNms0UUVJN05RSDROclFmc2FiTmM1LVpzcHNrRk9WS1BSa0laTWdobURKV2RyVVJiSnYzRnFWWDdndA?oc=5\" target=\"_blank\">The Binance Theft Started With a Job Interview: Access Decided the Cost</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Unite.AI</font>",
+        "fetched_at": "2026-11-05T20:56:22.104211Z",
+        "id": "google_news:article:d96f65d5b19f3bc8",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://www.unite.ai",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "Unite.AI"
+        },
+        "published_at": "2026-11-05T20:44:44Z",
+        "source_type": "google_news",
+        "title": "The Binance Theft Started With a Job Interview: Access Decided the Cost",
+        "url": "https://www.unite.ai/binance-hack-developer-security-recruiter-lures/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A material market-wide crypto selloff with over $1 billion in liquidations and Bitcoin surrendering post-election gains. It reflects significant deleveraging and macro transmission from Wall Street, but it is a price/volatility event rather than a structural exchange, protocol, or regulatory change.",
+        "ai_score": 7.0,
+        "ai_summary": "Bitcoin gave back its post-election gains as a broader Wall Street selloff triggered more than $1 billion in crypto liquidations.",
+        "ai_tags": [
+          "bitcoin",
+          "crypto-liquidations",
+          "market-selloff",
+          "wall-street",
+          "volatility"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxPbGZzRkQ1RDZIajBuWW9GaHY2V0VQbzhaV3FPZ2FOakZYREgyMkt4Y1A0Zk5MN2VKdUs4d2l5SGJIaF9qUFc3em5kbkhhSTUtSGtXTm1jTm1UMkN2ODJfUDB0QzYwUHVjc0RhTm44YnJQQXlSek1renZ6RXVJbG1XMzdMSFBZSlUzX2RhcC16cGh3YkRIaWJUZ0VrNmRxWVZIYktJTWlSZkNMekVaSmstYjRqdmxDZkdydUU5NzhGRQ?oc=5\" target=\"_blank\">Bitcoin erases post-election gains as Wall Street selloff triggers over $1 billion in crypto liquidations</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-11-05T20:56:21.198978Z",
+        "id": "google_news:article:35b33a8f4c9c94e6",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-11-05T20:11:00Z",
+        "source_type": "google_news",
+        "title": "Bitcoin erases post-election gains as Wall Street selloff triggers over $1 billion in crypto liquidations",
+        "url": "https://www.theblock.co/news/markets/2026-11-05-bitcoin-erases-post-election-gains-wall-street-selloff-liquidations-435434"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A California tribal court order bars Kalshi from offering sports contracts on tribal lands and requires a compliance report within 21 days. This is a meaningful legal/regulatory development for prediction markets and tribal gaming exclusivity, but its direct market-access impact is geographically limited rather than platform-wide.",
+        "ai_score": 7.0,
+        "ai_summary": "California tribes obtained an order barring Kalshi sports contracts on their lands, with Kalshi required to report compliance steps within 21 days after disputing the effectiveness of its voluntary location blocks.",
+        "ai_tags": [
+          "Kalshi",
+          "prediction markets",
+          "California tribes",
+          "sports contracts",
+          "regulatory order"
+        ],
+        "author": "The Defiant Team",
+        "content": "Kalshi must report compliance steps within 21 days, after the tribes disputed the effectiveness of its voluntary location blocks.",
+        "fetched_at": "2026-11-05T20:57:45.489786Z",
+        "id": "rss:thedefiant.io_api_feed:05a09bed5410a24e",
+        "metadata": {
+          "category": "macro-regulation",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-protocols",
+          "tags": []
+        },
+        "published_at": "2026-11-05T20:07:05Z",
+        "source_type": "rss",
+        "title": "California Tribes Win Order Barring Kalshi Sports Contracts on Their Lands",
+        "url": "https://thedefiant.io/news/regulation/california-tribes-win-order-barring-kalshi-sports-contracts-on-their-lands"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A fresh South Korean policy proposal to postpone the 22% crypto gains tax once more and add loss-offsetting relief. Tax treatment directly shapes retail participation and market access in one of Asia's largest crypto markets, so this is a high-value regulatory development, though it remains a proposal rather than an enacted decision, capping the score below landmark status.",
+        "ai_score": 7.0,
+        "ai_summary": "South Korea's government is moving to delay implementation of its 22% tax on crypto gains yet again while introducing a new provision allowing investors to offset losses.",
+        "ai_tags": [
+          "south-korea",
+          "crypto-tax",
+          "regulation",
+          "retail-investors",
+          "policy"
+        ],
+        "author": "CryptoSlate",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxPRzcxMG80SE5kazN3UzRDMHJNNUdRVzkxZlFMdXFHTjlTSjIxN01sM09kQ0QyUm5vVE1abkpjb09LVzA0WElxTUlxVkdwc21sY19VOWM1TFZlYUxYOG9hdVFNcUN4ckF4aU01ejh3M2xheTBfRGthdUw5X0JKSTZiWWp5eHd2NHBEZWxjb1VBcFQ3UkRveElDMnlDTHRiTXpPZnpxa0NSVy1JUmxJb2JmS0JYQl9SQ00?oc=5\" target=\"_blank\">South Korea wants to delay its 22% crypto tax again and give investors a new break on losses</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CryptoSlate</font>",
+        "fetched_at": "2026-11-05T20:58:11.898311Z",
+        "id": "google_news:article:e5a74d0b45f398f6",
+        "metadata": {
+          "category": "crypto-regulation",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "CryptoSlate",
+          "gn_query": "site:cryptoslate.com",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://cryptoslate.com/feed/",
+          "publisher_url": "https://cryptoslate.com",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "crypto-markets",
+          "source_name": "CryptoSlate"
+        },
+        "published_at": "2026-11-05T19:30:45Z",
+        "source_type": "google_news",
+        "title": "South Korea wants to delay its 22% crypto tax again and give investors a new break on losses",
+        "url": "https://cryptoslate.com/south-korea-wants-to-delay-its-22-crypto-tax-again-and-give-investors-a-new-break-on-losses/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A new cybersecurity model from OpenAI is a notable AI-lab release with potential implications for digital-infrastructure defense and AI safety scrutiny, but the available information points to a specialized model rather than a frontier capability jump or industry-reshaping event.",
+        "ai_score": 7.0,
+        "ai_summary": "OpenAI released a specialized cybersecurity model amid growing scrutiny of how AI labs protect digital infrastructure.",
+        "ai_tags": [
+          "OpenAI",
+          "cybersecurity",
+          "AI models",
+          "AI safety"
+        ],
+        "author": "Tim Fernholz",
+        "content": "OpenAI's newest cybersecurity model comes out as AI labs face scrutiny of their work to protect digital infrastructure.",
+        "fetched_at": "2026-11-05T20:59:55.644047Z",
+        "id": "rss:techcrunch.com_category_artificial-intelligence_feed_:902b5ae96b9b8d21",
+        "metadata": {
+          "category": "ai-labs",
+          "event_retry_pending": true,
+          "feed_name": "TechCrunch AI",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "ai-media",
+          "tags": [
+            "AI",
+            "cybersecurity",
+            "OpenAI"
+          ]
+        },
+        "published_at": "2026-11-05T19:06:12Z",
+        "source_type": "rss",
+        "title": "OpenAI released a new cybersecurity model. Is that enough?",
+        "url": "https://techcrunch.com/2026/11/05/openai-released-a-new-cybersecurity-model-is-that-enough/"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A confirmed security incident involving a Floki-operated trading bot, prompting the team to take it offline, warn against further deposits, and plan wallet migrations for affected users. This is a concrete exploit response with direct user impact, but the apparent scope is limited to bot wallets and no material losses or systemic contagion are quantified, placing it below major protocol exploit territory.",
+        "ai_score": 7.0,
+        "ai_summary": "Floki has taken its trading bot offline during an exploit investigation and plans to move affected users to new wallets while warning against further deposits into bot wallets.",
+        "ai_tags": [
+          "security",
+          "exploit",
+          "Floki",
+          "trading-bot",
+          "wallet-migration"
+        ],
+        "author": "The Defiant Team",
+        "content": "The team plans to move affected users to new wallets and warns against further deposits into bot wallets.",
+        "fetched_at": "2026-11-05T20:57:45.490561Z",
+        "id": "rss:thedefiant.io_api_feed:2f4eb87525762a42",
+        "metadata": {
+          "category": "crypto-protocols",
+          "event_retry_pending": true,
+          "feed_name": "The Defiant",
+          "score_model": "deepseek:deepseek-flash",
+          "tags": []
+        },
+        "published_at": "2026-11-05T17:17:51Z",
+        "source_type": "rss",
+        "title": "Floki Takes Trading Bot Offline Amid Exploit Investigation",
+        "url": "https://thedefiant.io/news/security/floki-takes-trading-bot-offline-amid-exploit-investigation"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A Binance-related theft is consequential for exchange security and user trust, but the report is framed as expert commentary and lacks quantified losses, affected-user details, or confirmed operational specifics, placing it below confirmed major-loss incidents.",
+        "ai_score": 7.0,
+        "ai_summary": "Security experts are warning that a theft involving Binance reveals weaknesses in the exchange's access controls.",
+        "ai_tags": [
+          "Binance",
+          "exchange-security",
+          "access-controls",
+          "theft",
+          "cybersecurity"
+        ],
+        "author": "SecurityBrief New Zealand",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxPSkdocHREZldoSjZVUEloeUtzQTdfZklEMTIyWU9fbm9na2xxV0YxU0VEUHc5X3RtYUNRWlFuZ0JIczJEMW11ZklFR1hobU5lbGQ5ZXhNbWdrOHFvcjdUSHpWY2ZjYnpxOC12MWRla1NPYy0yY1Y5R0otWUs0ZmVPOXVQb3NyanllRXBGc1R2cHBNOHc?oc=5\" target=\"_blank\">Binance theft exposes weak access controls, experts warn</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">SecurityBrief New Zealand</font>",
+        "fetched_at": "2026-11-05T20:56:22.106088Z",
+        "id": "google_news:article:5958f228ba63d662",
+        "metadata": {
+          "category": "exchange-operations",
+          "event_retry_pending": true,
+          "gn_query": "(Binance OR OKX OR Bybit OR Coinbase OR Kraken) (listing OR delisting OR maintenance OR security OR regulation)",
+          "google_news_link_resolved": true,
+          "publisher_url": "https://securitybrief.co.nz",
+          "score_model": "deepseek:deepseek-flash",
+          "source_category": "exchange-announcements",
+          "source_name": "SecurityBrief New Zealand"
+        },
+        "published_at": "2026-11-05T17:15:00Z",
+        "source_type": "google_news",
+        "title": "Binance theft exposes weak access controls, experts warn",
+        "url": "https://securitybrief.co.nz/story/binance-theft-exposes-weak-access-controls-experts-warn"
+      }
+    },
+    {
+      "attempts": 1,
+      "item": {
+        "ai_reason": "A staking-enabled altcoin ETF reaching a Nasdaq debut is a genuine new market-structure development: it extends ETF packaging beyond plain spot exposure to include staking yield, a template other issuers may follow. Impact is capped because the underlying asset (Injective) is mid-cap and initial flows are likely modest relative to BTC/ETH products, placing it below top-tier ETF milestones but above routine listings.",
+        "ai_score": 7.0,
+        "ai_summary": "Canary launched the first Injective-focused ETF on Nasdaq (ticker INJC), giving investors regulated exposure to INJ alongside staking rewards generated by the underlying token.",
+        "ai_tags": [
+          "etf",
+          "injective",
+          "staking",
+          "nasdaq",
+          "institutional-adoption"
+        ],
+        "author": "The Block",
+        "content": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxObkVSMHpjalhrMkVwa190b2VoaEVaZlo0LVB2ZFRXYjFsdUJTN2ljZkpVNUJRYjR5eWE4UGtxQTJuZlZIcE1Ec3dDUkNSQVlYNlZNQmhjTTQ1aUxSNVNWOENnTnVReUdLWTdGVUl2RWZiUkJiWi1pWG5TVVItZjl4cURLejJXMXlmakJZMVFTbVJwUzJaU3NoZTV1dmhmQQ?oc=5\" target=\"_blank\">Canary's Injective ETF debuts on Nasdaq with exposure to staking rewards</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Block</font>",
+        "fetched_at": "2026-11-05T20:56:21.199254Z",
+        "id": "google_news:article:ba7666f1e0bc2be7",
+        "metadata": {
+          "category": "crypto-markets",
+          "collection_method": "google_news_fallback",
+          "event_retry_pending": true,
+          "feed_name": "The Block",
+          "gn_query": "site:theblock.co",
+          "google_news_link_resolved": true,
+          "headline_only": true,
+          "original_feed_error": "HTTP 403",
+          "original_feed_url": "https://www.theblock.co/rss.xml",
+          "publisher_url": "https://www.theblock.co",
+          "score_model": "deepseek:deepseek-flash",
+          "source_name": "The Block"
+        },
+        "published_at": "2026-11-05T16:53:00Z",
+        "source_type": "google_news",
+        "title": "Canary's Injective ETF debuts on Nasdaq with exposure to staking rewards",
+        "url": "https://www.theblock.co/news/markets/2026-11-05-canary-staked-inj-etf-launches-nasdaq-injc-435115"
       }
     }
   ],
