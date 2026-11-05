@@ -99,14 +99,27 @@
       "current_state_en": "The investigation identified an attack vector affecting versions 2.4.1 and earlier; the team advises upgrading to 2.4.7 and says there are no credible reports of hot-wallet theft for users on the latest release.",
       "detailed_summary_zh": "BTPay Server disclosed an attack vector affecting instances on version 2.4.1 or earlier, urged users to upgrade to 2.4.7, and said no credible reports of hot-wallet theft exist for users on the latest release.",
       "detailed_summary_en": "BTPay Server disclosed an attack vector affecting instances on version 2.4.1 or earlier, urged users to upgrade to 2.4.7, and said no credible reports of hot-wallet theft exist for users on the latest release.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "这一结论是在此前警告之后发布的：当时 BTCPay 在调查热钱包未授权提现报告期间，要求运营方临时关停服务器实例，并提供了关停指引。不到三个月前，BTCPay 曾在一次 8 月攻击后限制远程闪电网络访问，该攻击利用漏洞获取闪电网络守护进程（LND）凭证并盗取资金。目前尚不清楚本次攻击面是否与 8 月的漏洞有关。",
+      "background_en": "The findings follow an earlier warning in which BTCPay urged operators to shut down server instances while it investigated reports of unauthorized withdrawals from hot wallets, and shared instructions for doing so. Less than three months earlier, BTCPay had restricted remote Lightning access after an August attack that exploited a vulnerability to obtain Lightning Network Daemon (LND) credentials and steal funds. It remains unclear whether the current attack vector is connected to that August vulnerability.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "风险敞口位于自托管 BTCPay 实例上由商户自行运营的热钱包，这类钱包存放的是用于接收比特币支付的日常余额，而非交易所或托管机构的储备，因此传导渠道是商户资金的运营安全，而非市场流动性。由于受影响数量和损失规模尚未披露，对整体比特币市场结构的影响有限。",
+      "market_impact_en": "The exposure sits with merchant-operated hot wallets on self-hosted BTCPay instances, which hold working balances for accepting Bitcoin payments rather than exchange or custodian reserves, so the transmission channel is operational security of merchant funds rather than market liquidity. With affected counts and losses undisclosed, the read-through to broader BTC market structure is limited.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://coinedition.com/btcpay-server-attack-hits-older-versions-what-bitcoin-merchants-should-do-now/",
+          "title": "BTCPay Server Attack Hits Older Versions: What Bitcoin ..."
+        },
+        {
+          "url": "https://coinmarketcap.com/academy/article/btcpay-server-flags-new-hot-wallet-attack-vector-on-outdated-builds",
+          "title": "BTCPay Server Flags New Hot Wallet Attack Vector on Outdated ..."
+        },
+        {
+          "url": "https://btcpayserver.org/",
+          "title": "BTCPay Server"
+        }
+      ],
       "confidence": 0.9,
       "story_ids": [
         "telegram:foresightnews:121930",

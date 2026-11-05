@@ -103,14 +103,27 @@
       "current_state_en": "THORChain treasury solvency has been restored after a user returned the 10 ETH, but trading remains paused across most affected chains while core developers work on fixes and node operators decide whether to re-enable each chain after safety checks.",
       "detailed_summary_zh": "THORChain resumed treasury solvency after a user returned 10 ETH that was erroneously paid out following an Ethereum block reorganization, while trading remained paused across ten chains pending safety checks and fixes.",
       "detailed_summary_en": "THORChain resumed treasury solvency after a user returned 10 ETH that was erroneously paid out following an Ethereum block reorganization, while trading remained paused across ten chains pending safety checks and fixes.",
-      "background_zh": "",
-      "background_en": "",
+      "background_zh": "THORChain 是一个运行在多个原生区块链上的跨链流动性协议，由经济激励的节点运营者维护安全，其网络基于 Tendermint 和 Cosmos SDK 构建。链重组（reorg）指节点用另一条有效分支替换现有链历史的一部分，可能因同时出块、程序缺陷或攻击而发生。",
+      "background_en": "THORChain is a cross-chain liquidity protocol that runs on multiple native blockchains and is secured by economically incentivized node operators, with its network built on Tendermint and the Cosmos SDK. A chain reorganization, or reorg, occurs when nodes replace part of the existing chain history with a different valid branch, which can happen when blocks are produced simultaneously, through a bug, or via an attack.",
       "community_discussion_zh": "",
       "community_discussion_en": "",
-      "market_impact_zh": "",
-      "market_impact_en": "",
+      "market_impact_zh": "RUNE 及 THORChain 的跨链兑换路径受影响最直接：包括 BTC、ETH、SOL、BSC 在内的十条链暂停，意味着这些兑换通道失去吞吐能力，协议内的流动性场所收窄，直至节点运营者恢复签名。金库恢复偿付能力消除了即时的资产负债表损失，但预防性暂停范围之广，使 RUNE 相关板块仍面临运营与情绪层面的风险。",
+      "market_impact_en": "RUNE and THORChain's cross-chain swap routes are the most directly exposed: with ten chains including BTC, ETH, SOL and BSC paused, those swap corridors lose throughput and the protocol's liquidity venues narrow until node operators re-enable signing. The restored treasury removes an immediate balance-sheet loss, but the breadth of the precautionary halt keeps operational and sentiment risk on the RUNE-linked segment.",
       "importance_score": 7.5,
-      "references": [],
+      "references": [
+        {
+          "url": "https://thorchain.org/blog/under-the-hood-checking-thorchains-solvency",
+          "title": "Under the Hood: Checking THORChain’s Solvency | THORChain"
+        },
+        {
+          "url": "https://www.alchemy.com/overviews/what-is-a-reorg",
+          "title": "What is a reorg? | Alchemy"
+        },
+        {
+          "url": "https://finematics.com/thorchain-explained/",
+          "title": "How Does Thorchain Work? DeFi Explained – Finematics"
+        }
+      ],
       "confidence": 0.96,
       "story_ids": [
         "telegram:theblockbeats:203547",
