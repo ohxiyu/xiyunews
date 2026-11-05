@@ -178,7 +178,7 @@ def test_git_remote_recovers_exact_plan_and_attempt(tmp_path):
 
 def test_workflow_fast_gate_precedes_edition_read_and_install():
     workflow = (Path(__file__).parents[1] / ".github/workflows/square-distribution.yml").read_text()
-    assert workflow.index("id: gate") < workflow.index("git fetch --depth=1 origin gh-pages") < workflow.index("uv sync --frozen")
+    assert workflow.index("id: gate") < workflow.index("gh api -H") < workflow.index("uv sync --frozen")
     assert "if: steps.gate.outputs.sync == 'true'" in workflow
     assert "cron: '13 1-15 * * *'" in workflow
     assert "cron: '*/5" not in workflow
