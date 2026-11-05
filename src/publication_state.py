@@ -117,15 +117,19 @@ class PublicationState:
     @staticmethod
     def _remember_edition(db, value):
         from datetime import date
-        from .daily_feed import DailyFeedState
         if not value.get("items"):
             return
-        state = DailyFeedState.model_validate(value)
-        if date.fromisoformat(state.date).isoformat() != state.date:
+        # Queue gates use this storage module before dependency installation.
+        # Producers already validate DailyFeedState; recovery consumers validate
+        # it again. Capture its original JSON here without importing Pydantic.
+        day = value.get("date")
+        if not isinstance(day, str) or date.fromisoformat(day).isoformat() != day:
             raise ValueError("edition date must be canonical ISO date")
-        text = canonical(state.model_dump(mode="json"))
+        if not isinstance(value["items"], list) or any(not isinstance(item, dict) for item in value["items"]):
+            raise ValueError("edition items must be JSON records")
+        text = canonical(value)
         db.execute("INSERT INTO publication_editions VALUES(?,?,?) ON CONFLICT(date) DO UPDATE SET payload=excluded.payload,digest=excluded.digest",
-                   (state.date, text, signature(text)))
+                   (day, text, signature(text)))
         # Tiny selected-public-text snapshots; keep all generated editions.
         # Pending publication is never discarded by a rolling date cutoff.
 
