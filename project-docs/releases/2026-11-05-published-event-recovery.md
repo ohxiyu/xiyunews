@@ -32,6 +32,8 @@ Deploy Docs在07:36:01Z导出持久事件目录，07:36:50Z成功回读并确认
 
 首条X回执仍为2118229625906348151，第二条planned、due_at11:22:26.370779Z（上海19:22）；本次未变更正文、计划或发送回执。Git与SQLite队列canonical散列均373f064819a68de89d1f6f6b68b10e054c7c7a99dbf69746b32330c8d9497319。未人为发送第二条或补旧消息。生产构建时磁盘50%、约19GiB空余；新增构建工作区会由现有hook清理，不将临时增长解释为再次写满。
 
+后续独立自然运行：Feed Collection41990054741成功，新增100条原稿、3个实质进展、1个补充来源和9个新事件。08:09:16Z正常远端回读并确认daily/event_urls/events，后续自然产物1e50c8330fb4df428bd085ab55ca00c55008f80c。发布中只读观察events.digest不等于source_digest且dirty1，旧远端仍6b；成功push后才确认新基线，实际证明本地读取不再提前清除待保存状态。该运行由原定时系统派发，未额外手动采集或为测试调用AI。本次9节点恢复的正式验收版本为前述6b/52bb，后续自然内容继续按原流程发布。
+
 Source commit: e70b686b0d77ee146a4dbfa5abe610de00f96b8a。
 
 Worker version: 52bb9281-597f-4db6-98cd-812fc67efe8f；普通/health准确回读source e70b686b0d77ee146a4dbfa5abe610de00f96b8a、artifact6b26e0e45b3113ea221cdb001c0f97cf1f7e9712、build key47df55b0f4afeef9449738cffaac457d24ae91641e57bd919f3f2aafa3019512。
