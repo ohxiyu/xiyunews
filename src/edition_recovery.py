@@ -30,16 +30,24 @@ def required_paths(day, languages):
             Path(f"_posts/{day}-summary-{lang}.md"), Path(f"editions/{day}/{lang}.html"))]]
 
 
-def restore_published_files(root=Path("docs"), ref="origin/gh-pages"):
+def restore_published_files(root=Path("docs"), ref="origin/gh-pages", days=None):
     """Restore only publication history, never source templates or local output."""
-    paths = subprocess.check_output(["git", "ls-tree", "-r", "--name-only", ref, "--",
+    # Deploy Docs already checks out the immutable publication in current-site;
+    # its application checkout does not necessarily have origin/gh-pages.
+    source = Path("current-site")
+    command = ["git", "-C", str(source)] if (source / ".git").exists() else ["git"]
+    pinned = subprocess.check_output([*command, "rev-parse", "HEAD" if len(command) > 1 else ref], text=True).strip()
+    paths = subprocess.check_output([*command, "ls-tree", "-r", "--name-only", pinned, "--",
         "_posts", "editions", "api/latest.json", "api/editions.json", "_data/edition-journal.json"], text=True).splitlines()
     for relative in paths:
         if not re.fullmatch(r"(?:_posts/\d{4}-\d{2}-\d{2}-summary-(?:zh|en)\.md|editions/\d{4}-\d{2}-\d{2}/(?:edition\.json|zh\.html|en\.html)|api/(?:latest|editions)\.json|_data/edition-journal\.json)", relative):
             continue
+        day = re.search(r"\d{4}-\d{2}-\d{2}", relative)
+        if days is not None and day and day.group() not in days:
+            continue
         target = root / relative
         if not target.exists():
-            text = subprocess.check_output(["git", "show", ref + ":" + relative], text=True)
+            text = subprocess.check_output([*command, "show", pinned + ":" + relative], text=True)
             target.parent.mkdir(parents=True, exist_ok=True)
             _atomic_write_text(target, text)
 
@@ -205,7 +213,10 @@ def main():
     store = active_store()
     if store is None:
         print(json.dumps({"repaired": [], "reason": "no production state backend"})); return
-    restore_published_files()
+    today = datetime.now(timezone.utc).date()
+    days = {(today - timedelta(days=n)).isoformat() for n in range(15)}
+    days.update(row["date"] for row in store.saved_editions())
+    restore_published_files(days=days)
     runner = BMTNewsOrchestrator(Config.model_validate_json(args.config.read_text()), StorageManager())
     print(json.dumps(asyncio.run(recover_editions(runner, store)), ensure_ascii=False))
 

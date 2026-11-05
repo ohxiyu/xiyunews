@@ -165,3 +165,17 @@ def test_actual_cli_runs_with_isolated_backend_without_credentials(tmp_path):
         capture_output=True,text=True,check=True)
     assert json.loads(result.stdout)['repaired'] == []
     assert json.loads((tmp_path/'docs/_data/edition-journal.json').read_text()) == {'version':1,'editions':[]}
+
+
+def test_deploy_docs_uses_its_pinned_second_checkout_without_root_remote_ref(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    source=tmp_path/'current-site';source.mkdir()
+    def git(*args):
+        return subprocess.check_output(['git',*args],cwd=source,text=True).strip()
+    git('init','-b','publication');git('config','user.name','Fixture');git('config','user.email','fixture@example.invalid')
+    p=source/'editions/2026-11-03/zh.html';p.parent.mkdir(parents=True);p.write_text('pinned original')
+    older=source/'editions/2026-10-01/zh.html';older.parent.mkdir(parents=True);older.write_text('irrelevant old snapshot')
+    git('add','.');git('commit','-m','pinned published fixture')
+    restore_published_files(days={'2026-11-03'})
+    assert Path('docs/editions/2026-11-03/zh.html').read_text() == 'pinned original'
+    assert not Path('docs/editions/2026-10-01/zh.html').exists()

@@ -25,10 +25,12 @@ publication_editions独立保存每次选稿的规范JSON和SHA-256，当前dail
 ## 五阶段与验收
 
 - 代码：已实现。
-- 测试：最终完整Python1180 passed/4既有skipped；6项真实CLI/跨日、幂等、真实Git及latest保护回归通过；治理、编译和差异检查通过，远端CI待完成。
+- 测试：完整Python1180 passed/4既有skipped；最终补充Deploy Docs第二checkout适配后7项真实CLI/跨日、幂等、真实Git及latest保护回归通过；治理、编译和差异检查通过，最终head远端CI待完成。
 - 合并：待PR检查通过且同步main。
 - 部署：待正常Deploy Docs，不手写gh-pages。
 - 生产验收：待3日14条、近14天连续性、双语页面/日期选择/加载更早、事件锚点及5日正文/消息队列不变验证。
+
+部署入口适配：Deploy Docs已将出版快照检出到current-site，应用根不一定有origin/gh-pages；恢复器使用该独立检出的准确HEAD读取历史，日报/采集则固定origin/gh-pages SHA。只恢复近期15天及日志所需日期，避免逐个下载整站多年历史；不覆盖本轮已生成文件。真实独立Git仓库回归覆盖根目录无远端ref、第二checkout读取和日期过滤。
 
 Source commit: 当前基线ffc4dc2464f955ff644798bc38effbdb728b3aaa，修复合并待记录。
 
