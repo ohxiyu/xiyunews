@@ -1,5 +1,12 @@
 name: xiyu.news Schedule Watchdog
 
+# Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
+# never change server Git config or credentials.
+env:
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: http.version
+  GIT_CONFIG_VALUE_0: HTTP/1.1
+
 on:
   schedule:
     # UTC schedules: 07:43, then hourly 08:17-15:17 in Asia/Shanghai.

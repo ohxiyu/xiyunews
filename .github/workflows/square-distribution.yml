@@ -1,5 +1,12 @@
 name: xiyu.news Binance Square Distribution
 
+# Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
+# never change server Git config or credentials.
+env:
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: http.version
+  GIT_CONFIG_VALUE_0: HTTP/1.1
+
 on:
   # Existing production flows provide an independent trigger if this cron is dropped.
   workflow_run:

@@ -1,4 +1,11 @@
 name: xiyu.news Daily Edition
+
+# Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
+# never change server Git config or credentials.
+env:
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: http.version
+  GIT_CONFIG_VALUE_0: HTTP/1.1
 run-name: >-
   Daily ${{ inputs.edition_date || 'auto' }}
   via ${{ inputs.trigger_source || 'manual' }}
