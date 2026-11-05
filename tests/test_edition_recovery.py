@@ -186,5 +186,6 @@ def test_build_cli_metrics_do_not_replace_required_checks_or_runtime_settings():
     for name in ('ci.yml','cloudflare-unified.yml'):
         workflow=(root/'.github/workflows'/name).read_text()
         assert "  WRANGLER_SEND_METRICS: 'false'" in workflow.split('\non:',1)[0]
-        assert 'npm audit' in workflow or 'npm run check' in workflow
+        assert "  WRANGLER_HIDE_BANNER: 'true'" in workflow.split('\non:',1)[0]
+        assert 'npm run audit' in workflow or 'npm run check' in workflow
     assert 'WRANGLER_SEND_METRICS' not in (root/'ops/daily-dispatcher/wrangler.unified.jsonc').read_text()

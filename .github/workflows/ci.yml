@@ -9,6 +9,7 @@ env:
   # CLI telemetry waits can outlive a successful dry-run on slow networks.
   # Process-local only; keep audits, type checks and all tests unchanged.
   WRANGLER_SEND_METRICS: 'false'
+  WRANGLER_HIDE_BANNER: 'true' # Also avoids the banner's optional npm update request.
 
 on:
   pull_request:

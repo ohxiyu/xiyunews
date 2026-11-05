@@ -34,7 +34,7 @@ publication_editions独立保存每次选稿的规范JSON和SHA-256，当前dail
 
 真实出版输入在服务器隔离目录完成完整静态渲染：仅修复3日5个缺失入口文件、14条正文，API latest字节保持不变（SHA256 abf1cef3296611beb4f50510a79467080fa6b06e5c27faa8ee226ffd887e99ce）；主数据库以mode=ro/query_only读取，选稿日志仅内存实现，外部调用均设为失败断言。没有向生产或渠道写入该演练输出。
 
-中间head02eb7ea1的web检查达到15分钟总时限。日志确认npm audit通过、类型检查完成、135项Worker测试全部通过；wrangler types从15:46:22到15:51:46才退出，最终dry-run在15:52:41测试后到15:58:18取消仍未退出。当前锁定Wrangler代码在退出前等待allMetricsDispatchesCompleted，匿名统计fetch无专用超时。CI和正式构建仅设置进程内WRANGLER_SEND_METRICS=false，防止这种非必要请求拖住出刊；不修改systemd环境、Worker vars、业务健康/费用统计，不删减任何安全检查或测试，不放宽时限。最终完整CI须重新通过；不将中间取消状态当通过。
+中间head02eb7ea1的web检查达到15分钟总时限。日志确认npm audit通过、类型检查完成、135项Worker测试全部通过；wrangler types从15:46:22到15:51:46才退出，最终dry-run在15:52:41测试后到15:58:18取消仍未退出。检查锁定Wrangler代码发现匿名统计请求和banner版本提示请求都会创建网络连接，后者的Promise.race只限制显示等待，并不取消底层请求。只关闭统计的本机实测仍有退出延迟，不能把原因全归于统计；同时设置进程内WRANGLER_SEND_METRICS=false及WRANGLER_HIDE_BANNER=true，避免这两类非必要请求。只影响构建CLI，不修改systemd环境、Worker vars、业务健康/费用统计，不删减任何安全检查或测试，不放宽时限。最终完整CI须重新通过；不将中间取消状态当通过。新增检查断言最初未包含既有npm run audit写法，已修正后重跑，未将失败断言视作通过。
 
 Source commit: 当前基线ffc4dc2464f955ff644798bc38effbdb728b3aaa，修复合并待记录。
 
