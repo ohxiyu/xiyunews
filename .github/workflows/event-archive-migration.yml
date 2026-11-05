@@ -60,6 +60,9 @@ jobs:
       - name: Install dependencies
         run: uv sync --frozen
 
+      - name: Restore durable publication documents before rendering
+        run: uv run python -m src.publication_state --restore-published
+
       - name: Apply reviewed migration
         run: >-
           uv run python -m src.event_migration apply

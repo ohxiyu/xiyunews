@@ -99,11 +99,41 @@ def test_every_catalog_publisher_confirms_only_after_the_publication_action():
     for name in ('daily-summary', 'feed-collection', 'deploy-docs', 'event-archive-migration'):
         text = (root / '.github/workflows' / (name + '.yml')).read_text()
         action = text.index('uses: peaceiris/actions-gh-pages@v4')
+        restore = text.index('      - name: Restore durable publication documents before rendering')
         ack = text.index('      - name: Confirm exact published state checkpoint')
-        assert ack > action
+        assert restore < action < ack
         step = text[ack:].split('\n      - name:', 1)[0]
         assert 'if:' not in step
         assert '--acknowledge-published' in step
+
+
+def test_failed_publication_retry_exports_durable_catalog_without_ack(tmp_path, monkeypatch):
+    from src.publication_state import restore_published_documents, canonical, signature
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setenv('XIYUNEWS_STATE_DIR', str(tmp_path / 'state'))
+    monkeypatch.delenv('GITHUB_ACTIONS', raising=False)
+    state = PublicationState(tmp_path / 'state')
+    old, new = {'events': ['old']}, {'events': ['old', 'restored-node']}
+    state.load_document('events', old)
+    state.save_document('events', new)
+    path = Path('docs/_data/events.json')
+    path.parent.mkdir(parents=True)
+    path.write_text(json.dumps(old))
+    assert restore_published_documents()['restored'] == [str(path)]
+    assert json.loads(path.read_text()) == new
+    assert restore_published_documents()['restored'] == [str(path)]
+    with state.connect() as db:
+        source, dirty = db.execute("SELECT source_digest,dirty FROM publication_documents WHERE name='events'").fetchone()
+        assert (source, dirty) == (signature(canonical(old)), 1)
+    daily = Path('docs/_data/bmtnews_state.json')
+    daily.write_text(json.dumps({'edition': 'other-writer'}))
+    state.load_document('daily', {'edition': 'old'})
+    state.save_document('daily', {'edition': 'unpublished'})
+    path.write_text(json.dumps(old))
+    with pytest.raises(StateConflict):
+        restore_published_documents()
+    assert json.loads(path.read_text()) == old
+    assert state.load_document('events', None) == new
 
 
 def test_cache_import_once_delta_rows_and_transaction_rollback(tmp_path):

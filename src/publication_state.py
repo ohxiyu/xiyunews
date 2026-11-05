@@ -295,13 +295,36 @@ def acknowledge_published_snapshot():
     return {"acknowledged": sorted(values), "artifact_commit": sha}
 
 
+def restore_published_documents():
+    """Materialize durable state over the restored Git mirrors before rendering.
+
+    After a failed publication, renderers may already see newer SQLite state.
+    The next producer must export that catalog too, not just its HTML/API.
+    Reconcile every input before changing any workspace file; never ACK here.
+    """
+    from ._file_utils import _atomic_write_text
+    if active_store() is None:
+        return {"restored": []}
+    values = {}
+    for relative in DOCUMENTS:
+        if relative.startswith("docs/") and Path(relative).is_file():
+            values[relative] = read_document(relative)
+    for relative, value in values.items():
+        _atomic_write_text(Path(relative), json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+    return {"restored": sorted(values)}
+
+
 def main():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--bootstrap", type=Path)
     parser.add_argument("--verify", action="store_true")
     parser.add_argument("--acknowledge-published", action="store_true")
+    parser.add_argument("--restore-published", action="store_true")
     args = parser.parse_args()
+    if args.restore_published:
+        print(json.dumps(restore_published_documents()))
+        return
     if args.acknowledge_published:
         print(json.dumps(acknowledge_published_snapshot()))
         return
