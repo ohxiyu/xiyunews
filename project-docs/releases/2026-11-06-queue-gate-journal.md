@@ -13,12 +13,12 @@
 ## 五阶段
 
 - 代码：完成，移除存储层对领域模型库的反向依赖。
-- 测试：20项定向及完整Python1184 passed/4既有skipped通过，治理与差异检查通过；适用远端CI待完成。
-- 合并：待同步main且必需检查通过后正常合并。
-- 部署：合并后正常workflow读取新main验证轻量gate；不直接改服务器环境或安装系统依赖。
-- 生产验收：待真实gate通过及原稿/日志/回执保护核对，不发送测试新闻或补发历史。
+- 测试：20项定向及完整Python1184 passed/4既有skipped通过，治理与差异检查通过；最终head fab84cd637996859efe5ddcca48ce6af4da30fd2的[CI42098874279](https://github.com/ohxiyu/xiyunews/actions/runs/42098874279)所有适用检查通过，其余按路径正常跳过。
+- 合并：PR326于2026-11-05T20:08:52Z合并cf878a8cc9023c7aec17e9050f293e368fe14afb；合并树与检查head相同且为origin/main祖先。
+- 部署：两个正常workflow均实际checkout新main cf878a8c并成功执行；没有直接修改服务器环境或给系统Python安装依赖。
+- 生产验收：两真实gate、原稿/日志/回执保护均通过；X发送步骤跳过、Square实际attempted=0/sent=0，没有发送测试新闻或补发历史。五阶段完成。
 
-Source commit: 基线dca841fd0e112cbec3917f382682acb41fb800bf；本修复合并后回读实际runtime代码SHA。
+Source commit: runtime cf878a8cc9023c7aec17e9050f293e368fe14afb；基线dca841fd0e112cbec3917f382682acb41fb800bf。
 
 Application PR: [PR326](https://github.com/ohxiyu/xiyunews/pull/326)。
 
@@ -26,6 +26,15 @@ Worker version: 网站当前05b8d129-2253-4759-b4ef-441bc6bc9708、artifact82929
 
 Deployment: 仅正常main工作流，不手写生成分支、手改回执或持久运行Secrets。
 
-Verification: 日报与完整publisher已经恢复；不能把本次渠道门控依赖回归留作完成状态。
+Verification: 日报、完整publisher和两个真实轻量门控均已恢复并分别验收，详见下文。
+
+## 真实运行证据
+
+仅重试前述两个失败job，保留原workflow及输入。两个workflow都显式checkout main，实际日志中均为cf878a8cc9023c7aec17e9050f293e368fe14afb；不把原run.head_sha仍为dca841fd误当作旧代码仍在运行。
+
+- X42093318742新job127502370202，2026-11-05T20:09:21Z–20:12:29Z成功；20:10:52Z回读新代码SHA，20:12:21Z轻量gate为work=false、attention=0，Plan and send with remote checkpoints为skipped，未加载发送依赖或调用渠道。
+- Square42093318787新job127502372211，20:12:32Z–20:14:00Z成功；20:13:44Z回读新代码SHA，gate为sync=true/due=false/remaining=0/attention=0/unscheduled=0，正常上游触发要求同步，但旧5日期号不冒充本日6日。最终报告status=ok、date=2026-11-06、attempted=0、sent=0，没有发布历史内容。
+
+运行后只读核对主库及备份integrity_check=ok，刊期3日14条/5日13条摘要有效；daily、X、Square三份规范JSON与恢复前仍逐字节一致，已确认X回执2条、Square回执697条全部不变，无新增确认或状态变更。网站仍为dca841fd/82929893、Worker05b8d129-2253-4759-b4ef-441bc6bc9708：该标记描述网页/Worker构建输入，本修复是独立Python工作流入口，未为无变化的网页强制重发版本。下一次自然定时日报及实际当日渠道发送尚未发生，不当作本次已验证。
 
 Rollback: 不自动回滚或整库恢复，保留已有刊期/回执及Git历史，不重发历史消息。

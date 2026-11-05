@@ -44,6 +44,8 @@ publication_editions独立保存每次选稿的规范JSON和SHA-256，当前dail
 
 这时尚未到6日07:26出刊时间，因此不把最新仍为5日当作漏发，也不声称下一次自然定时日报已成功。没有补发历史X/Telegram；当前daily/X/Square记录与备份不变，群组快照仍以最新5日为输入且发送门控拒绝非本日快照。
 
+后续门控兼容性回归也已完成[独立修复和真实入口验收](2026-11-06-queue-gate-journal.md)：最初日志保存层导入Pydantic破坏了依赖安装前的X/Square gate，最终PR326恢复stdlib-only，完整回归增加到1184 passed/4既有skipped。实际新main两个gate均成功，没有发送历史新闻；主库/刊期日志、当期及2条X/697条Square确认回执均保持不变，不以安装依赖掩盖轻量入口问题。
+
 部署入口适配：Deploy Docs已将出版快照检出到current-site，应用根不一定有origin/gh-pages；恢复器使用该独立检出的准确HEAD读取历史，日报/采集则固定origin/gh-pages SHA。只恢复近期15天及日志所需日期，避免逐个下载整站多年历史；不覆盖本轮已生成文件。真实独立Git仓库回归覆盖根目录无远端ref、第二checkout读取和日期过滤。
 
 真实出版输入在服务器隔离目录完成完整静态渲染：仅修复3日5个缺失入口文件、14条正文，API latest字节保持不变（SHA256 abf1cef3296611beb4f50510a79467080fa6b06e5c27faa8ee226ffd887e99ce）；主数据库以mode=ro/query_only读取，选稿日志仅内存实现，外部调用均设为失败断言。没有向生产或渠道写入该演练输出。
