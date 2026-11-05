@@ -7,25 +7,33 @@
   "status": "developing",
   "category": "crypto",
   "title": {
-    "zh": "【币安：已删除所有与 SignalPlus 关联的 API 密钥，作为一项紧急预防措施】",
-    "en": "【币安：已删除所有与 SignalPlus 关联的 API 密钥，作为一项紧急预防措施】"
+    "zh": "币安因 SignalPlus 潜在安全问题删除其关联 API 密钥",
+    "en": "Binance revokes SignalPlus-linked API keys over potential security issue"
   },
   "current_state": {
-    "zh": "因 SignalPlus 报告潜在安全问题，币安和 Deribit 均已预防性撤销与其关联的 API 密钥；两家交易所称自身系统与用户资金未受影响，用户被建议在 SignalPlus 确认问题解决前暂缓重新连接。",
-    "en": "After SignalPlus reported a potential security issue, both Binance and Deribit proactively revoked SignalPlus-linked API keys; both said their systems and user funds were unaffected and advised users to wait for SignalPlus to confirm remediation before reconnecting."
+    "zh": "在第三方期权交易平台 SignalPlus 报告潜在安全问题后，币安移除了所有与该平台关联的 API 密钥，并表示自身系统和用户资金未受影响。",
+    "en": "Binance removed all API keys linked to third-party options trading platform SignalPlus after SignalPlus reported a potential security issue, saying its own systems and user funds were unaffected."
   },
   "first_seen_at": "2026-11-05T12:01:30.101714+00:00",
-  "last_updated_at": "2026-11-05T12:01:30.102905+00:00",
-  "last_material_change_at": "2026-11-05T12:01:30.101714+00:00",
+  "last_updated_at": "2026-11-05T12:39:32.003465+00:00",
+  "last_material_change_at": "2026-11-05T12:39:32.003465+00:00",
   "confidence": 0.75,
   "updates_count": 2,
-  "sources_count": 3,
+  "sources_count": 4,
   "entities": [
     "api",
     "api-keys",
     "binance",
+    "cuts",
     "deribit",
-    "signalplus"
+    "issue",
+    "keys",
+    "off",
+    "over",
+    "platform",
+    "potential",
+    "signalplus",
+    "trading"
   ],
   "identifiers": [],
   "topics": [
@@ -65,13 +73,20 @@
       "references": [],
       "confidence": 0.75,
       "story_ids": [
-        "telegram:foresightnews:122253"
+        "telegram:foresightnews:122253",
+        "rss:decrypt.co_feed:62ff79efb7dc81a6"
       ],
       "sources": [
         {
           "url": "https://foresightnews.pro/news/h5Detail/116935",
           "label": "foresightnews",
           "source_type": "telegram",
+          "official": false
+        },
+        {
+          "url": "https://decrypt.co/382599/binance-cuts-off-signalplus-api-keys-over-potential-security-issue-at-trading-platform",
+          "label": "Decrypt",
+          "source_type": "rss",
           "official": false
         }
       ]

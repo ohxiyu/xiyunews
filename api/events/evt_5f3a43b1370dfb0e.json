@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "event_id": "evt_5f3a43b1370dfb0e",
+  "url": "https://xiyu.news/events/evt_5f3a43b1370dfb0e/",
+  "json": "https://xiyu.news/api/events/evt_5f3a43b1370dfb0e.json",
+  "type": "security_incident",
+  "status": "developing",
+  "category": "technology",
+  "title": {
+    "zh": "OpenSSH 10.6p2 针对未启用 PAM 的 Alpine 的关键变通方案",
+    "en": "OpenSSH 10.6p2 Critical workaround for alpine without PAM"
+  },
+  "current_state": {
+    "zh": "Alpine Linux 已发布 OpenSSH-server 密码认证绕过漏洞的安全公告，解释了 musl crypt() 错误返回值导致无密码账户被长密码绕过的技术细节；OpenSSH 10.6p2 的变通方案已发布。",
+    "en": "Alpine Linux has published a security advisory for the OpenSSH-server password authentication bypass, explaining the technical details of musl crypt() error return allowing long-password bypass of passwordless accounts; the OpenSSH 10.6p2 workaround has been released."
+  },
+  "first_seen_at": "2026-11-05T16:51:04.935784+00:00",
+  "last_updated_at": "2026-11-05T16:51:04.935784+00:00",
+  "last_material_change_at": "2026-11-05T16:51:04.935784+00:00",
+  "confidence": 0.75,
+  "updates_count": 2,
+  "sources_count": 2,
+  "entities": [
+    "alpine",
+    "alpine-linux",
+    "critical",
+    "linux",
+    "openssh",
+    "pam",
+    "security-advisory"
+  ],
+  "identifiers": [],
+  "topics": [
+    "alpine-linux",
+    "musl",
+    "open-source",
+    "openssh",
+    "security-advisory",
+    "vulnerability",
+    "vulnerability-disclosure"
+  ],
+  "updates": [
+    {
+      "update_id": "upd_434d0c86b5eb90e0",
+      "event_id": "evt_5f3a43b1370dfb0e",
+      "occurred_at": "2026-11-05T11:40:30Z",
+      "published_at": "2026-11-05T11:40:30Z",
+      "first_seen_at": "2026-11-05T16:51:04.935784Z",
+      "time_precision": "published",
+      "update_type": "initial",
+      "material_change": true,
+      "title_zh": "OpenSSH 10.6p2 针对未启用 PAM 的 Alpine 的关键变通方案",
+      "title_en": "OpenSSH 10.6p2 Critical workaround for alpine without PAM",
+      "what_changed_zh": "OpenSSH 发布 10.6p2 版本说明，针对未启用 PAM 构建的 Alpine 系统提供关键变通方案，维护者解释称他们正放弃长期漏洞保密期，因为 AI 代理现在能在数小时内重新发现漏洞。",
+      "what_changed_en": "OpenSSH published 10.6p2 release notes with a critical workaround for Alpine systems built without PAM, and the maintainers explained they are moving away from long vulnerability embargoes because AI agents are now rediscovering bugs within hours.",
+      "current_state_zh": "OpenSSH 发布 10.6p2 版本说明，针对未启用 PAM 构建的 Alpine 系统提供关键变通方案，维护者解释称他们正放弃长期漏洞保密期，因为 AI 代理现在能在数小时内重新发现漏洞。",
+      "current_state_en": "OpenSSH published 10.6p2 release notes with a critical workaround for Alpine systems built without PAM, and the maintainers explained they are moving away from long vulnerability embargoes because AI agents are now rediscovering bugs within hours.",
+      "detailed_summary_zh": "OpenSSH published 10.6p2 release notes with a critical workaround for Alpine systems built without PAM, and the maintainers explained they are moving away from long vulnerability embargoes because AI agents are now rediscovering bugs within hours.",
+      "detailed_summary_en": "OpenSSH published 10.6p2 release notes with a critical workaround for Alpine systems built without PAM, and the maintainers explained they are moving away from long vulnerability embargoes because AI agents are now rediscovering bugs within hours.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 7.0,
+      "references": [
+        {
+          "url": "https://news.ycombinator.com/item?id=50377976",
+          "title": "Community discussion"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "hackernews:story:50377976"
+      ],
+      "sources": [
+        {
+          "url": "https://www.openssh.org/releasenotes.html#10.6p2",
+          "label": "selckin",
+          "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_21020ea2e52d7484",
+      "event_id": "evt_5f3a43b1370dfb0e",
+      "occurred_at": "2026-11-05T14:44:20Z",
+      "published_at": "2026-11-05T14:44:20Z",
+      "first_seen_at": "2026-11-05T16:51:04.935690Z",
+      "time_precision": "published",
+      "update_type": "escalation",
+      "material_change": true,
+      "title_zh": "Alpine Linux 安全公告：OpenSSH-server 密码认证绕过",
+      "title_en": "Alpine Linux Security advisory: OpenSSH-server password authentication bypass",
+      "what_changed_zh": "Alpine Linux 发布安全公告，详细说明 OpenSSH-server 密码认证绕过漏洞：musl 的 crypt() 在密钥超过 256 字节时返回错误指示符 '*'，该字符与无密码账户的存储哈希字段匹配，导致长密码登录成功。",
+      "what_changed_en": "Alpine Linux published a security advisory detailing the OpenSSH-server password authentication bypass: musl's crypt() returns the error indicator '*' when the key exceeds 256 bytes, which matches the stored hash field of accounts without a password, allowing long-password logins to succeed.",
+      "current_state_zh": "Alpine Linux 已发布 OpenSSH-server 密码认证绕过漏洞的安全公告，解释了 musl crypt() 错误返回值导致无密码账户被长密码绕过的技术细节；OpenSSH 10.6p2 的变通方案已发布。",
+      "current_state_en": "Alpine Linux has published a security advisory for the OpenSSH-server password authentication bypass, explaining the technical details of musl crypt() error return allowing long-password bypass of passwordless accounts; the OpenSSH 10.6p2 workaround has been released.",
+      "detailed_summary_zh": "Alpine Linux published a security advisory for an OpenSSH-server password authentication bypass in which musl's crypt() error return value \"*\" matches the stored hash field of accounts without a password, allowing long-password logins to succeed.",
+      "detailed_summary_en": "Alpine Linux published a security advisory for an OpenSSH-server password authentication bypass in which musl's crypt() error return value \"*\" matches the stored hash field of accounts without a password, allowing long-password logins to succeed.",
+      "background_zh": "",
+      "background_en": "",
+      "community_discussion_zh": "",
+      "community_discussion_en": "",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [
+        {
+          "url": "https://news.ycombinator.com/item?id=50379704",
+          "title": "Community discussion"
+        }
+      ],
+      "confidence": 0.9,
+      "story_ids": [
+        "hackernews:story:50379704"
+      ],
+      "sources": [
+        {
+          "url": "https://alpinelinux.org/posts/2026-11-05-openssh-password-authentication-bypass/",
+          "label": "pantalaimon",
+          "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    }
+  ]
+}
