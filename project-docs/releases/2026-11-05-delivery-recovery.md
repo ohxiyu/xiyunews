@@ -56,7 +56,17 @@ HTTP/1.1 仍在 governance127069138126 的完整文档 checkout 中出现 curl18
 - 部署：一次性清理已完成，新代码与维护脚本尚未部署。
 - 生产验收：执行器恢复在线、备份完整；新队列恢复、自动清理与最新网站待验收。
 
-Source commit: 当前基线 f493c4340b45bced5c75fff6ebcae4c3c78ee9c9，修复合并 SHA 待记录。
+## PR314 实际生产结果与后续缺口
+
+PR314 已于2026-11-05 06:27:39Z合并，准确SHA35f8db4f22ace7c73fc235dca4dd7afaf2d4286d，最终head df3b3be669c77737b73634337bdecbebab064433与合并tree一致。完整CI41979313293全通过，Python1161 passed/4既有skipped，edge4m44s，web及realtime双Python通过；上文待办状态是合并前记录，本段为当前实际状态。
+
+日报恢复41980636280于06:28:27–06:29:58Z成功，保留原13条选稿与updated_at04:41:35.962958Z，页面恢复AI tokens0、无重复Telegram。X41980793927成功HTTP201，tweet_id2118229625906348151；正常新推文计划生成使用10445tokens，不能将整个恢复称为零token。后续41980811909成功，第二条仍planned、上海19:22到期，不人工重发。Git/SQLite payload和source_digest一致、dirty0、quick_check ok。旧成功回执2114869539422998782及更早14条sent先在047e2468b8271179eb1123b116ec1e7c6289b7ed记录再正常七天归档。
+
+Cloudflare41980811696于06:31:57–06:38:43Z成功，artifact2b0fc8b9b05a7ee63a5eadf56519aa399509f974，Worker8cc86cf1-3abf-4320-af86-8d918931a5d3，build key34fe87f7917da36f2a96c90ad3ceaaad5545a905723d02ea4e37363a909b0874。普通health/latest为11月5日13条，generated_at06:29:13.405513Z，ready/feed/sitemap/双语fragment200、www301。受审root维护脚本已按准确合并SHA原子刷新、校验值一致，无重启；start/complete自然hook输出removed0/eligible0/in_use0，不虚称发生额外删除。runner/fomobtc active、磁盘约45%。
+
+应用代码、测试、合并、部署完成；最终整站验收尚未完成。公开事件API验收发现9个缺失节点、5个目录404，浏览器脚本在该步骤提前失败；转入[Issue315事件恢复](2026-11-05-published-event-recovery.md)，不能将正文/发推成功当成全站完整。
+
+Source commit: 35f8db4f22ace7c73fc235dca4dd7afaf2d4286d。
 
 Worker version: 待刷新，本次不直接修改 Worker。
 

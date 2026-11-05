@@ -108,6 +108,9 @@ jobs:
       - name: Prepare GitHub Actions config
         run: cp data/config.github.json data/config.json
 
+      - name: Restore durable publication documents before rendering
+        run: uv run python -m src.publication_state --restore-published
+
       - name: Backfill event brief data
         run: uv run python -m src.event_brief_backfill
 
@@ -155,6 +158,9 @@ jobs:
           commit_message: "🧭 Event timeline: ${{ github.run_id }}"
           publish_branch: gh-pages
           enable_jekyll: true
+
+      - name: Confirm exact published state checkpoint
+        run: uv run python -m src.publication_state --acknowledge-published
 
       - name: Persist staging cache to branch
         if: ${{ always() }}
