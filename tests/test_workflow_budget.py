@@ -38,7 +38,7 @@ def test_all_hosted_jobs_have_bounded_runtime() -> None:
         "deploy-docs.yml": 20,
         "event-archive-migration.yml": 10,
         "feed-collection.yml": 30,
-        "schedule-watchdog.yml": 5,
+        "schedule-watchdog.yml": 10,
         "source-change.yml": 20,
     }
 

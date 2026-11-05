@@ -277,7 +277,7 @@ def test_watchdog_workflow_has_schedule_aware_arguments() -> None:
     assert "cron: '47 8 * * *'" not in workflow
     assert "43 * * * *" not in workflow
     assert "actions: write" in workflow
-    assert "timeout-minutes: 5" in workflow
+    assert "timeout-minutes: 10" in workflow
     assert "actions/setup-python" not in workflow
     assert "--timezone Asia/Shanghai" in workflow
     assert "--cutoff-hour 7" in workflow

@@ -34,6 +34,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            src
+            docs
+            scripts
+            ops
+            data
+            .github
 
       - name: Restore published event state
         shell: bash
