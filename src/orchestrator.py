@@ -57,6 +57,7 @@ from .daily_feed import (
     item_identity,
     items_for_local_date,
     load_daily_feed_state,
+    load_published_daily_feed_state,
     local_date_for,
     merge_daily_items,
     save_daily_feed_state,
@@ -1580,7 +1581,8 @@ class BMTNewsOrchestrator:
             if queue_dir is not None and x_queue.needs_checkpoint(path, state):
                 persist()
             changed = x_queue.recover_pending(state) > 0
-            daily_state = load_daily_feed_state(today, timezone_name)
+            daily_state = (load_published_daily_feed_state(today, timezone_name)
+                           if queue_dir is not None else load_daily_feed_state(today, timezone_name))
             if daily_state.items:
                 changed |= await self._plan_x_edition(
                     state,

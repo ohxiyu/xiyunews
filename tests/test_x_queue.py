@@ -232,7 +232,7 @@ def test_failed_checkpoint_means_nothing_is_sent(monkeypatch, tmp_path):
     feed = DailyFeedState(
         date=DAY, timezone="Asia/Shanghai", updated_at=ON_TIME, items=[item(1)]
     )
-    monkeypatch.setattr(module, "load_daily_feed_state", lambda *a: feed)
+    monkeypatch.setattr(module, "load_published_daily_feed_state", lambda *a: feed)
     monkeypatch.setattr(module, "save_run_report", lambda report: None)
     with pytest.raises(subprocess.CalledProcessError):
         asyncio.run(orchestrator.run_x_slot(now=ON_TIME, queue_dir=queue_dir))
@@ -455,11 +455,41 @@ def test_recovered_old_receipt_wakes_gate_and_is_checkpointed_before_pruning(tmp
     orchestrator = orchestrator_for(publisher)
     monkeypatch.setattr(orchestrator, '_plan_x_edition', plan)
     monkeypatch.setattr(x_queue, 'git_checkpoint', checkpoint)
-    monkeypatch.setattr(module, 'load_daily_feed_state', lambda *args: DailyFeedState(date=DAY, timezone='Asia/Shanghai', updated_at=ON_TIME, items=[item(1)]))
+    monkeypatch.setattr(module, 'load_published_daily_feed_state', lambda *args: DailyFeedState(date=DAY, timezone='Asia/Shanghai', updated_at=ON_TIME, items=[item(1)]))
     monkeypatch.setattr(module, 'save_run_report', lambda report: None)
     asyncio.run(orchestrator.run_x_slot(now=ON_TIME, queue_dir=queue_dir))
     assert checkpoints == [local, {'version': 2, 'editions': {}}]
     assert publisher.posts == []
+
+
+def test_production_consumer_never_posts_unpublished_local_draft(tmp_path, monkeypatch):
+    import src.orchestrator as module
+    from src.publication_state import PublicationState
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setenv('XIYUNEWS_STATE_DIR', str(tmp_path / 'state'))
+    monkeypatch.delenv('GITHUB_ACTIONS', raising=False)
+    store = PublicationState(tmp_path / 'state')
+    yesterday = (ON_TIME + timedelta(hours=8) - timedelta(days=1)).date().isoformat()
+    published = DailyFeedState(date=yesterday, timezone='Asia/Shanghai', updated_at=ON_TIME, items=[item(1)]).model_dump(mode='json')
+    draft = DailyFeedState(date=DAY, timezone='Asia/Shanghai', updated_at=ON_TIME, items=[item(2)]).model_dump(mode='json')
+    path = Path('docs/_data/bmtnews_state.json')
+    path.parent.mkdir(parents=True); path.write_text(json.dumps(published))
+    store.load_document('daily', published)
+    store.save_document('daily', draft)
+    publisher = FakePublisher()
+    orchestrator = orchestrator_for(publisher)
+    monkeypatch.setattr(module, 'save_run_report', lambda report: None)
+    monkeypatch.setattr(x_queue, 'git_checkpoint', lambda directory, state: x_queue.save(state, directory / x_queue.QUEUE_RELATIVE_PATH))
+    queue_dir = tmp_path / 'queue'
+    asyncio.run(orchestrator.run_x_slot(now=ON_TIME, queue_dir=queue_dir))
+    assert publisher.posts == []
+    assert store.load_document('daily', None) == draft
+    published['date'] = DAY
+    path.write_text(json.dumps(published))
+    asyncio.run(orchestrator.run_x_slot(now=ON_TIME, queue_dir=queue_dir))
+    assert len(publisher.posts) == 1
+    assert '第1条' in publisher.posts[0] and '第2条' not in publisher.posts[0]
+    assert store.load_document('daily', None) == draft
 
 
 def test_git_checkpoint_pushes_without_force(tmp_path):
