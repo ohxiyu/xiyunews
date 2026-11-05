@@ -1,8 +1,10 @@
 import copy
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
+import textwrap
 
 import pytest
 
@@ -21,6 +23,31 @@ def snapshots():
     local['editions']['2026-10-27']['jobs'][0].update(
         status='sent', tweet_id='123456789', detail='X API returned HTTP 201.')
     return remote, local
+
+
+@pytest.mark.parametrize('payload,api_exit,success', [
+    ('{"date":"2026-11-05","items":[]}', '0', True),
+    ('not JSON', '0', False), ('[]', '0', False),
+    ('{"message":"Not found"}', '0', False),
+    ('{"date":"2026-11-05","items":[]}', '1', False),
+])
+def test_actual_workflow_restores_only_valid_authenticated_edition(tmp_path, payload, api_exit, success):
+    workflow = (Path(__file__).resolve().parents[1] / '.github/workflows/x-distribution.yml').read_text()
+    step = workflow.split('      - name: Restore published edition state\n', 1)[1].split('      - name:', 1)[0]
+    script = textwrap.dedent(step.split('        run: |\n', 1)[1])
+    binary = tmp_path / 'bin'; binary.mkdir()
+    gh = binary / 'gh'
+    gh.write_text('#!/bin/sh\n[ "$1" = api ] && [ "$GH_TOKEN" = fixture ] || exit 2\ncase "$*" in *"repos/ohxiyu/xiyunews/contents/_data/bmtnews_state.json?ref=gh-pages"*) ;; *) exit 3;; esac\nprintf "%s" "$FIXTURE_EDITION"\nexit "$API_EXIT"\n')
+    gh.chmod(0o700)
+    path = tmp_path / 'docs/_data/bmtnews_state.json'
+    path.parent.mkdir(parents=True); path.write_text('original snapshot')
+    result = subprocess.run(['bash', '-c', script], cwd=tmp_path, capture_output=True, env={
+        **os.environ, 'PATH': str(binary) + os.pathsep + os.environ['PATH'],
+        'GH_TOKEN': 'fixture', 'GITHUB_REPOSITORY': 'ohxiyu/xiyunews',
+        'RUNNER_TEMP': str(tmp_path), 'FIXTURE_EDITION': payload, 'API_EXIT': api_exit,
+    })
+    assert (result.returncode == 0) is success
+    assert path.read_text() == (payload if success else 'original snapshot')
 
 
 def test_reconcile_keeps_confirmed_receipt_and_establishes_pending_snapshot_base(tmp_path):

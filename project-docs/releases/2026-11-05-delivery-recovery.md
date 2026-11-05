@@ -18,6 +18,8 @@
 
 X 的 workflow_run 入口补齐 success 条件，避免失败/取消的采集或出版任务继续派生无用分发；与现有 Square 入口保持一致。原五分钟 Worker、小时备份和手动正常入口不变，不放宽门控或截止时间。最终应用完整 Python 为 1140 passed / 4 个既有 skipped。
 
+生产旧任务日志还证明源码 fetch 用时 8 分 34 秒，挤满原 X 十分钟总时限；X 总时限改为二十分钟，仅增加下载/检查点余量，不变更业务时限与 CPU/内存。读取日报改用已认证 GitHub API 获取 gh-pages 单个状态 JSON，避免为一个文件下载整个出版分支。实际私库只读请求通过；真实工作流 shell 的合法/坏 JSON、错误结构和 API 失败回归均须通过，失败保留原文件并停止，不能当作空刊期。
+
 恢复前已用 SQLite online backup 生成一致备份并检查完整性：/home/xiyunews-runner/state/recovery-backups/delivery-20261105T031411Z/publication.sqlite3，目录 0700、文件 0600。不手写 x-queue 或其他产物分支，不清空历史回执；通过合并后的正常 X Distribution 工作流恢复，仅允许今天按原门控到期的自然任务，不补过期历史、不发测试、不重试 unknown/failed，不为验收真实调用 AI。
 
 ## 五阶段状态

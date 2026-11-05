@@ -47,7 +47,9 @@ jobs:
           (github.event.workflow_run.conclusion == 'success' &&
            github.event.workflow_run.head_repository.full_name == github.repository) }}
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
-    timeout-minutes: 10
+    # Cold source checkout can exceed eight minutes on this runner. Preserve
+    # time for checkpointing; business deadlines remain enforced by x_queue.
+    timeout-minutes: 20
     env:
       TZ: Asia/Shanghai
 
@@ -58,14 +60,19 @@ jobs:
           ref: main # Never run another branch's code against the live account.
 
       - name: Restore published edition state
+        env:
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
-          git fetch --depth=1 origin +gh-pages:refs/remotes/origin/gh-pages
-          if git cat-file -e "origin/gh-pages:_data/bmtnews_state.json" 2>/dev/null; then
-            mkdir -p docs/_data
-            git show "origin/gh-pages:_data/bmtnews_state.json" > docs/_data/bmtnews_state.json
-          fi
+          # Read the one private audit file, not the entire publication tree.
+          # Network/auth/invalid content fails closed, never an empty edition.
+          gh api -H 'Accept: application/vnd.github.raw+json' \
+            "repos/$GITHUB_REPOSITORY/contents/_data/bmtnews_state.json?ref=gh-pages" \
+            > "$RUNNER_TEMP/x-edition.json"
+          python3 -c 'import json,sys; value=json.load(open(sys.argv[1])); sys.exit(0 if isinstance(value,dict) and isinstance(value.get("items"),list) and isinstance(value.get("date"),str) else "Invalid published edition")' "$RUNNER_TEMP/x-edition.json"
+          mkdir -p docs/_data
+          cp "$RUNNER_TEMP/x-edition.json" docs/_data/bmtnews_state.json
 
       - name: Restore isolated delivery queue
         env:
