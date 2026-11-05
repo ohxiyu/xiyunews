@@ -58,6 +58,10 @@ jobs:
         uses: actions/checkout@v6
         with:
           ref: main # Never run another branch's code against the live account.
+          filter: blob:none
+          sparse-checkout: |
+            src
+            data
 
       - name: Restore published edition state
         env:

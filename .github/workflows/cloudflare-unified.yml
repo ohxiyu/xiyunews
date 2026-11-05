@@ -44,6 +44,14 @@ jobs:
         with:
           ref: main
           persist-credentials: false
+          filter: blob:none
+          sparse-checkout: |
+            src
+            docs
+            scripts
+            ops
+            data
+            .github
       - uses: actions/checkout@v6
         with:
           ref: gh-pages

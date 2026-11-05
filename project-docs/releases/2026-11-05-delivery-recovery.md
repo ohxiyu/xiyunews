@@ -26,6 +26,8 @@ X 的 workflow_run 入口补齐 success 条件，避免失败/取消的采集或
 
 正常 Cloudflare41959357519 在 2026-11-05 03:35–04:05Z 达到三十分钟总时限。两次 checkout 已完成，npm 安全审计通过；Ruby 缓存下载始终 0 字节后放弃，转在线 bundle install 又触及总时限，未进入生产替换。不能将其描述为页面代码失败或已部署成功。CI edge 与正式发布改用既有服务器的 Ruby 工具依赖缓存，按 ci/producer、Ruby 3.3 ABI 和锁文件 SHA 分路径，冻结依赖、优先离线安装；GitHub 托管环境仍保留原缓存方式。不修改 Gemfile/Gemfile.lock、CPU/内存、套餐或发布内容，不复用 PR 的渲染缓存作为生产输出。
 
+主仓库受跟踪内容约 28.48 MB，其中 project-docs 约 22.57 MB；运行任务无需下载这些截图。X 只下载 src/data，watchdog 只下载 src；CI 路径判断保留完整 Git 历史/差异元数据，仅下载 scripts；CI edge 与 Cloudflare 下载全部实际构建输入目录。完整 Python、网页、realtime 和治理检查的 checkout 范围不减，出版快照仍完整且固定 SHA，安全审计和渲染检查不跳过。
+
 今日日报 41959914727 在等待同一并发组时被后续采集替换取消；原调度已重新派发 41964081010。旧采集 41945229392 的 collect 已 success，仅 recover-daily 仍排队且因 always 条件普通取消无效；确认未执行后使用 workflow force-cancel 结束剩余检查，成功采集结果保留。昨日 watchdog41857789335 也在未执行时取消。此操作不涉及强推、回滚或状态分支写入。另取消未进入发送步骤的旧 X41962554645 / 41964088322，等待修复代码后经正常入口恢复，不测试发帖。
 
 - 代码：已实现，待提交与远端检查。

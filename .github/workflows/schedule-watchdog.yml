@@ -23,6 +23,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+        with:
+          filter: blob:none
+          sparse-checkout: src
 
       - name: Check daily edition heartbeat
         env:
