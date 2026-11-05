@@ -78,14 +78,20 @@ def hydrate(*, batch_size=4, attempts=3):
         batch = needed[offset:offset + batch_size]
         for attempt in range(attempts):
             try:
-                subprocess.run(['git', 'fetch', '--quiet', '--no-tags', '--no-write-fetch-head',
+                subprocess.run(['git', '-c', 'fetch.negotiationAlgorithm=noop', 'fetch', '--quiet', '--no-tags', '--no-write-fetch-head',
                                 '--no-recurse-submodules', '--filter=blob:none', 'origin', *batch],
                                env=env, check=True, capture_output=True, timeout=180)
                 break
-            except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
+            except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as exc:
                 if attempt + 1 == attempts:
                     # Captured Git output can contain credential-bearing URLs.
-                    raise RuntimeError('document blob batch download failed') from None
+                    detail = getattr(exc, 'stderr', b'') or b''
+                    markers = (b'Authentication failed', b'could not read Username',
+                               b'not our ref', b'unadvertised object', b'bad revision',
+                               b'unknown option', b'not send all necessary objects',
+                               b'early EOF', b'HTTP/2', b'curl 18')
+                    kind = next((m.decode() for m in markers if m in detail), type(exc).__name__)
+                    raise RuntimeError('document blob batch download failed: ' + kind) from None
                 time.sleep(2)
         for digest in batch:
             body = subprocess.check_output(['git', 'cat-file', 'blob', digest], env=env)
