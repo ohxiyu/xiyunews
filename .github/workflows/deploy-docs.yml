@@ -158,6 +158,9 @@ jobs:
       - name: Rebuild focused tracking without AI
         run: uv run python -m src.tracking_republish --root docs
 
+      - name: Repair retained edition history without AI or delivery
+        run: uv run python -m src.edition_recovery
+
       - name: Render Quick Post without AI
         run: uv run python -m src.quick_posts
 

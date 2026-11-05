@@ -6,6 +6,10 @@ env:
   GIT_CONFIG_COUNT: '1'
   GIT_CONFIG_KEY_0: http.version
   GIT_CONFIG_VALUE_0: HTTP/1.1
+  # Do not let optional CLI usage telemetry delay a completed publication.
+  # This is not a Worker binding or a change to application health reporting.
+  WRANGLER_SEND_METRICS: 'false'
+  WRANGLER_HIDE_BANNER: 'true' # No optional npm-version request during publication.
 
 on:
   workflow_dispatch:

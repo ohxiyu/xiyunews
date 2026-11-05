@@ -45,6 +45,12 @@ class PublicationState:
             db.execute("CREATE TABLE IF NOT EXISTS publication_documents (name TEXT PRIMARY KEY, payload TEXT NOT NULL, digest TEXT NOT NULL, source_digest TEXT NOT NULL, dirty INTEGER NOT NULL)")
             db.execute("CREATE TABLE IF NOT EXISTS ai_cache (kind TEXT NOT NULL, key TEXT NOT NULL, record TEXT NOT NULL, digest TEXT NOT NULL, PRIMARY KEY(kind,key))")
             db.execute("CREATE TABLE IF NOT EXISTS publication_runs (id TEXT PRIMARY KEY, kind TEXT NOT NULL, edition TEXT NOT NULL, report TEXT NOT NULL, recorded_at REAL NOT NULL)")
+            db.execute("CREATE TABLE IF NOT EXISTS publication_editions (date TEXT PRIMARY KEY, payload TEXT NOT NULL, digest TEXT NOT NULL)")
+            # Preserve the current selection when upgrading, even before the
+            # next day replaces the single current-document pointer.
+            current = db.execute("SELECT payload FROM publication_documents WHERE name='daily'").fetchone()
+            if current:
+                self._remember_edition(db, json.loads(current[0]))
             db.execute("INSERT OR IGNORE INTO publication_meta VALUES ('schema','1')")
             if db.execute("SELECT value FROM publication_meta WHERE key='schema'").fetchone()[0] != "1":
                 raise ValueError("unsupported publication schema")
@@ -101,7 +107,40 @@ class PublicationState:
         text = canonical(value)
         digest = signature(text)
         with self.connect() as db:
+            if name == "daily":
+                previous = db.execute("SELECT payload FROM publication_documents WHERE name='daily'").fetchone()
+                if previous:
+                    self._remember_edition(db, json.loads(previous[0]))
+                self._remember_edition(db, value)
             db.execute("INSERT INTO publication_documents VALUES(?,?,?,?,1) ON CONFLICT(name) DO UPDATE SET payload=excluded.payload,digest=excluded.digest,dirty=1", (name,text,digest,""))
+
+    @staticmethod
+    def _remember_edition(db, value):
+        from datetime import date
+        from .daily_feed import DailyFeedState
+        if not value.get("items"):
+            return
+        state = DailyFeedState.model_validate(value)
+        if date.fromisoformat(state.date).isoformat() != state.date:
+            raise ValueError("edition date must be canonical ISO date")
+        text = canonical(state.model_dump(mode="json"))
+        db.execute("INSERT INTO publication_editions VALUES(?,?,?) ON CONFLICT(date) DO UPDATE SET payload=excluded.payload,digest=excluded.digest",
+                   (state.date, text, signature(text)))
+        # Tiny selected-public-text snapshots; keep all generated editions.
+        # Pending publication is never discarded by a rolling date cutoff.
+
+    def remember_edition(self, value):
+        with self.connect() as db:
+            self._remember_edition(db, value)
+
+    def saved_editions(self):
+        with self.connect() as db:
+            result = []
+            for payload, digest in db.execute("SELECT payload,digest FROM publication_editions ORDER BY date"):
+                if signature(payload) != digest:
+                    raise StateConflict("saved edition checksum mismatch")
+                result.append(json.loads(payload))
+            return result
 
     def acknowledge_document(self, name, value):
         """Advance the audit base only after the exact Git checkpoint succeeds."""
@@ -212,6 +251,9 @@ class PublicationState:
             for record,digest in db.execute("SELECT record,digest FROM ai_cache"):
                 if signature(record) != digest or canonical(json.loads(record)) != record:
                     raise ValueError("publication cache integrity failed")
+            for payload,digest in db.execute("SELECT payload,digest FROM publication_editions"):
+                if signature(payload) != digest or canonical(json.loads(payload)) != payload:
+                    raise ValueError("saved edition integrity failed")
             return {"verified": True, "documents": db.execute("SELECT COUNT(*) FROM publication_documents").fetchone()[0],
                 "cache_rows": db.execute("SELECT COUNT(*) FROM ai_cache").fetchone()[0],
                 "runs": db.execute("SELECT COUNT(*) FROM publication_runs").fetchone()[0]}
