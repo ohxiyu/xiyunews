@@ -158,6 +158,15 @@ class PublicationState:
             db.execute("INSERT OR REPLACE INTO publication_runs VALUES(?,?,?,?,?)", (invocation,report.get("kind","unknown"),report.get("date","unknown"),canonical(report),time.time()))
             db.execute("DELETE FROM publication_runs WHERE id NOT IN (SELECT id FROM publication_runs ORDER BY recorded_at DESC LIMIT 200)")
 
+    def latest_edition_metrics(self, edition):
+        with self.connect() as db:
+            rows = db.execute("SELECT report FROM publication_runs WHERE kind='daily_publish' AND edition=? ORDER BY recorded_at DESC", (edition,))
+            for (raw,) in rows:
+                metrics = json.loads(raw).get("metrics", {})
+                if metrics.get("edition_candidates"):
+                    return metrics
+        return {}
+
     def bootstrap(self, cache, documents):
         # Validate/canonicalize ALL supplied data before a single transaction.
         prepared = {name: canonical(value) for name,value in documents.items()}

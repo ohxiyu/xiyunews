@@ -122,6 +122,13 @@ def test_acknowledged_pending_snapshot_allows_new_receipt_without_false_conflict
         assert db.execute('SELECT dirty FROM publication_documents').fetchone()[0] == 0
 
 
+def test_static_recovery_reuses_last_real_edition_statistics(tmp_path):
+    store = PublicationState(tmp_path / 'state')
+    store.save_report({'kind': 'daily_publish', 'date': '2026-11-05', 'metrics': {'edition_candidates': 100, 'analyzed_today': 20}})
+    assert store.latest_edition_metrics('2026-11-05') == {'edition_candidates': 100, 'analyzed_today': 20}
+    assert store.latest_edition_metrics('2026-11-04') == {}
+
+
 def test_checkpoint_failed_push_keeps_dirty_and_unchanged_retry_really_pushes(tmp_path, monkeypatch):
     monkeypatch.setenv('XIYUNEWS_STATE_DIR', str(tmp_path / 'state'))
     monkeypatch.delenv('GITHUB_ACTIONS', raising=False)
