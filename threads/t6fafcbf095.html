@@ -1,13 +1,17 @@
 ---
 layout: default
-title: "利用 Claude 发现并利用关键真实世界软件中的漏洞"
+title: "Claude 构建的 Linux 漏洞利用，瞄准 Ubuntu 仍未修补的内核漏洞"
 permalink: /threads/t6fafcbf095/
 interface_language: zh
-description: "Anthropic 发布了一份详细说明，介绍其 Claude 模型如何被用于发现并利用广泛部署的关键真实世界软件中的漏洞。该文章将结果呈现为 AI 安全工具防御潜力的证据，同时也视为其双用途风险的体现。  一家头部 AI 实验室公开记录其自有模型取得的具体攻击性能力结果，为安全团队与政策制定者提供了一个参照，说明 AI 正在压缩漏洞发现与利用之间的时间差——"
+description: "Anthropic 表示，Claude 使用一个尚未发布的内部模型，为 CVE-2026-98432 写出了可用的远程漏洞利用程序。该漏洞是 Linux 内核 IPv4 TCP 握手路径中的释放后使用（use-after-free）缺陷，严重性评分 9.8，影响 4.4 及之后的內核版本。该攻击在 10 月 27 日的一篇研究文章中披露，覆盖 Chrome、"
 page_type: archive
 ---
 
-<div class="archive-stats"><div class="archive-stat"><strong>6</strong><span>天</span></div><div class="archive-stat"><strong>6</strong><span>条</span></div><div class="archive-stat"><strong>2026-10-28</strong><span>最近报道</span></div></div><h2>时间线</h2><ul class="archive-list"><li class="archive-row"><time datetime="2026-10-28">2026-10-28</time><div class="archive-row-body"><h3><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFBMTTViWmp6TE1SU3lNQjd6aWozb0Rhd0VjSVlMOThjRXpFRjBvN1lZdVRreFg3UWRGNjNqRkViU3lQbFJuaHRIMXBJUHFHSXhpbTZSTGhybUxOdTU3bEFDMUIzd0NmcWRHRk1CckVLV2FIT1ZDb1ZMZHJ0WWhxSE0?oc=5" target="_blank" rel="noopener noreferrer">利用 Claude 发现并利用关键真实世界软件中的漏洞</a></h3><p class="archive-row-summary">Anthropic 发布了一份详细说明，介绍其 Claude 模型如何被用于发现并利用广泛部署的关键真实世界软件中的漏洞。该文章将结果呈现为 AI 安全工具防御潜力的证据，同时也视为其双用途风险的体现。
+<div class="archive-stats"><div class="archive-stat"><strong>7</strong><span>天</span></div><div class="archive-stat"><strong>7</strong><span>条</span></div><div class="archive-stat"><strong>2026-11-03</strong><span>最近报道</span></div></div><h2>时间线</h2><ul class="archive-list"><li class="archive-row"><time datetime="2026-11-03">2026-11-03</time><div class="archive-row-body"><h3><a href="https://decrypt.co/382375/claude-built-linux-exploit-bug-ubuntu" target="_blank" rel="noopener noreferrer">Claude 构建的 Linux 漏洞利用，瞄准 Ubuntu 仍未修补的内核漏洞</a></h3><p class="archive-row-summary">Anthropic 表示，Claude 使用一个尚未发布的内部模型，为 CVE-2026-98432 写出了可用的远程漏洞利用程序。该漏洞是 Linux 内核 IPv4 TCP 握手路径中的释放后使用（use-after-free）缺陷，严重性评分 9.8，影响 4.4 及之后的內核版本。该攻击在 10 月 27 日的一篇研究文章中披露，覆盖 Chrome、Safari、Android、Windows 和 Linux 五个目标，定位内存缺陷耗时不到一小时，再花约五分钟即可执行获得 root 权限的命令。
+
+Ubuntu 官方跟踪页面仍将 16.04 至 26.10 的所有版本列为受影响，而红帽已于 11 月 1 日（周日）为 RHEL 8、9、10 发布修复，包括安全公告 RHSA-2026:93412。Go 安全团队警告称，底层缺陷并不局限于 Anthropic 演示所用攻击所依赖的 MPTCP 特性，并建议升级到已修补的内核。
+
+Anthropic 写道，该漏洞属于竞态条件，竞争失败只会导致握手失败而不会使系统崩溃，因此攻击者可以无限次重试。红帽发布了一条临时防火墙规则，称其“可降低暴露于该漏洞的风险，但无法完全阻止”，完整的解决方案仍在开发中；Debian、SUSE、Oracle Linux 和 Amazon Linux 也已为至少部分版本发布修复。</p><p class="archive-row-meta">Decrypt</p></div><span class="score-badge" data-tier="good">8.5</span></li><li class="archive-row"><time datetime="2026-10-28">2026-10-28</time><div class="archive-row-body"><h3><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFBMTTViWmp6TE1SU3lNQjd6aWozb0Rhd0VjSVlMOThjRXpFRjBvN1lZdVRreFg3UWRGNjNqRkViU3lQbFJuaHRIMXBJUHFHSXhpbTZSTGhybUxOdTU3bEFDMUIzd0NmcWRHRk1CckVLV2FIT1ZDb1ZMZHJ0WWhxSE0?oc=5" target="_blank" rel="noopener noreferrer">利用 Claude 发现并利用关键真实世界软件中的漏洞</a></h3><p class="archive-row-summary">Anthropic 发布了一份详细说明，介绍其 Claude 模型如何被用于发现并利用广泛部署的关键真实世界软件中的漏洞。该文章将结果呈现为 AI 安全工具防御潜力的证据，同时也视为其双用途风险的体现。
 
 一家头部 AI 实验室公开记录其自有模型取得的具体攻击性能力结果，为安全团队与政策制定者提供了一个参照，说明 AI 正在压缩漏洞发现与利用之间的时间差——谷歌威胁情报团队也指出了这一变化。
 

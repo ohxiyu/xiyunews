@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "event_id": "evt_0a4855e296b48d21",
+  "url": "https://xiyu.news/events/evt_0a4855e296b48d21/",
+  "json": "https://xiyu.news/api/events/evt_0a4855e296b48d21.json",
+  "type": "other",
+  "status": "monitoring",
+  "category": "technology",
+  "title": {
+    "zh": "Astra 能够读写权重以改进 Qwen",
+    "en": "Astra can read and write weights to improve Qwen"
+  },
+  "current_state": {
+    "zh": "一位研究者发布了一项名为“权重空间编程”（weight-space programming）的演示：名为 Astra 的大模型直接检视神经网络的权重并加以编辑以改变模型行为，且全程不允许它编写训练循环。在文中给出的例子中，Astra 将一个小型推理模型的重复循环归因于第 15 层和第 19 层 MLP 写出的某个方向，并从每层 64 个输出列（共 131,072 个权重）中减去该方向；它还直接编辑了一个小型 Qwen 模型的权重，在没有重新训练的情况下将其数学能力提升了数倍。\n\nHacker News 上的评论者认为，这一演示是引人注目的证据，说明当前的大模型可能对自身权重结构具备某种“原生”理解，而不必依赖外部工具来检视权重。不过该工作属于单人博客演示，并非经过同行评审的成果，也非前沿实验室的正式发布。\n\n根据文中描述，在编辑权重之前，该基座模型前 96 次练习作答中有 85 次触及 32,768 token 的上限。作者将这一方法概括为：利用模型的推理能力判断网络各部分实际计算什么、应当计算什么，然后据此修改权重。",
+    "en": "A researcher has published a demonstration of \"weight-space programming,\" in which an LLM called Astra inspects a neural network's weights directly and edits them to change model behavior, without being allowed to write training loops. In the reported examples, Astra traced a small reasoning model's repetitive looping to a direction written by the MLP layers 15 and 19 and subtracted it from 64 output columns in each layer (131,072 weights), and separately edited a small Qwen model's weights to improve its math performance several-fold without retraining.\n\nCommenters on Hacker News described the demonstration as striking evidence that current LLMs may hold some native understanding of their own weight structure rather than requiring external tooling to inspect it. The work is presented as a single-author blog demonstration, not a peer-reviewed or frontier-lab release.\n\nAccording to the write-up, 85 of the base model's first 96 practice answers ran to the 32,768-token limit before the weight edit. The author frames the approach as using the model's reasoning to work out what each part of the network computes, or should compute, and then changing weights accordingly."
+  },
+  "first_seen_at": "2026-11-02T23:27:41.021472+00:00",
+  "last_updated_at": "2026-11-02T23:27:41.021472+00:00",
+  "last_material_change_at": "2026-11-02T23:27:41.021472+00:00",
+  "confidence": 0.75,
+  "updates_count": 1,
+  "sources_count": 1,
+  "entities": [
+    "astra",
+    "qwen"
+  ],
+  "identifiers": [],
+  "topics": [],
+  "updates": [
+    {
+      "update_id": "upd_8d508bd74074a25e",
+      "event_id": "evt_0a4855e296b48d21",
+      "occurred_at": "2026-11-02T18:21:28Z",
+      "published_at": "2026-11-02T18:21:28Z",
+      "first_seen_at": "2026-11-02T23:27:41.021472Z",
+      "time_precision": "published",
+      "update_type": "initial",
+      "material_change": true,
+      "title_zh": "Astra 能够读写权重以改进 Qwen",
+      "title_en": "Astra can read and write weights to improve Qwen",
+      "what_changed_zh": "一位研究者发布了一项名为“权重空间编程”（weight-space programming）的演示：名为 Astra 的大模型直接检视神经网络的权重并加以编辑以改变模型行为，且全程不允许它编写训练循环。在文中给出的例子中，Astra 将一个小型推理模型的重复循环归因于第 15 层和第 19 层 MLP 写出的某个方向，并从每层 64 个输出列（共 131,072 个权重）中减去该方向；它还直接编辑了一个小型 Qwen 模型的权重，在没有重新训练的情况下将其数学能力提升了数倍。\n\nHacker News 上的评论者认为，这一演示是引人注目的证据，说明当前的大模型可能对自身权重结构具备某种“原生”理解，而不必依赖外部工具来检视权重。不过该工作属于单人博客演示，并非经过同行评审的成果，也非前沿实验室的正式发布。\n\n根据文中描述，在编辑权重之前，该基座模型前 96 次练习作答中有 85 次触及 32,768 token 的上限。作者将这一方法概括为：利用模型的推理能力判断网络各部分实际计算什么、应当计算什么，然后据此修改权重。",
+      "what_changed_en": "A researcher has published a demonstration of \"weight-space programming,\" in which an LLM called Astra inspects a neural network's weights directly and edits them to change model behavior, without being allowed to write training loops. In the reported examples, Astra traced a small reasoning model's repetitive looping to a direction written by the MLP layers 15 and 19 and subtracted it from 64 output columns in each layer (131,072 weights), and separately edited a small Qwen model's weights to improve its math performance several-fold without retraining.\n\nCommenters on Hacker News described the demonstration as striking evidence that current LLMs may hold some native understanding of their own weight structure rather than requiring external tooling to inspect it. The work is presented as a single-author blog demonstration, not a peer-reviewed or frontier-lab release.\n\nAccording to the write-up, 85 of the base model's first 96 practice answers ran to the 32,768-token limit before the weight edit. The author frames the approach as using the model's reasoning to work out what each part of the network computes, or should compute, and then changing weights accordingly.",
+      "current_state_zh": "一位研究者发布了一项名为“权重空间编程”（weight-space programming）的演示：名为 Astra 的大模型直接检视神经网络的权重并加以编辑以改变模型行为，且全程不允许它编写训练循环。在文中给出的例子中，Astra 将一个小型推理模型的重复循环归因于第 15 层和第 19 层 MLP 写出的某个方向，并从每层 64 个输出列（共 131,072 个权重）中减去该方向；它还直接编辑了一个小型 Qwen 模型的权重，在没有重新训练的情况下将其数学能力提升了数倍。\n\nHacker News 上的评论者认为，这一演示是引人注目的证据，说明当前的大模型可能对自身权重结构具备某种“原生”理解，而不必依赖外部工具来检视权重。不过该工作属于单人博客演示，并非经过同行评审的成果，也非前沿实验室的正式发布。\n\n根据文中描述，在编辑权重之前，该基座模型前 96 次练习作答中有 85 次触及 32,768 token 的上限。作者将这一方法概括为：利用模型的推理能力判断网络各部分实际计算什么、应当计算什么，然后据此修改权重。",
+      "current_state_en": "A researcher has published a demonstration of \"weight-space programming,\" in which an LLM called Astra inspects a neural network's weights directly and edits them to change model behavior, without being allowed to write training loops. In the reported examples, Astra traced a small reasoning model's repetitive looping to a direction written by the MLP layers 15 and 19 and subtracted it from 64 output columns in each layer (131,072 weights), and separately edited a small Qwen model's weights to improve its math performance several-fold without retraining.\n\nCommenters on Hacker News described the demonstration as striking evidence that current LLMs may hold some native understanding of their own weight structure rather than requiring external tooling to inspect it. The work is presented as a single-author blog demonstration, not a peer-reviewed or frontier-lab release.\n\nAccording to the write-up, 85 of the base model's first 96 practice answers ran to the 32,768-token limit before the weight edit. The author frames the approach as using the model's reasoning to work out what each part of the network computes, or should compute, and then changing weights accordingly.",
+      "detailed_summary_zh": "一位研究者发布了一项名为“权重空间编程”（weight-space programming）的演示：名为 Astra 的大模型直接检视神经网络的权重并加以编辑以改变模型行为，且全程不允许它编写训练循环。在文中给出的例子中，Astra 将一个小型推理模型的重复循环归因于第 15 层和第 19 层 MLP 写出的某个方向，并从每层 64 个输出列（共 131,072 个权重）中减去该方向；它还直接编辑了一个小型 Qwen 模型的权重，在没有重新训练的情况下将其数学能力提升了数倍。\n\nHacker News 上的评论者认为，这一演示是引人注目的证据，说明当前的大模型可能对自身权重结构具备某种“原生”理解，而不必依赖外部工具来检视权重。不过该工作属于单人博客演示，并非经过同行评审的成果，也非前沿实验室的正式发布。\n\n根据文中描述，在编辑权重之前，该基座模型前 96 次练习作答中有 85 次触及 32,768 token 的上限。作者将这一方法概括为：利用模型的推理能力判断网络各部分实际计算什么、应当计算什么，然后据此修改权重。",
+      "detailed_summary_en": "A researcher has published a demonstration of \"weight-space programming,\" in which an LLM called Astra inspects a neural network's weights directly and edits them to change model behavior, without being allowed to write training loops. In the reported examples, Astra traced a small reasoning model's repetitive looping to a direction written by the MLP layers 15 and 19 and subtracted it from 64 output columns in each layer (131,072 weights), and separately edited a small Qwen model's weights to improve its math performance several-fold without retraining.\n\nCommenters on Hacker News described the demonstration as striking evidence that current LLMs may hold some native understanding of their own weight structure rather than requiring external tooling to inspect it. The work is presented as a single-author blog demonstration, not a peer-reviewed or frontier-lab release.\n\nAccording to the write-up, 85 of the base model's first 96 practice answers ran to the 32,768-token limit before the weight edit. The author frames the approach as using the model's reasoning to work out what each part of the network computes, or should compute, and then changing weights accordingly.",
+      "background_zh": "权重空间学习是一个既有研究方向：ICLR 2025 曾举办研讨会，旨在将神经网络权重视为一种数据模态；此前的工作还包括预测或生成网络参数，而“快速权重编程器”（fast weight programmer）的思路可追溯到 1991 年。Qwen 是阿里云推出的开放权重大模型系列，于 2023 年首次发布。这些模型所基于的 Transformer 模块由自注意力与多层感知机（MLP）层堆叠而成，而 Astra 此次编辑的正是其中的 MLP 层。",
+      "background_en": "Weight-space learning is an existing research area: ICLR 2025 hosted a workshop aimed at treating neural network weights as a data modality, and prior lines of work include predicting or generating network parameters, with fast-weight programmer ideas dating back to 1991. Qwen is Alibaba Cloud's family of open-weight large language models, first released in 2023. Transformer blocks, the architecture behind these models, stack self-attention with Multi-Layer Perceptron (MLP) layers — the components Astra edited here.",
+      "community_discussion_zh": "Hacker News 上的讨论获得约 1632 分和 518 条评论。一位评论者称结果“太疯狂了”，并表示自己原本以为大模型对自身权重的理解最多只相当于人类水平。也有人认为该结果虽然惊人但并非全然出乎意料，并将其类比为大模型能迅速理解庞杂的遗留代码库；还有评论者指出参数预测与网络参数生成已有长期研究积累，这个子领域早已存在。",
+      "community_discussion_en": "The Hacker News discussion drew roughly 1,632 points and 518 comments, with one commenter calling the results \"insane\" and saying they had assumed LLMs' understanding of their own weights would be at best human-level. Others said the result, while remarkable, was not entirely out of the blue, comparing it to LLMs' ability to rapidly grasp sprawling legacy codebases; another commenter pointed to a long-standing literature on parameter prediction and network parameter generation, arguing the subfield has existed for years.",
+      "market_impact_zh": "",
+      "market_impact_en": "",
+      "importance_score": 8.0,
+      "references": [
+        {
+          "url": "https://rikiyat.github.io/blog/weight-space-programming/",
+          "title": "Sparks of Weight-Space Programming: LLMs can natively read..."
+        },
+        {
+          "url": "https://iclr.cc/virtual/2025/workshop/23994",
+          "title": "Neural Network Weights as a New Data Modality"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Qwen",
+          "title": "Qwen - Wikipedia"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=50341174",
+          "title": "Community discussion"
+        }
+      ],
+      "confidence": 0.75,
+      "story_ids": [
+        "hackernews:story:50341174"
+      ],
+      "sources": [
+        {
+          "url": "https://rikiyat.github.io/blog/weight-space-programming/",
+          "label": "dbreunig",
+          "source_type": "hackernews",
+          "official": false
+        }
+      ]
+    }
+  ]
+}
