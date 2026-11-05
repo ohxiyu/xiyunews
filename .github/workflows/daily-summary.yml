@@ -234,6 +234,9 @@ jobs:
           edition_date="$(python -c 'import json; print(json.load(open("data/run-report.json", encoding="utf-8"))["date"])')"
           echo "date=${edition_date}" >> "$GITHUB_OUTPUT"
 
+      - name: Repair retained edition history without AI or delivery
+        run: uv run python -m src.edition_recovery
+
       - name: Render Quick Post without AI
         run: uv run python -m src.quick_posts
 

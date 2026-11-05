@@ -158,6 +158,10 @@ def write_edition_api(
 
     latest_path = api_root / "latest.json"
     latest_path.parent.mkdir(parents=True, exist_ok=True)
+    # A late historical repair must not move the current feed backwards.
+    latest = json.loads(latest_path.read_text()) if latest_path.exists() else None
+    if latest is not None and str(latest.get("date", "")) > date:
+        return [edition_path]
     _atomic_write_text(latest_path, body)
     return [edition_path, latest_path]
 
