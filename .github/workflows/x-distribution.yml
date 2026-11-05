@@ -44,7 +44,8 @@ jobs:
   post:
     if: >-
       ${{ github.event_name != 'workflow_run' ||
-          github.event.workflow_run.head_repository.full_name == github.repository }}
+          (github.event.workflow_run.conclusion == 'success' &&
+           github.event.workflow_run.head_repository.full_name == github.repository) }}
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 10
     env:
