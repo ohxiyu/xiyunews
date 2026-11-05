@@ -179,3 +179,12 @@ def test_deploy_docs_uses_its_pinned_second_checkout_without_root_remote_ref(tmp
     restore_published_files(days={'2026-11-03'})
     assert Path('docs/editions/2026-11-03/zh.html').read_text() == 'pinned original'
     assert not Path('docs/editions/2026-10-01/zh.html').exists()
+
+
+def test_build_cli_metrics_do_not_replace_required_checks_or_runtime_settings():
+    root=Path(__file__).resolve().parents[1]
+    for name in ('ci.yml','cloudflare-unified.yml'):
+        workflow=(root/'.github/workflows'/name).read_text()
+        assert "  WRANGLER_SEND_METRICS: 'false'" in workflow.split('\non:',1)[0]
+        assert 'npm audit' in workflow or 'npm run check' in workflow
+    assert 'WRANGLER_SEND_METRICS' not in (root/'ops/daily-dispatcher/wrangler.unified.jsonc').read_text()

@@ -6,6 +6,9 @@ env:
   GIT_CONFIG_COUNT: '1'
   GIT_CONFIG_KEY_0: http.version
   GIT_CONFIG_VALUE_0: HTTP/1.1
+  # CLI telemetry waits can outlive a successful dry-run on slow networks.
+  # Process-local only; keep audits, type checks and all tests unchanged.
+  WRANGLER_SEND_METRICS: 'false'
 
 on:
   pull_request:
