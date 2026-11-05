@@ -10,7 +10,7 @@
   "owner": "当前会话唯一编辑与生产整合负责人",
   "branch": "agent/queue-gate-journal",
   "last_verified_commit": "dca841fd0e112cbec3917f382682acb41fb800bf",
-  "pr": "待检查完成后创建应用PR",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/326",
   "completed": ["3日14条、近14期连续性和四组中英桌面/手机尺寸阅读已在线验收，正常publisher完整ACK及自动统一发布均成功", "定位X/Square安装依赖前的门控均因PublicationState构造器导入Pydantic失败，尚未发送", "保存层改为标准库记录已验证原始JSON，完整领域模型校验仍在恢复消费者", "两个真实python -S入口回归修复前失败，修复后连同原持久/跨日回归20项通过"],
   "unfinished": ["完整Python与适用CI、同步main后合并", "真实X/Square轻量门控及原稿/回执保护核对", "Issue321/PR324最终证据更新、转ready并合并"],
   "validation": ["20项定向通过，含无site-packages、隔离升级前数据库、真实X/Square CLI及不变回执断言", "本兼容性改动完整Python1184 passed/4既有skipped、治理与差异检查通过；适用远端CI待完成；先前PR320/323和两轮实际网站验收已通过"],

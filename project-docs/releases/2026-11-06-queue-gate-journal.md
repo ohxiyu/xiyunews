@@ -20,6 +20,8 @@
 
 Source commit: 基线dca841fd0e112cbec3917f382682acb41fb800bf；本修复合并后回读实际runtime代码SHA。
 
+Application PR: [PR326](https://github.com/ohxiyu/xiyunews/pull/326)。
+
 Worker version: 网站当前05b8d129-2253-4759-b4ef-441bc6bc9708、artifact82929893a36f9e1a4dfde5c9b6df2f8048df3cb9；本次仅Python运行入口兼容，不修改Worker或网页资产。
 
 Deployment: 仅正常main工作流，不手写生成分支、手改回执或持久运行Secrets。
