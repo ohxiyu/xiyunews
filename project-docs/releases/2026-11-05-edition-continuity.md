@@ -25,10 +25,16 @@ publication_editions独立保存每次选稿的规范JSON和SHA-256，当前dail
 ## 五阶段与验收
 
 - 代码：已实现。
-- 测试：完整Python1180 passed/4既有skipped；最终补充Deploy Docs第二checkout适配后7项真实CLI/跨日、幂等、真实Git及latest保护回归通过；治理、编译和差异检查通过，最终head远端CI待完成。
-- 合并：待PR检查通过且同步main。
+- 测试：最终完整Python1182 passed/4既有skipped，8项定向真实CLI/跨日、幂等、真实Git、latest保护及构建退出回归通过；治理、编译和差异检查通过。最终head bda3a950614dc8018d20801240f651d8c7ad937a的[CI42061327289](https://github.com/ohxiyu/xiyunews/actions/runs/42061327289)全部通过，包括test/web/edge-build和realtime双Python兼容性检查。edge-build下载期间记录了early EOF并由既有动作重试恢复，最终26分20秒成功；没有跳过检查或放宽时限。
+- 合并：[PR320](https://github.com/ohxiyu/xiyunews/pull/320)于2026-11-05T17:25:36Z合并，88da72c5465a223160a51c805a7d3ce7ec4fbae8；合并树与已检查head一致，且为origin/main祖先。
 - 部署：待正常Deploy Docs，不手写gh-pages。
 - 生产验收：待3日14条、近14天连续性、双语页面/日期选择/加载更早、事件锚点及5日正文/消息队列不变验证。
+
+## 正常发布的恢复证据
+
+[Deploy Docs42074503443](https://github.com/ohxiyu/xiyunews/actions/runs/42074503443)第一次执行在2026-11-05T17:40:11Z输出：从delivery-20261105T031411Z导入3日14条、补齐五个入口文件，ai_calls=0、channel_calls=0。它已成功提交出版快照c23e9014ee7ea3bde869e5066aa82e0628dce65b，但在最后确认检查点时达到20分钟时限，整个任务cancelled，不能记为完整成功。随后仅重试该正常发布任务；另外启动现有统一Cloudflare工作流发布已经完整校验的快照，没有手写出版分支或从本地上传产物。
+
+第一次执行后的只读核对：主数据库和写入前备份integrity_check均为ok，publication_editions包含3日14条、5日13条且摘要校验通过；daily、x_queue、square_queue三份规范JSON与恢复前字节一致。新出版快照中12个事件引用及HTML节点全部存在，api/latest.json与基线e1bb9198及前一出版fdf5107f逐字节一致，完整文件SHA256仍为abf1cef3296611beb4f50510a79467080fa6b06e5c27faa8ee226ffd887e99ce。临时验收脚本最初混用了Python默认空格与JavaScript紧凑JSON的items摘要，已改为对照原始快照独立计算的紧凑摘要；文件逐字节比较也独立通过，没有把脚本断言失败算作通过。
 
 部署入口适配：Deploy Docs已将出版快照检出到current-site，应用根不一定有origin/gh-pages；恢复器使用该独立检出的准确HEAD读取历史，日报/采集则固定origin/gh-pages SHA。只恢复近期15天及日志所需日期，避免逐个下载整站多年历史；不覆盖本轮已生成文件。真实独立Git仓库回归覆盖根目录无远端ref、第二checkout读取和日期过滤。
 
@@ -36,7 +42,7 @@ publication_editions独立保存每次选稿的规范JSON和SHA-256，当前dail
 
 中间head02eb7ea1的web检查达到15分钟总时限。日志确认npm audit通过、类型检查完成、135项Worker测试全部通过；wrangler types从15:46:22到15:51:46才退出，最终dry-run在15:52:41测试后到15:58:18取消仍未退出。检查锁定Wrangler代码发现匿名统计请求和banner版本提示请求都会创建网络连接，后者的Promise.race只限制显示等待，并不取消底层请求。只关闭统计的本机实测仍有退出延迟，不能把原因全归于统计；同时设置进程内WRANGLER_SEND_METRICS=false及WRANGLER_HIDE_BANNER=true，避免这两类非必要请求。只影响构建CLI，不修改systemd环境、Worker vars、业务健康/费用统计，不删减任何安全检查或测试，不放宽时限。最终完整CI须重新通过；不将中间取消状态当通过。新增检查断言最初未包含既有npm run audit写法，已修正后重跑，未将失败断言视作通过。
 
-Source commit: 当前基线ffc4dc2464f955ff644798bc38effbdb728b3aaa，修复合并待记录。
+Source commit: 88da72c5465a223160a51c805a7d3ce7ec4fbae8（PR320）；基线ffc4dc2464f955ff644798bc38effbdb728b3aaa。
 
 Worker version: not changed；只读基线ba1bf907-6399-476b-b437-a8bcda0ef199，正常部署后回读。
 
