@@ -15,11 +15,11 @@
     "en": "Anthropic is developing FlashProve, an open source system that would let anyone verify which AI model produced a given output, according to a company blog post published Tuesday. The company demonstrated the approach using Llama 4 Maverick, a 400-billion-parameter mixture-of-experts model, running on a single NVIDIA H100 GPU.\n\nThe effort targets model-identity and impersonation concerns, aiming to give developers and platforms a way to check that a response genuinely came from the model it claims to originate from.\n\nAnthropic describes FlashProve as an open source system, and the demo produced proofs on a single NVIDIA H100 GPU with Llama 4 Maverick. The system is still in development, with no shipped or widely adopted implementation yet."
   },
   "first_seen_at": "2026-11-05T03:00:27.961790+00:00",
-  "last_updated_at": "2026-11-05T03:00:27.961790+00:00",
-  "last_material_change_at": "2026-11-05T03:00:27.961790+00:00",
+  "last_updated_at": "2026-11-05T04:41:42.118462+00:00",
+  "last_material_change_at": "2026-11-05T04:41:42.118462+00:00",
   "confidence": 0.75,
-  "updates_count": 1,
-  "sources_count": 1,
+  "updates_count": 2,
+  "sources_count": 2,
   "entities": [
     "anthropic"
   ],
@@ -80,6 +80,57 @@
           "url": "https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/",
           "label": "TechCrunch AI",
           "source_type": "rss",
+          "official": false
+        }
+      ]
+    },
+    {
+      "update_id": "upd_03edb2951b4c9c07",
+      "event_id": "evt_7c1a0b54d2cb7d1f",
+      "occurred_at": "2026-11-04T17:17:46Z",
+      "published_at": "2026-11-04T17:17:46Z",
+      "first_seen_at": "2026-11-05T04:41:42.118462Z",
+      "time_precision": "published",
+      "update_type": "confirmation",
+      "material_change": true,
+      "title_zh": "大语言模型可验证推理的研究进展",
+      "title_en": "Progress on provable inference for large language models",
+      "what_changed_zh": "Anthropic 公布了一种名为 FlashProve 的研究方案，用于大型混合专家（MoE）语言模型的可验证推理：模型提供方先对模型权重做出承诺，随后为每个请求生成一份 zkSNARK 证明，使客户端能够核实实际为其提供服务的是哪一套权重。Anthropic 表示已在一个 4000 亿参数模型上演示了该系统。\n\n该方案针对的是托管模型服务中的信任缺口：让客户能够确认提供方服务器上实际运行的权重，而不是仅凭提供方的一面之词。有评论者认为这相较此前的零知识方案是显著改进，同时指出约 90-100 倍的计算开销限制了它在短期内的实用性。\n\n据讨论中引述的报告内容，权重承诺约 6.5 MB，在提供方需要重新承诺之前大约可用于 1600 万次请求，每个请求生成一份证明。验证一份证明在 24 线程上约需 17 秒、单线程约需 21 秒，其中包含对离线阶段的校验。",
+      "what_changed_en": "Anthropic published a research approach, called FlashProve, for provable inference of large Mixture-of-Experts (MoE) language models: the model provider commits to its weights, then issues one zkSNARK proof per request so a client can verify which weights actually served it. Anthropic said it demonstrated the system on a 400-billion-parameter model.\n\nThe scheme targets a trust gap in hosted model serving — letting a customer confirm which weights ran on a provider's servers rather than relying on the provider's word. Commenters described it as a significant improvement over earlier zero-knowledge results, while noting the roughly 90-100x compute overhead limits near-term practicality.\n\nAccording to discussion of the report, the weight commitment is about 6.5 MB and remains valid for roughly 16 million requests before the provider must commit again, with one proof issued per request. Verifying a proof takes about 17 seconds on 24 threads and 21 seconds on a single thread, including the check from the offline phase.",
+      "current_state_zh": "Anthropic 公布了一种名为 FlashProve 的研究方案，用于大型混合专家（MoE）语言模型的可验证推理：模型提供方先对模型权重做出承诺，随后为每个请求生成一份 zkSNARK 证明，使客户端能够核实实际为其提供服务的是哪一套权重。Anthropic 表示已在一个 4000 亿参数模型上演示了该系统。\n\n该方案针对的是托管模型服务中的信任缺口：让客户能够确认提供方服务器上实际运行的权重，而不是仅凭提供方的一面之词。有评论者认为这相较此前的零知识方案是显著改进，同时指出约 90-100 倍的计算开销限制了它在短期内的实用性。\n\n据讨论中引述的报告内容，权重承诺约 6.5 MB，在提供方需要重新承诺之前大约可用于 1600 万次请求，每个请求生成一份证明。验证一份证明在 24 线程上约需 17 秒、单线程约需 21 秒，其中包含对离线阶段的校验。",
+      "current_state_en": "Anthropic published a research approach, called FlashProve, for provable inference of large Mixture-of-Experts (MoE) language models: the model provider commits to its weights, then issues one zkSNARK proof per request so a client can verify which weights actually served it. Anthropic said it demonstrated the system on a 400-billion-parameter model.\n\nThe scheme targets a trust gap in hosted model serving — letting a customer confirm which weights ran on a provider's servers rather than relying on the provider's word. Commenters described it as a significant improvement over earlier zero-knowledge results, while noting the roughly 90-100x compute overhead limits near-term practicality.\n\nAccording to discussion of the report, the weight commitment is about 6.5 MB and remains valid for roughly 16 million requests before the provider must commit again, with one proof issued per request. Verifying a proof takes about 17 seconds on 24 threads and 21 seconds on a single thread, including the check from the offline phase.",
+      "detailed_summary_zh": "Anthropic 公布了一种名为 FlashProve 的研究方案，用于大型混合专家（MoE）语言模型的可验证推理：模型提供方先对模型权重做出承诺，随后为每个请求生成一份 zkSNARK 证明，使客户端能够核实实际为其提供服务的是哪一套权重。Anthropic 表示已在一个 4000 亿参数模型上演示了该系统。\n\n该方案针对的是托管模型服务中的信任缺口：让客户能够确认提供方服务器上实际运行的权重，而不是仅凭提供方的一面之词。有评论者认为这相较此前的零知识方案是显著改进，同时指出约 90-100 倍的计算开销限制了它在短期内的实用性。\n\n据讨论中引述的报告内容，权重承诺约 6.5 MB，在提供方需要重新承诺之前大约可用于 1600 万次请求，每个请求生成一份证明。验证一份证明在 24 线程上约需 17 秒、单线程约需 21 秒，其中包含对离线阶段的校验。",
+      "detailed_summary_en": "Anthropic published a research approach, called FlashProve, for provable inference of large Mixture-of-Experts (MoE) language models: the model provider commits to its weights, then issues one zkSNARK proof per request so a client can verify which weights actually served it. Anthropic said it demonstrated the system on a 400-billion-parameter model.\n\nThe scheme targets a trust gap in hosted model serving — letting a customer confirm which weights ran on a provider's servers rather than relying on the provider's word. Commenters described it as a significant improvement over earlier zero-knowledge results, while noting the roughly 90-100x compute overhead limits near-term practicality.\n\nAccording to discussion of the report, the weight commitment is about 6.5 MB and remains valid for roughly 16 million requests before the provider must commit again, with one proof issued per request. Verifying a proof takes about 17 seconds on 24 threads and 21 seconds on a single thread, including the check from the offline phase.",
+      "background_zh": "FlashProve 涉及两方：作为证明者的模型提供方和作为验证者的用户。Anthropic 表示这项工作推进了 zkSNARK 的应用，并称这类密码学证明因其隐藏性与效率特性而特别适合可验证推理。",
+      "background_en": "FlashProve involves two parties: the model provider as prover and the user as verifier. Anthropic said the work advances zkSNARKs, a class of cryptographic proof it describes as uniquely suited to provable inference because of their hiding and efficiency properties.",
+      "community_discussion_zh": "一位评论者称自己此前做过名为 VerInf 的工作，而该方案正是建立在其之上，并表示包括选用 400B Maverick 模型在内的设计来自那项工作，却几乎没有得到署名。其他人欢迎这一成果，但认为存在更便宜的替代方案：把同一非批处理提示交给四个独立推理提供方以获得概率性证明，或者对于开放权重模型直接确定性地重算一遍。还有评论者指出，该方案也能识别出把请求悄悄路由到其他模型的提供方。",
+      "community_discussion_en": "A commenter who said they developed prior work called VerInf, which the approach builds on, said the design including the choice of a 400B Maverick model came from that work with little attribution. Others welcomed the result as a step forward but argued cheaper alternatives exist — running the same non-batched prompt through four independent inference providers for a probabilistic proof, or, for open-weight models, simply redoing the computation deterministically. Several commenters noted the scheme could also catch providers that silently route requests to other models.",
+      "market_impact_zh": "与加密市场的传导路径在零知识证明基础设施一侧：FlashProve 依赖 zkSNARK，而这正是 zkML 与可验证计算网络所使用的证明系统，因此大模型推理证明的进展会影响这类项目对可行性与成本的叙事。讨论中提到的 90-100 倍开销表明该技术尚不足以替代现有的服务或验证设计，且该研究本身并未直接涉及任何代币、交易场所或协议。",
+      "market_impact_en": "The crypto transmission path runs through zero-knowledge proof infrastructure: FlashProve relies on zkSNARKs, the same proof systems used by zkML and verifiable-compute networks, so progress on proving large-model inference bears on how those projects frame feasibility and cost. The 90-100x overhead described in discussion suggests the technique is not yet a practical substitute for existing serving or verification designs, and no token, venue or protocol is directly implicated by the research itself.",
+      "importance_score": 7.0,
+      "references": [
+        {
+          "url": "https://www.anthropic.com/research/provable-inference",
+          "title": "Progress on provable inference for large language models \\ Anthropic"
+        },
+        {
+          "url": "https://interestingengineering.com/ai-robotics/anthropic-flashprove-cryptographic-model-verification",
+          "title": "Anthropic unveils cryptographic tool to verify model outputs"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=50368626",
+          "title": "Community discussion"
+        }
+      ],
+      "confidence": 0.0,
+      "story_ids": [
+        "hackernews:story:50368626"
+      ],
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/research/provable-inference",
+          "label": "ltononro",
+          "source_type": "hackernews",
           "official": false
         }
       ]
