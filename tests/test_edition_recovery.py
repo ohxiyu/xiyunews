@@ -4,6 +4,7 @@ from datetime import date, datetime, timedelta, timezone
 import json
 import os
 from pathlib import Path
+import sqlite3
 import subprocess
 import sys
 
@@ -52,6 +53,49 @@ def test_daily_rollover_journals_each_selection_atomically_and_survives_restart(
     # Importing the old selected edition never changes the current document.
     restarted.remember_edition(old.model_dump(mode='json'))
     assert restarted.load_document('daily', None) == before
+
+
+@pytest.mark.parametrize('module,workflow', [
+    ('src.x_queue', 'xiyu.news X Distribution'),
+    ('src.square_plan', 'xiyu.news Binance Square Distribution'),
+])
+def test_dependency_free_queue_gate_migrates_existing_daily_journal(tmp_path, module, workflow):
+    """Real production entrypoints run before uv installs third-party packages."""
+    from src.x_queue import empty_state
+    root = Path(__file__).resolve().parents[1]
+    store = PublicationState(tmp_path / 'state')
+    daily = state('2026-11-05').model_dump(mode='json')
+    queues = {'x_queue': empty_state(), 'square_queue': {'version': 1, 'editions': {}}}
+    store.save_document('daily', daily)
+    for name, value in queues.items():
+        store.save_document(name, value)
+    with store.connect() as db:
+        before = dict(db.execute('SELECT name,payload FROM publication_documents'))
+        db.execute('DROP TABLE publication_editions')  # Isolated pre-upgrade database.
+    feed = tmp_path / 'feed.json'
+    feed.write_text(json.dumps(daily))
+    config = tmp_path / 'config.json'
+    config.write_text(json.dumps({'x_delivery': {'enabled': False},
+        'filtering': {'daily_timezone': 'Asia/Shanghai'}}))
+    key = 'x_queue' if module == 'src.x_queue' else 'square_queue'
+    queue = tmp_path / 'queue.json'
+    queue.write_text(json.dumps(queues[key]))
+    args = ['--queue', str(queue)]
+    if module == 'src.x_queue':
+        args += ['--feed-state', str(feed), '--config', str(config),
+            '--now', '2026-11-06T03:00:00+08:00']
+    result = subprocess.run([sys.executable, '-S', '-m', module, *args], cwd=tmp_path,
+        env={'PATH': os.environ['PATH'], 'PYTHONPATH': str(root), 'XIYUNEWS_STATE_DIR': str(tmp_path / 'state'),
+            'GITHUB_ACTIONS': 'true', 'GITHUB_REPOSITORY': 'ohxiyu/xiyunews',
+            'GITHUB_REF': 'refs/heads/main', 'GITHUB_WORKFLOW': workflow},
+        capture_output=True, text=True)
+    assert result.returncode == 0, result.stderr
+    assert ('work=false' if module == 'src.x_queue' else 'due=false') in result.stdout
+    assert 'attention=0' in result.stdout
+    with sqlite3.connect(store.path) as db:
+        assert dict(db.execute('SELECT name,payload FROM publication_documents')) == before
+        row = db.execute('SELECT date,payload FROM publication_editions').fetchone()
+    assert row == (daily['date'], canonical(daily))
 
 
 def test_late_edition_api_does_not_replace_latest(tmp_path):
