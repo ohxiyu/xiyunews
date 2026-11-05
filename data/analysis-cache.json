@@ -322,23 +322,6 @@
         "source_category": "crypto-markets"
       }
     },
-    "0184aff391225d4b35e00b9b1e80469ea1aa5405bad98f27db6c63e011c30916": {
-      "stored_at": "2026-10-28T14:53:59.591545+00:00",
-      "value": {
-        "ai_reason": "A substantive security-infrastructure report: a compromised CA (eMudhra) remains trusted in macOS's /etc/ssl ten days after revocation, affecting system Git and other utilities that rely on OS trust stores, with Apple's only guidance being manual cert-chain edits that OS updates can revert. High-signal discussion (467 points, 181 comments) adds detail on scope (Homebrew git/curl, graphical apps), the inadequacy of flat cert.pem files versus a proper verifier, and systemic cert-management problems. Material developer-security impact, but not a market- or protocol-level event.",
-        "ai_score": 7.0,
-        "ai_summary": "Ten days after eMudhra certificates were compromised, macOS still trusts them at the system level, leaving Git and other OS-supplied utilities vulnerable to interception unless users manually patch the trust store.",
-        "ai_tags": [
-          "security",
-          "TLS-certificates",
-          "macOS",
-          "Apple",
-          "PKI"
-        ],
-        "category": "tech-community",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "01a2c2ae0652956bbaba9b1f32ed0706ae78e790cdc2a450a896c2d0dbed3ac4": {
       "stored_at": "2026-10-31T21:22:36.892133+00:00",
       "value": {
@@ -2320,6 +2303,24 @@
         "source_category": "crypto-markets"
       }
     },
+    "0883f6b2e853ad3709d58798da6dcb7d66f233591b663a24819e4af349b477fa": {
+      "stored_at": "2026-11-05T22:19:50.226023+00:00",
+      "value": {
+        "ai_reason": "Quarterly earnings disclosure from a HYPE treasury company showing a $620.6M profit driven largely by unrealized (paper) gains on token holdings, with the token now ~14% below the quarter-end mark used for valuation. It is concrete and data-backed but reflects mark-to-market accounting rather than a material protocol, market-structure, or exchange development; impact is limited to holders of the company's shares and HYPE sentiment.",
+        "ai_score": 5.5,
+        "ai_summary": "Hyperliquid Strategies reported a $620.6 million quarterly profit built on paper gains in its HYPE token holdings, even as HYPE trades roughly 14% below the price used to value those quarter-end positions.",
+        "ai_tags": [
+          "HYPE",
+          "Hyperliquid",
+          "treasury-company",
+          "earnings",
+          "token-holdings"
+        ],
+        "category": "crypto-markets",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-protocols"
+      }
+    },
     "08944d11f5e8b8aabf26b076e00de4de318414b4b95c8621b89eb91fbffad267": {
       "stored_at": "2026-10-31T23:28:55.527319+00:00",
       "value": {
@@ -3528,24 +3529,6 @@
         "source_category": "exchange-announcements"
       }
     },
-    "0c13d485b0c95add719d00278eeb29d81e8b0f5d368517556dcbc2db3d5990c7": {
-      "stored_at": "2026-10-28T14:53:59.591013+00:00",
-      "value": {
-        "ai_reason": "This is a commentary/recap piece using the Coinbase data breach as a hook to argue for self-custody; the underlying breach is an old event and the text contains no concrete in-window development (no new disclosure, filing, or remediation news). Analysis is generic security advocacy rather than new information, so it falls in the low-priority range.",
-        "ai_score": 3.5,
-        "ai_summary": "A Cryptonews opinion piece revisits the Coinbase customer data breach to argue that self-custody is essential for crypto users' security.",
-        "ai_tags": [
-          "coinbase",
-          "data-breach",
-          "self-custody",
-          "exchange-security",
-          "user-funds"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
     "0c21791ac2532cdfbdc23e4c0b674ea25a54a36d6b31ad1ae7fc40a47f47cecc": {
       "stored_at": "2026-11-05T21:02:07.361464+00:00",
       "value": {
@@ -4207,6 +4190,24 @@
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
+      }
+    },
+    "0f04893b85a12777814600177ef09f31132e3c09a66541114a8197ad85e53e16": {
+      "stored_at": "2026-11-05T22:19:50.228707+00:00",
+      "value": {
+        "ai_reason": "This is a generic market-commentary piece linking BNB's price action to Binance's security posture, without a concrete in-window development, disclosed incident, or verifiable data. It reads as unsupported price narrative rather than reportable news.",
+        "ai_score": 3.0,
+        "ai_summary": "A market commentary piece frames BNB's price outlook around Binance's security recovery narrative without citing a specific new incident or announcement.",
+        "ai_tags": [
+          "bnb",
+          "binance",
+          "market-commentary",
+          "exchange-security",
+          "price-narrative"
+        ],
+        "category": "crypto-markets",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "exchange-announcements"
       }
     },
     "0f07651eb16867e6983e5fa1e6cecad9b7e683b9a782d616265d6ac5423588a5": {
@@ -5055,6 +5056,23 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "11dbfff36f11fe13065e75b745bcfcbc7933826dc2820f5415f0f6bcd2cd87ef": {
+      "stored_at": "2026-11-05T22:19:50.230661+00:00",
+      "value": {
+        "ai_reason": "This is an auto-generated price-converter utility page (BTW to PHP) on The Block, not a news article. It contains no reporting, no in-window development, and no market-moving information; it is essentially navigational/tooling content with negligible editorial value.",
+        "ai_score": 0.5,
+        "ai_summary": "A generic currency conversion tool page for translating Bitway (BTW) token values into Philippine pesos, offering no news or analysis.",
+        "ai_tags": [
+          "price-converter",
+          "tool-page",
+          "bitway",
+          "php",
+          "non-news"
+        ],
+        "category": "crypto-markets",
+        "score_model": "deepseek:deepseek-flash"
+      }
+    },
     "1207710595d4052013dfbf9640d150e2c916dddac2b1d20f72eb4a9c64b68548": {
       "stored_at": "2026-11-05T08:00:45.253237+00:00",
       "value": {
@@ -5326,24 +5344,6 @@
           "inflation"
         ],
         "category": "macro-regulation",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
-      }
-    },
-    "13121970cab6a19c5266263e87ace85ed9aaf07ee010d846fb2dd5c8893d315a": {
-      "stored_at": "2026-10-28T14:53:59.592582+00:00",
-      "value": {
-        "ai_reason": "Itaú Unibanco, a major Brazilian private bank, formally notified the central bank of its crypto trading and custody operations under Resolution 520, signaling significant institutional adoption and regulatory clarity in Brazil. It is high-value but not market-moving, with no disclosed customer or volume figures.",
-        "ai_score": 7.0,
-        "ai_summary": "Itaú Unibanco has notified Brazil's central bank that it will offer crypto trading and custody for 15 assets, including bitcoin, ether, and USDC, under the central bank's authorization framework.",
-        "ai_tags": [
-          "Brazil",
-          "Itaú Unibanco",
-          "crypto-custody",
-          "crypto-regulation",
-          "institutional-adoption"
-        ],
-        "category": "crypto-regulation",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
       }
@@ -8892,23 +8892,6 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
-    "201d8b6b7b53c24f5df9e447309feea09ed02aef51e3074d8e12093305e592de": {
-      "stored_at": "2026-10-28T14:53:59.591760+00:00",
-      "value": {
-        "ai_reason": "Data-backed market commentary on Bitcoin's relative performance versus the S&P 500, but it lacks an urgent catalyst, structural market change, or actionable trading development.",
-        "ai_score": 5.0,
-        "ai_summary": "Bitcoin outperformed the S&P 500 on most trading days in the period but still posted a weaker monthly return due to concentrated drawdowns.",
-        "ai_tags": [
-          "bitcoin",
-          "s&p 500",
-          "market performance",
-          "volatility",
-          "crypto markets"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "201ec59b3c319c2a0d567211022bf65030fd828fbe6397bc7e47d5c7b0aad27b": {
       "stored_at": "2026-11-05T04:44:14.791952+00:00",
       "value": {
@@ -10377,6 +10360,22 @@
         "source_category": "exchange-announcements"
       }
     },
+    "257379780ce7d5491370acd7fde7f3abde450570acc68c50287c111b66a3c13e": {
+      "stored_at": "2026-11-05T22:19:50.228112+00:00",
+      "value": {
+        "ai_reason": "This is only a bare RSS link to The Block's video show landing page with no article text, no specific event, and no in-window development; it is navigational/promotional noise rather than news.",
+        "ai_score": 0.5,
+        "ai_summary": "A Google News RSS item pointing to The Block's 'Crypto Video Show' page with no accompanying article content or specific development.",
+        "ai_tags": [
+          "crypto-media",
+          "video-content",
+          "rss-feed",
+          "no-news"
+        ],
+        "category": "crypto-markets",
+        "score_model": "deepseek:deepseek-flash"
+      }
+    },
     "25a0bb9d415210bc5c0d75bdf640cbaf9269425c30a0b9ae9a4f0abf2f21f356": {
       "stored_at": "2026-10-28T22:32:52.085225+00:00",
       "value": {
@@ -10661,40 +10660,6 @@
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
-      }
-    },
-    "26506e62fcb769c16b4471b65fcff8d201e27dfcd71d09e9699b694b6341f2a2": {
-      "stored_at": "2026-10-28T14:53:59.592928+00:00",
-      "value": {
-        "ai_reason": "Coinbase publicly refuting data-breach rumors is a security-relevant clarification from a top-tier exchange, but because the claim is denial of an unconfirmed rumor and no funds or user data are reported compromised, there is no material incident or market-structure change. Worth noting for sentiment and security monitoring, not urgent.",
-        "ai_score": 5.5,
-        "ai_summary": "Coinbase dismissed circulating data-breach rumors, stating that no customer funds are at risk and that its systems were not compromised.",
-        "ai_tags": [
-          "coinbase",
-          "security",
-          "data-breach",
-          "exchange-operations",
-          "rumors"
-        ],
-        "category": "exchange-announcements",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
-    "265db61092ec9dd4544ef0fa4eae180eb65b8aea206b718a2793e241a6195064": {
-      "stored_at": "2026-10-28T14:53:59.590663+00:00",
-      "value": {
-        "ai_reason": "Google testing an MPC-based crypto custody system with use by multiple financial institutions and Alphabet is a significant institutional custody and market-structure development. It signals deeper Big Tech involvement in digital-asset security, though the report lacks disclosed scale, launch timing, or independent confirmation, keeping it below groundbreaking.",
-        "ai_score": 7.0,
-        "ai_summary": "Google is internally testing an MPC-based crypto custody security system that multiple financial institutions and Alphabet are using to protect digital assets on Ethereum and Solana.",
-        "ai_tags": [
-          "Google",
-          "MPC custody",
-          "institutional adoption",
-          "Ethereum",
-          "Solana"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "265dd8b54aaef1a0f47f61353655c35161825d7b95a96cb76c78bb54df07fe10": {
@@ -12798,6 +12763,24 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "2d50604d6c0d02ba026523c4347114e1f7e6d938a796d4bbc887fb7b341f1861": {
+      "stored_at": "2026-11-05T22:19:50.225922+00:00",
+      "value": {
+        "ai_reason": "Commentary/analysis piece examining a Binance security breach through the lens of AI governance and basic operational security failures. It touches a consequential topic (major exchange compromise) and offers useful lessons, but it is secondary analysis of an incident rather than a new in-window disclosure of losses, remediation, or attacker details, so it carries limited immediate market impact.",
+        "ai_score": 6.5,
+        "ai_summary": "CSO Online argues that a Binance heist exposes both gaps in AI governance and fundamental security failures at the exchange.",
+        "ai_tags": [
+          "binance",
+          "exchange-security",
+          "ai-governance",
+          "cybersecurity",
+          "hacks"
+        ],
+        "category": "exchange-operations",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "exchange-announcements"
+      }
+    },
     "2d565e4c9634acd6fef7d09e605cf313e048d73a19195c2e4feee71580b55807": {
       "stored_at": "2026-11-05T12:03:34.328601+00:00",
       "value": {
@@ -12812,24 +12795,6 @@
           "crypto regulation"
         ],
         "category": "crypto-regulation",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
-      }
-    },
-    "2d6ee5bbc0743bc0856146d74d6017bc852e7904df2b36e08bd919109f3b6248": {
-      "stored_at": "2026-10-28T14:53:59.592212+00:00",
-      "value": {
-        "ai_reason": "A confirmed intrusion into the internal groupware system of South Korea's second-largest crypto exchange, with an industry source indicating some customer data leaked and regulators inspecting; scope and customer impact are still unconfirmed, and no funds are reported lost, so it sits below a material-loss exploit but is a significant exchange security/privacy event.",
-        "ai_score": 7.0,
-        "ai_summary": "Bithumb disclosed that an unauthorized party accessed its internal mobile groupware system and leaked personal information, with the exchange investigating whether customer data was among the exposed material as South Korean authorities inspect breaches also reported by Daishin Securities and Mirae Asset Global Investments.",
-        "ai_tags": [
-          "bithumb",
-          "data-breach",
-          "exchange-security",
-          "south-korea",
-          "privacy"
-        ],
-        "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
       }
@@ -13960,6 +13925,23 @@
         "category": "macro-regulation",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
+      }
+    },
+    "3138bc0a93c229b8cbfbc19522211590b956f2f89b6d32a37b500d8a218e2086": {
+      "stored_at": "2026-11-05T22:19:50.230135+00:00",
+      "value": {
+        "ai_reason": "Samsung Wallet enabling USDC accounts on Solana for US Galaxy users is a material stablecoin adoption and consumer-distribution development, bringing regulated dollar-denominated accounts to a large mainstream device ecosystem. It is high-value but not industry-reshaping on its own, and it is narrower than platform-wide exchange or regulatory changes.",
+        "ai_score": 7.5,
+        "ai_summary": "Samsung Wallet has launched USDC accounts on Solana for US Galaxy users, expanding mainstream consumer access to stablecoin-based accounts and payments.",
+        "ai_tags": [
+          "USDC",
+          "Solana",
+          "Samsung Wallet",
+          "stablecoin adoption",
+          "consumer payments"
+        ],
+        "category": "crypto-markets",
+        "score_model": "deepseek:deepseek-flash"
       }
     },
     "313a07275cbf38c72a79911e58cfbf33703d8ad7afd6398f098fc2e4021d7f96": {
@@ -15150,6 +15132,23 @@
         "source_category": "exchange-announcements"
       }
     },
+    "34fc7896d9f2b00b19c7673a0435995ac1dcf9cc8f7e8821903fb69830465802": {
+      "stored_at": "2026-11-05T22:19:50.228592+00:00",
+      "value": {
+        "ai_reason": "A hobbyist technical write-up on reviving macOS-on-non-Apple-hardware (Hackintosh) builds with AI assistance, backed by a moderately active HN thread (122 points, 40 comments) that debates QEMU/KVM versus kext patching and hardware alternatives like Asahi Linux. It is a useful, novel-ish engineering narrative for tinkerers, but has no broader platform, security, or market implications.",
+        "ai_score": 5.0,
+        "ai_summary": "A blog post describes using AI assistance to bring the Hackintosh practice of running macOS on non-Apple hardware back to life, sparking HN discussion about virtualization routes and Mac hardware versus Linux.",
+        "ai_tags": [
+          "hackintosh",
+          "macOS",
+          "virtualization",
+          "QEMU",
+          "AI-assisted-development"
+        ],
+        "category": "tech-community",
+        "score_model": "deepseek:deepseek-flash"
+      }
+    },
     "350bac75374c34171bb0b1d65f5c396cb640f2d1d87fd2843471f94e2f1741a5": {
       "stored_at": "2026-10-28T22:32:52.088852+00:00",
       "value": {
@@ -15886,24 +15885,6 @@
           "outage"
         ],
         "category": "crypto-protocols",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
-      }
-    },
-    "36dd75c890ed50b7a533f77f3dc4a5cd7a561bfa10bc6d9d3423df36f1a0f9b0": {
-      "stored_at": "2026-10-28T14:53:59.591654+00:00",
-      "value": {
-        "ai_reason": "Concrete regulatory milestone: Itaú Unibanco becomes the first bank in Brazil to notify the central bank of crypto trading and custody operations under the new digital-asset framework, just ahead of the October 30 deadline. It signals a clear transmission path from regulation to institutional crypto access in Latin America's largest market, though it is a single-firm compliance step rather than a market-wide structural shift.",
-        "ai_score": 7.0,
-        "ai_summary": "Itaú Unibanco became the first Brazilian bank to notify the central bank of its crypto trading and custody operations under the country's new digital-asset rules, ahead of the October 30 deadline for existing operators.",
-        "ai_tags": [
-          "brazil",
-          "crypto-regulation",
-          "institutional-adoption",
-          "banking",
-          "central-bank"
-        ],
-        "category": "crypto-regulation",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
       }
@@ -17300,6 +17281,23 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "3baa97d44aa3dab1d41b16c52b512d5048a566a48f3680db0ecc5660ddcc703c": {
+      "stored_at": "2026-11-05T22:19:50.227970+00:00",
+      "value": {
+        "ai_reason": "Market-structure commentary on an upcoming $2.7B Bitcoin options expiry and a five-hour window where traders are exposed without a hedging venue. It is a concrete, data-backed derivatives story worth knowing but describes a routine recurring expiry rather than a material event, so impact is limited and non-urgent.",
+        "ai_score": 5.0,
+        "ai_summary": "Bitcoin traders are positioning around Friday's $2.7 billion options expiry, which carries a five-hour window of reduced hedging coverage that could amplify price moves.",
+        "ai_tags": [
+          "bitcoin",
+          "options-expiry",
+          "derivatives",
+          "market-structure",
+          "volatility"
+        ],
+        "category": "crypto-markets",
+        "score_model": "deepseek:deepseek-flash"
+      }
+    },
     "3bb1f0bccfd87e0c52d24797053b089bd0193105ba8f22dcfc8a6465e97b4a44": {
       "stored_at": "2026-10-29T11:02:55.089012+00:00",
       "value": {
@@ -17508,24 +17506,6 @@
           "exchange-operations",
           "asset-recovery",
           "user-funds"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
-    "3c7acc4aa3bf07e3a3917054b1a882b2b6c7b07bcb1db3924399b74c06618d4f": {
-      "stored_at": "2026-10-28T14:53:59.592829+00:00",
-      "value": {
-        "ai_reason": "Coinbase is a major exchange, and a reported third-party data exposure raises security and user-data concerns. However, Coinbase denies any systems breach and the available item does not establish material user impact or scale, so it is high-value but not systemic.",
-        "ai_score": 7.0,
-        "ai_summary": "Coinbase denied that its own systems were breached after a third-party data exposure affected data associated with the exchange.",
-        "ai_tags": [
-          "Coinbase",
-          "data exposure",
-          "exchange security",
-          "third-party risk",
-          "user data"
         ],
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
@@ -18189,23 +18169,6 @@
         "category": "crypto-protocols",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
-      }
-    },
-    "3eb74bf139d4b3e118233409a7e78c4763cf4a973f14164226e21daf759e2f1a": {
-      "stored_at": "2026-10-28T14:53:59.592080+00:00",
-      "value": {
-        "ai_reason": "A joint research report plus a roadmap announcement (planned index and on-chain lending market) rather than a live product or measurable market event. The strategy backtest figures (7% in-sample, 4% out-of-sample annualized net returns) give it some substance, but nothing is launched and impact is limited to the tokenized-equity niche.",
-        "ai_score": 5.5,
-        "ai_summary": "Bitget, Reality and Keyring published a joint study on tokenized-stock basis strategies and announced plans to build a stock basis index on Reality's rToken plus an on-chain lending market, with backtests showing roughly 7% in-sample and 4% out-of-sample annualized net returns.",
-        "ai_tags": [
-          "tokenized-stocks",
-          "bitget",
-          "basis-trading",
-          "on-chain-lending",
-          "research-report"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "3ec63da0c764073dedd241ea1d7cc979380b5ab906ee896b2c81207c53027d4a": {
@@ -19296,24 +19259,6 @@
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
-      }
-    },
-    "42fd1101876abf485fad8f320651b8a2ed33b2b7fcce832b1c15c96e3cfe74d6": {
-      "stored_at": "2026-10-28T14:53:59.592385+00:00",
-      "value": {
-        "ai_reason": "A social-media teaser ('COMING SOON') from OSL hinting at a stablecoin spending card, with no launch date, fees, partners, supported assets, or regulatory detail disclosed, and access limited to VIP clients. This is a promotional product hint rather than a concrete development with market impact.",
-        "ai_score": 4.0,
-        "ai_summary": "OSL Group posted a teaser image hinting at an upcoming stablecoin spending card marketed as 'Spend stablecoins. Rewards unlimited.' and restricted to its VIP clients.",
-        "ai_tags": [
-          "OSL",
-          "stablecoin",
-          "crypto-card",
-          "product-teaser",
-          "payments"
-        ],
-        "category": "exchange-announcements",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
       }
     },
     "430e6e686dff6f1fcb65782bc46dfa6c017f9e614a06f7aad528e6f8afc87f72": {
@@ -20995,6 +20940,24 @@
         "source_category": "crypto-markets"
       }
     },
+    "4a23d5107e093ab6ef59aa59bf08b95dc3fda21d958a00905c3d54a8dccb2c4f": {
+      "stored_at": "2026-11-05T22:19:50.226774+00:00",
+      "value": {
+        "ai_reason": "Reuters reports that a Binance hack triggered U.S. regulators to check in on bank systems, indicating a major exchange security incident with potential systemic implications. The regulatory follow-up adds significance beyond a routine exchange breach, though the excerpt does not quantify losses. No comments were provided to assess discussion quality.",
+        "ai_score": 8.5,
+        "ai_summary": "A Binance hack prompted U.S. regulators to contact banks and review their systems for exposure, according to Reuters sources.",
+        "ai_tags": [
+          "Binance",
+          "exchange hack",
+          "US regulators",
+          "banking systems",
+          "cybersecurity"
+        ],
+        "category": "crypto-regulation",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "exchange-announcements"
+      }
+    },
     "4a2660ca83ae80b30f8b375460dc6ab3104ad596d2b8b928ce5cd0a4957267c1": {
       "stored_at": "2026-11-01T23:07:49.849017+00:00",
       "value": {
@@ -21170,6 +21133,24 @@
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
+      }
+    },
+    "4adbd015832b4d2990e6df131256b463cef820fc4df7e413d52d9ea77109bfdb": {
+      "stored_at": "2026-11-05T22:19:50.225564+00:00",
+      "value": {
+        "ai_reason": "A CFTC FCM registration filing by a Hyperliquid-affiliated entity is a concrete regulatory/market-structure step toward offering regulated US derivatives brokerage, with disclosed $13.3M quarterly revenue showing real business scale. It is an application rather than an approval, so it sits below approval-level or enforcement news, but it has a clear transmission path to how Hyperliquid's ecosystem accesses US markets.",
+        "ai_score": 7.0,
+        "ai_summary": "Hyperliquid Strategies has filed with the CFTC to register as a futures commission merchant while reporting $13.3 million in quarterly revenue.",
+        "ai_tags": [
+          "hyperliquid",
+          "CFTC",
+          "FCM registration",
+          "regulation",
+          "derivatives"
+        ],
+        "category": "crypto-regulation",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-markets"
       }
     },
     "4af0a22e3d5b94ce19b959ab370df69a9a5191005bdeb13ea267e8a0d0b75719": {
@@ -22322,24 +22303,6 @@
         "category": "crypto-regulation",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
-      }
-    },
-    "4f272b3735ae8dda746421d0e2b1d53d78625f99b3f20fae2d5bb40d0fcd46eb": {
-      "stored_at": "2026-10-28T14:53:59.591340+00:00",
-      "value": {
-        "ai_reason": "An incremental but concrete development in the ongoing dispute over tokenized equities: seven large-cap names, including JPMorgan, Coca-Cola and Dell, joined the list of companies objecting to OKXICE tokenizing their shares, taking the total to 33. This signals broadening corporate/legal pushback against third-party stock tokenization, with a clear transmission path to how tokenized-equity products can operate, but it is a further addition to an existing dispute rather than a new ruling or market-structure change.",
-        "ai_score": 6.5,
-        "ai_summary": "JPMorgan, AMD, Applied Materials, Coca-Cola, Adobe, Dell and SanDisk objected to OKXICE tokenizing their shares, bringing the total number of opposing companies to 33.",
-        "ai_tags": [
-          "tokenized-stocks",
-          "OKXICE",
-          "tokenization",
-          "corporate-pushback",
-          "crypto-regulation"
-        ],
-        "category": "crypto-regulation",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
       }
     },
     "4f2931d2767ce1af445a82b5b55a0d5dc25d4d75e5c9bc9bc18cf304986fb329": {
@@ -26143,6 +26106,23 @@
         "source_category": "exchange-announcements"
       }
     },
+    "5ce696a4ed9b6399a97d3b5e0626e525d79f7a5f9b1772832477f40dd9ff8dac": {
+      "stored_at": "2026-11-05T22:19:50.228250+00:00",
+      "value": {
+        "ai_reason": "Kagi's changelog announcement that its search is now available 'for everyone' is a notable product/pricing development for a well-regarded independent search engine, and the HN thread (219 points, 109 comments) adds useful user perspective on API metering, result quality, and the bundled AI assistant. Impact is confined to Kagi's own user base rather than the broader tech or AI landscape, so it sits at 'worth knowing, not urgent'.",
+        "ai_score": 6.0,
+        "ai_summary": "Kagi announced a changelog update making its ad-free, subscription-based search available to a broader audience, prompting subscriber discussion about API usage being billed separately, occasional odd search results, and the value of its unlimited AI assistant.",
+        "ai_tags": [
+          "kagi",
+          "search-engine",
+          "product-launch",
+          "pricing",
+          "ai-assistant"
+        ],
+        "category": "tech-community",
+        "score_model": "deepseek:deepseek-flash"
+      }
+    },
     "5ce9edfb4f79150d15504ddd1f91b6a2124645b9ef935d9aa4aba3ea92f44a93": {
       "stored_at": "2026-10-28T18:27:50.654889+00:00",
       "value": {
@@ -27896,41 +27876,6 @@
         "source_category": "exchange-announcements"
       }
     },
-    "6395c59b1ba8c9cda5e9438a14d708817909c460deeeb708630021531f497121": {
-      "stored_at": "2026-10-28T14:53:59.590915+00:00",
-      "value": {
-        "ai_reason": "A security incident at a top-tier exchange, but the impact is contained: a third-party vendor (Amplitude) exposed customer contact information with no loss of funds or trading disruption. Disclosures of this type matter for user privacy and vendor-risk oversight, yet the absence of financial impact or systemic exposure keeps it below high-value threshold. Coverage is a brief news report with no technical detail on scope or remediation.",
-        "ai_score": 6.5,
-        "ai_summary": "Coinbase disclosed that a security incident at analytics vendor Amplitude exposed some customer contact information, while confirming no customer funds were lost.",
-        "ai_tags": [
-          "coinbase",
-          "security-incident",
-          "data-breach",
-          "third-party-risk",
-          "exchange"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
-    "63c2a3351db76e12eaeec4a516c67c104a2a1e385f98b75c7b04f2b206007644": {
-      "stored_at": "2026-10-28T14:53:59.591976+00:00",
-      "value": {
-        "ai_reason": "Stellar, an established top-tier L1, announced a fee-free network design claiming 7 million TPS — a meaningful scalability and fee-model development for a widely used payment chain. However, the claim is an unveiling/roadmap-style announcement without evidence of mainnet deployment, independent benchmarking, or immediate impact on existing users or markets, so it sits below the level of a shipped protocol upgrade or material market event.",
-        "ai_score": 6.5,
-        "ai_summary": "Stellar unveiled a fee-free network design that it claims can process 7 million transactions per second.",
-        "ai_tags": [
-          "Stellar",
-          "scalability",
-          "fee-free",
-          "blockchain-protocol",
-          "throughput"
-        ],
-        "category": "crypto-protocols",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "63d8e8fb78dc4d4e13837690634b530d091a6e0913a442e0faf435dfeca3111f": {
       "stored_at": "2026-11-05T16:56:05.371451+00:00",
       "value": {
@@ -28647,24 +28592,6 @@
         "source_category": "exchange-announcements"
       }
     },
-    "65d7a052271283ba594c6002b4cd9f61a7f28a36eff4c3bab7df9df8b80c43d5": {
-      "stored_at": "2026-10-28T14:53:59.593113+00:00",
-      "value": {
-        "ai_reason": "Evergreen educational explainer recounting Bitcoin's 2008 whitepaper, 2009 genesis block, and first transaction; no new in-window development, data, or analysis, so it is recycled historical background rather than news.",
-        "ai_score": 3.0,
-        "ai_summary": "A CryptoSlate guide retells the history of Bitcoin's creation, covering the whitepaper, genesis block, and the first transaction between Satoshi Nakamoto and Hal Finney.",
-        "ai_tags": [
-          "bitcoin",
-          "history",
-          "whitepaper",
-          "genesis-block",
-          "education"
-        ],
-        "category": "crypto-protocols",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
-      }
-    },
     "65ef77afcc26b3e130a3138f0a2a8368d8393667f61f52a00bc8d8fb87ac9e9b": {
       "stored_at": "2026-11-02T13:22:20.554247+00:00",
       "value": {
@@ -29188,6 +29115,24 @@
         "category": "crypto-regulation",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
+      }
+    },
+    "682aa092728bca6d6ba8f9b92c30fd04e5db30fb463922318496b1d597c5090d": {
+      "stored_at": "2026-11-05T22:19:50.230790+00:00",
+      "value": {
+        "ai_reason": "Reports a meeting between Azerbaijan's central bank and Binance on crypto-asset regulation — a courtesy/dialogue-level development with no announced rule, licensing decision, or market-access change. Regional and preliminary, so worth noting but not urgent.",
+        "ai_score": 4.5,
+        "ai_summary": "Azerbaijan's Central Bank held talks with Binance representatives on approaches to regulating crypto-assets in the country.",
+        "ai_tags": [
+          "azerbaijan",
+          "binance",
+          "crypto-regulation",
+          "central-bank",
+          "emerging-markets"
+        ],
+        "category": "crypto-regulation",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "exchange-announcements"
       }
     },
     "683d35172f05b233161c1dca4a31d5ea3a42a044ae8f6cc8e2d4d9c3e8dc15a2": {
@@ -30569,6 +30514,24 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "6ca30c82ff383717735db86a92289fc38dced62a5befbdab02e5e9d7dd53e431": {
+      "stored_at": "2026-11-05T22:19:50.229699+00:00",
+      "value": {
+        "ai_reason": "This is an exchange self-promotional press release announcing a proprietary 'Proof of Security' framework and a stated 104.58% cold storage coverage ratio. It is a transparency/PR disclosure rather than an independently verified audit, no third-party attestation is described, and it does not materially change market structure, fees, listings, or user access. Worth noting for exchange-operations watchers but low urgency, hence low priority.",
+        "ai_score": 4.0,
+        "ai_summary": "Gate announced a self-styled 'Proof of Security' (PoSEC) program claiming 104.58% cold storage coverage of user assets as a reinforcement of its reserve and asset-security posture.",
+        "ai_tags": [
+          "Gate",
+          "proof-of-reserves",
+          "cold-storage",
+          "exchange-transparency",
+          "custody"
+        ],
+        "category": "exchange-announcements",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-markets"
+      }
+    },
     "6cb461f24d77fdfb7937fd0ebbd9aa38e363b483d7008e63c01b9da8f659e899": {
       "stored_at": "2026-11-02T20:02:39.553030+00:00",
       "value": {
@@ -30889,23 +30852,6 @@
           "tokenized-stocks"
         ],
         "category": "exchange-announcements",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
-    "6da856cb79648d8d1bf32003d74a4047174e2caa930f66118f47aa1fd0a4e97a": {
-      "stored_at": "2026-10-28T14:53:59.590352+00:00",
-      "value": {
-        "ai_reason": "The DTCC — which custodies roughly $30 trillion in assets — has actually launched its tokenization service, with 34 securities live at the outset. This is a genuine market-structure development: tokenized DTC-custodied securities backed 1:1, identical CUSIPs across traditional and on-chain rails, 24/7 peer-to-peer transfers between registered DTC wallets, and built-in compliance controls. The partner roster (BitGo, Blockdaemon, Fireblocks, HashKey, Kaleido, Prometheum, Talos, Temple, Tradeweb) shows real infrastructure commitment rather than a pilot announcement. It falls short of a 9 because the initial scope is a limited 34-security set and the ultimate adoption curve is unproven, but the involvement of the core US settlement utility gives it clear industry-wide significance.",
-        "ai_score": 8.0,
-        "ai_summary": "DTCC launched its tokenization service with an initial 34 securities, issuing tokens 1:1 backed by DTC-custodied assets with shared CUSIPs, 24/7 wallet-to-wallet transfers, and near-real-time ownership tracking, supported by partners including BitGo, Fireblocks, HashKey, and Tradeweb.",
-        "ai_tags": [
-          "tokenization",
-          "DTCC",
-          "market-infrastructure",
-          "custody",
-          "institutional-adoption"
-        ],
-        "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
       }
     },
@@ -32650,23 +32596,6 @@
           "india"
         ],
         "category": "ai-media",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
-    "73a7d518766c4e77690ca832dc631b3fa10749c3f6fc27660e4ecff772a571de": {
-      "stored_at": "2026-10-28T14:53:59.591434+00:00",
-      "value": {
-        "ai_reason": "Tokenized structured notes from a major Korean securities firm's Hong Kong unit on Solana, with Marketnode as distributor, is a concrete institutional tokenization/RWA development with a real issuance program ($3B) behind it. It signals continued institutional adoption of public-chain distribution, but the deal size is undisclosed and it is one issuance rather than a market-structure shift, so it sits below the high-value threshold for landmark regulatory or systemic events.",
-        "ai_score": 7.0,
-        "ai_summary": "Mirae Asset Securities' Hong Kong unit issued six-month floating-rate tokenized notes on Solana under its $3 billion structured note program, with Marketnode as authorized distributor, aiming to model blockchain-based distribution of structured products to institutional investors.",
-        "ai_tags": [
-          "tokenization",
-          "RWA",
-          "Solana",
-          "institutional-adoption",
-          "structured-products"
-        ],
-        "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
       }
     },
@@ -36415,6 +36344,23 @@
         "source_category": "exchange-announcements"
       }
     },
+    "802aad14e7b6be6aa20b574ff050dd71e5a565732d38dfe06b78ec1e77c95c59": {
+      "stored_at": "2026-11-05T22:19:50.228468+00:00",
+      "value": {
+        "ai_reason": "This is an auto-generated token price/chart landing page for a tokenized equity (GEVB), not a news event; it contains no in-window development, listing, or market-moving information, making it effectively routine data-page noise.",
+        "ai_score": 2.5,
+        "ai_summary": "CryptoSlate price page tracking the tokenized GE Vernova bStocks token (GEVB) with USD chart, market cap and volume data.",
+        "ai_tags": [
+          "tokenized-stocks",
+          "bstocks",
+          "price-data",
+          "crypto-markets",
+          "real-world-assets"
+        ],
+        "category": "crypto-markets",
+        "score_model": "deepseek:deepseek-flash"
+      }
+    },
     "8045dd08d807dcf6e23052b15c0808e2597159a632df0621d1f5259afb7517d6": {
       "stored_at": "2026-10-29T23:30:34.675937+00:00",
       "value": {
@@ -36565,6 +36511,24 @@
           "security-incident",
           "crypto-theft",
           "systemic-risk"
+        ],
+        "category": "exchange-operations",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "exchange-announcements"
+      }
+    },
+    "8096e672f700302d9c36ca6e185c7aa0dcfb03ff9e41ec5c782a79f40911cc4d": {
+      "stored_at": "2026-11-05T22:19:50.230321+00:00",
+      "value": {
+        "ai_reason": "A confirmed exchange-side security action: Binance revoked SignalPlus API keys after issuing a security warning, disrupting a third-party options/structured-products integration used by traders. This is a material operational security development with a clear transmission path to users of the affected service, though the reported impact is confined to a single third-party integration rather than Binance's core platform or broad user funds, keeping it below systemic-incident territory.",
+        "ai_score": 7.0,
+        "ai_summary": "Binance revoked SignalPlus's API keys following a security warning, severing the third-party options platform's programmatic access to the exchange.",
+        "ai_tags": [
+          "binance",
+          "api-security",
+          "signalplus",
+          "exchange-operations",
+          "security-warning"
         ],
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
@@ -38122,6 +38086,24 @@
         "source_category": "exchange-announcements"
       }
     },
+    "8566520f1d9f3ef4f3f5616be269657824304f9ad0506b1dbeacac3410059481": {
+      "stored_at": "2026-11-05T22:19:50.226381+00:00",
+      "value": {
+        "ai_reason": "Concrete midterm result changes leadership of the House Financial Services Committee, removing a key crypto legislation sponsor from the chairmanship; relevant to crypto regulation but not an immediate regulatory or market decision.",
+        "ai_score": 6.5,
+        "ai_summary": "Crypto-friendly Representative French Hill won reelection in Arkansas but will lose his House Financial Services Committee chairmanship after Democrats won control of the House.",
+        "ai_tags": [
+          "crypto-regulation",
+          "US-politics",
+          "French-Hill",
+          "House-Financial-Services",
+          "midterms"
+        ],
+        "category": "crypto-regulation",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-markets"
+      }
+    },
     "8571f28176966f5694c092a17059399d12f0d156420aac3fcc400999a3764dd5": {
       "stored_at": "2026-10-31T21:22:36.891069+00:00",
       "value": {
@@ -38483,6 +38465,24 @@
           "unverified"
         ],
         "category": "exchange-operations",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "exchange-announcements"
+      }
+    },
+    "86dcd733e28aaec443f9064228f029661960a0eb3d0bc9daf8c5a59ddc786762": {
+      "stored_at": "2026-11-05T22:19:50.225818+00:00",
+      "value": {
+        "ai_reason": "A top exchange petitioning ArbitrumDAO over frozen ETH and ARB is a notable governance and asset-recovery development involving a major L2 and exchange, but it is a request rather than a finalized decision and the amount at stake is not established in the provided content.",
+        "ai_score": 7.0,
+        "ai_summary": "Binance has asked ArbitrumDAO to release frozen ETH and ARB tokens.",
+        "ai_tags": [
+          "Arbitrum",
+          "Binance",
+          "DAO governance",
+          "frozen funds",
+          "asset recovery"
+        ],
+        "category": "crypto-protocols",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
       }
@@ -38865,24 +38865,6 @@
           "budget-legislation"
         ],
         "category": "crypto-regulation",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
-      }
-    },
-    "884db5ecc21e813d0711c65d33eef9ad008379f9878bfc39a256356a5cd650b4": {
-      "stored_at": "2026-10-28T14:53:59.590553+00:00",
-      "value": {
-        "ai_reason": "A specific ETP launch was halted by Euronext over operational settlement requirements, delaying CoinShares' Zcash product in Paris. It is a notable market-structure and exchange-operations development for the issuer and Zcash exposure, but it affects a niche product rather than broad trading or systemic access.",
-        "ai_score": 6.0,
-        "ai_summary": "Euronext suspended CoinShares' Zcash ETP (ZCSH) on its scheduled Euronext Paris debut because standard settlement operations are not yet supported by the central securities depository.",
-        "ai_tags": [
-          "Zcash",
-          "ETP",
-          "Euronext",
-          "CoinShares",
-          "settlement"
-        ],
-        "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
       }
@@ -40900,6 +40882,24 @@
         ],
         "category": "tech-community",
         "score_model": "deepseek:deepseek-flash"
+      }
+    },
+    "8f757ecb1d7a5246d0b818433a40cc606f89cd27f533b026374ff2670b4c1420": {
+      "stored_at": "2026-11-05T22:19:50.226270+00:00",
+      "value": {
+        "ai_reason": "A former FBI agent pleaded guilty to stealing $2.47 million in crypto using credentials tied to 35 investigations, a significant law-enforcement and insider-security case with material implications for crypto crime and operational security. It is notable but not a systemic market or protocol event.",
+        "ai_score": 7.0,
+        "ai_summary": "Former FBI agent Patrick Steven Yaroch pleaded guilty to stealing $2.47 million in cryptocurrency using credentials linked to dozens of FBI investigations, compromising cases and intelligence sources.",
+        "ai_tags": [
+          "FBI",
+          "crypto theft",
+          "insider threat",
+          "law enforcement",
+          "security breach"
+        ],
+        "category": "crypto-regulation",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-protocols"
       }
     },
     "8f8e48aebdba571b23413659c8e78dce0edcbdd382da5aebb3338d83526aa341": {
@@ -43451,6 +43451,24 @@
         "title_zh": "风投将在Anthropic的IPO中赚取数十亿美元，但亚马逊的收益要多得多"
       }
     },
+    "9857efab452f9b057aa1d8f7e49af1ba89906df6822848e60a43b0e48be9d4aa": {
+      "stored_at": "2026-11-05T22:19:50.225688+00:00",
+      "value": {
+        "ai_reason": "The FCM registration application is a concrete step toward US-regulated access to Hyperliquid perpetual futures under the proposed HIP-3 permissioned-market framework, a material market-structure and access development rather than routine corporate news. It is paired with hard numbers on institutional scale: $620.6M quarterly net income (mostly $803M unrealized HYPE gains), $911M equity raised, $785M spent on ~9.1M HYPE, and 38.9M HYPE held at a $56.35 average cost. It falls short of the 8+ band because this is a filing, not an approval, and the profit is mark-to-market rather than realized operating income.",
+        "ai_score": 7.5,
+        "ai_summary": "Hyperliquid Strategies (NASDAQ: PURR), the largest public HYPE treasury company, applied for US futures commission merchant registration to serve US clients on Hyperliquid's proposed HIP-3 permissioned perpetual futures markets, while reporting $620.6M in quarterly net income driven by $803M of unrealized HYPE gains and a treasury of roughly 38.9M HYPE.",
+        "ai_tags": [
+          "hyperliquid",
+          "HYPE",
+          "futures-commission-merchant",
+          "institutional-adoption",
+          "perpetual-futures"
+        ],
+        "category": "crypto-regulation",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-markets"
+      }
+    },
     "98674c009f9b9f0e5ee8695afae12c668e71e510709061c2776045bf198c1c98": {
       "stored_at": "2026-10-31T02:42:38.341317+00:00",
       "value": {
@@ -43539,6 +43557,23 @@
         "category": "ai-labs",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
+      }
+    },
+    "989be64fbbe5977b124e5c3ee941ea856e411c53fb8341b9d890251ad76ce05e": {
+      "stored_at": "2026-11-05T22:19:50.229391+00:00",
+      "value": {
+        "ai_reason": "Reports a material financing and business-performance development for Circle, a major stablecoin issuer, with concrete implications for USDC and crypto market structure. The revenue decline and weakening USDC business are significant, though the item is headline-level and not a systemic stablecoin failure or market-wide event.",
+        "ai_score": 7.5,
+        "ai_summary": "Circle raised $182 million through a crypto token sale while its latest results showed declining revenue and a weakening USDC business.",
+        "ai_tags": [
+          "Circle",
+          "USDC",
+          "stablecoins",
+          "token-sale",
+          "revenue"
+        ],
+        "category": "crypto-markets",
+        "score_model": "deepseek:deepseek-flash"
       }
     },
     "989d65f3e78aa846333cf2685142861bd4eff5b2031d00ee7ba6bdc1308f4e54": {
@@ -43800,6 +43835,24 @@
           "industry coordination"
         ],
         "category": "exchange-operations",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-markets"
+      }
+    },
+    "9978242125aa7d4ca6614d9eb1471afba7c4ce56c6c6be068b8b67d6d7c8894f": {
+      "stored_at": "2026-11-05T22:19:50.226916+00:00",
+      "value": {
+        "ai_reason": "A concrete, in-window policy commitment from a leading AI lab: OpenAI pledged to cover full electricity and grid costs at future company-owned compute campuses, publish site-level energy and water data, fund independent noise studies, and end most NDAs with local officials — a direct response to voter rejection of data center expansion two days earlier. This is a meaningful AI infrastructure/policy step with real cost and disclosure implications for the buildout, though it is voluntary, self-scoped to future owned-and-operated sites, and contains no penalties or third-party enforcement, keeping it below landmark-regulatory weight.",
+        "ai_score": 7.0,
+        "ai_summary": "OpenAI announced a National Community Compact pledging to pay the full electricity and grid costs of future AI campuses it owns and operates, disclose site-level energy and water use, and limit secrecy agreements with officials, alongside a policy blueprint urging lawmakers to impose similar enforceable rules industry-wide.",
+        "ai_tags": [
+          "OpenAI",
+          "AI infrastructure",
+          "data centers",
+          "energy policy",
+          "AI regulation"
+        ],
+        "category": "ai-labs",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
       }
@@ -44559,6 +44612,22 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "9c1f1634712a877c40da496290281b862b56f6915f6b0a710978e9a5764b0581": {
+      "stored_at": "2026-11-05T22:19:50.230489+00:00",
+      "value": {
+        "ai_reason": "Auto-generated price/chart landing page for a token (PEARL) with no discrete news event, in-window development, or analysis; purely informational market data with no evident impact.",
+        "ai_score": 1.5,
+        "ai_summary": "A CryptoSlate coin page displaying the PEARL (pearlresearch.ai) price, USD chart, market capitalization, and trading volume.",
+        "ai_tags": [
+          "price-data",
+          "market-data",
+          "token-listing",
+          "pearl"
+        ],
+        "category": "crypto-markets",
+        "score_model": "deepseek:deepseek-flash"
+      }
+    },
     "9c272b3b28a4b65bef3583b4ce980c821820735564d5346627677faec7d4b5eb": {
       "stored_at": "2026-11-01T10:43:14.407076+00:00",
       "value": {
@@ -45231,6 +45300,24 @@
         ],
         "category": "tech-community",
         "score_model": "deepseek:deepseek-flash"
+      }
+    },
+    "9eb5fc3381ed4b0360b809c047063391d1b25297ad74718c0f4ae0d72417f86a": {
+      "stored_at": "2026-11-05T22:19:50.229907+00:00",
+      "value": {
+        "ai_reason": "A federally chartered crypto bank pursuing CFTC swap dealer registration marks a concrete regulatory and market-structure step that would let a regulated institution deal crypto options and swaps directly, broadening institutional derivatives access. It is a meaningful filing-level development rather than a finalized approval or market-wide rule change, so it lands in the high-value tier without reaching landmark status.",
+        "ai_score": 7.0,
+        "ai_summary": "Anchorage Digital is applying to register as a CFTC swap dealer to support a crypto options and derivatives business, extending its regulated banking offering into swaps intermediation.",
+        "ai_tags": [
+          "Anchorage Digital",
+          "CFTC",
+          "crypto options",
+          "swap dealer registration",
+          "institutional adoption"
+        ],
+        "category": "crypto-regulation",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-markets"
       }
     },
     "9ed49b52b9b9b2acd6409f1c00c4011d928ee7de2ac2c5765cea9956047bcfd9": {
@@ -47445,24 +47532,6 @@
         "source_category": "ai-media"
       }
     },
-    "a6b729f7cdae0ba0c0120c9cb329d7eceaa2357b306efe35994a6c7d9691724f": {
-      "stored_at": "2026-10-28T14:53:59.593220+00:00",
-      "value": {
-        "ai_reason": "A reported data leak affecting roughly 70,000 Coinbase users is a materially significant exchange security/privacy incident with direct customer impact, warranting high attention. However, the item is presented only as a headline link with no specifics on the breach vector, data exposed, or confirmed company response, and it follows prior Coinbase customer-data incidents, so it falls short of the 8+ tier reserved for confirmed, large-scale exploits or systemic events.",
-        "ai_score": 7.0,
-        "ai_summary": "Coinbase is reported to have suffered another data leak that may have exposed information belonging to about 70,000 users.",
-        "ai_tags": [
-          "coinbase",
-          "data-breach",
-          "exchange-security",
-          "user-privacy",
-          "cybersecurity"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
     "a6d33268b21d58c030961e47d4a8bcdd2575631a848b3dc990f41c9fa27867d1": {
       "stored_at": "2026-11-05T03:08:07.206839+00:00",
       "value": {
@@ -49086,6 +49155,24 @@
           "crypto-regulation",
           "securities-enforcement",
           "new-jersey"
+        ],
+        "category": "crypto-regulation",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-markets"
+      }
+    },
+    "abdec313aaabe2216b7b0723f4849e8da07712cf695cd6b92818accfc030c7b6": {
+      "stored_at": "2026-11-05T22:19:50.229117+00:00",
+      "value": {
+        "ai_reason": "Podcast commentary from The Block discussing how the US midterm election outcomes could affect crypto policy and markets. It offers analysis rather than reporting a concrete new development, and no specific legislative, regulatory, or market event is described in the available text. Worth knowing for policy framing, but not urgent or market-moving on its own.",
+        "ai_score": 5.0,
+        "ai_summary": "A Starting Block podcast episode examines the US midterm election results and their potential implications for crypto policy and markets.",
+        "ai_tags": [
+          "us-midterms",
+          "crypto-policy",
+          "regulation",
+          "elections",
+          "podcast"
         ],
         "category": "crypto-regulation",
         "score_model": "deepseek:deepseek-flash",
@@ -51815,24 +51902,6 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
-    "b49be873649bd585e122b2271bc84a3568a85c50a0cd8f5039b7a8ded8ad8e9b": {
-      "stored_at": "2026-10-28T14:53:59.590794+00:00",
-      "value": {
-        "ai_reason": "A scheduled mainnet launch of the first L2 network in the Hyperliquid ecosystem is a meaningful infrastructure development for that ecosystem, but it is an early-stage project announcement rather than a widely impactful protocol upgrade. The Kinetiq price all-time high is supporting market color, not the core development.",
-        "ai_score": 6.5,
-        "ai_summary": "Hyperliquid ecosystem's first L2 network, Elysium, is set to launch its mainnet on November 9, while builder Kinetiq's token hit an all-time high of $0.4547 after a 47.7% two-week gain.",
-        "ai_tags": [
-          "Hyperliquid",
-          "Elysium",
-          "Kinetiq",
-          "Layer 2",
-          "Mainnet launch"
-        ],
-        "category": "crypto-protocols",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
-      }
-    },
     "b4a7f45a0a2954045a6f8ec44bc212fba1976cab7a7033c31f2a1336db666e47": {
       "stored_at": "2026-10-30T23:29:51.065396+00:00",
       "value": {
@@ -53105,24 +53174,6 @@
           "arbitrage"
         ],
         "category": "crypto-protocols",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
-      }
-    },
-    "b8cd3cd1e4679c1bd6395c92448b5f38ca0c6bebbf821b7dec7599ce4650d653": {
-      "stored_at": "2026-10-28T14:53:59.592481+00:00",
-      "value": {
-        "ai_reason": "A newly published third-party benchmark (RWE-Bench by startup Xplore) that evaluates 11 LLM/agent stacks on 20 real mechanical, electrical and aerospace engineering tasks, with automated physics-solver verification over 1,100 runs. It is a substantive, data-backed capability signal — frontier models top out at 37% single-attempt pass rate, five models score zero, and Claude Opus 5.5 overtakes GPT-6 Astra when given 5 attempts (70% vs 60%). However, it is an eval release from a small startup rather than a frontier-lab model launch or a safety/regulatory event, and the article is a short news flash without methodology detail or community discussion, so it sits below high-value tier.",
-        "ai_score": 6.5,
-        "ai_summary": "AI startup Xplore released RWE-Bench, which tests models on 20 real mechanical, electrical and aerospace design tasks with automated engineering-software and physics-solver verification, finding GPT-6 Astra best at 37% single-attempt pass rate, Claude Opus 5.5 at 29%, and five models including DeepSeek V4.1 Flash, GLM-5.3 and Grok 4.7 failing every task.",
-        "ai_tags": [
-          "AI benchmark",
-          "LLM evaluation",
-          "engineering design",
-          "agentic AI",
-          "model capability"
-        ],
-        "category": "ai-labs",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
       }
@@ -56668,24 +56719,6 @@
         "source_category": "tech-community"
       }
     },
-    "c556cad34f0fec0d36cfb81806620f50df99f6171e0808bafb0dc34a9558a05c": {
-      "stored_at": "2026-10-28T14:53:59.591242+00:00",
-      "value": {
-        "ai_reason": "A concrete, in-window development in the dispute over tokenized equities: seven major corporates (JPMorgan, AMD, Applied Materials, Coca-Cola, Adobe, Dell, Sandisk) joined the opposition, bringing the total to 33 companies. This signals growing legal and corporate pushback against OKX ICE's stock-tokenization product, with a clear transmission path to how tokenized equity markets can operate. It is not a landmark ruling or market-access change, so it falls short of the 8+ tier.",
-        "ai_score": 7.0,
-        "ai_summary": "JPMorgan, AMD, Applied Materials, Coca-Cola, Adobe, Dell and Sandisk objected to OKX ICE tokenizing their shares, raising the number of opposing companies to 33.",
-        "ai_tags": [
-          "tokenized-equities",
-          "OKX",
-          "legal-opposition",
-          "market-structure",
-          "ICE"
-        ],
-        "category": "crypto-regulation",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
-      }
-    },
     "c56d367b34c16a6a9c27ac8e0ca67f6ad1cadbc90d76b880cb4bb00ad1cf89c6": {
       "stored_at": "2026-10-31T23:33:43.639015+00:00",
       "value": {
@@ -57789,24 +57822,6 @@
           "bitcoin",
           "ethereum",
           "market-commentary"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
-    "c9e74fb72838abe7a13af649c4529e9bd5f808913baf5757eac2f47cc82b8a89": {
-      "stored_at": "2026-10-28T14:53:59.593313+00:00",
-      "value": {
-        "ai_reason": "Reports of data leaks at a Coinbase vendor and Bithumb are important exchange security and privacy developments affecting two major platforms, raising account-compromise risks for users; the impact appears centered on exposed user data rather than confirmed fund losses or systemic market disruption.",
-        "ai_score": 7.0,
-        "ai_summary": "Data leaks at a Coinbase vendor and South Korean exchange Bithumb exposed user information, prompting guidance on protecting exchange accounts.",
-        "ai_tags": [
-          "data breach",
-          "exchange security",
-          "Coinbase",
-          "Bithumb",
-          "user privacy"
         ],
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
@@ -63615,23 +63630,6 @@
         "source_category": "exchange-announcements"
       }
     },
-    "dd42d8233f6e66e4166846c067cb28253efaf3a5c63634f1c6c516c63bdbbf61": {
-      "stored_at": "2026-10-28T14:53:59.590455+00:00",
-      "value": {
-        "ai_reason": "Google (Alphabet) unveiling a crypto custody security service — Google MPC — for financial institutions is a material institutional-adoption and market-structure development, especially given a major tech player entering custody infrastructure and Alphabet already using it for its own Ethereum/Solana assets. It is not yet live (private preview, early 2027), which keeps it below groundbreaking territory, but the concrete institutional testing and custody implications place it in the high-value range.",
-        "ai_score": 7.5,
-        "ai_summary": "Google announced Google Multi-Party Compute (MPC), a security service in private preview that distributes private-key shards across environments to help financial institutions safeguard and transfer crypto and tokenized assets, with launch targeted for early 2027.",
-        "ai_tags": [
-          "Google",
-          "crypto-custody",
-          "MPC",
-          "institutional-adoption",
-          "AI-security"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "dd43497037ed1e99bfd8a48016ab65539f1e02fb2a742b1594d3092283e54386": {
       "stored_at": "2026-10-29T18:37:33.873577+00:00",
       "value": {
@@ -64895,23 +64893,6 @@
         "category": "ai-media",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
-      }
-    },
-    "e1e88fe22887bc8ac4c574c0969f7fa9aa0098ca39132a018bfc7e80b79b6042": {
-      "stored_at": "2026-10-28T14:53:59.592695+00:00",
-      "value": {
-        "ai_reason": "A concrete in-window corporate earnings release (Oct 28) from Unitree, a prominent Chinese humanoid-robotics maker: Q3 revenue 665M yuan (+69.9% YoY) but net profit down 17.4% to 113M yuan, with nine-month revenue up 55.7%. It is a legitimate datapoint on the commercial trajectory of a high-profile robotics/AI-hardware company, but it is a routine quarterly filing with no crypto-market transmission path and no paradigm-shifting technical or policy content, so it lands in low-priority territory for this feed.",
-        "ai_score": 4.5,
-        "ai_summary": "Unitree reported Q3 2026 revenue of 665 million yuan (+69.93% YoY) while net profit fell 17.37% to 113 million yuan, with first-nine-month revenue up 55.71% to 1.817 billion yuan but recurring net profit down 18.78%.",
-        "ai_tags": [
-          "robotics",
-          "unitree",
-          "earnings",
-          "china-tech",
-          "humanoid-robots"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "e1ebd21562d335b48f9e40d6a26ce92a9159f7e7d6a670a763835ce8014a8393": {
@@ -69423,6 +69404,24 @@
         ]
       }
     },
+    "f24804a758d6a2ec9bf7926e8aa740cc01ca394a88784ea62e1ecfcfc7cad26d": {
+      "stored_at": "2026-11-05T22:19:50.230028+00:00",
+      "value": {
+        "ai_reason": "A $6.3 billion exchange hack is a systemic-scale loss event, and the in-window development—the Fed and OCC formally assessing bank security exposure stemming from it—signals contagion risk into the regulated banking sector and likely near-term supervisory action. Regulatory follow-through of this magnitude, touching deposit-taking institutions rather than just crypto-native firms, materially raises the stakes for market structure and counterparty risk. Capped below 9.5 because the report is a single-sourced account of supervisory review rather than a confirmed rule change or insolvency.",
+        "ai_score": 9.0,
+        "ai_summary": "The Federal Reserve and OCC are reportedly reviewing bank security and exposure risks in the wake of a $6.3 billion hack at Binance, extending the incident's implications into the regulated banking sector.",
+        "ai_tags": [
+          "binance",
+          "exchange-hack",
+          "crypto-regulation",
+          "banking",
+          "security-incident"
+        ],
+        "category": "crypto-regulation",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "exchange-announcements"
+      }
+    },
     "f25a699f39fa66da9ef6c3755e9ab3b12c5303ffdbf761d730ae02bc2e357dc7": {
       "stored_at": "2026-10-29T18:37:33.880977+00:00",
       "value": {
@@ -69478,24 +69477,6 @@
           "exchange security",
           "market commentary",
           "crypto markets"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
-    "f288a88088e42dd71506ad73c60c0145527c753c9ae56119014b28c35dd7ed85": {
-      "stored_at": "2026-10-28T14:53:59.591130+00:00",
-      "value": {
-        "ai_reason": "Promotional teaser for a memecoin (AlphaPepe) claiming a vague 'fifth CEX reveal' and name-dropping Binance, OKX, MEXC and Coinbase without any confirmed listing, exchange confirmation, or verifiable on-chain data. Unverified rumor/hype content typical of airdrop-bait marketing, providing no actionable or evidenced development.",
-        "ai_score": 2.0,
-        "ai_summary": "AlphaPepe markets an unspecified 'fifth CEX' listing while invoking major exchanges, without any confirmed listing or verifiable detail.",
-        "ai_tags": [
-          "memecoin",
-          "exchange-listing",
-          "promotional",
-          "rumor",
-          "speculation"
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash",
@@ -69991,6 +69972,23 @@
         ]
       }
     },
+    "f4a7d8ee5a3598e2a94adf5c0d9071759bf506ec70005cf3935d6433c67ea719": {
+      "stored_at": "2026-11-05T22:19:50.227112+00:00",
+      "value": {
+        "ai_reason": "A research blog post from Anthropic's Alignment Science team examining how welfare/moral regard should be handled among interacting AI agents. It comes from a frontier lab and addresses a nascent but increasingly relevant safety topic, giving it real signal for alignment researchers; however, it is conceptual research communication rather than a model release, capability jump, or policy action with concrete obligations, and the item supplies only a headline with no substantive findings, keeping it short of the 7+ tier.",
+        "ai_score": 6.5,
+        "ai_summary": "Anthropic's Alignment Science blog published a post on welfare regard — how moral consideration should be extended and reasoned about — within multi-agent AI systems.",
+        "ai_tags": [
+          "AI safety",
+          "alignment",
+          "multi-agent systems",
+          "AI welfare",
+          "Anthropic"
+        ],
+        "category": "ai-labs",
+        "score_model": "deepseek:deepseek-flash"
+      }
+    },
     "f4ac83b44c7948c1b66baa90ba7607374daf2d9f21b55093756a932e3eb8d02e": {
       "stored_at": "2026-11-05T16:56:05.368068+00:00",
       "value": {
@@ -70285,24 +70283,6 @@
         "category": "ai-devtools",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
-      }
-    },
-    "f5cc5e923b7542469d3c34f0d570264765899ad9f6337ea9845377460c2245d9": {
-      "stored_at": "2026-10-28T14:53:59.591879+00:00",
-      "value": {
-        "ai_reason": "Google previewing a crypto custody/private-key security system is a high-value infrastructure development with strong institutional and security implications, especially amid mounting private-key hacks and AI-related threats. It falls short of a breakthrough because it is a preview rather than a confirmed production deployment with demonstrated impact.",
-        "ai_score": 7.0,
-        "ai_summary": "Google plans to preview a new crypto security system aimed at protecting private keys and custody infrastructure as private-key hacks and AI-driven threats increase.",
-        "ai_tags": [
-          "Google",
-          "crypto custody",
-          "private-key security",
-          "AI threats",
-          "cybersecurity"
-        ],
-        "category": "crypto-protocols",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
       }
     },
     "f5f3ec80ca0815fb68dcaf8cbcb90bbafb4abb5028f02bb656d0c3d7c5a19e24": {
@@ -71100,6 +71080,22 @@
         "source_category": "crypto-markets"
       }
     },
+    "f8bf306bb718781e46014d496efcd070361383850a81e851126ceee2a99a4eec": {
+      "stored_at": "2026-11-05T22:19:50.228879+00:00",
+      "value": {
+        "ai_reason": "Automated price/market-cap page for a small-cap token (Titan's Tap, TIT) with no news event, in-window development, or substantive analysis. Falls into routine price-tracking content with no evidenced impact.",
+        "ai_score": 1.5,
+        "ai_summary": "A routine price and market-data page tracking Titan's Tap (TIT) against USD, including chart, market cap, and volume figures.",
+        "ai_tags": [
+          "price-data",
+          "market-cap",
+          "altcoins",
+          "titan-tap"
+        ],
+        "category": "crypto-markets",
+        "score_model": "deepseek:deepseek-flash"
+      }
+    },
     "f8d1aa213a91827253c581858d9dfb2fb96bae4f99299b1bf357c09960867093": {
       "stored_at": "2026-10-31T06:53:42.369428+00:00",
       "value": {
@@ -71184,24 +71180,6 @@
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
-      }
-    },
-    "f9011aec66b10ffed5f11a98afc481cc0f08f0fd0e5b73695c897b8697417e5a": {
-      "stored_at": "2026-10-28T14:53:59.593022+00:00",
-      "value": {
-        "ai_reason": "A confirmed data breach at a Coinbase third-party vendor is a high-value security and privacy development with phishing risk for exchange users, though the headline indicates a vendor incident rather than a core exchange compromise or direct loss of funds.",
-        "ai_score": 7.0,
-        "ai_summary": "Coinbase vendor Amplitude suffered a data breach, raising phishing concerns around exposed customer information.",
-        "ai_tags": [
-          "Coinbase",
-          "Amplitude",
-          "data breach",
-          "phishing",
-          "exchange security"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
       }
     },
     "f909945ae30a6f990022710268c5c68692cc26d8b79e6d1bf00bfc8a5797cb98": {
@@ -71343,6 +71321,24 @@
         ],
         "title_en": "Websites of several Web3 projects hit by DNS hijacking attack",
         "title_zh": "【多个 Web3 项目网站遭到 DNS 劫持攻击】"
+      }
+    },
+    "f96d2bf6b84de9a4eb0be7630cb0defb62eecbf92da66eaade16613674980f00": {
+      "stored_at": "2026-11-05T22:19:50.225224+00:00",
+      "value": {
+        "ai_reason": "A national banking failure that locked ~3 million customers out of a digital lender holding roughly $800M in public deposits, triggering the president's resignation and a 78-0 impeachment vote — a material systemic and political event with direct relevance to custody risk and the self-custody argument. Crypto transmission is indirect (no major exchange or protocol is implicated), which keeps it below the 9+ tier, but the scale of user impact and political consequence places it clearly in the high-value band.",
+        "ai_score": 8.0,
+        "ai_summary": "Paraguayan President Santiago Peña resigned and was impeached by the lower house after the collapse of digital lender Ueno Bank — found to hold capital below half the regulatory minimum with about $800 million in public deposits — left roughly three million customers unable to access their accounts.",
+        "ai_tags": [
+          "banking-crisis",
+          "paraguay",
+          "self-custody",
+          "bank-run",
+          "macro-regulation"
+        ],
+        "category": "macro-regulation",
+        "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-markets"
       }
     },
     "f97ca27330b3eae89f8089a880e51c50b58a45be047b2b738d8a70f6c3d061fe": {
@@ -77138,6 +77134,25 @@
         "what_changed_zh": ""
       }
     },
+    "1d6c947b0cc361d0bb902a9d0c1da21732ffa3043509e4ea46057b953ed03b69": {
+      "stored_at": "2026-11-05T22:20:12.396458+00:00",
+      "value": {
+        "candidate_event_id": "evt_656964d5213c2903",
+        "confidence": 0.9,
+        "current_state_en": "",
+        "current_state_zh": "",
+        "material_change": false,
+        "rationale": "The new story is a separate insider theft case involving a former FBI agent and $2.47 million, not part of the Binance $6.3 billion theft investigation; only the FBI entity is shared.",
+        "relation": "related_but_distinct",
+        "shared_facts": [
+          "FBI involvement"
+        ],
+        "target_update_id": null,
+        "update_type": null,
+        "what_changed_en": "",
+        "what_changed_zh": ""
+      }
+    },
     "1d7e60c1c537737ed73f77f68beed5086e9c2979d06b3a81beadf7c00d64a55c": {
       "stored_at": "2026-11-05T12:06:20.206767+00:00",
       "value": {
@@ -79010,6 +79025,23 @@
         "what_changed_zh": ""
       }
     },
+    "2bdb9bf7a7bafa00b881792f0d3495dbda19d097597c66afc8b344b473470fd0": {
+      "stored_at": "2026-11-05T22:20:10.664611+00:00",
+      "value": {
+        "candidate_event_id": "evt_c594d0e29e7b400b",
+        "confidence": 0.97,
+        "current_state_en": "",
+        "current_state_zh": "",
+        "material_change": false,
+        "rationale": "The story concerns a former FBI agent pleading guilty to insider crypto theft using FBI credentials, which shares only a vague crypto-crime theme and has no event-level connection to the Ledger tampered-device supply-chain incident.",
+        "relation": "unrelated",
+        "shared_facts": [],
+        "target_update_id": null,
+        "update_type": null,
+        "what_changed_en": "",
+        "what_changed_zh": ""
+      }
+    },
     "2c058d879fa022ec61a2fcd9c9a0fa581935b2f21611b6feb44fc534f5769496": {
       "stored_at": "2026-10-30T00:08:49.125473+00:00",
       "value": {
@@ -80101,6 +80133,23 @@
         "what_changed_zh": ""
       }
     },
+    "377fb21b00c4d9924f81578cdb52d394d1eb9298511dc4e2a2af1d71f1c43249": {
+      "stored_at": "2026-11-05T22:20:06.366884+00:00",
+      "value": {
+        "candidate_event_id": "evt_5b421e16299d26d3",
+        "confidence": 0.99,
+        "current_state_en": "",
+        "current_state_zh": "",
+        "material_change": false,
+        "rationale": "The new story concerns OpenAI's data-center energy policy commitments to local communities, with no connection to Coinbase's CFTC filing for single-stock perpetual futures.",
+        "relation": "unrelated",
+        "shared_facts": [],
+        "target_update_id": null,
+        "update_type": null,
+        "what_changed_en": "",
+        "what_changed_zh": ""
+      }
+    },
     "3801ac7a21e3ade05d74766bf43b98dc8c692bbd8eb64ff0888f8a1c9ce5572f": {
       "stored_at": "2026-10-31T02:43:46.049333+00:00",
       "value": {
@@ -80946,6 +80995,27 @@
         "update_type": "escalation",
         "what_changed_en": "Iran's Supreme Leader Mojtaba Khamenei ordered the armed forces to respond immediately and effectively to any enemy threat without geographic restriction, and to update target lists to include US and Israeli assets.",
         "what_changed_zh": "伊朗最高领袖穆杰塔巴·哈梅内伊命令武装部队对任何敌方威胁立即作出有效回应且不受地理限制，并要求更新目标清单，将美国和以色列的资产纳入打击范围。"
+      }
+    },
+    "4448c0b615758a3d0bc4f66691a90bad027603723b5232a09b7ea6933f9cd049": {
+      "stored_at": "2026-11-05T22:20:25.307799+00:00",
+      "value": {
+        "candidate_event_id": "evt_6a1286e0d1d80228",
+        "confidence": 0.87,
+        "current_state_en": "After Ueno Bank’s collapse, Paraguay is in a political crisis: President Peña has resigned and been impeached by the lower house, with the vice president preparing to take over; the central bank is proceeding with deposit-guarantee payments, starting with eligible small depositors.",
+        "current_state_zh": "Ueno Bank倒闭后，巴拉圭进入政治危机阶段：总统培尼亚已辞职并遭众议院弹劾，副总统准备接任；央行推进存款担保赔付，首批针对符合条件的小额储户。",
+        "material_change": true,
+        "rationale": "The story is a material escalation of the same Ueno Bank collapse aftermath already tracked, adding the president’s resignation and impeachment rather than a separate incident.",
+        "relation": "same_event_update",
+        "shared_facts": [
+          "Ueno Bank closure/resolution",
+          "Paraguay",
+          "central bank deposit-guarantee process after Ueno failure"
+        ],
+        "target_update_id": null,
+        "update_type": "escalation",
+        "what_changed_en": "Ueno Bank’s collapse escalated into a political crisis: Paraguayan President Santiago Peña resigned and the lower house voted 78-0 to impeach him; the report also says Ueno had about 2.9 million customers, roughly $800 million in public-sector deposits, and capital below half the regulatory minimum.",
+        "what_changed_zh": "Ueno Bank倒闭引发政治危机：巴拉圭总统圣地亚哥·培尼亚宣布辞职，众议院随后以78比0弹劾他；报道还称Ueno拥有约290万客户、约8亿美元公共部门存款，资本低于监管最低要求的一半。"
       }
     },
     "44a93603f605284d7dc4057eb0d6cb13538925bfb58534718136a3b1ebe870c2": {
@@ -85425,6 +85495,26 @@
         "what_changed_zh": ""
       }
     },
+    "701962d1ca49dc26bf6c8c3e723725bfd8beeb695466c0b8fdec35f7fdff4147": {
+      "stored_at": "2026-11-05T22:20:16.822447+00:00",
+      "value": {
+        "candidate_event_id": "evt_69268851e2279d71",
+        "confidence": 0.83,
+        "current_state_en": "",
+        "current_state_zh": "",
+        "material_change": false,
+        "rationale": "Same company and HYPE treasury theme, but the story describes a new FCM registration application and quarterly earnings, not a change to the $2.5B equity facility or its remaining proceeds.",
+        "relation": "related_but_distinct",
+        "shared_facts": [
+          "Hyperliquid Strategies (NASDAQ: PURR), the largest public HYPE treasury company",
+          "HYPE treasury holdings (~38.9M HYPE)"
+        ],
+        "target_update_id": null,
+        "update_type": null,
+        "what_changed_en": "",
+        "what_changed_zh": ""
+      }
+    },
     "701a3ccd5295d254bc7abb537a9e642c906532c8dc3a6b1ad17015be948bff90": {
       "stored_at": "2026-11-01T02:34:07.081025+00:00",
       "value": {
@@ -88097,6 +88187,23 @@
         "what_changed_zh": ""
       }
     },
+    "867a40d738ded4a56416f11be7765efca7ba651ea347322b8f3259d93b1b54c5": {
+      "stored_at": "2026-11-05T22:20:28.627835+00:00",
+      "value": {
+        "candidate_event_id": "evt_6ca3e3fb32b4ceff",
+        "confidence": 0.99,
+        "current_state_en": "",
+        "current_state_zh": "",
+        "material_change": false,
+        "rationale": "The story is about Paraguay’s Ueno Bank collapse and President Peña’s resignation, with no event-level connection to Coinbase’s Deribit integration or CFTC clearing registration.",
+        "relation": "unrelated",
+        "shared_facts": [],
+        "target_update_id": null,
+        "update_type": null,
+        "what_changed_en": "",
+        "what_changed_zh": ""
+      }
+    },
     "86b7ab9f285e076730531e14d779a28997fa5eab6c94cdc9a6bcf3f48f37a981": {
       "stored_at": "2026-10-30T18:12:55.191873+00:00",
       "value": {
@@ -88308,6 +88415,23 @@
         "shared_facts": [
           "Both involve bitcoin miners selling BTC, but the companies involved are different: Riot Platforms vs Hut 8"
         ],
+        "target_update_id": null,
+        "update_type": null,
+        "what_changed_en": "",
+        "what_changed_zh": ""
+      }
+    },
+    "88a1f73d8ffc14c573281c00177930c608688bd8dbd23d4c0294c33d36f69a3d": {
+      "stored_at": "2026-11-05T22:20:26.854121+00:00",
+      "value": {
+        "candidate_event_id": "evt_1851f7d38a8f886b",
+        "confidence": 0.97,
+        "current_state_en": "",
+        "current_state_zh": "",
+        "material_change": false,
+        "rationale": "The story concerns Paraguay's Ueno Bank collapse and President Peña's resignation, a separate banking/political event with no entity, regulator, or action overlap with the EU's MiCA probe into Binance.",
+        "relation": "unrelated",
+        "shared_facts": [],
         "target_update_id": null,
         "update_type": null,
         "what_changed_en": "",
@@ -91243,6 +91367,23 @@
         "what_changed_zh": ""
       }
     },
+    "a489a21dba34dd8a1db2cd542a84dd9dafc4c77c363b02fa43f5f242c2d7a212": {
+      "stored_at": "2026-11-05T22:20:04.517515+00:00",
+      "value": {
+        "candidate_event_id": "evt_4eb800807f88fccc",
+        "confidence": 0.99,
+        "current_state_en": "",
+        "current_state_zh": "",
+        "material_change": false,
+        "rationale": "The story concerns OpenAI's energy-cost commitments and data-center policy, with no event-level connection to the PHP vulnerability exploitation incident.",
+        "relation": "unrelated",
+        "shared_facts": [],
+        "target_update_id": null,
+        "update_type": null,
+        "what_changed_en": "",
+        "what_changed_zh": ""
+      }
+    },
     "a4e5da4d1b198fa051f18ea3baf0a81db12d3ed01b184d4b41991d851c3d60ea": {
       "stored_at": "2026-11-02T11:45:23.020674+00:00",
       "value": {
@@ -93097,6 +93238,27 @@
         "what_changed_zh": "新报道补充了暴跌的后续影响：美国政府所持约10%英特尔股份单日价值缩水约120亿美元，英伟达所持股份缩水约60亿美元；CFO称PC市场放缓至少持续至2027年上半年，内存等零部件成本上涨带来压力；以色列晶圆厂爆炸预计两个季度内造成约6亿美元营收损失；D.A. Davidson将英特尔评级从买入下调至中性。"
       }
     },
+    "b4e2005202d7a1a9e183423c61ad63d353639d7af1eb49f5af0b89bf1211b754": {
+      "stored_at": "2026-11-05T22:20:14.846418+00:00",
+      "value": {
+        "candidate_event_id": "evt_8d1fc68ab9cbd38f",
+        "confidence": 0.9,
+        "current_state_en": "",
+        "current_state_zh": "",
+        "material_change": false,
+        "rationale": "Hyperliquid Strategies' FCM application is a separate action by a different company, not a new stage of the ICE–Trade.xyz venue plan.",
+        "relation": "related_but_distinct",
+        "shared_facts": [
+          "Hyperliquid ecosystem",
+          "HYPE token exposure",
+          "US perpetual futures regulatory theme"
+        ],
+        "target_update_id": null,
+        "update_type": null,
+        "what_changed_en": "",
+        "what_changed_zh": ""
+      }
+    },
     "b50b737ae1e1e7d14e345c846bbd711b8aa744562f7727baec06c11b133d8030": {
       "stored_at": "2026-10-30T02:59:52.493408+00:00",
       "value": {
@@ -93522,6 +93684,27 @@
         "rationale": "The story concerns Lisk Chain's shutdown and LSK staking-reward burn, not the Pirate Chain ARRR exploit, rollback, or remediation.",
         "relation": "unrelated",
         "shared_facts": [],
+        "target_update_id": null,
+        "update_type": null,
+        "what_changed_en": "",
+        "what_changed_zh": ""
+      }
+    },
+    "ba0ad333d7bc2c2ef667ce631006cad2b3e9a668455319675fdf5c8b3dcf3b45": {
+      "stored_at": "2026-11-05T22:20:19.101036+00:00",
+      "value": {
+        "candidate_event_id": "evt_00fd672f5ad8caea",
+        "confidence": 0.92,
+        "current_state_en": "",
+        "current_state_zh": "",
+        "material_change": false,
+        "rationale": "The story concerns Hyperliquid Strategies (PURR) applying for FCM registration, a separate entity and regulatory action from Payward/Kraken parent's planned HIP-3 deployment.",
+        "relation": "related_but_distinct",
+        "shared_facts": [
+          "Hyperliquid HIP-3 permissioned perpetual futures framework",
+          "US perpetuals market access",
+          "Hyperliquid ecosystem"
+        ],
         "target_update_id": null,
         "update_type": null,
         "what_changed_en": "",
@@ -95550,6 +95733,23 @@
         "what_changed_zh": ""
       }
     },
+    "ce0c436760ae5e14763a7bd61726ee3ae55e39e09b85d075c1bd47918b91234f": {
+      "stored_at": "2026-11-05T22:20:08.882860+00:00",
+      "value": {
+        "candidate_event_id": "evt_349ae44c04b4d209",
+        "confidence": 0.98,
+        "current_state_en": "",
+        "current_state_zh": "",
+        "material_change": false,
+        "rationale": "The story concerns a former FBI agent's guilty plea for a separate $2.47 million crypto theft and has no event-level connection to the Binance hack.",
+        "relation": "unrelated",
+        "shared_facts": [],
+        "target_update_id": null,
+        "update_type": null,
+        "what_changed_en": "",
+        "what_changed_zh": ""
+      }
+    },
     "ce1c7558bc74a3ccaa0bfff93b7769aa5ee2212f1ed5707269ea10b0b25b6f2c": {
       "stored_at": "2026-11-02T16:03:53.057065+00:00",
       "value": {
@@ -96702,6 +96902,26 @@
         "shared_facts": [
           "OpenAI",
           "GPT-6 Astra"
+        ],
+        "target_update_id": null,
+        "update_type": null,
+        "what_changed_en": "",
+        "what_changed_zh": ""
+      }
+    },
+    "d8358eaf3190ed0ea209c9d946e70e5bf81ba9db76eae3afc7b506b3fdfd256b": {
+      "stored_at": "2026-11-05T22:20:02.499342+00:00",
+      "value": {
+        "candidate_event_id": "evt_60a98d951dc3d274",
+        "confidence": 0.95,
+        "current_state_en": "",
+        "current_state_zh": "",
+        "material_change": false,
+        "rationale": "The story concerns OpenAI's separate data-center energy-cost pledge and policy blueprint after election backlash, not the rogue-agent hacking incidents or related legal subpoenas that define the existing event.",
+        "relation": "related_but_distinct",
+        "shared_facts": [
+          "OpenAI",
+          "AI regulation and public scrutiny"
         ],
         "target_update_id": null,
         "update_type": null,
