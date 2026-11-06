@@ -36,7 +36,7 @@ jobs:
     # the bounded Tokyo runner before rendering even starts. Keep all checks.
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
           filter: blob:none
@@ -48,7 +48,7 @@ jobs:
             data
             .github
             realtime/scripts/deploy/watchdog
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: gh-pages
           path: .edge-source
@@ -79,7 +79,7 @@ jobs:
           uv run python -m src.services.telegram_group_snapshot
           .edge-source .edge-rendered --artifact "$(git -C .edge-source rev-parse HEAD)"
       - run: python3 scripts/prepare_edge_assets.py .edge-rendered .edge-site
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: '24'
       - name: Use the validated npm version on the bounded runner
@@ -104,7 +104,7 @@ jobs:
       web: ${{ steps.paths.outputs.web }}
       edge: ${{ steps.paths.outputs.edge }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           filter: blob:none
@@ -135,7 +135,7 @@ jobs:
     env:
       TELEGRAM_ENABLED: "false"
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           filter: blob:none
@@ -155,7 +155,7 @@ jobs:
           GH_TOKEN: '' # Checkout already supplies the scoped read-only header.
           XIYUNEWS_DOCUMENT_CACHE: ${{ runner.environment == 'self-hosted' && '/home/xiyunews-runner/.cache/xiyunews-doc-blobs' || '' }}
         run: python3 scripts/hydrate_checkout.py
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
       - run: python -m pip install -r requirements-dev.txt
@@ -164,7 +164,7 @@ jobs:
       - run: python -m pytest
       - run: python -m compileall -q src run.py
       - run: python scripts/check_repository.py --base origin/main
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: "24"
       - run: node --test scripts/deploy/watchdog/watchdog.test.mjs
@@ -176,7 +176,7 @@ jobs:
     # Governance validates screenshot links and retains the complete checkout.
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           filter: blob:none
@@ -195,7 +195,7 @@ jobs:
           GH_TOKEN: '' # Checkout already supplies the scoped read-only header.
           XIYUNEWS_DOCUMENT_CACHE: ${{ runner.environment == 'self-hosted' && '/home/xiyunews-runner/.cache/xiyunews-doc-blobs' || '' }}
         run: python3 scripts/hydrate_checkout.py
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Check versions, handoff, document links and PR evidence
@@ -215,7 +215,7 @@ jobs:
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           filter: blob:none
           sparse-checkout: |
@@ -237,7 +237,7 @@ jobs:
         with:
           version: "0.11.32"
           enable-cache: true
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - run: uv sync --frozen --extra dev
@@ -273,7 +273,7 @@ jobs:
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
           filter: blob:none
@@ -292,7 +292,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           XIYUNEWS_DOCUMENT_CACHE: ${{ runner.environment == 'self-hosted' && '/home/xiyunews-runner/.cache/xiyunews-doc-blobs' || '' }}
         run: python3 scripts/hydrate_checkout.py
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: "24"
           cache: ${{ runner.environment == 'github-hosted' && 'npm' || '' }}

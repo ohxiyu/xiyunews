@@ -51,7 +51,7 @@ jobs:
     # Repository secrets keep the private-repository path independent of paid
     # environment features. Main/origin/opt-in guards above still apply.
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: main
           persist-credentials: false
@@ -64,7 +64,7 @@ jobs:
             data
             .github
             realtime/scripts/deploy/watchdog
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: gh-pages
           path: .edge-source
@@ -80,7 +80,7 @@ jobs:
           FORCE_DEPLOY: ${{ github.event.inputs.force_deploy || 'false' }}
           ARTIFACT_SHA: ${{ steps.source.outputs.artifact }}
         run: python3 scripts/edge_build_cache.py plan --artifact "$ARTIFACT_SHA"
-      - uses: actions/cache/restore@v5
+      - uses: actions/cache/restore@v6
         if: steps.plan.outputs.skip != 'true'
         id: render-cache
         with:
@@ -92,7 +92,7 @@ jobs:
         env:
           BUILD_KEY: ${{ steps.plan.outputs.key }}
         run: python3 scripts/edge_build_cache.py verify --key "$BUILD_KEY"
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         if: steps.plan.outputs.skip != 'true'
         with:
           node-version: '24'
@@ -147,7 +147,7 @@ jobs:
           if [[ "$usage" =~ ^[0-9]+$ && "$usage" -lt 3221225472 ]]; then
             echo 'allowed=true' >> "$GITHUB_OUTPUT"
           fi
-      - uses: actions/cache/save@v5
+      - uses: actions/cache/save@v6
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true' && steps.render-cache.outputs.cache-hit != 'true' && steps.cache-capacity.outputs.allowed == 'true'
         with:
           path: .edge-rendered

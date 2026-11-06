@@ -44,7 +44,7 @@ jobs:
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: main # Never execute triggering-run artifacts or untrusted branch code.
           filter: blob:none
@@ -106,7 +106,7 @@ jobs:
             > "$RUNNER_TEMP/square-edition-download.json"
           python3 -c 'import json,sys; value=json.load(open(sys.argv[1])); sys.exit(0 if isinstance(value,dict) and isinstance(value.get("items"),list) and isinstance(value.get("date"),str) else "Invalid published edition")' "$RUNNER_TEMP/square-edition-download.json"
           cp "$RUNNER_TEMP/square-edition-download.json" "$RUNNER_TEMP/square-edition.json"
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         if: steps.gate.outputs.sync == 'true' || steps.gate.outputs.due == 'true'
         with:
           python-version: '3.12'
