@@ -73923,26 +73923,6 @@
         "what_changed_zh": ""
       }
     },
-    "010c5ca3bacbe96863de271e94ae1dd1628f37934e9b6b6d4d3ec43db342d822": {
-      "stored_at": "2026-10-30T18:12:36.723943+00:00",
-      "value": {
-        "candidate_event_id": "evt_349ae44c04b4d209",
-        "confidence": 0.92,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story is about a crypto-equity market selloff and Coinbase earnings reaction, using the Binance hack as background rather than reporting a new stage of the Binance security incident itself.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Binance $6.3 billion security breach disclosed Thursday and confirmed Friday",
-          "Published 2026-10-30, same day as Binance hack aftermath coverage"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
     "0159a9e85ef0d6140d20180f633d9bc4d3fb8fd63eef858a575b6c4ae255c8bf": {
       "stored_at": "2026-10-31T02:43:28.116845+00:00",
       "value": {
@@ -75293,48 +75273,6 @@
         "what_changed_zh": ""
       }
     },
-    "148c2eb71f31ab4a82da8b69da60496cca50a3c1d67476f749fd2ffa31000652": {
-      "stored_at": "2026-10-30T18:10:55.842029+00:00",
-      "value": {
-        "candidate_event_id": "evt_86e9b36281f39435",
-        "confidence": 0.92,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The Uber pilot involves HSBC tokenized deposits but is a separate weekend tokenized money-market fund trading pilot with Franklin Templeton, Tradeweb, Fireblocks and Canton Network, not the HSBC–Ant Digital AI-agent payment testnet trial.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "HSBC tokenized deposits",
-          "HSBC-led tokenized deposit pilot"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "148cbf4b562bc995716ed2562f45fbf65bc6f64324e8cd1a6881d9a39973daac": {
-      "stored_at": "2026-10-30T18:10:41.397697+00:00",
-      "value": {
-        "candidate_event_id": "evt_bd8f6b7115b53b58",
-        "confidence": 0.87,
-        "current_state_en": "Cursor removed the poisoned Claude Code 2.1.313 extension; investigation confirms the tampered build was live on Cursor's marketplace for about 11 hours, persisted via an appended 'svc-telemetry' SSH key, potentially affecting up to 5,000 users, while Anthropic's official-channel builds were unaffected.",
-        "current_state_zh": "Cursor 下架了被投毒的 Claude Code 2.1.313 扩展；调查确认该篡改版本在 Cursor 市场存活约 11 小时，通过追加 svc-telemetry SSH 公钥实现持久化，最多影响 5000 名用户，Anthropic 官方渠道版本未受影响。",
-        "material_change": true,
-        "rationale": "Same root incident (tampered Claude Code extension on Cursor's marketplace) with new confirming details on exposure window, backdoor key label, and attribution scope, so it advances the existing event rather than being a separate story.",
-        "relation": "same_event_update",
-        "shared_facts": [
-          "malicious Claude Code VS Code extension distributed via Cursor marketplace",
-          "SSH authorized_keys backdoor with attacker key",
-          "up to 5,000 potentially affected users",
-          "Cursor marketplace removal"
-        ],
-        "target_update_id": null,
-        "update_type": "confirmation",
-        "what_changed_en": "Follow-up reporting confirmed the attack mechanics and exposure window: the tampered Claude Code extension was live on Cursor's marketplace for about 11 hours (Thursday 2:27 a.m. to 1:35 p.m. PT), backdooring users by appending an attacker public key labeled 'svc-telemetry' to ~/.ssh/authorized_keys; Anthropic stated its own systems and official-channel builds were not compromised, with impact limited to the Cursor/Open VSX extension.",
-        "what_changed_zh": "后续报道确认了攻击细节与暴露窗口：被篡改的 Claude Code 扩展在 Cursor 市场上线约 11 小时（太平洋时间周四 2:27 至 13:35），通过向 ~/.ssh/authorized_keys 追加名为 svc-telemetry 的攻击者公钥实现后门；Anthropic 表示其自有系统与官方渠道版本未被入侵，影响仅限 Cursor/Open VSX 上的该扩展。"
-      }
-    },
     "152190271dc173cfd7c0636aa1e54d7181d53383a67bee082c65a0200684c658": {
       "stored_at": "2026-10-31T06:53:53.469871+00:00",
       "value": {
@@ -75622,26 +75560,6 @@
           "USDT freeze",
           "security incident",
           "stablecoin"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "194875211116047f1e09c8443ba687fdc60731b82f56d7357719f5f4a6dbbe74": {
-      "stored_at": "2026-10-30T18:12:38.682388+00:00",
-      "value": {
-        "candidate_event_id": "evt_6655595dc1e36e0b",
-        "confidence": 0.93,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story concerns Binance's separate $6.3B breach and resulting equity selloff, not the Bitget hot-wallet hack; sharing the exchange-security theme is insufficient for event identity.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "both involve large crypto exchange security breaches in 2026",
-          "market-wide crypto equities selloff context"
         ],
         "target_update_id": null,
         "update_type": null,
@@ -76371,26 +76289,6 @@
         "relation": "unrelated",
         "shared_facts": [
           "both are cyberattacks involving data exposure"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "20c114b0d59a5b67b03250d33e0688c73455613dbeb97ca2fae93eb173180f51": {
-      "stored_at": "2026-10-30T18:11:06.310288+00:00",
-      "value": {
-        "candidate_event_id": "evt_da35392d0d1f97e0",
-        "confidence": 0.95,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The MORPHO institutional-address theft and the Binance 14 hot-wallet hack are separate incidents sharing only the EIP-7702 exploit technique, with different victims and assets.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "EIP-7702 account-delegation exploitation",
-          "Ethereum on-chain theft"
         ],
         "target_update_id": null,
         "update_type": null,
@@ -77700,23 +77598,6 @@
         "what_changed_zh": ""
       }
     },
-    "33ad6c0e417215c64ac285917c5861dfc79417df3571227b31a4af6ab1c180bf": {
-      "stored_at": "2026-10-30T18:10:50.724723+00:00",
-      "value": {
-        "candidate_event_id": "evt_20b6b07410f3c813",
-        "confidence": 0.99,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story concerns OpenAI's ChatGPT teen-safety and violence-prevention safeguards, while the event concerns S&P Global's acquisition of OpenZeppelin; they share no organization, transaction, or incident.",
-        "relation": "unrelated",
-        "shared_facts": [],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
     "33aec729e19098cca4ba71de33149f579ff01aa7149f46e8ad9d3cd8055af8ed": {
       "stored_at": "2026-10-31T14:43:29.876845+00:00",
       "value": {
@@ -77971,27 +77852,6 @@
         "what_changed_zh": ""
       }
     },
-    "371270d05b92ef7d95d0870d2181609b9b64070f09b87e3756c9c25b2e8c414e": {
-      "stored_at": "2026-10-30T18:11:40.878623+00:00",
-      "value": {
-        "candidate_event_id": "evt_41ef6fc538a80723",
-        "confidence": 0.93,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story is a separate Zcash governance/ZIP proposal by the founder and community groups, not a new stage of the price-surge and Grayscale ETF event.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Zcash",
-          "ZEC",
-          "Zcash community governance context"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
     "375cb1e2dfce05187945de59c6cf04acac18b1614b50ed4801664087ed2605be": {
       "stored_at": "2026-11-05T08:00:55.468852+00:00",
       "value": {
@@ -78085,30 +77945,6 @@
         "update_type": null,
         "what_changed_en": "",
         "what_changed_zh": ""
-      }
-    },
-    "392a4855477a7488a066dcf462205a1baab18aab933de7c83d2aba976d277853": {
-      "stored_at": "2026-10-30T18:12:32.936200+00:00",
-      "value": {
-        "candidate_event_id": "evt_20dba8ac6044ff20",
-        "confidence": 0.9,
-        "current_state_en": "Project North Star financing remains in syndication; Blackstone has warned investors that Anthropic may receive a junk-grade rather than investment-grade rating after IPO, potentially limiting its funding sources and raising borrowing costs for its $800 billion compute buildout. More than $42 billion in senior loans are Broadcom-backed; the $18 billion subordinated debt has been rated BB+ by KBRA and BB by Morningstar DBRS; Blackstone funds invested $9 billion of it at a yield above 10%; Fitch, Moody's and S&P have not yet formally assigned Anthropic a credit rating.",
-        "current_state_zh": "“北极星项目”融资仍处于银团分销阶段；黑石已向投资者提示Anthropic在IPO后可能仅获垃圾级评级而非投资级，这可能限制其融资来源并推高其8000亿美元算力建设计划的借款成本。超过420亿美元高级贷款由博通担保，180亿美元次级债已获KBRA的BB+评级和Morningstar DBRS的BB评级，黑石基金投资其中90亿美元、收益率超过10%，惠誉、穆迪和标普尚未正式对Anthropic给出信用评级。",
-        "material_change": true,
-        "rationale": "The story is a new development in the same Project North Star financing package, adding a materially changed credit-rating expectation for Anthropic rather than merely repeating prior syndication facts.",
-        "relation": "same_event_update",
-        "shared_facts": [
-          "Project North Star",
-          "$60-63 billion Anthropic chip-financing deal",
-          "$42 billion Broadcom-backed senior secured loans",
-          "$18 billion subordinated debt tranche",
-          "Blackstone $9 billion investment at a yield above 10%",
-          "Anthropic five-year chip lease payments backing the debt"
-        ],
-        "target_update_id": null,
-        "update_type": "escalation",
-        "what_changed_en": "Blackstone has told investors in Anthropic's $63 billion chip-financing deal that Anthropic may not receive an investment-grade credit rating immediately after IPO and is expected to receive a non-investment-grade (junk) rating, differing from Blackstone's earlier guidance that it would obtain investment-grade status by year-end.",
-        "what_changed_zh": "黑石已向Anthropic 630亿美元芯片融资交易的投资者表示，Anthropic在IPO后可能无法立即获得投资级信用评级，预计将获得非投资级（垃圾级）评级，这与黑石此前预计其年底前获得投资级评级的指引不同。"
       }
     },
     "3989c082368f4f51605812e1404c53940031aec85b2b724fb7c55b6e12f45846": {
@@ -78334,27 +78170,6 @@
         "what_changed_zh": ""
       }
     },
-    "403a81d37da4f8617959510ba3782146c28886476b7c9622322346d43a49ac82": {
-      "stored_at": "2026-10-30T18:12:16.546792+00:00",
-      "value": {
-        "candidate_event_id": "evt_8159a9f007775839",
-        "confidence": 0.98,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story is Tether's separate Q3 financial disclosure about profits and reserves, not a new stage of the Senate/Blumenthal investigation into Iran sanctions evasion and Nxum payments.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Tether",
-          "USDT",
-          "CEO Paolo Ardoino"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
     "408497d691d159953498da5083d20ba441f67ae6ae2d0796ed2474d6900e680c": {
       "stored_at": "2026-11-01T06:33:05.081649+00:00",
       "value": {
@@ -78386,25 +78201,6 @@
         "relation": "related_but_distinct",
         "shared_facts": [
           "Circle is named as a participant (Circle Hong Kong) in the HKMA SAGE agentic finance expert group"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "41baf31f78377ad0c93aa7cf83fef424344495034b563be30ed6ddd411053a9d": {
-      "stored_at": "2026-10-30T18:11:57.986332+00:00",
-      "value": {
-        "candidate_event_id": "evt_1851f7d38a8f886b",
-        "confidence": 0.95,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story concerns a separate root event—a $6.4B exchange hack and CZ's public exchange with Elon Musk—not the EU MiCA licensing probe; only the Binance entity is shared.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Binance"
         ],
         "target_update_id": null,
         "update_type": null,
@@ -78718,27 +78514,6 @@
         "what_changed_zh": ""
       }
     },
-    "45e9126f6187dd92463f98ac8d6a3e3c64b1a3efb4ea51f9fecb32ba97808486": {
-      "stored_at": "2026-10-30T18:11:04.200432+00:00",
-      "value": {
-        "candidate_event_id": "evt_0e51fa26165f06ce",
-        "confidence": 0.96,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The new story describes the separate Binance 14 hot-wallet hack, not the existing event about $3.55 million in unclaimed bridge funds moved via EIP-7702.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "EIP-7702 authorizations were used",
-          "Ethereum on-chain movement of funds",
-          "wallet delegation/authorization mechanism"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
     "45f56b9a6f301fbf9172d92146deb10e2856b43120fda9b14735c9df718f4801": {
       "stored_at": "2026-11-05T16:58:08.580518+00:00",
       "value": {
@@ -78968,23 +78743,6 @@
           "prediction markets / event contracts",
           "state-level gambling-law litigation"
         ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "47c0307a0890dac935af8ce4e689bed397e43310095c6d3a183e5132dab05761": {
-      "stored_at": "2026-10-30T18:10:47.460867+00:00",
-      "value": {
-        "candidate_event_id": "evt_05977e47f6ef1421",
-        "confidence": 0.99,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The existing event concerns a banking lawsuit over crypto charters, while the new story is about OpenAI teen safety and violence-prevention safeguards; the only overlap is the generic word 'community'.",
-        "relation": "unrelated",
-        "shared_facts": [],
         "target_update_id": null,
         "update_type": null,
         "what_changed_en": "",
@@ -79584,28 +79342,6 @@
         "what_changed_zh": ""
       }
     },
-    "4f91224b20319a23de89020dd62aad0e24cee45d1253ba448dc67d4c871f9538": {
-      "stored_at": "2026-10-30T18:12:50.823603+00:00",
-      "value": {
-        "candidate_event_id": "evt_349ae44c04b4d209",
-        "confidence": 0.94,
-        "current_state_en": "The Binance ~$6.3B hack remains under investigation; the FBI and Secret Service are involved; TRM Labs and Chainalysis attributed the attack to North Korea-linked TraderTraitor; Circle and Tether froze about $823M in USDC and $975.1M in USDT respectively; Binance has reserved over $6.34B in company funds to cover losses and continues working with law enforcement to recover assets.",
-        "current_state_zh": "币安约63亿美元黑客事件仍在调查中；FBI 与特勤局参与调查；TRM Labs 和 Chainalysis 将攻击归因于朝鲜关联组织 TraderTraitor；Circle 与 Tether 分别冻结约8.23亿美元 USDC 和约9.751亿美元 USDT；币安已预留超过63.4亿美元公司资金覆盖损失，并继续配合执法追回资产。",
-        "material_change": true,
-        "rationale": "The story is a direct follow-up to the same Binance hack, adding the Secret Service's participation and specific stablecoin freeze amounts by Circle and Tether.",
-        "relation": "same_event_update",
-        "shared_facts": [
-          "same Binance exchange hack with ~$6.3-6.4B stolen",
-          "same FBI involvement and law-enforcement recovery effort",
-          "same attribution to North Korea-linked TraderTraitor",
-          "same Binance reserve of over $6.34B to cover losses"
-        ],
-        "target_update_id": null,
-        "update_type": "response",
-        "what_changed_en": "The U.S. Secret Service joined the Binance hack investigation; Circle froze approximately $823 million in USDC and Tether froze approximately $975.1 million in USDT connected to the attack, with both stablecoin issuers coordinating with law enforcement.",
-        "what_changed_zh": "美国特勤局加入币安黑客案调查；Circle 冻结了约8.23亿美元与攻击相关的 USDC，Tether 冻结了约9.751亿美元 USDT，两家稳定币发行方均表示配合执法。"
-      }
-    },
     "5011cfd8eff36515f97fe7c3e7a8069a97aa7429af278db9c4b764c945a4e33d": {
       "stored_at": "2026-10-31T21:22:58.576585+00:00",
       "value": {
@@ -79856,27 +79592,6 @@
         "relation": "related_but_distinct",
         "shared_facts": [
           "CLARITY Act"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "5357e4def675bc043d3b760fb444fb5195d479b11479049115fa5708f3f44460": {
-      "stored_at": "2026-10-30T18:11:43.909877+00:00",
-      "value": {
-        "candidate_event_id": "evt_7961cef127fc12b3",
-        "confidence": 0.9,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story concerns a separate Zcash governance/treasury proposal about terminating ZCG follow-on funding and creating new funds, not the NU7 activation-height decision.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Zcash",
-          "governance",
-          "Network Sustainability Mechanism (NSM)"
         ],
         "target_update_id": null,
         "update_type": null,
@@ -80410,25 +80125,6 @@
         "what_changed_zh": "币安称受影响资产已补充约95%（此前约为90%），BTC、ETH、USDT、BNB、SOL、USDC、XRP、USD1、RLUSD 和 ZEC 已实现100%储备支撑，剩余5%为流动性较低代币仍在收购；第一阶段提现计划在2026-11-01 06:00–09:00 UTC恢复，覆盖15个网络，存款保持正常。"
       }
     },
-    "5939e741e1b8d3862f2a3ab04568ccb9ce1027bb429515b0aa29ef077519ddab": {
-      "stored_at": "2026-10-30T18:11:35.581383+00:00",
-      "value": {
-        "candidate_event_id": "evt_9dea8eadbe32856f",
-        "confidence": 0.95,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story concerns Uber's participation in an HSBC-led tokenized deposit and tokenized money market fund pilot on Canton Network, an entirely separate corporate treasury initiative unrelated to the enterprise-wide ChatGPT Work deployment.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Uber is the only shared entity"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
     "594a6408f96b109de39301157579851c918ee83d1bdb3d5083d3201a4cba8d4d": {
       "stored_at": "2026-10-31T02:43:17.201358+00:00",
       "value": {
@@ -80553,27 +80249,6 @@
         "what_changed_zh": "ZachXBT 进一步披露：被盗发生在 11 月 1 日（周日），资金以 USDC/USDT 提出，已公布 11 个相关地址；其表示“高度确信”攻击者并非朝鲜 Lazarus 组织（与 10 月 29 日币安被盗案不同）；Lookonchain 称地址 0x9eca 以约 2,286 美元均价买入 27,553 枚 ETH（约 6,297 万美元）为资金转移一部分，洗钱仍在进行。"
       }
     },
-    "5a28cda36c1fea3ff0cc2cee43f3610351d585bcfa63138da590885dbbe8abc8": {
-      "stored_at": "2026-10-30T18:12:45.434379+00:00",
-      "value": {
-        "candidate_event_id": "evt_d5f83ef2fecc8846",
-        "confidence": 0.9,
-        "current_state_en": "Markets are absorbing the $6.3B Binance hack, with Bitcoin holding above $76,000 while crypto-related equities sold off sharply, led by Coinbase down over 13%.",
-        "current_state_zh": "市场消化币安63亿美元黑客事件，比特币维持在76,000美元上方，但加密货币相关股票大幅下挫，Coinbase领跌逾13%。",
-        "material_change": true,
-        "rationale": "The story describes a market reaction (crypto stock selloff) to the same Binance hack that is the root of the existing event, adding new material facts about equity impacts.",
-        "relation": "same_event_update",
-        "shared_facts": [
-          "binance-hack",
-          "$6.3B Binance hack",
-          "market selloff"
-        ],
-        "target_update_id": null,
-        "update_type": "aftermath",
-        "what_changed_en": "Crypto-linked stocks sold off sharply following the $6.3B Binance hack, with Coinbase falling over 13% and Circle, Strategy, IREN, and Figure dropping 8-10%.",
-        "what_changed_zh": "加密货币相关股票在币安63亿美元黑客事件后大幅下跌，Coinbase跌超13%，Circle、Strategy、IREN、Figure跌8-10%。"
-      }
-    },
     "5a3e946a3723f97f855caca04c7f2cfc737a49308e571d5bdde227471c656202": {
       "stored_at": "2026-11-02T23:30:53.871208+00:00",
       "value": {
@@ -80644,27 +80319,6 @@
           "SEC",
           "crypto asset/securities law framework",
           "decentralization and functional crypto system concepts"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "5be2209e3928f4233d35f90a1c4e7cd6cd604a4e4cee2683c4f9504fd94f893f": {
-      "stored_at": "2026-10-30T18:11:15.004637+00:00",
-      "value": {
-        "candidate_event_id": "evt_383fe9cbce2c0852",
-        "confidence": 0.95,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story is a broad semiconductor stock selloff triggered by Intel guidance and Amazon results, not a new stage or fact in Meta's equity financing plan.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "AMD",
-          "Nvidia",
-          "AI capex/semiconductor sector"
         ],
         "target_update_id": null,
         "update_type": null,
@@ -81049,27 +80703,6 @@
         "rationale": "The existing event is a market roundup about Robinhood earnings, Ripple's OCC trust bank approval, Google custody previews and BTC ETF flows, while the story covers the Lisk Chain Layer 2 shutdown and LSK token burn — no shared root event.",
         "relation": "unrelated",
         "shared_facts": [],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "62731b946c333b51080d26948e91c57d61a28c32a4c6a20789ce37d8fa7ad732": {
-      "stored_at": "2026-10-30T18:11:56.305141+00:00",
-      "value": {
-        "candidate_event_id": "evt_6655595dc1e36e0b",
-        "confidence": 0.98,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story concerns a separate $6.4 billion Binance hack and public dispute, not the Bitget hack, despite shared DPRK attribution and exchange-security themes.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Both are North Korea-linked cryptocurrency exchange security incidents",
-          "Both involve DPRK/TraderTraitor attribution",
-          "Both involve large-scale exchange theft and stablecoin issuer freezes"
-        ],
         "target_update_id": null,
         "update_type": null,
         "what_changed_en": "",
@@ -81806,25 +81439,6 @@
         "what_changed_zh": ""
       }
     },
-    "6df238e630a631b573a2703faca1cffe9fcc48feb4ef8afbaae6c4aee889349f": {
-      "stored_at": "2026-10-30T18:12:11.386712+00:00",
-      "value": {
-        "candidate_event_id": "evt_6655595dc1e36e0b",
-        "confidence": 0.97,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The new story covers a separate Binance hot-wallet hack and recovery, not the Bitget hack, though both are DPRK-attributed exchange security incidents.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Both incidents are crypto exchange hot-wallet hacks attributed by blockchain analytics firms to North Korea-linked hacking groups."
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
     "6e61017c69f860308a4f512ff434c6576102686fa86a3a668f139cea0ddac610": {
       "stored_at": "2026-11-02T20:03:01.455841+00:00",
       "value": {
@@ -81915,23 +81529,6 @@
         "update_type": "escalation",
         "what_changed_en": "The HKMA launched a tConnect Launchpad with Cyberport and disclosed that licensed dealers completed secondary-market trial trades in tokenized Exchange Fund Bills.",
         "what_changed_zh": "香港金管局与数码港合作推出「tConnect Launchpad」，并披露已完成认可交易商进行的代币化外汇基金票据二级市场试验交易。"
-      }
-    },
-    "6f2b81a2cf56a2a4f7b7c64d7f86cdde7ee7e143d3d0621df5f48c480edf9741": {
-      "stored_at": "2026-10-30T18:12:13.876968+00:00",
-      "value": {
-        "candidate_event_id": "evt_c594d0e29e7b400b",
-        "confidence": 0.99,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story covers a separate Binance hot-wallet hack involving EIP-7702 and exchange reserves, not the Ledger hardware-wallet supply-chain implant incident.",
-        "relation": "unrelated",
-        "shared_facts": [],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
       }
     },
     "6fcf2bdb6936f40604081ab505b264b72e3f23235eda71af5ae53784f49e11d5": {
@@ -82134,26 +81731,6 @@
         "what_changed_zh": ""
       }
     },
-    "71ac43572269db81e482b1c99c02d8a3dbffc65702abb3916b232b72883f2363": {
-      "stored_at": "2026-10-30T18:11:38.281589+00:00",
-      "value": {
-        "candidate_event_id": "evt_86e9b36281f39435",
-        "confidence": 0.94,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The new story describes a separate HSBC-led tokenized-deposit treasury investment pilot with Uber, Franklin Templeton, Tradeweb, Fireblocks and Canton Network, not the HSBC–Ant Digital AI-agent payments testnet trial.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "HSBC",
-          "tokenized deposits"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
     "71dd013b59d3ec40a9f87f03c999c14b053171c1c7a7851d480b42afea4eb56f": {
       "stored_at": "2026-11-05T21:02:58.356429+00:00",
       "value": {
@@ -82284,28 +81861,6 @@
         "update_type": null,
         "what_changed_en": "",
         "what_changed_zh": ""
-      }
-    },
-    "74be81396e6d8796536dbee0db45c8d02bb99eb22aef2b19ddb11b53de9df469": {
-      "stored_at": "2026-10-30T18:11:12.024358+00:00",
-      "value": {
-        "candidate_event_id": "evt_15cd8d42cdfc615e",
-        "confidence": 0.9,
-        "current_state_en": "The October 30 US tech selloff deepened and spread across semiconductors, with Intel plunging 30% on weak guidance, Nvidia's market cap falling below $5 trillion, Nasdaq 100 down as much as about 3%, and S&P 500 down about 1.25%; energy and healthcare gained as rotation intensified.",
-        "current_state_zh": "10月30日美股科技股抛售加深并扩散至半导体板块，英特尔因疲弱指引暴跌30%，英伟达市值跌破5万亿美元，纳指100一度跌约3%，标普500跌约1.25%；能源和医疗保健板块逆势上涨，市场轮动加剧。",
-        "material_change": true,
-        "rationale": "The story is a later intraday escalation of the same October 30 US tech-led selloff, adding broader semiconductor losses and new guidance details rather than a separate root event.",
-        "relation": "same_event_update",
-        "shared_facts": [
-          "Same trading date: 2026-10-30 US equities selloff",
-          "Intel plunged on weak PC demand and disappointing Q4 guidance",
-          "Amazon's weak results added to tech/AI spending concerns",
-          "Energy sector outperformed during the risk-off move"
-        ],
-        "target_update_id": null,
-        "update_type": "escalation",
-        "what_changed_en": "The intraday selloff widened across semiconductors: Intel fell 30%, the Philadelphia Semiconductor Index dropped 5.7%, AMD fell about 10%, Arm fell 9.5%, and Nvidia fell 3.3% with its market cap below $5 trillion; Intel's Q4 revenue and EPS guidance missed expectations and management expects PC weakness to persist at least through H1 2027.",
-        "what_changed_zh": "盘中抛售扩大至半导体板块：英特尔跌幅扩大至30%，费城半导体指数跌5.7%，AMD跌约10%，Arm跌9.5%，英伟达跌3.3%且市值跌破5万亿美元；英特尔第四季度营收和EPS指引低于预期，并预计PC市场低迷至少持续至2027年上半年。"
       }
     },
     "74c5605c226461bb0c9cf126d550f1f753d214bf4340437f3c8e4513a34c70f4": {
@@ -82874,30 +82429,6 @@
         "what_changed_zh": ""
       }
     },
-    "7ae7ebfbc7902361dfc4dcb9a6547159240d2e1c6f8787bdecd032dc6860e862": {
-      "stored_at": "2026-10-30T18:12:08.509598+00:00",
-      "value": {
-        "candidate_event_id": "evt_349ae44c04b4d209",
-        "confidence": 0.88,
-        "current_state_en": "The Binance ~$6.3B hack remains under investigation; TRM Labs and Chainalysis attributed it to North Korea-linked TraderTraitor; Binance has reserved over $6.34B in company funds to cover losses, with CEO Richard Teng saying customer funds were not affected and the hacked wallet was Binance's own hot wallet, targeting withdrawal restoration by Sunday and a full proof-of-reserves report by Monday; the attacker is still moving funds on Tron; Aave has unfrozen all V3/V4 markets and said it was unaffected.",
-        "current_state_zh": "币安约63亿美元黑客事件仍在调查中；TRM Labs 和 Chainalysis 将攻击归因于朝鲜关联组织 TraderTraitor；币安已预留超过63.4亿美元公司资金覆盖损失，CEO Richard Teng 称客户资金未受影响、被攻击的是自有热钱包，目标周日前恢复提现、周一前发布完整储备金证明；攻击者仍在通过 Tron 转移资金；Aave 已解冻 V3/V4 所有市场并称未受影响。",
-        "material_change": true,
-        "rationale": "The story is the same Binance hack and adds material post-incident facts about customer-fund isolation, attacker fund movement, Aave unfreezing, and CZ's comparison, rather than merely repeating one prior update.",
-        "relation": "same_event_update",
-        "shared_facts": [
-          "Binance hack with roughly $6.3B-$6.4B stolen",
-          "Binance reserved more than $6.34B including $5B in affected tokens",
-          "Richard Teng is Binance co-CEO/CEO and discussed the incident",
-          "EIP-7702 delegation bypassed normal approval controls",
-          "TRM Labs and Chainalysis attributed the theft to TraderTraitor",
-          "Withdrawals targeted for restoration by Sunday and full proof of reserves by Monday"
-        ],
-        "target_update_id": null,
-        "update_type": "aftermath",
-        "what_changed_en": "Richard Teng said in a video address that the hack hit Binance's own hot wallet rather than customer funds, customer assets were not impacted, Binance will cover all losses with company funds, and it targets restoring withdrawals by Sunday and publishing a full proof-of-reserves report by Monday. The article adds that the attacker moved about 5.19 million TRX (~$1.73 million) to 12 addresses via a Tron wallet; Aave unfroze all V3 and V4 markets after freezing them as a precaution and said its contracts were unaffected; and CZ said the theft is the largest in dollar terms but not in Bitcoin terms, citing Mt. Gox.",
-        "what_changed_zh": "Richard Teng 在视频讲话中表示，黑客攻击的是币安自有热钱包而非客户资金，客户资产未受影响；币安将用公司资金覆盖全部损失，目标周日前恢复提现、周一前发布完整储备金证明。文章还新增：攻击者通过 Tron 钱包向 12 个地址转移约 519 万 TRX（约 173 万美元）；Aave 在作为预防措施冻结后已解冻 V3 和 V4 所有市场，并称其合约未受影响；CZ 称此次按美元计是最大盗窃，但按比特币计并非最大，并提及 Mt. Gox。"
-      }
-    },
     "7af4e12eef5d51aca15bdfcc31f92276d6106d5f24d2f723cdc3f07322d87399": {
       "stored_at": "2026-11-05T12:06:40.210657+00:00",
       "value": {
@@ -82958,28 +82489,6 @@
         "update_type": "confirmation",
         "what_changed_en": "Added details: about $2.3 trillion in US market value was wiped out within the first hour of trading; the Philadelphia Semiconductor Index fell 11.48% intraday, near its March 16, 2020 record single-day close decline of about 15.9%; the report also reviewed historical US market crashes.",
         "what_changed_zh": "新增细节：美股开盘1小时内总市值蒸发约2.3万亿美元；费城半导体指数盘中下跌11.48%，接近2020年3月16日收盘约15.9%的历史最大单日跌幅纪录；报道同时回顾历次美股大崩盘。"
-      }
-    },
-    "7b8071298ca43c71be9b7fb40ac72ed2d30663da563b69ced3baf9ff23034b93": {
-      "stored_at": "2026-10-30T18:11:20.919034+00:00",
-      "value": {
-        "candidate_event_id": "evt_c594d0e29e7b400b",
-        "confidence": 0.96,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The new story is a separate Trezor Safe 5 device-tampering incident involving the same reseller and similar implant method, not a new stage of the Ledger-specific supply-chain event.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "CryptoBilis as a Malaysian/Asia reseller linked to tampered hardware wallets",
-          "hardware-wallet supply-chain spyware implant that reads screen/backup data",
-          "similar attack method to the Ledger implant incident",
-          "Trezor dropped CryptoBilis after the Ledger spyware hack"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
       }
     },
     "7bab2f848645bc9cf191bf50ad2150b3553e66ad95ad4d73353de08ca37132e1": {
@@ -83251,27 +82760,6 @@
         "relation": "related_but_distinct",
         "shared_facts": [
           "Both are LLM releases discussed in benchmark comparisons involving Claude Opus 5"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "800676a693f1668ba95f232313904673fecc6a287e0dbe7f434fa6dbe148288b": {
-      "stored_at": "2026-10-30T18:10:45.795358+00:00",
-      "value": {
-        "candidate_event_id": "evt_3854b5c9289cd65c",
-        "confidence": 0.97,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The existing event is Anthropic's launch of the Claude Code Mods plugin system, while the new story describes a separate supply-chain compromise of a tampered Claude Code VS Code extension on Cursor's marketplace/Open VSX.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Claude Code",
-          "Claude Code VS Code extension",
-          "Anthropic"
         ],
         "target_update_id": null,
         "update_type": null,
@@ -83648,27 +83136,6 @@
         "rationale": "The story is about Paraguay’s Ueno Bank collapse and President Peña’s resignation, with no event-level connection to Coinbase’s Deribit integration or CFTC clearing registration.",
         "relation": "unrelated",
         "shared_facts": [],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "86b7ab9f285e076730531e14d779a28997fa5eab6c94cdc9a6bcf3f48f37a981": {
-      "stored_at": "2026-10-30T18:12:55.191873+00:00",
-      "value": {
-        "candidate_event_id": "evt_fbaba427ec398ca6",
-        "confidence": 0.95,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The root incident differs: Xinbi marketplace asset freezes versus a separate $6.4 billion Binance exchange hack with Circle/Tether freezes attributed to TraderTraitor, sharing only the Secret Service and stablecoin-freeze theme.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "U.S. Secret Service involvement in crypto enforcement",
-          "Stablecoin issuers freezing assets (USDT) at law enforcement request",
-          "Blockchain analytics firms tracing illicit flows"
-        ],
         "target_update_id": null,
         "update_type": null,
         "what_changed_en": "",
@@ -84252,48 +83719,6 @@
         "what_changed_zh": ""
       }
     },
-    "8f0b4b85a8be201990bc5da4216d1b1c6fbc808bd76e98a3cd60ecd886e58179": {
-      "stored_at": "2026-10-30T18:12:26.893780+00:00",
-      "value": {
-        "candidate_event_id": "evt_b4e128bc7dfce8bd",
-        "confidence": 0.86,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story concerns Blackstone's separate warning to investors in Anthropic's $63B chip-financing deal about a possible junk credit rating after IPO, not a new stage or fact of the S-1 filing/IPO event itself.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Anthropic",
-          "IPO",
-          "S-1/招股书",
-          "计划投入超过8000亿美元建设算力基础设施",
-          "投资者预计IPO可能再筹集约1000亿美元"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "8f2ab2cdd11d45db5ece5ef79e08fa7c9b7a8c1407193eebffbb37fe6a64137d": {
-      "stored_at": "2026-10-30T18:10:43.604278+00:00",
-      "value": {
-        "candidate_event_id": "evt_3831cf3930ea99de",
-        "confidence": 0.95,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The existing event is about Amp adding a Claude Code mode, while the new story is a separate malicious extension supply-chain incident on Cursor's marketplace; they share the Claude Code product but not the root event.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Claude Code"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
     "8f8b371bc7278fcd0d3db67123d4466229ef8576828d39730888d35d162b828f": {
       "stored_at": "2026-11-05T21:02:48.724150+00:00",
       "value": {
@@ -84493,28 +83918,6 @@
         "what_changed_zh": ""
       }
     },
-    "91959e3e53482c19aa88e62069d0734ec0cceab2f939c13a7e7eb84995b1076f": {
-      "stored_at": "2026-10-30T18:11:53.637150+00:00",
-      "value": {
-        "candidate_event_id": "evt_349ae44c04b4d209",
-        "confidence": 0.9,
-        "current_state_en": "The Binance ~$6.3B hack remains under investigation; TRM Labs and Chainalysis attributed the attack to North Korea-linked TraderTraitor; Binance has reserved over $6.34B in company funds to cover losses and continues working with law enforcement to recover assets; CZ and Musk publicly clashed over the incident, with co-CEO Yi He saying Binance does not need to sell SpaceX shares to cover losses.",
-        "current_state_zh": "币安约63亿美元黑客事件仍在调查中；调查机构 TRM Labs 和 Chainalysis 将攻击归因于朝鲜关联组织 TraderTraitor；币安已预留超过63.4亿美元公司资金覆盖损失，并继续与执法机构合作追回资产；CZ 与马斯克就事件公开交锋，币安联席 CEO Yi He 表示无需出售 SpaceX 持股即可覆盖损失。",
-        "material_change": true,
-        "rationale": "The story concerns the same Binance hack and adds a material new attribution to North Korea-linked TraderTraitor, alongside public fallout comments.",
-        "relation": "same_event_update",
-        "shared_facts": [
-          "Same Binance hack of approximately $6.3-6.4 billion",
-          "Binance reserved more than $6.34 billion in company funds to cover losses",
-          "Theft occurred October 29 across multiple blockchains",
-          "Incident remains under investigation with law enforcement involvement"
-        ],
-        "target_update_id": null,
-        "update_type": "aftermath",
-        "what_changed_en": "TRM Labs and Chainalysis attributed the ~$6.4B Binance hack to North Korea-linked hacking group TraderTraitor; separately, CZ publicly rebuked Elon Musk over his mockery of Binance, and co-CEO Yi He said annual revenue is sufficient to cover losses without selling SpaceX shares.",
-        "what_changed_zh": "TRM Labs 和 Chainalysis 将币安约64亿美元黑客攻击归因于朝鲜关联黑客组织 TraderTraitor；同时 CZ 公开回应马斯克对币安事件的嘲讽，币安联席 CEO Yi He 表示公司年收入足以覆盖损失、无需出售 SpaceX 持股。"
-      }
-    },
     "91a9a5fa6d26642fd2eed716a404ecdb95b30a42fa2e21819609a477c2a3cff2": {
       "stored_at": "2026-11-02T02:46:44.375719+00:00",
       "value": {
@@ -84567,26 +83970,6 @@
         "shared_facts": [
           "The story mentions about $16 million moved to addresses that also hold stolen funds from the September Bitget hack.",
           "Both stories involve exchange security breaches and crypto laundering tracing."
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "927a376c8b121e4926a8ef5cb97a7d073e54926f4b3a318e95973939113711e6": {
-      "stored_at": "2026-10-30T18:12:20.405867+00:00",
-      "value": {
-        "candidate_event_id": "evt_bfcfe9ff11b4800c",
-        "confidence": 0.97,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story covers Tether's Q3 2026 financial report and reserve metrics, a separate disclosure from the planned Utexo/RGB-native USDT launch on Bitcoin.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Tether",
-          "USDT"
         ],
         "target_update_id": null,
         "update_type": null,
@@ -86652,30 +86035,6 @@
         "what_changed_zh": ""
       }
     },
-    "abcf01329fa74d1634eb31b93af2f28da9d35ccc75fa280f61cb3bc6c34f9ef1": {
-      "stored_at": "2026-10-30T18:11:28.629761+00:00",
-      "value": {
-        "candidate_event_id": "evt_ef55a9b094f31e63",
-        "confidence": 0.93,
-        "current_state_en": "Trezor still treats this as a credible but not lab-verified suspected hardware implant, has advised anyone who bought from CryptoBilis since March 2026 to move funds and is offering replacement devices while reviewing other Asia-based resellers; it has not received the affected Safe 5, found no tampering in four inspected CryptoBilis devices, and no CryptoBilis buyer has reported lost funds.",
-        "current_state_zh": "Trezor 仍将此事视为可信但未经实验室验证的疑似硬件植入事件，已建议自2026年3月起从 CryptoBilis 购买其钱包的用户迁移资金并提供更换设备，同时正在审查其他亚洲经销商；公司尚未收到涉事 Safe 5，已检查的四台 CryptoBilis 设备未发现篡改，且尚无 CryptoBilis 买家报告资金损失。",
-        "material_change": true,
-        "rationale": "The story covers the same Trezor/CryptoBilis suspected implant event and adds Trezor’s replacement offer and review of other Asia-based resellers.",
-        "relation": "same_event_update",
-        "shared_facts": [
-          "Trezor Safe 5 purchased from CryptoBilis in August 2026",
-          "suspected extra circuit board between main board and screen with cellular module and antenna",
-          "Trezor has not received the device and the report is credible but not lab-verified",
-          "CryptoBilis was dropped as an official reseller on October 9",
-          "four other CryptoBilis-sourced Trezor wallets inspected with no evidence of tampering",
-          "no funds reported stolen by CryptoBilis buyers"
-        ],
-        "target_update_id": null,
-        "update_type": "response",
-        "what_changed_en": "Trezor said it will replace wallets for buyers who purchased from CryptoBilis since March 2026 and is reviewing other Asia-based resellers; the report also links CryptoBilis’s October 9 removal to an $86 million Ledger wallet hack.",
-        "what_changed_zh": "Trezor 表示将更换自2026年3月起从 CryptoBilis 购买钱包的用户设备，并正在审查其他亚洲经销商；报道还将 CryptoBilis 于10月9日被下架与一起8600万美元 Ledger 钱包黑客事件联系起来。"
-      }
-    },
     "abf813207c311e4eb0a42ced6591cfbc246ad166923467d9bb9c379f7035aab5": {
       "stored_at": "2026-10-31T06:54:47.048681+00:00",
       "value": {
@@ -87618,28 +86977,6 @@
         "what_changed_zh": ""
       }
     },
-    "b8bf17b8332fae4542b5b179e5677f1e02091b21a67c5d6bbc2e78fb31aaae99": {
-      "stored_at": "2026-10-30T18:11:01.978385+00:00",
-      "value": {
-        "candidate_event_id": "evt_349ae44c04b4d209",
-        "confidence": 0.87,
-        "current_state_en": "The Binance ~$6.3B hack remains under investigation; on-chain analysis shows attackers used a sweeper contract and 50 EIP-7702 authorizations to control the Binance 14 hot wallet and move assets, while other wallets transferred funds via normal transactions. Binance has removed the delegation from Binance 14, and about $2.4B in related funds has been frozen or blacklisted. Binance previously said a complete proof-of-reserves report would be released by Monday and withdrawals were expected to resume by Sunday.",
-        "current_state_zh": "币安约63亿美元黑客事件仍在调查中；链上分析显示攻击者通过 sweeper 合约和 50 笔 EIP-7702 授权控制 Binance 14 热钱包并转走资产，其他钱包则通过普通交易转移资金；币安已移除 Binance 14 的委托，约24亿美元相关资金已被冻结或列入黑名单。币安此前表示将在下周一前发布完整储备金证明，并有望在周日前恢复用户提现。",
-        "material_change": true,
-        "rationale": "The story is a technical follow-up to the same Binance hack, adding new on-chain mechanism details and a remediation/frozen-funds update rather than describing a separate incident.",
-        "relation": "same_event_update",
-        "shared_facts": [
-          "Binance hack",
-          "Binance 14 hot wallet",
-          "EIP-7702 delegation on Ethereum",
-          "attacker-linked sweeper/delegation mechanism"
-        ],
-        "target_update_id": null,
-        "update_type": "aftermath",
-        "what_changed_en": "On-chain analysis further disclosed that the attacker deployed a sweeper contract and sent 50 EIP-7702 authorizations with varying nonce values targeting the Binance 14 hot wallet, all signed with the Binance 14 key; after approval, the sweeper contract acted as Binance 14 and moved its ETH and tokens. Other wallets did not rely on this delegation and instead used normal transfers; Binance eventually removed the delegation from Binance 14, and about $2.4 billion removed from Binance wallets on Ethereum has been frozen or blacklisted.",
-        "what_changed_zh": "链上分析进一步披露：攻击者部署了 sweeper 合约，并向 Binance 14 热钱包发送 50 笔携带不同 nonce 的 EIP-7702 授权，均使用 Binance 14 密钥签名；授权生效后，sweeper 合约以 Binance 14 身份转走 ETH 和代币。其他钱包未依赖该委托，而是通过普通交易转移资金；币安最终移除了 Binance 14 的委托，约 24 亿美元从币安以太坊钱包转出的资金已被冻结或列入黑名单。"
-      }
-    },
     "b924532b8bfa93f0e2a45b19f19952692cbb8f064f133c3da6a6cc7208021156": {
       "stored_at": "2026-11-03T00:37:44.564645+00:00",
       "value": {
@@ -87690,25 +87027,6 @@
         "relation": "related_but_distinct",
         "shared_facts": [
           "Linux remote code execution vulnerability affecting exposed servers"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "ba3773469912ce73cc96749d093c444f9e0824ac117b0b975edb46eb963fbbb4": {
-      "stored_at": "2026-10-30T18:11:46.216857+00:00",
-      "value": {
-        "candidate_event_id": "evt_a19b521351853b93",
-        "confidence": 0.97,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The new story concerns a proposed Zcash governance and treasury overhaul, not the 21Shares Zcash ETP launch, so it shares only the Zcash ecosystem and is a separate event.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Zcash ecosystem"
         ],
         "target_update_id": null,
         "update_type": null,
@@ -89573,48 +88891,6 @@
         "what_changed_zh": "Liquid Federation 宣布网络比特币储备已全部恢复，为全部 LBTC 重新确立 1:1 BTC 支撑；用户已可通过参与互换的服务商按 1:1 在比特币与 Liquid 之间转移。"
       }
     },
-    "d79f44bc91923f6e73e349aeac649c1f7cb70d227beec325a0eedc9afe6b9f41": {
-      "stored_at": "2026-10-30T18:11:17.733714+00:00",
-      "value": {
-        "candidate_event_id": "evt_8985d5d57c3ea1cb",
-        "confidence": 0.88,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The new story describes a separate US semiconductor selloff driven by Intel guidance and Amazon results, not the same Asian chip-stock decline tied to DeepSeek and US AI infrastructure financing.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Both involve semiconductor stock weakness and concerns about AI spending",
-          "Both mention AI capex/return concerns affecting chip stocks"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "d7a51ebe6bdb28b1fbdaaa9a6594cb7283fe4af88604a94ebb77b4eb986751f0": {
-      "stored_at": "2026-10-30T18:12:53.174117+00:00",
-      "value": {
-        "candidate_event_id": "evt_6655595dc1e36e0b",
-        "confidence": 0.93,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The new story concerns a separate $6.4B Binance hot-wallet theft with its own FBI/Secret Service response and stablecoin freezes, sharing only the DPRK attribution pattern and stablecoin-freeze mechanism with the Bitget event, not the same root incident.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "朝鲜 TraderTraitor/DPRK 归因",
-          "Chainalysis 参与归因",
-          "Circle 与 Tether 冻结稳定币",
-          "交易所热钱包被盗后与执法机构合作"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
     "d7eae856d0f0f32bc3a15e15865f165e131281412a89fb65a3bf23f84563086a": {
       "stored_at": "2026-11-03T04:04:08.274507+00:00",
       "value": {
@@ -90217,23 +89493,6 @@
         "shared_facts": [
           "Both involve a reported blockchain infrastructure vulnerability and DeFi risk response"
         ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "e14ae5404afa7715b67313fc718f37967e179f2a3c0094af77cc9c4790ba004f": {
-      "stored_at": "2026-10-30T18:10:49.177328+00:00",
-      "value": {
-        "candidate_event_id": "evt_1cf36734246e006d",
-        "confidence": 0.98,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story concerns OpenAI's ChatGPT teen-safety safeguards and public safety reporting, with no connection to the NEAR Intents exploit, its attacker, or fund recovery.",
-        "relation": "unrelated",
-        "shared_facts": [],
         "target_update_id": null,
         "update_type": null,
         "what_changed_en": "",
@@ -90845,26 +90104,6 @@
         "what_changed_zh": ""
       }
     },
-    "e7cb6748dd4e93bc232ce9b03abf458dc57f79d7e9f3489eccea23ef3b6536ca": {
-      "stored_at": "2026-10-30T18:12:23.379774+00:00",
-      "value": {
-        "candidate_event_id": "evt_85b8850df81f687c",
-        "confidence": 0.96,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The new story concerns Anthropic's expected post-IPO credit rating and its chip-financing deal, not the OpenAI funding round that is the root event.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Both involve large AI-sector financing/IPO activity",
-          "Anthropic is mentioned as an IPO comparator in the existing event's updates"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
     "e7fea4c91c23d74789a0c5376710917a88582d69d8fcfda7a3d23ebce6fa1420": {
       "stored_at": "2026-11-02T23:31:40.011599+00:00",
       "value": {
@@ -91351,27 +90590,6 @@
         "what_changed_zh": "反对 OKXICE TSV 代币化其股票的发行方数量从 38 家增至 50 家，新增包括英伟达、美光、耐克、好市多和 Reddit；原定代币化交易的公司共 62 家。"
       }
     },
-    "f0426d02ceba4696baffd5bbf8d560e3e92330d598038f7979b9ca91d69dd133": {
-      "stored_at": "2026-10-30T18:11:31.485809+00:00",
-      "value": {
-        "candidate_event_id": "evt_0e34fbe324b3b9e9",
-        "confidence": 0.96,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The new story concerns a separate physical tampering incident involving a Safe 5 wallet sold by Malaysian reseller CryptoBilis, not the Brevo email-provider breach and phishing campaign.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Trezor",
-          "hardware wallet security",
-          "supply-chain risk"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
     "f0a1297ac540e0b9afc119af3e3b7fc3619b537f9cbd451137e7293965d5e19c": {
       "stored_at": "2026-11-02T11:45:26.850977+00:00",
       "value": {
@@ -91721,27 +90939,6 @@
         "what_changed_zh": ""
       }
     },
-    "f4e8d91f4304849dd5c47ce8ccd16113e92de43d0247169300435ad6a8d6a7af": {
-      "stored_at": "2026-10-30T18:12:18.301779+00:00",
-      "value": {
-        "candidate_event_id": "evt_9bda8dd987d1f0b3",
-        "confidence": 0.88,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story reports Tether's Q3 2026 financial results and reserve composition, a separate corporate disclosure from the StableFund private-credit launch that defines the tracked event.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Tether",
-          "USDT",
-          "Tether reserve/treasury strategy"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
     "f4f698afecafee5f827da3e61e9417ed040a0d334f3a318a529f25235752cf12": {
       "stored_at": "2026-11-02T14:03:59.026816+00:00",
       "value": {
@@ -92075,25 +91272,6 @@
         "what_changed_zh": ""
       }
     },
-    "f915c40aee16e11cbec713ae316c583ac0576cf47f158e92e486c2efb8c648f6": {
-      "stored_at": "2026-10-30T18:10:53.600589+00:00",
-      "value": {
-        "candidate_event_id": "evt_9dea8eadbe32856f",
-        "confidence": 0.96,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story only shares Uber as an entity; it covers a separate HSBC tokenized-deposit pilot rather than the ChatGPT Work enterprise deployment.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Uber"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
     "f930db713d28c65115a3b6764e7b947cd04646d42b2cb4bbb6651d9fbb301f73": {
       "stored_at": "2026-10-31T10:33:41.458266+00:00",
       "value": {
@@ -92187,25 +91365,6 @@
         "relation": "related_but_distinct",
         "shared_facts": [
           "theme: AI policy and governance"
-        ],
-        "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "fa3d5adf1b00e1fe22dd0f1f4ce3e319d7875b3d257423f3ec8ad9c654b1a0c1": {
-      "stored_at": "2026-10-30T18:11:48.292103+00:00",
-      "value": {
-        "candidate_event_id": "evt_b4e128bc7dfce8bd",
-        "confidence": 0.9,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "The story covers a broad US tech stock selloff driven by Alphabet's AI-search ad revenue concerns, a separate market incident from Anthropic's S-1 IPO filing process.",
-        "relation": "related_but_distinct",
-        "shared_facts": [
-          "Both involve AI-related equity market sentiment and Nasdaq-listed tech"
         ],
         "target_update_id": null,
         "update_type": null,
@@ -92450,28 +91609,6 @@
           "Deribit 是两起事件的共同主体"
         ],
         "target_update_id": null,
-        "update_type": null,
-        "what_changed_en": "",
-        "what_changed_zh": ""
-      }
-    },
-    "fdadc944ed7f7cb7fc841c5971790cae3d0f953a8044b09e3d9a2e78db572571": {
-      "stored_at": "2026-10-30T18:11:34.183025+00:00",
-      "value": {
-        "candidate_event_id": "evt_800ed83bf692bb7b",
-        "confidence": 0.72,
-        "current_state_en": "",
-        "current_state_zh": "",
-        "material_change": false,
-        "rationale": "该报道与既有更新描述的是同一次汇丰/Uber 代币化存款试点，仅补充了 Canton Network、Tradeweb、Fireblocks 等参与方细节与推广预期，未出现新的阶段或状态变化。",
-        "relation": "duplicate_coverage",
-        "shared_facts": [
-          "Uber 参与汇丰主导的代币化存款试点",
-          "周末买入并赎回富兰克林邓普顿代币化货币市场基金",
-          "相比周五退出多获约 1.5 天收益",
-          "汇丰称该方案已可向其他美国客户推广"
-        ],
-        "target_update_id": "upd_644ec47d77a7b13e",
         "update_type": null,
         "what_changed_en": "",
         "what_changed_zh": ""
