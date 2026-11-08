@@ -32,3 +32,9 @@ Rollback: 如需回退，先获得用户授权，再以独立PR撤销PR350并走
 截图及响应证据在本次工作区outputs/rolling-news/：production-desktop-light.png、production-mobile-light.png、production-mobile-dark.png、production-verification.json、production-live.json、production-home.html和production-health.json。它们是实际生产响应/截图；本地preview截图不作为生产证据。原分支e1b416e...到main比较ahead1/behind0，确认祖先后通过GitHub Delete branch清理，页面显示Restore branch。
 
 目标采集检查周期5分钟，属于轮询。首次补齐未缓存内容的AI阶段约7分13秒，另有约4分钟执行器排队，不能承诺每5分钟完成出稿。后续复用评分/语义比较/扩写缓存；所有原模型、评分阈值、max_items14、候选上限140及并发5均保留，没有新增服务或提升配额。采集落后30分钟明确提示，读取自动剔除过期新闻；无快照明确归档兜底，不冒充实时。上游个别来源403仍有记录，不代表所有来源可用；本轮整体采集和精选成功。
+
+## 自动调度复核
+
+首轮成功后，未再人工触发；统一Worker在14:50:29Z（北京时间22:50）自动派发下一轮 https://github.com/ohxiyu/xiyunews/actions/runs/42491773016 ，目标main、event=workflow_dispatch。验收时仍排队，不能将自动派发等同于第二轮发布完成。/health回读dispatcher_enabled=true、collection_interval_minutes=5、collection_max_age_hours=0.08333，既有Cron含*/5 * * * *。
+
+证据PR: https://github.com/ohxiyu/xiyunews/pull/352 。
