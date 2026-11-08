@@ -1001,12 +1001,12 @@ See [`src/mcp/README.md`](../src/mcp/README.md) for the full tool reference and 
 
 ## 生产新闻评分与去重
 
-生产 `ai.provider=deepseek`、`ai.model=deepseek-flash`。同一次分析调用
+待切换生产配置为 `ai.provider=siliconflow`、`ai.model=Qwen/Qwen3.5-27B`。同一次分析调用
 直接返回 0–10 重要性分数、理由、摘要、标签和内容分类；提示词包含五档
 评分锚点及时效规则。`filtering.ai_score_threshold` 保持 7.0。粗筛失败
 进入完整分析；分析响应无法解析时记零分并且不缓存为有效分析。
 
-URL 规范化去重之后，事件目录匹配与 DeepSeek 语义比较分别处理跨日
+URL 规范化去重之后，事件目录匹配与 AI 语义比较分别处理跨日
 重报和当期相同事件。语义比较至多两次尝试，失败会留下脱敏诊断并
 停止发布，不会把未经比较的候选整批放行。扩写使用来源正文和搜索摘要；
 引用只能选自实际搜索结果。没有独立的扩写后事实核验。扩写失败时
@@ -1017,3 +1017,30 @@ URL 规范化去重之后，事件目录匹配与 DeepSeek 语义比较分别处
 运行报告汇总 `score_models`，新归档行有 `score_model`。已有归档不
 重新评分；周报的历史分数仍按原值读取，切换初期须人工观察新旧
 分数分布与 7.0 门槛的命中数量。
+
+
+## 硅基流动接入
+
+`AIProvider.SILICONFLOW` 使用现有 OpenAI 兼容客户端；默认模型
+`Qwen/Qwen3.5-27B`，默认接口 `https://api.siliconflow.cn/v1`，
+`ai.api_key_env=SILICONFLOW_API_KEY`。本地在 `.env` 中配置；GitHub
+Actions 在仓库 Secrets 中设置同名密钥，不能把密钥写进 JSON 或提交。
+日报（含诊断）、采集和 X 分发工作流均已接入此 Secret。
+
+选择依据是当前中文新闻分析、指令遵循及长文理解业务，参见
+[Qwen 官方模型卡](https://huggingface.co/Qwen/Qwen3.5-27B)；不代表每项任务
+都强于列表中的所有模型。实际账户可用性和出刊质量仍需密钥就绪后验证。
+
+按[硅基流动协议](https://docs.siliconflow.cn/docs/userguide/capabilities/reasoning)，
+客户端显式发送 `enable_thinking`；经济模式下既有简单任务关闭思考，
+动态评分、扩写和事件关联等其余任务启用，`thinking_budget=4096`。
+该预算与最终回答 `max_tokens` 分开限制，不发送 DeepSeek 官方接口的
+`thinking` 或 `reasoning_effort`。JSON 调用保留 `json_object`，正文调用
+使用文本，仅返回最终 `content`；空答案和截断输出继续拒绝。
+
+新缓存按 `siliconflow:Qwen/Qwen3.5-27B` 隔离，历史评分和旧缓存不手动
+重写。缺密钥时明确提示 `SILICONFLOW_API_KEY`；401/402/403 仍快速失败并
+输出脱敏动作提示。并发、超时、最终输出预算、刊期和重试上限保持原值。
+思考和输出都可能计费，本次未做真实付费调用。用户要求先完成代码、稍后
+配置密钥，故保持 Draft PR，不合并激活或重跑生产；配置后验证当期刊期、
+评分分布、去重和中英正文，再记录生产验收。

@@ -44,6 +44,7 @@ _DEFAULT_API_KEY_ENVS = {
     AIProvider.DOUBAO: "DOUBAO_API_KEY",
     AIProvider.MINIMAX: "MINIMAX_API_KEY",
     AIProvider.DEEPSEEK: "DEEPSEEK_API_KEY",
+    AIProvider.SILICONFLOW: "SILICONFLOW_API_KEY",
 }
 
 
@@ -384,6 +385,14 @@ class OpenAIClient(AIClient):
                 request_kwargs["extra_body"] = {"thinking": {"type": "enabled"}}
                 request_kwargs["reasoning_effort"] = "low"
                 include_temperature = False
+        if self.provider == "siliconflow":
+            # SiliconFlow uses its own hybrid reasoning parameters, not the
+            # DeepSeek official API's thinking object or reasoning_effort.
+            # Keep reasoning bounded; economy-mode extraction stays fast.
+            thinking = not (self.config.economy_mode and prompt_stage(system) in SIMPLE_BUDGETS)
+            request_kwargs["extra_body"] = {"enable_thinking": thinking}
+            if thinking:
+                request_kwargs["extra_body"]["thinking_budget"] = 4096
         if include_temperature:
             request_kwargs["temperature"] = temperature
         if response_format == "json" and self.provider not in self._NO_RESPONSE_FORMAT:
@@ -629,6 +638,7 @@ def _create_single_client(config: AIConfig) -> AIClient:
         AIProvider.DOUBAO,
         AIProvider.MINIMAX,
         AIProvider.DEEPSEEK,
+        AIProvider.SILICONFLOW,
         AIProvider.OLLAMA,
     }:
         return OpenAIClient(config)
@@ -775,4 +785,5 @@ def create_ai_client(config: AIConfig) -> AIClient:
     if config.provider_chain:
         return _create_chained_client(config)
     return _create_single_client(config)
+
 

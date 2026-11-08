@@ -68,7 +68,9 @@ def test_inflight_requests_are_cancelled_and_queue_is_not_started():
     asyncio.run(asyncio.wait_for(scenario(), timeout=10))
 
 
-def test_client_latches_account_error_for_other_stages(monkeypatch):
+@pytest.mark.parametrize("provider,model", [("deepseek", "deepseek-flash"),
+    ("siliconflow", "Qwen/Qwen3.5-27B")])
+def test_client_latches_account_error_for_other_stages(monkeypatch, provider, model):
     calls = []
     async def create(**kwargs):
         calls.append(kwargs)
@@ -76,7 +78,7 @@ def test_client_latches_account_error_for_other_stages(monkeypatch):
     monkeypatch.setenv("TEST_AI_KEY", "test-only")
     monkeypatch.setattr("src.ai.client.AsyncOpenAI", lambda **kwargs: SimpleNamespace(
         chat=SimpleNamespace(completions=SimpleNamespace(create=create))))
-    cfg = AIConfig(provider="deepseek", model="deepseek-flash", api_key_env="TEST_AI_KEY")
+    cfg = AIConfig(provider=provider, model=model, api_key_env="TEST_AI_KEY")
     async def scenario():
         client = OpenAIClient(cfg)
         for stage in ["prefilter", "analysis", "dedup"]:

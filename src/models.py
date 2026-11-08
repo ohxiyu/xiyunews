@@ -78,6 +78,7 @@ class AIProvider(str, Enum):
     DOUBAO = "doubao"
     MINIMAX = "minimax"
     DEEPSEEK = "deepseek"
+    SILICONFLOW = "siliconflow"
     OLLAMA = "ollama"
 
 
@@ -129,6 +130,11 @@ AI_PROVIDER_DEFAULTS = {
         "model": "llama3.1",
         "api_key_env": "",
         "base_url": "http://localhost:11434/v1",
+    },
+    AIProvider.SILICONFLOW: {
+        "model": "Qwen/Qwen3.5-27B",
+        "api_key_env": "SILICONFLOW_API_KEY",
+        "base_url": "https://api.siliconflow.cn/v1",
     },
 }
 
@@ -783,3 +789,4 @@ class Config(BaseModel):
     webhook: Optional[WebhookConfig] = None
     telegram_delivery: Optional[TelegramDeliveryConfig] = None
     x_delivery: Optional[XDeliveryConfig] = None
+
