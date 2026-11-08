@@ -6,10 +6,11 @@ import re
 from datetime import timedelta
 from typing import Iterable, List, Optional
 from pydantic import BaseModel, Field, ValidationError
-from tenacity import retry, stop_after_attempt, wait_exponential
+from tenacity import retry, retry_if_exception, stop_after_attempt, wait_exponential
 from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn, MofNCompleteColumn
 
 from .client import AIClient, LAST_COMPLETION_SCORER
+from .errors import account_error
 from .prompts import CONTENT_ANALYSIS_SYSTEM, CONTENT_ANALYSIS_USER
 from .utils import parse_json_response
 from ..models import ContentItem
@@ -73,12 +74,20 @@ class ContentAnalyzer:
         throttle_sec = self._get_throttle_sec()
         concurrency = self._get_concurrency()
         semaphore = asyncio.Semaphore(concurrency)
+        terminal_error = None
 
         async def _process(item: ContentItem, index: int, progress_task) -> ContentItem:
+            nonlocal terminal_error
             async with semaphore:
+                if terminal_error is not None:
+                    raise terminal_error
                 try:
                     await self._analyze_item(item)
                 except Exception as e:
+                    blocked = account_error(e)
+                    if blocked is not None:
+                        terminal_error = blocked
+                        raise blocked from None
                     print(f"Error analyzing item {item.id}: {e}")
                     item.ai_score = 0.0
                     item.ai_reason = "Analysis failed"
@@ -98,16 +107,25 @@ class ContentAnalyzer:
             transient=True,
         ) as progress:
             task = progress.add_task("Analyzing", total=len(items))
-            coros = [
-                _process(item, i, task) for i, item in enumerate(items)
+            tasks = [
+                asyncio.create_task(_process(item, i, task)) for i, item in enumerate(items)
             ]
-            analyzed_items = await asyncio.gather(*coros)
+            try:
+                analyzed_items = await asyncio.gather(*tasks)
+            finally:
+                # gather propagates its first error without cancelling peers.
+                # Drain them before leaving so queued items cannot keep spending.
+                for pending in tasks:
+                    if not pending.done():
+                        pending.cancel()
+                await asyncio.gather(*tasks, return_exceptions=True)
 
         return analyzed_items
 
     @retry(
         stop=stop_after_attempt(3),
-        wait=wait_exponential(min=2, max=10)
+        wait=wait_exponential(min=2, max=10),
+        retry=retry_if_exception(lambda exc: account_error(exc) is None),
     )
     async def _analyze_item(self, item: ContentItem) -> None:
         """Analyze a single content item.
@@ -247,3 +265,4 @@ class ContentAnalyzer:
             if source_category != result.category:
                 item.metadata.setdefault("source_category", source_category)
                 item.metadata["category"] = result.category
+

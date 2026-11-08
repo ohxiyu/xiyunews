@@ -1,24 +1,25 @@
 # 当前交接
 
-当前任务：[Issue321](https://github.com/ohxiyu/xiyunews/issues/321)，统一归档[历史漏期](releases/2026-11-05-edition-continuity.md)、[发布时限](releases/2026-11-06-publication-checkpoint-budget.md)及[门控兼容性](releases/2026-11-06-queue-gate-journal.md)修复。三个应用PR320/323/326五阶段均完成：日报、完整publisher、自动网站发布和两个读取新main的生产门控均已验收。当前会话唯一整合负责人以agent/edition-continuity-evidence、PR324归档并关闭任务；无历史AI重做、历史消息补发，未改Secrets、来源、Cron、费用、服务器资源或实时规则。架构入口为[系统架构](system-architecture.md)。
+当前任务：[Issue327](https://github.com/ohxiyu/xiyunews/issues/327)，排查11月6日起日报未出刊并修复账户错误处理。用户已明确暂不充值，先完成代码修复；不得为验证而重新调用生产AI、换模型或绕过语义去重。前序刊期恢复任务已结束，本次按新故障处理。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "归档3日14条恢复、逐期日志、跨日补缺、完整发布及标准库门控兼容性的生产证据",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/321",
-  "owner": "当前会话唯一编辑与生产整合负责人",
-  "branch": "agent/edition-continuity-evidence",
-  "last_verified_commit": "cf878a8cc9023c7aec17e9050f293e368fe14afb",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/324",
-  "completed": ["PR320合并88da72c5，逐期SQLite日志与无AI跨日补缺已运行，3日14条及9个缺失节点恢复", "三个应用PR适用CI通过；PR323合并dca841fd保留30分钟预算与全部检查，PR326合并cf878a8c恢复标准库门控", "正常Deploy Docs42089412376用24分05秒成功，实际重试无需再次修补且AI/渠道调用0，精确ACK确认远端82929893", "自动统一Cloudflare42093318854成功，Worker05b8d129-2253-4759-b4ef-441bc6bc9708，调度和看门狗保持启用", "最终普通URL近14期双语JSON/片段及12事件引用通过；中英×1440/390日期切换/加载更早无溢出或脚本错误；新main实际X/Square gate通过、没有发送、当期与回执不变"],
-  "unfinished": [],
-  "validation": ["最终完整Python1184 passed/4既有skipped，20项持久/恢复/真实无依赖CLI定向及三个应用PR适用CI通过；治理/差异检查通过", "生产普通URL近14期连续；恢复3日14条，中英×1440/390四组无溢出/脚本错误，日期入口与加载更早均14条，12事件引用有效", "新main cf878a8c两个真实gate成功：X work=false且跳过发送，Square attempted=0/sent=0；数据库完整性及刊期摘要ok，daily/X/Square字节及2条X/697条Square确认回执不变"],
-  "unverified": ["原同分新闻精确名次无法完全还原；11月3日首次底层发布日志不可取，不将现时超时倒推为原始原因", "下一次自然定时日报尚未发生，本次不将模拟或历史补期算作下一次Cron成功"],
-  "production": {"source_commit": "dca841fd0e112cbec3917f382682acb41fb800bf", "artifact_commit": "82929893a36f9e1a4dfde5c9b6df2f8048df3cb9", "edition": "2026-11-05，13条；11月3日14条已恢复，近14期连续", "generated_at": "2026-11-05T07:37:56.199782Z", "worker_version": "05b8d129-2253-4759-b4ef-441bc6bc9708", "verified_at": "2026-11-06凌晨，最终自动统一发布及普通URL/四组中英桌面手机尺寸验收通过"},
-  "blockers": [],
-  "next_action": "本证据PR合并后按既有调度运行；新问题重新核对远端main和线上版本、认领有界Issue，不继续旧补刊任务",
-  "states": {"code": "complete", "tests": "complete", "pr_merged": "complete", "deployed": "complete", "production_verified": "complete"},
-  "evidence": "project-docs/releases/2026-11-05-edition-continuity.md"
+  "goal": "修复AI账户错误逐条重试和伪零分，明确停刊根因及恢复条件",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/327",
+  "owner": "本聊天Codex唯一编辑与整合负责人",
+  "branch": "agent/provider-balance-failfast",
+  "last_verified_commit": "e810cf95a6687a12deb7a469c58d7c0bdadd7bf7",
+  "pr": "待建立",
+  "completed": ["核对当前main、开放PR、生产latest/health/ready", "核实6/7/8日正常定时日报均在评分与语义去重遇到HTTP402 insufficient_balance，恢复三次后daily_retry_limit", "实现运行内账户错误熔断、评分永久错误不重试、取消并等待并发请求、固定脱敏错误文案", "新增真实评分重试/并发取消/跨阶段熔断和临时错误恢复回归"],
+  "unfinished": ["远端CI与合并验收", "余额恢复后的当期日报和公开网站验收（用户暂不充值）"],
+  "validation": ["本机Python3.9语法与标准库错误分类检查通过；完整依赖测试由PR CI验证"],
+  "unverified": ["未来自然定时出刊与账户余额；不能保证账户一直有余额或供应商永不故障"],
+  "production": {"source_commit": "e810cf95a6687a12deb7a469c58d7c0bdadd7bf7", "artifact_commit": "924b352a5755c84e292955df914b0bb4cd367137", "edition": "2026-11-05，13条，仍过期", "generated_at": "2026-11-05T07:37:56.199782Z", "worker_version": "90302c66-5a58-4a88-a632-f247214fe6db", "verified_at": "2026-11-08约11:02 Asia/Shanghai，普通生产URL"},
+  "blockers": ["用户暂不充值，生产AI返回HTTP402；代码无法代替补充账户余额"],
+  "next_action": "等待适用CI并修复失败；只交付账户故障处理。暂不重跑生产日报；余额恢复后重新验证当期刊期，历史缺刊须有可信选稿才能恢复",
+  "states": {"code": "complete", "tests": "pending", "pr_merged": "pending", "deployed": "pending", "production_verified": "pending"},
+  "evidence": "project-docs/releases/2026-11-08-provider-account-failure.md"
 }
 ```
+

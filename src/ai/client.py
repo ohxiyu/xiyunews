@@ -16,6 +16,7 @@ from ..models import AIConfig, AIProvider, AI_PROVIDER_DEFAULTS
 from rich import print as rich_print
 from .tokens import record_usage
 from .policy import prompt_stage, usage_stage, SIMPLE_BUDGETS
+from .errors import account_error
 
 
 # A chained provider may serve a completion from a fallback model. Keep the
@@ -238,6 +239,7 @@ class OpenAIClient(AIClient):
         self.temperature = config.temperature
         self.max_tokens = config.max_tokens
         self.provider = config.provider.value
+        self._account_error = None
         # Some newer models (e.g. Claude Opus 4.7 on Bedrock Converse) reject
         # `temperature`. We learn this on first 400 and stop sending it.
         self._supports_temperature = True
@@ -280,6 +282,8 @@ class OpenAIClient(AIClient):
         Returns:
             str: Generated text
         """
+        if getattr(self, "_account_error", None) is not None:
+            raise self._account_error
         started = time.perf_counter()
         temperature = self.temperature if temperature is None else temperature
         stage = prompt_stage(system)
@@ -301,6 +305,12 @@ class OpenAIClient(AIClient):
                 use_max_completion_tokens=self._use_max_completion_tokens,
             )
         except Exception as exc:
+            blocked = account_error(exc)
+            if blocked is not None:
+                # This client is scoped to one run. Stop further stages from
+                # calling a blocked account; a new run can recover after top-up.
+                self._account_error = blocked
+                raise blocked from None
             if self._supports_temperature and self._is_temperature_unsupported(str(exc)):
                 self._supports_temperature = False
                 response = await self._do_request(
@@ -765,3 +775,4 @@ def create_ai_client(config: AIConfig) -> AIClient:
     if config.provider_chain:
         return _create_chained_client(config)
     return _create_single_client(config)
+
