@@ -1257,6 +1257,47 @@
         "source_category": "crypto-markets"
       }
     },
+    "0419032a147d856b0da74d38dfc7da4946c09aac7b5f16fbf7e6591717e7d0b1": {
+      "stored_at": "2026-11-08T16:42:27.147445+00:00",
+      "value": {
+        "background": "",
+        "background_zh": "DeepSeek V4模型家族于2026年4月24日发布，包含V4 Pro和V4 Flash两个变体。其中V4 Flash是一个总参数量为2840亿、每令牌激活参数量为130亿的混合专家模型。模型量化是一种通过降低参数精度来减少模型大小和计算需求的技术，常用于在CPU等资源受限的设备上部署AI模型。",
+        "community_discussion": "",
+        "detailed_summary": "",
+        "detailed_summary_zh": "一个名为Llama-modchip的开源项目，通过先进的量化与流式处理技术，使得在仅配备64GB内存且无GPU的系统上运行拥有2840亿参数的DeepSeek-V4-Flash模型成为可能。\n\n这极大地降低了运行大型语言模型的计算硬件门槛，使得更多开发者或研究机构能够在普通CPU服务器上进行大模型推理，促进了AI技术的可及性。\n\n项目提供了预编译的独立二进制文件，并集成了修补后的llama.cpp引擎，支持AVX-512/AVX2/Apple Metal指令集。其v2.1版本宣称能在纯CPU上以20–60.4 tok/s的速度运行300亿参数的稀疏混合专家模型，并支持256K上下文窗口。",
+        "editorial_tags": [
+          "大语言模型",
+          "模型量化",
+          "CPU推理",
+          "开源项目",
+          "DeepSeek"
+        ],
+        "enrichment_status": "complete",
+        "sources": [
+          {
+            "title": "GitHub - synchopate/llama-modchip: Run 284B DeepSeek-V4 ...",
+            "url": "https://github.com/synchopate/llama-modchip"
+          },
+          {
+            "title": "GitHub - synchopate/llama-modchip: ♟️ llama-modchip v2.1: Run ...",
+            "url": "https://github.com/synchopate/llama-modchip/tree/main"
+          },
+          {
+            "title": "DeepSeek V4 Architecture: MoE, Parameters & 1M Context",
+            "url": "https://deepseek-v4.io/architecture"
+          },
+          {
+            "title": "DeepSeek V4 Explained: V4-Pro 1.6T vs V4-Flash 284B (2026)",
+            "url": "https://deepseek.ai/deepseek-v4"
+          },
+          {
+            "title": "DeepSeek-V4-Flash: 284B MoE for High-Throughput Pipelines at ...",
+            "url": "https://redeep.blog/posts/deepseek-v4-flash/"
+          }
+        ],
+        "title_zh": "Llama-modchip：在64GB内存、无GPU系统上运行284B参数的DeepSeek模型"
+      }
+    },
     "04514e469d9a7d085b9afe823a18938701cf414df52ca8719eac9f7dd3b7c3a2": {
       "stored_at": "2026-11-02T11:44:27.876699+00:00",
       "value": {
@@ -4672,23 +4713,6 @@
         ]
       }
     },
-    "0f80e586acf949b660172bb4a8f3cc3f8391de3f8ea6c3eedef0d4e388d3ac8f": {
-      "stored_at": "2026-10-30T00:07:15.895605+00:00",
-      "value": {
-        "ai_reason": "Base scheduling a mainnet upgrade to 200ms blocks is a material protocol performance development for a widely used Layer 2, with clear implications for throughput and application design, though it is a planned upgrade rather than an immediate systemic event.",
-        "ai_score": 7.5,
-        "ai_summary": "Base has set November 5 as the activation date for its Denim upgrade, which will bring 200ms block times to its mainnet.",
-        "ai_tags": [
-          "Base",
-          "layer-2",
-          "protocol-upgrade",
-          "block-times",
-          "scalability"
-        ],
-        "category": "crypto-protocols",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "0f86d1585f9134489c88d18c9d5441c4bd9b5b81caa36cf66005809ecfd60722": {
       "stored_at": "2026-11-01T18:18:38.307434+00:00",
       "value": {
@@ -6438,24 +6462,6 @@
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
-      }
-    },
-    "15cbcc314152add7874a163cf4e8ebb7798b9ee1718f53d193ba86c22add21be": {
-      "stored_at": "2026-10-30T00:07:15.895294+00:00",
-      "value": {
-        "ai_reason": "A reported outflow/drain of a Binance hot wallet tied to a Tornado Cash-linked address coincided with a sharp Bitcoin whipsaw below $79,000 — a potentially systemic exchange-security event with immediate market transmission. It sits below the 8.5-9.0 exploit tier because the claim is described as 'reportedly' and disputed/unconfirmed rather than a confirmed loss figure, but the combination of a top-tier exchange, mixer-linked flows, and visible price impact makes it high value and worth immediate attention rather than routine.",
-        "ai_score": 7.5,
-        "ai_summary": "Bitcoin swung below $79,000 amid reports that a Binance hot wallet was drained by an address linked to Tornado Cash, raising concerns over exchange fund security and triggering volatile price action.",
-        "ai_tags": [
-          "binance",
-          "hot-wallet",
-          "tornado-cash",
-          "bitcoin",
-          "exchange-security"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
       }
     },
     "15f680d5086f7ae911a1a1125f65e3cd04b0388acc5a1803420b4db19b031305": {
@@ -13056,22 +13062,6 @@
         "source_category": "crypto-markets"
       }
     },
-    "2c349a43ddee1af8809fd6b48a540ee3f380308e92a2843c5a53cb57557a50bf": {
-      "stored_at": "2026-10-30T00:07:15.895512+00:00",
-      "value": {
-        "ai_reason": "This is a static Coinbase price/market-cap page for a tokenized equity (AppLovin, APPC), not a news development. No in-window event, announcement, listing change, or market-moving information is present; it is routine product/reference content with no editorial substance.",
-        "ai_score": 1.5,
-        "ai_summary": "Coinbase Italy's price page for the AppLovin Corporation tokenized stock (APPC) showing live price, charts, and market cap.",
-        "ai_tags": [
-          "tokenized-stocks",
-          "coinbase",
-          "price-data",
-          "real-world-assets"
-        ],
-        "category": "exchange-announcements",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "2c40acd9cba377a5ede5a3c1da6700e25d795963d75fb250bd2a343dd7a4fd86": {
       "stored_at": "2026-11-02T11:44:27.883699+00:00",
       "value": {
@@ -18688,6 +18678,24 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "3ec7ef335d198cd5f98dd6fe6ab41eaee9f2e1949a8a219826c84e0c1d08ea06": {
+      "stored_at": "2026-11-08T16:41:57.612375+00:00",
+      "value": {
+        "ai_reason": "The project demonstrates a significant technical achievement in making a 284B parameter model runnable on consumer hardware, representing a high-value development for the AI devtools ecosystem. The Hacker News discussion provides substantive technical commentary on quantization, performance trade-offs, and the state of related projects, adding considerable signal.",
+        "ai_score": 7.5,
+        "ai_summary": "A project called Llama-modchip enables running the 284B parameter DeepSeek model on a system with only 64GB of RAM and no GPU, through advanced quantization and streaming techniques.",
+        "ai_tags": [
+          "ai-devtools",
+          "model-optimization",
+          "llama.cpp",
+          "quantization",
+          "open-source"
+        ],
+        "category": "ai-devtools",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "tech-community"
+      }
+    },
     "3ecbb42efd3d7e2f4dcd8f61b0d64d40e7a72af18fc5974c586c6ee56b2f5bbe": {
       "stored_at": "2026-11-01T23:07:49.848511+00:00",
       "value": {
@@ -24047,24 +24055,6 @@
         "category": "macro-regulation",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
-      }
-    },
-    "528c651cea074b6319e01c515ed63d93875349f9819267d1a3c1c8ccd135ef78": {
-      "stored_at": "2026-10-30T00:07:15.895416+00:00",
-      "value": {
-        "ai_reason": "A major Binance security incident prompted Tether and Circle to freeze $2.38 billion in stablecoins, indicating a high-impact exchange security event with material implications for user funds and market operations, though no confirmed losses or systemic insolvency are established.",
-        "ai_score": 8.5,
-        "ai_summary": "Tether and Circle froze $2.38 billion in stablecoins after Binance reported a security incident.",
-        "ai_tags": [
-          "Binance",
-          "Tether",
-          "Circle",
-          "stablecoin freeze",
-          "security incident"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
       }
     },
     "52904d28c8dcd3a5e84b6db4a1478266f2584b7d60a316f06d0789d0af3c8008": {
@@ -31036,6 +31026,19 @@
         ],
         "title_en": "Users Report Deposit Restrictions at OKX, Binance and Other Exchanges Following ",
         "title_zh": "FinCEN对MEXC采取行动后，用户报告OKX、币安等交易所出现存款限制"
+      }
+    },
+    "6b37f17d473ee8533ab67a981c86a5fd754a947ecfa289db7cfad949634a2921": {
+      "stored_at": "2026-11-08T16:41:57.612155+00:00",
+      "value": {
+        "ai_reason": "The provided content contains no substantive information, only a broken link and a publisher name; there is no news event or development to score.",
+        "ai_score": 0.0,
+        "ai_summary": "No substantive content was provided.",
+        "ai_tags": [
+          "ai-labs"
+        ],
+        "category": "ai-labs",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
     "6b3827b0b09cb89ccf1a7487d0b470860e097728bab9fb7b1d04ae4d49013298": {
@@ -56340,6 +56343,23 @@
         "category": "ai-devtools",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
+      }
+    },
+    "c0ccd42cdbe0616ed2a816b7d5a8b485aa173baaa53d37af84d0c6e81b3028e0": {
+      "stored_at": "2026-11-08T16:41:57.610999+00:00",
+      "value": {
+        "ai_reason": "The OCC granting a trust bank charter to a stablecoin issuer is a significant regulatory development with material implications for market structure and institutional adoption, representing a concrete step toward federal-level stablecoin banking. It is a high-value, in-window announcement.",
+        "ai_score": 7.5,
+        "ai_summary": "The OCC has approved a trust bank charter for a stablecoin issuer, requiring $45 million in minimum capital and pre-opening checks, which establishes a new federal pathway for stablecoin operations.",
+        "ai_tags": [
+          "stablecoins",
+          "regulation",
+          "banking",
+          "OCC"
+        ],
+        "category": "crypto-regulation",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-protocols"
       }
     },
     "c0f30e0c8c9b9e36d2397dfe61ce1b8c2698fede6ac3f7bc64ff76a80314b8e2": {
