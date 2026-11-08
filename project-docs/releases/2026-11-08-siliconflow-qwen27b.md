@@ -33,7 +33,7 @@ JSON与文本请求按原调用方选择，拒绝空/截断输出，不返回 re
 新增测试覆盖工厂/默认URL和密钥、旧密钥不被误用、思考协议和限额、JSON/正文
 差异、动态评分计量来源、推理内容不泄露、空/截断拒绝、三个工作流Secret
 映射、向导默认值、新旧缓存隔离；现有账户熔断回归增加siliconflow参数。
-本机AST语法检查通过；完整功能回归与治理待远端CI。
+本机AST语法检查通过；完整远端CI已通过，见下方证据。
 
 用户明确“先完成代码，稍后配置密钥”。本次不改Secrets，不调用真实AI，
 不重跑生产或发送测试消息。Draft PR保持待密钥，不合并激活缺密钥配置。
@@ -48,3 +48,18 @@ Deployment: pending，Draft PR待密钥配置后正常合并。
 Verification: pending，未验证真实API、当期刊期或网站恢复。
 
 Rollback: 不自动回退到余额不足的旧账户；不手工改状态分支或消息回执，回退另按授权处理。
+
+## 最终应用验证
+
+[PR330](https://github.com/ohxiyu/xiyunews/pull/330) 精确应用提交
+004819a36430795075956fd28ee921823b3ff1ac 的
+[CI42448250337](https://github.com/ohxiyu/xiyunews/actions/runs/42448250337)
+全部通过：Python 1210 passed、4个既有skipped，44.19秒；pip-audit使用
+PyPI通过，未发现已知漏洞。治理、web、edge-build、realtime Python3.11与
+3.12全部成功，Cloudflare Pages预览成功。CodeQL按既有规则skipped。
+首次CI发现一处旧测试仍断言生产provider为deepseek；已同步精确新配置并
+完整复跑，未删测试、放宽CI或改变运行时行为来绕过断言。
+
+当前main仍为9fdcd9fe58e32dca65c57dd9d0e1441814431b6e。代码和测试
+complete，合并、部署、生产验证pending；待用户配置Secret。此记录不代表
+真实模型权限、线上新刊或未来自然Cron已验证。后续仅更新证据文档，不改应用。

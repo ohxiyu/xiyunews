@@ -9,20 +9,22 @@
   "issue": "https://github.com/ohxiyu/xiyunews/issues/329",
   "owner": "本聊天Codex唯一编辑与整合负责人",
   "branch": "agent/siliconflow-qwen27b",
-  "last_verified_commit": "9fdcd9fe58e32dca65c57dd9d0e1441814431b6e",
+  "last_verified_commit": "004819a36430795075956fd28ee921823b3ff1ac",
   "pr": "https://github.com/ohxiyu/xiyunews/pull/330",
   "completed": [
     "核对main与Issue329，以GitHub connector读取固定main隔离源码快照",
     "新增显式siliconflow provider及Qwen3.5-27B默认值、硅基流动思考参数",
     "更新生产配置、三个工作流四处Secret映射、示例与配置说明",
-    "新增协议/密钥/JSON正文分离/缓存隔离与账户熔断回归，保留PR328故障修复"
+    "新增协议/密钥/JSON正文分离/缓存隔离与账户熔断回归，保留PR328故障修复",
+    "PR330应用提交完整CI通过：1210 passed/4既有skipped、依赖审计无已知漏洞、治理/web/edge/realtime双版本通过"
   ],
   "unfinished": [
-    "远端CI完整回归并记录PR",
-    "用户稍后配置SILICONFLOW_API_KEY；再合并激活并验收当期出刊"
+    "用户稍后配置SILICONFLOW_API_KEY；再正常合并激活并验收实际API与当期出刊"
   ],
   "validation": [
-    "本机AST语法检查通过；缺少Python3.11项目依赖，功能测试待远端CI"
+    "本机AST语法检查通过；远端CI42448250337全部成功，精确应用head004819a36430795075956fd28ee921823b3ff1ac",
+    "完整Python1210 passed/4既有skipped，44.19秒；pip-audit通过pypi，无已知漏洞；Cloudflare Pages预览通过",
+    "首次CI捕获一处旧生产provider断言，已同步精确provider/model/URL/env，完整复跑通过"
   ],
   "unverified": [
     "账户模型权限、真实API兼容性和输出质量尚未测试",
@@ -39,10 +41,10 @@
   "blockers": [
     "用户明确先完成代码，稍后配置密钥；保持Draft，不提前合并缺密钥配置"
   ],
-  "next_action": "跑完适用CI并记录证据；密钥就绪后经正常合并路径验证当期出刊，不重放历史消息，不清旧缓存。",
+  "next_action": "保持Draft，等待用户稍后配置SILICONFLOW_API_KEY；密钥就绪后通过正常合并路径验收真实API、当期刊期、评分分布与去重。不重放历史消息，不清旧缓存。",
   "states": {
     "code": "complete",
-    "tests": "pending",
+    "tests": "complete",
     "pr_merged": "pending",
     "deployed": "pending",
     "production_verified": "pending"
