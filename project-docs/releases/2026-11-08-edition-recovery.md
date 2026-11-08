@@ -22,20 +22,20 @@ daily-summary job128647225233，显式参数：
 重建6/7日刊期或手改gh-pages/状态分支/发送回执。正常渠道沿既有幂等路径执行；
 超过渠道既有延迟或过期限制时据实报告，不擅自放宽。
 
-## 当前验证
+## 最终交付状态
 
-首轮补跑已在30分钟边界终止，尚未出刊；详见下方修复记录。
-PR334现包含完成补刊所需的评分任务策略、请求总时限和进度日志修复，须跑完整适用应用CI。
+2026-11-08当期补刊已完成：中英文日报14条已在普通正式域上线，Telegram发送1条。
+下文首轮/第二轮保留当时失败证据，最终结果以末尾第三轮与正式域验收为准。
 
-Source commit: 7ffe3ebceddf6e026da4d5eddbe3bb9a4dec8f14。
+Source commit: c9e8ba62f7bc314ca809d049b54a9738504c7b97。
 
-Worker version: pending，待自动部署与正式域验收，不手工部署。
+Worker version: 9be81330-37a0-4ca6-892d-d08291c2eb1d，自动部署与正式域health一致。
 
-Deployment: pending，首轮终止，修复和补跑验收中。
+Deployment: [Cloudflare42460289903](https://github.com/ohxiyu/xiyunews/actions/runs/42460289903)，success；07:55:35Z部署触发器完成。
 
-Verification: pending，公开首页补跑前仍为11月5日；不能宣称11月8日已出刊。
+Verification: 2026-11-08T07:57:40.148745Z，普通正式域API/中英首页/详情/fragment与归档索引全部为11月8日14条，详见末尾。
 
-Rollback: 不自动回滚、重置状态或发送回执；如需另按授权处理。
+Rollback: 不自动回滚、重置状态或发送回执。已记录前版Worker fbd97b76-eb69-41b0-8a5f-ca19f2add49d（11月5日产物，非当前刊期的正确内容）；若需回滚，先由维护者授权并确认目标，再按既有部署手册执行。
 
 ## 首轮失败与修复
 
@@ -100,3 +100,56 @@ RetryError的最终异常类型并立即刷新，只输出类型不输出供应�
 
 当前交付状态：PR334代码/测试/合并complete；Issue335修复code complete、tests/merge pending；
 今天日报的生成、部署与生产验收全部仍pending。没有提高30分钟任务上限来掩盖问题。
+
+## 第三轮成功与正式域验收
+
+[PR336](https://github.com/ohxiyu/xiyunews/pull/336)应用head
+ eabf2781386bcc4f72c85c288c0eb9b9a3d9bf22 的
+[CI42458820049](https://github.com/ohxiyu/xiyunews/actions/runs/42458820049)：
+1216 passed、4既有skipped，49.18秒；pip-audit无已知漏洞，治理及Pages预览通过。
+正常合并c9e8ba62f7bc314ca809d049b54a9738504c7b97，确认祖先后删除任务分支；PR334分支亦已按同一流程清理。
+
+[成功Daily42459458833](https://github.com/ohxiyu/xiyunews/actions/runs/42459458833)，
+job128665401886，使用main c9e8ba62f7bc314ca809d049b54a9738504c7b97，
+trigger_source=manual-siliconflow-recovery-json，其余刊期/边界/诊断/强制发布参数不变。
+报告run-20261108T073649.058086Z，从07:36:49.058086Z至07:47:07.060849Z，618.003秒。
+282个候选、140条分析、14条展示（Crypto9、AI4、政策1）、1条高优先级。
+评分缓存命中140，另分析35条；score_models均为siliconflow:Qwen/Qwen3.5-27B（175项含缓存）。
+新扩写11条、复用3条；新扩写日志98.8秒，报告enrichment阶段99.483秒，enrichment_degraded=0。
+复杂JSON仍保留8192最终输出预算；不提高30分钟上限、120秒请求时限、并发、重试或费用限额。
+
+07:46:55Z保存中英摘要，07:46:56.2838824Z日志确认Telegram daily edition sent；
+报告telegram_messages_sent=1、telegram_message_chars=1968。07:48:19Z自动gh-pages发布成功。
+报告status=warning、error=null：仅edition_started_late（本次补跑启动晚516分钟）与
+partial_source_failure（RSS部分HTTP403，顶层0/5完全失败，既有回退和其余来源继续）。
+另有event_evidence_deferred=13、event_texts_untranslated=10；不能把本期日报成功当历史事件处理全部完成。
+未提交原始报告、日志、密钥或临时下载URL。
+
+### 正式域证据
+
+[自动Cloudflare42460289903](https://github.com/ohxiyu/xiyunews/actions/runs/42460289903)
+job128667923963 success，07:55:35Z完成部署；未手工部署Worker。
+产物分支gh-pages提交da1ceca2c1cb3e3002f0729e164d22a34ea5056a。
+2026-11-08T07:57:40.148745Z以普通正式URL（无cache-bust）验收：
+
+- [latest API](https://xiyu.news/api/latest.json)与[当期归档JSON](https://xiyu.news/editions/2026-11-08/edition.json)完全相等，date=2026-11-08、items=14，generated_at=2026-11-08T07:46:56.342299Z。
+- 固定新闻窗口2026-11-06T23:00:00Z至2026-11-07T23:00:00Z，即Asia/Shanghai 11月7日07:00至11月8日07:00。
+- [归档索引](https://xiyu.news/api/editions.json)首项2026-11-08、14条。
+- [中文首页](https://xiyu.news/)与[英文首页](https://xiyu.news/en/)首期data-date=2026-11-08，14条；浏览器可见今日日期与内容。
+- [中文详情](https://xiyu.news/2026/11/08/summary-zh.html)与[英文详情](https://xiyu.news/2026/11/08/summary-en.html)均为本期、各14个digest-item，浏览器可读。
+- [中文fragment](https://xiyu.news/editions/2026-11-08/zh.html)与[英文fragment](https://xiyu.news/editions/2026-11-08/en.html)均为本期、各14条。
+- [health](https://xiyu.news/health)：site_source_commit=c9e8ba62f7bc314ca809d049b54a9738504c7b97，site_artifact_commit=da1ceca2c1cb3e3002f0729e164d22a34ea5056a，version_id=9be81330-37a0-4ca6-892d-d08291c2eb1d，与部署日志一致。health本身不代替上方内容验收。
+
+本地证明截图outputs/edition-20261108-published.png；HTML抓取跟随站点正常规范化重定向，
+不把未跟随重定向所得空响应误判为缺页。模型扩写不是独立事实核验。
+
+### 渠道实际状态与边界
+
+- Telegram日报已真实发送1条；不手动重复发送。
+- [X42460290202](https://github.com/ohxiyu/xiyunews/actions/runs/42460290202)成功但发送步骤skipped；只读核对x-queue当前刊期status=skipped_late、jobs=[]。不能把工作流success当作推文已发，不放宽既有时效门槛。
+- [Square42460289991](https://github.com/ohxiyu/xiyunews/actions/runs/42460289991)结果attempted=0、sent=0、due=false、remaining=14、attention=0、unscheduled=0；square-queue已正常排程14条，首条16:05，末条22:55 Asia/Shanghai。验收时未到时，不能声明已送达；后续沿既有队列执行，无手改队列/回执。
+
+应用code/tests/pr_merged/deployed/production_verified五阶段均complete。本跟进文档由
+Issue333同一负责人在agent/edition-20261108-published-evidence、独立快照
+work/edition-20261108-final-verification维护，仅两份证据文档。
+下一次定时刊期尚未发生，不由这次手动成功推断未来Cron或外部供应商永不失败。
