@@ -77,7 +77,7 @@ def test_core_publication_workflows_do_not_regenerate_quick_posts():
     for name in ["daily-summary", "feed-collection", "deploy-docs"]:
         text = (root / f".github/workflows/{name}.yml").read_text()
         assert "uv run python -m src.quick_posts" not in text
-        assert "python -m src.core_site" in text
+        assert ("python -m src.rolling_feed" if name == "feed-collection" else "python -m src.core_site") in text
     assert 'data-quick-post-status' not in (root / "docs/_includes/core-home.html").read_text()
 
 

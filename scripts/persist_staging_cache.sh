@@ -7,10 +7,12 @@ if [ ! -f data/staging-items.json ]; then
   exit 0
 fi
 
+cache_merge_helper="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/merge_pipeline_cache.py"
 base=""
 if git ls-remote --exit-code origin refs/heads/staging-cache >/dev/null; then
   git fetch --depth=1 origin refs/heads/staging-cache
   base=$(git rev-parse FETCH_HEAD)
+  python3 "$cache_merge_helper" "$base"
 else
   status=$?
   if [ "$status" -ne 2 ]; then

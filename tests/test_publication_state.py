@@ -101,7 +101,7 @@ def test_publication_ack_reads_real_remote_and_preserves_unpublished_changes(tmp
 
 def test_every_catalog_publisher_confirms_only_after_the_publication_action():
     root = Path(__file__).resolve().parents[1]
-    for name in ('daily-summary', 'feed-collection', 'deploy-docs', 'event-archive-migration'):
+    for name in ('daily-summary', 'deploy-docs', 'event-archive-migration'):
         text = (root / '.github/workflows' / (name + '.yml')).read_text()
         action = text.index('uses: peaceiris/actions-gh-pages@v4')
         restore = text.index('      - name: Restore durable publication documents before rendering')

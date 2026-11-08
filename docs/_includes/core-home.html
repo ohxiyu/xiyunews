@@ -1,11 +1,8 @@
 {% assign posts = site.posts | where: 'lang', 'zh' %}
 {% assign latest = posts | first %}
-<header class="page-heading home-heading">
-<p class="eyebrow">加密 · AI · 政策</p><h1>读懂正在发生的事<span class="heading-dot">。</span></h1>
-<p class="page-subtitle">重要资讯，必要背景，持续进展。</p>
-</header>
+<div data-live-home>
 {% if latest %}
-<div class="edition-bar" data-latest-edition-date="{{ latest.date | date: '%Y-%m-%d' }}"><span>最新一期 <time datetime="{{ latest.date | date: '%Y-%m-%d' }}">{{ latest.date | date: '%Y.%m.%d' }}</time>{% if site.data.core_edition.display_time %}<span class="edition-update">更新于 {{ site.data.core_edition.display_time }}</span>{% endif %}</span><a href="/history/">按日期阅读 <span aria-hidden="true">↗</span></a></div>
+<div class="edition-bar" data-latest-edition-date="{{ latest.date | date: '%Y-%m-%d' }}"><span>归档日报 <time datetime="{{ latest.date | date: '%Y-%m-%d' }}">{{ latest.date | date: '%Y.%m.%d' }}</time>{% if site.data.core_edition.display_time %}<span class="edition-update">更新于 {{ site.data.core_edition.display_time }}</span>{% endif %}</span><a href="/history/">按日期阅读 <span aria-hidden="true">↗</span></a></div>
 <p class="edition-notice" data-edition-notice data-edition="{{ latest.date | date: '%Y-%m-%d' }}" hidden></p>
 <section class="daily-day" data-language="zh" data-date="{{ latest.date | date: '%Y-%m-%d' }}">
 {% assign pieces = latest.content | split: '<!--core-events-->' %}
@@ -14,4 +11,6 @@
 {{ pieces[1] }}
 </section>
 {% else %}<p class="empty-state">首期日报发布后将在这里显示。</p>{% endif %}
-<p class="end-note">本期阅读完毕 <span aria-hidden="true">·</span> <a href="/history/">查看往期日报</a></p>
+</div>
+<button class="live-refresh" type="button" data-live-refresh hidden>精选已更新，点击查看</button>
+<p class="end-note"><a href="/history/">往期日报</a></p>

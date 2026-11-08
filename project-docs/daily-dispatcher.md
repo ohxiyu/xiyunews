@@ -13,7 +13,6 @@ xiyu.news 每天生成一期早间日报，业务时区固定为 `Asia/Shanghai`
 | 上海时间 | 调度源 | 行为 |
 | --- | --- | --- |
 | 07:26 | Cloudflare Cron | 主触发；当期未发布且没有运行中任务时，触发日报。 |
-| 07:37 | GitHub Feed Collection | 独立采集并在任务结束后调用共享刊期检查接口。 |
 | 07:36/07:46/07:56；08:00–11:50 | Cloudflare Cron | 前段定点、08:00 后每 10 分钟检查；缺失时按共享锁、冷却期和重试预算补发。 |
 | 07:43 | GitHub Actions | 独立备用 Watchdog；Cloudflare 主链路失效时补触发。 |
 | 08:17–15:17 | GitHub Actions | Watchdog 每小时复查，恢复被 GitHub 延迟或丢弃的早期事件。 |
@@ -27,7 +26,7 @@ Cloudflare Worker 同时验证生成物和已部署网站内容：`gh-pages/api/
 
 内容已生成但生产页面未确认时，先留出15分钟部署时间，再派发统一cloudflare-unified.yml，只读取固定gh-pages出版快照重建，不重跑AI；当前配置EDGE_DEPLOY_WORKFLOW优先于已退役Pages Hook。两次重建后仍未恢复转人工处理。空日报、上游5xx、无效JSON或认证失败不会被当作成功，探测故障不会绕过共享锁直接补发；正常发布并发控制保留。
 
-GitHub 官方说明 `schedule` 事件在高负载时可能延迟或被丢弃。因此不能把同一个 Watchdog 的多个 cron 当作完全独立的冗余。`feed-collection` 在 07:37 增加了另一条调度事件，并在采集任务完成或失败后都运行心跳检查；其他日内采集任务完成后也会复查。最终日报仍会执行一次 24 小时补采，因此暂存采集失败不会阻止日报生成。
+GitHub schedule 可能延迟或丢弃。独立 Watchdog 继续检查日报；滚动采集不重建日报或参与日报恢复，日报仍独立补采24小时。
 
 ## 首次切换
 
@@ -49,7 +48,11 @@ Cloudflare Cron仍用UTC三组：26 23 * * *、36,46,56 23 * * *、*/5 * * * *�
 
 ## 采集触发
 
-GitHub 对 `feed-collection.yml` 的定时经常晚 1–3 小时或漏跑。Worker 在五分钟回调的每个整十分钟检查一次：`main` 上最近一次 Feed Collection（任意触发来源）开始超过 4 小时且没有排队或运行中的采集时，派发一次 `workflow_dispatch`。北京时间 07:00–07:45 跳过，日报自己完成最后一次采集，且两者共用并发组。GitHub 自身的定时保留为第二时钟；任一来源的运行都会让下一次派发顺延，不会叠加。Workers Logs 事件为 `collection_dispatch`，`status` 取 `not_due`、`edition_window`、`active`、`fresh` 或 `dispatched`；`/health` 返回 `collection_workflow` 与 `collection_max_age_hours`。
+生产核心模式每5分钟检查一次：最近采集开始不足5分钟或已有队列/运行任务时不追加；失败保持30分钟冷却。GitHub每5分钟schedule作为备用。实际延迟还包括队列、采集和AI时间，不承诺即时。历史独立调度配置继续使用4小时，不重新启用。
+
+Feed Collection 使用独立 xiyunews-rolling-collection 并发组，避免GitHub单个pending槽取消日报。只采集、缓存、精选并通过同源鉴权POST发布JSON，不写gh-pages、不部署Worker、不发送Telegram。持久cache读取/写入均合并远端最新URL及AI缓存键，保留原72小时/4000条等上限；Git非快进拒绝覆盖。事件AI独立每4小时更新，页面发布仍使用日报共享发布锁。
+
+/api/live.json 与首页由既有RecoveryGate命名对象rolling-news保存精选；严格校验窗口、大小、评分、URL，单调原子更新。读取按当前时刻移除24小时外新闻；30分钟未采集标记延迟，无快照明确归档兜底。/story/<id>/保留固定链接。日报健康检查仍核对原始/公开API精确payload和全部日期页revision；滚动首页用明确profile标记识别，不再要求与固定日报相同。
 
 ## 验证与排障
 

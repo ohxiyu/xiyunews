@@ -507,7 +507,7 @@ def test_daily_edition_uses_unpublished_36_hour_fallback_when_short(
     }
 
 
-def test_workflows_stage_twice_and_publish_once() -> None:
+def test_rolling_collection_and_independent_daily_archive() -> None:
     root = Path(__file__).parents[1]
     collection = (
         root / ".github" / "workflows" / "feed-collection.yml"
@@ -516,14 +516,15 @@ def test_workflows_stage_twice_and_publish_once() -> None:
         root / ".github" / "workflows" / "daily-summary.yml"
     ).read_text(encoding="utf-8")
 
-    assert "cron: '30 0,4,12,16,20 * * *'" in collection
+    assert "cron: '*/5 * * * *'" in collection
     assert "17 2,8,14" not in collection
     assert "staging-cache" in collection
     assert "staging-cache" in publication
-    assert "bmtnews --mode fetch --hours 12" in collection
-    assert "Restore published event state" in collection
+    assert "bmtnews --mode fetch --hours 24" in collection
+    assert "Restore published event state" not in collection
     assert "Collect sources into staging" in collection
-    assert "Deploy incremental event pages" in collection
+    assert "src.rolling_feed" in collection
+    assert "peaceiris/actions-gh-pages" not in collection
     assert "\n  schedule:" not in publication
     assert 'args=(--mode publish --hours 24 --cutoff-hour "$EDITION_CUTOFF_HOUR")' in publication
     assert "EDITION_CUTOFF_HOUR: ${{ inputs.cutoff_hour || '7' }}" in publication

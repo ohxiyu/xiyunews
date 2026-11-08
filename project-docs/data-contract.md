@@ -4,6 +4,9 @@
 
 ## 日期与候选
 
+- 首页实时精选与日报归档独立。首页窗口为请求时刻之前滚动24小时，按真实 published_at 倒序；采集目标5分钟，执行队列可能延迟。30分钟未采集显示延迟，过期新闻仍移除。无合格项如实展示空状态，无快照明确展示归档。
+- /api/live.json 仅公开精选字段与真实采集/精选时间；写入使用既有恢复凭证、限制大小/评分/时间/URL，并拒绝旧快照覆盖。固定 /story/<canonical-url-hash>/ 在窗口过期后继续可访问。
+
 - 业务时区 Asia/Shanghai。日报窗口为 [前日 07:00，当日 07:00)，07:26 启动。补跑显式指定 edition_date，不把执行时间当新闻发生时间。
 - published_at 是来源发布时间，采集时间、分析时间、新闻发生时间和 generated_at 不可混用。缺失事实不能猜测。
 - candidates、analyzed、above_threshold、displayed 是不同阶段计数，重刊不能当作新一期。参见 [调度手册](daily-dispatcher.md)。

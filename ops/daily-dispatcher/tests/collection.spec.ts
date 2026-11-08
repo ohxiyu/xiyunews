@@ -85,3 +85,11 @@ it("the overnight tick checks collection without touching Square or publication"
   expect(calls.map(call => new URL(call.url).pathname.split("/").slice(-2).join("/")))
     .toEqual([`${FEED_WORKFLOW}/runs`, `${FEED_WORKFLOW}/dispatches`]);
 });
+
+it('rolling mode uses five-minute ticks, preserves active guards and checks the cutoff hour',async()=>{
+ const rolling={...env,ROLLING_FEED:true};
+ github([run('completed','2026-11-08T22:59:00Z')]);
+ expect(await dispatchCollection(rolling,Date.parse('2026-11-08T23:05:00Z'))).toBe('dispatched');
+ github([run('in_progress','2026-11-08T23:05:00Z')]);
+ expect(await dispatchCollection(rolling,Date.parse('2026-11-08T23:10:00Z'))).toBe('active');
+});

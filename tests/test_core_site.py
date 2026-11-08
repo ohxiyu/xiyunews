@@ -19,12 +19,12 @@ def story(index=1):
  return ContentItem(id=str(index),title='原始新闻标题',url=f'https://example.com/{index}',source_type=SourceType.RSS,published_at=datetime(2026,11,8,1,23,tzinfo=timezone.utc),ai_summary='报道事实。',ai_score=9,metadata={'title_zh':'原始新闻标题','detailed_summary_zh':'第一段事实。\n\n第二段事实。','background_zh':'有证据的主体背景。'})
 
 
-def test_top_three_full_timestamp_background_and_compact_remainder():
+def test_dense_feed_all_full_timestamp_and_background():
  soup=BeautifulSoup(render_core_feed([story(i) for i in range(1,6)],date='2026-11-08'),'html.parser')
  articles=soup.select('article.digest-item')
  assert len(articles)==5
  assert all(not a.select_one('.compact-story') for a in articles[:3])
- assert len(soup.select('details.compact-story:not([open])'))==2
+ assert not soup.select('details.compact-story')
  assert all('11.08 09:23 CST' in a.select_one('.story-meta').text for a in articles)
  assert len(soup.select('.story-background'))==5
  assert '第二段事实。' in articles[-1].text
@@ -121,7 +121,7 @@ def test_core_schedule_and_publish_jobs_cannot_block_daily_with_event_ai():
  assert 'bmtnews-feed-update' not in compute
  assert 'bmtnews-feed-update' in publish
  assert 'src.core_events' in compute and 'src.core_events' not in publish
- for name in ['daily-summary.yml','feed-collection.yml']:
+ for name in ['daily-summary.yml']:
   workflow=Path('.github/workflows',name).read_text()
   assert 'exclude_assets:' not in workflow
   assert 'publish_dir: ./reader-output' in workflow
@@ -150,3 +150,12 @@ def test_reader_staging_omits_event_inputs_without_deleting_or_modifying_them(tm
   assert (source/relative).read_text()=='exact:'+relative
  for relative in ['_posts/current.md','api/latest.json','threads.html','history.html']:
   assert (destination/relative).read_text()=='exact:'+relative
+
+
+def test_v1_migration_unwraps_full_text_and_retains_anchors():
+ original='<div data-core-feed="1"><article id="old"><details class="compact-story"><summary><h2>标题</h2><span class="expand-label">展开</span></summary><div class="story-body">完整背景与正文</div></details></article></div>'
+ migrated=convert_feed(original)
+ assert '完整背景与正文' in migrated and 'id="old"' in migrated
+ assert 'compact-story' not in migrated and 'expand-label' not in migrated
+ assert 'data-core-feed="2"' in migrated
+ assert convert_feed(migrated)==migrated

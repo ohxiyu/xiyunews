@@ -1,9 +1,7 @@
 name: xiyunews Event Updates
 on:
-  workflow_run:
-    workflows: ['xiyu.news Feed Collection']
-    types: [completed]
-    branches: [main]
+  schedule:
+    - cron: '10 */4 * * *'
   workflow_dispatch:
 concurrency:
   group: xiyunews-event-updates
@@ -12,7 +10,7 @@ permissions:
   contents: write
 jobs:
   events:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository))
+    if: github.ref == 'refs/heads/main'
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 20
     steps:
