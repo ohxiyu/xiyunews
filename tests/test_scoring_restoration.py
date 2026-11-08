@@ -52,7 +52,10 @@ def test_production_config_loads_without_retired_secret(monkeypatch):
     monkeypatch.delenv("AI_GATEWAY_API_KEY", raising=False)
     payload = json.loads((Path(__file__).parents[1] / "data/config.github.json").read_text())
     config = Config.model_validate(payload)
-    assert config.ai.provider.value == "deepseek"
+    assert config.ai.provider.value == "siliconflow"
+    assert config.ai.model == "Qwen/Qwen3.5-27B"
+    assert config.ai.base_url == "https://api.siliconflow.cn/v1"
+    assert config.ai.api_key_env == "SILICONFLOW_API_KEY"
     assert config.filtering.ai_score_threshold == 7.0
     with pytest.raises(ValidationError, match="ai.evaluator is no longer supported"):
         AIConfig.model_validate({**payload["ai"], "evaluator": {"enabled": False}})
