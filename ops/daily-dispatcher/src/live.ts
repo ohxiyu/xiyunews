@@ -74,6 +74,6 @@ export async function liveHome(response:Response,env:Env):Promise<Response>{
     if(raw)element.setInnerContent(feedHtml(JSON.parse(raw),Date.now()),{html:true});
     else element.prepend('<p class="edition-notice">实时精选尚未就绪，以下为已归档日报。</p>',{html:true});
   }}).transform(response);
-  const h=new Headers(result.headers);h.set('Cache-Control','no-store');h.delete('ETag');h.delete('Content-Length');
+  const h=new Headers(result.headers);h.set('Cache-Control','no-store');h.delete('ETag');h.delete('Last-Modified');h.delete('Content-Length');
   return new Response(result.body,{status:result.status,headers:h});
 }

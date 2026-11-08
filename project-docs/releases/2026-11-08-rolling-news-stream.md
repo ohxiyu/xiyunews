@@ -3,7 +3,7 @@
 Issue: https://github.com/ohxiyu/xiyunews/issues/349
 
 - Code complete: yes (local)
-- Tests passed: local Python regression passed (unchanged binary brand archives unavailable locally; full remote suite required), Worker npm check passed: 140 tests; full CI pending
+- Tests passed: local Python regression passed (unchanged binary brand archives unavailable locally; full remote suite required), Worker npm check passed: 140 tests; full GitHub Python: 1250 passed / 4 skipped; final cache-validator guard adds one Worker test, final-head CI pending
 - PR merged: pending
 - Deployed: pending
 - Production verified: pending
@@ -15,3 +15,5 @@ Issue: https://github.com/ohxiyu/xiyunews/issues/349
 验证与生产证据待补，不能据此声称已上线。
 
 本地视觉：390px浅/暗色，无横向溢出、正文均可见、无compact折叠、机器人SVG存在。截图位于本次工作区outputs/rolling-news/preview-mobile-{light,dark}.png；仅证明本地外观，非生产验收。
+
+初轮CI: https://github.com/ohxiyu/xiyunews/actions/runs/42483139300 。追加首页条件缓存请求保护：静态shell的ETag/Last-Modified不能控制动态精选；移除请求验证头和响应验证头，避免304保留旧首页。PR: https://github.com/ohxiyu/xiyunews/pull/350 。

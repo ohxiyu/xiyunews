@@ -10,7 +10,7 @@
   "owner": "本聊天Codex唯一编辑与整合负责人",
   "branch": "agent/rolling-news-stream",
   "last_verified_commit": "a9ce5cb681195f4a7a5f580b9660981e4a904047",
-  "pr": "pending (Issue349)",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/350",
   "completed": [
     "密集全文UI、原机器人Logo、滚动24小时精选、独立采集队列与缓存合并已实现；本地回归和手机视觉检查通过"
   ],

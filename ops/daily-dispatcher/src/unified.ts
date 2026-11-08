@@ -46,7 +46,14 @@ export default {
     const live = await liveRoute(request, env);
     if (live) return live;
     if (!OPERATIONS.has(path)) {
-      const response = await website.fetch(request, env, ctx);
+      // Static shell validators do not describe the live news snapshot.
+      let assetRequest = request;
+      if (path === "/" && request.method === "GET") {
+        const headers = new Headers(request.headers);
+        headers.delete("If-None-Match"); headers.delete("If-Modified-Since");
+        assetRequest = new Request(request, {headers});
+      }
+      const response = await website.fetch(assetRequest, env, ctx);
       return path === "/" && request.method === "GET" ? liveHome(response, env) : response;
     }
     if (path === "/publication/check" && env.ENABLE_DISPATCHER !== "true") {
