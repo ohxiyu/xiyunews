@@ -10,7 +10,7 @@
   "owner": "本聊天Codex唯一编辑与整合负责人",
   "branch": "agent/siliconflow-activation-evidence",
   "last_verified_commit": "7bfde5d22b9b1db60fca17010305f5b3e29515b3",
-  "pr": "pending",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/332",
   "completed": [
     "用户明确确认创建xiyunews-production专用密钥并保存到指定仓库Secret",
     "GitHub页面确认Repository secret added，SILICONFLOW_API_KEY已配置；未写入代码/聊天/本地文件",
@@ -25,7 +25,8 @@
     "PR330最终head41c015f36975f8fc6c14639de43a0e69fdb3f3da，CI42449090503全部通过，1210 passed/4既有skipped，审计无已知漏洞",
     "真实Actions诊断job128644794687在2026-11-08 13:55:21 Asia/Shanghai记录all_replayed_batches_valid、calls=1",
     "只读诊断在原agent分支运行并读取main配置，SILICONFLOW_API_KEY映射成功；上限12但实际仅1次调用，没有发布或分发",
-    "本次仅更新handoff/release，不改应用或重跑已通过的功能测试；文档治理待CI"
+    "本次仅更新handoff/release，不改应用或重跑已通过的功能测试；文档CI42452850973治理通过，功能测试按既有路径规则不相关跳过",
+    "证据PR332只修改两个过程文档；发布预览仍须完成后再合并"
   ],
   "unverified": [
     "当前刊期日报尚未重跑，不能据API连通成功宣称11月8日已出刊或消息已送达",
@@ -44,7 +45,7 @@
   "next_action": "文档治理通过后按既有授权合并证据；API配置已完成。后续观察正常当期日报，不把只读诊断当成出刊或送达证明，不手改状态分支/回执。",
   "states": {
     "code": "complete",
-    "tests": "pending",
+    "tests": "complete",
     "pr_merged": "pending",
     "deployed": "not_required",
     "production_verified": "not_required"

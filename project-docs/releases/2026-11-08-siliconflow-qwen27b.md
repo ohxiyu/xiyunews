@@ -78,3 +78,7 @@ Deployment: API配置已在main与Actions Secret启用；无手工Worker部署�
 Verification: GitHub Secret保存成功；控制台返回ok=true；Actions诊断42452591451成功且真实calls=1；当期日报/送达pending。
 
 Rollback: 不自动回退到余额不足的旧账户，不手改状态分支或消息回执；如需回退另按授权处理。
+
+证据文档由[PR332](https://github.com/ohxiyu/xiyunews/pull/332)交付；
+[文档CI42452850973](https://github.com/ohxiyu/xiyunews/actions/runs/42452850973)治理通过。
+仅文档变更的功能测试按既有路径规则跳过，未改变检查策略；发布预览通过后再正常合并。
