@@ -352,6 +352,7 @@ Avoid generic definitions, unrelated history and a verbatim repetition of the he
 CONCEPT_EXTRACTION_USER = """What background evidence would help a reader understand this news?
 
 Title: {title}
+Source publication timestamp (time reference, not proof of the event date): {published_at}
 Summary: {summary}
 Tags: {tags}
 Content: {content}
@@ -399,6 +400,7 @@ Guidelines:
 - ONLY explain concepts and terms that are explicitly mentioned in the title, summary, or content
 - Use the web search results to ensure accuracy, especially for recent projects, tools, or events
 - Check the supplied source and search excerpts for useful background before leaving it empty. A familiar entity or a clear headline alone is not a reason to omit supported context.
+- Preserve the exact year attached to each event in the evidence. Do not guess a year for a bare month/day or reuse a familiar historical year. The source publication timestamp is a time reference, not proof of when every event occurred. Keep fundraising, filing and listing dates separate; do not attach one event's date to another. If a year is not explicit in the source or search evidence, omit it.
 - For **sources**: pick 1-3 URLs from the Web Search Results that you actually relied on for the background fields. Only use URLs that appear verbatim in the search results above — do not invent or modify URLs.
 - For **tags**: return 1-6 short factual topic/entity labels present in the source or supported search excerpts. Do not invent labels or add generic marketing tags.
 - NEVER include meta commentary about the provided material in any field — phrases like "the article does not specify", "details were not provided", "the full article should contain details", or "文章未说明" are forbidden; when a detail is unavailable, omit it and write about what IS known
@@ -409,6 +411,7 @@ CONTENT_ENRICHMENT_USER = """Provide a structured bilingual news report for the 
 **News Item:**
 - Title: {title}
 - URL: {url}
+- Source publication timestamp (time reference, not proof of the event date): {published_at}
 - One-line summary: {summary}
 - Score: {score}/10
 - Reason: {reason}

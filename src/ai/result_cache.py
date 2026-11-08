@@ -15,7 +15,7 @@ from ..publication_state import active_store
 
 
 CACHE_VERSION = 1
-ENRICHMENT_POLICY_VERSION = "news-editorial-v4"
+ENRICHMENT_POLICY_VERSION = "news-editorial-v5-date-grounding"
 PREFILTER_TTL = timedelta(days=1)
 PREFILTER_MAX_BATCHES = 256
 ANALYSIS_FIELDS = ("ai_score", "ai_reason", "ai_summary", "ai_tags")

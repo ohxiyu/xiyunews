@@ -49,3 +49,37 @@ Rollback: 不自动回滚、改状态/队列/回执或重发渠道；需要时�
 code complete；tests/pr_merged/deployed/production_verified pending。
 后续沿原07:00刊期验收当前日报中英背景和页面；重建时按原流程跳过已发送Telegram，
 不放宽X时效。生成不是独立事实核验，不承诺未来外部服务永久稳定。
+
+
+## 第一轮真实V3.2验收与时间修正
+
+[PR339](https://github.com/ohxiyu/xiyunews/pull/339)head2377e5dedb13edb66ee9a4559832b5c2575caf00，
+[CI42461965112](https://github.com/ohxiyu/xiyunews/actions/runs/42461965112)1228 passed、4既有skipped，
+48.60秒，审计无已知漏洞、治理及Pages预览通过；正常合并c0e938dd4c9878f8ddf64867e659429ca5e4ff1b，
+确认祖先后删除已合并分支。
+
+[Daily42462273927](https://github.com/ohxiyu/xiyunews/actions/runs/42462273927)source=c0e938d，
+edition_date=2026-11-08、cutoff=7、force_publish=true（更新本期背景），diagnostic=false，
+trigger=siliconflow-v32-background-update。08:18:02.922170Z至08:34:25.384728Z，982.463秒，
+283候选、140分析、14展示，score_models为siliconflow:deepseek-ai/DeepSeek-V3.2共140。
+所有实际AI调用均为同模型，14条全部新扩写，140.386秒、降级0。gh-pages中14条都有双语背景。
+报告error=null，警告仅启动晚及部分来源失败；telegram_rebuild_skipped明确不重复Telegram。
+
+字段齐全未通过事实抽查：MEXC背景把监管事件写2024-11-06，引用
+[The Block](https://www.theblock.co/news/regulation/2026-11-06-treasury-cuts-off-mexc-global-over-alleged-16-billion-in-transactions-linked-to-iran-north-korea-and-russia-435957)
+明确2026-11-06；Anthropic背景写2024年融资/申请，引用
+[SmartAsset](https://smartasset.com/investing/anthropic-ipo-date-investor-timeline-valuation-and-expectations)
+正文没有2024年，且不同融资/申请日期被拼接。不能宣称14条都有背景就是质量已通过。
+
+[Issue340](https://github.com/ohxiyu/xiyunews/issues/340)同一负责人，
+分支agent/background-date-grounding、独立快照work/background-date-grounding/source，
+串行从c0e938d继续。背景查询与扩写传入published_at，仅作时间参照，不当事件时间证据；
+提示要求保留每个事件的明确年份，不给裸月日猜年份，不混接融资/申请/上市的日期。
+背景出现原文、原摘要、标题与搜索证据中没有的19xx/20xx年份，沿既有重试/翻译降级拒绝，
+不静默纠正为当前年；有证据的真实历史年份继续允许。该窄检查不验证其他事实，也不证明
+年份确实与对应事件绑定。ENRICHMENT_POLICY_VERSION升至news-editorial-v5-date-grounding，
+原评分缓存可复用，旧背景自然失效，不手改缓存。
+
+新增回归覆盖来源时间确实传入、无证据年份拒绝、证据内历史年份可用、
+publication timestamp不可独自证明事件年份。Issue340 code complete，完整CI/合并/
+更新后的生成与自动部署/内容验收pending。第一轮V3.2成功运行只证明可用性和字段生成。
