@@ -9,8 +9,9 @@ import asyncio
 import re
 import sys
 import os
+import time
 from typing import List, Optional
-from tenacity import retry, stop_after_attempt, wait_exponential
+from tenacity import RetryError, retry, stop_after_attempt, wait_exponential
 from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn, MofNCompleteColumn
 from ddgs import DDGS
 
@@ -45,18 +46,31 @@ class ContentEnricher:
         """
         concurrency = self._get_concurrency()
         semaphore = asyncio.Semaphore(concurrency)
+        processed_count = 0
+        started = time.perf_counter()
 
         async def _process(item: ContentItem, progress_task) -> None:
+            nonlocal processed_count
             async with semaphore:
                 self._clear_generated(item)
                 try:
                     await self._enrich_item(item)
                     item.metadata["enrichment_status"] = "complete"
                 except Exception as exc:
-                    print(f"Error enriching item {item.id}: {type(exc).__name__}, falling back to translation")
+                    cause = exc.last_attempt.exception() if isinstance(exc, RetryError) else exc
+                    print(
+                        f"Error enriching item {item.id}: {type(cause).__name__}, "
+                        "falling back to translation", flush=True,
+                    )
                     self._clear_generated(item)
                     await self._translate_item(item)
                     item.metadata["enrichment_status"] = "translation_only"
+            processed_count += 1
+            if processed_count % 5 == 0 or processed_count == len(items):
+                progress.console.print(
+                    f"AI enrichment processed: {processed_count}/{len(items)}, "
+                    f"elapsed={time.perf_counter() - started:.1f}s"
+                )
             progress.advance(progress_task)
 
         with Progress(

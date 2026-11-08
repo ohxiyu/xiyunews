@@ -7,7 +7,7 @@ from types import SimpleNamespace
 import pytest
 
 from src.ai.client import OpenAIClient, create_ai_client
-from src.ai.prompts import CONTENT_ANALYSIS_SYSTEM, EVENT_RELATION_SYSTEM, TOPIC_DEDUP_SYSTEM
+from src.ai.prompts import CONTENT_ANALYSIS_SYSTEM, CONTENT_ENRICHMENT_SYSTEM, EVENT_RELATION_SYSTEM, TOPIC_DEDUP_SYSTEM
 from src.ai.tokens import reset_usage, task_usage_snapshot
 from src.models import AIConfig, AIProvider, AI_PROVIDER_DEFAULTS
 
@@ -72,7 +72,7 @@ def test_economy_json_requests_disable_thinking_with_siliconflow_protocol(monkey
 
 
 @pytest.mark.parametrize("system,response_format,economy", [
-    (EVENT_RELATION_SYSTEM, "json", True),
+    (EVENT_RELATION_SYSTEM, "json", False),
     ("Write bilingual news analysis", "text", True),
     (CONTENT_ANALYSIS_SYSTEM, "json", False),
 ])
@@ -85,6 +85,17 @@ def test_reasoning_is_bounded_and_text_stays_text(monkeypatch, system, response_
     assert request["max_tokens"] == 8192
     assert "reasoning_effort" not in request
     assert ("response_format" in request) == (response_format == "json")
+
+
+@pytest.mark.parametrize("system", [CONTENT_ENRICHMENT_SYSTEM, EVENT_RELATION_SYSTEM,
+                                   "Custom structured extraction. Return JSON only."])
+def test_economy_structured_tasks_keep_answer_budget_without_reasoning(monkeypatch, system):
+    client, calls, _ = stub_client(monkeypatch)
+    assert asyncio.run(client.complete(system, "test", max_tokens=8192)) == '{"ok":true}'
+    request = calls[0]
+    assert request["extra_body"] == {"enable_thinking": False}
+    assert request["max_tokens"] == 8192
+    assert request["response_format"] == {"type": "json_object"}
 
 
 def test_dynamic_scoring_uses_economy_classification_budget_and_usage_identity(monkeypatch):
