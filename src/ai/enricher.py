@@ -154,6 +154,7 @@ class ContentEnricher:
         """
         user_prompt = CONCEPT_EXTRACTION_USER.format(
             title=item.title,
+            published_at=item.published_at.isoformat(),
             summary=item.ai_summary or item.title,
             tags=", ".join(item.ai_tags) if item.ai_tags else "",
             content=content_text[:1000],
@@ -240,6 +241,7 @@ class ContentEnricher:
         # Step 3: AI generates background grounded in search results
         user_prompt = CONTENT_ENRICHMENT_USER.format(
             title=item.title,
+            published_at=item.published_at.isoformat(),
             url=str(item.url),
             summary=item.ai_summary or item.title,
             score=item.ai_score or 0,
@@ -277,6 +279,15 @@ class ContentEnricher:
             raise ValueError("incomplete_bilingual_background")
         for lang, value in zip(("en", "zh"), backgrounds):
             result[f"background_{lang}"] = value.strip()
+        # A publication timestamp or model memory cannot substantiate a
+        # historical year. This narrow evidence check rejects invented years;
+        # it neither rewrites them nor certifies the rest of the generated text.
+        evidence = "\n".join((item.title, item.ai_summary or "", content_text, web_context))
+        year_pattern = r"(?<!\d)(?:19|20)\d{2}(?!\d)"
+        supported_years = set(re.findall(year_pattern, evidence))
+        generated_years = set(re.findall(year_pattern, "\n".join(backgrounds)))
+        if generated_years - supported_years:
+            raise ValueError("unsupported_background_year")
 
         if not comments_text:
             result.pop("community_discussion_en", None)

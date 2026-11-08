@@ -50,6 +50,8 @@ def test_empty_or_failed_extraction_still_searches_and_preserves_supported_conte
     asyncio.run(enricher._enrich_item(item))
     assert searches == [item.title + " background context"]
     assert len(client.calls) == 2  # No additional background-repair model call.
+    assert item.published_at.isoformat() in client.calls[0]["user"]
+    assert item.published_at.isoformat() in client.calls[1]["user"]
     assert "The exchange holds customer funds." in client.calls[1]["user"]
     assert item.metadata["background_zh"] == "该交易所托管客户资金。"
     assert item.metadata["background_en"] == "The exchange holds customer funds."
@@ -110,3 +112,25 @@ def test_old_background_cache_invalidates_on_model_or_context_prompt_change(tmp_
         monkeypatch.setattr(prompts, "CONTENT_ENRICHMENT_SYSTEM", "New context policy")
     model = "siliconflow:deepseek-ai/DeepSeek-V3.2" if change == "model" else cache.model
     assert not AnalysisResultCache(path, model=model).restore_enrichment(story())
+
+
+@pytest.mark.parametrize("evidence,background,reject", [
+    ("A regulatory order was published in 2026.", "The order was published in 2024.", True),
+    ("The protocol launched in 2024 and changed custody in 2026.", "The protocol launched in 2024.", False),
+    ("The actor changed custody.", "The actor changed custody in 2026.", True),
+])
+def test_background_year_must_appear_in_evidence_not_only_publication_timestamp(monkeypatch, evidence, background, reject):
+    item = story()
+    item.content = evidence
+    enricher = ContentEnricher(Client([], {"background_en": background, "background_zh": background}))
+    async def search(*_args, **_kwargs):
+        return []
+    monkeypatch.setattr(enricher, "_web_search", search)
+    attempt = ContentEnricher._enrich_item.__wrapped__(enricher, item)
+    if reject:
+        with pytest.raises(ValueError, match="unsupported_background_year"):
+            asyncio.run(attempt)
+        assert not item.metadata.get("background_en")
+    else:
+        asyncio.run(attempt)
+        assert item.metadata["background_en"] == background
