@@ -1,16 +1,16 @@
 # 当前交接
 
-当前任务：[Issue340](https://github.com/ohxiyu/xiyunews/issues/340)，接续用户[Issue338](https://github.com/ohxiyu/xiyunews/issues/338)。V3.2真实调用和14条双语背景生成已完成，抽查发现年代错误，继续修正后验收，不把字段齐全当事实正确。
+[Issue338](https://github.com/ohxiyu/xiyunews/issues/338)及依赖[Issue340](https://github.com/ohxiyu/xiyunews/issues/340)已完成正式验收：日报模型为硅基流动DeepSeek V3.2，当前14条中13条有双语背景，1条Loopscale翻译降级未填背景。以下五阶段描述应用与本期更新，pr指向最后应用修复PR341；当前分支仅跟进部署后证据。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "补齐V3.2背景的来源时间并拒绝无证据年份，完成当前刊期验收",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/340",
+  "goal": "完成硅基流动DeepSeek V3.2切换与有证据双语背景改善",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/338",
   "owner": "本聊天Codex唯一编辑与整合负责人",
-  "branch": "agent/background-date-grounding",
-  "last_verified_commit": "c0e938dd4c9878f8ddf64867e659429ca5e4ff1b",
-  "pr": "pending",
+  "branch": "agent/v32-background-production-evidence",
+  "last_verified_commit": "11a24fb22bdb9bd5a89b95bc386cbdd4ee48dc16",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/341",
   "completed": [
     "用户明确指定deepseek-ai/DeepSeek-V3.2，生产配置和硅基流动默认模型已修改，沿用既有URL与Secret",
     "核对今日14条：第一和第三条中英生成背景均空，另12条有背景，HTML未隐藏已生成字段；公开摘要API没有背景字段，不据此误判",
@@ -19,39 +19,41 @@
     "缓存键纳入完整背景查询提示，模型与提示变化隔离旧结果；新增相关回归，更新默认模型测试及配置文档",
     "PR339完整CI1228 passed/4既有skipped、审计与预览通过，合并c0e938d并清理分支",
     "真实42462273927全AI为V3.2，14条双语背景、扩写降级0、耗时982.463秒，TG重建跳过；但质量抽查发现MEXC和Anthropic背景2024年与引用内容冲突",
-    "已将来源published_at传入检索/扩写作为时间参照，明确不得当事件日期；背景出现证据中不存在的年份沿原重试/降级拒绝，保留有证据历史年份，缓存策略v5失效旧扩写"
+    "已将来源published_at传入检索/扩写作为时间参照，明确不得当事件日期；背景出现证据中不存在的年份沿原重试/降级拒绝，保留有证据历史年份，缓存策略v5失效旧扩写",
+    "PR341最终head96f3afe522355767cd94e0e8443d6d0ce2a512c9，CI42463832690：1232 passed/4既有skipped，46.87秒；审计与预览通过，合并11a24fb并清理分支",
+    "第二轮42464381027成功，626.275秒；283候选、140分析、14展示，全部实际调用V3.2；有效评分缓存140、新分析35，14条新扩写，1条翻译降级",
+    "普通正式域latest/当期JSON一致，索引首期11月8日，中英详情和fragment各14条/13背景；浏览器可见头条背景，英文14条/13背景",
+    "自动部署42465256718成功，Worker9543b00f-b717-45e1-a24c-a333a5cb91fa，source11a24fb、artifact10738b7与公开health一致；TG重建跳过，没有重复日报发送"
   ],
-  "unfinished": [
-    "Issue340完整适用CI、正常合并",
-    "按同一期07:00重建，核验双语背景年代和正式域，不重复Telegram"
-  ],
+  "unfinished": [],
   "validation": [
-    "PR339 CI42461965112：1228 passed、4既有skipped，48.60秒；pip-audit无已知漏洞",
-    "42462273927: 283候选、140分析、14展示/14扩写、0缓存/0降级；score_models仅siliconflow:deepseek-ai/DeepSeek-V3.2",
-    "引用The Block明确2026-11-06监管行动，生成写2024；SmartAsset正文也无2024，IPO申请/融资不能拼接日期",
-    "Issue340新增年份缺证拒绝、允许证据内历史年份、发布时间不冒充事件年份回归；待CI"
+    "PR339 CI42461965112：1228 passed/4既有skipped；PR341 CI42463832690：1232 passed/4既有skipped；两轮审计、治理与Pages预览通过",
+    "最终报告started_at08:47:54.776517Z、finished_at08:58:21.051973Z、error=null；AI模型唯一siliconflow:deepseek-ai/DeepSeek-V3.2，score_models175含缓存",
+    "2026-11-08T09:06:46.674234Z普通正式URL验收，generated_at08:58:08.694761Z，中英详情/fragment14条13背景；固定11月7日07:00至11月8日07:00窗口不变",
+    "抽查Anthropic新背景无前次2024误写，MEXC新条目不再有同一错误；保留有证据的历史年份。发布快照和浏览器证明与正式版本一致"
   ],
   "unverified": [
-    "第一轮V3.2背景有年份错误，尚不能声明最终内容质量验收完成",
-    "窄范围年份证据检查不等于独立事实核验；后续仍须真实抽查",
-    "Issue340不改变模型、调用/重试/费用上限或发布与渠道幂等规则"
+    "1条Loopscale扩写最终ValueError并降级翻译，运行报告明确enrichment_degraded=1；未填背景。脱敏日志仅异常类型，不能断言最后一次的具体校验原因",
+    "年份出现于证据不证明它绑定到正确事件，生成与检索摘要均不等于独立事实核验；没有保证所有内容正确或每条必有背景",
+    "最终报告还有event_classifier_errors=2、event_evidence_deferred=10和6条历史译文待处理，不宣称历史事件全部修复；这些不改变本次日报14条/13双语背景事实",
+    "下次定时刊期未发生，不保证未来Cron和外部供应商永不失败；X保持skipped_late，Square沿现有队列执行，不冒充额外送达"
   ],
   "production": {
-    "source_commit": "c9e8ba62f7bc314ca809d049b54a9738504c7b97",
-    "artifact_commit": "da1ceca2c1cb3e3002f0729e164d22a34ea5056a",
+    "source_commit": "11a24fb22bdb9bd5a89b95bc386cbdd4ee48dc16",
+    "artifact_commit": "10738b70effd0aca8aea4d5e815e259c6528e5ed",
     "edition": "2026-11-08",
-    "generated_at": "2026-11-08T07:46:56.342299Z",
-    "worker_version": "9be81330-37a0-4ca6-892d-d08291c2eb1d",
-    "verified_at": "2026-11-08T07:57:40.148745Z"
+    "generated_at": "2026-11-08T08:58:08.694761Z",
+    "worker_version": "9543b00f-b717-45e1-a24c-a333a5cb91fa",
+    "verified_at": "2026-11-08T09:06:46.674234Z"
   },
   "blockers": [],
-  "next_action": "完整CI后正常合并Issue340，使用有效V3.2评分缓存重建同刊期并验收双语背景与自动部署，最后跟进证据文档。",
+  "next_action": "本次模型切换与背景改善已上线验收，合并部署后证据文档并清理分支。后续刊期沿既有调度；Loopscale降级需独立编辑复核，不无证据补写或重复发送渠道。",
   "states": {
     "code": "complete",
-    "tests": "pending",
-    "pr_merged": "pending",
-    "deployed": "pending",
-    "production_verified": "pending"
+    "tests": "complete",
+    "pr_merged": "complete",
+    "deployed": "complete",
+    "production_verified": "complete"
   },
   "evidence": "project-docs/releases/2026-11-08-siliconflow-v32-background.md"
 }
