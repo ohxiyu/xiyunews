@@ -3701,11 +3701,16 @@ class BMTNewsOrchestrator:
         new_budget = max(limit // 4, limit - len(cached))
         ai_client = create_ai_client(self.config.ai) if misses else None
         if self.config.ai.prefilter_enabled and len(misses) > new_budget:
+            self.console.print(f"AI prefilter started: {len(misses)} candidates")
             result = await ContentPrefilter(
                 ai_client, batch_size=self.config.ai.prefilter_batch_size,
                 cache=cache,
             ).select(misses, maximum=new_budget)
             misses = result.items
+            self.console.print(
+                f"AI prefilter complete: {len(misses)} selected, "
+                f"{result.failed_batches} failed batches"
+            )
             if self.last_run_report:
                 for key, value in {
                     "prefilter_evaluated": result.evaluated,
@@ -3719,10 +3724,15 @@ class BMTNewsOrchestrator:
             for key, value in {"analysis_cache_hits": len(cached), "analysis_cache_misses": len(misses)}.items():
                 self.last_run_report.set_metric(key, self.last_run_report.metrics.get(key, 0) + value)
         if misses:
+            self.console.print(
+                f"AI analysis started: {len(misses)} items, "
+                f"{self.config.ai.provider.value}:{self.config.ai.model}"
+            )
             await ContentAnalyzer(
                 ai_client, allowed_categories=self._analysis_categories(),
                 edition_window=edition_window,
             ).analyze_batch(misses)
+            self.console.print(f"AI analysis complete: {len(misses)} items")
             if cache:
                 for item in misses:
                     cache.store_analysis(item)

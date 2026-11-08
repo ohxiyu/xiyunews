@@ -1,5 +1,6 @@
 """AI client abstraction supporting multiple providers."""
 
+import asyncio
 import os
 import re
 import time
@@ -287,7 +288,9 @@ class OpenAIClient(AIClient):
             raise self._account_error
         started = time.perf_counter()
         temperature = self.temperature if temperature is None else temperature
-        stage = prompt_stage(system)
+        # The fixed-edition analyzer adds window instructions to the scoring
+        # prompt. It is still the same small JSON classification task.
+        stage = usage_stage(system) if self.provider == "siliconflow" else prompt_stage(system)
         default_budget = SIMPLE_BUDGETS.get(stage, self.max_tokens) if self.config.economy_mode else self.max_tokens
         max_tokens = default_budget if max_tokens is None else max_tokens
 
@@ -389,7 +392,7 @@ class OpenAIClient(AIClient):
             # SiliconFlow uses its own hybrid reasoning parameters, not the
             # DeepSeek official API's thinking object or reasoning_effort.
             # Keep reasoning bounded; economy-mode extraction stays fast.
-            thinking = not (self.config.economy_mode and prompt_stage(system) in SIMPLE_BUDGETS)
+            thinking = not (self.config.economy_mode and usage_stage(system) in SIMPLE_BUDGETS)
             request_kwargs["extra_body"] = {"enable_thinking": thinking}
             if thinking:
                 request_kwargs["extra_body"]["thinking_budget"] = 4096
@@ -397,7 +400,12 @@ class OpenAIClient(AIClient):
             request_kwargs["temperature"] = temperature
         if response_format == "json" and self.provider not in self._NO_RESPONSE_FORMAT:
             request_kwargs["response_format"] = {"type": "json_object"}
-        return await self.client.chat.completions.create(**request_kwargs)
+        request = self.client.chat.completions.create(**request_kwargs)
+        if self.provider == "siliconflow":
+            # SDK timeouts apply to individual network operations. Bound the
+            # whole completion as well, including any SDK retry or keepalive.
+            return await asyncio.wait_for(request, timeout=self.config.request_timeout_seconds)
+        return await request
 
     @staticmethod
     def _is_temperature_unsupported(message: str) -> bool:

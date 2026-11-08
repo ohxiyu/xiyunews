@@ -75,9 +75,10 @@ class ContentAnalyzer:
         concurrency = self._get_concurrency()
         semaphore = asyncio.Semaphore(concurrency)
         terminal_error = None
+        processed_count = 0
 
         async def _process(item: ContentItem, index: int, progress_task) -> ContentItem:
-            nonlocal terminal_error
+            nonlocal terminal_error, processed_count
             async with semaphore:
                 if terminal_error is not None:
                     # The originating task already fails the batch. Do not
@@ -94,6 +95,9 @@ class ContentAnalyzer:
                     item.ai_score = 0.0
                     item.ai_reason = "Analysis failed"
                     item.ai_summary = item.title
+            processed_count += 1
+            if processed_count % 10 == 0 or processed_count == len(items):
+                progress.console.print(f"AI analysis processed: {processed_count}/{len(items)}")
             # Never hold a scarce model-concurrency slot while only waiting
             # for the provider pacing delay.
             if throttle_sec > 0 and index < len(items) - 1:

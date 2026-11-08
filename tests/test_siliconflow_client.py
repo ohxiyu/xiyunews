@@ -87,19 +87,51 @@ def test_reasoning_is_bounded_and_text_stays_text(monkeypatch, system, response_
     assert ("response_format" in request) == (response_format == "json")
 
 
-def test_dynamic_scoring_keeps_analysis_budget_and_correct_usage_identity(monkeypatch):
+def test_dynamic_scoring_uses_economy_classification_budget_and_usage_identity(monkeypatch):
     client, calls, _ = stub_client(monkeypatch)
     before, rest = CONTENT_ANALYSIS_SYSTEM.split("Consider:\n", 1)
     _, calibration = rest.split("Scoring granularity and calibration:", 1)
     system = before + "Fixed edition window\nScoring granularity and calibration:" + calibration
     asyncio.run(client.complete(system, "test"))
-    assert calls[0]["max_tokens"] == client.max_tokens
-    assert calls[0]["extra_body"]["enable_thinking"] is True
+    assert calls[0]["max_tokens"] == 1536
+    assert calls[0]["extra_body"] == {"enable_thinking": False}
     usage = task_usage_snapshot()[0]
     assert usage["provider"] == "siliconflow"
     assert usage["model"] == "Qwen/Qwen3.5-27B"
     assert usage["stage"] == "content_analysis"
     assert usage["reasoning_tokens"] == 10
+
+
+def test_dynamic_scoring_without_economy_keeps_reasoning_and_full_budget(monkeypatch):
+    client, calls, _ = stub_client(monkeypatch, economy_mode=False)
+    system = CONTENT_ANALYSIS_SYSTEM.replace("Consider:\n", "Consider:\nFixed edition window.\n")
+    asyncio.run(client.complete(system, "test"))
+    assert calls[0]["max_tokens"] == client.max_tokens
+    assert calls[0]["extra_body"] == {"enable_thinking": True, "thinking_budget": 4096}
+
+
+def test_completion_deadline_cancels_pending_request_and_allows_recovery(monkeypatch):
+    client, calls, _ = stub_client(monkeypatch)
+    client.config = client.config.model_copy(update={"request_timeout_seconds": 0.01})
+    original_create = client.client.chat.completions.create
+    cancelled = []
+
+    async def keepalive_request(**kwargs):
+        try:
+            await asyncio.Event().wait()
+        finally:
+            cancelled.append(True)
+
+    async def scenario():
+        client.client.chat.completions.create = keepalive_request
+        with pytest.raises(asyncio.TimeoutError):
+            await client.complete(CONTENT_ANALYSIS_SYSTEM, "test")
+        assert cancelled == [True]
+        client.client.chat.completions.create = original_create
+        assert await client.complete(CONTENT_ANALYSIS_SYSTEM, "test") == '{"ok":true}'
+
+    asyncio.run(scenario())
+    assert len(calls) == 1  # Only the successful recovery reaches the normal stub.
 
 
 @pytest.mark.parametrize("options,error", [({"content": None}, "no usable content"),
