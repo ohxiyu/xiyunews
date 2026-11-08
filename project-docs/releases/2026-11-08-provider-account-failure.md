@@ -35,3 +35,11 @@ Verification: 生产latest仍为11月5日，暂不声明恢复。
 
 Rollback: 不自动回滚、改状态分支或重置发送回执；任何回退另按授权处理。
 
+
+## 最终代码回归
+
+[PR328](https://github.com/ohxiyu/xiyunews/pull/328)最终应用head bfe100638d115fd2d21e47db302e999d87e703b1的[CI42445103202](https://github.com/ohxiyu/xiyunews/actions/runs/42445103202)通过：1195 passed、4个既有skipped，耗时51.29秒；pip-audit无已知漏洞，治理和网页预览成功。web/edge/realtime按既有路径规则不相关跳过，无检查策略改动。main核对仍为e810cf95，应用基线未移动。
+
+首次CI发现新增并发退出测试超时；第二次在pytest阶段达到15分钟上限，未手动取消。完整日志进一步确认自定义retry_if_exception谓词误将asyncio.CancelledError当成临时错误。现只重试Exception且非账户故障；取消/KeyboardInterrupt直接传递，排队任务不反复抛共享异常，最终真实并发取消与全部回归通过。未放宽CI时限或删测试。
+
+代码与测试complete，合并/部署尚待记录；生产出刊恢复仍因用户暂不充值pending。本节是测试证据，不是新刊上线证明。
