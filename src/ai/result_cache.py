@@ -257,7 +257,7 @@ class AnalysisResultCache:
             item.ai_tags = list(value["editorial_tags"])
         return True
 
-    def store_enrichment(self, item: ContentItem) -> None:
+    def store_enrichment(self, item: ContentItem, *, input_item: ContentItem | None = None) -> None:
         value = {
             key: val
             for key, val in item.metadata.items()
@@ -269,7 +269,9 @@ class AnalysisResultCache:
             for key, val in value.items()
         )
         if value and complete:
-            self._put(item, "enrichment", value)
+            # Enrichment may replace editorial tags. Cache under the actual
+            # pre-call inputs, while retaining all generated output fields.
+            self._put(input_item if input_item is not None else item, "enrichment", value)
 
     def _put(self, item: ContentItem, stage: str, value: dict[str, Any]) -> None:
         self.entries[self._key(item, stage)] = {

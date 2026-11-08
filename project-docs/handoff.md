@@ -1,29 +1,27 @@
 # 当前交接
 
-[Issue351](https://github.com/ohxiyu/xiyunews/issues/351)：PR350已上线，正在完成真实采集验收与证据归档。
+[Issue353](https://github.com/ohxiyu/xiyunews/issues/353)：补齐滚动精选扩写缓存复用。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "归档滚动24小时信息流的正式上线和真实采集验收",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/351",
+  "goal": "修复滚动精选扩写标签变化造成的重复AI调用",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/353",
   "owner": "本聊天Codex唯一编辑与整合负责人",
-  "branch": "agent/rolling-stream-production-evidence",
-  "last_verified_commit": "1cbb849a094e10c71276b7a5ed97f70939c40958",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/352",
+  "branch": "agent/rolling-enrichment-cache",
+  "last_verified_commit": "d8fb561e1d5006ccf9dde94bf8bdf56f6392f49f",
+  "pr": "pending (Issue353)",
   "completed": [
-    "PR350完整CI通过并合并；Docs/Cloudflare自动发布成功",
-    "首轮真实采集成功：14条精选、14条背景、51参考链接，来源时间倒序/24小时过滤/API与SSR一致/固定链接均验收",
-    "390px浅暗色无横向溢出，原Logo与全部正文可见；已删除合并分支且GitHub可恢复"
+    "PR350/352已上线验收，两轮真实精选成功；发现并定位扩写缓存输出标签导致键错位"
   ],
   "unfinished": [
-    "证据PR352待绿色检查后合并；下一轮已自动触发，排队中"
+    "修复缓存键、跨进程命中回归、绿色CI合并与实际采集命中验证"
   ],
   "validation": [
-    "完整CI42484085862通过，Python1250 passed/4 skipped，Worker141 tests通过"
+    "原应用CI1250 passed/4 skips；本次39项相关回归通过，新增跨进程重复调用/失效测试通过"
   ],
   "unverified": [
-    "执行器排队和AI供应商延迟不受应用控制，不保证固定五分钟出新稿；22:50自动轮次已触发，完成结果待后续运行"
+    "修复尚未合并，生产仍使用旧缓存键"
   ],
   "production": {
     "source_commit": "1cbb849a094e10c71276b7a5ed97f70939c40958",
@@ -34,14 +32,14 @@
     "verified_at": "2026-11-08T14:46:17.091812+00:00"
   },
   "blockers": [],
-  "next_action": "完成首轮采集验收并通过文档PR记录，验证祖先后清理分支。",
+  "next_action": "在AI调用前保存输入，用原输入键存储扩写结果；不改变标签输出、模型、限额或服务。",
   "states": {
     "code": "complete",
-    "tests": "complete",
-    "pr_merged": "complete",
-    "deployed": "complete",
-    "production_verified": "complete"
+    "tests": "pending",
+    "pr_merged": "pending",
+    "deployed": "pending",
+    "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-11-08-rolling-news-stream.md"
+  "evidence": "project-docs/releases/2026-11-08-rolling-enrichment-cache.md"
 }
 ```

@@ -3691,10 +3691,11 @@ class BMTNewsOrchestrator:
             return
         ai_client = create_ai_client(self.config.ai)
         enricher = ContentEnricher(ai_client, languages=self.config.ai.languages if self.config.core_only else None)
+        enrichment_inputs = [item.model_copy(deep=True) for item in misses]
         await enricher.enrich_batch(misses)
         if cache is not None:
-            for item in misses:
-                cache.store_enrichment(item)
+            for item, input_item in zip(misses, enrichment_inputs):
+                cache.store_enrichment(item, input_item=input_item)
             cache.save()
         self.console.print(
             f"   Enriched {len(misses)} items; reused {len(cached)}\n"
