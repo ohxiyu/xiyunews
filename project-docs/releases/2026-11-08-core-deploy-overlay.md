@@ -10,13 +10,15 @@ Depends on: https://github.com/ohxiyu/xiyunews/pull/344
 本修复将CI和生产的素材覆盖收敛为同一个标准库函数。先验证必需目录和页面，再复制；可选_sass缺失允许，存在时复制；保留快照的API/历史，不读取AI或发送渠道。新增四项回归覆盖缺失/存在可选目录、必需输入缺失及同一调用路径。Deploy Docs监听该脚本改动，合并后自动重新触发完整发布链。
 
 Code: complete
-Tests: pending
-PR merged: pending
-Deployed: pending
-Production verified: pending
+Tests: complete — CI42473135016, 1247 passed / 4 existing skipped
+PR merged: complete — PR347 / eeeae8b
+Deployed: complete
+Production verified: complete
 
-Source commit: pending
-Worker version: pending
-Deployment: pending
-Verification: pending
+Source commit: eeeae8bf067accfe16be0341559cc2c50eab5777
+Worker version: cf14285d-6216-479b-91a3-d3f2a731351f
+Deployment: https://github.com/ohxiyu/xiyunews/actions/runs/42474636511 — success
+Verification: 2026-11-08T11:21:35.625Z; shared overlay executed in production and source/artifact/Worker match
 Rollback: 按用户授权通过同一流水线切换到已验证源提交；不手改生成分支、回执或realtime。
+
+最终范围、正式截图、状态未改动证明和验证边界见[核心站上线记录](2026-11-08-core-site.md)。
