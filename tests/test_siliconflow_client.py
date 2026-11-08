@@ -43,7 +43,7 @@ def test_factory_uses_siliconflow_key_and_endpoint_without_explicit_url(monkeypa
     _, _, constructors = stub_client(monkeypatch)
     client = create_ai_client(config(base_url=None))
     assert isinstance(client, OpenAIClient)
-    assert client.model == "Qwen/Qwen3.5-27B"
+    assert client.model == "deepseek-ai/DeepSeek-V3.2"
     assert constructors[-1] == {"api_key": "test-only", "base_url": "https://api.siliconflow.cn/v1",
                                 "timeout": 120, "max_retries": 1}
 
@@ -63,7 +63,7 @@ def test_economy_json_requests_disable_thinking_with_siliconflow_protocol(monkey
     result = asyncio.run(client.complete(system, "Return JSON"))
     assert result == '{"ok":true}'
     request = calls[0]
-    assert request["model"] == "Qwen/Qwen3.5-27B"
+    assert request["model"] == "deepseek-ai/DeepSeek-V3.2"
     assert request["extra_body"] == {"enable_thinking": False}
     assert request["max_tokens"] == budget
     assert request["response_format"] == {"type": "json_object"}
@@ -108,7 +108,7 @@ def test_dynamic_scoring_uses_economy_classification_budget_and_usage_identity(m
     assert calls[0]["extra_body"] == {"enable_thinking": False}
     usage = task_usage_snapshot()[0]
     assert usage["provider"] == "siliconflow"
-    assert usage["model"] == "Qwen/Qwen3.5-27B"
+    assert usage["model"] == "deepseek-ai/DeepSeek-V3.2"
     assert usage["stage"] == "content_analysis"
     assert usage["reasoning_tokens"] == 10
 
@@ -157,7 +157,7 @@ def test_production_config_and_all_ai_workflow_steps_agree_on_secret():
     root = Path(__file__).parents[1]
     cfg = AIConfig.model_validate(json.loads((root / "data/config.github.json").read_text())["ai"])
     assert cfg.provider == AIProvider.SILICONFLOW
-    assert cfg.model == "Qwen/Qwen3.5-27B"
+    assert cfg.model == "deepseek-ai/DeepSeek-V3.2"
     assert cfg.base_url == "https://api.siliconflow.cn/v1"
     assert cfg.api_key_env == "SILICONFLOW_API_KEY"
     for name, count in [("daily-summary.yml", 2), ("feed-collection.yml", 1), ("x-distribution.yml", 1)]:
@@ -180,4 +180,4 @@ def test_analyzed_story_records_new_provider_and_model(monkeypatch):
         return await ContentAnalyzer(client).analyze_batch([item])
     analyzed = asyncio.run(scenario())[0]
     assert analyzed.ai_score == 8
-    assert analyzed.metadata["score_model"] == "siliconflow:Qwen/Qwen3.5-27B"
+    assert analyzed.metadata["score_model"] == "siliconflow:deepseek-ai/DeepSeek-V3.2"

@@ -342,13 +342,14 @@ X_POST_USER = """把下面这条新闻写成一条 90-150 字的中文紧凑信�
 
 只输出推文正文。"""
 
-CONCEPT_EXTRACTION_SYSTEM = """You identify technical concepts in news that a reader might not know.
-Given a news item, return 1-3 search queries for concepts that need explanation.
-Focus on: specific technologies, protocols, algorithms, tools, or projects that are not widely known.
-Do NOT return queries for well-known things (e.g. "Python", "Linux", "Google").
-If the news is self-explanatory, return an empty list."""
+CONCEPT_EXTRACTION_SYSTEM = """You find evidence for the background of a news report.
+Given a news item, return 1-3 focused search queries using entities or terms explicitly present in the item.
+Prioritize the relevant prior event, the main actor's role, and the mechanism or rule needed to understand what changed.
+Familiar companies, exchanges and institutions still need event-specific context; do not skip them merely because their names are well known.
+Prefer official documentation or first-party explanations when possible. Do not invent a prior event, date, amount or relationship in a query.
+Avoid generic definitions, unrelated history and a verbatim repetition of the headline. Return an empty list only when no relevant context query can be grounded in the item."""
 
-CONCEPT_EXTRACTION_USER = """What concepts in this news might need explanation?
+CONCEPT_EXTRACTION_USER = """What background evidence would help a reader understand this news?
 
 Title: {title}
 Summary: {summary}
@@ -382,7 +383,7 @@ Field definitions:
 
 3. **key_details** (0-2 complete sentences): Additional verified details and caveats from the supplied evidence. If none exist, return an empty string.
 
-4. **background** (0-3 sentences): Brief, relevant context supported by the source or search excerpts. If there is no reliable context, return an empty string.
+4. **background** (1-3 sentences when supported): Explain the main actor's relevant role, the prior event leading here, or the mechanism/rule needed to understand the change. Use distinct context supported by the source or search excerpts, even for familiar entities or an apparently simple headline. Do not repeat whats_new, invent history or add generic praise. Provide the same supported facts in BOTH languages. Return both fields empty only when no reliable, non-redundant context is available.
 
 5. **community_discussion** (1-3 sentences): If community comments are provided, summarize the overall sentiment and key viewpoints from the discussion — agreements, disagreements, concerns, additional insights, or notable counterarguments. If no comments are provided, return an empty string.
 
@@ -397,7 +398,7 @@ Guidelines:
 - Base your explanation on the provided content and web search results — do NOT fabricate information
 - ONLY explain concepts and terms that are explicitly mentioned in the title, summary, or content
 - Use the web search results to ensure accuracy, especially for recent projects, tools, or events
-- If the news is self-explanatory and needs no background, return an empty string for both background fields
+- Check the supplied source and search excerpts for useful background before leaving it empty. A familiar entity or a clear headline alone is not a reason to omit supported context.
 - For **sources**: pick 1-3 URLs from the Web Search Results that you actually relied on for the background fields. Only use URLs that appear verbatim in the search results above — do not invent or modify URLs.
 - For **tags**: return 1-6 short factual topic/entity labels present in the source or supported search excerpts. Do not invent labels or add generic marketing tags.
 - NEVER include meta commentary about the provided material in any field — phrases like "the article does not specify", "details were not provided", "the full article should contain details", or "文章未说明" are forbidden; when a detail is unavailable, omit it and write about what IS known
@@ -430,8 +431,8 @@ Respond with valid JSON only. Each _en field must be in English; each _zh field 
   "why_it_matters_zh": "<用中文写1-2句话>",
   "key_details_en": "<1-2 sentences in English>",
   "key_details_zh": "<用中文写1-2句话>",
-  "background_en": "<2-4 sentences in English, or empty string>",
-  "background_zh": "<用中文写2-4句话，或空字符串>",
+  "background_en": "<1-3 sentences of supported, non-redundant context in English; empty only if unavailable>",
+  "background_zh": "<用中文写1-3句有证据且不重复正文的背景；仅无可靠背景时留空，与英文保持相同事实>",
   "community_discussion_en": "<1-3 sentences in English, or empty string>",
   "community_discussion_zh": "<用中文写1-3句话，或空字符串>",
   "market_impact_en": "<1-2 sentences of market transmission analysis in English, or empty string>",

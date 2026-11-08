@@ -141,7 +141,7 @@ def test_failed_jobs_explicitly_preserve_ai_cache():
 
 def test_new_model_and_default_cutoff_on_previous_utc_date():
     root = Path(__file__).parents[1]
-    assert json.loads((root / "data/config.github.json").read_text())["ai"]["model"] == "Qwen/Qwen3.5-27B"
+    assert json.loads((root / "data/config.github.json").read_text())["ai"]["model"] == "deepseek-ai/DeepSeek-V3.2"
     window = edition_window_for(datetime(2026, 9, 16, 23, 26, tzinfo=timezone.utc),
                                 "Asia/Shanghai")
     assert window.date == "2026-09-17"
@@ -183,7 +183,7 @@ def test_provider_migration_does_not_reuse_deepseek_comparison_cache(tmp_path):
     old = AnalysisResultCache(path, model="deepseek:deepseek-flash")
     compare(Client('{"duplicates": [[0, 1]]}'), stories(3), cache=old)
     old.save()
-    migrated = AnalysisResultCache(path, model="siliconflow:Qwen/Qwen3.5-27B")
+    migrated = AnalysisResultCache(path, model="siliconflow:deepseek-ai/DeepSeek-V3.2")
     client = Client()
     assert compare(client, stories(3), cache=migrated) == []
     assert len(client.calls) == 1

@@ -1,36 +1,35 @@
 # 当前交接
 
-当前任务：[Issue333](https://github.com/ohxiyu/xiyunews/issues/333)及依赖[Issue335](https://github.com/ohxiyu/xiyunews/issues/335)的11月8日补刊已完成。PR334/336依次修正硅基流动评分及复杂JSON任务耗时，真实补跑、自动部署与正式域中英日报均已验收。当前分支仅补部署后证据；下列五阶段描述已验收的应用与补刊，pr指向最终应用修复PR336。
+当前任务：[Issue338](https://github.com/ohxiyu/xiyunews/issues/338)。用户指定硅基流动DeepSeek V3.2并要求改善背景。本次修正模型、背景检索与双语写作，沿原发布路径验收。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "完成2026-11-08日报补刊并记录正式域验收",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/333",
-  "owner": "本聊天Codex唯一执行与整合负责人",
-  "branch": "agent/edition-20261108-published-evidence",
-  "last_verified_commit": "c9e8ba62f7bc314ca809d049b54a9738504c7b97",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/336",
+  "goal": "切换硅基流动DeepSeek V3.2并补全有证据的双语背景",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/338",
+  "owner": "本聊天Codex唯一编辑与整合负责人",
+  "branch": "agent/siliconflow-v32-background",
+  "last_verified_commit": "7840448d145d5cb65fe88339c77f1aee8706c8af",
+  "pr": "pending",
   "completed": [
-    "PR334修正SF固定窗口评分策略并落实既有120秒请求总时限，CI1212 passed/4既有skipped，正常合并ce37fc98e4a9a4e03d79709b8e3cccf8253d7c17",
-    "PR336修正SF经济模式JSON任务思考策略并完善脱敏诊断，CI1216 passed/4既有skipped，正常合并c9e8ba62f7bc314ca809d049b54a9738504c7b97",
-    "同一期07:00边界、force_publish=false第三轮42459458833成功；282候选、140分析、14展示，11条新扩写98.8秒，3条缓存复用，扩写降级0",
-    "Telegram日报真实发送1条；gh-pages与公开API/首页/中英详情/双语fragment/归档索引均为2026-11-08和14条",
-    "自动Cloudflare部署42460289903成功；正式域health的source/artifact/Worker与本次部署一致",
-    "X当前刊期状态skipped_late且jobs为空；Square14条已由正常渠道排程，验收时attempted=0、sent=0、due=false，不冒充送达"
+    "用户明确指定deepseek-ai/DeepSeek-V3.2，生产配置和硅基流动默认模型已修改，沿用既有URL与Secret",
+    "核对今日14条：第一和第三条中英生成背景均空，另12条有背景，HTML未隐藏已生成字段；公开摘要API没有背景字段，不据此误判",
+    "旧提示跳过熟悉主体/自明新闻，且空或失败概念提取未搜索；已修正背景检索与写作",
+    "清理错误/重复查询且最多3条；空或失败提取回退1条标题背景搜索，不增加AI调用；双语背景单侧/非文本走原重试降级，证据不足仍可两侧留空",
+    "缓存键纳入完整背景查询提示，模型与提示变化隔离旧结果；新增相关回归，更新默认模型测试及配置文档"
   ],
-  "unfinished": [],
+  "unfinished": [
+    "完整适用CI、正常合并",
+    "真实V3.2生成、当前刊期背景与中英页面、自动部署及幂等渠道验收"
+  ],
   "validation": [
-    "应用CI42458820049：1216 passed、4既有skipped，49.18秒；审计无已知漏洞，治理与预览通过",
-    "Daily42459458833报告kind=daily_publish、duration=618.003秒、error=null；status=warning仅含edition_started_late与partial_source_failure",
-    "2026-11-08T07:57:40.148745Z普通正式URL验收：latest与当期JSON完全相等，索引首项11月8日14条，中英详情和fragment各14条",
-    "浏览器可见中英首页及11月8日详情，均为本期；中文首页截图保存于本地outputs/edition-20261108-published.png"
+    "本机AST及JSON production model检查通过；尚未真实外部调用",
+    "经济模式JSON保持非思考、复杂输出8192，120秒请求/30分钟任务上限及费用边界不变"
   ],
   "unverified": [
-    "下一次定时刊期尚未发生，不能由本次手动补跑证明未来Cron永久正常",
-    "报告记录部分RSS HTTP403；其余来源与已有回退继续生成；事件关联13条延后、历史事件译文10条待译，不影响本期14条中英日报生成",
-    "Square已排程不等于发送，后续由既有队列调度；不为本次补刊额外重发或放宽X时效",
-    "模型扩写不是独立事实核验，本次只验收刊期、生成、页面与发布链路"
+    "本次尚未合并，production下方为上一轮Qwen成功补刊的已验证版本，不代表V3.2上线",
+    "有证据优先补背景，不编造或承诺每条必有；生成不是独立事实核验",
+    "不修改realtime、调度、密钥或状态/队列/回执，不重复已发送Telegram"
   ],
   "production": {
     "source_commit": "c9e8ba62f7bc314ca809d049b54a9738504c7b97",
@@ -41,14 +40,14 @@
     "verified_at": "2026-11-08T07:57:40.148745Z"
   },
   "blockers": [],
-  "next_action": "本期补刊已完成。合并本次部署后证据文档PR并清理已合并分支；后续定时刊期和Square按既有调度执行，不擅自重发或变更费用/时效规则。",
+  "next_action": "完整CI通过后正常合并，按原07:00刊期更新今天日报，验收V3.2、中英背景、自动部署与渠道幂等结果。",
   "states": {
     "code": "complete",
-    "tests": "complete",
-    "pr_merged": "complete",
-    "deployed": "complete",
-    "production_verified": "complete"
+    "tests": "pending",
+    "pr_merged": "pending",
+    "deployed": "pending",
+    "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-11-08-edition-recovery.md"
+  "evidence": "project-docs/releases/2026-11-08-siliconflow-v32-background.md"
 }
 ```
