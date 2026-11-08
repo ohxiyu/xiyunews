@@ -26,7 +26,7 @@ class _StubAIClient:
         return next(self._responses)
 
 
-def test_enrichment_preserves_semantic_summary_sections_as_paragraphs() -> None:
+def test_enrichment_preserves_semantic_summary_sections_as_paragraphs(monkeypatch) -> None:
     item = ContentItem(
         id="paragraphs",
         source_type=SourceType.RSS,
@@ -36,7 +36,12 @@ def test_enrichment_preserves_semantic_summary_sections_as_paragraphs() -> None:
         ai_summary="Fallback summary",
     )
 
-    asyncio.run(ContentEnricher(_StubAIClient())._enrich_item(item))
+    async def no_search(*_args, **_kwargs):
+        return []
+
+    enricher = ContentEnricher(_StubAIClient())
+    monkeypatch.setattr(enricher, "_web_search", no_search)
+    asyncio.run(enricher._enrich_item(item))
 
     assert item.metadata["detailed_summary_zh"] == (
         "发生了什么。\n\n为什么重要。\n\n重要限制。"

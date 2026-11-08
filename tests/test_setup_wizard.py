@@ -160,6 +160,6 @@ def test_configure_ai_offers_siliconflow_and_uses_its_defaults(monkeypatch):
     monkeypatch.delenv("SILICONFLOW_API_KEY", raising=False)
     configured = wizard.configure_ai()
     assert configured.provider == AIProvider.SILICONFLOW
-    assert configured.model == "Qwen/Qwen3.5-27B"
+    assert configured.model == "deepseek-ai/DeepSeek-V3.2"
     assert configured.api_key_env == "SILICONFLOW_API_KEY"
     assert wizard._ai_recommendations_available(configured) is False

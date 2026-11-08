@@ -98,7 +98,7 @@ class AnalysisResultCache:
                     for name in (
                         ("CONTENT_ANALYSIS_SYSTEM", "CONTENT_ANALYSIS_USER")
                         if stage == "analysis" else
-                        ("CONTENT_ENRICHMENT_SYSTEM", "CONTENT_ENRICHMENT_USER", "CONCEPT_EXTRACTION_SYSTEM")
+                        ("CONTENT_ENRICHMENT_SYSTEM", "CONTENT_ENRICHMENT_USER", "CONCEPT_EXTRACTION_SYSTEM", "CONCEPT_EXTRACTION_USER")
                     )
                 ],
                 "url": str(item.url),

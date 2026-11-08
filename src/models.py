@@ -132,7 +132,7 @@ AI_PROVIDER_DEFAULTS = {
         "base_url": "http://localhost:11434/v1",
     },
     AIProvider.SILICONFLOW: {
-        "model": "Qwen/Qwen3.5-27B",
+        "model": "deepseek-ai/DeepSeek-V3.2",
         "api_key_env": "SILICONFLOW_API_KEY",
         "base_url": "https://api.siliconflow.cn/v1",
     },

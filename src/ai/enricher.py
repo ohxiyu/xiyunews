@@ -168,7 +168,20 @@ class ContentEnricher:
             if result is None:
                 return []
             queries = result.get("queries", [])
-            return queries[:3]
+            if not isinstance(queries, list):
+                return []
+            cleaned = []
+            seen = set()
+            for query in queries:
+                if not isinstance(query, str):
+                    continue
+                query = " ".join(query.split())[:240]
+                if query and query.casefold() not in seen:
+                    cleaned.append(query)
+                    seen.add(query.casefold())
+                if len(cleaned) == 3:
+                    break
+            return cleaned
         except Exception:
             return []
 
@@ -201,6 +214,12 @@ class ContentEnricher:
 
         # Step 1: AI identifies concepts to explain
         queries = await self._extract_concepts(item, content_text)
+        if not queries:
+            # Familiar actors or a failed concept response must not silently
+            # disable grounding. Reuse the existing search path and limit;
+            # this fallback adds no model call or unsupported premise.
+            title_query = " ".join(item.title.split())[:200]
+            queries = [f"{title_query} background context"]
 
         # Step 2: Search web for each concept
         all_results = []
@@ -248,6 +267,16 @@ class ContentEnricher:
         if any(not isinstance(result.get(key), str) or not result[key].strip()
                for key in (*required, translated_title)):
             raise ValueError("invalid_generation")
+
+        # Supported context must not disappear from one language. Both empty
+        # remains valid when the evidence cannot support useful background.
+        backgrounds = [result.get(f"background_{lang}", "") for lang in ("en", "zh")]
+        if any(not isinstance(value, str) for value in backgrounds):
+            raise ValueError("invalid_background")
+        if bool(backgrounds[0].strip()) != bool(backgrounds[1].strip()):
+            raise ValueError("incomplete_bilingual_background")
+        for lang, value in zip(("en", "zh"), backgrounds):
+            result[f"background_{lang}"] = value.strip()
 
         if not comments_text:
             result.pop("community_discussion_en", None)

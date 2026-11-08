@@ -18,6 +18,9 @@ def test_enrichment_retry_reports_final_type_without_provider_response(monkeypat
         raise TimeoutError("private-provider-response-must-not-leak")
 
     monkeypatch.setattr(ContentEnricher._enrich_item.retry, "wait", wait_none())
+    async def no_search(*_args, **_kwargs):
+        return []
+    monkeypatch.setattr(ContentEnricher, "_web_search", no_search)
     client = SimpleNamespace(complete=complete, config=SimpleNamespace(enrichment_concurrency=1))
     item = ContentItem(id="diagnostic-story", title="Project releases security update",
         url="https://example.com/news", source_type=SourceType.RSS,
