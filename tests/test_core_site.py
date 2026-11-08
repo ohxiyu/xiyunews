@@ -29,6 +29,7 @@ def test_top_three_full_timestamp_background_and_compact_remainder():
  assert len(soup.select('.story-background'))==5
  assert '第二段事实。' in articles[-1].text
  assert soup.select_one('#zh-2026-11-08-item-5')
+ assert soup.select_one('#zh-2026-11-08-item-5 [data-copy]')['data-copy']=='/2026/11/08/summary-zh.html#zh-2026-11-08-item-5'
 
 
 def test_migration_keeps_published_text_revisions_sources_and_is_idempotent():

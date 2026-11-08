@@ -22,7 +22,9 @@ EVENT_SLOT = "<!--core-events-->"
 
 def _card(*, attrs: dict, heading: str, body: str, meta: str, index: int) -> str:
     attributes = " ".join(f'{key}="{_escape(value)}"' for key, value in attrs.items())
-    copy = f'<button type="button" class="copy-link" data-copy="#{_escape(attrs["id"])}" hidden>复制链接</button>'
+    match=re.fullmatch(r"zh-(\d{4})-(\d{2})-(\d{2})-item-\d+",attrs['id'])
+    target=(f"/{match[1]}/{match[2]}/{match[3]}/summary-zh.html" if match else "")+"#"+attrs['id']
+    copy = f'<button type="button" class="copy-link" data-copy="{_escape(target)}" hidden>复制链接</button>'
     content = f'<div class="story-body">{body}<div class="story-actions">{copy}</div></div>'
     if index <= 3:
         content = f'<div class="story-meta">{meta}</div>{heading}{content}'
