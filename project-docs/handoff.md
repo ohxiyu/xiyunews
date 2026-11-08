@@ -1,27 +1,29 @@
 # 当前交接
 
-[Issue343](https://github.com/ohxiyu/xiyunews/issues/343)：用户已批准核心版精简和直接上线。
+[Issue345](https://github.com/ohxiyu/xiyunews/issues/345)：核心版已合并，正在修复生产准备路径并完成直接上线。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "整站核心功能精简与首页重建并直接上线",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/343",
+  "goal": "完成核心站上线并修复生产素材准备与CI不一致",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/345",
   "owner": "本聊天Codex唯一编辑与整合负责人",
-  "branch": "agent/lean-news-site",
-  "last_verified_commit": "e30e1dbab0e695d573d4ad6bbde43b1886698c64",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/344",
+  "branch": "agent/core-deploy-overlay",
+  "last_verified_commit": "2694f7d4c7c3ce1158706dbf0c0fdca8adf07d19",
+  "pr": "pending (Issue345)",
   "completed": [
-    "核对远程main和570份源码哈希，保留历史数据、英文实现和独立realtime服务"
+    "核心整站精简PR344已合并2694f7d；CI42471824413：1243 passed/4既有skipped、审计、前端和两个独立服务版本全部通过",
+    "Jekyll对90期真实历史渲染通过，初轮Deploy Docs42472757852成功且不调用AI或发送消息",
+    "上线前复核发现生产覆盖循环漏掉_sass可选目录判断；CI原循环有判断，两条路径不一致。新增共享overlay与回归，生产未验收"
   ],
   "unfinished": [
-    "远程完整CI、PR合并、自动部署和线上验收"
+    "共享overlay修复CI、PR合并、自动部署、正式域验收和部署后证据"
   ],
   "validation": [
-    "源码基线与远程Git blob逐一匹配"
+    "主应用CI完整通过；本次修复以同一函数供CI和生产执行"
   ],
   "unverified": [
-    "实现与本地回归已完成；远程CI和上线未完成"
+    "核心站尚未完成Cloudflare上线验收"
   ],
   "production": {
     "source_commit": "11a24fb22bdb9bd5a89b95bc386cbdd4ee48dc16",
@@ -32,7 +34,7 @@
     "verified_at": "2026-11-08T09:06:46.674234Z"
   },
   "blockers": [],
-  "next_action": "完成实现并回归后按授权合并上线；英文代码保留、人工纠错关闭，独立realtime不修改。",
+  "next_action": "合并本次修复并由Deploy Docs→Cloudflare继续自动上线，核对正式首页与停用入口后补充证据。",
   "states": {
     "code": "complete",
     "tests": "pending",
@@ -40,6 +42,6 @@
     "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-11-08-core-site.md"
+  "evidence": "project-docs/releases/2026-11-08-core-deploy-overlay.md"
 }
 ```

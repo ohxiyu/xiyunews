@@ -128,11 +128,7 @@ jobs:
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
       - name: Overlay current core templates and routes
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-        run: |
-          for directory in _layouts _includes _sass assets; do
-            cp -a "docs/$directory/." ".edge-source/$directory/"
-          done
-          cp docs/_config.yml docs/index.md docs/threads.html docs/history.html .edge-source/
+        run: python3 scripts/overlay_core_site.py docs .edge-source
       - name: Rebuild core reader from the immutable published snapshot
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         run: uv run python -m src.core_site --root .edge-source

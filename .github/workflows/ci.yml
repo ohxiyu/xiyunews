@@ -54,15 +54,7 @@ jobs:
           path: .edge-source
           persist-credentials: false
       - name: Render the proposed templates against the published data
-        run: |
-          for directory in _layouts _includes _sass assets; do
-            if [ -d "docs/$directory" ]; then
-              mkdir -p ".edge-source/$directory"
-              cp -a "docs/$directory/." ".edge-source/$directory/"
-            fi
-          done
-          cp docs/_config.yml .edge-source/_config.yml
-          cp docs/index.md docs/threads.html docs/history.html .edge-source/
+        run: python3 scripts/overlay_core_site.py docs .edge-source
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
