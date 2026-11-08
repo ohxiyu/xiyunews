@@ -108,3 +108,14 @@ def test_transient_failure_still_retries_and_valid_result_is_kept(monkeypatch):
     ProviderFailure(429), ProviderFailure(500), SimpleNamespace(status_code=True)])
 def test_untrusted_text_and_transient_status_do_not_trip_account_latch(exc):
     assert account_error(exc) is None
+
+
+def test_account_failure_has_actionable_machine_readable_report():
+    from src.run_report import RunReport, render_github_annotations
+    report = RunReport.start(date="2026-11-08", timezone_name="Asia/Shanghai")
+    report.fail(ProviderAccountError(402))
+    payload = report.to_dict()
+    assert payload["status"] == "failure"
+    assert payload["metrics"]["provider_account_http_status"] == 402
+    assert any(a["code"] == "ai_account_insufficient_balance" for a in payload["alerts"])
+    assert any("充值" in line for line in render_github_annotations(payload))
