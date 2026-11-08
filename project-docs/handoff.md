@@ -10,7 +10,7 @@
   "owner": "本聊天Codex唯一编辑与整合负责人",
   "branch": "agent/lean-news-site",
   "last_verified_commit": "e30e1dbab0e695d573d4ad6bbde43b1886698c64",
-  "pr": "pending (Issue343)",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/344",
   "completed": [
     "核对远程main和570份源码哈希，保留历史数据、英文实现和独立realtime服务"
   ],

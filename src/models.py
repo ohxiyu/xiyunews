@@ -778,9 +778,9 @@ class FilteringConfig(BaseModel):
 
 
 class Config(BaseModel):
-    core_only: bool = False
-
     """Main configuration model."""
+
+    core_only: bool = False
 
     version: str = "1.0"
     ai: AIConfig

@@ -18,7 +18,7 @@ export default {
     if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405,headers:{Allow:'GET, HEAD','Cache-Control':'no-store'}});
     let target=path;
     if(target==='/en'||target.startsWith('/en/'))target=target.replace(/^\/en(?:\/|$)/,'/');
-    target=target.replace(/summary-en(?=\.?html$|$)/,'summary-zh').replace(/(\/editions\/\d{4}-\d{2}-\d{2}\/)en\.html$/,'$1zh.html');
+    target=target.replace(/summary-en(?=(?:\.html)?\/?$)/,'summary-zh').replace(/(\/editions\/\d{4}-\d{2}-\d{2}\/)en\.html(?=\/?$)/,'$1zh.html');
     if(target!==path){url.pathname=target;return Response.redirect(url.href,308);}
     if(/^\/entity\/?$/.test(path)){url.pathname='/threads/';return Response.redirect(url.href,308);}
     // A fresh cleanup worker replaces installed offline copies, even if they

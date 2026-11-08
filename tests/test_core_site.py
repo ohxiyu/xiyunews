@@ -123,3 +123,13 @@ def test_core_schedule_and_publish_jobs_cannot_block_daily_with_event_ai():
  for name in ['daily-summary.yml','feed-collection.yml']:
   workflow=Path('.github/workflows',name).read_text()
   assert 'exclude_assets: "events/**,threads/**,api/events/**,api/events.json,_data/events.json,_data/event-legacy-urls.json' in workflow
+
+
+def test_core_prompt_change_invalidates_only_enrichment_cache(monkeypatch,tmp_path):
+ from src.ai.result_cache import AnalysisResultCache
+ from src.ai import prompts
+ cache=AnalysisResultCache(tmp_path/'cache.json',model='v3.2')
+ item=story();before=cache._key(item,'enrichment');analysis=cache._key(item,'analysis')
+ monkeypatch.setattr(prompts,'CORE_ENRICHMENT_SYSTEM','Changed Chinese evidence rules')
+ assert cache._key(item,'enrichment')!=before
+ assert cache._key(item,'analysis')==analysis
