@@ -134,3 +134,13 @@ def test_background_year_must_appear_in_evidence_not_only_publication_timestamp(
     else:
         asyncio.run(attempt)
         assert item.metadata["background_en"] == background
+
+
+def test_model_generated_search_query_is_not_evidence_for_a_year(monkeypatch):
+    enricher = ContentEnricher(Client(["custody policy 2024"], {
+        "background_en": "The policy changed in 2024.", "background_zh": "2024年规则变更。"}))
+    async def search(*_args, **_kwargs):
+        return [{"title": "Custody", "url": "https://example.com/custody", "body": "A custody policy."}]
+    monkeypatch.setattr(enricher, "_web_search", search)
+    with pytest.raises(ValueError, match="unsupported_background_year"):
+        asyncio.run(ContentEnricher._enrich_item.__wrapped__(enricher, story()))
