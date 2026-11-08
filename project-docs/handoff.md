@@ -1,44 +1,46 @@
 # 当前交接
 
-[Issue349](https://github.com/ohxiyu/xiyunews/issues/349)：用户要求恢复密集阅读与原Logo，并选择滚动24小时精选。
+[Issue351](https://github.com/ohxiyu/xiyunews/issues/351)：PR350已上线，正在完成真实采集验收与证据归档。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "恢复密集信息流和原Logo，切换滚动24小时持续采集精选",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/349",
+  "goal": "归档滚动24小时信息流的正式上线和真实采集验收",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/351",
   "owner": "本聊天Codex唯一编辑与整合负责人",
-  "branch": "agent/rolling-news-stream",
-  "last_verified_commit": "a9ce5cb681195f4a7a5f580b9660981e4a904047",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/350",
+  "branch": "agent/rolling-stream-production-evidence",
+  "last_verified_commit": "1cbb849a094e10c71276b7a5ed97f70939c40958",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/352",
   "completed": [
-    "密集全文UI、原机器人Logo、滚动24小时精选、独立采集队列与缓存合并已实现；本地回归和手机视觉检查通过"
+    "PR350完整CI通过并合并；Docs/Cloudflare自动发布成功",
+    "首轮真实采集成功：14条精选、14条背景、51参考链接，来源时间倒序/24小时过滤/API与SSR一致/固定链接均验收",
+    "390px浅暗色无横向溢出，原Logo与全部正文可见；已删除合并分支且GitHub可恢复"
   ],
   "unfinished": [
-    "GitHub完整检查、合并部署和正式验收"
+    "证据PR352待绿色检查后合并；下一轮已自动触发，排队中"
   ],
   "validation": [
-    "源码基线来自上一任务已验收main；当前无其他应用编辑认领"
+    "完整CI42484085862通过，Python1250 passed/4 skipped，Worker141 tests通过"
   ],
   "unverified": [
-    "新模式尚未上线"
+    "执行器排队和AI供应商延迟不受应用控制，不保证固定五分钟出新稿；22:50自动轮次已触发，完成结果待后续运行"
   ],
   "production": {
-    "source_commit": "eeeae8bf067accfe16be0341559cc2c50eab5777",
-    "artifact_commit": "99926045aae0aeecc12ba67bf0dcd833e08c43a5",
+    "source_commit": "1cbb849a094e10c71276b7a5ed97f70939c40958",
+    "artifact_commit": "907ac8b4714ce2211b9719a26d8268c07c7de703",
     "edition": "2026-11-08",
     "generated_at": "2026-11-08T08:58:08.694761Z",
-    "worker_version": "cf14285d-6216-479b-91a3-d3f2a731351f",
-    "verified_at": "2026-11-08T11:21:35.625Z"
+    "worker_version": "3bbbb98c-5bdb-4b0f-a3f0-74b1f23b946d",
+    "verified_at": "2026-11-08T14:46:17.091812+00:00"
   },
   "blockers": [],
-  "next_action": "沿用既有新闻来源、模型/批次上限与缓存，分钟级采集并仅发布合格精选；保留归档/Telegram和稳定链接，独立realtime不修改。",
+  "next_action": "完成首轮采集验收并通过文档PR记录，验证祖先后清理分支。",
   "states": {
     "code": "complete",
-    "tests": "pending",
-    "pr_merged": "pending",
-    "deployed": "pending",
-    "production_verified": "pending"
+    "tests": "complete",
+    "pr_merged": "complete",
+    "deployed": "complete",
+    "production_verified": "complete"
   },
   "evidence": "project-docs/releases/2026-11-08-rolling-news-stream.md"
 }
