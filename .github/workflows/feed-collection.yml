@@ -149,14 +149,13 @@ jobs:
 
 
       - name: Rebuild core reader without AI or delivery
-        run: uv run python -m src.core_site --root docs
+        run: uv run python -m src.core_site --root docs --stage-reader reader-output
 
       - name: Deploy incremental event pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          exclude_assets: "events/**,threads/**,api/events/**,api/events.json,_data/events.json,_data/event-legacy-urls.json,_data/threads.json,_data/core_stream.json"
-          publish_dir: ./docs
+          publish_dir: ./reader-output
           keep_files: true
           commit_message: "🧭 Event timeline: ${{ github.run_id }}"
           publish_branch: gh-pages

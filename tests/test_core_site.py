@@ -122,7 +122,9 @@ def test_core_schedule_and_publish_jobs_cannot_block_daily_with_event_ai():
  assert 'src.core_events' in compute and 'src.core_events' not in publish
  for name in ['daily-summary.yml','feed-collection.yml']:
   workflow=Path('.github/workflows',name).read_text()
-  assert 'exclude_assets: "events/**,threads/**,api/events/**,api/events.json,_data/events.json,_data/event-legacy-urls.json' in workflow
+  assert 'exclude_assets:' not in workflow
+  assert 'publish_dir: ./reader-output' in workflow
+  assert '--stage-reader reader-output' in workflow
 
 
 def test_core_prompt_change_invalidates_only_enrichment_cache(monkeypatch,tmp_path):
@@ -133,3 +135,17 @@ def test_core_prompt_change_invalidates_only_enrichment_cache(monkeypatch,tmp_pa
  monkeypatch.setattr(prompts,'CORE_ENRICHMENT_SYSTEM','Changed Chinese evidence rules')
  assert cache._key(item,'enrichment')!=before
  assert cache._key(item,'analysis')==analysis
+
+
+
+def test_reader_staging_omits_event_inputs_without_deleting_or_modifying_them(tmp_path):
+ from src.core_site import stage_reader,EVENT_OWNED_PATHS
+ source=tmp_path/'docs';source.mkdir()
+ for relative in ['_data/events.json','_data/event-legacy-urls.json','api/events.json','api/events/evt_x.json','events/evt_x.html','threads/old.html','_posts/current.md','api/latest.json','threads.html','history.html']:
+  target=source/relative;target.parent.mkdir(parents=True,exist_ok=True);target.write_text('exact:'+relative)
+ destination=tmp_path/'reader-output';stage_reader(source,destination)
+ for relative in ['_data/events.json','_data/event-legacy-urls.json','api/events.json','api/events/evt_x.json','events/evt_x.html','threads/old.html']:
+  assert not (destination/relative).exists()
+  assert (source/relative).read_text()=='exact:'+relative
+ for relative in ['_posts/current.md','api/latest.json','threads.html','history.html']:
+  assert (destination/relative).read_text()=='exact:'+relative

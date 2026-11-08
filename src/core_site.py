@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -163,6 +164,31 @@ def timeline_html(timeline: list[dict]) -> str:
     return '<ol class="core-timeline">'+''.join(rows)+'</ol>'
 
 
+EVENT_OWNED_PATHS = {
+    "events", "threads", "api/events", "api/events.json", "_data/events.json",
+    "_data/event-legacy-urls.json", "_data/threads.json", "_data/core_stream.json",
+}
+
+
+def stage_reader(source: Path, destination: Path) -> None:
+    """Omit event-owned INPUTS; the publisher must never delete remote assets.
+
+    peaceiris exclude_assets removes matching files from its destination even
+    with keep_files, so it is deliberately not used for state preservation.
+    """
+    source=source.resolve();destination=destination.resolve()
+    if destination.exists() or destination==source or destination.is_relative_to(source) or source.is_relative_to(destination):
+        raise ValueError("reader staging requires a separate new directory")
+    def omit(directory, names):
+        parent=Path(directory).relative_to(source)
+        return [name for name in names if (parent/name).as_posix() in EVENT_OWNED_PATHS]
+    shutil.copytree(source,destination,ignore=omit)
+
+
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--root',type=Path,default=Path('docs'))
-    print(json.dumps(republish(parser.parse_args().root),ensure_ascii=False))
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--root',type=Path,default=Path('docs'))
+    parser.add_argument('--stage-reader',type=Path)
+    args=parser.parse_args()
+    print(json.dumps(republish(args.root),ensure_ascii=False))
+    if args.stage_reader:stage_reader(args.root,args.stage_reader)

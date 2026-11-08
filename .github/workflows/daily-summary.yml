@@ -228,14 +228,13 @@ jobs:
 
 
       - name: Rebuild core reader from published content without AI or delivery
-        run: uv run python -m src.core_site --root docs
+        run: uv run python -m src.core_site --root docs --stage-reader reader-output
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          exclude_assets: "events/**,threads/**,api/events/**,api/events.json,_data/events.json,_data/event-legacy-urls.json,_data/threads.json,_data/core_stream.json"
-          publish_dir: ./docs
+          publish_dir: ./reader-output
           keep_files: true  # Keep existing summaries on gh-pages branch
           commit_message: "📝 Daily Summary: ${{ steps.edition.outputs.date }}"
           publish_branch: gh-pages
