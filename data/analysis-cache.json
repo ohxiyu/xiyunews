@@ -6932,6 +6932,23 @@
         "source_category": "crypto-markets"
       }
     },
+    "179d152ee023ce0861c3b79172fb14da38d6902eb63fa7769d01734a6e27a8f1": {
+      "stored_at": "2026-11-08T17:11:48.432770+00:00",
+      "value": {
+        "ai_reason": "Exposes a significant, practical security vulnerability in a widely-used AI coding agent (Claude Code) where approved commands containing secrets can be permanently stored and accidentally committed to public repositories. The high-quality discussion includes a detailed response from the development team and community analysis of root causes and mitigations, indicating substantial developer impact.",
+        "ai_score": 7.5,
+        "ai_summary": "A security analysis reveals that Claude Code's 'Don't Ask Again' feature can lead to passwords and API keys being exposed in over 1,100 public GitHub repositories if users manually create and commit the local settings file containing approved command strings.",
+        "ai_tags": [
+          "ai-devtools",
+          "security",
+          "software-engineering",
+          "github"
+        ],
+        "category": "ai-devtools",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "tech-community"
+      }
+    },
     "17b6984335d6890dd12b6b74064b90aea52bf83d2f7154f42efb79bdfc0ebbcf": {
       "stored_at": "2026-11-05T04:44:11.837388+00:00",
       "value": {
@@ -9303,23 +9320,6 @@
         "category": "macro-regulation",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
-      }
-    },
-    "1f8dd9a453bf57d1e71cfbb5c8c87c40c92f866c28ca03a6aa05284c38410457": {
-      "stored_at": "2026-10-30T00:07:15.898214+00:00",
-      "value": {
-        "ai_reason": "Franklin Templeton, a major asset manager, is launching two US-listed ETFs that combine broad US equity exposure with a 5% Bitcoin sleeve and reinvest dividends into Bitcoin. This is a notable institutional and market-structure development with a novel ETF design, though its immediate market impact is limited by the modest Bitcoin allocation and lack of direct BTC holdings.",
-        "ai_score": 7.5,
-        "ai_summary": "Franklin Templeton launched two US-listed ETFs, FBEQ and FIBT, that hold about 95% US equities and 5% Bitcoin exposure while reinvesting dividends into Bitcoin through ETPs, futures, and options.",
-        "ai_tags": [
-          "Franklin Templeton",
-          "Bitcoin ETF",
-          "institutional adoption",
-          "market structure",
-          "dividend reinvestment"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "1f9f14d98ef7f73c76038b721675232cfbd4cc4c71c3bd4d0795e3aebc59305b": {
@@ -11724,23 +11724,6 @@
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
-      }
-    },
-    "286766dc72321f1fdb1054c5d7fccbf95197b35bf6141efcaf947f4a5f50d4b1": {
-      "stored_at": "2026-10-30T00:07:15.897976+00:00",
-      "value": {
-        "ai_reason": "Routine on-chain whale-tracking flash: a single address opened a 20x leveraged GOOGL (tokenized equity) long worth $14.3M with a modest $154K unrealized gain, after closing an MU long for $1.64M profit. Interesting only as anecdotal positioning data for tokenized-stock perps; no market-structure, protocol, or regulatory substance, and the trader's identity is anonymous on-chain.",
-        "ai_score": 3.5,
-        "ai_summary": "An on-chain analyst flagged address 0xab9…219e6 opening a 20x leveraged long on 50,000 tokenized GOOGL shares worth $14.3M at an average entry of $283.01, currently up about $154K after previously closing an MU long for $1.64M profit.",
-        "ai_tags": [
-          "on-chain-data",
-          "whales",
-          "tokenized-stocks",
-          "perpetual-futures",
-          "leverage"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "288421b3bc78e1b2d400fcebb2d74ca86ef37b61123e1775e86c3cd65489040e": {
@@ -20234,6 +20217,63 @@
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
+      }
+    },
+    "43cc686f37ed8c76249344dee8e400762c83e3b3e669f7d22e9293d63fafdb0f": {
+      "stored_at": "2026-11-08T17:12:23.615167+00:00",
+      "value": {
+        "background": "",
+        "background_zh": "DeepSeek V4是2026年发布的混合专家模型家族，包含V4 Pro和V4 Flash两个变体。其中V4 Flash拥有2840亿总参数，每token激活约130亿参数。量化技术通过降低模型权重和激活值的精度，能有效减少大型语言模型的内存占用和计算开销。",
+        "community_discussion": "",
+        "detailed_summary": "",
+        "detailed_summary_zh": "一个名为‘llama-modchip’的开源项目，允许用户在仅配备64GB内存且无GPU的系统上运行参数规模达2840亿的DeepSeek-V4-Flash模型。该项目通过修改llama.cpp引擎，并结合特定的量化与优化技术来实现这一目标。\n\n这大幅降低了运行超大规模语言模型的门槛，使得更多开发者和研究者能在消费级硬件上体验或测试前沿的AI模型，可能推动模型部署方式的变革。\n\n该项目是一个开源AI代理技能，可用于Claude Code、Codex CLI和ChatGPT等AI编码助手。其v2.1版本宣称能在纯CPU环境下，以20–60.4 tok/s的速度运行300亿参数的稀疏混合专家模型，并支持256K上下文窗口。",
+        "editorial_tags": [
+          "开源项目",
+          "模型部署",
+          "量化技术",
+          "混合专家模型",
+          "CPU推理"
+        ],
+        "enrichment_status": "complete",
+        "sources": [
+          {
+            "title": "GitHub - synchopate/llama-modchip: Run 284B DeepSeek-V4 ...",
+            "url": "https://github.com/synchopate/llama-modchip"
+          },
+          {
+            "title": "GitHub - synchopate/llama-modchip: ♟️ llama-modchip v2.1: Run ...",
+            "url": "https://github.com/synchopate/llama-modchip/tree/main"
+          },
+          {
+            "title": "llama-modchip - AI Agents on GitHub | SkillsLLM",
+            "url": "https://skillsllm.com/skill/llama-modchip"
+          },
+          {
+            "title": "DeepSeek V4 Architecture: MoE, Parameters & 1M Context",
+            "url": "https://deepseek-v4.io/architecture"
+          },
+          {
+            "title": "DeepSeek V4 Explained: V4-Pro 1.6T vs V4-Flash 284B (2026)",
+            "url": "https://deepseek.ai/deepseek-v4"
+          },
+          {
+            "title": "DeepSeek-V4-Flash: 284B MoE for High-Throughput Pipelines at ...",
+            "url": "https://redeep.blog/posts/deepseek-v4-flash/"
+          },
+          {
+            "title": "A Comprehensive Study on Quantization Techniques for Large ...",
+            "url": "https://arxiv.org/html/2411.02530v1"
+          },
+          {
+            "title": "A Comprehensive Study on Quantization Techniques for Large ...A comprehensive evaluation on quantization techniques for ...Exploring Quantization Techniques for Large-Scale Language ...A Comprehensive Evaluation of Quantization Strategies for ...Model Quantization: Concepts, Methods, and Why It MattersA Comprehensive Evaluation on Quantization Techniques for ...",
+            "url": "https://arxiv.org/abs/2411.02530"
+          },
+          {
+            "title": "A comprehensive evaluation on quantization techniques for ...",
+            "url": "https://www.sciencedirect.com/science/article/pii/S003132032602145X"
+          }
+        ],
+        "title_zh": "Llama-modchip：在64GB内存、无GPU的系统上运行284B参数DeepSeek模型"
       }
     },
     "43d95904c09268b9fbfe32c11d90d72000af4d40f9acce884e7df3c42d8454dd": {
@@ -46240,6 +46280,23 @@
         "title_zh": "【Star：用户暂勿从 MEXC 向 OKX 转入资金，相关资金或被冻结审查】"
       }
     },
+    "9e1984acb87cf910abb024b68f0144939c5aefa672540e29159d607d8357fea4": {
+      "stored_at": "2026-11-08T17:11:48.432591+00:00",
+      "value": {
+        "ai_reason": "The content advocates for a standard format for AI agent memory, a notable idea in AI devtools with substantive discussion (90 comments). However, it's a conceptual proposal without a major release, breakthrough, or demonstrated ecosystem-wide impact, placing it in the 'Interesting' tier for builders.",
+        "ai_score": 6.0,
+        "ai_summary": "A blog post argues for the need for a standardized, open format for AI agent memory, analogous to OpenTelemetry for observability.",
+        "ai_tags": [
+          "ai-devtools",
+          "ai-agents",
+          "software-engineering",
+          "standards"
+        ],
+        "category": "ai-devtools",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "tech-community"
+      }
+    },
     "9e3379e04d25173c22c5ba0238bebf0bebe797467608f711fe9d2643c86dec67": {
       "stored_at": "2026-11-02T07:33:01.316544+00:00",
       "value": {
@@ -55810,6 +55867,24 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "be4a08dc8fe369806002b52f9383019433c98be50e8fff37e00f798ad42120c0": {
+      "stored_at": "2026-11-08T17:11:48.432330+00:00",
+      "value": {
+        "ai_reason": "The content highlights a significant technical achievement in AI model optimization (running a 284B parameter model on consumer hardware), which is a high-value development for the AI developer ecosystem. The Hacker News discussion provides substantive technical commentary on quantization trade-offs, performance, and the state of related projects, elevating the signal quality.",
+        "ai_score": 7.5,
+        "ai_summary": "A project called 'llama-modchip' enables running the 284-billion-parameter DeepSeek model on a system with only 64GB of RAM and no GPU.",
+        "ai_tags": [
+          "ai-devtools",
+          "model-optimization",
+          "llm",
+          "quantization",
+          "open-source"
+        ],
+        "category": "ai-devtools",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "tech-community"
+      }
+    },
     "be4e7eb8e01beead52e57a2089516154d89e91d43043d077de5a3a91da04b48b": {
       "stored_at": "2026-10-30T23:30:12.253228+00:00",
       "value": {
@@ -64440,23 +64515,6 @@
         "source_category": "crypto-markets"
       }
     },
-    "dba64e10f9465d7a388d4d5d2cf5d29de32e601b0a1b81aaf9bb4927dba61d1f": {
-      "stored_at": "2026-10-30T00:07:15.898089+00:00",
-      "value": {
-        "ai_reason": "Preview of Strategy's (MicroStrategy) Q3 earnings release scheduled after the US market close, with its 848,517 BTC treasury, ~$75,446 average cost and roughly $4B (6%) unrealized gain at ~$80,300 BTC. The holdings figures come from an Oct 26 disclosure and the $20.91B Q3 BTC-related gain estimate from Oct 5, so the only in-window element is the scheduled earnings call; substantive results are not yet known. Useful market-structure/treasury context but not an urgent new development.",
-        "ai_score": 5.5,
-        "ai_summary": "Strategy is set to report Q3 earnings after the US close while holding 848,517 BTC at an average cost of ~$75,446, implying roughly $4 billion in unrealized gains at current prices, and it bought back ~$204.9 million of STRC preferred stock instead of adding bitcoin last week.",
-        "ai_tags": [
-          "bitcoin",
-          "treasury-companies",
-          "earnings",
-          "microstrategy",
-          "market-commentary"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "dbb97f449043f87a5ca16088163e37ed969162372baaf957607d64ff6069dae1": {
       "stored_at": "2026-10-31T23:28:55.526782+00:00",
       "value": {
@@ -71725,22 +71783,6 @@
         "category": "macro-regulation",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
-      }
-    },
-    "f61046cd5de488624da3a4bdb16b6d2fa255391635c865ebf4a56eccdf6905e8": {
-      "stored_at": "2026-10-30T00:07:15.897863+00:00",
-      "value": {
-        "ai_reason": "Routine price ticker flash: BTC crossing $81,000 with only a 0.4% 24h gain. Concrete but trivial market data with no actionable or structural significance; typical low-value price narrative rather than a market-moving development.",
-        "ai_score": 3.0,
-        "ai_summary": "Bitcoin briefly traded above $81,000, up 0.4% over 24 hours according to HTX market data.",
-        "ai_tags": [
-          "bitcoin",
-          "price-update",
-          "market-data",
-          "crypto-markets"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "f62647b4d553c92ed7f49a76456bc63107358c0f60449a6609ee861d9a4940c2": {
