@@ -139,7 +139,7 @@ jobs:
             ${{ runner.os }}-bmtnews-pipeline-v2-
             ${{ runner.os }}-bmtnews-staging-v1-
 
-      - name: Restore staging from persistent branch on cache miss
+      - name: Merge latest persistent staging with the restored cache
         shell: bash
         run: |
           if git fetch --depth=1 origin staging-cache 2>/dev/null; then
@@ -150,6 +150,7 @@ jobs:
             if [ ! -f data/analysis-cache.json ]; then
               git show FETCH_HEAD:data/analysis-cache.json > data/analysis-cache.json 2>/dev/null || rm -f data/analysis-cache.json
             fi
+            python3 scripts/merge_pipeline_cache.py FETCH_HEAD
           fi
 
       - name: Set up Python

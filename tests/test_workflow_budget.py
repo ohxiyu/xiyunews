@@ -64,10 +64,11 @@ def test_event_migration_has_explicit_gate_and_incremental_continuation() -> Non
     assert "keep_files: true" in migration
 
     collection = _workflow("feed-collection.yml")
-    assert "Restore published event state" in collection
-    assert "_data/archive" in collection
+    assert "Restore published event state" not in collection
+    assert "_data/archive" not in collection
     assert "python -m src.event_brief_backfill" not in collection
-    assert "Deploy incremental event pages" in collection
+    assert "src.rolling_feed" in collection
+    assert "peaceiris/actions-gh-pages" not in collection
     assert "_data/events.json" in daily
     assert "python -m src.event_brief_backfill" not in daily
     assert "Apply approved event archive migration" not in daily

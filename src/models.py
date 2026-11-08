@@ -781,6 +781,7 @@ class Config(BaseModel):
     """Main configuration model."""
 
     core_only: bool = False
+    rolling_feed: bool = False
 
     version: str = "1.0"
     ai: AIConfig

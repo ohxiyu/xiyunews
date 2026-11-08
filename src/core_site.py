@@ -26,10 +26,7 @@ def _card(*, attrs: dict, heading: str, body: str, meta: str, index: int) -> str
     target=(f"/{match[1]}/{match[2]}/{match[3]}/summary-zh.html" if match else "")+"#"+attrs['id']
     copy = f'<button type="button" class="copy-link" data-copy="{_escape(target)}" hidden>复制链接</button>'
     content = f'<div class="story-body">{body}<div class="story-actions">{copy}</div></div>'
-    if index <= 3:
-        content = f'<div class="story-meta">{meta}</div>{heading}{content}'
-    else:
-        content = f'<details class="compact-story"><summary><span class="story-meta">{meta}</span>{heading}<span class="expand-label">展开全文</span></summary>{content}</details>'
+    content = f'<div class="story-meta">{meta}</div>{heading}{content}'
     return f'<article class="digest-item core-story" {attributes}>{content}</article>'
 
 
@@ -52,7 +49,7 @@ def render_core_feed(items: list[ContentItem], *, date: str, display_timezone="A
             heading=f'<h2>{_escape(title)}</h2>', body=body,meta=meta,index=index))
         if index == 3: cards.append(EVENT_SLOT)
     if len(items)<3:cards.append(EVENT_SLOT)
-    return '<div class="core-feed" data-core-feed="1">'+"".join(cards)+'</div>\n'
+    return '<div class="core-feed" data-core-feed="2">'+"".join(cards)+'</div>\n'
 
 
 def convert_feed(content: str) -> str:
@@ -60,7 +57,20 @@ def convert_feed(content: str) -> str:
 
     Historical texts are never regenerated from a truncated public API.
     """
-    if 'data-core-feed="1"' in content:return content
+    if 'data-core-feed="2"' in content:return content
+    if 'data-core-feed="1"' in content:
+        soup=BeautifulSoup(content,'html.parser')
+        for details in list(soup.select('details.compact-story')):
+            summary=details.find('summary',recursive=False)
+            if summary:
+                label=summary.select_one('.expand-label')
+                if label:label.decompose()
+                summary.unwrap()
+            details.unwrap()
+        feed=soup.select_one('[data-core-feed]')
+        feed['data-core-feed']='2'
+        return str(soup)
+
     soup = BeautifulSoup(content,"html.parser")
     cards=[]
     for index, article in enumerate(soup.select('article.digest-item'),1):
@@ -99,7 +109,7 @@ def convert_feed(content: str) -> str:
         if soup.select_one('.empty-state'):return '<p class="empty-state">本期暂无达到展示标准的资讯。</p>'
         return content  # Pre-renderer historical Markdown remains readable and intact.
     if len(cards)<3:cards.append(EVENT_SLOT)
-    return '<div class="core-feed" data-core-feed="1">'+''.join(cards)+'</div>\n'
+    return '<div class="core-feed" data-core-feed="2">'+''.join(cards)+'</div>\n'
 
 
 def republish(root: Path) -> dict:

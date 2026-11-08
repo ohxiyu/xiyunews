@@ -683,7 +683,8 @@ class BMTNewsOrchestrator:
             # The pre-fetch backfill may update the restored catalog even when
             # this collection finds no new URLs. Always refresh derived event
             # pages and index data so published JSON cannot lag the catalog.
-            self._publish_current_event_pages()
+            if not self.config.rolling_feed:
+                self._publish_current_event_pages()
             self.console.print(
                 f"✅ Added {staged_added} new unique items; "
                 f"{len(staged_items)} retained in {staging_path}"

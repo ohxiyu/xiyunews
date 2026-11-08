@@ -36,6 +36,104 @@
     }
   ],
   "paths": {
+    "/api/live.json": {
+      "get": {
+        "summary": "Read qualified rolling 24-hour news",
+        "operationId": "getRollingNews",
+        "description": "Selected Chinese news ordered by source published_at descending. collected_at and generated_at are separate real pipeline timestamps. Expired stories are removed on reads; stale is true after 30 minutes without collection. Permanent story URLs survive expiry. Does not send Telegram or run AI.",
+        "responses": {
+          "200": {
+            "description": "Current qualified selection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "version",
+                    "generated_at",
+                    "collected_at",
+                    "window_start",
+                    "items",
+                    "stale"
+                  ],
+                  "properties": {
+                    "version": {
+                      "const": 1
+                    },
+                    "generated_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "collected_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "window_start": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "stale": {
+                      "type": "boolean"
+                    },
+                    "items": {
+                      "type": "array",
+                      "maxItems": 14,
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "title",
+                          "summary",
+                          "background",
+                          "url",
+                          "source",
+                          "published_at",
+                          "score"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[a-f0-9]{32}$"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "summary": {
+                            "type": "string"
+                          },
+                          "background": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "source": {
+                            "type": "string"
+                          },
+                          "published_at": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "score": {
+                            "type": "number",
+                            "minimum": 7,
+                            "maximum": 10
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "No verified snapshot; website explicitly falls back to archived daily."
+          }
+        }
+      }
+    },
     "/api/quick-posts.json": {
       "get": {
         "summary": "Read the manual Quick Post stream",

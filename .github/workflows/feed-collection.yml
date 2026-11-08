@@ -9,34 +9,24 @@ env:
 
 on:
   schedule:
-    # The Cloudflare dispatcher also dispatches this workflow whenever the
-    # newest run is over four hours old (project-docs/daily-dispatcher.md);
-    # this schedule is the second clock.
-    # Coverage runs roughly every four hours; the final fetch happens in
-    # daily-summary.yml at 07:26 after the 07:00 cutoff. High-churn sources (exchange
-    # Telegram channels) overflow their fetch limits with fewer runs.
-    - cron: '30 0,4,12,16,20 * * *'
-      timezone: 'Asia/Shanghai'
-    # Independent post-cutoff path. Its recovery job dispatches the daily
-    # edition even when Cloudflare and the standalone watchdog miss a trigger.
-    - cron: '37 7 * * *'
-      timezone: 'Asia/Shanghai'
+    # Backup clock; the unified Worker polls every five minutes with active-run guards.
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 
 permissions:
-  actions: write  # Allows the post-collection recovery check to dispatch daily
   contents: write  # Persists the staging cache to the staging-cache branch
 
 jobs:
   collect:
     concurrency:
-      group: bmtnews-feed-update
+      group: xiyunews-rolling-collection
       cancel-in-progress: false
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 30
     env:
       TZ: Asia/Shanghai
+      ROLLING_FEED: 'true'
 
     steps:
       - name: Checkout code
@@ -51,23 +41,6 @@ jobs:
             data
             .github
 
-      - name: Restore published event state
-        shell: bash
-        run: |
-          # Persistent runners retain shallow refs; only refresh the local tracking ref.
-          git fetch --depth=1 origin +gh-pages:refs/remotes/origin/gh-pages
-          mkdir -p docs/_data
-          for path in _data/events.json _data/event-legacy-urls.json; do
-            git show "origin/gh-pages:${path}" > "docs/${path}"
-          done
-          if git cat-file -e "origin/gh-pages:_data/bmtnews_state.json" 2>/dev/null; then
-            git show "origin/gh-pages:_data/bmtnews_state.json" > docs/_data/bmtnews_state.json
-          fi
-          mkdir -p docs/_data/archive
-          for path in $(git ls-tree -r --name-only origin/gh-pages -- _data/archive 2>/dev/null); do
-            git show "origin/gh-pages:${path}" > "docs/${path}"
-          done
-
       - name: Restore staged source items
         uses: actions/cache/restore@v5
         with:
@@ -79,7 +52,7 @@ jobs:
             ${{ runner.os }}-bmtnews-pipeline-v2-
             ${{ runner.os }}-bmtnews-staging-v1-
 
-      - name: Restore staging from persistent branch on cache miss
+      - name: Merge latest persistent staging with the restored cache
         shell: bash
         run: |
           if git fetch --depth=1 origin staging-cache 2>/dev/null; then
@@ -90,6 +63,7 @@ jobs:
             if [ ! -f data/analysis-cache.json ]; then
               git show FETCH_HEAD:data/analysis-cache.json > data/analysis-cache.json 2>/dev/null || rm -f data/analysis-cache.json
             fi
+            python3 scripts/merge_pipeline_cache.py FETCH_HEAD
           fi
 
       - name: Set up Python
@@ -108,10 +82,6 @@ jobs:
       - name: Prepare GitHub Actions config
         run: cp data/config.github.json data/config.json
 
-      - name: Restore durable publication documents before rendering
-        run: uv run python -m src.publication_state --restore-published
-
-
       - name: Collect sources into staging
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -120,7 +90,15 @@ jobs:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           LWN_KEY: ${{ secrets.LWN_KEY }}
           SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
-        run: uv run bmtnews --mode fetch --hours 12
+        run: uv run bmtnews --mode fetch --hours 24
+
+      - name: Select and publish rolling 24-hour news without site rebuild or delivery
+        env:
+          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
+          XIYUNEWS_EDGE_ENABLED: ${{ vars.XIYUNEWS_EDGE_ENABLED }}
+          XIYUNEWS_RECOVERY_CHECK_TOKEN: ${{ secrets.XIYUNEWS_RECOVERY_CHECK_TOKEN }}
+          RECOVERY_CHECK_TOKEN: ${{ secrets.RECOVERY_CHECK_TOKEN }}
+        run: uv run python -m src.rolling_feed
 
       - name: Publish run report
         if: ${{ always() }}
@@ -143,26 +121,6 @@ jobs:
           path: data/run-report.json
           retention-days: 30
           if-no-files-found: warn
-
-      - name: Repair retained edition history without AI or delivery
-        run: uv run python -m src.edition_recovery
-
-
-      - name: Rebuild core reader without AI or delivery
-        run: uv run python -m src.core_site --root docs --stage-reader reader-output
-
-      - name: Deploy incremental event pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./reader-output
-          keep_files: true
-          commit_message: "🧭 Event timeline: ${{ github.run_id }}"
-          publish_branch: gh-pages
-          enable_jekyll: true
-
-      - name: Confirm exact published state checkpoint
-        run: uv run python -m src.publication_state --acknowledge-published --reader-only
 
       - name: Persist staging cache to branch
         if: ${{ always() }}

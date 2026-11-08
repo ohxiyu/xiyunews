@@ -98,3 +98,19 @@ def test_workflow_uses_data_only_helper_without_force_push():
     assert "run: bash scripts/persist_staging_cache.sh" in workflow
     assert "git push -f" not in workflow
     assert "git checkout -B staging-cache" not in workflow
+
+
+def test_concurrent_real_snapshots_keep_both_sources_and_newest_ai_result():
+    import importlib.util
+    from datetime import datetime,timezone
+    spec=importlib.util.spec_from_file_location('merge_pipeline',SCRIPT.with_name('merge_pipeline_cache.py'))
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    now=datetime(2026,11,8,12,tzinfo=timezone.utc)
+    def staged(url):return {'version':1,'updated_at':now.isoformat(),'items':[{'url':url,'published_at':now.isoformat(),'fetched_at':now.isoformat(),'content':'事实'}]}
+    result=module.merge(staged('https://a.test/'),staged('https://b.test/'),'staging-items',now)
+    assert {r['url'] for r in result['items']}=={'https://a.test/','https://b.test/'}
+    old={'stored_at':'2026-11-08T10:00:00+00:00','value':{'score':7}}
+    new={'stored_at':'2026-11-08T11:00:00+00:00','value':{'score':9}}
+    merged=module.merge({'version':1,'entries':{'same':old,'local':new}},{'version':1,'entries':{'same':new,'remote':old}},'analysis-cache',now)
+    assert set(merged['entries'])=={'same','local','remote'}
+    assert merged['entries']['same']==new
