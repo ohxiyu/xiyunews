@@ -307,6 +307,15 @@ class RunReport:
             self.summaries.append(language)
 
     def fail(self, error: object) -> None:
+        from .ai.errors import account_error
+        blocked = account_error(error)
+        if blocked is not None:
+            error = blocked
+            self.set_metric("provider_account_http_status", blocked.status_code)
+            action = ("AI 服务余额不足，请充值后再重试；自动重试无法恢复余额。"
+                      if blocked.status_code == 402 else
+                      "AI 服务账户或权限不可用，请修复配置后再重试。")
+            self.add_alert("failure", "ai_account_" + blocked.reason, action)
         self.error = sanitize_diagnostic(error)
         self.status = "failure"
         self.add_alert("failure", "pipeline_failed", self.error)
@@ -690,3 +699,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
