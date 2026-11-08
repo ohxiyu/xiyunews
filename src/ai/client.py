@@ -391,8 +391,12 @@ class OpenAIClient(AIClient):
         if self.provider == "siliconflow":
             # SiliconFlow uses its own hybrid reasoning parameters, not the
             # DeepSeek official API's thinking object or reasoning_effort.
-            # Keep reasoning bounded; economy-mode extraction stays fast.
-            thinking = not (self.config.economy_mode and usage_stage(system) in SIMPLE_BUDGETS)
+            # Structured news tasks keep their full answer budget without
+            # spending another reasoning budget in economy mode.
+            thinking = not (
+                self.config.economy_mode
+                and (response_format == "json" or usage_stage(system) in SIMPLE_BUDGETS)
+            )
             request_kwargs["extra_body"] = {"enable_thinking": thinking}
             if thinking:
                 request_kwargs["extra_body"]["thinking_budget"] = 4096
@@ -404,7 +408,22 @@ class OpenAIClient(AIClient):
         if self.provider == "siliconflow":
             # SDK timeouts apply to individual network operations. Bound the
             # whole completion as well, including any SDK retry or keepalive.
-            return await asyncio.wait_for(request, timeout=self.config.request_timeout_seconds)
+            stage = usage_stage(system)
+            trace_stage = response_format == "json" and stage not in SIMPLE_BUDGETS
+            started = time.perf_counter()
+            if trace_stage:
+                rich_print(f"AI {stage} request started: thinking={thinking}, max_tokens={max_tokens}")
+            try:
+                response = await asyncio.wait_for(request, timeout=self.config.request_timeout_seconds)
+            except Exception as exc:
+                rich_print(
+                    f"AI {stage} request failed: {type(exc).__name__}, "
+                    f"elapsed={time.perf_counter() - started:.1f}s"
+                )
+                raise
+            if trace_stage:
+                rich_print(f"AI {stage} response received: elapsed={time.perf_counter() - started:.1f}s")
+            return response
         return await request
 
     @staticmethod
