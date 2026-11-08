@@ -121,3 +121,20 @@ def test_production_config_and_all_ai_workflow_steps_agree_on_secret():
         workflow = (root / ".github/workflows" / name).read_text()
         assert workflow.count("SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}") == count
         assert "secrets.DEEPSEEK_API_KEY" not in workflow
+
+
+def test_analyzed_story_records_new_provider_and_model(monkeypatch):
+    from datetime import datetime, timezone
+    from src.ai.analyzer import ContentAnalyzer
+    from src.ai.client import LAST_COMPLETION_SCORER
+    from src.models import ContentItem, SourceType
+    client, _, _ = stub_client(monkeypatch,
+        content='{"score":8,"reason":"material update","summary":"A report","tags":[]}')
+    item = ContentItem(id="story-1", source_type=SourceType.RSS, title="A news story",
+        url="https://example.com/story", published_at=datetime(2026, 11, 8, tzinfo=timezone.utc))
+    async def scenario():
+        LAST_COMPLETION_SCORER.set(None)
+        return await ContentAnalyzer(client).analyze_batch([item])
+    analyzed = asyncio.run(scenario())[0]
+    assert analyzed.ai_score == 8
+    assert analyzed.metadata["score_model"] == "siliconflow:Qwen/Qwen3.5-27B"

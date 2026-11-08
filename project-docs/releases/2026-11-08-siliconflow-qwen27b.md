@@ -39,7 +39,7 @@ JSON与文本请求按原调用方选择，拒绝空/截断输出，不返回 re
 不重跑生产或发送测试消息。Draft PR保持待密钥，不合并激活缺密钥配置。
 配置后先验证精确模型权限、真实JSON/正文和当期出刊，再观察评分分布与去重。
 
-Source commit: 基线9fdcd9fe58e32dca65c57dd9d0e1441814431b6e；应用提交待记录。
+Source commit: 基线9fdcd9fe58e32dca65c57dd9d0e1441814431b6e；应用提交0cb6c8b731a5a580e6a110a000e95da95c4823ce；[PR330](https://github.com/ohxiyu/xiyunews/pull/330)。
 
 Worker version: unchanged，未修改或手工部署Worker。
 

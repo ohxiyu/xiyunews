@@ -10,7 +10,7 @@
   "owner": "本聊天Codex唯一编辑与整合负责人",
   "branch": "agent/siliconflow-qwen27b",
   "last_verified_commit": "9fdcd9fe58e32dca65c57dd9d0e1441814431b6e",
-  "pr": "pending",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/330",
   "completed": [
     "核对main与Issue329，以GitHub connector读取固定main隔离源码快照",
     "新增显式siliconflow provider及Qwen3.5-27B默认值、硅基流动思考参数",
