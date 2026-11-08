@@ -80,7 +80,9 @@ class ContentAnalyzer:
             nonlocal terminal_error
             async with semaphore:
                 if terminal_error is not None:
-                    raise terminal_error
+                    # The originating task already fails the batch. Do not
+                    # re-raise a shared exception through every queued task.
+                    return item
                 try:
                     await self._analyze_item(item)
                 except Exception as e:

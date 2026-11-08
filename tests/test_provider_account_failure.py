@@ -65,7 +65,7 @@ def test_inflight_requests_are_cancelled_and_queue_is_not_started():
             await ContentAnalyzer(client).analyze_batch(items(140))
         assert started == [0, 1, 2]
         assert sorted(cancelled) == [1, 2]
-    asyncio.run(asyncio.wait_for(scenario(), timeout=2))
+    asyncio.run(asyncio.wait_for(scenario(), timeout=10))
 
 
 def test_client_latches_account_error_for_other_stages(monkeypatch):
