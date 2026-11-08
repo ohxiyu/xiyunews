@@ -127,7 +127,9 @@ class ContentAnalyzer:
     @retry(
         stop=stop_after_attempt(3),
         wait=wait_exponential(min=2, max=10),
-        retry=retry_if_exception(lambda exc: account_error(exc) is None),
+        retry=retry_if_exception(
+            lambda exc: isinstance(exc, Exception) and account_error(exc) is None
+        ),
     )
     async def _analyze_item(self, item: ContentItem) -> None:
         """Analyze a single content item.
