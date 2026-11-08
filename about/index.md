@@ -7,31 +7,19 @@ eyebrow: XIYU.NEWS ABOUT
 hide_language_toggle: true
 ---
 
-稀有News（xiyu.news）是一个公开、双语、每日更新的信息整理项目，主要覆盖加密市场、交易所、
+稀有News（xiyu.news）是一个公开、中文、每日更新的信息整理项目，主要覆盖加密市场、交易所、
 协议、安全事件和监管变化，同时保留有限篇幅给重要 AI 科技进展与可能影响数字资产
 市场的宏观政策。项目的目标不是追求最多新闻，而是将跨来源重复报道合并为较少、
 可核查、带上下文的事件条目，让读者在一个固定版本中理解当天真正发生了什么。
 
 系统从公开来源采集候选内容，经过 URL 规范化、跨来源去重、重要性评分、类别配额、
-来源上限和编辑规则后，每天生成一期中英文版本。每条内容尽量保留原始来源链接，
-并区分事实摘要、背景资料与市场影响分析。持续事件会被组织为跨日事件线，常见机构、
-公司和协议会进入实体索引。公开 JSON API、Atom feeds 和 OpenAPI 文档允许研究工具与
-智能体直接读取结构化结果，而不必抓取页面。
+来源上限与证据约束后，每天生成一期中文日报。每条内容尽量保留原始来源链接，
+并区分事实摘要、背景资料与市场影响分析。持续事件会被组织为有来源依据的事件流，按最新实质进展排列。往期日报按日期保留，方便回看。
 
-## English
+采集与写作由自动化辅助，背景仅在证据支持时生成，内容仍可能遗漏或出错。请通过原始来源核实重要信息；本站不提供投资建议。
 
-xiyu.news is a public, bilingual daily intelligence project focused primarily
-on crypto markets, exchanges, protocols, security incidents, and regulation,
-with a deliberately limited allocation for material AI and macro-policy news.
-Its purpose is to reduce repeated coverage into a smaller set of verifiable,
-context-rich events. The project publishes one fixed edition per day rather
-than presenting an endless real-time stream.
+[联系信息](https://xiyu.news/contact/) · [软件与内容权利](https://xiyu.news/legal/)
 
-Automation assists collection, ranking, translation, summarization, and
-enrichment, but generated analysis can still be incomplete or wrong. xiyu.news
-does not provide investment, legal, tax, or compliance advice. Readers and
-agents should verify consequential claims against the original linked sources.
-The website, read-only API, feeds, and license notices are public. The
-operational repository is private; its issue tracker is not a public contact
-channel. See [contact information](https://xiyu.news/contact/) and
-[software and content rights](https://xiyu.news/legal/) for the current published information.
+日报按上海时区前日 07:00 至当日 07:00 整理，每日 07:26 开始生成。刊期日期与来源发布时间分别标记；历史只知日期的事件不补造时分。延迟时保留实际上一期日期，不把旧内容标作今日。
+
+运行仓库为私有，公开页面和来源链接无需仓库权限即可阅读。

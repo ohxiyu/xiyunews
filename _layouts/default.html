@@ -1,3 +1,6 @@
+{% if site.core_only %}
+{% include core-layout.html %}
+{% else %}
 <!DOCTYPE html>
 {% assign interface_language = page.interface_language | default: page.lang | default: "zh" %}
 {% assign zh_language_url = "/" | relative_url %}
@@ -296,3 +299,5 @@
     </dialog>
   </body>
 </html>
+
+{% endif %}
