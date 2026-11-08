@@ -621,8 +621,12 @@ def render_web_feed(
     overview: EditionOverview | str | None = None,
     market: MarketSnapshot | None = None,
     sponsored: Iterable[EditorialEntry] | None = None,
+    core_only: bool = False,
 ) -> str:
     """Render the final feed markup so browsers do not rebuild the DOM."""
+    if core_only:
+        from .core_site import render_core_feed
+        return render_core_feed(list(items), date=date, display_timezone=display_timezone)
     normalized_language = "en" if language.lower().startswith("en") else "zh"
     labels = _LABELS[normalized_language]
     feed_items = list(items)

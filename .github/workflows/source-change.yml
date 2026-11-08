@@ -1,73 +1,7 @@
 name: xiyu.news Source Management
 
 on:
-  workflow_dispatch:
-    inputs:
-      operation:
-        description: 操作
-        type: choice
-        required: true
-        options:
-          - add
-          - update
-          - pause
-          - resume
-          - remove
-      source_type:
-        description: 来源类型
-        type: choice
-        required: true
-        options:
-          - rss
-          - telegram
-          - github
-          - reddit
-          - hackernews
-          - google_news
-          - gdelt
-          - ossinsight
-      source_key:
-        description: 现有来源键（新增时留空，可从 /s/ 复制）
-        type: string
-        required: false
-      name:
-        description: 名称（新增 RSS 必填；编辑时留空代表不变）
-        type: string
-        required: false
-      endpoint:
-        description: 公开地址或标识（新增必填；编辑时留空代表不变）
-        type: string
-        required: false
-      category:
-        description: 分类（新增必选；其他操作选择 unchanged 可保持不变）
-        type: choice
-        required: true
-        default: unchanged
-        options:
-          - unchanged
-          - exchange-announcements
-          - exchange-operations
-          - crypto-markets
-          - crypto-protocols
-          - crypto-regulation
-          - macro-regulation
-          - ai-labs
-          - ai-devtools
-          - tech-community
-          - ai-media
-      enabled:
-        description: 状态（新增请选择 true；编辑可保持 unchanged）
-        type: choice
-        required: true
-        default: unchanged
-        options:
-          - unchanged
-          - "true"
-          - "false"
-      reason:
-        description: 调整原因（不要填写密钥、凭据、私有地址或生产状态）
-        type: string
-        required: true
+  workflow_dispatch: # Retired in core site; source retained for history.
 
 concurrency:
   group: source-management-${{ github.run_id }}-${{ github.run_attempt }}
@@ -79,6 +13,7 @@ permissions:
 
 jobs:
   apply:
+    if: ${{ false }} # Retired; retained implementation is never executed.
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 20
     env:

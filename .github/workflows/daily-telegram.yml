@@ -1,0 +1,42 @@
+name: xiyunews Daily Telegram
+on:
+  workflow_run:
+    workflows: ['xiyu.news Daily Edition']
+    types: [completed]
+    branches: [main]
+concurrency:
+  group: xiyunews-core-telegram
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+jobs:
+  deliver:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+          path: published
+          sparse-checkout: _data/bmtnews_state.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/download-artifact@v7
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ github.event.workflow_run.id }}
+          pattern: run-report-*
+          path: source-report
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: '0.11.32'
+      - run: uv sync --frozen
+      - name: Send eligible new Chinese edition with durable one-shot receipt
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+        run: uv run python -m src.core_delivery

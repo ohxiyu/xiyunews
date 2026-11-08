@@ -25,6 +25,7 @@ on:
       - Deploy Docs
       - Editorial Rebuild
       - Apply Event Archive Migration
+      - xiyunews Event Updates
     types: [completed]
 
 concurrency:
@@ -119,20 +120,26 @@ jobs:
       - name: Reuse locked Ruby dependencies on the dedicated runner
         if: runner.environment == 'self-hosted' && steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         run: bash ops/runner/setup-ruby-cache.sh producer
-      - name: Render published snapshot without collection or AI
-        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-        run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
       - uses: astral-sh/setup-uv@v7
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         with:
           version: "0.11.32"
       - run: uv sync --frozen
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-      - name: Prepare bounded group messages from this published artifact without AI
+      - name: Overlay current core templates and routes
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-        run: >-
-          uv run python -m src.services.telegram_group_snapshot
-          .edge-source .edge-rendered --artifact "${{ steps.source.outputs.artifact }}"
+        run: |
+          for directory in _layouts _includes _sass assets; do
+            cp -a "docs/$directory/." ".edge-source/$directory/"
+          done
+          cp docs/_config.yml docs/index.md docs/threads.html docs/history.html .edge-source/
+      - name: Rebuild core reader from the immutable published snapshot
+        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
+        run: uv run python -m src.core_site --root .edge-source
+      - name: Render published snapshot without collection or AI
+        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
+        run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
+
       - name: Record validated output integrity and check existing cache capacity
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         id: cache-capacity

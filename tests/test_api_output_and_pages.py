@@ -811,7 +811,8 @@ def test_secondary_layout_keeps_content_first_and_separates_bilingual_copy() -> 
 
     assert 'grid-template-areas:\n      "stream"\n      "rail";' in tablet_rules
     assert ".main-content > h2:first-child" in stylesheet
-    assert "\n## English\n" in about
+    assert "公开、中文、每日更新" in about
+    assert "core.css" in Path("docs/_includes/core-layout.html").read_text()
     assert "\n## English\n" in contact
 
 

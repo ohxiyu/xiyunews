@@ -19,6 +19,7 @@ from .client import AIClient
 from .prompts import (
     CONCEPT_EXTRACTION_SYSTEM, CONCEPT_EXTRACTION_USER,
     CONTENT_ENRICHMENT_SYSTEM, CONTENT_ENRICHMENT_USER,
+    CORE_ENRICHMENT_SYSTEM, CORE_ENRICHMENT_USER,
 )
 from .utils import parse_json_response
 from .result_cache import ENRICHMENT_PREFIXES
@@ -28,7 +29,8 @@ from ..models import ContentItem
 class ContentEnricher:
     """Enriches high-scoring content items with background knowledge."""
 
-    def __init__(self, ai_client: AIClient):
+    def __init__(self, ai_client: AIClient, *, languages=None):
+        self.languages = tuple(languages or ("en", "zh"))
         self.client = ai_client
         self._search_tasks: dict[str, asyncio.Task[list]] = {}
 
@@ -239,7 +241,9 @@ class ContentEnricher:
         available_urls = {r["url"]: r["title"] for r in all_results if r.get("url")}
 
         # Step 3: AI generates background grounded in search results
-        user_prompt = CONTENT_ENRICHMENT_USER.format(
+        chinese_only = self.languages == ("zh",)
+        template = CORE_ENRICHMENT_USER if chinese_only else CONTENT_ENRICHMENT_USER
+        user_prompt = template.format(
             title=item.title,
             published_at=item.published_at.isoformat(),
             url=str(item.url),
@@ -253,7 +257,7 @@ class ContentEnricher:
         )
 
         response = await self.client.complete(
-            system=CONTENT_ENRICHMENT_SYSTEM,
+            system=CORE_ENRICHMENT_SYSTEM if chinese_only else CONTENT_ENRICHMENT_SYSTEM,
             user=user_prompt,
         )
 
@@ -264,20 +268,20 @@ class ContentEnricher:
             # instead of dropping the item untranslated.
             print(f"Warning: could not parse enrichment response for {item.id}, falling back to translation")
             raise ValueError("invalid_generation")
-        required = ("whats_new_en", "whats_new_zh")
-        translated_title = "title_en" if re.search(r"[\u3400-\u9fff]", item.title) else "title_zh"
+        required = tuple(f"whats_new_{lang}" for lang in self.languages)
+        translated_title = "title_zh" if chinese_only else ("title_en" if re.search(r"[\u3400-\u9fff]", item.title) else "title_zh")
         if any(not isinstance(result.get(key), str) or not result[key].strip()
                for key in (*required, translated_title)):
             raise ValueError("invalid_generation")
 
         # Supported context must not disappear from one language. Both empty
         # remains valid when the evidence cannot support useful background.
-        backgrounds = [result.get(f"background_{lang}", "") for lang in ("en", "zh")]
+        backgrounds = [result.get(f"background_{lang}", "") for lang in self.languages]
         if any(not isinstance(value, str) for value in backgrounds):
             raise ValueError("invalid_background")
-        if bool(backgrounds[0].strip()) != bool(backgrounds[1].strip()):
+        if len(backgrounds) == 2 and bool(backgrounds[0].strip()) != bool(backgrounds[1].strip()):
             raise ValueError("incomplete_bilingual_background")
-        for lang, value in zip(("en", "zh"), backgrounds):
+        for lang, value in zip(self.languages, backgrounds):
             result[f"background_{lang}"] = value.strip()
         # A publication timestamp or model memory cannot substantiate a
         # historical year. This narrow evidence check rejects invented years;
@@ -298,7 +302,7 @@ class ContentEnricher:
             result.pop("community_discussion_zh", None)
 
         # Combine structured sub-fields into per-language detailed_summary
-        for lang in ("en", "zh"):
+        for lang in self.languages:
             if result.get(f"title_{lang}"):
                 val = result[f"title_{lang}"]
                 item.metadata[f"title_{lang}"] = val.get("text") or str(val) if isinstance(val, dict) else str(val)

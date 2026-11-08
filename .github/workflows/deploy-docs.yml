@@ -5,11 +5,9 @@ on:
     branches: [main]
     paths:
       - 'docs/**'
-      - 'data/editorial.json'
-      - 'src/quick_posts.py'
-      - 'src/entity_republish.py'
       - 'src/brand_republish.py'
       - 'src/site_pages.py'
+      - 'src/core_site.py'
       - 'src/tracking_republish.py'
       - 'data/tracking-focus.json'
       - 'src/threads.py'
@@ -93,7 +91,7 @@ jobs:
           test -f current-site/_data/events.json
           cp current-site/_data/events.json docs/_data/events.json
           # Preserve generated API/history and migrate only owned URL prefixes.
-          for directory in api editions feeds; do
+          for directory in _posts api editions feeds; do
             if [ -d "current-site/$directory" ]; then
               mkdir -p "docs/$directory"
               cp -a "current-site/$directory/." "docs/$directory/"
@@ -148,27 +146,22 @@ jobs:
       - name: Migrate published self links without AI
         run: uv run python -m src.brand_republish --root docs
 
-      - name: Rebuild entity pages from published history
-        # This path makes the brand migration independent of a new paid AI run.
-        run: >-
-          uv run python -m src.entity_republish
-          --archive-root docs/_data/archive
-          --entity-root docs/entity
-          --data-root docs/_data
 
       - name: Rebuild focused tracking without AI
-        run: uv run python -m src.tracking_republish --root docs
+        run: uv run python -m src.tracking_republish --root docs --core-only
 
       - name: Repair retained edition history without AI or delivery
         run: uv run python -m src.edition_recovery
 
-      - name: Render Quick Post without AI
-        run: uv run python -m src.quick_posts
+
+      - name: Rebuild core reader from published content without AI or delivery
+        run: uv run python -m src.core_site --root docs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          exclude_assets: "_data/events.json,_data/event-legacy-urls.json"
           publish_dir: ./docs
           keep_files: true
           publish_branch: gh-pages
@@ -179,4 +172,4 @@ jobs:
                 || github.event.head_commit.message }}
 
       - name: Confirm exact published state checkpoint
-        run: uv run python -m src.publication_state --acknowledge-published
+        run: uv run python -m src.publication_state --acknowledge-published --reader-only

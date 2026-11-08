@@ -381,7 +381,7 @@ def test_story_card_matches_the_full_story_layout_without_a_page_url() -> None:
     assert "story.url" not in card_script
 
 
-def test_home_templates_keep_two_editions_and_split_languages() -> None:
+def test_legacy_templates_preserved_while_core_home_is_single_chinese_edition() -> None:
     root = Path(__file__).parents[1]
     include = (root / "docs" / "_includes" / "feed-home.html").read_text(
         encoding="utf-8"
@@ -400,7 +400,10 @@ def test_home_templates_keep_two_editions_and_split_languages() -> None:
     assert "07:26" in include
     assert "Number(parts.minute) >= 11" in include
     assert "post.fragment_url | default: post.url" in include
-    assert 'feed-home.html language="zh"' in zh_home
+    assert "core-home.html" in zh_home
+    core = (root / "docs/_includes/core-home.html").read_text()
+    assert "posts | first" in core
+    assert "pieces[0]" in core and "pieces[1]" in core
     assert 'feed-home.html language="en"' in en_home
     assert "permalink: /en/" in en_home
     assert "zh_language_url" in layout

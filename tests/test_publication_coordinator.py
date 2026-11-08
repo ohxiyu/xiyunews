@@ -106,7 +106,7 @@ def test_both_automatic_callers_pass_the_same_cutover_flag():
     from pathlib import Path
 
     root = Path(__file__).resolve().parents[1]
-    for name in ("schedule-watchdog.yml", "feed-collection.yml"):
+    for name in ("schedule-watchdog.yml",):
         content = (root / ".github/workflows" / name).read_text()
         assert "XIYUNEWS_EDGE_ENABLED: ${{ vars.XIYUNEWS_EDGE_ENABLED }}" in content
         assert "XIYUNEWS_RECOVERY_CHECK_TOKEN: ${{ secrets.XIYUNEWS_RECOVERY_CHECK_TOKEN }}" in content
@@ -132,3 +132,9 @@ def test_coordinator_logs_only_allowlisted_status(monkeypatch, capsys, state, vi
     assert f"{visible}（HTTP 503）" in output
     assert "test-secret" not in output
     assert "https://" not in output
+
+
+def test_collection_no_longer_duplicates_the_publication_watchdog():
+    from pathlib import Path
+    collection = Path(".github/workflows/feed-collection.yml").read_text()
+    assert "src.schedule_watchdog" not in collection

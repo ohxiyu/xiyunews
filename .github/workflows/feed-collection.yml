@@ -23,9 +23,6 @@ on:
       timezone: 'Asia/Shanghai'
   workflow_dispatch:
 
-concurrency:
-  group: bmtnews-feed-update
-  cancel-in-progress: false
 
 permissions:
   actions: write  # Allows the post-collection recovery check to dispatch daily
@@ -33,6 +30,9 @@ permissions:
 
 jobs:
   collect:
+    concurrency:
+      group: bmtnews-feed-update
+      cancel-in-progress: false
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 30
     env:
@@ -111,10 +111,8 @@ jobs:
       - name: Restore durable publication documents before rendering
         run: uv run python -m src.publication_state --restore-published
 
-      - name: Backfill event brief data
-        run: uv run python -m src.event_brief_backfill
 
-      - name: Collect sources and increment event timelines
+      - name: Collect sources into staging
         env:
           GITHUB_TOKEN: ${{ github.token }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -149,13 +147,15 @@ jobs:
       - name: Repair retained edition history without AI or delivery
         run: uv run python -m src.edition_recovery
 
-      - name: Render Quick Post without AI
-        run: uv run python -m src.quick_posts
+
+      - name: Rebuild core reader without AI or delivery
+        run: uv run python -m src.core_site --root docs
 
       - name: Deploy incremental event pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          exclude_assets: "events/**,threads/**,api/events/**,api/events.json,_data/events.json,_data/event-legacy-urls.json,_data/threads.json,_data/core_stream.json"
           publish_dir: ./docs
           keep_files: true
           commit_message: "🧭 Event timeline: ${{ github.run_id }}"
@@ -163,40 +163,10 @@ jobs:
           enable_jekyll: true
 
       - name: Confirm exact published state checkpoint
-        run: uv run python -m src.publication_state --acknowledge-published
+        run: uv run python -m src.publication_state --acknowledge-published --reader-only
 
       - name: Persist staging cache to branch
         if: ${{ always() }}
         shell: bash
         run: bash scripts/persist_staging_cache.sh
-
-  recover-daily:
-    needs: collect
-    if: ${{ always() && github.event_name == 'schedule' }}
-    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
-    timeout-minutes: 10
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-        with:
-          filter: blob:none
-          sparse-checkout: src
-
-      - name: Recover a missing daily edition
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RECOVERY_CHECK_TOKEN: ${{ secrets.RECOVERY_CHECK_TOKEN }}
-          XIYUNEWS_RECOVERY_CHECK_TOKEN: ${{ secrets.XIYUNEWS_RECOVERY_CHECK_TOKEN }}
-          XIYUNEWS_EDGE_ENABLED: ${{ vars.XIYUNEWS_EDGE_ENABLED }}
-        run: >-
-          python3 -m src.schedule_watchdog
-          --coordinator
-          --repository "${GITHUB_REPOSITORY}"
-          --workflow daily-summary.yml
-          --ref main
-          --timezone Asia/Shanghai
-          --cutoff-hour 7
-          --grace-minutes 26
-          --trigger-source feed-collection
-          --success-on-recovery
 

@@ -1,8 +1,9 @@
+core_only: true
 title: xiyu.news
 description: 稀有News，聚焦加密货币、交易所、市场、安全、监管与 AI 的每日情报。
 baseurl: ""
 url: "https://xiyu.news"
-asset_version: "sha256-2cf51fc4fed2"
+asset_version: "sha256-769fdd933527"
 # Cloudflare Web Analytics site token (public, shipped in every page; not a
 # secret). Empty disables the beacon entirely.
 cloudflare_web_analytics_token: ""
@@ -14,6 +15,15 @@ include:
   - "_headers"
   - "_worker.js"
 exclude:
+  - "en"
+  - "s"
+  - "admin"
+  - "developer"
+  - "developers"
+  - "sources.html"
+  - "manifest.webmanifest"
+  - "offline.html"
+  - "feed-en.xml"
   - ".github"
   - "node_modules"
   # Retired weekly pages remain in Git history, never in public output.

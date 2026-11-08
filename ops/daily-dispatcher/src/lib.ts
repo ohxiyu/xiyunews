@@ -315,12 +315,12 @@ export function publicationUrls(env: Env, editionDate: string): {
     throw new Error(`Invalid edition date: ${editionDate}`);
   }
   return {
-    raw: ["zh", "en"].map(
+    raw: ((env as Env & {CORE_ONLY?: boolean}).CORE_ONLY ? ["zh"] : ["zh", "en"]).map(
       (language) =>
         `https://api.github.com/repos/${repository}/contents/_posts/` +
         `${editionDate}-summary-${language}.md?ref=gh-pages`,
     ),
-    rendered: ["zh", "en"].map(
+    rendered: ((env as Env & {CORE_ONLY?: boolean}).CORE_ONLY ? ["zh"] : ["zh", "en"]).map(
       (language) =>
         `${base}/${year}/${month}/${day}/summary-${language}.html`,
     ),

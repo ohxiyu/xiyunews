@@ -1,10 +1,9 @@
 import dispatcher from "./index";
 import type { RecoveryEnv } from "./recovery";
-import {runGroupNews} from "./group-news";
 import {runtimeHealth} from "./runtime";
 // Reuse the audited Pages handler; do not duplicate auth, caching or API routing.
 // @ts-expect-error The existing JavaScript module is validated by its Node tests.
-import website, {primaryHostRedirect} from "../../../docs/_worker.js";
+import website, {primaryHostRedirect} from "../../../docs/core-worker.js";
 // @ts-expect-error The standalone watchdog remains independently Node-tested.
 import watchdog from "../../../realtime/scripts/deploy/watchdog/worker.js";
 export { RecoveryGate } from "./gate";
@@ -32,7 +31,7 @@ export interface UnifiedEnv extends Env {
 const OPERATIONS = new Set(["/health", "/ready", "/publication/check"]);
 
 function publicationEnv(env: UnifiedEnv, ctx?: ExecutionContext): RecoveryEnv {
-  return {...env, PUBLICATION_FETCH: (request: Request) => website.fetch(request, env, ctx)};
+  return {...env, CORE_ONLY: true, PUBLICATION_FETCH: (request: Request) => website.fetch(request, env, ctx)};
 }
 
 export default {
@@ -53,6 +52,7 @@ export default {
     if (path !== "/health" || !response.ok) return response;
     const health = await response.json() as Record<string, unknown>;
     return Response.json({...health, service: "xiyunews", project: "xiyunews",
+      core_only: true, languages: ["zh"], delivery: ["telegram-daily"],
       runner: await runtimeHealth(env.RUNTIME_HEALTH_URL),
       dispatcher_enabled: env.ENABLE_DISPATCHER === "true",
       realtime_watchdog_enabled: env.ENABLE_REALTIME_WATCHDOG === "true",
@@ -69,9 +69,6 @@ export default {
     }
     if (env.ENABLE_REALTIME_WATCHDOG === "true" && controller.cron === "*/5 * * * *") {
       tasks.push(Promise.resolve().then(() => watchdog.scheduled(controller, env)));
-    }
-    if (env.ENABLE_DISPATCHER === "true" && controller.cron === "*/5 * * * *") {
-      tasks.push(Promise.resolve().then(() => runGroupNews(env)));
     }
     // A publication error must not suppress the independent server watchdog.
     const results = await Promise.allSettled(tasks);

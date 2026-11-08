@@ -522,7 +522,7 @@ def test_workflows_stage_twice_and_publish_once() -> None:
     assert "staging-cache" in publication
     assert "bmtnews --mode fetch --hours 12" in collection
     assert "Restore published event state" in collection
-    assert "Collect sources and increment event timelines" in collection
+    assert "Collect sources into staging" in collection
     assert "Deploy incremental event pages" in collection
     assert "\n  schedule:" not in publication
     assert 'args=(--mode publish --hours 24 --cutoff-hour "$EDITION_CUTOFF_HOUR")' in publication
@@ -538,8 +538,9 @@ def test_workflows_stage_twice_and_publish_once() -> None:
     assert "timeout-minutes: 30" in publication
     assert "GITHUB_TOKEN: ${{ github.token }}" in collection
     assert "GITHUB_TOKEN: ${{ github.token }}" in publication
-    assert "actions: write" in publication
-    assert "gh workflow run x-distribution.yml" in publication
-    assert '-f kickoff_only=true' in publication
-    assert "TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}" in publication
-    assert "TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}" in publication
+    assert "gh workflow run x-distribution.yml" not in publication
+    assert "TELEGRAM_BOT_TOKEN:" not in publication
+    telegram = (root / ".github/workflows/daily-telegram.yml").read_text()
+    assert "workflows: ['xiyu.news Daily Edition']" in telegram
+    assert "TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}" in telegram
+    assert "src.core_delivery" in telegram

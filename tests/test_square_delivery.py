@@ -176,17 +176,13 @@ def test_git_remote_recovers_exact_plan_and_attempt(tmp_path):
     assert list(pending["editions"]["2026-09-12"].values())[0]["status"] == "pending"
 
 
-def test_workflow_fast_gate_precedes_edition_read_and_install():
+def test_square_workflow_is_retired_but_legacy_implementation_remains():
     workflow = (Path(__file__).parents[1] / ".github/workflows/square-distribution.yml").read_text()
-    assert workflow.index("id: gate") < workflow.index("gh api -H") < workflow.index("uv sync --frozen")
-    assert "if: steps.gate.outputs.sync == 'true'" in workflow
-    assert "cron: '13 1-15 * * *'" in workflow
-    assert "cron: '*/5" not in workflow
-    assert 'QUEUE_ONLY: ${{ inputs.queue_only }}' in workflow
-    assert '[ "$QUEUE_ONLY" != true ]' in workflow
-    assert "head_repository.full_name == github.repository" in workflow
-    assert "ref: main" in workflow and "branches: [main]" in workflow
-    assert "'Deploy Docs'" in workflow and "'xiyu.news Feed Collection'" in workflow
+    assert 'if: ${{ false }}' in workflow
+    assert '\n  schedule:' not in workflow
+    assert '\n  workflow_run:' not in workflow
+    assert 'id: gate' in workflow
+
 
 
 def test_idle_gate_needs_no_installed_dependencies(tmp_path):

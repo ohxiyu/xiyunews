@@ -2,12 +2,7 @@ name: Apply Event Archive Migration
 run-name: Apply reviewed event archive migration
 
 on:
-  workflow_dispatch:
-    inputs:
-      confirmation:
-        description: Type MIGRATE to apply the approved archive plan
-        type: string
-        required: true
+  workflow_dispatch: # Retired in core site; source retained for history.
 
 concurrency:
   group: bmtnews-feed-update
@@ -15,6 +10,7 @@ concurrency:
 
 jobs:
   migrate:
+    if: ${{ false }} # Retired; retained implementation is never executed.
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 10
     permissions:

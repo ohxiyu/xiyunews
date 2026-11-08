@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 const require=createRequire(new URL('../ops/daily-dispatcher/package.json',import.meta.url));
 const {transform}=require('esbuild');
 const OWNED=[
+  'css/core.css','js/core.js',
   'css/bmtnews-ui.css','css/editorial-ui.css','css/pwa-reader.css','css/source-console.css',
   'js/bmtnews-ui.js','js/pwa-reader.js','js/quick-posts.js','js/story-card.js','js/source-console.js',
 ];

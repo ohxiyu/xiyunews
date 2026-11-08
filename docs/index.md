@@ -5,4 +5,4 @@ page_type: home
 interface_language: zh
 ---
 
-{% include feed-home.html language="zh" %}
+{% include core-home.html %}

@@ -654,7 +654,7 @@ class BMTNewsOrchestrator:
                 staged_added,
             )
             run_report.set_metric("staged_total", len(staged_items))
-            if EVENT_CATALOG_PATH.exists() and added_identities:
+            if not self.config.core_only and EVENT_CATALOG_PATH.exists() and added_identities:
                 new_items = [
                     item
                     for item in staged_items
@@ -670,7 +670,7 @@ class BMTNewsOrchestrator:
                 run_report.set_metric("event_analyzed", len(analyzed))
                 run_report.set_metric("event_qualified", len(qualified))
                 await self._update_event_timeline(qualified, run_report=run_report)
-            elif EVENT_CATALOG_PATH.exists():
+            elif not self.config.core_only and EVENT_CATALOG_PATH.exists():
                 # Retry durable pending relations even when no new URLs arrive.
                 await self._update_event_timeline([], run_report=run_report)
             # Relation failures are retained in the catalog's pending queue;
@@ -907,7 +907,8 @@ class BMTNewsOrchestrator:
             )
             run_report.set_metric("staged_total", len(staged_items))
 
-            editorial_plan = load_editorial_plan(
+            from .editorial import EditorialPlan
+            editorial_plan = EditorialPlan() if self.config.core_only else load_editorial_plan(
                 date_type.fromisoformat(window.date)
             )
             suppressed_keys = {
@@ -1377,10 +1378,10 @@ class BMTNewsOrchestrator:
 
             # Event membership is assigned before rendering and archiving so
             # both the human page and edition JSON point to the exact update.
-            await self._update_event_timeline(
-                important_items,
-                run_report=run_report,
-            )
+            if not self.config.core_only:
+                await self._update_event_timeline(important_items, run_report=run_report)
+            else:
+                run_report.add_alert("info", "events_deferred", "事件 AI 更新由采集任务独立执行，不阻塞日报。")
             important_items = self._distinct_daily_events(important_items)
             important_items = [
                 *[item for item in important_items if item.source_type == SourceType.EDITORIAL],
@@ -2068,7 +2069,7 @@ class BMTNewsOrchestrator:
 
         market_snapshot = None
         overview_client = None
-        if items and not static_only:
+        if items and not static_only and not self.config.core_only:
             try:
                 market_snapshot = await fetch_market_snapshot()
             except Exception as exc:
@@ -2170,6 +2171,7 @@ class BMTNewsOrchestrator:
                     overview=overview,
                     market=market_snapshot,
                     sponsored=sponsored,
+                    core_only=self.config.core_only,
                 )
                 _atomic_write_text(
                     dest_path,
@@ -2199,7 +2201,7 @@ class BMTNewsOrchestrator:
                     f"to docs/: {exc}[/yellow]\n"
                 )
 
-            if not static_only and self.email_manager and self.config.email and self.config.email.enabled:
+            if not self.config.core_only and not static_only and self.email_manager and self.config.email and self.config.email.enabled:
                 self.console.print(f"📧 Sending {lang.upper()} email summary...")
                 subscribers = self.storage.load_subscribers()
                 subject = f"xiyu.news ({lang.upper()}) - {date}"
@@ -2209,7 +2211,7 @@ class BMTNewsOrchestrator:
                     subscribers,
                 )
 
-            if not static_only and self.webhook_notifier:
+            if not self.config.core_only and not static_only and self.webhook_notifier:
                 await self.webhook_notifier.send_daily_summary(
                     summary=summary,
                     important_items=items,
@@ -2219,7 +2221,10 @@ class BMTNewsOrchestrator:
                     summarizer=summarizer,
                 )
 
-        if static_only:
+        if self.config.core_only and not static_only:
+            run_report.add_alert("info", "telegram_rebuild_skipped" if skip_telegram else "telegram_deferred",
+                "已发布刊期不重复发送。" if skip_telegram else "Telegram 由独立的发布后任务发送，失败不阻塞网站。")
+        if static_only or self.config.core_only:
             run_report.set_timing("publish_outputs", time.perf_counter() - publish_started)
             return {"market": None, "overviews": {}, "x_posted": []}
         if skip_telegram:
@@ -2820,8 +2825,15 @@ class BMTNewsOrchestrator:
                 market=market,
                 overviews=overviews,
             )
+            if self.config.core_only:
+                for row in payload["items"]:
+                    for field in ("title", "summary", "content_revision"):
+                        if isinstance(row.get(field), dict): row[field].pop("en", None)
             write_edition_api(payload, date=date)
             write_editions_index(history)
+            if self.config.core_only:
+                run_report.set_metric("archive_records", len(records))
+                return
             write_category_feeds(history, languages)
 
             threads = collect_threads(history, minimum_days=2, limit=40)
@@ -3677,7 +3689,7 @@ class BMTNewsOrchestrator:
             self._set_timing("enrichment", started)
             return
         ai_client = create_ai_client(self.config.ai)
-        enricher = ContentEnricher(ai_client)
+        enricher = ContentEnricher(ai_client, languages=self.config.ai.languages if self.config.core_only else None)
         await enricher.enrich_batch(misses)
         if cache is not None:
             for item in misses:

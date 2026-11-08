@@ -778,6 +778,8 @@ class FilteringConfig(BaseModel):
 
 
 class Config(BaseModel):
+    core_only: bool = False
+
     """Main configuration model."""
 
     version: str = "1.0"

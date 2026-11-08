@@ -17,7 +17,7 @@ describe("single xiyunews project", () => {
   it.each(["/", "/health", "/publication/check", "/api/_telegram-group.json", "/s/", "/api/latest.json?x=1&x=2"])("canonicalizes www before any routing: %s", async (path) => {
     const e=fixture(),call=vi.spyOn(dispatcher,"fetch");
     const response=await unified.fetch(new Request("https://www.xiyu.news"+path),e,context);
-    expect(response.status).toBe(301);
+    expect(response.status).toBe(308);
     expect(response.headers.get("Location")).toBe("https://xiyu.news"+path);
     expect(e.ASSETS.fetch).not.toHaveBeenCalled();expect(call).not.toHaveBeenCalled();
   });
@@ -36,12 +36,12 @@ describe("single xiyunews project", () => {
     expect(await response.text()).toBe("site asset");
     expect(e.ASSETS.fetch).toHaveBeenCalled();
   });
-  it("authenticates admin requests before any static asset fallback", async () => {
+  it("retires admin requests before any static asset fallback", async () => {
     const e = fixture();
     const response = await unified.fetch(new Request("https://xiyu.news/s/"), e, context);
-    expect(response.status).toBe(503);
+    expect(response.status).toBe(410);
     expect(e.ASSETS.fetch).not.toHaveBeenCalled();
-    expect(response.headers.get("Cache-Control")).toBe("private, no-store");
+    expect(response.headers.get("Cache-Control")).toBe("no-store");
   });
   it("fails closed on publication mutations while paused", async () => {
     const call = vi.spyOn(dispatcher, "fetch");
@@ -94,7 +94,7 @@ describe("single xiyunews project", () => {
     expect(response.status).toBe(published && !stale ? 200 : 202);
     expect(calls.every(request => new URL(request.url).hostname === "api.github.com")).toBe(true);
     expect(calls.filter(request => request.method === "POST")).toHaveLength(published ? 0 : 1);
-    expect(assetRequests.length).toBeGreaterThanOrEqual(published && !stale ? 6 : 2);
+    expect(assetRequests.length).toBeGreaterThanOrEqual(published && !stale ? 4 : 2);
     expect(assetRequests.every(request => !request.headers.has("Authorization") && new URL(request.url).searchParams.has("publication_check"))).toBe(true);
   });
   it("injects the same local probe for Cron as for the authenticated recovery endpoint", async () => {

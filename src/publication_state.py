@@ -8,7 +8,7 @@ import sqlite3
 import time
 from contextlib import contextmanager
 
-PRODUCERS = {"xiyu.news Feed Collection", "xiyu.news Daily Edition", "Deploy Docs",
+PRODUCERS = {"xiyunews Daily Telegram", "xiyunews Event Updates","xiyu.news Feed Collection", "xiyu.news Daily Edition", "Deploy Docs",
     "xiyu.news Weekly Review", "Editorial Rebuild", "Apply Event Archive Migration",
     "xiyu.news X Distribution", "xiyu.news Binance Square Distribution", "xiyunews State Maintenance"}
 DOCUMENTS = {"data/staging-items.json": "staging",
@@ -311,7 +311,7 @@ def write_document(path, value, *, name=None):
     _atomic_write_text(path, json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
 
 
-def acknowledge_published_snapshot():
+def acknowledge_published_snapshot(*, reader_only=False):
     """Read back the real remote commit after the publication action succeeded.
 
     Local exports, retained refs, and action exit status alone cannot certify
@@ -326,6 +326,8 @@ def acknowledge_published_snapshot():
     sha = subprocess.check_output(["git", "rev-parse", "origin/gh-pages"], text=True).strip()
     values = {}
     for relative, name in DOCUMENTS.items():
+        if reader_only and name in {"events", "event_urls"}:
+            continue
         if not relative.startswith("docs/") or not Path(relative).is_file():
             continue
         local = json.loads(Path(relative).read_text())
@@ -366,13 +368,14 @@ def main():
     parser.add_argument("--bootstrap", type=Path)
     parser.add_argument("--verify", action="store_true")
     parser.add_argument("--acknowledge-published", action="store_true")
+    parser.add_argument("--reader-only", action="store_true")
     parser.add_argument("--restore-published", action="store_true")
     args = parser.parse_args()
     if args.restore_published:
         print(json.dumps(restore_published_documents()))
         return
     if args.acknowledge_published:
-        print(json.dumps(acknowledge_published_snapshot()))
+        print(json.dumps(acknowledge_published_snapshot(reader_only=args.reader_only)))
         return
     store = active_store()
     if store is None:

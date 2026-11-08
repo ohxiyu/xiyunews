@@ -1,3 +1,4 @@
+core_only: true
 # Cloudflare's Git integration runs `bundle exec jekyll build` at the
 # repository root for pull-request previews. Production publishing still
 # copies docs/ to gh-pages, where docs/_config.yml becomes the root config.
@@ -8,7 +9,7 @@ title: xiyu.news
 description: Crypto market intelligence covering exchanges, markets, security, regulation, and protocols
 baseurl: ""
 url: "https://xiyu.news"
-asset_version: "sha256-2cf51fc4fed2"
+asset_version: "sha256-769fdd933527"
 
 markdown: kramdown
 future: true
@@ -16,6 +17,15 @@ include:
   - "_headers"
   - "_worker.js"
 exclude:
+  - "en"
+  - "s"
+  - "admin"
+  - "developer"
+  - "developers"
+  - "sources.html"
+  - "manifest.webmanifest"
+  - "offline.html"
+  - "feed-en.xml"
   - ".github"
   - "node_modules"
   # Retired weekly pages remain in Git history, never in public output.
