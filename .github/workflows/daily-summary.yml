@@ -93,7 +93,6 @@ jobs:
       TZ: Asia/Shanghai
     permissions:
       contents: write  # Needed to commit changes
-      actions: write   # Starts the idempotent first X slot after publication
 
     steps:
       - name: Checkout code
@@ -172,8 +171,6 @@ jobs:
       - name: Restore durable publication documents before rendering
         run: uv run python -m src.publication_state --restore-published
 
-      - name: Backfill event brief data
-        run: uv run python -m src.event_brief_backfill
 
       - name: Run xiyu.news
         env:
@@ -185,14 +182,6 @@ jobs:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           LWN_KEY: ${{ secrets.LWN_KEY }}
           SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
-          BMTNEWS_WEBHOOK_URL: ${{ secrets.BMTNEWS_WEBHOOK_URL }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
-          # Only used when x_delivery.enabled is true in the config.
-          X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
-          X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
-          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
-          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
           EDITION_CUTOFF_HOUR: ${{ inputs.cutoff_hour || '7' }}
         shell: bash
         run: |
@@ -237,39 +226,20 @@ jobs:
       - name: Repair retained edition history without AI or delivery
         run: uv run python -m src.edition_recovery
 
-      - name: Render Quick Post without AI
-        run: uv run python -m src.quick_posts
+
+      - name: Rebuild core reader from published content without AI or delivery
+        run: uv run python -m src.core_site --root docs --stage-reader reader-output
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          publish_dir: ./reader-output
           keep_files: true  # Keep existing summaries on gh-pages branch
           commit_message: "📝 Daily Summary: ${{ steps.edition.outputs.date }}"
           publish_branch: gh-pages
           enable_jekyll: true
 
       - name: Confirm exact published state checkpoint
-        run: uv run python -m src.publication_state --acknowledge-published
-
-      - name: Start X distribution for published edition
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          for attempt in 1 2 3; do
-            if gh workflow run x-distribution.yml \
-              --ref "$GITHUB_REF_NAME" \
-              -f edition_date="${{ steps.edition.outputs.date }}" \
-              -f kickoff_only=true; then
-              exit 0
-            fi
-            if [ "$attempt" -lt 3 ]; then
-              sleep $((attempt * 5))
-            fi
-          done
-          # The edition is live; the X cron picks it up within 20 minutes.
-          echo "::warning::Published the daily edition but could not start X distribution; the scheduled X run will pick it up"
-          exit 0
+        run: uv run python -m src.publication_state --acknowledge-published --reader-only
 

@@ -54,7 +54,7 @@ def test_event_migration_has_explicit_gate_and_incremental_continuation() -> Non
 
     assert "workflow_dispatch:" in migration
     assert "schedule:" not in migration
-    assert 'CONFIRMATION: ${{ inputs.confirmation }}' in migration
+    assert 'if: ${{ false }}' in migration
     assert 'if [ "$CONFIRMATION" != "MIGRATE" ]' in migration
     assert "group: bmtnews-feed-update" in migration
     assert "Apply reviewed migration" in migration
@@ -66,20 +66,17 @@ def test_event_migration_has_explicit_gate_and_incremental_continuation() -> Non
     collection = _workflow("feed-collection.yml")
     assert "Restore published event state" in collection
     assert "_data/archive" in collection
-    assert "python -m src.event_brief_backfill" in collection
+    assert "python -m src.event_brief_backfill" not in collection
     assert "Deploy incremental event pages" in collection
     assert "_data/events.json" in daily
-    assert "python -m src.event_brief_backfill" in daily
+    assert "python -m src.event_brief_backfill" not in daily
     assert "Apply approved event archive migration" not in daily
 
 
-def test_docs_deploy_rebuilds_entities_from_published_archive() -> None:
+def test_docs_deploy_rebuilds_core_reader_without_entity_ai_or_messages():
     deploy = _workflow("deploy-docs.yml")
-
-    assert "'src/entity_republish.py'" in deploy
     assert "Checkout current published site" in deploy
     assert "Restore current published archive" in deploy
-    assert "python -m src.entity_republish" in deploy
-    assert "--archive-root docs/_data/archive" in deploy
-    assert "--entity-root docs/entity" in deploy
-    assert "--data-root docs/_data" in deploy
+    assert "python -m src.core_site --root docs" in deploy
+    assert "python -m src.entity_republish" not in deploy
+    assert "python -m src.quick_posts" not in deploy

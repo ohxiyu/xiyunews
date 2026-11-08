@@ -766,6 +766,8 @@ def _timeline(material: Sequence[EventUpdate], limit: int = 10) -> list[dict]:
             {
                 "update_id": update.update_id,
                 "date": update.occurred_at.astimezone(local_zone).date().isoformat(),
+                "timestamp": update.occurred_at.astimezone(local_zone).isoformat(),
+                "display_time": update.occurred_at.astimezone(local_zone).strftime("%m.%d %H:%M CST") if update.time_precision.value != "edition" else update.occurred_at.astimezone(local_zone).strftime("%m.%d") + " · 刊期日期",
                 "time_precision": update.time_precision.value,
                 "type_zh": _UPDATE_LABELS[update.update_type.value]["zh"],
                 "type_en": _UPDATE_LABELS[update.update_type.value]["en"],

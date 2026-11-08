@@ -8,24 +8,7 @@ env:
   GIT_CONFIG_VALUE_0: HTTP/1.1
 
 on:
-  # Existing production flows provide an independent trigger if this cron is dropped.
-  workflow_run:
-    # Not 'xiyu.news X Distribution': X is triggered by this workflow's completion.
-    workflows: ['xiyu.news Daily Edition', 'xiyu.news Feed Collection', 'Deploy Docs']
-    types: [completed]
-    branches: [main]
-  schedule:
-    - cron: '13 1-15 * * *' # Hourly backup; Worker checks due queues every 5 min.
-  workflow_dispatch:
-    inputs:
-      queue_only:
-        description: 'External scheduler: check persisted queue without forced edition sync'
-        type: boolean
-        default: false
-      edition_date:
-        description: 'Optional YYYY-MM-DD for explicit historical catch-up'
-        type: string
-        default: ''
+  workflow_dispatch: # Retired in core site; source retained for history.
 
 concurrency:
   group: bmtnews-square-distribution
@@ -36,11 +19,7 @@ permissions:
 
 jobs:
   publish:
-    if: >-
-      ${{ vars.SQUARE_ENABLED == 'true' &&
-          (github.event_name != 'workflow_run' ||
-           (github.event.workflow_run.conclusion == 'success' &&
-            github.event.workflow_run.head_repository.full_name == github.repository)) }}
+    if: ${{ false }} # Retired; retained implementation is never executed.
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 20
     steps:

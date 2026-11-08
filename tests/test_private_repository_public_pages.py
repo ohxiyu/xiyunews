@@ -27,7 +27,7 @@ def test_public_policy_surfaces_do_not_require_private_repo_access() -> None:
         text = (ROOT / relative).read_text()
         assert "https://github.com/ohxiyu/xiyunews" not in text
     about = (ROOT / "docs/about/index.md").read_text()
-    assert "operational repository is private" in about
+    assert "运行仓库为私有" in about
     contact = (ROOT / "docs/contact/index.md").read_text()
     assert "https://x.com/ohxiyu" in contact
     assert "没有站内提交表单" in contact

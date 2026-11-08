@@ -77,6 +77,11 @@ def test_publication_ack_reads_real_remote_and_preserves_unpublished_changes(tmp
     state.load_document('events', old)
     state.save_document('events', new)
     path.write_text(json.dumps(new))
+    # Reader publication must not ACK event work computed concurrently.
+    ignored = acknowledge_published_snapshot(reader_only=True)
+    assert ignored['acknowledged'] == []
+    with state.connect() as db:
+        assert db.execute("SELECT dirty FROM publication_documents WHERE name='events'").fetchone()[0] == 1
     with pytest.raises(StateConflict, match='published bytes differ'):
         acknowledge_published_snapshot()
     assert state.load_document('events', old) == new

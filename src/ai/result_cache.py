@@ -15,7 +15,7 @@ from ..publication_state import active_store
 
 
 CACHE_VERSION = 1
-ENRICHMENT_POLICY_VERSION = "news-editorial-v5-date-grounding"
+ENRICHMENT_POLICY_VERSION = "news-editorial-v6-core-zh"
 PREFILTER_TTL = timedelta(days=1)
 PREFILTER_MAX_BATCHES = 256
 ANALYSIS_FIELDS = ("ai_score", "ai_reason", "ai_summary", "ai_tags")
@@ -98,7 +98,7 @@ class AnalysisResultCache:
                     for name in (
                         ("CONTENT_ANALYSIS_SYSTEM", "CONTENT_ANALYSIS_USER")
                         if stage == "analysis" else
-                        ("CONTENT_ENRICHMENT_SYSTEM", "CONTENT_ENRICHMENT_USER", "CONCEPT_EXTRACTION_SYSTEM", "CONCEPT_EXTRACTION_USER")
+                        ("CONTENT_ENRICHMENT_SYSTEM", "CONTENT_ENRICHMENT_USER", "CORE_ENRICHMENT_SYSTEM", "CORE_ENRICHMENT_USER", "CONCEPT_EXTRACTION_SYSTEM", "CONCEPT_EXTRACTION_USER")
                     )
                 ],
                 "url": str(item.url),

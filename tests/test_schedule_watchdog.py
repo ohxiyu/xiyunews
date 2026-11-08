@@ -285,18 +285,12 @@ def test_watchdog_workflow_has_schedule_aware_arguments() -> None:
     assert "--threshold-hours" not in workflow
 
 
-def test_feed_collection_has_independent_daily_recovery() -> None:
-    workflow = (
-        Path(__file__).parents[1]
-        / ".github"
-        / "workflows"
-        / "feed-collection.yml"
-    ).read_text(encoding="utf-8")
+def test_daily_recovery_has_one_independent_backup():
+    root = Path(__file__).parents[1] / ".github/workflows"
+    collection = (root / "feed-collection.yml").read_text()
+    watchdog = (root / "schedule-watchdog.yml").read_text()
+    assert "recover-daily:" not in collection
+    assert "src.schedule_watchdog" in watchdog
+    assert "--coordinator" in watchdog
+    assert "--cutoff-hour 7" in watchdog
 
-    assert "cron: '37 7 * * *'" in workflow
-    assert "actions: write" in workflow
-    assert "recover-daily:" in workflow
-    assert "needs: collect" in workflow
-    assert "--grace-minutes 26" in workflow
-    assert "--trigger-source feed-collection" in workflow
-    assert "--success-on-recovery" in workflow

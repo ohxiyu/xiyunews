@@ -15,6 +15,7 @@ export interface RecoveryResult {
 }
 
 export type RecoveryEnv = Env & {
+  CORE_ONLY?: boolean;
   EDGE_DEPLOY_WORKFLOW?: string;
   // The unified Worker cannot probe its own origin with a public subrequest.
   // Inject the exact website handler, not raw assets or a readiness shortcut.
@@ -150,7 +151,7 @@ export async function inspectPublication(env: RecoveryEnv, date: string, now: nu
   const publicItems = editionItems(publicJson, date);
   const revisions = {
     zh: contentRevisions(rawJson, "zh"),
-    en: contentRevisions(rawJson, "en"),
+    en: env.CORE_ONLY ? null : contentRevisions(rawJson, "en"),
   };
   // Same date/count is not enough: compare the actual published payload.
   const samePayload = rawJson !== null && publicJson !== null &&

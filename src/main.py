@@ -151,6 +151,9 @@ def main():
             console.print(f"[bold red]❌ Error loading configuration: {e}[/bold red]")
             sys.exit(1)
 
+        if config.core_only and args.mode not in {"fetch", "publish"}:
+            raise ValueError("Core site supports only fetch and publish modes")
+
         # Create and run orchestrator
         orchestrator = BMTNewsOrchestrator(config, storage)
         if args.mode == "fetch":

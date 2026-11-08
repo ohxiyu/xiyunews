@@ -1,6 +1,8 @@
 <div align="center">
 <h1>🛰️ xiyu.news</h1>
 
+> 当前生产站采用核心版：中文日报、事件流、按日期往期、Telegram 日报、深色模式与复制链接。英文实现保留在源码，线上功能关闭；人工纠错/后台、Quick Post、X/Square、周报/实体生成和 PWA 已退出生产。详见 [核心版交付记录](project-docs/releases/2026-11-08-core-site.md)。
+
 <p><strong>AI 策划的每日情报简报：加密市场、AI 与政策。</strong></p>
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)

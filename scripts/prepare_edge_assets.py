@@ -11,7 +11,9 @@ def prepare(source: Path, destination: Path) -> None:
         raise ValueError("source and destination must be separate directories")
     if destination.exists():
         raise ValueError("destination must not already exist")
-    for required in ("index.html", "api/latest.json", "s/index.html", "feed-zh.xml", "sitemap.xml", "llms.txt"):
+    core = (source / "assets/css/core.css").is_file() and 'class="core-site' in (source / "index.html").read_text()
+    required_paths = ("index.html", "api/latest.json", "history/index.html", "threads/index.html") if core else ("index.html", "api/latest.json", "s/index.html", "feed-zh.xml", "sitemap.xml", "llms.txt")
+    for required in required_paths:
         if not (source / required).is_file():
             raise ValueError(f"missing rendered public output: {required}")
     latest = json.loads((source / "api/latest.json").read_text())
@@ -30,6 +32,16 @@ def prepare(source: Path, destination: Path) -> None:
     # Every publisher and restored build cache passes this final public boundary.
     # Collection may carry an older source description; never advertise a retired
     # section again, and leave the immutable input snapshot unchanged.
+    if core:
+        for relative in ("en", "s", "admin", "developer", "developers", "feeds", "api/_telegram-group.json", "api/quick-posts.json", "llms.txt", "llms-full.txt", "openapi.json", "manifest.webmanifest", "offline.html", "core-worker.js"):
+            target = destination / relative
+            if target.is_dir(): shutil.rmtree(target)
+            elif target.exists(): target.unlink()
+        for target in destination.rglob("*-en.html"):
+            target.unlink()
+        for target in destination.glob("feed*.xml"):
+            target.unlink()
+        return
     guidance = destination / "llms.txt"
     text = guidance.read_text(encoding="utf-8")
     updated = text.replace("timelines, and weekly reviews", "and timelines")

@@ -72,14 +72,13 @@ def test_publish_matches_html_and_json(tmp_path):
     assert data["date"] == str(DAY)
 
 
-def test_all_publication_workflows_regenerate_stream():
+def test_core_publication_workflows_do_not_regenerate_quick_posts():
     root = Path(__file__).parents[1]
-    for name in ["daily-summary", "feed-collection", "deploy-docs", "event-archive-migration"]:
+    for name in ["daily-summary", "feed-collection", "deploy-docs"]:
         text = (root / f".github/workflows/{name}.yml").read_text()
-        assert "uv run python -m src.quick_posts" in text
-    page = (root / "docs/_includes/feed-home.html").read_text()
-    assert 'data-quick-post-status' in page
-    assert "site.data.quick_posts.html" not in page
+        assert "uv run python -m src.quick_posts" not in text
+        assert "python -m src.core_site" in text
+    assert 'data-quick-post-status' not in (root / "docs/_includes/core-home.html").read_text()
 
 
 def batch():

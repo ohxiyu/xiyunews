@@ -18,27 +18,7 @@ env:
 # most one post, and an outcome that cannot be proven is never retried.
 
 on:
-  # Worker independently checks private X/Square queues every five minutes.
-  # Never use Square's completion as an X clock: private Actions idle runs cost.
-  workflow_run:
-    workflows: ['xiyu.news Daily Edition', 'xiyu.news Feed Collection', 'Deploy Docs']
-    types: [completed]
-    branches: [main]
-  # Hourly backup. The primary five-minute clock runs in Cloudflare.
-  schedule:
-    - cron: '17 23,0-15 * * *'
-  workflow_dispatch:
-    inputs:
-      edition_date:
-        description: Only today's edition is posted; another date is reported and ignored
-        type: string
-        required: false
-        default: ''
-      kickoff_only:
-        description: Kept for compatibility; a kickoff is an ordinary run
-        type: boolean
-        required: false
-        default: false
+  workflow_dispatch: # Retired in core site; source retained for history.
 
 concurrency:
   group: bmtnews-x-distribution
@@ -49,10 +29,7 @@ permissions:
 
 jobs:
   post:
-    if: >-
-      ${{ github.event_name != 'workflow_run' ||
-          (github.event.workflow_run.conclusion == 'success' &&
-           github.event.workflow_run.head_repository.full_name == github.repository) }}
+    if: ${{ false }} # Retired; retained implementation is never executed.
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     # Cold source checkout can exceed eight minutes on this runner. Preserve
     # time for checkpointing; business deadlines remain enforced by x_queue.

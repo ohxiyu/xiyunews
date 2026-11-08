@@ -182,7 +182,7 @@ async def recover_editions(runner, store, *, now=None):
         missing = inspect_edition(state, languages)
         if not missing:
             continue
-        if EVENT_CATALOG_PATH.exists():
+        if not runner.config.core_only and EVENT_CATALOG_PATH.exists():
             recover_catalog_links(state.items, edition=state.date)
         report = RunReport.start(date=state.date, timezone_name=state.timezone, started_at=now, kind="static_recovery")
         metrics = store.latest_edition_metrics(state.date)
