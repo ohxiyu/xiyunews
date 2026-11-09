@@ -16,7 +16,7 @@
 <a class="skip-link" href="#content">跳到正文</a>
 <header class="site-header"><div class="header-inner">
 <a class="brand" href="/" aria-label="xiyu.news 首页">{% include brand-mark.html %}<strong>xiyu<span>.news</span></strong></a>
-<nav aria-label="主导航"><a href="/" {% if page.page_type == 'home' or page.lang %}aria-current="page"{% endif %}>信息流</a><a href="/threads/" {% if page.url contains '/threads/' or page.url contains '/events/' %}aria-current="page"{% endif %}>事件流</a><a href="/history/" {% if page.url == '/history/' %}aria-current="page"{% endif %}>往期</a></nav>
+<nav aria-label="主导航"><a href="/" {% if page.page_type == 'home' or page.lang %}aria-current="page"{% endif %}>信息流</a><a href="/history/" {% if page.url == '/history/' %}aria-current="page"{% endif %}>往期</a></nav>
 <button class="theme-toggle" type="button" aria-label="切换深色模式" hidden>◐</button>
 </div></header>
 <main id="content" class="reader" tabindex="-1">
