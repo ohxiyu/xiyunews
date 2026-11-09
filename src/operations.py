@@ -90,7 +90,10 @@ def budget(store, *, now=None, env=None):
     since = [r for r in rows if datetime.fromisoformat(r[0]) >= observed]
     remaining = float(baseline) - sum(r[2] for r in since)
     result.update(balance_status='project_estimate', remaining_cny=round(remaining,6))
-    if len(days)==7 and all(r[3] for r in recent+since):
+    week_start = datetime.combine(day-timedelta(days=7), datetime.min.time(), ZoneInfo('Asia/Shanghai'))
+    observed_full_week = bool(rows) and min(datetime.fromisoformat(r[0]) for r in rows) <= week_start
+    result['full_window_observed'] = observed_full_week
+    if len(days)==7 and observed_full_week and all(r[3] for r in recent+since):
         average = sum(r[2] for r in recent)/7
         if average > 0:
             result['remaining_days'] = max(0, remaining)/average
@@ -156,7 +159,7 @@ async def finalize(path, workflow_status, *, test=False):
         status=await private_alert('failure:'+run_id,f"xiyu.news {report.get('date')} 任务失败，请检查 Actions 运行日志。",store=store)
         report['operations']['alerts'].append({'event':'failure','status':status})
     elif metrics.get('edition_degraded') or metrics.get('enrichment_degraded'):
-        status=await private_alert('degraded:'+run_id,f"xiyu.news {report.get('date')} 已生成简版，部分背景不可用。",store=store)
+        status=await private_alert('degraded:'+run_id,f"xiyu.news {report.get('date')} 已生成简版，部分背景不可用。" + (f" AI账户HTTP {metrics['provider_account_http_status']}，已停止调用。" if metrics.get('provider_account_http_status') else ''),store=store)
         report['operations']['alerts'].append({'event':'degraded','status':status})
     balance=report['operations']['budget']
     if balance.get('remaining_days') is not None and balance['remaining_days']<3:

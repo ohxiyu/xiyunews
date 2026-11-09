@@ -59,6 +59,7 @@ class ContentEnricher:
             async with semaphore:
                 baseline = item.model_copy(deep=True)
                 if terminal_error is not None:
+                    item.metadata["provider_account_http_status"] = terminal_error.status_code
                     item.metadata['title_zh'] = chinese_title(baseline)
                     item.metadata['detailed_summary_zh'] = chinese_summary(baseline)
                     brief(item)
@@ -75,6 +76,7 @@ class ContentEnricher:
                     item.metadata = dict(baseline.metadata)
                     if blocked is not None:
                         terminal_error = blocked
+                        item.metadata["provider_account_http_status"] = blocked.status_code
                         brief(item)
                     else:
                         print(f"Error enriching item {item.id}: {type(cause).__name__}; using Chinese baseline", flush=True)

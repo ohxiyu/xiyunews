@@ -3746,6 +3746,10 @@ class BMTNewsOrchestrator:
         enricher = ContentEnricher(ai_client, languages=self.config.ai.languages if self.config.core_only else None)
         enrichment_inputs = [item.model_copy(deep=True) for item in misses]
         await enricher.enrich_batch(misses)
+        blocked_status = next((item.metadata.get("provider_account_http_status") for item in misses if item.metadata.get("provider_account_http_status")), None)
+        if blocked_status and self.last_run_report is not None:
+            self.last_run_report.set_metric("provider_account_http_status", blocked_status)
+            self.last_run_report.add_alert("warning", "ai_account_blocked", f"AI账户HTTP {blocked_status}，停止调用；仅保留合格中文摘要。")
         if cache is not None:
             for item, input_item in zip(misses, enrichment_inputs):
                 cache.store_enrichment(item, input_item=input_item)

@@ -108,9 +108,12 @@ def test_cost_ledger_idempotent_and_balance_requires_baseline_and_seven_days(tmp
         record_cost(report,store);record_cost(report,store)
     assert budget(store,now=NOW,env={})['balance_status']=='unknown'
     result=budget(store,now=NOW,env={'AI_BALANCE_BASELINE_CNY':'56','AI_BALANCE_BASELINE_AT':(NOW-timedelta(days=8)).isoformat()})
-    assert result['coverage_days']==7 and result['remaining_days']==pytest.approx(13)
+    assert result['coverage_days']==7 and result['remaining_days'] is None
+    record_cost(dict(run_id='coverage-start',started_at=(NOW-timedelta(days=8)).isoformat(),ai_usage=[]),store)
+    result=budget(store,now=NOW,env={'AI_BALANCE_BASELINE_CNY':'56','AI_BALANCE_BASELINE_AT':(NOW-timedelta(days=8)).isoformat()})
+    assert result['remaining_days']==pytest.approx(13)
     with store.connect() as db:
-        assert db.execute('SELECT COUNT(*) FROM operations_costs').fetchone()[0]==7
+        assert db.execute('SELECT COUNT(*) FROM operations_costs').fetchone()[0]==8
 
 
 @pytest.mark.parametrize('kind',['group','supergroup','channel'])
