@@ -11,11 +11,13 @@ import sys
 import os
 import time
 from typing import List, Optional
-from tenacity import RetryError, retry, stop_after_attempt, wait_exponential
+from tenacity import RetryError, retry, retry_if_exception, stop_after_attempt, wait_exponential
 from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn, MofNCompleteColumn
 from ddgs import DDGS
 
 from .client import AIClient
+from .errors import account_error
+from .chinese import repair_chinese, brief, chinese_title, chinese_summary
 from .prompts import (
     CONCEPT_EXTRACTION_SYSTEM, CONCEPT_EXTRACTION_USER,
     CONTENT_ENRICHMENT_SYSTEM, CONTENT_ENRICHMENT_USER,
@@ -49,24 +51,46 @@ class ContentEnricher:
         concurrency = self._get_concurrency()
         semaphore = asyncio.Semaphore(concurrency)
         processed_count = 0
+        terminal_error = None
         started = time.perf_counter()
 
         async def _process(item: ContentItem, progress_task) -> None:
-            nonlocal processed_count
+            nonlocal processed_count, terminal_error
             async with semaphore:
+                baseline = item.model_copy(deep=True)
+                if terminal_error is not None:
+                    item.metadata['title_zh'] = chinese_title(baseline)
+                    item.metadata['detailed_summary_zh'] = chinese_summary(baseline)
+                    brief(item)
+                    return
                 self._clear_generated(item)
                 try:
                     await self._enrich_item(item)
+                    if self.languages == ('zh',) and not await repair_chinese(item, self.client):
+                        item.metadata['chinese_invalid'] = True
                     item.metadata["enrichment_status"] = "complete"
                 except Exception as exc:
                     cause = exc.last_attempt.exception() if isinstance(exc, RetryError) else exc
-                    print(
-                        f"Error enriching item {item.id}: {type(cause).__name__}, "
-                        "falling back to translation", flush=True,
-                    )
-                    self._clear_generated(item)
-                    await self._translate_item(item)
-                    item.metadata["enrichment_status"] = "translation_only"
+                    blocked = account_error(cause)
+                    item.metadata = dict(baseline.metadata)
+                    if blocked is not None:
+                        terminal_error = blocked
+                        brief(item)
+                    else:
+                        print(f"Error enriching item {item.id}: {type(cause).__name__}; using Chinese baseline", flush=True)
+                        if self.languages == ('zh',):
+                            try:
+                                await repair_chinese(item,self.client)
+                            except Exception as repair_error:
+                                blocked = account_error(repair_error)
+                                if blocked is None:
+                                    raise
+                                terminal_error = blocked
+                            brief(item)
+                        else:
+                            self._clear_generated(item)
+                            await self._translate_item(item)
+                            item.metadata["enrichment_status"] = "translation_only"
             processed_count += 1
             if processed_count % 5 == 0 or processed_count == len(items):
                 progress.console.print(
@@ -119,7 +143,9 @@ class ContentEnricher:
             finally:
                 sys.stderr.close()
                 sys.stderr = stderr
-        except Exception:
+        except Exception as exc:
+            blocked = account_error(exc)
+            if blocked is not None: raise blocked from None
             return []
 
         return [
@@ -185,12 +211,15 @@ class ContentEnricher:
                 if len(cleaned) == 3:
                     break
             return cleaned
-        except Exception:
+        except Exception as exc:
+            blocked = account_error(exc)
+            if blocked is not None: raise blocked from None
             return []
 
     @retry(
         stop=stop_after_attempt(3),
         wait=wait_exponential(min=2, max=10),
+        retry=retry_if_exception(lambda exc: account_error(exc) is None),
     )
     async def _enrich_item(self, item: ContentItem) -> None:
         """Enrich a single item with background knowledge.
@@ -371,5 +400,6 @@ class ContentEnricher:
                     item.metadata["title_zh"] = result["title_zh"]
                 if result.get("summary_zh"):
                     item.metadata["detailed_summary_zh"] = result["summary_zh"]
-        except Exception:
-            pass
+        except Exception as exc:
+            blocked = account_error(exc)
+            if blocked is not None: raise blocked from None

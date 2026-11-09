@@ -13,6 +13,9 @@ from urllib.parse import unquote_plus, urlsplit
 import httpx
 from rich.console import Console
 
+from .ai.errors import ProviderAccountError
+from .ai.chinese import chinese_ready, brief
+from .edition_fallback import save_selection, cached_selection
 from .models import SOURCE_TIERS, Config, ContentItem, SourceType
 from ._file_utils import _atomic_write_text
 from .storage.manager import StorageManager, safe_output_path
@@ -325,6 +328,8 @@ class BMTNewsOrchestrator:
             report.set_metric("event_relation_cache_hits", cache.relation_hits)
             report.set_metric("event_relation_cache_misses", cache.relation_misses)
         report.finish()
+        from .operations import record_cost
+        report.ai_cost = record_cost(report.to_dict())
         from .publication_state import active_store
         backend = active_store()
         if backend is not None:
@@ -768,6 +773,7 @@ class BMTNewsOrchestrator:
             f"→ {window.end.isoformat()} (end exclusive)\n"
         )
 
+        allow_cached_fallback = False
         try:
             daily_state = load_daily_feed_state(
                 window.date,
@@ -832,6 +838,7 @@ class BMTNewsOrchestrator:
                         "从已保存选稿恢复缺失页面，未调用信源/AI/渠道；未保存的行情与今日脉络不重新生成。")
                 return
 
+            allow_cached_fallback = True
             staging_exists = staging_path.exists()
             staging_state = load_staging_state(staging_path)
             run_report.set_metric(
@@ -1333,11 +1340,23 @@ class BMTNewsOrchestrator:
                 "qualified_sources",
                 self._source_breakdown(qualified_items),
             )
+            if self.config.core_only:
+                if not important_items:
+                    if await self._publish_cached_brief(window, run_report, run_started_at): return
+                    raise RuntimeError('No qualified scored Chinese content; edition not published')
+                save_selection(important_items,self.config,window,now=run_started_at)
             await self._enrich_important_items(important_items)
-            degraded = sum(item.metadata.get("enrichment_status") == "translation_only" for item in important_items)
+            if self.config.core_only:
+                important_items=[item for item in important_items if chinese_ready(item) and not item.metadata.get('chinese_invalid')]
+                if not important_items: raise RuntimeError('No valid Chinese content after enrichment; edition not published')
+            degraded = sum(item.metadata.get("enrichment_status") in {"translation_only", "brief"} for item in important_items)
             run_report.set_metric("enrichment_degraded", degraded)
             if degraded:
-                run_report.add_alert("warning", "enrichment_degraded", f"{degraded} 条内容扩写失败，仅保留翻译，需编辑复核。")
+                if self.config.core_only:
+                    run_report.set_metric("edition_degraded", 1)
+                    for item in important_items:
+                        brief(item)
+                run_report.add_alert("warning", "enrichment_degraded", f"{degraded} 条内容扩写失败，仅保留已评分的中文摘要。")
 
             # Manual editor's picks are pinned ahead of the ranked stories.
             if editorial_plan.editorial:
@@ -1417,6 +1436,7 @@ class BMTNewsOrchestrator:
             existing_display_identities = {
                 item_identity(item) for item in daily_state.items
             }
+            allow_cached_fallback = False
             daily_state.items = important_items
             daily_state.updated_at = run_started_at
             daily_state.analyzed_keys = sorted(
@@ -1479,6 +1499,11 @@ class BMTNewsOrchestrator:
                 "[bold green]✅ Daily edition completed successfully![/bold green]"
             )
         except Exception as exc:
+            if self.config.core_only and allow_cached_fallback:
+                if isinstance(exc, ProviderAccountError):
+                    run_report.set_metric('provider_account_http_status', exc.status_code)
+                    run_report.add_alert('warning','ai_account_blocked',f'AI账户不可用（HTTP {exc.status_code}），停止调用并检查合格缓存。')
+                if await self._publish_cached_brief(window,run_report,run_started_at): return
             run_report.fail(exc)
             self.console.print(f"[bold red]❌ Edition failed: {exc}[/bold red]")
             if self.webhook_notifier:
@@ -1497,6 +1522,24 @@ class BMTNewsOrchestrator:
                 cache.save()
                 run_report.set_metric("analysis_cache_entries", len(cache.entries))
             self._finish_run_report(run_report)
+
+    async def _publish_cached_brief(self, window, report, started_at):
+        items=cached_selection(self.config,window)
+        if not items:
+            report.add_alert('failure','no_qualified_cache','没有本刊期已打分、去重且中文合格的缓存，不出刊。')
+            return False
+        state=load_daily_feed_state(window.date,self.config.filtering.daily_timezone)
+        if state.items and state.updated_at>=window.end:
+            report.add_alert('warning','existing_edition_preserved','保留已保存期刊，不覆盖或补发。')
+            return True
+        state.items=items;state.updated_at=started_at
+        save_daily_feed_state(state)
+        report.add_alert('warning','brief_edition','AI不可用，使用此前已打分、去重的中文缓存发布简版。')
+        report.set_metric('edition_degraded',1);report.set_metric('displayed_today',len(items))
+        report.set_metric('edition_candidates',len(items))
+        await self._publish_outputs(items,date=window.date,total_candidates=len(items),timezone_name=self.config.filtering.daily_timezone,run_report=report,window_start=window.start,window_end=window.end)
+        self._publish_archive_artifacts(items,date=window.date,run_report=report,window_start=window.start,window_end=window.end)
+        return True
 
     async def run_x_slot(
         self,
@@ -1710,6 +1753,8 @@ class BMTNewsOrchestrator:
         for language in config.languages:
             entries = []
             for rank, item in enumerate(daily_state.items, start=1):
+                if item.metadata.get("edition_mode") == "brief":
+                    continue
                 fields = post_source_fields(item, language)
                 source = json.dumps(
                     {
@@ -2271,6 +2316,8 @@ class BMTNewsOrchestrator:
         not repeat the post.
         """
         publisher = getattr(self, "x_publisher", None)
+        if any(item.metadata.get("edition_mode") == "brief" for item in items):
+            return
         if not publisher:
             return
         config = self.config.x_delivery
@@ -3270,6 +3317,7 @@ class BMTNewsOrchestrator:
             item
             for item in items
             if item.ai_score is not None and item.ai_score >= effective_threshold
+            and not (getattr(self.config, "core_only", False) and item.metadata.get("chinese_invalid"))
         ]
         threshold_items.sort(key=lambda item: item.ai_score or 0, reverse=True)
 

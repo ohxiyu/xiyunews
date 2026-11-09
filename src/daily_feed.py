@@ -36,6 +36,8 @@ _TRACKING_QUERY_PARAMETERS = {
 }
 _PERSISTED_METADATA_KEYS = {
     "category",
+    "edition_mode",
+    "enrichment_status",
     "discussion_url",
     "editorial",
     "event_id",

@@ -5,20 +5,20 @@
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "PR0：精简协作流程与当前文档",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/357",
+  "goal": "PR1：中文硬校验、余额熔断、缓存简版与私人告警",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/359",
   "owner": "本聊天 Codex",
-  "branch": "agent/daily-refactor-process",
-  "base": "01ec6dd1176b01ed90023dd17d5052c21804f26c",
-  "status": "实施中；本项只改治理和文档，不改变生产行为",
-  "next": "绿色合并 PR0 后实施 PR1：中文校验、402停止、私人告警与三级降级",
+  "branch": "agent/daily-reliability",
+  "base": "9c5eba758393997e2421365ab3efd001917082b9",
+  "status": "代码与故障回归完成，准备PR/CI；私人告警实际送达待配置",
+  "next": "提交PR1并核对CI；告警送达、七日费用覆盖为独立运行验收",
   "blockers": []
 }
 ```
 
 ## 串行路线
 
-0. 流程减负与 README 对齐（当前）。
+0. 流程减负与 README 对齐（#358已合并）。
 1. 中文硬校验、402立即停止、余额/私人告警、三级降级。
 2. 第一批删模块/工作流/旧前端；核对20个历史地址，两天自然出刊验收待实际观察。
 3. 主流程拆为采集、评分去重、扩写、发布；第二批删除，固定输入选稿对比。

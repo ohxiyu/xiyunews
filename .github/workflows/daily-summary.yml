@@ -71,6 +71,7 @@ jobs:
           path: |
             data/staging-items.json
             data/analysis-cache.json
+            data/qualified-cache.json
           key: diagnostic-read-only-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-bmtnews-pipeline-v2-
@@ -134,6 +135,7 @@ jobs:
           path: |
             data/staging-items.json
             data/analysis-cache.json
+            data/qualified-cache.json
           key: ${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             ${{ runner.os }}-bmtnews-pipeline-v2-
@@ -149,6 +151,9 @@ jobs:
             fi
             if [ ! -f data/analysis-cache.json ]; then
               git show FETCH_HEAD:data/analysis-cache.json > data/analysis-cache.json 2>/dev/null || rm -f data/analysis-cache.json
+            fi
+            if [ ! -f data/qualified-cache.json ]; then
+              git show FETCH_HEAD:data/qualified-cache.json > data/qualified-cache.json 2>/dev/null || rm -f data/qualified-cache.json
             fi
             python3 scripts/merge_pipeline_cache.py FETCH_HEAD
           fi
@@ -195,10 +200,6 @@ jobs:
           fi
           uv run bmtnews "${args[@]}"
 
-      - name: Publish run report
-        if: ${{ always() }}
-        run: python3 -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
-
       - name: Preserve successful AI work even after publication failure
         if: ${{ always() }}
         uses: actions/cache/save@v5
@@ -206,16 +207,9 @@ jobs:
           path: |
             data/staging-items.json
             data/analysis-cache.json
+            data/qualified-cache.json
           key: ${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}
 
-      - name: Keep machine-readable cost and health report
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v6
-        with:
-          name: run-report-${{ github.run_id }}-${{ github.run_attempt }}
-          path: data/run-report.json
-          retention-days: 30
-          if-no-files-found: warn
 
       - name: Read published edition date
         id: edition
@@ -244,3 +238,25 @@ jobs:
       - name: Confirm exact published state checkpoint
         run: uv run python -m src.publication_state --acknowledge-published --reader-only
 
+      - name: Finalize private operational alerts and costs
+        if: ${{ always() }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
+          AI_BALANCE_BASELINE_CNY: ${{ vars.AI_BALANCE_BASELINE_CNY }}
+          AI_BALANCE_BASELINE_AT: ${{ vars.AI_BALANCE_BASELINE_AT }}
+          OPERATIONS_STATUS: ${{ job.status }}
+        run: uv run python -m src.operations --workflow-status "$OPERATIONS_STATUS"
+
+      - name: Publish run report
+        if: ${{ always() }}
+        run: python3 -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep machine-readable cost and health report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: run-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: data/run-report.json
+          retention-days: 30
+          if-no-files-found: warn

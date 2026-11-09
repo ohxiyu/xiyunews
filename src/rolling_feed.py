@@ -14,6 +14,8 @@ from .orchestrator import BMTNewsOrchestrator
 from .storage.manager import StorageManager
 from .run_report import RunReport
 from .ai.tokens import reset_usage
+from .edition_fallback import save_selection,open_window
+from .ai.chinese import chinese_ready
 from .web_feed import _localized_title, _localized_text
 
 
@@ -50,7 +52,9 @@ async def main():
         candidates=active_items(staged.items,now)
         analyzed=await runner._analyze_content(candidates)
         result=await runner.filter_items(analyzed, dedup_context=[])
+        save_selection(result.items,config,open_window(now,config.filtering.daily_timezone),now=now)
         await runner._enrich_important_items(result.items)
+        result.items[:]=[item for item in result.items if chinese_ready(item) and not item.metadata.get("chinese_invalid")]
         # Recheck the boundary after AI completes. Never retain expired stories.
         value=snapshot(result.items,now=datetime.now(timezone.utc),collected_at=staged.updated_at)
         token_name='XIYUNEWS_RECOVERY_CHECK_TOKEN' if os.environ.get('XIYUNEWS_EDGE_ENABLED')=='true' else 'RECOVERY_CHECK_TOKEN'

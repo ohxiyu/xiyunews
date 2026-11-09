@@ -12,6 +12,11 @@ on:
     # Backup clock; the unified Worker polls every five minutes with active-run guards.
     - cron: '*/5 * * * *'
   workflow_dispatch:
+    inputs:
+      alert_test:
+        description: Send one private Telegram test only; no collection or publication
+        type: boolean
+        default: false
 
 
 permissions:
@@ -47,6 +52,7 @@ jobs:
           path: |
             data/staging-items.json
             data/analysis-cache.json
+            data/qualified-cache.json
           key: ${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             ${{ runner.os }}-bmtnews-pipeline-v2-
@@ -62,6 +68,9 @@ jobs:
             fi
             if [ ! -f data/analysis-cache.json ]; then
               git show FETCH_HEAD:data/analysis-cache.json > data/analysis-cache.json 2>/dev/null || rm -f data/analysis-cache.json
+            fi
+            if [ ! -f data/qualified-cache.json ]; then
+              git show FETCH_HEAD:data/qualified-cache.json > data/qualified-cache.json 2>/dev/null || rm -f data/qualified-cache.json
             fi
             python3 scripts/merge_pipeline_cache.py FETCH_HEAD
           fi
@@ -82,7 +91,15 @@ jobs:
       - name: Prepare GitHub Actions config
         run: cp data/config.github.json data/config.json
 
+      - name: Test private Telegram alert
+        if: ${{ inputs.alert_test }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
+        run: uv run python -m src.operations --test-alert
+
       - name: Collect sources into staging
+        if: ${{ !inputs.alert_test }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -93,16 +110,13 @@ jobs:
         run: uv run bmtnews --mode fetch --hours 24
 
       - name: Select and publish rolling 24-hour news without site rebuild or delivery
+        if: ${{ !inputs.alert_test }}
         env:
           SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
           XIYUNEWS_EDGE_ENABLED: ${{ vars.XIYUNEWS_EDGE_ENABLED }}
           XIYUNEWS_RECOVERY_CHECK_TOKEN: ${{ secrets.XIYUNEWS_RECOVERY_CHECK_TOKEN }}
           RECOVERY_CHECK_TOKEN: ${{ secrets.RECOVERY_CHECK_TOKEN }}
         run: uv run python -m src.rolling_feed
-
-      - name: Publish run report
-        if: ${{ always() }}
-        run: python3 -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
 
       - name: Preserve successful AI work even after publication failure
         if: ${{ always() }}
@@ -111,7 +125,28 @@ jobs:
           path: |
             data/staging-items.json
             data/analysis-cache.json
+            data/qualified-cache.json
           key: ${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}
+
+
+      - name: Persist staging cache to branch
+        if: ${{ always() }}
+        shell: bash
+        run: bash scripts/persist_staging_cache.sh
+
+      - name: Finalize private operational alerts and costs
+        if: ${{ always() && !inputs.alert_test }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
+          AI_BALANCE_BASELINE_CNY: ${{ vars.AI_BALANCE_BASELINE_CNY }}
+          AI_BALANCE_BASELINE_AT: ${{ vars.AI_BALANCE_BASELINE_AT }}
+          OPERATIONS_STATUS: ${{ job.status }}
+        run: uv run python -m src.operations --workflow-status "$OPERATIONS_STATUS"
+
+      - name: Publish run report
+        if: ${{ always() }}
+        run: python3 -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
 
       - name: Keep machine-readable cost and health report
         if: ${{ always() }}
@@ -121,9 +156,3 @@ jobs:
           path: data/run-report.json
           retention-days: 30
           if-no-files-found: warn
-
-      - name: Persist staging cache to branch
-        if: ${{ always() }}
-        shell: bash
-        run: bash scripts/persist_staging_cache.sh
-

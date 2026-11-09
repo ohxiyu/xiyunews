@@ -1047,3 +1047,45 @@ URL 规范化去重之后，事件目录匹配与 AI 语义比较分别处理跨
 ## 核心站生产配置（2026-11-08）
 
 `core_only: true` 与 `ai.languages: ["zh"]` 选择中文核心流水线，模型维持硅基流动 `deepseek-ai/DeepSeek-V3.2`。`x_delivery.enabled` 为 false，邮件/Webhook 关闭，Telegram 仅中文日报，由独立发布后任务处理。英文旧渲染器和非核心库代码保留，生产任务与路由停用。仅开启旧库开关不能恢复已退役的生产入口或发送计划。
+
+## Daily reliability and private operations
+
+The Chinese profile requires both a Chinese title and summary. A missing Chinese
+field gets one translation repair; an invalid result is excluded rather than
+published in English. Account HTTP 401/402/403 stops retries and queued AI work.
+If enrichment is unavailable, the edition uses scored Chinese summaries and is
+marked 简版. If scoring/deduplication is unavailable, only a previously qualified
+cohort in the exact edition window may be used (`data/qualified-cache.json`).
+No qualified cohort means no edition. Brief editions cannot enter X delivery.
+Existing published editions and Telegram delivery receipts remain authoritative.
+
+- Actions Secret `TELEGRAM_ALERT_CHAT_ID`: a positive numeric **private** chat ID.
+  The existing `TELEGRAM_BOT_TOKEN` is reused. `getChat` must confirm a private
+  destination; no channel/group fallback is permitted. Start a chat with the bot
+  before testing. Feed Collection → Run workflow → `alert_test=true` sends one
+  test, without collection/publication. The test fails unless delivery is confirmed.
+- Runner `XIYUNEWS_STATE_DIR`: existing durable publication SQLite directory,
+  e.g. the path configured by `ops/runner/30-publication-state.conf`. Cost ledger
+  and alert receipts use this same database. Missing durable state reports
+  `state_unavailable` and refuses to send; never use an ephemeral retry receipt.
+- Optional repository variables `AI_BALANCE_BASELINE_CNY` and
+  `AI_BALANCE_BASELINE_AT`: manually observed balance and timezone-aware ISO time.
+  SiliconFlow retired `/user/info` on 2026-08-14; no balance request uses that
+  endpoint. Missing/invalid baseline means unknown balance. Remaining-day alerts
+  require seven complete recorded days and priced usage. Estimates only cover
+  this project's recorded usage; account-wide consumption/top-ups are not known.
+- `run_report.ai_cost`: estimated CNY at SiliconFlow DeepSeek-V3.2 prices
+  (input 4, cached input 0.4, output 6 per million tokens). Reasoning tokens are
+  included in output, never billed twice. Other models are marked unpriced.
+  Per-run ledger writes are idempotent; daily/month totals show recorded usage,
+  not a provider invoice. Financial estimates remain in private artifacts.
+- The normal unified deployment copies a configured private destination into the
+  Worker's optional `TELEGRAM_ALERT_CHAT_ID` binding. It leaves the independent
+  realtime watchdog's `ALERT_CHAT_ID` unchanged. Worker checks collection lag
+  (>30 minutes, one alert until recovery) and missing editions after 07:45.
+- Alert attempts are persisted before sending; timeouts/5xx become unknown and
+  are never retried automatically. `not_configured`, `destination_unverified`,
+  `state_unavailable`, failed and unknown must not be described as delivered.
+
+Official provider changes/prices:
+https://docs.siliconflow.cn/docs/release-notes/overview

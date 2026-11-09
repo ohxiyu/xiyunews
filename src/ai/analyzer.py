@@ -11,6 +11,7 @@ from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn, MofNCo
 
 from .client import AIClient, LAST_COMPLETION_SCORER
 from .errors import account_error
+from .chinese import CHINESE_CONTRACT, repair_chinese
 from .prompts import CONTENT_ANALYSIS_SYSTEM, CONTENT_ANALYSIS_USER
 from .utils import parse_json_response
 from ..models import ContentItem
@@ -25,6 +26,7 @@ class AnalysisResult(BaseModel):
     score: float = Field(ge=0, le=10, allow_inf_nan=False)
     reason: str
     summary: str
+    title_zh: Optional[str] = None
     tags: list[str]
     category: Optional[str] = None
 
@@ -235,6 +237,9 @@ class ContentAnalyzer:
             + "Scoring granularity and calibration:" + calibration
         )
 
+        chinese_only = getattr(getattr(self.client, "config", None), "languages", None) == ["zh"]
+        if chinese_only: system_prompt += CHINESE_CONTRACT
+
         # Get AI completion
         LAST_COMPLETION_SCORER.set(None)
         response = await self.client.complete(
@@ -261,6 +266,9 @@ class ContentAnalyzer:
         item.ai_reason = result.reason
         item.ai_summary = result.summary
         item.ai_tags = result.tags
+        if result.title_zh: item.metadata["title_zh"] = result.title_zh
+        if chinese_only and not await repair_chinese(item, self.client):
+            item.metadata["chinese_invalid"] = True
         config = getattr(self.client, "config", None)
         provider = getattr(config, "provider", None)
         configured_scorer = (

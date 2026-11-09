@@ -11,6 +11,7 @@ from typing import Any, Iterable
 from .._file_utils import _atomic_write_text
 from ..models import ContentItem
 from . import prompts
+from .chinese import CHINESE_CONTRACT
 from ..publication_state import active_store
 
 
@@ -90,6 +91,7 @@ class AnalysisResultCache:
         material = json.dumps(
             {
                 "stage": stage,
+                "chinese_contract": CHINESE_CONTRACT if stage == "analysis" else None,
                 **({"enrichment_policy": ENRICHMENT_POLICY_VERSION} if stage == "enrichment" else {}),
                 "model": self.model,
                 "prompt": self.prompt_revision,
@@ -232,15 +234,19 @@ class AnalysisResultCache:
             item.metadata["source_category"] = value["source_category"]
         if isinstance(value.get("score_model"), str):
             item.metadata["score_model"] = value["score_model"]
+        if isinstance(value.get("title_zh"), str): item.metadata["title_zh"] = value["title_zh"]
+        if isinstance(value.get("detailed_summary_zh"), str): item.metadata["detailed_summary_zh"] = value["detailed_summary_zh"]
         return item.ai_score is not None
 
     def store_analysis(self, item: ContentItem) -> None:
-        if item.ai_score is None or item.ai_reason in {
+        if item.metadata.get("chinese_invalid") or item.ai_score is None or item.ai_reason in {
             "Analysis failed",
             "Analysis response parse failed",
         }:
             return
         value = {field: getattr(item, field) for field in ANALYSIS_FIELDS}
+        for field in ("title_zh", "detailed_summary_zh"):
+            if isinstance(item.metadata.get(field), str): value[field] = item.metadata[field]
         value["category"] = item.metadata.get("category")
         if isinstance(item.metadata.get("score_model"), str):
             value["score_model"] = item.metadata["score_model"]

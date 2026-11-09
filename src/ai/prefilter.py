@@ -8,6 +8,7 @@ from math import isfinite
 
 from ..models import ContentItem
 from .client import AIClient
+from .errors import account_error
 from .result_cache import AnalysisResultCache
 from .utils import parse_json_response
 
@@ -67,6 +68,7 @@ class ContentPrefilter:
             for offset in range(0, len(indexed), self.batch_size)
         ]
         semaphore = asyncio.Semaphore(self._concurrency())
+        terminal_error = None
         cache_hits = 0
         cache_misses = 0
 
@@ -82,7 +84,7 @@ class ContentPrefilter:
                     f"source={item.source_type.value} title={item.title} excerpt={excerpt}"
                 )
             user_prompt = PREFILTER_USER.format(items="\n".join(lines))
-            nonlocal cache_hits, cache_misses
+            nonlocal cache_hits, cache_misses, terminal_error
             if self.cache is not None:
                 cached = self.cache.get_prefilter_batch(PREFILTER_SYSTEM, user_prompt)
                 raw_scores = cached.get("scores") if isinstance(cached, dict) else None
@@ -98,6 +100,8 @@ class ContentPrefilter:
                 cache_misses += 1
             try:
                 async with semaphore:
+                    if terminal_error is not None:
+                        raise terminal_error
                     response = await self.client.complete(
                         system=PREFILTER_SYSTEM,
                         user=user_prompt,
@@ -126,10 +130,21 @@ class ContentPrefilter:
                 if self.cache is not None and len(scores) == len(batch_indices):
                     self.cache.store_prefilter_batch(PREFILTER_SYSTEM, user_prompt, scores)
                 return scores, batch_indices
-            except Exception:
+            except Exception as exc:
+                blocked=account_error(exc)
+                if blocked is not None:
+                    terminal_error = blocked
+                    raise blocked from None
                 return None, batch_indices
 
-        results = await asyncio.gather(*(score_batch(batch) for batch in batches))
+        tasks = [asyncio.create_task(score_batch(batch)) for batch in batches]
+        try:
+            results = await asyncio.gather(*tasks)
+        except BaseException:
+            for task in tasks:
+                task.cancel()
+            await asyncio.gather(*tasks, return_exceptions=True)
+            raise
         scores: dict[int, float] = {}
         fail_open: set[int] = set()
         failed_batches = 0
