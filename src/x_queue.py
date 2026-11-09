@@ -294,7 +294,7 @@ def validate(state: object) -> dict:
                 raise QueueError("invalid job text")
             if job["status"] == "planned" and not job["text"]:
                 raise QueueError("planned job without text")
-            for field in ("due_at", "deadline", "attempted_at"):
+            for field in ("due_at", "deadline", "attempted_at", "sent_at"):
                 if job.get(field):
                     _parse(job[field], field)
     return state
@@ -497,7 +497,9 @@ async def plan_edition(
 
     for language in settings.languages:
         used = used_keys(state, language)
-        pool = [c for c in candidates.get(language, []) if c.key not in used]
+        rejected=edition.setdefault('quality_rejections',{})
+        if not isinstance(rejected,dict):raise QueueError('invalid quality rejection cache')
+        pool=[c for c in candidates.get(language,[]) if c.key not in used and rejected.get(c.key)!=c.source_sha256]
         taken: set[str] = set()
         for slot in range(1, settings.items + 1):
             job = _find(edition, language, slot)
@@ -542,10 +544,19 @@ async def plan_edition(
                     summary["changed"] = True
                     continue
 
-            text, kind, reason = await compose(choice.item, language)
-            summary["composed"] += 1
-            if reason:
-                summary["fallbacks"].append(reason)
+            while choice is not None:
+                taken.add(choice.key)
+                text,kind,reason=await compose(choice.item,language)
+                summary['composed']+=1
+                if reason:summary['fallbacks'].append(reason)
+                if text:break
+                rejected[choice.key]=choice.source_sha256
+                summary['changed']=True
+                choice=next((c for c in pool if c.key not in taken),None)
+            if choice is None:
+                if job is not None:
+                    job['status']='skipped';job['detail']='quality_gate';summary['changed']=True
+                continue
             content = {
                 "story_key": choice.key,
                 "rank": choice.rank,
@@ -606,7 +617,9 @@ def advance(state: dict, now: datetime, settings: Settings) -> bool:
             anchor = _find(edition, job["language"], job["slot"] - 1)
             if anchor is None or anchor["status"] == "planned":
                 continue  # Wait for the previous slot to resolve.
-            if anchor.get("attempted_at"):
+            if anchor.get('sent_at'):
+                base=datetime.fromisoformat(anchor['sent_at'])
+            elif anchor.get("attempted_at"):
                 base = datetime.fromisoformat(anchor["attempted_at"])
             elif anchor.get("due_at"):
                 base = datetime.fromisoformat(anchor["due_at"])
@@ -704,7 +717,8 @@ def main(argv: Optional[list[str]] = None) -> None:
     timezone = (config.get("filtering") or {}).get("daily_timezone") or "UTC"
     settings = Settings.from_mapping(x_delivery, timezone)
     now = datetime.fromisoformat(args.now) if args.now else datetime.now(settings.tz)
-    enabled = bool(x_delivery.get("enabled")) and x_delivery.get("mode") == "drip"
+    from .x_switch import effective_enabled
+    enabled = effective_enabled(x_delivery.get("enabled")) and x_delivery.get("mode") == "drip"
     feed_date = feed_updated_at = ""
     if args.feed_state.exists():
         feed = json.loads(args.feed_state.read_text(encoding="utf-8"))

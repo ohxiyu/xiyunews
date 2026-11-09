@@ -191,7 +191,8 @@ async def finalize(path, workflow_status, *, test=False, publication_proof=None,
     report['ai_cost'] = record_cost(report,store)
     report['operations'] = {'workflow_status':workflow_status, 'cost_totals':cost_totals(store), 'alerts':[]}
     run_id=report['run_id'];metrics=report.get('metrics',{})
-    if workflow_status=='failure' or report.get('status')=='failure':
+    delivery_alerted=any(row.get('code')=='x_operations_alert' and row.get('message') in ('sent','unknown','already_attempted') for row in report.get('alerts',[]))
+    if (workflow_status=='failure' or report.get('status')=='failure') and not delivery_alerted:
         status=await send_alert('failure:'+os.environ.get('GITHUB_WORKFLOW','task')+':'+run_id,f"xiyu.news {report.get('date')} {os.environ.get('GITHUB_WORKFLOW','任务')}失败，请检查 Actions 与持久发送回执；未知结果不会自动重发。",store=store)
         report['operations']['alerts'].append({'event':'failure','status':status})
     elif metrics.get('edition_degraded') or metrics.get('enrichment_degraded'):
@@ -203,7 +204,11 @@ async def finalize(path, workflow_status, *, test=False, publication_proof=None,
         from .deployment_proof import valid_proof
         verified=valid_proof(json.loads(publication_proof.read_text()),path.read_bytes(),published_state.read_bytes())
     if report.get('kind')=='daily_publish' and workflow_status=='success' and metrics.get('displayed_today') and verified:
-        status=await send_alert('daily:'+report['date'],f"xiyu.news {report['date']}：{metrics['displayed_today']}条；今日AI估算¥{totals.get('today_cny',report['ai_cost']['amount']):.4f}，本月已记录¥{totals.get('month_cny',0):.4f}；X正式发布关闭。",store=store)
+        from .x_switch import effective_enabled
+        config_path=Path('data/config.github.json')
+        default=json.loads(config_path.read_text()).get('x_delivery',{}).get('enabled') is True if config_path.exists() else False
+        x_status='X开关已启用，实际发送见回执' if effective_enabled(default) else 'X正式发布关闭'
+        status=await send_alert('daily:'+report['date'],f"xiyu.news {report['date']}：{metrics['displayed_today']}条；今日AI估算¥{totals.get('today_cny',report['ai_cost']['amount']):.4f}，本月已记录¥{totals.get('month_cny',0):.4f}；{x_status}。",store=store)
         report['operations']['alerts'].append({'event':'daily','status':status})
     _atomic_write_text(path,json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     if store:

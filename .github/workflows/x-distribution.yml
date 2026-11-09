@@ -11,31 +11,49 @@ env:
 # is sent (src/x_queue.py). Only runs when x_delivery.mode is "drip" and the
 # credentials are configured; otherwise every run exits without posting.
 #
-# The daily edition dispatches this workflow as soon as it publishes, which
-# sends the first story. Later runs only poll: a cheap stdlib gate reads
+# A successful Cloudflare deployment wakes this workflow; an exact daily
+# producer proof and the current public pages must match before any post. Later runs only poll: a cheap stdlib gate reads
 # the queue and the published edition state and exits in seconds unless a
 # post is due, the edition changed, or a deadline passed. Each run sends at
 # most one post, and an outcome that cannot be proven is never retried.
 
 on:
-  workflow_dispatch: # Retired in core site; source retained for history.
+  workflow_dispatch:
+    inputs:
+      verify_only:
+        description: Read-only account and public channel verification; never post or mutate queue
+        type: boolean
+        default: false
+  workflow_run:
+    workflows: ['xiyunews Cloudflare']
+    types: [completed]
+    branches: [main]
+  schedule:
+    - cron: '17 23,0-15 * * *'
 
 concurrency:
   group: bmtnews-x-distribution
   cancel-in-progress: false
 
 permissions:
-  contents: write  # Checkpoints the plan on the x-queue branch
+  contents: write  # Existing durable queue checkpoints only
+  actions: read  # Read exact trusted publication artifacts
 
 jobs:
   post:
-    if: ${{ false }} # Retired; retained implementation is never executed.
+    if: >-
+      ((github.event_name != 'workflow_run' && github.ref == 'refs/heads/main') ||
+       (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'main' &&
+        github.event.workflow_run.head_repository.full_name == github.repository)) &&
+      (inputs.verify_only || vars.X_DELIVERY_ENABLED != 'false')
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     # Cold source checkout can exceed eight minutes on this runner. Preserve
     # time for checkpointing; business deadlines remain enforced by x_queue.
     timeout-minutes: 20
     env:
       TZ: Asia/Shanghai
+      X_DELIVERY_ENABLED: ${{ vars.X_DELIVERY_ENABLED }}
 
     steps:
       - name: Checkout code
@@ -46,8 +64,10 @@ jobs:
           sparse-checkout: |
             src
             data
+            scripts
 
       - name: Restore published edition state
+        if: ${{ !inputs.verify_only }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -63,6 +83,7 @@ jobs:
           cp "$RUNNER_TEMP/x-edition.json" docs/_data/bmtnews_state.json
 
       - name: Restore isolated delivery queue
+        if: ${{ !inputs.verify_only }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -85,6 +106,7 @@ jobs:
           fi
 
       - name: Queue gate (no dependencies)
+        if: ${{ !inputs.verify_only }}
         id: gate
         shell: bash
         run: |
@@ -95,51 +117,86 @@ jobs:
             --config data/config.github.json | tee -a "$GITHUB_OUTPUT" "$GITHUB_STEP_SUMMARY"
 
       - name: Set up Python
-        if: steps.gate.outputs.work == 'true'
+        if: inputs.verify_only || steps.gate.outputs.work == 'true'
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
       - name: Install uv
-        if: steps.gate.outputs.work == 'true'
+        if: inputs.verify_only || steps.gate.outputs.work == 'true'
         uses: astral-sh/setup-uv@v7
         with:
           version: "0.11.32"
 
       - name: Install dependencies
-        if: steps.gate.outputs.work == 'true'
+        if: inputs.verify_only || steps.gate.outputs.work == 'true'
         run: uv sync --frozen
 
       - name: Prepare GitHub Actions config
-        if: steps.gate.outputs.work == 'true'
+        if: inputs.verify_only || steps.gate.outputs.work == 'true'
         run: cp data/config.github.json data/config.json
 
-      - name: Plan and send with remote checkpoints
+      - name: Verify the existing account without posting
+        if: inputs.verify_only
+        env:
+          X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
+          X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+        run: uv run python -m src.x_verification --account-only
+
+      - name: Find exact production proof for the saved edition
         if: steps.gate.outputs.work == 'true'
+        id: proof
         env:
           GH_TOKEN: ${{ github.token }}
-          # Needed when x_delivery.compose is "ai"; without them planning
-          # falls back to the template post rather than failing.
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: uv run python -m src.x_verification
+
+      - name: Plan and send with remote checkpoints
+        if: steps.proof.outputs.ready == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          # One bounded composition task; invalid text is skipped, never templated.
           SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
           X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
           X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
           X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
           X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
-          EDITION_DATE: ${{ inputs.edition_date }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
+          TELEGRAM_ALERT_THREAD_ID: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
         shell: bash
         run: |
           set -euo pipefail
           args=(--mode x-post --x-queue-dir "$RUNNER_TEMP/x-state")
-          if [ -n "$EDITION_DATE" ]; then
-            args+=(--edition-date "$EDITION_DATE")
-          fi
           uv run bmtnews "${args[@]}"
 
+      - name: Flag posts that need a person
+        if: steps.proof.outputs.ready == 'true'
+        run: |
+          uv run python - <<'PYQUEUE'
+          import os
+          from pathlib import Path
+          from src.x_queue import load, attention
+          path = Path(os.environ['RUNNER_TEMP']) / 'x-state/data/x-queue.json'
+          if attention(load(path)):
+              raise SystemExit('X queue needs review: pending, unknown or failed delivery. See project-docs/x-distribution.md.')
+          PYQUEUE
+
+
+      - name: Record costs and operational failure outcome
+        if: ${{ always() && (steps.proof.outputs.ready == 'true' || (failure() && (inputs.verify_only || steps.gate.outputs.work == 'true'))) }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
+          TELEGRAM_ALERT_THREAD_ID: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
+          OPERATIONS_STATUS: ${{ job.status }}
+        run: uv run python -m src.operations --workflow-status "$OPERATIONS_STATUS"
+
       - name: Publish run report
-        if: ${{ always() && steps.gate.outputs.work == 'true' }}
+        if: ${{ always() && (inputs.verify_only || steps.gate.outputs.work == 'true') }}
         shell: bash
         run: |
           if [ -f data/run-report.json ]; then
@@ -147,17 +204,13 @@ jobs:
           fi
 
       - name: Keep machine-readable cost and health report
-        if: ${{ always() && steps.gate.outputs.work == 'true' }}
+        if: ${{ always() && (inputs.verify_only || steps.gate.outputs.work == 'true') }}
         uses: actions/upload-artifact@v6
         with:
           name: run-report-${{ github.run_id }}-${{ github.run_attempt }}
-          path: data/run-report.json
+          path: |
+            data/run-report.json
+            data/x-verification.json
           retention-days: 30
           if-no-files-found: warn
-
-      - name: Flag posts that need a person
-        if: steps.gate.outputs.attention != '0'
-        run: |
-          echo "::error::The X queue has unknown, pending or failed posts. Check the account, then resolve them on the x-queue branch (project-docs/x-distribution.md)."
-          exit 1
 

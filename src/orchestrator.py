@@ -27,8 +27,9 @@ class BMTNewsOrchestrator(CollectionPipeline, SelectionPipeline, EnrichmentPipel
         self.config=config
         self.storage=storage
         self.console=Console()
-        self.x_publisher=(XEditionPublisher(config.x_delivery,console=self.console)
-                          if config.x_delivery and config.x_delivery.enabled else None)
+        from .x_switch import effective_enabled
+        active_x=(config.x_delivery.model_copy(update={'enabled':effective_enabled(config.x_delivery.enabled)}) if config.x_delivery else None)
+        self.x_publisher=(XEditionPublisher(active_x,console=self.console) if active_x and active_x.enabled else None)
         self.last_fetch_report=None
         self.last_run_report=None
         self._analysis_cache=None
