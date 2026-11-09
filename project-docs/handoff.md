@@ -5,13 +5,13 @@
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "PR5：X质量门、变量开关、运维告警与账号验证",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/367",
+  "goal": "PR6：验证现有X账号并启用正式质量门分发",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/369",
   "owner": "本聊天Codex",
-  "branch": "agent/x-quality-gates",
-  "base": "6ac5460a023c46beac59fc401207bff7ac2ac82f",
-  "status": "PR4已全量CI、合并并实测上线；采集维护开关已恢复；X质量门已实现，本地738项通过，准备完整CI",
-  "next": "完整CI合并后只读核验现有账号，再进入直接正式启用PR6",
+  "branch": "agent/daily-x-enable",
+  "base": "5cc76a270254aa5196648b0b43c03397bc3ff8fc",
+  "status": "PR5 #368全部七项CI通过并合并；只读账号验证42611772288已通过；准备正式默认开关PR",
+  "next": "完整CI后合并正式开关，再推进来源分层及已验证频道入口",
   "blockers": []
 }
 ```
@@ -30,8 +30,11 @@
 
 ## 当前生产与待补信息
 
+- PR5 (#368) 已合并5cc76a2，738项Python测试及完整七项CI通过；X只读验证不发帖、不改队列。
 - PR4 (#366) 已上线6ac5460；生产Worker c39b5eae，artifact0dddaf5。20个历史地址通过，原API字节不变，纯代码部署Telegram正确跳过；采集已恢复。
 - 用户11/09授权X直接正式运行、免三天试运行；默认280加权字符，校验现有四项密钥/API，不升级套餐。
 - 已查GitHub设置：日报bot和X四项密钥存在；目标群Telegram @xiyudotnews的“日报运维”话题6544已创建，参数已保存，测试42571836635已确认sent，不使用读者频道或realtime现有话题。
 - 保留七份现行文档；另有四个极短历史入口供realtime既有链接使用，不恢复旧发布内容。
 - 不改独立 `realtime/`，不重生成或重发既有期刊。旧地址保留跳转；不自动充值或升级模型/配额。
+
+- 真实只读42611772288：@ohxiyu已确认，粉丝基线30211；x-queue前后355a5bea不变；公开日报频道@xiyulabs已确认。首次写权限与首周发送待观察。
