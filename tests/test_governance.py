@@ -17,8 +17,8 @@ def tree(tmp_path):
              "ops/daily-dispatcher/package.json", "ops/daily-dispatcher/package-lock.json"]
     paths += [str(p.relative_to(ROOT)) for p in (ROOT / "project-docs").rglob("*") if p.is_file()]
     # Handoff/release records may link the authoritative brand specification.
-    paths += ["docs/openapi.json", "brand/logo-spec.md"]
-    paths += ["data/tracking-focus.json", "src/tracking_republish.py"]
+    paths += ["docs/openapi.json", "brand/logo-spec.md", "LICENSE", "CONTENT-LICENSE.md", "THIRD_PARTY_NOTICES.md"]
+    paths += ["data/tracking-focus.json", "src/tracking_republish.py", "src/mcp/README.md", "src/mcp/integration.md"]
     # Combined-repository handoff links the independent realtime entry docs.
     paths += [str(p.relative_to(ROOT)) for p in (ROOT / "realtime/docs").rglob("*")
               if p.is_file()]
@@ -59,22 +59,19 @@ def test_duplicate_pointer_rejected(tree):
     assert any("exactly one" in e for e in governance.check(tree))
 
 
-def test_false_deployment_state_rejected(tree):
+@pytest.mark.parametrize("field,value", [("issue", "https://example.com/1"), ("branch", "main"), ("base", "not-a-sha"), ("blockers", [1])])
+def test_invalid_task_identity_rejected(tree, field, value):
     path = tree / "project-docs/handoff.md"
     import re
-    text = path.read_text()
-    match = re.search(r"```json\s*(.*?)\s*```", text, re.S)
-    pointer = json.loads(match.group(1))
-    pointer["states"]["deployed"] = "complete"
-    pointer["states"]["pr_merged"] = "pending"
+    text = path.read_text(); match = re.search(r"```json\s*(.*?)\s*```", text, re.S)
+    pointer = json.loads(match.group(1)); pointer[field] = value
     path.write_text(text[:match.start(1)] + json.dumps(pointer) + text[match.end(1):])
-    assert any("deployed complete requires" in e for e in governance.check(tree))
+    assert any("invalid handoff" in e for e in governance.check(tree))
 
 
-def test_application_pr_requires_handoff_and_evidence():
-    assert len(governance.check_change_evidence(["src/models.py"])) == 2
-    assert governance.check_change_evidence(["src/models.py", "project-docs/handoff.md",
-                                             "project-docs/releases/change.md"]) == []
+def test_application_pr_needs_only_current_handoff():
+    assert governance.check_change_evidence(["src/models.py"]) == ["application PR must update project-docs/handoff.md"]
+    assert governance.check_change_evidence(["src/models.py", "project-docs/handoff.md"]) == []
     assert governance.check_change_evidence(["README.md"]) == []
 
 
@@ -83,28 +80,13 @@ def test_git_refs_are_not_shell_input(tmp_path):
         governance.changed_paths(tmp_path, "main;echo unsafe", "a" * 40)
 
 
-def test_deleted_release_is_not_delivery_evidence(tmp_path):
-    errors = governance.check_change_evidence(
-        ["src/models.py", "project-docs/handoff.md", "project-docs/releases/deleted.md"], tmp_path
-    )
-    assert errors == ["application PR must include a release/verification record"]
-
-
-def test_deployed_claim_requires_structured_evidence(tree):
-    path = tree / "project-docs/handoff.md"
-    text = path.read_text()
-    import re
-    match = re.search(r"```json\s*(.*?)\s*```", text, re.S)
-    pointer = json.loads(match.group(1))
-    pointer["states"] = {name: "complete" for name in governance.STATES}
-    path.write_text(text[:match.start(1)] + json.dumps(pointer) + text[match.end(1):])
-    # The real handoff may already describe a verified deployment. Construct
-    # missing evidence in the isolated fixture, not by assuming production is pending.
-    evidence = tree / pointer["evidence"]
-    evidence.write_text("# Test release without deployment evidence\n")
-    assert any("deployment evidence missing Source commit" in e for e in governance.check(tree))
-    evidence.write_text("\n".join(
-        f"{label}: fixture value" for label in
-        ("Source commit", "Worker version", "Deployment", "Verification", "Rollback")
-    ))
+def test_no_release_archive_or_five_stage_evidence_required(tree):
+    (tree / "project-docs/releases/1.1.0.md").unlink(missing_ok=True)
+    assert governance.check_change_evidence(["src/models.py", "project-docs/handoff.md", "project-docs/releases/deleted.md"], tree) == []
     assert governance.check(tree) == []
+
+
+def test_handoff_stays_one_page(tree):
+    path = tree / "project-docs/handoff.md"
+    path.write_text(path.read_text() + "\n" * 76)
+    assert any("one page" in error for error in governance.check(tree))

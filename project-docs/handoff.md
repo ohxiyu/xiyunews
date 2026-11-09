@@ -1,45 +1,36 @@
 # 当前交接
 
-[Issue355](https://github.com/ohxiyu/xiyunews/issues/355)：滚动信息流与扩写缓存已完成生产验收。
+2026-11-09，按用户提供的《xiyu.news 日报版重构方案》执行。当前聊天是唯一编辑与整合负责人；后续 PR 从前一项合并后的 main 开始。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "归档密集滚动信息流与扩写缓存的最终生产验收",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/355",
-  "owner": "本聊天Codex唯一编辑与整合负责人",
-  "branch": "agent/rolling-cache-production-evidence",
-  "last_verified_commit": "0451c6c36b726c80aedefe535bb3654a22fad0b9",
-  "pr": "https://github.com/ohxiyu/xiyunews/pull/356",
-  "completed": [
-    "密集信息流、原机器人Logo与滚动24小时精选已上线，来源时间排序、完整背景、稳定链接和手机桌面均验收",
-    "PR354缓存键修复已绿色合并；首次生产采集42493880948成功，后续42494382734全部14条扩写命中缓存，仅分析1条新内容"
-  ],
-  "unfinished": [],
-  "validation": [
-    "完整CI42493308344：1251 passed / 4 existing skips，依赖审计通过",
-    "生产复用日志：Reused enrichment for 14 items；公开API与首页14条ID一致、时间窗口正确"
-  ],
-  "unverified": [
-    "目标轮询5分钟，执行器排队和供应商耗时仍可能延迟；不能保证固定5分钟完成出稿"
-  ],
-  "production": {
-    "source_commit": "1cbb849a094e10c71276b7a5ed97f70939c40958",
-    "artifact_commit": "907ac8b4714ce2211b9719a26d8268c07c7de703",
-    "edition": "2026-11-08",
-    "generated_at": "2026-11-08T08:58:08.694761Z",
-    "worker_version": "3bbbb98c-5bdb-4b0f-a3f0-74b1f23b946d",
-    "verified_at": "2026-11-08T15:23:30.873441+00:00"
-  },
-  "blockers": [],
-  "next_action": "应用与生产验收完成；本证据PR合并后正常运行，后续新需求另行认领。",
-  "states": {
-    "code": "complete",
-    "tests": "complete",
-    "pr_merged": "complete",
-    "deployed": "complete",
-    "production_verified": "complete"
-  },
-  "evidence": "project-docs/releases/2026-11-08-rolling-enrichment-cache.md"
+  "goal": "PR0：精简协作流程与当前文档",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/357",
+  "owner": "本聊天 Codex",
+  "branch": "agent/daily-refactor-process",
+  "base": "01ec6dd1176b01ed90023dd17d5052c21804f26c",
+  "status": "实施中；本项只改治理和文档，不改变生产行为",
+  "next": "绿色合并 PR0 后实施 PR1：中文校验、402停止、私人告警与三级降级",
+  "blockers": []
 }
 ```
+
+## 串行路线
+
+0. 流程减负与 README 对齐（当前）。
+1. 中文硬校验、402立即停止、余额/私人告警、三级降级。
+2. 第一批删模块/工作流/旧前端；核对20个历史地址，两天自然出刊验收待实际观察。
+3. 主流程拆为采集、评分去重、扩写、发布；第二批删除，固定输入选稿对比。
+4. 单期首页、作者/频道入口、后台仅评分缓存、单一部署工作流、每页CSS+JS≤20KB。
+5. X质量门、口吻、变量开关、私人预览；连续三天试运行待实际观察。
+6. 用户确认文案与API权益后正式开启X；首周运行验收不能提前声称完成。
+7. 来源分层、一手源诊断；连续七期质量验收待实际观察。
+8. 新一手源、事实约束、分数分布与8–10条；连续七期验收待实际观察。
+
+## 当前生产与待补信息
+
+- 截至此任务启动：滚动精选、固定日报、独立事件任务仍在运行；模型硅基DeepSeek V3.2、并发/候选上限保持原值；只在对应阶段切换。
+- X的Premium/套餐权益、5–10条口吻样本尚待用户提供；正式主号发布保持关闭。
+- 私人告警Secret `TELEGRAM_ALERT_CHAT_ID` 由用户配置。没有配置前不能声称私人告警测试送达。
+- 不改独立 `realtime/`，不重生成或重发既有期刊。旧地址保留跳转；不自动充值或升级模型/配额。
