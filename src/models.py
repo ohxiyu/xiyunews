@@ -366,12 +366,9 @@ class XDeliveryConfig(BaseModel):
     access_secret_env: str = "X_ACCESS_SECRET"
     languages: List[Literal["zh"]] = Field(default_factory=lambda: ["zh"], min_length=1, max_length=1)
     site_url: str = "https://xiyu.news/"
-    max_items: int = Field(default=3, ge=1, le=5)
     required: bool = False
-    # "digest" posts one round-up when the edition publishes.
-    # "drip" posts the top stories one at a time across the day, driven by
-    # the x-distribution workflow; the publish step then posts nothing.
-    mode: Literal["digest", "drip"] = "digest"
+    # Only the durable two-story drip planner can publish to the account.
+    mode: Literal["drip"] = "drip"
     # Drip plan: the first story goes out when the edition publishes, each
     # later one a seeded random gap after the previous post's actual send.
     drip_items: int = Field(default=2, ge=1, le=8)
@@ -386,19 +383,15 @@ class XDeliveryConfig(BaseModel):
     expire_after_minutes: int = Field(default=360, ge=30, le=1440)
     window_end: str = "23:30"
     history_days: int = Field(default=7, ge=1, le=30)
-    # Where a drip post sends the reader. "none" posts no link at all, which
-    # is what X's ranking favours; "site" keeps readers in the briefing and
-    # "source" credits the outlet directly.
-    link_target: Literal["none", "site", "source"] = "none"
-    # "ai" writes each post in the account's voice; "template" assembles it
-    # from the stored title and summary without an extra model call. AI
-    # composition always falls back to the template on failure.
-    compose: Literal["ai", "template"] = "ai"
+    # Public posts contain no links.
+    link_target: Literal["none"] = "none"
+    # AI selects complete published sentences; no template fallback.
+    compose: Literal["ai"] = "ai"
     # Weighted characters, counted the way X does (CJK counts double).
     # 280 is the standard-account cap; Premium accounts post far longer.
     # The compact brief targets 90-150 Chinese characters. The configured
     # ceiling leaves headroom for Latin names and numbers within that range.
-    max_post_chars: int = Field(default=400, ge=280, le=25000)
+    max_post_chars: int = Field(default=280, ge=280, le=25000)
 
     @field_validator("expected_publish_time", "window_end")
     @classmethod

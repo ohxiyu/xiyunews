@@ -3,11 +3,17 @@ from __future__ import annotations
 import json
 from datetime import date as date_type, datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 from .models import ContentItem
 from .daily_feed import item_identity, local_date_for, load_daily_feed_state, load_published_daily_feed_state
 from .run_report import RunReport
 from .ai.client import create_ai_client
 from .ai.tokens import reset_usage
+from .x_switch import effective_enabled
+from .x_quality import CONTRACT,eligible,priority,approved_text
+from .x_verification import verify_published_edition
+from .ai.errors import account_error
+from .ai.prompts import X_POST_SYSTEM
 
 
 
@@ -34,16 +40,12 @@ class XDistributionPipeline:
         rejected push stops the run before any request. ``kickoff_only`` is
         kept for compatibility: a post-publication kickoff is an ordinary run.
         """
-        from .services.x_delivery import (
-            build_story_post,
-            compose_story_post,
-            post_source_fields,
-            unsupported_figures,
-        )
+        from .services.x_delivery import compose_story_post,post_source_fields
         from . import x_queue
 
         del kickoff_only  # Every run plans, advances and sends the same way.
         config = self.config.x_delivery
+        if config:config=config.model_copy(update={'enabled':effective_enabled(config.enabled)})
         timezone_name = self.config.filtering.daily_timezone
         run_started_at = now or datetime.now(timezone.utc)
         if run_started_at.tzinfo is None:
@@ -89,6 +91,11 @@ class XDistributionPipeline:
             settings = x_queue.Settings.from_mapping(
                 config.model_dump(), timezone_name
             )
+            if settings.items>2 or settings.gap_min_minutes<180 or settings.gap_max_minutes>360:
+                raise ValueError('X settings exceed the approved two posts and 3–6 hour gap')
+            local_now=run_started_at.astimezone(settings.tz)
+            if not settings.expected_publish<=local_now.time()<=settings.window_end:
+                run_report.add_alert('info','x_outside_window','当前不在X发送时段内。');return
             state = x_queue.load(path, run_started_at)
             attention_before = self._x_attention_jobs(state)
 
@@ -105,7 +112,14 @@ class XDistributionPipeline:
             changed = x_queue.recover_pending(state) > 0
             daily_state = (load_published_daily_feed_state(today, timezone_name)
                            if queue_dir is not None else load_daily_feed_state(today, timezone_name))
+            publication_time=None
             if daily_state.items:
+                publication_time=await verify_published_edition(daily_state,now=run_started_at)
+                identity=await publisher.verify_account()
+                if identity.get('status')!='verified':
+                    raise RuntimeError('Expected @ohxiyu account/API could not be verified; no X request sent')
+                run_report.set_metric('x_account_verified',1)
+                if type(identity.get('followers_count')) is int:run_report.set_metric('x_followers_observed',identity['followers_count'])
                 changed |= await self._plan_x_edition(
                     state,
                     daily_state=daily_state,
@@ -113,11 +127,10 @@ class XDistributionPipeline:
                     now=run_started_at,
                     settings=settings,
                     run_report=run_report,
+                    published_at=publication_time,
                     helpers=(
-                        build_story_post,
                         compose_story_post,
                         post_source_fields,
-                        unsupported_figures,
                     ),
                 )
             else:
@@ -135,9 +148,16 @@ class XDistributionPipeline:
             if job and not_ready:
                 run_report.add_alert("info", "x_slot_skipped", not_ready)
             elif job:
-                await self._send_x_job(
-                    job, publisher, persist, now=run_started_at, run_report=run_report
-                )
+                selected=next((item for item in daily_state.items if x_queue.story_key_for_identity(item_identity(item))==job['story_key']),None)
+                if selected is None or not eligible(selected,self.config) or not approved_text(selected,job['text'],limit=min(config.max_post_chars,280)):
+                    job['status']='skipped';job['detail']='quality_gate';persist()
+                else:
+                    # Re-read actual published words immediately before committing an attempt.
+                    await verify_published_edition(daily_state,now=now or datetime.now(timezone.utc))
+                    await self._send_x_job(
+                        job,publisher,persist,now=now or datetime.now(timezone.utc),run_report=run_report,
+                        fixed_clock=now is not None)
+
 
             for status, count in x_queue.counts(state, today).items():
                 run_report.set_metric(f"x_jobs_{status}", count)
@@ -180,59 +200,45 @@ class XDistributionPipeline:
         settings,
         run_report: "RunReport",
         helpers,
+        published_at=None,
     ) -> bool:
         """Turn the published edition into planned X posts (text included)."""
         from . import x_queue
 
-        build_story_post, compose_story_post, post_source_fields, figures = helpers
+        compose_story_post,post_source_fields = helpers
         config = self.config.x_delivery
         ai_client = None
 
-        def template(item: ContentItem, language: str) -> str:
-            return build_story_post(
-                item,
-                language=language,
-                site_url=config.site_url,
-                link_target=config.link_target,
-                limit=config.max_post_chars,
-                edition_date=today,
-            )
-
         async def compose(item: ContentItem, language: str) -> tuple[str, str, str]:
             nonlocal ai_client
-            if config.compose != "ai":
-                return template(item, language), "template", ""
-            text = None
+            if config.compose != 'ai':return '', 'rejected', 'unsafe_template_disabled'
             try:
-                if ai_client is None:
-                    ai_client = create_ai_client(self.config.ai)
-                text = await compose_story_post(
-                    ai_client, item, language=language, limit=config.max_post_chars
-                )
-            except Exception as exc:  # noqa: BLE001 - fall back to the template
-                self.console.print(f"[yellow]⚠️  X composer unavailable: {exc}[/yellow]")
-            if text is None:
-                return template(item, language), "template", "compose_failed"
-            sources = post_source_fields(item, language).values()
-            if figures(text, sources):
-                # A figure the published page does not carry is a fact risk,
-                # not a style issue: use the assembled post instead.
-                return template(item, language), "template", "unsupported_figures"
-            return text, "ai", ""
+                if ai_client is None:ai_client=create_ai_client(self.config.ai)
+                text=await compose_story_post(ai_client,item,language=language,limit=min(config.max_post_chars,280))
+            except Exception as exc:
+                blocked=account_error(exc)
+                if blocked is not None:raise blocked from exc
+                text=None
+            if not text or not approved_text(item,text,limit=min(config.max_post_chars,280)):
+                return '', 'rejected', 'composition_rejected'
+            return text, 'ai_verified_sentences', ''
 
         candidates: dict[str, list[x_queue.Candidate]] = {}
         for language in config.languages:
             entries = []
-            for rank, item in enumerate(daily_state.items, start=1):
-                if item.metadata.get("edition_mode") == "brief":
-                    continue
+            ordered=sorted(enumerate(daily_state.items,start=1),key=lambda row:priority(row[1]))
+            for rank,item in ordered:
+                if not eligible(item,self.config):continue
                 fields = post_source_fields(item, language)
                 source = json.dumps(
                     {
                         "fields": fields,
                         "compose": config.compose,
                         "link_target": config.link_target,
-                        "max_post_chars": config.max_post_chars,
+                        "max_post_chars": min(config.max_post_chars,280),
+                        "quality_contract":CONTRACT,
+                        "prompt":X_POST_SYSTEM,
+                        "model":f"{self.config.ai.provider.value}:{self.config.ai.model}",
                     },
                     ensure_ascii=False,
                     sort_keys=True,
@@ -252,7 +258,7 @@ class XDistributionPipeline:
             state,
             day=today,
             now=now,
-            published_at=daily_state.updated_at,
+            published_at=published_at or daily_state.updated_at,
             state_updated_at=x_queue.normalize_stamp(daily_state.updated_at),
             candidates=candidates,
             compose=compose,
@@ -268,8 +274,8 @@ class XDistributionPipeline:
         if summary["fallbacks"]:
             run_report.add_alert(
                 "info",
-                "x_compose_fallback",
-                "X 文案回落到模板拼装：" + ", ".join(summary["fallbacks"]),
+                "x_composition_rejected",
+                "X 不合格文案已跳过，没有模板回退：" + ", ".join(summary["fallbacks"]),
             )
         run_report.set_metric("x_posts_composed", summary["composed"])
         return bool(summary["changed"])
@@ -282,6 +288,7 @@ class XDistributionPipeline:
         *,
         now: datetime,
         run_report: "RunReport",
+        fixed_clock: bool=False,
     ) -> None:
         """Checkpoint, send exactly the stored text, record what it proved."""
         from .x_queue import text_digest
@@ -291,6 +298,9 @@ class XDistributionPipeline:
             job["detail"] = "stored_text_mismatch"
             persist()
             return
+        local=now.astimezone(ZoneInfo(self.config.filtering.daily_timezone))
+        if local.date().isoformat()!=run_report.date or not self.config.x_delivery.expected_publish_time<=local.strftime('%H:%M')<=self.config.x_delivery.window_end or (job.get('deadline') and now>datetime.fromisoformat(job['deadline'])):
+            job['status']='expired';job['detail']='missed_deadline';persist();return
         job["status"] = "pending"
         job["attempted_at"] = now.isoformat()
         job["detail"] = ""
@@ -304,6 +314,7 @@ class XDistributionPipeline:
         if outcome.kind == "sent":
             job["status"] = "sent"
             job["tweet_id"] = outcome.tweet_id
+            job['sent_at']=(now if fixed_clock else datetime.now(timezone.utc)).isoformat()
             run_report.set_metric("x_posts_sent", 1)
             self.console.print(f"🐦 Posted {label} to X")
         elif outcome.kind in {"not_sent", "rate_limited"}:
@@ -319,13 +330,23 @@ class XDistributionPipeline:
             run_report.add_alert(
                 "failure",
                 "x_slot_failed",
-                f"{label}: {outcome.detail} 该语言今天停止推送，需人工处理。",
+                f"{label}: {outcome.detail} 该语言今天停止推送，需人工处理。\n\n{job['text']}",
             )
         else:
             job["status"] = "unknown"
             run_report.add_alert(
                 "failure",
                 "x_slot_unknown",
-                f"{label}: {outcome.detail} 不会自动重发，请人工核对账号后处理。",
+                f"{label}: {outcome.detail} 不会自动重发，请人工核对账号后处理。\n\n{job['text']}",
             )
-        persist()
+        try:
+            persist()
+        finally:
+            if job['status'] in ('failed','unknown'):
+                from .operations import send_alert
+                try:
+                    status=await send_alert(f"x:{run_report.date}:{job['language']}:{job['slot']}:{job['text_sha256']}:{job['status']}",
+                        f"X {run_report.date} #{job['slot']} {job['status']}：{job['detail']}\n\n{job['text']}\n\n未知结果不会自动重发，请核对主号。")
+                    run_report.add_alert('info','x_operations_alert',status)
+                except Exception:
+                    run_report.add_alert('warning','x_operations_alert_unavailable','X运维告警未确认；保留发送回执。')
