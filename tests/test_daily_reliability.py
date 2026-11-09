@@ -14,7 +14,7 @@ from src.ai.prefilter import ContentPrefilter
 from src.edition import edition_window_for
 from src.edition_fallback import cached_selection, save_selection
 from src.models import Config, ContentItem, SourceType
-from src.operations import budget, estimate_cost, private_alert, record_cost
+from src.operations import cost_totals, estimate_cost, private_alert, record_cost
 from src.publication_state import PublicationState
 
 NOW=datetime(2026,11,9,0,tzinfo=timezone.utc)
@@ -100,20 +100,16 @@ def test_cost_counts_cache_discount_without_double_counting_reasoning():
     assert not cost['complete'] and cost['unpriced_rows']==1
 
 
-def test_cost_ledger_idempotent_and_balance_requires_baseline_and_seven_days(tmp_path):
+def test_cost_ledger_is_idempotent_and_shows_only_recorded_usage(tmp_path):
     store=PublicationState(tmp_path)
-    for n in range(7):
-        date=NOW-timedelta(days=n+1)
-        report=dict(run_id=str(n),started_at=date.isoformat(),ai_usage=[usage()])
-        record_cost(report,store);record_cost(report,store)
-    assert budget(store,now=NOW,env={})['balance_status']=='unknown'
-    result=budget(store,now=NOW,env={'AI_BALANCE_BASELINE_CNY':'56','AI_BALANCE_BASELINE_AT':(NOW-timedelta(days=8)).isoformat()})
-    assert result['coverage_days']==7 and result['remaining_days'] is None
-    record_cost(dict(run_id='coverage-start',started_at=(NOW-timedelta(days=8)).isoformat(),ai_usage=[]),store)
-    result=budget(store,now=NOW,env={'AI_BALANCE_BASELINE_CNY':'56','AI_BALANCE_BASELINE_AT':(NOW-timedelta(days=8)).isoformat()})
-    assert result['remaining_days']==pytest.approx(13)
+    report=dict(run_id='one',started_at=NOW.isoformat(),ai_usage=[usage()])
+    record_cost(report,store);record_cost(report,store)
+    result=cost_totals(store,now=NOW)
+    assert result['today_cny']==pytest.approx(2.8)
+    assert result['month_cny']==pytest.approx(2.8)
+    assert 'balance' not in str(result) and 'remaining_days' not in result
     with store.connect() as db:
-        assert db.execute('SELECT COUNT(*) FROM operations_costs').fetchone()[0]==8
+        assert db.execute('SELECT COUNT(*) FROM operations_costs').fetchone()[0]==1
 
 
 @pytest.mark.parametrize('kind',['group','supergroup','channel'])

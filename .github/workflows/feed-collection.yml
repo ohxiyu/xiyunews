@@ -139,8 +139,6 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
-          AI_BALANCE_BASELINE_CNY: ${{ vars.AI_BALANCE_BASELINE_CNY }}
-          AI_BALANCE_BASELINE_AT: ${{ vars.AI_BALANCE_BASELINE_AT }}
           OPERATIONS_STATUS: ${{ job.status }}
         run: uv run python -m src.operations --workflow-status "$OPERATIONS_STATUS"
 

@@ -28,4 +28,4 @@ These rules apply to people and coding agents. The user-approved 2026-11-09 dail
 - Use meaningful behavior tests, plus build/visual checks when presentation changes. A screenshot is optional; production claims require actual observations.
 - CI/governance must validate versions, relevant links and a small current task pointer, without requiring historical release archives or ceremonial evidence.
 - Follow the refactor stages in handoff. Report multi-day acceptance as pending until observed; never invent elapsed time, successful delivery, balances, analytics or source facts.
-- X starts in private Telegram preview mode. Main-account publishing stays disabled until the specified three-day trial, API entitlement checks and the user's copy approval. Unknown delivery results are never automatically retried.
+- On 2026-11-09 the owner explicitly waived the X preview trial and authorized direct main-account operation after quality gates and API availability checks. Keep the daily two-post limit, do not purchase/upgrade a plan, and never automatically retry an unknown delivery. Balance checking/alerts are disabled at the owner's request; retain token cost accounting.

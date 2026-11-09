@@ -1068,12 +1068,8 @@ Existing published editions and Telegram delivery receipts remain authoritative.
   e.g. the path configured by `ops/runner/30-publication-state.conf`. Cost ledger
   and alert receipts use this same database. Missing durable state reports
   `state_unavailable` and refuses to send; never use an ephemeral retry receipt.
-- Optional repository variables `AI_BALANCE_BASELINE_CNY` and
-  `AI_BALANCE_BASELINE_AT`: manually observed balance and timezone-aware ISO time.
-  SiliconFlow retired `/user/info` on 2026-08-14; no balance request uses that
-  endpoint. Missing/invalid baseline means unknown balance. Remaining-day alerts
-  require seven complete recorded days and priced usage. Estimates only cover
-  this project's recorded usage; account-wide consumption/top-ups are not known.
+- The owner explicitly disabled balance checking/forecasting on 2026-11-09.
+  No balance endpoint, baseline variables or low-balance alerts are used.
 - `run_report.ai_cost`: estimated CNY at SiliconFlow DeepSeek-V3.2 prices
   (input 4, cached input 0.4, output 6 per million tokens). Reasoning tokens are
   included in output, never billed twice. Other models are marked unpriced.

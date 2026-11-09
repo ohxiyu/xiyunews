@@ -6,8 +6,8 @@ import asyncio
 import json
 import os
 import re
-from datetime import datetime, timedelta, timezone
-from decimal import Decimal, InvalidOperation
+from datetime import datetime, timezone
+from decimal import Decimal
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -63,41 +63,21 @@ def record_cost(report, store=None):
     return cost
 
 
-def budget(store, *, now=None, env=None):
-    now = now or datetime.now(timezone.utc)
-    env = os.environ if env is None else env
-    result = {'balance_status': 'unknown', 'coverage_days': 0, 'remaining_days': None,
-              'note': '估算仅含本项目已记录用量；不含其他应用消费、充值或供应商账单调整。'}
+def cost_totals(store, *, now=None):
+    """Recorded project usage only; no provider balance checks or forecasts."""
     if store is None:
-        return result
+        return {'status': 'state_unavailable'}
+    now = now or datetime.now(timezone.utc)
     prepare(store)
-    day = now.astimezone(ZoneInfo('Asia/Shanghai')).date()
-    start = (day-timedelta(days=7)).isoformat()
+    day = now.astimezone(ZoneInfo('Asia/Shanghai')).date().isoformat()
     with store.connect() as db:
         rows = db.execute('SELECT started_at,day,amount,complete FROM operations_costs').fetchall()
-    recent = [r for r in rows if start <= r[1] < day.isoformat()]
-    days = {r[1] for r in recent}
-    result.update(coverage_days=len(days), today_cny=round(sum(r[2] for r in rows if r[1]==day.isoformat()), 6),
-                  month_cny=round(sum(r[2] for r in rows if r[1][:7]==day.isoformat()[:7]), 6))
-    try:
-        baseline = Decimal(env.get('AI_BALANCE_BASELINE_CNY', ''))
-        observed = datetime.fromisoformat(env.get('AI_BALANCE_BASELINE_AT', '').replace('Z','+00:00'))
-        if not baseline.is_finite() or baseline < 0 or observed.tzinfo is None or observed > now:
-            return result
-    except (ValueError, InvalidOperation):
-        return result
-    # No interpolation through a run spanning the baseline observation.
-    since = [r for r in rows if datetime.fromisoformat(r[0]) >= observed]
-    remaining = float(baseline) - sum(r[2] for r in since)
-    result.update(balance_status='project_estimate', remaining_cny=round(remaining,6))
-    week_start = datetime.combine(day-timedelta(days=7), datetime.min.time(), ZoneInfo('Asia/Shanghai'))
-    observed_full_week = bool(rows) and min(datetime.fromisoformat(r[0]) for r in rows) <= week_start
-    result['full_window_observed'] = observed_full_week
-    if len(days)==7 and observed_full_week and all(r[3] for r in recent+since):
-        average = sum(r[2] for r in recent)/7
-        if average > 0:
-            result['remaining_days'] = max(0, remaining)/average
-    return result
+    return {'status': 'recorded_usage',
+            'today_cny': round(sum(r[2] for r in rows if r[1] == day), 6),
+            'month_cny': round(sum(r[2] for r in rows if r[1][:7] == day[:7]), 6),
+            'recorded_since': min((r[0] for r in rows), default=None),
+            'complete_pricing': all(r[3] for r in rows),
+            'note': '仅为本项目已记录用量的费用估算，不是供应商账单或余额。'}
 
 
 async def private_alert(key, text, *, store=None, client=None, env=None):
@@ -153,7 +133,7 @@ async def finalize(path, workflow_status, *, test=False):
         return 0
     report = json.loads(path.read_text())
     report['ai_cost'] = record_cost(report,store)
-    report['operations'] = {'workflow_status':workflow_status, 'budget':budget(store), 'alerts':[]}
+    report['operations'] = {'workflow_status':workflow_status, 'cost_totals':cost_totals(store), 'alerts':[]}
     run_id=report['run_id'];metrics=report.get('metrics',{})
     if workflow_status=='failure' or report.get('status')=='failure':
         status=await private_alert('failure:'+run_id,f"xiyu.news {report.get('date')} 任务失败，请检查 Actions 运行日志。",store=store)
@@ -161,13 +141,9 @@ async def finalize(path, workflow_status, *, test=False):
     elif metrics.get('edition_degraded') or metrics.get('enrichment_degraded'):
         status=await private_alert('degraded:'+run_id,f"xiyu.news {report.get('date')} 已生成简版，部分背景不可用。" + (f" AI账户HTTP {metrics['provider_account_http_status']}，已停止调用。" if metrics.get('provider_account_http_status') else ''),store=store)
         report['operations']['alerts'].append({'event':'degraded','status':status})
-    balance=report['operations']['budget']
-    if balance.get('remaining_days') is not None and balance['remaining_days']<3:
-        day=datetime.now(ZoneInfo('Asia/Shanghai')).date().isoformat()
-        status=await private_alert('balance:'+day,'xiyu.news AI余额估算低于3天本项目用量，请核对供应商余额。',store=store)
-        report['operations']['alerts'].append({'event':'balance_low','status':status})
+    totals=report['operations']['cost_totals']
     if report.get('kind')=='daily_publish' and workflow_status=='success' and metrics.get('displayed_today'):
-        status=await private_alert('daily:'+report['date'],f"xiyu.news {report['date']}：{metrics['displayed_today']}条；今日AI估算¥{balance.get('today_cny',report['ai_cost']['amount']):.4f}，本月已记录¥{balance.get('month_cny',0):.4f}；X正式发布关闭。",store=store)
+        status=await private_alert('daily:'+report['date'],f"xiyu.news {report['date']}：{metrics['displayed_today']}条；今日AI估算¥{totals.get('today_cny',report['ai_cost']['amount']):.4f}，本月已记录¥{totals.get('month_cny',0):.4f}；X正式发布关闭。",store=store)
         report['operations']['alerts'].append({'event':'daily','status':status})
     _atomic_write_text(path,json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     if store:
