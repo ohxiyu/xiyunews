@@ -14,7 +14,7 @@ from src.ai.prefilter import ContentPrefilter
 from src.edition import edition_window_for
 from src.edition_fallback import cached_selection, save_selection
 from src.models import Config, ContentItem, SourceType
-from src.operations import cost_totals, estimate_cost, private_alert, record_cost
+from src.operations import cost_totals, estimate_cost, send_alert, record_cost, setup_alert_topic
 from src.publication_state import PublicationState
 
 NOW=datetime(2026,11,9,0,tzinfo=timezone.utc)
@@ -112,31 +112,32 @@ def test_cost_ledger_is_idempotent_and_shows_only_recorded_usage(tmp_path):
         assert db.execute('SELECT COUNT(*) FROM operations_costs').fetchone()[0]==1
 
 
-@pytest.mark.parametrize('kind',['group','supergroup','channel'])
-def test_private_alert_refuses_non_private_destinations(tmp_path,kind):
+@pytest.mark.parametrize('kind',['private','group','supergroup','channel'])
+def test_alert_refuses_non_forum_destinations(tmp_path,kind):
     requests=[]
     def handle(request):
         requests.append(request)
-        return httpx.Response(200,json={'ok':True,'result':{'type':kind,'id':123}})
+        return httpx.Response(200,json={'ok':True,'result':{'type':kind,'id':-100123}})
     async def run():
         async with httpx.AsyncClient(transport=httpx.MockTransport(handle)) as client:
-            return await private_alert('test','test',store=PublicationState(tmp_path),client=client,env={'TELEGRAM_BOT_TOKEN':'redacted','TELEGRAM_ALERT_CHAT_ID':'123'})
+            return await send_alert('test','test',store=PublicationState(tmp_path),client=client,env={'TELEGRAM_BOT_TOKEN':'redacted','TELEGRAM_ALERT_CHAT_ID':'-100123','TELEGRAM_ALERT_THREAD_ID':'42'})
     assert asyncio.run(run())=='destination_unverified'
     assert len(requests)==1
 
 
-def test_private_unknown_is_never_retried_after_restart(tmp_path):
+def test_topic_unknown_is_never_retried_after_restart(tmp_path):
     sends=[]
     def handle(request):
         if request.url.path.endswith('getChat'):
-            return httpx.Response(200,json={'ok':True,'result':{'type':'private','id':123}})
+            return httpx.Response(200,json={'ok':True,'result':{'type':'supergroup','is_forum':True,'id':-100123}})
         sends.append(request)
+        assert json.loads(request.content)["message_thread_id"] == 42
         raise httpx.ReadTimeout('secret-url')
     async def run():
         async with httpx.AsyncClient(transport=httpx.MockTransport(handle)) as client:
-            args=dict(client=client,env={'TELEGRAM_BOT_TOKEN':'redacted','TELEGRAM_ALERT_CHAT_ID':'123'})
-            assert await private_alert('one','test',store=PublicationState(tmp_path),**args)=='unknown'
-            assert await private_alert('one','test',store=PublicationState(tmp_path),**args)=='already_attempted'
+            args=dict(client=client,env={'TELEGRAM_BOT_TOKEN':'redacted','TELEGRAM_ALERT_CHAT_ID':'-100123','TELEGRAM_ALERT_THREAD_ID':'42'})
+            assert await send_alert('one','test',store=PublicationState(tmp_path),**args)=='unknown'
+            assert await send_alert('one','test',store=PublicationState(tmp_path),**args)=='already_attempted'
     asyncio.run(run())
     assert len(sends)==1
 
@@ -183,3 +184,37 @@ def test_brief_rendering_failure_is_never_reported_as_success(tmp_path,monkeypat
     with pytest.raises(OSError):asyncio.run(runner._publish_cached_brief(window,report,NOW))
     report.finish()
     assert report.status=='failure'
+
+
+def test_setup_creates_one_topic_and_reuses_persisted_result(tmp_path):
+    calls=[]
+    def handle(request):
+        calls.append(request.url.path.rsplit('/',1)[-1])
+        if request.url.path.endswith('getChat'):
+            return httpx.Response(200,json={'ok':True,'result':{'type':'supergroup','is_forum':True,'id':-100123}})
+        assert json.loads(request.content)=={'chat_id':'-100123','name':'日报运维'}
+        return httpx.Response(200,json={'ok':True,'result':{'message_thread_id':42}})
+    async def run():
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handle)) as client:
+            args=dict(client=client,env={'TELEGRAM_BOT_TOKEN':'fixture'})
+            first=await setup_alert_topic('-100123',store=PublicationState(tmp_path),**args)
+            second=await setup_alert_topic('-100123',store=PublicationState(tmp_path),**args)
+            assert first==second=={'status':'created','chat_id':'-100123','message_thread_id':42,'name':'日报运维'}
+    asyncio.run(run())
+    assert calls.count('createForumTopic')==1
+
+
+def test_setup_unknown_never_creates_another_topic(tmp_path):
+    calls=[]
+    def handle(request):
+        if request.url.path.endswith('getChat'):
+            return httpx.Response(200,json={'ok':True,'result':{'type':'supergroup','is_forum':True,'id':-100123}})
+        calls.append(request)
+        raise httpx.ReadTimeout('ambiguous')
+    async def run():
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handle)) as client:
+            args=dict(client=client,env={'TELEGRAM_BOT_TOKEN':'fixture'})
+            assert (await setup_alert_topic('-100123',store=PublicationState(tmp_path),**args))['status']=='unknown'
+            assert (await setup_alert_topic('-100123',store=PublicationState(tmp_path),**args))['status']=='unknown'
+    asyncio.run(run())
+    assert len(calls)==1

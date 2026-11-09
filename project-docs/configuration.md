@@ -1048,41 +1048,52 @@ URL 规范化去重之后，事件目录匹配与 AI 语义比较分别处理跨
 
 `core_only: true` 与 `ai.languages: ["zh"]` 选择中文核心流水线，模型维持硅基流动 `deepseek-ai/DeepSeek-V3.2`。`x_delivery.enabled` 为 false，邮件/Webhook 关闭，Telegram 仅中文日报，由独立发布后任务处理。英文旧渲染器和非核心库代码保留，生产任务与路由停用。仅开启旧库开关不能恢复已退役的生产入口或发送计划。
 
-## Daily reliability and private operations
+## Daily reliability and operations topic
 
-The Chinese profile requires both a Chinese title and summary. A missing Chinese
-field gets one translation repair; an invalid result is excluded rather than
-published in English. Account HTTP 401/402/403 stops retries and queued AI work.
-If enrichment is unavailable, the edition uses scored Chinese summaries and is
-marked 简版. If scoring/deduplication is unavailable, only a previously qualified
-cohort in the exact edition window may be used (`data/qualified-cache.json`).
-No qualified cohort means no edition. Brief editions cannot enter X delivery.
-Existing published editions and Telegram delivery receipts remain authoritative.
+The Chinese profile requires a Chinese title and summary. Missing Chinese fields
+get one translation repair; invalid results are excluded. Account HTTP
+401/402/403 stops retries and queued AI work. Failed enrichment uses scored
+Chinese summaries and marks the edition 简版; failed scoring/deduplication may
+only use a previously qualified cohort in the exact edition window
+(`data/qualified-cache.json`). No cohort means no edition. Brief editions cannot
+enter X. Published editions and Telegram delivery receipts remain authoritative.
 
-- Actions Secret `TELEGRAM_ALERT_CHAT_ID`: a positive numeric **private** chat ID.
-  The existing `TELEGRAM_BOT_TOKEN` is reused. `getChat` must confirm a private
-  destination; no channel/group fallback is permitted. Start a chat with the bot
-  before testing. Feed Collection → Run workflow → `alert_test=true` sends one
-  test, without collection/publication. The test fails unless delivery is confirmed.
-- Runner `XIYUNEWS_STATE_DIR`: existing durable publication SQLite directory,
-  e.g. the path configured by `ops/runner/30-publication-state.conf`. Cost ledger
-  and alert receipts use this same database. Missing durable state reports
-  `state_unavailable` and refuses to send; never use an ephemeral retry receipt.
-- The owner explicitly disabled balance checking/forecasting on 2026-11-09.
-  No balance endpoint, baseline variables or low-balance alerts are used.
-- `run_report.ai_cost`: estimated CNY at SiliconFlow DeepSeek-V3.2 prices
-  (input 4, cached input 0.4, output 6 per million tokens). Reasoning tokens are
-  included in output, never billed twice. Other models are marked unpriced.
-  Per-run ledger writes are idempotent; daily/month totals show recorded usage,
-  not a provider invoice. Financial estimates remain in private artifacts.
-- The normal unified deployment copies a configured private destination into the
-  Worker's optional `TELEGRAM_ALERT_CHAT_ID` and `DAILY_TELEGRAM_BOT_TOKEN` bindings.
-  The latter reuses the existing Actions daily bot; it leaves the independent
-  realtime watchdog's `TELEGRAM_BOT_TOKEN` and `ALERT_CHAT_ID` unchanged. Worker checks collection lag
-  (>30 minutes, one alert until recovery) and missing editions after 07:45.
-- Alert attempts are persisted before sending; timeouts/5xx become unknown and
-  are never retried automatically. `not_configured`, `destination_unverified`,
-  `state_unavailable`, failed and unknown must not be described as delivered.
+The owner changed the alert destination on 2026-11-09: create a separate
+**日报运维** forum topic in the designated existing Telegram group. Do not send
+alerts to the general group, reader channel, or existing realtime topics.
 
-Official provider changes/prices:
+- Reuse Actions `TELEGRAM_BOT_TOKEN`. The bot must already belong to the target
+  forum supergroup and have permission to manage topics. Feed Collection manual
+  input `alert_setup_chat` accepts the explicitly designated group ID or public
+  `@username`. It creates one topic without collection or publication; its small
+  private `alert-topic-*` artifact contains the group ID and message_thread_id,
+  never bot credentials. Creation is checkpointed before HTTP; unknown creation
+  results are never repeated automatically.
+- Configure Actions variables (or Secrets) `TELEGRAM_ALERT_CHAT_ID` (negative
+  supergroup ID) and `TELEGRAM_ALERT_THREAD_ID` (positive topic ID). Normal sends
+  verify `getChat` confirms that exact forum supergroup, then always set
+  `message_thread_id`; no fallback destination is allowed. Manual `alert_test`
+  sends one test to the configured topic and fails unless delivery is confirmed.
+- Existing runner `XIYUNEWS_STATE_DIR` is the durable publication SQLite
+  directory (see `ops/runner/30-publication-state.conf`). Alert attempt receipts,
+  topic setup result and costs use this database. Missing durable state reports
+  `state_unavailable` and refuses to send/create; never use an ephemeral receipt.
+- Normal unified deployment copies the configured destination into optional
+  `TELEGRAM_ALERT_CHAT_ID`/`TELEGRAM_ALERT_THREAD_ID` bindings and reuses the daily
+  Actions bot in `DAILY_TELEGRAM_BOT_TOKEN`. Independent realtime watchdog
+  `TELEGRAM_BOT_TOKEN`/`ALERT_CHAT_ID` and its existing topics are unchanged.
+  Worker alerts on collection lag >30min (once until recovery) and no edition
+  after07:45. Missing configuration is reported as not configured, not delivered.
+- The owner disabled all balance checks/forecasts/alerts. No balance API or
+  baseline variables are used. `run_report.ai_cost` and durable per-run ledger
+  only estimate recorded project CNY usage at SiliconFlow DeepSeek-V3.2 prices:
+  input4, cached input0.4, output6 per million tokens. Reasoning is already part
+  of output. Other models are unpriced; amounts are estimates, not invoices.
+- Send attempts are committed before HTTP. Timeouts/5xx remain unknown and never
+  retry automatically. Failed/unknown/not_configured/destination_unverified or
+  state_unavailable must never be reported as successful delivery.
+
+Official API and provider references:
+https://core.telegram.org/bots/api#createforumtopic
+https://core.telegram.org/bots/api#sendmessage
 https://docs.siliconflow.cn/docs/release-notes/overview

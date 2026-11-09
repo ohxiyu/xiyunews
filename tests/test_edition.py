@@ -541,7 +541,7 @@ def test_rolling_collection_and_independent_daily_archive() -> None:
     assert "GITHUB_TOKEN: ${{ github.token }}" in publication
     assert "gh workflow run x-distribution.yml" not in publication
     # Reader delivery remains isolated; the only bot credential here is for private operations.
-    assert "TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}" in publication
+    assert "TELEGRAM_ALERT_THREAD_ID:" in publication
     assert "src.operations --workflow-status" in publication
     assert "src.core_delivery" not in publication
     telegram = (root / ".github/workflows/daily-telegram.yml").read_text()

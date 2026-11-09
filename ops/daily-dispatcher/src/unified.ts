@@ -1,6 +1,6 @@
 import {liveRoute, liveHome} from "./live";
 import dispatcher from "./index";
-import {checkPrivateAlerts} from "./alerts";
+import {checkTopicAlerts} from "./alerts";
 import type { RecoveryEnv } from "./recovery";
 import {runtimeHealth} from "./runtime";
 // Reuse the audited Pages handler; do not duplicate auth, caching or API routing.
@@ -21,6 +21,7 @@ export interface UnifiedEnv extends Env {
   SITE_BUILD_KEY?: string;
   TELEGRAM_BOT_TOKEN?: string;
   TELEGRAM_ALERT_CHAT_ID?: string;
+  TELEGRAM_ALERT_THREAD_ID?: string;
   DAILY_TELEGRAM_BOT_TOKEN?: string;
   ALERT_CHAT_ID?: string;
   ADMIN_GITHUB_TOKEN?: string;
@@ -82,7 +83,7 @@ export default {
     const tasks: Promise<void>[] = [];
     if (env.ENABLE_DISPATCHER === "true") {
       tasks.push(Promise.resolve().then(() => dispatcher.scheduled(controller, publicationEnv(env))));
-      tasks.push(Promise.resolve().then(() => checkPrivateAlerts(env, controller.scheduledTime)));
+      tasks.push(Promise.resolve().then(() => checkTopicAlerts(env, controller.scheduledTime)));
     }
     if (env.ENABLE_REALTIME_WATCHDOG === "true" && controller.cron === "*/5 * * * *") {
       tasks.push(Promise.resolve().then(() => watchdog.scheduled(controller, env)));

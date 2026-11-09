@@ -29,3 +29,5 @@ These rules apply to people and coding agents. The user-approved 2026-11-09 dail
 - CI/governance must validate versions, relevant links and a small current task pointer, without requiring historical release archives or ceremonial evidence.
 - Follow the refactor stages in handoff. Report multi-day acceptance as pending until observed; never invent elapsed time, successful delivery, balances, analytics or source facts.
 - On 2026-11-09 the owner explicitly waived the X preview trial and authorized direct main-account operation after quality gates and API availability checks. Keep the daily two-post limit, do not purchase/upgrade a plan, and never automatically retry an unknown delivery. Balance checking/alerts are disabled at the owner's request; retain token cost accounting.
+
+- Operational alerts use the owner-designated 日报运维 forum topic. Create only the explicitly requested topic; never alter realtime destinations or fall back to the general group/reader channel.
