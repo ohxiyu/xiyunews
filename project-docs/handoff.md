@@ -10,8 +10,8 @@
   "owner": "本聊天 Codex",
   "branch": "agent/daily-reliability",
   "base": "9c5eba758393997e2421365ab3efd001917082b9",
-  "status": "代码与故障回归完成，准备PR/CI；私人告警实际送达待配置",
-  "next": "提交PR1并核对CI；告警送达待配置；绿色合并后删除第一批模块",
+  "status": "PR360远端CI中；本地回归通过；私人告警实际送达待配置",
+  "next": "等待CI并核对main；绿色合并后删除第一批模块；告警送达待配置",
   "blockers": []
 }
 ```
