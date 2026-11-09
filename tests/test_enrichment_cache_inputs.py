@@ -17,8 +17,8 @@ def test_repeat_enrichment_reuses_original_analysis_tags_and_invalidates_changed
         for item in items:
             item.ai_tags=['rewritten-output-tag']
             item.metadata.update({'background_zh':'背景事实。','detailed_summary_zh':'完整事实。','editorial_tags':['rewritten-output-tag']})
-    monkeypatch.setattr('src.orchestrator.create_ai_client',lambda config:object())
-    monkeypatch.setattr('src.orchestrator.ContentEnricher.enrich_batch',enrich)
+    monkeypatch.setattr('src.enrichment.create_ai_client',lambda config:object())
+    monkeypatch.setattr('src.enrichment.ContentEnricher.enrich_batch',enrich)
     first=story();first.ai_tags=['original-analysis-tag']
     original=first.model_copy(deep=True)
     asyncio.run(runner._enrich_important_items([first]))

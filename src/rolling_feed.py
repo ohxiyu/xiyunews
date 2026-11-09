@@ -42,7 +42,7 @@ def snapshot(items, *, now, collected_at):
 
 async def main():
     config=Config.model_validate_json(Path('data/config.github.json').read_text())
-    if not config.rolling_feed or not config.core_only:raise ValueError('rolling core profile required')
+    if not config.rolling_feed:raise ValueError('rolling core profile required')
     runner=BMTNewsOrchestrator(config,StorageManager())
     staged=load_staging_state()
     now=datetime.now(timezone.utc)

@@ -1,3 +1,4 @@
+import {handleOAuthAuth,handleOAuthCallback} from "../src/oauth";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import worker from "../src/index";
@@ -52,15 +53,13 @@ describe("edition scheduling", () => {
     );
   });
 
-  it("builds raw and rendered URLs for both languages", () => {
+  it("builds raw and rendered URLs for the Chinese edition", () => {
     expect(testing.publicationUrls(ENV, "2026-07-31")).toEqual({
       raw: [
         "https://api.github.com/repos/ohxiyu/xiyunews/contents/_posts/2026-07-31-summary-zh.md?ref=gh-pages",
-        "https://api.github.com/repos/ohxiyu/xiyunews/contents/_posts/2026-07-31-summary-en.md?ref=gh-pages",
       ],
       rendered: [
         "https://xiyu.news/2026/07/31/summary-zh.html",
-        "https://xiyu.news/2026/07/31/summary-en.html",
       ],
     });
   });
@@ -97,7 +96,7 @@ describe("dispatcher behavior", () => {
     await expect(health.json()).resolves.toMatchObject({
       service: "bmtnews-daily-dispatcher",
       status: "ok",
-      admin_oauth: "not_configured",
+      admin_oauth: "retired",
       schedule_crons_utc: CONFIGURED_CRONS,
       collection_workflow: "feed-collection.yml",
       collection_max_age_hours: 4,
@@ -152,7 +151,7 @@ describe("dispatcher behavior", () => {
   });
 });
 
-describe("admin OAuth relay", () => {
+describe("retained OAuth helper (not exposed by the daily Worker)", () => {
   const OAUTH_ENV = {
     ...ENV,
     GITHUB_OAUTH_CLIENT_ID: "client-id",
@@ -160,11 +159,11 @@ describe("admin OAuth relay", () => {
   } as Env;
 
   it("returns 503 while OAuth secrets are unset", async () => {
-    const auth = await worker.fetch(
+    const auth = await handleOAuthAuth(
       new Request("https://dispatcher.example/oauth/auth"),
       ENV,
     );
-    const callback = await worker.fetch(
+    const callback = await handleOAuthCallback(
       new Request("https://dispatcher.example/oauth/callback?code=x&state=y"),
       ENV,
     );
@@ -173,7 +172,7 @@ describe("admin OAuth relay", () => {
   });
 
   it("redirects to GitHub with a narrow scope and a state cookie", async () => {
-    const response = await worker.fetch(
+    const response = await handleOAuthAuth(
       new Request("https://dispatcher.example/oauth/auth"),
       OAUTH_ENV,
     );
@@ -196,7 +195,7 @@ describe("admin OAuth relay", () => {
     const fetchSpy = vi.fn();
     vi.stubGlobal("fetch", fetchSpy);
 
-    const response = await worker.fetch(
+    const response = await handleOAuthCallback(
       new Request(
         "https://dispatcher.example/oauth/callback?code=abc&state=forged",
         { headers: { Cookie: "bmtnews_oauth_state=expected" } },
@@ -218,7 +217,7 @@ describe("admin OAuth relay", () => {
       ),
     );
 
-    const response = await worker.fetch(
+    const response = await handleOAuthCallback(
       new Request(
         "https://dispatcher.example/oauth/callback?code=abc&state=expected",
         { headers: { Cookie: "bmtnews_oauth_state=expected" } },
@@ -235,3 +234,5 @@ describe("admin OAuth relay", () => {
     expect(response.headers.get("Set-Cookie")).toContain("Max-Age=0");
   });
 });
+
+it("does not expose admin OAuth routes from the daily dispatcher",async()=>{for(const path of ["/oauth/auth","/oauth/callback"]){const r=await worker.fetch(new Request("https://dispatcher.example"+path),ENV);expect(r.status).toBe(404);}});

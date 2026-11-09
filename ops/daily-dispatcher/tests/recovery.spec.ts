@@ -9,7 +9,7 @@ function fixture(options: {
   raw?: boolean; public?: boolean; homepage?: boolean; active?: boolean;
   success?: boolean; broken?: boolean; dispatchTimeout?: boolean;
   redirects?: boolean;
-  versioned?: boolean; staleJson?: boolean; staleHtml?: boolean; staleEnglish?: boolean;
+  versioned?: boolean; staleJson?: boolean; staleHtml?: boolean;
 } = {}) {
   sequence += 1;
   const date = "2026-09-" + String(sequence).padStart(2, "0");
@@ -61,9 +61,7 @@ function fixture(options: {
         Location: new URL(request.url).pathname.replace(".html", ""),
       } });
     }
-    if (request.url.includes("/summary-")) return new Response(options.public
-      ? (options.staleEnglish && request.url.includes("summary-en")
-        ? home.replaceAll("a".repeat(64), "b".repeat(64)) : home) : "", {
+    if (request.url.includes("/summary-")) return new Response(options.public ? home : "", {
       status: options.public ? 200 : 404,
     });
     return new Response(options.homepage
@@ -112,7 +110,7 @@ describe("production-aware recovery", () => {
     const f = fixture({raw: true, public: true, homepage: true});
     expect((await runRecovery(env, f.now, "test")).status).toBe("healthy");
     const privateRequests = f.requests.filter(r => r.url.includes("/contents/"));
-    expect(privateRequests).toHaveLength(3);
+    expect(privateRequests).toHaveLength(2);
     for (const request of privateRequests) {
       expect(request.headers.get("Authorization")).toBe("Bearer test-token");
       expect(request.headers.get("Accept")).toBe("application/vnd.github.raw+json");
@@ -153,13 +151,13 @@ describe("production-aware recovery", () => {
       ref: "main", inputs: {edition_date: f.date, trigger_source: "test"},
     });
   });
-  it("accepts matching story revisions in both rendered languages", async () => {
+  it("accepts matching story revisions in the rendered Chinese edition", async () => {
     const f = fixture({raw: true, public: true, homepage: true, versioned: true});
     expect((await runRecovery(env, f.now, "test")).status).toBe("healthy");
     expect(f.posts()).toHaveLength(0);
   });
 
-  it.each(["staleJson", "staleHtml", "staleEnglish"] as const)(
+  it.each(["staleJson", "staleHtml"] as const)(
     "does not accept same-count stale content: %s", async (stale) => {
       const f = fixture({raw: true, public: true, homepage: true, versioned: true, [stale]: true});
       expect((await runRecovery(env, f.now, "test")).status).toBe("pages_waiting");
@@ -197,7 +195,7 @@ describe("production-aware recovery", () => {
     const f = fixture({ raw: true, public: true, homepage: true, redirects: true });
     expect((await runRecovery(env, f.now, "test")).status).toBe("healthy");
     expect(f.requests.filter((r) => r.url.includes("/summary-") &&
-      !new URL(r.url).pathname.endsWith(".html"))).toHaveLength(2);
+      !new URL(r.url).pathname.endsWith(".html"))).toHaveLength(1);
     expect(f.posts()).toHaveLength(0);
   });
 

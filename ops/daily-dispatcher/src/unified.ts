@@ -36,7 +36,7 @@ export interface UnifiedEnv extends Env {
 const OPERATIONS = new Set(["/health", "/ready", "/publication/check"]);
 
 function publicationEnv(env: UnifiedEnv, ctx?: ExecutionContext): RecoveryEnv {
-  return {...env, CORE_ONLY: true, ROLLING_FEED: true, PUBLICATION_FETCH: (request: Request) => website.fetch(request, env, ctx)};
+  return {...env, ROLLING_FEED: true, PUBLICATION_FETCH: (request: Request) => website.fetch(request, env, ctx)};
 }
 
 export default {
@@ -69,7 +69,7 @@ export default {
     if (path !== "/health" || !response.ok) return response;
     const health = await response.json() as Record<string, unknown>;
     return Response.json({...health, service: "xiyunews", project: "xiyunews",
-      core_only: true, rolling_feed: true, collection_interval_minutes: 5, languages: ["zh"], delivery: ["telegram-daily"],
+      product: "daily-edition", rolling_feed: true, collection_interval_minutes: 5, languages: ["zh"], delivery: ["telegram-daily"],
       runner: await runtimeHealth(env.RUNTIME_HEALTH_URL),
       dispatcher_enabled: env.ENABLE_DISPATCHER === "true",
       realtime_watchdog_enabled: env.ENABLE_REALTIME_WATCHDOG === "true",

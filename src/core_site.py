@@ -14,7 +14,7 @@ from ._file_utils import _atomic_write_text
 from .models import ContentItem
 from .publication_revision import story_revision
 from .web_feed import (_escape, _localized_title, _localized_text, _summary_html,
-                       _source_html, _references_html, _safe_url, _thread_html)
+                       _source_html, _references_html, _safe_url)
 
 ZONE = ZoneInfo("Asia/Shanghai")
 EVENT_SLOT = "<!--core-events-->"
@@ -43,7 +43,6 @@ def render_core_feed(items: list[ContentItem], *, date: str, display_timezone="A
         body += f'<p class="source-line">{_source_html(item, language="zh", display_timezone=ZoneInfo(display_timezone))}</p>'
         refs = _references_html(item, "zh")
         if refs: body += f'<details class="references"><summary>参考资料</summary>{refs}</details>'
-        body += _thread_html(item, "zh").replace("持续追踪", "事件流")
         stamp = item.published_at.astimezone(ZoneInfo(display_timezone))
         meta = f'<span>{"本期重点" if index <= 3 else "更多资讯"}</span><time datetime="{stamp.isoformat()}">{stamp:%m.%d %H:%M} CST</time>'
         cards.append(_card(attrs={"id":f"zh-{date}-item-{index}","data-story-id":item.id,
@@ -133,49 +132,7 @@ def republish(root: Path) -> dict:
         if meta['generated_at']:
             meta['display_time']=datetime.fromisoformat(meta['generated_at'].replace('Z','+00:00')).astimezone(ZONE).strftime('%m.%d %H:%M CST')
         _atomic_write_text(root/'_data/core_edition.json',json.dumps(meta,ensure_ascii=False)+'\n')
-    republish_events(root)
     return {"editions_rendered":count,"ai_calls":0,"messages_sent":0}
-
-
-def republish_events(root: Path) -> None:
-    from .event_pipeline import load_event_catalog
-    from .site_pages import build_event_index_data, _timeline, _front_matter
-    catalog=root/'_data/events.json'
-    if not catalog.exists():return
-    _,events=load_event_catalog(catalog)
-    payload=build_event_index_data(events)
-    by_id={event.event_id:event for event in events}
-    focus=payload['focus']
-    for index,row in enumerate(focus):
-        event=by_id[row['event_id']]
-        material=sorted((u for u in event.updates if u.material_change),key=lambda u:(u.occurred_at,u.first_seen_at,u.update_id))
-        row['timeline']=_timeline(material,limit=len(material) if index==0 else 3)
-    for group in ('focus','threads','archived','dormant','other','completed'):
-        for row in payload.get(group,[]):
-            for step in row.get('timeline',[]):
-                step['sources']=[{**source,'url':_safe_url(source.get('url',''))} for source in step.get('sources',[]) if _safe_url(source.get('url',''))]
-    (root/'_data').mkdir(parents=True,exist_ok=True)
-    _atomic_write_text(root/'_data/core_stream.json',json.dumps(payload,ensure_ascii=False,indent=2)+'\n')
-    # Event details show every distinct material development with its evidence.
-    for event in events:
-        material=sorted((u for u in event.updates if u.material_change),key=lambda u:(u.occurred_at,u.first_seen_at,u.update_id))
-        timeline=_timeline(material,limit=len(material))
-        title=event.title_zh or event.title_en
-        body=f'<header class="page-heading"><p class="eyebrow">事件流</p><h1>{_escape(title)}</h1></header>'+timeline_html(timeline)
-        body+='<p class="archive-back"><a href="/threads/">返回事件流</a></p>'
-        path=root/'events'/f'{event.event_id}.html';path.parent.mkdir(parents=True,exist_ok=True)
-        _atomic_write_text(path,_front_matter(title=title,permalink=f'/events/{event.event_id}/',language='zh',page_class='core-event-detail')+body)
-
-
-def timeline_html(timeline: list[dict]) -> str:
-    rows=[]
-    for row in timeline:
-        source_links=[]
-        for source in row['sources']:
-            url=_safe_url(source.get('url',''))
-            if url:source_links.append(f'<a href="{url}" target="_blank" rel="noopener noreferrer">{_escape(source.get("label") or "原始来源")}</a>')
-        rows.append(f'<li id="{_escape(row["update_id"])}"><time datetime="{_escape(row["timestamp"])}">{_escape(row["display_time"])}</time><div><p>{_escape(row["text_zh"] or row["text_en"])}</p><p class="source-line">{" · ".join(source_links)}</p></div></li>')
-    return '<ol class="core-timeline">'+''.join(rows)+'</ol>'
 
 
 EVENT_OWNED_PATHS = {

@@ -1,3 +1,4 @@
+import pytest
 """Tests for drip-mode X distribution."""
 
 import asyncio
@@ -107,9 +108,8 @@ def test_story_post_handles_english_sentences() -> None:
             "detailed_summary_en": "The U.S. Senate set a date. A second sentence.",
         },
     )
-    text = build_story_post(item, language="en", site_url="https://xiyu.news/")
-    assert "The U.S. Senate set a date." in text
-    assert "A second sentence" not in text
+    with pytest.raises(ValueError,match="Only Chinese"):
+        build_story_post(item, language="en", site_url="https://xiyu.news/")
 
 
 # --- X character counting (twitter-text v3 weighting) ---------------------

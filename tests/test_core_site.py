@@ -89,43 +89,8 @@ def test_chinese_background_retains_year_grounding_guard(monkeypatch):
  assert 'background_zh' not in item.metadata
 
 
-def test_first_event_displays_more_than_ten_and_preserves_catalog(tmp_path,monkeypatch):
- from src.core_site import republish_events
- from src.site_pages import build_event_index_data
- from test_api_output_and_pages import make_event
- from src.events import EventStatus,EventTimePrecision
- event=make_event('evt_corefull',updates=16)
- event.status=EventStatus.DEVELOPING
- for u in event.updates:u.importance_score=9
- second=make_event('evt_coreother',updates=16)
- second.status=EventStatus.DEVELOPING
- for u in second.updates:u.importance_score=8
- root=tmp_path/'docs';(root/'_data').mkdir(parents=True)
- catalog=root/'_data/events.json';original=json.dumps({'schema_version':1,'events':[e.model_dump(mode='json') for e in [event,second]]})
- catalog.write_text(original)
- now=max(e.last_updated_at for e in [event,second])
- monkeypatch.setattr('src.site_pages.build_event_index_data',lambda events:build_event_index_data(events,now=now,focus_policy={}))
- republish_events(root)
- payload=json.loads((root/'_data/core_stream.json').read_text())
- assert len(payload['focus'][0]['timeline'])>10
- assert len(payload['focus'][1]['timeline'])==3
- assert catalog.read_text()==original
- first=payload['focus'][0]
- detail=BeautifulSoup((root/'events'/f'{first["event_id"]}.html').read_text(),'html.parser')
- assert len(detail.select('.core-timeline>li'))==len(first['timeline'])
 
 
-def test_core_schedule_and_publish_jobs_cannot_block_daily_with_event_ai():
- text=Path('.github/workflows/event-updates.yml').read_text()
- compute,publish=text.split('\n  publish:',1)
- assert 'bmtnews-feed-update' not in compute
- assert 'bmtnews-feed-update' in publish
- assert 'src.core_events' in compute and 'src.core_events' not in publish
- for name in ['daily-summary.yml']:
-  workflow=Path('.github/workflows',name).read_text()
-  assert 'exclude_assets:' not in workflow
-  assert 'publish_dir: ./reader-output' in workflow
-  assert '--stage-reader reader-output' in workflow
 
 
 def test_core_prompt_change_invalidates_only_enrichment_cache(monkeypatch,tmp_path):

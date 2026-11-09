@@ -7,7 +7,7 @@ from types import SimpleNamespace
 import pytest
 
 from src.ai.client import OpenAIClient, create_ai_client
-from src.ai.prompts import CONTENT_ANALYSIS_SYSTEM, CONTENT_ENRICHMENT_SYSTEM, EVENT_RELATION_SYSTEM, TOPIC_DEDUP_SYSTEM
+from src.ai.prompts import CONTENT_ANALYSIS_SYSTEM, CORE_ENRICHMENT_SYSTEM, TOPIC_DEDUP_SYSTEM
 from src.ai.tokens import reset_usage, task_usage_snapshot
 from src.models import AIConfig, AIProvider, AI_PROVIDER_DEFAULTS
 
@@ -72,7 +72,7 @@ def test_economy_json_requests_disable_thinking_with_siliconflow_protocol(monkey
 
 
 @pytest.mark.parametrize("system,response_format,economy", [
-    (EVENT_RELATION_SYSTEM, "json", False),
+    (CORE_ENRICHMENT_SYSTEM, "json", False),
     ("Write bilingual news analysis", "text", True),
     (CONTENT_ANALYSIS_SYSTEM, "json", False),
 ])
@@ -87,7 +87,7 @@ def test_reasoning_is_bounded_and_text_stays_text(monkeypatch, system, response_
     assert ("response_format" in request) == (response_format == "json")
 
 
-@pytest.mark.parametrize("system", [CONTENT_ENRICHMENT_SYSTEM, EVENT_RELATION_SYSTEM,
+@pytest.mark.parametrize("system", [CORE_ENRICHMENT_SYSTEM, CORE_ENRICHMENT_SYSTEM,
                                    "Custom structured extraction. Return JSON only."])
 def test_economy_structured_tasks_keep_answer_budget_without_reasoning(monkeypatch, system):
     client, calls, _ = stub_client(monkeypatch)

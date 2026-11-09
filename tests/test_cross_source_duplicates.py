@@ -176,30 +176,3 @@ def test_topic_dedup_records_confirming_outlets() -> None:
         "Cointelegraph",
         "Decrypt",
     ]
-
-
-def test_provenance_badge_lists_outlets() -> None:
-    from src.web_feed import render_web_feed
-
-    confirmed = ContentItem(
-        id="x",
-        source_type=SourceType.RSS,
-        title="Story",
-        url="https://example.com/x",
-        published_at=datetime.now(timezone.utc),
-        ai_score=9.0,
-        metadata={
-            "feed_name": "CoinDesk",
-            "category": "crypto-markets",
-            "merged_sources": ["CoinDesk", "Decrypt", "Protos"],
-        },
-    )
-    markup = render_web_feed(
-        [confirmed],
-        date="2026-08-09",
-        total_fetched=10,
-        language="zh",
-        display_timezone="Asia/Shanghai",
-    )
-    assert "3 源确认" in markup
-    assert 'title="CoinDesk · Decrypt · Protos"' in markup

@@ -194,7 +194,7 @@ def test_create_chained_client_uses_provider_defaults_without_leaking_base_url()
         throttle_sec=0.75,
         analysis_concurrency=3,
         enrichment_concurrency=5,
-        languages=["en", "zh-CN"],
+        languages=["zh"],
     )
 
     chained = _create_chained_client(config)
@@ -232,7 +232,7 @@ def test_create_chained_client_preserves_custom_azure_and_common_settings():
         throttle_sec=1.25,
         analysis_concurrency=4,
         enrichment_concurrency=6,
-        languages=["ja", "en-US"],
+        languages=["zh"],
     )
 
     azure, openai = _create_chained_client(config).configs
@@ -247,7 +247,7 @@ def test_create_chained_client_preserves_custom_azure_and_common_settings():
         assert entry.throttle_sec == 1.25
         assert entry.analysis_concurrency == 4
         assert entry.enrichment_concurrency == 6
-        assert entry.languages == ["ja", "en-US"]
+        assert entry.languages == ["zh"]
 
 
 def test_create_chained_client_applies_azure_connection_defaults():

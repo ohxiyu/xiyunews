@@ -20,7 +20,6 @@ from .errors import account_error
 from .chinese import repair_chinese, brief, chinese_title, chinese_summary
 from .prompts import (
     CONCEPT_EXTRACTION_SYSTEM, CONCEPT_EXTRACTION_USER,
-    CONTENT_ENRICHMENT_SYSTEM, CONTENT_ENRICHMENT_USER,
     CORE_ENRICHMENT_SYSTEM, CORE_ENRICHMENT_USER,
 )
 from .utils import parse_json_response
@@ -32,7 +31,7 @@ class ContentEnricher:
     """Enriches high-scoring content items with background knowledge."""
 
     def __init__(self, ai_client: AIClient, *, languages=None):
-        self.languages = tuple(languages or ("en", "zh"))
+        self.languages = ("zh",)
         self.client = ai_client
         self._search_tasks: dict[str, asyncio.Task[list]] = {}
 
@@ -67,7 +66,7 @@ class ContentEnricher:
                 self._clear_generated(item)
                 try:
                     await self._enrich_item(item)
-                    if self.languages == ('zh',) and not await repair_chinese(item, self.client):
+                    if not await repair_chinese(item, self.client):
                         item.metadata['chinese_invalid'] = True
                     item.metadata["enrichment_status"] = "complete"
                 except Exception as exc:
@@ -80,19 +79,13 @@ class ContentEnricher:
                         brief(item)
                     else:
                         print(f"Error enriching item {item.id}: {type(cause).__name__}; using Chinese baseline", flush=True)
-                        if self.languages == ('zh',):
-                            try:
-                                await repair_chinese(item,self.client)
-                            except Exception as repair_error:
-                                blocked = account_error(repair_error)
-                                if blocked is None:
-                                    raise
-                                terminal_error = blocked
-                            brief(item)
-                        else:
-                            self._clear_generated(item)
-                            await self._translate_item(item)
-                            item.metadata["enrichment_status"] = "translation_only"
+                        try:
+                            await repair_chinese(item,self.client)
+                        except Exception as repair_error:
+                            blocked=account_error(repair_error)
+                            if blocked is None:raise
+                            terminal_error=blocked
+                        brief(item)
             processed_count += 1
             if processed_count % 5 == 0 or processed_count == len(items):
                 progress.console.print(
@@ -124,7 +117,7 @@ class ContentEnricher:
     def _source_headline(item, language, proposed):
         """Keep original editorial wording in its source language."""
         is_chinese = bool(re.search(r"[\u3400-\u9fff]", item.title))
-        if (language == "zh" and is_chinese) or (language == "en" and not is_chinese):
+        if language == "zh" and is_chinese:
             return item.title
         return proposed
 
@@ -272,8 +265,7 @@ class ContentEnricher:
         available_urls = {r["url"]: r["title"] for r in all_results if r.get("url")}
 
         # Step 3: AI generates background grounded in search results
-        chinese_only = self.languages == ("zh",)
-        template = CORE_ENRICHMENT_USER if chinese_only else CONTENT_ENRICHMENT_USER
+        template = CORE_ENRICHMENT_USER
         user_prompt = template.format(
             title=item.title,
             published_at=item.published_at.isoformat(),
@@ -288,7 +280,7 @@ class ContentEnricher:
         )
 
         response = await self.client.complete(
-            system=CORE_ENRICHMENT_SYSTEM if chinese_only else CONTENT_ENRICHMENT_SYSTEM,
+            system=CORE_ENRICHMENT_SYSTEM,
             user=user_prompt,
         )
 
@@ -300,7 +292,7 @@ class ContentEnricher:
             print(f"Warning: could not parse enrichment response for {item.id}, falling back to translation")
             raise ValueError("invalid_generation")
         required = tuple(f"whats_new_{lang}" for lang in self.languages)
-        translated_title = "title_zh" if chinese_only else ("title_en" if re.search(r"[\u3400-\u9fff]", item.title) else "title_zh")
+        translated_title = "title_zh"
         if any(not isinstance(result.get(key), str) or not result[key].strip()
                for key in (*required, translated_title)):
             raise ValueError("invalid_generation")
@@ -310,8 +302,6 @@ class ContentEnricher:
         backgrounds = [result.get(f"background_{lang}", "") for lang in self.languages]
         if any(not isinstance(value, str) for value in backgrounds):
             raise ValueError("invalid_background")
-        if len(backgrounds) == 2 and bool(backgrounds[0].strip()) != bool(backgrounds[1].strip()):
-            raise ValueError("incomplete_bilingual_background")
         for lang, value in zip(self.languages, backgrounds):
             result[f"background_{lang}"] = value.strip()
         # A publication timestamp or model memory cannot substantiate a
@@ -329,7 +319,6 @@ class ContentEnricher:
             raise ValueError("unsupported_background_year")
 
         if not comments_text:
-            result.pop("community_discussion_en", None)
             result.pop("community_discussion_zh", None)
 
         # Combine structured sub-fields into per-language detailed_summary
@@ -379,29 +368,5 @@ class ContentEnricher:
                                               if isinstance(tag, str) and tag.strip()][:6]
             item.ai_tags = list(item.metadata["editorial_tags"])
 
-        # Backward-compatible fallback fields (English as default)
-        item.metadata["detailed_summary"] = item.metadata.get("detailed_summary_en", "")
-        item.metadata["background"] = item.metadata.get("background_en", "")
-        item.metadata["community_discussion"] = item.metadata.get("community_discussion_en", "")
-
-    async def _translate_item(self, item: ContentItem) -> None:
-        """Keep the baseline translation-only fallback when expansion fails."""
-        try:
-            response = await self.client.complete(
-                system="You are a translator. Translate to Simplified Chinese. Return only valid JSON, no other text.",
-                user=(
-                    f'Title: {item.title}\n'
-                    f'Summary: {item.ai_summary or item.title}\n\n'
-                    'Return JSON:\n'
-                    '{"title_zh": "<中文标题>", "summary_zh": "<用中文写1-2句摘要>"}'
-                ),
-            )
-            result = self._parse_json_response(response)
-            if result:
-                if result.get("title_zh"):
-                    item.metadata["title_zh"] = result["title_zh"]
-                if result.get("summary_zh"):
-                    item.metadata["detailed_summary_zh"] = result["summary_zh"]
-        except Exception as exc:
-            blocked = account_error(exc)
-            if blocked is not None: raise blocked from None
+        item.metadata["detailed_summary"] = item.metadata.get("detailed_summary_zh", "")
+        item.metadata["background"] = item.metadata.get("background_zh", "")

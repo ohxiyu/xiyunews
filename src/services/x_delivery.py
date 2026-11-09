@@ -204,36 +204,26 @@ def _truncate_to_fit(headline: str, fixed_cost: int, limit: int = TWEET_LIMIT) -
     return truncate_weighted(headline, limit - fixed_cost)
 
 
-def build_post(
-    items: Iterable[ContentItem],
-    *,
-    date: str,
-    language: str,
-    site_url: str,
-    max_items: int = 3,
-) -> str:
+def build_post(items: Iterable[ContentItem], *, date: str, language: str, site_url: str, max_items: int=3) -> str:
     """Compose one post linking back to the full edition."""
+    if language != 'zh':
+        raise ValueError('Only Chinese daily distribution is supported')
     selected = list(items)[:max_items]
-    is_zh = language == "zh"
-    header = f"稀有News {date}" if is_zh else f"xiyu.news {date}"
-    link = site_url.rstrip("/") + ("/" if is_zh else "/en/")
+    is_zh = True
+    header = f'稀有News {date}'
+    link = site_url.rstrip('/') + '/'
     lines: List[str] = []
-    # Reserve room for the header, the trailing link, and the newlines.
     fixed = _weighted_length(header) + TCO_LENGTH + 4
     for index, item in enumerate(selected, start=1):
-        title = (
-            item.metadata.get(f"title_{language}")
-            or item.metadata.get("title_zh")
-            or item.title
-        )
-        prefix = f"{index}. "
-        remaining = TWEET_LIMIT - fixed - _weighted_length("\n".join(lines)) - len(prefix) - 2
+        title = item.metadata.get(f'title_{language}') or item.metadata.get('title_zh') or item.title
+        prefix = f'{index}. '
+        remaining = TWEET_LIMIT - fixed - _weighted_length('\n'.join(lines)) - len(prefix) - 2
         headline = _truncate_to_fit(str(title).strip(), TWEET_LIMIT - remaining)
         if not headline:
             break
-        lines.append(f"{prefix}{headline}")
-    body = "\n".join(lines)
-    return f"{header}\n{body}\n{link}".strip()
+        lines.append(f'{prefix}{headline}')
+    body = '\n'.join(lines)
+    return f'{header}\n{body}\n{link}'.strip()
 
 
 def _safe_http_url(value: object) -> str | None:
@@ -310,58 +300,36 @@ def _is_single_sentence(paragraph: str) -> bool:
     return not trailing
 
 
-def build_story_post(
-    item: ContentItem,
-    *,
-    language: str,
-    site_url: str,
-    link_target: str = "none",
-    limit: int = TWEET_LIMIT,
-    edition_date: str | None = None,
-) -> str:
+def build_story_post(item: ContentItem, *, language: str, site_url: str, link_target: str='none', limit: int=TWEET_LIMIT, edition_date: str | None=None) -> str:
     """Assemble a single-story post from the fields already on the item.
 
     This is the deterministic fallback used when AI composition is off or
     fails; ``compose_story_post`` produces the normal, better-written post.
     """
-    is_zh = language == "zh"
-    title = str(
-        item.metadata.get(f"title_{language}")
-        or item.metadata.get("title_zh")
-        or item.title
-    ).strip()
-    summary = str(
-        item.metadata.get(f"detailed_summary_{language}")
-        or item.ai_summary
-        or title
-    ).strip()
-    link = ""
-    if link_target == "source":
-        link = _safe_http_url(item.url) or ""
-    elif link_target == "site":
-        link = site_url.rstrip("/") + ("/" if is_zh else "/en/")
-
-    # Reserve the t.co token and the blank lines around it.
+    if language != 'zh':
+        raise ValueError('Only Chinese daily distribution is supported')
+    is_zh = True
+    title = str(item.metadata.get(f'title_{language}') or item.metadata.get('title_zh') or item.title).strip()
+    summary = str(item.metadata.get(f'detailed_summary_{language}') or item.ai_summary or title).strip()
+    link = ''
+    if link_target == 'source':
+        link = _safe_http_url(item.url) or ''
+    elif link_target == 'site':
+        link = site_url.rstrip('/') + '/'
     budget = limit - (TCO_LENGTH + 2 if link else 0)
     lede_source = _ensure_sentence_end(_first_sentence(summary, limit=90))
     lede_budget = max(40, min(180, budget // 2))
     lede = truncate_weighted(lede_source, min(lede_budget, budget))
-
-    body_source = ""
-    for candidate in (
-        item.metadata.get(f"market_impact_{language}"),
-        item.metadata.get(f"background_{language}"),
-        title,
-    ):
-        fragment = _ensure_sentence_end(_first_sentence(str(candidate or ""), limit=90))
+    body_source = ''
+    for candidate in (item.metadata.get(f'market_impact_{language}'), item.metadata.get(f'background_{language}'), title):
+        fragment = _ensure_sentence_end(_first_sentence(str(candidate or ''), limit=90))
         if fragment and fragment != lede_source:
             body_source = fragment
             break
-
     remaining = budget - _weighted_length(lede) - 2
-    body_detail = truncate_weighted(body_source, remaining) if remaining > 24 else ""
-    body = f"{lede}\n\n{body_detail}" if body_detail else lede
-    return f"{body}\n\n{link}".rstrip() if link else body
+    body_detail = truncate_weighted(body_source, remaining) if remaining > 24 else ''
+    body = f'{lede}\n\n{body_detail}' if body_detail else lede
+    return f'{body}\n\n{link}'.rstrip() if link else body
 
 
 # Model output must never carry links, tags, or wrapping quotes into a post.
@@ -416,18 +384,13 @@ def post_source_fields(item: ContentItem, language: str) -> dict[str, str]:
     article body is deliberately excluded: it is unedited source text, and a
     post built from it can carry claims the page itself left out.
     """
+    if language != 'zh':
+        raise ValueError('Only Chinese daily distribution is supported')
     metadata = item.metadata or {}
 
     def field(name: str) -> str:
-        return str(metadata.get(f"{name}_{language}") or "").strip()
-
-    return {
-        "title": str(metadata.get(f"title_{language}") or item.title or "").strip(),
-        "summary": field("detailed_summary") or str(item.ai_summary or "").strip(),
-        "background": field("background"),
-        "market_impact": field("market_impact"),
-        "discussion": field("community_discussion"),
-    }
+        return str(metadata.get(f'{name}_{language}') or '').strip()
+    return {'title': str(metadata.get(f'title_{language}') or item.title or '').strip(), 'summary': field('detailed_summary') or str(item.ai_summary or '').strip(), 'background': field('background'), 'market_impact': field('market_impact'), 'discussion': field('community_discussion')}
 
 
 # Figures a post might state. Group 1 is the number, group 2 an optional
@@ -495,35 +458,20 @@ def unsupported_figures(post: str, sources: Iterable[str]) -> list[str]:
     return missing
 
 
-async def compose_story_post(
-    ai_client,
-    item: ContentItem,
-    *,
-    language: str,
-    limit: int = 400,
-) -> Optional[str]:
+async def compose_story_post(ai_client, item: ContentItem, *, language: str, limit: int=400) -> Optional[str]:
     """Write one post for a story in the account's voice.
 
     Returns None on any failure or unusable output so the caller can fall
     back to the assembled post rather than skipping the slot.
     """
+    if language != 'zh':
+        raise ValueError('Only Chinese daily distribution is supported')
     from ..ai.prompts import X_POST_SYSTEM, X_POST_USER
-
     fields = post_source_fields(item, language)
     try:
-        response = await ai_client.complete(
-            system=X_POST_SYSTEM,
-            user=X_POST_USER.format(
-                title=fields["title"],
-                summary=fields["summary"],
-                background=fields["background"] or "（无）",
-                market_impact=fields["market_impact"] or "（无）",
-                discussion=fields["discussion"] or "（无）",
-            ),
-            response_format="text",
-        )
-    except Exception as exc:  # noqa: BLE001 - degrade to the fallback
-        logger.warning("X post composition failed for %s: %s", item.id, exc)
+        response = await ai_client.complete(system=X_POST_SYSTEM, user=X_POST_USER.format(title=fields['title'], summary=fields['summary'], background=fields['background'] or '（无）', market_impact=fields['market_impact'] or '（无）', discussion=fields['discussion'] or '（无）'), response_format='text')
+    except Exception as exc:
+        logger.warning('X post composition failed for %s: %s', item.id, exc)
         return None
     return sanitize_composed_post(response, limit=limit)
 

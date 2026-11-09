@@ -1,3 +1,4 @@
+from src.dedup import fingerprint,same_thread,normalize_tag
 """Tests for the archive layer, thread linking, and entity grouping."""
 
 from datetime import date, datetime, timezone
@@ -11,16 +12,6 @@ from src.archive import (
     save_edition_records,
 )
 from src.models import ContentItem, SourceType
-from src.threads import (
-    assign_threads,
-    clean_label,
-    collect_entities,
-    collect_threads,
-    fingerprint,
-    normalize_tag,
-    same_thread,
-    thread_id_for,
-)
 
 
 def make_item(
@@ -150,10 +141,6 @@ def test_normalize_tag_slugifies() -> None:
     assert normalize_tag("  ") == ""
 
 
-def test_clean_label_preserves_known_brand_capitalization() -> None:
-    assert clean_label("openai") == "OpenAI"
-    assert clean_label("evm") == "EVM"
-    assert clean_label("okx") == "OKX"
 
 
 def test_same_thread_matches_continuing_coverage() -> None:
@@ -177,108 +164,18 @@ def test_same_thread_ignores_empty_fingerprints() -> None:
     assert not same_thread(fingerprint(), fingerprint(title_en="Anything here"))
 
 
-def test_assign_threads_links_into_archive_and_counts_days() -> None:
-    history = [
-        make_record(
-            "2026-08-07",
-            title_en="Bybit loses funds in Lazarus Group hack",
-            tags=["bybit", "lazarus-group"],
-            thread_id="tseed",
-        ),
-        make_record(
-            "2026-08-08",
-            title_en="Bybit traces stolen Lazarus Group funds",
-            tags=["bybit", "lazarus-group"],
-            thread_id="tseed",
-        ),
-    ]
-    story = (
-        "https://example.com/new",
-        fingerprint(
-            title_en="Bybit sues North Korea and Lazarus Group",
-            tags=["bybit", "lazarus-group"],
-        ),
-    )
-    assignments = assign_threads([story], history, edition_date="2026-08-09")
-    assignment = assignments["https://example.com/new"]
-    assert assignment.thread_id == "tseed"
-    assert assignment.day == 3
-    assert assignment.is_continuation
 
 
-def test_assign_threads_starts_fresh_without_a_match() -> None:
-    story = (
-        "https://example.com/solo",
-        fingerprint(title_en="Kraken publishes load testing writeup", tags=["kraken"]),
-    )
-    assignments = assign_threads([story], [], edition_date="2026-08-09")
-    assignment = assignments["https://example.com/solo"]
-    assert assignment.thread_id == thread_id_for("https://example.com/solo")
-    assert assignment.day == 1
-    assert not assignment.is_continuation
 
 
-def test_collect_threads_requires_multiple_days() -> None:
-    records = [
-        make_record("2026-08-08", thread_id="ta", title_en="A1"),
-        make_record("2026-08-09", thread_id="ta", title_en="A2"),
-        make_record("2026-08-09", rank=2, thread_id="tb", title_en="B1"),
-    ]
-    threads = collect_threads(records)
-    assert [thread_id for thread_id, _ in threads] == ["ta"]
 
 
-def test_collect_entities_sanitizes_model_generated_labels() -> None:
-    records = [
-        make_record(
-            f"2026-08-0{i}",
-            # The headline has to name the tag for it to count as an entity,
-            # so the injected markup is carried through the title as well.
-            title_en="Bybit Scriptalertx Script incident is under review",
-            tags=['Bybit <script>alert("x")</script>'],
-        )
-        for i in range(1, 4)
-    ]
-    entities = collect_entities(records, minimum_mentions=3)
-    assert entities[0].label == "Bybit scriptalert(x)/script"
-    assert "<" not in entities[0].label
 
 
-def test_collect_entities_skips_generic_tags() -> None:
-    records = [
-        make_record(
-            f"2026-08-0{i}",
-            title_en="Binance faces new scrutiny",
-            tags=["Binance", "crypto", "security"],
-        )
-        for i in range(1, 5)
-    ]
-    entities = collect_entities(records, minimum_mentions=3)
-    assert [entity.slug for entity in entities] == ["binance"]
-    assert entities[0].count == 4
 
 
-def test_collect_entities_skips_tags_no_headline_names() -> None:
-    """A descriptive tag is not an entity, however often the model emits it."""
-    records = [
-        make_record(
-            f"2026-08-0{i}",
-            title_en="Coldcard firmware flaw exposes seed phrases",
-            tags=["Coldcard", "exploits", "market-shakeout"],
-        )
-        for i in range(1, 5)
-    ]
-    entities = collect_entities(records, minimum_mentions=2)
-    assert [entity.slug for entity in entities] == ["coldcard"]
 
 
-def test_collect_entities_accepts_chinese_named_tags() -> None:
-    records = [
-        make_record(f"2026-08-0{i}", title_en="美联储维持利率不变", tags=["美联储"])
-        for i in range(1, 4)
-    ]
-    entities = collect_entities(records, minimum_mentions=2)
-    assert [entity.slug for entity in entities] == ["美联储"]
 
 
 def test_anchors_link_continuing_coverage_that_shares_little_wording() -> None:
@@ -345,59 +242,3 @@ def test_name_mentioned_only_in_passing_does_not_link() -> None:
         tags=["market-shakeout", "venture-capital"],
     )
     assert not same_thread(subject, passing)
-
-
-def test_assign_threads_ignores_coverage_older_than_the_gap() -> None:
-    history = [
-        make_record(
-            "2026-06-01",
-            title_en="Bybit loses funds in Lazarus Group hack",
-            tags=["bybit", "lazarus-group"],
-            thread_id="tstale",
-        )
-    ]
-    story = (
-        "https://example.com/new",
-        fingerprint(
-            title_en="Bybit sues North Korea and Lazarus Group",
-            tags=["bybit", "lazarus-group"],
-        ),
-    )
-    assignments = assign_threads([story], history, edition_date="2026-08-09")
-    assert assignments["https://example.com/new"].thread_id != "tstale"
-    assert assignments["https://example.com/new"].day == 1
-
-
-def test_curated_entities_fold_aliases_and_drop_unprofiled_tags() -> None:
-    from src.archive import ArchiveRecord
-    from src.entity_profiles import load_entity_profiles
-    from src.threads import collect_entities
-
-    def record(n: int, title: str, tags: list[str]) -> ArchiveRecord:
-        return ArchiveRecord(
-            date=f"2026-09-{10 + n:02d}", rank=1, item_id=f"s{n}", url=f"https://example.com/{n}",
-            title_zh=title, title_en=title, tags=tags,
-        )
-
-    records = [
-        record(0, "Anthropic ships a model", ["Anthropic"]),
-        record(1, "Claude gets a new mode", ["Claude"]),
-        record(2, "Anthropic and Claude outage", ["Anthropic", "Claude"]),
-        record(3, "Tether mints USDT", ["Tether"]),
-        record(4, "Tether freezes funds", ["Tether"]),
-        record(5, "Tether attestation", ["Tether"]),
-    ]
-    raw = {entity.slug: entity.count for entity in collect_entities(records, minimum_mentions=2)}
-    assert raw["tether"] == 3 and raw["claude"] == 2
-
-    curated = collect_entities(records, minimum_mentions=3, profiles=load_entity_profiles())
-    assert [(entity.slug, entity.count, entity.label) for entity in curated] == [("anthropic", 3, "Anthropic")]
-
-
-def test_retired_entity_page_redirects_and_is_not_indexed() -> None:
-    from src.site_pages import render_retired_entity_page
-
-    page = render_retired_entity_page("tether", "zh")
-    front = page.split("---", 2)[1]
-    assert "redirect_to: /entity/" in front and "noindex: true" in front
-    assert "permalink: /entity/tether/" in front

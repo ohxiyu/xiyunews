@@ -9,7 +9,6 @@ on:
       - 'src/core_site.py'
       - 'scripts/overlay_core_site.py'
       - 'src/tracking_republish.py'
-      - 'data/tracking-focus.json'
       - 'src/threads.py'
       - '.github/workflows/deploy-docs.yml'
   workflow_dispatch:
@@ -77,9 +76,6 @@ jobs:
 
       - name: Restore durable publication documents before rendering
         run: uv run python -m src.publication_state --restore-published
-
-      - name: Rebuild focused tracking without AI
-        run: uv run python -m src.tracking_republish --root docs --core-only
 
       - name: Repair retained edition history without AI or delivery
         run: uv run python -m src.edition_recovery
