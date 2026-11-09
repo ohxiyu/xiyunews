@@ -1,7 +1,7 @@
 import { env } from "cloudflare:test";
 import { afterEach, expect, it, vi } from "vitest";
 import { dispatchCollection, FEED_WORKFLOW } from "../src/collection";
-import { runCombinedSchedule, SQUARE_CRON } from "../src/square";
+import { runCombinedSchedule, COLLECTION_CRON } from "../src/schedule";
 
 afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 
@@ -81,7 +81,7 @@ it("the overnight tick checks collection without touching Square or publication"
   const now = Date.parse("2026-09-30T18:10:00Z"); // 02:10 Shanghai
   vi.spyOn(Date, "now").mockReturnValue(now);
   const calls = github([run("completed", "2026-09-29T13:00:00Z")]);
-  await runCombinedSchedule(SQUARE_CRON, now, env);
+  await runCombinedSchedule(COLLECTION_CRON, now, env);
   expect(calls.map(call => new URL(call.url).pathname.split("/").slice(-2).join("/")))
     .toEqual([`${FEED_WORKFLOW}/runs`, `${FEED_WORKFLOW}/dispatches`]);
 });
@@ -92,4 +92,19 @@ it('rolling mode uses five-minute ticks, preserves active guards and checks the 
  expect(await dispatchCollection(rolling,Date.parse('2026-11-08T23:05:00Z'))).toBe('dispatched');
  github([run('in_progress','2026-11-08T23:05:00Z')]);
  expect(await dispatchCollection(rolling,Date.parse('2026-11-08T23:10:00Z'))).toBe('active');
+});
+
+it('does not count a successful operations test as source collection',async()=>{
+  const moment=Date.parse('2026-11-09T12:10:00Z');
+  const calls:Request[]=[];
+  vi.stubGlobal('fetch',vi.fn(async(input:RequestInfo|URL,init?:RequestInit)=>{
+    const request=new Request(input,init);calls.push(request);
+    if(request.method==='POST')return new Response(null,{status:204});
+    return Response.json({workflow_runs:[
+      {status:'completed',conclusion:'success',head_branch:'main',display_title:'Operations alert test',run_started_at:new Date(moment-60_000).toISOString(),html_url:null},
+      {status:'completed',conclusion:'success',head_branch:'main',display_title:'Feed collection',run_started_at:new Date(moment-600_000).toISOString(),html_url:null},
+    ]});
+  }));
+  expect(await dispatchCollection({...env,ROLLING_FEED:true} as Env,moment)).toBe('dispatched');
+  expect(calls.filter(r=>r.method==='POST')).toHaveLength(1);
 });

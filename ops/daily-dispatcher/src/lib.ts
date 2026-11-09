@@ -21,6 +21,7 @@ type TriggerStage = "primary" | "morning-check" | "hourly-check" |
   "retry-1" | "retry-2" | "final";
 
 interface WorkflowRun {
+  displayTitle?: string;
   status: string;
   conclusion: string | null;
   headBranch: string;
@@ -70,6 +71,7 @@ function parseWorkflowRun(value: unknown): WorkflowRun {
   const startedAt =
     value.run_started_at ?? value.created_at ?? value.updated_at;
   return {
+    ...(typeof value.display_title === "string" ? {displayTitle:value.display_title} : {}),
     status: requiredString(value.status, "status"),
     conclusion: optionalString(value.conclusion, "conclusion"),
     headBranch: requiredString(value.head_branch, "head_branch"),

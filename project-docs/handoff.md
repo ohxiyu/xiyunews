@@ -5,13 +5,13 @@
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "PR1：中文硬校验、账户熔断、缓存简版与运维话题告警",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/359",
+  "goal": "PR2：删除第一批停用模块、旧前端与历史流程文档",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/361",
   "owner": "本聊天 Codex",
-  "branch": "agent/daily-reliability",
-  "base": "9c5eba758393997e2421365ab3efd001917082b9",
-  "status": "PR360远端CI中；本地回归通过；运维话题告警实际送达待配置",
-  "next": "等待CI并核对main；绿色合并后删除第一批模块；目标群待确认、话题待创建",
+  "branch": "agent/daily-prune-1",
+  "base": "81a57092df0c4e43249516ecedbb907ee8b8d2fb",
+  "status": "PR362修复独立realtime文档入链；日报Python、web、站点构建通过",
+  "next": "完成删除回归与历史链接对照；两天自然出刊验收待观察",
   "blockers": []
 }
 ```
@@ -32,5 +32,6 @@
 
 - 截至此任务启动：滚动精选、固定日报、独立事件任务仍在运行；模型硅基DeepSeek V3.2、并发/候选上限保持原值；只在对应阶段切换。
 - 用户11/09授权X直接正式运行、免三天试运行；默认280加权字符，校验现有四项密钥/API，不升级套餐。
-- 已查GitHub设置：日报bot和X四项密钥存在；群组运维话题的chat/thread尚待确定，不使用读者频道或realtime现有话题。
+- 已查GitHub设置：日报bot和X四项密钥存在；目标群Telegram @xiyudotnews的“日报运维”话题6544已创建，参数已保存，测试42571836635已确认sent，不使用读者频道或realtime现有话题。
+- 保留七份现行文档；另有四个极短历史入口供realtime既有链接使用，不恢复旧发布内容。
 - 不改独立 `realtime/`，不重生成或重发既有期刊。旧地址保留跳转；不自动充值或升级模型/配额。

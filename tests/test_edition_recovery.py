@@ -57,7 +57,6 @@ def test_daily_rollover_journals_each_selection_atomically_and_survives_restart(
 
 @pytest.mark.parametrize('module,workflow', [
     ('src.x_queue', 'xiyu.news X Distribution'),
-    ('src.square_plan', 'xiyu.news Binance Square Distribution'),
 ])
 def test_dependency_free_queue_gate_migrates_existing_daily_journal(tmp_path, module, workflow):
     """Real production entrypoints run before uv installs third-party packages."""

@@ -140,9 +140,6 @@ def main():
                     f"Copy the example config and edit it:\n"
                     f"  [cyan]cp {example_path} {data_dir_path / 'config.json'}[/cyan]\n"
                 )
-            console.print(
-                "Or run [bold cyan]uv run bmtnews-wizard[/bold cyan] to launch the interactive setup wizard.\n"
-            )
             sys.exit(1)
         except ConfigError as e:
             console.print(f"[bold red]❌ Error loading configuration: {e}[/bold red]")

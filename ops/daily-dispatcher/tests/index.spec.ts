@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import worker from "../src/index";
 import { testing, SCHEDULE_CRONS } from "../src/lib";
-import { CONFIGURED_CRONS } from "../src/square";
+import { CONFIGURED_CRONS } from "../src/schedule";
 import { env } from "cloudflare:test";
 
 const ENV = {

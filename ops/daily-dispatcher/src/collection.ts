@@ -11,6 +11,10 @@ export type CollectionStatus =
   | "failed_waiting" | "retry_dispatched" | "check_in_progress"
   | "cooldown" | "retry_limit" | "lock_lost";
 
+export function isSourceCollection(run: {displayTitle?: string}): boolean {
+  return !["Operations alert test","Operations topic setup"].includes(run.displayTitle ?? "");
+}
+
 export async function dispatchCollection(env: Env, now: number): Promise<CollectionStatus> {
   const rolling = Boolean((env as Env & {ROLLING_FEED?: boolean}).ROLLING_FEED);
   const interval = rolling ? 5 * 60_000 : FEED_INTERVAL_MS;
@@ -24,7 +28,7 @@ export async function dispatchCollection(env: Env, now: number): Promise<Collect
   const runs = (await fetchWorkflowRuns(env, FEED_WORKFLOW))
     .filter(run => run.headBranch === env.GITHUB_REF);
   if (runs.some(run => ACTIVE_STATUSES.has(run.status))) return "active";
-  const newest = [...runs].sort((a, b) => b.startedAt.getTime() - a.startedAt.getTime())[0];
+  const newest = runs.filter(isSourceCollection).sort((a, b) => b.startedAt.getTime() - a.startedAt.getTime())[0];
   const age = now - (newest?.startedAt.getTime() ?? 0);
   const failed = newest?.status === "completed" &&
     ["failure", "timed_out", "startup_failure"].includes(newest.conclusion ?? "");

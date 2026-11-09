@@ -1,6 +1,6 @@
 import { checkReadiness } from "./lib";
 import { runRecovery, responseStatus } from "./recovery";
-import { CONFIGURED_CRONS, runCombinedSchedule } from "./square";
+import { CONFIGURED_CRONS, runCombinedSchedule } from "./schedule";
 import { FEED_INTERVAL_MS, FEED_WORKFLOW } from "./collection";
 import { timingSafeEqual } from "node:crypto";
 export { RecoveryGate } from "./gate";

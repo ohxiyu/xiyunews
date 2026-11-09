@@ -1,4 +1,4 @@
-/* Read-only core site. Legacy bilingual/admin implementation remains in _worker.js. */
+/* Read-only daily reader; retired admin and mutation routes remain closed. */
 export function primaryHostRedirect(request) {
   const url=new URL(request.url);
   if(url.hostname==='www.xiyu.news'){url.hostname='xiyu.news';return Response.redirect(url.href,308);}

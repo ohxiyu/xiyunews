@@ -88,11 +88,6 @@ from .archive import (
     load_recent_archive,
     save_edition_records,
 )
-from .editorial import (
-    EditorialEntry,
-    editorial_content_item,
-    load_editorial_plan,
-)
 from .market_snapshot import MarketSnapshot, fetch_market_snapshot
 from .entity_profiles import load_entity_profiles
 from .site_pages import (
@@ -915,14 +910,7 @@ class BMTNewsOrchestrator:
             )
             run_report.set_metric("staged_total", len(staged_items))
 
-            from .editorial import EditorialPlan
-            editorial_plan = EditorialPlan() if self.config.core_only else load_editorial_plan(
-                date_type.fromisoformat(window.date)
-            )
-            suppressed_keys = {
-                _deduplication_url_key(url)
-                for url in editorial_plan.suppressed_urls
-            }
+            suppressed_keys = set()
 
             candidates = self.merge_cross_source_duplicates(
                 items_in_edition_window(staged_items, window)
@@ -1359,44 +1347,6 @@ class BMTNewsOrchestrator:
                         brief(item)
                 run_report.add_alert("warning", "enrichment_degraded", f"{degraded} 条内容扩写失败，仅保留已评分的中文摘要。")
 
-            # Manual editor's picks are pinned ahead of the ranked stories.
-            if editorial_plan.editorial:
-                existing_urls = {
-                    _deduplication_url_key(str(item.url))
-                    for item in important_items
-                }
-                picks = []
-                for entry in editorial_plan.editorial:
-                    try:
-                        pick = editorial_content_item(
-                            entry,
-                            date_type.fromisoformat(window.date),
-                        )
-                    except Exception as exc:
-                        run_report.add_alert(
-                            "warning",
-                            "editorial_item_invalid",
-                            f"编辑条目无效，已跳过：{exc}",
-                        )
-                        continue
-                    if _deduplication_url_key(str(pick.url)) in existing_urls:
-                        continue
-                    picks.append(pick)
-                    existing_urls.add(_deduplication_url_key(str(pick.url)))
-                if picks:
-                    important_items = [*picks, *important_items]
-                    run_report.set_metric("editorial_items", len(picks))
-                    run_report.add_alert(
-                        "info",
-                        "editorial_items_added",
-                        f"人工插入 {len(picks)} 条编辑精选。",
-                    )
-            if editorial_plan.sponsored:
-                run_report.set_metric(
-                    "sponsored_slots",
-                    min(1, len(editorial_plan.sponsored)),
-                )
-
             # Event membership is assigned before rendering and archiving so
             # both the human page and edition JSON point to the exact update.
             if not self.config.core_only:
@@ -1469,7 +1419,6 @@ class BMTNewsOrchestrator:
                 run_report=run_report,
                 window_start=window.start,
                 window_end=window.end,
-                sponsored=editorial_plan.sponsored,
                 x_posted_languages=daily_state.x_posted_languages,
                 skip_telegram=bool(already_published and force_publish),
             )
@@ -2100,7 +2049,6 @@ class BMTNewsOrchestrator:
         run_report: RunReport,
         window_start: datetime | None = None,
         window_end: datetime | None = None,
-        sponsored: List[EditorialEntry] | None = None,
         x_posted_languages: List[str] | None = None,
         skip_telegram: bool = False,
         static_only: bool = False,
@@ -2221,7 +2169,6 @@ class BMTNewsOrchestrator:
                     display_timezone=timezone_name,
                     overview=overview,
                     market=market_snapshot,
-                    sponsored=sponsored,
                     core_only=self.config.core_only,
                 )
                 _atomic_write_text(

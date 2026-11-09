@@ -22,7 +22,7 @@ jobs:
       - run: uv sync --frozen
       - name: Read immutable audit snapshots without changing any branches
         run: |
-          git fetch --depth=1 origin +gh-pages:refs/remotes/origin/gh-pages +staging-cache:refs/remotes/origin/staging-cache +x-queue:refs/remotes/origin/x-queue +square-queue:refs/remotes/origin/square-queue
+          git fetch --depth=1 origin +gh-pages:refs/remotes/origin/gh-pages +staging-cache:refs/remotes/origin/staging-cache +x-queue:refs/remotes/origin/x-queue
           mkdir .state-snapshot
           for name in staging-items.json analysis-cache.json; do
             git show "origin/staging-cache:data/$name" > ".state-snapshot/$name"
@@ -31,6 +31,5 @@ jobs:
             git show "origin/gh-pages:_data/$name" > ".state-snapshot/$name"
           done
           git show origin/x-queue:data/x-queue.json > .state-snapshot/x-queue.json
-          git show origin/square-queue:queue.json > .state-snapshot/square-queue.json
       - name: Bootstrap only missing state, prove exact contents and integrity, never publish
         run: uv run python -m src.publication_state --bootstrap .state-snapshot

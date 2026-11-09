@@ -1,6 +1,6 @@
 # xiyu.news 07:26 日报调度
 
-2026-10-03调度已并入统一 `xiyunews` Worker，原RecoveryGate状态和时间规则保留；旧独立调度器停用、Cron为空。本页描述现行业务策略，部署操作唯一入口是[单项目清单](cloudflare-single-project.md)与[当前交接](handoff.md)，不按旧wrangler.jsonc重新创建或部署独立服务。实际接管证据见[发布记录](releases/2026-10-03-cloudflare-production-verification.md)。
+2026-10-03调度已并入统一 `xiyunews` Worker，原RecoveryGate状态和时间规则保留；旧独立调度器停用、Cron为空。本页描述现行业务策略，部署操作唯一入口是单项目清单与[当前交接](handoff.md)，不按旧wrangler.jsonc重新创建或部署独立服务。实际接管证据见发布记录。
 
 ## 目标与时间边界
 

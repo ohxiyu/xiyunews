@@ -987,18 +987,6 @@ xiyu.news writes generated summaries to `data/summaries/` and copies publishable
 
 To use GitHub Pages, enable Pages for the repository and run the scheduled workflow or trigger it manually. The generated site is built from the `docs/` directory.
 
-## MCP Server
-
-xiyu.news includes an MCP server for AI assistants and MCP-compatible clients.
-
-```bash
-uv run bmtnews-mcp
-```
-
-Available tools include `bmt_validate_config`, `bmt_fetch_items`, `bmt_score_items`, `bmt_filter_items`, `bmt_enrich_items`, `bmt_generate_summary`, and `bmt_run_pipeline`.
-
-See [`src/mcp/README.md`](../src/mcp/README.md) for the full tool reference and [`src/mcp/integration.md`](../src/mcp/integration.md) for client setup.
-
 ## 生产新闻评分与去重
 
 生产配置为 `ai.provider=siliconflow`、`ai.model=deepseek-ai/DeepSeek-V3.2`。同一次分析调用
