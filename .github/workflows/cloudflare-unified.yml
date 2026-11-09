@@ -180,9 +180,11 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           DAILY_PRIVATE_CHAT: ${{ secrets.TELEGRAM_ALERT_CHAT_ID }}
+          DAILY_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         shell: bash
         run: |
-          if [[ "$DAILY_PRIVATE_CHAT" =~ ^[1-9][0-9]*$ ]]; then
+          if [[ "$DAILY_PRIVATE_CHAT" =~ ^[1-9][0-9]*$ && -n "$DAILY_BOT_TOKEN" ]]; then
+            printf '%s' "$DAILY_BOT_TOKEN" | npx wrangler secret put DAILY_TELEGRAM_BOT_TOKEN --config wrangler.unified.jsonc
             printf '%s' "$DAILY_PRIVATE_CHAT" | npx wrangler secret put TELEGRAM_ALERT_CHAT_ID --config wrangler.unified.jsonc
           fi
 

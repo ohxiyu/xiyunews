@@ -167,3 +167,20 @@ def test_cached_brief_publication_has_no_ai_and_preserves_existing(tmp_path,monk
     calls.clear()
     assert asyncio.run(runner._publish_cached_brief(window,report,NOW))
     assert not calls
+
+
+def test_brief_rendering_failure_is_never_reported_as_success(tmp_path,monkeypatch):
+    from src.orchestrator import BMTNewsOrchestrator
+    from src.run_report import RunReport
+    config=Config.model_validate_json(open('data/config.github.json').read())
+    monkeypatch.chdir(tmp_path)
+    window=edition_window_for(NOW,'Asia/Shanghai')
+    good=item();good.published_at=window.end-timedelta(seconds=1)
+    save_selection([good],config,window,now=NOW)
+    runner=BMTNewsOrchestrator.__new__(BMTNewsOrchestrator);runner.config=config
+    async def broken(*args,**kwargs):raise OSError('render failed')
+    runner._publish_outputs=broken
+    report=RunReport.start(date=window.date,timezone_name='Asia/Shanghai',kind='daily_publish',started_at=NOW)
+    with pytest.raises(OSError):asyncio.run(runner._publish_cached_brief(window,report,NOW))
+    report.finish()
+    assert report.status=='failure'

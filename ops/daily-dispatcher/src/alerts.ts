@@ -1,12 +1,12 @@
 import {editionContextFor, fetchWorkflowRuns} from './lib';
 
 export interface AlertEnv extends Env {
-  TELEGRAM_BOT_TOKEN?: string;
+  DAILY_TELEGRAM_BOT_TOKEN?: string;
   TELEGRAM_ALERT_CHAT_ID?: string;
 }
 
 export async function sendPrivateAlert(env: AlertEnv, key: string, text: string): Promise<string> {
-  const token=env.TELEGRAM_BOT_TOKEN, chat=env.TELEGRAM_ALERT_CHAT_ID;
+  const token=env.DAILY_TELEGRAM_BOT_TOKEN, chat=env.TELEGRAM_ALERT_CHAT_ID;
   if (!token || !chat || !/^[1-9][0-9]*$/.test(chat)) return 'not_configured';
   const gate=env.RECOVERY_GATE.getByName('daily-private-alerts');
   try {
@@ -35,7 +35,7 @@ export async function sendPrivateAlert(env: AlertEnv, key: string, text: string)
 }
 
 export async function checkPrivateAlerts(env: AlertEnv, now: number): Promise<void> {
-  if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_ALERT_CHAT_ID) return;
+  if (!env.DAILY_TELEGRAM_BOT_TOKEN || !env.TELEGRAM_ALERT_CHAT_ID) return;
   const gate=env.RECOVERY_GATE.getByName('daily-private-alerts');
   const runs=await fetchWorkflowRuns(env,'feed-collection.yml');
   const successful=runs.filter(r=>r.headBranch===env.GITHUB_REF && r.conclusion==='success');

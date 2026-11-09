@@ -1,7 +1,7 @@
 import {env} from 'cloudflare:test';
 import {afterEach,expect,it,vi} from 'vitest';
 import {checkPrivateAlerts,sendPrivateAlert,type AlertEnv} from '../src/alerts';
-const fixture=()=>({...env,TELEGRAM_BOT_TOKEN:'fixture-bot',TELEGRAM_ALERT_CHAT_ID:'123'}) as AlertEnv;
+const fixture=()=>({...env,DAILY_TELEGRAM_BOT_TOKEN:'fixture-bot',TELEGRAM_ALERT_CHAT_ID:'123'}) as AlertEnv;
 afterEach(()=>{vi.unstubAllGlobals();});
 it('rejects non-private destinations before sending',async()=>{
   const call=vi.fn(async()=>Response.json({ok:true,result:{type:'channel',id:123}}));

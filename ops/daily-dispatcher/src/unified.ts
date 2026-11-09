@@ -21,6 +21,7 @@ export interface UnifiedEnv extends Env {
   SITE_BUILD_KEY?: string;
   TELEGRAM_BOT_TOKEN?: string;
   TELEGRAM_ALERT_CHAT_ID?: string;
+  DAILY_TELEGRAM_BOT_TOKEN?: string;
   ALERT_CHAT_ID?: string;
   ADMIN_GITHUB_TOKEN?: string;
   ADMIN_ACCESS_ISSUER?: string;

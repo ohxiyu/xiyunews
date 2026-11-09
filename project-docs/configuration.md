@@ -1080,8 +1080,9 @@ Existing published editions and Telegram delivery receipts remain authoritative.
   Per-run ledger writes are idempotent; daily/month totals show recorded usage,
   not a provider invoice. Financial estimates remain in private artifacts.
 - The normal unified deployment copies a configured private destination into the
-  Worker's optional `TELEGRAM_ALERT_CHAT_ID` binding. It leaves the independent
-  realtime watchdog's `ALERT_CHAT_ID` unchanged. Worker checks collection lag
+  Worker's optional `TELEGRAM_ALERT_CHAT_ID` and `DAILY_TELEGRAM_BOT_TOKEN` bindings.
+  The latter reuses the existing Actions daily bot; it leaves the independent
+  realtime watchdog's `TELEGRAM_BOT_TOKEN` and `ALERT_CHAT_ID` unchanged. Worker checks collection lag
   (>30 minutes, one alert until recovery) and missing editions after 07:45.
 - Alert attempts are persisted before sending; timeouts/5xx become unknown and
   are never retried automatically. `not_configured`, `destination_unverified`,

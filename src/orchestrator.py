@@ -1342,6 +1342,7 @@ class BMTNewsOrchestrator:
             )
             if self.config.core_only:
                 if not important_items:
+                    allow_cached_fallback = False
                     if await self._publish_cached_brief(window, run_report, run_started_at): return
                     raise RuntimeError('No qualified scored Chinese content; edition not published')
                 save_selection(important_items,self.config,window,now=run_started_at)
@@ -1537,8 +1538,12 @@ class BMTNewsOrchestrator:
         report.add_alert('warning','brief_edition','AI不可用，使用此前已打分、去重的中文缓存发布简版。')
         report.set_metric('edition_degraded',1);report.set_metric('displayed_today',len(items))
         report.set_metric('edition_candidates',len(items))
-        await self._publish_outputs(items,date=window.date,total_candidates=len(items),timezone_name=self.config.filtering.daily_timezone,run_report=report,window_start=window.start,window_end=window.end)
-        self._publish_archive_artifacts(items,date=window.date,run_report=report,window_start=window.start,window_end=window.end)
+        try:
+            await self._publish_outputs(items,date=window.date,total_candidates=len(items),timezone_name=self.config.filtering.daily_timezone,run_report=report,window_start=window.start,window_end=window.end)
+            self._publish_archive_artifacts(items,date=window.date,run_report=report,window_start=window.start,window_end=window.end)
+        except Exception as exc:
+            report.fail(exc)
+            raise
         return True
 
     async def run_x_slot(
