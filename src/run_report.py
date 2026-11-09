@@ -232,6 +232,7 @@ class RunReport:
     duration_seconds: float | None = None
     metrics: dict[str, int] = field(default_factory=dict)
     ai_usage: list[dict[str, Any]] = field(default_factory=list)
+    ai_cost: dict[str, Any] = field(default_factory=dict)
     timings: dict[str, float] = field(default_factory=dict)
     fetch_report: dict[str, Any] | None = None
     summaries: list[str] = field(default_factory=list)
@@ -361,6 +362,7 @@ class RunReport:
             ),
             "metrics": dict(self.metrics),
             "ai_usage": list(self.ai_usage),
+            "ai_cost": dict(self.ai_cost),
             "timings": dict(self.timings),
             "fetch_report": self.fetch_report,
             "summaries": list(self.summaries),

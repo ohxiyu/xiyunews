@@ -38,6 +38,29 @@ export class RecoveryGate extends DurableObject<Env> {
     return true;
   }
 
+  alertClaim(key: string): boolean {
+    if (!/^[a-z0-9:.-]{1,100}$/.test(key)) throw new Error("invalid alert key");
+    if (this.read("alert:"+key)!==null) return false;
+    this.write("alert:"+key,"unknown");
+    return true;
+  }
+
+  alertStatus(key: string, status: string): void {
+    if (!/^[a-z0-9:.-]{1,100}$/.test(key) || !["sent","failed","unknown"].includes(status)) throw new Error("invalid alert status");
+    this.write("alert:"+key,status);
+  }
+
+  alertGeneration(): number {
+    this.write("collection_incident","active");
+    return Number(this.read("collection_generation") ?? "0");
+  }
+
+  alertRecover(): void {
+    if (this.read("collection_incident")!=="active") return;
+    this.write("collection_generation",String(Number(this.read("collection_generation") ?? "0")+1));
+    this.write("collection_incident","recovered");
+  }
+
   claim(now: number): string | null {
     if (Number(this.read("lease_until") ?? "0") > now) return null;
     const token = crypto.randomUUID();

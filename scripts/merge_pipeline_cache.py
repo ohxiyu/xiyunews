@@ -13,6 +13,11 @@ def merge(local,remote,kind,now=None):
     # records are merged by identity and stored_at, never by a run's age.
     if local.get('version')!=1 or remote.get('version')!=1:return local
     now=now or datetime.now(timezone.utc)
+    if kind=='qualified-cache':
+        rows=dict(remote.get('editions',{}))
+        for day,row in local.get('editions',{}).items():
+            if day not in rows or row.get('generated_at','')>rows[day].get('generated_at',''):rows[day]=row
+        return {'version':1,'editions':{day:row for day,row in rows.items() if day>=(now-timedelta(days=4)).date().isoformat()}}
     if kind=='staging-items':
         rows={}
         for row in remote.get('items',[])+local.get('items',[]):
@@ -35,7 +40,7 @@ def merge(local,remote,kind,now=None):
 
 def main():
     base=sys.argv[1]
-    for name in ['staging-items','analysis-cache']:
+    for name in ['staging-items','analysis-cache','qualified-cache']:
         path=Path('data')/(name+'.json')
         if not path.exists():continue
         result=subprocess.run(['git','show',base+':'+path.as_posix()],capture_output=True,text=True)

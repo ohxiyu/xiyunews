@@ -32,6 +32,8 @@ def _card(*, attrs: dict, heading: str, body: str, meta: str, index: int) -> str
 
 def render_core_feed(items: list[ContentItem], *, date: str, display_timezone="Asia/Shanghai") -> str:
     cards = []
+    if any(item.metadata.get("edition_mode")=="brief" for item in items):
+        cards.append('<p class="edition-notice" data-edition-mode="brief">简版 · 部分背景暂不可用，本期保留已评分内容的中文摘要。</p>')
     for index, item in enumerate(items, 1):
         title = _localized_title(item, "zh")
         summary = _localized_text(item, "detailed_summary", "zh") or item.ai_summary or ""

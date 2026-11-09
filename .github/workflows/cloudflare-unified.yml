@@ -173,5 +173,22 @@ jobs:
           --var "RUNTIME_HEALTH_URL:https://api.xiyu.news/ops/runtime.json"
           --var "SITE_BUILD_KEY:$BUILD_KEY"
 
+      - name: Configure optional daily operations topic
+        if: steps.plan.outputs.skip != 'true'
+        working-directory: ops/daily-dispatcher
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          DAILY_PRIVATE_CHAT: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
+          DAILY_ALERT_THREAD: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
+          DAILY_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        shell: bash
+        run: |
+          if [[ "$DAILY_PRIVATE_CHAT" =~ ^-[1-9][0-9]*$ && "$DAILY_ALERT_THREAD" =~ ^[1-9][0-9]*$ && -n "$DAILY_BOT_TOKEN" ]]; then
+            printf '%s' "$DAILY_BOT_TOKEN" | npx wrangler secret put DAILY_TELEGRAM_BOT_TOKEN --config wrangler.unified.jsonc
+            printf '%s' "$DAILY_PRIVATE_CHAT" | npx wrangler secret put TELEGRAM_ALERT_CHAT_ID --config wrangler.unified.jsonc
+            printf '%s' "$DAILY_ALERT_THREAD" | npx wrangler secret put TELEGRAM_ALERT_THREAD_ID --config wrangler.unified.jsonc
+          fi
+
       # Traffic and cron activation are deliberately not performed by this job.
       # Update the final owned DO binding/cron config in a reviewed cutover PR.

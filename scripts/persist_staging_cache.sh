@@ -29,7 +29,7 @@ if [ -n "$base" ]; then
 else
   git read-tree --empty
 fi
-for cache_path in data/staging-items.json data/analysis-cache.json; do
+for cache_path in data/staging-items.json data/analysis-cache.json data/qualified-cache.json; do
   if [ -f "$cache_path" ]; then
     blob=$(git hash-object -w -- "$cache_path")
     git update-index --add --cacheinfo "100644,$blob,$cache_path"
