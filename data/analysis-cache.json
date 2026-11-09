@@ -283,42 +283,6 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
-    "0102790d045e9c46a884222496284b3e9b9fbbb19bb45a428a1a5a97249b128c": {
-      "stored_at": "2026-11-01T06:32:47.690938+00:00",
-      "value": {
-        "ai_reason": "A reported $6.3 billion exchange hack is among the largest security incidents in crypto history, well past the threshold for systemic market impact, and the article ties it directly to Coinbase's security posture and equity story. The piece itself is derivative stock-commentary from Simply Wall St rather than primary incident reporting, with limited technical detail on the breach, which keeps it just below the very top of the scale.",
-        "ai_score": 9.0,
-        "ai_summary": "A $6.3 billion exchange hack has put Coinbase under renewed scrutiny over crypto security practices, with the incident framing the exchange's risk exposure and its stock narrative.",
-        "ai_tags": [
-          "exchange-hack",
-          "security-incident",
-          "coinbase",
-          "custody-risk",
-          "market-impact"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
-    "013945c8167a0bd63eceb4d8778690f560823957ea6028d72b29aa11f975254e": {
-      "stored_at": "2026-11-01T06:32:47.690557+00:00",
-      "value": {
-        "ai_reason": "A genuine security incident disclosed within the news window: roughly 97 million staked CORE tokens were extracted without authorization from b14g, a Bitcoin dual-staking layer, after which the protocol paused the affected contracts and coordinated with Core, security partners and exchanges to trace and freeze funds (~9M CORE frozen, ~68M still on the Core chain). At CORE's typical price levels that places tens of millions of dollars at risk, near the material-exploit threshold, though the protocol is not systemically important and a meaningful share of funds remains traceable/frozen, keeping it below the 8.5-9.0 tier. The triggering extraction occurred on the evening of Oct 31 Beijing time, just before the window, but the exchange freezes and ongoing recovery coordination constitute a concrete in-window development rather than a pure recap.",
-        "ai_score": 8.0,
-        "ai_summary": "b14g, a Bitcoin dual-staking layer, reported that about 97 million staked CORE tokens were extracted without authorization, prompting it to pause the affected contracts and work with Core, security partners and exchanges to freeze and recover funds, with roughly 9 million CORE frozen and 68 million still on the Core chain.",
-        "ai_tags": [
-          "security-incident",
-          "CORE",
-          "staking",
-          "fund-freeze",
-          "exploit"
-        ],
-        "category": "crypto-protocols",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
-      }
-    },
     "013d610242ab26d7d9e67c441687242cadbb2ad4035ef65348d724cff99a6f15": {
       "stored_at": "2026-11-05T04:44:11.843918+00:00",
       "value": {
@@ -783,6 +747,24 @@
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
+      }
+    },
+    "02ae2a98787618543dd74e5e676ca54ff9d1f39d5776cec20acdfec90021f477": {
+      "stored_at": "2026-11-09T08:56:19.252555+00:00",
+      "value": {
+        "ai_reason": "The article reports a live exploit of the Ankr Ethereum bridge with a confirmed loss of approximately $292,000. While this constitutes a security incident, the financial impact is relatively contained compared to major exploits that typically score 8.5+. It is an important, ongoing event for the protocol's users and security community, but does not represent a systemic or paradigm-shifting event. The reporting is factual and timely.",
+        "ai_score": 6.5,
+        "ai_summary": "Ankr 的以太坊跨链桥正遭受攻击，攻击者利用小额存款解锁了桥中资产，已造成约 29.2 万美元的损失，且攻击仍在进行中。",
+        "ai_tags": [
+          "security-exploit",
+          "cross-chain-bridge",
+          "ankr",
+          "ethereum",
+          "optimism"
+        ],
+        "category": "crypto-protocols",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets"
       }
     },
     "02b21b1e4fad40cca94acf4076051b9d7e83d0c83807e61a8fbb4038c777ee86": {
@@ -2460,6 +2442,24 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
+    "07faddcfe6f1f313c58ccf7b0772e71c1a5b46ffbd9bcaa4ea00c9cf3863a0cf": {
+      "stored_at": "2026-11-09T08:56:19.253415+00:00",
+      "value": {
+        "ai_reason": "A U.S. federal judge allows a lawsuit against Anthropic over potentially misleading marketing of its Claude Max subscription tiers to proceed, representing a significant legal and regulatory development for a leading AI lab with potential industry-wide implications for product disclosures and consumer protection.",
+        "ai_score": 7.5,
+        "ai_summary": "美国加州联邦法院驳回了Anthropic要求撤销诉讼的请求，允许针对其Claude Max订阅套餐中“5倍、20倍用量”宣传可能误导消费者的部分指控继续审理。",
+        "ai_tags": [
+          "ai-labs",
+          "regulation",
+          "legal",
+          "consumer-protection",
+          "anthropic"
+        ],
+        "category": "ai-labs",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets"
+      }
+    },
     "07fc0dabacfb82faed798385684081ff2ead25cae612585e299ff2fafd287dc1": {
       "stored_at": "2026-11-05T21:02:07.363904+00:00",
       "value": {
@@ -2494,24 +2494,6 @@
         "category": "crypto-regulation",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
-      }
-    },
-    "07fd9db2ddb8b74c23d6c78b17c7f2fe8aeead3b5f629a9fb0e479fdbbff8bba": {
-      "stored_at": "2026-11-01T06:32:47.691035+00:00",
-      "value": {
-        "ai_reason": "A major exchange security incident involving over $6 billion in moved funds, followed by Binance standing up a 100-person response team, is a high-impact operational and security development for the industry. It falls short of the 8.5–9.0 band only because the item is a short aggregated headline without independently confirmed loss figures, attribution, or remediation detail.",
-        "ai_score": 8.0,
-        "ai_summary": "Binance has formed a 100-person team to respond to an attack that moved more than $6 billion.",
-        "ai_tags": [
-          "binance",
-          "exchange-security",
-          "incident-response",
-          "hacks",
-          "exchange-operations"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
       }
     },
     "08058c5aa9b00b890413cf3a32c908b053b7f52a8abfde9bb2c0b4a24f510f4d": {
@@ -9823,6 +9805,26 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "1f5b90f307a7b07a116853fb2fa63eca666524ae8b9537faf3c45cca378e729f": {
+      "stored_at": "2026-11-09T08:56:19.252992+00:00",
+      "value": {
+        "ai_reason": "The article reports on a significant claim of a massive data breach affecting a leading exchange, which Binance has publicly labeled as likely a scam. This is a high-value operational security and trust incident that warrants immediate attention from users and the market, though the exchange's denial and characterization of it as a scam reduces its severity compared to a confirmed exploit.",
+        "ai_score": 7.5,
+        "ai_summary": "币安表示，一份声称包含3.359亿条用户记录的数据库正在出售的帖子很可能是一场骗局，并指出了数据中的不一致之处。",
+        "ai_tags": [
+          "exchange-operations",
+          "security",
+          "scam",
+          "data-breach",
+          "binance"
+        ],
+        "category": "exchange-operations",
+        "detailed_summary_zh": "币安表示，一份声称出售包含3.359亿条用户记录的数据库的帖子很可能是一场骗局，并指出了数据中的不一致之处。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "exchange-announcements",
+        "title_zh": "币安称3.359亿条记录泄露声明很可能是骗局"
+      }
+    },
     "1f637c4b1a81feaffc8fc8442ce865eca826ef2df15c546cbd4e83e81e89fdc2": {
       "stored_at": "2026-11-09T02:02:03.649534+00:00",
       "value": {
@@ -12990,23 +12992,6 @@
         ]
       }
     },
-    "292f696215320b0f0ef2c8afe1e78f89072c679a5722a5cc24b32f9bda954896": {
-      "stored_at": "2026-11-01T06:32:47.691243+00:00",
-      "value": {
-        "ai_reason": "A confirmed exploit against Premia's vaults, but the loss (~$437K) is small relative to material DeFi incidents, so it is worth noting rather than market-moving. Impact is confined to a single options protocol's vault depositors, with no systemic transmission path.",
-        "ai_score": 6.0,
-        "ai_summary": "An attacker drained roughly $437,000 in collateral from Premia's vault contracts, marking a limited-scope DeFi options protocol exploit.",
-        "ai_tags": [
-          "exploit",
-          "defi",
-          "premia",
-          "vaults",
-          "smart-contract-risk"
-        ],
-        "category": "crypto-protocols",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "293203e23efa994a3085a3666f0a39337c3ca318cd2b3890f22a496dc5704b49": {
       "stored_at": "2026-11-08T14:43:08.645470+00:00",
       "value": {
@@ -14443,6 +14428,22 @@
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
+      }
+    },
+    "2d957eac3e3622509bd8efa086f52b75ba9abf2ac94c97ca5434e0f0e78a64ce": {
+      "stored_at": "2026-11-09T08:56:19.253721+00:00",
+      "value": {
+        "ai_reason": "Content is a brief, second-hand report of a bank CEO's market commentary on AI stock corrections and potential political impacts. It provides a useful perspective but lacks original analysis, concrete data, or immediate actionable implications for crypto or AI markets. The discussion is generic and not tied to a specific, novel development within the news window.",
+        "ai_score": 5.5,
+        "ai_summary": "瑞银集团首席执行官表示，近期美股人工智能板块的回调是对此前过高预期的修正，而美国中期选举结果可能减缓AI基础设施投资并推迟其价值兑现的节奏。",
+        "ai_tags": [
+          "ai-media",
+          "macro-regulation",
+          "market-commentary"
+        ],
+        "category": "ai-media",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets"
       }
     },
     "2d9725217490c5b6dfe412ca12f5e7cd683931a556cfefdf17353667bfd681ba": {
@@ -19127,24 +19128,6 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
-    "3b35ea25dcaad0d4f415db23aa7cc3d3ad8a249faa0f08664d12e19816ba661d": {
-      "stored_at": "2026-11-01T06:32:47.691528+00:00",
-      "value": {
-        "ai_reason": "The post presents a concrete open-source multi-agent workflow in which five Qwen3.8-27B instances beat Fable 5 on LiveCodeBench Hard, with clear implications for local-model competitiveness and agent orchestration. The HN discussion adds useful signal on quantization, local inference throughput, and multi-agent scaling, but the result is an example-repo benchmark claim rather than a peer-reviewed or independently replicated breakthrough.",
-        "ai_score": 7.0,
-        "ai_summary": "Memdoor's team-solve workflow demonstrates five Qwen3.8-27B models outperforming Fable 5 on LiveCodeBench Hard, sparking discussion about local-model performance and multi-agent scaling.",
-        "ai_tags": [
-          "multi-agent",
-          "local-llm",
-          "benchmarks",
-          "ai-devtools",
-          "qwen"
-        ],
-        "category": "ai-devtools",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "tech-community"
-      }
-    },
     "3b46c2e1a842f0307effce12dfe3bd58421cec895fd44dc3ef2492f50b1d01d7": {
       "stored_at": "2026-11-08T14:43:08.654282+00:00",
       "value": {
@@ -22270,24 +22253,6 @@
         ],
         "category": "exchange-announcements",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
-      }
-    },
-    "44eb561422284ed512a93966380e2e90eabef2d4738d5769e203999f55d50527": {
-      "stored_at": "2026-11-01T06:32:47.691141+00:00",
-      "value": {
-        "ai_reason": "A reported $6.34 billion hot-wallet hack loss at Binance and the exchange's commitment to cover it represents a systemic exchange-security event with material user and market impact.",
-        "ai_score": 9.5,
-        "ai_summary": "Binance committed $6.34 billion to cover losses from a hot-wallet hack.",
-        "ai_tags": [
-          "Binance",
-          "hot-wallet hack",
-          "exchange security",
-          "user losses",
-          "reimbursement"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
       }
     },
     "451e21e60f3c0ecfff0454c4bf46200fe57af440c5f8a19cb67965eebbb0f57d": {
@@ -26087,6 +26052,24 @@
         "source_category": "crypto-markets"
       }
     },
+    "51c0243b0dd8e090ab38fa9708ca90ffeee8ef6babb1a2979664f6a03b6235b1": {
+      "stored_at": "2026-11-09T08:56:19.253607+00:00",
+      "value": {
+        "ai_reason": "A confirmed exploit of a major protocol's cross-chain bridge is a high-value security incident with material user impact, though the current reported loss amount is relatively modest compared to larger-scale attacks.",
+        "ai_score": 7.5,
+        "ai_summary": "Ankr的以太坊跨链桥遭受攻击，攻击者利用小额存款解锁并转移了桥内锁定的全部资产，已造成约29.2万美元损失，且攻击仍在进行中。",
+        "ai_tags": [
+          "security",
+          "exploit",
+          "cross-chain",
+          "ethereum",
+          "ankr"
+        ],
+        "category": "crypto-protocols",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets"
+      }
+    },
     "51e0eb2ef4443004bf4361425c2aae810537d92f9112257d97eed31f442baac0": {
       "stored_at": "2026-11-05T16:56:05.370105+00:00",
       "value": {
@@ -29427,6 +29410,41 @@
         "title_zh": "在全球多数地区解锁X品牌任意车辆"
       }
     },
+    "5d04c7653fedced78cc09f5d082402b47bddc1a96bf62af258db2c909ffef60f": {
+      "stored_at": "2026-11-09T08:56:24.166410+00:00",
+      "value": {
+        "duplicates": [
+          [
+            1,
+            4,
+            9,
+            15,
+            17
+          ],
+          [
+            3,
+            6,
+            7
+          ],
+          [
+            5,
+            12
+          ],
+          [
+            8,
+            10,
+            16
+          ],
+          [
+            11,
+            13,
+            14,
+            18,
+            19
+          ]
+        ]
+      }
+    },
     "5d072b8c6868a0d772915d5779d56ba7e4feecfac6b1edbbfac6ad54831eddb9": {
       "stored_at": "2026-11-01T23:07:49.849452+00:00",
       "value": {
@@ -29948,6 +29966,26 @@
         "category": "exchange-operations",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "exchange-announcements"
+      }
+    },
+    "5ef6731ed5bce9361c86fb740d7ab6c119dae89dcde43717406908ff6d50b733": {
+      "stored_at": "2026-11-09T08:56:19.254199+00:00",
+      "value": {
+        "ai_reason": "The article reports on Binance restoring deposits/withdrawals for specific assets (HYPE, APT), which is a material operational update. It also mentions data on significant reserve outflows, which, if accurate, could signal market stress or user sentiment shifts, making it a high-value development for market participants.",
+        "ai_score": 7.5,
+        "ai_summary": "币安恢复了HYPE和APT的充提服务，同时有数据显示其储备金出现数十亿美元的资金外流。",
+        "ai_tags": [
+          "binance",
+          "reserves",
+          "withdrawals",
+          "market-sentiment",
+          "exchange-operations"
+        ],
+        "category": "exchange-operations",
+        "detailed_summary_zh": "币安已恢复HYPE和APT的充值与提现服务，同时平台数据显示其储备金出现高达数十亿美元的资金外流。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "exchange-announcements",
+        "title_zh": "币安恢复HYPE、APT充提，数据揭示储备金流出数十亿美元"
       }
     },
     "5efc346c3688e83892705291517869ee800c62f766ca540cc96fcd7e49ed4e2a": {
@@ -30600,24 +30638,6 @@
         "category": "exchange-operations",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "crypto-markets"
-      }
-    },
-    "619337a5843c583e0ba43f992e97e18b1a642d27d4af7a5ee5d527bd9efe57e6": {
-      "stored_at": "2026-11-01T06:32:47.690844+00:00",
-      "value": {
-        "ai_reason": "The item is a recycled headline referencing an old Binance hack/North Korea episode, with no concrete in-window development or new confirmed information. It lacks substantive reporting and provides no actionable market or regulatory update.",
-        "ai_score": 0.0,
-        "ai_summary": "Trump said the U.S. would contact North Korea if the Binance hack were confirmed, according to a headline-only report.",
-        "ai_tags": [
-          "Binance hack",
-          "North Korea",
-          "cybersecurity",
-          "crypto regulation",
-          "exchange risk"
-        ],
-        "category": "crypto-regulation",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
       }
     },
     "61975f45d3bda4edc27bd4e3ce869452e40c4b7bd776640535e06a84f35cbec0": {
@@ -36935,6 +36955,17 @@
         ]
       }
     },
+    "766aacd8ae452eeab02e56b07690ad4f8d27883eb7ec94fbb17cc8f61b04940d": {
+      "stored_at": "2026-11-09T08:56:29.687360+00:00",
+      "value": {
+        "duplicates": [
+          [
+            0,
+            1
+          ]
+        ]
+      }
+    },
     "767278e50b9a265492299e04af8393d3ecc4541bb574e8c5a402bffdd198f09b": {
       "stored_at": "2026-11-08T08:50:43.222438+00:00",
       "value": {
@@ -42448,6 +42479,25 @@
         "source_category": "crypto-markets"
       }
     },
+    "89ea6c3df9b876e75d30364afdc6c76ea183f426f1d38df5d42e123173131722": {
+      "stored_at": "2026-11-09T08:56:19.252808+00:00",
+      "value": {
+        "ai_reason": "The article reports a confirmed exploit of a specific bridge contract, resulting in a material but not systemic loss of over $300k. This is a significant security incident for the involved protocol, warranting attention from users and developers, but the scale is below the threshold for a major market-wide event. The content is a factual report of the exploit.",
+        "ai_score": 6.5,
+        "ai_summary": "Ankr的以太坊桥接合约因一个已赎回的小额Optimism存款提款漏洞，在一次涉及五笔交易的攻击中损失了超过30.3万美元。",
+        "ai_tags": [
+          "exploit",
+          "bridge",
+          "ethereum",
+          "ankr",
+          "security"
+        ],
+        "category": "crypto-protocols",
+        "detailed_summary_zh": "Ankr的以太坊桥接合约因一个已赎回的小额Optimism存款提款漏洞，在一次涉及五笔交易的攻击中损失了超过30.3万美元。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "Ankr以太坊桥在五笔交易攻击中损失超30.3万美元"
+      }
+    },
     "89f6b3f551a3354e75cfd3b98652994abc8006cde1eea8ac27bfe0dc7524a6bf": {
       "stored_at": "2026-11-08T11:48:39.960819+00:00",
       "value": {
@@ -42632,24 +42682,6 @@
         ],
         "category": "crypto-markets",
         "score_model": "siliconflow:Qwen/Qwen3.5-27B"
-      }
-    },
-    "8aa6f661095a894549ea8589b3ff601ad321f856eba72f18d09458af2a9098db": {
-      "stored_at": "2026-11-01T06:32:47.691429+00:00",
-      "value": {
-        "ai_reason": "A $6.3 billion loss event is the largest-scale theft class in the taxonomy, and this in-window announcement that Binance has replenished 90% of the stolen assets is a material recovery milestone with direct implications for user fund safety and confidence in the exchange. It falls short of a 9.0+ systemic-reset score only because it is a remediation update on an incident rather than a fresh breach or insolvency event; the source provides only the headline claim, without supporting detail on the reimbursement mechanism, timeline, or remaining shortfall.",
-        "ai_score": 8.5,
-        "ai_summary": "Binance announced it has replenished 90% of the assets lost in a $6.3 billion hack, restoring the bulk of affected user funds.",
-        "ai_tags": [
-          "binance",
-          "exchange-hack",
-          "security-incident",
-          "reimbursement",
-          "custody-risk"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
       }
     },
     "8abf8890dd1c9bafa89f93d5e5ffc8263495dcab7ecb5162013d8978f9f30cfd": {
@@ -45837,24 +45869,6 @@
         "title_zh": "英伟达CEO黄仁勋就个人事务向员工发送邮件"
       }
     },
-    "9642ee9e4a0ee3e244bb3cb70244cdb3f714279309901c5bc34f7d584eb3cd47": {
-      "stored_at": "2026-11-01T10:43:14.402697+00:00",
-      "value": {
-        "ai_reason": "A confirmed security incident at a top exchange involving roughly $96M in stolen SOL being actively laundered into BTC is material. Because this is a follow-on development to the original breach, it is slightly less significant than the initial hack and scores just below the >$50M exploit anchor of 8.5.",
-        "ai_score": 8.0,
-        "ai_summary": "According to monitoring by Lookonchain, an attacker who stole funds from Binance is converting 970,522 SOL (about $95.9M) into BTC via Relay Protocol, including 486,970 SOL (about $46.4M) moved in the past hour.",
-        "ai_tags": [
-          "binance",
-          "hack",
-          "solana",
-          "bitcoin",
-          "on-chain-security"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
-      }
-    },
     "9649b95c96824dc610d4bcebab809d687d6a98bbaf576e76fc76d15857a01234": {
       "stored_at": "2026-11-09T03:11:55.974900+00:00",
       "value": {
@@ -47611,6 +47625,25 @@
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
+      }
+    },
+    "9b0446a52759e4bf33e22903fa8c2dc9211ec7caaacfcc94b81a41b89bc4906b": {
+      "stored_at": "2026-11-09T08:56:19.254334+00:00",
+      "value": {
+        "ai_reason": "The content highlights a novel, interactive AI-powered vocal synthesis web tool (Chimera) with practical applications in voice training and creative expression, as evidenced by community discussion and examples. It represents a useful and interesting technical release but is not a major industry breakthrough or high-impact announcement from a leading lab.",
+        "ai_score": 6.0,
+        "ai_summary": "一个名为 Chimera 的交互式 AI 声乐合成器网络应用发布，用户可通过调整虚拟声道形状实时生成人声，社区分享了其在语音训练和创意表达方面的应用示例。",
+        "ai_tags": [
+          "ai-devtools",
+          "vocal-synthesis",
+          "interactive-demo",
+          "open-source"
+        ],
+        "category": "ai-devtools",
+        "detailed_summary_zh": "一款名为 Chimera 的交互式 AI 声乐合成器网络应用已发布，用户可通过调整虚拟声道形状实时生成人声，社区分享了其在语音训练和创意表达方面的应用实例。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "tech-community",
+        "title_zh": "Chimera 声乐合成器"
       }
     },
     "9b04c6c20a6be49062c6a86fd0a1d8c136352dfc9f698a0e366e4130f348a513": {
@@ -51881,24 +51914,6 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
-    "a9e54607ffa38409407a83e2103aacd923155f5b3a5b75b2abbf928429eac551": {
-      "stored_at": "2026-11-01T06:32:47.691336+00:00",
-      "value": {
-        "ai_reason": "FBI attribution of a $6.3 billion Binance crypto theft to North Korea is a major state-sponsored exchange security incident with significant custody, market-integrity, and geopolitical implications. The in-window development is the official attribution itself, not merely the original hack background.",
-        "ai_score": 9.0,
-        "ai_summary": "The FBI attributed a $6.3 billion Binance crypto hack to North Korea, escalating a massive exchange security breach into a state-sponsored cybercrime case.",
-        "ai_tags": [
-          "North Korea",
-          "Binance",
-          "crypto hack",
-          "FBI",
-          "exchange security"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
     "a9e9bd568731f1973b81c87eb8d518982f788c59a5f742dc195bd3703aacfb71": {
       "stored_at": "2026-11-08T07:38:44.015624+00:00",
       "value": {
@@ -53400,24 +53415,6 @@
         ]
       }
     },
-    "ae9a33ece13f0528c9a5756105aecf7bc1a4a34c901921f0c6614cdbbe405b62": {
-      "stored_at": "2026-11-01T06:32:47.690656+00:00",
-      "value": {
-        "ai_reason": "A security breach at the world's largest exchange requiring Binance to absorb roughly $6B in losses is a systemic-scale event with direct material impact on user funds and market confidence; this falls in the top tier of exchange security incidents rather than a routine operational update.",
-        "ai_score": 9.5,
-        "ai_summary": "Binance disclosed that it absorbed approximately $6 billion in losses stemming from a security breach, covering the shortfall rather than passing it on to users.",
-        "ai_tags": [
-          "binance",
-          "security-breach",
-          "exchange-operations",
-          "user-funds",
-          "systemic-risk"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
     "aea43ba264b1ec1987845593103a45a4fa6cd5116f75bf3bb7809562578b7c71": {
       "stored_at": "2026-11-08T14:43:08.655664+00:00",
       "value": {
@@ -54391,24 +54388,6 @@
         "source_category": "exchange-announcements"
       }
     },
-    "b1849ae5a47f7210cf8b9a948e28128b23f9090a1d27ab1595f06ced4a123dc4": {
-      "stored_at": "2026-11-01T06:32:47.691646+00:00",
-      "value": {
-        "ai_reason": "The article is a retrospective feature recounting a previously reported record-breaking crypto cyber heist, with no concrete in-window development; it recaps old events and should be scored 0 per the guidelines.",
-        "ai_score": 0.0,
-        "ai_summary": "A WSJ feature goes behind the scenes of a record-breaking cryptocurrency cyber heist, recounting previously reported events.",
-        "ai_tags": [
-          "crypto-heist",
-          "cybersecurity",
-          "exchange",
-          "cybercrime",
-          "investigation"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
-      }
-    },
     "b18e75132e92960a94968d14ed9d70c25b1ea5d7f3270e766eb3a7c10cdc466f": {
       "stored_at": "2026-11-02T11:44:27.865910+00:00",
       "value": {
@@ -55329,6 +55308,24 @@
           }
         ],
         "title_zh": "【Star：用户暂勿从 MEXC 向 OKX 转入资金，相关资金或被冻结审查】"
+      }
+    },
+    "b4c026ae26798f32c0924f54cd618b8fadc9116114efc23646a1cf412cebb615": {
+      "stored_at": "2026-11-09T08:56:19.254492+00:00",
+      "value": {
+        "ai_reason": "The content reports a notable but incremental policy change by a major email provider (Outlook.com) to reject emails from domains without DMARC. This is a significant operational update for email infrastructure and self-hosting, generating substantial community discussion, but it does not represent a paradigm shift or have direct, material impact on the core domains of cryptocurrency, AI, or consequential technology. It aligns with 'Interesting' tier developments.",
+        "ai_score": 6.0,
+        "ai_summary": "Outlook.com 已开始拒绝接收来自未配置 DMARC 电子邮件验证协议的域名的邮件。",
+        "ai_tags": [
+          "email",
+          "infrastructure",
+          "security",
+          "microsoft"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "Outlook.com 已开始拒绝接收来自未设置 DMARC 电子邮件验证协议的域名的邮件。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "Outlook.com 开始拒收未配置 DMARC 协议的域名邮件"
       }
     },
     "b4c72648e638effccf71757d94ed0a48d43e5388be4aa6916e0f930bb5e5c1bf": {
@@ -67494,24 +67491,6 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
-    "dea190d3dd4ff840f80ca2b2e7de95d428be27475e9ae4ffff18c8fe32918c4c": {
-      "stored_at": "2026-11-01T06:32:47.690748+00:00",
-      "value": {
-        "ai_reason": "This is a recycled, sensationalized headline attributing the theft of 'billions' from Binance to North Korea, a claim wildly inflated relative to the exchange's known historical breaches (e.g., roughly 7,000 BTC in 2019). No concrete, verifiable in-window development is described—no new indictment, sanctions action, or on-chain attribution—so this reads as low-quality aggregation of old background rather than a genuine news event.",
-        "ai_score": 2.0,
-        "ai_summary": "A low-detail aggregator piece claims the FBI attributed a multi-billion-dollar Binance theft to North Korea, without corroborating figures or a new in-window development.",
-        "ai_tags": [
-          "Binance",
-          "North Korea",
-          "exchange-security",
-          "hacks",
-          "misinformation"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
     "dec6a46ed6744cfecc7caebb9eb5e1a1cd7c6e30c6ec4b42f834f04c73252d66": {
       "stored_at": "2026-11-05T03:08:07.206095+00:00",
       "value": {
@@ -71439,6 +71418,23 @@
         ],
         "category": "macro-regulation",
         "score_model": "deepseek:deepseek-flash",
+        "source_category": "crypto-markets"
+      }
+    },
+    "eedde7a94e5bdf9f34e7113f99930710e00b580f3de5b0f0c746316c78a4e00a": {
+      "stored_at": "2026-11-09T08:56:19.253111+00:00",
+      "value": {
+        "ai_reason": "Content presents a high-value macro analysis from Goldman Sachs, detailing specific, data-driven warnings about deteriorating market fundamentals (earnings, flows, AI narrative) and a projected major supply shock in 2027. It directly addresses a key narrative (AI investment cycle) for crypto and broader tech markets, providing a concrete transmission path. The discussion quality is high, citing specific data points and internal analyst views.",
+        "ai_score": 7.0,
+        "ai_summary": "高盛警告，支撑美股牛市的盈利增长、资金流向和AI叙事三大动力正在恶化，预计2027年将面临自2000年以来最大规模的净股票供给冲击，市场波动性可能趋势性上升。",
+        "ai_tags": [
+          "macro-regulation",
+          "ai-labs",
+          "crypto-markets",
+          "equity-markets"
+        ],
+        "category": "macro-regulation",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "crypto-markets"
       }
     },
@@ -75892,6 +75888,17 @@
         "source_category": "exchange-announcements"
       }
     },
+    "fcb311555a28a7d71bd8250e3db5efe67261d51f2725889b278bd651f5ab14de": {
+      "stored_at": "2026-11-09T08:56:25.804762+00:00",
+      "value": {
+        "duplicates": [
+          [
+            0,
+            1
+          ]
+        ]
+      }
+    },
     "fcb6d6f3f8a8c0ebe29132a3d13306994f00bb2c30e0da289f37433ab331e843": {
       "stored_at": "2026-11-02T23:29:09.956579+00:00",
       "value": {
@@ -77925,33 +77932,6 @@
         }
       }
     },
-    "256f43ca6105db7d6971cbfb9ef489b6b7563881513dad444c20151f40226f44": {
-      "stored_at": "2026-11-08T08:48:54.271292+00:00",
-      "value": {
-        "scores": {
-          "0": 7.5,
-          "1": 0.0,
-          "10": 6.5,
-          "11": 5.5,
-          "12": 0.0,
-          "13": 0.0,
-          "14": 0.0,
-          "15": 5.5,
-          "16": 0.0,
-          "17": 6.5,
-          "18": 0.0,
-          "19": 0.0,
-          "2": 0.0,
-          "3": 0.0,
-          "4": 0.0,
-          "5": 5.0,
-          "6": 5.0,
-          "7": 6.0,
-          "8": 5.0,
-          "9": 5.0
-        }
-      }
-    },
     "27188bee237e8d86878dff1ea2176cd9e4c837efa1109eb37d7a3f342f3ce08b": {
       "stored_at": "2026-11-09T06:52:24.134456+00:00",
       "value": {
@@ -78135,60 +78115,6 @@
           "37": 0.0,
           "38": 1.0,
           "39": 0.0
-        }
-      }
-    },
-    "2f1246a69428695537799a56c6843bf7cbd67d5de289ad37b8954bacbf71d767": {
-      "stored_at": "2026-11-08T08:49:19.950604+00:00",
-      "value": {
-        "scores": {
-          "120": 1.0,
-          "121": 0.0,
-          "122": 2.0,
-          "123": 6.0,
-          "124": 2.0,
-          "125": 3.0,
-          "126": 1.0,
-          "127": 1.0,
-          "128": 3.0,
-          "129": 7.0,
-          "130": 7.0,
-          "131": 5.0,
-          "132": 4.0,
-          "133": 0.0,
-          "134": 1.0,
-          "135": 0.0,
-          "136": 0.0,
-          "137": 8.0,
-          "138": 1.0,
-          "139": 6.0
-        }
-      }
-    },
-    "3207ec6d9c0a314eeb50832a28aa60e6204b3ce3ead5e0e6c0da327e9ef0157e": {
-      "stored_at": "2026-11-08T08:49:01.635566+00:00",
-      "value": {
-        "scores": {
-          "80": 1.5,
-          "81": 2.5,
-          "82": 1.0,
-          "83": 1.0,
-          "84": 0.5,
-          "85": 0.5,
-          "86": 0.5,
-          "87": 3.5,
-          "88": 3.0,
-          "89": 3.5,
-          "90": 1.0,
-          "91": 2.0,
-          "92": 1.5,
-          "93": 0.5,
-          "94": 2.5,
-          "95": 2.5,
-          "96": 2.5,
-          "97": 1.0,
-          "98": 2.5,
-          "99": 2.5
         }
       }
     },
@@ -79053,33 +78979,6 @@
           "737": 1.0,
           "738": 6.5,
           "739": 6.5
-        }
-      }
-    },
-    "674ebaf28ee61c0f683dff876b589701e0e76e2e4eea7957e9c31b3b3e83fdf6": {
-      "stored_at": "2026-11-08T08:49:20.649097+00:00",
-      "value": {
-        "scores": {
-          "40": 2.0,
-          "41": 5.0,
-          "42": 3.0,
-          "43": 1.0,
-          "44": 4.0,
-          "45": 3.0,
-          "46": 2.0,
-          "47": 3.0,
-          "48": 1.0,
-          "49": 1.0,
-          "50": 0.0,
-          "51": 2.0,
-          "52": 3.0,
-          "53": 2.0,
-          "54": 5.0,
-          "55": 3.0,
-          "56": 1.0,
-          "57": 2.0,
-          "58": 1.0,
-          "59": 4.0
         }
       }
     },
@@ -80233,33 +80132,6 @@
         }
       }
     },
-    "971ec926ec1284091d0dd4fa17b55ca72bbd8a164a2d66ac3ad74bb56d229048": {
-      "stored_at": "2026-11-08T08:48:55.955902+00:00",
-      "value": {
-        "scores": {
-          "20": 6.0,
-          "21": 8.5,
-          "22": 8.0,
-          "23": 1.0,
-          "24": 7.5,
-          "25": 2.0,
-          "26": 1.0,
-          "27": 1.0,
-          "28": 1.0,
-          "29": 1.0,
-          "30": 1.0,
-          "31": 2.0,
-          "32": 5.5,
-          "33": 2.0,
-          "34": 1.0,
-          "35": 3.0,
-          "36": 4.0,
-          "37": 2.0,
-          "38": 2.0,
-          "39": 2.0
-        }
-      }
-    },
     "995d7f232ab01946a682b26f3b559ecac2f90ae495257425905d4708f05fcda8": {
       "stored_at": "2026-11-08T20:26:39.661686+00:00",
       "value": {
@@ -80581,33 +80453,6 @@
           "1197": 1.0,
           "1198": 6.5,
           "1199": 0.0
-        }
-      }
-    },
-    "a3619301f64c8dc6b9461127e11e7fe04795f0ac6d9ea9a52a91adcf2f9d06ca": {
-      "stored_at": "2026-11-08T08:49:05.742216+00:00",
-      "value": {
-        "scores": {
-          "100": 2.0,
-          "101": 0.0,
-          "102": 0.0,
-          "103": 0.0,
-          "104": 2.0,
-          "105": 0.0,
-          "106": 2.0,
-          "107": 0.0,
-          "108": 2.0,
-          "109": 2.0,
-          "110": 2.0,
-          "111": 2.0,
-          "112": 2.0,
-          "113": 0.0,
-          "114": 0.0,
-          "115": 2.0,
-          "116": 2.0,
-          "117": 5.0,
-          "118": 1.0,
-          "119": 1.0
         }
       }
     },
@@ -81457,33 +81302,6 @@
           "497": 6.0,
           "498": 5.5,
           "499": 1.5
-        }
-      }
-    },
-    "c9b3a97eb6b2f5502283339ba9ffc113ed9bacd1baa3aae5ac03f00dd721d983": {
-      "stored_at": "2026-11-08T08:49:03.146252+00:00",
-      "value": {
-        "scores": {
-          "60": 1.0,
-          "61": 0.5,
-          "62": 6.0,
-          "63": 7.5,
-          "64": 1.5,
-          "65": 3.0,
-          "66": 0.0,
-          "67": 6.5,
-          "68": 0.0,
-          "69": 0.0,
-          "70": 0.0,
-          "71": 0.0,
-          "72": 0.0,
-          "73": 0.0,
-          "74": 0.0,
-          "75": 0.0,
-          "76": 0.0,
-          "77": 0.0,
-          "78": 0.0,
-          "79": 0.0
         }
       }
     },
@@ -82699,16 +82517,6 @@
       "value": {
         "scores": {
           "80": 1.0
-        }
-      }
-    },
-    "fb7f4724d732503ae65290f8c8204034423eb09be9a327a8a44f77c4c379b75e": {
-      "stored_at": "2026-11-08T08:49:05.228003+00:00",
-      "value": {
-        "scores": {
-          "140": 2.0,
-          "141": 6.0,
-          "142": 9.0
         }
       }
     },
