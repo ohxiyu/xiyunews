@@ -99,7 +99,7 @@ describe("dispatcher behavior", () => {
       admin_oauth: "retired",
       schedule_crons_utc: CONFIGURED_CRONS,
       collection_workflow: "feed-collection.yml",
-      collection_max_age_hours: 4,
+      collection_max_age_hours: 5 / 60,
       schedule_timezone: "Asia/Shanghai",
       edition_cutoff_hour: 7,
       first_check_local: "07:26",

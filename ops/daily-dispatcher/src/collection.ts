@@ -1,10 +1,10 @@
 import { ACTIVE_STATUSES, fetchWorkflowRuns, githubRequest } from "./lib";
 
 // GitHub's own schedule for feed-collection.yml often arrives hours late or
-// not at all. The dispatcher keeps the newest collection at most four hours
-// old; the GitHub schedule stays as a second, independent clock.
+// not at all. The dispatcher keeps the newest collection at the configured five-minute cadence
+// when no prior run is active; the GitHub schedule stays as a second, independent clock.
 export const FEED_WORKFLOW = "feed-collection.yml";
-export const FEED_INTERVAL_MS = 4 * 60 * 60 * 1000;
+export const FEED_INTERVAL_MS = 5 * 60 * 1000;
 
 export type CollectionStatus =
   | "not_due" | "edition_window" | "active" | "fresh" | "dispatched"
@@ -16,15 +16,7 @@ export function isSourceCollection(run: {displayTitle?: string}): boolean {
 }
 
 export async function dispatchCollection(env: Env, now: number): Promise<CollectionStatus> {
-  const rolling = Boolean((env as Env & {ROLLING_FEED?: boolean}).ROLLING_FEED);
-  const interval = rolling ? 5 * 60_000 : FEED_INTERVAL_MS;
-  const date = new Date(now);
-  const hour = date.getUTCHours(), minute = date.getUTCMinutes();
-  // Check on the :x0 ticks only; the 5-minute timer also drives Square.
-  if (!rolling && minute % 10 >= 5) return "not_due";
-  // 07:00-07:45 Shanghai: the daily edition collects on its own and shares
-  // the workflows' concurrency group, so a collection would only delay it.
-  if (!rolling && hour === 23 && minute < 45) return "edition_window";
+  const interval = FEED_INTERVAL_MS;
   const runs = (await fetchWorkflowRuns(env, FEED_WORKFLOW))
     .filter(run => run.headBranch === env.GITHUB_REF);
   if (runs.some(run => ACTIVE_STATUSES.has(run.status))) return "active";
@@ -36,7 +28,7 @@ export async function dispatchCollection(env: Env, now: number): Promise<Collect
   // runs retain the normal cadence; infrastructure failures retry after 30m.
   if (age < interval && !failed) return "fresh";
   if (failed && age < 30 * 60_000) return "failed_waiting";
-  const gate = env.RECOVERY_GATE.getByName("collection-" + Math.floor(now / interval));
+  const gate = env.RECOVERY_GATE.getByName("collection-" + (failed ? "failed-" + newest!.startedAt.getTime() : Math.floor(now / interval)));
   const owner = await gate.claim(now);
   if (!owner) return "check_in_progress";
   try {

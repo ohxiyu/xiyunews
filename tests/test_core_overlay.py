@@ -9,6 +9,7 @@ def fixture(tmp_path):
     for name in REQUIRED_DIRECTORIES:
         (source / name).mkdir(); (source / name / "current.html").write_text("new template")
     for name in REQUIRED_FILES:
+        (source / name).parent.mkdir(parents=True,exist_ok=True)
         (source / name).write_text("new source: " + name)
     (published / "api").mkdir(); (published / "api/latest.json").write_text("immutable published payload")
     return source, published

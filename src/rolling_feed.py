@@ -1,71 +1,56 @@
-"""Rolling qualified news; publish a data snapshot without building or delivering."""
+"""Background scoring and qualified fallback cache; no publication or delivery."""
 from __future__ import annotations
 import asyncio
-import hashlib
-import os
-from datetime import datetime, timedelta, timezone
+from datetime import datetime,timedelta,timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
-import httpx
-from .daily_feed import item_identity
-from .edition import load_staging_state, merge_staged_items
+from .edition import DEFAULT_STAGING_PATH,merge_staged_items
+from .edition_fallback import save_selection,open_window
 from .models import Config
 from .orchestrator import BMTNewsOrchestrator
 from .storage.manager import StorageManager
 from .run_report import RunReport
 from .ai.tokens import reset_usage
-from .edition_fallback import save_selection,open_window
-from .ai.chinese import chinese_ready
-from .web_feed import _localized_title, _localized_text
 
 
-def active_items(items, now):
+def active_items(items,now):
     start=now-timedelta(hours=24)
-    return merge_staged_items([], [i for i in items if start<=i.published_at<now], now=now)
+    return merge_staged_items([], [i for i in items if start<=i.published_at<now],now=now)
 
 
-def snapshot(items, *, now, collected_at):
-    rows=[]
-    for item in sorted(active_items(items,now),key=lambda i:i.published_at,reverse=True):
-        rows.append({
-            'id':hashlib.sha256(item_identity(item).encode()).hexdigest()[:32],
-            'title':_localized_title(item,'zh'),
-            'summary':_localized_text(item,'detailed_summary','zh') or item.ai_summary or '',
-            'background':_localized_text(item,'background','zh') or '',
-            'url':str(item.url),'source':str(item.metadata.get('feed_name') or item.author or item.source_type.value),
-            'published_at':item.published_at.isoformat(), 'score':item.ai_score,
-            'references':[{'title':str(r.get('title') or r.get('url') or ''),'url':str(r.get('url') or '')} for r in (item.metadata.get('sources') or []) if isinstance(r,dict)][:20],
-        })
-    return {'version':1,'generated_at':now.isoformat(),'collected_at':collected_at.isoformat(),
-            'window_start':(now-timedelta(hours=24)).isoformat(),'items':rows}
+async def collect_and_score(runner,*,now=None,staging_path=DEFAULT_STAGING_PATH,hours=24):
+    now=now or datetime.now(timezone.utc)
+    if now.tzinfo is None:raise ValueError('background collection requires aware time')
+    timezone_name=runner.config.filtering.daily_timezone
+    report=RunReport.start(date=now.astimezone(ZoneInfo(timezone_name)).date().isoformat(),
+        timezone_name=timezone_name,kind='staging_fetch',started_at=now)
+    reset_usage();runner.last_run_report=report
+    try:
+        staged=await runner._stage_sources(report,now,force_hours=hours,staging_path=staging_path)
+        candidates=active_items(staged,now)
+        report.set_metric('edition_candidates',len(candidates))
+        report.set_breakdown('candidate_sources',runner._source_breakdown(candidates))
+        analyzed=await runner._analyze_content(candidates,edition_window=open_window(now,timezone_name))
+        report.set_metric('analyzed_this_run',len(analyzed))
+        report.set_breakdown('scored_sources',runner._source_breakdown([i for i in analyzed if i.ai_score is not None]))
+        filtered=await runner.filter_items(analyzed,apply_balance=False)
+        qualified=runner._distinct_daily_events(await runner.merge_topic_duplicates(filtered.items,daily_events=True))
+        _,selection=await runner._audit_daily_ranking(qualified,runner.apply_balanced_digest(qualified,log=False))
+        save_selection(selection.items,runner.config,open_window(now,timezone_name),now=now)
+        report.set_metric('above_threshold',filtered.threshold_count)
+        report.set_metric('qualified_cached',len(selection.items))
+        report.set_breakdown('qualified_sources',runner._source_breakdown(selection.items))
+        return report
+    except Exception as exc:
+        report.fail(exc)
+        raise
+    finally:
+        runner._finish_run_report(report)
 
 
 async def main():
     config=Config.model_validate_json(Path('data/config.github.json').read_text())
-    if not config.rolling_feed:raise ValueError('rolling core profile required')
-    runner=BMTNewsOrchestrator(config,StorageManager())
-    staged=load_staging_state()
-    now=datetime.now(timezone.utc)
-    report=RunReport.start(date=now.astimezone(ZoneInfo('Asia/Shanghai')).date().isoformat(),timezone_name='Asia/Shanghai',kind='staging_fetch')
-    reset_usage();runner.last_run_report=report
-    try:
-        candidates=active_items(staged.items,now)
-        analyzed=await runner._analyze_content(candidates)
-        result=await runner.filter_items(analyzed, dedup_context=[])
-        save_selection(result.items,config,open_window(now,config.filtering.daily_timezone),now=now)
-        await runner._enrich_important_items(result.items)
-        result.items[:]=[item for item in result.items if chinese_ready(item) and not item.metadata.get("chinese_invalid")]
-        # Recheck the boundary after AI completes. Never retain expired stories.
-        value=snapshot(result.items,now=datetime.now(timezone.utc),collected_at=staged.updated_at)
-        token_name='XIYUNEWS_RECOVERY_CHECK_TOKEN' if os.environ.get('XIYUNEWS_EDGE_ENABLED')=='true' else 'RECOVERY_CHECK_TOKEN'
-        token=os.environ.get(token_name,'')
-        if not token:raise ValueError('rolling publisher credential unavailable')
-        async with httpx.AsyncClient(timeout=30,follow_redirects=False) as client:
-            response=await client.post('https://xiyu.news/api/live.json',json=value,headers={'Authorization':'Bearer '+token})
-            if response.status_code!=200:raise RuntimeError(f'rolling publish failed HTTP {response.status_code}')
-        report.set_metric('rolling_selected',len(value['items']))
-    except Exception as exc:
-        report.fail(exc);raise
-    finally:runner._finish_run_report(report)
+    await collect_and_score(BMTNewsOrchestrator(config,StorageManager()))
+
 
 if __name__=='__main__':asyncio.run(main())

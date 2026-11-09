@@ -6,7 +6,7 @@ import * as recovery from "../src/recovery";
 afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 const now = Date.parse("2026-09-12T03:35:00Z");
 
-it("preserves original publication cadence while adding Square ticks", () => {
+it("preserves original publication cadence while adding background collection ticks", () => {
   const actual = [];
   for (let hour = 0; hour <= 15; hour++) {
     for (let minute = 0; minute < 60; minute += 5) {
@@ -34,7 +34,7 @@ it("combined tick runs distribution even when publication is not due", async () 
   });
   vi.stubGlobal("fetch", fetcher);
   await runCombinedSchedule(COLLECTION_CRON, now, env);
-  expect(fetcher).toHaveBeenCalledTimes(2);
+  expect(fetcher).toHaveBeenCalledTimes(4);
 });
 
 it.each([

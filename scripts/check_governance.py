@@ -60,8 +60,19 @@ def local_links(root, relative):
         target = unquote(target.split("#", 1)[0])
         if not target:
             continue
-        resolved = (path.parent / target).resolve()
-        if not resolved.is_relative_to(root.resolve()) or not resolved.exists():
+        if target.startswith('/') and relative.startswith('docs/'):
+            # Jekyll root links refer to public routes, not the filesystem root.
+            site = (root / 'docs').resolve()
+            resolved = (site / target.lstrip('/')).resolve()
+            candidates = [resolved]
+            if target.endswith('/'):
+                candidates += [resolved / 'index.md', resolved / 'index.html',
+                               resolved.with_suffix('.md'), resolved.with_suffix('.html')]
+            valid = resolved.is_relative_to(site) and any(candidate.is_file() for candidate in candidates)
+        else:
+            resolved = (path.parent / target).resolve()
+            valid = resolved.is_relative_to(root.resolve()) and resolved.exists()
+        if not valid:
             errors.append(f"{relative}: broken local link {target}")
     return errors
 

@@ -1,4 +1,4 @@
-import {liveRoute, liveHome} from "./live";
+import {legacyRoute} from "./legacy";
 import dispatcher from "./index";
 import {checkTopicAlerts} from "./alerts";
 import type { RecoveryEnv } from "./recovery";
@@ -36,7 +36,7 @@ export interface UnifiedEnv extends Env {
 const OPERATIONS = new Set(["/health", "/ready", "/publication/check"]);
 
 function publicationEnv(env: UnifiedEnv, ctx?: ExecutionContext): RecoveryEnv {
-  return {...env, ROLLING_FEED: true, PUBLICATION_FETCH: (request: Request) => website.fetch(request, env, ctx)};
+  return {...env, PUBLICATION_FETCH: (request: Request) => website.fetch(request, env, ctx)};
 }
 
 export default {
@@ -47,19 +47,12 @@ export default {
     if (path === "/api/_telegram-group.json") {
       return new Response(null,{status:404,headers:{"Cache-Control":"no-store"}});
     }
-    const live = await liveRoute(request, env);
+    const live = await legacyRoute(request, env);
     if (live) return live;
     if (!OPERATIONS.has(path)) {
-      // Static shell validators do not describe the live news snapshot.
-      let assetRequest = request;
-      if (path === "/" && request.method === "GET") {
-        const headers = new Headers(request.headers);
-        headers.delete("If-None-Match"); headers.delete("If-Modified-Since");
-        assetRequest = new Request(request, {headers});
-      }
-      const response = await website.fetch(assetRequest, env, ctx);
-      return path === "/" && request.method === "GET" ? liveHome(response, env) : response;
+      return website.fetch(request,env,ctx);
     }
+
     if (path === "/publication/check" && env.ENABLE_DISPATCHER !== "true") {
       return Response.json({error: "scheduler_paused"}, {
         status: 503, headers: {"Cache-Control": "no-store"},
@@ -69,7 +62,7 @@ export default {
     if (path !== "/health" || !response.ok) return response;
     const health = await response.json() as Record<string, unknown>;
     return Response.json({...health, service: "xiyunews", project: "xiyunews",
-      product: "daily-edition", rolling_feed: true, collection_interval_minutes: 5, languages: ["zh"], delivery: ["telegram-daily"],
+      product: "daily-edition", collection_interval_minutes: 5, languages: ["zh"], delivery: ["telegram-daily"],
       runner: await runtimeHealth(env.RUNTIME_HEALTH_URL),
       dispatcher_enabled: env.ENABLE_DISPATCHER === "true",
       realtime_watchdog_enabled: env.ENABLE_REALTIME_WATCHDOG === "true",

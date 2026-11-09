@@ -36,7 +36,6 @@ jobs:
     timeout-minutes: 30
     env:
       TZ: Asia/Shanghai
-      ROLLING_FEED: 'true'
 
     steps:
       - name: Checkout code
@@ -122,24 +121,12 @@ jobs:
           TELEGRAM_ALERT_THREAD_ID: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
         run: uv run python -m src.operations --test-alert
 
-      - name: Collect sources into staging
+      - name: Collect and score new candidates into private caches only
         if: ${{ !inputs.alert_test && inputs.alert_setup_chat == '' }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           LWN_KEY: ${{ secrets.LWN_KEY }}
           SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
-        run: uv run bmtnews --mode fetch --hours 24
-
-      - name: Select and publish rolling 24-hour news without site rebuild or delivery
-        if: ${{ !inputs.alert_test && inputs.alert_setup_chat == '' }}
-        env:
-          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
-          XIYUNEWS_EDGE_ENABLED: ${{ vars.XIYUNEWS_EDGE_ENABLED }}
-          XIYUNEWS_RECOVERY_CHECK_TOKEN: ${{ secrets.XIYUNEWS_RECOVERY_CHECK_TOKEN }}
-          RECOVERY_CHECK_TOKEN: ${{ secrets.RECOVERY_CHECK_TOKEN }}
         run: uv run python -m src.rolling_feed
 
       - name: Preserve successful AI work even after publication failure

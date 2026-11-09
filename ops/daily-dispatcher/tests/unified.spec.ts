@@ -10,12 +10,12 @@ function fixture(extra: Partial<UnifiedEnv> = {}): UnifiedEnv {
     STATE: {} as KVNamespace, ...extra} as UnifiedEnv;
 }
 const context = {waitUntil: vi.fn()} as unknown as ExecutionContext;
-it("ignores static shell validators for a fresh live homepage", async()=>{
+it("preserves cache validators for the static daily homepage", async()=>{
   const e=fixture();
   await unified.fetch(new Request("https://xiyu.news/", {headers:{"If-None-Match":"old-shell","If-Modified-Since":"Sun, 08 Nov 2026 12:00:00 GMT"}}),e,context);
   const request=vi.mocked(e.ASSETS.fetch).mock.calls[0]![0] as Request;
-  expect(request.headers.has("If-None-Match")).toBe(false);
-  expect(request.headers.has("If-Modified-Since")).toBe(false);
+  expect(request.headers.has("If-None-Match")).toBe(true);
+  expect(request.headers.has("If-Modified-Since")).toBe(true);
 });
 const fiveMinutes = {cron: "*/5 * * * *", scheduledTime: Date.now()} as ScheduledController;
 afterEach(() => {vi.restoreAllMocks(); vi.unstubAllGlobals();});
