@@ -6,9 +6,7 @@ from pathlib import Path
 import tomllib
 import sys
 
-import jwt
 import pytest
-from jwt.exceptions import ExpiredSignatureError, ImmatureSignatureError, InvalidSignatureError
 from urllib3.exceptions import ProtocolError
 from urllib3.response import HTTPResponse
 
@@ -52,16 +50,25 @@ def test_multidict_items_operations_release_operand_references(dictionary_name, 
     assert sys.getrefcount(value) == before
 
 
-def test_jwt_valid_token_still_decodes():
+@pytest.fixture
+def jwt_library():
+    # JWT remains in the optional OpenBB extra after MCP removal, not base/dev.
+    return pytest.importorskip("jwt")
+
+
+def test_jwt_valid_token_still_decodes(jwt_library):
+    jwt = jwt_library
     token = jwt.encode({"sub": "test-user", "exp": datetime.now(timezone.utc) + timedelta(hours=1)}, KEY, algorithm="HS256")
     assert jwt.decode(token, KEY, algorithms=["HS256"])["sub"] == "test-user"
 
 
 @pytest.mark.parametrize("claim,error,offset", [
-    ("exp", ExpiredSignatureError, -3600),
-    ("nbf", ImmatureSignatureError, 3600),
+    ("exp", "ExpiredSignatureError", -3600),
+    ("nbf", "ImmatureSignatureError", 3600),
 ])
-def test_reused_options_do_not_disable_claim_validation(claim, error, offset):
+def test_reused_options_do_not_disable_claim_validation(claim, error, offset, jwt_library):
+    jwt = jwt_library
+    error = getattr(jwt.exceptions, error)
     # CVE-2026-103001: unsigned inspection must not mutate the caller's options.
     now = datetime.now(timezone.utc)
     token = jwt.encode({claim: int(now.timestamp()) + offset}, KEY, algorithm="HS256")
@@ -74,9 +81,10 @@ def test_reused_options_do_not_disable_claim_validation(claim, error, offset):
     assert options == {"verify_signature": True}
 
 
-def test_jwt_tampered_signature_remains_rejected():
+def test_jwt_tampered_signature_remains_rejected(jwt_library):
+    jwt = jwt_library
     token = jwt.encode({"sub": "test-user"}, KEY, algorithm="HS256")
-    with pytest.raises(InvalidSignatureError):
+    with pytest.raises(jwt.exceptions.InvalidSignatureError):
         jwt.decode(token, "different-test-key-that-is-also-long-enough-for-hmac-validation", algorithms=["HS256"])
 
 
