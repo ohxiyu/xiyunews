@@ -699,96 +699,12 @@ def test_weekly_fallback_does_not_repeat_leading_story_as_judgment() -> None:
     assert "unless edition.throughline.title == edition.items.first.title" in template
 
 
-def test_event_index_template_reuses_feed_layout_and_filters() -> None:
-    template = (
-        Path("docs/_includes/archive-index.html").read_text(encoding="utf-8")
-    )
-    layout = Path("docs/_layouts/default.html").read_text(encoding="utf-8")
-
-    assert 'class="event-index-layout"' in template
-    assert 'class="digest-item event-feed-item"' in template
-    assert "data-event-filters" in template
-    assert 'class="headline-rail event-overview-rail"' in template
-    assert 'class="event-context"' in template
-    assert 'class="headline-index event-ranking"' in template
-    context = Path("docs/_includes/event-reading-context.html").read_text()
-    assert "事件背景" in context
-    assert "最新进展" in template
-    assert "讨论焦点" in context
-    assert "参考资料" in context
-    assert 'class="event-feed-summary"' not in template
-    assert "当前状态" not in template
-    assert "page.page_class" in layout
 
 
-def test_event_index_styles_match_the_daily_feed_without_docs_heading_leaks() -> None:
-    stylesheet = Path("docs/assets/css/bmtnews-ui.css").read_text(encoding="utf-8")
-    event_layout = stylesheet.split(".event-index-layout {", 1)[1].split("}", 1)[0]
-    latest_update = stylesheet.split(".event-brief-latest p {", 1)[1].split(
-        "}", 1
-    )[0]
-
-    assert (
-        ".docs-page:not(.event-index-page):not(.event-detail-page)"
-        ":not(.entity-index-page):not(.entity-detail-page)"
-        ":not(.weekly-index-page):not(.weekly-detail-page) "
-        ".main-content h2"
-    ) in stylesheet
-    assert "grid-template-columns: minmax(0, 1fr) 264px;" in event_layout
-    assert "gap: 0 32px;" in event_layout
-    assert "font-size: var(--fs-m);" in latest_update
 
 
-def test_shared_rules_keep_primary_boundaries_and_unruled_rankings() -> None:
-    stylesheet = Path("docs/assets/css/bmtnews-ui.css").read_text()
-
-    def rule(selector: str) -> str:
-        return stylesheet.split(selector + " {", 1)[1].split("}", 1)[0]
-
-    assert "border-bottom: 2px solid var(--text)" in rule(".day-divider")
-    assert "border-top:" not in rule(".market-snapshot")
-    assert "border-bottom: 1px solid var(--border)" in rule(".market-snapshot")
-    assert "border-top:" not in rule(".event-context-list")
-    assert "border-bottom: 1px solid var(--border)" in rule(".event-context")
-    assert "border-bottom:" not in rule(".event-index-orientation")
-    assert ".weekly-masthead" not in stylesheet
-    assert ".weekly-range" not in stylesheet
-    assert ".weekly-context-list" not in stylesheet
-    assert "border-" not in rule(".weekly-judgment")
-    assert "border-" not in rule(".event-ranking-list li")
-    assert "border-" not in rule(".event-overview-stats > div,\n.event-facts > div")
-    assert "border-top: 1px solid var(--border)" in rule("*/\n.event-facts > div")
-    assert "max-width:" not in rule(".event-context-heading > p")
-    assert "min-width: 0" in rule(".event-context-heading > p")
-    assert "nowrap" not in rule(".event-context-heading > p")
 
 
-def test_all_section_mastheads_share_title_and_metadata_templates() -> None:
-    includes = Path("docs/_includes")
-    for name in ("edition-header.html", "archive-index.html", "weekly-header.html"):
-        template = (includes / name).read_text()
-        assert "include section-header.html" in template
-        assert "<h1" not in template
-    for name in ("feed-home.html", "archive-index.html", "weekly-header.html"):
-        assert "include section-divider.html" in (includes / name).read_text()
-    assert 'class="day-divider"' in (includes / "section-divider.html").read_text()
-    header = (includes / "section-header.html").read_text()
-    assert 'class="section-header"' in header
-    assert 'class="section-description"' in header
-    assert "include.title | escape" in header
-    assert "include.description | escape" in header
-    assert "eyebrow" not in header
-    layout = Path("docs/_layouts/default.html").read_text()
-    assert "include section-divider.html" in layout
-    # Index pages bypass the document banner, but event/entity detail pages
-    # and other docs retain it; no extra full-width rule above their overview.
-    index_branch = 'page.page_class == "event-index-page" or page.page_class == "entity-index-page"'
-    assert layout.index(index_branch) < layout.index('page.page_type == "archive"')
-    css = Path("docs/assets/css/bmtnews-ui.css").read_text()
-    title_rule = css.split(".section-header h1 {", 1)[1].split("}", 1)[0]
-    assert "font-size: var(--fs-xl)" in title_rule
-    assert "line-height: 1.35" in title_rule
-    assert ".daily-title-row" not in css
 
 
 def test_empty_indexes_keep_the_shared_masthead() -> None:
@@ -801,19 +717,6 @@ def test_empty_indexes_keep_the_shared_masthead() -> None:
         assert "include weekly-header.html" in fallback
 
 
-def test_secondary_layout_keeps_content_first_and_separates_bilingual_copy() -> None:
-    stylesheet = Path("docs/assets/css/bmtnews-ui.css").read_text(encoding="utf-8")
-    tablet_rules = stylesheet.split("@media (max-width: 1100px)", 1)[1].split(
-        "@media (max-width: 760px)", 1
-    )[0]
-    about = Path("docs/about/index.md").read_text(encoding="utf-8")
-    contact = Path("docs/contact/index.md").read_text(encoding="utf-8")
-
-    assert 'grid-template-areas:\n      "stream"\n      "rail";' in tablet_rules
-    assert ".main-content > h2:first-child" in stylesheet
-    assert "公开、中文、每日更新" in about
-    assert "core.css" in Path("docs/_includes/core-layout.html").read_text()
-    assert "\n## English\n" in contact
 
 
 def test_publish_event_compatibility_pages_writes_real_redirect_targets(

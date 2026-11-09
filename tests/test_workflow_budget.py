@@ -36,10 +36,8 @@ def test_all_hosted_jobs_have_bounded_runtime() -> None:
         "codeql.yml": 15,
         "daily-summary.yml": 30,
         "deploy-docs.yml": 30,
-        "event-archive-migration.yml": 10,
         "feed-collection.yml": 30,
         "schedule-watchdog.yml": 10,
-        "source-change.yml": 20,
     }
 
     for workflow_name, limit in expected_limits.items():
@@ -48,30 +46,6 @@ def test_all_hosted_jobs_have_bounded_runtime() -> None:
         ), workflow_name
 
 
-def test_event_migration_has_explicit_gate_and_incremental_continuation() -> None:
-    migration = _workflow("event-archive-migration.yml")
-    daily = _workflow("daily-summary.yml")
-
-    assert "workflow_dispatch:" in migration
-    assert "schedule:" not in migration
-    assert 'if: ${{ false }}' in migration
-    assert 'if [ "$CONFIRMATION" != "MIGRATE" ]' in migration
-    assert "group: bmtnews-feed-update" in migration
-    assert "Apply reviewed migration" in migration
-    assert "Verify byte-level idempotence" in migration
-    assert "Verify migration coverage" in migration
-    assert "peaceiris/actions-gh-pages@v4" in migration
-    assert "keep_files: true" in migration
-
-    collection = _workflow("feed-collection.yml")
-    assert "Restore published event state" not in collection
-    assert "_data/archive" not in collection
-    assert "python -m src.event_brief_backfill" not in collection
-    assert "src.rolling_feed" in collection
-    assert "peaceiris/actions-gh-pages" not in collection
-    assert "_data/events.json" in daily
-    assert "python -m src.event_brief_backfill" not in daily
-    assert "Apply approved event archive migration" not in daily
 
 
 def test_docs_deploy_rebuilds_core_reader_without_entity_ai_or_messages():

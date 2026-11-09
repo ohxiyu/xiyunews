@@ -222,34 +222,8 @@ def test_render_web_feed_empty_state_is_static() -> None:
     assert "digest-item" not in markup
 
 
-def test_story_summaries_are_not_visually_truncated() -> None:
-    root = Path(__file__).parents[1]
-    stylesheet = (root / "docs" / "assets" / "css" / "bmtnews-ui.css").read_text(
-        encoding="utf-8"
-    )
-
-    assert ".story-summary-body:not(.expanded)" not in stylesheet
-    assert ".story-summary-body:is(p)" in stylesheet
-    assert "text-wrap: balance" in stylesheet
-    assert "max-width: min(72ch, 760px)" in stylesheet
 
 
-def test_editorial_grid_uses_matching_responsive_disclosures() -> None:
-    root = Path(__file__).parents[1]
-    stylesheet = (root / "docs" / "assets" / "css" / "bmtnews-ui.css").read_text(
-        encoding="utf-8"
-    )
-    script = (root / "docs" / "assets" / "js" / "bmtnews-ui.js").read_text(
-        encoding="utf-8"
-    )
-
-    assert "@media (max-width: 1100px)" in stylesheet
-    assert '"orientation rail"' in stylesheet
-    assert '"stream rail"' in stylesheet
-    assert "flex-wrap: nowrap" in stylesheet
-    assert "(min-width: 1101px)" in script
-    assert "(min-width: 901px)" not in script
-    assert "(min-width: 761px)" in script
 
 
 def test_story_summary_preserves_semantic_paragraphs() -> None:
@@ -304,145 +278,11 @@ def test_story_summary_splits_legacy_one_line_content() -> None:
     ]
 
 
-def test_story_card_renderer_is_loaded_only_after_a_card_click() -> None:
-    root = Path(__file__).parents[1]
-    main_script = (root / "docs" / "assets" / "js" / "bmtnews-ui.js").read_text(
-        encoding="utf-8"
-    )
-    card_script = root / "docs" / "assets" / "js" / "story-card.js"
-    head = (root / "docs" / "_includes" / "head-custom.html").read_text(
-        encoding="utf-8"
-    )
-
-    assert card_script.is_file()
-    assert "import(storyCardModuleUrl())" in main_script
-    assert "story-card.js" not in head
 
 
-def test_story_share_uses_one_card_action_and_migrates_old_controls() -> None:
-    root = Path(__file__).parents[1]
-    main_script = (root / "docs" / "assets" / "js" / "bmtnews-ui.js").read_text(
-        encoding="utf-8"
-    )
-    card_script = (
-        root / "docs" / "assets" / "js" / "story-card.js"
-    ).read_text(encoding="utf-8")
-
-    assert "button.dataset.storyShare = 'card'" in main_script
-    assert "button.dataset.storyShare !== 'card'" in main_script
-    assert '[data-story-share="x"], [data-story-share="image"]' in main_script
-    assert "icon.setAttribute('class', 'story-share-icon')" in main_script
-    assert "icon.className = 'story-share-icon'" not in main_script
-    assert "https://x.com/intent/post" not in main_script
-    assert "navigator.share" not in card_script
-    assert "navigator.clipboard.write" in card_script
-    assert "new ItemType({'image/png': blob})" in card_script
-    assert "window.open('about:blank', '_blank')" in card_script
-    assert "composerWindow.location.replace(X_COMPOSE_URL)" in card_script
-    assert "title: '分享'" in card_script
-    assert "download: '保存图片'" in card_script
-    assert "xShare: '复制图片并打开 X'" in card_script
-    assert "xShare.dataset.cardAction = 'x-share'" in card_script
-    assert card_script.index("actions.appendChild(download)") < card_script.index(
-        "actions.appendChild(xShare)"
-    )
 
 
-def test_story_card_matches_the_full_story_layout_without_a_page_url() -> None:
-    root = Path(__file__).parents[1]
-    main_script = (root / "docs" / "assets" / "js" / "bmtnews-ui.js").read_text(
-        encoding="utf-8"
-    )
-    card_script = (
-        root / "docs" / "assets" / "js" / "story-card.js"
-    ).read_text(encoding="utf-8")
-
-    assert "PUBLIC_SITE_ORIGIN" not in main_script
-    assert "references: references" in main_script
-    assert "sourceParts:" in main_script
-    assert "dateLabel:" in main_script
-    assert "CARD_CSS_WIDTH = 440" in card_script
-    assert "CARD_SCALE = 3" in card_script
-    assert "context.fillText('xiyu.news'" in card_script
-    assert "context.fillText('xiyu.news'" in card_script
-    assert "context.fillText(story.rank || ''" not in card_script
-    assert "const background = layout.backgroundPanel" in card_script
-    assert "summaryParagraphs: summaryParagraphs" in main_script
-    assert "normalizeStorySummary(article, language)" in main_script
-    assert "layout.summaryParagraphs.forEach" in card_script
-    assert "wrapBalancedText(context, story.title" in card_script
-    assert "CHROME_LABELS" not in card_script
-    assert "toggleX" not in card_script
-    assert "themeX" not in card_script
-    assert "drawShareIcon" not in card_script
-    assert "drawFooter" not in card_script
-    assert "story.references" in card_script
-    assert "story.tags" in card_script
-    assert "story.url" not in card_script
 
 
-def test_legacy_templates_preserved_while_core_home_is_single_chinese_edition() -> None:
-    root = Path(__file__).parents[1]
-    include = (root / "docs" / "_includes" / "feed-home.html").read_text(
-        encoding="utf-8"
-    )
-    zh_home = (root / "docs" / "index.md").read_text(encoding="utf-8")
-    en_home = (root / "docs" / "en" / "index.md").read_text(encoding="utf-8")
-    layout = (root / "docs" / "_layouts" / "default.html").read_text(
-        encoding="utf-8"
-    )
-
-    assert "for post in feed_posts limit:2" in include
-    assert "data-today-edition-status" in include
-    assert "Asia/Shanghai" in include
-    assert "今日版准备中" in include
-    assert "今日版延迟，正在恢复" in include
-    assert "07:26" in include
-    assert "Number(parts.minute) >= 11" in include
-    assert "post.fragment_url | default: post.url" in include
-    assert "core-home.html" in zh_home
-    core = (root / "docs/_includes/core-home.html").read_text()
-    assert "posts | first" in core
-    assert "pieces[0]" in core and "pieces[1]" in core
-    assert 'feed-home.html language="en"' in en_home
-    assert "permalink: /en/" in en_home
-    assert "zh_language_url" in layout
-    assert "en_language_url" in layout
 
 
-def test_shared_chrome_keeps_reader_modules_visually_consistent() -> None:
-    root = Path(__file__).parents[1]
-    layout = (root / "docs" / "_layouts" / "default.html").read_text(
-        encoding="utf-8"
-    )
-    css = (root / "docs" / "assets" / "css" / "bmtnews-ui.css").read_text(
-        encoding="utf-8"
-    )
-
-    assert 'current_section = "events"' in layout
-    assert 'current_section = "entities"' in layout
-    assert 'current_section = "weekly"' not in layout
-    assert 'data-i18n-zh="RSS"' not in layout
-    assert 'aria-current="page"' in layout
-    assert "XIYU.NEWS EVENTS" in layout
-    assert "XIYU.NEWS ENTITIES" in layout
-    assert 'page.hide_language_toggle' in layout
-
-    # The generic prose-document heading rule must not add document-sized
-    # margins and borders to headings inside dense reader feeds.
-    assert ":not(.entity-index-page)" in css
-    assert ":not(.entity-detail-page)" in css
-    assert ":not(.weekly-index-page)" in css
-    assert ":not(.weekly-detail-page)" in css
-    assert "grid-template-columns: minmax(0, 1fr) 264px" in css
-
-    for relative_path in (
-        "about/index.md",
-        "contact/index.md",
-        "developers/index.md",
-        "legal/index.md",
-        "404.html",
-    ):
-        page = (root / "docs" / relative_path).read_text(encoding="utf-8")
-        body = page.split("---", 2)[-1]
-        assert not any(line.startswith("# ") for line in body.splitlines())

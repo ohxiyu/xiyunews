@@ -10,7 +10,6 @@ from .orchestrator import BMTNewsOrchestrator
 from .storage.manager import StorageManager
 from .run_report import RunReport, save_run_report
 from .core_site import republish_events
-from .event_brief_backfill import backfill_catalog
 from .edition import load_staging_state, DEFAULT_STAGING_PATH
 
 async def main():
@@ -19,7 +18,6 @@ async def main():
     runner=BMTNewsOrchestrator(config,StorageManager())
     from .publication_state import restore_published_documents
     restore_published_documents()
-    backfill_catalog()
     daily=DailyFeedState.model_validate_json(Path('docs/_data/bmtnews_state.json').read_text())
     # Analysis is cached. Use the same bounded prefilter as collection formerly
     # used; enrichments from the saved edition take precedence over raw staging.

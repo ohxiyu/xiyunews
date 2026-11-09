@@ -582,7 +582,7 @@ def test_workflow_restores_the_queue_fail_closed_and_never_force_pushes():
 
 def test_distribution_schedules_are_retired_without_destroying_queues():
     root = Path(__file__).resolve().parents[1] / ".github/workflows"
-    for name in ["x-distribution.yml", "square-distribution.yml"]:
+    for name in ["x-distribution.yml"]:
         text=(root/name).read_text()
         assert '\n  schedule:' not in text and '\n  workflow_run:' not in text
         assert 'if: ${{ false }}' in text

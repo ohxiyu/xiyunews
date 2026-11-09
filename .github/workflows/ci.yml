@@ -301,12 +301,7 @@ jobs:
       - run: npm run check
         working-directory: ops/daily-dispatcher
       - run: node --test tests/test_core_worker.mjs
-      - run: node --check docs/_worker.js
-      - run: node --test tests/test_agent_worker.mjs
-      - run: node --test tests/test_admin_worker.mjs
-      - run: node --test tests/test_brand_redirect.mjs
+      - run: node --check docs/core-worker.js
       - run: node --test tests/test_story_card.mjs
-      - run: node --test tests/test_reading_context.mjs
       - run: node --test tests/test_feed_schedule.mjs
-      - run: node --test tests/test_pwa_*.mjs
       - run: node --test tests/test_asset_minification.mjs

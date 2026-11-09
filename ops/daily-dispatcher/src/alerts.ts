@@ -1,4 +1,5 @@
 import {editionContextFor, fetchWorkflowRuns} from './lib';
+import {isSourceCollection} from './collection';
 
 export interface AlertEnv extends Env {
   DAILY_TELEGRAM_BOT_TOKEN?: string;
@@ -39,7 +40,7 @@ export async function checkTopicAlerts(env: AlertEnv, now: number): Promise<void
   if (!env.DAILY_TELEGRAM_BOT_TOKEN || !env.TELEGRAM_ALERT_CHAT_ID || !env.TELEGRAM_ALERT_THREAD_ID) return;
   const gate=env.RECOVERY_GATE.getByName('daily-private-alerts');
   const runs=await fetchWorkflowRuns(env,'feed-collection.yml');
-  const successful=runs.filter(r=>r.headBranch===env.GITHUB_REF && r.conclusion==='success');
+  const successful=runs.filter(r=>r.headBranch===env.GITHUB_REF && r.conclusion==='success' && isSourceCollection(r));
   const newest=Math.max(0,...successful.map(r=>r.startedAt.getTime()));
   if (now-newest>30*60_000) {
     // Incident generation changes only on recovery, never on each failed tick.

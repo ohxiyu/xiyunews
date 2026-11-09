@@ -383,14 +383,13 @@ def main():
     if args.bootstrap:
         root = args.bootstrap
         names = {"staging-items.json":"staging", "events.json":"events", "event-legacy-urls.json":"event_urls",
-            "bmtnews_state.json":"daily", "x-queue.json":"x_queue", "square-queue.json":"square_queue"}
+            "bmtnews_state.json":"daily", "x-queue.json":"x_queue"}
         documents = {name: json.loads((root / filename).read_text()) for filename,name in names.items() if (root / filename).exists()}
         from .edition import StagingState
         from .daily_feed import DailyFeedState
         from .events import TrackedEvent
         from .event_pipeline import known_story_assignments
         from .x_queue import validate as validate_x
-        from .square_plan import validate as validate_square
         if "staging" in documents:
             StagingState.model_validate(documents["staging"])
         if "daily" in documents:
@@ -399,8 +398,6 @@ def main():
             known_story_assignments([TrackedEvent.model_validate(row) for row in documents["events"]["events"]])
         if "x_queue" in documents:
             validate_x(documents["x_queue"])
-        if "square_queue" in documents:
-            validate_square(documents["square_queue"])
         cache = json.loads((root / "analysis-cache.json").read_text())
         if not isinstance(cache, dict) or cache.get("version") != 1 or not isinstance(cache.get("entries"), dict):
             raise ValueError("invalid legacy cache; do not mark migration complete")

@@ -9,7 +9,6 @@ from typing import Iterable
 from urllib.parse import quote, urlsplit
 from zoneinfo import ZoneInfo
 
-from .editorial import EditorialEntry
 from .market_snapshot import MarketSnapshot
 from .models import ContentItem
 from .overview import EditionOverview
@@ -586,31 +585,6 @@ def _market_snapshot_html(
     )
 
 
-def _render_sponsored(entry: EditorialEntry, language: str) -> str:
-    """Render one clearly-labeled ad slot outside the ranking."""
-    labels = _LABELS[language]
-    title = _escape(entry.best_title(language))
-    summary = entry.best_summary(language)
-    url = _safe_url(entry.url)
-    title_html = title
-    if url:
-        title_html = (
-            f'<a href="{url}" target="_blank" '
-            f'rel="noopener noreferrer sponsored">{title}</a>'
-        )
-    summary_html = (
-        f'<p class="sponsored-summary">{_escape(summary)}</p>' if summary else ""
-    )
-    return (
-        f'<aside class="sponsored-slot" aria-label="{labels["sponsored"]}">'
-        f'<span class="sponsored-label">{labels["sponsored"]}</span>'
-        '<div class="sponsored-body">'
-        f"<h2>{title_html}</h2>"
-        f"{summary_html}"
-        "</div></aside>"
-    )
-
-
 def render_web_feed(
     items: Iterable[ContentItem],
     *,
@@ -620,7 +594,6 @@ def render_web_feed(
     display_timezone: str,
     overview: EditionOverview | str | None = None,
     market: MarketSnapshot | None = None,
-    sponsored: Iterable[EditorialEntry] | None = None,
     core_only: bool = False,
 ) -> str:
     """Render the final feed markup so browsers do not rebuild the DOM."""
@@ -671,13 +644,6 @@ def render_web_feed(
         )
         articles.append(article)
         headlines.append(headline)
-
-    # At most one labeled ad slot, outside the ranking and the filters.
-    sponsored_entries = list(sponsored or [])[:1]
-    for entry in sponsored_entries:
-        slot_html = _render_sponsored(entry, normalized_language)
-        position = entry.position if entry.position and entry.position > 0 else 4
-        articles.insert(min(position - 1, len(articles)), slot_html)
 
     selection_note = labels["selection"]
     if normalized_language == "zh":

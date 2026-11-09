@@ -10,7 +10,6 @@ import pytest
 
 from src.archive import ArchiveRecord
 from src.daily_feed import DailyFeedState, save_daily_feed_state
-from src.event_brief_backfill import backfill_catalog
 from src.event_pipeline import (
     backfill_event_briefs,
     load_event_catalog,
@@ -246,50 +245,6 @@ def test_brief_backfill_is_idempotent_and_uses_archive_fallback() -> None:
     assert hydrated[0].updates[0].importance_score == 9.0
 
 
-def test_catalog_backfill_prefers_enriched_public_daily_state(
-    tmp_path: Path,
-) -> None:
-    catalog_path = tmp_path / "events.json"
-    staging_path = tmp_path / "staging.json"
-    daily_state_path = tmp_path / "daily.json"
-    archive_root = tmp_path / "archive"
-    save_event_catalog({"schema_version": 1}, [existing_event()], catalog_path)
-    staging_story = item(
-        "initial", title="Tectonic first reported a security incident"
-    ).model_copy(update={"metadata": {"category": "crypto-security"}})
-    save_staging_state([staging_story], staging_path, updated_at=NOW)
-    enriched_story = item(
-        "initial", title="Tectonic first reported a security incident"
-    )
-    save_daily_feed_state(
-        DailyFeedState(
-            date="2026-09-03",
-            timezone="Asia/Shanghai",
-            updated_at=NOW,
-            items=[enriched_story],
-        ),
-        daily_state_path,
-    )
-
-    changed = backfill_catalog(
-        catalog_path=catalog_path,
-        staging_path=staging_path,
-        daily_state_path=daily_state_path,
-        archive_root=archive_root,
-    )
-    repeated = backfill_catalog(
-        catalog_path=catalog_path,
-        staging_path=staging_path,
-        daily_state_path=daily_state_path,
-        archive_root=archive_root,
-    )
-    _, events = load_event_catalog(catalog_path)
-
-    assert changed == 1
-    assert repeated == 0
-    assert events[0].updates[0].background_zh.endswith("的背景。")
-    assert events[0].updates[0].community_discussion_zh.endswith("的讨论。")
-    assert events[0].updates[0].references[0].title == "Reference initial"
 
 
 def test_duplicate_coverage_adds_source_but_not_timeline_node() -> None:

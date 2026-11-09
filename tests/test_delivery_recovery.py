@@ -33,8 +33,6 @@ def snapshots():
 ])
 @pytest.mark.parametrize('workflow_name,step_name,resource,destination,edition_date', [
     ('x-distribution.yml', 'Restore published edition state', '_data/bmtnews_state.json', 'docs/_data/bmtnews_state.json', ''),
-    ('square-distribution.yml', 'Read edition only on publication, revision or bootstrap', 'api/latest.json', 'square-edition.json', ''),
-    ('square-distribution.yml', 'Read edition only on publication, revision or bootstrap', 'editions/2026-11-05/edition.json', 'square-edition.json', '2026-11-05'),
 ])
 def test_actual_workflow_restores_only_valid_authenticated_edition(tmp_path, payload, api_exit, success, workflow_name, step_name, resource, destination, edition_date):
     workflow = (Path(__file__).resolve().parents[1] / '.github/workflows' / workflow_name).read_text()
@@ -158,30 +156,3 @@ def test_checkpoint_failed_push_keeps_dirty_and_unchanged_retry_really_pushes(tm
         assert db.execute('SELECT source_digest FROM publication_documents').fetchone()[0] == signature(canonical(sent))
 
 
-def test_square_checkpoint_acknowledges_only_after_successful_push(tmp_path, monkeypatch):
-    from src.square_delivery import git_checkpoint
-    monkeypatch.setenv('XIYUNEWS_STATE_DIR', str(tmp_path / 'state'))
-    monkeypatch.delenv('GITHUB_ACTIONS', raising=False)
-    work, remote = tmp_path / 'queue', tmp_path / 'remote.git'
-    def git(*args):
-        return subprocess.run(['git', *map(str, args)], check=True, capture_output=True)
-    git('init', '--bare', remote)
-    git('init', work)
-    git('-C', work, 'config', 'user.name', 'fixture')
-    git('-C', work, 'config', 'user.email', 'fixture@example.com')
-    git('-C', work, 'remote', 'add', 'origin', remote)
-    state = {'version': 1, 'editions': {}, 'plans': {}}
-    git_checkpoint(work, state)
-    store = PublicationState(tmp_path / 'state')
-    with store.connect() as db:
-        assert db.execute('SELECT source_digest,dirty FROM publication_documents WHERE name=?', ('square_queue',)).fetchone() == (signature(canonical(state)), 0)
-    git('-C', work, 'remote', 'set-url', 'origin', tmp_path / 'missing.git')
-    state['plans']['date'] = {'jobs': []}
-    with pytest.raises(subprocess.CalledProcessError):
-        git_checkpoint(work, state)
-    with store.connect() as db:
-        assert db.execute('SELECT dirty FROM publication_documents WHERE name=?', ('square_queue',)).fetchone()[0] == 1
-    git('-C', work, 'remote', 'set-url', 'origin', remote)
-    git_checkpoint(work, state)
-    with store.connect() as db:
-        assert db.execute('SELECT source_digest,dirty FROM publication_documents WHERE name=?', ('square_queue',)).fetchone() == (signature(canonical(state)), 0)
