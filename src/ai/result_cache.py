@@ -16,7 +16,7 @@ from ..publication_state import active_store
 
 
 CACHE_VERSION = 1
-ENRICHMENT_POLICY_VERSION = "news-editorial-v6-core-zh"
+ENRICHMENT_POLICY_VERSION = "news-editorial-v7-validated-zh"
 PREFILTER_TTL = timedelta(days=1)
 PREFILTER_MAX_BATCHES = 256
 ANALYSIS_FIELDS = ("ai_score", "ai_reason", "ai_summary", "ai_tags")
@@ -264,6 +264,8 @@ class AnalysisResultCache:
         return True
 
     def store_enrichment(self, item: ContentItem, *, input_item: ContentItem | None = None) -> None:
+        if item.metadata.get("chinese_invalid") or item.metadata.get("enrichment_status") == "brief":
+            return
         value = {
             key: val
             for key, val in item.metadata.items()
