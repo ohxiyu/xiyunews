@@ -14,6 +14,7 @@ from zoneinfo import ZoneInfo
 from pydantic import BaseModel, Field, ValidationError
 
 from ._file_utils import _atomic_write_text
+from .source_quality import FALLBACK_FIELDS,host
 from .models import ContentItem
 from .publication_state import read_document, write_document
 
@@ -36,6 +37,10 @@ _TRACKING_QUERY_PARAMETERS = {
 }
 _PERSISTED_METADATA_KEYS = {
     "category",
+    "channel",
+    "repo",
+    "source_name",
+    "discovery_fallback",
     "edition_mode",
     "enrichment_status",
     "discussion_url",
@@ -190,6 +195,12 @@ def _public_state_item(item: ContentItem) -> ContentItem:
         if key in _PERSISTED_METADATA_KEYS
         or key.startswith(_PERSISTED_METADATA_PREFIXES)
     }
+    # Preserve only public provenance needed by the downstream source gate.
+    # Collapse discovery queries/flags; never retain the query or signed URL.
+    if any(item.metadata.get(key) for key in FALLBACK_FIELDS):
+        metadata['discovery_fallback']=True
+    publisher=host(item.metadata.get('publisher_url',''))
+    if publisher:metadata['publisher_url']='https://'+publisher
     return item.model_copy(
         update={
             "content": None,

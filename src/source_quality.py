@@ -11,6 +11,7 @@ CHANNEL_PUBLISHERS={
     'wublockchainenglish':('wublockchain.xyz','wublockchain.com'),
 }
 AGGREGATOR_HOSTS={'news.google.com','hnrss.org','mshibanami.github.io'}
+FALLBACK_FIELDS=('fallback','fallback_source','fallback_google_news','google_news_fallback','gn_query','discovery_fallback')
 
 
 def host(value):
@@ -30,7 +31,7 @@ def direct_tier(item,config):
     actual=host(item.url)
     if not actual or item.source_type in (SourceType.GOOGLE_NEWS,SourceType.HACKERNEWS,SourceType.EDITORIAL):return 'secondary'
     meta=item.metadata
-    if any(meta.get(key) for key in ('fallback','fallback_source','fallback_google_news','google_news_fallback','gn_query')):return 'secondary'
+    if any(meta.get(key) for key in FALLBACK_FIELDS):return 'secondary'
     if item.source_type==SourceType.GITHUB:
         for source in config.sources.github:
             repo=f'{source.owner}/{source.repo}'.lower()
