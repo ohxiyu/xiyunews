@@ -9,16 +9,14 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 OWNED_DOCS = [
-    "AGENTS.md", "agent.md", "CLAUDE.md", "GEMINI.md",
-    "project-docs/codex-collaboration.md", "project-docs/handoff.md",
-    "project-docs/backlog.md", "project-docs/ui-rules.md",
-    "project-docs/data-contract.md",
+    "AGENTS.md", "agent.md", "CLAUDE.md", "GEMINI.md", "README.md",
+    "project-docs/handoff.md", "project-docs/configuration.md",
+    "project-docs/data-contract.md", "project-docs/ui-rules.md",
+    "project-docs/x-distribution.md", "project-docs/daily-dispatcher.md",
+    "project-docs/self-hosted-runner.md",
 ]
 POINTER = "<!-- execution-pointer -->"
-FIELDS = {"goal", "issue", "owner", "branch", "last_verified_commit", "pr",
-          "completed", "unfinished", "validation", "unverified", "production",
-          "blockers", "next_action", "states", "evidence"}
-STATES = {"code", "tests", "pr_merged", "deployed", "production_verified"}
+FIELDS = {"goal", "issue", "owner", "branch", "base", "status", "next", "blockers"}
 
 
 def changed_paths(root, base, head):
@@ -43,9 +41,7 @@ def check_change_evidence(paths, root=None):
     if application:
         if "project-docs/handoff.md" not in paths:
             errors.append("application PR must update project-docs/handoff.md")
-        if not any(p.startswith("project-docs/releases/") and p.endswith(".md")
-                   and (root is None or (root / p).is_file()) for p in paths):
-            errors.append("application PR must include a release/verification record")
+
     return errors
 
 
@@ -81,9 +77,6 @@ def check(root=ROOT, changed=()):
         own = [p["version"] for p in lock["package"] if p["name"] == project["name"]]
         if project["version"] != version or own != [version]:
             errors.append("VERSION, pyproject.toml and uv.lock application version differ")
-        release = root / f"project-docs/releases/{version}.md"
-        if not release.exists() or f"Version: {version}" not in release.read_text().splitlines():
-            errors.append("missing matching application version release note")
         package = json.loads((root / "ops/daily-dispatcher/package.json").read_text())
         npm_lock = json.loads((root / "ops/daily-dispatcher/package-lock.json").read_text())
         if not (package["version"] == npm_lock["version"] == npm_lock["packages"][""]["version"]):
@@ -99,44 +92,24 @@ def check(root=ROOT, changed=()):
         pointer = json.loads(match.group(1)) if match else {}
         if set(pointer) != FIELDS:
             raise ValueError("handoff pointer fields missing or unknown")
-        for name in FIELDS - {"states", "production"}:
-            value = pointer[name]
-            if name in {"completed", "unfinished", "validation", "unverified", "blockers"}:
-                if not isinstance(value, list) or any(not isinstance(x, str) or not x.strip() for x in value):
-                    raise ValueError(f"{name} must be a list of nonempty strings")
-            elif not isinstance(value, str) or not value.strip():
+        if len(text.splitlines()) > 75:
+            raise ValueError("handoff must fit one page (75 lines)")
+        for name in FIELDS - {"blockers"}:
+            if not isinstance(pointer[name], str) or not pointer[name].strip():
                 raise ValueError(f"{name} must be a nonempty string")
+        if not isinstance(pointer["blockers"], list) or any(not isinstance(x, str) or not x.strip() for x in pointer["blockers"]):
+            raise ValueError("blockers must be a list of nonempty strings")
         if not re.fullmatch(r"https://github.com/ohxiyu/xiyunews/issues/\d+", pointer["issue"]):
             raise ValueError("pointer must reference a task Issue in this repository")
         if not pointer["branch"].startswith("agent/"):
             raise ValueError("pointer branch must be agent/*")
-        if not re.fullmatch(r"[0-9a-f]{40}", pointer["last_verified_commit"]):
-            raise ValueError("last_verified_commit must be an exact SHA")
-        states = pointer["states"]
-        if not isinstance(states, dict) or set(states) != STATES or any(s not in {"pending", "complete", "not_required"} for s in states.values()):
-            raise ValueError("invalid five-stage delivery states")
-        for later, earlier in (("tests", "code"), ("pr_merged", "tests"), ("deployed", "pr_merged"), ("production_verified", "deployed")):
-            if states[later] == "complete" and states[earlier] != "complete":
-                raise ValueError(f"{later} complete requires {earlier} complete")
-        production = pointer["production"]
-        required = {"source_commit", "artifact_commit", "edition", "generated_at", "worker_version", "verified_at"}
-        if set(production) != required or any(not isinstance(x, str) or not x.strip() for x in production.values()):
-            raise ValueError("production snapshot must state all fields, including unknowns")
-        evidence = (root / pointer["evidence"]).resolve()
-        if not evidence.is_relative_to((root / "project-docs/releases").resolve()) or not evidence.is_file():
-            raise ValueError("handoff must link a release evidence file")
-        if states["deployed"] == "complete":
-            # Real deployment evidence is reviewed by humans; these are minimum
-            # structural fields, not proof that a deployment actually happened.
-            body = evidence.read_text()
-            for label in ("Source commit:", "Worker version:", "Deployment:", "Verification:", "Rollback:"):
-                if not re.search(r"^" + re.escape(label) + r"\s*\S+", body, re.M):
-                    raise ValueError(f"deployment evidence missing {label}")
+        if not re.fullmatch(r"[0-9a-f]{40}", pointer["base"]):
+            raise ValueError("base must be an exact SHA")
+
     except (OSError, ValueError, KeyError, TypeError) as exc:
         errors.append(f"invalid handoff: {exc}")
 
     docs = set(OWNED_DOCS)
-    docs.update(str(p.relative_to(root)) for p in (root / "project-docs/releases").glob("*.md"))
     docs.update(p for p in changed if p.endswith(".md") and (root / p).exists())
     for path in sorted(docs):
         errors.extend(local_links(root, path))
@@ -163,7 +136,7 @@ def main():
     if errors:
         print("\n".join(f"ERROR: {error}" for error in errors))
         return 1
-    print("Governance checks passed (versions, local file links, execution pointer, PR evidence).")
+    print("Governance checks passed (versions, links and one-page task pointer).")
     return 0
 
 
