@@ -10,9 +10,11 @@
   "owner": "本聊天Codex",
   "branch": "agent/daily-x-enable",
   "base": "5cc76a270254aa5196648b0b43c03397bc3ff8fc",
-  "status": "PR5 #368全部七项CI通过并合并；只读账号验证42611772288已通过；准备正式默认开关PR",
-  "next": "完整CI后合并正式开关，再推进来源分层及已验证频道入口",
-  "blockers": []
+  "status": "PR6 #370已提交，本地741项通过（含来源身份持久化）；唯一GitHub runner离线，CI排队",
+  "next": "等待重启现有runner，CI通过后合并正式开关；继续来源规则的本地准备",
+  "blockers": [
+    "GitHub确认xiyunews-tokyo-1离线；已请用户重启现有服务，当前环境无可用服务器连接配置"
+  ]
 }
 ```
 
