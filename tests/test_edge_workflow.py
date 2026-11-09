@@ -27,7 +27,7 @@ def test_final_cutover_preserves_namespace_by_transfer_not_creation():
 def test_edge_deployment_requires_main_and_audits_before_upload():
     workflow = (ROOT / ".github/workflows/cloudflare-unified.yml").read_text()
     assert "vars.XIYUNEWS_EDGE_ENABLED == 'true'" in workflow
-    assert "github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'" in workflow
+    assert "github.event_name != 'workflow_run' && github.ref == 'refs/heads/main'" in workflow
     assert "github.event.workflow_run.conclusion == 'success'" in workflow
     assert "github.event.workflow_run.head_branch == 'main'" in workflow
     assert "github.event.workflow_run.head_repository.full_name == github.repository" in workflow

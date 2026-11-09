@@ -12,18 +12,25 @@ env:
   WRANGLER_HIDE_BANNER: 'true' # No optional npm-version request during publication.
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'ops/daily-dispatcher/**'
+      - 'scripts/**'
+      - 'src/core_site.py'
+      - 'src/web_feed.py'
+      - '.github/workflows/cloudflare-unified.yml'
   workflow_dispatch:
     inputs:
       force_deploy:
-        description: Publish validated assets even when the live input marker matches (recovery)
+        description: Rebuild validated production assets for recovery
         type: boolean
         default: false
   workflow_run:
-    workflows:
-      - xiyu.news Daily Edition
-      - Deploy Docs
-      - xiyunews Event Updates
+    workflows: ['xiyu.news Daily Edition']
     types: [completed]
+    branches: [main]
 
 concurrency:
   group: xiyunews-cloudflare-production
@@ -38,7 +45,7 @@ jobs:
     # Explicit opt-in only after secure configuration and the reviewed cutover.
     if: >-
       vars.XIYUNEWS_EDGE_ENABLED == 'true' &&
-      ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      ((github.event_name != 'workflow_run' && github.ref == 'refs/heads/main') ||
        (github.event.workflow_run.conclusion == 'success' &&
         github.event.workflow_run.head_branch == 'main' &&
         github.event.workflow_run.head_repository.full_name == github.repository))
@@ -118,7 +125,6 @@ jobs:
         if: runner.environment == 'self-hosted' && steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         run: bash ops/runner/setup-ruby-cache.sh producer
       - uses: astral-sh/setup-uv@v7
-        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         with:
           version: "0.11.32"
       - run: uv sync --frozen
@@ -190,3 +196,50 @@ jobs:
 
       # Traffic and cron activation are deliberately not performed by this job.
       # Update the final owned DO binding/cron config in a reviewed cutover PR.
+
+      - name: Download exact daily producer report when this is a publication
+        if: github.event_name == 'workflow_run'
+        uses: actions/download-artifact@v7
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ github.event.workflow_run.id }}
+          pattern: run-report-*
+          path: source-report
+
+      - name: Verify real production before any channel distribution
+        env:
+          ARTIFACT_SHA: ${{ steps.source.outputs.artifact }}
+          BUILD_KEY: ${{ steps.plan.outputs.key }}
+          DAILY_SOURCE_RUN_ID: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.id || '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=(--artifact "$ARTIFACT_SHA" --build-key "$BUILD_KEY")
+          if [ -n "$DAILY_SOURCE_RUN_ID" ]; then
+            mapfile -t reports < <(find source-report -name run-report.json -type f)
+            [ "${#reports[@]}" -eq 1 ] || { echo 'One exact daily producer report required'; exit 1; }
+            args+=(--daily-run-id "$DAILY_SOURCE_RUN_ID" --source-report "${reports[0]}")
+          fi
+          python3 scripts/verify_daily_deployment.py "${args[@]}"
+
+      - name: Preserve verified publication evidence for downstream delivery
+        uses: actions/upload-artifact@v6
+        with:
+          name: production-edition
+          path: production-edition.json
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Finalize publication outcome and operations alerts
+        if: always()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
+          TELEGRAM_ALERT_THREAD_ID: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
+          OPERATIONS_STATUS: ${{ job.status }}
+          X_DELIVERY_ENABLED: ${{ vars.X_DELIVERY_ENABLED }}
+        shell: bash
+        run: |
+          mapfile -t reports < <(find source-report -name run-report.json -type f 2>/dev/null)
+          report="${reports[0]:-data/no-producer-report.json}"
+          uv run python -m src.operations --report "$report" --workflow-status "$OPERATIONS_STATUS" --publication-proof production-edition.json --published-state .edge-source/_data/bmtnews_state.json

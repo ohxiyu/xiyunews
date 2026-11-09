@@ -6,7 +6,11 @@ import shutil
 
 REQUIRED_DIRECTORIES = ("_layouts", "_includes", "assets")
 OPTIONAL_DIRECTORIES = ("_sass",)
-REQUIRED_FILES = ("_config.yml", "index.md", "threads.html", "history.html")
+REQUIRED_FILES = ("_config.yml", "index.md", "threads.html", "history.html", "feed.xml", "about/index.md")
+RETIRED_SOURCES = ("en", "events", "entity", "threads", "weekly", "s", "admin",
+                   "developers", "developer", "sources", "entity.html", "weekly.html",
+                   "feed-en.xml", "feed-zh.xml", "openapi.json", "llms.txt", "llms-full.txt",
+                   "manifest.webmanifest", "offline.html", "pwa-version.json", "_worker.js")
 
 
 def overlay(source: Path, destination: Path) -> None:
@@ -26,10 +30,16 @@ def overlay(source: Path, destination: Path) -> None:
     for name in OPTIONAL_DIRECTORIES:
         if (source / name).exists() and not (source / name).is_dir():
             raise ValueError(f"optional template path must be a directory: {name}")
+    for name in RETIRED_SOURCES:
+        target = destination / name
+        if target.is_dir(): shutil.rmtree(target)
+        elif target.exists(): target.unlink()
     for name in (*REQUIRED_DIRECTORIES, *OPTIONAL_DIRECTORIES):
         if (source / name).is_dir():
-            shutil.copytree(source / name, destination / name, dirs_exist_ok=True)
+            if (destination / name).exists(): shutil.rmtree(destination / name)
+            shutil.copytree(source / name, destination / name)
     for name in REQUIRED_FILES:
+        (destination / name).parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source / name, destination / name)
 
 

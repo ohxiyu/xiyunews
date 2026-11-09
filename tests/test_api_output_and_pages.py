@@ -33,3 +33,26 @@ def test_historical_recovery_never_moves_latest_backwards(tmp_path):
 def test_history_index_counts_each_edition_without_rewriting_content(tmp_path):
     path=write_editions_index([record('2026-11-08'),record()],api_root=tmp_path)
     assert [r['date'] for r in json.loads(path.read_text())['editions']]==['2026-11-09','2026-11-08']
+
+
+def test_recovery_preserves_published_json_bytes_and_legacy_fields(tmp_path):
+    p=build_edition_payload([record()],date='2026-11-09',stats={})
+    p['legacy']={'title_en':'Keep original record'}
+    editions=tmp_path/'editions';api=tmp_path/'api'
+    write_edition_api(p,date=p['date'],editions_root=editions,api_root=api)
+    dated=editions/p['date']/'edition.json';original=dated.read_bytes()
+    p.pop('legacy');p['generated_at']='2026-11-09T12:00:00Z'
+    write_edition_api(p,date=p['date'],editions_root=editions,api_root=api)
+    assert dated.read_bytes()==original==(api/'latest.json').read_bytes()
+
+
+def test_changed_published_words_fail_without_touching_either_pointer(tmp_path):
+    import pytest
+    p=build_edition_payload([record()],date='2026-11-09',stats={})
+    editions=tmp_path/'editions';api=tmp_path/'api'
+    write_edition_api(p,date=p['date'],editions_root=editions,api_root=api)
+    dated=editions/p['date']/'edition.json';original=dated.read_bytes()
+    p['items'][0]['summary']['zh']='改写历史事实'
+    with pytest.raises(ValueError,match='refusing overwrite'):
+        write_edition_api(p,date=p['date'],editions_root=editions,api_root=api)
+    assert dated.read_bytes()==original==(api/'latest.json').read_bytes()

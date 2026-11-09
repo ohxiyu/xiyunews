@@ -570,7 +570,6 @@ class FilteringConfig(BaseModel):
 class Config(BaseModel):
     """Main configuration model."""
 
-    rolling_feed: bool = False
 
     version: str = "1.0"
     ai: AIConfig

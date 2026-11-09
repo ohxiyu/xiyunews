@@ -160,7 +160,7 @@ def test_production_config_and_all_ai_workflow_steps_agree_on_secret():
     assert cfg.model == "deepseek-ai/DeepSeek-V3.2"
     assert cfg.base_url == "https://api.siliconflow.cn/v1"
     assert cfg.api_key_env == "SILICONFLOW_API_KEY"
-    for name, count in [("daily-summary.yml", 2), ("feed-collection.yml", 2), ("x-distribution.yml", 1)]:
+    for name, count in [("daily-summary.yml", 2), ("feed-collection.yml", 1), ("x-distribution.yml", 1)]:
         workflow = (root / ".github/workflows" / name).read_text()
         assert workflow.count("SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}") == count
         assert "secrets.DEEPSEEK_API_KEY" not in workflow

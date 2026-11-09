@@ -45,7 +45,7 @@ uv run bmtnews --mode publish --cutoff-hour 7
 
 ## 分发与告警
 
-Telegram 日报使用 `TELEGRAM_BOT_TOKEN`、`TELEGRAM_CHANNEL_ID`；发布后任务先落盘一次性回执，再发送。未知结果不能自动重试。
+Telegram 日报须通过同一期真实生产验证凭证，使用 `TELEGRAM_BOT_TOKEN`、`TELEGRAM_CHANNEL_ID`；发布后任务先落盘一次性回执，再发送。未知结果不能自动重试。
 
 运维告警使用同一日报 bot，目的地由 `TELEGRAM_ALERT_CHAT_ID`、`TELEGRAM_ALERT_THREAD_ID` 指定（Actions Secret 或仓库变量）。当前目的地为用户指定群的“日报运维”话题，不能回退到通用群、读者频道或独立 realtime 目的地。统一 Worker 中日报 bot 使用独立的 `DAILY_TELEGRAM_BOT_TOKEN` 绑定，避免与 realtime watchdog 混用。
 

@@ -35,9 +35,8 @@ def test_all_hosted_jobs_have_bounded_runtime() -> None:
         "ci.yml": 15,
         "codeql.yml": 15,
         "daily-summary.yml": 30,
-        "deploy-docs.yml": 30,
+        "cloudflare-unified.yml": 30,
         "feed-collection.yml": 30,
-        "schedule-watchdog.yml": 10,
     }
 
     for workflow_name, limit in expected_limits.items():
@@ -48,10 +47,14 @@ def test_all_hosted_jobs_have_bounded_runtime() -> None:
 
 
 
-def test_docs_deploy_rebuilds_core_reader_without_entity_ai_or_messages():
-    deploy = _workflow("deploy-docs.yml")
-    assert "Checkout current published site" in deploy
-    assert "Restore current published archive" in deploy
-    assert "python -m src.core_site --root docs" in deploy
-    assert "python -m src.entity_republish" not in deploy
-    assert "python -m src.quick_posts" not in deploy
+def test_single_deployment_renders_without_collection_ai_or_channel_messages():
+    deploy = _workflow("cloudflare-unified.yml")
+    assert "ref: gh-pages" in deploy
+    assert "python -m src.core_site --root .edge-source" in deploy
+    assert "SILICONFLOW_API_KEY" not in deploy
+    assert "src.core_delivery" not in deploy
+    assert "scripts/verify_daily_deployment.py" in deploy
+    assert "production-edition" in deploy
+    assert {p.name for p in WORKFLOWS.glob("*.yml")} == {
+        "ci.yml", "codeql.yml", "server-backup.yml", "feed-collection.yml",
+        "daily-summary.yml", "daily-telegram.yml", "x-distribution.yml", "cloudflare-unified.yml"}

@@ -176,7 +176,7 @@ async def setup_alert_topic(chat, *, store=None, client=None, env=None):
     return result
 
 
-async def finalize(path, workflow_status, *, test=False):
+async def finalize(path, workflow_status, *, test=False, publication_proof=None, published_state=None):
     store = active_store()
     if test:
         key = 'test:'+os.environ.get('GITHUB_RUN_ID','local')+':'+os.environ.get('GITHUB_RUN_ATTEMPT','1')
@@ -192,13 +192,17 @@ async def finalize(path, workflow_status, *, test=False):
     report['operations'] = {'workflow_status':workflow_status, 'cost_totals':cost_totals(store), 'alerts':[]}
     run_id=report['run_id'];metrics=report.get('metrics',{})
     if workflow_status=='failure' or report.get('status')=='failure':
-        status=await send_alert('failure:'+run_id,f"xiyu.news {report.get('date')} 任务失败，请检查 Actions 运行日志。",store=store)
+        status=await send_alert('failure:'+os.environ.get('GITHUB_WORKFLOW','task')+':'+run_id,f"xiyu.news {report.get('date')} {os.environ.get('GITHUB_WORKFLOW','任务')}失败，请检查 Actions 与持久发送回执；未知结果不会自动重发。",store=store)
         report['operations']['alerts'].append({'event':'failure','status':status})
     elif metrics.get('edition_degraded') or metrics.get('enrichment_degraded'):
         status=await send_alert('degraded:'+run_id,f"xiyu.news {report.get('date')} 已生成简版，部分背景不可用。" + (f" AI账户HTTP {metrics['provider_account_http_status']}，已停止调用。" if metrics.get('provider_account_http_status') else ''),store=store)
         report['operations']['alerts'].append({'event':'degraded','status':status})
     totals=report['operations']['cost_totals']
-    if report.get('kind')=='daily_publish' and workflow_status=='success' and metrics.get('displayed_today'):
+    verified=False
+    if publication_proof and publication_proof.is_file() and published_state and published_state.is_file():
+        from .deployment_proof import valid_proof
+        verified=valid_proof(json.loads(publication_proof.read_text()),path.read_bytes(),published_state.read_bytes())
+    if report.get('kind')=='daily_publish' and workflow_status=='success' and metrics.get('displayed_today') and verified:
         status=await send_alert('daily:'+report['date'],f"xiyu.news {report['date']}：{metrics['displayed_today']}条；今日AI估算¥{totals.get('today_cny',report['ai_cost']['amount']):.4f}，本月已记录¥{totals.get('month_cny',0):.4f}；X正式发布关闭。",store=store)
         report['operations']['alerts'].append({'event':'daily','status':status})
     _atomic_write_text(path,json.dumps(report,ensure_ascii=False,indent=2)+'\n')
@@ -213,6 +217,8 @@ def main():
     parser.add_argument('--workflow-status',choices=['success','failure','cancelled'],default='success')
     parser.add_argument('--test-alert',action='store_true')
     parser.add_argument('--setup-alert-topic')
+    parser.add_argument('--publication-proof',type=Path)
+    parser.add_argument('--published-state',type=Path)
     args=parser.parse_args()
     if args.setup_alert_topic:
         result=asyncio.run(setup_alert_topic(args.setup_alert_topic))
@@ -220,7 +226,7 @@ def main():
         _atomic_write_text(Path('data/alert-setup.json'),json.dumps(result,ensure_ascii=False)+'\n')
         print('alert_topic_setup='+result['status'])
         return 0 if result['status']=='created' else 1
-    return asyncio.run(finalize(args.report,args.workflow_status,test=args.test_alert))
+    return asyncio.run(finalize(args.report,args.workflow_status,test=args.test_alert,publication_proof=args.publication_proof,published_state=args.published_state))
 
 
 if __name__=='__main__':

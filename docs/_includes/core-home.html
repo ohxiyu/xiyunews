@@ -1,16 +1,12 @@
 {% assign posts = site.posts | where: 'lang', 'zh' %}
 {% assign latest = posts | first %}
-<div data-live-home>
 {% if latest %}
-<div class="edition-bar" data-latest-edition-date="{{ latest.date | date: '%Y-%m-%d' }}"><span>归档日报 <time datetime="{{ latest.date | date: '%Y-%m-%d' }}">{{ latest.date | date: '%Y.%m.%d' }}</time>{% if site.data.core_edition.display_time %}<span class="edition-update">更新于 {{ site.data.core_edition.display_time }}</span>{% endif %}</span><a href="/history/">按日期阅读 <span aria-hidden="true">↗</span></a></div>
-<p class="edition-notice" data-edition-notice data-edition="{{ latest.date | date: '%Y-%m-%d' }}" hidden></p>
-<section class="daily-day" data-language="zh" data-date="{{ latest.date | date: '%Y-%m-%d' }}">
-{% assign pieces = latest.content | split: '<!--core-events-->' %}
-{{ pieces[0] }}
-
-{{ pieces[1] }}
-</section>
-{% else %}<p class="empty-state">首期日报发布后将在这里显示。</p>{% endif %}
-</div>
-<button class="live-refresh" type="button" data-live-refresh hidden>精选已更新，点击查看</button>
-<p class="end-note"><a href="/history/">往期日报</a></p>
+<header class="edition-heading" data-latest-edition-date="{{ latest.date | date: '%Y-%m-%d' }}">
+<p class="eyebrow">每日一期 · 加密与 AI</p>
+<h1><time datetime="{{ latest.date | date: '%Y-%m-%d' }}">{{ latest.date | date: '%Y.%m.%d' }}</time><span>日报</span></h1>
+<p class="edition-byline">由 <a href="https://x.com/ohxiyu" rel="noopener noreferrer">xiyu / @ohxiyu</a> 整理{% if site.data.core_edition.display_time %}<span>本期更新 {{ site.data.core_edition.display_time | escape }}</span>{% endif %}</p>
+</header>
+<section class="daily-day" data-language="zh" data-date="{{ latest.date | date: '%Y-%m-%d' }}">{{ latest.content }}</section>
+{% else %}<header class="edition-heading"><h1>每日加密与 AI 日报</h1></header><p class="empty-state">首期日报发布后将在这里显示。</p>{% endif %}
+{% include author-links.html %}
+<p class="end-note"><a href="/history/">浏览往期日报 <span aria-hidden="true">↗</span></a> · <a href="/feed.xml">RSS</a></p>

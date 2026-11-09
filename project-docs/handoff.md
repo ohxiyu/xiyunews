@@ -5,13 +5,13 @@
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "PR3：拆分日报主流程并删除停用内容产品",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/363",
+  "goal": "PR4：单期首页、作者入口、后台只评分与单一部署",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/365",
   "owner": "本聊天Codex",
-  "branch": "agent/daily-pipeline",
-  "base": "8020d706d29fe60e4d9b2726be4ee78155a02cc5",
-  "status": "本地752测试通过/8跳过；Worker107测试通过；选稿六组一致，准备完整CI",
-  "next": "提交PR并通过完整CI；后续PR4切换单期首页与后台只评分",
+  "branch": "agent/daily-home",
+  "base": "25dcafd9670a5a77e00861b114079ab71362c2e7",
+  "status": "单期首页、后台仅评分、单一部署与投递凭证完成；本地回归通过，待完整CI",
+  "next": "完成新流程回归、页面预览与完整CI后自动上线；再做X质量门",
   "blockers": []
 }
 ```
@@ -30,7 +30,7 @@
 
 ## 当前生产与待补信息
 
-- 截至此任务启动：滚动精选、固定日报、独立事件任务仍在运行；模型硅基DeepSeek V3.2、并发/候选上限保持原值；只在对应阶段切换。
+- 当前分支已改单期首页与后台仅评分；待合并和真实生产验证后确认切换。模型硅基DeepSeek V3.2、并发/候选上限保持原值。
 - 用户11/09授权X直接正式运行、免三天试运行；默认280加权字符，校验现有四项密钥/API，不升级套餐。
 - 已查GitHub设置：日报bot和X四项密钥存在；目标群Telegram @xiyudotnews的“日报运维”话题6544已创建，参数已保存，测试42571836635已确认sent，不使用读者频道或realtime现有话题。
 - 保留七份现行文档；另有四个极短历史入口供realtime既有链接使用，不恢复旧发布内容。

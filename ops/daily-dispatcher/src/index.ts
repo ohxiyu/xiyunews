@@ -81,7 +81,7 @@ export default {
       distribution_gate: "private-queue-due-v1",
       x_check_window_local: "07:26–23:30",
       collection_workflow: FEED_WORKFLOW,
-      collection_max_age_hours: (env as Env & {ROLLING_FEED?: boolean}).ROLLING_FEED ? 5 / 60 : FEED_INTERVAL_MS / 3_600_000,
+      collection_max_age_hours: FEED_INTERVAL_MS / 3_600_000,
       schedule_timezone: env.EDITION_TIMEZONE,
       edition_cutoff_hour: Number(env.EDITION_CUTOFF_HOUR),
       first_check_local: "07:26",

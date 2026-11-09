@@ -29,10 +29,15 @@ def claim(store, edition: str, destination: str) -> bool:
 
 
 async def main():
-    state=DailyFeedState.model_validate_json(Path('published/_data/bmtnews_state.json').read_text())
+    state_path=Path('published/_data/bmtnews_state.json')
+    state=DailyFeedState.model_validate_json(state_path.read_text())
     reports=list(Path('source-report').glob('**/run-report.json'))
     if len(reports)!=1:raise ValueError('one exact source run report required')
     report=json.loads(reports[0].read_text())
+    from .deployment_proof import valid_proof
+    proof_path=Path('deployment-proof/production-edition.json')
+    if not proof_path.is_file() or not valid_proof(json.loads(proof_path.read_text()),reports[0].read_bytes(),state_path.read_bytes()):
+        raise RuntimeError('Verified current production proof required; no message sent')
     if not delivery_eligible(report,state):
         print('No new eligible edition; no delivery.');return
     if os.environ.get('GITHUB_RUN_ATTEMPT')!='1':raise RuntimeError('Delivery reruns require outcome inspection')

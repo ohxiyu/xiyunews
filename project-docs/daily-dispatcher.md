@@ -1,91 +1,37 @@
-# xiyu.news 07:26 日报调度
+# 日报调度与部署
 
-2026-10-03调度已并入统一 `xiyunews` Worker，原RecoveryGate状态和时间规则保留；旧独立调度器停用、Cron为空。本页描述现行业务策略，部署操作唯一入口是单项目清单与[当前交接](handoff.md)，不按旧wrangler.jsonc重新创建或部署独立服务。实际接管证据见发布记录。
+统一 `xiyunews` Worker 是日报调度入口，配置在 `ops/daily-dispatcher/wrangler.unified.jsonc`。沿用既有RecoveryGate命名空间和迁移，不创建第二个调度器。独立realtime看门狗保持原样。
 
-## 目标与时间边界
+## 时间和恢复
 
-xiyu.news 每天生成一期早间日报，业务时区固定为 `Asia/Shanghai`。日报的数据窗口为 `[前一天 07:00，当天 07:00)`，07:00 截止，07:26 开始生成；`edition_date` 等于窗口结束日，例如 `2026-07-31` 代表 `[2026-07-30 07:00, 2026-07-31 07:00)`。
+业务时区Asia/Shanghai，窗口为[前日07:00，当日07:00)，07:26启动，目标约07:30可见。显式edition_date绑定窗口，不能用补跑时间改变刊期；07:30是目标而非保证。
 
-发布工作流不再依赖 GitHub `schedule` 作为主触发源，而是只接受带明确 `edition_date` 的 `workflow_dispatch`。这样即使补跑发生在数小时之后，任务仍会生成原定期号，不会因“当前时间”变化而错误跨期。
+UTC Cron保持 `26 23 * * *`、`36,46,56 23 * * *`、`*/5 * * * *`。07:26主派发；07:36/46/56、08:00–11:50每十分钟、12:00–23:00每小时整点检查。Worker验证原始API、中文出版稿、生产API、首页及日期页的期号、条目数和revision；内部读取部署资产避免自fetch，外部DNS/TLS另行验收。
 
-## 多路调度与恢复链路
+按刊期持久租约最多两分钟；日报最多3次、部署最多2次，分别冷却30分钟。先记预算再请求，即使超时也不立即重发；运行中任务不叠加。任务45分钟以上卡住需调查，不能自动取消或删锁。已有选稿但页面未确认时留15分钟部署窗口，再触发只构建静态快照的Cloudflare任务，不重跑AI。既有日报不能force覆盖。
 
-| 上海时间 | 调度源 | 行为 |
-| --- | --- | --- |
-| 07:26 | Cloudflare Cron | 主触发；当期未发布且没有运行中任务时，触发日报。 |
-| 07:36/07:46/07:56；08:00–11:50 | Cloudflare Cron | 前段定点、08:00 后每 10 分钟检查；缺失时按共享锁、冷却期和重试预算补发。 |
-| 07:43 | GitHub Actions | 独立备用 Watchdog；Cloudflare 主链路失效时补触发。 |
-| 08:17–15:17 | GitHub Actions | Watchdog 每小时复查，恢复被 GitHub 延迟或丢弃的早期事件。 |
-| 12:00–23:00 | Cloudflare Cron | 每小时整点检查；上午漏触发后继续自动恢复。 |
+`POST /publication/check` 仍为既有受保护恢复入口，使用Bearer恢复凭据；GET/查询参数不能触发。精确变量 `XIYUNEWS_EDGE_ENABLED=true` 才启用统一链路，密钥缺失不回退或直接派发。删除GitHub旧watchdog/telegram-recovery/publication-state任务；不伪称有独立第三方备用时钟。
 
-Cloudflare 每天共 40 次日报检查，07:26 前和 23:00 后不安排新的日报检查。共享 Cron 还承载币安广场 09:00–23:30 和 X 07:26–23:30 的五分钟队列检查，仅读私有状态，仅任务到期或需同步时启动 Actions，不再每五分钟空派发广场并连带唤醒 X。GitHub 分发备用改为小时级，发布事件和日报首次 X 派发保留；内容时间表与检查点机制不改。正常 Worker 检查不调用 AI，仅使用现有平台，不接入第三方定时或新通知通道。
+## 后台采集
 
-Cloudflare Worker 同时验证生成物和已部署网站内容：`gh-pages/api/latest.json` 的刊期与非空条目、中英文 Markdown、网站 `/api/latest.json` 的刊期和条目数、首页第一天的日期及文章数量，以及中英文详情页的日期和文章数量。统一 Worker 内通过当前网站处理器读取部署资产，不 fetch 自己的正式域（生产曾返回 HTTP 522 阻断出刊）；HTTP 恢复与 Cron 使用同一路径。探测使用独立查询参数避免命中旧缓存；不是 HTTP 200 或 GitHub 成功记录就算发布完成。外部 DNS/TLS/Access 和用户可达性需另做正式域验收，本地处理器检查不证明公网入口正常。
+Feed Collection由Worker每五分钟检查，GitHub五分钟schedule备用。新近采集或任何活动任务不叠加；失败30分钟冷却，同一失败运行共享两次派发预算。实际频率受队列与采集耗时影响。
 
-所有自动入口（Cloudflare Cron、GitHub Watchdog、Feed Collection 恢复检查）共用按刊期命名的 Durable Object 锁。每次检查持有最长 2 分钟的租约；日报最多尝试 3 次、Pages 最多尝试 2 次，两类操作各有 30 分钟冷却期。派发前先持久化预算，即使请求超时也不立即重试，避免响应丢失造成重复派发。任何 main 日报任务处于队列或运行中都不再提交；持续超过 45 分钟报卡住，不自动取消人工或生产任务。
+`src.rolling_feed` 现仅是兼容的后台入口名：采集→缓存评分→语义去重→保存已合格候选。它不扩写、不公开HTTP写入、不重建站点、不写gh-pages、不发读者消息。使用独立并发组，合并staging-cache最新数据与分析键，Git非快进拒绝覆盖。保留原缓存时限、条数和AI预算。
 
-内容已生成但生产页面未确认时，先留出15分钟部署时间，再派发统一cloudflare-unified.yml，只读取固定gh-pages出版快照重建，不重跑AI；当前配置EDGE_DEPLOY_WORKFLOW优先于已退役Pages Hook。两次重建后仍未恢复转人工处理。空日报、上游5xx、无效JSON或认证失败不会被当作成功，探测故障不会绕过共享锁直接补发；正常发布并发控制保留。
+## 单一部署和投递
 
-GitHub schedule 可能延迟或丢弃。独立 Watchdog 继续检查日报；滚动采集不重建日报或参与日报恢复，日报仍独立补采24小时。
+共五个业务工作流：feed-collection、daily-summary、daily-telegram、x-distribution、cloudflare-unified；另有CI、CodeQL和server-backup。
 
-## 首次切换
+Daily Edition只在新刊期生成选稿、中文静态稿与JSON，持久化并发布gh-pages快照。成功后Cloudflare任务读取固定出版快照，复用已核验缓存，叠加当前模板、Jekyll渲染、精简并校验公开资产，然后部署同一Worker。源代码改动也走这个任务，不另用deploy-docs。
 
-从 08:00 截止切到 07:00 截止，第一期有一小时窗口重叠而非缺口。已发布历史去重保持启用，不清空状态、不为切换启用 force_publish。历史 08:00 刊期如确需授权重刊，Daily Edition 手动输入 cutoff_hour=8（新刊默认7），不能把默认 07:00 当作旧刊期窗口。
+部署后从真实正式域读取health、latest、首页和日期页，核对构建键、artifact、完整API与文章revision。验证失败不产生可投递凭证。每日出刊凭证绑定原始producer报告字节与选稿字节SHA256、原始run_id、source/artifact、期号及验证时间；纯代码部署没有每日run_id。
 
-## Cloudflare 部署
+Telegram只监听Cloudflare成功，读取该部署的精确凭证和上游原始报告；要求当日期号、匹配hash、非重建新刊、首个运行attempt以及持久一次性回执。HTTP前落盘unknown，未知结果不自动重发。普通代码部署与历史修复不发消息。运维摘要也须等真实生产验证通过。
 
-统一入口位于ops/daily-dispatcher/src/unified.ts，最终配置为wrangler.unified.jsonc。GitHub/Cloudflare运行凭据已安全配置，不重复初始输入或覆盖Secret；调度需要Actions写与Contents读，Quick Post另需Contents写，现有单仓运行Token已按明确确认配置。凭据不进入Git、日志或公开站点，带鉴权Contents请求不跟随第三方跳转。
+## 运维与验证
 
-```bash
-gh workflow run cloudflare-unified.yml --repo ohxiyu/xiyunews --ref main
-gh run list --repo ohxiyu/xiyunews --workflow cloudflare-unified.yml --limit 5
-curl -fsS https://xiyu.news/health
-```
+运维告警发到指定“日报运维”话题，使用DAILY_TELEGRAM_BOT_TOKEN及专用chat/thread绑定，与realtime的bot/告警目的地隔离。07:45未检测到当期和采集超过30分钟告警；同故障去重，恢复后开新故障周期。余额检查已按用户要求取消，保留实际token费用估算。
 
-Cloudflare Cron仍用UTC三组：26 23 * * *、36,46,56 23 * * *、*/5 * * * *。期号从Asia/Shanghai计算，共享回调中的日报、采集与分发窗口不变；新入口额外承载原实时看门狗。实际部署回读触发器并验证自然Cron，/health声明不等于触发执行；旧服务停用保护避免传播期间双执行，不恢复旧Cron。
+`/health`报告版本但不证明自然Cron已运行；`/ready`检查现有Actions写/Contents读权限，不生成真实任务。生产声明需核对真实运行、正式域和版本；两天自然出刊及七期质量验收只能在时间经过后记录。
 
-仓库现有统一自动部署工作流，XIYUNEWS_EDGE_ENABLED精确true已启用；可信main出版成功后自动构建上传，需单独发布代码时按授权派发纯部署工作流，不因合并成功便宣称已上线。/health仍返回distribution_gate=private-queue-due-v1，x/square的idle表示未创建任务；/ready失败不以重跑AI绕过。当前业务/source/版本和未验证项在上线记录中维护。
-
-## 采集触发
-
-生产核心模式每5分钟检查一次：最近采集开始不足5分钟或已有队列/运行任务时不追加；失败保持30分钟冷却。GitHub每5分钟schedule作为备用。实际延迟还包括队列、采集和AI时间，不承诺即时。历史独立调度配置继续使用4小时，不重新启用。
-
-Feed Collection 使用独立 xiyunews-rolling-collection 并发组，避免GitHub单个pending槽取消日报。只采集、缓存、精选并通过同源鉴权POST发布JSON，不写gh-pages、不部署Worker、不发送Telegram。持久cache读取/写入均合并远端最新URL及AI缓存键，保留原72小时/4000条等上限；Git非快进拒绝覆盖。事件AI独立每4小时更新，页面发布仍使用日报共享发布锁。
-
-/api/live.json 与首页由既有RecoveryGate命名对象rolling-news保存精选；严格校验窗口、大小、评分、URL，单调原子更新。读取按当前时刻移除24小时外新闻；30分钟未采集标记延迟，无快照明确归档兜底。/story/<id>/保留固定链接。日报健康检查仍核对原始/公开API精确payload和全部日期页revision；滚动首页用明确profile标记识别，不再要求与固定日报相同。
-
-## 验证与排障
-
-1. 访问 Worker 的 `/health`，确认 `repository: ohxiyu/xiyunews` 与实际 `public_site_url`；再访问 `/ready`，确认返回 `dispatch_permission: actions:write` 和 `contents_permission: contents:read`。`/ready` 使用不可能成立的 Git ref 调用 dispatch API，并读取 gh-pages/api/latest.json，不会创建 workflow run；两个端点都不允许通过 HTTP 触发日报。
-2. 在 07:26 后检查 Cloudflare Workers Logs 的 `publication_check` 事件，字段包含 `edition_date`、`status`、`raw_ready`、`public_ready`、`items`、`overdue` 和可选的 `active_run_url`。
-3. 在 GitHub Actions 中确认日报运行名包含明确期号和来源，例如 `Daily 2026-07-31 via cloudflare-primary`。
-4. 检查 `gh-pages/_posts/YYYY-MM-DD-summary-{zh,en}.md`，再检查站点 `/YYYY/MM/DD/summary-{zh,en}.html`。
-5. 如果 08:11 后仍未确认发布，接口返回 HTTP 503。优先区分 GitHub API/令牌问题、日报 workflow 失败、`gh-pages` 提交失败和 Pages 渲染失败；不要直接使用 `force_publish`，除非确认需要覆盖已发布期号。
-
-## GitHub 备用检查与静默恢复
-
-受保护接口为正式域POST /publication/check，请求头携带Bearer恢复密钥，不能用GET、查询参数或GitHub PAT替代；只按固定策略恢复当前刊期，不能指定任意仓库/日期/工作流。同一新随机密钥在统一Worker RECOVERY_CHECK_TOKEN和仓库XIYUNEWS_RECOVERY_CHECK_TOKEN，精确true开关同时选择正式域和新Key；旧仓Key保留但不使用，新Key缺失不回退。两个恢复入口均用--coordinator，接口失败不降级为无锁派发。
-
-外部独立定时方案已取消，无需注册或登录第三方账号。受保护的 HTTP 接口继续供现有 GitHub 备用检查及管理员验收使用，不删除其 Secret。08:11 仅用于后台逾期状态判定，不接入邮件或消息通知。
-
-响应语义：
-
-| 响应 | 含义 |
-| --- | --- |
-| 200 `healthy` | 当期已在生产页面验证，无须补发。 |
-| 200 `not_due` | 当天尚未到 07:26，不触发提前生成。 |
-| 202 | 未到逾期时限，正在生成、等待部署或恢复冷却中。 |
-| 503 | 08:11 后仍未确认发布、任务卡住、次数耗尽或检查本身失败。 |
-| 401 / 405 | 密钥错误或请求方法错误，属于配置故障。 |
-
-按管理员要求，不接入新的邮件或消息通知服务。系统静默检查并自动补发，异常和重试耗尽保留后台日志。验收需确认正常 200、未授权 401、模拟故障恢复和实际定时执行记录。两套现有平台增加检查机会，但不构成第三方独立调度；GitHub 和 Cloudflare 同时异常时仍可能延迟，也不无限重试付费 AI 任务。
-
-## 07:26 调度切换顺序
-
-当前改动需单独授权合并与上线。必须在当前日报完成后、下一日新触发前，同步部署 main 工作流（cutoff-hour 7）和 Worker（EDITION_CUTOFF_HOUR=7、26 分钟等待）；不要只上线其中一侧。使用 --keep-vars 时确认生产返回实际截止配置，必要时显式设置该非敏感变量，保留其他仪表盘变量和 Secrets。07:26 是启动而不是保证可见时间；08:11 后未就绪才进入逾期状态。首页提示同步此语义。
-
-## 发布顺序与回滚
-
-GitHub 检查客户端必须发送 `User-Agent: bmtnews-schedule-watchdog`。生产验证发现 Cloudflare 会在 Worker 执行前拒绝默认的 `Python-urllib/3.12` 客户端标识（HTTP 403 / 1010）；这里使用应用标识，不关闭 Cloudflare 安全检查。若调用失败，先查看 HTTP 状态，再核对 Secret，不绕过共享锁直接补发。
-
-初始配置和原状态迁移已完成，不重复上述历史初始化步骤。RecoveryGate已transfer至xiyunews，namespace ID不变，最终transfer tag保留；不得按旧recovery-v1创建空类或删除迁移数据。任何回退/暂停必须在授权下同步核对唯一调度者、Cron与GitHub恢复入口，不删除锁后继续派发，也不启动第二Worker绕过共享锁；无需外部定时服务。
+所有生成分支只由Actions写入。部署使用 `--keep-vars`，保留既有Secret与独立看门狗配置。不以关闭安全控制、删回执、恢复旧服务或无限重试解决故障。回滚或暂停另需明确授权。

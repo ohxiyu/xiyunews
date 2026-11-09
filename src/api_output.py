@@ -75,7 +75,18 @@ def write_edition_api(
     body = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
     edition_path = editions_root / date / "edition.json"
     edition_path.parent.mkdir(parents=True, exist_ok=True)
-    _atomic_write_text(edition_path, body)
+    if edition_path.exists():
+        existing = json.loads(edition_path.read_text())
+        def texts(value):
+            return [(row.get('id'), row.get('url'), row.get('title', {}).get('zh'),
+                     row.get('summary', {}).get('zh')) for row in value.get('items', [])]
+        if existing.get('date') != date or texts(existing) != texts(payload):
+            raise ValueError('Published edition differs from saved selection; refusing overwrite')
+        # Static recovery must preserve the original publication timestamp and
+        # legacy fields as well as its words. New schemas apply to new editions.
+        body = edition_path.read_text()
+    else:
+        _atomic_write_text(edition_path, body)
 
     latest_path = api_root / "latest.json"
     latest_path.parent.mkdir(parents=True, exist_ok=True)

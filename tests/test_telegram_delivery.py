@@ -63,6 +63,7 @@ def test_build_message_is_html_safe_and_bounded() -> None:
     assert len(message) <= 700
     assert "BTC &amp; AI &gt; market" in message
     assert "阅读完整日报" in message
+    assert 'href="https://x.com/ohxiyu"' in message
     assert "请在网站查看" in message
 
 

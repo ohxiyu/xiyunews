@@ -148,7 +148,7 @@ class TelegramEditionPublisher:
         overview = f'今日 {len(selected)} 条重点资讯'
         header = f'<b>{html.escape(title)}</b>\n{html.escape(overview)}'
         site_url = self.config.site_url.rstrip('/') + '/'
-        footer = f'\n\n<a href="{html.escape(site_url, quote=True)}">阅读完整日报 →</a>'
+        footer = f'\n\n<a href="{html.escape(site_url, quote=True)}">阅读完整日报 →</a>\n<a href="https://x.com/ohxiyu">关注 @ohxiyu</a>'
         empty = '\n\n今日暂无达到展示阈值的重要资讯。'
         if not selected:
             return header + empty + footer

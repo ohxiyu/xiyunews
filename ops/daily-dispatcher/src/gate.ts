@@ -22,20 +22,9 @@ export class RecoveryGate extends DurableObject<Env> {
     );
   }
 
-  feedRead(key: string): string | null {
-    if (key !== "snapshot" && !/^story:[a-f0-9]{32}$/.test(key)) throw new Error("invalid feed key");
-    return this.read("feed:" + key);
-  }
-
-  feedPublish(raw: string): boolean {
-    const value = JSON.parse(raw);
-    const previous = this.feedRead("snapshot");
-    if (previous && Date.parse(JSON.parse(previous).generated_at) >= Date.parse(value.generated_at)) return false;
-    this.ctx.storage.transactionSync(() => {
-      for (const story of value.items) this.write("feed:story:" + story.id, JSON.stringify(story));
-      this.write("feed:snapshot", raw);
-    });
-    return true;
+  legacyStory(id:string):string|null {
+    if(!/^[a-f0-9]{32}$/.test(id))throw new Error("invalid legacy story id");
+    return this.read("feed:story:"+id);
   }
 
   alertClaim(key: string): boolean {

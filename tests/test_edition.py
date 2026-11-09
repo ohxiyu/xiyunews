@@ -504,7 +504,7 @@ def test_daily_edition_uses_unpublished_36_hour_fallback_when_short(
     }
 
 
-def test_rolling_collection_and_independent_daily_archive() -> None:
+def test_background_scoring_and_independent_daily_edition() -> None:
     root = Path(__file__).parents[1]
     collection = (
         root / ".github" / "workflows" / "feed-collection.yml"
@@ -517,9 +517,9 @@ def test_rolling_collection_and_independent_daily_archive() -> None:
     assert "17 2,8,14" not in collection
     assert "staging-cache" in collection
     assert "staging-cache" in publication
-    assert "bmtnews --mode fetch --hours 24" in collection
+    assert "uv run python -m src.rolling_feed" in collection
     assert "Restore published event state" not in collection
-    assert "Collect sources into staging" in collection
+    assert "Collect and score new candidates into private caches only" in collection
     assert "src.rolling_feed" in collection
     assert "peaceiris/actions-gh-pages" not in collection
     assert "\n  schedule:" not in publication
@@ -542,6 +542,6 @@ def test_rolling_collection_and_independent_daily_archive() -> None:
     assert "src.operations --workflow-status" in publication
     assert "src.core_delivery" not in publication
     telegram = (root / ".github/workflows/daily-telegram.yml").read_text()
-    assert "workflows: ['xiyu.news Daily Edition']" in telegram
+    assert "workflows: ['xiyunews Cloudflare']" in telegram
     assert "TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}" in telegram
     assert "src.core_delivery" in telegram

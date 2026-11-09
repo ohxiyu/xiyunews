@@ -8,3 +8,16 @@ test('ordinary HTML and API reads always revalidate, no persistent Worker cache'
 test('old offline worker becomes a cleanup worker and does not intercept reads',async()=>{const r=await run('/service-worker.js');const js=await r.text();assert.match(js,/unregister/);assert.doesNotMatch(js,/addEventListener\('fetch'/);assert.equal(r.headers.get('Cache-Control'),'no-store');});
 
 test("retired content URLs redirect safely to history",async()=>{for(const path of ["/events/old/","/threads/old/","/entity/bitcoin/","/weekly/2026-11-01/","/en/threads/old/"]){const r=await run(path);assert.equal(r.status,308);assert.equal(new URL(r.headers.get("location")).pathname,"/history/");}});
+
+test('one RSS feed remains public and retired feed APIs retain read redirects',async()=>{
+ const reads=[];
+ const env={ASSETS:{fetch:async req=>{reads.push(new URL(req.url).pathname);return new Response('<rss/>')}}};
+ assert.equal((await worker.fetch(new Request('https://xiyu.news/feed.xml'),env)).status,200);
+ assert.deepEqual(reads,['/feed.xml']);
+ for(const path of ['/feed-en.xml','/feed-zh.xml']){
+  const response=await worker.fetch(new Request('https://xiyu.news'+path),env);
+  assert.equal(response.status,308);assert.equal(response.headers.get('location'),'https://xiyu.news/feed.xml');
+ }
+ const response=await worker.fetch(new Request('https://xiyu.news/api/events.json'),env);
+ assert.equal(response.headers.get('location'),'https://xiyu.news/api/latest.json');
+});

@@ -15,7 +15,6 @@ export interface RecoveryResult {
 }
 
 export type RecoveryEnv = Env & {
-  ROLLING_FEED?: boolean;
   EDGE_DEPLOY_WORKFLOW?: string;
   // The unified Worker cannot probe its own origin with a public subrequest.
   // Inject the exact website handler, not raw assets or a readiness shortcut.
@@ -165,9 +164,7 @@ export async function inspectPublication(env: RecoveryEnv, date: string, now: nu
   const archivedHomeReady = home?.includes('data-latest-edition-date="' + date + '"') &&
     firstDay.includes('data-date="' + date + '"') && homeItems >= items &&
     renderedRevisionsMatch(firstDay, revisions.zh);
-  // Rolling homepage is independent of the fixed daily archive. Dated pages
-  // and the exact archived API payload remain mandatory proof below.
-  const homeReady = archivedHomeReady || Boolean(env.ROLLING_FEED && home?.includes('data-feed-mode="rolling-24h"'));
+  const homeReady = archivedHomeReady;
   const rendered = rawReady && publicItems === items && samePayload && homeReady
     ? await Promise.all(urls.rendered.map(async (url, index) => {
         const html = await getText(env, url + nonce);
