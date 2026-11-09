@@ -609,6 +609,23 @@
         "title_zh": "美财政部制裁8家涉伊朗加密资产交易的加拿大货币服务企业"
       }
     },
+    "021f4b4ed9aada856acc3c9076afa77898d783e011f31c7a8c8294aa0c3fe4af": {
+      "stored_at": "2026-11-09T07:09:01.138165+00:00",
+      "value": {
+        "ai_reason": "报告了一起重大的短期市场闪崩事件，导致超过7亿美元的多头头寸被清算，并伴随ETH/BTC汇率显著下跌。这属于高价值市场事件，具有即时影响和系统性风险特征，但未达到改变市场结构或引发长期危机的程度。",
+        "ai_score": 7.5,
+        "ai_summary": "比特币在周K线收线前闪崩至73,510美元，一小时内导致7.15亿美元多单被清算，同时ETH/BTC汇率下跌4.22%。",
+        "ai_tags": [
+          "bitcoin",
+          "ethereum",
+          "market-crash",
+          "liquidations",
+          "price-volatility"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
+      }
+    },
     "023d49e783376382bbd20c5d2394e977ebcff456c34b58ba8002978d21776ddf": {
       "stored_at": "2026-11-01T23:30:16.458653+00:00",
       "value": {
@@ -1259,6 +1276,24 @@
           }
         ],
         "title_zh": "Llama-modchip：在64GB内存、无GPU系统上运行284B参数的DeepSeek模型"
+      }
+    },
+    "04240cd9fe50cb79d94ec9a7fac79aeb0282116f346f6e60cf890261c6f10638": {
+      "stored_at": "2026-11-09T07:09:01.136949+00:00",
+      "value": {
+        "ai_reason": "Content is a routine weekly macro outlook, listing scheduled economic data releases (CPI, PPI), Fed speeches, and corporate earnings (CoreWeave, Nebius). The mention of Jensen Huang's personal news is speculative and lacks evidence of a material, market-moving 'black swan' event. It provides a useful calendar of events but offers no novel analysis or immediate actionable insight.",
+        "ai_score": 6.0,
+        "ai_summary": "文章概述了本周值得关注的市场事件，包括美国CPI和PPI数据发布、多位美联储官员讲话、CoreWeave和Nebius等公司的财报，以及Anthropic的IPO路演，并提及了黄仁勋的个人新闻对市场的潜在影响。",
+        "ai_tags": [
+          "macro-regulation",
+          "ai-labs",
+          "earnings",
+          "economic-calendar",
+          "market-outlook"
+        ],
+        "category": "macro-regulation",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets"
       }
     },
     "04514e469d9a7d085b9afe823a18938701cf414df52ca8719eac9f7dd3b7c3a2": {
@@ -2094,22 +2129,6 @@
         "source_category": "exchange-announcements"
       }
     },
-    "06928938565f816353f88c6198f51889ef420549ad4eef4d57330c4c4834f74c": {
-      "stored_at": "2026-10-31T21:22:36.890546+00:00",
-      "value": {
-        "ai_reason": "This is a static currency-converter utility page (GHO to GBP) from The Block, not a news article or in-window development. It contains no market data, announcement, exploit, or policy change — effectively navigational/tooling content with no evidentiary news value.",
-        "ai_score": 1.0,
-        "ai_summary": "A GHO-to-GBP conversion tool page offering a price calculator for converting the GHO stablecoin into British pounds.",
-        "ai_tags": [
-          "gho",
-          "stablecoin",
-          "price-tool",
-          "gbp"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "06b3144f03ca089424db74e9aefacea53aa1f22fb9abd6fd2287314f10117e08": {
       "stored_at": "2026-11-01T23:30:16.459461+00:00",
       "value": {
@@ -2925,24 +2944,6 @@
         "source_category": "crypto-protocols"
       }
     },
-    "090a781700e35ddc487fabc47f0959c3054f482f10a25727b85ffe6f36687ce5": {
-      "stored_at": "2026-10-31T17:59:20.638783+00:00",
-      "value": {
-        "ai_reason": "A major exchange security incident recovery with a concrete operational milestone — 90% of stolen assets replenished and a November 1 restart target — directly affects user access, withdrawals, and market confidence. It falls short of 9+ because no loss amount, exploit mechanism, or confirmed restart outcome is provided.",
-        "ai_score": 8.5,
-        "ai_summary": "Binance says it has replenished 90% of stolen assets and is targeting November 1 to restart operations after a security breach.",
-        "ai_tags": [
-          "binance",
-          "exchange-hack",
-          "asset-recovery",
-          "trading-restart",
-          "security"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-protocols"
-      }
-    },
     "090d5aca900af2f3ddb79a61ceaf9d6eefdc0d2ef0e75d40444329c489e3db20": {
       "stored_at": "2026-11-05T03:01:33.225251+00:00",
       "value": {
@@ -3736,41 +3737,6 @@
           }
         ],
         "title_zh": "Circle freezes $1.1B USDC after Binance hot-wal..."
-      }
-    },
-    "0bb48a4e23bb69d02b360330436cddb30e4b0428cc6a87ee715e52c66320b04f": {
-      "stored_at": "2026-10-31T17:59:20.640497+00:00",
-      "value": {
-        "ai_reason": "Solid technical deep-dive into GCC switch lowering (jump tables, bit tests, sparse cases) with informed HN commentary on missed perfect-hash optimizations, Clang/LLVM history, and a possible off-by-one error in an example. Valuable to compiler engineers but narrow in scope and without a release or benchmark-driven breakthrough.",
-        "ai_score": 6.5,
-        "ai_summary": "A technical walkthrough of how GCC lowers switch statements into jump tables, bit tests, and other code shapes, with HN discussion on the lack of perfect hashing for large sparse switches and other missed optimizations.",
-        "ai_tags": [
-          "compilers",
-          "gcc",
-          "code-generation",
-          "optimization",
-          "engineering-deep-dive"
-        ],
-        "category": "tech-community",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
-    "0bc13c629c97fd0866f35bc76067e1b4309e3c57e05c04394adab8f8a1f75ffa": {
-      "stored_at": "2026-10-31T21:22:36.889389+00:00",
-      "value": {
-        "ai_reason": "A judge allowing the NAACP's Clean Air Act lawsuit against xAI to proceed is a meaningful legal and regulatory development for AI infrastructure, with potential implications for data-center siting and environmental compliance. However, it is a procedural ruling rather than a final liability finding or industry-wide rule change, limiting immediate impact.",
-        "ai_score": 6.5,
-        "ai_summary": "A federal judge allowed the NAACP's Clean Air Act lawsuit against xAI over pollution from its data center to move forward.",
-        "ai_tags": [
-          "xAI",
-          "Clean Air Act",
-          "data centers",
-          "environmental litigation",
-          "AI infrastructure"
-        ],
-        "category": "ai-labs",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "ai-media"
       }
     },
     "0be77bd0e160926ee7182e52c1b94a12284f21e38914b27427e70d851d01b739": {
@@ -4616,22 +4582,6 @@
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
-      }
-    },
-    "0e843e7bfe44d9fa31bc83c19c09fce296b46b46cdd3aac9fc9b40ffe319ee11": {
-      "stored_at": "2026-10-31T21:22:36.889608+00:00",
-      "value": {
-        "ai_reason": "A static currency-converter utility page (GHO to RUB) with no news event, no in-window development, and no substantive analysis; purely functional reference content rather than reporting.",
-        "ai_score": 0.5,
-        "ai_summary": "A The Block converter page providing an exchange-rate lookup between GHO and the Russian ruble.",
-        "ai_tags": [
-          "GHO",
-          "rub",
-          "price-tools",
-          "stablecoins"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "0e956130cdc6004bfb3339a0117a03fd86a91cf7fd127051230f8449536e82ce": {
@@ -5736,24 +5686,6 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
-    "119cbc8a2f07bfce871b4aac6651233ce8dd8bcbc689be9d90f9eb1114e32c87": {
-      "stored_at": "2026-10-31T17:59:20.639517+00:00",
-      "value": {
-        "ai_reason": "A substantive technical release write-up from a well-known engineer (nullprogram) introducing a new GUI-oriented coding agent harness, generating strong practitioner discussion (144 points, 87 comments) about agent UX/DX pain points, async prompting, and implementation-language tradeoffs. Novel and actionable for builders, but it is an individual open project rather than a frontier-lab model or ecosystem-wide tooling shift, so it lands below major developer-tool launches.",
-        "ai_score": 6.5,
-        "ai_summary": "Chris Wellons publishes Prospero, a new GUI-based harness for running coding agents that aims to improve on terminal-only agent workflows, sparking developer discussion on agent UX, prompt interruption handling, and the tradeoffs of building such interfaces in C++.",
-        "ai_tags": [
-          "coding-agents",
-          "developer-tools",
-          "agent-ux",
-          "gui",
-          "open-source"
-        ],
-        "category": "ai-devtools",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "tech-community"
-      }
-    },
     "11ac06af8e0452a42a97143155d103e58c493aff2b67bcf7bc1e37451e649510": {
       "stored_at": "2026-11-01T02:32:26.395811+00:00",
       "value": {
@@ -6279,23 +6211,6 @@
           }
         ],
         "title_zh": "高盛禁止交易员和银行家使用部分人工智能工具"
-      }
-    },
-    "13dfba0d67ba92812fcd99bd125cd9dc09cbaa7c13845bca428a541bc088ebfb": {
-      "stored_at": "2026-10-31T17:59:20.638973+00:00",
-      "value": {
-        "ai_reason": "A concrete in-window recovery milestone from Binance on a major security incident: 90% of stolen assets replenished plus a published proof-of-reserves snapshot. This is materially important for user confidence, exchange solvency perception, and market structure, though it is a follow-up recovery update rather than the incident itself or a full restitution. Falls short of the 8.5-9.0 band reserved for the initial confirmed large-scale exploit, but well above routine operational notices.",
-        "ai_score": 8.0,
-        "ai_summary": "Binance reported that 90% of assets stolen in its security incident have been replenished and published a proof-of-reserves snapshot as part of its third recovery update.",
-        "ai_tags": [
-          "binance",
-          "security-incident",
-          "proof-of-reserves",
-          "asset-recovery",
-          "exchange-operations"
-        ],
-        "category": "exchange-announcements",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "13ece780f7f3fc24e15253cf1e63cd942f91550e81b4141c8f2f6e298956b63b": {
@@ -7021,22 +6936,6 @@
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
-      }
-    },
-    "15fdb6d5ded7edf868197fb17c1b9bdeaca1cf9ffac2eb7afd909a0a251eb572": {
-      "stored_at": "2026-10-31T21:22:36.890078+00:00",
-      "value": {
-        "ai_reason": "This is an evergreen price-converter tool page (U to GBP) rather than a news event; it contains no in-window development, announcement, or analysis of any kind. Utility page with no editorial substance.",
-        "ai_score": 0.5,
-        "ai_summary": "A static conversion tool page for swapping United Stables (U) into British pounds at The Block's converter URL.",
-        "ai_tags": [
-          "stablecoins",
-          "price-converter",
-          "gbp",
-          "tools"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "1624101d0f1efeb5c945309cec9d7d3e88c3f43e92229ed9478e1e57c2383b72": {
@@ -9662,24 +9561,6 @@
         "source_category": "crypto-markets"
       }
     },
-    "1e92cf1196c5b9b746b9ad8d8a47e0e1672cae3bdea3ab2a50eb3cd40714318f": {
-      "stored_at": "2026-10-31T17:59:20.638877+00:00",
-      "value": {
-        "ai_reason": "A statement from the world's largest exchange confirming that its top 10 user assets remain fully backed following a security incident is high-signal for exchange risk and custody confidence; it speaks directly to solvency/reserve transparency, though the underlying incident details and loss magnitude are not established here, keeping it below systemic-event territory.",
-        "ai_score": 7.5,
-        "ai_summary": "Binance said its ten largest user asset holdings remain fully backed in the wake of a security incident, an assurance aimed at containing concern over user funds and reserve adequacy.",
-        "ai_tags": [
-          "Binance",
-          "security-incident",
-          "proof-of-reserves",
-          "exchange-risk",
-          "custody"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
     "1e93916673c1965a616ca28273faf4ef0ea6725e9638e7cf79884d3217f92056": {
       "stored_at": "2026-11-05T04:44:11.845606+00:00",
       "value": {
@@ -11074,6 +10955,24 @@
         "title_zh": "高盛正从其银行家和交易员手中收回Claude Code"
       }
     },
+    "234868b22ed797b458051dd0a653704ea1beed2da321519b0715d5d61343df8f": {
+      "stored_at": "2026-11-09T07:09:01.136104+00:00",
+      "value": {
+        "ai_reason": "Announcement details a substantive, multi-party collaboration between a leading AI hardware company (NVIDIA), a local AI chip firm (Rebellions), and a major telecom (SK Telecom) to develop sovereign AI infrastructure, involving specific technical integration (NVLink Fusion, MGX, split inference architecture) and government backing. It represents a significant step in AI infrastructure development with clear ecosystem implications, though not a paradigm-shifting breakthrough.",
+        "ai_score": 7.5,
+        "ai_summary": "英伟达与韩国AI芯片公司Rebellions及SK Telecom达成合作，计划利用英伟达技术共同开发面向大规模AI推理的基础设施，并获得韩国科学技术信息通信部支持。",
+        "ai_tags": [
+          "ai-infrastructure",
+          "hardware",
+          "partnership",
+          "sovereign-ai",
+          "nvidia"
+        ],
+        "category": "ai-labs",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets"
+      }
+    },
     "23670ef2c4635ccc1216c906a4a1d7a2445db37e9d0441d9c4bf4af32177a8b0": {
       "stored_at": "2026-11-09T06:57:02.500902+00:00",
       "value": {
@@ -12191,6 +12090,23 @@
         "source_category": "exchange-announcements"
       }
     },
+    "26840d77ed66e7a21a19e735461185fe8acede7280fc9aae81a815d2676683e3": {
+      "stored_at": "2026-11-09T07:09:01.137575+00:00",
+      "value": {
+        "ai_reason": "The admission of an affair and initiation of an emergency investigation by the CEO of a leading AI/tech company like Nvidia constitutes a significant corporate governance and leadership crisis. This is a high-impact event with potential implications for company stability, investor confidence, and market perception, warranting a high score. The content provides a concrete, in-window development (the apology letter and investigation) with a market reaction (after-hours stock drop).",
+        "ai_score": 8.5,
+        "ai_summary": "英伟达首席执行官黄仁勋承认个人行为不当并发布全员道歉信，公司已启动紧急内部调查，其股价在盘后交易中下跌约2%。",
+        "ai_tags": [
+          "ai-labs",
+          "corporate-governance",
+          "leadership",
+          "market-reaction"
+        ],
+        "category": "ai-labs",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "ai-media"
+      }
+    },
     "269b4ab237c6ff95b03ec048d6be4601f51c43addcc9f4f4b371cad67bf76f3b": {
       "stored_at": "2026-11-08T06:54:52.353617+00:00",
       "value": {
@@ -12320,23 +12236,6 @@
         "category": "crypto-regulation",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "crypto-protocols"
-      }
-    },
-    "26d94a2776d29ad67dc97f32867c5871caa1170712ffebf9bc15bb5141033882": {
-      "stored_at": "2026-10-31T17:59:20.639654+00:00",
-      "value": {
-        "ai_reason": "A live operational failure at a major cross-chain DEX: THORChain halting swaps across 12 chains after a reported refund error directly blocks user access and raises solvency/accounting concerns for a widely integrated protocol. It is a material protocol incident with immediate user impact, though not yet evidenced as a large-scale loss event, so it sits below exploit-level 8.5+ scores.",
-        "ai_score": 7.5,
-        "ai_summary": "THORChain's cross-chain swaps remain suspended on 12 supported chains following a reported refund error that prompted the protocol to halt trading activity.",
-        "ai_tags": [
-          "THORChain",
-          "DeFi",
-          "cross-chain",
-          "protocol-incident",
-          "DEX"
-        ],
-        "category": "crypto-protocols",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "26e6464d573aae96d707d7a793e8344aafc92194b8439ff81078c88e3f33517f": {
@@ -13519,23 +13418,6 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
-    "2a1e92fef904977ee3808b85ea266d65bc27fca68696b3ecb693707ccfe87caa": {
-      "stored_at": "2026-10-31T17:59:20.639066+00:00",
-      "value": {
-        "ai_reason": "High-value security research: Cisco Talos documents a novel offensive use of LLMs inside the Volta Infostealer to prioritize victims by perceived financial value. It is not a mass-exploitation event or major breach, but it has clear implications for malware economics and defensive prioritization. HN discussion is active and substantive, focusing on software supply-chain risk, agent-era threats, and AI misuse detection, though it is more anxious commentary than technical analysis.",
-        "ai_score": 7.0,
-        "ai_summary": "Cisco Talos researchers detailed how the Volta Infostealer uses an LLM-driven appraisal process to rank victims by estimated financial worth, allowing operators to prioritize high-value targets.",
-        "ai_tags": [
-          "AI security",
-          "malware",
-          "infostealer",
-          "LLM abuse",
-          "cybersecurity"
-        ],
-        "category": "tech-community",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "2a368b4a1e30b437e77ef878e2455017ac6c999154f7320a9c4d81e37abf0f82": {
       "stored_at": "2026-11-08T11:48:39.972117+00:00",
       "value": {
@@ -14048,23 +13930,6 @@
           }
         ],
         "title_zh": "Hyperliquid巨鲸疯狂做空比特币：净空头规模逼近10亿美元，创阶段新高"
-      }
-    },
-    "2b92d9e05be8a459d3fbe9b22050c7a5b3f2b7f7d9cd15ed667a17850194f279": {
-      "stored_at": "2026-10-31T21:22:36.890772+00:00",
-      "value": {
-        "ai_reason": "This is an automated price-converter utility page (OUSD to AUD) with no news content, no in-window development, and no informational or market-moving value. It is effectively noise within the news feed.",
-        "ai_score": 0.5,
-        "ai_summary": "A static Open USD (OUSD) to Australian Dollar conversion tool page from The Block, containing no reporting or market development.",
-        "ai_tags": [
-          "price-converter",
-          "ousd",
-          "aud",
-          "tools",
-          "noise"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "2ba445f8c0d2e4795b7cdef8d2a234380e9056dba01def25db6ffd72e8721195": {
@@ -14689,6 +14554,24 @@
         ],
         "title_en": "Bitcoin Core Developer Proposes Quantum Attack Collateral Defense Scheme",
         "title_zh": "Bitcoin Core开发者提出量子攻击抵押防御方案"
+      }
+    },
+    "2e419fee50afb7e115461368b1f1318456af89d2f026094533cd515a664b4a21": {
+      "stored_at": "2026-11-09T07:09:01.138851+00:00",
+      "value": {
+        "ai_reason": "The content is a personal blog post about managing cognitive load when using AI tools, shared on a tech community forum. It is an interesting, practical discussion on productivity and workflow adaptation, but it does not represent a groundbreaking technical release, major safety incident, or ecosystem-wide development. The Hacker News discussion shows community engagement but reinforces its nature as a personal reflection rather than a high-impact announcement.",
+        "ai_score": 5.5,
+        "ai_summary": "一篇个人博客文章，探讨了作者如何通过限制并行会话数量和管理上下文切换来应对使用AI工具时的认知过载问题。",
+        "ai_tags": [
+          "ai-productivity",
+          "workflow",
+          "cognitive-load",
+          "developer-tools"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "一篇个人博客文章，探讨了作者如何通过限制并行会话数量和管理上下文切换来应对使用AI工具时的认知过载问题。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "我如何对抗AI信息过载"
       }
     },
     "2e538f6a51bab1040c1957a0a6dacfb2e0f998ea629ad074d1bc9c871cfaf3b2": {
@@ -16667,24 +16550,6 @@
         ]
       }
     },
-    "33aa6fd7bdb0193533dbfba8b1d9ac0f29e1fc337cf4e714813fad01ef3d2543": {
-      "stored_at": "2026-10-31T17:59:20.638303+00:00",
-      "value": {
-        "ai_reason": "A confirmed $6.3B hot-wallet breach at the world's largest exchange is a systemic-scale security incident with direct user-fund impact, far exceeding the >$500M threshold for the top band. The exchange's pledge to cover losses is a material follow-on commitment, and the scale of the loss plus the counterparty exposure to Binance make this a paradigm-shifting event for market structure and custody confidence rather than a routine exchange notice.",
-        "ai_score": 9.5,
-        "ai_summary": "Binance disclosed details of a $6.3B hot-wallet breach and committed to reimbursing affected users, marking one of the largest exchange security losses on record.",
-        "ai_tags": [
-          "binance",
-          "exchange-security",
-          "hot-wallet-breach",
-          "hacks",
-          "user-funds"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
     "33bf62acb7fe36cf149f3baa2364a3ebc7cdeddb4baf68e1ee79145da9088474": {
       "stored_at": "2026-11-08T14:43:08.656147+00:00",
       "value": {
@@ -16803,23 +16668,6 @@
         "category": "ai-labs",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "tech-community"
-      }
-    },
-    "34903797989e537a88155488fc210bc7c787c676e2968682fc24fe92be2a678a": {
-      "stored_at": "2026-10-31T17:59:20.637992+00:00",
-      "value": {
-        "ai_reason": "A promotional teaser from Bybit's announcement channel for its WSOT 2026 trading competition, containing only a slogan ('Different times... same instinct') and a tagline with no rules, dates, prize structure, or product specifics. This is marketing/competition promotion rather than a substantive operational or market development, so it falls in the low-priority band.",
-        "ai_score": 2.5,
-        "ai_summary": "Bybit posted a slogan-only teaser for its WSOT 2026 trading competition, branding it 'The New Financial Platform' without disclosing any rules, schedule, or prize details.",
-        "ai_tags": [
-          "bybit",
-          "trading-competition",
-          "exchange-marketing",
-          "promotion",
-          "wsot"
-        ],
-        "category": "exchange-announcements",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "34af5f0c6a14168b7e8880dd15026a9f16025880ad6aeb673ae15007a8e5f7bf": {
@@ -17023,6 +16871,22 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "35465cce080fb980621de2fbf5913ba68e5ae4f86e75dc68083577be9ce4d3b8": {
+      "stored_at": "2026-11-09T07:09:01.141320+00:00",
+      "value": {
+        "ai_reason": "Content reports routine weekend price movements on a crypto trading platform for traditional stocks, offering a minor preview of market opening. It is a useful data point for traders but lacks significant novelty, immediate impact, or a major development. The discussion quality is limited to price reporting.",
+        "ai_score": 5.5,
+        "ai_summary": "Trade.xyz 平台上的美股永续合约在周末交易中普遍略低于周五盘后价，而韩股合约则上涨，预计 SK 海力士周一开盘涨约 4.5%，三星电子涨约 2.6%。",
+        "ai_tags": [
+          "crypto-derivatives",
+          "trading-platform",
+          "traditional-stocks",
+          "market-data"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
+      }
+    },
     "35547592f5135122571b6847413293eb472db76fc24d400a52b0dee7dcca1708": {
       "stored_at": "2026-11-08T08:24:21.104545+00:00",
       "value": {
@@ -17176,6 +17040,23 @@
         ],
         "title_en": "Coinbase Cites Split-Key Cold Storage After Binance $6.4B Hack",
         "title_zh": "币安64亿美元黑客事件后，Coinbase强调其分片密钥冷存储设计"
+      }
+    },
+    "3595c5de51363ed5b647217620980f8970a7e93555e3cd2c83aef503b2997f67": {
+      "stored_at": "2026-11-09T07:09:01.141514+00:00",
+      "value": {
+        "ai_reason": "This is a high-value operational update from a major exchange, detailing the restoration of withdrawals for specific assets (HYPE, APT) and outlining a phased plan for further restorations. It indicates a significant, ongoing recovery process from a prior service disruption, which is material for users and market liquidity. The announcement is concrete and actionable.",
+        "ai_score": 7.5,
+        "ai_summary": "币安宣布已恢复HYPE和APT的提现服务，并表示将在安全检查后分阶段恢复更多资产和网络的提现。",
+        "ai_tags": [
+          "exchange-operations",
+          "binance",
+          "withdrawals",
+          "market-infrastructure"
+        ],
+        "category": "exchange-operations",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets"
       }
     },
     "35ae4bed14b55efff9c427f234953b8b62c4d2c7e459bb6b132cc72fd66f8bbc": {
@@ -17451,6 +17332,43 @@
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
+      }
+    },
+    "3662b39618e2f324439e5d14e47bf0427d16e398931ac741b5614b1f223ea410": {
+      "stored_at": "2026-11-09T07:10:03.193053+00:00",
+      "value": {
+        "background": "",
+        "background_zh": "币安是全球最大的加密货币交易所。此前，其他交易所如KuCoin也曾遭遇过大规模黑客攻击，但此次事件的金额远超前例。",
+        "community_discussion": "",
+        "detailed_summary": "",
+        "detailed_summary_zh": "据报道，2026年10月29日，黑客从全球最大的加密货币交易所币安盗取了约63亿美元，这可能是历史上规模最大的数字资产盗窃案。\n\n历史上，大型交易所遭黑客攻击会导致加密货币价格短期下跌，但此次事件的规模使得市场恢复的时间线比以往事件更难以预测。\n\n攻击发生在2026年10月29日（UTC时间）晚间，黑客清空了币安的热钱包。交易所估计损失影响约为63亿美元，而Chainalysis估计盗窃金额为59亿美元。",
+        "editorial_tags": [
+          "币安",
+          "黑客攻击",
+          "比特币",
+          "以太坊",
+          "加密货币安全"
+        ],
+        "enrichment_status": "complete",
+        "sources": [
+          {
+            "title": "Binance hack: \"Reimbursement alone\" is not enough, says Altcoin Pro...",
+            "url": "https://crypto.news/binance-hack-reimbursement-alone-is-not-enough-says-joni-zhuleku/"
+          },
+          {
+            "title": "Breaking: Binance Hacked for $6.3B, Biggest Crypto Robbery",
+            "url": "https://blog.fizen.io/binance-hack-6-3-billion-tether-circle-freeze-2026/"
+          },
+          {
+            "title": "As Binance crisis unfolded, 7-month-pregnant co-CEO took 3 am calls...",
+            "url": "https://www.hindustantimes.com/world-news/as-binance-crisis-unfolded-7-month-pregnant-co-ceo-took-3-am-calls-led-100-person-war-room-to-tackle-heist-101793586500678.html"
+          },
+          {
+            "title": "Binance hack: What we know about £4bn crypto heist | The Independent",
+            "url": "https://www.independent.co.uk/news/uk/home-news/binance-hack-crypto-heist-bitcoin-b3076214.html"
+          }
+        ],
+        "title_zh": "比特币、以太坊预测：60亿美元币安黑客攻击撼动BTC/USD和ETH/USD"
       }
     },
     "366de7651b6739d9e0f8354acb4d59c8a85d89e108a481e40739d5086e724a06": {
@@ -18763,6 +18681,36 @@
         "source_category": "crypto-markets"
       }
     },
+    "3a6bfc8eb8e35cd55ce17e3add9ded9adf8eb7daf0220046eec9eb5808a35e30": {
+      "stored_at": "2026-11-09T07:09:08.059534+00:00",
+      "value": {
+        "duplicates": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            6,
+            7
+          ],
+          [
+            4,
+            9,
+            12,
+            14
+          ],
+          [
+            5,
+            8,
+            11,
+            13,
+            15,
+            16
+          ]
+        ]
+      }
+    },
     "3a733de4e63ef742818cf8d4d737dfc9525e6585c50314593bb7e22eaf2bad50": {
       "stored_at": "2026-11-09T01:32:00.173493+00:00",
       "value": {
@@ -19611,22 +19559,6 @@
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
-      }
-    },
-    "3c84330124769fa87b3b21b8a1ebf3b31577e3f16989e571e3700589d2051e7a": {
-      "stored_at": "2026-10-31T21:22:36.889858+00:00",
-      "value": {
-        "ai_reason": "This is a static price-conversion utility page (OUSD to INR) rather than a news development; it contains no event, disclosure, or in-window development, and is purely functional/promotional filler.",
-        "ai_score": 0.0,
-        "ai_summary": "A converter page showing the Open USD (OUSD) to Indian Rupee exchange rate on The Block's tools section.",
-        "ai_tags": [
-          "ousd",
-          "price-converter",
-          "stablecoin",
-          "tooling"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "3c931061546baf6da61582af6c526e0553f7e60907a21f4b48ade5737b44f9be": {
@@ -20992,6 +20924,23 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "4078328f7e5da84ed6e981506642711e37bb65391c4062c760eee379a2146644": {
+      "stored_at": "2026-11-09T07:09:01.136779+00:00",
+      "value": {
+        "ai_reason": "The content reports a notable political figure's confirmed involvement with a crypto company, which is relevant for market sentiment and regulatory optics. However, it is primarily a political statement with unclear immediate material impact on markets or operations. The discussion quality is not applicable as no comments were provided.",
+        "ai_score": 6.5,
+        "ai_summary": "特朗普确认与儿子共同拥有加密公司World Liberty Financial，但表示不了解其业务，并称由儿子负责运营。",
+        "ai_tags": [
+          "crypto-regulation",
+          "political-risk",
+          "market-sentiment",
+          "trump"
+        ],
+        "category": "crypto-regulation",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets"
+      }
+    },
     "407cb8bec0e16a6a96d316f352ecbef1ae65b107ceace7fd89a428f0ae383d26": {
       "stored_at": "2026-11-08T08:55:57.755213+00:00",
       "value": {
@@ -21594,22 +21543,6 @@
             9
           ]
         ]
-      }
-    },
-    "42eac048075f374eccab69b8c092f054176d6440a6c8f57b292c0e95ff0d38cb": {
-      "stored_at": "2026-10-31T17:59:20.640659+00:00",
-      "value": {
-        "ai_reason": "Automated price/chart landing page for a micro-cap meme token (KIMCHI), with no in-window development, announcement, or actionable market information. Falls under noise: routine price-tracking content with no evident impact.",
-        "ai_score": 0.5,
-        "ai_summary": "A CryptoSlate price page showing the current quote, market cap, and volume for the micro-cap token Aura Final Boss (KIMCHI).",
-        "ai_tags": [
-          "crypto-markets",
-          "price-data",
-          "micro-cap",
-          "meme-token"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "42fa520900effcc946810f0788eca5a786b94149ffff296d3a747f949f01fa85": {
@@ -22936,6 +22869,25 @@
         "title_zh": "Nvidia调查黄仁勋与一名中国间谍的关系"
       }
     },
+    "4729b79d509fa702995bcad08fa70db0a8896c601de68c436844b844ff821895": {
+      "stored_at": "2026-11-09T07:09:01.135602+00:00",
+      "value": {
+        "ai_reason": "The article reports a notable price movement and trading activity for a specific tokenized stock derivative (NVDAUSDT) on Binance, triggered by a non-financial, personal news event concerning Nvidia's CEO. The impact is confined to a single exchange's derivative product, with no evidence of broader market or systemic effects. The content provides concrete data on volume and open interest, making it more than routine noise but not a high-value market-structure development.",
+        "ai_score": 6.5,
+        "ai_summary": "受英伟达CEO个人事件影响，币安NVDAUSDT永续合约价格较美股前收盘价一度下跌4.2%，其24小时交易量与未平仓合约在追踪的八大平台中均排名第一。",
+        "ai_tags": [
+          "exchange-operations",
+          "derivatives",
+          "tokenized-stocks",
+          "nvidia",
+          "binance"
+        ],
+        "category": "crypto-markets",
+        "detailed_summary_zh": "受英伟达CEO个人事件影响，币安NVDAUSDT永续合约价格较美股前收盘价一度下跌4.2%，其24小时交易量与未平仓合约在追踪的八大平台中均位列第一。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "英伟达CEO个人事件余波：币安NVDAUSDT较美股前收盘价下跌4.2%，交易量居首"
+      }
+    },
     "472a33a8707ca33f51f0acd5a4cdc5b49a4866120b1a4457f74751c708f27d2b": {
       "stored_at": "2026-11-05T03:08:07.205281+00:00",
       "value": {
@@ -23398,23 +23350,6 @@
         "score_model": "siliconflow:Qwen/Qwen3.5-27B"
       }
     },
-    "48c9335e03ddfc1a8779ed387f6f7ac672c591989c9f228a30bb4e2b56550c03": {
-      "stored_at": "2026-10-31T17:59:20.639752+00:00",
-      "value": {
-        "ai_reason": "Threshold pausing tBTC minting and redemptions is a halt of a widely integrated wrapped-Bitcoin asset, and Aave freezing its tBTC reserve is a material risk-management action affecting collateral and liquidations on the largest lending market. This is a concrete in-window operational/security development with direct user impact, though losses are not yet quantified and it falls short of a confirmed large-scale exploit or systemic insolvency.",
-        "ai_score": 8.0,
-        "ai_summary": "Threshold halted tBTC minting and redemptions, prompting Aave to freeze its tBTC reserve as a precautionary measure against bad debt and collateral risk.",
-        "ai_tags": [
-          "tBTC",
-          "Aave",
-          "Threshold",
-          "DeFi risk",
-          "wrapped bitcoin"
-        ],
-        "category": "crypto-protocols",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "48cf597fb1c4184a19a7514c04fd78e9d3a9c55bbc1b4ac903e8168590be3242": {
       "stored_at": "2026-11-09T05:53:22.994584+00:00",
       "value": {
@@ -23706,22 +23641,6 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "crypto-markets",
         "title_zh": "EIP-8037状态Gas规则强制以太坊去中心化应用重写计费逻辑"
-      }
-    },
-    "49a22e3c0885c81b985627c6753869b9ec63f5391b732a4c59f7a79c48b2cc4a": {
-      "stored_at": "2026-10-31T17:59:20.639292+00:00",
-      "value": {
-        "ai_reason": "This is an auto-generated price conversion tool page (HTX to USD) from The Block's converter section, not a news development. It contains no in-window event, announcement, or analysis, and is purely functional reference content — effectively noise for curation purposes.",
-        "ai_score": 0.5,
-        "ai_summary": "A static currency converter page for checking the HTX DAO token's value in US dollars, with no accompanying news or market event.",
-        "ai_tags": [
-          "htx",
-          "price-converter",
-          "tools",
-          "crypto-markets"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "49a356613caecacb53f47c91ae21f7a95fc07abe836461f93e801b3cd3f201e6": {
@@ -24107,6 +24026,22 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "4af56c0a3194b941ca79090afb826081f03749888bbe759270f764502d9e41c5": {
+      "stored_at": "2026-11-09T07:09:01.137109+00:00",
+      "value": {
+        "ai_reason": "Content provides a timely analysis of high-impact macroeconomic data (non-farm payrolls) and a notable AI governance risk (NVIDIA board investigation), both relevant to market sentiment. However, it is primarily analytical commentary and market interpretation rather than a concrete new development within the news window. The discussion connects macro and tech risks to market implications, offering useful context but not a groundbreaking event.",
+        "ai_score": 6.5,
+        "ai_summary": "Bitunix分析师指出，强劲的美国10月非农就业数据推高了美联储12月加息预期，同时NVIDIA董事会因创始人黄仁勋可能成为外国情报目标的报道启动独立调查，为市场增添了AI治理与国家安全风险等变数。",
+        "ai_tags": [
+          "macro-regulation",
+          "ai-labs",
+          "crypto-markets",
+          "monetary-policy"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
+      }
+    },
     "4af7495e6cdf5de9f83742852f96d4487eb2837eb90d50161e922775148a2766": {
       "stored_at": "2026-11-09T02:32:34.401725+00:00",
       "value": {
@@ -24343,6 +24278,25 @@
         ],
         "category": "crypto-markets",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
+      }
+    },
+    "4c16036126ec34314d4b0cc7d0f5368512d712ff177ed994b58432329d8e6042": {
+      "stored_at": "2026-11-09T07:09:01.140928+00:00",
+      "value": {
+        "ai_reason": "This is a routine operational update from a major exchange, restoring a specific asset's withdrawal functionality after a prior disruption. It is important for affected users but does not represent a major new incident, systemic change, or groundbreaking development. The impact is localized to the Hyperliquid asset and Binance users.",
+        "ai_score": 6.5,
+        "ai_summary": "币安恢复了Hyperliquid（H...）的提现功能。",
+        "ai_tags": [
+          "exchange-operations",
+          "withdrawals",
+          "binance",
+          "hyperliquid"
+        ],
+        "category": "exchange-operations",
+        "detailed_summary_zh": "币安已恢复Hyperliquid（H...）的提现功能。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "exchange-announcements",
+        "title_zh": "币安恢复Hyperliquid（H...）提现服务"
       }
     },
     "4c1662f9279443afbf5536caf0947f81999ecbdc02c6bcd41c44b60035d90578": {
@@ -25536,6 +25490,25 @@
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
+      }
+    },
+    "507a316365d2e905239ca0e474510419dd12e4092e1daa943da4761b2eee731c": {
+      "stored_at": "2026-11-09T07:09:01.139064+00:00",
+      "value": {
+        "ai_reason": "The article discusses a significant, non-obvious security risk in wallet recovery processes that has material user impact, elevating it above routine security content. It addresses a substantive operational challenge for users and security teams.",
+        "ai_score": 7.0,
+        "ai_summary": "文章探讨了恢复被黑加密钱包时的一个关键隐患：攻击者可能仍保留着恢复后的钱包的访问密钥，从而能再次盗取资金。",
+        "ai_tags": [
+          "wallet-security",
+          "crypto-recovery",
+          "private-keys",
+          "user-education",
+          "blockchain-security"
+        ],
+        "category": "crypto-markets",
+        "detailed_summary_zh": "本文探讨了恢复被黑加密钱包时的一个关键隐患：攻击者可能仍保留着恢复后钱包的访问密钥，从而能够再次盗取资金。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "恢复被黑加密钱包的陷阱：窃贼可能仍持有密钥"
       }
     },
     "507dd29a67ef09d9cfce859b2139463ff0b03b75981aca707687fcf38719de65": {
@@ -28306,22 +28279,6 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
-    "599d0edca0fa06782094947b748b41491f3626e75d7802711e24a7d4887ef43c": {
-      "stored_at": "2026-10-31T21:22:36.889720+00:00",
-      "value": {
-        "ai_reason": "This is a generic price-conversion tool page (DATA to USD) with no news substance, no in-window development, and no editorial content beyond a headline link. It functions as a utility/reference page rather than reporting, so it carries no value for market, protocol, or regulatory monitoring.",
-        "ai_score": 0.5,
-        "ai_summary": "A Data Network (DATA) to US dollar conversion page offering a live price lookup utility rather than any news development.",
-        "ai_tags": [
-          "price-data",
-          "converter",
-          "data-network",
-          "market-tools"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "59a0861cbccfef17ba2bd8765f23b11ba3901f1531a30388154cf553efe325f1": {
       "stored_at": "2026-11-05T21:02:07.363761+00:00",
       "value": {
@@ -28354,6 +28311,25 @@
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
+      }
+    },
+    "59a8e1be0d0b7185d002115a4d2f66ea120f2beb1b835e730d69b4c557052ab7": {
+      "stored_at": "2026-11-09T07:09:01.140736+00:00",
+      "value": {
+        "ai_reason": "Reports on-chain movement of funds from a sanctioned mixer to a specific exchange and asset swap. While indicative of potential hacker activity and relevant for market surveillance, the scale (~$3.7M) is not systemic, the impact on markets is indirect and unproven, and the narrative relies on attribution ('hacker') without confirmed exploit details. It is interesting for chain analysts but lacks immediate, high-impact implications.",
+        "ai_score": 5.5,
+        "ai_summary": "过去20小时内，疑似黑客将价值约373万美元的ETH从Tornado Cash存入Hyperliquid交易所并卖出，购买了等值的2959枚ZEC。",
+        "ai_tags": [
+          "on-chain-analysis",
+          "tornado-cash",
+          "hyperliquid",
+          "zec",
+          "market-surveillance"
+        ],
+        "category": "crypto-markets",
+        "detailed_summary_zh": "过去20小时内，疑似黑客将价值约373万美元的ETH从Tornado Cash存入Hyperliquid交易所并卖出，购入了等值的2959枚ZEC。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "黑客疑似正出售ETH买入ZEC！"
       }
     },
     "59b515d484c2fb4223fa47e9798ae35770cc60f79d606a2b7d7aebc6a1cf6752": {
@@ -28904,24 +28880,6 @@
         "title_zh": "高盛正从其银行家和交易员的工作站移除Claude Code AI工具"
       }
     },
-    "5b9ed77a8ab88b7f963798401abeff35e97fce538af3fa0a18e77c4aa55fa03c": {
-      "stored_at": "2026-10-31T17:59:20.638493+00:00",
-      "value": {
-        "ai_reason": "This is a concrete, in-window follow-up from Binance confirming it has restored roughly 90% of the crypto stolen in a security breach and will absorb the remaining financial losses itself. Exchange-level loss absorption and near-full user reimbursement is materially significant for affected users and for confidence in centralized-exchange custody, and it is more than routine PR. It falls short of the 8.5-9.0 band because the underlying exploit is background context rather than a new incident occurring in this window — the new development is the recovery/reimbursement status, not a fresh systemic shock.",
-        "ai_score": 7.5,
-        "ai_summary": "Binance said it has replenished about 90% of the crypto stolen in a security breach and will cover the remaining losses itself rather than passing them on to users.",
-        "ai_tags": [
-          "Binance",
-          "exchange-security",
-          "fund-recovery",
-          "user-reimbursement",
-          "crypto-hack"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
     "5bb368b48fe5b743b4e2486eed8714ca0a394c54c59ff7b807dafe9f67c3c577": {
       "stored_at": "2026-11-09T05:02:07.529814+00:00",
       "value": {
@@ -29188,6 +29146,24 @@
         "category": "crypto-regulation",
         "score_model": "siliconflow:Qwen/Qwen3.5-27B",
         "source_category": "crypto-protocols"
+      }
+    },
+    "5cf2fdc117c7b9e76e9946e0a68b8dbdda6341102e01c12e2bb82d365c0c504c": {
+      "stored_at": "2026-11-09T07:09:01.137740+00:00",
+      "value": {
+        "ai_reason": "The content describes a significant, practical security vulnerability affecting a major global car brand, with demonstrated impact and technical detail. It represents a high-value security disclosure with real-world implications for vehicle owners and manufacturer security practices, though it is not a systemic, market-moving event.",
+        "ai_score": 7.5,
+        "ai_summary": "安全研究人员披露了一个漏洞，允许攻击者远程解锁全球大部分地区特定汽车品牌（推测为丰田/雷克萨斯）的车辆。",
+        "ai_tags": [
+          "security",
+          "automotive",
+          "vulnerability",
+          "privacy"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "安全研究人员披露了一个安全漏洞，攻击者可借此远程解锁全球大部分地区某特定汽车品牌（推测为丰田/雷克萨斯）的车辆。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "在全球多数地区解锁X品牌任意车辆"
       }
     },
     "5d072b8c6868a0d772915d5779d56ba7e4feecfac6b1edbbfac6ad54831eddb9": {
@@ -30002,6 +29978,23 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
+    "60105d2a4124bd8f180519fc97848d0e96bc4e4b7600a8b73ffb39e088f0d9a0": {
+      "stored_at": "2026-11-09T07:09:01.136353+00:00",
+      "value": {
+        "ai_reason": "The content is a link to an article about AI data center delays, which touches on infrastructure and potential financial/regulatory implications. This is an interesting topic with relevance to AI development and market operations, but without the article content, the specific impact and novelty cannot be fully assessed. The score reflects a baseline for a substantive industry discussion.",
+        "ai_score": 6.5,
+        "ai_summary": "文章探讨了人工智能数据中心项目延期所涉及的责任与成本承担问题。",
+        "ai_tags": [
+          "ai-infrastructure",
+          "data-centers",
+          "project-delay",
+          "cost-allocation"
+        ],
+        "category": "ai-media",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets"
+      }
+    },
     "6022dbb7d9c71dcbd9e04fe00d61a7faca92239036b330d034d361b71eacbf01": {
       "stored_at": "2026-11-08T14:43:08.647969+00:00",
       "value": {
@@ -30648,6 +30641,25 @@
         "source_category": "crypto-markets"
       }
     },
+    "624467cb8bb5385beb282a0f6e392a1ee84b67b762dc65dc96da35dd57622820": {
+      "stored_at": "2026-11-09T07:09:01.137953+00:00",
+      "value": {
+        "ai_reason": "Content is a blog post discussing the existence of an AI bubble, with a high-engagement Hacker News comment thread attached. The discussion is substantive, covering historical tech parallels, investment timing, and technical trends, but the core article is primarily market commentary and opinion, not a concrete development. It's interesting for community discourse but lacks immediate, actionable impact.",
+        "ai_score": 5.5,
+        "ai_summary": "一篇博客文章认为当前的人工智能热潮并非泡沫，并附带了Hacker News上关于投资时机、技术发展轨迹和行业动态的广泛讨论。",
+        "ai_tags": [
+          "artificial-intelligence",
+          "market-commentary",
+          "tech-bubble",
+          "investment",
+          "community-discussion"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "一篇博客文章指出当前的人工智能热潮并非泡沫，并引用了Hacker News上关于投资时机、技术发展轨迹及行业动态的广泛讨论。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "我不认为存在AI泡沫"
+      }
+    },
     "624979d6742208582dd6524f1700fdfdaec44f9a8d985589a1dbd8fb294b9aea": {
       "stored_at": "2026-11-09T05:22:15.619216+00:00",
       "value": {
@@ -30793,23 +30805,6 @@
         ],
         "category": "tech-community",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
-      }
-    },
-    "62961a5d3412a797ae60e1aedaa5918063ac4c77d871dbf5f185636f3657a417": {
-      "stored_at": "2026-10-31T17:59:20.640141+00:00",
-      "value": {
-        "ai_reason": "A security warning that the Molly third-party Signal fork has gone three months without updates and carries unpatched vulnerabilities — meaningful for its existing users but with limited reach beyond a niche privacy-tool audience, and no crypto or broader ecosystem impact. HN discussion is substantive: commenters note Signal now supports multi-device linking (removing a key reason to use Molly), clarify that the official APK does self-update, and debate Signal's pragmatic stance against third-party clients, which adds useful context but not new urgency.",
-        "ai_score": 5.5,
-        "ai_summary": "Users flag that the Molly fork of Signal has gone unmaintained for roughly three months, leaving it exposed to known vulnerabilities, while commenters point out that upstream Signal now offers multi-device linking that erodes Molly's main advantage.",
-        "ai_tags": [
-          "signal",
-          "messaging-security",
-          "open-source-maintenance",
-          "privacy",
-          "vulnerability"
-        ],
-        "category": "tech-community",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "62e1503d999b2a99b19109b64cff5822b7046bdc1378132c39b8d242b3d5623c": {
@@ -31111,22 +31106,6 @@
         "category": "ai-labs",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
-      }
-    },
-    "63dce377e7b80008fc226de1a972807f88c5fcd9df1900e1793f6fcdd3eeaddf": {
-      "stored_at": "2026-10-31T21:22:36.890339+00:00",
-      "value": {
-        "ai_reason": "A static price-conversion utility page (AKE/GBP) auto-generated by The Block; it carries no reporting, in-window development, or analysis, and is effectively noise for news curation purposes.",
-        "ai_score": 1.5,
-        "ai_summary": "A currency converter page for swapping Akedo (AKE) values into British pounds, with no accompanying news or market event.",
-        "ai_tags": [
-          "ake",
-          "gbp",
-          "price-converter",
-          "the-block"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "63eba7924dfb5120a26ba6a5686c979b3f5a093349287f57e59f7bcb6b99531d": {
@@ -34749,6 +34728,43 @@
         "source_category": "crypto-markets"
       }
     },
+    "6fc92b7a68411f085a38adf256d49d914f43d6522d9cd280b2960f7710e7ad82": {
+      "stored_at": "2026-11-09T07:10:03.193783+00:00",
+      "value": {
+        "background": "",
+        "background_zh": "币安是全球主要的加密货币交易所之一，此前设立了一个规模约10亿美元的紧急保险基金（SAFU），旨在发生安全漏洞时保护客户。原首席财务官Kaiser Ng在黑客攻击发生后离职。",
+        "community_discussion": "",
+        "detailed_summary": "",
+        "detailed_summary_zh": "币安在遭受约63亿美元的黑客攻击后，已预留自有资金以弥补损失，并向客户保证其不会承担相关损失。同时，该公司任命了一位新的首席财务官。\n\n此次事件是加密货币行业有记录以来规模最大的黑客攻击之一，币安动用自有资金并冻结部分被盗资产以覆盖损失，旨在维持用户对交易所的信任。\n\n币安预留了约63.4亿美元自有资金来覆盖此次黑客攻击造成的损失，其中包括冻结了约30亿美元的被盗资产。公司创始人赵长鹏在2026年10月29日确认了此次攻击，并保证用户资金安全。",
+        "editorial_tags": [
+          "币安",
+          "黑客攻击",
+          "加密货币",
+          "首席财务官",
+          "赵长鹏"
+        ],
+        "enrichment_status": "complete",
+        "sources": [
+          {
+            "title": "Binance crypto hack: What happens to customer funds on exchanges",
+            "url": "https://www.cnbc.com/make-it/2026/10/30/binance-crypto-hack-customer-funds.html"
+          },
+          {
+            "title": "Binance arranges $6.34 billion to cover losses from biggest crypto...",
+            "url": "https://www.coindesk.com/business/2026/10/30/binance-arranges-usd6-34-billion-to-cover-losses-from-record-crypto-hack"
+          },
+          {
+            "title": "Финансовый директор Binance Кайзер Нг покидает компанию...",
+            "url": "https://gagadget.com/ru/733282-finansovyij-direktor-binance-uhodit-v-otstavku-posle-masshtabnogo-vzloma-kriptobirzhi/"
+          },
+          {
+            "title": "Changpeng Zhao Confirms Binance Hack | Gokhshtein",
+            "url": "https://gokhshtein.com/news/2026-10-29-changpeng-zhao-confirms-binance-hack-assures-user-funds-are"
+          }
+        ],
+        "title_zh": "币安在遭受63亿美元的黑客攻击后，向客户保证其不会承担损失，并任命了新的首席财务官"
+      }
+    },
     "6fd684a9bfe761ef516c95450555456c14ec81179c3919e3c2944f1d43e96c99": {
       "stored_at": "2026-11-05T04:44:11.844247+00:00",
       "value": {
@@ -35125,6 +35141,25 @@
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
+      }
+    },
+    "71456f9e8921386098ee17437c898a840552c0f027a6d4cbc5d2c8866a6de023": {
+      "stored_at": "2026-11-09T07:09:01.140134+00:00",
+      "value": {
+        "ai_reason": "The CFO of a major global exchange stepping down constitutes a significant leadership change with potential implications for corporate strategy, financial operations, and market perception. This qualifies as a high-value development in exchange operations, though it is not a systemic market event or a paradigm shift.",
+        "ai_score": 7.5,
+        "ai_summary": "币安首席财务官Kaiser Ng已离职，标志着这家加密巨头领导层发生重大变动。",
+        "ai_tags": [
+          "binance",
+          "leadership",
+          "corporate-governance",
+          "exchange-operations"
+        ],
+        "category": "exchange-operations",
+        "detailed_summary_zh": "币安首席财务官Kaiser Ng已离职，标志着这家加密巨头领导层发生重大变动。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "exchange-announcements",
+        "title_zh": "币安首席财务官Kaiser Ng离职：加密巨头开启新篇章"
       }
     },
     "71535d38bae5440f8b76ba718cc2a7dfbe9ab92b5a09b1457518867e8eef9e0a": {
@@ -35585,6 +35620,24 @@
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
+      }
+    },
+    "72be3edd7d96fff73b7515b331906acd732b940efff4c842ac5a5b31d3a9557b": {
+      "stored_at": "2026-11-09T07:09:01.138361+00:00",
+      "value": {
+        "ai_reason": "Content is a simple, backward-looking price performance comparison with no concrete new development, catalyst, or analysis within the specified news window. It lacks evidence of impact, novelty, or actionable insight.",
+        "ai_score": 3.0,
+        "ai_summary": "文章指出Avalanche（AVAX）在过去四周下跌28%，表现落后于同期比特币和以太坊的跌幅。",
+        "ai_tags": [
+          "crypto-markets",
+          "avalanche",
+          "price-analysis"
+        ],
+        "category": "crypto-markets",
+        "detailed_summary_zh": "文章指出，Avalanche（AVAX）在过去四周内下跌了28%，其表现落后于同期比特币和以太坊的跌幅。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-protocols",
+        "title_zh": "AVAX四周内下跌28%，表现逊于比特币和以太坊"
       }
     },
     "72d78b979f2af93f879c0b8490c143e93d93a7268af9391f33a2f61e0d94154a": {
@@ -36203,6 +36256,24 @@
         "category": "ai-devtools",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "tech-community"
+      }
+    },
+    "74d9201ffa6edccb051a92ca6fec80631f736b73688aaa7c945e062a7d832bee": {
+      "stored_at": "2026-11-09T07:09:01.139448+00:00",
+      "value": {
+        "ai_reason": "The content reports on internal pressure at Apple to accelerate Siri's AI agent development to compete with rivals, representing a notable but incremental strategic move within the AI industry. It is based on a credible report but describes an ongoing internal effort rather than a concrete product launch, capability breakthrough, or safety incident. The news is interesting for tracking competitive dynamics but lacks the immediate, ecosystem-wide impact of a major model release or regulatory decision.",
+        "ai_score": 6.5,
+        "ai_summary": "据报道，苹果CEO约翰·特努斯正施压AI负责人克雷格·费德里吉加速Siri的AI智能体开发路线图，以与OpenAI的Dots或Meta的Muse等竞争对手抗衡。",
+        "ai_tags": [
+          "ai-labs",
+          "artificial-intelligence",
+          "voice-assistant",
+          "corporate-strategy"
+        ],
+        "category": "ai-media",
+        "detailed_summary_zh": "据报道，苹果CEO约翰·特努斯正施压AI负责人克雷格·费德里吉加速Siri的AI智能体开发路线图，以与OpenAI的Dots或Meta的Muse等竞争对手抗衡。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "苹果正竞速提升Siri的智能体能力"
       }
     },
     "74f2f2bbc4b200359d29cc6d9394a887b25f5c3858d282502c4d01eefe758be1": {
@@ -38279,22 +38350,6 @@
         "title_zh": "美情报备忘录称Megaspeed高管被招募监视英伟达CEO"
       }
     },
-    "7ade2c6ec1a5de56a6bdf95f4ce7f555493fb3b78a3c6706e2488b8f20998da3": {
-      "stored_at": "2026-10-31T21:22:36.890237+00:00",
-      "value": {
-        "ai_reason": "This is a generic currency converter utility page (USDGO to CAD) from The Block, not a news event. It contains no in-window development, no reporting substance, and no market-moving information — effectively navigational/SEO filler.",
-        "ai_score": 0.0,
-        "ai_summary": "A USDGO-to-Canadian-Dollar conversion tool page with no accompanying news content.",
-        "ai_tags": [
-          "stablecoin",
-          "converter",
-          "seo-filler",
-          "irrelevant"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "7b14f43bd6e09ef14220e563977d6bf3c03daa7977c70e307c44813d68cc0fb8": {
       "stored_at": "2026-11-01T23:29:22.027168+00:00",
       "value": {
@@ -38892,24 +38947,6 @@
         "category": "crypto-protocols",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
-      }
-    },
-    "7d9267d34465018cefed510a0227942e692af4c0b4fffaeab0d1f9cb2a4d7400": {
-      "stored_at": "2026-10-31T17:59:20.638203+00:00",
-      "value": {
-        "ai_reason": "The piece is derivative social-media commentary: it centers on a public spat between Changpeng Zhao and Elon Musk over remarks made in the aftermath of a reported $6.3 billion crypto heist. The underlying heist would be a top-tier security event, but this article supplies no specifics on the incident itself — no affected protocol, exchange, or user losses — so its standalone informational value is that of notable market commentary rather than a primary incident report.",
-        "ai_score": 6.5,
-        "ai_summary": "Binance co-founder Changpeng Zhao and Elon Musk traded barbs on X over trolling amid the fallout from a reported $6.3 billion crypto heist.",
-        "ai_tags": [
-          "binance",
-          "cz",
-          "elon-musk",
-          "crypto-heist",
-          "social-media"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
       }
     },
     "7d98083096b5290ac38f193be8fbb51300dc8e37829b34e604e2ef5d5a7af339": {
@@ -40225,22 +40262,6 @@
         ],
         "category": "ai-labs",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
-      }
-    },
-    "82000d1f4af0c1f4050c09065275d1e897c17e60c374c67ed840e15f8f15ad14": {
-      "stored_at": "2026-10-31T21:22:36.890435+00:00",
-      "value": {
-        "ai_reason": "This is an auto-generated cryptocurrency price converter landing page (DATA to RUB) rather than a news article; it contains no in-window development, reporting, or analysis, and falls under noise/utility content.",
-        "ai_score": 1.0,
-        "ai_summary": "A price-conversion utility page for swapping Data Network (DATA) values into Russian Rubles, with no accompanying news or market analysis.",
-        "ai_tags": [
-          "price-converter",
-          "data-network",
-          "rub",
-          "tooling"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "82291592cfbcb771e36aa23a1c9e4aa543632247ad5729acaa12a3097ab000a1": {
@@ -42101,23 +42122,6 @@
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
-      }
-    },
-    "8928e0bada84abf1647394243b83726bd0e59e851cbc8282912cb49a55ea6c4f": {
-      "stored_at": "2026-10-31T21:22:36.890865+00:00",
-      "value": {
-        "ai_reason": "This is a generic fiat-conversion tool page (OUSD/GBP) from The Block's converter section, not a news event. It carries no in-window development, announcement, or analysis, and simply republishes a price-conversion utility.",
-        "ai_score": 0.5,
-        "ai_summary": "A static Open USD (OUSD) to British pound conversion tool page with no accompanying news or analysis.",
-        "ai_tags": [
-          "ousd",
-          "price-converter",
-          "stablecoin",
-          "gbp",
-          "tools"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "89490076c038782990004eb0a54847975660609b6a3e90a13e07f0300043ab01": {
@@ -44981,24 +44985,6 @@
         "source_category": "crypto-markets"
       }
     },
-    "93f280e8250a5d9417749ea4043a74c4a0164f26dc36cb67fcb663d6c741d27f": {
-      "stored_at": "2026-10-31T17:59:20.637895+00:00",
-      "value": {
-        "ai_reason": "This is a retrospective explainer revisiting the 2019 Binance hack, an event far outside the 2026-10-31 news window. No new development, disclosure, or in-window update is present, so it carries no fresh signal for market, security, or operational monitoring.",
-        "ai_score": 0.0,
-        "ai_summary": "A Decrypt explainer recounting the 2019 Binance breach, framed as the largest crypto heist in history, with no new in-window development.",
-        "ai_tags": [
-          "binance",
-          "exchange-hack",
-          "security",
-          "historical-recap",
-          "crypto-crime"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
     "9408cb0aaffa9b14c811ea49b056f2220af525a001e40d3885c4829a46b0c0c2": {
       "stored_at": "2026-11-02T12:46:40.233627+00:00",
       "value": {
@@ -45436,24 +45422,6 @@
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
-      }
-    },
-    "9534b7338bb07fe6f2b1cdad4bd2359b119fc6439a7c18a2302440ef9671fdb7": {
-      "stored_at": "2026-10-31T17:59:20.639385+00:00",
-      "value": {
-        "ai_reason": "A confirmed hot-wallet compromise at Binance — the largest exchange by volume — with an estimated $6.3 billion impact is a systemic-scale security event, well beyond the >$500M threshold for top-tier scoring. Even as a headline-level report arriving inside the news window, the magnitude of user-fund exposure and the potential for contagion across market structure (withdrawals, liquidity, counterparty confidence) places it at the extreme end of the scale.",
-        "ai_score": 9.5,
-        "ai_summary": "Binance reported that an attack on its hot wallets produced an estimated $6.3 billion in impact, marking one of the largest exchange security incidents on record.",
-        "ai_tags": [
-          "binance",
-          "exchange-hack",
-          "hot-wallet",
-          "security-incident",
-          "systemic-risk"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
       }
     },
     "9534d436f127d2c44032147cb15644e5504a1bffdc62a09481db4ef8f798dbfc": {
@@ -46947,6 +46915,26 @@
         "source_category": "exchange-announcements"
       }
     },
+    "99caccc35950298d0c25f7de4fb8340a306cb666d77ad179ad741ae37c3584e1": {
+      "stored_at": "2026-11-09T07:09:01.138533+00:00",
+      "value": {
+        "ai_reason": "The article describes a significant regulatory and market-structure development involving a major new financial product from the crypto space that is provoking a competitive conflict with traditional Wall Street firms. This represents a material development with potential to reshape market access and industry structure, fitting the 'Groundbreaking' criteria for major regulatory/legal decisions or systemic market events.",
+        "ai_score": 8.5,
+        "ai_summary": "一种源自加密货币领域的新型热门金融产品引发了华尔街机构间的激烈竞争，并可能触发重大的监管审查。",
+        "ai_tags": [
+          "crypto-regulation",
+          "crypto-markets",
+          "macro-regulation",
+          "financial-products",
+          "wall-street"
+        ],
+        "category": "crypto-regulation",
+        "detailed_summary_zh": "一种源自加密货币领域的新型热门金融产品引发了华尔街机构间的激烈竞争，并可能触发重大的监管审查。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets",
+        "title_zh": "一种源自加密领域的新型热门押注引发华尔街地盘争夺战"
+      }
+    },
     "99e2665a40387a7aaec315949f8fc0519e22b91e46fa6a65b79abd57e14a678f": {
       "stored_at": "2026-11-05T21:02:07.356948+00:00",
       "value": {
@@ -48138,24 +48126,6 @@
         ]
       }
     },
-    "9cd3bc162d9c13e2a250beda327b5070c581f3eef9f6a13f8433e34d38efb563": {
-      "stored_at": "2026-10-31T17:59:20.638399+00:00",
-      "value": {
-        "ai_reason": "Reports a concrete follow-up development — Binance restoring 90% of the assets taken in a security incident — which is meaningful for affected users but is a remediation update rather than a new exploit or market-moving event. The article gives no loss figure, timeline, or market transmission path, limiting urgency; the underlying breach itself predates this window.",
-        "ai_score": 5.5,
-        "ai_summary": "Binance has replenished roughly 90% of the assets stolen in a prior security incident, according to CNA, signaling progress on user restitution without details on the size or timing of the losses.",
-        "ai_tags": [
-          "binance",
-          "exchange-security",
-          "incident-recovery",
-          "user-restitution",
-          "exchange-operations"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
     "9cd60cde2e72f6c5ad67a875b9a41a0dd99c251c08e2e98639a49f725f5736c0": {
       "stored_at": "2026-11-02T11:44:27.884785+00:00",
       "value": {
@@ -49316,23 +49286,6 @@
         "source_category": "ai-media"
       }
     },
-    "a0d735f4951111e3e87499487948d04cc5fb8fdbeb11deba241c76938368ffd1": {
-      "stored_at": "2026-10-31T17:59:20.640819+00:00",
-      "value": {
-        "ai_reason": "This is a corporate press release from a small publicly traded mining firm that mainly comments on a prior Binance security incident and reports a patent grant update; it contains no new material development, no fresh incident details, and no market-wide implications. Reference to the Binance incident is background commentary rather than an in-window event, making this low-value promotional/recap content.",
-        "ai_score": 2.5,
-        "ai_summary": "DMG Blockchain Solutions issued a corporate statement commenting on a previously reported Binance security incident and providing an update on patents it has been granted.",
-        "ai_tags": [
-          "binance",
-          "security-incident",
-          "dmg-blockchain",
-          "patents",
-          "press-release"
-        ],
-        "category": "exchange-announcements",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "a0e1ec51e1c836ff5e5d9606d7c7d5dc0c3347043de77138f0dc64ad9aabff82": {
       "stored_at": "2026-11-02T02:44:27.630580+00:00",
       "value": {
@@ -49367,23 +49320,6 @@
         "category": "ai-labs",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "crypto-markets"
-      }
-    },
-    "a0ea73c7b2202bf4f5762d7a21537a5c1d3a53e0a63f428d2b26d013d2f74a78": {
-      "stored_at": "2026-10-31T17:59:20.640021+00:00",
-      "value": {
-        "ai_reason": "Material protocol security incident: 97 million CORE drained and contracts paused, indicating significant user and protocol impact. It is not clearly systemic or confirmed above the $50M loss threshold, so it lands below the top-tier exploit anchor.",
-        "ai_score": 8.0,
-        "ai_summary": "b14g reported that 97 million CORE tokens were drained and paused its contracts following the security incident.",
-        "ai_tags": [
-          "exploit",
-          "CORE",
-          "smart-contracts",
-          "DeFi-security",
-          "protocol-pause"
-        ],
-        "category": "crypto-protocols",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "a102d286f6ff3feda3b7a0283b7a334bb6a86a4b7e4677ad18caaf6af366800b": {
@@ -49620,6 +49556,25 @@
             3
           ]
         ]
+      }
+    },
+    "a1bb6322a2254bb9004a9f335ce6cdf3adec82905a8437e217b998cb733e0392": {
+      "stored_at": "2026-11-09T07:09:01.138698+00:00",
+      "value": {
+        "ai_reason": "The article reports on a major security incident involving a $6.3 billion heist at Binance, which is a top exchange. Such a large-scale exploit constitutes a material security event with significant user impact and broader industry implications, including prompting closer scrutiny from insurers. This qualifies as a major exchange security incident, aligning with the 'Groundbreaking' criteria for its scale and potential to reshape risk assessment and insurance practices.",
+        "ai_score": 8.5,
+        "ai_summary": "据报道，币安发生了一起价值63亿美元的黑客盗窃事件，预计将促使保险公司对该交易所进行更严格的审查。",
+        "ai_tags": [
+          "exchange-operations",
+          "security",
+          "insurance",
+          "regulation"
+        ],
+        "category": "exchange-operations",
+        "detailed_summary_zh": "据报道，币安遭遇价值63亿美元的黑客盗窃事件，预计此举将引发保险公司对该交易所进行更严格的审查。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "exchange-announcements",
+        "title_zh": "币安63亿美元盗窃案将促使保险公司加强审查"
       }
     },
     "a1c2a48fea3e265e64226cd00dc5b2508d80a80efe219af0135c4cf56bab8fbb": {
@@ -50126,24 +50081,6 @@
             16
           ]
         ]
-      }
-    },
-    "a39496a997d30814abc9118c5fa89bba57f1e82fba8913b5453ffc104b7afc5d": {
-      "stored_at": "2026-10-31T17:59:20.638085+00:00",
-      "value": {
-        "ai_reason": "DeepSeek's Harness team published a substantive technical design for a new 'Super-agent' architecture covering event-driven coordination, asynchronous multi-channel interaction, compute-storage separation, and external watchdogs, with an internal instance reportedly running in production for issue reproduction, code review, and self-iteration. This is a high-signal engineering deep-dive with clear implications for agent builders, though it is a design exploration rather than a frontier model release, open-weights drop, or benchmarked product launch.",
-        "ai_score": 7.0,
-        "ai_summary": "DeepSeek's Harness team outlined a new Super-agent architecture that moves beyond single-session agents through dual-layer orchestration, event-driven asynchronous multi-channel interaction, compute-storage separation, and external watchdogs, with an internal instance already handling code review and issue remediation.",
-        "ai_tags": [
-          "DeepSeek",
-          "AI agents",
-          "agent architecture",
-          "multi-agent systems",
-          "developer tools"
-        ],
-        "category": "ai-labs",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
       }
     },
     "a3a50d830909b4d513237ad0f002eddc4dc8f98eea2650887b5c18bf4c70a174": {
@@ -52165,22 +52102,6 @@
         "source_category": "crypto-markets"
       }
     },
-    "aa3cbdaf6ac1027626ed89c0cf342bbcf50ef7fefa47f0b5fd04ef88e5772765": {
-      "stored_at": "2026-10-31T21:22:36.889957+00:00",
-      "value": {
-        "ai_reason": "Auto-generated currency converter landing page for PEARL/IDR with no news substance, timestamps, or analysis; qualifies as noise rather than a market development.",
-        "ai_score": 0.5,
-        "ai_summary": "A generic Pearl (PEARL) to Indonesian Rupiah conversion tool page hosted on The Block, offering no new reporting or market event.",
-        "ai_tags": [
-          "pearl",
-          "price-converter",
-          "tools",
-          "crypto-markets"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "aa3fd3569b283ce6d59d880c1dd9aeff2585ec1b13cd3ce8d8b994e975fe1bfa": {
       "stored_at": "2026-11-05T21:02:07.352313+00:00",
       "value": {
@@ -54160,23 +54081,6 @@
         "source_category": "tech-community"
       }
     },
-    "b070faef7f743440718b6689bab22796ae5884e5e21e1271e0266c4b1fbc5e2a": {
-      "stored_at": "2026-10-31T17:59:20.638591+00:00",
-      "value": {
-        "ai_reason": "Binance’s statement that 90% of assets stolen in a $6.3 billion security breach have been replenished is a material exchange security and recovery development. The scale and top-exchange involvement make it high impact, though it is a remediation update rather than a new exploit.",
-        "ai_score": 8.5,
-        "ai_summary": "Binance announced that 90% of the crypto assets stolen in a $6.3 billion security breach have been replenished.",
-        "ai_tags": [
-          "Binance",
-          "security breach",
-          "stolen funds",
-          "exchange recovery",
-          "crypto security"
-        ],
-        "category": "exchange-announcements",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "b0773cf66bfceeda6892faefca12ec982d5cdbf407585a87dcec0b03c80e8e36": {
       "stored_at": "2026-11-02T13:22:20.554621+00:00",
       "value": {
@@ -54432,24 +54336,6 @@
             5
           ]
         ]
-      }
-    },
-    "b10a43148eeca98f0fed914836f2c3090ce5a635084642289ff1962ae81ad490": {
-      "stored_at": "2026-10-31T17:59:20.638687+00:00",
-      "value": {
-        "ai_reason": "A suspected security incident at a small exchange, disclosed via community reports and a single team member's social-media comment rather than an official announcement. Losses are described as limited (max ~850 USDT per affected user) with 72-hour reimbursement promised, so the material impact is minimal and the facts remain unconfirmed. Newsworthy as an operational/security signal for the venue, but well below systemic or material-loss thresholds.",
-        "ai_score": 4.5,
-        "ai_summary": "VergeX users reported receiving withdrawal verification codes before funds were drained from their accounts, and a team member said only a few users were affected with losses capped around 850 USDT each and full reimbursement within 72 hours.",
-        "ai_tags": [
-          "exchange-security",
-          "account-takeover",
-          "VergeX",
-          "reimbursement",
-          "incident"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
       }
     },
     "b111c959d47c0b84894c21fb2a6ce97dab3631997cf626b715b924b5597e032e": {
@@ -54832,6 +54718,26 @@
         "category": "crypto-protocols",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
+      }
+    },
+    "b24c840ec72fdf4367c30b7524563ba6f23e016a198e4fa747d0f40f4ef2f60f": {
+      "stored_at": "2026-11-09T07:09:01.137399+00:00",
+      "value": {
+        "ai_reason": "The article reports a concrete operational update from a major exchange (resuming withdrawals for specific assets ahead of schedule) and provides significant on-chain data showing a substantial post-hack decline in key reserves. The withdrawal resumption is a high-value operational action, and the reserve data, while referencing a past event, is presented as a current snapshot with material figures, indicating ongoing market impact. This combination warrants a score above a routine listing.",
+        "ai_score": 7.5,
+        "ai_summary": "币安宣布提前恢复HYPE和APT的提现服务，同时链上数据显示自10月29日黑客事件前以来，其BTC、ETH和以太坊链上稳定币储备均出现显著下降。",
+        "ai_tags": [
+          "exchange-operations",
+          "security",
+          "reserves",
+          "bitcoin",
+          "ethereum"
+        ],
+        "category": "exchange-operations",
+        "detailed_summary_zh": "币安宣布提前恢复HYPE和APT的提现服务，同时链上数据显示，自10月29日黑客事件发生前以来，其比特币、以太坊及以太坊链上稳定币储备均出现明显减少。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets",
+        "title_zh": "币安提前恢复HYPE和APT提现服务；BTC、ETH及稳定币储备显著下降"
       }
     },
     "b2541fd99dfc0550039a3fc48ec4c4e8073f7e8ed336dd9f20e67edaa2846deb": {
@@ -57332,6 +57238,23 @@
         "source_category": "exchange-announcements"
       }
     },
+    "bc211f78342a1fbca58d5fb0811c9190b9b634f11394ff50935dd2da235da448": {
+      "stored_at": "2026-11-09T07:09:01.139963+00:00",
+      "value": {
+        "ai_reason": "Content is a basic, generic educational primer on DeFi mechanics (wallet connection, on-chain positions). It lacks any new development, announcement, or timely analysis within the specified news window. It is low-priority, routine content.",
+        "ai_score": 3.0,
+        "ai_summary": "文章解释了DeFi应用的基本概念，包括钱包连接与链上借贷头寸记录的区别。",
+        "ai_tags": [
+          "defi",
+          "education",
+          "wallets"
+        ],
+        "category": "crypto-protocols",
+        "detailed_summary_zh": "文章解释了DeFi应用的基本概念，包括钱包连接与链上借贷头寸记录的区别。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "什么是DeFi应用？从钱包连接到借贷存款"
+      }
+    },
     "bc252728001026aee326ea22985707b009b50ec9f35f311fbfd28d93c7e6b335": {
       "stored_at": "2026-11-08T15:00:14.287200+00:00",
       "value": {
@@ -57410,24 +57333,6 @@
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
-      }
-    },
-    "bc611975340cb4a39a725fe3e13088bd097ec70ac73cf759793264904140b82b": {
-      "stored_at": "2026-10-31T17:59:20.639896+00:00",
-      "value": {
-        "ai_reason": "A credible security disclosure involving account takeover on ChatGPT is significant for a leading AI platform, and OpenAI confirmed the issue and fixed it. However, it was a responsibly disclosed vulnerability rather than an exploited incident, and the low bounty plus click-dependent chain limits severity. HN discussion is active and critical, focused on the bounty size and engineering complexity.",
-        "ai_score": 7.0,
-        "ai_summary": "Researchers disclosed a ChatGPT account-takeover vulnerability triggered by a crafted link, which OpenAI says its frontends rejected and has since fixed, awarding a $5,000 bounty.",
-        "ai_tags": [
-          "ChatGPT",
-          "account takeover",
-          "vulnerability disclosure",
-          "bug bounty",
-          "OpenAI security"
-        ],
-        "category": "ai-labs",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "tech-community"
       }
     },
     "bc63a218b31afb555f6836f93e909136e0306c576820d94360f633a2ba36b4c8": {
@@ -57566,6 +57471,23 @@
         "category": "crypto-regulation",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "crypto-markets"
+      }
+    },
+    "bcf6380bc1be90e3962e19e78215102d27867608d4f6bd9cd77fa41f8019c4f3": {
+      "stored_at": "2026-11-09T07:09:01.140562+00:00",
+      "value": {
+        "ai_reason": "The content reports on Qualcomm's exhibition of an on-device MoE agent at a trade show. This is an incremental product demonstration with limited novelty and no immediate, concrete impact on the broader AI ecosystem or market structure. It is an interesting but non-urgent development.",
+        "ai_score": 6.0,
+        "ai_summary": "高通在第九届进博会上展出了其终端侧MoE智能体技术。",
+        "ai_tags": [
+          "artificial-intelligence",
+          "on-device-ai",
+          "mixture-of-experts",
+          "qualcomm",
+          "trade-show"
+        ],
+        "category": "ai-media",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
     "bd003e01ca1341ab5394ac75c458c3611c66f8cb598fe85f38e9c4ff71eb4293": {
@@ -58455,6 +58377,22 @@
         "source_category": "crypto-markets"
       }
     },
+    "c02975229e44da30893d30cfee7f788f04db25bc409052ddccb209f405fb5541": {
+      "stored_at": "2026-11-09T07:09:01.141862+00:00",
+      "value": {
+        "ai_reason": "内容报告了一笔中等规模的链上资金流动（约45.1万美元），涉及从Tornado Cash提款并兑换为USDT后跨链。这属于常规的链上监控发现，对市场、协议或监管没有直接的重大影响，信息价值有限，主要满足社区好奇心。",
+        "ai_score": 4.5,
+        "ai_summary": "链上监测显示，某巨鲸从Tornado Cash提取约201.5枚ETH（价值约45.1万美元），通过CoW Protocol兑换为USDT后跨链至TRON网络。",
+        "ai_tags": [
+          "on-chain-analysis",
+          "ethereum",
+          "tornado-cash",
+          "whale-wallet"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
+      }
+    },
     "c02b9fa5d77df5a62acfa7d89bb6f07c7abf1d6b3877876c4338c27a31292e73": {
       "stored_at": "2026-11-08T08:24:21.093941+00:00",
       "value": {
@@ -58853,6 +58791,25 @@
         "category": "exchange-announcements",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
+      }
+    },
+    "c11910785ba35f179c6d4137883fab7da8654980aa69fb4b30ed63df2992974d": {
+      "stored_at": "2026-11-09T07:09:01.139253+00:00",
+      "value": {
+        "ai_reason": "The content describes a significant operational change by a major email provider (Outlook.com) that impacts email deliverability for senders without DMARC, but it is a specific platform policy update rather than a systemic internet-wide shift. The discussion quality is high, with experienced administrators sharing practical frustrations and context about Microsoft's opaque filtering practices. This is an important technical development for email infrastructure operators but has limited immediate, broad market or protocol impact.",
+        "ai_score": 6.0,
+        "ai_summary": "Outlook.com 已开始静默拒收未配置 DMARC 记录的域名发来的电子邮件，这一政策变化影响了部分自托管邮件服务器的邮件送达率。",
+        "ai_tags": [
+          "email",
+          "infrastructure",
+          "microsoft",
+          "dmarc",
+          "deliverability"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "Outlook.com 已开始静默拒收未设置 DMARC 记录的域名发来的电子邮件，这一政策调整影响了部分自托管邮件服务器的邮件送达率。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "Outlook.com 悄然拒收未配置 DMARC 记录的域名邮件"
       }
     },
     "c1385716497dad446dbe6f87afb29cd9d55d89f86da4279734b8970a36da4ed3": {
@@ -60176,6 +60133,24 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "c5713283e42ff48c7f4184617c6c5dbe3c2080519235ebe121e475a65b8243a6": {
+      "stored_at": "2026-11-09T07:09:01.139616+00:00",
+      "value": {
+        "ai_reason": "Content is a standard educational tutorial on a specific security tool (Revoke.cash) and block explorer (Etherscan) for managing token allowances. It provides useful, practical information for users but represents routine knowledge-sharing without novel developments, major security incidents, or significant protocol changes.",
+        "ai_score": 5.5,
+        "ai_summary": "该文章是一篇教育性教程，解释了如何在 Revoke.cash 和 Etherscan 上查看和撤销代币授权。",
+        "ai_tags": [
+          "security",
+          "tutorial",
+          "wallets",
+          "ethereum"
+        ],
+        "category": "crypto-protocols",
+        "detailed_summary_zh": "本文是一篇教育教程，详细解释了如何在 Revoke.cash 和 Etherscan 平台上查看及撤销代币授权。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "如何在 Revoke.cash 和 Etherscan 上查看代币授权"
+      }
+    },
     "c574a352ebf661d5225cf606c7bf3871216e2013bfbac6b4aa87dbe4365d5648": {
       "stored_at": "2026-11-02T16:02:55.562035+00:00",
       "value": {
@@ -60227,6 +60202,22 @@
         "category": "crypto-regulation",
         "score_model": "siliconflow:Qwen/Qwen3.5-27B",
         "source_category": "crypto-markets"
+      }
+    },
+    "c58ff11482b6c1e892baeae31ffb5f00640c37d2885b7a1546866d9911dfbd7f": {
+      "stored_at": "2026-11-09T07:09:01.135900+00:00",
+      "value": {
+        "ai_reason": "Content reports a financial analyst's commentary on potential increased regulatory risk for Nvidia due to CEO controversy, but maintains price target. It's a notable but incremental market commentary with a clear transmission path to a major AI/tech company, but lacks immediate, concrete developments. The discussion is sourced from a single analyst report.",
+        "ai_score": 6.5,
+        "ai_summary": "伯恩斯坦分析师表示，英伟达CEO黄仁勋的个人争议可能增加公司的监管和政治审查风险，并指出公司存在关键人物依赖，但仍维持其400美元的目标股价和“跑赢大盘”评级。",
+        "ai_tags": [
+          "ai-labs",
+          "macro-regulation",
+          "crypto-markets",
+          "nvidia"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
     "c5a5830d13096c8e7e4ada6f6483ab786cbd8ec34419ffd8775b288147bbfdf0": {
@@ -60930,6 +60921,22 @@
         "source_category": "crypto-markets"
       }
     },
+    "c7dfab63756bea933ec0f57d51515781ad318e55429b9cbc58e45d074b66a4f5": {
+      "stored_at": "2026-11-09T07:09:01.140346+00:00",
+      "value": {
+        "ai_reason": "Content presents a routine market analysis using a specific on-chain metric (RPLR-M) to argue that Bitcoin's bear market cycle is complete, based on historical patterns. It is a data-supported commentary but offers no new development, protocol change, or regulatory action with immediate market impact. The discussion is analytical but not groundbreaking.",
+        "ai_score": 5.0,
+        "ai_summary": "市场分析师Murphy援引已实现盈亏比动量指标分析指出，本轮比特币熊市的亏损与恐慌已充分释放，持续约11个月符合历史周期性特征，且指标进入B区后未有重回A区先例，因此周期性复苏逻辑目前难以动摇。",
+        "ai_tags": [
+          "bitcoin",
+          "market-analysis",
+          "on-chain-metrics",
+          "cycle-analysis"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
+      }
+    },
     "c80067aa9ccf2ba055707efa9dc0b0621a3ddd8c61c82c75939f111ceccef5be": {
       "stored_at": "2026-11-02T11:44:27.878064+00:00",
       "value": {
@@ -61080,6 +61087,21 @@
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
+      }
+    },
+    "c87a7f8937d0db45a765a2f4b1d715c6e1291bfdec8894a7045997f392222df4": {
+      "stored_at": "2026-11-09T07:09:01.136602+00:00",
+      "value": {
+        "ai_reason": "Content is a broken RSS link with no substantive information, title, or description. It contains only a publisher name and a non-functional anchor tag, providing no news or development to evaluate.",
+        "ai_score": 0.0,
+        "ai_summary": "该内容仅包含一个损坏的RSS链接和发布者名称，未提供任何实质性新闻或信息。",
+        "ai_tags": [
+          "ai-labs"
+        ],
+        "category": "ai-labs",
+        "detailed_summary_zh": "该内容仅包含一个损坏的RSS链接和发布者名称，未提供任何实质性新闻或信息。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "- 安斯罗皮克"
       }
     },
     "c89a4b1821ff2ad1143a0ae09ce8aadca8cdbf88a21f59433072d5aa63208332": {
@@ -61587,6 +61609,26 @@
         "category": "exchange-operations",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "exchange-announcements"
+      }
+    },
+    "ca59837d69f6cb6ac0e7ab85983afc36677e12f27294a364ab48e7e340a616e7": {
+      "stored_at": "2026-11-09T07:09:01.141119+00:00",
+      "value": {
+        "ai_reason": "Binance restoring withdrawals for specific assets after a hack is a material operational update for users, indicating progress in recovery. It is a high-value but not groundbreaking event, as the underlying hack is not new.",
+        "ai_score": 7.0,
+        "ai_summary": "币安在遭遇黑客攻击后，已恢复HYPE和APT代币的提现服务。",
+        "ai_tags": [
+          "exchange-operations",
+          "security",
+          "binance",
+          "withdrawals",
+          "recovery"
+        ],
+        "category": "exchange-operations",
+        "detailed_summary_zh": "币安在遭遇黑客攻击后，已恢复HYPE和APT代币的提现服务。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "exchange-announcements",
+        "title_zh": "币安恢复HYPE、APT提现，黑客攻击后恢复工作持续进行"
       }
     },
     "ca5f10469175eaf9555a70a82c65fd1a044b734df00896475c329aa7f5a99fc2": {
@@ -62431,6 +62473,25 @@
           }
         ],
         "title_zh": "黄仁勋承认出轨发全员信道歉！英伟达启动紧急调查"
+      }
+    },
+    "cd4bc55bd4167ad66639ced7b1549d889b146b5a6c6fa79717c2afd8683a3e98": {
+      "stored_at": "2026-11-09T07:09:01.139775+00:00",
+      "value": {
+        "ai_reason": "The article describes a major, concrete macroeconomic impact ($5.7B inflation in power auctions) directly attributed to AI industry demand, representing a significant and novel transmission mechanism of AI growth to real-world infrastructure and consumer costs. This is a high-value development with clear implications for energy markets and AI's broader economic footprint.",
+        "ai_score": 8.0,
+        "ai_summary": "一份单一的AI电力需求预测导致美国电力拍卖成本增加了57亿美元，突显了AI热潮对能源基础设施和消费者价格的直接影响。",
+        "ai_tags": [
+          "artificial-intelligence",
+          "macroeconomics",
+          "energy-markets",
+          "infrastructure"
+        ],
+        "category": "macro-regulation",
+        "detailed_summary_zh": "一份AI电力需求预测导致美国电力拍卖成本增加57亿美元，凸显了AI热潮对能源基础设施和消费者价格的直接影响。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets",
+        "title_zh": "单一AI预测推高美国电力拍卖成本57亿美元"
       }
     },
     "cd4bf90ffda8c1627ba1b4323f84693d974960618fd17328ca5c560b674bd7cc": {
@@ -68538,24 +68599,6 @@
         "source_category": "exchange-announcements"
       }
     },
-    "e1b8d5d5f177e055f80960e7f3abd84cd84c1fc015c33b3102ab02b6ebb79f12": {
-      "stored_at": "2026-10-31T17:59:20.640337+00:00",
-      "value": {
-        "ai_reason": "A top-tier exchange disclosing billions in hack-related losses and restricting withdrawals is a systemic market event with direct material impact on user funds and market confidence, squarely in the 9-10 band for exchange security incidents and withdrawal restrictions. The single reporting source and lack of granular incident detail temper it slightly below the highest tier.",
-        "ai_score": 9.0,
-        "ai_summary": "Binance has earmarked USD 6.34 billion to cover losses from a crypto hack and is preparing a phased resumption of withdrawals that had been suspended.",
-        "ai_tags": [
-          "binance",
-          "exchange-hack",
-          "withdrawals",
-          "security-incident",
-          "exchange-reserves"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
     "e1be92e23005074c29f1191d14f040a96b53f3581a984b6b8f5a88be28c923d3": {
       "stored_at": "2026-11-01T02:32:26.397414+00:00",
       "value": {
@@ -69217,6 +69260,76 @@
         "category": "crypto-protocols",
         "score_model": "deepseek:deepseek-flash",
         "source_category": "crypto-markets"
+      }
+    },
+    "e539e3da55dca6f4f228db32506604d9025e8cd963889da37fd24add2c5ab3c4": {
+      "stored_at": "2026-11-09T07:10:03.194415+00:00",
+      "value": {
+        "background": "",
+        "background_zh": "黄仁勋是英伟达公司的联合创始人兼首席执行官。英伟达是全球领先的超级智能（SI）芯片制造商。",
+        "community_discussion": "",
+        "detailed_summary": "",
+        "detailed_summary_zh": "英伟达首席执行官黄仁勋承认存在婚外情并向全公司发布道歉备忘录，公司董事会已于11月8日宣布启动独立调查。\n\n此事发生在AI芯片出口管制与地缘博弈的敏感期，令这家全球市值最高的半导体公司面临治理与声誉考验。\n\n英伟达董事会启动的独立调查，部分媒体报道涉及核查黄仁勋与一名被指可能与中国情报机构有关联人士的往来。",
+        "editorial_tags": [
+          "英伟达",
+          "黄仁勋",
+          "公司治理",
+          "内部调查",
+          "婚外情"
+        ],
+        "enrichment_status": "complete",
+        "sources": [
+          {
+            "title": "英伟达独立调查事件：董事会治理、出口管制与NVDA风险 | BasisPilot ...",
+            "url": "https://basispilot.com/zh/insights/us-stocks/nvidia-board-investigation-foreign-intelligence-november-2026"
+          },
+          {
+            "title": "英伟达将调查黄仁勋与疑似中国间谍关系 | 赢政天下 AI",
+            "url": "https://www.yingzheng.com/article/nvidia-jensen-huang-spy-investigation"
+          },
+          {
+            "title": "英伟达首席执行官黄仁勋承认婚外情，董事会将对其展开独立调查",
+            "url": "https://www.voachinese.com/a/nvidia-launches-investigation-into-ceo-jensen-huang-over-foreign-intelligence-concerns-20261108/8220286.html"
+          },
+          {
+            "title": "黄仁勋承认婚外情，英伟达启动独立调查 - 2026年11...",
+            "url": "https://sputniknews.cn/20261109/1074001277.html"
+          }
+        ],
+        "title_zh": "黄仁勋承认出轨发全员信道歉！英伟达启动紧急调查"
+      }
+    },
+    "e53bf9e92439eec7fe964c8d933d9a444dae01b14d09b8c0efd11278bdf38aa5": {
+      "stored_at": "2026-11-09T07:10:03.194171+00:00",
+      "value": {
+        "background": "",
+        "background_zh": "币安是全球主要的加密货币交易所之一。此前，一些保险公司已开始为加密货币交易所提供针对黑客攻击和盗窃的保险政策。",
+        "community_discussion": "",
+        "detailed_summary": "",
+        "detailed_summary_zh": "据报道，币安发生了一起价值63亿美元的重大盗窃案，这正促使保险公司对加密货币交易所的保险政策进行更严格的审查。\n\n这起史上最大的加密货币盗窃案凸显了交易所数字资产保险覆盖范围的差异和局限性，可能促使保险行业重新评估相关风险并收紧承保条件。\n\n黑客从币安盗取了63亿美元；加密货币交易所的保险覆盖范围因资产存储方式、黑客入侵途径和具体保单条款而异。",
+        "editorial_tags": [
+          "币安",
+          "加密货币盗窃",
+          "保险",
+          "网络安全",
+          "交易所"
+        ],
+        "enrichment_status": "complete",
+        "sources": [
+          {
+            "title": "Binance's $6.3 billion hack: How crypto insurance works",
+            "url": "https://www.cnbctv18.com/technology/binance-usd-63-billion-hack-how-crypto-insurance-works-20023620.htm"
+          },
+          {
+            "title": "Binance’s $6.3 Billion Hack: How Crypto Insurance Works",
+            "url": "https://www.insurancejournal.com/news/international/2026/10/30/890982.htm"
+          },
+          {
+            "title": "Binance's $6.3 billion hack: How crypto insurance works",
+            "url": "https://www.reuters.com/legal/litigation/binances-63-billion-hack-how-crypto-insurance-works-2026-10-30/"
+          }
+        ],
+        "title_zh": "币安63亿美元盗窃案促使保险公司进行更严格审查"
       }
     },
     "e5475ddc4ae8142dfe1271a0187eb4a7150f3bad94a8f774efc0b7079ae94b8e": {
@@ -70482,24 +70595,6 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
-    "ea68626a556b1cc40dedb036fbfbddba4efb2fe0c68e627907ab3b31b60845cf": {
-      "stored_at": "2026-10-31T17:59:20.639190+00:00",
-      "value": {
-        "ai_reason": "The piece concerns Coinbase's long-term quantum-resistance preparations for Bitcoin, a strategically important but not urgent development. It describes a forward-looking exchange security initiative rather than a concrete protocol upgrade, exploit, or market-moving announcement.",
-        "ai_score": 5.0,
-        "ai_summary": "Coinbase is pursuing quantum-resistance measures for Bitcoin in anticipation of future quantum computing threats.",
-        "ai_tags": [
-          "quantum-computing",
-          "bitcoin",
-          "coinbase",
-          "cryptography",
-          "security"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
     "ea6e0386976ea9c8a2a6e2ccf24595c1222d931c16a8f7a6e2af72db066c64e9": {
       "stored_at": "2026-11-09T06:59:31.815630+00:00",
       "value": {
@@ -71346,6 +71441,22 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
+    "ed8d0ee57d2864d16ecae990135482f78ed8362e1c8790f40dbe494d06f3e044": {
+      "stored_at": "2026-11-09T07:09:01.141673+00:00",
+      "value": {
+        "ai_reason": "The content reports a single large leveraged position by a whale, which is an interesting on-chain data point but represents routine market activity without immediate, systemic impact. It provides useful data for market watchers but does not constitute a major protocol change, security incident, or regulatory development.",
+        "ai_score": 5.0,
+        "ai_summary": "据链上监测，一名历史盈利约82.16万美元的交易者在Hyperliquid上以7倍杠杆开立了价值约1139万美元的比特币多头头寸。",
+        "ai_tags": [
+          "bitcoin",
+          "leverage",
+          "on-chain-analysis",
+          "trading"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
+      }
+    },
     "eda43cc674583f6ab4d9fb13ab5c5dbce9024c3b16f753b63e945736238c0a65": {
       "stored_at": "2026-11-01T18:18:38.306997+00:00",
       "value": {
@@ -71769,22 +71880,6 @@
         "category": "ai-labs",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "tech-community"
-      }
-    },
-    "ef0fe13c9d51ebe0d69bcd6dd9e824c399f2608765832b61ca08a033f8434dd6": {
-      "stored_at": "2026-10-31T21:22:36.890676+00:00",
-      "value": {
-        "ai_reason": "This is a generic price-converter utility page for NIGHT/GBP from The Block, not a news development within the window. It carries no substantive reporting, market event, or actionable information beyond a live conversion tool, making it effectively noise for curation purposes.",
-        "ai_score": 0.5,
-        "ai_summary": "A The Block converter page for swapping Midnight (NIGHT) token values into British pounds.",
-        "ai_tags": [
-          "night-token",
-          "price-converter",
-          "crypto-markets",
-          "tooling"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "ef1cd6e70783d61aeeb4449a47ff64db794c15c11ee55ed7f62b92ebb031b0a0": {
@@ -77083,6 +77178,23 @@
         ]
       }
     },
+    "ffca1d6cb1490be1c7507546cea6130c45f1f4aa24dbc97fa9611d2688e5461e": {
+      "stored_at": "2026-11-09T07:09:01.142063+00:00",
+      "value": {
+        "ai_reason": "Content provides a routine, data-driven snapshot of Perp DEX trading volumes and growth metrics over a recent 7-day period. It is useful for market participants tracking sector trends but represents standard reporting without a novel development, major protocol change, or immediate market-moving event. The inclusion of specific figures and rankings adds moderate value.",
+        "ai_score": 5.5,
+        "ai_summary": "数据显示过去7天永续合约DEX交易量前五名为Hyperliquid、Lighter、Variational、Aster和GMX，其中GMX周环比增长160%，且整个板块交易量周环比增长6.99%。",
+        "ai_tags": [
+          "defi",
+          "perpetual-futures",
+          "dex",
+          "trading-volume",
+          "market-data"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
+      }
+    },
     "ffd5e871249eda7c232efed3a03a5b0cf2f7e2d0233dfe7e043286661af82fee": {
       "stored_at": "2026-11-08T15:02:54.011375+00:00",
       "value": {
@@ -77273,6 +77385,33 @@
           "417": 1.0,
           "418": 0.0,
           "419": 0.0
+        }
+      }
+    },
+    "048154bdbde03e7906c87bb4a3b460dcdf7d02ccfc9c48a6399a647dad478113": {
+      "stored_at": "2026-11-09T07:06:50.135571+00:00",
+      "value": {
+        "scores": {
+          "40": 3.5,
+          "41": 2.0,
+          "42": 1.0,
+          "43": 0.5,
+          "44": 2.0,
+          "45": 2.0,
+          "46": 2.0,
+          "47": 1.0,
+          "48": 2.0,
+          "49": 2.0,
+          "50": 3.0,
+          "51": 1.0,
+          "52": 2.0,
+          "53": 4.0,
+          "54": 0.0,
+          "55": 3.0,
+          "56": 3.0,
+          "57": 3.0,
+          "58": 3.0,
+          "59": 3.0
         }
       }
     },
@@ -77715,6 +77854,33 @@
           "1037": 2.0,
           "1038": 7.0,
           "1039": 7.0
+        }
+      }
+    },
+    "15512e2292ca52b13eb462a6bc61d96c2fcd49fb59e5a813d242bbb939632b31": {
+      "stored_at": "2026-11-09T07:07:08.028582+00:00",
+      "value": {
+        "scores": {
+          "60": 3.0,
+          "61": 3.0,
+          "62": 1.0,
+          "63": 2.0,
+          "64": 2.0,
+          "65": 7.0,
+          "66": 4.0,
+          "67": 1.0,
+          "68": 1.0,
+          "69": 1.0,
+          "70": 1.0,
+          "71": 3.0,
+          "72": 3.0,
+          "73": 3.0,
+          "74": 1.0,
+          "75": 1.0,
+          "76": 3.0,
+          "77": 1.0,
+          "78": 1.0,
+          "79": 1.0
         }
       }
     },
@@ -79570,6 +79736,33 @@
         }
       }
     },
+    "75106f875def5c3142a8693c2f779bea74f2686ca3d8191e8fc0e4c0a832dade": {
+      "stored_at": "2026-11-09T07:07:02.005961+00:00",
+      "value": {
+        "scores": {
+          "0": 7.5,
+          "1": 4.0,
+          "10": 5.5,
+          "11": 2.0,
+          "12": 3.5,
+          "13": 3.5,
+          "14": 1.0,
+          "15": 5.0,
+          "16": 5.5,
+          "17": 4.0,
+          "18": 0.5,
+          "19": 0.5,
+          "2": 6.5,
+          "3": 3.5,
+          "4": 0.5,
+          "5": 1.0,
+          "6": 1.5,
+          "7": 0.5,
+          "8": 0.5,
+          "9": 4.0
+        }
+      }
+    },
     "75313ba8428a556ee7863565711f968edcf2fe6ff3a7ff5d29d83f43db8e530e": {
       "stored_at": "2026-11-09T06:18:24.868122+00:00",
       "value": {
@@ -79907,6 +80100,33 @@
           "757": 3.0,
           "758": 7.0,
           "759": 6.0
+        }
+      }
+    },
+    "82b84ef4298ea49d6af8bca050a3e3f887a5866aae528989d07cea3826654478": {
+      "stored_at": "2026-11-09T07:07:10.339533+00:00",
+      "value": {
+        "scores": {
+          "100": 8.0,
+          "101": 1.0,
+          "102": 7.0,
+          "103": 1.0,
+          "104": 6.0,
+          "105": 1.0,
+          "106": 5.0,
+          "107": 2.0,
+          "108": 0.0,
+          "109": 0.0,
+          "110": 0.0,
+          "111": 1.0,
+          "112": 1.0,
+          "113": 3.0,
+          "114": 6.0,
+          "115": 4.0,
+          "116": 0.0,
+          "117": 0.0,
+          "118": 4.0,
+          "119": 2.0
         }
       }
     },
@@ -80936,6 +81156,31 @@
         }
       }
     },
+    "a8c3aaa0c24d09c6967469617e4e4445d7b5dda6fd8a77514e44ba90620f1bbe": {
+      "stored_at": "2026-11-09T07:07:11.006360+00:00",
+      "value": {
+        "scores": {
+          "140": 0.0,
+          "141": 0.0,
+          "142": 0.0,
+          "143": 8.0,
+          "144": 7.0,
+          "145": 0.0,
+          "146": 0.0,
+          "147": 7.0,
+          "148": 8.0,
+          "149": 7.0,
+          "150": 6.0,
+          "151": 6.0,
+          "152": 0.0,
+          "153": 7.0,
+          "154": 0.0,
+          "155": 0.0,
+          "156": 0.0,
+          "157": 0.0
+        }
+      }
+    },
     "a924acbf9187f9a74b18afe8aed98ff992923aa84810a6b2c0a533b61bf000b6": {
       "stored_at": "2026-11-08T20:26:23.344569+00:00",
       "value": {
@@ -81023,6 +81268,33 @@
           "57": 7.5,
           "58": 8.0,
           "59": 5.5
+        }
+      }
+    },
+    "ac25f157802693af1e265b58173a7592454c5a5697c1b02e87048dc1e3b6e375": {
+      "stored_at": "2026-11-09T07:06:48.382166+00:00",
+      "value": {
+        "scores": {
+          "20": 0.5,
+          "21": 2.0,
+          "22": 1.0,
+          "23": 2.0,
+          "24": 0.0,
+          "25": 0.0,
+          "26": 0.0,
+          "27": 5.0,
+          "28": 0.0,
+          "29": 5.0,
+          "30": 5.0,
+          "31": 0.5,
+          "32": 8.0,
+          "33": 8.0,
+          "34": 0.0,
+          "35": 1.0,
+          "36": 1.0,
+          "37": 1.0,
+          "38": 1.0,
+          "39": 0.0
         }
       }
     },
@@ -82331,6 +82603,33 @@
         }
       }
     },
+    "e8235cbd119cf9dc6f7dc75ebd26823d72da83f8bf881283ddb1bdc50d8e7d24": {
+      "stored_at": "2026-11-09T07:07:13.035768+00:00",
+      "value": {
+        "scores": {
+          "120": 0.0,
+          "121": 8.0,
+          "122": 0.0,
+          "123": 1.0,
+          "124": 3.0,
+          "125": 0.0,
+          "126": 1.0,
+          "127": 0.0,
+          "128": 2.0,
+          "129": 0.0,
+          "130": 7.0,
+          "131": 0.0,
+          "132": 0.0,
+          "133": 0.0,
+          "134": 0.0,
+          "135": 0.0,
+          "136": 1.0,
+          "137": 0.0,
+          "138": 0.0,
+          "139": 0.0
+        }
+      }
+    },
     "e842fc3b5afd40ccadd34cdc722283bc3499280fcc9be2dac9f441d4abb08585": {
       "stored_at": "2026-11-08T20:27:32.138821+00:00",
       "value": {
@@ -82815,6 +83114,33 @@
           "140": 2.0,
           "141": 6.0,
           "142": 9.0
+        }
+      }
+    },
+    "fbdab0c9cf6b2eaa2ff870e727469c4c7465ce0081a83af1978216f63c74eb63": {
+      "stored_at": "2026-11-09T07:06:49.585501+00:00",
+      "value": {
+        "scores": {
+          "80": 8.0,
+          "81": 0.0,
+          "82": 0.0,
+          "83": 1.5,
+          "84": 9.5,
+          "85": 0.5,
+          "86": 1.0,
+          "87": 0.5,
+          "88": 0.5,
+          "89": 0.0,
+          "90": 0.5,
+          "91": 0.5,
+          "92": 0.5,
+          "93": 0.5,
+          "94": 0.0,
+          "95": 0.0,
+          "96": 0.0,
+          "97": 0.0,
+          "98": 0.0,
+          "99": 8.5
         }
       }
     },
