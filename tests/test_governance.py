@@ -89,3 +89,13 @@ def test_handoff_stays_one_page(tree):
     path = tree / "project-docs/handoff.md"
     path.write_text(path.read_text() + "\n" * 76)
     assert any("one page" in error for error in governance.check(tree))
+
+
+def test_site_root_links_resolve_within_jekyll_source(tmp_path):
+    page=tmp_path/'docs/about/index.md';page.parent.mkdir(parents=True)
+    (tmp_path/'docs/feed.xml').write_text('<rss/>')
+    (tmp_path/'docs/history.html').write_text('---\npermalink: /history/\n---')
+    page.write_text('[RSS](/feed.xml) [History](/history/)')
+    assert governance.local_links(tmp_path,'docs/about/index.md')==[]
+    page.write_text('[missing](/missing/) [escape](/../VERSION)')
+    assert len(governance.local_links(tmp_path,'docs/about/index.md'))==2
