@@ -77,7 +77,7 @@ def orchestrator_for(publisher, **x_overrides):
 
 
 def run(monkeypatch, orchestrator, items, path, *, now, updated_at=ON_TIME):
-    import src.orchestrator as module
+    import src.x_distribution as module
 
     feed = DailyFeedState(
         date=DAY, timezone="Asia/Shanghai", updated_at=updated_at, items=items
@@ -89,7 +89,7 @@ def run(monkeypatch, orchestrator, items, path, *, now, updated_at=ON_TIME):
             date=day, timezone=tz, updated_at=updated_at
         ),
     )
-    monkeypatch.setattr(module, "save_run_report", lambda report: None)
+    monkeypatch.setattr("src.orchestrator.save_run_report", lambda report: None)
     asyncio.run(orchestrator.run_x_slot(now=now, state_path=path))
 
 
@@ -213,7 +213,7 @@ def test_a_run_that_died_mid_send_is_recorded_as_unknown(monkeypatch, tmp_path):
 
 
 def test_failed_checkpoint_means_nothing_is_sent(monkeypatch, tmp_path):
-    import src.orchestrator as module
+    import src.x_distribution as module
 
     publisher = FakePublisher()
     orchestrator = orchestrator_for(publisher)
@@ -233,7 +233,7 @@ def test_failed_checkpoint_means_nothing_is_sent(monkeypatch, tmp_path):
         date=DAY, timezone="Asia/Shanghai", updated_at=ON_TIME, items=[item(1)]
     )
     monkeypatch.setattr(module, "load_published_daily_feed_state", lambda *a: feed)
-    monkeypatch.setattr(module, "save_run_report", lambda report: None)
+    monkeypatch.setattr("src.orchestrator.save_run_report", lambda report: None)
     with pytest.raises(subprocess.CalledProcessError):
         asyncio.run(orchestrator.run_x_slot(now=ON_TIME, queue_dir=queue_dir))
     assert publisher.posts == []
@@ -313,7 +313,7 @@ def test_story_posted_in_the_last_week_is_not_posted_again(monkeypatch, tmp_path
 def test_ai_post_with_an_unsupported_figure_falls_back_to_the_template(
     monkeypatch, tmp_path
 ):
-    import src.orchestrator as module
+    import src.x_distribution as module
 
     invented = (
         "8月9日，交易所第1条公告称遭攻击，损失约 2.3 亿美元。\n\n"
@@ -429,7 +429,7 @@ def test_gate_reports_attention(tmp_path, capsys):
 
 
 def test_recovered_old_receipt_wakes_gate_and_is_checkpointed_before_pruning(tmp_path, monkeypatch, capsys):
-    import src.orchestrator as module
+    import src.x_distribution as module
     old_day = (ON_TIME + timedelta(hours=8) - timedelta(days=10)).date().isoformat()
     job = x_queue._blank_job('zh', 1, 'old-story')
     job.update(status='pending', text='recorded', text_sha256=x_queue.text_digest('recorded'), attempted_at=ON_TIME.isoformat())
@@ -456,14 +456,14 @@ def test_recovered_old_receipt_wakes_gate_and_is_checkpointed_before_pruning(tmp
     monkeypatch.setattr(orchestrator, '_plan_x_edition', plan)
     monkeypatch.setattr(x_queue, 'git_checkpoint', checkpoint)
     monkeypatch.setattr(module, 'load_published_daily_feed_state', lambda *args: DailyFeedState(date=DAY, timezone='Asia/Shanghai', updated_at=ON_TIME, items=[item(1)]))
-    monkeypatch.setattr(module, 'save_run_report', lambda report: None)
+    monkeypatch.setattr('src.orchestrator.save_run_report', lambda report: None)
     asyncio.run(orchestrator.run_x_slot(now=ON_TIME, queue_dir=queue_dir))
     assert checkpoints == [local, {'version': 2, 'editions': {}}]
     assert publisher.posts == []
 
 
 def test_production_consumer_never_posts_unpublished_local_draft(tmp_path, monkeypatch):
-    import src.orchestrator as module
+    import src.x_distribution as module
     from src.publication_state import PublicationState
     monkeypatch.chdir(tmp_path)
     monkeypatch.setenv('XIYUNEWS_STATE_DIR', str(tmp_path / 'state'))
@@ -478,7 +478,7 @@ def test_production_consumer_never_posts_unpublished_local_draft(tmp_path, monke
     store.save_document('daily', draft)
     publisher = FakePublisher()
     orchestrator = orchestrator_for(publisher)
-    monkeypatch.setattr(module, 'save_run_report', lambda report: None)
+    monkeypatch.setattr('src.orchestrator.save_run_report', lambda report: None)
     monkeypatch.setattr(x_queue, 'git_checkpoint', lambda directory, state: x_queue.save(state, directory / x_queue.QUEUE_RELATIVE_PATH))
     queue_dir = tmp_path / 'queue'
     asyncio.run(orchestrator.run_x_slot(now=ON_TIME, queue_dir=queue_dir))
@@ -587,5 +587,4 @@ def test_distribution_schedules_are_retired_without_destroying_queues():
         assert '\n  schedule:' not in text and '\n  workflow_run:' not in text
         assert 'if: ${{ false }}' in text
     config=json.loads((root.parents[1]/"data/config.github.json").read_text())
-    assert config['core_only'] and not config['x_delivery']['enabled']
-
+    assert 'core_only' not in config and not config['x_delivery']['enabled']

@@ -15,7 +15,6 @@ export interface RecoveryResult {
 }
 
 export type RecoveryEnv = Env & {
-  CORE_ONLY?: boolean;
   ROLLING_FEED?: boolean;
   EDGE_DEPLOY_WORKFLOW?: string;
   // The unified Worker cannot probe its own origin with a public subrequest.
@@ -152,7 +151,6 @@ export async function inspectPublication(env: RecoveryEnv, date: string, now: nu
   const publicItems = editionItems(publicJson, date);
   const revisions = {
     zh: contentRevisions(rawJson, "zh"),
-    en: env.CORE_ONLY ? null : contentRevisions(rawJson, "en"),
   };
   // Same date/count is not enough: compare the actual published payload.
   const samePayload = rawJson !== null && publicJson !== null &&
@@ -169,13 +167,13 @@ export async function inspectPublication(env: RecoveryEnv, date: string, now: nu
     renderedRevisionsMatch(firstDay, revisions.zh);
   // Rolling homepage is independent of the fixed daily archive. Dated pages
   // and the exact archived API payload remain mandatory proof below.
-  const homeReady = archivedHomeReady || Boolean(env.CORE_ONLY && home?.includes('data-feed-mode="rolling-24h"'));
+  const homeReady = archivedHomeReady || Boolean(env.ROLLING_FEED && home?.includes('data-feed-mode="rolling-24h"'));
   const rendered = rawReady && publicItems === items && samePayload && homeReady
     ? await Promise.all(urls.rendered.map(async (url, index) => {
         const html = await getText(env, url + nonce);
         return Boolean(html?.includes('data-date="' + date + '"') &&
           (html.match(/<article class="digest-item(?:\s|")/g) ?? []).length >= items &&
-          renderedRevisionsMatch(html, index === 0 ? revisions.zh : revisions.en));
+          renderedRevisionsMatch(html, revisions.zh));
       }))
     : [false];
   return { rawReady, publicReady: Boolean(rawReady && rendered.every(Boolean)), items };

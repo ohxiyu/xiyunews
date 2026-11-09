@@ -35,7 +35,7 @@ def state(day):
 
 
 def runner(root):
-    return BMTNewsOrchestrator(Config(ai=AIConfig(provider='openai', model='fixture', api_key_env='NO_KEY', languages=['zh','en']),
+    return BMTNewsOrchestrator(Config(ai=AIConfig(provider='openai', model='fixture', api_key_env='NO_KEY', languages=['zh']),
         sources=SourcesConfig(), filtering=FilteringConfig(daily_timezone='Asia/Shanghai')),
         storage=StorageManager(data_dir=str(root / 'data')))
 
@@ -119,9 +119,9 @@ def test_missing_old_edition_recovers_while_current_is_complete_and_never_sends(
     def forbidden(*args, **kwargs):
         pytest.fail('static recovery must never fetch, call a model or send')
     import src.orchestrator as orchestrator
-    monkeypatch.setattr(orchestrator,'create_ai_client',forbidden)
-    monkeypatch.setattr(orchestrator,'fetch_market_snapshot',forbidden)
-    for name in ('fetch_all_sources','_analyze_content','_update_event_timeline','_deliver_telegram_editions','_deliver_x_editions'):
+    monkeypatch.setattr('src.selection.create_ai_client',forbidden)
+    monkeypatch.setattr('src.enrichment.create_ai_client',forbidden)
+    for name in ('fetch_all_sources','_analyze_content'):
         monkeypatch.setattr(app,name,forbidden)
     # First publish only today's snapshot; old rows still exist in the journal.
     report = app.last_run_report
@@ -149,8 +149,8 @@ def test_missing_old_edition_recovers_while_current_is_complete_and_never_sends(
         db.execute('DELETE FROM publication_editions WHERE date=?',(old.date,))
     assert asyncio.run(recover_editions(app,store,now=NOW))['repaired'] == []
     assert [e['date'] for e in store.saved_editions()] == [old.date,new.date]
-    # JSON exists but an English fragment disappeared: still recover it.
-    Path('docs/editions/2026-11-03/en.html').unlink()
+    # JSON exists but a Chinese fragment disappeared: still recover it.
+    Path('docs/editions/2026-11-03/zh.html').unlink()
     assert [r['date'] for r in asyncio.run(recover_editions(app,store,now=NOW))['repaired']] == [old.date]
 
 
@@ -200,7 +200,7 @@ def test_actual_cli_runs_with_isolated_backend_without_credentials(tmp_path):
     (tmp_path/'published.txt').write_text('fixture')
     git('add','.');git('commit','-m','fixture')
     git('update-ref','refs/remotes/origin/gh-pages',git('rev-parse','HEAD'))
-    config=Config(ai=AIConfig(provider='openai',model='fixture',api_key_env='NO_KEY',languages=['zh','en']),
+    config=Config(ai=AIConfig(provider='openai',model='fixture',api_key_env='NO_KEY',languages=['zh']),
         sources=SourcesConfig(),filtering=FilteringConfig(daily_timezone='Asia/Shanghai'))
     (tmp_path/'config.json').write_text(config.model_dump_json())
     result=subprocess.run([sys.executable,'-m','src.edition_recovery','--config','config.json'],cwd=tmp_path,

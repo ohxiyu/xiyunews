@@ -1,4 +1,4 @@
-"""Background grounding and bilingual parity; no live searches or model calls."""
+"""Background grounding and Chinese validation; no live searches or model calls."""
 import asyncio
 import json
 from datetime import datetime, timezone
@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 import pytest
 
 from src.ai.enricher import ContentEnricher
-from src.ai.prompts import CONCEPT_EXTRACTION_SYSTEM, CONTENT_ENRICHMENT_SYSTEM
+from src.ai.prompts import CONCEPT_EXTRACTION_SYSTEM, CORE_ENRICHMENT_SYSTEM
 from src.ai.result_cache import AnalysisResultCache
 from src.models import ContentItem, SourceType
 
@@ -28,7 +28,7 @@ class Client:
             if isinstance(self.queries, Exception):
                 raise self.queries
             return json.dumps({"queries": self.queries})
-        assert kwargs["system"] == CONTENT_ENRICHMENT_SYSTEM
+        assert kwargs["system"] == CORE_ENRICHMENT_SYSTEM
         return json.dumps({"title_zh": "交易所宣布托管变更", "whats_new_en": "A custody change was announced.",
             "whats_new_zh": "交易所宣布托管变更。", "background_en": "The exchange holds customer funds.",
             "background_zh": "该交易所托管客户资金。",
@@ -54,7 +54,7 @@ def test_empty_or_failed_extraction_still_searches_and_preserves_supported_conte
     assert item.published_at.isoformat() in client.calls[1]["user"]
     assert "The exchange holds customer funds." in client.calls[1]["user"]
     assert item.metadata["background_zh"] == "该交易所托管客户资金。"
-    assert item.metadata["background_en"] == "The exchange holds customer funds."
+    assert "background_en" not in item.metadata
     assert item.metadata["sources"] == [{"url": "https://example.com/custody", "title": "Custody documentation"}]
 
 
@@ -72,8 +72,6 @@ def test_queries_are_unique_bounded_strings_and_do_not_add_fallback(monkeypatch)
 
 
 @pytest.mark.parametrize("background,error", [
-    ({"background_zh": " "}, "incomplete_bilingual_background"),
-    ({"background_en": ""}, "incomplete_bilingual_background"),
     ({"background_zh": {"text": "not the agreed schema"}}, "invalid_background"),
 ])
 def test_partial_or_non_text_background_is_not_accepted_as_complete(monkeypatch, background, error):
@@ -109,7 +107,7 @@ def test_old_background_cache_invalidates_on_model_or_context_prompt_change(tmp_
     if change == "query_prompt":
         monkeypatch.setattr(prompts, "CONCEPT_EXTRACTION_USER", "New query policy: {title}")
     if change == "writing_prompt":
-        monkeypatch.setattr(prompts, "CONTENT_ENRICHMENT_SYSTEM", "New context policy")
+        monkeypatch.setattr(prompts, "CORE_ENRICHMENT_SYSTEM", "New context policy")
     model = "siliconflow:deepseek-ai/DeepSeek-V3.2" if change == "model" else cache.model
     assert not AnalysisResultCache(path, model=model).restore_enrichment(story())
 
@@ -133,7 +131,7 @@ def test_background_year_must_appear_in_evidence_not_only_publication_timestamp(
         assert not item.metadata.get("background_en")
     else:
         asyncio.run(attempt)
-        assert item.metadata["background_en"] == background
+        assert item.metadata["background_zh"] == background
 
 
 def test_model_generated_search_query_is_not_evidence_for_a_year(monkeypatch):

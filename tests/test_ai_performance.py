@@ -5,7 +5,6 @@ from types import SimpleNamespace
 
 from src.ai.prefilter import ContentPrefilter
 from src.ai.result_cache import AnalysisResultCache
-from src.ai.summarizer import generate_edition_overviews
 from src.models import ContentItem, SourceType
 from src.models import AIConfig, Config, FilteringConfig, SourcesConfig
 from src.orchestrator import BMTNewsOrchestrator
@@ -87,9 +86,9 @@ def test_cached_items_never_reenter_paid_prefilter(tmp_path, monkeypatch):
     async def analyze(self, items):
         for row in items:
             row.ai_score = 9
-    monkeypatch.setattr("src.orchestrator.create_ai_client", lambda config: object())
+    monkeypatch.setattr("src.selection.create_ai_client", lambda config: object())
     monkeypatch.setattr(ContentPrefilter, "select", select)
-    monkeypatch.setattr("src.orchestrator.ContentAnalyzer.analyze_batch", analyze)
+    monkeypatch.setattr("src.selection.ContentAnalyzer.analyze_batch", analyze)
     result = asyncio.run(orchestrator._analyze_content([_item(i) for i in range(30)]))
     assert seen == [f"rss:test:{i}" for i in range(20, 30)]
     assert len(result) == 20
@@ -249,41 +248,6 @@ def test_prefilter_failed_batch_is_kept_fail_open():
     assert result.removed == 0
 
 
-def test_bilingual_overview_uses_one_model_call():
-    calls = 0
-
-    class Client:
-        async def complete(self, **kwargs):
-            nonlocal calls
-            calls += 1
-            return json.dumps(
-                {
-                    "zh": {
-                        "headline": "监管与市场结构成为今日主线。",
-                        "signals": [
-                            {"label": "政策", "text": "监管机构发布新规则。", "item_rank": 1}
-                        ],
-                    },
-                    "en": {
-                        "headline": "Policy and market structure drove the day.",
-                        "signals": [
-                            {"label": "Policy", "text": "A regulator published new rules.", "item_rank": 1}
-                        ],
-                    },
-                }
-            )
-
-    item = _item(1)
-    item.ai_score = 8.5
-    item.ai_summary = "A regulator published new rules."
-    result = asyncio.run(
-        generate_edition_overviews(
-            Client(), [item], date="2026-08-26", languages=["zh", "en"]
-        )
-    )
-    assert calls == 1
-    assert set(result) == {"zh", "en"}
-    assert result["zh"].signals[0].item_rank == 1
 
 
 def test_topic_dedup_sends_only_local_candidate_cluster_to_ai(
@@ -310,7 +274,7 @@ def test_topic_dedup_sends_only_local_candidate_cluster_to_ai(
     orchestrator = BMTNewsOrchestrator(
         config, StorageManager(data_dir=str(tmp_path / "data"))
     )
-    monkeypatch.setattr("src.orchestrator.create_ai_client", lambda _config: Client())
+    monkeypatch.setattr("src.selection.create_ai_client", lambda _config: Client())
     first = _item(1)
     first.title = "Coinbase announces the same custody launch"
     first.ai_summary = "Coinbase launched institutional custody today."

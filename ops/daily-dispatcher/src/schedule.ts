@@ -28,9 +28,7 @@ export async function runCombinedSchedule(cron: string, scheduledTime: number, e
   // runSchedule separately uses current time for edition/window decisions.
   const publication = publicationCron(scheduledTime);
   const results = await Promise.allSettled([
-    ...((env as Env & {CORE_ONLY?: boolean}).CORE_ONLY ? [] : [
       dispatchDistribution(env, "x", now).then(status => console.log(JSON.stringify({ event: "x_dispatch", status }))),
-    ]),
     publication ? runSchedule(publication, now, env) : Promise.resolve(),
     dispatchCollection(env, now).then(status => console.log(JSON.stringify({ event: "collection_dispatch", status }))),
   ]);

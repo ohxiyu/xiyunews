@@ -40,7 +40,7 @@ async def main():
     if store is None:raise RuntimeError('Durable receipt backend required; no message sent')
     config=Config.model_validate_json(Path('data/config.github.json').read_text())
     delivery=config.telegram_delivery
-    if not config.core_only or not delivery or not delivery.enabled:raise ValueError('core Telegram disabled')
+    if not delivery or not delivery.enabled:raise ValueError('core Telegram disabled')
     token=os.environ.get(delivery.bot_token_env,'');destination=os.environ.get(delivery.channel_id_env,'')
     if not token or not destination:raise RuntimeError('Telegram credentials unavailable')
     if not claim(store,state.date,destination):

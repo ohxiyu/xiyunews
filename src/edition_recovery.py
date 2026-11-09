@@ -13,7 +13,6 @@ import subprocess
 from ._file_utils import _atomic_write_text
 from .daily_feed import DailyFeedState
 from .edition import edition_window_for_date, items_in_edition_window
-from .event_recovery import recover_catalog_links
 from .models import Config, ContentItem
 from .publication_state import StateConflict, active_store, canonical
 from .run_report import RunReport
@@ -52,7 +51,7 @@ def restore_published_files(root=Path("docs"), ref="origin/gh-pages", days=None)
             _atomic_write_text(target, text)
 
 
-def inspect_edition(state, languages=("zh", "en"), root=Path("docs")):
+def inspect_edition(state, languages=("zh",), root=Path("docs")):
     """Validate all reader entry files, not just a process success or latest date."""
     missing = []
     for relative in required_paths(state.date, languages):
@@ -159,9 +158,8 @@ async def recover_editions(runner, store, *, now=None):
     """Render missing durable selections, leaving current state/receipts intact."""
     from .archive import load_recent_archive
     from .api_output import write_editions_index
-    from .event_pipeline import EVENT_CATALOG_PATH
     now = now or datetime.now(timezone.utc)
-    languages = list(runner.config.ai.languages) or ["zh"]
+    languages = ["zh"]
     # A previous successful Git export is a portable recovery input too.
     if JOURNAL.is_file():
         raw = json.loads(JOURNAL.read_text())
@@ -182,8 +180,6 @@ async def recover_editions(runner, store, *, now=None):
         missing = inspect_edition(state, languages)
         if not missing:
             continue
-        if not runner.config.core_only and EVENT_CATALOG_PATH.exists():
-            recover_catalog_links(state.items, edition=state.date)
         report = RunReport.start(date=state.date, timezone_name=state.timezone, started_at=now, kind="static_recovery")
         metrics = store.latest_edition_metrics(state.date)
         report.metrics.update({k: metrics[k] for k in ("edition_candidates", "analyzed_today", "high_priority") if k in metrics})
@@ -197,8 +193,6 @@ async def recover_editions(runner, store, *, now=None):
         repaired.append({"date": state.date, "items": len(state.items), "missing": missing})
     # Always include all archive dates, including holes older than latest.
     write_editions_index(load_recent_archive(120, today=now.date()))
-    if repaired:
-        runner._publish_current_event_pages()
     JOURNAL.parent.mkdir(parents=True, exist_ok=True)
     _atomic_write_text(JOURNAL, json.dumps({"version": 1, "editions": store.saved_editions()}, ensure_ascii=False, indent=2) + "\n")
     return {"repaired": repaired, "imported": imported, "ai_calls": 0, "channel_calls": 0}

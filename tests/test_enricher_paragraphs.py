@@ -46,9 +46,7 @@ def test_enrichment_preserves_semantic_summary_sections_as_paragraphs(monkeypatc
     assert item.metadata["detailed_summary_zh"] == (
         "发生了什么。\n\n为什么重要。\n\n重要限制。"
     )
-    assert item.metadata["detailed_summary_en"] == (
-        "What happened.\n\nWhy it matters.\n\nImportant caveat."
-    )
+    assert "detailed_summary_en" not in item.metadata
 
 
 def test_identical_web_searches_share_one_in_flight_request(monkeypatch) -> None:

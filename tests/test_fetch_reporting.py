@@ -79,7 +79,7 @@ def test_all_success_empty_has_normal_success_report(monkeypatch) -> None:
         sources=make_sources(github=[object()]), extractors={}
     )
     monkeypatch.setattr(
-        "src.orchestrator.GitHubScraper",
+        "src.collection.GitHubScraper",
         lambda config, client: StubScraper(),
     )
 
@@ -102,11 +102,11 @@ def test_partial_failure_keeps_items_and_source_names(monkeypatch) -> None:
         extractors={},
     )
     monkeypatch.setattr(
-        "src.orchestrator.GitHubScraper",
+        "src.collection.GitHubScraper",
         lambda config, client: StubScraper([kept]),
     )
     monkeypatch.setattr(
-        "src.orchestrator.HackerNewsScraper",
+        "src.collection.HackerNewsScraper",
         lambda config, client: StubScraper(error=ValueError("unavailable")),
     )
 
@@ -122,67 +122,3 @@ def test_partial_failure_keeps_items_and_source_names(monkeypatch) -> None:
     assert isinstance(source_reports, list)
     assert source_reports[0]["subsource_counts"] == {"tester": 1}
     assert source_reports[1]["error"] == "ValueError: unavailable"
-
-
-def test_native_run_raises_when_every_attempted_source_failed(
-    tmp_path,
-    monkeypatch,
-) -> None:
-    orchestrator = make_orchestrator()
-    orchestrator.config = SimpleNamespace(  # type: ignore[assignment]
-        email=None,
-        filtering=SimpleNamespace(time_window_hours=24),
-    )
-    orchestrator.email_manager = None
-    send_failure = AsyncMock()
-    orchestrator.webhook_notifier = SimpleNamespace(send_failure=send_failure)  # type: ignore[assignment]
-    report = FetchReport(
-        [
-            SourceFetchOutcome("GitHub", "failure", error="RuntimeError: down"),
-            SourceFetchOutcome("RSS Feeds", "failure", error="TimeoutError: slow"),
-        ]
-    )
-
-    async def fetch_all_sources(since):  # type: ignore[no-untyped-def]
-        orchestrator.last_fetch_report = report
-        return []
-
-    monkeypatch.setattr(orchestrator, "fetch_all_sources", fetch_all_sources)
-    monkeypatch.chdir(tmp_path)
-
-    with pytest.raises(RuntimeError, match="All 2 attempted sources failed.*GitHub.*RSS Feeds"):
-        asyncio.run(orchestrator.run())
-
-    send_failure.assert_awaited_once()
-    payload = (tmp_path / "data" / "run-report.json").read_text(encoding="utf-8")
-    assert '"status": "failure"' in payload
-
-
-def test_native_run_treats_all_success_empty_as_no_content(
-    tmp_path,
-    monkeypatch,
-) -> None:
-    orchestrator = make_orchestrator()
-    orchestrator.config = SimpleNamespace(  # type: ignore[assignment]
-        email=None,
-        filtering=SimpleNamespace(time_window_hours=24),
-    )
-    orchestrator.email_manager = None
-    send_failure = AsyncMock()
-    orchestrator.webhook_notifier = SimpleNamespace(send_failure=send_failure)  # type: ignore[assignment]
-
-    async def fetch_all_sources(since):  # type: ignore[no-untyped-def]
-        orchestrator.last_fetch_report = FetchReport(
-            [SourceFetchOutcome("RSS Feeds", "empty")]
-        )
-        return []
-
-    monkeypatch.setattr(orchestrator, "fetch_all_sources", fetch_all_sources)
-    monkeypatch.chdir(tmp_path)
-
-    asyncio.run(orchestrator.run())
-
-    send_failure.assert_not_awaited()
-    payload = (tmp_path / "data" / "run-report.json").read_text(encoding="utf-8")
-    assert '"status": "success"' in payload
-    assert '"code": "no_new_content"' in payload

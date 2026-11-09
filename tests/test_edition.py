@@ -61,7 +61,8 @@ def make_item(
         content=content,
         published_at=published_at,
         ai_score=score,
-        metadata={"category": "crypto-markets"},
+        ai_summary="已评分的中文事实。",
+        metadata={"category": "crypto-markets", "title_zh": "中文标题 "+item_id},
     )
 
 
@@ -75,18 +76,18 @@ def test_retry_restores_missing_static_edition_without_network_or_messages(tmp_p
     save_daily_feed_state(state)
     before = Path('docs/_data/bmtnews_state.json').read_text()
     orchestrator = BMTNewsOrchestrator(Config(
-        ai=AIConfig(provider='openai', model='test', api_key_env='TEST_API_KEY', languages=['zh', 'en']),
+        ai=AIConfig(provider='openai', model='test', api_key_env='TEST_API_KEY', languages=['zh']),
         sources=SourcesConfig(), filtering=FilteringConfig(daily_timezone='Asia/Shanghai'),
     ), storage=StorageManager(data_dir=str(tmp_path / 'data')))
     def forbidden(*args, **kwargs):
         pytest.fail('static recovery must not call sources, AI, market or delivery')
-    for name in ('fetch_all_sources', '_analyze_content', '_update_event_timeline', '_deliver_telegram_editions', '_deliver_x_editions'):
+    for name in ('fetch_all_sources', '_analyze_content'):
         monkeypatch.setattr(orchestrator, name, forbidden)
-    monkeypatch.setattr(module, 'fetch_market_snapshot', forbidden)
-    monkeypatch.setattr(module, 'create_ai_client', forbidden)
+    monkeypatch.setattr('src.selection.create_ai_client',forbidden)
+    monkeypatch.setattr('src.enrichment.create_ai_client',forbidden)
     asyncio.run(orchestrator.run_daily_edition(now=now))
     assert Path('docs/_data/bmtnews_state.json').read_text() == before
-    for language in ('zh', 'en'):
+    for language in ('zh',):
         assert Path(f'docs/_posts/2026-07-29-summary-{language}.md').is_file()
         assert Path(f'docs/editions/2026-07-29/{language}.html').is_file()
     edition = json.loads(Path('docs/api/latest.json').read_text())
@@ -285,11 +286,9 @@ def test_daily_edition_combines_staging_and_final_fetch(
         "merge_topic_duplicates",
         no_topic_duplicates,
     )
-    monkeypatch.setattr(orchestrator, "_expand_twitter_discussion", no_op)
     monkeypatch.setattr(orchestrator, "_enrich_important_items", no_op)
     monkeypatch.setattr(
-        orchestrator.telegram_publisher,
-        "send_daily_edition",
+        "src.services.telegram_delivery.TelegramEditionPublisher.send_daily_edition",
         send_telegram,
     )
     monkeypatch.chdir(tmp_path)
@@ -319,7 +318,7 @@ def test_daily_edition_combines_staging_and_final_fetch(
     assert "selected_count: 2" in post
     assert 'fragment_url: "/editions/2026-07-29/zh.html"' in post
     assert (
-        'class="daily-feed-layout is-editorial-grid feed-rendered-static"'
+        'class="core-feed"'
         in post
     )
     fragment = (
@@ -344,9 +343,8 @@ def test_daily_edition_combines_staging_and_final_fetch(
     assert report["metrics"]["primary_required"] == 3
     assert report["metrics"]["ranking_audit_passes"] == 1
     assert report["breakdowns"]["final_selected_groups"] == {"Crypto Markets": 2}
-    assert report["metrics"]["telegram_messages_sent"] == 1
-    assert report["metrics"]["telegram_message_chars"] == 1234
-    assert telegram_calls == [("2026-07-29", 2, "zh")]
+    assert any(alert["code"] == "telegram_deferred" for alert in report["alerts"])
+    assert telegram_calls == []
     assert any(
         alert["code"] == "primary_quota_shortfall"
         for alert in report["alerts"]
@@ -361,7 +359,7 @@ def test_daily_edition_combines_staging_and_final_fetch(
     )
     retry_report = load_run_report(tmp_path / "data" / "run-report.json")
     assert analyzed_ids == ["fresh", "staged"]
-    assert telegram_calls == [("2026-07-29", 2, "zh")]
+    assert telegram_calls == []
     assert retry_report["metrics"]["displayed_today"] == 2
     assert any(
         alert["code"] == "edition_already_published"
@@ -377,8 +375,8 @@ def test_daily_edition_combines_staging_and_final_fetch(
         )
     )
     rebuild_report = load_run_report(tmp_path / "data" / "run-report.json")
-    assert telegram_calls == [("2026-07-29", 2, "zh")]
-    assert any(alert["code"] == "telegram_rebuild_skipped"
+    assert telegram_calls == []
+    assert any(alert["code"] == "edition_already_published"
                for alert in rebuild_report["alerts"])
 
 
@@ -423,7 +421,7 @@ def test_daily_edition_uses_unpublished_36_hour_fallback_when_short(
             provider="openai",
             model="test",
             api_key_env="TEST_API_KEY",
-            languages=[],
+            languages=["zh"],
         ),
         sources=SourcesConfig(),
         filtering=FilteringConfig(
@@ -476,7 +474,6 @@ def test_daily_edition_uses_unpublished_36_hour_fallback_when_short(
         "merge_topic_duplicates",
         no_topic_duplicates,
     )
-    monkeypatch.setattr(orchestrator, "_expand_twitter_discussion", no_op)
     monkeypatch.setattr(orchestrator, "_enrich_important_items", no_op)
     monkeypatch.chdir(tmp_path)
 

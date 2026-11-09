@@ -59,31 +59,15 @@ def _first_complete_sentence(value: object, language: str) -> str:
     """Return one complete lead sentence, with a bounded malformed fallback."""
     text = _plain_text(value)
     if not text:
-        return ""
-    if language == "zh":
-        match = re.match(r".*?[。！？!?]+[”’」』】）]?", text)
-        sentence = match.group(0).strip() if match else text
-    else:
-        sentence = text
-        start = 0
-        for match in re.finditer(r'[.!?]+["”’\)\]]*(?=\s+|$)', text):
-            candidate = text[start : match.end()].strip()
-            if re.search(r"(?:\b[A-Z]\.){2,}$", candidate):
-                continue
-            if re.search(
-                r"\b(?:Mr|Mrs|Ms|Dr|Prof|Sr|Jr|St|vs)\.$",
-                candidate,
-            ):
-                continue
-            sentence = candidate
-            break
-
+        return ''
+    match = re.match('.*?[。！？!?]+[”’」』】）]?', text)
+    sentence = match.group(0).strip() if match else text
     if len(sentence) <= _BRIEF_HARD_LIMIT:
         return sentence
     prefix = sentence[:_BRIEF_HARD_LIMIT]
-    boundary = max(prefix.rfind(mark) for mark in "，；：,;:")
+    boundary = max((prefix.rfind(mark) for mark in '，；：,;:'))
     if boundary >= _BRIEF_HARD_LIMIT // 2:
-        return prefix[: boundary + 1].rstrip() + "…"
+        return prefix[:boundary + 1].rstrip() + '…'
     return _shorten(sentence, _BRIEF_HARD_LIMIT)
 
 
@@ -154,103 +138,57 @@ class TelegramEditionPublisher:
         )
         return token, channel_id
 
-    def build_message(
-        self,
-        items: Iterable[ContentItem],
-        *,
-        date: str,
-        total_candidates: int,
-        language: str,
-    ) -> str:
+    def build_message(self, items: Iterable[ContentItem], *, date: str, total_candidates: int, language: str) -> str:
         """Build one bounded message without cutting through HTML entities."""
+        if language != 'zh':
+            raise ValueError('Only Chinese daily distribution is supported')
         selected = list(items)
-        is_zh = language == "zh"
-        title = f"稀有News 日报 · {date}" if is_zh else f"xiyu.news Daily · {date}"
-        overview = (
-            f"今日 {len(selected)} 条重点资讯"
-            if is_zh
-            else f"{len(selected)} essential stories today"
-        )
-        header = f"<b>{html.escape(title)}</b>\n{html.escape(overview)}"
-        site_url = self.config.site_url.rstrip("/") + (
-            "/" if is_zh else "/en/"
-        )
-        footer = (
-            f'\n\n<a href="{html.escape(site_url, quote=True)}">阅读完整日报 →</a>'
-            if is_zh
-            else f'\n\n<a href="{html.escape(site_url, quote=True)}">Read the full edition →</a>'
-        )
-        empty = "\n\n今日暂无达到展示阈值的重要资讯。" if is_zh else (
-            "\n\nNo items reached the display threshold today."
-        )
+        is_zh = True
+        title = f'稀有News 日报 · {date}'
+        overview = f'今日 {len(selected)} 条重点资讯'
+        header = f'<b>{html.escape(title)}</b>\n{html.escape(overview)}'
+        site_url = self.config.site_url.rstrip('/') + '/'
+        footer = f'\n\n<a href="{html.escape(site_url, quote=True)}">阅读完整日报 →</a>'
+        empty = '\n\n今日暂无达到展示阈值的重要资讯。'
         if not selected:
             return header + empty + footer
-
         entries: list[dict[str, str]] = []
-        visible = selected[: self.config.max_items]
+        visible = selected[:self.config.max_items]
         omitted = len(selected) - len(visible)
         for index, item in enumerate(visible, start=1):
-            localized_title = item.metadata.get(f"title_{language}") or item.title
+            localized_title = item.metadata.get(f'title_{language}') or item.title
             item_title = _shorten(_plain_text(localized_title), 120)
             item_url = _safe_http_url(item.url)
             escaped_title = html.escape(item_title)
-            title_markup = (
-                f'<a href="{html.escape(item_url, quote=True)}">{escaped_title}</a>'
-                if item_url
-                else escaped_title
-            )
-            score = f"{item.ai_score:g}" if item.ai_score is not None else "—"
-            headline = f"<b>{index:02d}</b> {title_markup} · <code>{score}</code>"
-            brief_value = (
-                item.metadata.get(f"detailed_summary_{language}")
-                or item.metadata.get("detailed_summary")
-                or item.ai_summary
-                or ""
-            )
-            brief = (
-                _first_complete_sentence(brief_value, language)
-                if index <= self.config.featured_items
-                else ""
-            )
-            entries.append({"headline": headline, "brief": brief})
+            title_markup = f'<a href="{html.escape(item_url, quote=True)}">{escaped_title}</a>' if item_url else escaped_title
+            score = f'{item.ai_score:g}' if item.ai_score is not None else '—'
+            headline = f'<b>{index:02d}</b> {title_markup} · <code>{score}</code>'
+            brief_value = item.metadata.get(f'detailed_summary_{language}') or item.metadata.get('detailed_summary') or item.ai_summary or ''
+            brief = _first_complete_sentence(brief_value, language) if index <= self.config.featured_items else ''
+            entries.append({'headline': headline, 'brief': brief})
 
         def compose() -> str:
-            featured = [
-                entry["headline"] + "\n" + html.escape(entry["brief"])
-                for entry in entries
-                if entry["brief"]
-            ]
-            compact = [
-                entry["headline"] for entry in entries if not entry["brief"]
-            ]
+            featured = [entry['headline'] + '\n' + html.escape(entry['brief']) for entry in entries if entry['brief']]
+            compact = [entry['headline'] for entry in entries if not entry['brief']]
             sections = [header]
             sections.extend(featured)
             if compact:
-                more_label = "更多" if is_zh else "More"
-                sections.append(
-                    f"<b>{more_label}</b>\n" + "\n".join(compact)
-                )
+                more_label = '更多'
+                sections.append(f'<b>{more_label}</b>\n' + '\n'.join(compact))
             if omitted:
-                omission = (
-                    f"另有 {omitted} 条，请在网站查看。"
-                    if is_zh
-                    else f"{omitted} more item(s) are available on the website."
-                )
-                sections.append(f"<i>{omission}</i>")
-            return "\n\n".join(sections) + footer
-
+                omission = f'另有 {omitted} 条，请在网站查看。'
+                sections.append(f'<i>{omission}</i>')
+            return '\n\n'.join(sections) + footer
         message = compose()
-        while len(message) > self.config.max_message_chars and len(
-            entries
-        ) > self.config.featured_items:
+        while len(message) > self.config.max_message_chars and len(entries) > self.config.featured_items:
             entries.pop()
             omitted += 1
             message = compose()
         for entry in reversed(entries):
             if len(message) <= self.config.max_message_chars:
                 break
-            if entry["brief"]:
-                entry["brief"] = ""
+            if entry['brief']:
+                entry['brief'] = ''
                 message = compose()
         while len(message) > self.config.max_message_chars and entries:
             entries.pop()

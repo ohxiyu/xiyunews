@@ -22,8 +22,13 @@ KEY = "dependency-regression-test-key-not-a-production-secret-64-characters"
 def test_security_floor_in_lock_and_constraints(name, floor, upper):
     project = tomllib.loads((ROOT / "pyproject.toml").read_text())
     lock = tomllib.loads((ROOT / "uv.lock").read_text())
-    package = next(p for p in lock["package"] if p["name"] == name)
-    assert floor <= tuple(int(n) for n in package["version"].split(".")) < (upper,)
+    package = next((p for p in lock["package"] if p["name"] == name), None)
+    if package is not None:
+        assert floor <= tuple(int(n) for n in package["version"].split(".")) < (upper,)
+    else:
+        # Retired MCP/OpenBB collectors no longer depend on these packages.
+        assert name in {"pyjwt", "multidict"}
+        assert not any(d.get("name") == name for p in lock["package"] for d in p.get("dependencies", []))
     specifier = f">={'.'.join(map(str, floor))},<{upper}"
     requirement = f"{'PyJWT' if name == 'pyjwt' else name}{specifier}"
     assert requirement in project["tool"]["uv"]["constraint-dependencies"]

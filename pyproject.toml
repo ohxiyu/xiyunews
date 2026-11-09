@@ -27,21 +27,12 @@ dev = [
     "pytest>=8.0.0",
     "pytest-cov>=5.0.0",
 ]
-openbb = [
-    "openbb>=4.4.0",
-    "openbb-benzinga>=1.6.0",
-]
-twitter = [
-    "playwright>=1.40.0",
-    "playwright-stealth>=1.0.0",
-]
 trafilatura = [
     "trafilatura>=2.1.0",
 ]
 
 [project.scripts]
 bmtnews = "src.main:main"
-bmtnews-webhook = "src.services.webhook_cli:main"
 
 [build-system]
 requires = ["hatchling"]

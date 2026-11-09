@@ -13,7 +13,7 @@ from src.ai.client import create_ai_client
 from src.ai.topic_dedup import duplicate_groups
 from src.models import Config, ContentItem
 from src.orchestrator import BMTNewsOrchestrator
-from src.threads import fingerprint, same_thread
+from src.dedup import fingerprint, same_thread
 
 
 def git_json(path):

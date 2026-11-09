@@ -1,9 +1,0 @@
-{% assign focus = site.data.core_stream.focus %}
-{% if focus.size > 0 %}
-<section class="event-preview" aria-labelledby="event-preview-title">
-<div class="section-heading"><div><p class="eyebrow">新闻之后，还有进展</p><h2 id="event-preview-title">事件流</h2></div><a href="/threads/">查看全部 <span aria-hidden="true">↗</span></a></div>
-{% for event in focus limit:3 %}{% assign step = event.timeline | first %}
-<a class="event-preview-row" href="/events/{{ event.event_id | escape }}/#{{ step.update_id | escape }}"><time datetime="{{ step.timestamp | escape }}">{{ step.display_time | escape }}</time><div><h3>{{ event.title_zh | default: event.title_en | escape }}</h3><p>{{ step.text_zh | default: step.text_en | escape }}</p></div><span aria-hidden="true">↗</span></a>
-{% endfor %}
-</section>
-{% endif %}

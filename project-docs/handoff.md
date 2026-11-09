@@ -5,13 +5,13 @@
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "PR2：删除第一批停用模块、旧前端与历史流程文档",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/361",
-  "owner": "本聊天 Codex",
-  "branch": "agent/daily-prune-1",
-  "base": "81a57092df0c4e43249516ecedbb907ee8b8d2fb",
-  "status": "PR362修复独立realtime文档入链；日报Python、web、站点构建通过",
-  "next": "完成删除回归与历史链接对照；两天自然出刊验收待观察",
+  "goal": "PR3：拆分日报主流程并删除停用内容产品",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/363",
+  "owner": "本聊天Codex",
+  "branch": "agent/daily-pipeline",
+  "base": "8020d706d29fe60e4d9b2726be4ee78155a02cc5",
+  "status": "本地752测试通过/8跳过；Worker107测试通过；选稿六组一致，准备完整CI",
+  "next": "提交PR并通过完整CI；后续PR4切换单期首页与后台只评分",
   "blockers": []
 }
 ```

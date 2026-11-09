@@ -382,20 +382,16 @@ def main():
         raise ValueError("trusted production SQLite environment required")
     if args.bootstrap:
         root = args.bootstrap
-        names = {"staging-items.json":"staging", "events.json":"events", "event-legacy-urls.json":"event_urls",
+        names = {"staging-items.json":"staging",
             "bmtnews_state.json":"daily", "x-queue.json":"x_queue"}
         documents = {name: json.loads((root / filename).read_text()) for filename,name in names.items() if (root / filename).exists()}
         from .edition import StagingState
         from .daily_feed import DailyFeedState
-        from .events import TrackedEvent
-        from .event_pipeline import known_story_assignments
         from .x_queue import validate as validate_x
         if "staging" in documents:
             StagingState.model_validate(documents["staging"])
         if "daily" in documents:
             DailyFeedState.model_validate(documents["daily"])
-        if "events" in documents:
-            known_story_assignments([TrackedEvent.model_validate(row) for row in documents["events"]["events"]])
         if "x_queue" in documents:
             validate_x(documents["x_queue"])
         cache = json.loads((root / "analysis-cache.json").read_text())
