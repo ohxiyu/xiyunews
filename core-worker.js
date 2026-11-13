@@ -4,7 +4,7 @@ export function primaryHostRedirect(request) {
   if(url.hostname==='www.xiyu.news'){url.hostname='xiyu.news';return Response.redirect(url.href,308);}
   return null;
 }
-const retired=/^\/(?:s(?:\/|$)|s\.html$|admin(?:\/|$)|api\/(?:admin|quick-posts|_telegram-group\.json|entities(?:\/|\.json|$))|oauth(?:\/|$)|quick-posts(?:\/|$)|developers?(?:\/|$)|mcp(?:\/|$)|feeds?(?:[\/.-]|$)|weekly(?:[\/.]|$)|manifest\.webmanifest$|offline(?:\.html)?$|llms(?:-full)?\.txt$|openapi\.json$|\.well-known\/)/i;
+const retired=/^\/(?:s(?:\/|$)|s\.html$|admin(?:\/|$)|api\/(?:admin|quick-posts|_telegram-group\.json|entities(?:\/|\.json|$))|oauth(?:\/|$)|quick-posts(?:\/|$)|developers?(?:\/|$)|mcp(?:\/|$)|weekly(?:[\/.]|$)|manifest\.webmanifest$|offline(?:\.html)?$|llms(?:-full)?\.txt$|openapi\.json$|\.well-known\/)/i;
 const gone=()=>new Response('此功能已停用。',{status:410,headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store'}});
 export default {
   async fetch(request,env) {
@@ -17,6 +17,13 @@ export default {
     // Retired content products retain a useful, read-only archive destination.
     if(['GET','HEAD'].includes(request.method)&&/^\/(?:en\/)?(?:events|threads|entity|weekly)(?:\/|\.html?$|$)/i.test(path)){
       url.pathname='/history/';return Response.redirect(url.href,308);
+    }
+    if(['GET','HEAD'].includes(request.method)&&/^\/feed-(?:zh|en)\.xml$/.test(path)){
+      url.pathname='/feed.xml';return Response.redirect(url.href,308);
+    }
+    if(/^\/feeds?(?:[\/.-]|$)/.test(path)&&path!=='/feed.xml')return gone();
+    if(['GET','HEAD'].includes(request.method)&&/^\/api\/(?:events|entities|editions)(?:[\/.]|$)/.test(path)){
+      url.pathname='/api/latest.json';return Response.redirect(url.href,308);
     }
     if(retired.test(path)||retired.test(path.replace(/^\/en(?=\/|$)/,'')||'/'))return gone();
     if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405,headers:{Allow:'GET, HEAD','Cache-Control':'no-store'}});
