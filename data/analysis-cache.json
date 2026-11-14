@@ -3096,6 +3096,24 @@
         "title_zh": "从6美元到690万美元：两个沉寂超16年的比特币地址被激活，转移100枚BTC"
       }
     },
+    "09a3d2c6389ea4b70c101eff9f83120e30c6f0be943d7c30e8d0d72a04be5ff8": {
+      "stored_at": "2026-11-14T02:57:32.185673+00:00",
+      "value": {
+        "ai_reason": "The content is a detailed personal account of hands-on experimentation with JEPA (Joint-Embedding Predictive Architecture) world models, shared on a tech community platform. It represents a substantive technical deep-dive and learning journey, which is valuable for builders and researchers in the AI space. The high engagement (218 points, 36 comments) indicates it sparked meaningful technical discussion, with comments debating methodology, connections to existing concepts like Model Predictive Control, and the novelty of the findings. This aligns with the 'Interesting' tier (5-6) for useful research and community discussions, but the depth and engagement push it to the higher end of that range. It does not represent a major lab release, safety incident, or paradigm-shifting breakthrough.",
+        "ai_score": 6.5,
+        "ai_summary": "作者分享了通过600次实验对JEPA世界模型进行实践探索的个人发现与学习历程。",
+        "ai_tags": [
+          "artificial-intelligence",
+          "machine-learning",
+          "research",
+          "tech-community"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "作者分享了通过600次实验对JEPA世界模型进行实践探索的个人发现与学习历程。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "经过600次实验后，我对JEPA世界模型的发现"
+      }
+    },
     "09bb7febcfd5e55ea84b057f362dc9db24003dedb9d0d37343ef964c52f0915f": {
       "stored_at": "2026-11-13T22:56:40.029040+00:00",
       "value": {
@@ -3161,47 +3179,6 @@
             2
           ]
         ]
-      }
-    },
-    "0a4379b6e02855cd6959de32a9f6a6e019a5276e4ffa99956331f2f390dc0677": {
-      "stored_at": "2026-11-02T23:30:25.453336+00:00",
-      "value": {
-        "background": "The flaw was fixed upstream on Oct. 15, 2026, according to NVD, which describes the issue as a case where tcp_v4_syn_recv_sock() transfers ownership of ireq->ireq_opt to the child socket without copying it. AWS noted the bug affects kernel versions 4.4 and later, where a remote unauthenticated party could send crafted IPv4 TCP packets carrying IP options to an affected listener. Ubuntu's tracker shows fixes in progress for 22.04, 24.04, 26.04 and 26.10, while 20.04, 18.04 and 16.04 show only \"Vulnerable.\"",
-        "background_en": "The flaw was fixed upstream on Oct. 15, 2026, according to NVD, which describes the issue as a case where tcp_v4_syn_recv_sock() transfers ownership of ireq->ireq_opt to the child socket without copying it. AWS noted the bug affects kernel versions 4.4 and later, where a remote unauthenticated party could send crafted IPv4 TCP packets carrying IP options to an affected listener. Ubuntu's tracker shows fixes in progress for 22.04, 24.04, 26.04 and 26.10, while 20.04, 18.04 and 16.04 show only \"Vulnerable.\"",
-        "background_zh": "据 NVD 记载，该漏洞已于 2026 年 10 月 15 日在上游修复，问题在于 tcp_v4_syn_recv_sock() 将 ireq->ireq_opt 的所有权转移给子套接字时未进行拷贝。AWS 指出，该缺陷影响 4.4 及之后的内核版本，远程未认证方可以向受影响的监听端发送携带 IP 选项的特制 IPv4 TCP 报文。Ubuntu 跟踪页面显示 22.04、24.04、26.04 和 26.10 的修复仍在进行中，而 20.04、18.04 和 16.04 仅标注为“受影响”。",
-        "community_discussion": "Commenters were split on urgency: one pointed to Ubuntu's proposed pocket as a route to fixes for the latest LTS releases, while another argued the risk is overblown given no observed in-the-wild exploit and available mitigations. Others pressed on unanswered questions — why Ubuntu's patch is slow, how consumer routers running unpatched Linux kernels fit in, and what Red Hat's partial mitigation actually blocks.",
-        "community_discussion_en": "Commenters were split on urgency: one pointed to Ubuntu's proposed pocket as a route to fixes for the latest LTS releases, while another argued the risk is overblown given no observed in-the-wild exploit and available mitigations. Others pressed on unanswered questions — why Ubuntu's patch is slow, how consumer routers running unpatched Linux kernels fit in, and what Red Hat's partial mitigation actually blocks.",
-        "community_discussion_zh": "评论者对紧迫性的看法存在分歧：有人指出可以通过 Ubuntu 的 proposed 软件源为最新 LTS 版本获取修复，也有人认为在未观察到实际利用且存在缓解措施的情况下，风险被夸大了。另一些人则追问仍无答案的问题——Ubuntu 为何修补缓慢、运行未打补丁 Linux 内核的消费级路由器该如何看待，以及红帽的部分缓解措施究竟能挡住什么。",
-        "detailed_summary": "Anthropic said Claude, using an unreleased internal model, wrote a working remote exploit for CVE-2026-98432, a use-after-free in the Linux kernel's IPv4 TCP handshake path rated 9.8 for severity that affects kernel versions from 4.4 onward. The attack was described in an Oct. 27 research post covering five targets — Chrome, Safari, Android, Windows and Linux — and takes under an hour to locate the memory flaw plus about five minutes to execute a command with root access.\n\nUbuntu's own tracker still lists every release from 16.04 through 26.10 as affected, while Red Hat shipped fixes for RHEL 8, 9 and 10 on Sunday, Nov. 1, including advisory RHSA-2026:93412. The Go Security Team warned that the underlying bug is not specific to MPTCP, the feature Anthropic's demonstrated exploit requires, and recommended upgrading to a patched kernel.\n\nAnthropic wrote that the bug is a race condition where a lost race only fails the handshake without crashing the system, so an attacker can retry indefinitely. Red Hat published a temporary firewall rule that it says \"reduces exposure to this vulnerability but cannot fully prevent it,\" with a full solution still under development; Debian, SUSE, Oracle Linux and Amazon Linux have also shipped fixes for at least some versions.",
-        "detailed_summary_en": "Anthropic said Claude, using an unreleased internal model, wrote a working remote exploit for CVE-2026-98432, a use-after-free in the Linux kernel's IPv4 TCP handshake path rated 9.8 for severity that affects kernel versions from 4.4 onward. The attack was described in an Oct. 27 research post covering five targets — Chrome, Safari, Android, Windows and Linux — and takes under an hour to locate the memory flaw plus about five minutes to execute a command with root access.\n\nUbuntu's own tracker still lists every release from 16.04 through 26.10 as affected, while Red Hat shipped fixes for RHEL 8, 9 and 10 on Sunday, Nov. 1, including advisory RHSA-2026:93412. The Go Security Team warned that the underlying bug is not specific to MPTCP, the feature Anthropic's demonstrated exploit requires, and recommended upgrading to a patched kernel.\n\nAnthropic wrote that the bug is a race condition where a lost race only fails the handshake without crashing the system, so an attacker can retry indefinitely. Red Hat published a temporary firewall rule that it says \"reduces exposure to this vulnerability but cannot fully prevent it,\" with a full solution still under development; Debian, SUSE, Oracle Linux and Amazon Linux have also shipped fixes for at least some versions.",
-        "detailed_summary_zh": "Anthropic 表示，Claude 使用一个尚未发布的内部模型，为 CVE-2026-98432 写出了可用的远程漏洞利用程序。该漏洞是 Linux 内核 IPv4 TCP 握手路径中的释放后使用（use-after-free）缺陷，严重性评分 9.8，影响 4.4 及之后的內核版本。该攻击在 10 月 27 日的一篇研究文章中披露，覆盖 Chrome、Safari、Android、Windows 和 Linux 五个目标，定位内存缺陷耗时不到一小时，再花约五分钟即可执行获得 root 权限的命令。\n\nUbuntu 官方跟踪页面仍将 16.04 至 26.10 的所有版本列为受影响，而红帽已于 11 月 1 日（周日）为 RHEL 8、9、10 发布修复，包括安全公告 RHSA-2026:93412。Go 安全团队警告称，底层缺陷并不局限于 Anthropic 演示所用攻击所依赖的 MPTCP 特性，并建议升级到已修补的内核。\n\nAnthropic 写道，该漏洞属于竞态条件，竞争失败只会导致握手失败而不会使系统崩溃，因此攻击者可以无限次重试。红帽发布了一条临时防火墙规则，称其“可降低暴露于该漏洞的风险，但无法完全阻止”，完整的解决方案仍在开发中；Debian、SUSE、Oracle Linux 和 Amazon Linux 也已为至少部分版本发布修复。",
-        "editorial_tags": [
-          "AI security",
-          "Linux kernel",
-          "CVE-2026-98432",
-          "Ubuntu",
-          "Anthropic",
-          "Red Hat"
-        ],
-        "enrichment_status": "complete",
-        "market_impact_en": "The transmission path runs through operational security rather than token fundamentals: crypto exchanges, custodians and node or validator operators run Linux server fleets, and unpatched kernels exposing TCP listeners represent availability and key-custody infrastructure risk. The bug's relevance to MPTCP-enabled deployments, which the Go Security Team says have been default since Go 1.24, widens the set of backend services that may need auditing.",
-        "market_impact_zh": "传导路径在于运营安全而非代币基本面：加密货币交易所、托管机构和节点/验证者运营方运行着大量 Linux 服务器，未打补丁且暴露 TCP 监听端口的内核构成可用性与密钥托管基础设施风险。该漏洞与启用 MPTCP 的部署相关——Go 安全团队称自 Go 1.24 起该特性默认开启——这扩大了可能需要审计的后端服务范围。",
-        "sources": [
-          {
-            "title": "RHSB-2026-016 Use-after-free - kernel IPv4 (CVE-2026-98432 ...",
-            "url": "https://access.redhat.com/security/vulnerabilities/RHSB-2026-016"
-          },
-          {
-            "title": "NVD-CVE-2026-98432",
-            "url": "https://nvd.nist.gov/vuln/detail/cve-2026-98432"
-          },
-          {
-            "title": "CVE-2026-98432 | Ubuntu",
-            "url": "https://ubuntu.com/security/CVE-2026-98432"
-          }
-        ],
-        "title_en": "Claude-Built Linux Exploit Targets Bug That Ubuntu Still Hasn't Patched",
-        "title_zh": "Claude 构建的 Linux 漏洞利用，瞄准 Ubuntu 仍未修补的内核漏洞"
       }
     },
     "0a446469f48e543539492c3f963504bf740ef8c1f986f52d25a319b86f3eacab": {
@@ -14387,6 +14364,24 @@
         "title_zh": "US$6.3bn Binance hack puts insurers on alert"
       }
     },
+    "2d944b83457d8aa2b5f563fa335510616c56977e3c0e226e9e9d1e6946fe9a9a": {
+      "stored_at": "2026-11-14T02:57:32.185494+00:00",
+      "value": {
+        "ai_reason": "The content reports a significant scientific discovery published in a top-tier journal (Cell), identifying a specific protein (Granzyme K) as a key driver of organismal aging in mice, with potential high-impact implications for longevity research. The Hacker News discussion shows engagement and adds nuance, though the research is preclinical. It is a high-value development in biotechnology, but not yet a paradigm-shifting human breakthrough.",
+        "ai_score": 7.5,
+        "ai_summary": "一项发表在《细胞》期刊上的研究发现，蛋白质颗粒酶K（Granzyme K）是驱动小鼠机体衰老的关键组织特异性因子，且不引发系统性炎症，这为衰老研究提供了新靶点。",
+        "ai_tags": [
+          "biotechnology",
+          "longevity",
+          "medical-research",
+          "science"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "《细胞》期刊最新研究揭示，蛋白质颗粒酶K（Granzyme K）是驱动小鼠衰老的关键组织特异性因子，且不会引发系统性炎症，为衰老机制研究提供了新的干预靶点。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "发现：一种驱动衰老但未引发炎症的蛋白质"
+      }
+    },
     "2d957eac3e3622509bd8efa086f52b75ba9abf2ac94c97ca5434e0f0e78a64ce": {
       "stored_at": "2026-11-09T08:56:19.253721+00:00",
       "value": {
@@ -16373,45 +16368,6 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
-    "33dba2341c67425ecfb63eb853d22720fb456d686ea432f28920bfa4c94756ba": {
-      "stored_at": "2026-11-02T23:30:25.454293+00:00",
-      "value": {
-        "background": "The solution sits within the Hong Kong Monetary Authority's Project Ensemble work. The HKMA has launched the pilot phase of the project, called EnsembleTX, to test real-value transactions using tokenized deposits and digital assets, with an initial focus on using tokenized deposits in tokenized money market fund transactions and for real-time liquidity and treasury management; EnsembleTX is set to operate throughout 2026. A wholesale CBDC is a central bank digital currency designed primarily for banks and other eligible financial institutions for interbank and financial-market settlement, as distinct from retail CBDC aimed at the general public.",
-        "background_en": "The solution sits within the Hong Kong Monetary Authority's Project Ensemble work. The HKMA has launched the pilot phase of the project, called EnsembleTX, to test real-value transactions using tokenized deposits and digital assets, with an initial focus on using tokenized deposits in tokenized money market fund transactions and for real-time liquidity and treasury management; EnsembleTX is set to operate throughout 2026. A wholesale CBDC is a central bank digital currency designed primarily for banks and other eligible financial institutions for interbank and financial-market settlement, as distinct from retail CBDC aimed at the general public.",
-        "background_zh": "该方案属于香港金管局 “Ensemble 项目” 的范畴。金管局已启动该项目的试点阶段 EnsembleTX，用于测试使用代币化存款和数字资产进行的真实价值交易，初期重点是让市场参与者将代币化存款用于代币化货币市场基金交易，并实时管理流动性与财资需求；EnsembleTX 将在 2026 年全年运作。批发型央行数字货币是主要面向银行及其他合格金融机构、用于银行间和金融市场结算的央行数字货币，与面向公众的零售型 CBDC 不同。",
-        "community_discussion": "",
-        "detailed_summary": "Standard Chartered announced the launch of a tokenized deposit solution for corporate clients in Hong Kong, making the city the first market in its global network to offer the service, with plans to extend it to more markets. Built on the bank's own blockchain infrastructure and developed with support from the HKMA's distributed ledger technology regulatory incubator, the solution relies on EnsembleTX to let tokenized deposits move between participating banks in real time, with interbank settlement in central bank money — including wholesale CBDC — on a 24/7 basis.\n\nThe service is aimed at corporate clients' intra-group liquidity management and digital treasury and investment workflows, allowing tokenized deposit transfers among participating banks to be settled in central bank money around the clock.\n\nBlockBeats reported on November 2, citing CoinDesk, that early partners include China AMC, Fireblocks and HashKey. Hong Kong is currently the only market where the bank offers the service.",
-        "detailed_summary_en": "Standard Chartered announced the launch of a tokenized deposit solution for corporate clients in Hong Kong, making the city the first market in its global network to offer the service, with plans to extend it to more markets. Built on the bank's own blockchain infrastructure and developed with support from the HKMA's distributed ledger technology regulatory incubator, the solution relies on EnsembleTX to let tokenized deposits move between participating banks in real time, with interbank settlement in central bank money — including wholesale CBDC — on a 24/7 basis.\n\nThe service is aimed at corporate clients' intra-group liquidity management and digital treasury and investment workflows, allowing tokenized deposit transfers among participating banks to be settled in central bank money around the clock.\n\nBlockBeats reported on November 2, citing CoinDesk, that early partners include China AMC, Fireblocks and HashKey. Hong Kong is currently the only market where the bank offers the service.",
-        "detailed_summary_zh": "渣打银行宣布在香港推出面向企业客户的代币化存款解决方案，香港成为其全球网络中首个推出该方案的市场，后续计划扩展至更多市场。该方案基于渣打自有区块链基础设施，在香港金管局分布式账本技术监管孵化器支持下开发，依托 EnsembleTX，代币化存款可在参与银行之间实时转账，并以包括批发型央行数字货币在内的央行货币进行 7×24 小时银行间结算。\n\n该方案面向企业客户的集团内部流动性管理及数字化财资和投资流程，使参与银行之间的代币化存款转账能够以央行货币进行全天候结算。\n\n据 BlockBeats 11 月 2 日援引 Coindesk 报道，早期合作伙伴包括华夏基金（China AMC）、Fireblocks 和 HashKey。目前香港是渣打唯一推出该服务的市场。",
-        "editorial_tags": [
-          "tokenized-deposits",
-          "standard-chartered",
-          "hong-kong",
-          "wholesale-cbdc",
-          "ensembletx",
-          "hkma"
-        ],
-        "enrichment_status": "complete",
-        "market_impact_en": "The launch adds a bank-liability settlement rail in Hong Kong alongside existing stablecoin and traditional clearing channels, with exposure concentrated in regulated enterprise treasury and settlement infrastructure rather than in traded crypto assets; named partners such as Fireblocks and HashKey point to custody and digital-asset infrastructure providers as the closest links to crypto markets.",
-        "market_impact_zh": "该服务在香港为银行负债类结算增加了新的通道，与现有稳定币及传统清算渠道并行，影响主要集中在受监管的企业财资与结算基础设施，而非可交易的加密资产本身；Fireblocks、HashKey 等被点名的合作方指向托管与数字资产基础设施服务商，是与加密市场关联最直接的一环。",
-        "sources": [
-          {
-            "title": "Hong Kong Monetary Authority - HKMA announces the new phase...",
-            "url": "https://www.hkma.gov.hk/eng/news-and-media/press-releases/2025/11/20251113-3/"
-          },
-          {
-            "title": "Hong Kong Launches EnsembleTX Pilot for Tokenized Transactions",
-            "url": "https://www.cryptotimes.io/2025/11/17/hong-kong-launches-ensembletx-pilot-for-tokenized-transactions/"
-          },
-          {
-            "title": "Retail CBDC vs Wholesale CBDC Guide - Blockchain Council",
-            "url": "https://www.blockchain-council.org/digital-assets/retail-cbdc-vs-wholesale-cbdc-use-cases-design-adoption/"
-          }
-        ],
-        "title_en": "Standard Chartered launches tokenized deposit service in Hong Kong",
-        "title_zh": "【渣打银行在香港推出代币化存款服务】"
-      }
-    },
     "33fc58c5c75a8dceef2dd64b7d22181b405ffcde4a19a289b01398da1a898678": {
       "stored_at": "2026-11-13T23:07:54.435006+00:00",
       "value": {
@@ -17117,45 +17073,6 @@
         "source_category": "crypto-markets"
       }
     },
-    "367a47f8178eaa3ac4fc14d2b247377b0dec75ccf3cec878d7efb4afc3188517": {
-      "stored_at": "2026-11-02T23:30:25.454489+00:00",
-      "value": {
-        "background": "The findings follow an earlier warning in which BTCPay urged operators to shut down server instances while it investigated reports of unauthorized withdrawals from hot wallets, and shared instructions for doing so. Less than three months earlier, BTCPay had restricted remote Lightning access after an August attack that exploited a vulnerability to obtain Lightning Network Daemon (LND) credentials and steal funds. It remains unclear whether the current attack vector is connected to that August vulnerability.",
-        "background_en": "The findings follow an earlier warning in which BTCPay urged operators to shut down server instances while it investigated reports of unauthorized withdrawals from hot wallets, and shared instructions for doing so. Less than three months earlier, BTCPay had restricted remote Lightning access after an August attack that exploited a vulnerability to obtain Lightning Network Daemon (LND) credentials and steal funds. It remains unclear whether the current attack vector is connected to that August vulnerability.",
-        "background_zh": "这一结论是在此前警告之后发布的：当时 BTCPay 在调查热钱包未授权提现报告期间，要求运营方临时关停服务器实例，并提供了关停指引。不到三个月前，BTCPay 曾在一次 8 月攻击后限制远程闪电网络访问，该攻击利用漏洞获取闪电网络守护进程（LND）凭证并盗取资金。目前尚不清楚本次攻击面是否与 8 月的漏洞有关。",
-        "community_discussion": "",
-        "detailed_summary": "On November 2, BTCPay Server said its incident response investigation had identified an attack vector mainly targeting instances running version 2.4.1 — released July 23, 2026 — or earlier. The project said it has received no credible reports of hot wallet drains among users running the latest release, version 2.4.7, and again urged all operators to upgrade promptly.\n\nBTCPay Server is self-hosted payment infrastructure run directly by merchants, so the exposure is concentrated among operators who have not updated past 2.4.1. BTCPay has not disclosed how many operators were affected or the value of any stolen funds.\n\nBTCPay asked affected users to submit information and logs to its security team, and has not released technical details on how attackers accessed the wallets. Cointelegraph said it reached out to BTCPay Server for comment but received no response before publication.",
-        "detailed_summary_en": "On November 2, BTCPay Server said its incident response investigation had identified an attack vector mainly targeting instances running version 2.4.1 — released July 23, 2026 — or earlier. The project said it has received no credible reports of hot wallet drains among users running the latest release, version 2.4.7, and again urged all operators to upgrade promptly.\n\nBTCPay Server is self-hosted payment infrastructure run directly by merchants, so the exposure is concentrated among operators who have not updated past 2.4.1. BTCPay has not disclosed how many operators were affected or the value of any stolen funds.\n\nBTCPay asked affected users to submit information and logs to its security team, and has not released technical details on how attackers accessed the wallets. Cointelegraph said it reached out to BTCPay Server for comment but received no response before publication.",
-        "detailed_summary_zh": "11 月 2 日，BTCPay Server 表示其事件响应调查已识别出攻击面，主要针对运行 2.4.1 版本（发布于 2026 年 7 月 23 日）及更早版本的实例。官方称目前暂无运行最新 2.4.7 版本用户热钱包被盗的可信报告，并再次敦促所有运营方及时升级。\n\nBTCPay Server 是由商户自行部署的自托管支付基础设施，因此风险集中在尚未升级到 2.4.1 以上版本的运营方。BTCPay 尚未披露受影响的运营方数量或被盗资金规模。\n\nBTCPay 要求受影响用户向其安全团队提交信息和日志，但尚未公布攻击者如何访问钱包的技术细节。Cointelegraph 称其联系 BTCPay Server 寻求置评，但在发稿前未获回应。",
-        "editorial_tags": [
-          "BTCPay Server",
-          "hot wallet",
-          "vulnerability",
-          "security incident",
-          "self-hosted payments",
-          "Bitcoin"
-        ],
-        "enrichment_status": "complete",
-        "market_impact_en": "The exposure sits with merchant-operated hot wallets on self-hosted BTCPay instances, which hold working balances for accepting Bitcoin payments rather than exchange or custodian reserves, so the transmission channel is operational security of merchant funds rather than market liquidity. With affected counts and losses undisclosed, the read-through to broader BTC market structure is limited.",
-        "market_impact_zh": "风险敞口位于自托管 BTCPay 实例上由商户自行运营的热钱包，这类钱包存放的是用于接收比特币支付的日常余额，而非交易所或托管机构的储备，因此传导渠道是商户资金的运营安全，而非市场流动性。由于受影响数量和损失规模尚未披露，对整体比特币市场结构的影响有限。",
-        "sources": [
-          {
-            "title": "BTCPay Server Attack Hits Older Versions: What Bitcoin ...",
-            "url": "https://coinedition.com/btcpay-server-attack-hits-older-versions-what-bitcoin-merchants-should-do-now/"
-          },
-          {
-            "title": "BTCPay Server Flags New Hot Wallet Attack Vector on Outdated ...",
-            "url": "https://coinmarketcap.com/academy/article/btcpay-server-flags-new-hot-wallet-attack-vector-on-outdated-builds"
-          },
-          {
-            "title": "BTCPay Server",
-            "url": "https://btcpayserver.org/"
-          }
-        ],
-        "title_en": "BTCPay Server: Attack surface points to version 2.4.1 and earlier, no credible hot wallet theft reports on latest release",
-        "title_zh": "BTCPay Server：攻击面指向2.4.1及更早版本，最新版暂无可信热钱包被盗报告"
-      }
-    },
     "36881603a53b182d765d9231237ac5f9c578d692a0dd302c61947a6fb97f2fe6": {
       "stored_at": "2026-11-08T15:08:16.508820+00:00",
       "value": {
@@ -17241,6 +17158,25 @@
         ],
         "category": "macro-regulation",
         "score_model": "deepseek:deepseek-flash"
+      }
+    },
+    "36bd4aec4f93cc526b4aa9c16ff2f91e073ffe86ee3c71876abd9d70616d896e": {
+      "stored_at": "2026-11-14T02:57:32.184720+00:00",
+      "value": {
+        "ai_reason": "Content describes a routine market price movement and broad sell-off without identifying a specific catalyst, new development, or systemic event within the news window. It lacks the novelty or material impact required for a higher score.",
+        "ai_score": 4.5,
+        "ai_summary": "比特币价格跌破67,000美元，加密货币市场普遍下跌，以太坊四周内跌幅达21.4%。",
+        "ai_tags": [
+          "bitcoin",
+          "ethereum",
+          "market-sentiment",
+          "price-action"
+        ],
+        "category": "crypto-markets",
+        "detailed_summary_zh": "比特币价格跌破67,000美元，加密货币市场普遍下跌，以太坊四周内跌幅达21.4%。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-protocols",
+        "title_zh": "比特币跌破67,000美元，加密货币抛售潮加剧"
       }
     },
     "36c604e48a5fe1b22091e5bede50cf6d33400a365a10af47f0f72fb30a0c72f6": {
@@ -22255,44 +22191,6 @@
         "source_category": "crypto-markets"
       }
     },
-    "4695160fa6e9d64ef0c3eebfe00bcc7b217acab0df30e0bb9fc0c23acc75c49e": {
-      "stored_at": "2026-11-02T23:30:25.453023+00:00",
-      "value": {
-        "background": "The suspected theft follows the roughly $6.3 billion Binance hack on Oct. 29, which the FBI attributed to North Korean hackers tracked as \"TraderTraitor\" and which is the largest cryptocurrency theft on record. ZachXBT is a pseudonymous blockchain investigator and OSINT researcher known for independent on-chain forensic work on crypto fraud and scams. Monero is a privacy-focused cryptocurrency commonly used to break the traceability of stolen funds.",
-        "background_en": "The suspected theft follows the roughly $6.3 billion Binance hack on Oct. 29, which the FBI attributed to North Korean hackers tracked as \"TraderTraitor\" and which is the largest cryptocurrency theft on record. ZachXBT is a pseudonymous blockchain investigator and OSINT researcher known for independent on-chain forensic work on crypto fraud and scams. Monero is a privacy-focused cryptocurrency commonly used to break the traceability of stolen funds.",
-        "background_zh": "此次疑似盗窃发生在 10 月 29 日币安约 63 亿美元被盗案之后，FBI 将该案归因于被追踪为“TraderTraitor”的朝鲜黑客，这也是有记录以来规模最大的加密货币盗窃案。ZachXBT 是匿名的区块链调查员与 OSINT 研究者，以对加密欺诈和骗局进行独立链上取证调查而知名。门罗币（XMR）是注重隐私的加密货币，常被用于切断被盗资金的追踪链条。",
-        "community_discussion": "",
-        "detailed_summary": "Blockchain investigator ZachXBT warned in a Monday Telegram post that an unidentified entity in the European Union appears to have had more than $106 million drained from several centralized exchange accounts on Sunday, Nov. 1, with the funds withdrawn in USDC and USDT. Over the following 24 hours the suspected attacker swapped USDC into ETH, moved funds through instant-exchange services including WellWallet and Kyrrex, converted them into Monero (XMR) via the swap service Wagyu, and bridged assets across multiple chains; ZachXBT published 11 associated addresses.\n\nZachXBT said with \"a high degree of confidence\" that the attacker is not North Korea's Lazarus Group, setting this incident apart from the recent Binance hack. The funds were still being moved through instant-swap venues and privacy coin conversion at the time of the alert, indicating the laundering is ongoing.\n\nThe affected entity and the exchanges involved have not been publicly named, and the attacker remains unidentified. Lookonchain reported that wallet 0x9eca bought 27,553 ETH (about $62.97 million) on-chain at an average price of $2,286 as part of the fund movement.",
-        "detailed_summary_en": "Blockchain investigator ZachXBT warned in a Monday Telegram post that an unidentified entity in the European Union appears to have had more than $106 million drained from several centralized exchange accounts on Sunday, Nov. 1, with the funds withdrawn in USDC and USDT. Over the following 24 hours the suspected attacker swapped USDC into ETH, moved funds through instant-exchange services including WellWallet and Kyrrex, converted them into Monero (XMR) via the swap service Wagyu, and bridged assets across multiple chains; ZachXBT published 11 associated addresses.\n\nZachXBT said with \"a high degree of confidence\" that the attacker is not North Korea's Lazarus Group, setting this incident apart from the recent Binance hack. The funds were still being moved through instant-swap venues and privacy coin conversion at the time of the alert, indicating the laundering is ongoing.\n\nThe affected entity and the exchanges involved have not been publicly named, and the attacker remains unidentified. Lookonchain reported that wallet 0x9eca bought 27,553 ETH (about $62.97 million) on-chain at an average price of $2,286 as part of the fund movement.",
-        "detailed_summary_zh": "区块链调查员 ZachXBT 周一在 Telegram 发帖预警称，欧盟一个未具名实体疑似于 11 月 1 日（周日）从多个中心化交易所账户被盗走超过 1.06 亿美元，资金以 USDC 和 USDT 形式被提出。过去 24 小时内，攻击者将 USDC 兑换为 ETH，经 WellWallet、Kyrrex 等即时兑换平台转移，并通过 Wagyu 兑换为门罗币（XMR），同时跨多条链搬运资金；ZachXBT 已公布 11 个相关地址。\n\nZachXBT 表示“高度确信”攻击者并非朝鲜 Lazarus 组织，这与近期的币安被盗案有所不同。预警发布时资金仍在通过即时兑换平台和隐私币兑换持续转移，说明洗钱过程尚未结束。\n\n受影响实体及涉事交易所均未公开，攻击者身份也尚未查明。Lookonchain 称，地址 0x9eca 在链上以约 2,286 美元均价买入 27,553 枚 ETH（约 6,297 万美元），属于此次资金转移的一部分。",
-        "editorial_tags": [
-          "ZachXBT",
-          "security-incident",
-          "fund-theft",
-          "stablecoins",
-          "monero"
-        ],
-        "enrichment_status": "complete",
-        "market_impact_en": "The transmission channel runs through liquidity and laundering venues rather than a protocol: a nine-figure stablecoin balance was converted into ETH and then into XMR via instant-exchange services, exposing KYC-light swap platforms such as WellWallet, Kyrrex and Wagyu to scrutiny, and putting the unnamed exchange accounts and privacy-coin liquidity under the spotlight. The incident also feeds the broader narrative around exchange-account security and stablecoin tracing after the Binance hack.",
-        "market_impact_zh": "传导路径主要体现在流动性与洗钱渠道而非某个协议：一笔九位数的稳定币余额被换成 ETH，再经即时兑换服务转为 XMR，使 WellWallet、Kyrrex、Wagyu 等 KYC 较宽松的兑换平台面临审视，涉事的未具名交易所账户与隐私币流动性也因此受到关注。在币安被盗案之后，该事件还会进一步强化市场对交易所账户安全与稳定币追踪能力的讨论。",
-        "sources": [
-          {
-            "title": "ZachXBT Reports $106M Crypto Theft Involving Exchange Accounts",
-            "url": "https://cointelegraph.com/news/zachxbt-flags-suspected-106m-crypto-theft-as-solana-bot-faces-possible-786k-drain"
-          },
-          {
-            "title": "ZachXBT - Wikipedia",
-            "url": "https://en.wikipedia.org/wiki/ZachXBT"
-          },
-          {
-            "title": "Secure and transparent crypto wallet in Telegram",
-            "url": "https://www.wellwallet.io/"
-          }
-        ],
-        "title_en": "ZachXBT: An EU entity suspected of having over $106 million stolen from multiple centralized exchange accounts",
-        "title_zh": "【ZachXBT：欧盟某实体疑从多个中心化交易所账户被盗超 1.06 亿美元】"
-      }
-    },
     "46a70db2faad5d869247802ff102eac1a8f2c3d95f9a1182d5f66b6839dfd190": {
       "stored_at": "2026-11-09T07:29:02.128096+00:00",
       "value": {
@@ -24791,6 +24689,25 @@
         "source_category": "crypto-markets"
       }
     },
+    "4eb8a36ece24df2f086bda701e621c36140975960c1d733724cc56fe0c9d5600": {
+      "stored_at": "2026-11-14T02:57:32.185310+00:00",
+      "value": {
+        "ai_reason": "Content describes a personal, hobbyist project using SDR and CUDA to monitor local air traffic radio during a ground stop. While technically interesting to a niche community, it lacks the novelty, ecosystem-wide impact, or actionable implications for builders required for a higher score. It is a low-priority, routine tech demonstration.",
+        "ai_score": 4.5,
+        "ai_summary": "一名开发者分享了一个使用Ettus B210 SDR和双4090 GPU构建的实时航空波段接收系统，该系统在维多利亚地区发生地面停飞期间用于监听相关无线电通信。",
+        "ai_tags": [
+          "software-defined-radio",
+          "gpu-computing",
+          "real-time-processing",
+          "hobby-project",
+          "aviation"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "一名开发者利用Ettus B210软件定义无线电和双4090 GPU搭建了一套实时航空波段接收系统，在加拿大维多利亚地区实施地面停飞期间，用于监听相关无线电通信。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "KORS所有频率实时航空波段监听，维多利亚地区同时实施地面停飞"
+      }
+    },
     "4ec56cd4e4e5523f9dc3ac8c23d1e945f6360385f5cd8d192780fc84caa2352c": {
       "stored_at": "2026-11-09T04:41:58.461054+00:00",
       "value": {
@@ -26554,6 +26471,24 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "tech-community",
         "title_zh": "Chimera 人声合成器"
+      }
+    },
+    "546e0709dec8b84f51ad0da460ca2689f158f4e1bc48244a531f78fdbdb3382e": {
+      "stored_at": "2026-11-14T02:57:32.185099+00:00",
+      "value": {
+        "ai_reason": "Content describes a concurrent IT outage at Amtrak and an FAA ground stop, which is a notable operational failure but has no direct connection to cryptocurrency, AI, or consequential technology. The discussion is a typical tech-community reaction to a service disruption, focusing on website quality and cascading failures, but lacks substantive technical analysis or broader market implications. It is relevant to infrastructure reliability but is a low-priority event for the specified expertise areas.",
+        "ai_score": 3.5,
+        "ai_summary": "美国国家铁路客运公司（Amtrak）的订票系统在全国性的联邦航空管理局（FAA）停飞令期间出现重大故障。",
+        "ai_tags": [
+          "infrastructure",
+          "service-outage",
+          "transportation",
+          "cascading-failure"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "美国国家铁路客运公司（Amtrak）的订票系统在全国性的联邦航空管理局（FAA）停飞令期间出现重大故障。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "美国铁路公司订票系统在全国性联邦航空管理局停飞期间出现重大故障"
       }
     },
     "54856e08fdf8257adb253a36211895d9cee95b9b83c50f82dff482b967ccb88a": {
@@ -28745,41 +28680,6 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "crypto-markets",
         "title_zh": "温克莱沃斯兄弟出售Gemini英国及欧洲业务，报道称"
-      }
-    },
-    "5bf7f0eac983108061a2282700c31c75b0a5ddfd9c8c3b33e37a19d1bb56ff78": {
-      "stored_at": "2026-11-02T23:30:25.452667+00:00",
-      "value": {
-        "background": "Mercado Bitcoin is Brazil's largest crypto exchange and said in a Portuguese-language statement on X that it identified and quickly contained the incident, calling the deposit and withdrawal suspension a preventive measure taken while it investigates alongside \"competent authorities.\" Deposit addresses are typically swept and consolidated by exchanges, and stolen funds routed through such addresses can be tracked by analytics firms.",
-        "background_en": "Mercado Bitcoin is Brazil's largest crypto exchange and said in a Portuguese-language statement on X that it identified and quickly contained the incident, calling the deposit and withdrawal suspension a preventive measure taken while it investigates alongside \"competent authorities.\" Deposit addresses are typically swept and consolidated by exchanges, and stolen funds routed through such addresses can be tracked by analytics firms.",
-        "background_zh": "Mercado Bitcoin 是巴西最大的加密货币交易所，其在 X 上发布的葡萄牙语声明中称，已识别并迅速控制住此次事件，并将暂停充提称为在配合“主管部门”调查期间采取的预防性措施。充值地址通常会被交易所归集扫荡，安全分析公司可据此追踪经由这些地址转移的赃款。",
-        "community_discussion": "",
-        "detailed_summary": "Brazilian exchange Mercado Bitcoin suspended deposits and withdrawals on Monday after detecting a security incident in one of its systems in the early hours of the morning. Blockchain security firm Hypernative flagged more than $40 million in suspicious transfers across at least 10 blockchains, while Arkham analyst Emmett Gallic put the losses at over $46 million and said the attacker is still sweeping old deposit addresses and selling off memecoins and altcoins.\n\nThe exchange says no customer funds or data were affected, but the platform-wide suspension of deposits and withdrawals blocks all users from moving assets while funds are still being traced on-chain. Tether has frozen more than 4.5 million USDT tied to the incident, according to CEO Paolo Ardoino.\n\nMercado Bitcoin published attacker destination addresses on five networks — EVM chains, Bitcoin, Solana, Stellar and Tron — saying they were released so others can identify and track the funds, and it has not confirmed the $40 million-plus figure or disclosed how the attackers gained access. Hypernative's preliminary analysis spans at least 10 blockchains, including Bitcoin, Ethereum, Solana and Tron.",
-        "detailed_summary_en": "Brazilian exchange Mercado Bitcoin suspended deposits and withdrawals on Monday after detecting a security incident in one of its systems in the early hours of the morning. Blockchain security firm Hypernative flagged more than $40 million in suspicious transfers across at least 10 blockchains, while Arkham analyst Emmett Gallic put the losses at over $46 million and said the attacker is still sweeping old deposit addresses and selling off memecoins and altcoins.\n\nThe exchange says no customer funds or data were affected, but the platform-wide suspension of deposits and withdrawals blocks all users from moving assets while funds are still being traced on-chain. Tether has frozen more than 4.5 million USDT tied to the incident, according to CEO Paolo Ardoino.\n\nMercado Bitcoin published attacker destination addresses on five networks — EVM chains, Bitcoin, Solana, Stellar and Tron — saying they were released so others can identify and track the funds, and it has not confirmed the $40 million-plus figure or disclosed how the attackers gained access. Hypernative's preliminary analysis spans at least 10 blockchains, including Bitcoin, Ethereum, Solana and Tron.",
-        "detailed_summary_zh": "巴西交易所 Mercado Bitcoin 周一暂停了充值与提现，称当天凌晨在其一个系统中发现了安全事件。区块链安全公司 Hypernative 标记了横跨至少 10 条区块链、总额超过 4000 万美元的可疑转账；Arkham 分析师 Emmett Gallic 则表示损失已超过 4600 万美元，并称攻击者仍在扫荡旧充值地址、抛售 meme 币和山寨币。\n\n该交易所称客户资金与数据均未受影响，但全平台的充提暂停使所有用户在资金仍被链上追踪期间无法转移资产。据 Tether 首席执行官 Paolo Ardoino 表示，Tether 已冻结了与此次事件相关的超过 450 万枚 USDT。\n\nMercado Bitcoin 公布了攻击者在五类网络上的收款地址——EVM 链、比特币、Solana、Stellar 和 Tron——称公布目的是便于他人识别和追踪这些资金；该交易所尚未确认 4000 多万美元这一数字，也未披露攻击者如何入侵。Hypernative 的初步分析涵盖至少 10 条区块链，包括比特币、以太坊、Solana 和 Tron。",
-        "editorial_tags": [
-          "exchange-hack",
-          "Mercado Bitcoin",
-          "Brazil",
-          "withdrawals-suspended",
-          "Tether",
-          "fund-tracing"
-        ],
-        "enrichment_status": "complete",
-        "market_impact_en": "The incident puts Brazilian exchange liquidity and the local fiat on-ramp under immediate strain, since users cannot deposit or withdraw while the exchange investigates. On-chain, the attacker's ongoing conversion of memecoins and altcoins into more liquid assets adds sell pressure on those tokens across at least ten networks, and Tether's blacklisting of over 4.5 million USDT shows stablecoin issuers can immobilize a portion of the proceeds.",
-        "market_impact_zh": "该事件使巴西交易所的流动性和本地法币出入金通道立即承压，因为调查期间用户无法充值或提现。在链上，攻击者持续将 meme 币和山寨币兑换为流动性更高的资产，在至少十条网络上对这些代币形成抛压；Tether 冻结超过 450 万枚 USDT 则显示稳定币发行方能够冻结部分赃款。",
-        "sources": [
-          {
-            "title": "Enterprise Blockchain Intelligence | Arkham",
-            "url": "https://arkm.com/"
-          },
-          {
-            "title": "How to Identify Exchange Deposit Addresses... - Crypto Trace Labs",
-            "url": "https://cryptotracelabs.com/blog/how-to-identify-exchange-deposit-addresses-from-on-chain-transaction-patterns/"
-          }
-        ],
-        "title_en": "Mercado Bitcoin hack losses are at $46M and growing",
-        "title_zh": "Mercado Bitcoin 黑客攻击损失已达 4600 万美元，且仍在扩大"
       }
     },
     "5bfbfdd94a84b8d677476cd90854b2172f73db772090b0cc48371a11ec7575df": {
@@ -38622,6 +38522,23 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
+    "7c7fe951de848c7acfd5bf878f3dcb34f76b0098d6c34033ea9e4fd45e88b9d4": {
+      "stored_at": "2026-11-14T02:57:32.184344+00:00",
+      "value": {
+        "ai_reason": "This is a product update from a major AI lab (Anthropic), expanding access to a feature (Claude Duet) for existing US subscribers and offering a minor promotional incentive (free weekly quota resets). It represents a notable but incremental step in user deployment and engagement, not a major capability, safety, or ecosystem-shifting release. The discussion quality is neutral as it is a straightforward announcement.",
+        "ai_score": 6.5,
+        "ai_summary": "Anthropic宣布其Claude Duet功能已向所有美国候补名单上的Pro、Max和Ultra订阅用户开放，并为Pro用户提供3次、Max和Ultra用户各1次的免费周额度重置机会以鼓励试用。",
+        "ai_tags": [
+          "ai-labs",
+          "anthropic",
+          "claude",
+          "product-launch"
+        ],
+        "category": "ai-labs",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets"
+      }
+    },
     "7c9578d193870d61c5b5d654379f65dc7c40a1f903c80a5b7cc1472967f284e1": {
       "stored_at": "2026-11-08T21:21:58.946974+00:00",
       "value": {
@@ -39694,45 +39611,6 @@
             21
           ]
         ]
-      }
-    },
-    "80c2ee3f46aaae721bf0cd049ed14a0c63e061699542be3e1fc52afa7871cdf2": {
-      "stored_at": "2026-11-02T23:30:25.452368+00:00",
-      "value": {
-        "background": "Attackers began draining Binance's hot wallets late Thursday; the FBI has attributed the theft to TraderTraitor, a North Korean state-linked group, and published hundreds of linked addresses. Binance, which has pledged to cover all losses, reopened withdrawals Sunday and saw about $3.64 billion in net outflows in the first nine and a half hours. Elliptic says about $3.24 billion remains in addresses tied to the theft — mostly ETH and 18,270 bitcoin that have not moved since the attack — and expects a months-long cash-out through over-the-counter brokers.",
-        "background_en": "Attackers began draining Binance's hot wallets late Thursday; the FBI has attributed the theft to TraderTraitor, a North Korean state-linked group, and published hundreds of linked addresses. Binance, which has pledged to cover all losses, reopened withdrawals Sunday and saw about $3.64 billion in net outflows in the first nine and a half hours. Elliptic says about $3.24 billion remains in addresses tied to the theft — mostly ETH and 18,270 bitcoin that have not moved since the attack — and expects a months-long cash-out through over-the-counter brokers.",
-        "background_zh": "攻击者于上周四晚间开始清空币安热钱包；美国联邦调查局已将此次盗窃归因于与朝鲜政府有关联的黑客组织 TraderTraitor，并公布了数百个关联地址。币安承诺承担全部损失，于周日恢复提现，前九个半小时净流出约 36.4 亿美元。Elliptic 称，约 32.4 亿美元仍留在与本案相关的地址中，主要是 ETH 和自攻击当日即未再移动的 18,270 枚比特币，并预计其将通过场外经纪商在数月内逐步变现。",
-        "community_discussion": "",
-        "detailed_summary": "Blockchain analytics firm Elliptic said in an analysis published Monday that in under four days the attacker behind the $6.43 billion Binance theft spread the funds across roughly 12,000 wallets on 11 blockchains in more than 40,000 transactions — about one new wallet every 25 seconds. Elliptic reported that about $2.85 billion, or 44% of the haul, has already been frozen or seized after Tether and Circle moved to lock up stolen stablecoins.\n\nThe 44% freeze-or-seizure rate compares with roughly 3% after North Korea's $1.5 billion Bybit hack in February 2025, according to Elliptic, which attributes the difference to stablecoin issuers acting within minutes.\n\nElliptic found Tether froze stolen USDT on Ethereum 37 minutes after it reached the attacker's wallet, and Circle froze all $823 million in stolen USDC before any could be swapped; about $786 million in stablecoins nonetheless escaped. The firm said the laundering is clearly automated but shows no AI decision-making, citing fixed timing, set amounts, blind retries and pauses resembling human working hours.",
-        "detailed_summary_en": "Blockchain analytics firm Elliptic said in an analysis published Monday that in under four days the attacker behind the $6.43 billion Binance theft spread the funds across roughly 12,000 wallets on 11 blockchains in more than 40,000 transactions — about one new wallet every 25 seconds. Elliptic reported that about $2.85 billion, or 44% of the haul, has already been frozen or seized after Tether and Circle moved to lock up stolen stablecoins.\n\nThe 44% freeze-or-seizure rate compares with roughly 3% after North Korea's $1.5 billion Bybit hack in February 2025, according to Elliptic, which attributes the difference to stablecoin issuers acting within minutes.\n\nElliptic found Tether froze stolen USDT on Ethereum 37 minutes after it reached the attacker's wallet, and Circle froze all $823 million in stolen USDC before any could be swapped; about $786 million in stablecoins nonetheless escaped. The firm said the laundering is clearly automated but shows no AI decision-making, citing fixed timing, set amounts, blind retries and pauses resembling human working hours.",
-        "detailed_summary_zh": "区块链分析公司 Elliptic 在周一发布的报告中称，币安 64.3 亿美元被盗案的实施者在不到四天内将资金分散到 11 条区块链上的约 1.2 万个钱包，交易超过 4 万笔——大约每 25 秒就启用一个新钱包。Elliptic 表示，在 Tether 与 Circle 出手冻结被盗稳定币后，约 28.5 亿美元（占 44%）已被冻结或查扣。\n\n据 Elliptic 数据，本次 44% 的冻结或查扣比例远高于 2025 年 2 月朝鲜盗取 Bybit 15 亿美元后约 3% 的水平，该公司将此归因于稳定币发行方在数分钟内采取了行动。\n\nElliptic 发现，Tether 在被盗 USDT 到达攻击者钱包后 37 分钟即于以太坊上完成冻结，Circle 则在全部 8.23 亿美元被盗 USDC 被兑换前予以冻结；但仍有约 7.86 亿美元稳定币流出。该公司表示，这一洗钱过程明显是自动化的，但没有证据显示由 AI 做决策，理由是时间间隔固定、金额设定统一、盲目重试，以及类似人类工作时间的停顿。",
-        "editorial_tags": [
-          "North Korea",
-          "Binance hack",
-          "Elliptic",
-          "Tether",
-          "Circle",
-          "stablecoin freeze"
-        ],
-        "enrichment_status": "complete",
-        "market_impact_en": "Because stablecoins accounted for $3.46 billion, or 54%, of the haul, issuer blacklist authority was the decisive channel determining how much could be recovered, while the roughly $786 million that escaped was routed through DEXs such as Uniswap, used as collateral to borrow 19,762 ETH on Aave and swapped into Tron's TRX. Binance's roughly $3.64 billion in net outflows also shifts near-term liquidity and custody risk toward other venues.",
-        "market_impact_zh": "由于稳定币占被盗资金的 54%（34.6 亿美元），发行方的黑名单权限成为决定可追回比例的关键渠道；而逃出的约 7.86 亿美元则通过 Uniswap 等去中心化交易所转移，在 Aave 上作为抵押借出 19,762 枚 ETH，并兑换为波场的 TRX。币安约 36.4 亿美元的净流出也使短期流动性与托管风险向其他交易场所转移。",
-        "sources": [
-          {
-            "title": "Blockchain Analytics & Crypto Compliance | Elliptic",
-            "url": "https://www.elliptic.co/"
-          },
-          {
-            "title": "Crypto experts question double standard after issuers freeze billions in...",
-            "url": "https://www.coindesk.com/business/2026/10/30/experts-divided-over-binance-hack-asset-freezes-warn-recovery-is-another-matter"
-          },
-          {
-            "title": "Crypto Money Laundering Explained: How Criminals Cash Out Billions",
-            "url": "https://www.chainalysis.com/blog/crypto-laundering/"
-          }
-        ],
-        "title_en": "North Korea Is Laundering Binance Hack Loot at One New Wallet Every 25 Seconds",
-        "title_zh": "朝鲜每25秒启用一个新钱包，洗白币安被盗资金"
       }
     },
     "80c3dbb6b5a1cf781a397a885a9bc2fa9e681fef702c68606287915ba17f5a76": {
@@ -44928,44 +44806,6 @@
         "title_zh": "【币安将于 2026 年 12 月 31 日关闭法国用户账户，11 月 29 日起收取每月 0.025% 的管理费】"
       }
     },
-    "9424d10d0b70d44b9b944dbd145b6db6ec8e874368fb115f31f1e7779cd4712f": {
-      "stored_at": "2026-11-02T23:30:25.453729+00:00",
-      "value": {
-        "background": "Weight-space learning is an existing research area: ICLR 2025 hosted a workshop aimed at treating neural network weights as a data modality, and prior lines of work include predicting or generating network parameters, with fast-weight programmer ideas dating back to 1991. Qwen is Alibaba Cloud's family of open-weight large language models, first released in 2023. Transformer blocks, the architecture behind these models, stack self-attention with Multi-Layer Perceptron (MLP) layers — the components Astra edited here.",
-        "background_en": "Weight-space learning is an existing research area: ICLR 2025 hosted a workshop aimed at treating neural network weights as a data modality, and prior lines of work include predicting or generating network parameters, with fast-weight programmer ideas dating back to 1991. Qwen is Alibaba Cloud's family of open-weight large language models, first released in 2023. Transformer blocks, the architecture behind these models, stack self-attention with Multi-Layer Perceptron (MLP) layers — the components Astra edited here.",
-        "background_zh": "权重空间学习是一个既有研究方向：ICLR 2025 曾举办研讨会，旨在将神经网络权重视为一种数据模态；此前的工作还包括预测或生成网络参数，而“快速权重编程器”（fast weight programmer）的思路可追溯到 1991 年。Qwen 是阿里云推出的开放权重大模型系列，于 2023 年首次发布。这些模型所基于的 Transformer 模块由自注意力与多层感知机（MLP）层堆叠而成，而 Astra 此次编辑的正是其中的 MLP 层。",
-        "community_discussion": "The Hacker News discussion drew roughly 1,632 points and 518 comments, with one commenter calling the results \"insane\" and saying they had assumed LLMs' understanding of their own weights would be at best human-level. Others said the result, while remarkable, was not entirely out of the blue, comparing it to LLMs' ability to rapidly grasp sprawling legacy codebases; another commenter pointed to a long-standing literature on parameter prediction and network parameter generation, arguing the subfield has existed for years.",
-        "community_discussion_en": "The Hacker News discussion drew roughly 1,632 points and 518 comments, with one commenter calling the results \"insane\" and saying they had assumed LLMs' understanding of their own weights would be at best human-level. Others said the result, while remarkable, was not entirely out of the blue, comparing it to LLMs' ability to rapidly grasp sprawling legacy codebases; another commenter pointed to a long-standing literature on parameter prediction and network parameter generation, arguing the subfield has existed for years.",
-        "community_discussion_zh": "Hacker News 上的讨论获得约 1632 分和 518 条评论。一位评论者称结果“太疯狂了”，并表示自己原本以为大模型对自身权重的理解最多只相当于人类水平。也有人认为该结果虽然惊人但并非全然出乎意料，并将其类比为大模型能迅速理解庞杂的遗留代码库；还有评论者指出参数预测与网络参数生成已有长期研究积累，这个子领域早已存在。",
-        "detailed_summary": "A researcher has published a demonstration of \"weight-space programming,\" in which an LLM called Astra inspects a neural network's weights directly and edits them to change model behavior, without being allowed to write training loops. In the reported examples, Astra traced a small reasoning model's repetitive looping to a direction written by the MLP layers 15 and 19 and subtracted it from 64 output columns in each layer (131,072 weights), and separately edited a small Qwen model's weights to improve its math performance several-fold without retraining.\n\nCommenters on Hacker News described the demonstration as striking evidence that current LLMs may hold some native understanding of their own weight structure rather than requiring external tooling to inspect it. The work is presented as a single-author blog demonstration, not a peer-reviewed or frontier-lab release.\n\nAccording to the write-up, 85 of the base model's first 96 practice answers ran to the 32,768-token limit before the weight edit. The author frames the approach as using the model's reasoning to work out what each part of the network computes, or should compute, and then changing weights accordingly.",
-        "detailed_summary_en": "A researcher has published a demonstration of \"weight-space programming,\" in which an LLM called Astra inspects a neural network's weights directly and edits them to change model behavior, without being allowed to write training loops. In the reported examples, Astra traced a small reasoning model's repetitive looping to a direction written by the MLP layers 15 and 19 and subtracted it from 64 output columns in each layer (131,072 weights), and separately edited a small Qwen model's weights to improve its math performance several-fold without retraining.\n\nCommenters on Hacker News described the demonstration as striking evidence that current LLMs may hold some native understanding of their own weight structure rather than requiring external tooling to inspect it. The work is presented as a single-author blog demonstration, not a peer-reviewed or frontier-lab release.\n\nAccording to the write-up, 85 of the base model's first 96 practice answers ran to the 32,768-token limit before the weight edit. The author frames the approach as using the model's reasoning to work out what each part of the network computes, or should compute, and then changing weights accordingly.",
-        "detailed_summary_zh": "一位研究者发布了一项名为“权重空间编程”（weight-space programming）的演示：名为 Astra 的大模型直接检视神经网络的权重并加以编辑以改变模型行为，且全程不允许它编写训练循环。在文中给出的例子中，Astra 将一个小型推理模型的重复循环归因于第 15 层和第 19 层 MLP 写出的某个方向，并从每层 64 个输出列（共 131,072 个权重）中减去该方向；它还直接编辑了一个小型 Qwen 模型的权重，在没有重新训练的情况下将其数学能力提升了数倍。\n\nHacker News 上的评论者认为，这一演示是引人注目的证据，说明当前的大模型可能对自身权重结构具备某种“原生”理解，而不必依赖外部工具来检视权重。不过该工作属于单人博客演示，并非经过同行评审的成果，也非前沿实验室的正式发布。\n\n根据文中描述，在编辑权重之前，该基座模型前 96 次练习作答中有 85 次触及 32,768 token 的上限。作者将这一方法概括为：利用模型的推理能力判断网络各部分实际计算什么、应当计算什么，然后据此修改权重。",
-        "editorial_tags": [
-          "interpretability",
-          "weight-editing",
-          "Qwen",
-          "model-steering",
-          "AI-research"
-        ],
-        "enrichment_status": "complete",
-        "sources": [
-          {
-            "title": "Sparks of Weight-Space Programming: LLMs can natively read...",
-            "url": "https://rikiyat.github.io/blog/weight-space-programming/"
-          },
-          {
-            "title": "Neural Network Weights as a New Data Modality",
-            "url": "https://iclr.cc/virtual/2025/workshop/23994"
-          },
-          {
-            "title": "Qwen - Wikipedia",
-            "url": "https://en.wikipedia.org/wiki/Qwen"
-          }
-        ],
-        "title_en": "Astra can read and write weights to improve Qwen",
-        "title_zh": "Astra 能够读写权重以改进 Qwen"
-      }
-    },
     "9425093d6ef87cbdf60ebe53e4eddbaf31909452a535ebde760480d50bcf5560": {
       "stored_at": "2026-11-08T08:50:43.225958+00:00",
       "value": {
@@ -49072,6 +48912,22 @@
         "category": "crypto-regulation",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "crypto-markets"
+      }
+    },
+    "a0b88e61977f7445b1809a2182c75ec3d8dd6d85bae10e63d787e6bedfc3f684": {
+      "stored_at": "2026-11-14T02:57:32.184828+00:00",
+      "value": {
+        "ai_reason": "This reports a routine market event: an Ethereum Foundation-linked address selling 1000 ETH. While noteworthy for market watchers due to the entity's profile, it's a single transaction in an ongoing series, not a major protocol change, security incident, or systemic event. The information is factual and data-driven but represents incremental activity.",
+        "ai_score": 6.5,
+        "ai_summary": "一个与以太坊基金会关联的地址再次卖出1000枚ETH，使其自10月26日以来的累计卖出量增至7785枚，该地址链上仍剩余1万枚ETH。",
+        "ai_tags": [
+          "Ethereum",
+          "On-Chain Analysis",
+          "Market Activity",
+          "Ethereum Foundation"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
     "a0ce19a5af767d5aed85011d7698666f4491b8b98b529d0400798c8ef5808c81": {
@@ -55767,6 +55623,22 @@
         "detailed_summary_zh": "在MSCI确认将其从全球股票指数中剔除后，Strategy公司的股价下跌超过6%，此举可能引发约28亿美元的抛售压力，同时比特币市场也出现更广泛的下跌。",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "title_zh": "Strategy公司股票因MSCI指数剔除与比特币抛售下跌5%"
+      }
+    },
+    "b80298b8489279398b9822238c21c5b770ea0d67312a3ee6d6f970184dfe7275": {
+      "stored_at": "2026-11-14T02:57:32.184571+00:00",
+      "value": {
+        "ai_reason": "Reports a notable on-chain transaction by an Ethereum Foundation-linked address, representing a significant but not unprecedented market event. The information is specific and data-driven, but the sale is part of an ongoing pattern rather than a novel or systemic development.",
+        "ai_score": 6.5,
+        "ai_summary": "一个与以太坊基金会关联的地址再次出售了1000枚ETH，使其自10月26日以来的累计抛售量增至7785枚ETH，价值约1635万美元。",
+        "ai_tags": [
+          "ethereum",
+          "on-chain-analysis",
+          "market-sentiment",
+          "ethereum-foundation"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
     "b833032ec8a7d206c933f0797e43f7a4c21c04de0b9e29c5fbee5c76b84e8aca": {
@@ -70245,44 +70117,6 @@
         "title_zh": "英伟达私下确认可追踪芯片以打击走私，与行业公开质疑可行性相悖"
       }
     },
-    "eb7ec8c02a54450027ba7a05a7e8f47033fc04e63c6f4645a5f1eb815e5decdf": {
-      "stored_at": "2026-11-02T23:30:25.453949+00:00",
-      "value": {
-        "background": "Governance of the Arbitrum Rollup protocol is driven by two bodies: the Security Council and the ArbitrumDAO. Arbitrum One's security model includes delays and timelocks before certain actions execute, while the Security Council holds emergency authority that bypasses normal governance timelines.",
-        "background_en": "Governance of the Arbitrum Rollup protocol is driven by two bodies: the Security Council and the ArbitrumDAO. Arbitrum One's security model includes delays and timelocks before certain actions execute, while the Security Council holds emergency authority that bypasses normal governance timelines.",
-        "background_zh": "Arbitrum Rollup 协议的治理由两个机构推动：安全委员会与 ArbitrumDAO。Arbitrum One 的安全模型为部分操作设置了延迟与时间锁，而安全委员会则握有可绕过常规治理流程的紧急权限。",
-        "community_discussion": "",
-        "detailed_summary": "Arbitrum's Security Council demonstrated that it can transfer funds out of a wallet without possessing that wallet's private key, in an incident tied to a freeze associated with Binance. The episode surfaced the Layer 2's emergency powers rather than a protocol exploit.\n\nThe case puts a concrete example behind long-standing questions about how much control a Layer 2's emergency multisig retains over user funds, a core decentralization and user-trust issue for Arbitrum.\n\nArbitrum's Security Council is a 9-of-12 multisig elected by ARB token holders that can freeze funds, pause the system and handle emergency situations, according to governance documentation and Tally's council page.",
-        "detailed_summary_en": "Arbitrum's Security Council demonstrated that it can transfer funds out of a wallet without possessing that wallet's private key, in an incident tied to a freeze associated with Binance. The episode surfaced the Layer 2's emergency powers rather than a protocol exploit.\n\nThe case puts a concrete example behind long-standing questions about how much control a Layer 2's emergency multisig retains over user funds, a core decentralization and user-trust issue for Arbitrum.\n\nArbitrum's Security Council is a 9-of-12 multisig elected by ARB token holders that can freeze funds, pause the system and handle emergency situations, according to governance documentation and Tally's council page.",
-        "detailed_summary_zh": "在一宗与币安相关的冻结事件中，Arbitrum 安全委员会展示了它可以在不掌握钱包私钥的情况下转移该钱包中的资金。这一事件暴露的是该 Layer 2 的紧急处置权限，而非协议漏洞被利用。\n\n该事件为长期存在的疑问提供了一个具体案例：Layer 2 的紧急多签究竟对用户资金保留多大控制权。这对 Arbitrum 的去中心化程度与用户信任都是核心问题。\n\n根据治理文档与 Tally 的委员会页面，Arbitrum 安全委员会是由 ARB 代币持有人选举产生的 9-of-12 多签，可冻结资金、暂停系统并处理紧急情况。",
-        "editorial_tags": [
-          "Arbitrum",
-          "Security Council",
-          "governance",
-          "wallet seizure",
-          "Binance"
-        ],
-        "enrichment_status": "complete",
-        "market_impact_en": "The transmission runs through trust in L2 custody and governance: users weighing how much of their capital sits on Arbitrum versus mainnet or other rollups are effectively pricing emergency-key risk, which bears on ARB's governance token narrative and on activity across Arbitrum-based DeFi venues.",
-        "market_impact_zh": "传导路径在于对 L2 托管与治理的信任：用户在权衡将多少资金放在 Arbitrum 而非主网或其他 Rollup 上时，实际上是在为“紧急密钥风险”定价，这会影响 ARB 治理代币的叙事以及 Arbitrum 生态 DeFi 场所的活动。",
-        "sources": [
-          {
-            "title": "Is Arbitrum Decentralised? Understanding the Security Council and...",
-            "url": "https://www.bitrue.com/blog/is-arbitrum-decentralised"
-          },
-          {
-            "title": "A gentle introduction to the ArbitrumDAO - Governance docs",
-            "url": "https://docs.arbitrum.foundation/"
-          },
-          {
-            "title": "Cactus | Arbitrum Security Council",
-            "url": "https://www.tally.xyz/gov/arbitrum/council/security-council"
-          }
-        ],
-        "title_en": "Arbitrum’s Security Council Can Move a Wallet’s Funds Without Its Key, Binance Freeze Shows",
-        "title_zh": "Arbitrum 安全委员会可在无密钥情况下转移钱包资金，币安冻结事件提供例证"
-      }
-    },
     "eb88695c48e645da4133c12c4fbe3e9bcc5a71c6ec78591f14e104b64914b4e5": {
       "stored_at": "2026-11-14T00:52:45.879969+00:00",
       "value": {
@@ -72653,48 +72487,6 @@
         ]
       }
     },
-    "f2b91b874c2c276f49fc8f383597dee146ab58a36e47585aaa22d802fb0a9ca2": {
-      "stored_at": "2026-11-02T23:30:25.453556+00:00",
-      "value": {
-        "background": "Recursive self-improvement describes AI systems that can improve not just their own capabilities but the process by which future improvements are made; the related \"seed AI\" concept, coined by Eliezer Yudkowsky, refers to systems designed from the outset for recursive self-improvement. RSI is closely tied to predictions of an \"intelligence explosion.\" Anthropic is one of the labs that co-founded the Frontier Model Forum with Google, Microsoft and OpenAI, an industry body focused on safe and responsible development of frontier AI models.",
-        "background_en": "Recursive self-improvement describes AI systems that can improve not just their own capabilities but the process by which future improvements are made; the related \"seed AI\" concept, coined by Eliezer Yudkowsky, refers to systems designed from the outset for recursive self-improvement. RSI is closely tied to predictions of an \"intelligence explosion.\" Anthropic is one of the labs that co-founded the Frontier Model Forum with Google, Microsoft and OpenAI, an industry body focused on safe and responsible development of frontier AI models.",
-        "background_zh": "递归自我改进指的是AI不仅能提升自身能力，还能改进实现未来改进的过程；与之相关的“种子AI”（seed AI）概念由Eliezer Yudkowsky提出，指从一开始就为递归自我改进而设计的系统。RSI与“智能爆炸”的预测密切相关。Anthropic是与Google、微软和OpenAI共同创立“前沿模型论坛”（Frontier Model Forum）的实验室之一，该行业组织致力于前沿AI模型的安全与负责任开发。",
-        "community_discussion": "",
-        "detailed_summary": "Anthropic publicly cautioned that it is approaching recursive self-improvement (RSI) — the threshold at which AI systems become good enough at training their own successors to drive a sharp acceleration in capabilities — framing the moment as a critical safety juncture.\n\nAnthropic's framing places RSI at the center of the debate over how quickly frontier labs should deploy increasingly capable systems and how regulators should structure oversight of that process.\n\nThe statement is an assessment of proximity rather than a demonstrated capability jump or a disclosed safety incident. RSI is described as the point where AI becomes so effective at training itself that capability gains accelerate dramatically.",
-        "detailed_summary_en": "Anthropic publicly cautioned that it is approaching recursive self-improvement (RSI) — the threshold at which AI systems become good enough at training their own successors to drive a sharp acceleration in capabilities — framing the moment as a critical safety juncture.\n\nAnthropic's framing places RSI at the center of the debate over how quickly frontier labs should deploy increasingly capable systems and how regulators should structure oversight of that process.\n\nThe statement is an assessment of proximity rather than a demonstrated capability jump or a disclosed safety incident. RSI is described as the point where AI becomes so effective at training itself that capability gains accelerate dramatically.",
-        "detailed_summary_zh": "Anthropic公开警告称，公司正接近“递归自我改进”（RSI）能力，即AI系统已足够擅长训练自身的后继系统、从而推动能力急剧加速的临界点，并将这一时刻界定为关键的安全关口。\n\nAnthropic的这一表述将RSI置于争论的核心：前沿实验室应以多快速度部署能力不断增强的系统，以及监管机构应如何构建对这一过程的监督。\n\n这一表态是对“接近程度”的判断，而非已展示的能力跃升或已披露的安全事件。RSI被描述为AI在自我训练上变得极为高效、从而令能力提升大幅加速的那个节点。",
-        "editorial_tags": [
-          "anthropic",
-          "ai-safety",
-          "recursive-self-improvement",
-          "frontier-models",
-          "ai-governance"
-        ],
-        "enrichment_status": "complete",
-        "market_impact_en": "The transmission path runs through sentiment and regulatory framing rather than direct exposure: AI-adjacent crypto segments, including decentralized compute and AI-themed tokens, trade partly on frontier-AI narratives, and a leading lab publicly flagging RSI proximity feeds into policy scrutiny of model development that can shift how those assets are priced around regulatory headlines.",
-        "market_impact_zh": "传导路径主要来自情绪与监管叙事，而非直接敞口：与AI相关的加密板块（包括去中心化算力和AI概念代币）在部分程度上依托前沿AI叙事交易，而一家领先实验室公开提示已接近RSI，会强化对模型开发的政策审视，进而影响这类资产在监管消息面下的定价方式。",
-        "sources": [
-          {
-            "title": "Anthropic warns that it’s very close to RSI capability, aka ...",
-            "url": "https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/"
-          },
-          {
-            "title": "Recursive self-improvement - Wikipedia",
-            "url": "https://en.wikipedia.org/wiki/Recursive_self-improvement"
-          },
-          {
-            "title": "Recursive Self-Improvement — LessWrong",
-            "url": "https://www.lesswrong.com/w/recursive-self-improvement"
-          },
-          {
-            "title": "Frontier Model Forum - Anthropic",
-            "url": "https://www.anthropic.com/frontier-model-forum"
-          }
-        ],
-        "title_en": "Anthropic warns that it’s very close to RSI capability, aka self-building AI",
-        "title_zh": "Anthropic警告称已非常接近RSI能力，即“自我构建式”AI"
-      }
-    },
     "f2caf071ef4b19c3e07b3979b4a70d1bbcb91632da0f19e3e5312a4374dcb73b": {
       "stored_at": "2026-11-08T15:08:16.505677+00:00",
       "value": {
@@ -74688,6 +74480,24 @@
         ],
         "category": "crypto-markets",
         "score_model": "deepseek:deepseek-flash"
+      }
+    },
+    "f9344f31a3aa6d8b71b2381043f259bbf5108aa56fc1a7980cbbdbf8f2b9bc08": {
+      "stored_at": "2026-11-14T02:57:32.184938+00:00",
+      "value": {
+        "ai_reason": "The content reports on a significant geopolitical and macroeconomic event (drone attacks impacting Russian oil refining capacity), which is relevant to global energy markets and macroeconomics. However, it is not a direct development in cryptocurrency, AI, or the specific tech domains defined for high-value scoring. The discussion provides useful context and data, but the event's direct and immediate transmission path to crypto markets is not explicitly established.",
+        "ai_score": 5.5,
+        "ai_summary": "乌克兰在13天内通过无人机袭击，打击了俄罗斯年加工能力超过1.2亿公吨原油的炼油厂，据称这占其国内总炼油产能的36%。",
+        "ai_tags": [
+          "geopolitics",
+          "energy-markets",
+          "macroeconomics",
+          "military-tech"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "乌克兰在13天内通过无人机袭击，打击了俄罗斯年加工能力超过1.2亿公吨原油的炼油厂，据称这占其国内总炼油产能的36%。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "乌克兰两周内摧毁俄罗斯36%炼油产能"
       }
     },
     "f9484667ec8361942ac6156b4d65f17dae6f0c117ed8a39913cc5f781adfca17": {
