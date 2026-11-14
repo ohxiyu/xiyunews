@@ -3597,24 +3597,6 @@
         "title_zh": "Coinbase 上线 Collector Crypt 现货交易，交易代码为 CARD"
       }
     },
-    "0af203217651ef53a3b1b046c0a2debd90ae77a1d43f6943c98e58d7340d5cc1": {
-      "stored_at": "2026-11-05T16:56:05.376914+00:00",
-      "value": {
-        "ai_reason": "This is attributed commentary from Anthony Scaramucci blaming Trump's memecoin ventures for the CLARITY Act's stalled bipartisan support; the concrete event it hinges on — the Senate procedural motion failing on Sept. 15 — predates the news window, and the interview offers no new legislative, regulatory, or market development. Opinion-driven retrospective rather than a fresh in-window catalyst.",
-        "ai_score": 2.5,
-        "ai_summary": "SkyBridge's Anthony Scaramucci said Trump's memecoin launches and crypto business interests cost the CLARITY Act Democratic support, citing ethics disputes as a further obstacle to the stalled legislation.",
-        "ai_tags": [
-          "CLARITY Act",
-          "crypto-regulation",
-          "memecoins",
-          "US politics",
-          "market-structure"
-        ],
-        "category": "crypto-regulation",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
-      }
-    },
     "0b17f49d63ff133d8811ee8514cabb34a4a0ef4b00ddab44ac6ba6a0f75589c5": {
       "stored_at": "2026-11-08T14:43:08.650637+00:00",
       "value": {
@@ -8240,23 +8222,6 @@
         "title_zh": "黄仁勋丑闻远未结束"
       }
     },
-    "19c06498d5e56f7047b924cc2a06f0e77c34ce40800d5c7b21fa114df4cdb012": {
-      "stored_at": "2026-11-05T16:56:05.377090+00:00",
-      "value": {
-        "ai_reason": "High-signal security research write-up with a large, technically substantive HN discussion (1225 points, 347 comments) dissecting the exact crypt()/hash comparison failure. It is a genuine new finding in a widely deployed component (OpenSSH sshd), but its real-world impact is heavily conditional — musl-linked sshd, no PAM, password auth enabled, a '*' hash account plus a second account with a valid password — so it is an important advisory rather than a broadly exploitable mass-compromise event. Commentary adds value by reconstructing the mechanism and critiquing the '*' in-band sentinel design.",
-        "ai_score": 7.0,
-        "ai_summary": "A write-up documents an OpenSSH sshd authentication flaw in certain musl/non-PAM configurations where an account whose password hash is '*' can be logged into with any 256–1024 character password, because crypt() returns a value that compares equal to the '*' hash.",
-        "ai_tags": [
-          "security",
-          "openssh",
-          "vulnerability",
-          "cryptography",
-          "linux"
-        ],
-        "category": "tech-community",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "19dac2c5586312bd0416d2fda759f72412836f7c89b36936f18acc418ca96d3d": {
       "stored_at": "2026-11-08T06:54:52.354715+00:00",
       "value": {
@@ -10440,6 +10405,20 @@
         ]
       }
     },
+    "209f265522c49792d14c4b80ceea8c1e2b08aa2d106e40482ee8e8d5d42855f0": {
+      "stored_at": "2026-11-14T16:02:22.037204+00:00",
+      "value": {
+        "duplicates": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        ]
+      }
+    },
     "20a64b9933f80239f508eb135f0e83347fdf77cc4be488a96fb70cb691505d94": {
       "stored_at": "2026-11-09T01:18:12.870251+00:00",
       "value": {
@@ -10579,6 +10558,25 @@
         ],
         "category": "crypto-markets",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
+      }
+    },
+    "20e655265122183f9994a4c87495cc8e2e3e5fe763d3a0bf666607093ffcb3f8": {
+      "stored_at": "2026-11-14T16:02:07.771889+00:00",
+      "value": {
+        "ai_reason": "The article reports on Binance reopening 87 networks after a historic $6.3 billion breach. This is a major exchange security incident with material user impact, representing a significant operational recovery step following a systemic event. The scale of the breach and the action taken warrant a high score.",
+        "ai_score": 8.5,
+        "ai_summary": "币安在发生历史性的63亿美元安全漏洞后，已重新开放87个网络的存款和提现服务。",
+        "ai_tags": [
+          "exchange-operations",
+          "security",
+          "binance",
+          "hack"
+        ],
+        "category": "exchange-operations",
+        "detailed_summary_zh": "币安在发生历史性的63亿美元安全漏洞后，已重新开放87个网络的存款和提现服务。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "exchange-announcements",
+        "title_zh": "币安在发生历史性63亿美元安全漏洞后重新开放87个网络"
       }
     },
     "210d8192aea0e0826908e942d19496818a6f175280e37fdf72a0b81b4e169a87": {
@@ -10988,23 +10986,6 @@
         "category": "ai-devtools",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "tech-community"
-      }
-    },
-    "229df0148fd81a712abaf2ce6e9bfb05542f92a339b3b034bccb9c8175a94137": {
-      "stored_at": "2026-11-05T16:56:05.376519+00:00",
-      "value": {
-        "ai_reason": "Bubblemaps' on-chain investigation names four crypto KOLs and quantifies alleged front-running/pump-and-dump behavior (about $130K for Anglio, about $125K for 0xEthan, roughly $6M in TRUMP-linked profits for Kimchi, versus the $40M previously rumored). It is a solid, evidence-backed market-integrity exposé with an admission from at least one influencer, but the losses are isolated to followers of individual promoters and there is no protocol, exchange, or regulatory transmission path, so it sits below systemic or high-value thresholds.",
-        "ai_score": 6.5,
-        "ai_summary": "Bubblemaps published an on-chain investigation alleging that crypto KOLs Kimchi, Solstice, Anglio, and 0xEthan used linked wallets to buy ahead of their token endorsements and sell shortly after, estimating gains of roughly $130K, $125K, and $6M respectively.",
-        "ai_tags": [
-          "bubblemaps",
-          "crypto-kol",
-          "on-chain-analysis",
-          "market-manipulation",
-          "front-running"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "22bcdf4ac76c6420453d07d239b17a3920e76d3103097798e80669ff70bf5020": {
@@ -13134,6 +13115,17 @@
         ]
       }
     },
+    "297d2e3c28a14f2cf4c938eccd55be48c11100d38403d2d3cbf91d2032115077": {
+      "stored_at": "2026-11-14T16:02:31.348530+00:00",
+      "value": {
+        "duplicates": [
+          [
+            1,
+            9
+          ]
+        ]
+      }
+    },
     "2989637021147fa965a3db68203d962bd668479956cc79e7964e6e2ce2f1c500": {
       "stored_at": "2026-11-05T21:02:07.354020+00:00",
       "value": {
@@ -13247,24 +13239,6 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "ai-media",
         "title_zh": "ChatGPT钱包让OpenAI的Dots代理为你完成购物"
-      }
-    },
-    "29ccca5732f8cca2ee5d9e2aeca52e0d1ce45c6cc977b291bab1d551df3ca1b6": {
-      "stored_at": "2026-11-05T16:56:05.376422+00:00",
-      "value": {
-        "ai_reason": "Scaramucci's remarks highlight a substantive political obstacle to the CLARITY Act — Democratic demands for ethics provisions restricting officials' crypto interests versus White House opposition — but this is one commentator's interview characterization rather than a confirmed legislative action or official statement, so it is informative rather than market-moving. The SEC/tokenization aside is speculative.",
-        "ai_score": 6.5,
-        "ai_summary": "Anthony Scaramucci said Trump's meme coin and crypto business interests, plus White House resistance to ethics restrictions on officials' digital-asset holdings, have caused some Democrats to withdraw support and stalled the CLARITY Act.",
-        "ai_tags": [
-          "CLARITY Act",
-          "US crypto regulation",
-          "Trump crypto",
-          "ethics rules",
-          "tokenization"
-        ],
-        "category": "crypto-regulation",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "crypto-markets"
       }
     },
     "29f09c87597f8235f570748aa9f2ff1616e01806738205d2e46be01d290b0d5b": {
@@ -19273,6 +19247,22 @@
         "category": "macro-regulation",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "crypto-markets"
+      }
+    },
+    "3e2ffe9f02698546b6a77c34fbc75e6b62d5fd473e5458254ff829e36da6ff43": {
+      "stored_at": "2026-11-14T16:02:07.771641+00:00",
+      "value": {
+        "ai_reason": "Reports a notable on-chain transaction by a major ecosystem entity (Ethereum Foundation) selling a significant amount of ETH (~$14.5M) over four days. This is a concrete market-relevant data point that traders and analysts monitor closely, but it represents a routine treasury management action rather than a groundbreaking event or systemic impact. The information is factual and sourced from on-chain data.",
+        "ai_score": 6.5,
+        "ai_summary": "据链上监测，以太坊基金会在四天内通过CoWSwap累计卖出7500枚ETH，换得约1452万枚USDS，最新款项已转入一个多签钱包。",
+        "ai_tags": [
+          "ethereum",
+          "on-chain-data",
+          "treasury-management",
+          "market-sentiment"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
     "3e53231a9e6ab0a2b5c512c718de0abe67517ba8682c42e23df96a0f07561ccf": {
@@ -34164,6 +34154,24 @@
           }
         ],
         "title_zh": "Nvidia正调查黄仁勋与一名中国间谍的关系"
+      }
+    },
+    "6f4bea3ec4b5b3a2bdefef72296c43c63c9f50639f52585a2b6099965117676a": {
+      "stored_at": "2026-11-14T16:02:24.716941+00:00",
+      "value": {
+        "duplicates": [
+          [
+            0,
+            1,
+            4,
+            5,
+            8
+          ],
+          [
+            2,
+            3
+          ]
+        ]
       }
     },
     "6f6800d08f47c0566374fe73bad15034fd3e547246ae37b3102bb6ee56c0b24c": {
@@ -50811,6 +50819,12 @@
         ]
       }
     },
+    "a91521c80e912d668e05f14a05032edb9743329f4c4a8f0596daf0317588c2b5": {
+      "stored_at": "2026-11-14T16:02:40.567979+00:00",
+      "value": {
+        "duplicates": []
+      }
+    },
     "a9287d15b449fce1fc54afc611bb88f6469cd04913e3c0f3228e1ce201c4e5ca": {
       "stored_at": "2026-11-09T02:41:58.529512+00:00",
       "value": {
@@ -58429,23 +58443,6 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
-    "c1f9e8d636fbc985ae1f556a837793bbb1c92a8b69e279e34d809a997cff9367": {
-      "stored_at": "2026-11-05T16:56:05.376617+00:00",
-      "value": {
-        "ai_reason": "Core Scientific's Q3 earnings show a material business shift: high-density colocation revenue up ~60% QoQ to $215.4M, total revenue $232.9M, 485 MW billing capacity annualizing to >$700M in hosting revenue, and adjusted EBITDA more than tripling to $133.6M at a 57% margin. These are concrete, high-signal numbers evidencing the miner-to-AI-datacenter transition. However, it is a quarterly earnings release rather than a paradigm-shifting or market-structure event, and the ~$1.18B net income is largely a non-cash warrant fair-value gain rather than operating performance, which tempers the significance.",
-        "ai_score": 6.5,
-        "ai_summary": "Core Scientific reported Q3 2026 results with high-density colocation revenue up nearly 60% QoQ to $215.4M, total revenue of $232.9M, 485 MW of billing capacity, and adjusted EBITDA of $133.6M at a 57% margin, while net income of ~$1.18B was driven mainly by non-cash warrant fair-value gains.",
-        "ai_tags": [
-          "Core Scientific",
-          "AI colocation",
-          "earnings",
-          "bitcoin mining",
-          "datacenter infrastructure"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "c20a9a73c5d1505fb28286bd62d22d030df546629fe8879f2bfabbae8ec13f9f": {
       "stored_at": "2026-11-14T00:52:27.555361+00:00",
       "value": {
@@ -65365,23 +65362,6 @@
         "score_model": "deepseek:deepseek-flash"
       }
     },
-    "dbe02534e81e8fee45a048950f2ad1208c203ce7fbadaac58d1d920553b73d84": {
-      "stored_at": "2026-11-05T16:56:05.377383+00:00",
-      "value": {
-        "ai_reason": "This is the OpenSSH 10.6p2 release notes page, covering a security-relevant fix and a workaround for Alpine builds lacking PAM — meaningful for anyone operating SSH infrastructure. What elevates it above a routine point release is the project's stated policy shift: because AI agents are now rapidly rediscovering bugs (sometimes within hours), OpenSSH considers long embargo periods dangerous and is shortening them. That is a concrete, consequential change to vulnerability-disclosure practice at the intersection of AI and open-source security. HN engagement (141 points, 7 comments) is moderate, with commenters linking Damien Miller's mailing-list detail and prior threads and debating whether white-hat/black-hat overlap already made embargoes leaky; discussion is informative but brief.",
-        "ai_score": 7.0,
-        "ai_summary": "OpenSSH published 10.6p2 release notes with a critical workaround for Alpine systems built without PAM, and the maintainers explained they are moving away from long vulnerability embargoes because AI agents are now rediscovering bugs within hours.",
-        "ai_tags": [
-          "openssh",
-          "security",
-          "vulnerability-disclosure",
-          "ai-agents",
-          "open-source"
-        ],
-        "category": "tech-community",
-        "score_model": "deepseek:deepseek-flash"
-      }
-    },
     "dc0c55d5ac05d6036b13fffdacf79d4f45f5e94defbca5d522162f58a6759205": {
       "stored_at": "2026-11-09T05:02:59.023782+00:00",
       "value": {
@@ -65783,24 +65763,6 @@
         "title_zh": "BNB价格企稳，币安复苏进程持续受关注"
       }
     },
-    "dcf7f0964f8531aad5fbc2e2f12ff80ed73fb711b81918a57c0b17bfbf69ee1f": {
-      "stored_at": "2026-11-05T16:56:05.376713+00:00",
-      "value": {
-        "ai_reason": "Vendor blog (OneSafe) offering generic security-awareness commentary on risks associated with exchange API keys; no new incident, disclosure, timeline, or quantified user impact, and it reads largely as promotional content for the author's own product. Lacks a concrete in-window development, so it sits in low-priority territory despite the relevant topic.",
-        "ai_score": 3.5,
-        "ai_summary": "OneSafe publishes a security commentary piece arguing that Binance API key handling practices leave users exposed to avoidable risks.",
-        "ai_tags": [
-          "exchange-security",
-          "api-keys",
-          "binance",
-          "custody-risk",
-          "security-awareness"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
     "dd031612febb067d650b501df4a383daf2b5218ac004b4ee92d4b18ffe99b379": {
       "stored_at": "2026-11-09T09:27:17.123134+00:00",
       "value": {
@@ -66118,23 +66080,6 @@
         ],
         "category": "exchange-announcements",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
-      }
-    },
-    "de77a23ca74676aae8b35b4b2701dc911ff0ff34cd99fe79a087f21784735823": {
-      "stored_at": "2026-11-05T16:56:05.376803+00:00",
-      "value": {
-        "ai_reason": "Quarterly earnings from a listed bitcoin miner showing a concrete structural shift: revenue up 187% to $233M almost entirely from HPC/AI colocation ($215.4M, ~92.5% of total), while self-mining revenue fell ~79% to $12.26M and digital asset holdings were liquidated down to ~$2.69M. The $1.178B net profit is largely a non-cash warrant fair-value gain, which tempers the headline. Material for tracking miner-to-AI-datacenter conversion economics, but it is a single-company result rather than a market-wide or protocol-level event.",
-        "ai_score": 6.5,
-        "ai_summary": "Core Scientific reported Q3 revenue of about $233M (+187% YoY) with HPC/AI hosting contributing roughly 92.5% of the total, while self-mining revenue dropped ~79% to $12.26M as the company converts remaining mining capacity into AI data centers.",
-        "ai_tags": [
-          "bitcoin-mining",
-          "core-scientific",
-          "ai-datacenters",
-          "earnings",
-          "hpc-hosting"
-        ],
-        "category": "crypto-markets",
-        "score_model": "deepseek:deepseek-flash"
       }
     },
     "de817c724ae97f13b95187c7453fe4e041ee9955f44bcec102400b7c53b09ca7": {
@@ -67457,6 +67402,24 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
+    "e39b1d6019231412cbf68f16d2e3220e5ec8ca2434ec94c493484bfc9cd84e86": {
+      "stored_at": "2026-11-14T16:02:07.772036+00:00",
+      "value": {
+        "ai_reason": "The content reports on allegations of Nvidia engaging in circular financing to create artificial scarcity and lock in demand for its GPUs, a significant market-structure development in the AI hardware ecosystem. The discussion includes high-quality comments analyzing business strategy and supply chain dynamics. However, the core allegation is not a new, in-window event but a recurring report, limiting its score relative to a confirmed, immediate development.",
+        "ai_score": 7.5,
+        "ai_summary": "据《华尔街日报》等媒体报道，英伟达被指控通过资助AI初创公司购买其GPU来人为制造稀缺性并锁定需求。",
+        "ai_tags": [
+          "artificial-intelligence",
+          "hardware",
+          "market-structure",
+          "nvidia"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "据《华尔街日报》等媒体报道，英伟达被指控通过资助人工智能初创公司购买其图形处理器，以人为制造稀缺性并锁定市场需求。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "英伟达被指通过资助AI初创公司购买其GPU人为制造稀缺"
+      }
+    },
     "e39fe891400f20b9ef3b2a006ee2b93e9c410441f6d4ec204ed85fe382ac8211": {
       "stored_at": "2026-11-08T08:24:21.108608+00:00",
       "value": {
@@ -67576,6 +67539,18 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "crypto-markets",
         "title_zh": "Vitalik上海演讲：区块链需要新的密码学工具"
+      }
+    },
+    "e3f2fadf7788d0fb7976a4bd0d67815e81289e66c05065eae43ea0db6debc808": {
+      "stored_at": "2026-11-14T16:02:15.484613+00:00",
+      "value": {
+        "duplicates": [
+          [
+            0,
+            1,
+            2
+          ]
+        ]
       }
     },
     "e3fab252bdaceec7bbfb0170422fb235c16a63d4728ba70afa68f089e1a7c4c2": {
@@ -72348,24 +72323,6 @@
         "title_zh": "Show HN：等距旧金山——一幅像素艺术风格的湾区地图"
       }
     },
-    "f4d7c73cfbb36bf4145acc4b6f5b943b1b2e1152a23fd962897eba743c07d423": {
-      "stored_at": "2026-11-05T16:56:05.377242+00:00",
-      "value": {
-        "ai_reason": "A concrete security-driven operational action: two major exchanges (Binance and Deribit) revoked SignalPlus API keys, forcing users of a widely used options trading terminal to re-authorize and signaling a real third-party integration risk. It is a meaningful exchange/security operations development, but it is scoped to one third-party platform rather than a systemic or large-loss exploit, and no material fund loss is evidenced, so it sits below the 8+ tier.",
-        "ai_score": 7.0,
-        "ai_summary": "Binance and Deribit pulled SignalPlus API keys following a security issue, disrupting the options trading platform's exchange connectivity for affected users.",
-        "ai_tags": [
-          "security-incident",
-          "api-keys",
-          "binance",
-          "deribit",
-          "options-trading"
-        ],
-        "category": "exchange-operations",
-        "score_model": "deepseek:deepseek-flash",
-        "source_category": "exchange-announcements"
-      }
-    },
     "f4e5d8b65a23ad1292a9f0d6bf5f44b330583e3eb004e18d67f9ceeb5c8ecaba": {
       "stored_at": "2026-11-09T01:22:23.235112+00:00",
       "value": {
@@ -75408,6 +75365,25 @@
         ],
         "category": "crypto-markets",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
+      }
+    },
+    "febedb8586046a0e114d0152d67e245127d1aad1d55b54a11a26c444505ffced": {
+      "stored_at": "2026-11-14T16:02:11.208903+00:00",
+      "value": {
+        "duplicates": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            6,
+            7
+          ]
+        ]
       }
     },
     "fec5a28015d9f79a0e8c0b1ce026e8aa15594ada52061551a6c371794d712474": {
