@@ -2,17 +2,19 @@
 
 ## 决定与成本边界
 
-私人仓库 ohxiyu/xiyunews 继续维护代码、工作流、Secrets 和正常产物分支；Cloudflare 继续调度和托管网站。把任务执行从 GitHub 托管机器改到既有东京服务器的一个专用 runner，不改每日窗口、四小时采集、分发门控或实时提醒。GitHub 官方当前说明自托管运行器不收执行分钟费用；机器、AI、Actions artifact/cache 等各自成本与限额仍需单独核对，不能称整个系统免费。不开付费预算、不升套餐、不增加服务器。
+2026-11-15：仓库当前为公开。普通 CI 和 CodeQL 在公开仓库使用 GitHub 免费标准 ubuntu-latest，避免与生产任务争用单个受限执行器；私有仓库仍沿用 XIYUNEWS_RUNNER_LABELS，CodeQL 还需原有显式许可开关。只调整代码检查位置，不修改仓库可见性、生产任务、预算或凭据。采集、每天一期的日报及正常生产发布仍使用东京专用 runner；Cloudflare 继续调度和托管网站。
+
+最初迁移发生于 2026-10-13，当时仓库为私有。机器、AI、Actions artifact/cache 等成本与限额仍需单独核对，不能称整个系统免费。不开付费预算、不升套餐、不增加服务器；下面的资源与安装记录保留为既有执行器说明，不要求重新注册。
 
 官方依据：[自托管运行器](https://docs.github.com/en/actions/concepts/runners/self-hosted-runners)、[Actions计费](https://docs.github.com/en/billing/concepts/product-billing/github-actions)、[注册方式](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/add-runners)、[Ruby环境要求](https://github.com/ruby/setup-ruby#using-self-hosted-runners)。
 
-所有执行位置由仓库非秘密变量 XIYUNEWS_RUNNER_LABELS 控制，值为 JSON 数组。缺省仍是原 ubuntu-latest；迁移后的准确值为 ["self-hosted","Linux","X64","xiyunews-tokyo"]。先注册并验证 runner 在线，再设置变量，当前 PR 的 CI 用新执行器实际验证，通过且同步 main 才合并。旧 main 在合并前仍是原托管位置，不绕过 CI；合并后采集、日报、周报、CI、静态部署、队列分发与恢复全部引用该变量。
+生产执行位置由仓库非秘密变量 XIYUNEWS_RUNNER_LABELS 控制，值为 JSON 数组。缺省是 ubuntu-latest；现役服务器标签为 ["self-hosted","Linux","X64","xiyunews-tokyo"]。公开仓库的普通 CI / CodeQL 采用上面的托管例外；不得为页面发布而扩大服务器资源、关闭检查或暂停正常采集。
 
 ## 共机保护
 
 2026-10-13安装前只读测量：Ubuntu24.04/x86_64、2核、1613MiB内存、available846MiB、34GB磁盘可用。现有实时进程约300MiB、NRestarts=0。实际最终配置：单个 runner 串行执行所有 job，物理内存硬上限768MiB、软线704MiB、CPU最多1核、交换上限512MiB，降低CPU/I/O优先级并优先终止执行器而非实时服务。Node堆256MiB、原生解压单线程、npm连接2，Vitest每文件独立进程串行；全量测试与安全审计保留。不是容量保证，持续以真实峰值验收；原640MiB/0.75核仅为首次试验，已由调优值替代。
 
-专用锁定登录的系统用户 xiyunews-runner，无sudo、无SSH密钥。服务使用NoNewPrivileges、只允许自己目录写入、临时目录隔离，并隐藏实时凭据、数据库、源码和admin/root家目录。没有Docker socket、没有公开端口；不重启fomobtc、不读取其env或复制数据库。CI拒绝fork PR在自托管机器上运行；只供这个私有仓库及其可信维护分支使用，仓库公开前必须先停用和重新审查此配置。
+专用锁定登录的系统用户 xiyunews-runner，无sudo、无SSH密钥。服务使用NoNewPrivileges、只允许自己目录写入、临时目录隔离，并隐藏实时凭据、数据库、源码和admin/root家目录。没有Docker socket、没有公开端口；不重启fomobtc、不读取其env或复制数据库。拒绝fork PR在自托管机器上运行；公开仓库的代码检查已迁往标准托管执行器，自托管生产任务仍只接受受信 main。
 
 首次实际验证发现640MiB软线引发大量内存回收、Vitest同进程累积导致超时；调整后硬上限仍768MiB，软线704MiB、CPU最多1核、Node堆256MiB。受限模式每个测试文件用独立进程串行，全部测试保留，每组结束释放Workerd/Vite内存，不把超时测试跳过。维护timer每周日04:10上海时间加最多20分钟抖动，只清专用诊断目录中14天以上的Runner/Worker日志，并用uv自带prune清无用软件包缓存；不清AI缓存、业务状态、发布归档、凭据或实时目录。timer首次只读预览0项，实际维护Result=success，无业务删除。
 

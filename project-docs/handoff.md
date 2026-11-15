@@ -11,7 +11,7 @@
   "branch": "agent/split-reader",
   "base": "5cc76a270254aa5196648b0b43c03397bc3ff8fc",
   "status": "双栏选读已实现；94期真实数据构建、738项Python、7项Node与六组浏览器检查通过；CodeQL内存问题已修复；PR370独立保留",
-  "next": "安全核验发现Soup Sieve旧版漏洞，升级4.1.1并将Python最低补丁版对齐3.11.5，完成CI后合并上线；正式验收见PR372",
+  "next": "Soup Sieve已升级4.1.1且本地安全核验通过；公开CI迁出生产队列，完成最终CI后合并上线；正式验收见PR372",
   "blockers": []
 }
 ```
