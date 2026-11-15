@@ -40,7 +40,7 @@
       if(actions&&i<stories.length-1){const onward=el('button','reader-continue','阅读下一条 →');onward.type='button';onward.addEventListener('click',()=>open(i+1,true));actions.append(onward);}
     });
     feed.before(workspace);workspace.append(catalog,panel);panel.append(tools,feed);
-    let selected=0;
+    let selected=0,listY=0;
     function hashIndex(){let id;try{id=decodeURIComponent(location.hash.slice(1));}catch(_){return -1;}return stories.findIndex(a=>a.id===id||Boolean(id&&a.querySelectorAll('[id]').length&&Array.from(a.querySelectorAll('[id]')).some(n=>n.id===id)));}
     function display(index,focus=false){
       selected=index<0?selected:index;workspace.classList.toggle('is-reading',index>=0);
@@ -51,11 +51,11 @@
       if(!narrow.matches){const item=links[selected].getBoundingClientRect(),box=catalog.getBoundingClientRect();if(item.bottom>box.bottom)catalog.scrollTop+=item.bottom-box.bottom;if(item.top<box.top+46)catalog.scrollTop-=box.top+46-item.top;}
       if(focus)stories[selected].querySelector('h2').focus({preventScroll:true});
     }
-    function open(index,focus){history.pushState({readerEntry:true},'','#'+stories[index].id);display(index,focus);if(narrow.matches)workspace.scrollIntoView({block:'start'});}
+    function open(index,focus){if(narrow.matches&&!workspace.classList.contains('is-reading'))listY=scrollY;history.pushState({readerEntry:true},'','#'+stories[index].id);display(index,focus);if(narrow.matches)workspace.scrollIntoView({block:'start'});}
     previous.addEventListener('click',()=>{if(selected>0)open(selected-1,true);});
     next.addEventListener('click',()=>{if(selected<stories.length-1)open(selected+1,true);});
-    back.addEventListener('click',()=>{history.pushState(null,'',location.pathname+location.search);display(-1);links[selected].focus({preventScroll:true});catalog.scrollIntoView({block:'start'});});
-    readerReveal=()=>{display(hashIndex());if(narrow.matches&&hashIndex()>=0)workspace.scrollIntoView({block:'start'});};
+    back.addEventListener('click',()=>{history.pushState(null,'',location.pathname+location.search);display(-1);links[selected].focus({preventScroll:true});scrollTo(0,listY);});
+    readerReveal=()=>{display(hashIndex());if(narrow.matches){if(hashIndex()>=0)workspace.scrollIntoView({block:'start'});else scrollTo(0,listY);}};
     addEventListener('popstate',readerReveal);
     narrow.addEventListener('change',()=>display(hashIndex()));
     addEventListener('load',()=>{if(!narrow.matches&&hashIndex()>=0)requestAnimationFrame(()=>{scrollTo(0,0);panel.scrollTop=0;});},{once:true});
