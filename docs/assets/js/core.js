@@ -31,7 +31,7 @@
       const meta=el('span','catalog-meta');meta.append(el('span','catalog-number',String(i+1).padStart(2,'0')));
       const time=article.querySelector('.story-meta time');meta.append(el('span','',time?.textContent||'来源未提供时间'));
       const title=el('span','catalog-title',article.querySelector('h2').textContent);
-      const excerpt=article.querySelector('.story-summary-body');
+      const excerpt=article.querySelector('.story-body > .story-summary-body');
       a.append(meta,title);if(excerpt){const text=excerpt.textContent.trim().replace(/\s+/g,' ');a.append(el('span','catalog-excerpt',Array.from(text).slice(0,85).join('')+(text.length>85?'…':'')));}
       a.setAttribute('aria-controls',article.id);li.append(a);list.append(li);links.push(a);
       article.querySelector('h2').tabIndex=-1;
