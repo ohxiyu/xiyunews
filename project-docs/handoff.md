@@ -5,13 +5,13 @@
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "PR5：X质量门、变量开关、运维告警与账号验证",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/367",
+  "goal": "日报双栏选读与手机列表阅读切换",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/371",
   "owner": "本聊天Codex",
-  "branch": "agent/x-quality-gates",
-  "base": "6ac5460a023c46beac59fc401207bff7ac2ac82f",
-  "status": "PR4已全量CI、合并并实测上线；采集维护开关已恢复；X质量门已实现，本地738项通过，准备完整CI",
-  "next": "完整CI合并后只读核验现有账号，再进入直接正式启用PR6",
+  "branch": "agent/split-reader",
+  "base": "5cc76a270254aa5196648b0b43c03397bc3ff8fc",
+  "status": "双栏选读已实现；94期真实数据构建、738项Python、7项Node与六组浏览器检查通过；CodeQL内存问题已修复；PR370独立保留",
+  "next": "Soup Sieve已升级4.1.1且本地安全核验通过；公开CI迁出生产队列，完成最终CI后合并上线；正式验收见PR372",
   "blockers": []
 }
 ```
