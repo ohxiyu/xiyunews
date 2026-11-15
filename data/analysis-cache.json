@@ -1312,47 +1312,6 @@
         "source_category": "crypto-markets"
       }
     },
-    "0419032a147d856b0da74d38dfc7da4946c09aac7b5f16fbf7e6591717e7d0b1": {
-      "stored_at": "2026-11-08T16:42:27.147445+00:00",
-      "value": {
-        "background": "",
-        "background_zh": "DeepSeek V4模型家族于2026年4月24日发布，包含V4 Pro和V4 Flash两个变体。其中V4 Flash是一个总参数量为2840亿、每令牌激活参数量为130亿的混合专家模型。模型量化是一种通过降低参数精度来减少模型大小和计算需求的技术，常用于在CPU等资源受限的设备上部署AI模型。",
-        "community_discussion": "",
-        "detailed_summary": "",
-        "detailed_summary_zh": "一个名为Llama-modchip的开源项目，通过先进的量化与流式处理技术，使得在仅配备64GB内存且无GPU的系统上运行拥有2840亿参数的DeepSeek-V4-Flash模型成为可能。\n\n这极大地降低了运行大型语言模型的计算硬件门槛，使得更多开发者或研究机构能够在普通CPU服务器上进行大模型推理，促进了AI技术的可及性。\n\n项目提供了预编译的独立二进制文件，并集成了修补后的llama.cpp引擎，支持AVX-512/AVX2/Apple Metal指令集。其v2.1版本宣称能在纯CPU上以20–60.4 tok/s的速度运行300亿参数的稀疏混合专家模型，并支持256K上下文窗口。",
-        "editorial_tags": [
-          "大语言模型",
-          "模型量化",
-          "CPU推理",
-          "开源项目",
-          "DeepSeek"
-        ],
-        "enrichment_status": "complete",
-        "sources": [
-          {
-            "title": "GitHub - synchopate/llama-modchip: Run 284B DeepSeek-V4 ...",
-            "url": "https://github.com/synchopate/llama-modchip"
-          },
-          {
-            "title": "GitHub - synchopate/llama-modchip: ♟️ llama-modchip v2.1: Run ...",
-            "url": "https://github.com/synchopate/llama-modchip/tree/main"
-          },
-          {
-            "title": "DeepSeek V4 Architecture: MoE, Parameters & 1M Context",
-            "url": "https://deepseek-v4.io/architecture"
-          },
-          {
-            "title": "DeepSeek V4 Explained: V4-Pro 1.6T vs V4-Flash 284B (2026)",
-            "url": "https://deepseek.ai/deepseek-v4"
-          },
-          {
-            "title": "DeepSeek-V4-Flash: 284B MoE for High-Throughput Pipelines at ...",
-            "url": "https://redeep.blog/posts/deepseek-v4-flash/"
-          }
-        ],
-        "title_zh": "Llama-modchip：在64GB内存、无GPU系统上运行284B参数的DeepSeek模型"
-      }
-    },
     "041c8045aabd7f956e00e489c5af2df59864f96d40f7c9a4533054f877b5bb9e": {
       "stored_at": "2026-11-13T23:07:54.425293+00:00",
       "value": {
@@ -16499,6 +16458,26 @@
         ]
       }
     },
+    "388937105bc67b8b16264963600b5aba78b683c95eb58b9a3a590f3d69c3ca93": {
+      "stored_at": "2026-11-15T15:22:01.089107+00:00",
+      "value": {
+        "ai_reason": "The article reports on a significant potential conflict of interest and influence-peddling case involving a key figure (Lutnick) in shaping U.S. semiconductor export control policy, which directly impacts national security and the global AI/tech supply chain. This is a major regulatory and political development with clear implications for market access and industry structure, fitting the high-value criteria. The Hacker News discussion shows high engagement but is polarized and contains unverified historical claims, which do not elevate the score of the core news.",
+        "ai_score": 8.0,
+        "ai_summary": "据报道，Lutnick 被指控利用其影响力削弱与其家族企业利益相关的美国半导体出口管制规则。",
+        "ai_tags": [
+          "regulation",
+          "semiconductors",
+          "conflict-of-interest",
+          "us-politics",
+          "supply-chain"
+        ],
+        "category": "macro-regulation",
+        "detailed_summary_zh": "据报道，卢特尼克涉嫌利用自身影响力，推动美国放宽与其家族企业利益相关的半导体出口限制。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "tech-community",
+        "title_zh": "卢特尼克被指施压放宽涉及其家族业务的芯片管制规定"
+      }
+    },
     "38984d8b108d495fbde13191cfe39bc040d1ac7b4000ab215c7aecaf7cb61a6f": {
       "stored_at": "2026-11-14T10:42:27.982482+00:00",
       "value": {
@@ -18543,24 +18522,6 @@
           }
         ],
         "title_zh": "【LNbits：所有用户应停止运行服务器，等待补丁发布】"
-      }
-    },
-    "3ec7ef335d198cd5f98dd6fe6ab41eaee9f2e1949a8a219826c84e0c1d08ea06": {
-      "stored_at": "2026-11-08T16:41:57.612375+00:00",
-      "value": {
-        "ai_reason": "The project demonstrates a significant technical achievement in making a 284B parameter model runnable on consumer hardware, representing a high-value development for the AI devtools ecosystem. The Hacker News discussion provides substantive technical commentary on quantization, performance trade-offs, and the state of related projects, adding considerable signal.",
-        "ai_score": 7.5,
-        "ai_summary": "A project called Llama-modchip enables running the 284B parameter DeepSeek model on a system with only 64GB of RAM and no GPU, through advanced quantization and streaming techniques.",
-        "ai_tags": [
-          "ai-devtools",
-          "model-optimization",
-          "llama.cpp",
-          "quantization",
-          "open-source"
-        ],
-        "category": "ai-devtools",
-        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
-        "source_category": "tech-community"
       }
     },
     "3ed253ae7a29005975cdf7b62f61263577d9ee9346601f72bdb00a7790002a03": {
@@ -21280,6 +21241,28 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
+    "48ae6b1e0bda0b3466b5cd39953dcf1642e1da94cf0d00a9dab083aec16c53c6": {
+      "stored_at": "2026-11-15T15:22:18.347344+00:00",
+      "value": {
+        "duplicates": [
+          [
+            0,
+            2,
+            3,
+            7
+          ],
+          [
+            1,
+            12
+          ],
+          [
+            8,
+            9,
+            10
+          ]
+        ]
+      }
+    },
     "48cf597fb1c4184a19a7514c04fd78e9d3a9c55bbc1b4ac903e8168590be3242": {
       "stored_at": "2026-11-09T05:53:22.994584+00:00",
       "value": {
@@ -22469,21 +22452,6 @@
         "category": "macro-regulation",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "crypto-markets"
-      }
-    },
-    "4cccf27e29c4078f5ec31e589b64f6d7152eae9f1aea66aaf79e85b3cf7a67d5": {
-      "stored_at": "2026-11-08T17:02:02.411675+00:00",
-      "value": {
-        "ai_reason": "Content is a retrospective opinion piece on Tesla's product strategy, lacking concrete new developments or technical substance. The discussion is primarily speculative and historical, with no evidence of a new event within the specified news window. It is low-priority commentary.",
-        "ai_score": 3.5,
-        "ai_summary": "An opinion article argues that Tesla has not had a successful new product launch since former CTO JB Straubel's departure, sparking community debate about the company's recent strategy.",
-        "ai_tags": [
-          "automotive",
-          "corporate-strategy",
-          "tech-commentary"
-        ],
-        "category": "tech-community",
-        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
     "4ce734455a4f309368f2ec48e58aa8f16abc6c74424c84f0acc58a3843ffc964": {
@@ -25119,43 +25087,6 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
-    "5599987824bce7c921f0c132c8cd34debac575e0138e5bc0a7cad8ab93be814b": {
-      "stored_at": "2026-11-08T16:52:41.711157+00:00",
-      "value": {
-        "background": "",
-        "background_zh": "DeepSeek V4 Flash是DeepSeek于2026年7月31日发布的开源模型，采用混合专家（MoE）架构，总参数量为2840亿。传统上，运行如此大规模的模型通常需要大量的GPU显存和高性能计算资源。",
-        "community_discussion": "",
-        "detailed_summary": "",
-        "detailed_summary_zh": "一个名为Llama-modchip的新项目，通过先进的量化与优化技术，成功实现了在仅配备64GB内存且无GPU的系统上运行总参数量达2840亿的DeepSeek V4 Flash模型。\n\n这项技术突破大幅降低了运行超大规模语言模型的硬件门槛，使得个人开发者或资源受限的环境也能部署和使用前沿的大模型，可能推动AI应用的更广泛普及。\n\n项目采用了包括熵引导非对称KV量化（EAKV）和虚拟位置索引（VPI）在内的多种优化方法，以在有限的内存资源下维持模型推理的精度与效率。",
-        "editorial_tags": [
-          "模型量化",
-          "推理优化",
-          "CPU推理",
-          "DeepSeek",
-          "开源项目"
-        ],
-        "enrichment_status": "complete",
-        "sources": [
-          {
-            "title": "llama-modchip/ARCHITECTURE.md at main...",
-            "url": "https://github.com/synchopate/llama-modchip/blob/main/ARCHITECTURE.md"
-          },
-          {
-            "title": "DeepSeek V4 Flash | DeepSeek | LLM Details | DeepseekModel",
-            "url": "https://deepseekmodel.com/en/model-detail?id=deepseek-v4-flash"
-          },
-          {
-            "title": "deepseek-ai/DeepSeek-V4-Flash · Hugging Face",
-            "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash"
-          },
-          {
-            "title": "Llama-modchip: 284B DeepSeek on 64GB RAM, no... | Hacker News",
-            "url": "https://news.ycombinator.com/item?id=50411961"
-          }
-        ],
-        "title_zh": "Llama-modchip：在64GB内存且无GPU的系统上运行284B参数DeepSeek模型"
-      }
-    },
     "55a82ed60c72662b2aa5a0a9da98a2628c9e372e935569c26005dd09ee480e55": {
       "stored_at": "2026-11-09T06:26:16.926133+00:00",
       "value": {
@@ -27153,6 +27084,25 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
+    "5cd7b0d3e2cf05764af67600b06cfad3b8c2d4d5890ce028417dea9a3d0e0811": {
+      "stored_at": "2026-11-15T15:22:01.089518+00:00",
+      "value": {
+        "ai_reason": "The news involves a significant legal development in a major tech industry (DRAM price-fixing case survives dismissal), which has material implications for hardware costs and market structure. The high-quality community discussion (138 comments, score 336) adds value by analyzing market dynamics, collusion patterns, and practical impacts on computing budgets. However, the event is not a paradigm-shifting breakthrough or a direct crypto/AI development, placing it in the 'Interesting' tier.",
+        "ai_score": 6.5,
+        "ai_summary": "美国法院驳回了驳回针对三星、SK海力士和美光涉嫌DRAM价格操纵诉讼的动议，该案将继续审理。",
+        "ai_tags": [
+          "regulation",
+          "hardware",
+          "legal",
+          "market-structure",
+          "tech-community"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "美国法院驳回了针对三星、SK海力士和美光涉嫌操纵DRAM价格的诉讼的驳回动议，案件将继续审理。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "法院驳回驳回DRAM价格操纵案的动议"
+      }
+    },
     "5cd8f13a2d3aead8d368b4a131c47bab855ebd84d0ecd61f16b6364d595698d6": {
       "stored_at": "2026-11-14T22:27:18.706365+00:00",
       "value": {
@@ -28723,6 +28673,23 @@
         "detailed_summary_zh": "文章探讨了软件工程职位头衔（如DevOps、SRE）的演变历史、语义差异及其在行业实践中的意义，并附有从业者的社区讨论。",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "title_zh": "软件职位头衔的家族树"
+      }
+    },
+    "61c437a326ef702a5284377f62f55b44560e71603e6513b8bb3ecd138c79e881": {
+      "stored_at": "2026-11-15T15:22:01.089386+00:00",
+      "value": {
+        "ai_reason": "Content is a personal blog post listing favorite modern NES games, which is a nostalgic, hobbyist topic with no connection to cryptocurrency, AI, or consequential technology. The comments are similarly nostalgic and about retro gaming tooling. It has low relevance and importance to the specified domains.",
+        "ai_score": 2.5,
+        "ai_summary": "一篇博客文章列出了作者最喜欢的现代NES游戏，并附带社区评论讨论了复古游戏开发和怀旧之情。",
+        "ai_tags": [
+          "retro-gaming",
+          "community",
+          "hobbyist"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "一篇博客文章列举了作者最喜爱的现代NES游戏，社区评论围绕复古游戏开发与怀旧情怀展开讨论。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "我最喜爱的现代NES游戏"
       }
     },
     "61cbec6ae626f37976d5df42b4c3116128a5c0dbdc5cbfc98cab02672cdc66a4": {
@@ -30361,6 +30328,24 @@
         "detailed_summary_zh": "美国铁路公司Amtrak的票务预订系统发生严重故障，与此同时，美国联邦航空管理局在全国范围内下达了地面停飞指令。",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "title_zh": "美国铁路公司Amtrak票务系统出现重大故障，同期全美联邦航空管理局实施停飞指令"
+      }
+    },
+    "673b6929e810138f6fcfde99b7bfa16c963e791aef5d269079cd70191e2484fe": {
+      "stored_at": "2026-11-15T15:22:01.089258+00:00",
+      "value": {
+        "ai_reason": "Content is a historical curiosity about Apollo mission equipment, unrelated to cryptocurrency, AI, or consequential technology. The discussion is low-quality, containing jokes and memes. It has no relevance to the defined scoring criteria for market-moving or high-impact developments.",
+        "ai_score": 2.0,
+        "ai_summary": "文章讨论了阿波罗任务中携带榴弹发射器的历史原因，引用了技术手册并提及了苏联宇航员的生存装备。",
+        "ai_tags": [
+          "space-history",
+          "nasa",
+          "apollo-program",
+          "tech-community"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "本文探讨了阿波罗任务携带榴弹发射器的历史背景，引用技术手册说明其用途，并提及了苏联宇航员的相关生存装备作为对比。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "为何部分阿波罗任务携带了榴弹发射器？"
       }
     },
     "673eb02210b79cec35a25e53f8390bd317c2e1e5278dd7384ef0791ac014973b": {
@@ -37241,6 +37226,25 @@
         ]
       }
     },
+    "7ecd245e9c1113e50575974cf2d830a63d21c174ab9705d9818c83c7d908e2fa": {
+      "stored_at": "2026-11-15T15:22:01.089644+00:00",
+      "value": {
+        "ai_reason": "The content reports a significant security incident where multiple applications built with Lovable and Supabase exposed sensitive user data, including passport details and over 200,000 private messages. The discussion reveals a systemic issue with Supabase's default security settings and a high-engagement community debate on platform culpability. This constitutes a high-value security disclosure with clear implications for software engineering practices and platform trust, though it is not a market-wide systemic event.",
+        "ai_score": 7.5,
+        "ai_summary": "由Lovable平台构建的多款应用程序因行级安全配置不足，通过Supabase后端暴露了用户护照详情和超过20万条私密消息。",
+        "ai_tags": [
+          "security",
+          "data-breach",
+          "software-engineering",
+          "supabase",
+          "backend"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "由Lovable平台构建的多个应用程序，由于行级安全配置不足，通过Supabase后端暴露了用户护照详细信息以及超过20万条私人消息。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "Lovable平台多款应用因配置漏洞泄露用户护照详情及超20万条私密信息"
+      }
+    },
     "7ee83863cc5aedc66a1b83ca1a12b893a9991337f483f1e23c4844400c530156": {
       "stored_at": "2026-11-14T07:17:27.662634+00:00",
       "value": {
@@ -41839,6 +41843,12 @@
         "detailed_summary_zh": "英伟达公司一位董事在首席执行官黄仁勋相关争议事件发生前几周，出售了价值近10亿美元的股票。",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "title_zh": "英伟达董事在黄仁勋争议事件前数周抛售近10亿美元股票"
+      }
+    },
+    "8ff39e9f84045fdbf57745f6b15a96b4543e3fe2f31a4e22e8530457f9938fb8": {
+      "stored_at": "2026-11-15T15:22:22.402691+00:00",
+      "value": {
+        "duplicates": []
       }
     },
     "9021add69d3ab4624860349f82a16b62a8d1df8fd1b00ace91613edb45a54cf2": {
@@ -49392,22 +49402,6 @@
         "title_zh": "美国参议员布卢门撒尔致函币安、泰达及特朗普家族关联加密公司"
       }
     },
-    "a9d327c0a79b31799ecdd8fbea33486f371a66c35f70f7b9fac0fc886333923f": {
-      "stored_at": "2026-11-08T16:52:14.812033+00:00",
-      "value": {
-        "ai_reason": "Content is a routine opinion piece analyzing Tesla's product launches, lacking concrete new developments or data. The discussion is speculative and focuses on attributing past performance to individuals, with no direct connection to crypto, AI, or consequential technology breakthroughs. It is low-priority commentary.",
-        "ai_score": 3.5,
-        "ai_summary": "An opinion article argues Tesla has not had a successful new product launch since former CTO JB Straubel departed, with commenters debating the causes.",
-        "ai_tags": [
-          "tesla",
-          "corporate-strategy",
-          "product-development",
-          "commentary"
-        ],
-        "category": "tech-community",
-        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
-      }
-    },
     "a9e0b4e67d30480f623c161b5aed23369f2d0b37039a8d51e326ecd25f69ca03": {
       "stored_at": "2026-11-09T08:22:16.999419+00:00",
       "value": {
@@ -49969,23 +49963,6 @@
         ],
         "category": "crypto-markets",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
-      }
-    },
-    "abf6618be9ba55b2ba86510abf46fab7b90673b3025f325154c7d55927e4c3d2": {
-      "stored_at": "2026-11-08T16:52:14.812527+00:00",
-      "value": {
-        "ai_reason": "The content is a technical blog post proposing a standard for AI agent memory, which is a relevant and substantive engineering discussion for AI builders. The Hacker News comments (120 points, 87 comments) show significant community engagement, with debate on the problem's validity and solution maturity, indicating it's a topic of active technical interest. However, it's a proposal and discussion, not a major release, breakthrough, or policy change with immediate, widespread impact.",
-        "ai_score": 6.5,
-        "ai_summary": "A blog post argues for a standardized, open format for AI agent memory, analogous to OpenTelemetry for observability.",
-        "ai_tags": [
-          "ai-agents",
-          "software-engineering",
-          "standards",
-          "developer-tools"
-        ],
-        "category": "ai-devtools",
-        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
-        "source_category": "tech-community"
       }
     },
     "abfe4d0aa8e331e169533b223772153da673c218d9cd7f9e39bd9e419ef63485": {
@@ -51252,23 +51229,6 @@
         "detailed_summary_zh": "用户讨论了 Harvest 等 SaaS 软件在被收购后发生的定价调整及迁移体验，内容属于对过往事件的社区评论。",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "title_zh": "Harvest 的终结"
-      }
-    },
-    "af8f9f6ad0312700e8403639b98ad5efc4cd4d11c902030d4f04e44089be8940": {
-      "stored_at": "2026-11-08T17:02:02.412202+00:00",
-      "value": {
-        "ai_reason": "The content is a blog post advocating for a standardized format for AI agent memory, analogous to OpenTelemetry. It is a thoughtful technical proposal in a rapidly evolving field (AI devtools), but it represents an idea or call to action rather than a concrete release, major breakthrough, or demonstrable ecosystem-wide impact. The Hacker News discussion shows engaged, critical commentary questioning the premise and timing, indicating it's a topic of active debate among builders but not yet a settled, high-impact development.",
-        "ai_score": 6.0,
-        "ai_summary": "A blog post argues for the need for a standardized, open format for AI agent memory, drawing a parallel to the OpenTelemetry project for observability.",
-        "ai_tags": [
-          "ai-agents",
-          "ai-devtools",
-          "standardization",
-          "software-architecture"
-        ],
-        "category": "ai-devtools",
-        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
-        "source_category": "tech-community"
       }
     },
     "af994b81a28624c56ffb2ce6d45aea883b10f52e236a81bfa013a27b8fa5e1b4": {
@@ -52648,24 +52608,6 @@
         "detailed_summary_zh": "《细胞》杂志发表的研究揭示，颗粒酶K是一种关键蛋白质，它能够驱动组织衰老，但不会引发系统性炎症，这为理解衰老机制提供了新的研究方向。",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "title_zh": "研究发现：一种驱动衰老但不会引发炎症的蛋白质"
-      }
-    },
-    "b416ebabeafdb6da74132f9324aa098c77d8047ce2da4e804264448987f4b075": {
-      "stored_at": "2026-11-08T16:52:14.812372+00:00",
-      "value": {
-        "ai_reason": "Demonstrates a significant technical breakthrough in running a frontier-scale model (284B parameters) on consumer hardware, enabling new use cases and accessibility. The Hacker News discussion provides high-quality technical commentary on quantization, performance trade-offs, and the broader ecosystem of model optimization forks, indicating substantial developer interest and impact.",
-        "ai_score": 7.5,
-        "ai_summary": "A new project enables running the 284-billion-parameter DeepSeek model on a system with only 64GB of RAM and no GPU through advanced quantization and optimization techniques.",
-        "ai_tags": [
-          "ai-devtools",
-          "model-optimization",
-          "llm-inference",
-          "quantization",
-          "open-source"
-        ],
-        "category": "ai-devtools",
-        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
-        "source_category": "tech-community"
       }
     },
     "b41848dd3b8e5b33b1b3c1f0ee29980075e00805ed6fc91309f1883e557bc234": {
@@ -56005,22 +55947,6 @@
         ]
       }
     },
-    "bff12a71232fe1a5a8c0a34b1b543b8e0150df7a123eb5293af1baf6250567be": {
-      "stored_at": "2026-11-08T16:52:14.812248+00:00",
-      "value": {
-        "ai_reason": "Content is a generic, routine price and data page for a single, low-profile cryptocurrency (Anonymous Cat/ZCAT). It provides no new development, analysis, or significant market update, falling into the 'Low Priority' range of generic content.",
-        "ai_score": 3.0,
-        "ai_summary": "A standard price-tracking page for the Anonymous Cat (ZCAT) token, showing its current price, chart, market cap, and volume.",
-        "ai_tags": [
-          "cryptocurrency",
-          "price-tracking",
-          "market-data",
-          "altcoin"
-        ],
-        "category": "crypto-markets",
-        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
-      }
-    },
     "bff2b8dfa2bb35eb1292d7bb56b5e617b0f711444419bfa5e4b98e0394941222": {
       "stored_at": "2026-11-09T01:42:20.266529+00:00",
       "value": {
@@ -57381,6 +57307,17 @@
           }
         ],
         "title_zh": "美国联邦航空管理局发布全国地面停飞指令"
+      }
+    },
+    "c45285ead59a0c25f9b05ce9aafc94089f3871db4e169e6543ed7d434f454662": {
+      "stored_at": "2026-11-15T15:22:03.999888+00:00",
+      "value": {
+        "duplicates": [
+          [
+            0,
+            1
+          ]
+        ]
       }
     },
     "c4552900df45ed364ecaa75a1c3128b635b93973034b3caae73a55d44b10393f": {
@@ -58800,6 +58737,24 @@
         "detailed_summary_zh": "一则未经证实的报道称币安在遭受价值63亿美元的加密货币盗窃后正在恢复，但未提供任何具体细节或证据。",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "title_zh": "币安在价值63亿美元加密货币失窃后正逐步恢复"
+      }
+    },
+    "c8b63da1612516829ea4cc293c4684b46071ebb8588059c2f4048f2e1fb1163b": {
+      "stored_at": "2026-11-15T15:22:01.088889+00:00",
+      "value": {
+        "ai_reason": "Reports a significant security incident involving the hijacking of Bitcoin mining power to a competing pool, which is a material operational and security event for the mining ecosystem. The lack of confirmed entry point and payout details limits its immediate severity score.",
+        "ai_score": 7.5,
+        "ai_summary": "CoreX报告其比特币算力被劫持转向了OCEAN矿池，攻击的入口点尚未得到确认。",
+        "ai_tags": [
+          "bitcoin",
+          "mining",
+          "security",
+          "hack"
+        ],
+        "category": "crypto-protocols",
+        "detailed_summary_zh": "CoreX报告其比特币挖矿算力被劫持并转向了OCEAN矿池，攻击的入口点尚未确认。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "CoreX报告比特币挖矿算力遭劫持并转向OCEAN矿池"
       }
     },
     "c8b89626931e349736257f4088580d5186ffeb0f9ea0bc51548bd491f09af053": {
@@ -64481,23 +64436,6 @@
         ]
       }
     },
-    "dfc9783a1530ceb1722f106787cf5b17152dffe0694991b21c5b7829f6e67126": {
-      "stored_at": "2026-11-08T17:02:02.411918+00:00",
-      "value": {
-        "ai_reason": "The departure of a CFO from a leading global exchange like Binance is a significant operational and strategic development, warranting high attention from market participants and regulators, though not a systemic crisis.",
-        "ai_score": 7.5,
-        "ai_summary": "Binance's Chief Financial Officer, Kaiser Ng, has stepped down from his position.",
-        "ai_tags": [
-          "exchange-operations",
-          "leadership",
-          "binance",
-          "corporate-governance"
-        ],
-        "category": "exchange-operations",
-        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
-        "source_category": "exchange-announcements"
-      }
-    },
     "dfcead60a79858cde2ec996c03f8bbd529b3f486f20d52c624fbf7bb05e57961": {
       "stored_at": "2026-11-15T00:19:18.958142+00:00",
       "value": {
@@ -69285,24 +69223,6 @@
         ]
       }
     },
-    "f03262cbd9f6f0561430c97f154957bd616919b96a8f59310eb9fb58eb8f645c": {
-      "stored_at": "2026-11-08T17:02:02.412058+00:00",
-      "value": {
-        "ai_reason": "Announces a significant technical achievement enabling a 284B parameter model to run on consumer hardware, representing a high-value development in AI accessibility and inference optimization. The Hacker News discussion provides substantive technical commentary on quantization trade-offs and implementation forks, adding depth.",
-        "ai_score": 7.5,
-        "ai_summary": "A project called Llama-modchip demonstrates running the 284B parameter DeepSeek model on a system with only 64GB of RAM and no GPU.",
-        "ai_tags": [
-          "ai-inference",
-          "model-optimization",
-          "llama.cpp",
-          "quantization",
-          "open-source"
-        ],
-        "category": "ai-devtools",
-        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
-        "source_category": "tech-community"
-      }
-    },
     "f033a804bab012c87575d7fc7550034bcb88910ffc04009920d629bc03355b43": {
       "stored_at": "2026-11-15T14:02:23.642917+00:00",
       "value": {
@@ -71802,6 +71722,18 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
+    "f846a2776b95730790ec662ff6a29fd93178f65eeefc1a814406c9b8216a2d9a": {
+      "stored_at": "2026-11-15T15:22:20.818887+00:00",
+      "value": {
+        "duplicates": [
+          [
+            4,
+            5,
+            6
+          ]
+        ]
+      }
+    },
     "f853cb16066327aa4085866e032fe049b1ebbce986185e1f01f8e19a2a70bffe": {
       "stored_at": "2026-11-09T06:26:16.852066+00:00",
       "value": {
@@ -73356,6 +73288,17 @@
         "detailed_summary_zh": "一位开发者在Hacker News上分享了其使用Ettus B210软件定义无线电和双4090 GPU搭建的实时航空波段监听系统，该系统在维多利亚地区因通信故障实施地面停飞期间，用于捕捉并分析飞行员与空中交通管制之间的对话片段。",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "title_zh": "KORS全频段实时航空波段监听，维多利亚地区同时实施地面停飞"
+      }
+    },
+    "fd2581e12090fe4a12138a48dfdbae7f66b9d1c18c536fa93776cc458b2134eb": {
+      "stored_at": "2026-11-15T15:22:14.921029+00:00",
+      "value": {
+        "duplicates": [
+          [
+            0,
+            1
+          ]
+        ]
       }
     },
     "fd373943ef2f079901a8c050b0e008d970f964ae74736ba0458d1d22467842b3": {
