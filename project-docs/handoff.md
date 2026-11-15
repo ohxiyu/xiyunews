@@ -10,8 +10,8 @@
   "owner": "本聊天Codex",
   "branch": "agent/split-reader",
   "base": "5cc76a270254aa5196648b0b43c03397bc3ff8fc",
-  "status": "双栏选读已实现；94期真实数据构建、全量Python、7项Node与六组浏览器检查通过；PR370独立保留",
-  "next": "安全扫描因原执行器内存不足失败；公开仓库改用免费标准托管执行器，完成CI后合并上线并核对API未改写",
+  "status": "双栏选读已实现；94期真实数据构建、738项Python、7项Node与六组浏览器检查通过；CodeQL内存问题已修复；PR370独立保留",
+  "next": "安全核验发现Soup Sieve旧版漏洞，升级4.1.1并将Python最低补丁版对齐3.11.5，完成CI后合并上线；正式验收见PR372",
   "blockers": []
 }
 ```

@@ -14,7 +14,7 @@
 
 ## 开发与运行
 
-应用使用 Python 3.11+、uv 和固定依赖。站点发布经过 GitHub Actions 与统一 Cloudflare Worker；自托管执行器和持久缓存是实际运行链路的一部分。
+应用使用 Python 3.11.5+、uv 和固定依赖。站点发布经过 GitHub Actions 与统一 Cloudflare Worker；自托管执行器和持久缓存是实际运行链路的一部分。
 
 ```bash
 uv sync --frozen --extra dev --extra trafilatura
