@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily bounded cache and journal retention
+
+[Timer]
+OnCalendar=*-*-* 03:45:00 Asia/Shanghai
+RandomizedDelaySec=10min
+Persistent=true
+Unit=xiyunews-disk-maintenance.service
+
+[Install]
+WantedBy=timers.target

@@ -5,13 +5,13 @@
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "日报双栏选读与手机列表阅读切换",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/371",
+  "goal": "服务器磁盘清理与白名单容量治理",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/373",
   "owner": "本聊天Codex",
-  "branch": "agent/split-reader",
-  "base": "5cc76a270254aa5196648b0b43c03397bc3ff8fc",
-  "status": "双栏选读已实现；94期真实数据构建、738项Python、7项Node与六组浏览器检查通过；CodeQL内存问题已修复；PR370独立保留",
-  "next": "Soup Sieve已升级4.1.1且本地安全核验通过；公开CI迁出生产队列，完成最终CI后合并上线；正式验收见PR372",
+  "branch": "agent/disk-maintenance",
+  "base": "d2ec53eb83d129405ce77cdf45ad91fe1763bcff",
+  "status": "用户已授权闲置缓存/旧镜像/旧执行器/过期日志清理及容量上限；白名单脚本待测试、服务器只读预览和CI",
+  "next": "核对进程和容器引用，保留历史、数据库、备份、所有容器与卷；测试通过合并后应用并复核服务及容量，结果归档本任务PR",
   "blockers": []
 }
 ```
