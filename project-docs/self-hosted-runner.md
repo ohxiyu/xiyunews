@@ -12,6 +12,12 @@
 
 ## 共机保护
 
+2026-11-16 磁盘治理：`ops/maintenance/` 提供默认只预览的 root 维护脚本。用户已授权清理确认闲置的缓存、旧镜像、旧运行器版本和过期日志，保留日报、业务数据库、备份与运行服务。系统 journal 上限 256 MiB / 14 天（运行时 64 MiB，保留 2 GiB 空闲）；运行器诊断日志 128 MiB / 14 天；冷 CI 缓存 512 MiB / 7 天（最近 24 小时及进程/挂载引用受保护）；Docker BuildKit LRU 缓存目标 512 MB、保底 256 MB。只清超过 7 天且无任何容器引用的 dangling 镜像，保留所有带标签镜像、容器和卷。
+
+旧运行器仅处理非当前符号链接指向且超过 7 天的版本；更新暂存需与已安装文件指纹相同并已完成更新。旧 CodeQL 下载缓存超过 48 小时且无引用时可回收，生产所需 Python / Ruby / Node / uv 不处理。CI 目录同时持有原 `run.lock`，跳过进程工作路径及全部容器挂载，源代码、构建产物和发布目录不作为清理目标。每天上海 03:45 加最多 10 分钟抖动执行，应用服务不重启。受保护资源即使超过目标也保留；这些是可清理资源上限，不是会阻止数据库写入的文件系统硬配额。
+
+部署与验收：从已合并提交传输 `ops/maintenance/` 至独立暂存目录，先 `sudo python3 disk_maintenance.py` 预览，再运行 `sudo bash install.sh`，最后 `sudo systemctl start xiyunews-disk-maintenance.service`。仅日志守护进程为加载其配置执行受支持的重启；不重启应用。检查 `systemctl show xiyunews-disk-maintenance.service -p Result -p ExecMainStatus`、timer 下次时间、`df -h /`、原容器 ID/启动时间/健康状态和数据库只读完整性。清掉的包与镜像缓存可重新下载/构建，旧日志不额外备份。
+
 2026-10-13安装前只读测量：Ubuntu24.04/x86_64、2核、1613MiB内存、available846MiB、34GB磁盘可用。现有实时进程约300MiB、NRestarts=0。实际最终配置：单个 runner 串行执行所有 job，物理内存硬上限768MiB、软线704MiB、CPU最多1核、交换上限512MiB，降低CPU/I/O优先级并优先终止执行器而非实时服务。Node堆256MiB、原生解压单线程、npm连接2，Vitest每文件独立进程串行；全量测试与安全审计保留。不是容量保证，持续以真实峰值验收；原640MiB/0.75核仅为首次试验，已由调优值替代。
 
 专用锁定登录的系统用户 xiyunews-runner，无sudo、无SSH密钥。服务使用NoNewPrivileges、只允许自己目录写入、临时目录隔离，并隐藏实时凭据、数据库、源码和admin/root家目录。没有Docker socket、没有公开端口；不重启fomobtc、不读取其env或复制数据库。拒绝fork PR在自托管机器上运行；公开仓库的代码检查已迁往标准托管执行器，自托管生产任务仍只接受受信 main。
