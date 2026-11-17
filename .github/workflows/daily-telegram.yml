@@ -19,11 +19,11 @@ jobs:
     runs-on: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 8
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: main
       - name: Read exact verified deployment evidence
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           github-token: ${{ github.token }}
           run-id: ${{ github.event.workflow_run.id }}
@@ -42,14 +42,14 @@ jobs:
               out.write('deliver='+str(bool(run and proof.get('verified') is True)).lower()+'\n')
               out.write('source_run_id='+run+'\n')
           PYCODE
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         if: steps.publication.outputs.deliver == 'true'
         with:
           ref: gh-pages
           path: published
           sparse-checkout: _data/bmtnews_state.json
           sparse-checkout-cone-mode: false
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         if: steps.publication.outputs.deliver == 'true'
         with:
           github-token: ${{ github.token }}

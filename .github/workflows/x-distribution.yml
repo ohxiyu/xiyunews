@@ -60,7 +60,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: main # Never run another branch's code against the live account.
           filter: blob:none
@@ -126,7 +126,7 @@ jobs:
 
       - name: Set up Python
         if: inputs.verify_only || steps.gate.outputs.work == 'true'
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
@@ -213,7 +213,7 @@ jobs:
 
       - name: Keep machine-readable cost and health report
         if: ${{ always() && (inputs.verify_only || steps.gate.outputs.work == 'true') }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: run-report-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
