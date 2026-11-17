@@ -145,6 +145,24 @@ def test_version_conflict_cannot_commit_a_stale_local_transaction(tmp_path,migra
         claim(state,'2026-11-17','private-destination')
 
 
+def test_transport_identifies_itself_without_weakening_authentication(monkeypatch):
+    import io
+    from src import edge_state
+    seen=[]
+    class Response(io.BytesIO):
+        headers={}
+    def http(request,timeout):
+        seen.append(request)
+        return Response(b'{"ready":true}')
+    transport=edge_state.Transport()
+    monkeypatch.setattr(transport,'identity',lambda:'short-lived-test-identity')
+    monkeypatch.setattr(edge_state,'urlopen',http)
+    assert transport.call('acquire',{'owner':'private-owner'})=={'ready':True}
+    assert seen[0].get_header('User-agent')=='xiyunews-publication-state/1.0'
+    assert seen[0].get_header('Authorization')=='Bearer short-lived-test-identity'
+    assert seen[0].method=='POST'
+
+
 def test_workflows_fence_remote_state_and_retire_backup():
     from pathlib import Path
     root=Path(__file__).parents[1]

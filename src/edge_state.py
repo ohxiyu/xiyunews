@@ -26,6 +26,7 @@ from .publication_state import PublicationState, StateConflict
 from ._file_utils import _atomic_write_text
 
 ORIGIN = "https://xiyu.news/internal/publication-state"
+USER_AGENT = "xiyunews-publication-state/1.0"
 BLOCK = 65536
 MAX_SIZE = 128 * 1024 * 1024
 
@@ -42,7 +43,7 @@ class Transport:
             if not url.startswith("https://"):
                 raise StateConflict("OIDC identity unavailable")
             request = Request(url + ("&" if "?" in url else "?") + urlencode({"audience":ORIGIN}),
-                headers={"Authorization":"Bearer " + os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"]})
+                headers={"Authorization":"Bearer " + os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"],"User-Agent":USER_AGENT})
             with urlopen(request, timeout=30) as response:
                 self.token = json.load(response)["value"]
             self.expires = time.time() + 180
@@ -54,7 +55,7 @@ class Transport:
             raise StateConflict("state request too large")
         request = Request(ORIGIN + "/" + action, data=raw, method="POST", headers={
             "Authorization":"Bearer " + self.identity(), "Content-Type":"application/json",
-            "Accept-Encoding":"gzip"})
+            "Accept-Encoding":"gzip", "User-Agent":USER_AGENT})
         try:
             with urlopen(request, timeout=90) as response:
                 data = response.read(3 * 1024 * 1024)
