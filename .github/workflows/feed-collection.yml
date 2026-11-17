@@ -8,6 +8,7 @@ env:
   GIT_CONFIG_COUNT: '1'
   GIT_CONFIG_KEY_0: http.version
   GIT_CONFIG_VALUE_0: HTTP/1.1
+  XIYUNEWS_STATE_BACKEND: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'cloudflare' || '' }}
 
 on:
   schedule:
@@ -26,13 +27,15 @@ on:
 
 permissions:
   contents: write  # Persists the staging cache to the staging-cache branch
+  id-token: write
 
 jobs:
   collect:
+    if: vars.XIYUNEWS_RUNTIME_MODE != 'maintenance'
     concurrency:
       group: xiyunews-rolling-collection
       cancel-in-progress: false
-    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    runs-on: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 30
     env:
       TZ: Asia/Shanghai
@@ -93,6 +96,11 @@ jobs:
 
       - name: Install dependencies
         run: uv sync --frozen --extra trafilatura
+
+      - name: Acquire private fenced publication state
+        id: state
+        if: env.XIYUNEWS_STATE_BACKEND == 'cloudflare'
+        run: python3 -m src.edge_state acquire
 
       - name: Prepare GitHub Actions config
         run: cp data/config.github.json data/config.json
@@ -166,3 +174,7 @@ jobs:
           path: data/run-report.json
           retention-days: 30
           if-no-files-found: warn
+
+      - name: Release private publication state
+        if: always() && steps.state.outcome == 'success'
+        run: python3 -m src.edge_state release

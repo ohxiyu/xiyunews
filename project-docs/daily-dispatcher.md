@@ -20,7 +20,7 @@ Feed Collection由Worker每五分钟检查，GitHub五分钟schedule备用。新
 
 ## 单一部署和投递
 
-共五个业务工作流：feed-collection、daily-summary、daily-telegram、x-distribution、cloudflare-unified；另有CI、CodeQL和server-backup。
+共五个业务工作流：feed-collection、daily-summary、daily-telegram、x-distribution、cloudflare-unified；另有CI、CodeQL和手动publication-runtime迁移/验证。11/17用户取消专属备份，server-backup已移除；正常批处理经验证后切标准托管计算，私有运行状态和互斥锁复用Cloudflare，东京仅保留实时监控，见[运行手册](self-hosted-runner.md)。
 
 Daily Edition只在新刊期生成选稿、中文静态稿与JSON，持久化并发布gh-pages快照。成功后Cloudflare任务读取固定出版快照，复用已核验缓存，叠加当前模板、Jekyll渲染、精简并校验公开资产，然后部署同一Worker。源代码改动也走这个任务，不另用deploy-docs。
 
