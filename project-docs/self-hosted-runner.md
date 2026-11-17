@@ -8,6 +8,8 @@
 
 串行切换（仅在用户已授权且合并CI通过后执行）：
 
+客户端使用真实具名UA `xiyunews-publication-state/1.0`，默认Python UA会被站点防护1010拦截，不能为此关闭防护。OIDC主体须匹配仓库实际 `sub_claim_prefix`：本仓库启用 `repo:ohxiyu@90966016/xiyunews@1341754381`，再追加 `:ref:refs/heads/main`；同时校验独立owner/repository ID。GitHub在2026-07-15后改名/转移的仓库采用[不可变主体格式](https://docs.github.com/en/actions/reference/security/oidc#immutable-subject-claims)，不能使用旧name-only测试夹具冒充真实身份验收。
+
 1. 先正常部署Cloudflare新接口，仍保留旧服务器模式；匿名访问私有路径必须401/405。
 2. 设置仓库变量 XIYUNEWS_RUNTIME_MODE=maintenance，等现有采集/日报/投递/部署任务完全退出，不停止忙碌执行器。核对当期API指纹、实时PID、数据库quick_check及发送表指纹。
 3. 在main运行 publication-runtime.yml，mode=migrate；它在旧执行器读现役SQLite并直接传输，不发送、不调用AI、不生成备份。初始化只允许一次。随后mode=verify在标准托管机检查SHA、全部表行数和哈希；业务表必须完全相同，job_runs只允许旧hook产生的本次运行行。

@@ -1,6 +1,9 @@
 // Private, fenced SQLite-page transport. No public runtime data or credentials.
 // Reuses the existing RecoveryGate namespace; this is live state, not backups.
 const AUDIENCE = "https://xiyu.news/internal/publication-state";
+// Read from the live repository OIDC customization API. GitHub renames after
+// 2026-07-15 use immutable owner/repository IDs in sub; name-only sub is invalid.
+const SUBJECT = "repo:ohxiyu@90966016/xiyunews@1341754381:ref:refs/heads/main";
 const WORKFLOWS = new Set(["feed-collection.yml", "daily-summary.yml", "daily-telegram.yml",
   "x-distribution.yml", "cloudflare-unified.yml", "publication-runtime.yml"]);
 const PAGE = 65536, MAX_SIZE = 128 * 1024 * 1024, LEASE = 40 * 60_000;
@@ -33,8 +36,8 @@ export async function identity(token: string, now = Date.now()): Promise<Record<
   const workflow = typeof c.workflow_ref === "string" && c.workflow_ref.startsWith(prefix) && c.workflow_ref.endsWith("@refs/heads/main")
     ? c.workflow_ref.slice(prefix.length, -"@refs/heads/main".length) : "";
   if (c.iss !== "https://token.actions.githubusercontent.com" || c.aud !== AUDIENCE ||
-      c.repository !== "ohxiyu/xiyunews" || c.repository_id !== "1341754381" || c.ref !== "refs/heads/main" ||
-      c.sub !== "repo:ohxiyu/xiyunews:ref:refs/heads/main" || !WORKFLOWS.has(workflow) ||
+      c.repository !== "ohxiyu/xiyunews" || c.repository_id !== "1341754381" || c.repository_owner_id !== "90966016" || c.ref !== "refs/heads/main" ||
+      c.sub !== SUBJECT || !WORKFLOWS.has(workflow) ||
       !["schedule","workflow_dispatch","workflow_run","push"].includes(c.event_name) ||
       !Number.isFinite(c.exp) || c.exp * 1000 <= now || !Number.isFinite(c.nbf) || c.nbf * 1000 > now + 30000 ||
       !/^\d+$/.test(c.run_id) || !/^\d+$/.test(c.run_attempt)) throw new Error("identity rejected");

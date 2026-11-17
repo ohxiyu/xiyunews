@@ -8,10 +8,10 @@
   "goal": "统一 xiyu.news 运行并最小化东京服务器负载",
   "issue": "https://github.com/ohxiyu/xiyunews/issues/375",
   "owner": "本聊天Codex",
-  "branch": "agent/hosted-state-transport",
+  "branch": "agent/hosted-state-identity",
   "base": "e1ccefb0d45b73fcabe961397ce6a9c8cbf8d731",
-  "status": "PR376及首轮Cloudflare44070883988成功；maintenance已排空旧任务，原数据库保留；迁移44072273675在写入前被防护1010拒绝，确认为默认Python UA，正在补具名客户端标识，不改防护或鉴权",
-  "next": "客户端补丁CI通过合并后再迁移并校验全部表，切托管执行真实采集/网页验收；退役闲置执行器并取消专属备份，保留现役数据库和96期历史",
+  "status": "PR376/377已合并，接口上线及具名UA通过；迁移在写入前被OIDC拒绝，已实查仓库启用含owner/repo ID的immutable sub，正在精确匹配新格式；专属备份timer已停，其余维持maintenance",
+  "next": "身份补丁CI通过后仅启用Cloudflare进行代码部署，再回maintenance迁移并校验全部表；切托管真实采集/网页验收后退役执行器、清理额外备份；源数据库和96期历史保留",
   "blockers": []
 }
 ```
