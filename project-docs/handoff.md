@@ -5,13 +5,13 @@
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "服务器磁盘清理与白名单容量治理",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/373",
+  "goal": "统一 xiyu.news 运行并最小化东京服务器负载",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/375",
   "owner": "本聊天Codex",
-  "branch": "agent/disk-maintenance",
-  "base": "d2ec53eb83d129405ce77cdf45ad91fe1763bcff",
-  "status": "用户已授权闲置缓存/旧镜像/旧执行器/过期日志清理及容量上限；白名单脚本待测试、服务器只读预览和CI",
-  "next": "核对进程和容器引用，保留历史、数据库、备份、所有容器与卷；测试通过合并后应用并复核服务及容量，结果归档本任务PR",
+  "branch": "agent/hosted-runtime",
+  "base": "b8e60470f5a8440fcf2a5c9934bed7eea8b30605",
+  "status": "用户已授权状态迁移、托管计算、正常部署及取消 xiyu.news 专属备份；实现和隔离测试中，尚未切换生产",
+  "next": "CI通过合并先部署私有状态接口；维护模式排空旧任务后一次性迁移并校验全部表，再切托管执行真实采集/网页验收；退役闲置执行器并取消专属备份，保留现役数据库和历史",
   "blockers": []
 }
 ```
@@ -34,4 +34,6 @@
 - 用户11/09授权X直接正式运行、免三天试运行；默认280加权字符，校验现有四项密钥/API，不升级套餐。
 - 已查GitHub设置：日报bot和X四项密钥存在；目标群Telegram @xiyudotnews的“日报运维”话题6544已创建，参数已保存，测试42571836635已确认sent，不使用读者频道或realtime现有话题。
 - 保留七份现行文档；另有四个极短历史入口供realtime既有链接使用，不恢复旧发布内容。
-- 不改独立 `realtime/`，不重生成或重发既有期刊。旧地址保留跳转；不自动充值或升级模型/配额。
+- 11/17运行统一：复用现有RecoveryGate命名空间保存私有实时出版状态，GitHub main白名单OIDC鉴权，单写者租约/版本围栏，事务提交远端后才允许发送；不新增密钥或付费服务。
+- XIYUNEWS_RUNTIME_MODE: maintenance暂停批处理、hosted使用标准托管计算；未设时为切换前服务器模式。迁移工作流只能初始化空状态，不能覆盖现有状态。详见[运行手册](self-hosted-runner.md)。
+- 东京实时规则/目的地/数据库及其他项目不变，不重生成或重发历史；xiyu.news专属备份已获授权停用并清理额外副本，原始业务数据库保留。旧地址保留跳转；不充值或升级模型/配额。

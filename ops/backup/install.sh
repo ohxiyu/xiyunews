@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
+echo 'Retired by owner on 2026-11-17: xiyu.news automatic backups are disabled.' >&2
+exit 1
+# Historical implementation below is deliberately unreachable; do not reinstall.
 [[ "$EUID" == 0 ]]
 [[ -s /etc/xiyunews-backup-recipient.pub ]]
 command -v age >/dev/null

@@ -263,17 +263,22 @@ class PublicationState:
 
 
 def active_store():
+    remote = os.environ.get("XIYUNEWS_STATE_BACKEND") == "cloudflare"
     directory = os.environ.get("XIYUNEWS_STATE_DIR")
-    if not directory:
+    if not directory and not remote:
         return None
     if os.environ.get("GITHUB_ACTIONS") == "true" and (os.environ.get("GITHUB_REPOSITORY") != "ohxiyu/xiyunews" or os.environ.get("GITHUB_REF") != "refs/heads/main" or os.environ.get("GITHUB_WORKFLOW") not in PRODUCERS):
         return None  # Tests/PRs/preview builds never touch business caches.
-    path = Path(directory)
+    if remote:
+        from .edge_state import location, EdgePublicationState
+        path = location()
+    else:
+        path = Path(directory)
     if not path.is_absolute():
         raise ValueError("publication state requires an absolute directory")
-    key = str(path)
+    key = ("cloudflare:" if remote else "") + str(path)
     if key not in _stores:
-        _stores[key] = PublicationState(path)
+        _stores[key] = EdgePublicationState(path) if remote else PublicationState(path)
     return _stores[key]
 
 

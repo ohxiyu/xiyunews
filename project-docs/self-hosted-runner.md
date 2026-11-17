@@ -1,4 +1,21 @@
-# 自托管执行器：保留工作流，迁移计算位置
+# xiyu.news 统一运行：东京只保留实时监控
+
+## 2026-11-17 接管流程（以本节取代下方旧安装指引）
+
+用户要求最小化服务器压力，并取消 xiyu.news 备份。一个仓库、一个 Cloudflare 项目、两个内部模块：东京持续运行实时监控；新闻采集/日报/网站构建/日投递/X使用公开仓库的标准 GitHub ubuntu-latest，代码和依赖保持独立，不降低实时监控频率。下方自托管安装记录仅历史参考，不应重新注册或启动退役执行器。
+
+出版当前状态保存在现有 RecoveryGate 命名空间的 `publication-state-v1` 对象，分块保存一份当前 SQLite 镜像；每事务仅传输变化的压缩64KiB块，原子替换后才允许外部发送。临时未提交块在提交/释放时清除，不保留版本备份。短时GitHub OIDC限制固定仓库ID、main、受信工作流、audience、有效期和本次run身份；PR/fork/CI不能访问。40分钟单写者租约及版本比较阻止并发写入，超时/未知提交失败关闭，原“发送前保留unknown，未知不重发”规则不变。每个托管job在临时目录下载并完整性验证，任务结束释放租约，临时机销毁；Actions cache和公开Git分支都不是投递账本。128MiB状态上限用于提前失败，不淘汰日报或回执。
+
+串行切换（仅在用户已授权且合并CI通过后执行）：
+
+1. 先正常部署Cloudflare新接口，仍保留旧服务器模式；匿名访问私有路径必须401/405。
+2. 设置仓库变量 XIYUNEWS_RUNTIME_MODE=maintenance，等现有采集/日报/投递/部署任务完全退出，不停止忙碌执行器。核对当期API指纹、实时PID、数据库quick_check及发送表指纹。
+3. 在main运行 publication-runtime.yml，mode=migrate；它在旧执行器读现役SQLite并直接传输，不发送、不调用AI、不生成备份。初始化只允许一次。随后mode=verify在标准托管机检查SHA、全部表行数和哈希；业务表必须完全相同，job_runs只允许旧hook产生的本次运行行。
+4. 设置 XIYUNEWS_RUNTIME_MODE=hosted，运行一次正常采集、一次正常Cloudflare代码部署。确认GitHub job runner_environment/标签为托管、状态事务确实更新、当期API内容和历史完整、不补发历史消息。非自然日刊不得重生成日报来测试投递。
+5. 无在途服务器job时，停用 xiyunews-runner 及其guardian/维护timer，注销其GitHub注册，删除专属闲置工具缓存和退役执行文件（精确清单先核对引用）；保留 /home/xiyunews-runner/state/publication.sqlite3 原始业务数据库与 /var/lib/fomobtc/fomobtc.sqlite3。共享swap和其他项目缓存不动。保留 xiyunews-disk-maintenance.timer 日志/缓存容量治理。
+6. 停用 xiyunews-backup.timer/service 与server-backup工作流，清理 /var/backups/xiyunews、state/recovery-backups、backup-export 下已核对的额外副本与对应GitHub备份artifact。保留目录以安全方式逐项删除，不能递归指向home/state根。其他项目备份不动。无独立备份后，数据库损坏或误删没有独立恢复保证；历史公开日报仍保留。
+
+迁移或托管验收失败时保持维护模式、保留源数据库，不允许自动切回旧发送者或覆盖远端状态。修复原因再继续，任何重新启用旧库写入需另行核对版本/回执。未来若仓库私有化，先评估托管计算额度；不开付费预算。自然次日出刊/渠道实收要等实际发生，不能用只读健康或隔离测试宣称已验证。
 
 ## 决定与成本边界
 

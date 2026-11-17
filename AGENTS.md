@@ -5,7 +5,8 @@ These rules apply to people and coding agents. The user-approved 2026-11-09 dail
 ## Product and boundaries
 
 - The public product is one Chinese crypto/AI daily edition: 07:00 cutoff, 07:26 start, Asia/Shanghai. Background collection only scores and caches; it does not publish or send messages.
-- `realtime/` is an independent application. Do not edit it, import its package, combine its dependencies/databases, or alter its destinations for the daily refactor.
+- The owner-approved 2026-11-17 runtime unification makes xiyu.news one business with daily and realtime modules. Keep `realtime/` dependencies, database, alert rules and destinations isolated; Tokyo runs realtime only, production batch jobs use standard GitHub-hosted compute after the verified private-state cutover. Do not put delivery ledgers into public artifacts or fall back to volatile caches.
+- The owner has discontinued xiyu.news backups. Do not install backup timers or upload database copies. Preserve active databases, delivery receipts and published history; other projects' backups are outside this scope.
 - Preserve already published editions and delivery receipts. Do not regenerate or resend history. Keep redirects for retired public addresses.
 - Keep copyright, licenses, source attribution and third-party notices.
 - Never commit credentials, `.env`, private endpoints or generated runtime state. Secrets belong in Actions/Worker configuration.

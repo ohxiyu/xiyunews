@@ -1,8 +1,9 @@
 import {legacyRoute} from "./legacy";
 import dispatcher from "./index";
 import {checkTopicAlerts} from "./alerts";
-import type { RecoveryEnv } from "./recovery";
 import {runtimeHealth} from "./runtime";
+import type { RecoveryEnv } from "./recovery";
+import {publicationRoute} from "./publication-state";
 // Reuse the audited Pages handler; do not duplicate auth, caching or API routing.
 // @ts-expect-error The existing JavaScript module is validated by its Node tests.
 import website, {primaryHostRedirect} from "../../../docs/core-worker.js";
@@ -31,6 +32,7 @@ export interface UnifiedEnv extends Env {
   QUICK_POST_AI_API_KEY?: string;
   QUICK_POST_AI_ENABLED?: string;
   RUNTIME_HEALTH_URL?: string;
+  PUBLICATION_RUNTIME?: string;
 }
 
 const OPERATIONS = new Set(["/health", "/ready", "/publication/check"]);
@@ -44,6 +46,7 @@ export default {
     const redirect = primaryHostRedirect(request);
     if (redirect) return redirect;
     const path = new URL(request.url).pathname;
+    if (path.startsWith("/internal/publication-state/")) return publicationRoute(request,env);
     if (path === "/api/_telegram-group.json") {
       return new Response(null,{status:404,headers:{"Cache-Control":"no-store"}});
     }
@@ -63,7 +66,8 @@ export default {
     const health = await response.json() as Record<string, unknown>;
     return Response.json({...health, service: "xiyunews", project: "xiyunews",
       product: "daily-edition", collection_interval_minutes: 5, languages: ["zh"], delivery: ["telegram-daily"],
-      runner: await runtimeHealth(env.RUNTIME_HEALTH_URL),
+      runner: env.PUBLICATION_RUNTIME === "hosted" ? {status:"github-hosted",state_backend:"cloudflare-private",service:"xiyunews"} : await runtimeHealth(env.RUNTIME_HEALTH_URL),
+      modules: ["daily-edition", "realtime-monitoring"],
       dispatcher_enabled: env.ENABLE_DISPATCHER === "true",
       realtime_watchdog_enabled: env.ENABLE_REALTIME_WATCHDOG === "true",
       site_source_commit: env.SITE_SOURCE_COMMIT ?? null,
