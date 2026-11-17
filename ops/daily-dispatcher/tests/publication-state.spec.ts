@@ -57,8 +57,8 @@ function enc(value:unknown){return btoa(JSON.stringify(value)).replaceAll("+","-
 async function token(extra:Record<string,unknown>={}){
   const raw=enc({alg:"RS256",kid:"state-test"})+"."+enc({
     iss:"https://token.actions.githubusercontent.com",aud:"https://xiyu.news/internal/publication-state",
-    repository:"ohxiyu/xiyunews",repository_id:"1341754381",ref:"refs/heads/main",
-    sub:"repo:ohxiyu/xiyunews:ref:refs/heads/main",workflow_ref:"ohxiyu/xiyunews/.github/workflows/feed-collection.yml@refs/heads/main",
+    repository:"ohxiyu/xiyunews",repository_id:"1341754381",repository_owner_id:"90966016",ref:"refs/heads/main",
+    sub:"repo:ohxiyu@90966016/xiyunews@1341754381:ref:refs/heads/main",workflow_ref:"ohxiyu/xiyunews/.github/workflows/feed-collection.yml@refs/heads/main",
     event_name:"workflow_dispatch",run_id:"123",run_attempt:"1",exp:Math.floor(Date.now()/1000)+120,nbf:Math.floor(Date.now()/1000)-1,...extra});
   const sig=await crypto.subtle.sign("RSASSA-PKCS1-v1_5",pair.privateKey,new TextEncoder().encode(raw));
   return raw+"."+btoa(String.fromCharCode(...Array.from(new Uint8Array(sig)))).replaceAll("+","-").replaceAll("/","_").replaceAll("=","");
@@ -68,8 +68,10 @@ function mockKeys(){vi.stubGlobal("fetch",vi.fn(async()=>Response.json({keys:[{.
 it("uses signed short-lived GitHub main identity, with repository ID and workflow allowlist",async()=>{
   mockKeys();
   expect(await identity(await token())).toMatchObject({run_id:"123",migration:false});
-  for(const claims of [{repository_id:"1"},{ref:"refs/pull/1/merge"},{event_name:"pull_request_target"},
+  for(const claims of [{repository_id:"1"},{repository_owner_id:"1"},{ref:"refs/pull/1/merge"},{event_name:"pull_request_target"},
     {aud:"wrong"},{exp:0},{sub:"repo:ohxiyu/fork:ref:refs/heads/main"},
+    {sub:"repo:ohxiyu/xiyunews:ref:refs/heads/main"},
+    {sub:"repo:ohxiyu@1/xiyunews@1341754381:ref:refs/heads/main"},
     {workflow_ref:"ohxiyu/xiyunews/.github/workflows/ci.yml@refs/heads/main"}]){
     await expect(identity(await token(claims))).rejects.toThrow("identity rejected");
   }
