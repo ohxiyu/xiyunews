@@ -8,10 +8,10 @@
   "goal": "统一 xiyu.news 运行并最小化东京服务器负载",
   "issue": "https://github.com/ohxiyu/xiyunews/issues/375",
   "owner": "本聊天Codex",
-  "branch": "agent/hosted-state-identity",
-  "base": "e1ccefb0d45b73fcabe961397ce6a9c8cbf8d731",
-  "status": "PR376/377已合并，接口上线及具名UA通过；迁移在写入前被OIDC拒绝，已实查仓库启用含owner/repo ID的immutable sub，正在精确匹配新格式；专属备份timer已停，其余维持maintenance",
-  "next": "身份补丁CI通过后仅启用Cloudflare进行代码部署，再回maintenance迁移并校验全部表；切托管真实采集/网页验收后退役执行器、清理额外备份；源数据库和96期历史保留",
+  "branch": "agent/hosted-runtime-close",
+  "base": "1b29bf81a6b3ab345c540547d328f059b471cc61",
+  "status": "11/17生产迁移、托管采集/部署及资源清理完成；PR376/377/378已合并，publication-runtime迁移44074642803/验证44074886650整库SHA与表指纹一致；东京执行器已注销、原库和历史保留",
+  "next": "生产保持XIYUNEWS_RUNTIME_MODE=hosted，标准托管计算+Cloudflare私有状态；11/18自然出刊/渠道实收待真实时点，不重生成测试历史；Glassnode RSS403及realtime既有Hyperliquid降级单独保留可见状态",
   "blockers": []
 }
 ```
@@ -34,6 +34,8 @@
 - 用户11/09授权X直接正式运行、免三天试运行；默认280加权字符，校验现有四项密钥/API，不升级套餐。
 - 已查GitHub设置：日报bot和X四项密钥存在；目标群Telegram @xiyudotnews的“日报运维”话题6544已创建，参数已保存，测试42571836635已确认sent，不使用读者频道或realtime现有话题。
 - 保留七份现行文档；另有四个极短历史入口供realtime既有链接使用，不恢复旧发布内容。
-- 11/17运行统一：复用现有RecoveryGate命名空间保存私有实时出版状态，GitHub main白名单OIDC鉴权，单写者租约/版本围栏，事务提交远端后才允许发送；不新增密钥或付费服务。
+- 11/17运行统一已生产：采集44075396447与Cloudflare44075402179均成功且均为GitHub标准托管；418条采集、594次缓存命中，5个来源组成功，单Glassnode RSS403告警保留。新版私有状态具名UA+不可变GitHub主体鉴权；先前两次访问失败均未写业务状态，未关闭防护/鉴权。
+- 生产Worker 649acfc3-9fb8-4b3b-ab18-a4a6d449cf50，source1b29bf81、artifact235ace57；普通首页/当期/11月3日/7月26日/RSS/ready均200，96期保留，11/17的14条API完整SHA不变。匿名私有接口401；五个生产工作流已启用。
 - XIYUNEWS_RUNTIME_MODE: maintenance暂停批处理、hosted使用标准托管计算；未设时为切换前服务器模式。迁移工作流只能初始化空状态，不能覆盖现有状态。详见[运行手册](self-hosted-runner.md)。
-- 东京实时规则/目的地/数据库及其他项目不变，不重生成或重发历史；xiyu.news专属备份已获授权停用并清理额外副本，原始业务数据库保留。旧地址保留跳转；不充值或升级模型/配额。
+- 东京runner/guardian/旧维护与backup均inactive+disabled，GitHub注册0；45项缓存/执行文件/旧日志/额外备份净释放2855579648字节，可用约12.4GiB、磁盘67%。其他7容器身份/启动时间/重启数一致，实时PID1913207及两SQLite完整性保持；现役磁盘维护和其他项目备份继续运行。备份副本永久删除、工具缓存可重建。
+- 东京实时规则/目的地/数据库及其他项目不变，3行情流live、5链0落后，原Hyperliquid降级使ready503保持如实；不重生成或补发历史。源码/Worker版本与文档main可能因仅交接更新而不同，以生产构建输入为准。
