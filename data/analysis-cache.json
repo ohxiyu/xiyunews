@@ -133,6 +133,23 @@
         "title_zh": "Nginx 中的未认证远程代码执行漏洞"
       }
     },
+    "00c6ff7e27e8f81cf33295b27e10396c6b45a16d4df0fbce77d72acf9aad4322": {
+      "stored_at": "2026-11-19T13:37:15.547548+00:00",
+      "value": {
+        "duplicates": [
+          [
+            0,
+            1,
+            4,
+            5
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      }
+    },
     "00d409f376b4cd8a9d40b2c924203bd231d3f1f07524bf2fbf77923e78c7ee3e": {
       "stored_at": "2026-11-17T11:57:27.948102+00:00",
       "value": {
@@ -3326,6 +3343,25 @@
         "title_zh": "谷歌发现内含俄语注释、可自我运行的AI黑客工具"
       }
     },
+    "0bdf6a7a3429a9c6effc8d454989e10d956d57dccaf74e9c95efb37b35659949": {
+      "stored_at": "2026-11-19T13:37:08.979282+00:00",
+      "value": {
+        "ai_reason": "The content presents a technical blog post about a novel, high-performance distributed blob storage system built on SQLite, which is a substantive engineering deep-dive. The Hacker News discussion includes expert commentary critiquing the architectural choice, suggesting alternatives, and probing for details like fault tolerance, indicating a high-signal technical debate. This qualifies as 'Interesting' (5-6) for being a useful technical discussion, but the specific novelty of the approach and the quality of the community critique elevate it to the higher end of that range. It does not reach 'High Value' (7-8) as it describes a specific implementation detail rather than a major, ecosystem-wide protocol upgrade or infrastructure change.",
+        "ai_score": 6.5,
+        "ai_summary": "一篇技术博客介绍了一种基于SQLite构建的高性能分布式blob存储系统，并在Hacker News上引发了关于其架构选择、替代方案和容错性的技术讨论。",
+        "ai_tags": [
+          "database",
+          "distributed-systems",
+          "sqlite",
+          "storage",
+          "software-engineering"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "一篇技术博客介绍了一种利用SQLite构建的分布式高性能blob存储系统，随后在Hacker News上引发了关于其架构选择、替代方案以及系统容错能力的技术性讨论。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "基于SQLite的分布式高性能blob存储系统"
+      }
+    },
     "0bf7530daff6467e21b58ec902b0c0fcb87bd1d969d57dcb42a85fd5dcc566b9": {
       "stored_at": "2026-11-17T01:57:45.044668+00:00",
       "value": {
@@ -4707,38 +4743,6 @@
         "title_zh": "KVM：x86：模拟INIT时无条件重置MMU上下文（CVE-2026-99312）"
       }
     },
-    "11bb21d5637cfba63322315702961152f3fcb41217bb05089b0ae1f987b08fb7": {
-      "stored_at": "2026-11-16T23:31:22.554496+00:00",
-      "value": {
-        "background": "Gnosis Safe是一种流行的多签钱包解决方案。Zodiac Roles模块允许Safe用户为特定交易分配权限，例如委托交易。syrupUSDC是一种与USDC相关的代币。",
-        "background_zh": "Gnosis Safe是一种流行的多签钱包解决方案。Zodiac Roles模块允许Safe用户为特定交易分配权限，例如委托交易。syrupUSDC是一种与USDC相关的代币。",
-        "detailed_summary": "链上分析师Specter监测发现，一个Gnosis Safe多签钱包疑似遭攻击，约645万美元资产被盗。攻击者利用了该钱包已启用的Zodiac Roles权限模块，转出了约430万美元USDC及约170万美元syrupUSDC。\n\n此次事件凸显了多签钱包权限配置管理的重要性，Zodiac联合创始人表示模块本身无漏洞，问题可能出在密钥泄露或权限设置过于宽松。\n\n被盗资金中约120万美元已通过Wagyu平台兑换为门罗币（XMR）。区块链安全公司PeckShield也报告了此次可疑盗窃。",
-        "detailed_summary_zh": "链上分析师Specter监测发现，一个Gnosis Safe多签钱包疑似遭攻击，约645万美元资产被盗。攻击者利用了该钱包已启用的Zodiac Roles权限模块，转出了约430万美元USDC及约170万美元syrupUSDC。\n\n此次事件凸显了多签钱包权限配置管理的重要性，Zodiac联合创始人表示模块本身无漏洞，问题可能出在密钥泄露或权限设置过于宽松。\n\n被盗资金中约120万美元已通过Wagyu平台兑换为门罗币（XMR）。区块链安全公司PeckShield也报告了此次可疑盗窃。",
-        "editorial_tags": [
-          "Gnosis Safe",
-          "多签钱包",
-          "Zodiac Roles",
-          "安全事件",
-          "加密货币盗窃"
-        ],
-        "enrichment_status": "complete",
-        "sources": [
-          {
-            "title": "Safe Wallet Drained of $6.4 Million via Roles Module",
-            "url": "https://thedefiant.io/news/hacks/safe-wallet-drained-of-6-4-million-via-roles-module"
-          },
-          {
-            "title": "Gnosis Safe Wallet Drained of $6.45M in Suspected Hack - CoinGape",
-            "url": "https://coingape.com/gnosis-safe-wallet-drained-of-6-45m-in-suspected-hack/"
-          },
-          {
-            "title": "Gnosis Safe Multisig Drained of $6.45M via Zodiac Roles Module",
-            "url": "https://www.kucoin.com/news/flash/gnosis-safe-multisig-drained-of-6-45m-via-zodiac-roles-module"
-          }
-        ],
-        "title_zh": "某Gnosis Safe多签被盗645万美元，攻击者利用了Zodiac Roles模块"
-      }
-    },
     "11c76cbf319bc6781bd23351319edab9cba943e2d997c3b2d9b313770fb5dfd3": {
       "stored_at": "2026-11-19T05:22:29.319981+00:00",
       "value": {
@@ -5621,38 +5625,6 @@
         ]
       }
     },
-    "14db09cac70af4323b0352164830e17914f2dc64e78d06b71f8c6c3d41d2fcc5": {
-      "stored_at": "2026-11-16T23:31:22.552927+00:00",
-      "value": {
-        "background": "Solana验证者通过处理交易和参与共识来保障网络运行。Firedancer是独立于Agave开发的验证者客户端，旨在增强网络软件多样性和韧性。",
-        "background_zh": "Solana验证者通过处理交易和参与共识来保障网络运行。Firedancer是独立于Agave开发的验证者客户端，旨在增强网络软件多样性和韧性。",
-        "detailed_summary": "新披露的Linux内核漏洞CVE-2026-99288（NoisyTCP）影响所有Solana验证者节点，运营方需立即升级内核或临时关闭SYN Cookies以缓解风险。\n\n该漏洞可能导致运行Nginx、Apache和SSH服务器的Linux系统崩溃，影响Solana网络验证者节点的稳定运行。\n\n该漏洞由安全研究员Hyunwoo Kim发现并报告，是一个存在约11年的Linux内核TCP预认证远程破坏漏洞。相关说明适用于全部Agave或Firedancer节点。",
-        "detailed_summary_zh": "新披露的Linux内核漏洞CVE-2026-99288（NoisyTCP）影响所有Solana验证者节点，运营方需立即升级内核或临时关闭SYN Cookies以缓解风险。\n\n该漏洞可能导致运行Nginx、Apache和SSH服务器的Linux系统崩溃，影响Solana网络验证者节点的稳定运行。\n\n该漏洞由安全研究员Hyunwoo Kim发现并报告，是一个存在约11年的Linux内核TCP预认证远程破坏漏洞。相关说明适用于全部Agave或Firedancer节点。",
-        "editorial_tags": [
-          "Linux内核漏洞",
-          "Solana",
-          "网络安全",
-          "CVE-2026-99288",
-          "NoisyTCP"
-        ],
-        "enrichment_status": "complete",
-        "sources": [
-          {
-            "title": "oss-security - NoisyTCP: Linux Kernel TCP Pre-auth Remote...",
-            "url": "https://www.openwall.com/lists/oss-security/2026/11/15/2"
-          },
-          {
-            "title": "New NoisyTCP vulnerability lets attackers crash Linux servers",
-            "url": "https://www.bleepingcomputer.com/news/linux/new-noisytcp-linux-kernel-flaw-lets-attackers-crash-servers/"
-          },
-          {
-            "title": "GitHub - V4bel/NoisyTCP · GitHub",
-            "url": "https://github.com/V4bel/NoisyTCP"
-          }
-        ],
-        "title_zh": "Linux内核漏洞或影响Solana验证者，建议立即升级内核或临时关闭SYN Cookies"
-      }
-    },
     "14e373890a08753d98eed2f2e33866608ca4dd49be206ee0f4bbb6bfd9c6da80": {
       "stored_at": "2026-11-17T02:47:14.740372+00:00",
       "value": {
@@ -6509,39 +6481,6 @@
         ],
         "category": "crypto-markets",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
-      }
-    },
-    "182d47cf4b8b49e9bd0f2a2c7af8e6ae353ec47ac6cfad719c0790f2b0473e66": {
-      "stored_at": "2026-11-16T23:31:22.554835+00:00",
-      "value": {
-        "background": "星展银行于2024年8月与蚂蚁国际合作推出了区块链驱动的Treasury Tokens试点。摩根大通的Kinexys是一个由银行主导的区块链平台，用于可编程支付和资产代币化。新加坡金融管理局主导的Project BLOOM旨在推进数字结算基础设施和代币互操作性。",
-        "background_zh": "星展银行于2024年8月与蚂蚁国际合作推出了区块链驱动的Treasury Tokens试点。摩根大通的Kinexys是一个由银行主导的区块链平台，用于可编程支付和资产代币化。新加坡金融管理局主导的Project BLOOM旨在推进数字结算基础设施和代币互操作性。",
-        "detailed_summary": "星展银行与摩根大通旗下Kinexys推出了一项已可商用的互操作方案，连接双方的代币化存款体系，使机构客户能在美国与新加坡的区块链账户之间进行全天候即时美元转账。蚂蚁国际成为首家使用该方案进行实时全球资金管理的客户。\n\n这是首个此类跨境代币化存款互操作方案，允许在周末及传统银行营业时间之外进行即时跨境转账，服务于新加坡金融管理局主导的行业倡议Project BLOOM。\n\n该方案落实了双方2025年11月公布的互操作框架，并由双方作为创始股东的结算基础设施Partior负责结算编排。转账在Kinexys区块链存款账户网络上可全天候、当日完成，但从传统活期存款账户调入或调出该网络，目前每周六美国东部时间15:00至18:00仍有3小时暂停。",
-        "detailed_summary_zh": "星展银行与摩根大通旗下Kinexys推出了一项已可商用的互操作方案，连接双方的代币化存款体系，使机构客户能在美国与新加坡的区块链账户之间进行全天候即时美元转账。蚂蚁国际成为首家使用该方案进行实时全球资金管理的客户。\n\n这是首个此类跨境代币化存款互操作方案，允许在周末及传统银行营业时间之外进行即时跨境转账，服务于新加坡金融管理局主导的行业倡议Project BLOOM。\n\n该方案落实了双方2025年11月公布的互操作框架，并由双方作为创始股东的结算基础设施Partior负责结算编排。转账在Kinexys区块链存款账户网络上可全天候、当日完成，但从传统活期存款账户调入或调出该网络，目前每周六美国东部时间15:00至18:00仍有3小时暂停。",
-        "editorial_tags": [
-          "代币化存款",
-          "跨境支付",
-          "区块链",
-          "星展银行",
-          "摩根大通",
-          "蚂蚁国际"
-        ],
-        "enrichment_status": "complete",
-        "sources": [
-          {
-            "title": "DBS launches blockchain-powered Treasury Tokens pilot with ...",
-            "url": "https://www.dbs.com/newsroom/DBS_launches_blockchain_powered_Treasury_Tokens_pilot_with_Ant_International_for_247_treasury_and_liquidity_management"
-          },
-          {
-            "title": "Kinexys: Enterprise Bank-Led Blockchain Solutions",
-            "url": "https://www.jpmorgan.com/kinexys/index"
-          },
-          {
-            "title": "Singapore: BLOOM to Transform Digital Settlement... - OpenGov Asia",
-            "url": "https://opengovasia.com/singapore-bloom-to-transform-digital-settlement-infrastructure/"
-          }
-        ],
-        "title_zh": "星展银行与摩根大通上线全天候代币化存款跨境转账方案，蚂蚁国际为首家客户"
       }
     },
     "183fd5cf14f1bf341c155fc2f6db76b5ec8cd1b7736fb047ee22815418ce2170": {
@@ -10143,63 +10082,6 @@
         "source_category": "crypto-markets"
       }
     },
-    "2543278e0dc3dd77d8506d8eca6f60468ab2c92f8656a1f14a220bcb09d5041c": {
-      "stored_at": "2026-11-16T23:31:22.552448+00:00",
-      "value": {
-        "background": "币安是全球最大的加密货币交易所，此前已建立包括冷热钱包存储和储备金证明在内的安全与透明度机制。在2022年，整个加密货币行业因交易所黑客攻击损失了约38亿美元。",
-        "background_zh": "币安是全球最大的加密货币交易所，此前已建立包括冷热钱包存储和储备金证明在内的安全与透明度机制。在2022年，整个加密货币行业因交易所黑客攻击损失了约38亿美元。",
-        "detailed_summary": "据报道，币安交易所于2026年10月29日发生安全漏洞，估计造成63亿美元的资产损失，这可能成为加密货币历史上规模最大的一次盗窃事件。\n\n此次事件可能促使投资者重新审视持有数字资产的风险，并凸显了中心化交易所面临的安全挑战。\n\n币安表示，安全事件影响了约63亿美元的资产，其中近30亿美元已被冻结，事件原因疑似与一台DevOps笔记本电脑被入侵有关。",
-        "detailed_summary_zh": "据报道，币安交易所于2026年10月29日发生安全漏洞，估计造成63亿美元的资产损失，这可能成为加密货币历史上规模最大的一次盗窃事件。\n\n此次事件可能促使投资者重新审视持有数字资产的风险，并凸显了中心化交易所面临的安全挑战。\n\n币安表示，安全事件影响了约63亿美元的资产，其中近30亿美元已被冻结，事件原因疑似与一台DevOps笔记本电脑被入侵有关。",
-        "editorial_tags": [
-          "币安",
-          "黑客攻击",
-          "加密货币",
-          "安全漏洞",
-          "交易所",
-          "储备金证明"
-        ],
-        "enrichment_status": "complete",
-        "sources": [
-          {
-            "title": "Binance hit by $6.3 billion security breach in potential... - France 24",
-            "url": "https://www.france24.com/en/technology/20261030-binance-security-breach-has-6-3-billion-impact-in-potential-record-crypto-heist"
-          },
-          {
-            "title": "Binance Suffers Security Breach Affecting $6.3 Billion in Assets...",
-            "url": "https://thehackernews.com/2026/10/binance-suffers-security-breach.html"
-          },
-          {
-            "title": "Crypto exchange Binance freezes assets after $6.3 billion security...",
-            "url": "https://www.straitstimes.com/world/crypto-exchange-binance-freezes-assets-after-6-3-billion-security-breach"
-          },
-          {
-            "title": "Crypto exchanges keep getting hacked, and there's little anyone can do",
-            "url": "https://www.nbcnews.com/tech/security/bitcoin-crypto-exchange-hacks-little-anyone-can-do-rcna7870"
-          },
-          {
-            "title": "8 Crypto Exchange Hacks to Know About",
-            "url": "https://www.kaspersky.com/resource-center/threats/crypto-exchange-hacks"
-          },
-          {
-            "title": "Top Cryptocurrency Exchanges Ranked By Volume | CoinMarketCap",
-            "url": "https://coinmarketcap.com/rankings/exchanges/"
-          },
-          {
-            "title": "Proof of Reserves - Binance",
-            "url": "https://www.binance.com/en/proof-of-reserves"
-          },
-          {
-            "title": "Proof of Reserves (PoR) | BTC & Other Token Ratio | Binance",
-            "url": "https://www.binance.com/en-GB/proof-of-reserves"
-          },
-          {
-            "title": "Proof of Reserves Explained: What Crypto Exchanges Can Prove",
-            "url": "https://joviantan.com/insights/beyond-binance-hack-proof-of-reserves"
-          }
-        ],
-        "title_zh": "币安遭窃63亿美元：加密货币史上最大黑客攻击"
-      }
-    },
     "25454ac58617d9ce24d0cc044650ce4c4bd09e1e0316e7e2cb2eb13e157f6d79": {
       "stored_at": "2026-11-19T04:22:16.694077+00:00",
       "value": {
@@ -12920,6 +12802,22 @@
         "title_zh": "Frame – 31.5英寸彩色电子纸显示器"
       }
     },
+    "2f780cf1511fc2c44c1f285083a39df1d3e419fab87fe7f66be335a7e4cf3efe": {
+      "stored_at": "2026-11-19T13:37:08.978726+00:00",
+      "value": {
+        "ai_reason": "This is a routine, high-frequency macroeconomic data release (weekly jobless claims). While it provides a timely and concrete data point that can influence market expectations for monetary policy and thus crypto markets, it is a standard update without any immediate, material shock or structural change. Its impact is indirect and part of regular market information flow.",
+        "ai_score": 5.5,
+        "ai_summary": "美国劳工部数据显示，截至11月14日当周，初请失业金人数为20.3万人，高于市场预期的19.7万人，前值修正为20.2万人。",
+        "ai_tags": [
+          "macroeconomics",
+          "unemployment",
+          "us-economy",
+          "market-data"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
+      }
+    },
     "2fb73c08ba5890051dfc9ff1adef2a6501814d8ace144bbf267dc2273e3141ab": {
       "stored_at": "2026-11-17T13:27:28.154179+00:00",
       "value": {
@@ -14364,46 +14262,6 @@
             1
           ]
         ]
-      }
-    },
-    "3482109332fcb28c0fff8e436edad3083f8acedb0f64c5e100a2860ec382443a": {
-      "stored_at": "2026-11-16T23:31:22.554712+00:00",
-      "value": {
-        "background": "HARD Lend 是 Kava 区块链上的一个去中心化借贷协议。Kava 的链上治理提案过程包括为期7天的投票期，需要20%的参与投票权达到法定人数，以及50%的参与投票权通过门槛。",
-        "background_zh": "HARD Lend 是 Kava 区块链上的一个去中心化借贷协议。Kava 的链上治理提案过程包括为期7天的投票期，需要20%的参与投票权达到法定人数，以及50%的参与投票权通过门槛。",
-        "detailed_summary": "Kava 计划发起为期七天的治理投票，以在发生 5390 万 KAVA 代币被盗事件后，加速关闭 HARD Lend 协议的新借贷活动。\n\n此次投票旨在永久停止平台上的新借贷活动，但如何处理现有存款的细节尚未明确，给当前用户带来了不确定性。\n\n黑客在 2026 年 11 月 14 日利用了 HARD Lend 会计系统的一个漏洞发起攻击，导致约 5390 万 KAVA 代币被盗，造成平台面临巨大的流动性短缺。",
-        "detailed_summary_zh": "Kava 计划发起为期七天的治理投票，以在发生 5390 万 KAVA 代币被盗事件后，加速关闭 HARD Lend 协议的新借贷活动。\n\n此次投票旨在永久停止平台上的新借贷活动，但如何处理现有存款的细节尚未明确，给当前用户带来了不确定性。\n\n黑客在 2026 年 11 月 14 日利用了 HARD Lend 会计系统的一个漏洞发起攻击，导致约 5390 万 KAVA 代币被盗，造成平台面临巨大的流动性短缺。",
-        "editorial_tags": [
-          "Kava",
-          "HARD Lend",
-          "黑客攻击",
-          "治理投票",
-          "DeFi"
-        ],
-        "enrichment_status": "complete",
-        "sources": [
-          {
-            "title": "Kava moves to shut down lending platform after hackers drain ...",
-            "url": "https://cryptoslate.com/kava-moves-to-shut-down-lending-platform-after-hackers-drain-nearly-4-million/"
-          },
-          {
-            "title": "On-Chain Proposal Process | Kava",
-            "url": "https://docs.kava.io/docs/governance/onchain-proposal/"
-          },
-          {
-            "title": "Kava votes to halt new lending on HARD Lend aft... | Pluang",
-            "url": "https://pluang.com/en/news-feed/kava-hentikan-hard-lend-setelah-pencurian-53-juta-kava"
-          },
-          {
-            "title": "Kava accelerates HARD Lend wind-down after 53.9 million KAVA ...",
-            "url": "https://cryptobriefing.com/kava-hard-lend-wind-down-exploit/"
-          },
-          {
-            "title": "Kava Chain to Permanently Shut Down HARD Lend… | EL7.AI",
-            "url": "https://el7.ai/en/news/2026-11-16-kava-chain-to-permanently-shut-down-hard-lend-following-security-exploit"
-          }
-        ],
-        "title_zh": "Kava 在 5390 万 KAVA 代币被盗后加速 HARD Lend 关闭"
       }
     },
     "3482e97d536e0fb115c01d49c515893f2c97b98934ccda928c2cda83c4941a07": {
@@ -16273,6 +16131,25 @@
         "title_zh": "英伟达停止披露新加坡销售额，此前营收达1040亿美元"
       }
     },
+    "3cada1c9b446e0366a1987f188e2fef3f3a6461dd851a5274798299c73633ea1": {
+      "stored_at": "2026-11-19T13:37:08.979177+00:00",
+      "value": {
+        "ai_reason": "Content announces a new major version of a widely-used programming language (PHP 8.6), which is an important routine technical release for the software engineering community. The discussion includes substantive technical commentary on features, security, and upgrade paths. It qualifies as 'Interesting' (5-6) as a notable but non-urgent update for developers, with no direct crypto or AI connection. The score is calibrated against a routine listing (≈6.5) but slightly lower as it's a standard release cycle.",
+        "ai_score": 6.0,
+        "ai_summary": "PHP 8.6 已发布，引入了新功能，同时社区讨论强调了立即为旧版本应用关键安全补丁的重要性。",
+        "ai_tags": [
+          "software-engineering",
+          "programming-languages",
+          "security",
+          "web-development",
+          "release"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "PHP 8.6 已发布，引入了新功能，同时社区讨论强调了立即为旧版本应用关键安全补丁的重要性。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "PHP 8.6 的新特性"
+      }
+    },
     "3caf7d4fe199422a48f178015ba433d2e786d5c2e650e376eacb77c83451155d": {
       "stored_at": "2026-11-18T22:22:34.338815+00:00",
       "value": {
@@ -17060,6 +16937,23 @@
         "title_zh": "德意志银行内幕"
       }
     },
+    "3fea1fa140c4334433a571341a188ec8ea3b8333daea4fc05a5d1d1d5268f5d5": {
+      "stored_at": "2026-11-19T13:37:08.978571+00:00",
+      "value": {
+        "ai_reason": "内容涉及单一投行对英伟达目标价和评级的常规上调，属于市场分析和评论，对AI或加密货币市场有间接影响但非重大突破。讨论质量基于公开财报数据，但事件本身为增量更新。",
+        "ai_score": 6.0,
+        "ai_summary": "韦德布什证券将英伟达目标价从275美元上调至293美元，维持‘跑赢大盘’评级，认为其股价已反映管理层变动风险且AI需求保持韧性。",
+        "ai_tags": [
+          "英伟达",
+          "股票评级",
+          "人工智能",
+          "市场分析",
+          "目标价"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
+      }
+    },
     "400e746ef11c9888c0a674c0fc9bbf75dfb56c39fa7fd94214d54135ae1b0aa3": {
       "stored_at": "2026-11-18T16:42:19.555445+00:00",
       "value": {
@@ -17760,6 +17654,23 @@
         "detailed_summary_zh": "用户分享了一则关于德意志银行历史丑闻的链接，评论区围绕过去的监管情况、个人经历及已知信息展开讨论。",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "title_zh": "德意志银行内幕"
+      }
+    },
+    "42bc64d4fb5ccce007a124d41d5fc196daad42c1032a867c14502739fcc1ff7e": {
+      "stored_at": "2026-11-19T13:37:08.978963+00:00",
+      "value": {
+        "ai_reason": "The content reports a significant, rapid shift in a large position (nearly $94M) on a decentralized perpetuals exchange, resulting in a multi-million dollar loss. This is an interesting on-chain market event with concrete data, but it pertains to a single trader's PnL on a specific platform and does not constitute a systemic market event, protocol failure, or major regulatory change. Its impact is contained to market commentary and illustrative of volatility in crypto derivatives.",
+        "ai_score": 6.0,
+        "ai_summary": "据Lookonchain监测，在Hyperliquid上做空近9400万美元Anthropic的巨鲸在一天内从盈利超400万美元转为亏损超200万美元。",
+        "ai_tags": [
+          "crypto-derivatives",
+          "on-chain-analytics",
+          "perpetuals",
+          "market-volatility",
+          "hyperliquid"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
       }
     },
     "42d3c17d84c933b508b077df3abe62e8cdf73e07410c7b68302721e27947e1a7": {
@@ -19233,12 +19144,6 @@
         "detailed_summary_zh": "由前OpenAI研究员联合创办的基金，在投资组合价值下滑后，已几乎清空所持IREN股份，并抛售了所有其他比特币矿企的股票。",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "title_zh": "前OpenAI研究员创立的基金在投资组合暴跌后清仓比特币矿企，IREN持仓削减94%"
-      }
-    },
-    "48488c02982b8050ab8ca8607d58e500576073260d7f3cf0aa1f88e856405f68": {
-      "stored_at": "2026-11-16T23:29:53.322662+00:00",
-      "value": {
-        "duplicates": []
       }
     },
     "4863f38d347e506b7de5fd366bd4e864c5a165561fb144d1a370da4566343e73": {
@@ -22705,6 +22610,24 @@
         "title_zh": "Frame – 31.5英寸彩色电子纸显示器"
       }
     },
+    "54f86140cc8f1b1d09471b78105ffa237e2cccf9a2560367b64185b5706bb7e6": {
+      "stored_at": "2026-11-19T13:37:08.979012+00:00",
+      "value": {
+        "ai_reason": "The content reports a significant, high-value short position in Anthropic stock experiencing a sharp intraday reversal. This is a notable market event involving a major AI company and a large capital movement, making it interesting for market observers. However, it is a single trading event without broader systemic or regulatory implications.",
+        "ai_score": 6.5,
+        "ai_summary": "一个做空价值近9400万美元Anthropic股票的巨鲸，在一天内从盈利超400万美元转为亏损超200万美元。",
+        "ai_tags": [
+          "ai-labs",
+          "stock-market",
+          "trading",
+          "volatility"
+        ],
+        "category": "crypto-markets",
+        "detailed_summary_zh": "一个做空价值近9400万美元Anthropic股票的巨鲸，在一天内从盈利超400万美元转为亏损超200万美元。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "一天内，做空近9400万美元#Anthropic股票的巨鲸从盈利转为亏损"
+      }
+    },
     "5500e9d192affbf3ed9c46ad248c1f64acb8cfba814b05cb419a67d4fb8a5d15": {
       "stored_at": "2026-11-18T16:53:56.608819+00:00",
       "value": {
@@ -25682,38 +25605,6 @@
         ]
       }
     },
-    "5fabab00e71732216b633bda5a30c314da907ce68c7c01cd2909a382b02bbfef": {
-      "stored_at": "2026-11-16T23:31:22.553036+00:00",
-      "value": {
-        "background": "Zelle是由包括摩根大通和富国银行在内的银行联盟Early Warning Services运营的美国点对点支付网络，2025年在美国处理了超过1.2万亿美元的交易。Solana区块链自2024年2月以来保持了100%的正常运行时间，并在Breakpoint 2026大会上宣布从测试网迁移到主网1.0。",
-        "background_zh": "Zelle是由包括摩根大通和富国银行在内的银行联盟Early Warning Services运营的美国点对点支付网络，2025年在美国处理了超过1.2万亿美元的交易。Solana区块链自2024年2月以来保持了100%的正常运行时间，并在Breakpoint 2026大会上宣布从测试网迁移到主网1.0。",
-        "detailed_summary": "美国大型支付网络Zelle在Breakpoint 2026大会上宣布，将使用Solana区块链发行其美元支持的稳定币ZelleUSD（ZLUSD），以支持其国际支付业务的扩展。\n\n此举标志着美国最大的国内支付网络之一进入基于区块链的支付市场，可能改变国际汇款速度慢、成本高的现状，并为传统金融基础设施向区块链迁移提供重要案例。\n\nZelleUSD将由Anchorage Digital Bank发行；Zelle计划首先将印度作为国际汇款通道；合作还包括开发隐私功能，允许用户加密交易金额，而网络内的机构可解密以进行合规检查。",
-        "detailed_summary_zh": "美国大型支付网络Zelle在Breakpoint 2026大会上宣布，将使用Solana区块链发行其美元支持的稳定币ZelleUSD（ZLUSD），以支持其国际支付业务的扩展。\n\n此举标志着美国最大的国内支付网络之一进入基于区块链的支付市场，可能改变国际汇款速度慢、成本高的现状，并为传统金融基础设施向区块链迁移提供重要案例。\n\nZelleUSD将由Anchorage Digital Bank发行；Zelle计划首先将印度作为国际汇款通道；合作还包括开发隐私功能，允许用户加密交易金额，而网络内的机构可解密以进行合规检查。",
-        "editorial_tags": [
-          "Zelle",
-          "Solana",
-          "稳定币",
-          "国际支付",
-          "区块链"
-        ],
-        "enrichment_status": "complete",
-        "sources": [
-          {
-            "title": "Zelle Expands to India with New Stablecoin ZLUSD | LinkedIn",
-            "url": "https://www.linkedin.com/posts/financialitnet_zelle-earlywarningservices-remittances-activity-7472215787919958017-rdaw"
-          },
-          {
-            "title": "Zelle Launches ZLUSD Stablecoin for International Transfers",
-            "url": "https://coinspaidmedia.com/news/zelle-launches-zlusd-stablecoin-international-transfers/"
-          },
-          {
-            "title": "The Token Supercycle Is Here: Solana Brings Breakpoint 2026 ...",
-            "url": "https://solana.com/news/breakpoint-2026-london-speakers"
-          }
-        ],
-        "title_zh": "Zelle选择Solana发行ZelleUSD稳定币并支持国际支付"
-      }
-    },
     "5fb09cbd613d3e61020b2b08b64a383c8e1daf5802d0e986f69acef4a3139481": {
       "stored_at": "2026-11-17T14:17:53.121542+00:00",
       "value": {
@@ -27166,6 +27057,23 @@
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "crypto-markets",
         "title_zh": "以太坊2500万美元MEV欺诈指控无罪判决，考验刑事执法边界"
+      }
+    },
+    "6565f1772132b87d1ce6f89812d397f6f762aa820573baf88daf3253a2a0dfa5": {
+      "stored_at": "2026-11-19T13:37:08.979229+00:00",
+      "value": {
+        "ai_reason": "Content is a community discussion speculating on future SSD price trends based on market valuations and demand, lacking concrete, in-window news or developments. The comments are generic market commentary without evidence of a specific, recent event. It is low priority and not directly relevant to the core expertise areas.",
+        "ai_score": 3.0,
+        "ai_summary": "社区讨论基于内存公司估值和需求推测SSD价格可能在明年下半年下降，但缺乏具体新闻事件支撑。",
+        "ai_tags": [
+          "hardware",
+          "market-speculation",
+          "tech-community"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "社区讨论基于内存公司估值和市场需求推测，固态硬盘价格可能在明年下半年出现下降，但目前缺乏具体新闻事件作为支撑。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "SSD价格将于明年下半年开始下降"
       }
     },
     "658735aa0fa20f57b2fb78dcf52195a25a2cf4299443e2b461840a13d5268ed6": {
@@ -32669,21 +32577,6 @@
         "title_zh": "实时更新：比特币徘徊在6.5万美元附近，热门'基差交易'回报萎缩"
       }
     },
-    "79c92b65c46b179423dbc7421bba748ee3442aef98cc82db0738e2ea9da66ac1": {
-      "stored_at": "2026-11-16T23:29:48.013520+00:00",
-      "value": {
-        "duplicates": [
-          [
-            1,
-            2
-          ],
-          [
-            3,
-            4
-          ]
-        ]
-      }
-    },
     "79c9e3e2b48fe440a91f3d299ee1b8c99ec8271ff655d3d3d35474b9f74a57f7": {
       "stored_at": "2026-11-18T19:17:23.073479+00:00",
       "value": {
@@ -32713,6 +32606,23 @@
             2
           ]
         ]
+      }
+    },
+    "7a01224eff4676b4f0d960d324793b5e8b106934b616b5829461c3c8bcf064a5": {
+      "stored_at": "2026-11-19T13:37:08.979129+00:00",
+      "value": {
+        "ai_reason": "A major strategic investment by a key industry player (TSMC) into a leading AI lab (Anthropic) is a high-value development with implications for AI ecosystem structure and capital flows. The $5 billion scale and the nature of the private placement are material.",
+        "ai_score": 7.5,
+        "ai_summary": "台积电旗下TSMC Partners以约5亿美元认购了AI公司Anthropic的股份，作为其260亿美元同步私募配售的一部分。",
+        "ai_tags": [
+          "ai-labs",
+          "investment",
+          "semiconductors",
+          "private-equity"
+        ],
+        "category": "ai-labs",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets"
       }
     },
     "7a086985fc997b3aaa2d30783dbff328fd752f167afe8131302129ec3c9309eb": {
@@ -37182,17 +37092,6 @@
         "title_zh": "七款新模型以可扩展的性价比亮相"
       }
     },
-    "89157d77e840a16fb80fbfed0f4eca36a9795983df96dbdbe22bb05b2e0d1086": {
-      "stored_at": "2026-11-16T23:29:51.420408+00:00",
-      "value": {
-        "duplicates": [
-          [
-            2,
-            8
-          ]
-        ]
-      }
-    },
     "8918387e0453d6623dd6fc0708fdc28e734a681dc14018b13668833647a86ed0": {
       "stored_at": "2026-11-19T11:07:10.582141+00:00",
       "value": {
@@ -37499,6 +37398,26 @@
             6
           ]
         ]
+      }
+    },
+    "89df16dac3bad190254841e256571088463ae294a0f49d1c795edfe2e447044e": {
+      "stored_at": "2026-11-19T13:37:08.978860+00:00",
+      "value": {
+        "ai_reason": "The article discusses a significant new security tool for Ethereum DeFi that introduces a novel capability to block malicious transactions, directly impacting protocol design and raising important questions about censorship and centralization. This represents a substantive development in on-chain infrastructure with clear implications for builders and users.",
+        "ai_score": 7.5,
+        "ai_summary": "以太坊的新安全工具 Phylax 允许 DeFi 协议在交易结算前阻止恶意交易，这增强了防御能力但也引发了关于潜在审查和中心化控制的担忧。",
+        "ai_tags": [
+          "Ethereum",
+          "DeFi",
+          "Security",
+          "Censorship-Resistance",
+          "Smart-Contracts"
+        ],
+        "category": "crypto-protocols",
+        "detailed_summary_zh": "以太坊的新安全工具Phylax允许DeFi协议在交易结算前阻止恶意交易，虽然增强了防御能力，但也引发了关于潜在审查和中心化控制的担忧。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets",
+        "title_zh": "以太坊新DeFi安全工具引发审查制度担忧"
       }
     },
     "89e1636c74706cdae087fe22d65fd40cdc573b43e0b9cc6a56b61d48a07fecb1": {
@@ -40349,51 +40268,6 @@
         "title_zh": "Show HN: Alloy CSS，无需JavaScript即可工作的对话框、菜单和标签页"
       }
     },
-    "94105285494468b44efed079eff0c757391b7e61eab5d0e55c4d408b014fbf51": {
-      "stored_at": "2026-11-16T23:31:22.552760+00:00",
-      "value": {
-        "background": "Abraxas Capital Management是一家总部位于伦敦的加密投资公司，管理着约40亿美元资产，其关联的Heka Funds是稳定币巨头Tether的最大客户之一。Lighter是一个基于以太坊Layer 2的去中心化永续合约交易所。",
-        "background_zh": "Abraxas Capital Management是一家总部位于伦敦的加密投资公司，管理着约40亿美元资产，其关联的Heka Funds是稳定币巨头Tether的最大客户之一。Lighter是一个基于以太坊Layer 2的去中心化永续合约交易所。",
-        "detailed_summary": "据报道，由Tether支持的投资公司Abraxas Capital Management因加密Roll-up公司Lighter的API密钥泄露，可能损失了1700万美元。链上分析师指出，Abraxas在Hyperliquid的账户在过去24小时内大量平仓并提取资金。\n\n此次事件涉及一家管理数十亿美元资产、与Tether关系密切的大型投资公司，突显了第三方API密钥管理在加密生态中的安全风险，并可能影响相关市场参与者的资金安全。\n\n分析称，黑客利用泄露的API密钥，关闭了受害者的仓位，并通过创建0%费用的公共资金池转移了资金，最终通过CoW Swap兑换成ETH。Lighter已暂停所有提款和资金池创建，并正在调查事件影响。",
-        "detailed_summary_zh": "据报道，由Tether支持的投资公司Abraxas Capital Management因加密Roll-up公司Lighter的API密钥泄露，可能损失了1700万美元。链上分析师指出，Abraxas在Hyperliquid的账户在过去24小时内大量平仓并提取资金。\n\n此次事件涉及一家管理数十亿美元资产、与Tether关系密切的大型投资公司，突显了第三方API密钥管理在加密生态中的安全风险，并可能影响相关市场参与者的资金安全。\n\n分析称，黑客利用泄露的API密钥，关闭了受害者的仓位，并通过创建0%费用的公共资金池转移了资金，最终通过CoW Swap兑换成ETH。Lighter已暂停所有提款和资金池创建，并正在调查事件影响。",
-        "editorial_tags": [
-          "加密货币",
-          "安全漏洞",
-          "Tether",
-          "Abraxas Capital",
-          "Lighter",
-          "API泄露"
-        ],
-        "enrichment_status": "complete",
-        "sources": [
-          {
-            "title": "Lighter suspends withdrawals amid suspected security incident",
-            "url": "https://cryptobriefing.com/lighter-suspends-withdrawals-security-incident/"
-          },
-          {
-            "title": "Lighter pauses withdrawals after a leaked API key leads to ...",
-            "url": "https://www.coindesk.com/tech/2026/11/16/lighter-suspends-all-withdrawals-after-usd10-4-million-crypto-exploit"
-          },
-          {
-            "title": "Lighter Pins Drain on Trader’s Leaked API Key as Sleuths Say ...",
-            "url": "https://unchainedcrypto.com/lighter-pins-drain-on-traders-leaked-api-key-says-contracts-were-not-hit/"
-          },
-          {
-            "title": "Who is Abraxas Capital, the new Ethereum whale? It raised over 270...",
-            "url": "https://www.panewslab.com/en/articles/8igtrbhq"
-          },
-          {
-            "title": "Abraxas Capital Management | Excellence in Digital Asset...",
-            "url": "https://www.abraxascm.com/"
-          },
-          {
-            "title": "Abraxas Capital, an institution that gives...｜Abraxas Capital, Tether",
-            "url": "https://www.chaincatcher.com/en/article/2278251"
-          }
-        ],
-        "title_zh": "Tether支持的Abraxas或因Lighter API泄露损失1700万美元"
-      }
-    },
     "9451954334d245c56881fcd71ca3ab6d113da24eb3d97e702c1bdebdf4299403": {
       "stored_at": "2026-11-19T06:12:12.704660+00:00",
       "value": {
@@ -40993,6 +40867,25 @@
         "detailed_summary_zh": "Hacker News 社区讨论一项针对德意志银行的旧调查，涉及技术栈和新闻伦理，但未报告新的进展。",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "title_zh": "德意志银行内幕"
+      }
+    },
+    "96b0a4309b539cb2a3a3c52dcfbc6d22f3523622921850b012f4c2087dfe0d93": {
+      "stored_at": "2026-11-19T13:37:08.979386+00:00",
+      "value": {
+        "ai_reason": "The content discusses the release of Gemini 4 Neon, a new frontier model from Google, which qualifies as a major AI lab release with substantive capability and developer-ecosystem implications. The high engagement and detailed community discussion comparing model families and performance against competitors like Anthropic's Opus 5.5 underscore its significance in the AI landscape, warranting a high-value score.",
+        "ai_score": 8.0,
+        "ai_summary": "Google发布了Gemini 4 Neon模型，这是其Gemini 4系列中的新成员，在整体智能上优于Carbon模型，但在某些研究级推理任务上表现不同，引发了社区关于其与Anthropic Opus 5.5等竞争对手性能的深入讨论。",
+        "ai_tags": [
+          "ai-labs",
+          "gemini",
+          "large-language-models",
+          "model-comparison"
+        ],
+        "category": "ai-labs",
+        "detailed_summary_zh": "谷歌发布了双子座4号霓虹模型，作为其双子座4系列的新成员，该模型在整体智能上超越了碳模型，但在部分研究级推理任务中表现有所差异，由此引发了社区对其与Anthropic Opus 5.5等竞争对手性能的深入探讨。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "tech-community",
+        "title_zh": "双子座4号霓虹"
       }
     },
     "96ca2a579ef33eb81c2447e0308e3e2b916da25167bd0a43fcba6a0fc17691a4": {
@@ -45355,6 +45248,22 @@
         "title_zh": "Optimizely遭入侵，向Zoom、GitLab等网站提供含恶意代码脚本"
       }
     },
+    "a566c6e687616a114e7c0da9ec4189aa1feda60a446b9f6894f6a7d9c83378e8": {
+      "stored_at": "2026-11-19T13:37:08.978789+00:00",
+      "value": {
+        "ai_reason": "The content reports a significant but isolated on-chain position change for a single entity. While the monetary figures are large, this is a market data point about a specific whale's PnL swing, not a systemic event, protocol change, or major market-structure development. It is interesting for market watchers but lacks immediate, broad market impact.",
+        "ai_score": 5.5,
+        "ai_summary": "据链上监测，一名持有近9400万美元Anthropic空头仓位的巨鲸在一天内从浮盈超400万美元转为浮亏超200万美元。",
+        "ai_tags": [
+          "crypto-markets",
+          "on-chain-data",
+          "trading",
+          "whale-watching"
+        ],
+        "category": "crypto-markets",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2"
+      }
+    },
     "a568535117714cd8f0e0df8429e88a9f79b226f98b32b6d50dc757b8209a713b": {
       "stored_at": "2026-11-19T13:07:29.815533+00:00",
       "value": {
@@ -46494,17 +46403,6 @@
           [
             0,
             1
-          ]
-        ]
-      }
-    },
-    "a983974512dd0e2b280e8751169712b21d01cd9d2cb9b71c290b3e3d9eef282d": {
-      "stored_at": "2026-11-16T23:29:43.452806+00:00",
-      "value": {
-        "duplicates": [
-          [
-            2,
-            3
           ]
         ]
       }
@@ -55603,47 +55501,6 @@
         ]
       }
     },
-    "cd0566131eeece7041733d2264a88cc4b0f371045f705e3d52f32271f5947e84": {
-      "stored_at": "2026-11-16T23:31:22.553443+00:00",
-      "value": {
-        "background": "Sky协议前身为MakerDAO，由Rune Christensen创立，于2024年更名并推出了新的治理代币SKY和稳定币USDS。Raw Power Games是Christensen创立的游戏工作室，于2026年10月底破产，其知识产权随后被Coffee Stain集团以约3675万丹麦克朗收购。",
-        "background_zh": "Sky协议前身为MakerDAO，由Rune Christensen创立，于2024年更名并推出了新的治理代币SKY和稳定币USDS。Raw Power Games是Christensen创立的游戏工作室，于2026年10月底破产，其知识产权随后被Coffee Stain集团以约3675万丹麦克朗收购。",
-        "detailed_summary": "与DAI及Sky协议创始人Rune Christensen关联的钱包，在其游戏工作室Raw Power Games于2026年10月30日宣布破产前一周，以SKY代币为抵押借出了100万美元。该钱包目前从Sky储蓄池中提取并欠款超过7600万美元，导致池内可用流动性几乎为零，普通储户无法提款。\n\n该钱包的巨额借款占储蓄池贷款总额约一半，其关联公司的破产以及借款未偿还，导致储蓄池流动性枯竭，影响了普通用户的资金提取。\n\n该钱包在2026年10月28日的未偿贷款余额为7660万美元，且未进行任何还款。储蓄池的可用现金在2026年万圣节前后耗尽。",
-        "detailed_summary_zh": "与DAI及Sky协议创始人Rune Christensen关联的钱包，在其游戏工作室Raw Power Games于2026年10月30日宣布破产前一周，以SKY代币为抵押借出了100万美元。该钱包目前从Sky储蓄池中提取并欠款超过7600万美元，导致池内可用流动性几乎为零，普通储户无法提款。\n\n该钱包的巨额借款占储蓄池贷款总额约一半，其关联公司的破产以及借款未偿还，导致储蓄池流动性枯竭，影响了普通用户的资金提取。\n\n该钱包在2026年10月28日的未偿贷款余额为7660万美元，且未进行任何还款。储蓄池的可用现金在2026年万圣节前后耗尽。",
-        "editorial_tags": [
-          "Sky协议",
-          "Rune Christensen",
-          "稳定币",
-          "DeFi",
-          "破产",
-          "流动性危机"
-        ],
-        "enrichment_status": "complete",
-        "sources": [
-          {
-            "title": "Wallet tied to Sky founder borrowed $1M days before his ...",
-            "url": "https://protos.com/wallet-tied-to-sky-founder-borrowed-1m-days-before-his-company-collapsed/"
-          },
-          {
-            "title": "Wallet tied to Sky founder borrowed $1M days before his ...",
-            "url": "https://cryptonews.net/news/altcoins/33759316/"
-          },
-          {
-            "title": "Chronicles: Medieval developer declared bankruptcy on the day ...",
-            "url": "https://finance.yahoo.com/technology/articles/chronicles-medieval-developer-declared-bankruptcy-112741323.html?fr=sycsrp_catchall"
-          },
-          {
-            "title": "Coffee Stain Rescues Chronicles: Medieval From Bankruptcy",
-            "url": "https://pro-gamer.gg/coffee-stain-rescues-chronicles-medieval-bankruptcy-raw-power-games-buyout/"
-          },
-          {
-            "title": "Sky Ecosystem Q3 2026 Quarterly Report - insights.skyeco.com",
-            "url": "https://insights.skyeco.com/insights/sky-ecosystem-q3-2026-quarterly-report"
-          }
-        ],
-        "title_zh": "与Sky创始人关联的钱包在其公司倒闭前数日借出100万美元"
-      }
-    },
     "cd23ccce92af0ca4542ee623ddde5b827fbd5fa8e55ef13d4d59b2be99b8354e": {
       "stored_at": "2026-11-16T23:37:43.709546+00:00",
       "value": {
@@ -55940,18 +55797,6 @@
         "detailed_summary_zh": "Hacker News社区正在讨论一个于2026年11月11日在Cloudflare注册的神秘域名w2rt6byl5nf1opmc-a.com，推测其可能与Cloudflare的Bot Fight模式或Turnstile反机器人服务有关。",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "title_zh": "什么是w2rt6byl5nf1opmc-a.com？"
-      }
-    },
-    "ce2b5ccc463436d3f541b4e94056b278c2feec17d6a045d4216ffa8a2cb7a7ea": {
-      "stored_at": "2026-11-16T23:29:45.617113+00:00",
-      "value": {
-        "duplicates": [
-          [
-            0,
-            1,
-            2
-          ]
-        ]
       }
     },
     "ce2d0c8ba87b8c45f3c889244902fe1d4584b77b8aff9ea587354027afdc6684": {
@@ -62137,6 +61982,24 @@
         ]
       }
     },
+    "e6b5a19964ab6c943d73d0dbefa306cc3e40ab0f45dd830faebdfc8a5c8f3d1f": {
+      "stored_at": "2026-11-19T13:37:08.979336+00:00",
+      "value": {
+        "ai_reason": "Content details a pre-authentication RCE vulnerability in a core web framework (Ruby on Rails), representing a significant security risk for a widely-used technology stack. The discussion quality is high, with comments analyzing the vulnerability's nature, its connection to AI-assisted exploitation, and its broader implications for software security. The engagement (230 points, 87 comments) signals high community relevance.",
+        "ai_score": 7.5,
+        "ai_summary": "安全研究人员披露了Ruby on Rails框架中的一个预认证远程代码执行漏洞，涉及特定字符转换导致的单字节溢出问题。",
+        "ai_tags": [
+          "security",
+          "vulnerability",
+          "ruby-on-rails",
+          "software-engineering"
+        ],
+        "category": "tech-community",
+        "detailed_summary_zh": "安全研究人员披露了Ruby on Rails框架中的一个预认证远程代码执行漏洞，该漏洞源于特定字符转换导致的单字节溢出问题。",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "title_zh": "Ruby2ßhell：在标准Rails上实现预认证远程代码执行"
+      }
+    },
     "e6b5c709606594f65b11cf78908cee3e3f98c2b748e1271bfd556ee43dcf5029": {
       "stored_at": "2026-11-18T12:52:47.843141+00:00",
       "value": {
@@ -62558,6 +62421,24 @@
             6
           ]
         ]
+      }
+    },
+    "e8349c0e11419a6ad6fb51b1421ef5dbb2d98a5aa5548926c24bc1bf48efda49": {
+      "stored_at": "2026-11-19T13:37:08.979080+00:00",
+      "value": {
+        "ai_reason": "Announcement of a central bank upgrading a test network to a live settlement infrastructure for tokenized assets and digital currencies is a significant market-structure development. The parallel announcement of a 'Know Your Agent' protocol and a sandbox for AI Agents with programmable money adds substantial regulatory and technological weight. This represents a concrete step toward institutional adoption and operational integration, warranting high attention.",
+        "ai_score": 7.5,
+        "ai_summary": "新加坡金融管理局宣布将新加坡元测试网络升级为名为SG Digital Ledger的实际运营结算基础设施，以支持跨机构代币化资产与数字货币结算，并计划推动开发用于核实AI Agent身份的协议及设立结合AI与可编程货币的测试沙盒。",
+        "ai_tags": [
+          "crypto-regulation",
+          "stablecoins",
+          "central-bank-digital-currency",
+          "tokenization",
+          "artificial-intelligence"
+        ],
+        "category": "crypto-regulation",
+        "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
+        "source_category": "crypto-markets"
       }
     },
     "e8387c6bb1f3e14c961c8db76f1c248d6d3c7a779a57ccdfeb36df600fbe27dd": {
@@ -64933,42 +64814,6 @@
         "category": "crypto-regulation",
         "score_model": "siliconflow:deepseek-ai/DeepSeek-V3.2",
         "source_category": "crypto-markets"
-      }
-    },
-    "f13c8f205c0fed76430d01b167a8a78c7512b368b5b46ec31540f7a0b2b97f3f": {
-      "stored_at": "2026-11-16T23:31:22.552641+00:00",
-      "value": {
-        "background": "Trezor是一家硬件钱包制造商。此前，Ledger的安全审计发现了Trezor Safe 7芯片中的一个漏洞，但Trezor表示用户资金、钱包和私钥仍然安全。近期，硬件钱包供应链攻击事件引发关注，恶意硬件可能被植入设备中。",
-        "background_zh": "Trezor是一家硬件钱包制造商。此前，Ledger的安全审计发现了Trezor Safe 7芯片中的一个漏洞，但Trezor表示用户资金、钱包和私钥仍然安全。近期，硬件钱包供应链攻击事件引发关注，恶意硬件可能被植入设备中。",
-        "detailed_summary": "硬件钱包制造商Trezor针对其设备中发现的间谍芯片漏洞发布了固件补丁，但警告用户仅更换新设备可能不足以完全解决问题。\n\n间谍芯片可捕获设备显示输出和按键信息以窃取恢复短语，并通过LTE连接传输给攻击者，直接威胁用户资产安全。\n\nTrezor确认在从分销商CryptoBilis处购买的Safe 5设备中发现了隐藏的蜂窝电路板，旨在拦截和传输种子短语；固件版本2.13.1可阻止已知植入物。",
-        "detailed_summary_zh": "硬件钱包制造商Trezor针对其设备中发现的间谍芯片漏洞发布了固件补丁，但警告用户仅更换新设备可能不足以完全解决问题。\n\n间谍芯片可捕获设备显示输出和按键信息以窃取恢复短语，并通过LTE连接传输给攻击者，直接威胁用户资产安全。\n\nTrezor确认在从分销商CryptoBilis处购买的Safe 5设备中发现了隐藏的蜂窝电路板，旨在拦截和传输种子短语；固件版本2.13.1可阻止已知植入物。",
-        "editorial_tags": [
-          "硬件钱包",
-          "供应链攻击",
-          "固件更新",
-          "Trezor",
-          "安全漏洞"
-        ],
-        "enrichment_status": "complete",
-        "sources": [
-          {
-            "title": "Trezor Safe 7 Chip Vulnerability Found in Security Audit",
-            "url": "https://sqmagazine.co.uk/trezor-safe-7-chip-vulnerability-security-audit/"
-          },
-          {
-            "title": "Ledger confirms spy chip implant behind wallet crypto thefts",
-            "url": "https://www.bleepingcomputer.com/news/security/ledger-confirms-hardware-wallet-spy-implant-behind-crypto-thefts/"
-          },
-          {
-            "title": "Trezor warns: Safe 5 may have been implanted with a cellular ...",
-            "url": "https://www.gate.com/news/detail/trezor-warns-safe-5-may-have-had-a-cellular-module-implanted-and-certain-25349869"
-          },
-          {
-            "title": "Trezor Confirms Hidden Implants in CryptoBilis-Sold Wallets ...",
-            "url": "https://thehackernews.com/2026/11/trezor-confirms-hidden-hardware.html"
-          }
-        ],
-        "title_zh": "Trezor修补加密钱包间谍芯片漏洞，但警告用户仅更换新设备可能不足"
       }
     },
     "f13e5480d284640248d154b4bcec6d8f9c25d26f70ab471287615198ed33b42b": {
