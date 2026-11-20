@@ -1,5 +1,7 @@
-# 历史文档入口
+# Cloudflare 部署
 
-此文件仅保留独立 realtime 文档的既有链接。当前日报运维见[调度文档](daily-dispatcher.md)。
+公开站点与东京实时服务的看门狗部署在现有 `xiyunews` Worker。根目录 `wrangler.json` 保留原主域、`STATE` KV 和 `RecoveryGate` Durable Object。旧快讯书签通过只读方式读取原 DO。五分钟 Cron 调用既有 [实时看门狗](../realtime/scripts/deploy/watchdog/worker.js)。
 
-[读取不可变历史快照](https://github.com/ohxiyu/xiyunews/blob/81a57092df0c4e43249516ecedbb907ee8b8d2fb/project-docs/cloudflare-single-project.md)。历史记录不代表当前配置，请勿据此重复初始化或部署。
+合并到 `main` 后，现有 GitHub Actions 使用固定的已发布快照构建站点。发布前从 GitHub 执行器验证 Eqn 新闻、频道、详情和浏览器跨域权限，再使用已有凭据更新 Worker。部署后检查生产提交与新旧两种页面。站点的 `/health` 与 `/ready` 报告 Worker 版本，Eqn 和东京实时服务有各自的可用性检查。
+
+历史交接见 [2026-10-03 验证记录](releases/2026-10-03-cloudflare-production-verification.md)。

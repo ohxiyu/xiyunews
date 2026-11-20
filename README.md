@@ -1,36 +1,25 @@
 # xiyu.news
 
-中文加密与 AI 日报，由 [xiyu / @ohxiyu](https://x.com/ohxiyu) 维护。[阅读网站](https://xiyu.news/) · [往期](https://xiyu.news/history/)
+[加密快讯](https://xiyu.news/) · [往期日报](https://xiyu.news/history/) · [方程式新闻 API](https://eqn.news/api-docs)
 
-每天以 **Asia/Shanghai 07:00** 为截止，覆盖此前 24 小时，**07:26** 启动出刊，目标约 07:30 发布。日报面向希望用一份内容了解重要进展的读者，保留必要背景与来源。
+xiyu.news 由 [xiyu / @ohxiyu](https://x.com/ohxiyu) 维护。网站直接使用 Eqn REST 读取快讯、频道、搜索结果及 AI 解读，RSS 订阅转向 Eqn。静态归档保留迁移前已发布的日报和原条目锚点。`/api/latest.json` 是最后一期日报的兼容快照。
 
-## 当前状态与重构目标
+## 本地开发
 
-当前实现为单期中文日报首页、往期、日期页和关于页。后台每五分钟检查来源，只评分去重并写私有缓存，不更新首页、不扩写、不构建、不发送。入选内容在每日出刊时扩写。实际耗时受执行队列和供应商影响。生产模型为硅基流动 `deepseek-ai/DeepSeek-V3.2`，并发和候选上限保持原值；当前上限仍是14条、评分门槛7.0，待内容阶段调整。
-
-发布链为 Daily Edition 保存出版快照 → 单一 Cloudflare 工作流重建并核对真实生产 → Telegram 校验精确生产凭证后单次发送。代码部署不构成新一期，不会重发历史。CSS与JS逐页预算20KB，无JS可完整阅读。
-
-重构后的唯一对外产品为每天一期中文日报，目标 8–10 条、AI 最多 3 条。采集只写评分缓存，入选内容才扩写背景；网站、Telegram、X 引用同一期。用户已明确授权 X 跳过试运行，待质量门与现有 API 校验完成后直接正式发送；目前开关仍关闭。余额检查已按用户要求取消，仅保留 token 费用台账。重构进度和验收门见[当前交接](project-docs/handoff.md)。
-
-## 开发与运行
-
-应用使用 Python 3.11.5+、uv 和固定依赖。站点发布经过 GitHub Actions 与统一 Cloudflare Worker；自托管执行器和持久缓存是实际运行链路的一部分。
+使用 Node.js 24。在仓库根目录运行。
 
 ```bash
-uv sync --frozen --extra dev --extra trafilatura
-cp data/config.github.json data/config.json
-# 通过环境变量配置 SILICONFLOW_API_KEY，不提交密钥。
-uv run bmtnews --mode fetch --hours 24
-uv run bmtnews --mode publish --hours 24 --cutoff-hour 7
+npm ci
+git fetch --depth=1 origin 9cf037ee185b007e37181daf181649b4c834d275
+git worktree add --detach .edition-snapshot 9cf037ee185b007e37181daf181649b4c834d275
+npm run build
+npm test
+npm run check
+npm run preview
 ```
 
-发布命令会生成出版内容；生产只走既有 Actions 流程，不从本地手写生成分支。
-
-- [配置](project-docs/configuration.md) · [数据口径](project-docs/data-contract.md) · [界面规则](project-docs/ui-rules.md)
-- [调度与恢复](project-docs/daily-dispatcher.md) · [X 分发](project-docs/x-distribution.md) · [执行器](project-docs/self-hosted-runner.md)
-- 仓库协作从 [AGENTS.md](AGENTS.md) 和 [agent.md](agent.md) 开始。一个任务一个 PR，相关检查通过后合并，不再要求每 PR 编写五阶段证据或提交截图。
-- `realtime/` 是独立 Telegram 实时应用，这次日报重构不修改它。
+网页代码位于 `site/`，Cloudflare 入口位于 `edge/`。浏览器连接公开的 Eqn API，无需 API 密钥。可用 `node scripts/check-upstream.mjs` 验证接口和 CORS。部署使用 [现有 Cloudflare Worker](project-docs/cloudflare-single-project.md)。独立实时告警服务见 [realtime](realtime/README.md)。
 
 ## 权利与来源
 
-代码遵循 [MIT License](LICENSE)。第三方新闻和生成期刊不适用软件授权，见[内容与数据权利](CONTENT-LICENSE.md)及[第三方声明](THIRD_PARTY_NOTICES.md)。
+软件采用 [MIT 许可证](LICENSE)。新闻、归档和素材详情见 [内容与数据权利](CONTENT-LICENSE.md) 及 [第三方声明](THIRD_PARTY_NOTICES.md)。
