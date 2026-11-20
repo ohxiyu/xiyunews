@@ -1,47 +1,49 @@
 # 当前交接
 
-当前任务为运营者指定的阅读入口精简：去掉周报模块，菜单不显示 RSS，分享图只显示背景与正文。上一轮九项服务器优化已完成，记录见[最终证据](releases/2026-10-13-server-optimization-complete.md)，不重复执行旧优化；架构唯一入口为[系统架构](system-architecture.md)。
+当前任务与验证记录见[十月版恢复](releases/2026-11-20-october-tokyo-restore.md)。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "补齐统一发布出口的周报简介清理，并完成阅读精简生产验收",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/286",
-  "owner": "当前会话唯一编辑与生产整合负责人",
-  "branch": "agent/reader-simplify-production-evidence",
-  "last_verified_commit": "eef77c30b3f326a26eec2883dbb148d1fe6a5d9e",
-  "pr": "PR285已合并f5610b12；当前仅补齐统一发布出口元数据清理",
+  "goal": "恢复十月中旬版整站及东京生产执行器",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/389",
+  "owner": "当前 Codex 聊天",
+  "branch": "agent/october-tokyo-restore",
+  "last_verified_commit": "cdd6aa25745b74e7399642f6130f57067ac575b2",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/390",
   "completed": [
-    "代码调整、1113项Python通过/4项既有条件跳过、117项前端Node和135项Worker测试通过",
-    "桌面1440与手机390/320中英导航、浅色/暗色分享图验证通过"
+    "十月历史 Git tree 已逐文件恢复并保留于首个提交",
+    "依赖修复隔离测试完成"
   ],
   "unfinished": [
-    "元数据补充CI、PR合并、自动发布与生产回读"
+    "东京 SSH 接入、注册执行器、验证数据库与新旧投递回执",
+    "正常 CI、生产切换、旧模型凭据校验"
   ],
   "validation": [
-    "完整Python/前端Node/Worker测试通过，npm审计0漏洞，治理/actionlint/diff通过",
-    "分享中文1320x2742、英文1320x3519，背景在正文前无分析参考标签，320/390无横向溢出"
+    "历史和修复后 Python 测试通过；修复后 Worker 135 项测试及 npm、Python 依赖安全审计通过"
   ],
   "unverified": [
-    "本轮尚未生产部署，不真实调用AI或发送测试消息"
+    "东京当前系统状态、私有状态反向迁移及旧渠道凭据"
   ],
   "production": {
-    "source_commit": "eef77c30b3f326a26eec2883dbb148d1fe6a5d9e",
-    "artifact_commit": "6a56c03d475c2a419634ffab5d1978d426a48de6",
-    "edition": "2026-10-14",
-    "generated_at": "開工时旧生产版本，不是本轮部署",
-    "worker_version": "8d340dfc-a146-420e-9d3d-6ab35cc04340",
-    "verified_at": "2026-10-14上海，開工health回读"
+    "source_commit": "155cf1f7e5e489e060187f72986949a76a6784ce",
+    "artifact_commit": "9cf037ee185b007e37181daf181649b4c834d275",
+    "edition": "2026-11-20",
+    "generated_at": "取当前已发布期，待切换时回读",
+    "worker_version": "切换前待回读",
+    "verified_at": "现有生产部署 44720594791 通过"
   },
-  "blockers": [],
-  "next_action": "完成完整验证和视觉验收，同步main后创建PR；必需CI通过后按长期授权合并，自动部署并回读生产，最后用文档PR记录证据。",
+  "blockers": [
+    "该环境缺少经验证的东京 SSH 身份和 GitHub Runner 管理访问"
+  ],
+  "next_action": "获得现有授权环境后先用只读方式核对东京主机与当前生产，再注册并验证执行器、检查私有 SQLite 及渠道回执，最后执行受控切换。",
   "states": {
-    "code": "complete",
-    "tests": "complete",
+    "code": "pending",
+    "tests": "pending",
     "pr_merged": "pending",
     "deployed": "pending",
     "production_verified": "pending"
   },
-  "evidence": "project-docs/releases/2026-10-14-reader-simplify.md"
+  "evidence": "project-docs/releases/2026-11-20-october-tokyo-restore.md"
 }
 ```
