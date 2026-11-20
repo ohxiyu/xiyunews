@@ -5,16 +5,20 @@
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "恢复原中文日报和多来源采编程序",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/384",
+  "goal": "日报采用报纸式版面并缩减往期入口",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/387",
   "owner": "当前 Codex 聊天",
-  "branch": "agent/restore-daily-edition",
-  "base": "8d74996859d6e45a6b229cebffb8f7362398d790",
-  "status": "恢复 #381 前的日报、来源配置、工作流和 Worker 路由；待 CI 与生产验收",
-  "next": "验证生产首页、最后一期、历史链接和原采集恢复；下一自然出刊窗口验证新刊",
+  "branch": "agent/newspaper-daily",
+  "base": "5545421f4558b2579e151fcae0ef8aab80970608",
+  "status": "背景和参考资料移至正文后并默认展开；日报采用主稿与栏线；往期索引与 RSS 仅列最新刊期起近七天",
+  "next": "验证桌面和移动版、新旧刊链接、索引和 RSS 时间范围；生产继续使用已有采集与出刊自动化",
   "blockers": []
 }
 ```
+
+## 当前阅读体验
+
+- 七天从最新刊期向前计算，缺刊日不会用更旧的日报补齐。已公开的旧日期页与条目锚点继续提供。
 
 ## 恢复范围
 

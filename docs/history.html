@@ -3,5 +3,7 @@ layout: default
 title: 往期日报
 permalink: /history/
 ---
-<header class="page-heading"><p class="eyebrow">按日期回看</p><h1>往期日报<span class="heading-dot">。</span></h1><p class="page-subtitle">每一期，保留当时的报道与背景。</p></header>
-<ul class="edition-list">{% assign posts = site.posts | where: 'lang', 'zh' %}{% for post in posts %}<li><a href="{{ post.url | relative_url }}"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time><span>{{ post.selected_count | default: '—' }} 条资讯</span><span aria-hidden="true">↗</span></a></li>{% else %}<li>暂无往期日报。</li>{% endfor %}</ul>
+<header class="page-heading"><h1>往期日报</h1><p class="page-subtitle">最近七天已发布的日报</p></header>
+<ul class="edition-list">
+{% include weekly-editions.html %}
+</ul>
