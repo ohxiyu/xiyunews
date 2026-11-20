@@ -1,0 +1,42 @@
+title: xiyu.news
+description: 稀有News，聚焦加密货币、交易所、市场、安全、监管与 AI 的每日情报。
+baseurl: ""
+url: "https://xiyu.news"
+asset_version: "split-reader-20261115"
+# Cloudflare Web Analytics site token (public, shipped in every page; not a
+# secret). Empty disables the beacon entirely.
+cloudflare_web_analytics_token: ""
+
+# Build settings
+markdown: kramdown
+future: true # Allow future posts to be published
+include:
+  - "_headers"
+exclude:
+  - "en"
+  - "s"
+  - "admin"
+  - "developer"
+  - "developers"
+  - "sources.html"
+  - "manifest.webmanifest"
+  - "offline.html"
+  - "feed-en.xml"
+  - ".github"
+  - "node_modules"
+  # Retired weekly pages remain in Git history, never in public output.
+  - "weekly"
+  - "weekly.html"
+  - "en/weekly"
+  - "en/weekly.html"
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "default"
+
+# Verified public community; daily channel link is checked separately.
+telegram_url: "https://t.me/xiyudotnews"
+telegram_label: "加入 Telegram 讨论"

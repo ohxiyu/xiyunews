@@ -1,9 +1,24 @@
 name: CI
 
+# Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
+# never change server Git config or credentials.
+env:
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: http.version
+  GIT_CONFIG_VALUE_0: HTTP/1.1
+  # CLI telemetry waits can outlive a successful dry-run on slow networks.
+  # Process-local only; keep audits, type checks and all tests unchanged.
+  WRANGLER_SEND_METRICS: 'false'
+  WRANGLER_HIDE_BANNER: 'true' # Also avoids the banner's optional npm update request.
+
 on:
   pull_request:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
+  schedule:
+    # Weekly full validation, Monday 05:13 Asia/Shanghai, outside publication.
+    - cron: '13 21 * * 0'
 
 concurrency:
   group: ci-${{ github.event.pull_request.number || github.ref }}-${{ github.event_name }}
@@ -12,63 +27,130 @@ concurrency:
 permissions:
   contents: read
 
-env:
-  WRANGLER_SEND_METRICS: 'false'
-  WRANGLER_HIDE_BANNER: 'true'
-  EDITION_SNAPSHOT: 9cf037ee185b007e37181daf181649b4c834d275
+# Public standard hosted checks are free and must not queue behind production
+# collection on the bounded runner. Private repositories retain their selected
+# runner. Production workflows, budgets and concurrency groups are unchanged.
 
 jobs:
-  web:
-    runs-on: ubuntu-latest
+  edge-build:
+    needs: realtime-paths
+    if: needs.realtime-paths.outputs.edge == 'true'
+    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    # Two exact checkouts and Ruby downloads can exceed fifteen minutes on
+    # the bounded Tokyo runner before rendering even starts. Keep all checks.
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
-      - uses: actions/checkout@v6
-        with:
-          ref: ${{ env.EDITION_SNAPSHOT }}
-          path: .edition-snapshot
-          persist-credentials: false
+          filter: blob:none
           sparse-checkout: |
-            _posts
-            editions
-            api/latest.json
-          sparse-checkout-cone-mode: false
-      - uses: actions/setup-node@v6
-        with:
-          node-version: '24'
-          cache: npm
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
-      - run: npm run check
-
-  upstream:
-    runs-on: ubuntu-latest
-    steps:
+            src
+            docs
+            scripts
+            ops
+            data
+            .github
+            realtime/scripts/deploy/watchdog
       - uses: actions/checkout@v6
         with:
+          ref: gh-pages
+          path: .edge-source
           persist-credentials: false
+      - name: Render the proposed templates against the published data
+        run: python3 scripts/overlay_core_site.py docs .edge-source
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: ${{ runner.environment != 'self-hosted' }}
+      - name: Reuse locked Ruby dependencies on the dedicated runner
+        if: runner.environment == 'self-hosted'
+        run: bash ops/runner/setup-ruby-cache.sh ci
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.11.32"
+      - run: uv sync --frozen
+      - name: Rebuild core reader from the immutable published snapshot
+        run: uv run python -m src.core_site --root .edge-source
+      - run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
+
+      - run: python3 scripts/prepare_edge_assets.py .edge-rendered .edge-site
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
-      - run: node scripts/check-upstream.mjs
-
-  realtime:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ['3.11', '3.12']
-    defaults:
-      run:
-        working-directory: realtime
-    env:
-      TELEGRAM_ENABLED: 'false'
+      - name: Use the validated npm version on the bounded runner
+        if: runner.environment == 'self-hosted'
+        run: |
+          if [ "$(npm --version)" != "11.11.1" ]; then
+            npm install --global npm@11.11.1 --maxsockets=2
+          fi
+      - run: npm ci
+        working-directory: ops/daily-dispatcher
+      - run: npx wrangler deploy --config wrangler.unified.jsonc --dry-run
+        working-directory: ops/daily-dispatcher
+  realtime-paths:
+    if: >-
+      (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name != 'pull_request' && github.ref == 'refs/heads/main')
+    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    timeout-minutes: 10
+    outputs:
+      changed: ${{ steps.paths.outputs.changed }}
+      python: ${{ steps.paths.outputs.python }}
+      web: ${{ steps.paths.outputs.web }}
+      edge: ${{ steps.paths.outputs.edge }}
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          persist-credentials: false
+          filter: blob:none
+          sparse-checkout: scripts
+      - id: paths
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT_NAME" = pull_request ]; then
+            python3 scripts/ci_scope.py --base "$BASE_SHA" --head "$HEAD_SHA" >> "$GITHUB_OUTPUT"
+          else
+            python3 scripts/ci_scope.py --all >> "$GITHUB_OUTPUT"
+          fi
+  realtime:
+    needs: realtime-paths
+    if: needs.realtime-paths.outputs.changed == 'true'
+    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    defaults:
+      run:
+        working-directory: realtime
+    env:
+      TELEGRAM_ENABLED: "false"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout: |
+            .github
+            brand
+            data
+            docs
+            ops
+            realtime
+            scripts
+            src
+            tests
+      - name: Restore complete checkout in bounded document batches
+        working-directory: .
+        env:
+          GH_TOKEN: '' # Checkout already supplies the scoped read-only header.
+          XIYUNEWS_DOCUMENT_CACHE: ${{ runner.environment == 'self-hosted' && '/home/xiyunews-runner/.cache/xiyunews-doc-blobs' || '' }}
+        run: python3 scripts/hydrate_checkout.py
       - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
@@ -76,9 +158,152 @@ jobs:
       - run: python -m ruff check .
       - run: python -m mypy src
       - run: python -m pytest
+      - run: python -m compileall -q src run.py
       - run: python scripts/check_repository.py --base origin/main
-      - run: python -m pytest -q ../tests/test_disk_maintenance.py
       - uses: actions/setup-node@v6
         with:
-          node-version: '24'
+          node-version: "24"
       - run: node --test scripts/deploy/watchdog/watchdog.test.mjs
+  governance:
+    if: >-
+      (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name != 'pull_request' && github.ref == 'refs/heads/main')
+    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    # Governance validates screenshot links and retains the complete checkout.
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout: |
+            .github
+            brand
+            data
+            docs
+            ops
+            realtime
+            scripts
+            src
+            tests
+      - name: Restore complete checkout in bounded document batches
+        env:
+          GH_TOKEN: '' # Checkout already supplies the scoped read-only header.
+          XIYUNEWS_DOCUMENT_CACHE: ${{ runner.environment == 'self-hosted' && '/home/xiyunews-runner/.cache/xiyunews-doc-blobs' || '' }}
+        run: python3 scripts/hydrate_checkout.py
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Check versions, handoff, document links and PR evidence
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT_NAME" = pull_request ]; then
+            python scripts/check_governance.py --base "$BASE_SHA" --head "$HEAD_SHA"
+          else
+            python scripts/check_governance.py
+          fi
+  test:
+    needs: realtime-paths
+    if: needs.realtime-paths.outputs.python == 'true'
+    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            .github
+            brand
+            data
+            docs
+            ops
+            realtime
+            scripts
+            src
+            tests
+      - name: Restore complete checkout in bounded document batches
+        env:
+          GH_TOKEN: '' # Checkout already supplies the scoped read-only header.
+          XIYUNEWS_DOCUMENT_CACHE: ${{ runner.environment == 'self-hosted' && '/home/xiyunews-runner/.cache/xiyunews-doc-blobs' || '' }}
+        run: python3 scripts/hydrate_checkout.py
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.11.32"
+          enable-cache: true
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: uv sync --frozen --extra dev
+      - run: uv run pytest
+      - run: uv export --all-extras --no-dev --no-hashes --no-emit-project --output-file "${RUNNER_TEMP}/requirements.txt"
+      - name: Audit dependencies (fall back to OSV when PyPI is down)
+        shell: bash
+        run: |
+          # A vulnerability finding fails at once. Only an outage of the
+          # vulnerability service (pip-audit ServiceError, HTTP 5xx, network)
+          # moves on: PyPI, then the independent OSV database, then PyPI again,
+          # so an outage of one backend cannot block an unrelated change.
+          services=(pypi osv pypi)
+          for attempt in 0 1 2; do
+            service="${services[$attempt]}"
+            if uvx --from pip-audit==2.10.1 pip-audit --requirement "${RUNNER_TEMP}/requirements.txt" --no-deps --disable-pip --progress-spinner off --vulnerability-service "$service" 2>&1 | tee "${RUNNER_TEMP}/pip-audit.log"; then
+              echo "pip-audit passed using $service"
+              exit 0
+            fi
+            if ! grep -qE 'ServiceError|ConnectionError|ProxyError|ReadTimeout|5[0-9][0-9] Server Error' "${RUNNER_TEMP}/pip-audit.log"; then
+              exit 1
+            fi
+            echo "::warning::pip-audit could not reach the $service vulnerability service"
+            if [ "$attempt" -lt 2 ]; then
+              sleep 20
+            fi
+          done
+          echo "::error::pip-audit could not reach PyPI or OSV"
+          exit 1
+  web:
+    needs: realtime-paths
+    if: needs.realtime-paths.outputs.web == 'true'
+    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          filter: blob:none
+          sparse-checkout: |
+            .github
+            brand
+            data
+            docs
+            ops
+            realtime
+            scripts
+            src
+            tests
+      - name: Restore complete checkout in bounded document batches
+        env:
+          GH_TOKEN: ${{ github.token }}
+          XIYUNEWS_DOCUMENT_CACHE: ${{ runner.environment == 'self-hosted' && '/home/xiyunews-runner/.cache/xiyunews-doc-blobs' || '' }}
+        run: python3 scripts/hydrate_checkout.py
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: ${{ runner.environment == 'github-hosted' && 'npm' || '' }}
+          package-manager-cache: ${{ runner.environment == 'github-hosted' }}
+          cache-dependency-path: ops/daily-dispatcher/package-lock.json
+      - name: Use the validated npm version on the bounded runner
+        if: runner.environment == 'self-hosted'
+        run: |
+          if [ "$(npm --version)" != "11.11.1" ]; then
+            npm install --global npm@11.11.1 --maxsockets=2
+          fi
+      - run: npm ci
+        working-directory: ops/daily-dispatcher
+      - run: npm run check
+        working-directory: ops/daily-dispatcher
+      - run: node --test tests/test_core_worker.mjs
+      - run: node --check docs/core-worker.js
+      - run: node --test tests/test_asset_minification.mjs

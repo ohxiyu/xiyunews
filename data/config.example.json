@@ -1,0 +1,136 @@
+{
+  "version": "1.0",
+  "ai": {
+    "provider": "openai",
+    "model": "gpt-4",
+    "api_key_env": "OPENAI_API_KEY",
+    "temperature": 0.3,
+    "max_tokens": 4096,
+    "throttle_sec": 0,
+    "analysis_concurrency": 1,
+    "enrichment_concurrency": 1,
+    "prefilter_enabled": false,
+    "prefilter_batch_size": 20,
+    "prefilter_max_candidates": 140,
+    "result_cache_enabled": true,
+    "result_cache_path": "data/analysis-cache.json",
+    "result_cache_ttl_days": 30,
+    "result_cache_max_entries": 4000,
+    "languages": [
+      "zh"
+    ]
+  },
+  "sources": {
+    "github": [
+      {
+        "type": "user_events",
+        "username": "torvalds",
+        "enabled": true
+      },
+      {
+        "type": "repo_releases",
+        "owner": "astral-sh",
+        "repo": "uv",
+        "enabled": true,
+        "category": "ai-devtools"
+      }
+    ],
+    "hackernews": {
+      "enabled": true,
+      "fetch_top_stories": 20,
+      "min_score": 100,
+      "category": "tech-community"
+    },
+    "rss": [
+      {
+        "name": "OpenAI Blog",
+        "url": "https://openai.com/blog/rss.xml",
+        "enabled": true,
+        "category": "ai-labs"
+      },
+      {
+        "name": "Simon Willison",
+        "url": "https://simonwillison.net/atom/everything/",
+        "enabled": true,
+        "category": "ai-devtools"
+      },
+      {
+        "name": "LWN.net (subscriber full-text)",
+        "url": "https://lwn.net/headlines/full_text?key=${LWN_KEY}",
+        "enabled": false,
+        "category": "linux"
+      }
+    ],
+    "telegram": {
+      "enabled": false,
+      "channels": [
+        {
+          "channel": "binance_announcements",
+          "enabled": true,
+          "fetch_limit": 10,
+          "category": "exchange-announcements"
+        }
+      ]
+    },
+    "google_news": {
+      "enabled": false,
+      "query": "artificial intelligence",
+      "language": "en",
+      "country": "US",
+      "ceid": null,
+      "max_results": 100,
+      "category": "news"
+    }
+  },
+  "filtering": {
+    "ai_score_threshold": 7.0,
+    "time_window_hours": 24,
+    "daily_timezone": "Asia/Shanghai",
+    "preserve_daily_items": false,
+    "max_items": 24,
+    "category_groups": {
+      "exchange": {
+        "name": "Exchange Announcements",
+        "limit": 6,
+        "categories": [
+          "exchange-announcements",
+          "exchange-operations"
+        ]
+      },
+      "markets": {
+        "name": "Crypto Markets",
+        "limit": 3,
+        "categories": [
+          "crypto-markets"
+        ]
+      },
+      "protocols": {
+        "name": "Protocols and On-chain",
+        "limit": 3,
+        "categories": [
+          "crypto-protocols"
+        ]
+      },
+      "regulation": {
+        "name": "Regulation and Macro",
+        "limit": 4,
+        "categories": [
+          "crypto-regulation",
+          "macro-regulation"
+        ]
+      },
+      "technology": {
+        "name": "Technology",
+        "limit": 7,
+        "categories": [
+          "ai-labs",
+          "ai-devtools",
+          "tech-community",
+          "ai-media"
+        ]
+      }
+    },
+    "default_group": "other",
+    "default_group_limit": 1
+  }
+}

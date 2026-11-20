@@ -1,0 +1,180 @@
+name: xiyu.news Feed Collection
+run-name: >-
+  ${{ inputs.alert_test && 'Operations alert test' || (inputs.alert_setup_chat != '' && 'Operations topic setup') || 'Feed collection' }}
+
+# Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
+# never change server Git config or credentials.
+env:
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: http.version
+  GIT_CONFIG_VALUE_0: HTTP/1.1
+  XIYUNEWS_STATE_BACKEND: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'cloudflare' || '' }}
+
+on:
+  schedule:
+    # Backup clock; the unified Worker polls every five minutes with active-run guards.
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+    inputs:
+      alert_test:
+        description: Send one Telegram operations topic test only; no collection or publication
+        type: boolean
+        default: false
+      alert_setup_chat:
+        description: Explicit group ID or public @username; create 日报运维 topic only
+        type: string
+        default: ''
+
+permissions:
+  contents: write  # Persists the staging cache to the staging-cache branch
+  id-token: write
+
+jobs:
+  collect:
+    if: vars.XIYUNEWS_RUNTIME_MODE != 'maintenance'
+    concurrency:
+      group: xiyunews-rolling-collection
+      cancel-in-progress: false
+    runs-on: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    timeout-minutes: 30
+    env:
+      TZ: Asia/Shanghai
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            src
+            docs
+            scripts
+            ops
+            data
+            .github
+
+      - name: Restore staged source items
+        if: ${{ !inputs.alert_test && inputs.alert_setup_chat == '' }}
+        uses: actions/cache/restore@v5
+        with:
+          path: |
+            data/staging-items.json
+            data/analysis-cache.json
+            data/qualified-cache.json
+          key: ${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            ${{ runner.os }}-bmtnews-pipeline-v2-
+            ${{ runner.os }}-bmtnews-staging-v1-
+
+      - name: Merge latest persistent staging with the restored cache
+        if: ${{ !inputs.alert_test && inputs.alert_setup_chat == '' }}
+        shell: bash
+        run: |
+          if git fetch --depth=1 origin staging-cache 2>/dev/null; then
+            mkdir -p data
+            if [ ! -f data/staging-items.json ]; then
+              git show FETCH_HEAD:data/staging-items.json > data/staging-items.json 2>/dev/null || rm -f data/staging-items.json
+            fi
+            if [ ! -f data/analysis-cache.json ]; then
+              git show FETCH_HEAD:data/analysis-cache.json > data/analysis-cache.json 2>/dev/null || rm -f data/analysis-cache.json
+            fi
+            if [ ! -f data/qualified-cache.json ]; then
+              git show FETCH_HEAD:data/qualified-cache.json > data/qualified-cache.json 2>/dev/null || rm -f data/qualified-cache.json
+            fi
+            python3 scripts/merge_pipeline_cache.py FETCH_HEAD
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.11.32"
+
+      - name: Install dependencies
+        run: uv sync --frozen --extra trafilatura
+
+      - name: Acquire private fenced publication state
+        id: state
+        if: env.XIYUNEWS_STATE_BACKEND == 'cloudflare'
+        run: python3 -m src.edge_state acquire
+
+      - name: Prepare GitHub Actions config
+        run: cp data/config.github.json data/config.json
+
+      - name: Create explicitly requested operations topic
+        if: ${{ inputs.alert_setup_chat != '' }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          ALERT_SETUP_CHAT: ${{ inputs.alert_setup_chat }}
+        run: uv run python -m src.operations --setup-alert-topic "$ALERT_SETUP_CHAT"
+
+      - name: Preserve topic setup result without bot credentials
+        if: ${{ always() && inputs.alert_setup_chat != '' }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: alert-topic-${{ github.run_id }}
+          path: data/alert-setup.json
+          retention-days: 7
+          if-no-files-found: warn
+
+      - name: Test Telegram operations topic alert
+        if: ${{ inputs.alert_test }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
+          TELEGRAM_ALERT_THREAD_ID: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
+        run: uv run python -m src.operations --test-alert
+
+      - name: Collect and score new candidates into private caches only
+        if: ${{ !inputs.alert_test && inputs.alert_setup_chat == '' }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          LWN_KEY: ${{ secrets.LWN_KEY }}
+          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
+        run: uv run python -m src.rolling_feed
+
+      - name: Preserve successful AI work even after publication failure
+        if: ${{ always() && !inputs.alert_test && inputs.alert_setup_chat == '' }}
+        uses: actions/cache/save@v5
+        with:
+          path: |
+            data/staging-items.json
+            data/analysis-cache.json
+            data/qualified-cache.json
+          key: ${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}
+
+
+      - name: Persist staging cache to branch
+        if: ${{ always() && !inputs.alert_test && inputs.alert_setup_chat == '' }}
+        shell: bash
+        run: bash scripts/persist_staging_cache.sh
+
+      - name: Finalize operations topic alerts and costs
+        if: ${{ always() && !inputs.alert_test && inputs.alert_setup_chat == '' }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
+          TELEGRAM_ALERT_THREAD_ID: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
+          OPERATIONS_STATUS: ${{ job.status }}
+        run: uv run python -m src.operations --workflow-status "$OPERATIONS_STATUS"
+
+      - name: Publish run report
+        if: ${{ always() && !inputs.alert_test && inputs.alert_setup_chat == '' }}
+        run: python3 -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep machine-readable cost and health report
+        if: ${{ always() && !inputs.alert_test && inputs.alert_setup_chat == '' }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: run-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: data/run-report.json
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Release private publication state
+        if: always() && steps.state.outcome == 'success'
+        run: python3 -m src.edge_state release

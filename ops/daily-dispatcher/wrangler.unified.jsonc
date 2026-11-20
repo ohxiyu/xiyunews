@@ -1,0 +1,48 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "xiyunews",
+  "main": "src/unified.ts",
+  "compatibility_date": "2026-08-26",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "version_metadata": {"binding": "CF_VERSION_METADATA"},
+  "assets": {
+    "directory": "../../.edge-site",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "vars": {
+    "GITHUB_REPOSITORY": "ohxiyu/xiyunews",
+    "GITHUB_WORKFLOW": "daily-summary.yml",
+    "GITHUB_REF": "main",
+    "EDITION_TIMEZONE": "Asia/Shanghai",
+    "EDITION_CUTOFF_HOUR": "7",
+    "PUBLIC_SITE_URL": "https://xiyu.news",
+    "EDGE_DEPLOY_WORKFLOW": "cloudflare-unified.yml",
+    "ENABLE_DISPATCHER": "true",
+    "ENABLE_REALTIME_WATCHDOG": "true"
+  },
+  // Final owned namespace. Never create an empty replacement or delete its data.
+  "durable_objects": {"bindings": [
+    {"name": "RECOVERY_GATE", "class_name": "RecoveryGate"}
+  ]},
+  "migrations": [{
+    "tag": "xiyunews-recovery-transfer-20261003",
+    "transferred_classes": [{
+      "from": "RecoveryGate", "from_script": "bmtnews-daily-dispatcher", "to": "RecoveryGate"
+    }]
+  }],
+  "kv_namespaces": [
+    {"binding": "STATE", "id": "469346950dfc4f36b8d9bf9997d960fa"}
+  ],
+  // Deploy only after the old schedulers are stopped and transfer is verified.
+  "triggers": {"crons": ["26 23 * * *", "36,46,56 23 * * *", "*/5 * * * *"]},
+  // www.xiyu.news/* -> xiyunews is an existing operator-managed zone route.
+  // The CI token cannot manage zone routes; code publishing must preserve it.
+  // With no non-custom routes declared, Wrangler does not replace zone routes.
+  "routes": [{"pattern": "xiyu.news", "custom_domain": true}],
+  "observability": {"enabled": true}
+}

@@ -1,0 +1,367 @@
+"""Small persistent cache for deterministic AI-derived item fields."""
+
+from __future__ import annotations
+
+import hashlib
+import json
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import Any, Iterable
+
+from .._file_utils import _atomic_write_text
+from ..models import ContentItem
+from . import prompts
+from .chinese import CHINESE_CONTRACT
+from ..publication_state import active_store
+
+
+CACHE_VERSION = 1
+ENRICHMENT_POLICY_VERSION = "news-editorial-v7-validated-zh"
+PREFILTER_TTL = timedelta(days=1)
+PREFILTER_MAX_BATCHES = 256
+ANALYSIS_FIELDS = ("ai_score", "ai_reason", "ai_summary", "ai_tags")
+ENRICHMENT_PREFIXES = (
+    "title_",
+    "detailed_summary",
+    "background",
+    "community_discussion",
+    "market_impact",
+)
+
+
+def _utc_now() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+class AnalysisResultCache:
+    """JSON-backed cache shared between scheduled runs.
+
+    Keys include the model, prompt revision and source content, so changing
+    either the input or the editorial prompt cannot silently reuse stale AI
+    output. Corrupt or old cache files fail open.
+    """
+
+    def __init__(
+        self,
+        path: Path,
+        *,
+        model: str,
+        ttl_days: int = 30,
+        max_entries: int = 4000,
+        prompt_revision: str = "2026-09-input-aware-v2",
+    ) -> None:
+        self.path = path
+        self.backend = active_store() if path.resolve() == (Path.cwd() / "data/analysis-cache.json").resolve() else None
+        self.model = model
+        self.ttl = timedelta(days=max(1, ttl_days))
+        self.max_entries = max(100, max_entries)
+        self.prompt_revision = prompt_revision
+        self.entries: dict[str, dict[str, Any]] = {}
+        self.prefilter_batches: dict[str, dict[str, Any]] = {}
+        self.relation_pairs: dict[str, dict[str, Any]] = {}
+        self.relation_hits = 0
+        self.relation_misses = 0
+        self.hits = 0
+        self.misses = 0
+        self.comparison_hits = 0
+        self.comparison_misses = 0
+        self._dirty = False
+        self._load()
+
+    def _load(self) -> None:
+        payload = {}
+        try:
+            payload = json.loads(self.path.read_text(encoding="utf-8"))
+        except (OSError, ValueError, TypeError):
+            pass
+        if self.backend is not None:
+            payload = self.backend.load_cache(payload)
+        if isinstance(payload, dict):
+            if payload.get("version") == CACHE_VERSION and isinstance(
+                payload.get("entries"), dict
+            ):
+                self.entries = payload["entries"]
+                if isinstance(payload.get("prefilter_batches"), dict):
+                    self.prefilter_batches = payload["prefilter_batches"]
+                if isinstance(payload.get("relation_pairs"), dict):
+                    self.relation_pairs = payload["relation_pairs"]
+        self._prune()
+
+    def _key(self, item: ContentItem, stage: str) -> str:
+        material = json.dumps(
+            {
+                "stage": stage,
+                "chinese_contract": CHINESE_CONTRACT if stage == "analysis" else None,
+                **({"enrichment_policy": ENRICHMENT_POLICY_VERSION} if stage == "enrichment" else {}),
+                "model": self.model,
+                "prompt": self.prompt_revision,
+                "prompt_text": [
+                    getattr(prompts, name, "")
+                    for name in (
+                        ("CONTENT_ANALYSIS_SYSTEM", "CONTENT_ANALYSIS_USER")
+                        if stage == "analysis" else
+                        ("CORE_ENRICHMENT_SYSTEM", "CORE_ENRICHMENT_USER", "CONCEPT_EXTRACTION_SYSTEM", "CONCEPT_EXTRACTION_USER")
+                    )
+                ],
+                "url": str(item.url),
+                "title": item.title,
+                "published_at": item.published_at.isoformat(),
+                "content": (item.content or "")[:8000],
+                "engagement": {key: item.metadata.get(key) for key in ("score", "descendants", "num_comments", "comments", "replies")},
+                "analysis_inputs": {
+                    "summary": item.ai_summary, "score": item.ai_score,
+                    "reason": item.ai_reason,
+                    "tags": item.ai_tags,
+                } if stage == "enrichment" else None,
+            },
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+        )
+        return hashlib.sha256(material.encode("utf-8")).hexdigest()
+
+    def _get(self, item: ContentItem, stage: str) -> dict[str, Any] | None:
+        return self._get_key(self._key(item, stage))
+
+    def _get_key(
+        self, key: str, *, records: dict[str, dict[str, Any]] | None = None,
+        ttl: timedelta | None = None, track_stats: bool = True,
+    ) -> dict[str, Any] | None:
+        records = self.entries if records is None else records
+        entry = records.get(key)
+        if not isinstance(entry, dict):
+            if track_stats:
+                self.misses += 1
+            return None
+        try:
+            stored_at = datetime.fromisoformat(str(entry["stored_at"]))
+            if stored_at.tzinfo is None:
+                stored_at = stored_at.replace(tzinfo=timezone.utc)
+        except (KeyError, TypeError, ValueError):
+            if track_stats:
+                self.misses += 1
+            return None
+        if _utc_now() - stored_at > (ttl or self.ttl) or not isinstance(
+            entry.get("value"), dict
+        ):
+            records.pop(key, None)
+            self._dirty = True
+            if track_stats:
+                self.misses += 1
+            return None
+        if track_stats:
+            self.hits += 1
+        return entry["value"]
+
+    def _comparison_key(self, system: str, user: str) -> str:
+        material = json.dumps(["comparison-v1", self.model, self.prompt_revision,
+                               system, user], ensure_ascii=False)
+        return hashlib.sha256(material.encode()).hexdigest()
+
+    def get_comparison(self, system: str, user: str) -> dict[str, Any] | None:
+        value = self._get_key(self._comparison_key(system, user))
+        if value is None:
+            self.comparison_misses += 1
+        else:
+            self.comparison_hits += 1
+        return value
+
+    def store_comparison(self, system: str, user: str, value: dict[str, Any]) -> None:
+        """Caller must validate indices before storing; hits are revalidated."""
+        self.entries[self._comparison_key(system, user)] = {
+            "stored_at": _utc_now().isoformat(), "value": value,
+        }
+        self._dirty = True
+
+    def _prefilter_key(self, system: str, user: str) -> str:
+        """Only an identical prompt may reuse a batch's relative scores."""
+        material = json.dumps(
+            ["prefilter-exact-batch-v1", self.model, self.prompt_revision, system, user],
+            ensure_ascii=False,
+        )
+        return hashlib.sha256(material.encode()).hexdigest()
+
+    def _relation_key(self, system: str, user: str) -> str:
+        material = json.dumps(["event-relation-compact-exact-v1", self.model,
+            self.prompt_revision, system, user], ensure_ascii=False)
+        return hashlib.sha256(material.encode()).hexdigest()
+
+    def get_relation(self, system: str, user: str) -> dict[str, Any] | None:
+        value = self._get_key(self._relation_key(system, user), records=self.relation_pairs,
+            ttl=min(self.ttl, timedelta(days=7)), track_stats=False)
+        if value is None:
+            self.relation_misses += 1
+        else:
+            self.relation_hits += 1
+        return value
+
+    def discard_relation(self, system: str, user: str) -> None:
+        self.relation_pairs.pop(self._relation_key(system, user), None)
+        self.relation_hits = max(0, self.relation_hits - 1)
+        self.relation_misses += 1
+        self._dirty = True
+
+    def store_relation(self, system: str, user: str, value: dict[str, Any]) -> None:
+        self.relation_pairs[self._relation_key(system, user)] = {
+            "stored_at": _utc_now().isoformat(), "value": value,
+        }
+        self._dirty = True
+
+    def get_prefilter_batch(self, system: str, user: str) -> dict[str, Any] | None:
+        return self._get_key(
+            self._prefilter_key(system, user), records=self.prefilter_batches,
+            ttl=min(self.ttl, PREFILTER_TTL), track_stats=False,
+        )
+
+    def store_prefilter_batch(self, system: str, user: str, scores: dict[int, float]) -> None:
+        """Store only fully validated scores; the caller checks completeness."""
+        self.prefilter_batches[self._prefilter_key(system, user)] = {
+            "stored_at": _utc_now().isoformat(),
+            "value": {"scores": {str(index): score for index, score in scores.items()}},
+        }
+        self._dirty = True
+
+    def restore_analysis(self, item: ContentItem) -> bool:
+        value = self._get(item, "analysis")
+        if value is None or "evaluation" in value:
+            return False
+        for field in ANALYSIS_FIELDS:
+            if field in value:
+                setattr(item, field, value[field])
+        if isinstance(value.get("category"), str):
+            item.metadata["category"] = value["category"]
+        if "source_category" in value:
+            item.metadata["source_category"] = value["source_category"]
+        if isinstance(value.get("score_model"), str):
+            item.metadata["score_model"] = value["score_model"]
+        if isinstance(value.get("title_zh"), str): item.metadata["title_zh"] = value["title_zh"]
+        if isinstance(value.get("detailed_summary_zh"), str): item.metadata["detailed_summary_zh"] = value["detailed_summary_zh"]
+        return item.ai_score is not None
+
+    def store_analysis(self, item: ContentItem) -> None:
+        if item.metadata.get("chinese_invalid") or item.ai_score is None or item.ai_reason in {
+            "Analysis failed",
+            "Analysis response parse failed",
+        }:
+            return
+        value = {field: getattr(item, field) for field in ANALYSIS_FIELDS}
+        for field in ("title_zh", "detailed_summary_zh"):
+            if isinstance(item.metadata.get(field), str): value[field] = item.metadata[field]
+        value["category"] = item.metadata.get("category")
+        if isinstance(item.metadata.get("score_model"), str):
+            value["score_model"] = item.metadata["score_model"]
+        if "source_category" in item.metadata:
+            value["source_category"] = item.metadata["source_category"]
+        self._put(item, "analysis", value)
+
+    def restore_enrichment(self, item: ContentItem) -> bool:
+        value = self._get(item, "enrichment")
+        if value is None:
+            return False
+        item.metadata.update(value)
+        if isinstance(value.get("editorial_tags"), list):
+            item.ai_tags = list(value["editorial_tags"])
+        return True
+
+    def store_enrichment(self, item: ContentItem, *, input_item: ContentItem | None = None) -> None:
+        if item.metadata.get("chinese_invalid") or item.metadata.get("enrichment_status") == "brief":
+            return
+        value = {
+            key: val
+            for key, val in item.metadata.items()
+            if key in {"sources", "editorial_tags", "enrichment_status"}
+            or any(key.startswith(prefix) for prefix in ENRICHMENT_PREFIXES)
+        }
+        complete = any(
+            key.startswith(("background_", "market_impact_")) and bool(val)
+            for key, val in value.items()
+        )
+        if value and complete:
+            # Enrichment may replace editorial tags. Cache under the actual
+            # pre-call inputs, while retaining all generated output fields.
+            self._put(input_item if input_item is not None else item, "enrichment", value)
+
+    def _put(self, item: ContentItem, stage: str, value: dict[str, Any]) -> None:
+        self.entries[self._key(item, stage)] = {
+            "stored_at": _utc_now().isoformat(),
+            "value": value,
+        }
+        self._dirty = True
+
+    def _prune(self) -> None:
+        def prune(
+            records: dict[str, dict[str, Any]], ttl: timedelta, limit: int,
+        ) -> dict[str, dict[str, Any]]:
+            cutoff = _utc_now() - ttl
+            retained: list[tuple[str, dict[str, Any], datetime]] = []
+            for key, entry in records.items():
+                try:
+                    stored_at = datetime.fromisoformat(str(entry["stored_at"]))
+                    if stored_at.tzinfo is None:
+                        stored_at = stored_at.replace(tzinfo=timezone.utc)
+                except (KeyError, TypeError, ValueError):
+                    continue
+                if stored_at >= cutoff:
+                    retained.append((key, entry, stored_at))
+            retained.sort(key=lambda row: row[2], reverse=True)
+            result = {key: entry for key, entry, _ in retained[:limit]}
+            if len(result) != len(records):
+                self._dirty = True
+            return result
+
+        self.entries = prune(self.entries, self.ttl, self.max_entries)
+        self.prefilter_batches = prune(
+            self.prefilter_batches, min(self.ttl, PREFILTER_TTL),
+            PREFILTER_MAX_BATCHES,
+        )
+        # Separate budget: relation comparisons cannot evict scored stories.
+        self.relation_pairs = prune(self.relation_pairs, min(self.ttl, timedelta(days=7)), 2000)
+
+    def save(self, *, export_json: bool = True) -> None:
+        changed = self._dirty
+        if not changed and not (self.backend is not None and export_json):
+            return
+        self._prune()
+        payload = {"version": CACHE_VERSION, "entries": self.entries,
+            "prefilter_batches": self.prefilter_batches, "relation_pairs": self.relation_pairs}
+        if self.backend is not None and self._dirty:
+            self.backend.save_cache(payload)
+        self._dirty = False
+        if self.backend is not None and not export_json:
+            return  # Per-pair durable row updates, not whole-file rewrites.
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        _atomic_write_text(
+            self.path,
+            json.dumps(
+                payload,
+                ensure_ascii=False,
+                indent=2,
+                sort_keys=True,
+            )
+            + "\n",
+        )
+        self._dirty = False
+
+    def snapshot(self) -> dict[str, int]:
+        return {
+            "hits": self.hits,
+            "misses": self.misses,
+            "entries": len(self.entries),
+        }
+
+
+def split_cached(
+    cache: AnalysisResultCache,
+    items: Iterable[ContentItem],
+    *,
+    stage: str,
+) -> tuple[list[ContentItem], list[ContentItem]]:
+    """Return cache hits and misses while applying cached fields in place."""
+    restore = (
+        cache.restore_analysis if stage == "analysis" else cache.restore_enrichment
+    )
+    hits: list[ContentItem] = []
+    misses: list[ContentItem] = []
+    for item in items:
+        (hits if restore(item) else misses).append(item)
+    return hits, misses
