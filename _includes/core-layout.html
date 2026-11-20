@@ -7,7 +7,7 @@
 {% if page.noindex %}<meta name="robots" content="noindex">{% endif %}
 {% if page.redirect_to %}<meta http-equiv="refresh" content="0; url={{ page.redirect_to | relative_url }}"><link rel="canonical" href="{{ page.redirect_to | absolute_url }}">{% else %}<link rel="canonical" href="{{ page.url | absolute_url }}">{% endif %}
 <link rel="alternate" type="application/rss+xml" title="xiyu.news 日报" href="/feed.xml">
-<meta name="color-scheme" content="light dark"><meta name="theme-color" content="#f7f8fa">
+<meta name="color-scheme" content="light dark"><meta name="theme-color" content="#faf8f3">
 <link rel="icon" href="{{ '/assets/images/app-icon.svg' | relative_url }}" type="image/svg+xml">
 <script>try{var t=localStorage.getItem('xiyu-core-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="{{ '/assets/css/core.css' | relative_url }}?v={{ site.asset_version }}">
@@ -21,7 +21,7 @@
 <button class="theme-toggle" type="button" aria-label="切换深色模式" hidden>◐</button>
 </div></header>
 <main id="content" class="reader" tabindex="-1">
-{% if page.lang %}<header class="page-heading"><p class="eyebrow">往期日报 · {{ page.date | date: '%Y.%m.%d' }}</p><h1>{{ page.date | date: '%Y.%m.%d' }} 日报</h1></header><section class="daily-day" data-language="zh" data-date="{{ page.date | date: '%Y-%m-%d' }}">{{ content }}</section>{% include author-links.html %}<p class="archive-back"><a href="/history/">浏览其他日期</a></p>{% else %}{{ content }}{% endif %}
+{% if page.lang %}{% include edition-heading.html edition=page %}<section class="daily-day" data-language="zh" data-date="{{ page.date | date: '%Y-%m-%d' }}">{{ content }}</section>{% include author-links.html %}<p class="archive-back"><a href="/history/">浏览其他日期</a></p>{% else %}{{ content }}{% endif %}
 </main>
 <footer class="site-footer"><a href="/">xiyu.news</a><span>加密 · AI · 政策</span><a href="/legal/">版权与来源权利</a></footer>
 <p class="copy-status" role="status" aria-live="polite"></p>
