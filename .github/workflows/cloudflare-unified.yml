@@ -3,7 +3,7 @@ name: xiyunews Cloudflare
 on:
   push:
     branches: [main]
-    paths: ['site/**', 'edge/**', 'scripts/build.mjs', 'package*.json', 'wrangler.json', 'realtime/scripts/deploy/watchdog/worker.js', '.github/workflows/cloudflare-unified.yml']
+    paths: ['site/**', 'edge/**', 'scripts/**', 'package*.json', 'wrangler.json', 'realtime/scripts/deploy/watchdog/worker.js', '.github/workflows/cloudflare-unified.yml']
   workflow_dispatch:
 
 concurrency:

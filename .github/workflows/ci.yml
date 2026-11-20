@@ -77,6 +77,7 @@ jobs:
       - run: python -m mypy src
       - run: python -m pytest
       - run: python scripts/check_repository.py --base origin/main
+      - run: python -m pytest -q ../tests/test_disk_maintenance.py
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
