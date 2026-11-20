@@ -1,20 +1,47 @@
 # 当前交接
 
+2026-11-20，按用户要求恢复中文日报与原多来源采集、AI 选稿链路。生产沿用 11/17 已切换的托管执行与 Cloudflare 私有状态。
+
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "将公开站点从每日出刊切换为 Eqn API 驱动的加密快讯",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/380",
+  "goal": "恢复原中文日报和多来源采编程序",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/384",
   "owner": "当前 Codex 聊天",
-  "branch": "agent/eqn-news-redesign",
-  "base": "ce9006ffdac8ff22c147719a9279ff9333c6d213",
-  "status": "站点重构、本地 Worker 打包、99 期归档及 Chromium 模拟接口验证完成；生产待验证",
-  "next": "核对最终日报快照、验证 Eqn API 与浏览器跨域访问、观察现有 Cloudflare 工作流部署结果",
-  "blockers": ["当前执行环境无法直接访问 api.eqn.news，GitHub CI 验证真实接口"]
+  "branch": "agent/restore-daily-edition",
+  "base": "8d74996859d6e45a6b229cebffb8f7362398d790",
+  "status": "恢复 #381 前的日报、来源配置、工作流和 Worker 路由；待 CI 与生产验收",
+  "next": "验证生产首页、最后一期、历史链接和原采集恢复；下一自然出刊窗口验证新刊",
+  "blockers": []
 }
 ```
 
-- 活跃内容使用 Eqn REST，订阅使用 Eqn RSS。历史日报从固定的 `gh-pages` 提交构建，保留条目锚点和冻结的 `/api/latest.json`。切换前对照 `gh-pages` 的最终出版提交；若有更新，更新构建和 CI 的归档引用并重新验证。
-- 日报采编、缓存、模型、发布与分发代码移除。保留分支历史、已发布内容及现有 Durable Object 数据。切换时确认先前启动的日报工作流已经结束。
-- 东京实时告警、边缘看门狗和主机磁盘维护继续保留。现有 Worker、域名、KV、DO 和五分钟看门狗 Cron 见 [Cloudflare 部署](cloudflare-single-project.md)。
-- 此次重构之前的生产迁移记录见 [原交接](https://github.com/ohxiyu/xiyunews/blob/ce9006ffdac8ff22c147719a9279ff9333c6d213/project-docs/handoff.md)。
+## 恢复范围
+
+- 恢复原收集、缓存、AI 评分与去重、入选后扩写和北京时间 07:00 截止、07:26 启动的出刊配置。来源与模型均取自撤销前的版本 `ce9006f`。
+- 使用现有生产绑定和原 GitHub Actions 部署；保留 `gh-pages`、`staging-cache`、`x-queue`、Cloudflare 私有数据库与渠道发送回执。代码部署按原校验跳过历史分发。
+- X 发送由既有配置和生产开关控制。东京实时服务按既有工作流和看门狗运行。
+
+## 原日报演进记录
+
+0. 流程减负与 README 对齐（#358已合并）。
+1. 中文硬校验、402立即停止、运维话题告警、三级降级与费用台账；余额检查按用户要求取消。
+2. 第一批删模块/工作流/旧前端；核对20个历史地址，两天自然出刊验收待实际观察。
+3. 主流程拆为采集、评分去重、扩写、发布；第二批删除，固定输入选稿对比。
+4. 单期首页、作者/频道入口、后台仅评分缓存、单一部署工作流、每页CSS+JS≤20KB。
+5. X质量门、口吻、变量开关、运维话题告警；用户已明确跳过试运行，完成校验后直接启用。
+6. 核验X正式发送与API可用性；首周运行验收不能提前声称完成。
+7. 来源分层、一手源诊断；连续七期质量验收待实际观察。
+8. 新一手源、事实约束、分数分布与8–10条；连续七期验收待实际观察。
+
+## 既往运行记录
+
+- PR4 (#366) 已上线6ac5460；生产Worker c39b5eae，artifact0dddaf5。20个历史地址通过，原API字节不变，纯代码部署Telegram正确跳过；采集已恢复。
+- 用户11/09授权X直接正式运行、免三天试运行；默认280加权字符，校验现有四项密钥/API，不升级套餐。
+- 已查GitHub设置：日报bot和X四项密钥存在；目标群Telegram @xiyudotnews的“日报运维”话题6544已创建，参数已保存，测试42571836635已确认sent，不使用读者频道或realtime现有话题。
+- 保留七份现行文档；另有四个极短历史入口供realtime既有链接使用，不恢复旧发布内容。
+- 11/17运行统一已生产：采集44075396447与Cloudflare44075402179均成功且均为GitHub标准托管；418条采集、594次缓存命中，5个来源组成功，单Glassnode RSS403告警保留。新版私有状态具名UA+不可变GitHub主体鉴权；先前两次访问失败均未写业务状态，未关闭防护/鉴权。
+- 生产Worker 649acfc3-9fb8-4b3b-ab18-a4a6d449cf50，source1b29bf81、artifact235ace57；普通首页/当期/11月3日/7月26日/RSS/ready均200，96期保留，11/17的14条API完整SHA不变。匿名私有接口401；五个生产工作流已启用。
+- XIYUNEWS_RUNTIME_MODE: maintenance暂停批处理、hosted使用标准托管计算；未设时为切换前服务器模式。迁移工作流只能初始化空状态，不能覆盖现有状态。详见[运行手册](self-hosted-runner.md)。
+- 东京runner/guardian/旧维护与backup均inactive+disabled，GitHub注册0；45项缓存/执行文件/旧日志/额外备份净释放2855579648字节，可用约12.4GiB、磁盘67%。其他7容器身份/启动时间/重启数一致，实时PID1913207及两SQLite完整性保持；现役磁盘维护和其他项目备份继续运行。备份副本永久删除、工具缓存可重建。
+- 东京实时规则/目的地/数据库及其他项目不变，3行情流live、5链0落后，原Hyperliquid降级使ready503保持如实；不重生成或补发历史。源码/Worker版本与文档main可能因仅交接更新而不同，以生产构建输入为准。

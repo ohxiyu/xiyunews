@@ -1,0 +1,230 @@
+from __future__ import annotations
+
+import asyncio
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+from src.models import (
+    AIConfig,
+    Config,
+    ContentItem,
+    FilteringConfig,
+    SourceType,
+    SourcesConfig,
+)
+from src.orchestrator import BMTNewsOrchestrator
+from src.run_report import (
+    RunReport,
+    load_run_report,
+    render_github_annotations,
+    render_markdown_report,
+    sanitize_diagnostic,
+    save_run_report,
+)
+from src.storage.manager import StorageManager
+
+
+STARTED_AT = datetime(2026, 7, 27, 1, 2, 3, tzinfo=timezone.utc)
+
+
+def test_partial_fetch_failure_produces_warning_report(tmp_path: Path) -> None:
+    report = RunReport.start(
+        date="2026-07-27",
+        timezone_name="Asia/Shanghai",
+        started_at=STARTED_AT,
+    )
+    report.set_metric("fetched_raw", 12)
+    report.set_metric("displayed_today", 3)
+    report.attach_fetch_report(
+        {
+            "status": "partial_failure",
+            "attempted": 2,
+            "successful": 1,
+            "empty": 0,
+            "failed": 1,
+            "item_count": 12,
+            "sources": [
+                {
+                    "source": "RSS Feeds",
+                    "status": "success",
+                    "item_count": 12,
+                    "subsource_counts": {"Example": 12},
+                },
+                {
+                    "source": "GitHub",
+                    "status": "failure",
+                    "item_count": 0,
+                    "error": (
+                        "RuntimeError: GET https://api.example.test/items"
+                        "?token=secret failed; api_key=also-secret"
+                    ),
+                },
+            ],
+        }
+    )
+    report.finish(STARTED_AT + timedelta(seconds=12.3456))
+
+    path = save_run_report(report, tmp_path / "run-report.json")
+    payload = load_run_report(path)
+
+    assert payload["status"] == "warning"
+    assert payload["duration_seconds"] == 12.346
+    assert payload["metrics"]["fetched_raw"] == 12
+    assert payload["alerts"][0]["code"] == "partial_source_failure"
+    diagnostic = payload["fetch_report"]["sources"][1]["error"]
+    assert "token=secret" not in diagnostic
+    assert "also-secret" not in diagnostic
+    assert "https://api.example.test/items" in diagnostic
+
+
+def test_failed_report_preserves_safe_error_and_renders_markdown() -> None:
+    report = RunReport.start(
+        date="2026-07-27",
+        timezone_name="Asia/Shanghai",
+        started_at=STARTED_AT,
+    )
+    report.set_metric("fetched_raw", 0)
+    report.fail("Authorization token=super-secret failed")
+    report.finish(STARTED_AT + timedelta(seconds=2))
+
+    payload = report.to_dict()
+    markdown = render_markdown_report(payload)
+
+    assert payload["status"] == "failure"
+    assert "super-secret" not in payload["error"]
+    assert "## xiyu.news 采集运行报告" in markdown
+    assert "| 本次采集 | 0 |" in markdown
+    assert "`pipeline_failed`" in markdown
+    assert render_github_annotations(payload) == [
+        "::error title=xiyu.news pipeline_failed::Authorization token=<redacted> failed"
+    ]
+
+
+def test_daily_report_renders_window_quotas_and_source_contribution() -> None:
+    report = RunReport.start(
+        date="2026-07-29",
+        timezone_name="Asia/Shanghai",
+        started_at=STARTED_AT,
+        kind="daily_publish",
+        window_start=datetime(
+            2026, 7, 28, 12, 0, tzinfo=timezone.utc
+        ),
+        window_end=datetime(
+            2026, 7, 29, 12, 0, tzinfo=timezone.utc
+        ),
+    )
+    report.set_metric("fetched_raw", 19)
+    report.set_metric("edition_candidates", 51)
+    report.set_metric("displayed_today", 7)
+    report.set_metric("prefilter_cache_hits", 2)
+    report.set_metric("prefilter_cache_misses", 3)
+    report.set_metric("primary_selected", 4)
+    report.set_metric("primary_required", 9)
+    report.set_timing("fetch", 1.2344)
+    report.add_timing("analysis", 2.0)
+    report.add_timing("analysis", 0.3456)
+    report.set_breakdown(
+        "selected_groups",
+        {"Crypto Markets": 4, "Technology": 3},
+    )
+    report.set_breakdown("score_models", {"deepseek:deepseek-flash": 51})
+    report.set_breakdown(
+        "candidate_groups",
+        {"Crypto Markets": 12, "Technology": 4},
+    )
+    report.set_breakdown(
+        "fallback_candidate_groups",
+        {"Crypto Markets": 3},
+    )
+    report.set_breakdown(
+        "qualified_groups",
+        {"Crypto Markets": 6, "Technology": 3},
+    )
+    report.set_breakdown(
+        "group_limits",
+        {"Crypto Markets": 4, "Technology": 3},
+    )
+    report.set_breakdown(
+        "candidate_sources",
+        {"rss/CoinDesk": 12},
+    )
+    report.set_breakdown(
+        "selected_sources",
+        {"rss/CoinDesk": 2},
+    )
+    report.set_breakdown(
+        "qualified_sources",
+        {"rss/CoinDesk": 5},
+    )
+    report.set_breakdown(
+        "fallback_candidate_sources",
+        {"rss/CoinDesk": 3},
+    )
+    report.add_alert(
+        "warning",
+        "primary_quota_shortfall",
+        "Crypto 主轨只有 4/9 条合格内容。",
+    )
+    report.finish(STARTED_AT + timedelta(seconds=10))
+
+    payload = report.to_dict()
+    markdown = render_markdown_report(payload)
+
+    assert payload["version"] == 2
+    assert payload["kind"] == "daily_publish"
+    assert payload["timings"] == {"fetch": 1.234, "analysis": 2.346}
+    assert "## xiyu.news 早间日报发布报告" in markdown
+    assert "### 性能分段" in markdown
+    assert "`deepseek:deepseek-flash`：51 条" in markdown
+    assert "| analysis | 2.346 |" in markdown
+    assert "| 固定窗口候选 | 51 |" in markdown
+    assert "| 粗筛批次缓存命中 | 2 |" in markdown
+    assert "| 粗筛批次缓存未命中 | 3 |" in markdown
+    assert "| Crypto Markets | 12 | 3 | 6 | 4 | 4 |" in markdown
+    assert "Crypto 主轨：**4 / 9**" in markdown
+    assert "| rss/CoinDesk | 12 | 3 | 5 | 2 |" in markdown
+    assert "| URL 去重后 | 0 |" not in markdown
+
+
+def test_staging_report_exposes_prefilter_batch_cache_counts() -> None:
+    markdown = render_markdown_report({
+        "kind": "staging_fetch",
+        "metrics": {"prefilter_cache_hits": 4, "prefilter_cache_misses": 1},
+    })
+    assert "| 粗筛批次缓存命中 | 4 |" in markdown
+    assert "| 粗筛批次缓存未命中 | 1 |" in markdown
+
+
+def test_sanitize_diagnostic_removes_url_credentials_and_query() -> None:
+    sanitized = sanitize_diagnostic(
+        "GET https://user:pass@example.test/private?signature=secret#fragment failed"
+    )
+
+    assert sanitized == "GET https://example.test/private failed"
+
+
+
+
+def test_markdown_lists_telegram_channel_diagnostics_and_probe_mode() -> None:
+    from src.run_report import _public_fetch_report, render_markdown_report
+
+    report = _public_fetch_report({
+        "status": "success",
+        "sources": [{
+            "source": "Telegram",
+            "status": "success",
+            "item_count": 1,
+            "channels": [
+                {"channel": "binance_announcements", "probe": False, "status": "ok",
+                 "title": "Binance Announcements", "subscribers": "1.2M",
+                 "messages_seen": 20, "in_window": 0, "kept": 0, "newest": "2026-09-27T03:02:00+00:00",
+                 "unexpected": "dropped"},
+                {"channel": "whale_alert_io", "probe": True, "status": "failed", "error": "RuntimeError"},
+            ],
+        }],
+    })
+    assert "unexpected" not in report["sources"][0]["channels"][0]
+    markdown = render_markdown_report({"status": "success", "fetch_report": report})
+    assert "### Telegram 频道" in markdown
+    assert "| @binance_announcements | live | Binance Announcements | 1.2M | 20 | 0 | 0 |" in markdown
+    assert "| @whale_alert_io | probe | 失败：RuntimeError |" in markdown
