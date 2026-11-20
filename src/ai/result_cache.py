@@ -11,12 +11,11 @@ from typing import Any, Iterable
 from .._file_utils import _atomic_write_text
 from ..models import ContentItem
 from . import prompts
-from .chinese import CHINESE_CONTRACT
 from ..publication_state import active_store
 
 
 CACHE_VERSION = 1
-ENRICHMENT_POLICY_VERSION = "news-editorial-v7-validated-zh"
+ENRICHMENT_POLICY_VERSION = "news-editorial-v4"
 PREFILTER_TTL = timedelta(days=1)
 PREFILTER_MAX_BATCHES = 256
 ANALYSIS_FIELDS = ("ai_score", "ai_reason", "ai_summary", "ai_tags")
@@ -91,7 +90,6 @@ class AnalysisResultCache:
         material = json.dumps(
             {
                 "stage": stage,
-                "chinese_contract": CHINESE_CONTRACT if stage == "analysis" else None,
                 **({"enrichment_policy": ENRICHMENT_POLICY_VERSION} if stage == "enrichment" else {}),
                 "model": self.model,
                 "prompt": self.prompt_revision,
@@ -100,7 +98,7 @@ class AnalysisResultCache:
                     for name in (
                         ("CONTENT_ANALYSIS_SYSTEM", "CONTENT_ANALYSIS_USER")
                         if stage == "analysis" else
-                        ("CORE_ENRICHMENT_SYSTEM", "CORE_ENRICHMENT_USER", "CONCEPT_EXTRACTION_SYSTEM", "CONCEPT_EXTRACTION_USER")
+                        ("CONTENT_ENRICHMENT_SYSTEM", "CONTENT_ENRICHMENT_USER", "CONCEPT_EXTRACTION_SYSTEM")
                     )
                 ],
                 "url": str(item.url),
@@ -234,19 +232,15 @@ class AnalysisResultCache:
             item.metadata["source_category"] = value["source_category"]
         if isinstance(value.get("score_model"), str):
             item.metadata["score_model"] = value["score_model"]
-        if isinstance(value.get("title_zh"), str): item.metadata["title_zh"] = value["title_zh"]
-        if isinstance(value.get("detailed_summary_zh"), str): item.metadata["detailed_summary_zh"] = value["detailed_summary_zh"]
         return item.ai_score is not None
 
     def store_analysis(self, item: ContentItem) -> None:
-        if item.metadata.get("chinese_invalid") or item.ai_score is None or item.ai_reason in {
+        if item.ai_score is None or item.ai_reason in {
             "Analysis failed",
             "Analysis response parse failed",
         }:
             return
         value = {field: getattr(item, field) for field in ANALYSIS_FIELDS}
-        for field in ("title_zh", "detailed_summary_zh"):
-            if isinstance(item.metadata.get(field), str): value[field] = item.metadata[field]
         value["category"] = item.metadata.get("category")
         if isinstance(item.metadata.get("score_model"), str):
             value["score_model"] = item.metadata["score_model"]
@@ -263,9 +257,7 @@ class AnalysisResultCache:
             item.ai_tags = list(value["editorial_tags"])
         return True
 
-    def store_enrichment(self, item: ContentItem, *, input_item: ContentItem | None = None) -> None:
-        if item.metadata.get("chinese_invalid") or item.metadata.get("enrichment_status") == "brief":
-            return
+    def store_enrichment(self, item: ContentItem) -> None:
         value = {
             key: val
             for key, val in item.metadata.items()
@@ -277,9 +269,7 @@ class AnalysisResultCache:
             for key, val in value.items()
         )
         if value and complete:
-            # Enrichment may replace editorial tags. Cache under the actual
-            # pre-call inputs, while retaining all generated output fields.
-            self._put(input_item if input_item is not None else item, "enrichment", value)
+            self._put(item, "enrichment", value)
 
     def _put(self, item: ContentItem, stage: str, value: dict[str, Any]) -> None:
         self.entries[self._key(item, stage)] = {

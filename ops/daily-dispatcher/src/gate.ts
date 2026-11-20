@@ -1,12 +1,8 @@
 import { DurableObject } from "cloudflare:workers";
-import {stateOperation} from "./publication-state";
 
 // One object per edition. Synchronous SQL claims are committed before any
 // caller performs external I/O; a crashed caller leaves a bounded lease.
 export class RecoveryGate extends DurableObject<Env> {
-  publicationState(action:string, body:Record<string,unknown>, migration:boolean): Promise<Response> {
-    return stateOperation(this.ctx, action, body, migration);
-  }
   constructor(ctx: DurableObjectState, env: Env) {
     super(ctx, env);
     this.ctx.storage.sql.exec(
@@ -26,34 +22,6 @@ export class RecoveryGate extends DurableObject<Env> {
     );
   }
 
-  legacyStory(id:string):string|null {
-    if(!/^[a-f0-9]{32}$/.test(id))throw new Error("invalid legacy story id");
-    return this.read("feed:story:"+id);
-  }
-
-  alertClaim(key: string): boolean {
-    if (!/^[a-z0-9:.-]{1,100}$/.test(key)) throw new Error("invalid alert key");
-    if (this.read("alert:"+key)!==null) return false;
-    this.write("alert:"+key,"unknown");
-    return true;
-  }
-
-  alertStatus(key: string, status: string): void {
-    if (!/^[a-z0-9:.-]{1,100}$/.test(key) || !["sent","failed","unknown"].includes(status)) throw new Error("invalid alert status");
-    this.write("alert:"+key,status);
-  }
-
-  alertGeneration(): number {
-    this.write("collection_incident","active");
-    return Number(this.read("collection_generation") ?? "0");
-  }
-
-  alertRecover(): void {
-    if (this.read("collection_incident")!=="active") return;
-    this.write("collection_generation",String(Number(this.read("collection_generation") ?? "0")+1));
-    this.write("collection_incident","recovered");
-  }
-
   claim(now: number): string | null {
     if (Number(this.read("lease_until") ?? "0") > now) return null;
     const token = crypto.randomUUID();
@@ -71,6 +39,30 @@ export class RecoveryGate extends DurableObject<Env> {
     if (previous !== null) return Number(previous);
     this.write("raw_seen", String(now));
     return now;
+  }
+
+  // Group delivery uses a DIFFERENT named object, not any publication lease.
+  // No public HTTP handler exposes these trusted binding-only RPC methods.
+  groupRead(key: string): string | null {
+    if (!/^tg:[a-z0-9:.-]{1,100}$/.test(key)) throw new Error("invalid group key");
+    return this.read(key);
+  }
+
+  groupRenew(token: string, now: number): void {
+    if (this.read("owner") !== token || Number(this.read("lease_until")) <= now) {
+      throw new Error("group lock lost");
+    }
+    this.write("lease_until", String(now + 120_000));
+  }
+
+  groupWrite(token: string, key: string, value: string, now: number): void {
+    if (this.read("owner") !== token || Number(this.read("lease_until")) <= now) {
+      throw new Error("group lock lost");
+    }
+    if (!/^tg:[a-z0-9:.-]{1,100}$/.test(key) || value.length > 500_000) {
+      throw new Error("invalid group record");
+    }
+    this.write(key, value);
   }
 
   claimAction(token: string, kind: "daily" | "pages" | "collection", now: number): string {

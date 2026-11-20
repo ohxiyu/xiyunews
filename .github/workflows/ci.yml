@@ -1,16 +1,5 @@
 name: CI
 
-# Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
-# never change server Git config or credentials.
-env:
-  GIT_CONFIG_COUNT: '1'
-  GIT_CONFIG_KEY_0: http.version
-  GIT_CONFIG_VALUE_0: HTTP/1.1
-  # CLI telemetry waits can outlive a successful dry-run on slow networks.
-  # Process-local only; keep audits, type checks and all tests unchanged.
-  WRANGLER_SEND_METRICS: 'false'
-  WRANGLER_HIDE_BANNER: 'true' # Also avoids the banner's optional npm update request.
-
 on:
   pull_request:
     branches:
@@ -27,53 +16,43 @@ concurrency:
 permissions:
   contents: read
 
-# Public standard hosted checks are free and must not queue behind production
-# collection on the bounded runner. Private repositories retain their selected
-# runner. Production workflows, budgets and concurrency groups are unchanged.
-
 jobs:
   edge-build:
     needs: realtime-paths
     if: needs.realtime-paths.outputs.edge == 'true'
-    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
-    # Two exact checkouts and Ruby downloads can exceed fifteen minutes on
-    # the bounded Tokyo runner before rendering even starts. Keep all checks.
-    timeout-minutes: 30
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
-          filter: blob:none
-          sparse-checkout: |
-            src
-            docs
-            scripts
-            ops
-            data
-            .github
-            realtime/scripts/deploy/watchdog
       - uses: actions/checkout@v6
         with:
           ref: gh-pages
           path: .edge-source
           persist-credentials: false
       - name: Render the proposed templates against the published data
-        run: python3 scripts/overlay_core_site.py docs .edge-source
+        run: |
+          for directory in _layouts _includes _sass assets; do
+            if [ -d "docs/$directory" ]; then
+              mkdir -p ".edge-source/$directory"
+              cp -a "docs/$directory/." ".edge-source/$directory/"
+            fi
+          done
+          cp docs/_config.yml .edge-source/_config.yml
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
-          bundler-cache: ${{ runner.environment != 'self-hosted' }}
-      - name: Reuse locked Ruby dependencies on the dedicated runner
-        if: runner.environment == 'self-hosted'
-        run: bash ops/runner/setup-ruby-cache.sh ci
+          bundler-cache: true
+      - run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
       - uses: astral-sh/setup-uv@v7
         with:
           version: "0.11.32"
       - run: uv sync --frozen
-      - name: Rebuild core reader from the immutable published snapshot
-        run: uv run python -m src.core_site --root .edge-source
-      - run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
-
+      - name: Validate group snapshot against the immutable published edition
+        run: >-
+          uv run python -m src.services.telegram_group_snapshot
+          .edge-source .edge-rendered --artifact "$(git -C .edge-source rev-parse HEAD)"
       - run: python3 scripts/prepare_edge_assets.py .edge-rendered .edge-site
       - uses: actions/setup-node@v6
         with:
@@ -92,7 +71,7 @@ jobs:
     if: >-
       (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
       (github.event_name != 'pull_request' && github.ref == 'refs/heads/main')
-    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 10
     outputs:
       changed: ${{ steps.paths.outputs.changed }}
@@ -104,7 +83,6 @@ jobs:
         with:
           fetch-depth: 0
           filter: blob:none
-          sparse-checkout: scripts
       - id: paths
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
@@ -119,7 +97,7 @@ jobs:
   realtime:
     needs: realtime-paths
     if: needs.realtime-paths.outputs.changed == 'true'
-    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     strategy:
       fail-fast: false
@@ -135,22 +113,6 @@ jobs:
         with:
           fetch-depth: 0
           filter: blob:none
-          sparse-checkout: |
-            .github
-            brand
-            data
-            docs
-            ops
-            realtime
-            scripts
-            src
-            tests
-      - name: Restore complete checkout in bounded document batches
-        working-directory: .
-        env:
-          GH_TOKEN: '' # Checkout already supplies the scoped read-only header.
-          XIYUNEWS_DOCUMENT_CACHE: ${{ runner.environment == 'self-hosted' && '/home/xiyunews-runner/.cache/xiyunews-doc-blobs' || '' }}
-        run: python3 scripts/hydrate_checkout.py
       - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
@@ -168,29 +130,13 @@ jobs:
     if: >-
       (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
       (github.event_name != 'pull_request' && github.ref == 'refs/heads/main')
-    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
-    # Governance validates screenshot links and retains the complete checkout.
-    timeout-minutes: 20
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
           filter: blob:none
-          sparse-checkout: |
-            .github
-            brand
-            data
-            docs
-            ops
-            realtime
-            scripts
-            src
-            tests
-      - name: Restore complete checkout in bounded document batches
-        env:
-          GH_TOKEN: '' # Checkout already supplies the scoped read-only header.
-          XIYUNEWS_DOCUMENT_CACHE: ${{ runner.environment == 'self-hosted' && '/home/xiyunews-runner/.cache/xiyunews-doc-blobs' || '' }}
-        run: python3 scripts/hydrate_checkout.py
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
@@ -208,27 +154,10 @@ jobs:
   test:
     needs: realtime-paths
     if: needs.realtime-paths.outputs.python == 'true'
-    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
-        with:
-          filter: blob:none
-          sparse-checkout: |
-            .github
-            brand
-            data
-            docs
-            ops
-            realtime
-            scripts
-            src
-            tests
-      - name: Restore complete checkout in bounded document batches
-        env:
-          GH_TOKEN: '' # Checkout already supplies the scoped read-only header.
-          XIYUNEWS_DOCUMENT_CACHE: ${{ runner.environment == 'self-hosted' && '/home/xiyunews-runner/.cache/xiyunews-doc-blobs' || '' }}
-        run: python3 scripts/hydrate_checkout.py
       - uses: astral-sh/setup-uv@v7
         with:
           version: "0.11.32"
@@ -266,28 +195,12 @@ jobs:
   web:
     needs: realtime-paths
     if: needs.realtime-paths.outputs.web == 'true'
-    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
-          filter: blob:none
-          sparse-checkout: |
-            .github
-            brand
-            data
-            docs
-            ops
-            realtime
-            scripts
-            src
-            tests
-      - name: Restore complete checkout in bounded document batches
-        env:
-          GH_TOKEN: ${{ github.token }}
-          XIYUNEWS_DOCUMENT_CACHE: ${{ runner.environment == 'self-hosted' && '/home/xiyunews-runner/.cache/xiyunews-doc-blobs' || '' }}
-        run: python3 scripts/hydrate_checkout.py
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
@@ -304,6 +217,12 @@ jobs:
         working-directory: ops/daily-dispatcher
       - run: npm run check
         working-directory: ops/daily-dispatcher
-      - run: node --test tests/test_core_worker.mjs
-      - run: node --check docs/core-worker.js
+      - run: node --check docs/_worker.js
+      - run: node --test tests/test_agent_worker.mjs
+      - run: node --test tests/test_admin_worker.mjs
+      - run: node --test tests/test_brand_redirect.mjs
+      - run: node --test tests/test_story_card.mjs
+      - run: node --test tests/test_reading_context.mjs
+      - run: node --test tests/test_feed_schedule.mjs
+      - run: node --test tests/test_pwa_*.mjs
       - run: node --test tests/test_asset_minification.mjs

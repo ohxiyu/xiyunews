@@ -1,8 +1,7 @@
 from __future__ import annotations
 
 import asyncio
-import json
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -61,45 +60,8 @@ def make_item(
         content=content,
         published_at=published_at,
         ai_score=score,
-        ai_summary="已评分的中文事实。",
-        metadata={"category": "crypto-markets", "title_zh": "中文标题 "+item_id},
+        metadata={"category": "crypto-markets"},
     )
-
-
-def test_retry_restores_missing_static_edition_without_network_or_messages(tmp_path, monkeypatch):
-    import src.orchestrator as module
-    monkeypatch.chdir(tmp_path)
-    now = datetime(2026, 7, 29, 9, 0, tzinfo=SHANGHAI)
-    story = make_item('saved-story', now - timedelta(hours=3))
-    story.metadata.update(title_zh='已保存标题', detailed_summary_zh='原有事实及完整正文。')
-    state = DailyFeedState(date='2026-07-29', timezone='Asia/Shanghai', updated_at=now, items=[story], x_posted_languages=['zh'])
-    save_daily_feed_state(state)
-    before = Path('docs/_data/bmtnews_state.json').read_text()
-    orchestrator = BMTNewsOrchestrator(Config(
-        ai=AIConfig(provider='openai', model='test', api_key_env='TEST_API_KEY', languages=['zh']),
-        sources=SourcesConfig(), filtering=FilteringConfig(daily_timezone='Asia/Shanghai'),
-    ), storage=StorageManager(data_dir=str(tmp_path / 'data')))
-    def forbidden(*args, **kwargs):
-        pytest.fail('static recovery must not call sources, AI, market or delivery')
-    for name in ('fetch_all_sources', '_analyze_content'):
-        monkeypatch.setattr(orchestrator, name, forbidden)
-    monkeypatch.setattr('src.selection.create_ai_client',forbidden)
-    monkeypatch.setattr('src.enrichment.create_ai_client',forbidden)
-    asyncio.run(orchestrator.run_daily_edition(now=now))
-    assert Path('docs/_data/bmtnews_state.json').read_text() == before
-    for language in ('zh',):
-        assert Path(f'docs/_posts/2026-07-29-summary-{language}.md').is_file()
-        assert Path(f'docs/editions/2026-07-29/{language}.html').is_file()
-    edition = json.loads(Path('docs/api/latest.json').read_text())
-    assert edition['date'] == '2026-07-29'
-    assert len(edition['items']) == 1
-    assert edition['items'][0]['title']['zh'] == '已保存标题'
-    assert '原有事实及完整正文。' in Path('docs/editions/2026-07-29/zh.html').read_text()
-    report = load_run_report(Path('data/run-report.json'))
-    assert any(a['code'] == 'edition_static_recovered' for a in report['alerts'])
-    outputs = {str(p): p.read_bytes() for p in Path('docs').rglob('*') if p.is_file()}
-    asyncio.run(orchestrator.run_daily_edition(now=now))
-    assert outputs == {str(p): p.read_bytes() for p in Path('docs').rglob('*') if p.is_file()}
 
 
 def test_edition_window_uses_latest_completed_fixed_cutoff() -> None:
@@ -286,9 +248,11 @@ def test_daily_edition_combines_staging_and_final_fetch(
         "merge_topic_duplicates",
         no_topic_duplicates,
     )
+    monkeypatch.setattr(orchestrator, "_expand_twitter_discussion", no_op)
     monkeypatch.setattr(orchestrator, "_enrich_important_items", no_op)
     monkeypatch.setattr(
-        "src.services.telegram_delivery.TelegramEditionPublisher.send_daily_edition",
+        orchestrator.telegram_publisher,
+        "send_daily_edition",
         send_telegram,
     )
     monkeypatch.chdir(tmp_path)
@@ -318,7 +282,7 @@ def test_daily_edition_combines_staging_and_final_fetch(
     assert "selected_count: 2" in post
     assert 'fragment_url: "/editions/2026-07-29/zh.html"' in post
     assert (
-        'class="core-feed"'
+        'class="daily-feed-layout is-editorial-grid feed-rendered-static"'
         in post
     )
     fragment = (
@@ -343,8 +307,9 @@ def test_daily_edition_combines_staging_and_final_fetch(
     assert report["metrics"]["primary_required"] == 3
     assert report["metrics"]["ranking_audit_passes"] == 1
     assert report["breakdowns"]["final_selected_groups"] == {"Crypto Markets": 2}
-    assert any(alert["code"] == "telegram_deferred" for alert in report["alerts"])
-    assert telegram_calls == []
+    assert report["metrics"]["telegram_messages_sent"] == 1
+    assert report["metrics"]["telegram_message_chars"] == 1234
+    assert telegram_calls == [("2026-07-29", 2, "zh")]
     assert any(
         alert["code"] == "primary_quota_shortfall"
         for alert in report["alerts"]
@@ -359,7 +324,7 @@ def test_daily_edition_combines_staging_and_final_fetch(
     )
     retry_report = load_run_report(tmp_path / "data" / "run-report.json")
     assert analyzed_ids == ["fresh", "staged"]
-    assert telegram_calls == []
+    assert telegram_calls == [("2026-07-29", 2, "zh")]
     assert retry_report["metrics"]["displayed_today"] == 2
     assert any(
         alert["code"] == "edition_already_published"
@@ -375,8 +340,8 @@ def test_daily_edition_combines_staging_and_final_fetch(
         )
     )
     rebuild_report = load_run_report(tmp_path / "data" / "run-report.json")
-    assert telegram_calls == []
-    assert any(alert["code"] == "edition_already_published"
+    assert telegram_calls == [("2026-07-29", 2, "zh")]
+    assert any(alert["code"] == "telegram_rebuild_skipped"
                for alert in rebuild_report["alerts"])
 
 
@@ -421,7 +386,7 @@ def test_daily_edition_uses_unpublished_36_hour_fallback_when_short(
             provider="openai",
             model="test",
             api_key_env="TEST_API_KEY",
-            languages=["zh"],
+            languages=[],
         ),
         sources=SourcesConfig(),
         filtering=FilteringConfig(
@@ -474,6 +439,7 @@ def test_daily_edition_uses_unpublished_36_hour_fallback_when_short(
         "merge_topic_duplicates",
         no_topic_duplicates,
     )
+    monkeypatch.setattr(orchestrator, "_expand_twitter_discussion", no_op)
     monkeypatch.setattr(orchestrator, "_enrich_important_items", no_op)
     monkeypatch.chdir(tmp_path)
 
@@ -504,7 +470,7 @@ def test_daily_edition_uses_unpublished_36_hour_fallback_when_short(
     }
 
 
-def test_background_scoring_and_independent_daily_edition() -> None:
+def test_workflows_stage_twice_and_publish_once() -> None:
     root = Path(__file__).parents[1]
     collection = (
         root / ".github" / "workflows" / "feed-collection.yml"
@@ -513,15 +479,14 @@ def test_background_scoring_and_independent_daily_edition() -> None:
         root / ".github" / "workflows" / "daily-summary.yml"
     ).read_text(encoding="utf-8")
 
-    assert "cron: '*/5 * * * *'" in collection
+    assert "cron: '30 0,4,12,16,20 * * *'" in collection
     assert "17 2,8,14" not in collection
     assert "staging-cache" in collection
     assert "staging-cache" in publication
-    assert "uv run python -m src.rolling_feed" in collection
-    assert "Restore published event state" not in collection
-    assert "Collect and score new candidates into private caches only" in collection
-    assert "src.rolling_feed" in collection
-    assert "peaceiris/actions-gh-pages" not in collection
+    assert "bmtnews --mode fetch --hours 12" in collection
+    assert "Restore published event state" in collection
+    assert "Collect sources and increment event timelines" in collection
+    assert "Deploy incremental event pages" in collection
     assert "\n  schedule:" not in publication
     assert 'args=(--mode publish --hours 24 --cutoff-hour "$EDITION_CUTOFF_HOUR")' in publication
     assert "EDITION_CUTOFF_HOUR: ${{ inputs.cutoff_hour || '7' }}" in publication
@@ -536,12 +501,8 @@ def test_background_scoring_and_independent_daily_edition() -> None:
     assert "timeout-minutes: 30" in publication
     assert "GITHUB_TOKEN: ${{ github.token }}" in collection
     assert "GITHUB_TOKEN: ${{ github.token }}" in publication
-    assert "gh workflow run x-distribution.yml" not in publication
-    # Reader delivery remains isolated; the only bot credential here is for private operations.
-    assert "TELEGRAM_ALERT_THREAD_ID:" in publication
-    assert "src.operations --workflow-status" in publication
-    assert "src.core_delivery" not in publication
-    telegram = (root / ".github/workflows/daily-telegram.yml").read_text()
-    assert "workflows: ['xiyunews Cloudflare']" in telegram
-    assert "TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}" in telegram
-    assert "src.core_delivery" in telegram
+    assert "actions: write" in publication
+    assert "gh workflow run x-distribution.yml" in publication
+    assert '-f kickoff_only=true' in publication
+    assert "TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}" in publication
+    assert "TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}" in publication

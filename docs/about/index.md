@@ -1,19 +1,37 @@
 ---
 layout: default
-title: 关于 xiyu.news
-description: xiyu 的中文加密与 AI 日报，选稿方法与来源说明。
+title: 关于稀有News
+description: xiyu.news identity, editorial scope, publication model, and limitations.
 permalink: /about/
+eyebrow: XIYU.NEWS ABOUT
+hide_language_toggle: true
 ---
-<header class="page-heading"><p class="eyebrow">作者与选稿方法</p><h1>关于 xiyu.news</h1></header>
 
-我是 xiyu，关注比特币、加密安全、协议和重要 AI 进展。这里每天发布一期中文日报，帮助你用一份内容了解值得关注的变化。
+稀有News（xiyu.news）是一个公开、双语、每日更新的信息整理项目，主要覆盖加密市场、交易所、
+协议、安全事件和监管变化，同时保留有限篇幅给重要 AI 科技进展与可能影响数字资产
+市场的宏观政策。项目的目标不是追求最多新闻，而是将跨来源重复报道合并为较少、
+可核查、带上下文的事件条目，让读者在一个固定版本中理解当天真正发生了什么。
 
-日报以上海时间每日 07:00 为截止，07:26 开始生成，目标约 07:30 发布。页面标注实际刊期和来源时间；延迟时保留上一期日期，不把旧内容标成今天。
+系统从公开来源采集候选内容，经过 URL 规范化、跨来源去重、重要性评分、类别配额、
+来源上限和编辑规则后，每天生成一期中英文版本。每条内容尽量保留原始来源链接，
+并区分事实摘要、背景资料与市场影响分析。持续事件会被组织为跨日事件线，常见机构、
+公司和协议会进入实体索引。公开 JSON API、Atom feeds 和 OpenAPI 文档允许研究工具与
+智能体直接读取结构化结果，而不必抓取页面。
 
-候选来自公开公告、开发者讨论和媒体报道，经过重要性评分、重复事件合并及类别与来源配额后入选。自动化辅助写作，背景仅在证据支持时补充；每条保留原始来源，方便核对。低信号日可以少发，扩写不可用时发布明确标注的简版。
+## English
 
-内容可能有遗漏或错误，请通过原始来源核实重要信息。本站不提供投资建议。已经发布的各期按日期保留，不重新生成或发送。
+xiyu.news is a public, bilingual daily intelligence project focused primarily
+on crypto markets, exchanges, protocols, security incidents, and regulation,
+with a deliberately limited allocation for material AI and macro-policy news.
+Its purpose is to reduce repeated coverage into a smaller set of verifiable,
+context-rich events. The project publishes one fixed edition per day rather
+than presenting an endless real-time stream.
 
-{% include author-links.html %}
-
-[往期日报](/history/) · [RSS](/feed.xml) · [软件与内容权利](/legal/)
+Automation assists collection, ranking, translation, summarization, and
+enrichment, but generated analysis can still be incomplete or wrong. xiyu.news
+does not provide investment, legal, tax, or compliance advice. Readers and
+agents should verify consequential claims against the original linked sources.
+The website, read-only API, feeds, and license notices are public. The
+operational repository is private; its issue tracker is not a public contact
+channel. See [contact information](https://xiyu.news/contact/) and
+[software and content rights](https://xiyu.news/legal/) for the current published information.

@@ -47,13 +47,13 @@ def test_shared_schedule_has_exact_coverage_without_overlap():
 
 
 def test_runtime_health_and_cron_routes_match_deployment_configuration():
-    source = (ROOT / "ops/daily-dispatcher/src/schedule.ts").read_text()
-    cron = re.search(r'export const COLLECTION_CRON = (".*?");', source)[1]
+    source = (ROOT / "ops/daily-dispatcher/src/square.ts").read_text()
+    cron = re.search(r'export const SQUARE_CRON = (".*?");', source)[1]
     match = re.search(r"export const CONFIGURED_CRONS = (\[.*?\]);", source, re.S)
     assert match is not None
     lib = (ROOT / "ops/daily-dispatcher/src/lib.ts").read_text()
     schedules = json.loads(re.search(r"export const SCHEDULE_CRONS = (\[.*?\]) as const", lib, re.S)[1])
-    resolved = match[1].replace("COLLECTION_CRON", cron)
+    resolved = match[1].replace("SQUARE_CRON", cron)
     for index in (0, 1):
         resolved = resolved.replace(f"SCHEDULE_CRONS[{index}]", json.dumps(schedules[index]))
     assert json.loads(resolved) == configured_crons()

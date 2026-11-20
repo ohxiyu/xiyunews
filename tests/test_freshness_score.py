@@ -73,7 +73,7 @@ def test_existing_cached_score_is_not_rescored(tmp_path, monkeypatch):
     orchestrator._result_cache().store_analysis(cached)
     def forbidden(*args, **kwargs):
         raise AssertionError("Cache hit must not create an AI client")
-    monkeypatch.setattr("src.selection.create_ai_client", forbidden)
+    monkeypatch.setattr("src.orchestrator.create_ai_client", forbidden)
     result = asyncio.run(orchestrator._analyze_content(
         [item()], edition_window=edition_window_for_date("2026-09-20", "Asia/Shanghai"),
     ))

@@ -1,41 +1,32 @@
 name: xiyu.news Feed Collection
-run-name: >-
-  ${{ inputs.alert_test && 'Operations alert test' || (inputs.alert_setup_chat != '' && 'Operations topic setup') || 'Feed collection' }}
-
-# Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
-# never change server Git config or credentials.
-env:
-  GIT_CONFIG_COUNT: '1'
-  GIT_CONFIG_KEY_0: http.version
-  GIT_CONFIG_VALUE_0: HTTP/1.1
-  XIYUNEWS_STATE_BACKEND: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'cloudflare' || '' }}
 
 on:
   schedule:
-    # Backup clock; the unified Worker polls every five minutes with active-run guards.
-    - cron: '*/5 * * * *'
+    # The Cloudflare dispatcher also dispatches this workflow whenever the
+    # newest run is over four hours old (project-docs/daily-dispatcher.md);
+    # this schedule is the second clock.
+    # Coverage runs roughly every four hours; the final fetch happens in
+    # daily-summary.yml at 07:26 after the 07:00 cutoff. High-churn sources (exchange
+    # Telegram channels) overflow their fetch limits with fewer runs.
+    - cron: '30 0,4,12,16,20 * * *'
+      timezone: 'Asia/Shanghai'
+    # Independent post-cutoff path. Its recovery job dispatches the daily
+    # edition even when Cloudflare and the standalone watchdog miss a trigger.
+    - cron: '37 7 * * *'
+      timezone: 'Asia/Shanghai'
   workflow_dispatch:
-    inputs:
-      alert_test:
-        description: Send one Telegram operations topic test only; no collection or publication
-        type: boolean
-        default: false
-      alert_setup_chat:
-        description: Explicit group ID or public @username; create 日报运维 topic only
-        type: string
-        default: ''
+
+concurrency:
+  group: bmtnews-feed-update
+  cancel-in-progress: false
 
 permissions:
+  actions: write  # Allows the post-collection recovery check to dispatch daily
   contents: write  # Persists the staging cache to the staging-cache branch
-  id-token: write
 
 jobs:
   collect:
-    if: vars.XIYUNEWS_RUNTIME_MODE != 'maintenance'
-    concurrency:
-      group: xiyunews-rolling-collection
-      cancel-in-progress: false
-    runs-on: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 30
     env:
       TZ: Asia/Shanghai
@@ -43,31 +34,36 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-        with:
-          filter: blob:none
-          sparse-checkout: |
-            src
-            docs
-            scripts
-            ops
-            data
-            .github
+
+      - name: Restore published event state
+        shell: bash
+        run: |
+          # Persistent runners retain shallow refs; only refresh the local tracking ref.
+          git fetch --depth=1 origin +gh-pages:refs/remotes/origin/gh-pages
+          mkdir -p docs/_data
+          for path in _data/events.json _data/event-legacy-urls.json; do
+            git show "origin/gh-pages:${path}" > "docs/${path}"
+          done
+          if git cat-file -e "origin/gh-pages:_data/bmtnews_state.json" 2>/dev/null; then
+            git show "origin/gh-pages:_data/bmtnews_state.json" > docs/_data/bmtnews_state.json
+          fi
+          mkdir -p docs/_data/archive
+          for path in $(git ls-tree -r --name-only origin/gh-pages -- _data/archive 2>/dev/null); do
+            git show "origin/gh-pages:${path}" > "docs/${path}"
+          done
 
       - name: Restore staged source items
-        if: ${{ !inputs.alert_test && inputs.alert_setup_chat == '' }}
         uses: actions/cache/restore@v5
         with:
           path: |
             data/staging-items.json
             data/analysis-cache.json
-            data/qualified-cache.json
           key: ${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             ${{ runner.os }}-bmtnews-pipeline-v2-
             ${{ runner.os }}-bmtnews-staging-v1-
 
-      - name: Merge latest persistent staging with the restored cache
-        if: ${{ !inputs.alert_test && inputs.alert_setup_chat == '' }}
+      - name: Restore staging from persistent branch on cache miss
         shell: bash
         run: |
           if git fetch --depth=1 origin staging-cache 2>/dev/null; then
@@ -78,10 +74,6 @@ jobs:
             if [ ! -f data/analysis-cache.json ]; then
               git show FETCH_HEAD:data/analysis-cache.json > data/analysis-cache.json 2>/dev/null || rm -f data/analysis-cache.json
             fi
-            if [ ! -f data/qualified-cache.json ]; then
-              git show FETCH_HEAD:data/qualified-cache.json > data/qualified-cache.json 2>/dev/null || rm -f data/qualified-cache.json
-            fi
-            python3 scripts/merge_pipeline_cache.py FETCH_HEAD
           fi
 
       - name: Set up Python
@@ -97,77 +89,37 @@ jobs:
       - name: Install dependencies
         run: uv sync --frozen --extra trafilatura
 
-      - name: Acquire private fenced publication state
-        id: state
-        if: env.XIYUNEWS_STATE_BACKEND == 'cloudflare'
-        run: python3 -m src.edge_state acquire
-
       - name: Prepare GitHub Actions config
         run: cp data/config.github.json data/config.json
 
-      - name: Create explicitly requested operations topic
-        if: ${{ inputs.alert_setup_chat != '' }}
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          ALERT_SETUP_CHAT: ${{ inputs.alert_setup_chat }}
-        run: uv run python -m src.operations --setup-alert-topic "$ALERT_SETUP_CHAT"
+      - name: Backfill event brief data
+        run: uv run python -m src.event_brief_backfill
 
-      - name: Preserve topic setup result without bot credentials
-        if: ${{ always() && inputs.alert_setup_chat != '' }}
-        uses: actions/upload-artifact@v6
-        with:
-          name: alert-topic-${{ github.run_id }}
-          path: data/alert-setup.json
-          retention-days: 7
-          if-no-files-found: warn
-
-      - name: Test Telegram operations topic alert
-        if: ${{ inputs.alert_test }}
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
-          TELEGRAM_ALERT_THREAD_ID: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
-        run: uv run python -m src.operations --test-alert
-
-      - name: Collect and score new candidates into private caches only
-        if: ${{ !inputs.alert_test && inputs.alert_setup_chat == '' }}
+      - name: Collect sources and increment event timelines
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           LWN_KEY: ${{ secrets.LWN_KEY }}
-          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
-        run: uv run python -m src.rolling_feed
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: uv run bmtnews --mode fetch --hours 12
+
+      - name: Publish run report
+        if: ${{ always() }}
+        run: python3 -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
 
       - name: Preserve successful AI work even after publication failure
-        if: ${{ always() && !inputs.alert_test && inputs.alert_setup_chat == '' }}
+        if: ${{ always() }}
         uses: actions/cache/save@v5
         with:
           path: |
             data/staging-items.json
             data/analysis-cache.json
-            data/qualified-cache.json
           key: ${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}
 
-
-      - name: Persist staging cache to branch
-        if: ${{ always() && !inputs.alert_test && inputs.alert_setup_chat == '' }}
-        shell: bash
-        run: bash scripts/persist_staging_cache.sh
-
-      - name: Finalize operations topic alerts and costs
-        if: ${{ always() && !inputs.alert_test && inputs.alert_setup_chat == '' }}
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
-          TELEGRAM_ALERT_THREAD_ID: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
-          OPERATIONS_STATUS: ${{ job.status }}
-        run: uv run python -m src.operations --workflow-status "$OPERATIONS_STATUS"
-
-      - name: Publish run report
-        if: ${{ always() && !inputs.alert_test && inputs.alert_setup_chat == '' }}
-        run: python3 -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
-
       - name: Keep machine-readable cost and health report
-        if: ${{ always() && !inputs.alert_test && inputs.alert_setup_chat == '' }}
+        if: ${{ always() }}
         uses: actions/upload-artifact@v6
         with:
           name: run-report-${{ github.run_id }}-${{ github.run_attempt }}
@@ -175,6 +127,47 @@ jobs:
           retention-days: 30
           if-no-files-found: warn
 
-      - name: Release private publication state
-        if: always() && steps.state.outcome == 'success'
-        run: python3 -m src.edge_state release
+      - name: Render Quick Post without AI
+        run: uv run python -m src.quick_posts
+
+      - name: Deploy incremental event pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          keep_files: true
+          commit_message: "🧭 Event timeline: ${{ github.run_id }}"
+          publish_branch: gh-pages
+          enable_jekyll: true
+
+      - name: Persist staging cache to branch
+        if: ${{ always() }}
+        shell: bash
+        run: bash scripts/persist_staging_cache.sh
+
+  recover-daily:
+    needs: collect
+    if: ${{ always() && github.event_name == 'schedule' }}
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Recover a missing daily edition
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RECOVERY_CHECK_TOKEN: ${{ secrets.RECOVERY_CHECK_TOKEN }}
+          XIYUNEWS_RECOVERY_CHECK_TOKEN: ${{ secrets.XIYUNEWS_RECOVERY_CHECK_TOKEN }}
+          XIYUNEWS_EDGE_ENABLED: ${{ vars.XIYUNEWS_EDGE_ENABLED }}
+        run: >-
+          python3 -m src.schedule_watchdog
+          --coordinator
+          --repository "${GITHUB_REPOSITORY}"
+          --workflow daily-summary.yml
+          --ref main
+          --timezone Asia/Shanghai
+          --cutoff-hour 7
+          --grace-minutes 26
+          --trigger-source feed-collection
+          --success-on-recovery

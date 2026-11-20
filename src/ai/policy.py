@@ -30,8 +30,14 @@ SIMPLE_BUDGETS = {
     # DeepSeek's implicit thinking can consume the entire output budget.
     "topic_dedup": 1536,
     "daily_event_dedup": 1536,
+    # Bilingual overview is a short extraction from already enriched stories.
+    "edition_overview": 2048,
     "prefilter": 2048,
     "content_analysis": 1536,
     "concept_extraction": 768,
     "translation": 2048,
+    # Event headlines and states for Chinese pages, a few items per call.
+    "event_translation": 3072,
+    # Groups of entry IDs plus two headlines per merged event.
+    "event_merge": 3072,
 }

@@ -1,8 +1,0 @@
-{% assign posts = site.posts | where: 'lang', 'zh' %}
-{% assign latest = posts | first %}
-{% if latest %}
-{% include edition-heading.html edition=latest current=true %}
-<section class="daily-day" data-language="zh" data-date="{{ latest.date | date: '%Y-%m-%d' }}">{{ latest.content }}</section>
-{% else %}<header class="edition-heading"><h1>每日加密与 AI 日报</h1></header><p class="empty-state">首期日报发布后将在这里显示。</p>{% endif %}
-{% include author-links.html %}
-<p class="end-note"><a href="/history/">最近一周日报</a> · <a href="/feed.xml">RSS</a></p>

@@ -36,8 +36,6 @@ _TRACKING_QUERY_PARAMETERS = {
 }
 _PERSISTED_METADATA_KEYS = {
     "category",
-    "edition_mode",
-    "enrichment_status",
     "discussion_url",
     "editorial",
     "event_id",
@@ -205,7 +203,6 @@ def load_daily_feed_state(
     date: str,
     timezone_name: str,
     path: Path = DAILY_FEED_STATE_PATH,
-    *, audit_only: bool = False,
 ) -> DailyFeedState:
     """Load current-day state; a different day starts with an empty state."""
     empty = DailyFeedState(
@@ -214,10 +211,7 @@ def load_daily_feed_state(
         updated_at=datetime.now(timezone.utc),
     )
     try:
-        if audit_only:
-            payload = json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
-        else:
-            payload = read_document(path)
+        payload = read_document(path)
         if payload is None:
             return empty
         state = DailyFeedState.model_validate(payload)
@@ -239,11 +233,6 @@ def load_daily_feed_state(
         timezone_name,
     )
     return state
-
-
-def load_published_daily_feed_state(date: str, timezone_name: str, path: Path = DAILY_FEED_STATE_PATH) -> DailyFeedState:
-    """Delivery consumes the Git audit, never an unpublished producer draft."""
-    return load_daily_feed_state(date, timezone_name, path, audit_only=True)
 
 
 def save_daily_feed_state(

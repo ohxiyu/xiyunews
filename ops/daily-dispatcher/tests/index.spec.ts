@@ -1,9 +1,8 @@
-import {handleOAuthAuth,handleOAuthCallback} from "../src/oauth";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import worker from "../src/index";
 import { testing, SCHEDULE_CRONS } from "../src/lib";
-import { CONFIGURED_CRONS } from "../src/schedule";
+import { CONFIGURED_CRONS } from "../src/square";
 import { env } from "cloudflare:test";
 
 const ENV = {
@@ -53,13 +52,15 @@ describe("edition scheduling", () => {
     );
   });
 
-  it("builds raw and rendered URLs for the Chinese edition", () => {
+  it("builds raw and rendered URLs for both languages", () => {
     expect(testing.publicationUrls(ENV, "2026-07-31")).toEqual({
       raw: [
         "https://api.github.com/repos/ohxiyu/xiyunews/contents/_posts/2026-07-31-summary-zh.md?ref=gh-pages",
+        "https://api.github.com/repos/ohxiyu/xiyunews/contents/_posts/2026-07-31-summary-en.md?ref=gh-pages",
       ],
       rendered: [
         "https://xiyu.news/2026/07/31/summary-zh.html",
+        "https://xiyu.news/2026/07/31/summary-en.html",
       ],
     });
   });
@@ -96,10 +97,10 @@ describe("dispatcher behavior", () => {
     await expect(health.json()).resolves.toMatchObject({
       service: "bmtnews-daily-dispatcher",
       status: "ok",
-      admin_oauth: "retired",
+      admin_oauth: "not_configured",
       schedule_crons_utc: CONFIGURED_CRONS,
       collection_workflow: "feed-collection.yml",
-      collection_max_age_hours: 5 / 60,
+      collection_max_age_hours: 4,
       schedule_timezone: "Asia/Shanghai",
       edition_cutoff_hour: 7,
       first_check_local: "07:26",
@@ -151,7 +152,7 @@ describe("dispatcher behavior", () => {
   });
 });
 
-describe("retained OAuth helper (not exposed by the daily Worker)", () => {
+describe("admin OAuth relay", () => {
   const OAUTH_ENV = {
     ...ENV,
     GITHUB_OAUTH_CLIENT_ID: "client-id",
@@ -159,11 +160,11 @@ describe("retained OAuth helper (not exposed by the daily Worker)", () => {
   } as Env;
 
   it("returns 503 while OAuth secrets are unset", async () => {
-    const auth = await handleOAuthAuth(
+    const auth = await worker.fetch(
       new Request("https://dispatcher.example/oauth/auth"),
       ENV,
     );
-    const callback = await handleOAuthCallback(
+    const callback = await worker.fetch(
       new Request("https://dispatcher.example/oauth/callback?code=x&state=y"),
       ENV,
     );
@@ -172,7 +173,7 @@ describe("retained OAuth helper (not exposed by the daily Worker)", () => {
   });
 
   it("redirects to GitHub with a narrow scope and a state cookie", async () => {
-    const response = await handleOAuthAuth(
+    const response = await worker.fetch(
       new Request("https://dispatcher.example/oauth/auth"),
       OAUTH_ENV,
     );
@@ -195,7 +196,7 @@ describe("retained OAuth helper (not exposed by the daily Worker)", () => {
     const fetchSpy = vi.fn();
     vi.stubGlobal("fetch", fetchSpy);
 
-    const response = await handleOAuthCallback(
+    const response = await worker.fetch(
       new Request(
         "https://dispatcher.example/oauth/callback?code=abc&state=forged",
         { headers: { Cookie: "bmtnews_oauth_state=expected" } },
@@ -217,7 +218,7 @@ describe("retained OAuth helper (not exposed by the daily Worker)", () => {
       ),
     );
 
-    const response = await handleOAuthCallback(
+    const response = await worker.fetch(
       new Request(
         "https://dispatcher.example/oauth/callback?code=abc&state=expected",
         { headers: { Cookie: "bmtnews_oauth_state=expected" } },
@@ -234,5 +235,3 @@ describe("retained OAuth helper (not exposed by the daily Worker)", () => {
     expect(response.headers.get("Set-Cookie")).toContain("Max-Age=0");
   });
 });
-
-it("does not expose admin OAuth routes from the daily dispatcher",async()=>{for(const path of ["/oauth/auth","/oauth/callback"]){const r=await worker.fetch(new Request("https://dispatcher.example"+path),ENV);expect(r.status).toBe(404);}});

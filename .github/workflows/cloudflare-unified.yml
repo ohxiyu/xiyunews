@@ -1,37 +1,20 @@
 name: xiyunews Cloudflare
 
-# Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
-# never change server Git config or credentials.
-env:
-  GIT_CONFIG_COUNT: '1'
-  GIT_CONFIG_KEY_0: http.version
-  GIT_CONFIG_VALUE_0: HTTP/1.1
-  XIYUNEWS_STATE_BACKEND: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'cloudflare' || '' }}
-  # Do not let optional CLI usage telemetry delay a completed publication.
-  # This is not a Worker binding or a change to application health reporting.
-  WRANGLER_SEND_METRICS: 'false'
-  WRANGLER_HIDE_BANNER: 'true' # No optional npm-version request during publication.
-
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'docs/**'
-      - 'ops/daily-dispatcher/**'
-      - 'scripts/**'
-      - 'src/core_site.py'
-      - 'src/web_feed.py'
-      - '.github/workflows/cloudflare-unified.yml'
   workflow_dispatch:
     inputs:
       force_deploy:
-        description: Rebuild validated production assets for recovery
+        description: Publish validated assets even when the live input marker matches (recovery)
         type: boolean
         default: false
   workflow_run:
-    workflows: ['xiyu.news Daily Edition']
+    workflows:
+      - xiyu.news Daily Edition
+      - xiyu.news Feed Collection
+      - Deploy Docs
+      - Editorial Rebuild
+      - Apply Event Archive Migration
     types: [completed]
-    branches: [main]
 
 concurrency:
   group: xiyunews-cloudflare-production
@@ -40,22 +23,18 @@ concurrency:
 permissions:
   contents: read
   actions: read
-  id-token: write
 
 jobs:
   deploy:
     # Explicit opt-in only after secure configuration and the reviewed cutover.
     if: >-
       vars.XIYUNEWS_EDGE_ENABLED == 'true' &&
-      vars.XIYUNEWS_RUNTIME_MODE != 'maintenance' &&
-      ((github.event_name != 'workflow_run' && github.ref == 'refs/heads/main') ||
+      ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
        (github.event.workflow_run.conclusion == 'success' &&
         github.event.workflow_run.head_branch == 'main' &&
         github.event.workflow_run.head_repository.full_name == github.repository))
-    runs-on: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
-    # Allow the same slow checkout/dependency path verified by edge-build CI.
-    # This remains bounded; no AI generation or channel sending occurs here.
-    timeout-minutes: 30
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    timeout-minutes: 20
     # Repository secrets keep the private-repository path independent of paid
     # environment features. Main/origin/opt-in guards above still apply.
     steps:
@@ -63,15 +42,6 @@ jobs:
         with:
           ref: main
           persist-credentials: false
-          filter: blob:none
-          sparse-checkout: |
-            src
-            docs
-            scripts
-            ops
-            data
-            .github
-            realtime/scripts/deploy/watchdog
       - uses: actions/checkout@v6
         with:
           ref: gh-pages
@@ -123,25 +93,21 @@ jobs:
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         with:
           ruby-version: '3.3'
-          bundler-cache: ${{ runner.environment != 'self-hosted' }}
-      - name: Reuse locked Ruby dependencies on the dedicated runner
-        if: runner.environment == 'self-hosted' && steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-        run: bash ops/runner/setup-ruby-cache.sh producer
+          bundler-cache: true
+      - name: Render published snapshot without collection or AI
+        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
+        run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
       - uses: astral-sh/setup-uv@v7
+        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         with:
           version: "0.11.32"
       - run: uv sync --frozen
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-      - name: Overlay current core templates and routes
+      - name: Prepare bounded group messages from this published artifact without AI
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-        run: python3 scripts/overlay_core_site.py docs .edge-source
-      - name: Rebuild core reader from the immutable published snapshot
-        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-        run: uv run python -m src.core_site --root .edge-source
-      - name: Render published snapshot without collection or AI
-        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-        run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
-
+        run: >-
+          uv run python -m src.services.telegram_group_snapshot
+          .edge-source .edge-rendered --artifact "${{ steps.source.outputs.artifact }}"
       - name: Record validated output integrity and check existing cache capacity
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         id: cache-capacity
@@ -173,87 +139,12 @@ jobs:
           SOURCE_SHA: ${{ steps.source.outputs.code }}
           ARTIFACT_SHA: ${{ steps.source.outputs.artifact }}
           BUILD_KEY: ${{ steps.plan.outputs.key }}
-          PUBLICATION_RUNTIME: ${{ vars.XIYUNEWS_RUNTIME_MODE || 'server' }}
         run: >-
           npx wrangler deploy --config wrangler.unified.jsonc --keep-vars
           --var "SITE_SOURCE_COMMIT:$SOURCE_SHA"
           --var "SITE_ARTIFACT_COMMIT:$ARTIFACT_SHA"
           --var "RUNTIME_HEALTH_URL:https://api.xiyu.news/ops/runtime.json"
           --var "SITE_BUILD_KEY:$BUILD_KEY"
-          --var "PUBLICATION_RUNTIME:$PUBLICATION_RUNTIME"
-
-      - name: Configure optional daily operations topic
-        if: steps.plan.outputs.skip != 'true'
-        working-directory: ops/daily-dispatcher
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          DAILY_PRIVATE_CHAT: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
-          DAILY_ALERT_THREAD: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
-          DAILY_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        shell: bash
-        run: |
-          if [[ "$DAILY_PRIVATE_CHAT" =~ ^-[1-9][0-9]*$ && "$DAILY_ALERT_THREAD" =~ ^[1-9][0-9]*$ && -n "$DAILY_BOT_TOKEN" ]]; then
-            printf '%s' "$DAILY_BOT_TOKEN" | npx wrangler secret put DAILY_TELEGRAM_BOT_TOKEN --config wrangler.unified.jsonc
-            printf '%s' "$DAILY_PRIVATE_CHAT" | npx wrangler secret put TELEGRAM_ALERT_CHAT_ID --config wrangler.unified.jsonc
-            printf '%s' "$DAILY_ALERT_THREAD" | npx wrangler secret put TELEGRAM_ALERT_THREAD_ID --config wrangler.unified.jsonc
-          fi
 
       # Traffic and cron activation are deliberately not performed by this job.
       # Update the final owned DO binding/cron config in a reviewed cutover PR.
-
-      - name: Download exact daily producer report when this is a publication
-        if: github.event_name == 'workflow_run'
-        uses: actions/download-artifact@v7
-        with:
-          github-token: ${{ github.token }}
-          run-id: ${{ github.event.workflow_run.id }}
-          pattern: run-report-*
-          path: source-report
-
-      - name: Verify real production before any channel distribution
-        env:
-          ARTIFACT_SHA: ${{ steps.source.outputs.artifact }}
-          BUILD_KEY: ${{ steps.plan.outputs.key }}
-          DAILY_SOURCE_RUN_ID: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.id || '' }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          args=(--artifact "$ARTIFACT_SHA" --build-key "$BUILD_KEY")
-          if [ -n "$DAILY_SOURCE_RUN_ID" ]; then
-            mapfile -t reports < <(find source-report -name run-report.json -type f)
-            [ "${#reports[@]}" -eq 1 ] || { echo 'One exact daily producer report required'; exit 1; }
-            args+=(--daily-run-id "$DAILY_SOURCE_RUN_ID" --source-report "${reports[0]}")
-          fi
-          python3 scripts/verify_daily_deployment.py "${args[@]}"
-
-      - name: Preserve verified publication evidence for downstream delivery
-        uses: actions/upload-artifact@v6
-        with:
-          name: production-edition
-          path: production-edition.json
-          retention-days: 7
-          if-no-files-found: error
-
-      - name: Acquire private fenced publication state
-        id: state
-        if: always() && env.XIYUNEWS_STATE_BACKEND == 'cloudflare'
-        run: python3 -m src.edge_state acquire
-
-      - name: Finalize publication outcome and operations alerts
-        if: always()
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
-          TELEGRAM_ALERT_THREAD_ID: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
-          OPERATIONS_STATUS: ${{ job.status }}
-          X_DELIVERY_ENABLED: ${{ vars.X_DELIVERY_ENABLED }}
-        shell: bash
-        run: |
-          mapfile -t reports < <(find source-report -name run-report.json -type f 2>/dev/null)
-          report="${reports[0]:-data/no-producer-report.json}"
-          uv run python -m src.operations --report "$report" --workflow-status "$OPERATIONS_STATUS" --publication-proof production-edition.json --published-state .edge-source/_data/bmtnews_state.json
-
-      - name: Release private publication state
-        if: always() && steps.state.outcome == 'success'
-        run: python3 -m src.edge_state release

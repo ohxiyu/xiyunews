@@ -1,12 +1,4 @@
 name: xiyu.news Daily Edition
-
-# Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
-# never change server Git config or credentials.
-env:
-  GIT_CONFIG_COUNT: '1'
-  GIT_CONFIG_KEY_0: http.version
-  GIT_CONFIG_VALUE_0: HTTP/1.1
-  XIYUNEWS_STATE_BACKEND: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'cloudflare' || '' }}
 run-name: >-
   Daily ${{ inputs.edition_date || 'auto' }}
   via ${{ inputs.trigger_source || 'manual' }}
@@ -50,7 +42,7 @@ concurrency:
 jobs:
   dedup-diagnostic:
     if: ${{ inputs.diagnostic_only }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 10
     permissions:
       contents: read
@@ -72,7 +64,6 @@ jobs:
           path: |
             data/staging-items.json
             data/analysis-cache.json
-            data/qualified-cache.json
           key: diagnostic-read-only-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-bmtnews-pipeline-v2-
@@ -81,34 +72,25 @@ jobs:
           git fetch --depth=1 origin +main:refs/remotes/origin/main +gh-pages:refs/remotes/origin/gh-pages
       - name: Bounded sanitized dedup diagnosis
         env:
-          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           DIAGNOSTIC_BATCH: ${{ inputs.diagnostic_batch }}
         run: |
           args=()
           if [ -n "$DIAGNOSTIC_BATCH" ]; then args+=(--batch-id "$DIAGNOSTIC_BATCH"); fi
           uv run python -m scripts.diagnose_dedup "${args[@]}"
   daily-summary:
-    if: ${{ !inputs.diagnostic_only && vars.XIYUNEWS_RUNTIME_MODE != 'maintenance' }}
-    runs-on: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    if: ${{ !inputs.diagnostic_only }}
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 30
     env:
       TZ: Asia/Shanghai
     permissions:
       contents: write  # Needed to commit changes
-      id-token: write
+      actions: write   # Starts the idempotent first X slot after publication
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-        with:
-          filter: blob:none
-          sparse-checkout: |
-            src
-            docs
-            scripts
-            ops
-            data
-            .github
 
       - name: Restore published daily state and archive
         shell: bash
@@ -137,13 +119,12 @@ jobs:
           path: |
             data/staging-items.json
             data/analysis-cache.json
-            data/qualified-cache.json
           key: ${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             ${{ runner.os }}-bmtnews-pipeline-v2-
             ${{ runner.os }}-bmtnews-staging-v1-
 
-      - name: Merge latest persistent staging with the restored cache
+      - name: Restore staging from persistent branch on cache miss
         shell: bash
         run: |
           if git fetch --depth=1 origin staging-cache 2>/dev/null; then
@@ -154,10 +135,6 @@ jobs:
             if [ ! -f data/analysis-cache.json ]; then
               git show FETCH_HEAD:data/analysis-cache.json > data/analysis-cache.json 2>/dev/null || rm -f data/analysis-cache.json
             fi
-            if [ ! -f data/qualified-cache.json ]; then
-              git show FETCH_HEAD:data/qualified-cache.json > data/qualified-cache.json 2>/dev/null || rm -f data/qualified-cache.json
-            fi
-            python3 scripts/merge_pipeline_cache.py FETCH_HEAD
           fi
 
       - name: Set up Python
@@ -173,17 +150,11 @@ jobs:
       - name: Install dependencies
         run: uv sync --frozen --extra trafilatura
 
-      - name: Acquire private fenced publication state
-        id: state
-        if: env.XIYUNEWS_STATE_BACKEND == 'cloudflare'
-        run: python3 -m src.edge_state acquire
-
       - name: Prepare GitHub Actions config
         run: cp data/config.github.json data/config.json
 
-      - name: Restore durable publication documents before rendering
-        run: uv run python -m src.publication_state --restore-published
-
+      - name: Backfill event brief data
+        run: uv run python -m src.event_brief_backfill
 
       - name: Run xiyu.news
         env:
@@ -194,7 +165,15 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           LWN_KEY: ${{ secrets.LWN_KEY }}
-          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          BMTNEWS_WEBHOOK_URL: ${{ secrets.BMTNEWS_WEBHOOK_URL }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          # Only used when x_delivery.enabled is true in the config.
+          X_CONSUMER_KEY: ${{ secrets.X_CONSUMER_KEY }}
+          X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
           EDITION_CUTOFF_HOUR: ${{ inputs.cutoff_hour || '7' }}
         shell: bash
         run: |
@@ -207,6 +186,10 @@ jobs:
           fi
           uv run bmtnews "${args[@]}"
 
+      - name: Publish run report
+        if: ${{ always() }}
+        run: python3 -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
+
       - name: Preserve successful AI work even after publication failure
         if: ${{ always() }}
         uses: actions/cache/save@v5
@@ -214,49 +197,7 @@ jobs:
           path: |
             data/staging-items.json
             data/analysis-cache.json
-            data/qualified-cache.json
           key: ${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}
-
-
-      - name: Read published edition date
-        id: edition
-        shell: bash
-        run: |
-          edition_date="$(python -c 'import json; print(json.load(open("data/run-report.json", encoding="utf-8"))["date"])')"
-          echo "date=${edition_date}" >> "$GITHUB_OUTPUT"
-
-      - name: Repair retained edition history without AI or delivery
-        run: uv run python -m src.edition_recovery
-
-
-      - name: Rebuild core reader from published content without AI or delivery
-        run: uv run python -m src.core_site --root docs --stage-reader reader-output
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./reader-output
-          keep_files: true  # Keep existing summaries on gh-pages branch
-          commit_message: "📝 Daily Summary: ${{ steps.edition.outputs.date }}"
-          publish_branch: gh-pages
-          enable_jekyll: true
-
-      - name: Confirm exact published state checkpoint
-        run: uv run python -m src.publication_state --acknowledge-published --reader-only
-
-      - name: Finalize operations topic alerts and costs
-        if: ${{ always() }}
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
-          TELEGRAM_ALERT_THREAD_ID: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
-          OPERATIONS_STATUS: ${{ job.status }}
-        run: uv run python -m src.operations --workflow-status "$OPERATIONS_STATUS"
-
-      - name: Publish run report
-        if: ${{ always() }}
-        run: python3 -m src.run_report --input data/run-report.json --output "$GITHUB_STEP_SUMMARY"
 
       - name: Keep machine-readable cost and health report
         if: ${{ always() }}
@@ -267,6 +208,42 @@ jobs:
           retention-days: 30
           if-no-files-found: warn
 
-      - name: Release private publication state
-        if: always() && steps.state.outcome == 'success'
-        run: python3 -m src.edge_state release
+      - name: Read published edition date
+        id: edition
+        shell: bash
+        run: |
+          edition_date="$(python -c 'import json; print(json.load(open("data/run-report.json", encoding="utf-8"))["date"])')"
+          echo "date=${edition_date}" >> "$GITHUB_OUTPUT"
+
+      - name: Render Quick Post without AI
+        run: uv run python -m src.quick_posts
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          keep_files: true  # Keep existing summaries on gh-pages branch
+          commit_message: "📝 Daily Summary: ${{ steps.edition.outputs.date }}"
+          publish_branch: gh-pages
+          enable_jekyll: true
+
+      - name: Start X distribution for published edition
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          for attempt in 1 2 3; do
+            if gh workflow run x-distribution.yml \
+              --ref "$GITHUB_REF_NAME" \
+              -f edition_date="${{ steps.edition.outputs.date }}" \
+              -f kickoff_only=true; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              sleep $((attempt * 5))
+            fi
+          done
+          # The edition is live; the X cron picks it up within 20 minutes.
+          echo "::warning::Published the daily edition but could not start X distribution; the scheduled X run will pick it up"
+          exit 0

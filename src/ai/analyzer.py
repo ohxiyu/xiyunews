@@ -6,12 +6,10 @@ import re
 from datetime import timedelta
 from typing import Iterable, List, Optional
 from pydantic import BaseModel, Field, ValidationError
-from tenacity import retry, retry_if_exception, stop_after_attempt, wait_exponential
+from tenacity import retry, stop_after_attempt, wait_exponential
 from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn, MofNCompleteColumn
 
 from .client import AIClient, LAST_COMPLETION_SCORER
-from .errors import account_error
-from .chinese import CHINESE_CONTRACT, repair_chinese
 from .prompts import CONTENT_ANALYSIS_SYSTEM, CONTENT_ANALYSIS_USER
 from .utils import parse_json_response
 from ..models import ContentItem
@@ -26,7 +24,6 @@ class AnalysisResult(BaseModel):
     score: float = Field(ge=0, le=10, allow_inf_nan=False)
     reason: str
     summary: str
-    title_zh: Optional[str] = None
     tags: list[str]
     category: Optional[str] = None
 
@@ -76,30 +73,16 @@ class ContentAnalyzer:
         throttle_sec = self._get_throttle_sec()
         concurrency = self._get_concurrency()
         semaphore = asyncio.Semaphore(concurrency)
-        terminal_error = None
-        processed_count = 0
 
         async def _process(item: ContentItem, index: int, progress_task) -> ContentItem:
-            nonlocal terminal_error, processed_count
             async with semaphore:
-                if terminal_error is not None:
-                    # The originating task already fails the batch. Do not
-                    # re-raise a shared exception through every queued task.
-                    return item
                 try:
                     await self._analyze_item(item)
                 except Exception as e:
-                    blocked = account_error(e)
-                    if blocked is not None:
-                        terminal_error = blocked
-                        raise blocked from None
                     print(f"Error analyzing item {item.id}: {e}")
                     item.ai_score = 0.0
                     item.ai_reason = "Analysis failed"
                     item.ai_summary = item.title
-            processed_count += 1
-            if processed_count % 10 == 0 or processed_count == len(items):
-                progress.console.print(f"AI analysis processed: {processed_count}/{len(items)}")
             # Never hold a scarce model-concurrency slot while only waiting
             # for the provider pacing delay.
             if throttle_sec > 0 and index < len(items) - 1:
@@ -115,27 +98,16 @@ class ContentAnalyzer:
             transient=True,
         ) as progress:
             task = progress.add_task("Analyzing", total=len(items))
-            tasks = [
-                asyncio.create_task(_process(item, i, task)) for i, item in enumerate(items)
+            coros = [
+                _process(item, i, task) for i, item in enumerate(items)
             ]
-            try:
-                analyzed_items = await asyncio.gather(*tasks)
-            finally:
-                # gather propagates its first error without cancelling peers.
-                # Drain them before leaving so queued items cannot keep spending.
-                for pending in tasks:
-                    if not pending.done():
-                        pending.cancel()
-                await asyncio.gather(*tasks, return_exceptions=True)
+            analyzed_items = await asyncio.gather(*coros)
 
         return analyzed_items
 
     @retry(
         stop=stop_after_attempt(3),
-        wait=wait_exponential(min=2, max=10),
-        retry=retry_if_exception(
-            lambda exc: isinstance(exc, Exception) and account_error(exc) is None
-        ),
+        wait=wait_exponential(min=2, max=10)
     )
     async def _analyze_item(self, item: ContentItem) -> None:
         """Analyze a single content item.
@@ -237,9 +209,6 @@ class ContentAnalyzer:
             + "Scoring granularity and calibration:" + calibration
         )
 
-        chinese_only = getattr(getattr(self.client, "config", None), "languages", None) == ["zh"]
-        if chinese_only: system_prompt += CHINESE_CONTRACT
-
         # Get AI completion
         LAST_COMPLETION_SCORER.set(None)
         response = await self.client.complete(
@@ -266,9 +235,6 @@ class ContentAnalyzer:
         item.ai_reason = result.reason
         item.ai_summary = result.summary
         item.ai_tags = result.tags
-        if result.title_zh: item.metadata["title_zh"] = result.title_zh
-        if chinese_only and not await repair_chinese(item, self.client):
-            item.metadata["chinese_invalid"] = True
         config = getattr(self.client, "config", None)
         provider = getattr(config, "provider", None)
         configured_scorer = (
@@ -281,4 +247,3 @@ class ContentAnalyzer:
             if source_category != result.category:
                 item.metadata.setdefault("source_category", source_category)
                 item.metadata["category"] = result.category
-

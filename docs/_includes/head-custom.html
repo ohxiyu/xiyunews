@@ -1,0 +1,86 @@
+<link rel="icon" type="image/svg+xml" href="{{ '/assets/images/bmtnews-favicon-v3.svg' | relative_url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/bmtnews-favicon-32-v3.png' | relative_url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/bmtnews-apple-180-v3.png' | relative_url }}">
+<link rel="manifest" href="{{ '/manifest.webmanifest' | relative_url }}?v=brand-20261001">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="xiyu.news">
+<link rel="alternate" type="application/rss+xml" title="xiyu.news RSS" href="{{ '/feed.xml' | relative_url }}">
+<link rel="alternate" type="application/atom+xml" title="xiyu.news 中文加密资讯" href="{{ '/feed-zh.xml' | relative_url }}">
+<link rel="alternate" type="application/atom+xml" title="xiyu.news English Crypto News" href="{{ '/feed-en.xml' | relative_url }}">
+<link rel="describedby" href="{{ '/llms.txt' | relative_url }}" type="text/markdown">
+{% if page.page_type == "home" %}
+<link rel="alternate" type="text/markdown" href="{% if page.interface_language == 'en' %}{{ '/en/index.html.md' | relative_url }}{% else %}{{ '/index.html.md' | relative_url }}{% endif %}">
+{% endif %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://xiyu.news/#organization",
+      "name": "xiyu.news",
+      "url": "https://xiyu.news/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://xiyu.news/assets/images/bmtnews-app-512-v3.png"
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "editorial, corrections, and rights requests",
+          "url": "https://xiyu.news/contact/",
+          "availableLanguage": ["zh-CN", "en"]
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://xiyu.news/#website",
+      "name": "xiyu.news",
+      "url": "https://xiyu.news/",
+      "description": "Crypto market intelligence covering exchanges, markets, security, regulation, protocols, AI, and policy.",
+      "publisher": {"@id": "https://xiyu.news/#organization"},
+      "inLanguage": ["zh-CN", "en"]
+    }
+  ]
+}
+</script>
+<script>
+  (function () {
+    document.documentElement.classList.add('js');
+    if (window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true) {
+      document.documentElement.classList.add('pwa-installed');
+    }
+    try {
+      var savedTheme = localStorage.getItem('bmtnews-theme');
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    } catch (error) {
+      // The system preference remains the fallback.
+    }
+    window.setTimeout(function () {
+      document.documentElement.classList.add('feed-ready');
+    }, 3000);
+  })();
+</script>
+<link rel="stylesheet" href="{{ '/assets/css/bmtnews-ui.css' | relative_url }}?v={{ site.asset_version }}">
+{% if page.page_type == "source_console" %}
+<link rel="stylesheet" href="{{ '/assets/css/source-console.css' | relative_url }}?v={{ site.asset_version }}">
+{% endif %}
+<script src="{{ '/assets/js/bmtnews-ui.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
+<script src="{{ '/assets/js/quick-posts.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
+{% unless page.page_type == "source_console" or page.noindex %}
+<meta name="bmt-assets" content="{{ site.asset_version }}">
+<meta name="bmt-build" content="{{ site.time | date_to_xmlschema }}">
+<link rel="stylesheet" href="{{ '/assets/css/pwa-reader.css' | relative_url }}?v={{ site.asset_version }}">
+<script type="module" src="{{ '/assets/js/pwa-reader.js' | relative_url }}?v={{ site.asset_version }}"></script>
+{% endunless %}
+{% unless page.page_type == "source_console" %}
+<link rel="stylesheet" href="{{ '/assets/css/editorial-ui.css' | relative_url }}?v={{ site.asset_version }}">
+{% endunless %}
+{% if page.page_type == "source_console" %}
+<script src="{{ '/assets/js/source-console.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
+{% endif %}

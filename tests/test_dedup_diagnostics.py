@@ -97,4 +97,4 @@ def test_diagnostic_has_no_publish_credentials_or_write_permissions():
     assert "refs/heads/agent/*" in job
     assert "cache/save" not in job
     assert "TELEGRAM" not in job and "X_ACCESS" not in job
-    assert "${{ !inputs.diagnostic_only && vars.XIYUNEWS_RUNTIME_MODE != 'maintenance' }}" in text
+    assert "${{ !inputs.diagnostic_only }}" in text

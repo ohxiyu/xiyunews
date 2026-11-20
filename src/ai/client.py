@@ -1,6 +1,5 @@
 """AI client abstraction supporting multiple providers."""
 
-import asyncio
 import os
 import re
 import time
@@ -17,7 +16,6 @@ from ..models import AIConfig, AIProvider, AI_PROVIDER_DEFAULTS
 from rich import print as rich_print
 from .tokens import record_usage
 from .policy import prompt_stage, usage_stage, SIMPLE_BUDGETS
-from .errors import account_error
 
 
 # A chained provider may serve a completion from a fallback model. Keep the
@@ -45,7 +43,6 @@ _DEFAULT_API_KEY_ENVS = {
     AIProvider.DOUBAO: "DOUBAO_API_KEY",
     AIProvider.MINIMAX: "MINIMAX_API_KEY",
     AIProvider.DEEPSEEK: "DEEPSEEK_API_KEY",
-    AIProvider.SILICONFLOW: "SILICONFLOW_API_KEY",
 }
 
 
@@ -241,7 +238,6 @@ class OpenAIClient(AIClient):
         self.temperature = config.temperature
         self.max_tokens = config.max_tokens
         self.provider = config.provider.value
-        self._account_error = None
         # Some newer models (e.g. Claude Opus 4.7 on Bedrock Converse) reject
         # `temperature`. We learn this on first 400 and stop sending it.
         self._supports_temperature = True
@@ -284,13 +280,9 @@ class OpenAIClient(AIClient):
         Returns:
             str: Generated text
         """
-        if getattr(self, "_account_error", None) is not None:
-            raise self._account_error
         started = time.perf_counter()
         temperature = self.temperature if temperature is None else temperature
-        # The fixed-edition analyzer adds window instructions to the scoring
-        # prompt. It is still the same small JSON classification task.
-        stage = usage_stage(system) if self.provider == "siliconflow" else prompt_stage(system)
+        stage = prompt_stage(system)
         default_budget = SIMPLE_BUDGETS.get(stage, self.max_tokens) if self.config.economy_mode else self.max_tokens
         max_tokens = default_budget if max_tokens is None else max_tokens
 
@@ -309,12 +301,6 @@ class OpenAIClient(AIClient):
                 use_max_completion_tokens=self._use_max_completion_tokens,
             )
         except Exception as exc:
-            blocked = account_error(exc)
-            if blocked is not None:
-                # This client is scoped to one run. Stop further stages from
-                # calling a blocked account; a new run can recover after top-up.
-                self._account_error = blocked
-                raise blocked from None
             if self._supports_temperature and self._is_temperature_unsupported(str(exc)):
                 self._supports_temperature = False
                 response = await self._do_request(
@@ -388,43 +374,11 @@ class OpenAIClient(AIClient):
                 request_kwargs["extra_body"] = {"thinking": {"type": "enabled"}}
                 request_kwargs["reasoning_effort"] = "low"
                 include_temperature = False
-        if self.provider == "siliconflow":
-            # SiliconFlow uses its own hybrid reasoning parameters, not the
-            # DeepSeek official API's thinking object or reasoning_effort.
-            # Structured news tasks keep their full answer budget without
-            # spending another reasoning budget in economy mode.
-            thinking = not (
-                self.config.economy_mode
-                and (response_format == "json" or usage_stage(system) in SIMPLE_BUDGETS)
-            )
-            request_kwargs["extra_body"] = {"enable_thinking": thinking}
-            if thinking:
-                request_kwargs["extra_body"]["thinking_budget"] = 4096
         if include_temperature:
             request_kwargs["temperature"] = temperature
         if response_format == "json" and self.provider not in self._NO_RESPONSE_FORMAT:
             request_kwargs["response_format"] = {"type": "json_object"}
-        request = self.client.chat.completions.create(**request_kwargs)
-        if self.provider == "siliconflow":
-            # SDK timeouts apply to individual network operations. Bound the
-            # whole completion as well, including any SDK retry or keepalive.
-            stage = usage_stage(system)
-            trace_stage = response_format == "json" and stage not in SIMPLE_BUDGETS
-            started = time.perf_counter()
-            if trace_stage:
-                rich_print(f"AI {stage} request started: thinking={thinking}, max_tokens={max_tokens}")
-            try:
-                response = await asyncio.wait_for(request, timeout=self.config.request_timeout_seconds)
-            except Exception as exc:
-                rich_print(
-                    f"AI {stage} request failed: {type(exc).__name__}, "
-                    f"elapsed={time.perf_counter() - started:.1f}s"
-                )
-                raise
-            if trace_stage:
-                rich_print(f"AI {stage} response received: elapsed={time.perf_counter() - started:.1f}s")
-            return response
-        return await request
+        return await self.client.chat.completions.create(**request_kwargs)
 
     @staticmethod
     def _is_temperature_unsupported(message: str) -> bool:
@@ -665,7 +619,6 @@ def _create_single_client(config: AIConfig) -> AIClient:
         AIProvider.DOUBAO,
         AIProvider.MINIMAX,
         AIProvider.DEEPSEEK,
-        AIProvider.SILICONFLOW,
         AIProvider.OLLAMA,
     }:
         return OpenAIClient(config)
@@ -812,5 +765,3 @@ def create_ai_client(config: AIConfig) -> AIClient:
     if config.provider_chain:
         return _create_chained_client(config)
     return _create_single_client(config)
-
-
