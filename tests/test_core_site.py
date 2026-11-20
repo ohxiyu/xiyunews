@@ -5,7 +5,7 @@ from pathlib import Path
 from unittest.mock import AsyncMock
 import pytest
 from bs4 import BeautifulSoup
-from src.core_site import render_core_feed,convert_feed
+from src.core_site import render_core_feed,convert_feed,republish
 from src.core_delivery import claim,delivery_eligible
 from src.daily_feed import DailyFeedState
 from src.models import ContentItem,SourceType
@@ -30,6 +30,48 @@ def test_dense_feed_all_full_timestamp_and_background():
  assert '第二段事实。' in articles[-1].text
  assert soup.select_one('#zh-2026-11-08-item-5')
  assert soup.select_one('#zh-2026-11-08-item-5 [data-copy]')['data-copy']=='/2026/11/08/summary-zh.html#zh-2026-11-08-item-5'
+
+
+def test_new_and_saved_feeds_open_background_and_references_after_text():
+ item = story()
+ item.metadata['sources'] = [{'title': '原始资料', 'url': 'https://example.com/reference'}]
+ fresh = render_core_feed([item], date='2026-11-08')
+ saved = '''<div class="core-feed" data-core-feed="2">
+ <article class="digest-item core-story" id="saved" data-content-revision="old">
+ <h2>原始新闻标题</h2><div class="story-body">
+ <aside class="story-background"><span>背景</span><div class="story-summary-body"><p>有证据的主体背景。</p></div></aside>
+ <div class="story-summary-body"><p>第一段事实。</p></div>
+ <p class="source-line"><a href="https://example.com/1">原文</a></p>
+ <details class="references"><summary>参考资料</summary><section><h3>参考资料</h3><ul><li><a href="https://example.com/reference">原始资料</a></li></ul></section></details>
+ <div class="story-actions"></div></div></article></div>'''
+ for markup in (fresh, convert_feed(saved)):
+  soup = BeautifulSoup(markup, 'html.parser')
+  parts = soup.select('.story-body > *')
+  assert [part['class'][0] for part in parts] == [
+   'story-summary-body', 'source-line', 'story-background', 'references', 'story-actions',
+  ]
+  assert all(part.name == 'details' and part.has_attr('open') for part in parts[2:4])
+  assert parts[3].get_text(strip=True).count('参考资料') == 1
+  assert parts[3].find('a')['href'] == 'https://example.com/reference'
+  assert convert_feed(markup) == markup
+ assert BeautifulSoup(convert_feed(saved), 'html.parser').select_one('#saved')['data-content-revision'] == 'old'
+
+
+def test_history_window_uses_calendar_days_but_keeps_older_post_files(tmp_path):
+ posts = tmp_path / '_posts'
+ posts.mkdir()
+ (tmp_path / 'api').mkdir()
+ (tmp_path / '_data').mkdir()
+ latest = tmp_path / 'api/latest.json'
+ original_api = '{"date":"2026-11-02","items":[]}'
+ latest.write_text(original_api)
+ old = posts / '2026-10-20-summary-zh.md'
+ old.write_text('---\ntitle: 旧刊\n---\n旧刊内容')
+ assert republish(tmp_path)['editions_rendered'] == 1
+ assert json.loads((tmp_path / '_data/core_edition.json').read_text())['history_start'] == 20261027
+ assert latest.read_text() == original_api
+ assert '旧刊内容' in old.read_text()
+ assert '旧刊内容' in (tmp_path / 'editions/2026-10-20/zh.html').read_text()
 
 
 def test_migration_keeps_published_text_revisions_sources_and_is_idempotent():

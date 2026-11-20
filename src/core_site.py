@@ -5,7 +5,7 @@ import argparse
 import json
 import re
 import shutil
-from datetime import datetime, timezone
+from datetime import date as calendar_date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -18,6 +18,11 @@ from .web_feed import (_escape, _localized_title, _localized_text, _summary_html
 
 ZONE = ZoneInfo("Asia/Shanghai")
 EVENT_SLOT = "<!--core-events-->"
+HISTORY_DAYS = 7
+
+
+def _open_details(kind: str, title: str, content: str) -> str:
+    return f'<details class="{kind}" open><summary>{title}</summary>{content}</details>'
 
 
 def _card(*, attrs: dict, heading: str, body: str, meta: str, index: int) -> str:
@@ -38,11 +43,13 @@ def render_core_feed(items: list[ContentItem], *, date: str, display_timezone="A
         title = _localized_title(item, "zh")
         summary = _localized_text(item, "detailed_summary", "zh") or item.ai_summary or ""
         background = _localized_text(item, "background", "zh")
-        body = (f'<aside class="story-background"><span>背景</span>{_summary_html(background,"zh")}</aside>' if background else "")
-        body += _summary_html(summary, "zh")
+        body = _summary_html(summary, "zh")
         body += f'<p class="source-line">{_source_html(item, language="zh", display_timezone=ZoneInfo(display_timezone))}</p>'
+        if background:
+            body += _open_details("story-background", "背景", _summary_html(background, "zh"))
         refs = _references_html(item, "zh")
-        if refs: body += f'<details class="references"><summary>参考资料</summary>{refs}</details>'
+        if refs:
+            body += _open_details("references", "参考资料", refs.replace("<h3>参考资料</h3>", "", 1))
         stamp = item.published_at.astimezone(ZoneInfo(display_timezone))
         meta = f'<span>{"本期重点" if index <= 3 else "更多资讯"}</span><time datetime="{stamp.isoformat()}">{stamp:%m.%d %H:%M} CST</time>'
         cards.append(_card(attrs={"id":f"zh-{date}-item-{index}","data-story-id":item.id,
@@ -58,9 +65,9 @@ def convert_feed(content: str) -> str:
 
     Historical texts are never regenerated from a truncated public API.
     """
-    if 'data-core-feed="2"' in content:return content
-    if 'data-core-feed="1"' in content:
+    if re.search(r'data-core-feed="[12]"', content):
         soup=BeautifulSoup(content,'html.parser')
+        changed = False
         for details in list(soup.select('details.compact-story')):
             summary=details.find('summary',recursive=False)
             if summary:
@@ -68,9 +75,35 @@ def convert_feed(content: str) -> str:
                 if label:label.decompose()
                 summary.unwrap()
             details.unwrap()
+            changed = True
         feed=soup.select_one('[data-core-feed]')
-        feed['data-core-feed']='2'
-        return str(soup)
+        if feed['data-core-feed'] != '2':
+            feed['data-core-feed'] = '2'
+            changed = True
+        for story in feed.select('article .story-body'):
+            background = story.select_one(':scope > .story-background')
+            references = story.select_one(':scope > details.references')
+            if background and background.name == 'aside':
+                background.name = 'details'
+                label = background.find('span', recursive=False)
+                if label:
+                    label.name = 'summary'
+                background['open'] = ''
+                before = references or story.select_one('.story-actions')
+                if before:
+                    before.insert_before(background.extract())
+                else:
+                    story.append(background.extract())
+                changed = True
+            if references:
+                if not references.has_attr('open'):
+                    references['open'] = ''
+                    changed = True
+                for title in references.select('section > h3'):
+                    if title.get_text(strip=True) == '参考资料':
+                        title.decompose()
+                        changed = True
+        return str(soup) if changed else content
 
     soup = BeautifulSoup(content,"html.parser")
     cards=[]
@@ -78,20 +111,22 @@ def convert_feed(content: str) -> str:
         heading=article.find('h2')
         summary=article.select_one('.story-summary-body')
         if not heading or not summary:raise ValueError('published story missing full heading/body')
-        body=''
+        body=str(summary)
+        source=article.select_one('.source-line')
+        if source:body+=str(source)
         bg=article.select_one('[data-context-kind="background"]')
         if bg:
             for h in bg.select('h3'):h.decompose()
-            body=f'<aside class="story-background"><span>背景</span>{bg.decode_contents()}</aside>'
-        body+=str(summary)
-        source=article.select_one('.source-line')
-        if source:body+=str(source)
-        refs=article.select_one('.reference-list')
+            body += _open_details("story-background", "背景", bg.decode_contents())
         # References markup from all existing generations is retained.
         after=article.select_one('[data-context-placement="after"]')
         if after:
             for section in list(after.select('section')):
-                if section.select_one('a[href]'):body+=f'<details class="references"><summary>参考资料</summary>{section}</details>'
+                if section.select_one('a[href]'):
+                    label = section.find('h3', recursive=False)
+                    if label and label.get_text(strip=True) == "参考资料":
+                        label.decompose()
+                    body += _open_details("references", "参考资料", str(section))
         thread=article.select_one('.thread-pill')
         if thread:body+=str(thread).replace('持续追踪','事件流')
         stamp=source.find('time') if source else None
@@ -99,7 +134,6 @@ def convert_feed(content: str) -> str:
             parsed=datetime.fromisoformat(stamp['datetime']).astimezone(ZONE)
             stamp.string=parsed.strftime('%m.%d %H:%M CST')
         meta=f'<span>{"本期重点" if index<=3 else "更多资讯"}</span>'+(str(stamp) if stamp else '<span>来源未提供时间</span>')
-        # Native details summary contains text only, no nested source link.
         heading=f'<h2>{_escape(heading.get_text(" ",strip=True))}</h2>'
         attrs={k:article[k] for k in ('id','data-story-id','data-content-revision') if k in article.attrs}
         if not attrs.get('id'):raise ValueError('published story missing stable identity')
@@ -128,7 +162,9 @@ def republish(root: Path) -> dict:
     latest=root/'api/latest.json'
     if latest.exists():
         value=json.loads(latest.read_text())
-        meta={'date':value['date'],'generated_at':value.get('generated_at','')}
+        week_start = calendar_date.fromisoformat(value['date']) - timedelta(days=HISTORY_DAYS - 1)
+        meta={'date':value['date'],'generated_at':value.get('generated_at',''),
+              'history_start':int(week_start.strftime('%Y%m%d'))}
         if meta['generated_at']:
             meta['display_time']=datetime.fromisoformat(meta['generated_at'].replace('Z','+00:00')).astimezone(ZONE).strftime('%m.%d %H:%M CST')
         _atomic_write_text(root/'_data/core_edition.json',json.dumps(meta,ensure_ascii=False)+'\n')
