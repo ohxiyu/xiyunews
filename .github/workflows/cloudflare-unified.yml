@@ -1,37 +1,10 @@
 name: xiyunews Cloudflare
 
-# Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
-# never change server Git config or credentials.
-env:
-  GIT_CONFIG_COUNT: '1'
-  GIT_CONFIG_KEY_0: http.version
-  GIT_CONFIG_VALUE_0: HTTP/1.1
-  XIYUNEWS_STATE_BACKEND: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'cloudflare' || '' }}
-  # Do not let optional CLI usage telemetry delay a completed publication.
-  # This is not a Worker binding or a change to application health reporting.
-  WRANGLER_SEND_METRICS: 'false'
-  WRANGLER_HIDE_BANNER: 'true' # No optional npm-version request during publication.
-
 on:
   push:
     branches: [main]
-    paths:
-      - 'docs/**'
-      - 'ops/daily-dispatcher/**'
-      - 'scripts/**'
-      - 'src/core_site.py'
-      - 'src/web_feed.py'
-      - '.github/workflows/cloudflare-unified.yml'
+    paths: ['site/**', 'edge/**', 'scripts/**', 'package*.json', 'wrangler.json', 'realtime/scripts/deploy/watchdog/worker.js', '.github/workflows/cloudflare-unified.yml']
   workflow_dispatch:
-    inputs:
-      force_deploy:
-        description: Rebuild validated production assets for recovery
-        type: boolean
-        default: false
-  workflow_run:
-    workflows: ['xiyu.news Daily Edition']
-    types: [completed]
-    branches: [main]
 
 concurrency:
   group: xiyunews-cloudflare-production
@@ -39,221 +12,66 @@ concurrency:
 
 permissions:
   contents: read
-  actions: read
-  id-token: write
+
+env:
+  WRANGLER_SEND_METRICS: 'false'
+  WRANGLER_HIDE_BANNER: 'true'
+  EDITION_SNAPSHOT: 9cf037ee185b007e37181daf181649b4c834d275
 
 jobs:
   deploy:
-    # Explicit opt-in only after secure configuration and the reviewed cutover.
-    if: >-
-      vars.XIYUNEWS_EDGE_ENABLED == 'true' &&
-      vars.XIYUNEWS_RUNTIME_MODE != 'maintenance' &&
-      ((github.event_name != 'workflow_run' && github.ref == 'refs/heads/main') ||
-       (github.event.workflow_run.conclusion == 'success' &&
-        github.event.workflow_run.head_branch == 'main' &&
-        github.event.workflow_run.head_repository.full_name == github.repository))
-    runs-on: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
-    # Allow the same slow checkout/dependency path verified by edge-build CI.
-    # This remains bounded; no AI generation or channel sending occurs here.
-    timeout-minutes: 30
-    # Repository secrets keep the private-repository path independent of paid
-    # environment features. Main/origin/opt-in guards above still apply.
+    if: github.ref == 'refs/heads/main' && vars.XIYUNEWS_EDGE_ENABLED == 'true' && vars.XIYUNEWS_RUNTIME_MODE != 'maintenance'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: main
           persist-credentials: false
-          filter: blob:none
-          sparse-checkout: |
-            src
-            docs
-            scripts
-            ops
-            data
-            .github
-            realtime/scripts/deploy/watchdog
       - uses: actions/checkout@v6
         with:
-          ref: gh-pages
-          path: .edge-source
+          ref: ${{ env.EDITION_SNAPSHOT }}
+          path: .edition-snapshot
           persist-credentials: false
-      - name: Record immutable source and published artifact
-        id: source
-        run: |
-          echo "code=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-          echo "artifact=$(git -C .edge-source rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-      - name: Compare immutable inputs with the live version
-        id: plan
-        env:
-          FORCE_DEPLOY: ${{ github.event.inputs.force_deploy || 'false' }}
-          ARTIFACT_SHA: ${{ steps.source.outputs.artifact }}
-        run: python3 scripts/edge_build_cache.py plan --artifact "$ARTIFACT_SHA"
-      - uses: actions/cache/restore@v5
-        if: steps.plan.outputs.skip != 'true'
-        id: render-cache
-        with:
-          path: .edge-rendered
-          key: xiyunews-render-v1-${{ steps.plan.outputs.key }}
-      - name: Verify every restored file before reuse
-        if: steps.plan.outputs.skip != 'true'
-        id: cache-ready
-        env:
-          BUILD_KEY: ${{ steps.plan.outputs.key }}
-        run: python3 scripts/edge_build_cache.py verify --key "$BUILD_KEY"
+          sparse-checkout: |
+            _posts
+            editions
+            api/latest.json
+          sparse-checkout-cone-mode: false
       - uses: actions/setup-node@v6
-        if: steps.plan.outputs.skip != 'true'
         with:
           node-version: '24'
-          cache: ${{ runner.environment == 'github-hosted' && 'npm' || '' }}
-          package-manager-cache: ${{ runner.environment == 'github-hosted' }}
-          cache-dependency-path: ops/daily-dispatcher/package-lock.json
-      - name: Use the validated npm version on the bounded runner
-        if: steps.plan.outputs.skip != 'true' && runner.environment == 'self-hosted'
-        run: |
-          if [ "$(npm --version)" != "11.11.1" ]; then
-            npm install --global npm@11.11.1 --maxsockets=2
-          fi
+          cache: npm
       - run: npm ci
-        if: steps.plan.outputs.skip != 'true'
-        working-directory: ops/daily-dispatcher
-      - run: npm run audit
-        if: steps.plan.outputs.skip != 'true'
-        working-directory: ops/daily-dispatcher
-      - uses: ruby/setup-ruby@v1
-        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-        with:
-          ruby-version: '3.3'
-          bundler-cache: ${{ runner.environment != 'self-hosted' }}
-      - name: Reuse locked Ruby dependencies on the dedicated runner
-        if: runner.environment == 'self-hosted' && steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-        run: bash ops/runner/setup-ruby-cache.sh producer
-      - uses: astral-sh/setup-uv@v7
-        with:
-          version: "0.11.32"
-      - run: uv sync --frozen
-        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-      - name: Overlay current core templates and routes
-        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-        run: python3 scripts/overlay_core_site.py docs .edge-source
-      - name: Rebuild core reader from the immutable published snapshot
-        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-        run: uv run python -m src.core_site --root .edge-source
-      - name: Render published snapshot without collection or AI
-        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-        run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
-
-      - name: Record validated output integrity and check existing cache capacity
-        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-        id: cache-capacity
-        env:
-          BUILD_KEY: ${{ steps.plan.outputs.key }}
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          node scripts/minify_edge_assets.mjs .edge-rendered
-          python3 scripts/prepare_edge_assets.py .edge-rendered .edge-site
-          python3 scripts/edge_build_cache.py record --key "$BUILD_KEY"
-          usage=$(gh api repos/ohxiyu/xiyunews/actions/cache/usage --jq '.active_caches_size_in_bytes' 2>/dev/null || echo 9999999999)
-          if [[ "$usage" =~ ^[0-9]+$ && "$usage" -lt 3221225472 ]]; then
-            echo 'allowed=true' >> "$GITHUB_OUTPUT"
-          fi
-      - uses: actions/cache/save@v5
-        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true' && steps.render-cache.outputs.cache-hit != 'true' && steps.cache-capacity.outputs.allowed == 'true'
-        with:
-          path: .edge-rendered
-          key: xiyunews-render-v1-${{ steps.plan.outputs.key }}
-      - name: Validate and stage public assets
-        if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid == 'true'
-        run: python3 scripts/prepare_edge_assets.py .edge-rendered .edge-site
-      - name: Deploy the single existing project without replacing operator vars
-        if: steps.plan.outputs.skip != 'true'
-        working-directory: ops/daily-dispatcher
+      - run: npm run build
+      - name: Verify public news, details and browser access before deployment
+        run: node scripts/check-upstream.mjs
+      - name: Deploy existing Cloudflare Worker
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          SOURCE_SHA: ${{ steps.source.outputs.code }}
-          ARTIFACT_SHA: ${{ steps.source.outputs.artifact }}
-          BUILD_KEY: ${{ steps.plan.outputs.key }}
-          PUBLICATION_RUNTIME: ${{ vars.XIYUNEWS_RUNTIME_MODE || 'server' }}
-        run: >-
-          npx wrangler deploy --config wrangler.unified.jsonc --keep-vars
-          --var "SITE_SOURCE_COMMIT:$SOURCE_SHA"
-          --var "SITE_ARTIFACT_COMMIT:$ARTIFACT_SHA"
-          --var "RUNTIME_HEALTH_URL:https://api.xiyu.news/ops/runtime.json"
-          --var "SITE_BUILD_KEY:$BUILD_KEY"
-          --var "PUBLICATION_RUNTIME:$PUBLICATION_RUNTIME"
-
-      - name: Configure optional daily operations topic
-        if: steps.plan.outputs.skip != 'true'
-        working-directory: ops/daily-dispatcher
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          DAILY_PRIVATE_CHAT: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
-          DAILY_ALERT_THREAD: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
-          DAILY_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        shell: bash
+        run: npm exec wrangler -- deploy --keep-vars --var "SITE_SOURCE_COMMIT:$GITHUB_SHA"
+      - name: Verify the deployed reader and its archive
         run: |
-          if [[ "$DAILY_PRIVATE_CHAT" =~ ^-[1-9][0-9]*$ && "$DAILY_ALERT_THREAD" =~ ^[1-9][0-9]*$ && -n "$DAILY_BOT_TOKEN" ]]; then
-            printf '%s' "$DAILY_BOT_TOKEN" | npx wrangler secret put DAILY_TELEGRAM_BOT_TOKEN --config wrangler.unified.jsonc
-            printf '%s' "$DAILY_PRIVATE_CHAT" | npx wrangler secret put TELEGRAM_ALERT_CHAT_ID --config wrangler.unified.jsonc
-            printf '%s' "$DAILY_ALERT_THREAD" | npx wrangler secret put TELEGRAM_ALERT_THREAD_ID --config wrangler.unified.jsonc
-          fi
-
-      # Traffic and cron activation are deliberately not performed by this job.
-      # Update the final owned DO binding/cron config in a reviewed cutover PR.
-
-      - name: Download exact daily producer report when this is a publication
-        if: github.event_name == 'workflow_run'
-        uses: actions/download-artifact@v7
-        with:
-          github-token: ${{ github.token }}
-          run-id: ${{ github.event.workflow_run.id }}
-          pattern: run-report-*
-          path: source-report
-
-      - name: Verify real production before any channel distribution
-        env:
-          ARTIFACT_SHA: ${{ steps.source.outputs.artifact }}
-          BUILD_KEY: ${{ steps.plan.outputs.key }}
-          DAILY_SOURCE_RUN_ID: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.id || '' }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          args=(--artifact "$ARTIFACT_SHA" --build-key "$BUILD_KEY")
-          if [ -n "$DAILY_SOURCE_RUN_ID" ]; then
-            mapfile -t reports < <(find source-report -name run-report.json -type f)
-            [ "${#reports[@]}" -eq 1 ] || { echo 'One exact daily producer report required'; exit 1; }
-            args+=(--daily-run-id "$DAILY_SOURCE_RUN_ID" --source-report "${reports[0]}")
-          fi
-          python3 scripts/verify_daily_deployment.py "${args[@]}"
-
-      - name: Preserve verified publication evidence for downstream delivery
-        uses: actions/upload-artifact@v6
-        with:
-          name: production-edition
-          path: production-edition.json
-          retention-days: 7
-          if-no-files-found: error
-
-      - name: Acquire private fenced publication state
-        id: state
-        if: always() && env.XIYUNEWS_STATE_BACKEND == 'cloudflare'
-        run: python3 -m src.edge_state acquire
-
-      - name: Finalize publication outcome and operations alerts
-        if: always()
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
-          TELEGRAM_ALERT_THREAD_ID: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
-          OPERATIONS_STATUS: ${{ job.status }}
-          X_DELIVERY_ENABLED: ${{ vars.X_DELIVERY_ENABLED }}
-        shell: bash
-        run: |
-          mapfile -t reports < <(find source-report -name run-report.json -type f 2>/dev/null)
-          report="${reports[0]:-data/no-producer-report.json}"
-          uv run python -m src.operations --report "$report" --workflow-status "$OPERATIONS_STATUS" --publication-proof production-edition.json --published-state .edge-source/_data/bmtnews_state.json
-
-      - name: Release private publication state
-        if: always() && steps.state.outcome == 'success'
-        run: python3 -m src.edge_state release
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import { setTimeout } from 'node:timers/promises';
+          const site = 'https://xiyu.news';
+          async function get(path) {
+            const response = await fetch(site + path, {signal: AbortSignal.timeout(10000)});
+            assert.equal(response.status, 200, path);
+            return response;
+          }
+          for (let attempt = 1; attempt <= 6; attempt++) {
+            try {
+              assert.equal((await (await get('/health')).json()).commit, process.env.GITHUB_SHA);
+              assert.match(await (await get('/')).text(), /MARKET WIRE/);
+              assert.match(await (await get('/history/')).text(), /2026-11-20/);
+              assert.match(await (await get('/2026/07/26/summary-zh.html')).text(), /id="item-1"/);
+              assert.match(await (await get('/2026/11/20/summary-zh.html')).text(), /id="zh-2026-11-20-item-1"/);
+              break;
+            } catch (error) {
+              if (attempt === 6) throw error;
+              await setTimeout(5000);
+            }
+          }
+          JS
