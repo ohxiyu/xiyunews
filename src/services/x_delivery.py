@@ -11,9 +11,6 @@ v2 ``POST /2/tweets`` endpoint requires for posting on behalf of an account.
 
 from __future__ import annotations
 
-import base64
-import hashlib
-import hmac
 import os
 import re
 import secrets
@@ -22,9 +19,10 @@ from dataclasses import dataclass
 from enum import Enum
 import logging
 from typing import Iterable, List, Optional
-from urllib.parse import quote, urlsplit
+from urllib.parse import urlsplit
 
 import httpx
+from oauthlib.oauth1 import Client, SIGNATURE_HMAC_SHA1
 from rich.console import Console
 
 from ..ai.utils import unwrap_prose_response
@@ -73,10 +71,6 @@ class XDeliveryResult:
     posted: int = 0
 
 
-def _percent_encode(value: str) -> str:
-    return quote(str(value), safe="-._~")
-
-
 def _oauth_header(
     method: str,
     url: str,
@@ -93,43 +87,17 @@ def _oauth_header(
     A JSON body is not part of the signature base string; only the request
     method, URL, and OAuth parameters are signed.
     """
-    oauth_params = {
-        "oauth_consumer_key": consumer_key,
-        "oauth_nonce": nonce or secrets.token_hex(16),
-        "oauth_signature_method": "HMAC-SHA1",
-        "oauth_timestamp": timestamp or str(int(time.time())),
-        "oauth_token": access_token,
-        "oauth_version": "1.0",
-    }
-    parameter_string = "&".join(
-        f"{_percent_encode(key)}={_percent_encode(oauth_params[key])}"
-        for key in sorted(oauth_params)
+    client = Client(
+        consumer_key,
+        client_secret=consumer_secret,
+        resource_owner_key=access_token,
+        resource_owner_secret=access_secret,
+        signature_method=SIGNATURE_HMAC_SHA1,
+        nonce=nonce or secrets.token_hex(16),
+        timestamp=timestamp or str(int(time.time())),
     )
-    split = urlsplit(url)
-    base_url = f"{split.scheme}://{split.netloc}{split.path}"
-    base_string = "&".join(
-        [
-            method.upper(),
-            _percent_encode(base_url),
-            _percent_encode(parameter_string),
-        ]
-    )
-    signing_key = (
-        f"{_percent_encode(consumer_secret)}&{_percent_encode(access_secret)}"
-    )
-    signature = base64.b64encode(
-        hmac.new(
-            signing_key.encode("utf-8"),
-            base_string.encode("utf-8"),
-            hashlib.sha1,
-        ).digest()
-    ).decode("ascii")
-    header_params = {**oauth_params, "oauth_signature": signature}
-    joined = ", ".join(
-        f'{_percent_encode(key)}="{_percent_encode(header_params[key])}"'
-        for key in sorted(header_params)
-    )
-    return f"OAuth {joined}"
+    _, headers, _ = client.sign(url, http_method=method.upper())
+    return headers["Authorization"]
 
 
 def _character_weight(text: str) -> int:

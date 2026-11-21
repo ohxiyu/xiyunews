@@ -319,6 +319,7 @@ def test_oauth_header_is_deterministic_and_signed() -> None:
     assert header == again
     assert header.startswith("OAuth ")
     assert 'oauth_signature_method="HMAC-SHA1"' in header
+    assert 'oauth_signature="6Z%2FEcgHs5lM7jeAhGYYNimsWqwc%3D"' in header
     assert "cs" not in header  # the secret is never echoed
 
 

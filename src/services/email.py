@@ -44,12 +44,8 @@ class EmailManager:
             self.console = console
 
         if not self.pwd and self.config.enabled:
-            logger.warning(
-                f"Environment variable {self.config.password_env} not set. Email features may fail."
-            )
-            self.console.print(
-                f"[yellow]Warning: Environment variable {self.config.password_env} not set. Email features may fail.[/yellow]"
-            )
+            logger.warning("Email password environment variable is unset.")
+            self.console.print("[yellow]Warning: Email password environment variable is unset.[/yellow]")
 
     def check_subscriptions(self, storage_manager):
         """Checks inbox for subscription requests and updates subscriber list."""
