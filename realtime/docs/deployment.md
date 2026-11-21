@@ -1,5 +1,7 @@
 # xiyunews realtime deployment and rollback
 
+现行 xiyu.news 操作入口见[发布与运行状态](../../project-docs/product-release.md)。运营者通过该入口发布站点和东京实时服务。
+
 当前 Cloudflare 发布入口是根目录 [单项目清单](../../project-docs/cloudflare-single-project.md)，看门狗已并入统一 xiyunews Worker；旧独立配置仅历史保留，禁止在 watchdog 目录重新部署或重跑初始设置脚本。本页服务器路径、systemd 名称与 SQLite 保持不变。实际状态见[当前交接](handoff.md)与[边缘接管证据](releases/cloudflare-cutover-20261003.md)。
 
 ## Combined private repository packaging
