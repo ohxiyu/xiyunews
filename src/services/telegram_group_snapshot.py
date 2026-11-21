@@ -67,7 +67,8 @@ def build_snapshot(edition, index, artifact):
     rows = {}
     for key in ("focus", "threads", "dormant", "archived", "other", "completed"):
         for row in index.get(key, []):
-            rows[row["event_id"]] = row
+            # A compact archive row can repeat a complete focus or thread entry.
+            rows.setdefault(row["event_id"], row)
     events = []
     for event_id, row in rows.items():
         if not re.fullmatch(r"evt_[a-z0-9]+", event_id):

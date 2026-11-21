@@ -32,7 +32,9 @@ def test_reuses_all_published_titles_with_stable_date_links_and_three_briefs():
 def test_snapshot_retains_non_focus_closed_events_for_later_wrap_up():
     row = event()
     other = {**row, "event_id": "evt_closed01", "status": "closed"}
-    data = build_snapshot(edition(), {"focus": [row], "threads": [row], "completed": [other]}, "a"*40)
+    archive_stub = {"event_id": row["event_id"], "status": "developing"}
+    index = {"focus": [row], "threads": [row], "archived": [archive_stub], "completed": [other]}
+    data = build_snapshot(edition(), index, "a"*40)
     assert len(data["events"]) == 2
     assert data["events"][0]["updates"][0]["sources"] == [{"url": "https://example.com/evidence", "label": "原始来源"}]
     assert data["events"][0]["focus"] is True

@@ -1,3 +1,4 @@
+import {publicationRoute} from "./publication-state";
 import dispatcher from "./index";
 import type { RecoveryEnv } from "./recovery";
 import {runGroupNews} from "./group-news";
@@ -40,6 +41,7 @@ export default {
     const redirect = primaryHostRedirect(request);
     if (redirect) return redirect;
     const path = new URL(request.url).pathname;
+    if (path.startsWith("/internal/publication-state/")) return publicationRoute(request, env);
     if (path === "/api/_telegram-group.json") {
       return new Response(null,{status:404,headers:{"Cache-Control":"no-store"}});
     }

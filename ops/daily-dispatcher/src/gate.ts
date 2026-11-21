@@ -1,8 +1,13 @@
 import { DurableObject } from "cloudflare:workers";
+import {stateOperation} from "./publication-state";
 
 // One object per edition. Synchronous SQL claims are committed before any
 // caller performs external I/O; a crashed caller leaves a bounded lease.
 export class RecoveryGate extends DurableObject<Env> {
+  publicationState(action: string, body: Record<string, unknown>, migration: boolean): Promise<Response> {
+    return stateOperation(this.ctx, action, body, migration);
+  }
+
   constructor(ctx: DurableObjectState, env: Env) {
     super(ctx, env);
     this.ctx.storage.sql.exec(
