@@ -1,25 +1,109 @@
-"""Small escaping and Chinese text helpers for the daily reader."""
+"""Static HTML rendering for the public daily feed."""
+
 from __future__ import annotations
+
 from datetime import timezone
 import html
 import re
-from urllib.parse import quote,urlsplit
+from typing import Iterable
+from urllib.parse import quote, urlsplit
 from zoneinfo import ZoneInfo
+
+from .editorial import EditorialEntry
+from .market_snapshot import MarketSnapshot
 from .models import ContentItem
+from .overview import EditionOverview
+from .publication_revision import story_revision
+
+
 _URL_SAFE_CHARS = ":/?#[]@!$&'*,;=~%+"
-_LABELS={'zh':{'crypto':'Crypto','technology':'AI 科技','policy':'政策','discussion':'原始讨论','references':'参考资料'}}
+_CATEGORY_ORDER = ("crypto", "technology", "policy")
+_LABELS = {
+    "zh": {
+        "all": "全部",
+        "crypto": "Crypto",
+        "technology": "AI 科技",
+        "policy": "政策",
+        "selection": "本期重要资讯按影响力排序，前三条为本期重点。",
+        "ranking": "排行榜",
+        "priority": "本期重点",
+        "more": "背景、讨论与参考资料",
+        "background": "背景",
+        "discussion": "社区讨论",
+        "references": "参考资料",
+        "tags": "标签",
+        "empty": "今日暂无达到展示阈值的重要资讯。",
+        "editorial": "编辑精选",
+        "sponsored": "广告",
+        "thread_day": "持续追踪 · 第 {day} 天",
+        "event_update": "持续追踪 · {count} 次进展",
+        "sources_confirmed": "{count} 源确认",
+        "single_source": "单一来源",
+        "market_impact": "影响分析",
+        "overview": "今日脉络",
+        "overview_rank": "查看第 {rank} 条",
+        "overview_signals": "{count} 条线索",
+        "share_card": "分享",
+        "share_card_label": "生成并分享图片卡片",
+    },
+    "en": {
+        "all": "All",
+        "crypto": "Crypto",
+        "technology": "AI & Tech",
+        "policy": "Policy",
+        "selection": "Stories are ranked by impact; the first three are the edition highlights.",
+        "ranking": "Ranking",
+        "priority": "Edition highlight",
+        "more": "Background, discussion, and references",
+        "background": "Background",
+        "discussion": "Discussion",
+        "references": "References",
+        "tags": "Tags",
+        "empty": "No stories met today’s publication threshold.",
+        "editorial": "Editor's Pick",
+        "sponsored": "Sponsored",
+        "thread_day": "Thread · day {day}",
+        "event_update": "Tracking · {count} updates",
+        "sources_confirmed": "{count} sources",
+        "single_source": "Single source",
+        "market_impact": "Impact analysis",
+        "overview": "Today at a glance",
+        "overview_rank": "View story {rank}",
+        "overview_signals": "{count} signals",
+        "share_card": "Share",
+        "share_card_label": "Generate and share image card",
+    },
+}
 
 
 def _escape(value: object) -> str:
     return html.escape(str(value), quote=True)
+
 
 def _summary_sentence_units(value: str, language: str) -> list[str]:
     """Split a legacy one-line summary without breaking abbreviations."""
     text = re.sub(r"\s+", " ", value).strip()
     if not text:
         return []
-    matches = re.findall(r".*?(?:[。！？!?]+[”’」』】）]?|$)", text)
-    return [part.strip() for part in matches if part.strip()]
+    if language == "zh":
+        matches = re.findall(r".*?(?:[。！？!?]+[”’」』】）]?|$)", text)
+        return [part.strip() for part in matches if part.strip()]
+
+    units: list[str] = []
+    start = 0
+    for match in re.finditer(r'[.!?]+["”’\)\]]*(?=\s+|$)', text):
+        candidate = text[start : match.end()].strip()
+        if re.search(r"(?:\b[A-Z]\.){2,}$", candidate):
+            continue
+        if re.search(r"\b(?:Mr|Mrs|Ms|Dr|Prof|Sr|Jr|St|vs)\.$", candidate):
+            continue
+        if candidate:
+            units.append(candidate)
+        start = match.end()
+    tail = text[start:].strip()
+    if tail:
+        units.append(tail)
+    return units or [text]
 
 
 def _summary_paragraphs(value: str, language: str) -> list[str]:
@@ -64,6 +148,7 @@ def _summary_paragraphs(value: str, language: str) -> list[str]:
         paragraphs.append(joiner.join(current))
     return paragraphs
 
+
 def _summary_html(value: str, language: str) -> str:
     paragraphs = _summary_paragraphs(value, language)
     return (
@@ -71,6 +156,7 @@ def _summary_html(value: str, language: str) -> str:
         + "".join(f"<p>{_escape(paragraph)}</p>" for paragraph in paragraphs)
         + "</div>"
     )
+
 
 def _safe_url(value: object) -> str | None:
     raw = str(value).strip()
@@ -85,9 +171,65 @@ def _safe_url(value: object) -> str | None:
         return None
     return html.escape(quote(raw, safe=_URL_SAFE_CHARS), quote=True)
 
+
+def _overview_html(
+    overview: EditionOverview | str | None,
+    *,
+    language: str,
+    date: str,
+    item_count: int,
+) -> str:
+    """Render a static orientation section with optional story anchors."""
+    if overview is None:
+        return ""
+    if isinstance(overview, str):
+        headline = overview.strip()
+        signals = ()
+    else:
+        headline = overview.headline.strip()
+        signals = overview.signals
+    if not headline:
+        return ""
+
+    labels = _LABELS[language]
+    signal_items: list[str] = []
+    for signal in signals:
+        if signal.item_rank < 1 or signal.item_rank > item_count:
+            continue
+        target = f"{language}-{date}-item-{signal.item_rank}"
+        rank = f"#{signal.item_rank:02d}"
+        signal_items.append(
+            '<li class="edition-overview-signal">'
+            f'<span class="edition-overview-signal-label">{_escape(signal.label)}</span>'
+            f'<span class="edition-overview-signal-text">{_escape(signal.text)}</span>'
+            f'<a class="edition-overview-rank" href="#{_escape(target)}" '
+            f'aria-label="{_escape(labels["overview_rank"].format(rank=rank))}">'
+            f"{rank}</a></li>"
+        )
+    signals_html = ""
+    if signal_items:
+        disclosure_label = labels["overview_signals"].format(
+            count=len(signal_items)
+        )
+        signals_html = (
+            '<details class="edition-overview-disclosure" open>'
+            f'<summary>{_escape(disclosure_label)}</summary>'
+            '<ul class="edition-overview-signals">'
+            f'{"".join(signal_items)}</ul></details>'
+        )
+    return (
+        '<section class="edition-overview" aria-label="'
+        f'{_escape(labels["overview"])}">'
+        f'<h2 class="edition-overview-title">{_escape(labels["overview"])}</h2>'
+        f'<p class="edition-overview-headline">{_escape(headline)}</p>'
+        f"{signals_html}</section>"
+    )
+
+
 def category_label(category: str, language: str) -> str:
     """One display vocabulary for feed, event, and entity pages."""
     return _LABELS.get(language, _LABELS["zh"]).get(category, category)
+
 
 def _top_level_category(item: ContentItem) -> str:
     category = str(item.metadata.get("category") or "").strip().lower()
@@ -104,6 +246,21 @@ def _top_level_category(item: ContentItem) -> str:
         return "policy"
     return "crypto"
 
+
+def _score_value(item: ContentItem) -> float:
+    return float(item.ai_score or 0)
+
+
+def _score_tier(score: float) -> str:
+    if score >= 9:
+        return "high"
+    if score >= 7:
+        return "good"
+    if score >= 5:
+        return "mid"
+    return "low"
+
+
 def _localized_text(item: ContentItem, key: str, language: str) -> str:
     metadata = item.metadata
     return str(
@@ -112,11 +269,13 @@ def _localized_text(item: ContentItem, key: str, language: str) -> str:
         or ""
     ).strip()
 
+
 def _localized_title(item: ContentItem, language: str) -> str:
     return str(
         item.metadata.get(f"title_{language}")
         or item.title
     ).strip()
+
 
 def _source_html(
     item: ContentItem,
@@ -149,7 +308,14 @@ def _source_html(
     if published_at.tzinfo is None:
         published_at = published_at.replace(tzinfo=timezone.utc)
     published_at = published_at.astimezone(display_timezone)
-    published_label = f"{published_at:%m.%d %H:%M} CST"
+    if language == "zh":
+        published_label = (
+            f"{published_at.month}月{published_at.day}日 "
+            f"{published_at:%H:%M}"
+        )
+    else:
+        day = published_at.strftime("%d").lstrip("0")
+        published_label = published_at.strftime(f"%b {day}, %H:%M")
 
     parts = [
         _escape(item.source_type.value),
@@ -170,6 +336,7 @@ def _source_html(
             f'rel="noopener noreferrer">{labels["discussion"]}</a>'
         )
     return " · ".join(parts)
+
 
 def _references_html(item: ContentItem, language: str) -> str:
     references = item.metadata.get("sources") or []
@@ -194,7 +361,358 @@ def _references_html(item: ContentItem, language: str) -> str:
     )
 
 
-def render_web_feed(items,*,date,total_fetched=0,language='zh',display_timezone='Asia/Shanghai'):
-    if language!='zh':raise ValueError('Only the Chinese daily edition is supported')
-    from .core_site import render_core_feed
-    return render_core_feed(list(items),date=date,display_timezone=display_timezone)
+def _provenance_html(item: ContentItem, language: str) -> str:
+    """Show how many independent sources carried the same story."""
+    labels = _LABELS[language]
+    merged = item.metadata.get("merged_sources")
+    names = [str(name) for name in merged if name] if isinstance(merged, list) else []
+    count = len(names)
+    if count > 1:
+        text = labels["sources_confirmed"].format(count=count)
+        # The outlet names make the claim checkable rather than a bare number.
+        title = _escape(" · ".join(names[:6]))
+        return (
+            f'<span class="provenance is-confirmed" title="{title}">'
+            f"{_escape(text)}</span>"
+        )
+    return (
+        f'<span class="provenance">{_escape(labels["single_source"])}</span>'
+    )
+
+
+def _thread_html(item: ContentItem, language: str) -> str:
+    """Link a daily story to its exact event and update when available."""
+    event_id = item.metadata.get("event_id")
+    update_id = item.metadata.get("event_update_id")
+    labels = _LABELS[language]
+    prefix = "" if language == "zh" else "/en"
+    if event_id and update_id:
+        updates = item.metadata.get("event_updates")
+        # Only events that have developed get a pill; a single-report event
+        # page would just repeat the story the reader is looking at.
+        if not isinstance(updates, int) or isinstance(updates, bool) or updates < 2:
+            return ""
+        return (
+            f'<a class="thread-pill event-pill" '
+            f'data-event-id="{_escape(event_id)}" '
+            f'data-update-id="{_escape(update_id)}" '
+            f'href="{prefix}/events/{_escape(event_id)}/#{_escape(update_id)}">'
+            f'{_escape(labels["event_update"].format(count=updates))}</a>'
+        )
+    thread_id = item.metadata.get("thread_id")
+    day = item.metadata.get("thread_day") or 1
+    if not thread_id or not isinstance(day, int) or day < 2:
+        return ""
+    text = labels["thread_day"].format(day=day)
+    return (
+        f'<a class="thread-pill" href="{prefix}/threads/{_escape(thread_id)}/">'
+        f"{_escape(text)}</a>"
+    )
+
+
+def _details_html(item: ContentItem, language: str, *, placement: str = "after") -> str:
+    labels = _LABELS[language]
+    sections: list[str] = []
+    background = _localized_text(item, "background", language)
+    discussion = _localized_text(item, "community_discussion", language)
+    market_impact = _localized_text(item, "market_impact", language)
+    if placement == "background":
+        if not background:
+            return ""
+        return (
+            '<details class="story-more" data-context-placement="background" open>'
+            f'<summary>{labels["background"]}</summary><div class="story-more-content">'
+            f'<section data-context-kind="background"><h3>{labels["background"]}</h3>'
+            f'<p>{_escape(background)}</p></section></div></details>'
+        )
+    if market_impact:
+        sections.append(
+            f'<section><h3>{labels["market_impact"]}</h3>'
+            f"<p>{_escape(market_impact)}</p></section>"
+        )
+    if discussion:
+        sections.append(
+            f'<section><h3>{labels["discussion"]}</h3>'
+            f"<p>{_escape(discussion)}</p></section>"
+        )
+    references = _references_html(item, language)
+    if references:
+        sections.append(references)
+    if item.ai_tags:
+        tags = "".join(
+            f"<code>#{_escape(tag)}</code>"
+            for tag in item.ai_tags
+        )
+        sections.append(
+            f'<section class="tag-line"><h3>{labels["tags"]}</h3>'
+            f"<p>{tags}</p></section>"
+        )
+    if not sections:
+        return ""
+    return (
+        '<details class="story-more" data-context-placement="after">'
+        f'<summary>{"Analysis and references" if language == "en" else "分析与资料"}</summary>'
+        f'<div class="story-more-content">{"".join(sections)}</div>'
+        "</details>"
+    )
+
+
+def _render_article(
+    item: ContentItem,
+    *,
+    index: int,
+    date: str,
+    language: str,
+    display_timezone: ZoneInfo,
+) -> tuple[str, str]:
+    labels = _LABELS[language]
+    category = _top_level_category(item)
+    score = _score_value(item)
+    score_label = f"{score:.1f}" if item.ai_score is not None else "—"
+    title = _escape(_localized_title(item, language))
+    story_url = _safe_url(item.url)
+    title_html = title
+    if story_url:
+        title_html = (
+            f'<a href="{story_url}" target="_blank" '
+            f'rel="noopener noreferrer">{title}</a>'
+        )
+    summary = (
+        _localized_text(item, "detailed_summary", language)
+        or str(item.ai_summary or "").strip()
+    )
+    article_id = f"{language}-{date}-item-{index}"
+    priority = ""
+    priority_class = ""
+    if item.metadata.get("editorial"):
+        priority = (
+            f'<span class="editorial-pill">{labels["editorial"]}</span>'
+        )
+        priority_class = " is-priority"
+    elif index <= 3:
+        priority = f'<span class="priority-pill">{labels["priority"]}</span>'
+        priority_class = " is-priority"
+
+    share_actions = (
+        '<div class="digest-item-controls">'
+        f'<span class="score-badge" data-tier="{_score_tier(score)}" '
+        f'aria-label="Score {score_label} out of 10">{score_label}</span>'
+        f'<button class="story-share-button" type="button" data-story-share="card" '
+        f'aria-label="{_escape(labels["share_card_label"])}" '
+        f'title="{_escape(labels["share_card_label"])}">'
+        '<svg class="story-share-icon" aria-hidden="true" viewBox="0 0 24 24" '
+        'fill="none" stroke="currentColor" stroke-width="1.8" '
+        'stroke-linecap="round" stroke-linejoin="round">'
+        '<circle cx="18" cy="5" r="2.5"></circle>'
+        '<circle cx="6" cy="12" r="2.5"></circle>'
+        '<circle cx="18" cy="19" r="2.5"></circle>'
+        '<path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5"></path></svg>'
+        f'<span>{_escape(labels["share_card"])}</span></button>'
+        '</div>'
+    )
+
+    article = (
+        f'<article class="digest-item{priority_class}" id="{article_id}" '
+        f'data-story-id="{_escape(item.id)}" '
+        f'data-content-revision="{story_revision(str(item.url), _localized_title(item, language), summary)}" '
+        f'data-category="{category}" data-score="{score:.1f}">'
+        '<div class="digest-item-rail">'
+        f"<strong>#{index:02d}</strong>"
+        f'<time datetime="{date}">{_escape(date[5:].replace("-", "."))}</time>'
+        "</div>"
+        '<div class="digest-item-content">'
+        '<div class="digest-item-meta"><div>'
+        f'<span class="category-pill" data-category="{category}">'
+        f"{labels[category]}</span>{priority}"
+        f"{_thread_html(item, language)}</div>"
+        f"{share_actions}"
+        "</div>"
+        f"<h2>{title_html}</h2>"
+        f'{_details_html(item, language, placement="background")}'
+        f"{_summary_html(summary, language)}"
+        f'<p class="source-line">'
+        f"{_source_html(item, language=language, display_timezone=display_timezone)}"
+        f" · {_provenance_html(item, language)}</p>"
+        f"{_details_html(item, language)}"
+        "</div>"
+        "</article>"
+    )
+    headline = (
+        f'<li data-category="{category}">'
+        f'<a href="#{article_id}">{title}</a>'
+        f'<span class="score-badge" data-tier="{_score_tier(score)}">'
+        f"{score_label}</span></li>"
+    )
+    return article, headline
+
+
+def _market_snapshot_html(
+    market: MarketSnapshot | None,
+    language: str,
+) -> str:
+    if market is None:
+        return ""
+
+    def _asset(symbol: str, price: float, change: float | None) -> str:
+        change_html = ""
+        if change is not None:
+            direction = "up" if change >= 0 else "down"
+            change_html = (
+                f' <span class="market-change" data-direction="{direction}">'
+                f"{change:+.1f}%</span>"
+            )
+        return (
+            '<span class="market-asset">'
+            f"<strong>{symbol}</strong> ${price:,.0f}{change_html}</span>"
+        )
+
+    parts = [
+        _asset("BTC", market.btc_price, market.btc_change_24h),
+        _asset("ETH", market.eth_price, market.eth_change_24h),
+    ]
+    if market.fear_greed_value is not None:
+        fg_name = "恐惧贪婪" if language == "zh" else "Fear & Greed"
+        label = market.fear_greed_label_for(language)
+        label_html = f" {_escape(label)}" if label else ""
+        parts.append(
+            '<span class="market-asset">'
+            f"<strong>{fg_name}</strong> {market.fear_greed_value}"
+            f"{label_html}</span>"
+        )
+    return (
+        '<div class="market-snapshot" role="note">'
+        + "".join(parts)
+        + "</div>"
+    )
+
+
+def _render_sponsored(entry: EditorialEntry, language: str) -> str:
+    """Render one clearly-labeled ad slot outside the ranking."""
+    labels = _LABELS[language]
+    title = _escape(entry.best_title(language))
+    summary = entry.best_summary(language)
+    url = _safe_url(entry.url)
+    title_html = title
+    if url:
+        title_html = (
+            f'<a href="{url}" target="_blank" '
+            f'rel="noopener noreferrer sponsored">{title}</a>'
+        )
+    summary_html = (
+        f'<p class="sponsored-summary">{_escape(summary)}</p>' if summary else ""
+    )
+    return (
+        f'<aside class="sponsored-slot" aria-label="{labels["sponsored"]}">'
+        f'<span class="sponsored-label">{labels["sponsored"]}</span>'
+        '<div class="sponsored-body">'
+        f"<h2>{title_html}</h2>"
+        f"{summary_html}"
+        "</div></aside>"
+    )
+
+
+def render_web_feed(
+    items: Iterable[ContentItem],
+    *,
+    date: str,
+    total_fetched: int,
+    language: str,
+    display_timezone: str,
+    overview: EditionOverview | str | None = None,
+    market: MarketSnapshot | None = None,
+    sponsored: Iterable[EditorialEntry] | None = None,
+) -> str:
+    """Render the final feed markup so browsers do not rebuild the DOM."""
+    normalized_language = "en" if language.lower().startswith("en") else "zh"
+    labels = _LABELS[normalized_language]
+    feed_items = list(items)
+    if not feed_items:
+        return (
+            '<div class="feed-rendered-static empty-state" '
+            'data-feed-render-version="2">'
+            f"{labels['empty']}</div>\n"
+        )
+
+    timezone_info = ZoneInfo(display_timezone)
+    categories = [_top_level_category(item) for item in feed_items]
+    counts = {
+        category: categories.count(category)
+        for category in _CATEGORY_ORDER
+    }
+    filter_buttons = [
+        (
+            '<button class="active" type="button" data-category="all" '
+            'aria-pressed="true">'
+            f'{labels["all"]}<span>{len(feed_items)}</span></button>'
+        )
+    ]
+    for category in _CATEGORY_ORDER:
+        if not counts[category]:
+            continue
+        filter_buttons.append(
+            '<button type="button" '
+            f'data-category="{category}" aria-pressed="false">'
+            f'{labels[category]}<span>{counts[category]}</span></button>'
+        )
+
+    articles: list[str] = []
+    headlines: list[str] = []
+    for index, item in enumerate(feed_items, start=1):
+        article, headline = _render_article(
+            item,
+            index=index,
+            date=date,
+            language=normalized_language,
+            display_timezone=timezone_info,
+        )
+        articles.append(article)
+        headlines.append(headline)
+
+    # At most one labeled ad slot, outside the ranking and the filters.
+    sponsored_entries = list(sponsored or [])[:1]
+    for entry in sponsored_entries:
+        slot_html = _render_sponsored(entry, normalized_language)
+        position = entry.position if entry.position and entry.position > 0 else 4
+        articles.insert(min(position - 1, len(articles)), slot_html)
+
+    selection_note = labels["selection"]
+    if normalized_language == "zh":
+        selection_note += f" 本期从 {total_fetched} 条候选中展示 {len(feed_items)} 条。"
+    else:
+        selection_note += (
+            f" This edition displays {len(feed_items)} of "
+            f"{total_fetched} candidates."
+        )
+    display_date = date.replace("-", ".")
+    overview_html = _overview_html(
+        overview,
+        language=normalized_language,
+        date=date,
+        item_count=len(feed_items),
+    )
+    market_html = _market_snapshot_html(market, normalized_language)
+    market_bar_html = (
+        '<div class="feed-market-bar">'
+        f"{market_html}</div>"
+        if market_html
+        else ""
+    )
+    return (
+        f"{market_bar_html}"
+        '<div class="daily-feed-layout is-editorial-grid feed-rendered-static" '
+        'data-feed-render-version="3">'
+        '<div class="feed-orientation">'
+        f"{overview_html}"
+        f'<p class="feed-selection-note">{_escape(selection_note)}</p>'
+        '<div class="digest-filter-host">'
+        '<div class="category-filters" data-static-filters>'
+        f'{"".join(filter_buttons)}'
+        "</div></div></div>"
+        f'<div class="daily-story-stream">{"".join(articles)}</div>'
+        f'<aside class="headline-rail" aria-label="{labels["ranking"]}">'
+        '<details class="headline-index" open>'
+        f'<summary><span>{display_date} {labels["ranking"]}</span>'
+        f"<small>{len(feed_items)}</small></summary>"
+        f'<ol class="headline-list">{"".join(headlines)}</ol>'
+        "</details></aside></div>\n"
+    )

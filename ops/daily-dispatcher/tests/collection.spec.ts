@@ -1,7 +1,7 @@
 import { env } from "cloudflare:test";
 import { afterEach, expect, it, vi } from "vitest";
 import { dispatchCollection, FEED_WORKFLOW } from "../src/collection";
-import { runCombinedSchedule, COLLECTION_CRON } from "../src/schedule";
+import { runCombinedSchedule, SQUARE_CRON } from "../src/square";
 
 afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 
@@ -19,7 +19,7 @@ function github(runs: unknown[]) {
   return calls;
 }
 
-it("dispatches a collection when the newest one is over five minutes old", async () => {
+it("dispatches a collection when the newest one is over four hours old", async () => {
   const calls = github([run("completed", "2026-09-29T14:00:00Z")]);
   expect(await dispatchCollection(env, Date.parse("2026-09-29T18:10:00Z"))).toBe("dispatched");
   expect(calls).toHaveLength(2);
@@ -29,7 +29,7 @@ it("dispatches a collection when the newest one is over five minutes old", async
 });
 
 it("leaves a recent collection alone, including one on another branch only", async () => {
-  github([run("completed", "2026-09-29T18:08:00Z"), run("completed", "2026-09-29T18:00:00Z", "feature")]);
+  github([run("completed", "2026-09-29T15:00:00Z"), run("completed", "2026-09-29T18:00:00Z", "feature")]);
   expect(await dispatchCollection(env, Date.parse("2026-09-29T18:10:00Z"))).toBe("fresh");
 });
 
@@ -45,13 +45,13 @@ it("dispatches when no collection has ever run", async () => {
 });
 
 it.each([
-  ["2026-09-29T18:15:00Z", "dispatched"],
-  ["2026-09-29T23:30:00Z", "dispatched"],
-  ["2026-09-29T23:00:00Z", "dispatched"],
-])("collects at every five-minute tick, including cutoff %s", async (time, expected) => {
-  const calls = github([]);
+  ["2026-09-29T18:15:00Z", "not_due"],
+  ["2026-09-29T23:30:00Z", "edition_window"],
+  ["2026-09-29T23:00:00Z", "edition_window"],
+])("stays quiet at %s", async (time, expected) => {
+  const fetcher = vi.fn(); vi.stubGlobal("fetch", fetcher);
   expect(await dispatchCollection(env, Date.parse(time))).toBe(expected);
-  expect(calls.filter(call => call.method === "POST")).toHaveLength(1);
+  expect(fetcher).not.toHaveBeenCalled();
 });
 
 it("fails closed on GitHub API failure", async () => {
@@ -68,7 +68,7 @@ it("retries recent failures with a durable budget but respects cancellation", as
   expect(await dispatchCollection(env, now + 30 * 60_000)).toBe("retry_dispatched");
   expect(await dispatchCollection(env, now + 60 * 60_000)).toBe("retry_limit");
   expect(calls.filter(call => call.method === "POST")).toHaveLength(2);
-  github([{...failed, run_started_at: new Date(now - 60_000).toISOString(), conclusion: "cancelled"}]);
+  github([{...failed, conclusion: "cancelled"}]);
   expect(await dispatchCollection(env, now)).toBe("fresh");
 });
 
@@ -81,30 +81,7 @@ it("the overnight tick checks collection without touching Square or publication"
   const now = Date.parse("2026-09-30T18:10:00Z"); // 02:10 Shanghai
   vi.spyOn(Date, "now").mockReturnValue(now);
   const calls = github([run("completed", "2026-09-29T13:00:00Z")]);
-  await runCombinedSchedule(COLLECTION_CRON, now, env);
+  await runCombinedSchedule(SQUARE_CRON, now, env);
   expect(calls.map(call => new URL(call.url).pathname.split("/").slice(-2).join("/")))
     .toEqual([`${FEED_WORKFLOW}/runs`, `${FEED_WORKFLOW}/dispatches`]);
-});
-
-it('five-minute collection preserves active guards at the cutoff hour',async()=>{
- const rolling=env;
- github([run('completed','2026-11-08T22:59:00Z')]);
- expect(await dispatchCollection(rolling,Date.parse('2026-11-08T23:05:00Z'))).toBe('dispatched');
- github([run('in_progress','2026-11-08T23:05:00Z')]);
- expect(await dispatchCollection(rolling,Date.parse('2026-11-08T23:10:00Z'))).toBe('active');
-});
-
-it('does not count a successful operations test as source collection',async()=>{
-  const moment=Date.parse('2026-11-09T12:10:00Z');
-  const calls:Request[]=[];
-  vi.stubGlobal('fetch',vi.fn(async(input:RequestInfo|URL,init?:RequestInit)=>{
-    const request=new Request(input,init);calls.push(request);
-    if(request.method==='POST')return new Response(null,{status:204});
-    return Response.json({workflow_runs:[
-      {status:'completed',conclusion:'success',head_branch:'main',display_title:'Operations alert test',run_started_at:new Date(moment-60_000).toISOString(),html_url:null},
-      {status:'completed',conclusion:'success',head_branch:'main',display_title:'Feed collection',run_started_at:new Date(moment-600_000).toISOString(),html_url:null},
-    ]});
-  }));
-  expect(await dispatchCollection(env,moment)).toBe('dispatched');
-  expect(calls.filter(r=>r.method==='POST')).toHaveLength(1);
 });

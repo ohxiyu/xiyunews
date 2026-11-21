@@ -39,7 +39,7 @@ from typing import Awaitable, Callable, Optional
 from zoneinfo import ZoneInfo
 
 from ._file_utils import _atomic_write_text
-from .publication_state import acknowledge_document, read_document, write_document, StateConflict
+from .publication_state import read_document, write_document
 
 DEFAULT_STATE_PATH = Path("data/x-queue.json")
 QUEUE_RELATIVE_PATH = Path("data/x-queue.json")
@@ -294,52 +294,16 @@ def validate(state: object) -> dict:
                 raise QueueError("invalid job text")
             if job["status"] == "planned" and not job["text"]:
                 raise QueueError("planned job without text")
-            for field in ("due_at", "deadline", "attempted_at", "sent_at"):
+            for field in ("due_at", "deadline", "attempted_at"):
                 if job.get(field):
                     _parse(job[field], field)
     return state
 
 
-def reconcile_confirmed_receipts(local: dict, incoming: dict) -> dict:
-    """Retain an exact local X receipt over its own published pending checkpoint.
-
-    Only status/detail/tweet_id may differ, for the same text, slot and attempt.
-    All other changes (including changed IDs, unknown outcomes, or new plans)
-    remain real conflicts and must stop delivery.
-    """
-    validate(local)
-    validate(incoming)
-    restored = copy.deepcopy(incoming)
-    for day, edition in restored["editions"].items():
-        local_edition = local["editions"].get(day)
-        if not local_edition or len(edition["jobs"]) != len(local_edition["jobs"]):
-            raise StateConflict("incompatible X receipt snapshots")
-        for index, remote_job in enumerate(edition["jobs"]):
-            local_job = local_edition["jobs"][index]
-            if local_job == remote_job:
-                continue
-            if not (remote_job["status"] == "pending" and local_job["status"] == "sent"
-                    and not remote_job.get("tweet_id")
-                    and isinstance(local_job.get("tweet_id"), str)
-                    and local_job["tweet_id"].isdigit()
-                    and remote_job.get("attempted_at")
-                    and remote_job.get("text_sha256") == text_digest(remote_job["text"])):
-                raise StateConflict("unproven or conflicting X receipt")
-            exclude = {"status", "tweet_id", "detail"}
-            if {key: value for key, value in remote_job.items() if key not in exclude} != {
-                key: value for key, value in local_job.items() if key not in exclude
-            }:
-                raise StateConflict("X receipt identity or attempt changed")
-            edition["jobs"][index] = copy.deepcopy(local_job)
-    if restored != local:
-        raise StateConflict("unrelated X queue changes")
-    return copy.deepcopy(local)
-
-
 def load(path: Path, now: Optional[datetime] = None) -> dict:
     """Missing means new. Anything unreadable stops delivery."""
     try:
-        payload = read_document(path, name="x_queue", reconcile=reconcile_confirmed_receipts)
+        payload = read_document(path, name="x_queue")
         if payload is None:
             return empty_state()
     except (OSError, ValueError) as exc:
@@ -361,13 +325,6 @@ def save(state: dict, path: Path) -> Path:
     return path
 
 
-def needs_checkpoint(path: Path, state: dict) -> bool:
-    """Local receipts must reach Git history before planning can prune them."""
-    if not path.exists():
-        return bool(state["editions"])
-    return json.loads(path.read_text(encoding="utf-8")) != state
-
-
 def git_checkpoint(directory: Path, state: dict) -> None:
     """Persist to the queue branch. A rejected push must stop the caller.
 
@@ -387,14 +344,10 @@ def git_checkpoint(directory: Path, state: dict) -> None:
         ["git", "-C", str(directory), "diff", "--cached", "--quiet"],
         capture_output=True,
     )
-    if staged.returncode not in (0, 1):
-        staged.check_returncode()
-    if staged.returncode == 1:
-        git("commit", "-m", "chore: checkpoint X delivery")
-    # Even an unchanged worktree may contain a commit whose previous push
-    # failed. Confirm the remote checkpoint before acknowledging or sending.
+    if staged.returncode == 0:
+        return
+    git("commit", "-m", "chore: checkpoint X delivery")
     git("push", "origin", f"HEAD:refs/heads/{QUEUE_BRANCH}")
-    acknowledge_document(directory / QUEUE_RELATIVE_PATH, state, name="x_queue")
 
 
 # ---------------------------------------------------------------------------
@@ -497,9 +450,7 @@ async def plan_edition(
 
     for language in settings.languages:
         used = used_keys(state, language)
-        rejected=edition.setdefault('quality_rejections',{})
-        if not isinstance(rejected,dict):raise QueueError('invalid quality rejection cache')
-        pool=[c for c in candidates.get(language,[]) if c.key not in used and rejected.get(c.key)!=c.source_sha256]
+        pool = [c for c in candidates.get(language, []) if c.key not in used]
         taken: set[str] = set()
         for slot in range(1, settings.items + 1):
             job = _find(edition, language, slot)
@@ -544,19 +495,10 @@ async def plan_edition(
                     summary["changed"] = True
                     continue
 
-            while choice is not None:
-                taken.add(choice.key)
-                text,kind,reason=await compose(choice.item,language)
-                summary['composed']+=1
-                if reason:summary['fallbacks'].append(reason)
-                if text:break
-                rejected[choice.key]=choice.source_sha256
-                summary['changed']=True
-                choice=next((c for c in pool if c.key not in taken),None)
-            if choice is None:
-                if job is not None:
-                    job['status']='skipped';job['detail']='quality_gate';summary['changed']=True
-                continue
+            text, kind, reason = await compose(choice.item, language)
+            summary["composed"] += 1
+            if reason:
+                summary["fallbacks"].append(reason)
             content = {
                 "story_key": choice.key,
                 "rank": choice.rank,
@@ -617,9 +559,7 @@ def advance(state: dict, now: datetime, settings: Settings) -> bool:
             anchor = _find(edition, job["language"], job["slot"] - 1)
             if anchor is None or anchor["status"] == "planned":
                 continue  # Wait for the previous slot to resolve.
-            if anchor.get('sent_at'):
-                base=datetime.fromisoformat(anchor['sent_at'])
-            elif anchor.get("attempted_at"):
+            if anchor.get("attempted_at"):
                 base = datetime.fromisoformat(anchor["attempted_at"])
             elif anchor.get("due_at"):
                 base = datetime.fromisoformat(anchor["due_at"])
@@ -717,8 +657,7 @@ def main(argv: Optional[list[str]] = None) -> None:
     timezone = (config.get("filtering") or {}).get("daily_timezone") or "UTC"
     settings = Settings.from_mapping(x_delivery, timezone)
     now = datetime.fromisoformat(args.now) if args.now else datetime.now(settings.tz)
-    from .x_switch import effective_enabled
-    enabled = effective_enabled(x_delivery.get("enabled")) and x_delivery.get("mode") == "drip"
+    enabled = bool(x_delivery.get("enabled")) and x_delivery.get("mode") == "drip"
     feed_date = feed_updated_at = ""
     if args.feed_state.exists():
         feed = json.loads(args.feed_state.read_text(encoding="utf-8"))
@@ -726,9 +665,9 @@ def main(argv: Optional[list[str]] = None) -> None:
             feed_date = str(feed.get("date") or "")
             feed_updated_at = normalize_stamp(feed.get("updated_at"))
     state = load(args.queue, now)
-    work = enabled and (needs_checkpoint(args.queue, state) or has_work(
+    work = enabled and has_work(
         state, now, settings, feed_date=feed_date, feed_updated_at=feed_updated_at
-    ))
+    )
     print(f"work={str(work).lower()}")
     print(f"attention={attention(state)}")
 

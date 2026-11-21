@@ -1,36 +1,134 @@
-# xiyu.news
+<div align="center">
+<h1>🛰️ xiyu.news</h1>
 
-中文加密与 AI 日报，由 [xiyu / @ohxiyu](https://x.com/ohxiyu) 维护。[阅读网站](https://xiyu.news/) · [往期](https://xiyu.news/history/)
+<p><strong>An AI-curated daily intelligence briefing for crypto markets, AI, and policy.</strong></p>
 
-每天以 **Asia/Shanghai 07:00** 为截止，覆盖此前 24 小时，**07:26** 启动出刊，目标约 07:30 发布。日报面向希望用一份内容了解重要进展的读者，保留必要背景与来源。
+[![License](https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
+[![Tool uv](https://img.shields.io/badge/Tool-uv-4B275F?style=for-the-badge&logo=uv&logoColor=white)](https://github.com/astral-sh/uv)
+[![Website](https://img.shields.io/badge/Website-xiyu.news-263238?style=for-the-badge&logo=homepage&logoColor=white)](https://xiyu.news/)
+[![Daily](https://img.shields.io/github/actions/workflow/status/ohxiyu/xiyunews/daily-summary.yml?branch=main&label=Daily&style=for-the-badge&logo=date-fns&logoColor=white)](https://xiyu.news/)
+[![Commit](https://img.shields.io/github/commit-activity/m/ohxiyu/xiyunews?label=Commit&style=for-the-badge&logo=github&logoColor=white)](https://github.com/ohxiyu/xiyunews/commits/main)
 
-## 当前状态与重构目标
+📡 One edition a day, in English and Chinese · [**Read it live →**](https://xiyu.news/)
 
-当前实现为单期中文日报首页、往期、日期页和关于页。后台每五分钟检查来源，只评分去重并写私有缓存，不更新首页、不扩写、不构建、不发送。入选内容在每日出刊时扩写。实际耗时受执行队列和供应商影响。生产模型为硅基流动 `deepseek-ai/DeepSeek-V3.2`，并发和候选上限保持原值；当前上限仍是14条、评分门槛7.0，待内容阶段调整。
+[📖 Live Site](https://xiyu.news/) · [🤖 Public API & Agents](https://xiyu.news/developers/) · [📋 Configuration](project-docs/configuration.md) · [🧵 Archive & Threads](project-docs/archive-and-threads.md) · [✍️ Editorial Layer](project-docs/editorial.md) · [简体中文](README_zh.md) · [日本語](README_ja.md)
 
-发布链为 Daily Edition 保存出版快照 → 单一 Cloudflare 工作流重建并核对真实生产 → Telegram 校验精确生产凭证后单次发送。代码部署不构成新一期，不会重发历史。CSS与JS逐页预算20KB，无JS可完整阅读。
+</div>
 
-重构后的唯一对外产品为每天一期中文日报，目标 8–10 条、AI 最多 3 条。采集只写评分缓存，入选内容才扩写背景；网站、Telegram、X 引用同一期。用户已明确授权 X 跳过试运行，待质量门与现有 API 校验完成后直接正式发送；目前开关仍关闭。余额检查已按用户要求取消，仅保留 token 费用台账。重构进度和验收门见[当前交接](project-docs/handoff.md)。
+## What xiyu.news is
 
-## 开发与运行
+For repository work, start with [AGENTS.md](AGENTS.md) and the
+[current execution pointer](project-docs/handoff.md). See the
+[collaboration guide](project-docs/codex-collaboration.md) for task ownership,
+verification and handoff conventions.
 
-应用使用 Python 3.11.5+、uv 和固定依赖。站点发布经过 GitHub Actions 与统一 Cloudflare Worker；自托管执行器和持久缓存是实际运行链路的一部分。
+Crypto moves faster than anyone can read. xiyu.news watches exchange announcement
+channels, protocol releases, regulators, and the crypto and AI press, then
+publishes **one ranked edition every morning, starting at 07:26 Asia/Shanghai** — typically
+7 to 14 stories that actually mattered. Background, market-impact analysis and
+reference links appear when the available source material supports them.
 
-```bash
-uv sync --frozen --extra dev --extra trafilatura
-cp data/config.github.json data/config.json
-# 通过环境变量配置 SILICONFLOW_API_KEY，不提交密钥。
-uv run bmtnews --mode fetch --hours 24
-uv run bmtnews --mode publish --hours 24 --cutoff-hour 7
+It runs entirely on GitHub Actions and GitHub Pages. There is no server, no
+database, and no runtime service to keep alive: git is the storage layer, and
+every published artifact is a static file.
+
+## What makes an edition
+
+```
+collect every ~4h ─► cached scoring ─► incremental event timeline
+          │
+          └──────────► fixed 24h edition ─► dedup ─► quota balance ─► publish
+                                                            │
+              events · entities · JSON API · feeds
 ```
 
-发布命令会生成出版内容；生产只走既有 Actions 流程，不从本地手写生成分支。
+- **Fixed publication window.** Every edition covers exactly 07:00→07:00 local
+  time, so nothing is double-counted and nothing silently disappears.
+- **Scored, not just collected.** The configured generation model (DeepSeek in
+  production) assigns a direct 0–10 importance score and category in one
+  analysis call, using calibrated anchors. The run report and new archive rows
+  identify the scoring model.
+- **Deduplicated twice.** Identical URLs merge first, then AI topic
+  deduplication collapses the same event reported by different outlets — and
+  records how many outlets carried it.
+- **Balanced by quota.** Per-category and per-source caps stop one exchange or
+  one outlet from taking over the page.
+- **Never empty.** When nothing clears the threshold, the top-scored stories
+  are published as a labelled low-signal edition rather than a blank page.
 
-- [配置](project-docs/configuration.md) · [数据口径](project-docs/data-contract.md) · [界面规则](project-docs/ui-rules.md)
-- [调度与恢复](project-docs/daily-dispatcher.md) · [X 分发](project-docs/x-distribution.md) · [执行器](project-docs/self-hosted-runner.md)
-- 仓库协作从 [AGENTS.md](AGENTS.md) 和 [agent.md](agent.md) 开始。一个任务一个 PR，相关检查通过后合并，不再要求每 PR 编写五阶段证据或提交截图。
-- `realtime/` 是独立 Telegram 实时应用，这次日报重构不修改它。
+## Features
 
-## 权利与来源
+- **📡 Broad, redundant sourcing** — exchange Telegram channels, protocol GitHub
+  releases, regulator feeds (SEC, CFTC, Fed), the crypto press, AI labs, Hacker
+  News, GDELT, and Google News
+- **📄 Full-article reading** — major feeds are fetched in full rather than
+  summarized from an RSS snippet
+- **🧵 Event timelines** — material changes become chronological updates;
+  repeated coverage adds source evidence without inventing another update
+- **🏷️ Entity pages** — everything published about a company, protocol, or
+  regulator, aggregated and linkable
+- **🔍 Background & market impact** — each story carries researched context and
+  a transmission-path analysis (analysis, never investment advice)
+- **✍️ Editorial layer** — insert your own stories, run a labelled ad slot, or
+  suppress a story, from a form-based web admin
+- **🌐 Bilingual** — English and Chinese editions from the same source set
+- **🔌 Machine-readable** — edition and event JSON endpoints plus per-category
+  Atom feeds
+- **📬 Multi-channel delivery** — the site, Telegram, email, webhooks, and
+  optional X distribution (the top two stories, hours apart)
 
-代码遵循 [MIT License](LICENSE)。第三方新闻和生成期刊不适用软件授权，见[内容与数据权利](CONTENT-LICENSE.md)及[第三方声明](THIRD_PARTY_NOTICES.md)。
+## Quick start
+
+```bash
+# 1. Install (uv recommended)
+uv sync --extra trafilatura
+
+# 2. Configure
+cp data/config.example.json data/config.json
+cp .env.example .env          # add your AI provider key
+uv run bmtnews-wizard         # or edit data/config.json directly
+
+# 3. Run one edition
+uv run bmtnews --mode publish --hours 24 --cutoff-hour 8
+```
+
+Other modes:
+
+| Command | What it does |
+|---|---|
+| `uv run bmtnews --mode fetch` | Collect new items, reuse cached scoring, and increment the restored event catalog |
+| `uv run bmtnews --mode publish` | Build and publish one fixed-window edition |
+| `uv run bmtnews --mode x-post` | Plan today's X posts and send the one that is due |
+| `uv run bmtnews-mcp` | Serve the pipeline and archive over MCP |
+
+Full configuration reference: [project-docs/configuration.md](project-docs/configuration.md).
+
+## Automation
+
+| Workflow | Schedule | Purpose |
+|---|---|---|
+| `feed-collection` | every ~4h + 08:37 | Collect new sources, update event pages, and run a daily recovery check |
+| `daily-summary` | 08:30 Asia/Shanghai | Build and publish the edition |
+| `x-distribution` | publication + 5× daily | Drip-post top stories immediately, then at peak hours |
+| `editorial-rebuild` | on edit | Republish after an editorial change |
+
+## Documentation
+
+- [Public API and agent resources](https://xiyu.news/developers/) · [OpenAPI](https://xiyu.news/openapi.json) · [llms.txt](https://xiyu.news/llms.txt)
+- [Configuration reference](project-docs/configuration.md)
+- [Archive, threads, entities, and the JSON API](project-docs/archive-and-threads.md)
+- [Editorial layer and web admin](project-docs/editorial.md)
+- [X distribution](project-docs/x-distribution.md)
+- [Sources](project-docs/scrapers.md) · [Scoring](project-docs/scoring.md) · [Extractors](project-docs/extractors.md)
+
+## Contributing
+
+Source suggestions and pull requests are welcome — see
+[CONTRIBUTING.md](CONTRIBUTING.md). Security reports: [SECURITY.md](SECURITY.md).
+
+## License
+
+xiyu.news source code is available under the MIT License — see
+[LICENSE](LICENSE). Generated editions and third-party news materials are not
+covered by the software license; see [Content and Data Rights](CONTENT-LICENSE.md)
+and [Third-Party Notices](THIRD_PARTY_NOTICES.md).

@@ -97,4 +97,7 @@ def test_diagnostic_has_no_publish_credentials_or_write_permissions():
     assert "refs/heads/agent/*" in job
     assert "cache/save" not in job
     assert "TELEGRAM" not in job and "X_ACCESS" not in job
-    assert "${{ !inputs.diagnostic_only && vars.XIYUNEWS_RUNTIME_MODE != 'maintenance' }}" in text
+    publish_gate = text.split("\n  daily-summary:", 1)[1].splitlines()[1]
+    assert "!inputs.diagnostic_only" in publish_gate
+    assert "github.ref == 'refs/heads/main'" in publish_gate
+    assert "vars.XIYUNEWS_RUNTIME_MODE == 'tokyo'" in publish_gate

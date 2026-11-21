@@ -8,22 +8,14 @@ title: xiyu.news
 description: Crypto market intelligence covering exchanges, markets, security, regulation, and protocols
 baseurl: ""
 url: "https://xiyu.news"
-asset_version: "split-reader-20261115"
+asset_version: "sha256-a83a2ecb89e0"
 
 markdown: kramdown
 future: true
 include:
   - "_headers"
+  - "_worker.js"
 exclude:
-  - "en"
-  - "s"
-  - "admin"
-  - "developer"
-  - "developers"
-  - "sources.html"
-  - "manifest.webmanifest"
-  - "offline.html"
-  - "feed-en.xml"
   - ".github"
   - "node_modules"
   # Retired weekly pages remain in Git history, never in public output.
@@ -38,7 +30,3 @@ defaults:
       type: "posts"
     values:
       layout: "default"
-
-# Verified public community; daily channel link is checked separately.
-telegram_url: "https://t.me/xiyudotnews"
-telegram_label: "加入 Telegram 讨论"

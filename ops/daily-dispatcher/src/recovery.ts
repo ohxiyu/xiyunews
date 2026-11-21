@@ -150,6 +150,7 @@ export async function inspectPublication(env: RecoveryEnv, date: string, now: nu
   const publicItems = editionItems(publicJson, date);
   const revisions = {
     zh: contentRevisions(rawJson, "zh"),
+    en: contentRevisions(rawJson, "en"),
   };
   // Same date/count is not enough: compare the actual published payload.
   const samePayload = rawJson !== null && publicJson !== null &&
@@ -161,16 +162,15 @@ export async function inspectPublication(env: RecoveryEnv, date: string, now: nu
     '<section class="daily-day"',
   )[0] ?? "";
   const homeItems = (firstDay.match(/<article class="digest-item(?:\s|")/g) ?? []).length;
-  const archivedHomeReady = home?.includes('data-latest-edition-date="' + date + '"') &&
+  const homeReady = home?.includes('data-latest-edition-date="' + date + '"') &&
     firstDay.includes('data-date="' + date + '"') && homeItems >= items &&
     renderedRevisionsMatch(firstDay, revisions.zh);
-  const homeReady = archivedHomeReady;
   const rendered = rawReady && publicItems === items && samePayload && homeReady
     ? await Promise.all(urls.rendered.map(async (url, index) => {
         const html = await getText(env, url + nonce);
         return Boolean(html?.includes('data-date="' + date + '"') &&
           (html.match(/<article class="digest-item(?:\s|")/g) ?? []).length >= items &&
-          renderedRevisionsMatch(html, revisions.zh));
+          renderedRevisionsMatch(html, index === 0 ? revisions.zh : revisions.en));
       }))
     : [false];
   return { rawReady, publicReady: Boolean(rawReady && rendered.every(Boolean)), items };

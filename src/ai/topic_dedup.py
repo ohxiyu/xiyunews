@@ -1,4 +1,3 @@
-from .errors import account_error
 """Bounded semantic comparisons; never silently publish an unchecked batch."""
 
 from itertools import combinations
@@ -109,8 +108,6 @@ async def duplicate_groups(client, items, clusters, *, system=TOPIC_DEDUP_SYSTEM
                     cache.store_comparison(system, user, {"duplicates": payload["duplicates"]})
                 return
             except Exception as exc:
-                blocked=account_error(exc)
-                if blocked is not None: raise blocked from None
                 cached = None
                 # Never log raw provider/model text: it can contain secrets or
                 # untrusted input. Permanent account errors cannot heal on retry.

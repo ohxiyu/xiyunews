@@ -37,7 +37,12 @@ SOURCE_REGISTRY = {
     SourceType.GITHUB.value: SourceDefinition("github", config_is_list=True),
     SourceType.HACKERNEWS.value: SourceDefinition("hackernews"),
     SourceType.RSS.value: SourceDefinition("rss", config_is_list=True),
+    SourceType.REDDIT.value: SourceDefinition("reddit", item_fields=("subreddits", "users")),
     SourceType.TELEGRAM.value: SourceDefinition("telegram", item_fields=("channels",)),
+    SourceType.TWITTER.value: SourceDefinition("twitter", item_fields=("users",)),
+    SourceType.OPENBB.value: SourceDefinition("openbb", item_fields=("watchlists",)),
+    SourceType.OSSINSIGHT.value: SourceDefinition("ossinsight"),
+    SourceType.GDELT.value: SourceDefinition("gdelt"),
     SourceType.GOOGLE_NEWS.value: SourceDefinition("google_news"),
 }
 
@@ -73,7 +78,6 @@ class AIProvider(str, Enum):
     DOUBAO = "doubao"
     MINIMAX = "minimax"
     DEEPSEEK = "deepseek"
-    SILICONFLOW = "siliconflow"
     OLLAMA = "ollama"
 
 
@@ -126,11 +130,6 @@ AI_PROVIDER_DEFAULTS = {
         "api_key_env": "",
         "base_url": "http://localhost:11434/v1",
     },
-    AIProvider.SILICONFLOW: {
-        "model": "deepseek-ai/DeepSeek-V3.2",
-        "api_key_env": "SILICONFLOW_API_KEY",
-        "base_url": "https://api.siliconflow.cn/v1",
-    },
 }
 
 
@@ -156,7 +155,7 @@ class AIConfig(BaseModel):
     result_cache_path: str = "data/analysis-cache.json"
     result_cache_ttl_days: int = Field(default=30, ge=1, le=365)
     result_cache_max_entries: int = Field(default=4000, ge=100, le=50000)
-    languages: List[Literal["zh"]] = Field(default_factory=lambda: ["zh"], min_length=1, max_length=1)
+    languages: List[str] = Field(default_factory=lambda: ["en"])
     # Azure OpenAI specific; required when provider == AZURE
     azure_endpoint_env: Optional[str] = None
     api_version: Optional[str] = None
@@ -227,10 +226,37 @@ class RSSSourceConfig(BaseModel):
     fallback_google_news: bool = False
 
 
+class RedditSubredditConfig(BaseModel):
+    """Configuration for monitoring a specific subreddit."""
+
+    subreddit: str
+    enabled: bool = True
+    sort: str = "hot"  # hot, new, top, rising
+    time_filter: str = (
+        "day"  # hour, day, week, month, year, all (only for top/controversial)
+    )
+    fetch_limit: int = 25
+    min_score: int = 10
+    category: Optional[str] = None
 
 
+class RedditUserConfig(BaseModel):
+    """Configuration for monitoring a specific Reddit user."""
+
+    username: str  # without u/ prefix
+    enabled: bool = True
+    sort: str = "new"
+    fetch_limit: int = 10
+    category: Optional[str] = None
 
 
+class RedditConfig(BaseModel):
+    """Reddit source configuration."""
+
+    enabled: bool = True
+    subreddits: List[RedditSubredditConfig] = Field(default_factory=list)
+    users: List[RedditUserConfig] = Field(default_factory=list)
+    fetch_comments: int = 5  # top comments per post, 0 to disable
 
 
 class TelegramChannelConfig(BaseModel):
@@ -257,14 +283,107 @@ class TelegramConfig(BaseModel):
     channels: List[TelegramChannelConfig] = Field(default_factory=list)
 
 
+class TwitterConfig(BaseModel):
+    """Twitter source configuration.
+
+    Two modes are supported:
+    - "apify": Use Apify scweet actor (requires APIFY_TOKEN, more reliable)
+    - "playwright": Use Playwright + browser cookies (free, no token needed)
+    """
+
+    enabled: bool = True
+    mode: str = "apify"  # "apify" or "playwright"
+    users: List[str] = Field(default_factory=list)
+    fetch_limit: int = 10
+    category: Optional[str] = None
+    fetch_reply_text: bool = False
+    max_replies_per_tweet: int = 3
+    max_tweets_to_expand: int = 10
+    reply_min_likes: int = 0
+    # Apify settings (used when mode == "apify")
+    apify_token_env: str = "APIFY_TOKEN"
+    actor_id: str = "altimis~scweet"
+    # Playwright settings (used when mode == "playwright")
+    cookie_dir: str = "data"
+    cookie_file_pattern: str = "x_cookies_*.json"
 
 
+class OpenBBWatchlist(BaseModel):
+    """A named watchlist of tickers fetched from one OpenBB provider.
+
+    Each watchlist produces one news.company() call per run, so group
+    symbols by provider rather than creating one watchlist per symbol.
+    """
+
+    name: str
+    symbols: List[str] = Field(default_factory=list)
+    enabled: bool = True
+    provider: str = "yfinance"
+    fetch_limit: int = 20
+    category: Optional[str] = None
 
 
+class OpenBBConfig(BaseModel):
+    """OpenBB Platform source configuration.
+
+    Uses the installed `openbb` SDK to fetch news and filings for a set of
+    tickers. The SDK is an optional dependency; if it is not installed the
+    scraper will no-op with a console warning rather than crash the run.
+
+    Provider credentials (FMP, Benzinga, Polygon, Intrinio, Tiingo, etc.)
+    are resolved by openbb from environment variables / its own user
+    settings file, so xiyu.news does not need to pass them explicitly.
+    """
+
+    enabled: bool = True
+    watchlists: List[OpenBBWatchlist] = Field(default_factory=list)
+    fetch_filings: bool = False
+    filings_provider: str = "sec"
 
 
+class OSSInsightConfig(BaseModel):
+    """OSS Insight trending repos source configuration.
+
+    Pulls top star-gain repositories from the OSS Insight public API and
+    emits them as ContentItems. Optional `keywords` filter limits results
+    to repos whose description, repo name, or collection names contain at
+    least one of the listed substrings (case-insensitive). Leave
+    `keywords` empty to ingest everything trending in the configured
+    languages.
+    """
+
+    enabled: bool = False
+    period: str = "past_24_hours"  # past_24_hours, past_28_days
+    languages: List[str] = Field(
+        default_factory=lambda: ["All", "Python", "TypeScript"]
+    )
+    keywords: List[str] = Field(default_factory=list)
+    min_stars: int = 5
+    max_items: int = 30
+    category: Optional[str] = None
 
 
+class GDELTConfig(BaseModel):
+    """GDELT 2.0 DOC API source configuration.
+
+    Queries the key-less GDELT DOC API
+    (https://api.gdeltproject.org/api/v2/doc/doc) for recent news articles
+    matching a search query and emits them as ContentItems. No API key is
+    required. The DOC API caps results at 250 records per request, so keep
+    `max_records` modest.
+    """
+
+    enabled: bool = False
+    query: str = "artificial intelligence"
+    mode: str = "ArtList"
+    max_records: int = 75  # GDELT DOC API caps at 250; keep modest
+    timespan: Optional[str] = None  # e.g. "24h"; overrides since-derived window
+    language: Optional[str] = None  # sourcelang filter, e.g. "english"; None = no filter
+    country: Optional[str] = None  # sourcecountry filter; None = no filter
+    category: Optional[str] = None  # xiyu.news category label for downstream grouping
+    # When set, only articles from these domains (or their subdomains) are kept.
+    allowed_domains: List[str] = Field(default_factory=list)
+    blocked_domains: List[str] = Field(default_factory=list)
 
 
 class GoogleNewsConfig(BaseModel):
@@ -313,12 +432,97 @@ class SourcesConfig(BaseModel):
     github: List[GitHubSourceConfig] = Field(default_factory=list)
     hackernews: HackerNewsConfig = Field(default_factory=HackerNewsConfig)
     rss: List[RSSSourceConfig] = Field(default_factory=list)
+    reddit: RedditConfig = Field(default_factory=RedditConfig)
     telegram: TelegramConfig = Field(default_factory=TelegramConfig)
+    twitter: Optional[TwitterConfig] = None
+    openbb: Optional[OpenBBConfig] = None
+    ossinsight: OSSInsightConfig = Field(default_factory=OSSInsightConfig)
+    gdelt: Optional[GDELTConfig] = None
     google_news: Optional[GoogleNewsConfig] = None
 
 
+class WebhookConfig(BaseModel):
+    """Webhook notification configuration."""
+
+    url_env: Optional[str] = (
+        None  # Environment variable name containing the webhook URL
+    )
+    request_body: Optional[Union[str, dict, list]] = (
+        None  # POST body: real JSON object or string with #{key} placeholders; if empty, will use GET
+    )
+    headers: Optional[str] = None  # Custom headers, "Key: Value" per line
+    delivery: str = "summary"  # summary, or summary_and_items
+    overview_position: str = "first"  # For summary_and_items: first, or last
+    platform: str = "generic"  # generic, feishu, lark, dingtalk, slack, discord
+    layout: str = "markdown"  # markdown, or collapsible
+    fallback_layout: str = (
+        "markdown"  # Layout to use when the requested layout is unsupported
+    )
+    languages: Optional[List[str]] = (
+        None  # Optional language filter for webhook delivery; defaults to all AI languages
+    )
+    enabled: bool = False
+
+    @field_validator("delivery")
+    @classmethod
+    def validate_delivery(cls, v: str) -> str:
+        allowed = {"summary", "summary_and_items"}
+        if v not in allowed:
+            raise ValueError(f"webhook.delivery must be one of {allowed}, got '{v}'")
+        return v
+
+    @field_validator("platform")
+    @classmethod
+    def validate_platform(cls, v: str) -> str:
+        allowed = {"generic", "feishu", "lark", "dingtalk", "slack", "discord"}
+        if v not in allowed:
+            raise ValueError(f"webhook.platform must be one of {allowed}, got '{v}'")
+        return v
+
+    @field_validator("layout")
+    @classmethod
+    def validate_layout(cls, v: str) -> str:
+        allowed = {"markdown", "collapsible"}
+        if v not in allowed:
+            raise ValueError(f"webhook.layout must be one of {allowed}, got '{v}'")
+        return v
+
+    @field_validator("fallback_layout")
+    @classmethod
+    def validate_fallback_layout(cls, v: str) -> str:
+        allowed = {"markdown", "collapsible"}
+        if v not in allowed:
+            raise ValueError(
+                f"webhook.fallback_layout must be one of {allowed}, got '{v}'"
+            )
+        return v
+
+    @field_validator("overview_position")
+    @classmethod
+    def validate_overview_position(cls, v: str) -> str:
+        allowed = {"first", "last"}
+        if v not in allowed:
+            raise ValueError(
+                f"webhook.overview_position must be one of {allowed}, got '{v}'"
+            )
+        return v
 
 
+class EmailConfig(BaseModel):
+    """Email configuration for updates/subscriptions."""
+
+    imap_server: str
+    imap_port: int = 993
+    imap_enabled: bool = True
+    smtp_server: str
+    smtp_port: int = 465
+    smtp_username: Optional[str] = None
+    email_address: str
+    password_env: str = "EMAIL_PASSWORD"
+    sender_name: str = "xiyu.news"
+    subscribe_keyword: str = "SUBSCRIBE"
+    unsubscribe_keyword: str = "UNSUBSCRIBE"
+    enabled: bool = False
 
 
 class TelegramDeliveryConfig(BaseModel):
@@ -327,7 +531,7 @@ class TelegramDeliveryConfig(BaseModel):
     enabled: bool = False
     bot_token_env: str = "TELEGRAM_BOT_TOKEN"
     channel_id_env: str = "TELEGRAM_CHANNEL_ID"
-    languages: List[Literal["zh"]] = Field(default_factory=lambda: ["zh"], min_length=1, max_length=1)
+    languages: List[str] = Field(default_factory=lambda: ["zh"])
     site_url: str = "https://xiyu.news/"
     required: bool = False
     max_message_chars: int = Field(default=3900, ge=512, le=4096)
@@ -364,11 +568,14 @@ class XDeliveryConfig(BaseModel):
     consumer_secret_env: str = "X_CONSUMER_SECRET"
     access_token_env: str = "X_ACCESS_TOKEN"
     access_secret_env: str = "X_ACCESS_SECRET"
-    languages: List[Literal["zh"]] = Field(default_factory=lambda: ["zh"], min_length=1, max_length=1)
+    languages: List[str] = Field(default_factory=lambda: ["zh"])
     site_url: str = "https://xiyu.news/"
+    max_items: int = Field(default=3, ge=1, le=5)
     required: bool = False
-    # Only the durable two-story drip planner can publish to the account.
-    mode: Literal["drip"] = "drip"
+    # "digest" posts one round-up when the edition publishes.
+    # "drip" posts the top stories one at a time across the day, driven by
+    # the x-distribution workflow; the publish step then posts nothing.
+    mode: Literal["digest", "drip"] = "digest"
     # Drip plan: the first story goes out when the edition publishes, each
     # later one a seeded random gap after the previous post's actual send.
     drip_items: int = Field(default=2, ge=1, le=8)
@@ -383,15 +590,19 @@ class XDeliveryConfig(BaseModel):
     expire_after_minutes: int = Field(default=360, ge=30, le=1440)
     window_end: str = "23:30"
     history_days: int = Field(default=7, ge=1, le=30)
-    # Public posts contain no links.
-    link_target: Literal["none"] = "none"
-    # AI selects complete published sentences; no template fallback.
-    compose: Literal["ai"] = "ai"
+    # Where a drip post sends the reader. "none" posts no link at all, which
+    # is what X's ranking favours; "site" keeps readers in the briefing and
+    # "source" credits the outlet directly.
+    link_target: Literal["none", "site", "source"] = "none"
+    # "ai" writes each post in the account's voice; "template" assembles it
+    # from the stored title and summary without an extra model call. AI
+    # composition always falls back to the template on failure.
+    compose: Literal["ai", "template"] = "ai"
     # Weighted characters, counted the way X does (CJK counts double).
     # 280 is the standard-account cap; Premium accounts post far longer.
     # The compact brief targets 90-150 Chinese characters. The configured
     # ceiling leaves headroom for Latin names and numbers within that range.
-    max_post_chars: int = Field(default=280, ge=280, le=25000)
+    max_post_chars: int = Field(default=400, ge=280, le=25000)
 
     @field_validator("expected_publish_time", "window_end")
     @classmethod
@@ -563,11 +774,12 @@ class FilteringConfig(BaseModel):
 class Config(BaseModel):
     """Main configuration model."""
 
-
     version: str = "1.0"
     ai: AIConfig
     sources: SourcesConfig
     filtering: FilteringConfig
     extractors: Dict[str, ExtractorConfig] = Field(default_factory=dict)
+    email: Optional[EmailConfig] = None
+    webhook: Optional[WebhookConfig] = None
     telegram_delivery: Optional[TelegramDeliveryConfig] = None
     x_delivery: Optional[XDeliveryConfig] = None

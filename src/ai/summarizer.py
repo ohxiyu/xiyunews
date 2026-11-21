@@ -1,21 +1,558 @@
-"""Deterministic Chinese Markdown backup of the selected edition."""
+"""Daily summary generation — pure programmatic rendering."""
+
+from datetime import timezone
 import html
+import json
+import logging
+import re
+from typing import Dict, List, Optional
+from urllib.parse import quote, urlsplit
+from zoneinfo import ZoneInfo
+
 from ..models import ContentItem
-from ..web_feed import _localized_title,_localized_text,_safe_url
+from ..overview import EditionOverview, OverviewSignal
+
+logger = logging.getLogger(__name__)
+
+_LEGACY_OVERVIEW_MAX_CHARS = 500
+_HEADLINE_LIMITS = {"zh": 80, "en": 180}
+_SIGNAL_LIMITS = {"zh": 70, "en": 180}
+
+
+def _compact_text(value: object) -> str:
+    return " ".join(str(value or "").split()).strip().strip('"“”')
+
+
+def _parse_structured_overview(
+    response: object,
+    *,
+    language: str,
+    item_count: int,
+) -> Optional[EditionOverview]:
+    """Validate the structured response while retaining a prose fallback."""
+    from .utils import parse_json_response, unwrap_prose_response
+
+    normalized_language = "en" if language.lower().startswith("en") else "zh"
+    headline_limit = _HEADLINE_LIMITS[normalized_language]
+    signal_limit = _SIGNAL_LIMITS[normalized_language]
+    payload = parse_json_response(str(response or ""))
+
+    if isinstance(payload, dict):
+        headline = _compact_text(payload.get("headline"))
+        if headline and len(headline) <= headline_limit:
+            signals: list[OverviewSignal] = []
+            seen_ranks: set[int] = set()
+            raw_signals = payload.get("signals")
+            if isinstance(raw_signals, list):
+                for raw_signal in raw_signals[:3]:
+                    if not isinstance(raw_signal, dict):
+                        continue
+                    label = _compact_text(raw_signal.get("label"))
+                    text = _compact_text(raw_signal.get("text"))
+                    rank = raw_signal.get("item_rank")
+                    if (
+                        not label
+                        or len(label) > 24
+                        or not text
+                        or len(text) > signal_limit
+                        or isinstance(rank, bool)
+                        or not isinstance(rank, int)
+                        or rank < 1
+                        or rank > item_count
+                        or rank in seen_ranks
+                    ):
+                        continue
+                    signals.append(
+                        OverviewSignal(label=label, text=text, item_rank=rank)
+                    )
+                    seen_ranks.add(rank)
+            return EditionOverview(headline=headline, signals=tuple(signals))
+        if headline:
+            return None
+
+    legacy = _compact_text(
+        unwrap_prose_response(
+            response, keys=("lede", "overview", "paragraph", "text", "summary")
+        )
+    )
+    if isinstance(payload, dict) and legacy.startswith("{"):
+        return None
+    if not legacy or len(legacy) > _LEGACY_OVERVIEW_MAX_CHARS:
+        return None
+    return EditionOverview(headline=legacy)
+
+
+_TRACK_TAGS = {"crypto": "Crypto", "technology": "AI", "policy": "Policy"}
+_TRACK_LABELS = {
+    "crypto": {"zh": "加密", "en": "Crypto"},
+    "technology": {"zh": "AI", "en": "AI"},
+}
+
+
+def _track(item: ContentItem) -> str:
+    from ..web_feed import _top_level_category
+
+    return _top_level_category(item)
+
+
+def _ensure_track_coverage(
+    overview: EditionOverview,
+    items: List[ContentItem],
+    *,
+    language: str,
+) -> EditionOverview:
+    """Make the glance cover the day's top crypto story and top AI story.
+
+    Readers open the page to learn what mattered in both worlds. When the
+    model's signals skip a track that has a ranked story, the story's own
+    published title stands in; it is factual by construction.
+    """
+    if not overview.signals:
+        # Headline-only is the degraded path (prose or invalid signals);
+        # keep it as it is rather than building a glance around it.
+        return overview
+    normalized = "en" if language.lower().startswith("en") else "zh"
+    limit = _SIGNAL_LIMITS[normalized]
+    signals = list(overview.signals)
+    for track in ("crypto", "technology"):
+        rank = next(
+            (index for index, item in enumerate(items, start=1) if _track(item) == track),
+            None,
+        )
+        if rank is None:
+            continue
+        if any(_track(items[signal.item_rank - 1]) == track for signal in signals):
+            continue
+        item = items[rank - 1]
+        text = _compact_text(item.metadata.get(f"title_{normalized}") or item.title)
+        if not text:
+            continue
+        if len(text) > limit:
+            text = text[: limit - 1].rstrip() + "…"
+        fallback = OverviewSignal(
+            label=_TRACK_LABELS[track][normalized], text=text, item_rank=rank
+        )
+        if len(signals) < 3:
+            signals.append(fallback)
+            continue
+        # Replace a signal whose track is already represented elsewhere.
+        tracks = [_track(items[signal.item_rank - 1]) for signal in signals]
+        replace = next(
+            (
+                index
+                for index in range(len(signals) - 1, -1, -1)
+                if tracks.count(tracks[index]) > 1
+            ),
+            len(signals) - 1,
+        )
+        signals[replace] = fallback
+    signals.sort(key=lambda signal: signal.item_rank)
+    return EditionOverview(headline=overview.headline, signals=tuple(signals))
+
+
+async def generate_edition_overview(
+    ai_client,
+    items: List[ContentItem],
+    *,
+    date: str,
+    language: str,
+) -> Optional[EditionOverview]:
+    """Generate the structured orientation shown above the daily edition.
+
+    Best-effort: returns None on any failure or implausible output so the
+    page simply omits the overview. Legacy prose remains a headline-only
+    fallback so a provider formatting miss does not block publication.
+    """
+    if not items:
+        return None
+    from .prompts import EDITION_OVERVIEW_SYSTEM, EDITION_OVERVIEW_USER
+
+    lines = []
+    for index, item in enumerate(items, start=1):
+        title = item.metadata.get(f"title_{language}") or item.title
+        summary = (
+            item.metadata.get(f"whats_new_{language}")
+            or item.ai_summary
+            or ""
+        )
+        score = f"{item.ai_score:.1f}" if item.ai_score is not None else "?"
+        track = _TRACK_TAGS[_track(item)]
+        lines.append(f"{index}. [{track}] [{score}/10] {title} — {summary}")
+
+    language_name = "Simplified Chinese (简体中文)" if language == "zh" else "English"
+    try:
+        response = await ai_client.complete(
+            system=EDITION_OVERVIEW_SYSTEM,
+            user=EDITION_OVERVIEW_USER.format(
+                date=date,
+                language_name=language_name,
+                items="\n".join(lines),
+            ),
+            response_format="json",
+        )
+    except Exception as exc:
+        logger.warning("Edition overview generation failed: %s", exc)
+        return None
+
+    overview = _parse_structured_overview(
+        response,
+        language=language,
+        item_count=len(items),
+    )
+    if overview is None:
+        return None
+    return _ensure_track_coverage(overview, items, language=language)
+
+
+async def generate_edition_overviews(
+    ai_client,
+    items: List[ContentItem],
+    *,
+    date: str,
+    languages: List[str],
+) -> Dict[str, EditionOverview]:
+    """Generate all requested language variants with one model call."""
+    if not items:
+        return {}
+    from .prompts import EDITION_OVERVIEW_SYSTEM, EDITION_OVERVIEWS_USER
+    from .utils import parse_json_response
+
+    normalized = list(
+        dict.fromkeys("en" if lang.lower().startswith("en") else "zh" for lang in languages)
+    )
+    lines = []
+    for index, item in enumerate(items, start=1):
+        title_zh = item.metadata.get("title_zh") or item.title
+        title_en = item.metadata.get("title_en") or item.title
+        summary_zh = item.metadata.get("detailed_summary_zh") or item.metadata.get("whats_new_zh") or item.ai_summary or ""
+        summary_en = item.metadata.get("detailed_summary_en") or item.metadata.get("whats_new_en") or item.ai_summary or ""
+        score = f"{item.ai_score:.1f}" if item.ai_score is not None else "?"
+        track = _TRACK_TAGS[_track(item)]
+        lines.append(
+            f"{index}. [{track}] [{score}/10] ZH: {title_zh} — {summary_zh}\n"
+            f"   EN: {title_en} — {summary_en}"
+        )
+    try:
+        response = await ai_client.complete(
+            system=EDITION_OVERVIEW_SYSTEM,
+            user=EDITION_OVERVIEWS_USER.format(date=date, items="\n".join(lines)),
+            response_format="json",
+        )
+        payload = parse_json_response(response)
+    except Exception as exc:
+        logger.warning("Bilingual edition overview generation failed: %s", exc)
+        return {}
+    if not isinstance(payload, dict):
+        return {}
+
+    result: Dict[str, EditionOverview] = {}
+    for language in normalized:
+        value = payload.get(language)
+        if not isinstance(value, dict):
+            continue
+        overview = _parse_structured_overview(
+            json.dumps(value, ensure_ascii=False),
+            language=language,
+            item_count=len(items),
+        )
+        if overview is not None:
+            result[language] = _ensure_track_coverage(overview, items, language=language)
+    return result
+
+
+_CJK = r"[\u4e00-\u9fff\u3400-\u4dbf]"
+_ASCII = r"[A-Za-z0-9]"
+_MARKDOWN_SPECIAL = re.compile(r"([\\`*_{}\[\]()<>#!|])")
+_MARKDOWN_BLOCK_START = re.compile(r"(?m)^( {0,3})(>|[-+] |\d+[.)] )")
+_URL_SAFE_CHARS = ":/?#[]@!$&'*,;=~%+"
+
+
+def _escape_markdown(value: object) -> str:
+    """Render untrusted text literally while retaining its readable content."""
+    escaped = html.escape(str(value), quote=True).replace("&#x27;", "'")
+    escaped = _MARKDOWN_SPECIAL.sub(r"\\\1", escaped)
+    return _MARKDOWN_BLOCK_START.sub(r"\1\\\2", escaped)
+
+
+def _safe_url(value: object) -> Optional[str]:
+    """Return an HTML/Markdown-safe HTTP(S) URL, or None for unsafe URLs."""
+    raw = str(value).strip()
+    if not raw or any(ord(char) < 32 or ord(char) == 127 for char in raw):
+        return None
+    try:
+        parsed = urlsplit(raw)
+        if parsed.scheme.lower() not in {"http", "https"} or not parsed.netloc:
+            return None
+        parsed.port
+    except (TypeError, ValueError):
+        return None
+    encoded = quote(raw, safe=_URL_SAFE_CHARS)
+    return html.escape(encoded, quote=True)
+
+
+def _pangu(text: str) -> str:
+    """Insert a space between CJK and ASCII letters/digits (Pangu spacing)."""
+    text = re.sub(rf"({_CJK})({_ASCII})", r"\1 \2", text)
+    text = re.sub(rf"({_ASCII})({_CJK})", r"\1 \2", text)
+    return text
+
+
+LABELS = {
+    "en": {
+        "header": "xiyu.news",
+        "source": "Source",
+        "background": "Background",
+        "discussion": "Discussion",
+        "references": "References",
+        "tags": "Tags",
+        "selected_items": "From {total} items, {selected} important content pieces were selected",
+        "empty_analyzed": "Analyzed {total} items, but none met the importance threshold.",
+        "empty_body": (
+            "No significant developments today. This might indicate:\n"
+            "- A quiet day in your tracked sources\n"
+            "- The AI score threshold is too high\n"
+            "- Your information sources need expansion\n\n"
+            "Consider:\n"
+            "1. Lowering the `ai_score_threshold` in config.json\n"
+            "2. Adding more diverse information sources\n"
+            "3. Checking if the AI model is working correctly\n"
+        ),
+    },
+    "zh": {
+        "header": "xiyu.news",
+        "source": "来源",
+        "background": "背景",
+        "discussion": "社区讨论",
+        "references": "参考链接",
+        "tags": "标签",
+        "selected_items": "从 {total} 条内容中筛选出 {selected} 条重要资讯。",
+        "empty_analyzed": "已分析 {total} 条内容，但没有达到重要性阈值的条目。",
+        "empty_body": (
+            "今日暂无重要动态，可能原因：\n"
+            "- 今天关注的信息源较平静\n"
+            "- AI 评分阈值设置过高\n"
+            "- 信息源种类有待扩充\n\n"
+            "建议：\n"
+            "1. 在 config.json 中降低 `ai_score_threshold`\n"
+            "2. 添加更多多样化的信息源\n"
+            "3. 检查 AI 模型是否正常工作\n"
+        ),
+    },
+}
 
 
 class DailySummarizer:
-    def __init__(self,display_timezone='Asia/Shanghai'):
-        self.display_timezone=display_timezone
+    """Generates daily Markdown summaries from pre-analyzed content items."""
 
-    async def generate_summary(self,items,date,total_fetched,language='zh'):
-        if language!='zh':raise ValueError('Only Chinese daily summaries are supported')
-        parts=[f'# xiyu.news 日报 · {date}\n\n']
-        for index,item in enumerate(items,1):
-            parts.append(f'## {index}. {html.escape(_localized_title(item,"zh"))}\n\n')
-            background=_localized_text(item,'background','zh')
-            if background:parts.append('背景：'+html.escape(background)+'\n\n')
-            parts.append(html.escape(_localized_text(item,'detailed_summary','zh') or item.ai_summary or '')+'\n\n')
-            url=_safe_url(item.url)
-            if url:parts.append(f'[原始来源]({url})\n\n')
-        return ''.join(parts)
+    def __init__(self, display_timezone: str = "UTC"):
+        self.display_timezone = ZoneInfo(display_timezone)
+
+    async def generate_summary(
+        self,
+        items: List[ContentItem],
+        date: str,
+        total_fetched: int,
+        language: str = "en",
+    ) -> str:
+        """Generate daily summary in Markdown format.
+
+        Items are rendered in score-descending order (already sorted by orchestrator).
+
+        Args:
+            items: High-scoring content items (already enriched)
+            date: Date string (YYYY-MM-DD)
+            total_fetched: Total number of items fetched before filtering
+            language: Output language, either "en" or "zh"
+
+        Returns:
+            str: Markdown formatted summary
+        """
+        labels = LABELS.get(language, LABELS["en"])
+
+        if not items:
+            return self._generate_empty_summary(date, total_fetched, labels)
+
+        header = (
+            f"# {labels['header']} - {date}\n\n"
+            f"> {labels['selected_items'].format(total=total_fetched, selected=len(items))}\n\n"
+            "---\n\n"
+        )
+
+        # TOC
+        toc_entries = []
+        for i, item in enumerate(items):
+            _t = item.metadata.get(f"title_{language}") or item.title
+            t = _escape_markdown(_t)
+            if language == "zh":
+                t = _pangu(t)
+            score = item.ai_score or "?"
+            toc_entries.append(f"{i + 1}. [{t}](#item-{i + 1}) \u2b50\ufe0f {score}/10")
+        toc = "\n".join(toc_entries) + "\n\n---\n\n"
+
+        parts = [self._format_item(item, labels, language, i + 1) for i, item in enumerate(items)]
+
+        return header + toc + "".join(parts)
+
+    def generate_webhook_overview(
+        self,
+        items: List[ContentItem],
+        date: str,
+        total_fetched: int,
+        language: str = "en",
+    ) -> str:
+        """Generate a compact overview for multi-message webhook delivery."""
+        labels = LABELS.get(language, LABELS["en"])
+        if not items:
+            return self._generate_empty_summary(date, total_fetched, labels)
+
+        if language == "zh":
+            header = (
+                f"# {labels['header']} - {date}\n\n"
+                f"> 从 {total_fetched} 条内容中筛选出 {len(items)} 条重要资讯。\n\n"
+                "下面会按新闻逐条发送详情，你可以只看感兴趣的标题。\n\n"
+            )
+        else:
+            header = (
+                f"# {labels['header']} - {date}\n\n"
+                f"> Selected {len(items)} important items from {total_fetched} fetched items.\n\n"
+                "Details will be sent item by item so you can read only the topics you care about.\n\n"
+            )
+
+        entries = []
+        for i, item in enumerate(items, start=1):
+            title = _escape_markdown(item.metadata.get(f"title_{language}") or item.title)
+            if language == "zh":
+                title = _pangu(title)
+            score = item.ai_score or "?"
+            url = _safe_url(item.url)
+            title_link = f"[{title}]({url})" if url else title
+            entries.append(f"{i}. {title_link} \u2b50\ufe0f {score}/10")
+
+        return header + "\n".join(entries)
+
+    def generate_webhook_item(
+        self,
+        item: ContentItem,
+        language: str,
+        index: int,
+        total: int,
+    ) -> str:
+        """Generate one item message for multi-message webhook delivery."""
+        labels = LABELS.get(language, LABELS["en"])
+        prefix = f"第 {index}/{total} 条\n\n" if language == "zh" else f"Item {index}/{total}\n\n"
+        return prefix + self._format_item(item, labels, language, index).rstrip("-\n ")
+
+    def _format_item(self, item: ContentItem, labels: dict, language: str, index: int) -> str:
+        """Format a single ContentItem into Markdown."""
+        _title = item.metadata.get(f"title_{language}") or item.title
+        title = _escape_markdown(_title)
+        raw_url = str(item.url)
+        url = _safe_url(raw_url)
+        score = item.ai_score or "?"
+        meta = item.metadata
+
+        summary = (
+            meta.get(f"detailed_summary_{language}")
+            or meta.get("detailed_summary")
+            or item.ai_summary
+            or ""
+        )
+        background = meta.get(f"background_{language}") or meta.get("background") or ""
+        discussion = (
+            meta.get(f"community_discussion_{language}")
+            or meta.get("community_discussion")
+            or ""
+        )
+
+        summary = _escape_markdown(summary)
+        background = _escape_markdown(background)
+        discussion = _escape_markdown(discussion)
+
+        if language == "zh":
+            title = _pangu(title)
+            summary = _pangu(summary)
+            background = _pangu(background)
+            discussion = _pangu(discussion)
+
+        # Source line with parts joined by " · ", link appended at end
+        source_type = item.source_type.value
+        source_parts = [_escape_markdown(source_type)]
+        if meta.get("subreddit"):
+            source_parts.append(_escape_markdown(f"r/{meta['subreddit']}"))
+        if meta.get("feed_name"):
+            source_parts.append(_escape_markdown(meta["feed_name"]))
+        else:
+            source_parts.append(_escape_markdown(item.author or "unknown"))
+        if item.published_at:
+            published_at = item.published_at
+            if published_at.tzinfo is None:
+                published_at = published_at.replace(tzinfo=timezone.utc)
+            published_at = published_at.astimezone(self.display_timezone)
+            if language == "zh":
+                source_parts.append(
+                    f"{published_at.month}月{published_at.day}日 "
+                    f"{published_at:%H:%M}"
+                )
+            else:
+                day = published_at.strftime("%d").lstrip("0")
+                source_parts.append(published_at.strftime(f"%b {day}, %H:%M"))
+        source_line = " \u00b7 ".join(source_parts)  # ·
+
+        discussion_url = meta.get("discussion_url")
+        if discussion_url:
+            safe_discussion_url = _safe_url(discussion_url)
+            if safe_discussion_url and str(discussion_url) != raw_url:
+                source_line += f' · [{labels["discussion"]}]({safe_discussion_url})'
+
+        title_link = f"[{title}]({url})" if url else title
+
+        lines = [
+            f'<a id="item-{index}"></a>',
+            f"## {title_link} \u2b50\ufe0f {score}/10",  # ⭐️
+            "",
+            summary,
+            "",
+            source_line,
+        ]
+
+        if background:
+            lines.append("")
+            lines.append(f"**{labels['background']}**: {background}")
+
+        sources = meta.get("sources") or []
+        if sources:
+            reference_items = []
+            for source in sources:
+                reference_title = html.escape(str(source.get("title", "")), quote=True)
+                reference_url = _safe_url(source.get("url", ""))
+                if reference_url:
+                    reference_items.append(f'<li><a href="{reference_url}">{reference_title}</a></li>\n')
+                else:
+                    reference_items.append(f"<li>{reference_title}</li>\n")
+            items_html = "".join(reference_items)
+            lines += [
+                "",
+                f'<details><summary>{labels["references"]}</summary>\n<ul>\n{items_html}\n</ul>\n</details>',
+            ]
+
+        if discussion:
+            lines.append("")
+            lines.append(f"**{labels['discussion']}**: {discussion}")
+
+        if item.ai_tags:
+            tags_str = ", ".join([f"`#{_escape_markdown(t)}`" for t in item.ai_tags])
+            lines.append("")
+            lines.append(f"**{labels['tags']}**: {tags_str}")
+
+        lines.append("")
+        lines.append("---")
+
+        return "\n".join(lines) + "\n\n"
+
+    def _generate_empty_summary(self, date: str, total_fetched: int, labels: dict) -> str:
+        """Generate summary when no high-scoring items were found."""
+        return (
+            f"# {labels['header']} - {date}\n\n"
+            f"> {labels['empty_analyzed'].format(total=total_fetched)}\n\n"
+            + labels["empty_body"]
+        )

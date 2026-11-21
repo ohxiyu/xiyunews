@@ -1,0 +1,286 @@
+"""Static and generated contracts that make the public site agent-readable."""
+
+import hashlib
+import json
+import re
+import struct
+from pathlib import Path
+from urllib.parse import urlsplit
+from xml.etree import ElementTree
+
+from bs4 import BeautifulSoup
+
+
+ROOT = Path(__file__).parents[1]
+DOCS = ROOT / "docs"
+
+
+def test_public_assets_use_fingerprint_and_revalidate() -> None:
+    """Prevent stale UI assets from outliving their matching markup."""
+    head = (DOCS / "_includes" / "head-custom.html").read_text(encoding="utf-8")
+    headers = (DOCS / "_headers").read_text(encoding="utf-8")
+    css_cache_rule = headers.split("/assets/css/*", 1)[1].split("\n\n", 1)[0]
+    js_cache_rule = headers.split("/assets/js/*", 1)[1].split("\n\n", 1)[0]
+    image_cache_rule = headers.split("/assets/images/*", 1)[1].split("\n\n", 1)[0]
+    home_cache_rule = headers.split("\n/\n", 1)[1].split("\n\n", 1)[0]
+    assert "?v={{ site.asset_version }}" in head
+    assert "/assets/css/bmtnews-ui.css" in head
+    assert "/assets/js/bmtnews-ui.js" in head
+    assert "max-age=300" in css_cache_rule
+    assert "must-revalidate" in css_cache_rule
+    assert "immutable" not in css_cache_rule
+    assert "max-age=300" in js_cache_rule
+    assert "must-revalidate" in js_cache_rule
+    assert "immutable" not in js_cache_rule
+    assert "immutable" not in image_cache_rule
+    assert "max-age=300" in image_cache_rule
+    assert "max-age=0" in home_cache_rule
+    assert "must-revalidate" in home_cache_rule
+
+    asset_root = DOCS / "assets"
+    asset_paths = sorted(asset_root.glob("css/*.css")) + sorted(
+        asset_root.glob("js/*.js")
+    )
+    digest = hashlib.sha256()
+    for path in asset_paths:
+        digest.update(path.relative_to(DOCS).as_posix().encode())
+        digest.update(b"\0")
+        digest.update(path.read_bytes())
+        digest.update(b"\0")
+    expected = f"sha256-{digest.hexdigest()[:12]}"
+
+    config = (DOCS / "_config.yml").read_text(encoding="utf-8")
+    match = re.search(
+        r'^asset_version:\s*["\']([^"\']+)["\']\s*$', config, re.M
+    )
+
+    assert match is not None
+    preview_config = (DOCS.parent / "_config.yml").read_text(encoding="utf-8")
+    assert f'asset_version: "{expected}"' in preview_config
+    assert match.group(1) == expected, (
+        "Public CSS/JS changed without a matching cache key. Update asset_version "
+        f'to "{expected}" whenever one of them changes.'
+    )
+
+
+def test_openapi_is_typed_described_and_function_calling_friendly() -> None:
+    spec = json.loads((DOCS / "openapi.json").read_text(encoding="utf-8"))
+    assert spec["openapi"] == "3.1.1"
+    assert spec["servers"] == [
+        {"url": "https://xiyu.news", "description": "Production"}
+    ]
+
+    operations = []
+    for path, path_item in spec["paths"].items():
+        operation = path_item["get"]
+        operations.append(operation)
+        assert operation["operationId"]
+        assert operation["description"]
+        assert operation["responses"]["200"]["content"]["application/json"][
+            "schema"
+        ]
+        for parameter in operation.get("parameters", []):
+            assert parameter["description"]
+            assert parameter["schema"]["type"]
+        assert path.startswith("/")
+
+    operation_ids = [operation["operationId"] for operation in operations]
+    assert len(operation_ids) == len(set(operation_ids))
+    assert "ErrorResponse" in spec["components"]["schemas"]
+
+
+def test_llms_txt_follows_the_required_discovery_shape() -> None:
+    body = (DOCS / "llms.txt").read_text(encoding="utf-8")
+    lines = body.splitlines()
+    assert lines[0] == "# xiyu.news"
+    assert next(line for line in lines[1:] if line.strip()).startswith("> ")
+    assert "## When to use xiyu.news" in body
+    assert "[OpenAPI specification](https://xiyu.news/openapi.json)" in body
+    assert "[xiyu.news API and agent documentation]" in body
+    assert len(body.encode("utf-8")) <= 6_000
+    assert len(re.findall(r"^# ", body, re.M)) == 1
+    assert "## Optional" in body
+    assert not any(token in body for token in ("---", "{{", "{%", "<script", "```"))
+    # After the overview, every H2 section is a machine-parseable link list.
+    sections = re.split(r"^## ", body, flags=re.M)[1:]
+    for section in sections:
+        _, entries = section.split("\n", 1)
+        for entry in entries.splitlines():
+            if entry.strip():
+                assert re.fullmatch(r"- \[[^\]]+\]\(https://[^)]+\): .+", entry)
+
+
+def test_llms_links_are_public_machine_first_and_resolvable_offline() -> None:
+    body = (DOCS / "llms.txt").read_text(encoding="utf-8")
+    urls = re.findall(r"\[[^\]]+\]\(([^)]+)\)", body)
+    assert len(urls) == len(set(urls))
+    assert [urlsplit(url).path for url in urls[:4]] == [
+        "/api/latest.json", "/api/editions.json", "/api/events.json",
+        "/api/quick-posts.json",
+    ]
+    spec = json.loads((DOCS / "openapi.json").read_text(encoding="utf-8"))
+    generated = {"/sitemap.xml", *(f"/feeds/{category}-en.xml" for category in ("crypto", "technology", "policy"))}
+    for url in urls:
+        parsed = urlsplit(url)
+        assert parsed.scheme == "https" and parsed.netloc == "xiyu.news"
+        assert not parsed.query and not parsed.fragment
+        assert not parsed.path.startswith(("/s/", "/admin/", "/api/admin/"))
+        if parsed.path in spec["paths"] or parsed.path in generated:
+            continue
+        target = DOCS / parsed.path.lstrip("/")
+        assert target.is_file() or (target / "index.md").is_file(), url
+
+
+def test_llms_guidance_preserves_freshness_and_evidence_boundaries() -> None:
+    body = (DOCS / "llms.txt").read_text(encoding="utf-8")
+    for required in (
+        "Asia/Shanghai", "previous day 07:00", "edition day 07:00", "07:26",
+        "latest published edition", "generated_at", "not the event's occurrence time",
+        "not independently fact-checked", "not proof of independent confirmation",
+        "no AI importance score", "batch_index", "anchor_id", "503",
+        "not an access-control or training-permission policy",
+    ):
+        assert required in body
+    assert "verified material updates" not in body
+    headers = (DOCS / "_headers").read_text(encoding="utf-8")
+    llms_rule = headers.split("\n/llms.txt\n", 1)[1].split("\n\n", 1)[0]
+    assert "Content-Type: text/plain; charset=utf-8" in llms_rule
+    assert "Access-Control-Allow-Origin: *" in llms_rule
+
+
+def test_home_template_and_metadata_are_present_without_javascript() -> None:
+    feed_home = (DOCS / "_includes" / "feed-home.html").read_text(encoding="utf-8")
+    edition_header = (DOCS / "_includes" / "edition-header.html").read_text(
+        encoding="utf-8"
+    )
+    layout = (DOCS / "_layouts" / "default.html").read_text(encoding="utf-8")
+    head = (DOCS / "_includes" / "head-custom.html").read_text(encoding="utf-8")
+
+    assert '<h1 class="visually-hidden">' not in feed_home
+    assert "{% include edition-header.html" in feed_home
+    assert "include section-header.html" in edition_header
+    assert "<h1>" in (DOCS / "_includes" / "section-header.html").read_text()
+    assert "每日情报" in edition_header
+    assert '<html lang="' in layout
+    assert '<link rel="canonical"' in layout
+    assert '<meta property="og:type"' in layout
+    assert '<meta property="og:image"' in layout
+    assert '/developers/' in layout
+    assert 'rel="describedby"' in head
+    assert 'type="text/markdown"' in head
+
+
+def test_pwa_manifest_icons_and_install_contract_are_complete() -> None:
+    manifest = json.loads((DOCS / "manifest.webmanifest").read_text(encoding="utf-8"))
+    head = (DOCS / "_includes" / "head-custom.html").read_text(encoding="utf-8")
+    layout = (DOCS / "_layouts" / "default.html").read_text(encoding="utf-8")
+    script = (DOCS / "assets" / "js" / "bmtnews-ui.js").read_text(
+        encoding="utf-8"
+    )
+    headers = (DOCS / "_headers").read_text(encoding="utf-8")
+
+    assert manifest["id"] == "/"
+    assert manifest["start_url"].startswith("/")
+    assert manifest["scope"] == "/"
+    assert manifest["display"] == "standalone"
+    assert manifest["prefer_related_applications"] is False
+    assert {icon["sizes"] for icon in manifest["icons"]} >= {"192x192", "512x512"}
+    assert any(icon.get("purpose") == "maskable" for icon in manifest["icons"])
+    for icon in manifest["icons"]:
+        assert (DOCS / icon["src"].lstrip("/")).is_file()
+
+    assert 'rel="manifest"' in head
+    assert 'rel="apple-touch-icon" sizes="180x180"' in head
+    assert 'name="apple-mobile-web-app-capable" content="yes"' in head
+    assert 'content="width=device-width, initial-scale=1, viewport-fit=cover"' in layout
+    assert "data-pwa-install" in layout
+    assert "data-pwa-install-dialog" in layout
+    assert "beforeinstallprompt" in script
+    assert "window.navigator.standalone" in script
+    assert "/manifest.webmanifest" in headers
+    assert "application/manifest+json" in headers
+
+    expected_dimensions = {
+        "apple-touch-icon.png": (180, 180),
+        "app-icon-192.png": (192, 192),
+        "app-icon-512.png": (512, 512),
+    }
+    for filename, expected in expected_dimensions.items():
+        payload = (DOCS / "assets" / "images" / filename).read_bytes()
+        assert payload.startswith(b"\x89PNG\r\n\x1a\n")
+        assert struct.unpack(">II", payload[16:24]) == expected
+
+
+def test_json_ld_describes_the_real_site_identity_and_contact_route() -> None:
+    head = (DOCS / "_includes" / "head-custom.html").read_text(encoding="utf-8")
+    soup = BeautifulSoup(head, "html.parser")
+    structured = soup.find("script", {"type": "application/ld+json"})
+    assert structured is not None
+    payload = json.loads(structured.string)
+    graph = payload["@graph"]
+    organization = next(item for item in graph if item["@type"] == "Organization")
+    website = next(item for item in graph if item["@type"] == "WebSite")
+    assert organization["name"] == "xiyu.news"
+    assert organization["contactPoint"][0]["url"] == "https://xiyu.news/contact/"
+    assert website["publisher"]["@id"] == organization["@id"]
+
+
+def test_custom_404_worker_and_cloudflare_output_are_included() -> None:
+    root_config = (ROOT / "_config.yml").read_text(encoding="utf-8")
+    config = (DOCS / "_config.yml").read_text(encoding="utf-8")
+    not_found = (DOCS / "404.html").read_text(encoding="utf-8")
+    worker = (DOCS / "_worker.js").read_text(encoding="utf-8")
+    assert "source: docs" in root_config
+    assert (ROOT / "Gemfile").read_text(encoding="utf-8") == (
+        DOCS / "Gemfile"
+    ).read_text(encoding="utf-8")
+    assert '- "_worker.js"' in config
+    assert "permalink: /404.html" in not_found
+    assert "status: 404" in worker
+    assert "application/json; charset=utf-8" in worker
+    assert "text/markdown; charset=utf-8" in worker
+    assert "Accept-Encoding" in worker
+
+
+def test_sitemap_and_robots_are_valid_and_discoverable() -> None:
+    from src.api_output import render_sitemap
+
+    tree = ElementTree.ElementTree(
+        ElementTree.fromstring(render_sitemap([], generated_date="2026-09-28"))
+    )
+    namespace = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    urls = tree.findall("s:url", namespace)
+    assert len(urls) >= 10
+    assert all(url.find("s:loc", namespace) is not None for url in urls)
+    assert all(url.find("s:lastmod", namespace) is not None for url in urls)
+    robots = (DOCS / "robots.txt").read_text(encoding="utf-8")
+    assert "Sitemap: https://xiyu.news/sitemap.xml" in robots
+
+
+def test_sitemap_is_generated_never_committed() -> None:
+    """Every docs deployment copies docs/ over the live site, so a committed
+    sitemap would replace the one the daily edition generates."""
+    import subprocess
+
+    tracked = subprocess.run(
+        ["git", "ls-files", "docs/sitemap.xml"],
+        cwd=ROOT, capture_output=True, text=True, check=True,
+    ).stdout.strip()
+    assert tracked == ""
+    assert "docs/sitemap.xml" in (ROOT / ".gitignore").read_text(encoding="utf-8")
+
+
+def test_trust_and_developer_pages_are_substantive() -> None:
+    for relative in [
+        "about/index.md",
+        "contact/index.md",
+        "developers/index.md",
+        "legal/index.md",
+    ]:
+        body = (DOCS / relative).read_text(encoding="utf-8")
+        _, content = body.split("---\n\n", 1)
+        assert len(content) >= 500
+    developer_body = (DOCS / "developers" / "index.md").read_text(encoding="utf-8")
+    assert "/api/latest.json" in developer_body
+    assert "/openapi.json" in developer_body
+    assert "404" in developer_body

@@ -135,16 +135,13 @@ def test_failed_jobs_explicitly_preserve_ai_cache():
         text = (root / ".github/workflows" / workflow).read_text()
         assert "actions/cache/restore@v5" in text
         assert "actions/cache@v5" not in text
-        step = text.split("      - name: Preserve successful AI work", 1)[1].split("\n      - name:", 1)[0]
-        assert "always()" in step and "uses: actions/cache/save@v5" in step
-        if workflow == "feed-collection.yml":
-            assert "!inputs.alert_test" in step and "inputs.alert_setup_chat == ''" in step
+        assert "if: ${{ always() }}\n        uses: actions/cache/save@v5" in text
         assert text.count("${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}") == 2
 
 
 def test_new_model_and_default_cutoff_on_previous_utc_date():
     root = Path(__file__).parents[1]
-    assert json.loads((root / "data/config.github.json").read_text())["ai"]["model"] == "deepseek-ai/DeepSeek-V3.2"
+    assert json.loads((root / "data/config.github.json").read_text())["ai"]["model"] == "deepseek-flash"
     window = edition_window_for(datetime(2026, 9, 16, 23, 26, tzinfo=timezone.utc),
                                 "Asia/Shanghai")
     assert window.date == "2026-09-17"
@@ -178,16 +175,3 @@ def test_cache_stores_only_validated_indices_not_arbitrary_model_fields(tmp_path
     compare(Client('{"duplicates": [], "untrusted_extra": "do not persist"}'),
             stories(2), cache=cache)
     assert next(iter(cache.entries.values()))["value"] == {"duplicates": []}
-
-
-
-def test_provider_migration_does_not_reuse_deepseek_comparison_cache(tmp_path):
-    path = tmp_path / "cache.json"
-    old = AnalysisResultCache(path, model="deepseek:deepseek-flash")
-    compare(Client('{"duplicates": [[0, 1]]}'), stories(3), cache=old)
-    old.save()
-    migrated = AnalysisResultCache(path, model="siliconflow:deepseek-ai/DeepSeek-V3.2")
-    client = Client()
-    assert compare(client, stories(3), cache=migrated) == []
-    assert len(client.calls) == 1
-    assert migrated.comparison_hits == 0

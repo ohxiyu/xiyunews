@@ -37,8 +37,8 @@ def test_coinex_cross_cluster_duplicates_are_actually_compared(tmp_path, monkeyp
             assert len(titles) <= 24
             group = [i for i, title in enumerate(titles) if any(s in title for s in ("Close Exchange", "Shuts Down", "shut down"))]
             return json.dumps({"duplicates": [group] if len(group) > 1 else []})
-    monkeypatch.setattr("src.selection.same_thread", lambda *a: False)
-    monkeypatch.setattr("src.selection.create_ai_client", lambda *a: Client())
+    monkeypatch.setattr("src.orchestrator.same_thread", lambda *a: False)
+    monkeypatch.setattr("src.orchestrator.create_ai_client", lambda *a: Client())
     pool, result = asyncio.run(runner._audit_daily_ranking(items, runner.apply_balanced_digest(items)))
     assert len(calls) == 2
     assert [i.id for i in result.items] == ["2", "3", "4"]
@@ -53,7 +53,7 @@ def test_refill_is_rechecked_and_stops_at_bound(tmp_path, monkeypatch):
         async def complete(self, **kw):
             calls.append(kw)
             return '{"duplicates": [[0,1,2]]}'
-    monkeypatch.setattr("src.selection.create_ai_client", lambda *a: Client())
+    monkeypatch.setattr("src.orchestrator.create_ai_client", lambda *a: Client())
     _, result = asyncio.run(runner._audit_daily_ranking(items, runner.apply_balanced_digest(items)))
     assert len(calls) == 3
     assert len(result.items) == 1  # no unchecked fourth refill
@@ -64,7 +64,7 @@ def test_invalid_final_audit_fails_closed(tmp_path, monkeypatch):
     class Client:
         async def complete(self, **kw):
             return '{"duplicates": [[0,0,1]]}'
-    monkeypatch.setattr("src.selection.create_ai_client", lambda *a: Client())
+    monkeypatch.setattr("src.orchestrator.create_ai_client", lambda *a: Client())
     items = [story(0), story(1)]
     with pytest.raises(RuntimeError, match="refusing to publish"):
         asyncio.run(runner._audit_daily_ranking(items, runner.apply_balanced_digest(items)))
@@ -99,7 +99,7 @@ def test_quota_refill_preserves_crypto_target_side_caps_and_score_order(tmp_path
             calls.append(titles)
             same = [i for i, value in enumerate(titles) if int(value) < 3]
             return json.dumps({"duplicates": [same] if len(same) > 1 else []})
-    monkeypatch.setattr("src.selection.create_ai_client", lambda *a: Client())
+    monkeypatch.setattr("src.orchestrator.create_ai_client", lambda *a: Client())
     _, result = asyncio.run(runner._audit_daily_ranking(items, runner.apply_balanced_digest(items)))
     assert len(result.items) <= 14
     assert sum(result.group_counts.get(g, 0) for g in runner.config.filtering.primary_groups) >= 9
@@ -115,7 +115,7 @@ def test_no_duplicates_preserve_order_and_use_one_pass(tmp_path, monkeypatch):
     class Client:
         async def complete(self, **kw):
             return '{"duplicates": []}'
-    monkeypatch.setattr("src.selection.create_ai_client", lambda *a: Client())
+    monkeypatch.setattr("src.orchestrator.create_ai_client", lambda *a: Client())
     items = [story(0, score=7), story(1, score=9), story(2, score=8)]
     _, result = asyncio.run(runner._audit_daily_ranking(items, runner.apply_balanced_digest(items)))
     assert [i.id for i in result.items] == ["1", "2", "0"]

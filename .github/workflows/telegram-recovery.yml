@@ -1,0 +1,65 @@
+name: xiyu.news Telegram Recovery
+run-name: Telegram recovery ${{ inputs.edition_date }} ${{ inputs.send && 'send' || 'check' }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      edition_date:
+        description: Published edition with confirmed bot-not-member 403 (YYYY-MM-DD)
+        type: string
+        required: true
+      source_run_id:
+        description: Original Daily Edition run ID containing the failed delivery report
+        type: string
+        required: true
+      send:
+        description: Send once after read-only checks; never rerun an attempted send
+        type: boolean
+        default: false
+
+concurrency:
+  group: xiyunews-telegram-recovery-${{ inputs.edition_date }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  recover:
+    if: github.ref == 'refs/heads/main' && vars.XIYUNEWS_RUNTIME_MODE == 'tokyo'
+    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+      - name: Read generated daily state (no branch writes)
+        uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+          path: published
+          sparse-checkout: _data/bmtnews_state.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: '0.11.32'
+      - run: uv sync --frozen
+      - name: Check daily bot permissions and optionally send existing edition once
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          RECOVERY_EDITION: ${{ inputs.edition_date }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+          RECOVERY_SEND: ${{ inputs.send }}
+        run: uv run python -m scripts.recover_telegram_edition
+      - name: Preserve sanitized permission and delivery receipt
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: telegram-recovery-${{ github.run_id }}-${{ github.run_attempt }}
+          path: recovery/telegram-receipt.json
+          retention-days: 90
+          if-no-files-found: warn

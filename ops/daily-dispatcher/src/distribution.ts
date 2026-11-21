@@ -1,8 +1,9 @@
 import { ACTIVE_STATUSES, editionContextFor, fetchWorkflowRuns, githubRequest } from "./lib";
 
-type Kind = "x";
+type Kind = "square" | "x";
 const MAX_JSON_BYTES = 1_048_576;
 const X_STATUSES = new Set(["planned", "pending", "sent", "unknown", "failed", "expired", "skipped", "void"]);
+const SQUARE_STATUSES = new Set(["sent", "pending", "unknown", "rejected", "blocked"]);
 
 function record(value: unknown, label: string): Record<string, unknown> {
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error(`Invalid ${label}`);
@@ -24,6 +25,34 @@ function jobs(value: unknown): Record<string, unknown>[] {
 
 // This gate never writes a plan or sends a social request. Python remains the
 // authoritative planner/checkpointer; true means only "run its existing gate".
+export function squareHasWork(payload: unknown, now: number, day: string): boolean {
+  const state = record(payload, "Square queue");
+  if (state.version !== 1) throw new Error("Invalid Square queue version");
+  const editions = record(state.editions, "Square editions");
+  const plans = record(state.plans ?? {}, "Square plans");
+  const rows = record(editions[day] ?? {}, "Square outcomes");
+  let recent = false;
+  for (const value of Object.values(rows)) {
+    const row = record(value, "Square outcome");
+    if (!SQUARE_STATUSES.has(String(row.status))) throw new Error("Invalid Square outcome status");
+    const attempted = stamp(row.attempted_at);
+    if (attempted !== null && now - attempted < 300_000) recent = true;
+  }
+  const plan = plans[day];
+  if (plan === undefined) return true; // Existing workflow bootstraps today's plan.
+  const planned = record(plan, "Square plan");
+  if (typeof planned.revision !== "string") throw new Error("Invalid Square revision");
+  const seen = new Set<string>();
+  let due = false;
+  for (const job of jobs(planned.jobs)) {
+    if (typeof job.id !== "string" || !job.id || seen.has(job.id)) throw new Error("Invalid Square job identity");
+    seen.add(job.id);
+    const dueAt = stamp(job.due_at);
+    if (!Object.hasOwn(rows, job.id) && dueAt !== null && dueAt <= now) due = true;
+  }
+  return !recent && due;
+}
+
 export function xHasWork(payload: unknown, feed: unknown, now: number, day: string, timezone: string): boolean {
   const state = record(payload, "X queue");
   if (state.version !== 2) throw new Error("Invalid X queue version");
@@ -97,7 +126,7 @@ export async function readPrivateJson(env: Env, path: string, ref: string): Prom
 export async function dispatchDistribution(env: Env, kind: Kind, now: number): Promise<string> {
   const clock = new Date(now), minute = clock.getUTCHours() * 60 + clock.getUTCMinutes();
   // Preserve Shanghai 09:00–23:30 Square; X also covers the 07:26 kickoff.
-  if (minute > 930 && minute < 1406) return "outside_window";
+  if (kind === "square" ? minute < 60 || minute > 930 : minute > 930 && minute < 1406) return "outside_window";
   const workflow = `${kind}-distribution.yml`;
   const runs = (await fetchWorkflowRuns(env, workflow)).filter(run => run.headBranch === env.GITHUB_REF);
   if (runs.some(run => ACTIVE_STATUSES.has(run.status))) return "active";
@@ -105,6 +134,10 @@ export async function dispatchDistribution(env: Env, kind: Kind, now: number): P
     !last || run.startedAt > last.startedAt ? run : last, undefined);
   if (latest && latest.conclusion === "failure" && now - latest.startedAt.getTime() < 1_800_000) return "cooldown";
   const day = editionContextFor(now, env.EDITION_TIMEZONE, Number(env.EDITION_CUTOFF_HOUR)).date;
+  let work: boolean;
+  if (kind === "square") {
+    work = squareHasWork(await readPrivateJson(env, "queue.json", "square-queue"), now, day);
+  } else {
     const config = record(await readPrivateJson(env, "data/config.github.json", env.GITHUB_REF), "config");
     const delivery = record(config.x_delivery, "X delivery config");
     if (delivery.enabled !== true || delivery.mode !== "drip") return "disabled";
@@ -112,10 +145,11 @@ export async function dispatchDistribution(env: Env, kind: Kind, now: number): P
       readPrivateJson(env, "data/x-queue.json", "x-queue"),
       readPrivateJson(env, "_data/bmtnews_state.json", "gh-pages"),
     ]);
-    const work = xHasWork(queue, feed, now, day, env.EDITION_TIMEZONE);
+    work = xHasWork(queue, feed, now, day, env.EDITION_TIMEZONE);
+  }
   if (!work) return "idle";
   await githubRequest(env, `/repos/${env.GITHUB_REPOSITORY}/actions/workflows/${workflow}/dispatches`,
     { method: "POST", body: JSON.stringify({ ref: env.GITHUB_REF,
-      inputs: {} }) });
+      inputs: kind === "square" ? { queue_only: true } : {} }) });
   return "dispatched";
 }

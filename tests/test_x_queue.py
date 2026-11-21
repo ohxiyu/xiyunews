@@ -1,7 +1,6 @@
 """Plan-then-send X delivery: schedule, receipts, and failure handling."""
 
 import asyncio
-import copy
 import json
 import subprocess
 from datetime import datetime, timedelta, timezone
@@ -14,10 +13,11 @@ from rich.console import Console
 
 from src import x_queue
 from src.daily_feed import DailyFeedState, item_identity
-from src.models import ContentItem, SourceType, XDeliveryConfig,Config
+from src.models import ContentItem, SourceType, XDeliveryConfig
 from src.services.x_delivery import (
     PostOutcome,
     XEditionPublisher,
+    unsupported_figures,
 )
 
 UTC = timezone.utc
@@ -31,14 +31,12 @@ def item(n: int, summary: str = "") -> ContentItem:
         id=f"story-{n}",
         source_type=SourceType.RSS,
         title=f"第{n}条",
-        url=f"https://www.theverge.com/story-{n}",
+        url=f"https://example.com/story-{n}",
         published_at=datetime(2026, 8, 9, tzinfo=UTC),
         ai_score=9.0,
         metadata={
             "title_zh": f"第{n}条",
-            "detailed_summary_zh": summary or f"第{n}条报道确认钱包软件已完成安全更新，并公布了当前的处理状态。",
-            "background_zh":"这次更新影响现有钱包用户，用户需要核对当前版本并按照公告完成更新。",
-            "feed_name":"The Verge AI",
+            "detailed_summary_zh": summary or f"第{n}条的摘要。",
         },
     )
 
@@ -51,8 +49,6 @@ class FakePublisher:
         self.posts: list[str] = []
         self.ready = ready
 
-    async def verify_account(self):return {'status':'verified','username':'ohxiyu'}
-
     def not_ready_reason(self) -> str:
         return self.ready
 
@@ -63,34 +59,24 @@ class FakePublisher:
         return PostOutcome(kind, f"scripted {kind}", tweet_id)
 
 
-@pytest.fixture(autouse=True)
-def verified_dependencies(monkeypatch):
-    # These tests exercise durable scheduling/receipts; real verifier rejection
-    # and identity transport are covered independently in test_x_verification.
-    import src.x_distribution as module
-    async def publication(state,**kwargs):return state.updated_at
-    class Client:
-        async def complete(self,**kwargs):return '{"sentences":[0,1]}'
-    monkeypatch.setattr(module,'verify_published_edition',publication)
-    monkeypatch.setattr(module,'create_ai_client',lambda config:Client())
-    monkeypatch.delenv('X_DELIVERY_ENABLED',raising=False)
-
-
 def orchestrator_for(publisher, **x_overrides):
     from src.orchestrator import BMTNewsOrchestrator
 
     orchestrator = BMTNewsOrchestrator.__new__(BMTNewsOrchestrator)
     orchestrator.console = Console(record=True)
-    settings = {"enabled": True, "mode": "drip", "compose": "ai"}
+    settings = {"enabled": True, "mode": "drip", "compose": "template"}
     settings.update(x_overrides)
-    orchestrator.config=Config.model_validate_json((Path(__file__).parents[1]/'data/config.github.json').read_text())
-    orchestrator.config.x_delivery=XDeliveryConfig(**settings)
+    orchestrator.config = SimpleNamespace(
+        x_delivery=XDeliveryConfig(**settings),
+        filtering=SimpleNamespace(daily_timezone="Asia/Shanghai"),
+        ai=None,
+    )
     orchestrator.x_publisher = publisher
     return orchestrator
 
 
 def run(monkeypatch, orchestrator, items, path, *, now, updated_at=ON_TIME):
-    import src.x_distribution as module
+    import src.orchestrator as module
 
     feed = DailyFeedState(
         date=DAY, timezone="Asia/Shanghai", updated_at=updated_at, items=items
@@ -102,7 +88,7 @@ def run(monkeypatch, orchestrator, items, path, *, now, updated_at=ON_TIME):
             date=day, timezone=tz, updated_at=updated_at
         ),
     )
-    monkeypatch.setattr("src.orchestrator.save_run_report", lambda report: None)
+    monkeypatch.setattr(module, "save_run_report", lambda report: None)
     asyncio.run(orchestrator.run_x_slot(now=now, state_path=path))
 
 
@@ -226,7 +212,7 @@ def test_a_run_that_died_mid_send_is_recorded_as_unknown(monkeypatch, tmp_path):
 
 
 def test_failed_checkpoint_means_nothing_is_sent(monkeypatch, tmp_path):
-    import src.x_distribution as module
+    import src.orchestrator as module
 
     publisher = FakePublisher()
     orchestrator = orchestrator_for(publisher)
@@ -245,8 +231,8 @@ def test_failed_checkpoint_means_nothing_is_sent(monkeypatch, tmp_path):
     feed = DailyFeedState(
         date=DAY, timezone="Asia/Shanghai", updated_at=ON_TIME, items=[item(1)]
     )
-    monkeypatch.setattr(module, "load_published_daily_feed_state", lambda *a: feed)
-    monkeypatch.setattr("src.orchestrator.save_run_report", lambda report: None)
+    monkeypatch.setattr(module, "load_daily_feed_state", lambda *a: feed)
+    monkeypatch.setattr(module, "save_run_report", lambda report: None)
     with pytest.raises(subprocess.CalledProcessError):
         asyncio.run(orchestrator.run_x_slot(now=ON_TIME, queue_dir=queue_dir))
     assert publisher.posts == []
@@ -323,10 +309,10 @@ def test_story_posted_in_the_last_week_is_not_posted_again(monkeypatch, tmp_path
     assert "第3条" in jobs(path)[1]["text"]
 
 
-def test_unverifiable_generated_text_is_skipped_without_a_template(
+def test_ai_post_with_an_unsupported_figure_falls_back_to_the_template(
     monkeypatch, tmp_path
 ):
-    import src.x_distribution as module
+    import src.orchestrator as module
 
     invented = (
         "8月9日，交易所第1条公告称遭攻击，损失约 2.3 亿美元。\n\n"
@@ -343,8 +329,9 @@ def test_unverifiable_generated_text_is_skipped_without_a_template(
     orchestrator = orchestrator_for(publisher, compose="ai")
     path = tmp_path / "q.json"
     run(monkeypatch, orchestrator, [item(1, "交易所遭攻击，损失约 1.46 亿美元。")], path, now=ON_TIME)
-    assert publisher.posts==[] and jobs(path)==[]
-    assert any(a.code=='x_composition_rejected' for a in orchestrator.last_run_report.alerts)
+    assert "2.3 亿" not in publisher.posts[0]
+    assert jobs(path)[0]["compose"] == "template"
+    assert jobs(path)[0]["fallback_reason"] == "unsupported_figures"
 
 
 def test_only_todays_edition_is_posted(monkeypatch, tmp_path):
@@ -355,6 +342,13 @@ def test_only_todays_edition_is_posted(monkeypatch, tmp_path):
     assert publisher.posts == []
 
 
+def test_unsupported_figures_accepts_unit_changes_and_rounding():
+    sources = ["约 $1.46 billion 被盗，涉及 401,347 枚 ETH；比特币下跌 2.6%，发生在 2 月 21 日。"]
+    assert unsupported_figures("被盗约 14.6 亿美元，40.1 万枚 ETH，跌 2.6%。", sources) == []
+    assert unsupported_figures("被盗约 15 亿美元。", sources) == []
+    assert unsupported_figures("9月26日，2026年，3 家机构回应。", sources) == []
+    assert unsupported_figures("被盗 14.7 亿美元，跌 3%。", sources) == ["14.7 亿"]
+    assert unsupported_figures("涨 2.6 亿", ["涨 2.6%"]) == ["2.6 亿"]
 
 
 def test_v1_queue_migrates_without_losing_receipts(tmp_path):
@@ -431,70 +425,6 @@ def test_gate_reports_attention(tmp_path, capsys):
     }
     result = _gate(tmp_path, capsys, feed=None, now=ON_TIME, queue=state)
     assert result["attention"] == "1"
-
-
-def test_recovered_old_receipt_wakes_gate_and_is_checkpointed_before_pruning(tmp_path, monkeypatch, capsys):
-    import src.x_distribution as module
-    old_day = (ON_TIME + timedelta(hours=8) - timedelta(days=10)).date().isoformat()
-    job = x_queue._blank_job('zh', 1, 'old-story')
-    job.update(status='pending', text='recorded', text_sha256=x_queue.text_digest('recorded'), attempted_at=ON_TIME.isoformat())
-    remote = {'version': 2, 'editions': {old_day: {'status': 'active', 'published_at': None, 'planned_at': None, 'jobs': [job]}}}
-    local = copy.deepcopy(remote)
-    local['editions'][old_day]['jobs'][0].update(status='sent', tweet_id='123456')
-    monkeypatch.setattr(x_queue, 'load', lambda *args: copy.deepcopy(local))
-    assert not x_queue.has_work(local, ON_TIME, x_queue.Settings(), feed_date='', feed_updated_at='')
-    assert _gate(tmp_path, capsys, feed=None, now=ON_TIME, queue=remote)['work'] == 'true'
-    queue_dir = tmp_path / 'x-state'
-    path = queue_dir / x_queue.QUEUE_RELATIVE_PATH
-    path.parent.mkdir(parents=True)
-    path.write_text(json.dumps(remote))
-    checkpoints = []
-    def checkpoint(directory, state):
-        checkpoints.append(copy.deepcopy(state))
-        path.write_text(json.dumps(state))
-    async def plan(state, **kwargs):
-        assert checkpoints == [local]
-        x_queue._prune(state, DAY, x_queue.Settings())
-        return True
-    publisher = FakePublisher()
-    orchestrator = orchestrator_for(publisher)
-    monkeypatch.setattr(orchestrator, '_plan_x_edition', plan)
-    monkeypatch.setattr(x_queue, 'git_checkpoint', checkpoint)
-    monkeypatch.setattr(module, 'load_published_daily_feed_state', lambda *args: DailyFeedState(date=DAY, timezone='Asia/Shanghai', updated_at=ON_TIME, items=[item(1)]))
-    monkeypatch.setattr('src.orchestrator.save_run_report', lambda report: None)
-    asyncio.run(orchestrator.run_x_slot(now=ON_TIME, queue_dir=queue_dir))
-    assert checkpoints == [local, {'version': 2, 'editions': {}}]
-    assert publisher.posts == []
-
-
-def test_production_consumer_never_posts_unpublished_local_draft(tmp_path, monkeypatch):
-    import src.x_distribution as module
-    from src.publication_state import PublicationState
-    monkeypatch.chdir(tmp_path)
-    monkeypatch.setenv('XIYUNEWS_STATE_DIR', str(tmp_path / 'state'))
-    monkeypatch.delenv('GITHUB_ACTIONS', raising=False)
-    store = PublicationState(tmp_path / 'state')
-    yesterday = (ON_TIME + timedelta(hours=8) - timedelta(days=1)).date().isoformat()
-    published = DailyFeedState(date=yesterday, timezone='Asia/Shanghai', updated_at=ON_TIME, items=[item(1)]).model_dump(mode='json')
-    draft = DailyFeedState(date=DAY, timezone='Asia/Shanghai', updated_at=ON_TIME, items=[item(2)]).model_dump(mode='json')
-    path = Path('docs/_data/bmtnews_state.json')
-    path.parent.mkdir(parents=True); path.write_text(json.dumps(published))
-    store.load_document('daily', published)
-    store.save_document('daily', draft)
-    publisher = FakePublisher()
-    orchestrator = orchestrator_for(publisher)
-    monkeypatch.setattr('src.orchestrator.save_run_report', lambda report: None)
-    monkeypatch.setattr(x_queue, 'git_checkpoint', lambda directory, state: x_queue.save(state, directory / x_queue.QUEUE_RELATIVE_PATH))
-    queue_dir = tmp_path / 'queue'
-    asyncio.run(orchestrator.run_x_slot(now=ON_TIME, queue_dir=queue_dir))
-    assert publisher.posts == []
-    assert store.load_document('daily', None) == draft
-    published['date'] = DAY
-    path.write_text(json.dumps(published))
-    asyncio.run(orchestrator.run_x_slot(now=ON_TIME, queue_dir=queue_dir))
-    assert len(publisher.posts) == 1
-    assert '第1条' in publisher.posts[0] and '第2条' not in publisher.posts[0]
-    assert store.load_document('daily', None) == draft
 
 
 def test_git_checkpoint_pushes_without_force(tmp_path):
@@ -582,66 +512,18 @@ def test_workflow_restores_the_queue_fail_closed_and_never_force_pushes():
     assert "git ls-remote --heads origin refs/heads/x-queue" in workflow
     assert "python3 -m src.x_queue" in workflow
     assert "--x-queue-dir" in workflow
-    assert "if attention(load(path))" in workflow
-    assert "steps.gate.outputs.attention !=" not in workflow
+    assert "steps.gate.outputs.attention != '0'" in workflow
 
 
-def test_distribution_uses_trusted_deployment_and_readonly_verification_while_default_off():
-    root=Path(__file__).resolve().parents[1]
-    text=(root/'.github/workflows/x-distribution.yml').read_text()
-    assert "workflows: ['xiyunews Cloudflare']" in text
-    assert "verify_only:" in text and "vars.X_DELIVERY_ENABLED" in text
-    assert "steps.proof.outputs.ready == 'true'" in text
-    assert text.index('Find exact production proof')<text.index('Plan and send with remote checkpoints')
-    assert "if: ${{ false }}" not in text
-    config=json.loads((root/'data/config.github.json').read_text())
-    assert not config['x_delivery']['enabled'] and config['x_delivery']['max_post_chars']==280
-
-
-def test_rejected_copy_advances_to_next_story_and_is_not_paid_for_again(monkeypatch,tmp_path):
-    import src.x_distribution as module
-    calls=[]
-    class Client:
-        async def complete(self,**kw):
-            title=json.loads(kw['user'])['title'];calls.append(title)
-            return '{"sentences":[]}' if title=='第1条' else '{"sentences":[0,1]}'
-    monkeypatch.setattr(module,'create_ai_client',lambda _:Client())
-    fake=FakePublisher();runner=orchestrator_for(fake);path=tmp_path/'queue.json'
-    items=[item(n) for n in range(1,5)]
-    run(monkeypatch,runner,items,path,now=ON_TIME)
-    assert '第2条' in fake.posts[0] and '第3条' in jobs(path)[1]['text']
-    assert calls==['第1条','第2条','第3条']
-    run(monkeypatch,runner,items,path,now=ON_TIME+timedelta(minutes=30))
-    assert calls==['第1条','第2条','第3条'] and len(fake.posts)==1
-
-
-def test_gap_anchors_on_actual_confirmation_after_slow_send(monkeypatch,tmp_path):
-    fake=FakePublisher();runner=orchestrator_for(fake);path=tmp_path/'queue.json'
-    items=[item(1),item(2)]
-    run(monkeypatch,runner,items,path,now=ON_TIME)
-    state=json.loads(path.read_text());first=state['editions'][DAY]['jobs'][0]
-    first['sent_at']=(ON_TIME+timedelta(minutes=2)).isoformat()
-    x_queue.save(state,path)
-    run(monkeypatch,runner,items,path,now=ON_TIME+timedelta(minutes=10))
-    second=jobs(path)[1]
-    assert datetime.fromisoformat(second['due_at'])==ON_TIME+timedelta(minutes=2+second['gap_minutes'])
-
-
-def test_before_approved_window_makes_no_plan_or_public_request(monkeypatch,tmp_path):
-    fake=FakePublisher();runner=orchestrator_for(fake);path=tmp_path/'queue.json'
-    run(monkeypatch,runner,[item(1)],path,now=ON_TIME-timedelta(minutes=10))
-    assert fake.posts==[] and not path.exists()
-
-@pytest.mark.parametrize('outcome',['failed','unknown'])
-def test_failed_or_unknown_alert_contains_exact_body_and_is_not_repeated(monkeypatch,tmp_path,outcome):
-    from unittest.mock import AsyncMock
-    import src.operations as operations
-    alert=AsyncMock(return_value='sent');monkeypatch.setattr(operations,'send_alert',alert)
-    fake=FakePublisher(outcome);runner=orchestrator_for(fake);path=tmp_path/'queue.json'
-    with pytest.raises(RuntimeError,match='needs a person'):
-        run(monkeypatch,runner,[item(1)],path,now=ON_TIME)
-    assert alert.await_count==1
-    key,text=alert.call_args.args
-    assert key.endswith(':'+outcome) and fake.posts[0] in text
-    run(monkeypatch,runner,[item(1)],path,now=ON_TIME+timedelta(minutes=10))
-    assert alert.await_count==1 and len(fake.posts)==1
+def test_distribution_clocks_are_independent_without_a_trigger_loop():
+    """Cloudflare checks due queues; producer events and hourly cron are backups."""
+    root = Path(__file__).resolve().parents[1] / ".github/workflows"
+    x_workflow = (root / "x-distribution.yml").read_text()
+    square_workflow = (root / "square-distribution.yml").read_text()
+    assert "workflows: ['xiyu.news Daily Edition', 'xiyu.news Feed Collection', 'Deploy Docs']" in x_workflow
+    assert "cron: '17 23,0-15 * * *'" in x_workflow
+    assert "workflows: ['xiyu.news Binance Square Distribution']" not in x_workflow
+    square_triggers = square_workflow.split("workflows:", 1)[1].split("\n", 1)[0]
+    assert "xiyu.news X Distribution" not in square_triggers
+    dispatcher = (root.parents[1] / "ops/daily-dispatcher/src/square.ts").read_text()
+    assert 'dispatchDistribution(env, "x", now)' in dispatcher

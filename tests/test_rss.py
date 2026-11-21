@@ -115,6 +115,7 @@ def test_unknown_extractor_name_ignored() -> None:
 def test_same_publisher_fallback_preserves_failure_and_headline_quality():
     import httpx
     from unittest.mock import patch
+    from src.event_pipeline import story_evidence
     source = RSSSourceConfig(name="Test", url="https://example.com/feed.xml", fallback_google_news=True)
     primary = httpx.Response(403, request=httpx.Request("GET", str(source.url)))
     fallback_item = asyncio.run(RSSScraper([RSSSourceConfig(name="Test", url=source.url)], _make_feed_client(_FEED)).fetch(_SINCE))[0]
@@ -129,7 +130,7 @@ def test_same_publisher_fallback_preserves_failure_and_headline_quality():
         assert config.allowed_domains == ["example.com"]
         assert config.query == "site:example.com"
     assert items[0].metadata["collection_method"] == "google_news_fallback"
-    assert items[0].metadata["collection_method"] != "rss"
+    assert story_evidence(items[0]).evidence_quality == "headline_only"
     assert scraper.feed_results[0]["status"] == "degraded"
     assert scraper.feed_results[0]["error"] == "HTTP 403"
     assert scraper.feed_results[0]["fallback_items"] == 1

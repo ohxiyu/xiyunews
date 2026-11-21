@@ -131,8 +131,8 @@ def test_load_config_expands_env_vars_in_ai_base_url(tmp_path, monkeypatch):
     assert config.ai.base_url == "https://private-proxy.example/v1"
 
 
-@pytest.mark.parametrize("language", ["zh"])
-def test_ai_config_accepts_the_chinese_daily_language(language):
+@pytest.mark.parametrize("language", ["en", "zh-CN", "pt_BR", "sr-Latn-RS"])
+def test_ai_config_accepts_normal_language_codes(language):
     config = AIConfig(provider="openai", model="gpt-4o", api_key_env="OPENAI_API_KEY", languages=[language])
     assert config.languages == [language]
 
@@ -186,11 +186,3 @@ def test_save_subscribers_replace_failure_preserves_destination(tmp_path, monkey
 
     assert subscribers_path.read_text(encoding="utf-8") == '["old"]'
     assert list(tmp_path.glob(f".{subscribers_path.name}.*.tmp")) == []
-
-
-@pytest.mark.parametrize("language", ["en", "zh-CN", "pt_BR", "sr-Latn-RS"])
-def test_retired_language_products_cannot_be_enabled_by_configuration(language):
-    from src.models import AIConfig
-    from pydantic import ValidationError
-    with pytest.raises(ValidationError):
-        AIConfig(provider="openai", model="test", api_key_env="TEST", languages=[language])

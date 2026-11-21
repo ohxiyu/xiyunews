@@ -1,9 +1,14 @@
 import { checkReadiness } from "./lib";
 import { runRecovery, responseStatus } from "./recovery";
-import { CONFIGURED_CRONS, runCombinedSchedule } from "./schedule";
+import { CONFIGURED_CRONS, runCombinedSchedule } from "./square";
 import { FEED_INTERVAL_MS, FEED_WORKFLOW } from "./collection";
 import { timingSafeEqual } from "node:crypto";
 export { RecoveryGate } from "./gate";
+import {
+  handleOAuthAuth,
+  handleOAuthCallback,
+  type OAuthEnv,
+} from "./oauth";
 
 interface LifecycleEnv extends Env {
   // Used only to retire the old Worker while cached Cron triggers propagate.
@@ -46,6 +51,12 @@ export default {
         });
       }
     }
+    if (request.method === "GET" && url.pathname === "/oauth/auth") {
+      return handleOAuthAuth(request, env as OAuthEnv);
+    }
+    if (request.method === "GET" && url.pathname === "/oauth/callback") {
+      return handleOAuthCallback(request, env as OAuthEnv);
+    }
     if (request.method === "GET" && url.pathname === "/ready") {
       try {
         return Response.json(await checkReadiness(env), {
@@ -68,6 +79,7 @@ export default {
     if (request.method !== "GET" || url.pathname !== "/health") {
       return Response.json({ error: "Not found" }, { status: 404 });
     }
+    const oauthEnv = env as OAuthEnv;
     return Response.json({
       service: "bmtnews-daily-dispatcher",
       repository: env.GITHUB_REPOSITORY,
@@ -78,6 +90,7 @@ export default {
       legacy_scheduled_disabled: env.XIYUNEWS_LEGACY_DISABLED === "true",
       primary_cron_utc: "26 23 * * *",
       schedule_crons_utc: CONFIGURED_CRONS,
+      square_check_window_local: "09:00–23:30",
       distribution_gate: "private-queue-due-v1",
       x_check_window_local: "07:26–23:30",
       collection_workflow: FEED_WORKFLOW,
@@ -86,7 +99,11 @@ export default {
       edition_cutoff_hour: Number(env.EDITION_CUTOFF_HOUR),
       first_check_local: "07:26",
       last_check_local: "23:00",
-      admin_oauth: "retired",
+      admin_oauth: Boolean(
+        oauthEnv.GITHUB_OAUTH_CLIENT_ID && oauthEnv.GITHUB_OAUTH_CLIENT_SECRET,
+      )
+        ? "configured"
+        : "not_configured",
     });
   },
 

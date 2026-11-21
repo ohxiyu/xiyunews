@@ -5,7 +5,10 @@ import {resolve,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const require=createRequire(new URL('../ops/daily-dispatcher/package.json',import.meta.url));
 const {transform}=require('esbuild');
-const OWNED=['css/core.css','js/core.js'];
+const OWNED=[
+  'css/bmtnews-ui.css','css/editorial-ui.css','css/pwa-reader.css','css/source-console.css',
+  'js/bmtnews-ui.js','js/pwa-reader.js','js/quick-posts.js','js/story-card.js','js/source-console.js',
+];
 export async function minifyAssets(root){
   if((await lstat(root)).isSymbolicLink())throw Error('symlink output root');
   let before=0,after=0,files=0;

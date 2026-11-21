@@ -20,9 +20,6 @@ jobs:
     # Private CodeQL scanning requires an existing Code Security license.
     # Do not enable a paid product merely because repository visibility changed.
     if: ${{ (!github.event.repository.private || vars.CODEQL_PRIVATE_ENABLED == 'true') && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
-    # The bounded production runner cannot satisfy CodeQL's evaluator heap.
-    # Standard hosted compute is free for public repositories. Private repos
-    # retain the existing explicit license opt-in and runner configuration.
     runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:

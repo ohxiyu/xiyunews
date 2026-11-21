@@ -35,8 +35,11 @@ def test_all_hosted_jobs_have_bounded_runtime() -> None:
         "ci.yml": 15,
         "codeql.yml": 15,
         "daily-summary.yml": 30,
-        "cloudflare-unified.yml": 30,
+        "deploy-docs.yml": 20,
+        "event-archive-migration.yml": 10,
         "feed-collection.yml": 30,
+        "schedule-watchdog.yml": 5,
+        "source-change.yml": 20,
     }
 
     for workflow_name, limit in expected_limits.items():
@@ -45,16 +48,38 @@ def test_all_hosted_jobs_have_bounded_runtime() -> None:
         ), workflow_name
 
 
+def test_event_migration_has_explicit_gate_and_incremental_continuation() -> None:
+    migration = _workflow("event-archive-migration.yml")
+    daily = _workflow("daily-summary.yml")
+
+    assert "workflow_dispatch:" in migration
+    assert "schedule:" not in migration
+    assert 'CONFIRMATION: ${{ inputs.confirmation }}' in migration
+    assert 'if [ "$CONFIRMATION" != "MIGRATE" ]' in migration
+    assert "group: bmtnews-feed-update" in migration
+    assert "Apply reviewed migration" in migration
+    assert "Verify byte-level idempotence" in migration
+    assert "Verify migration coverage" in migration
+    assert "peaceiris/actions-gh-pages@v4" in migration
+    assert "keep_files: true" in migration
+
+    collection = _workflow("feed-collection.yml")
+    assert "Restore published event state" in collection
+    assert "_data/archive" in collection
+    assert "python -m src.event_brief_backfill" in collection
+    assert "Deploy incremental event pages" in collection
+    assert "_data/events.json" in daily
+    assert "python -m src.event_brief_backfill" in daily
+    assert "Apply approved event archive migration" not in daily
 
 
-def test_single_deployment_renders_without_collection_ai_or_channel_messages():
-    deploy = _workflow("cloudflare-unified.yml")
-    assert "ref: gh-pages" in deploy
-    assert "python -m src.core_site --root .edge-source" in deploy
-    assert "SILICONFLOW_API_KEY" not in deploy
-    assert "src.core_delivery" not in deploy
-    assert "scripts/verify_daily_deployment.py" in deploy
-    assert "production-edition" in deploy
-    assert {p.name for p in WORKFLOWS.glob("*.yml")} == {
-        "ci.yml", "codeql.yml", "publication-runtime.yml", "feed-collection.yml",
-        "daily-summary.yml", "daily-telegram.yml", "x-distribution.yml", "cloudflare-unified.yml"}
+def test_docs_deploy_rebuilds_entities_from_published_archive() -> None:
+    deploy = _workflow("deploy-docs.yml")
+
+    assert "'src/entity_republish.py'" in deploy
+    assert "Checkout current published site" in deploy
+    assert "Restore current published archive" in deploy
+    assert "python -m src.entity_republish" in deploy
+    assert "--archive-root docs/_data/archive" in deploy
+    assert "--entity-root docs/entity" in deploy
+    assert "--data-root docs/_data" in deploy

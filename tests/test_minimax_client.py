@@ -92,7 +92,7 @@ class TestOpenAIClientInit:
             provider=AIProvider.ALI,
             api_key_env="ALI_API_KEY",
         ))
-        assert "dashscope.aliyuncs.com" in str(client.client.base_url)
+        assert client.client.base_url.host == "dashscope.aliyuncs.com"
 
     def test_ollama_uses_localhost_default_base_url(self, monkeypatch):
         monkeypatch.delenv("BMTNEWS_OLLAMA_BASE_URL", raising=False)

@@ -48,10 +48,10 @@ def main():
     parser.add_argument("--hours", type=int, help="Force fetch from last N hours")
     parser.add_argument(
         "--mode",
-        choices=("fetch", "publish", "x-post"),
-        default="publish",
+        choices=("full", "fetch", "publish", "x-post"),
+        default="full",
         help=(
-            "fetch updates background staging; "
+            "full runs the legacy pipeline; fetch updates staging and the event timeline; "
             "publish builds one fixed-window daily edition; "
             "x-post publishes the next drip story for today's edition"
         ),
@@ -80,7 +80,7 @@ def main():
     parser.add_argument(
         "--force-publish",
         action="store_true",
-        help="Recover missing static files; saved editions remain immutable",
+        help="Rebuild an edition even when that fixed window is already published",
     )
     parser.add_argument(
         "--x-kickoff-only",
@@ -140,6 +140,9 @@ def main():
                     f"Copy the example config and edit it:\n"
                     f"  [cyan]cp {example_path} {data_dir_path / 'config.json'}[/cyan]\n"
                 )
+            console.print(
+                "Or run [bold cyan]uv run bmtnews-wizard[/bold cyan] to launch the interactive setup wizard.\n"
+            )
             sys.exit(1)
         except ConfigError as e:
             console.print(f"[bold red]❌ Error loading configuration: {e}[/bold red]")
@@ -151,11 +154,9 @@ def main():
         # Create and run orchestrator
         orchestrator = BMTNewsOrchestrator(config, storage)
         if args.mode == "fetch":
-            from .rolling_feed import collect_and_score
             asyncio.run(
-                collect_and_score(
-                    orchestrator,
-                    hours=args.hours or config.filtering.time_window_hours,
+                orchestrator.fetch_to_staging(
+                    force_hours=args.hours,
                     staging_path=args.staging_path,
                 )
             )
@@ -177,6 +178,8 @@ def main():
                     force_publish=args.force_publish,
                 )
             )
+        else:
+            asyncio.run(orchestrator.run(force_hours=args.hours))
 
     except KeyboardInterrupt:
         console.print("\n[yellow]⚠️  Interrupted by user[/yellow]")
@@ -187,6 +190,60 @@ def main():
         traceback.print_exc()
         sys.exit(1)
 
+
+def print_config_template():
+    """Print configuration template."""
+    template = """
+{
+  "version": "1.0",
+  "ai": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-4.5-20250929",
+    "api_key_env": "ANTHROPIC_API_KEY",
+    "temperature": 0.3,
+    "max_tokens": 4096
+  },
+  "sources": {
+    "github": [
+      {
+        "type": "user_events",
+        "username": "torvalds",
+        "enabled": true
+      }
+    ],
+    "hackernews": {
+      "enabled": true,
+      "fetch_top_stories": 30,
+      "min_score": 100
+    },
+    "rss": [
+      {
+        "name": "Example Blog",
+        "url": "https://example.com/feed.xml",
+        "enabled": true,
+        "category": "software-engineering"
+      }
+    ]
+  },
+  "filtering": {
+    "ai_score_threshold": 7.0,
+    "time_window_hours": 24,
+    "daily_timezone": "UTC",
+    "preserve_daily_items": false,
+    "max_items": null,
+    "category_groups": {},
+    "default_group": "other",
+    "default_group_limit": null,
+    "primary_groups": [],
+    "primary_group_min_items": null
+  }
+}
+
+Also create a .env file with:
+ANTHROPIC_API_KEY=your_api_key_here
+GITHUB_TOKEN=your_github_token_here (optional but recommended)
+"""
+    console.print(template)
 
 
 if __name__ == "__main__":

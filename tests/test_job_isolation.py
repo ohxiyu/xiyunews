@@ -4,7 +4,6 @@ from pathlib import Path
 import sqlite3
 import pytest
 from ops.runner.job_hooks import workspace_path, clean_workspace, export_snapshots, record_job
-from ops.runner import job_hooks
 
 
 def test_exact_workspace_and_symlinks_preserve_outside_data(tmp_path):
@@ -53,28 +52,3 @@ def test_matrix_jobs_unique_and_completion_never_claims_success(tmp_path):
         assert set(row[0] for row in db.execute('SELECT status FROM job_runs')) == {'started','interrupted','hook_completed'}
     with pytest.raises(ValueError, match='does not own'):
         record_job(tmp_path, 'complete', metadata)
-
-
-def test_invalid_business_snapshot_still_reclaims_old_clones_but_keeps_workspace(tmp_path, monkeypatch):
-    workspace, state = tmp_path / 'workspace', tmp_path / 'state'
-    (workspace / 'data').mkdir(parents=True)
-    (workspace / 'data/staging-items.json').write_text('invalid JSON')
-    monkeypatch.setattr(job_hooks, 'STATE', state)
-    monkeypatch.setattr(job_hooks, 'workspace_path', lambda value: workspace)
-    monkeypatch.setenv('GITHUB_REPOSITORY', 'ohxiyu/xiyunews')
-    monkeypatch.setenv('GITHUB_RUN_ID', '123')
-    monkeypatch.setenv('GITHUB_RUN_ATTEMPT', '1')
-    monkeypatch.setenv('GITHUB_WORKFLOW', 'Deploy Docs')
-    monkeypatch.setenv('GITHUB_REF', 'refs/heads/main')
-    monkeypatch.setattr('sys.argv', ['job_hooks.py', 'complete'])
-    cleanups = []
-    monkeypatch.setattr(job_hooks, 'clean_deployment_temps', lambda **kwargs: cleanups.append(kwargs) or {})
-    with pytest.raises(ValueError):
-        job_hooks.main()
-    assert cleanups == [{'apply': True}]
-    assert (workspace / 'data/staging-items.json').read_text() == 'invalid JSON'
-    monkeypatch.setenv('GITHUB_REPOSITORY', 'another/repository')
-    cleanups.clear()
-    with pytest.raises(ValueError, match='unexpected repository'):
-        job_hooks.main()
-    assert cleanups == []

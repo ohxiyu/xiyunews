@@ -1,51 +1,55 @@
 # 当前交接
 
-2026-11-20，按用户要求恢复中文日报与原多来源采集、AI 选稿链路。生产沿用 11/17 已切换的托管执行与 Cloudflare 私有状态。
+整站恢复基线改用 PR #306 的 `0291c7f`。恢复分支保留一个与基线 Git tree 完全一致的提交，随后单独记录依赖更新与生产启动开关。当前生产仍由 GitHub 托管任务、Cloudflare 私有 SQLite 及现有发送器运行。详见[恢复验证](releases/2026-11-21-pr306-tokyo-restore.md)。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "日报采用报纸式版面并缩减往期入口",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/387",
+  "goal": "以 PR #306 恢复前后端和东京生产执行方式，接续现行出版与发送状态",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/389",
   "owner": "当前 Codex 聊天",
-  "branch": "agent/newspaper-daily",
-  "base": "5545421f4558b2579e151fcae0ef8aab80970608",
-  "status": "背景和参考资料移至正文后并默认展开；日报采用主稿与栏线；往期索引与 RSS 仅列最新刊期起近七天",
-  "next": "验证桌面和移动版、新旧刊链接、索引和 RSS 时间范围；生产继续使用已有采集与出刊自动化",
-  "blockers": []
+  "branch": "agent/october-tokyo-restore",
+  "last_verified_commit": "ac498f5dc428bb59ac1140347160c8b85d5c5820",
+  "pr": "https://github.com/ohxiyu/xiyunews/pull/390",
+  "completed": [
+    "恢复提交的 Git tree 与 PR #306 合并提交一致",
+    "更新 Soup Sieve 锁定版本，维持公开仓库 CI 的 GitHub 托管执行",
+    "已用 11/21 归档通过旧版整站演练，保留现行 Cloudflare 私有状态接口"
+  ],
+  "unfinished": [
+    "核对两套库与现有工作流日志中的逐期渠道回执，验证旧发送器的持久去重",
+    "重新注册东京执行器并执行实时服务同机容量验收",
+    "完成受控发布和生产回读"
+  ],
+  "validation": [
+    "修复后 Python 1120 项通过、4 项既有跳过，Worker 140 项及网页 118 项通过",
+    "Python all-extras 与 Node 依赖复审均零已知漏洞",
+    "现行 Cloudflare SQLite 校验 44869611115 通过，东京旧库 quick_check 通过"
+  ],
+  "unverified": [
+    "东京新执行器负载和旧 DeepSeek 凭据可用性",
+    "旧工作流对当前私有库及所有发送回执的接续"
+  ],
+  "production": {
+    "source_commit": "155cf1f7e5e489e060187f72986949a76a6784ce",
+    "artifact_commit": "70979f0ce64ceceb0b1a7b33ec20bb06570c7f7c",
+    "edition": "2026-11-21",
+    "generated_at": "2026-11-21T07:30:29.999714+08:00",
+    "worker_version": "见现行生产部署 44837387186",
+    "verified_at": "2026-11-21 北京时间，/health 和当期 API 回读"
+  },
+  "blockers": [
+    "东京 459–494 MiB 可用内存低于原安装脚本的 600 MiB 门槛，且 GitHub 当前注册数为零",
+    "Cloudflare 与东京旧库的 Telegram 回执行数分别为 1 和 5，且 11/19–21 的发布日志均记录发送成功"
+  ],
+  "next_action": "分期核对发送记录，保持同一权威账本；完成归档验收和专用 Runner 容量检查后才允许接管生产。",
+  "states": {
+    "code": "pending",
+    "tests": "pending",
+    "pr_merged": "pending",
+    "deployed": "pending",
+    "production_verified": "pending"
+  },
+  "evidence": "project-docs/releases/2026-11-21-pr306-tokyo-restore.md"
 }
 ```
-
-## 当前阅读体验
-
-- 七天从最新刊期向前计算，缺刊日不会用更旧的日报补齐。已公开的旧日期页与条目锚点继续提供。
-
-## 恢复范围
-
-- 恢复原收集、缓存、AI 评分与去重、入选后扩写和北京时间 07:00 截止、07:26 启动的出刊配置。来源与模型均取自撤销前的版本 `ce9006f`。
-- 使用现有生产绑定和原 GitHub Actions 部署；保留 `gh-pages`、`staging-cache`、`x-queue`、Cloudflare 私有数据库与渠道发送回执。代码部署按原校验跳过历史分发。
-- X 发送由既有配置和生产开关控制。东京实时服务按既有工作流和看门狗运行。
-
-## 原日报演进记录
-
-0. 流程减负与 README 对齐（#358已合并）。
-1. 中文硬校验、402立即停止、运维话题告警、三级降级与费用台账；余额检查按用户要求取消。
-2. 第一批删模块/工作流/旧前端；核对20个历史地址，两天自然出刊验收待实际观察。
-3. 主流程拆为采集、评分去重、扩写、发布；第二批删除，固定输入选稿对比。
-4. 单期首页、作者/频道入口、后台仅评分缓存、单一部署工作流、每页CSS+JS≤20KB。
-5. X质量门、口吻、变量开关、运维话题告警；用户已明确跳过试运行，完成校验后直接启用。
-6. 核验X正式发送与API可用性；首周运行验收不能提前声称完成。
-7. 来源分层、一手源诊断；连续七期质量验收待实际观察。
-8. 新一手源、事实约束、分数分布与8–10条；连续七期验收待实际观察。
-
-## 既往运行记录
-
-- PR4 (#366) 已上线6ac5460；生产Worker c39b5eae，artifact0dddaf5。20个历史地址通过，原API字节不变，纯代码部署Telegram正确跳过；采集已恢复。
-- 用户11/09授权X直接正式运行、免三天试运行；默认280加权字符，校验现有四项密钥/API，不升级套餐。
-- 已查GitHub设置：日报bot和X四项密钥存在；目标群Telegram @xiyudotnews的“日报运维”话题6544已创建，参数已保存，测试42571836635已确认sent，不使用读者频道或realtime现有话题。
-- 保留七份现行文档；另有四个极短历史入口供realtime既有链接使用，不恢复旧发布内容。
-- 11/17运行统一已生产：采集44075396447与Cloudflare44075402179均成功且均为GitHub标准托管；418条采集、594次缓存命中，5个来源组成功，单Glassnode RSS403告警保留。新版私有状态具名UA+不可变GitHub主体鉴权；先前两次访问失败均未写业务状态，未关闭防护/鉴权。
-- 生产Worker 649acfc3-9fb8-4b3b-ab18-a4a6d449cf50，source1b29bf81、artifact235ace57；普通首页/当期/11月3日/7月26日/RSS/ready均200，96期保留，11/17的14条API完整SHA不变。匿名私有接口401；五个生产工作流已启用。
-- XIYUNEWS_RUNTIME_MODE: maintenance暂停批处理、hosted使用标准托管计算；未设时为切换前服务器模式。迁移工作流只能初始化空状态，不能覆盖现有状态。详见[运行手册](self-hosted-runner.md)。
-- 东京runner/guardian/旧维护与backup均inactive+disabled，GitHub注册0；45项缓存/执行文件/旧日志/额外备份净释放2855579648字节，可用约12.4GiB、磁盘67%。其他7容器身份/启动时间/重启数一致，实时PID1913207及两SQLite完整性保持；现役磁盘维护和其他项目备份继续运行。备份副本永久删除、工具缓存可重建。
-- 东京实时规则/目的地/数据库及其他项目不变，3行情流live、5链0落后，原Hyperliquid降级使ready503保持如实；不重生成或补发历史。源码/Worker版本与文档main可能因仅交接更新而不同，以生产构建输入为准。

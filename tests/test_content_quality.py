@@ -6,7 +6,9 @@ from types import SimpleNamespace
 import pytest
 
 from src.ai.topic_dedup import duplicate_groups
+from src.ai.summarizer import generate_edition_overviews
 from src.ai.enricher import ContentEnricher
+from src.editorial import load_editorial_plan
 from src.models import ContentItem, SourceType
 from src.orchestrator import BMTNewsOrchestrator
 
@@ -52,7 +54,7 @@ def test_retry_recovers_and_preserves_stable_priority():
 
 
 def test_daily_event_cap_uses_latest_without_false_confirmation(tmp_path, monkeypatch):
-    monkeypatch.setattr("src.selection.legacy_story_assignments", lambda: ({},{}))
+    monkeypatch.setattr("src.orchestrator.EVENT_CATALOG_PATH", tmp_path / "absent")
     orchestrator = BMTNewsOrchestrator.__new__(BMTNewsOrchestrator)
     old, new, other = item(0), item(1), item(2)
     old.metadata.update(event_id="same", event_update_id="old")
@@ -79,22 +81,54 @@ def test_daily_consolidation_differs_from_cross_day_dedup(tmp_path, monkeypatch)
         async def complete(self, **kwargs):
             assert kwargs["system"] == DAILY_EVENT_DEDUP_SYSTEM
             return '{"duplicates": [[0, 1]]}'
-    monkeypatch.setattr("src.selection.create_ai_client", lambda config: Client())
+    monkeypatch.setattr("src.orchestrator.create_ai_client", lambda config: Client())
     result = asyncio.run(orchestrator.merge_topic_duplicates([old, new], daily_events=True))
     assert result == [new]
     assert new.content == "Latest confirmation"
     assert "merged_sources" not in new.metadata
 
 
+def test_overview_receives_enriched_numeric_scope():
+    captured = {}
+    story = item(0)
+    story.ai_summary = "45% moved"
+    story.metadata["detailed_summary_zh"] = "第三波资金的45%，不是全部损失。"
+    story.metadata["detailed_summary_en"] = "45% of Wave 3, not aggregate losses."
+    class Client:
+        async def complete(self, **kwargs):
+            captured.update(kwargs)
+            return '{}'
+    asyncio.run(generate_edition_overviews(Client(), [story], date="2026-09-08", languages=["zh", "en"]))
+    assert "第三波资金的45%" in captured["user"]
+    assert "45% of Wave 3" in captured["user"]
+    assert "subset" in captured["system"]
 
 
 def test_enrichment_degradation_is_visible(monkeypatch):
     enricher = ContentEnricher(SimpleNamespace())
     async def fail(story):
         raise ValueError("invalid model output")
+    async def translate(story):
+        story.metadata["title_zh"] = "翻译"
     monkeypatch.setattr(enricher, "_enrich_item", fail)
+    monkeypatch.setattr(enricher, "_translate_item", translate)
     story = item(0)
-    story.metadata.update(title_zh="合格中文标题",detailed_summary_zh="已有中文事实摘要。")
     asyncio.run(enricher.enrich_batch([story]))
-    assert story.metadata["enrichment_status"] == "brief"
-    assert story.metadata["detailed_summary_zh"] == "已有中文事实摘要。"
+    assert story.metadata["enrichment_status"] == "translation_only"
+
+
+def test_corrections_only_apply_to_affected_edition(tmp_path):
+    # The live registry is editable from Quick Post; it is not a test fixture.
+    path = tmp_path / "editorial.json"
+    rows = [{"type": "suppress", "url": f"https://example.com/{index}",
+             "date": "2026-09-08"} for index in range(7)]
+    rows.append({"type": "editorial", "url": "https://example.com/correction",
+                 "date": "2026-09-08", "title_zh": "更正", "summary_zh": "第三波更正内容"})
+    rows.append({"type": "suppress", "url": "https://example.com/disabled",
+                 "date": "2026-09-08", "enabled": False})
+    path.write_text(json.dumps({"items": rows}), encoding="utf-8")
+    plan = load_editorial_plan(date(2026, 9, 8), path)
+    assert len(plan.suppressed_urls) == 7
+    assert len(plan.editorial) == 1
+    assert "第三波" in plan.editorial[0].summary_zh
+    assert load_editorial_plan(date(2026, 9, 9), path).is_empty
