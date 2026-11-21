@@ -30,8 +30,8 @@ permissions:
 jobs:
   publish:
     if: >-
-      ${{ vars.SQUARE_ENABLED == 'true' &&
-          (github.event_name != 'workflow_run' ||
+      ${{ vars.XIYUNEWS_RUNTIME_MODE == 'tokyo' && vars.SQUARE_ENABLED == 'true' &&
+          ((github.event_name != 'workflow_run' && github.ref == 'refs/heads/main') ||
            (github.event.workflow_run.conclusion == 'success' &&
             github.event.workflow_run.head_repository.full_name == github.repository)) }}
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}

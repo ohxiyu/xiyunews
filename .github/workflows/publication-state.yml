@@ -8,7 +8,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   state:
-    if: github.ref == 'refs/heads/main' && vars.XIYUNEWS_RUNNER_LABELS != ''
+    if: github.ref == 'refs/heads/main' && vars.XIYUNEWS_RUNTIME_MODE == 'tokyo' && vars.XIYUNEWS_RUNNER_LABELS != ''
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 10
     steps:

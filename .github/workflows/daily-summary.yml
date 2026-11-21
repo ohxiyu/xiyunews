@@ -79,7 +79,7 @@ jobs:
           if [ -n "$DIAGNOSTIC_BATCH" ]; then args+=(--batch-id "$DIAGNOSTIC_BATCH"); fi
           uv run python -m scripts.diagnose_dedup "${args[@]}"
   daily-summary:
-    if: ${{ !inputs.diagnostic_only }}
+    if: github.ref == 'refs/heads/main' && vars.XIYUNEWS_RUNTIME_MODE == 'tokyo' && !inputs.diagnostic_only
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 30
     env:

@@ -35,6 +35,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.ref == 'refs/heads/main' && vars.XIYUNEWS_RUNTIME_MODE == 'tokyo'
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     # Two exact checkouts can take several minutes on the Tokyo runner.
     # Keep a bound, but allow slow downloads before the no-AI rebuild.

@@ -6,7 +6,7 @@ Detailed onboarding and command examples are in
 
 ## Source of truth
 
-This private repository has two isolated applications: the daily publication
+This repository has two isolated applications: the daily publication
 (`src/`, `docs/`, `project-docs/handoff.md`) and the Telegram-only realtime service
 (`realtime/`, `realtime/AGENTS.md`, `realtime/docs/handoff.md`). Read the relevant
 application's entry documents. Root rules take precedence when rules conflict:
@@ -20,6 +20,14 @@ package into the other or combine their dependencies, destinations or databases.
   publication workflows (Daily Edition, Feed Collection, Deploy Docs and related
   archive/weekly workflows).
 - Do not merge `gh-pages` into `main`.
+
+- Existing publication data and delivery receipts must be reconciled before the
+  Tokyo rollout. Never regenerate, resend, or treat an unknown result as unsent.
+- The owner discontinued xiyu.news backups. Do not restore backup schedules,
+  create retained database copies, or alter other projects' backups.
+- Public CI runs on standard GitHub-hosted compute. The Tokyo runner is for
+  trusted production workflows and must pass the existing resource checks.
+
 
 ## One task, one owner, one branch
 

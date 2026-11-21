@@ -28,6 +28,7 @@ jobs:
   deploy:
     # Explicit opt-in only after secure configuration and the reviewed cutover.
     if: >-
+      vars.XIYUNEWS_RUNTIME_MODE == 'tokyo' &&
       vars.XIYUNEWS_EDGE_ENABLED == 'true' &&
       ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
        (github.event.workflow_run.conclusion == 'success' &&

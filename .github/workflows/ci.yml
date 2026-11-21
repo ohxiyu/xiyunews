@@ -20,7 +20,7 @@ jobs:
   edge-build:
     needs: realtime-paths
     if: needs.realtime-paths.outputs.edge == 'true'
-    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     # Two exact checkouts and Ruby downloads can exceed fifteen minutes on
     # the bounded Tokyo runner before rendering even starts. Keep all checks.
     timeout-minutes: 30
@@ -73,7 +73,7 @@ jobs:
     if: >-
       (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
       (github.event_name != 'pull_request' && github.ref == 'refs/heads/main')
-    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 10
     outputs:
       changed: ${{ steps.paths.outputs.changed }}
@@ -99,7 +99,7 @@ jobs:
   realtime:
     needs: realtime-paths
     if: needs.realtime-paths.outputs.changed == 'true'
-    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     strategy:
       fail-fast: false
@@ -132,7 +132,7 @@ jobs:
     if: >-
       (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
       (github.event_name != 'pull_request' && github.ref == 'refs/heads/main')
-    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
@@ -156,7 +156,7 @@ jobs:
   test:
     needs: realtime-paths
     if: needs.realtime-paths.outputs.python == 'true'
-    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
@@ -197,7 +197,7 @@ jobs:
   web:
     needs: realtime-paths
     if: needs.realtime-paths.outputs.web == 'true'
-    runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
+    runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6

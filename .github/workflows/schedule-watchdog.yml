@@ -18,6 +18,7 @@ permissions:
 
 jobs:
   watchdog:
+    if: github.ref == 'refs/heads/main' && vars.XIYUNEWS_RUNTIME_MODE == 'tokyo'
     runs-on: ${{ fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 5
     steps:
