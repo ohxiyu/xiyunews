@@ -54,7 +54,7 @@ Parameters: kind ("threads" | "entities" | "weekly"), language ("zh" | "en").
     <div class="event-index-layout">
       <section class="event-index-stream" aria-label="{% if is_en %}Focus events{% else %}重点追踪{% endif %}">
         <div class="event-index-orientation">
-          <p class="archive-lede">{% if is_en %}Up to six important, unfinished events. Latest three distinct developments shown; full history retained.{% else %}聚焦最多 6 个重要且未结束的事件，直接展示最近 3 条有效进展，完整历史保留。{% endif %}</p>
+          <p class="archive-lede">{% if is_en %}Up to six important, unfinished events, newest first. The first shows ten recent developments; others show three. Full history retained.{% else %}聚焦最多 6 个重要且未结束的事件，按最近进展排序。首个展示最近 10 条，其他展示 3 条，完整历史保留。{% endif %}</p>
           {% assign crypto_rows = rows | where: "category", "crypto" %}
           {% assign technology_rows = rows | where: "category", "technology" %}
           {% assign policy_rows = rows | where: "category", "policy" %}
@@ -68,6 +68,8 @@ Parameters: kind ("threads" | "entities" | "weekly"), language ("zh" | "en").
         {% if row_count > 0 %}
         <ol class="event-feed event-focus-feed" data-event-stream>
         {% for row in rows %}
+          {% assign development_limit = 3 %}
+          {% if forloop.first %}{% assign development_limit = 10 %}{% endif %}
           {% assign title = row.title_zh | default: row.title_en %}
           {% assign state = row.summary_zh | default: row.summary_en %}
           {% assign watch = row.watch_zh %}
@@ -85,7 +87,7 @@ Parameters: kind ("threads" | "entities" | "weekly"), language ("zh" | "en").
               <section class="event-focus-developments">
                 <h3>{% if is_en %}Latest developments{% else %}最新进展{% endif %}</h3>
                 <ol class="event-spotlight-timeline">
-                {% for step in row.timeline limit: 3 %}
+                {% for step in row.timeline limit: development_limit %}
                   {% assign step_text = step.text_zh | default: step.text_en %}
                   {% if is_en %}{% assign step_text = step.text_en | default: step.text_zh %}{% endif %}
                   <li><time datetime="{{ step.date | escape }}">{{ step.date | date: "%m.%d" | escape }}{% if step.time_precision == "edition" %}<small>{% if is_en %}edition{% else %}刊期{% endif %}</small>{% endif %}</time><span class="event-spotlight-type">{% if is_en %}{{ step.type_en | escape }}{% else %}{{ step.type_zh | escape }}{% endif %}</span><div><p>{{ step_text | escape }}</p><a class="event-node-evidence" href="{{ prefix | escape }}/events/{{ row.event_id | escape }}/#{{ step.update_id | escape }}">{% if is_en %}Source evidence{% else %}来源依据{% endif %} →</a></div></li>

@@ -120,7 +120,7 @@ def make_event(
                 market_impact_en=(
                     "Latest market impact" if index == updates - 1 else ""
                 ),
-                importance_score=8.0 + index / 2,
+                importance_score=min(8.0 + index / 2, 10.0),
                 references=[
                     EventReference(
                         url=f"https://reference.example.com/{event_id}/{index}",
@@ -513,14 +513,17 @@ def test_publish_entity_pages_does_not_replace_thread_index(tmp_path: Path) -> N
     assert (tmp_path / "entity" / "en-bybit.html").exists()
 
 
-def test_event_page_renders_material_updates_in_chronological_order() -> None:
+def test_event_page_renders_material_updates_newest_first() -> None:
     event = make_event()
     page = render_event_page(event, "zh")
 
     assert "permalink: /events/evt_example1/" in page
     assert "time_precision" not in page
     assert "历史刊期" in page
-    assert page.index("第 1 个变化") < page.index("第 2 个变化")
+    assert page.index("第 2 个变化") < page.index("第 1 个变化")
+    assert page.index('id="upd_example2"') < page.index('id="upd_example1"')
+    navigation = page.split('class="event-node-list', 1)[-1]
+    assert navigation.index('href="#upd_example2"') < navigation.index('href="#upd_example1"')
     assert "https://example.com/evt_example1/0" in page
     assert "目前结论" in page
     assert 'id="upd_example1"' in page
@@ -683,8 +686,9 @@ def test_context_is_recent_and_background_precedes_developments() -> None:
     context = template.split('<div class="event-index-layout">')[0]
     assert "for row in featured" in context
     assert template.index('include event-reading-context.html') < template.index('event-focus-developments')
-    assert "for step in row.timeline limit: 3" in template
-    assert "if forloop.first" not in template.split('{% elsif include.kind == "entities" %}')[0]
+    assert "for step in row.timeline limit: development_limit" in template
+    assert "assign development_limit = 10" in template
+    assert "assign development_limit = 3" in template
     for section in ("threads", "entity"):
         assert f"alternate_url: /en/{section}/" in Path(f"docs/{section}.html").read_text()
         assert f"alternate_url: /{section}/" in Path(f"docs/en/{section}.html").read_text()
