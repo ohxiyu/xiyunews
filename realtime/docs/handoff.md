@@ -2,25 +2,25 @@
 
 ## Current execution pointer
 
-当前目标：记录 api.xiyu.news 接口及监控已上线验收；唯一执行指针为根[交接](../../project-docs/handoff.md)，不再次部署。
+当前目标：通过 xiyu.news 共用命令发布并核对实时服务。
 
-任务 Issue / 负责人：https://github.com/ohxiyu/xiyunews/issues/218；父任务216/业务PR217已完成，当前Codex会话为唯一文档编辑与整合负责人。
+任务 Issue / 负责人：https://github.com/ohxiyu/xiyunews/issues/391，当前 Codex 会话。
 
-工作分支 / 最后提交 / PR：agent/realtime-api-evidence，基于4e3862117671db962798fc305622a476f07e5ec7；本次仅文档[PR219](https://github.com/ohxiyu/xiyunews/pull/219)，业务PR217已合并。
+工作分支 / 最后提交 / PR：agent/unified-product-release，基于 155cf1f7。执行指针位于[根交接](../../project-docs/handoff.md)。
 
-已经完成：业务PR217全绿合并；新DNS-only记录与独立证书、reviewed新旧接口共存nginx（备份/t/reload）上线；新旧health200/ready503/POST403/未知404/HTTP308/no-store通过。统一Worker部署37329563017成功，新版本fb50c31c在15:05:32Z自然Cron outcome ok/watchdog:ok。STATE只读健康0；三spot live/队列0，应用未重启。
+已经完成：实现共用状态及部署入口，实时服务在本地验证新身份、锁定依赖和健康状态。见[验证记录](releases/2026-11-21-product-release.md)。
 
-尚未完成：仅文档PR检查合并；手机实际告警/恢复通知收件独立确认，不制造测试通知。
+尚未完成：确认 CI、东京候选构建与正式服务回读。
 
-已运行的验证及结果：根pytest1044、Worker102、watchdog7、typecheck/audit0/治理通过；业务远端realtime3.11/3.12各61项及ruff/mypy/仓库检查通过。新域Google/Cloudflare DoH正确，证书到期2027-01-03，原certbot timer enabled/active；nginx文件与PR SHA256一致，发送进程MainPID235825/NRestarts0。
+已运行的验证及结果：实时 Python 61 项、Ruff、mypy、依赖审计通过。
 
-尚未验证的内容：手机告警收件、此前Quick Post真实AI/Access验收和旧资源退役；Hyperliquid degraded/ready503既有限制保留，不称全来源ready。
+尚未验证的内容：新版本正式部署，以及正常事件下一次实际收件。
 
-线上版本 / 对应源码提交：发送应用2.6.0/d6a9d3f29ef93c138842342c973b3049fb7bc252不变；统一Worker fb50c31c-7ca6-4339-b1f6-9929bd12ae74，源码4e3862117671db962798fc305622a476f07e5ec7、产物3670b9beeba36078fe0b47343070e6f073da76c0。主站和发送应用分别记录。
+线上版本 / 对应源码提交：实时服务 2.6.0 / d6a9d3f29ef93c138842342c973b3049fb7bc252，正式回读见共用命令。
 
-阻塞与所需权限：迁移授权范围已执行完毕；本次仅文档，不再部署。旧域/证书删除、回滚、密钥/目的地变更仍需要新的明确授权。
+阻塞与所需权限：复用现有受信东京 SSH 和 GitHub Actions 运营者权限。
 
-下一步具体动作：文档全绿后按长期授权合并并清理本次已合并任务分支/worktree；业务五阶段已完成。旧API与证书过渡保留，不重置STATE、不重发消息；运营者报告真实收件后再补录。详见[本次证据](../../project-docs/releases/2026-10-05-realtime-api-domain.md)。
+下一步具体动作：用[共用入口](../../project-docs/product-release.md)验收一轮现行主分支发布。
 
 ## 系统现状
 

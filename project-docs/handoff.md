@@ -1,17 +1,17 @@
 # 当前交接
 
-2026-11-20，按用户要求恢复中文日报与原多来源采集、AI 选稿链路。生产沿用 11/17 已切换的托管执行与 Cloudflare 私有状态。
+2026-11-20，按用户要求恢复中文日报与原多来源采集、AI 选稿链路。生产沿用 11/17 已切换的托管执行与 Cloudflare 私有状态。日报与实时模块的共用入口见[发布与运行状态](product-release.md)。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "日报采用报纸式版面并缩减往期入口",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/387",
+  "goal": "统一 xiyu.news 日报与实时监控的发布和状态入口",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/391",
   "owner": "当前 Codex 聊天",
-  "branch": "agent/newspaper-daily",
-  "base": "5545421f4558b2579e151fcae0ef8aab80970608",
-  "status": "背景和参考资料移至正文后并默认展开；日报采用主稿与栏线；往期索引与 RSS 仅列最新刊期起近七天",
-  "next": "验证桌面和移动版、新旧刊链接、索引和 RSS 时间范围；生产继续使用已有采集与出刊自动化",
+  "branch": "agent/unified-product-release",
+  "base": "155cf1f7e5e489e060187f72986949a76a6784ce",
+  "status": "新增共用发布命令和状态查询，日报使用原 Cloudflare 工作流，实时通过现有东京 SSH 部署",
+  "next": "完成 CI、依赖审计和单一发布入口的正式域回读",
   "blockers": []
 }
 ```

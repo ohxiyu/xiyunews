@@ -111,7 +111,9 @@ class Platform:
     async def state(self) -> dict[str, Any]:
         samples = sorted(self.market.latencies)
         return dict(
-            name="FomoBTC",
+            name="xiyu.news",
+            service="xiyunews",
+            module="realtime-monitoring",
             version=VERSION,
             source_commit=self.settings.revision,
             uptime_seconds=int(time.time() - self.started),
