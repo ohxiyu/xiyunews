@@ -14,7 +14,7 @@ from ._file_utils import _atomic_write_text
 from .models import ContentItem
 from .publication_revision import story_revision
 from .web_feed import (_escape, _localized_title, _localized_text, _summary_html,
-                       _source_html, _references_html, _safe_url)
+                       _source_html, _references_html)
 
 ZONE = ZoneInfo("Asia/Shanghai")
 EVENT_SLOT = "<!--core-events-->"
@@ -147,21 +147,114 @@ def convert_feed(content: str) -> str:
     return '<div class="core-feed" data-core-feed="2">'+''.join(cards)+'</div>\n'
 
 
+READER_CATEGORIES = {"crypto": "Crypto", "technology": "AI 科技", "policy": "宏观政策"}
+
+
+def _reader_layout(content: str, payload: dict, day: str) -> tuple[str, dict]:
+    """Add reading chrome using the published article IDs and matching API rows."""
+    soup = BeautifulSoup(content, "html.parser")
+    feed = soup.select_one(".core-feed")
+    if feed is None:
+        return content, {}
+    public_items = {
+        row.get("content_revision", {}).get("zh"): row for row in payload.get("items", [])
+        if isinstance(row.get("content_revision"), dict) and row["content_revision"].get("zh")
+    }
+    headlines = []
+    filters: dict[str, int] = {}
+    for index, article in enumerate(feed.select(":scope > article.digest-item"), 1):
+        heading = article.find("h2")
+        if heading is None or not article.get("id"):
+            continue
+        rank = f"{index:02d}"
+        headline = {"id": article["id"], "rank": rank, "title": heading.get_text(" ", strip=True)}
+        public = public_items.get(article.get("data-content-revision"), {})
+        category = READER_CATEGORIES.get(public.get("top_category"))
+        score = public.get("score")
+        if category:
+            headline["category"] = category
+            article["data-category"] = category
+            filters[category] = filters.get(category, 0) + 1
+        else:
+            del article["data-category"]
+        if isinstance(score, (int, float)) and not isinstance(score, bool):
+            headline["score"] = f"{score:.1f}"
+        headlines.append(headline)
+
+        meta = article.select_one(":scope > .story-meta")
+        body = article.select_one(":scope > .story-body")
+        if meta is None or body is None:
+            continue
+        if not article.select_one(":scope > .story-rank"):
+            rail = soup.new_tag("div", attrs={"class": "story-rank"})
+            number = soup.new_tag("strong")
+            number.string = f"#{rank}"
+            rail.append(number)
+            stamp = meta.find("time")
+            if stamp:
+                date_stamp = soup.new_tag("time", datetime=stamp.get("datetime", day))
+                date_stamp.string = stamp.get_text(strip=True).split(" ", 1)[0]
+                rail.append(date_stamp)
+            article.insert(0, rail)
+
+        for ornament in meta.select(".category-pill, .score-badge"):
+            ornament.decompose()
+        label = meta.find("span", recursive=False)
+        if label:
+            if label.get_text(strip=True) == "更多资讯":
+                label.decompose()
+            elif label.get_text(strip=True) == "本期重点":
+                label["class"] = "priority-pill"
+        if category:
+            pill = soup.new_tag("span", attrs={"class": "category-pill"})
+            pill.string = category
+            meta.insert(0, pill)
+        if copy := body.select_one(".story-actions"):
+            meta.append(copy.extract())
+        if "score" in headline:
+            badge = soup.new_tag("span", attrs={"class": "score-badge"})
+            badge.string = headline["score"]
+            meta.append(badge)
+        if background := body.select_one(":scope > .story-background"):
+            body.insert(0, background.extract())
+        for reference in body.select(":scope > details.references"):
+            del reference["open"]
+        for thread in body.select(".thread-pill"):
+            thread.decompose()
+
+    overview = payload.get("overview")
+    data = {"headlines": headlines, "stats": payload.get("stats", {})}
+    if isinstance(overview, dict) and overview.get("zh"):
+        data["overview"] = overview["zh"]
+    if sum(filters.values()) == len(headlines):
+        data["filters"] = filters
+    return str(soup), data
+
+
 def republish(root: Path) -> dict:
-    count=0
+    count = 0
+    reader_editions = {}
+    latest = root / "api/latest.json"
+    latest_payload = json.loads(latest.read_text()) if latest.exists() else {}
     for post in sorted((root/'_posts').glob('*-summary-zh.md')):
         text=post.read_text()
         parts=text.split('---',2)
         if len(parts)!=3:raise ValueError('invalid published front matter')
-        body=convert_feed(parts[2])
+        day = post.name[:10]
+        edition_file = root / "editions" / day / "edition.json"
+        payload = json.loads(edition_file.read_text()) if edition_file.exists() else latest_payload
+        if payload.get("date") != day:
+            payload = {}
+        body, reader_editions[day] = _reader_layout(convert_feed(parts[2]), payload, day)
         _atomic_write_text(post,'---'+parts[1]+'---\n\n'+body)
-        day=post.name[:10]
         fragment=root/'editions'/day/'zh.html';fragment.parent.mkdir(parents=True,exist_ok=True)
         _atomic_write_text(fragment,f'<div class="daily-feed-content" data-feed-fragment="2" data-language="zh" data-date="{day}">{body}</div>\n')
         count+=1
-    latest=root/'api/latest.json'
-    if latest.exists():
-        value=json.loads(latest.read_text())
+    if reader_editions:
+        (root / "_data").mkdir(exist_ok=True)
+        _atomic_write_text(root / "_data/reader_editions.json", json.dumps(reader_editions, ensure_ascii=False) + "\n")
+    if latest_payload:
+        value = latest_payload
         week_start = calendar_date.fromisoformat(value['date']) - timedelta(days=HISTORY_DAYS - 1)
         meta={'date':value['date'],'generated_at':value.get('generated_at',''),
               'history_start':int(week_start.strftime('%Y%m%d'))}

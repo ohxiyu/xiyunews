@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{% if page.page_type == 'home' %}xiyu.news · 每日加密与 AI 日报{% else %}{{ page.title | escape }} · xiyu.news{% endif %}</title>
 <meta name="description" content="{{ page.description | default: site.description | escape }}">
 {% if page.noindex %}<meta name="robots" content="noindex">{% endif %}
@@ -16,12 +16,24 @@
 <body class="core-site dense-site {{ page.page_class }}">
 <a class="skip-link" href="#content">跳到正文</a>
 <header class="site-header"><div class="header-inner">
-<a class="brand" href="/" aria-label="xiyu.news 首页">{% include brand-mark.html %}<strong>xiyu<span>.news</span></strong></a>
-<nav aria-label="主导航"><a href="/" {% if page.page_type == 'home' or page.lang %}aria-current="page"{% endif %}>日报</a><a href="/history/" {% if page.url == '/history/' %}aria-current="page"{% endif %}>往期</a><a href="/about/" {% if page.url == '/about/' %}aria-current="page"{% endif %}>关于</a></nav>
+<a class="brand" href="{{ '/' | relative_url }}" aria-label="xiyu.news 首页">{% include brand-mark.html %}<strong>xiyu.news</strong></a>
+<nav class="site-nav" aria-label="主导航">
+  <a href="{{ '/' | relative_url }}"{% if page.page_type == 'home' %} aria-current="page"{% elsif page.lang %} class="is-current"{% endif %}>信息流</a>
+  <a href="{{ '/history/' | relative_url }}"{% if page.url == '/history/' %} aria-current="page"{% endif %}>往期</a>
+  <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>关于</a>
+</nav>
 <button class="theme-toggle" type="button" aria-label="切换深色模式" hidden>◐</button>
 </div></header>
-<main id="content" class="reader" tabindex="-1">
-{% if page.lang %}{% include edition-heading.html edition=page %}<section class="daily-day" data-language="zh" data-date="{{ page.date | date: '%Y-%m-%d' }}">{{ content }}</section>{% include author-links.html %}<p class="archive-back"><a href="/history/">浏览其他日期</a></p>{% else %}{{ content }}{% endif %}
+<main id="content" class="reader{% if page.page_type != 'home' and page.lang == nil %} reader-prose{% endif %}" tabindex="-1">
+{% if page.lang %}
+  {% assign archive_date = page.date | date: '%Y-%m-%d' %}
+  {% include reader-masthead.html current=archive_date %}
+  {% include edition-reader.html edition=page body=content %}
+  {% include author-links.html %}
+  <p class="archive-back"><a href="{{ '/history/' | relative_url }}">浏览其他日期</a></p>
+{% else %}
+  {{ content }}
+{% endif %}
 </main>
 <footer class="site-footer"><a href="/">xiyu.news</a><span>加密 · AI · 政策</span><a href="/legal/">版权与来源权利</a></footer>
 <p class="copy-status" role="status" aria-live="polite"></p>

@@ -1,18 +1,16 @@
 {% assign posts = site.posts | where: 'lang', 'zh' %}
 {% assign latest = posts | first %}
+{% assign latest_date = latest.date | date: '%Y-%m-%d' %}
+{% include reader-masthead.html home=true current=latest_date %}
 {% if latest %}
-<header class="reader-intro"><h1>每日情报</h1><p>每天一份加密、AI 与政策日报。</p></header>
-<nav class="recent-editions" aria-label="最近日报"><span>近期</span>
-  {% assign history_start = site.data.core_edition.history_start %}
-  {% for edition in posts limit: 7 %}
-    {% assign edition_key = edition.date | date: '%Y%m%d' | plus: 0 %}
-    {% unless history_start and edition_key < history_start %}
-      {% if forloop.first %}<span aria-current="date">{{ edition.date | date: '%m.%d' }}</span>{% else %}<a href="{{ edition.url | relative_url }}">{{ edition.date | date: '%m.%d' }}</a>{% endif %}
-    {% endunless %}
+  <p class="edition-status" data-edition-status hidden><strong>今日版尚未发布</strong><span>下方显示最近一期日报。</span></p>
+  {% for edition in posts limit: 2 %}
+    {% assign edition_day = edition.date | date: '%Y%m%d' | plus: 0 %}
+    {% if site.data.core_edition.history_start and edition_day < site.data.core_edition.history_start %}{% break %}{% endif %}
+    {% include edition-reader.html edition=edition latest=forloop.first body=edition.content %}
   {% endfor %}
-</nav>
-{% include edition-heading.html edition=latest current=true %}
-<section class="daily-day" data-language="zh" data-date="{{ latest.date | date: '%Y-%m-%d' }}">{{ latest.content }}</section>
-{% else %}<header class="edition-heading"><h1>每日加密与 AI 日报</h1></header><p class="empty-state">首期日报发布后将在这里显示。</p>{% endif %}
+{% else %}
+  <p class="empty-state">首期日报发布后将在这里显示。</p>
+{% endif %}
 {% include author-links.html %}
-<p class="end-note"><a href="/history/">最近一周日报</a> · <a href="/feed.xml">RSS</a></p>
+<p class="end-note"><a href="{{ '/history/' | relative_url }}">浏览往期日报</a> · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
