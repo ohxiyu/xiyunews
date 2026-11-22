@@ -72,6 +72,47 @@ def test_history_window_uses_calendar_days_but_keeps_older_post_files(tmp_path):
  assert '旧刊内容' in (tmp_path / 'editions/2026-10-20/zh.html').read_text()
 
 
+def test_reader_layout_preserves_x_proof_and_only_decorates_matching_revisions(tmp_path):
+ from src.x_verification import _article_fields
+
+ day = "2026-11-08"
+ posts = tmp_path / "_posts"
+ posts.mkdir()
+ (tmp_path / "api").mkdir()
+ first, second = story(1), story(2)
+ first.metadata['sources'] = [{'title': '原始资料', 'url': 'https://example.com/reference'}]
+ original = render_core_feed([first, second], date=day)
+ articles = BeautifulSoup(original, 'html.parser').select('article.digest-item')
+ current = {
+  'date': day,
+  'stats': {'displayed': 2},
+  'items': [
+   {'content_revision': {'zh': articles[0]['data-content-revision']}, 'top_category': 'technology', 'score': 9},
+   {'content_revision': {'zh': 'other'}, 'top_category': 'crypto', 'score': 8},
+  ],
+ }
+ api = tmp_path / 'api/latest.json'
+ api.write_text(json.dumps(current))
+ path = posts / f'{day}-summary-zh.md'
+ path.write_text(f'---\nlang: zh\n---\n{original}')
+
+ republish(tmp_path)
+ updated = path.read_text()
+ reader = json.loads((tmp_path / '_data/reader_editions.json').read_text())[day]
+ assert [row['id'] for row in reader['headlines']] == [article['id'] for article in articles]
+ assert reader['headlines'][0]['category'] == 'AI 科技'
+ assert reader['headlines'][0]['score'] == '9.0'
+ assert 'score' not in reader['headlines'][1] and 'filters' not in reader
+
+ result = BeautifulSoup(updated, 'html.parser').select('article.digest-item')
+ assert result[0].select_one('.story-body > :first-child')['class'] == ['story-background']
+ assert result[0].select_one('.references a')['href'] == 'https://example.com/reference'
+ assert [_article_fields(article) for article in result] == [_article_fields(article) for article in articles]
+ republish(tmp_path)
+ assert path.read_text() == updated
+ assert json.loads(api.read_text()) == current
+
+
 def test_migration_keeps_published_text_revisions_sources_and_is_idempotent():
  items=[story(i) for i in range(5)]
  old=render_web_feed(items,date='2026-11-08',total_fetched=25,language='zh',display_timezone='Asia/Shanghai')

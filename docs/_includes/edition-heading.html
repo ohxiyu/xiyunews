@@ -1,5 +1,21 @@
-<header class="edition-heading"{% if include.current %} data-latest-edition-date="{{ include.edition.date | date: '%Y-%m-%d' }}"{% endif %}>
-  <div class="edition-strip"><time datetime="{{ include.edition.date | date: '%Y-%m-%d' }}">{{ include.edition.date | date: '%Y.%m.%d' }}</time>{% if include.current %}<span>最新一期</span>{% else %}<a href="/history/">往期日报</a>{% endif %}</div>
-  {% unless include.current %}<h1>加密与 AI 日报</h1>{% endunless %}
-  <p class="edition-byline"><a href="https://x.com/ohxiyu" rel="noopener noreferrer">xiyu / @ohxiyu</a> 整理{% if include.current and site.data.core_edition.display_time %}<span>本期更新 {{ site.data.core_edition.display_time | escape }}</span>{% endif %}</p>
+{% assign publication = include.edition %}
+{% assign stats = include.stats %}
+<header class="day-divider"{% if include.latest %} data-latest-edition-date="{{ publication.date | date: '%Y-%m-%d' }}"{% endif %}>
+  <div class="day-divider-title">
+    <span class="day-state">{% if include.latest %}最新{% else %}存档{% endif %}</span>
+    <h2><time datetime="{{ publication.date | date: '%Y-%m-%d' }}">{{ publication.date | date: '%Y.%m.%d' }}</time></h2>
+    {% if publication.window_start and publication.window_end %}
+      <span class="day-window">{{ publication.window_start | date: '%m.%d %H:%M' }}–{{ publication.window_end | date: '%m.%d %H:%M' }}</span>
+    {% endif %}
+  </div>
+  <div class="day-divider-stats" aria-label="日报统计">
+    {% assign candidates = stats.candidates | default: publication.fetched_count %}
+    {% assign analyzed = stats.analyzed | default: publication.analyzed_count %}
+    {% assign displayed = stats.displayed | default: publication.selected_count %}
+    {% assign high = stats.high_priority | default: publication.critical_count %}
+    {% if candidates %}<span><strong>{{ candidates | escape }}</strong> 条采集</span>{% endif %}
+    {% if analyzed %}<span><strong>{{ analyzed | escape }}</strong> 条分析</span>{% endif %}
+    {% if displayed %}<span><strong>{{ displayed | escape }}</strong> 条展示</span>{% endif %}
+    {% if high %}<span><strong>{{ high | escape }}</strong> 条高优先级</span>{% endif %}
+  </div>
 </header>
