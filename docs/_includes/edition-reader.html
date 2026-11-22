@@ -4,52 +4,23 @@
 <section class="daily-day" data-language="zh" data-date="{{ reader_date }}">
   {% include edition-heading.html edition=include.edition latest=include.latest stats=reader_data.stats %}
   {% if headlines.size > 0 %}
-    {% assign top_story = headlines | first %}
-    {% assign edition_label = include.edition.date | date: '%Y.%m.%d' %}
-    {% assign highlights_offset = 1 %}
-    {% if reader_data.overview %}{% assign highlights_offset = 0 %}{% endif %}
-    {% assign highlight_count = headlines.size | minus: highlights_offset | at_most: 3 %}
     <div class="daily-feed-layout">
-      <div class="feed-orientation">
-        <section class="edition-overview" aria-label="本期脉络">
-          <p class="edition-overview-title">本期脉络</p>
-          {% if reader_data.overview %}
-            <p class="edition-overview-headline">{{ reader_data.overview | escape }}</p>
-          {% else %}
-            <p class="edition-overview-headline"><a href="#{{ top_story.id | escape }}">{{ top_story.title | escape }}</a></p>
-          {% endif %}
-          {% if highlight_count > 0 %}
-            <details class="edition-overview-disclosure" data-desktop-open open>
-              <summary>{{ highlight_count }} 条线索</summary>
-              <ol class="edition-overview-signals">
-              {% for story in headlines offset: highlights_offset limit: highlight_count %}
-                <li><a href="#{{ story.id | escape }}">{% if story.category %}<span class="signal-category">{{ story.category | escape }}</span>{% endif %}<span>{{ story.title | escape }}</span><span class="signal-rank">#{{ story.rank }}</span></a></li>
-              {% endfor %}
-              </ol>
-            </details>
-          {% endif %}
-        </section>
-        <div class="feed-toolbar">
-          <p>本期资讯按影响力排序，前三条为本期重点。</p>
-          {% if reader_data.filters.size > 1 %}
-          <div class="category-filters" aria-label="资讯分类" role="group" hidden>
-            <button type="button" data-category-filter="" aria-pressed="true">全部 <small>{{ headlines.size }}</small></button>
-            {% for category in reader_data.filters %}
-            <button type="button" data-category-filter="{{ category[0] | escape }}" aria-pressed="false">{{ category[0] | escape }} <small>{{ category[1] }}</small></button>
-            {% endfor %}
-          </div>
-          {% endif %}
-        </div>
+      {% if reader_data.filters.size > 1 %}
+      <div class="category-filters" aria-label="资讯分类" role="group" hidden>
+        <button type="button" data-category-filter="" aria-pressed="true">全部 <small>{{ headlines.size }}</small></button>
+        {% for category in reader_data.filters %}
+        <button type="button" data-category-filter="{{ category[0] | escape }}" aria-pressed="false">{{ category[0] | escape }} <small>{{ category[1] }}</small></button>
+        {% endfor %}
       </div>
-      <aside class="headline-rail" aria-label="{{ edition_label }} 排行榜">
-        <details class="headline-index" data-desktop-open open>
-          <summary><span>{{ edition_label }} 排行榜</span><small data-ranking-count>{{ headlines.size }}</small></summary>
+      {% endif %}
+      <aside class="headline-rail" aria-label="本期目录">
+        <details class="headline-index" data-desktop-open>
+          <summary>本期目录 <small data-ranking-count>{{ headlines.size }}</small></summary>
           <ol class="headline-list">
           {% for story in headlines %}
             <li{% if story.category %} data-category="{{ story.category | escape }}"{% endif %}>
               <span class="rank-number">{{ story.rank }}</span>
               <a href="#{{ story.id | escape }}">{{ story.title | escape }}</a>
-              {% if story.score %}<span class="score-badge">{{ story.score | escape }}</span>{% endif %}
             </li>
           {% endfor %}
           </ol>
