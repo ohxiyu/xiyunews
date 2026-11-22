@@ -6,12 +6,12 @@ xiyu.news 网站只展示最新一期中文日报，保留 #306 的正文、排�
 ```json
 {
   "goal": "轻量版最新一期",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/398",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/400",
   "owner": "当前 Codex 聊天",
-  "branch": "agent/latest-edition-only",
-  "base": "ca936d144d478b8e8c2ff264fadaa738a7843870",
-  "status": "切换正式域单期阅读和 Cloudflare 单期记录",
-  "next": "验证实时读取与旧地址，继续切换写入及 X 证明，再清理旧正文",
+  "branch": "agent/direct-daily-publication",
+  "base": "ded5c7a865798ee650a03906a80c857283cb7a6a",
+  "status": "单期读取已上线，直接出刊的渲染器已通过真实刊期和换刊验证",
+  "next": "接入每日写入和 X 出刊证明，真实换刊通过后清理旧正文",
   "blockers": []
 }
 ```
