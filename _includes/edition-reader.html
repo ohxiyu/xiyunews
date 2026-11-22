@@ -1,0 +1,34 @@
+{% assign reader_date = include.edition.date | date: '%Y-%m-%d' %}
+{% assign reader_data = site.data.reader_editions[reader_date] %}
+{% assign headlines = reader_data.headlines %}
+<section class="daily-day" data-language="zh" data-date="{{ reader_date }}">
+  {% include edition-heading.html edition=include.edition latest=include.latest stats=reader_data.stats %}
+  {% if headlines.size > 0 %}
+    <div class="daily-feed-layout">
+      {% if reader_data.filters.size > 1 %}
+      <div class="category-filters" aria-label="资讯分类" role="group" hidden>
+        <button type="button" data-category-filter="" aria-pressed="true">全部 <small>{{ headlines.size }}</small></button>
+        {% for category in reader_data.filters %}
+        <button type="button" data-category-filter="{{ category[0] | escape }}" aria-pressed="false">{{ category[0] | escape }} <small>{{ category[1] }}</small></button>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <aside class="headline-rail" aria-label="本期目录">
+        <details class="headline-index" data-desktop-open>
+          <summary>本期目录 <small data-ranking-count>{{ headlines.size }}</small></summary>
+          <ol class="headline-list">
+          {% for story in headlines %}
+            <li{% if story.category %} data-category="{{ story.category | escape }}"{% endif %}>
+              <span class="rank-number">{{ story.rank }}</span>
+              <a href="#{{ story.id | escape }}">{{ story.title | escape }}</a>
+            </li>
+          {% endfor %}
+          </ol>
+        </details>
+      </aside>
+      <div class="daily-story-stream">{{ include.body }}</div>
+    </div>
+  {% else %}
+    {{ include.body }}
+  {% endif %}
+</section>

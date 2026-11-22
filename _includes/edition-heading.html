@@ -1,5 +1,13 @@
-<header class="edition-heading"{% if include.current %} data-latest-edition-date="{{ include.edition.date | date: '%Y-%m-%d' }}"{% endif %}>
-  <div class="edition-strip"><time datetime="{{ include.edition.date | date: '%Y-%m-%d' }}">{{ include.edition.date | date: '%Y.%m.%d' }}</time>{% if include.current %}<span>最新一期</span>{% else %}<a href="/history/">往期日报</a>{% endif %}</div>
-  <h1>加密与 AI 日报</h1>
-  <p class="edition-byline"><a href="https://x.com/ohxiyu" rel="noopener noreferrer">xiyu / @ohxiyu</a> 整理{% if include.current and site.data.core_edition.display_time %}<span>本期更新 {{ site.data.core_edition.display_time | escape }}</span>{% endif %}</p>
+{% assign publication = include.edition %}
+{% assign stats = include.stats %}
+<header class="day-divider"{% if include.latest %} data-latest-edition-date="{{ publication.date | date: '%Y-%m-%d' }}"{% endif %}>
+  <div class="day-divider-title">
+    {% if include.latest %}<span class="day-state">最新</span>{% endif %}
+    <h2><time datetime="{{ publication.date | date: '%Y-%m-%d' }}">{{ publication.date | date: '%Y.%m.%d' }}</time></h2>
+    {% if publication.window_start and publication.window_end %}
+      <span class="day-window">{{ publication.window_start | date: '%m.%d %H:%M' }}–{{ publication.window_end | date: '%m.%d %H:%M' }}</span>
+    {% endif %}
+  </div>
+  {% assign displayed = stats.displayed | default: publication.selected_count %}
+  {% if displayed %}<p class="day-divider-stats">{{ displayed | escape }} 条资讯</p>{% endif %}
 </header>
