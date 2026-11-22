@@ -3,19 +3,22 @@ import {legacyRoute} from "./legacy";
 import dispatcher from "./index";
 import {runtimeHealth} from "./runtime";
 import type { RecoveryEnv } from "./recovery";
-import {latestEditionRoute, type EditionEnv} from "./latest-edition";
+import {retiredEdition} from "./latest-edition";
 import {publicationRoute} from "./publication-state";
 // Reuse the audited Pages handler; do not duplicate auth, caching or API routing.
 // @ts-expect-error The existing JavaScript module is validated by its Node tests.
 import website, {primaryHostRedirect} from "../../../docs/core-worker.js";
 export { RecoveryGate } from "./gate";
 
-export interface UnifiedEnv extends EditionEnv {
+export interface UnifiedEnv extends Env {
   ASSETS: Fetcher;
   STATE: KVNamespace;
   ENABLE_DISPATCHER?: string;
   EDGE_DEPLOY_WORKFLOW?: string;
   SITE_SOURCE_COMMIT?: string;
+  SITE_ARTIFACT_COMMIT?: string;
+  SITE_BUILD_KEY?: string;
+  SITE_EDITION_DATE?: string;
   ADMIN_GITHUB_TOKEN?: string;
   ADMIN_ACCESS_ISSUER?: string;
   ADMIN_ACCESS_AUD?: string;
@@ -29,7 +32,7 @@ export interface UnifiedEnv extends EditionEnv {
 const OPERATIONS = new Set(["/health", "/ready", "/publication/check"]);
 
 async function reader(request: Request, env: UnifiedEnv, ctx?: ExecutionContext): Promise<Response> {
-  return await latestEditionRoute(request, env) ?? website.fetch(request, env, ctx);
+  return retiredEdition(request, env.SITE_EDITION_DATE) ?? website.fetch(request, env, ctx);
 }
 
 function publicationEnv(env: UnifiedEnv, ctx?: ExecutionContext): RecoveryEnv {
@@ -62,7 +65,7 @@ export default {
     return Response.json({...health, service: "xiyunews", project: "xiyunews",
       product: "daily-edition", collection_interval_minutes: FEED_INTERVAL_MINUTES, languages: ["zh"], delivery: ["x"],
       runner: env.PUBLICATION_RUNTIME === "hosted" ? {status:"github-hosted",state_backend:"cloudflare-private",service:"xiyunews"} : await runtimeHealth(env.RUNTIME_HEALTH_URL),
-      modules: ["daily-edition"],
+      modules: ["daily-edition"], public_content: "static-assets",
       dispatcher_enabled: env.ENABLE_DISPATCHER === "true",
       site_source_commit: env.SITE_SOURCE_COMMIT ?? null,
       site_artifact_commit: env.SITE_ARTIFACT_COMMIT ?? null,

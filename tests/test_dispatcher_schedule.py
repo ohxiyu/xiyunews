@@ -34,16 +34,13 @@ def test_shared_schedule_has_exact_coverage_without_overlap():
             for utc_minute in range(60):
                 if matches(utc_hour, hour) and matches(utc_minute, minute):
                     actual.append(((utc_hour + 8) % 24) * 60 + utc_minute)
-    # Edition triggers at 07:26/36/46/56 plus one shared 5-minute timer all
-    # day. The timer only checks publication 08:00-23:00 and Square
-    # 09:00-23:30 (publicationCron/dispatchSquare); overnight ticks exist for
-    # the collection check.
+    # Four morning publication triggers and one shared ten-minute timer.
     expected = sorted(
         [7 * 60 + minute for minute in (26, 36, 46, 56)]
-        + list(range(0, 24 * 60, 5))
+        + list(range(0, 24 * 60, 10))
     )
     assert sorted(actual) == expected
-    assert len(actual) == len(set(actual)) == 292
+    assert len(actual) == len(set(actual)) == 148
 
 
 def test_runtime_health_and_cron_routes_match_deployment_configuration():

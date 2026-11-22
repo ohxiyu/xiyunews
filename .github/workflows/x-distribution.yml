@@ -12,11 +12,8 @@ env:
 # is sent (src/x_queue.py). Only runs when x_delivery.mode is "drip" and the
 # credentials are configured; otherwise every run exits without posting.
 #
-# A successful Cloudflare deployment wakes this workflow; an exact daily
-# producer proof and the current public pages must match before any post. Later runs only poll: a cheap stdlib gate reads
-# the queue and the published edition state and exits in seconds unless a
-# post is due, the edition changed, or a deadline passed. Each run sends at
-# most one post, and an outcome that cannot be proven is never retried.
+# A successful daily release wakes the planner. Later runs are woken by
+# Cloudflare at the queue's next delivery time. Unknown outcomes never resend.
 
 on:
   workflow_dispatch:
@@ -25,12 +22,14 @@ on:
         description: Read-only account and public channel verification; never post or mutate queue
         type: boolean
         default: false
+      schedule_only:
+        description: Read durable state and arm the next X alarm without composing or posting
+        type: boolean
+        default: false
   workflow_run:
     workflows: ['xiyunews Cloudflare']
     types: [completed]
     branches: [main]
-  schedule:
-    - cron: '17 23,0-15 * * *'
 
 concurrency:
   group: bmtnews-x-distribution
@@ -47,6 +46,7 @@ jobs:
       vars.XIYUNEWS_RUNTIME_MODE != 'maintenance' &&
       ((github.event_name != 'workflow_run' && github.ref == 'refs/heads/main') ||
        (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.event == 'workflow_run' &&
         github.event.workflow_run.head_branch == 'main' &&
         github.event.workflow_run.head_repository.full_name == github.repository)) &&
       (inputs.verify_only || vars.X_DELIVERY_ENABLED != 'false')
@@ -124,24 +124,31 @@ jobs:
             --feed-state docs/_data/bmtnews_state.json \
             --config data/config.github.json | tee -a "$GITHUB_OUTPUT" "$GITHUB_STEP_SUMMARY"
 
+      - name: Protect due work with a bounded wakeup
+        if: steps.gate.outputs.work == 'true' && !inputs.schedule_only && steps.state.outcome == 'success'
+        run: >-
+          python3 -m src.x_wakeup --guard
+          --queue "$RUNNER_TEMP/x-state/data/x-queue.json"
+          --feed-state docs/_data/bmtnews_state.json --config data/config.github.json
+
       - name: Set up Python
-        if: inputs.verify_only || steps.gate.outputs.work == 'true'
+        if: inputs.verify_only || (!inputs.schedule_only && steps.gate.outputs.work == 'true')
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
       - name: Install uv
-        if: inputs.verify_only || steps.gate.outputs.work == 'true'
+        if: inputs.verify_only || (!inputs.schedule_only && steps.gate.outputs.work == 'true')
         uses: astral-sh/setup-uv@v7
         with:
           version: "0.11.32"
 
       - name: Install dependencies
-        if: inputs.verify_only || steps.gate.outputs.work == 'true'
+        if: inputs.verify_only || (!inputs.schedule_only && steps.gate.outputs.work == 'true')
         run: uv sync --frozen
 
       - name: Prepare GitHub Actions config
-        if: inputs.verify_only || steps.gate.outputs.work == 'true'
+        if: inputs.verify_only || (!inputs.schedule_only && steps.gate.outputs.work == 'true')
         run: cp data/config.github.json data/config.json
 
       - name: Verify the existing account without posting
@@ -154,7 +161,7 @@ jobs:
         run: uv run python -m src.x_verification --account-only
 
       - name: Find exact production proof for the saved edition
-        if: steps.gate.outputs.work == 'true'
+        if: steps.gate.outputs.work == 'true' && !inputs.schedule_only
         id: proof
         env:
           GH_TOKEN: ${{ github.token }}
@@ -213,6 +220,15 @@ jobs:
             data/x-verification.json
           retention-days: 30
           if-no-files-found: warn
+
+      - name: Arm the next pending X delivery
+        if: >-
+          always() && steps.state.outcome == 'success' && steps.gate.outcome == 'success' &&
+          (inputs.schedule_only || steps.proof.outputs.ready == 'true' || steps.gate.outputs.work == 'false')
+        run: >-
+          python3 -m src.x_wakeup
+          --queue "$RUNNER_TEMP/x-state/data/x-queue.json"
+          --feed-state docs/_data/bmtnews_state.json --config data/config.github.json
 
       - name: Release private publication state
         if: always() && steps.state.outcome == 'success'

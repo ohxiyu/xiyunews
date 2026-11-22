@@ -1,5 +1,5 @@
 name: xiyu.news Feed Collection
-run-name: Feed collection
+run-name: ${{ inputs.pre_score && 'Pre-cutoff scoring' || 'Feed collection' }}
 # Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
 # never change server Git config or credentials.
 env:
@@ -10,9 +10,14 @@ env:
 
 on:
   workflow_dispatch:
+    inputs:
+      pre_score:
+        description: Run AI scoring in the 06:00–06:59 Shanghai window
+        type: boolean
+        default: false
 
 permissions:
-  contents: write  # Persists the staging cache to the staging-cache branch
+  contents: read
   id-token: write
 
 jobs:
@@ -39,35 +44,6 @@ jobs:
             data
             .github
 
-      - name: Restore staged source items
-        uses: actions/cache/restore@v5
-        with:
-          path: |
-            data/staging-items.json
-            data/analysis-cache.json
-            data/qualified-cache.json
-          key: ${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            ${{ runner.os }}-bmtnews-pipeline-v2-
-            ${{ runner.os }}-bmtnews-staging-v1-
-
-      - name: Merge latest persistent staging with the restored cache
-        shell: bash
-        run: |
-          if git fetch --depth=1 origin staging-cache 2>/dev/null; then
-            mkdir -p data
-            if [ ! -f data/staging-items.json ]; then
-              git show FETCH_HEAD:data/staging-items.json > data/staging-items.json 2>/dev/null || rm -f data/staging-items.json
-            fi
-            if [ ! -f data/analysis-cache.json ]; then
-              git show FETCH_HEAD:data/analysis-cache.json > data/analysis-cache.json 2>/dev/null || rm -f data/analysis-cache.json
-            fi
-            if [ ! -f data/qualified-cache.json ]; then
-              git show FETCH_HEAD:data/qualified-cache.json > data/qualified-cache.json 2>/dev/null || rm -f data/qualified-cache.json
-            fi
-            python3 scripts/merge_pipeline_cache.py FETCH_HEAD
-          fi
-
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
@@ -89,28 +65,17 @@ jobs:
       - name: Prepare GitHub Actions config
         run: cp data/config.github.json data/config.json
 
-      - name: Collect and score new candidates into private caches only
+      - name: Collect and deduplicate into private state
         env:
           GITHUB_TOKEN: ${{ github.token }}
           LWN_KEY: ${{ secrets.LWN_KEY }}
-          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
-        run: uv run python -m src.rolling_feed
-
-      - name: Preserve successful AI work even after publication failure
-        if: ${{ always() }}
-        uses: actions/cache/save@v5
-        with:
-          path: |
-            data/staging-items.json
-            data/analysis-cache.json
-            data/qualified-cache.json
-          key: ${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}
-
-
-      - name: Persist staging cache to branch
-        if: ${{ always() }}
+          SILICONFLOW_API_KEY: ${{ inputs.pre_score && secrets.SILICONFLOW_API_KEY || '' }}
+          PRE_SCORE: ${{ inputs.pre_score }}
         shell: bash
-        run: bash scripts/persist_staging_cache.sh
+        run: |
+          args=()
+          if [ "$PRE_SCORE" = true ]; then args+=(--pre-score); fi
+          uv run python -m src.rolling_feed "${args[@]}"
 
       - name: Record operations status and costs
         if: ${{ always() }}

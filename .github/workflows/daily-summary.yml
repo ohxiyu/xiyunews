@@ -131,35 +131,6 @@ jobs:
             git show "origin/gh-pages:${path}" > "docs/${path}"
           done
 
-      - name: Restore staged source items
-        uses: actions/cache/restore@v5
-        with:
-          path: |
-            data/staging-items.json
-            data/analysis-cache.json
-            data/qualified-cache.json
-          key: ${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            ${{ runner.os }}-bmtnews-pipeline-v2-
-            ${{ runner.os }}-bmtnews-staging-v1-
-
-      - name: Merge latest persistent staging with the restored cache
-        shell: bash
-        run: |
-          if git fetch --depth=1 origin staging-cache 2>/dev/null; then
-            mkdir -p data
-            if [ ! -f data/staging-items.json ]; then
-              git show FETCH_HEAD:data/staging-items.json > data/staging-items.json 2>/dev/null || rm -f data/staging-items.json
-            fi
-            if [ ! -f data/analysis-cache.json ]; then
-              git show FETCH_HEAD:data/analysis-cache.json > data/analysis-cache.json 2>/dev/null || rm -f data/analysis-cache.json
-            fi
-            if [ ! -f data/qualified-cache.json ]; then
-              git show FETCH_HEAD:data/qualified-cache.json > data/qualified-cache.json 2>/dev/null || rm -f data/qualified-cache.json
-            fi
-            python3 scripts/merge_pipeline_cache.py FETCH_HEAD
-          fi
-
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
@@ -206,17 +177,6 @@ jobs:
             args+=(--force-publish)
           fi
           uv run bmtnews "${args[@]}"
-
-      - name: Preserve successful AI work even after publication failure
-        if: ${{ always() }}
-        uses: actions/cache/save@v5
-        with:
-          path: |
-            data/staging-items.json
-            data/analysis-cache.json
-            data/qualified-cache.json
-          key: ${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}
-
 
       - name: Read published edition date
         id: edition

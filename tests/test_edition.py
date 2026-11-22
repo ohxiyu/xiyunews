@@ -492,11 +492,11 @@ def test_background_scoring_and_independent_daily_edition() -> None:
         root / "ops/daily-dispatcher/src/collection.ts"
     ).read_text(encoding="utf-8")
     assert "17 2,8,14" not in collection
-    assert "staging-cache" in collection
-    assert "staging-cache" in publication
+    assert "src.edge_state acquire" in collection
+    assert "src.edge_state acquire" in publication
     assert "uv run python -m src.rolling_feed" in collection
     assert "Restore published event state" not in collection
-    assert "Collect and score new candidates into private caches only" in collection
+    assert "Collect and deduplicate into private state" in collection
     assert "src.rolling_feed" in collection
     assert "peaceiris/actions-gh-pages" not in collection
     assert "\n  schedule:" not in publication
@@ -507,8 +507,6 @@ def test_background_scoring_and_independent_daily_edition() -> None:
     assert 'args+=(--edition-date "${{ inputs.edition_date }}")' in publication
     assert "force_publish:" in publication
     assert "args+=(--force-publish)" in publication
-    assert "bmtnews-staging-v1-" in collection
-    assert "bmtnews-staging-v1-" in publication
     assert "timeout-minutes: 30" in collection
     assert "timeout-minutes: 30" in publication
     assert "GITHUB_TOKEN: ${{ github.token }}" in collection

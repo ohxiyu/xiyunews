@@ -1,17 +1,17 @@
 # 当前交接
 
-xiyu.news 网站只展示最新一期中文日报，保留 #306 的正文、排行和背景块，并提供单期 RSS。公开页面移除了「关于」入口及旧路径，联系和版权页面继续可用。Cloudflare 从单条公开刊期记录提供内容，当前部署首期同时提供静态回退。日报与 X 过渡期继续使用现有快照与发送校验。后台预采每 30 分钟检查一次。
+xiyu.news 只展示最新一期中文日报。首页、刊期页、最新 API 与 RSS 由 Cloudflare 静态资产直接交付。后台每 30 分钟采集和去重，06:30 北京时间预评分，07:26 出刊。候选、评分及简版缓存在私有 SQLite。X 在刊期通过线上核验后规划，后续按队列到期时间唤醒。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "轻量版移除关于页",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/402",
+  "goal": "降低日报与 X 的运行用量",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/404",
   "owner": "当前 Codex 聊天",
-  "branch": "agent/remove-about-page",
-  "base": "ded5c7a865798ee650a03906a80c857283cb7a6a",
-  "status": "关闭关于页及其历史路由",
-  "next": "验证关于页返回 410，继续轻量出刊改造",
+  "branch": "agent/lean-publication-usage",
+  "base": "afec92999b40c8255d279b653c66f8fe36d55bad",
+  "status": "切换静态直出、私有采集暂存及 X 到期唤醒",
+  "next": "观察首轮 06:30 预评分、07:26 出刊和自然 X 到期分发",
   "blockers": []
 }
 ```

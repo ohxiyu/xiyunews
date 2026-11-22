@@ -15,7 +15,8 @@ def test_final_cutover_preserves_namespace_by_transfer_not_creation():
         "transferred_classes": [{"from": "RecoveryGate", "from_script": "bmtnews-daily-dispatcher", "to": "RecoveryGate"}]}]
     assert "new_classes" not in text and "new_sqlite_classes" not in text and "deleted_classes" not in text
     assert config["kv_namespaces"] == [{"binding": "STATE", "id": "469346950dfc4f36b8d9bf9997d960fa"}]
-    assert config["triggers"]["crons"] == ["26 23 * * *", "36,46,56 23 * * *", "*/5 * * * *"]
+    assert config["triggers"]["crons"] == ["26 23 * * *", "36,46,56 23 * * *", "*/10 * * * *"]
+    assert config["assets"]["run_worker_first"] is False
     assert config["routes"] == [{"pattern": "xiyu.news", "custom_domain": True}]
     # Existing www zone route is owned separately, preserving narrow CI permissions.
     assert "www.xiyu.news/* -> xiyunews" in text

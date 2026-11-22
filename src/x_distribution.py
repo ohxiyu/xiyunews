@@ -157,6 +157,10 @@ class XDistributionPipeline:
                     await self._send_x_job(
                         job,publisher,persist,now=now or datetime.now(timezone.utc),run_report=run_report,
                         fixed_clock=now is not None)
+                    # The wakeup needs the next slot's real due time, which
+                    # depends on the receipt from the send that just finished.
+                    if x_queue.advance(state, now or datetime.now(timezone.utc), settings):
+                        persist()
 
 
             for status, count in x_queue.counts(state, today).items():

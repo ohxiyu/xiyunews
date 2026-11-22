@@ -1,13 +1,10 @@
 import { SCHEDULE_CRONS } from "./lib";
 import { runSchedule } from "./recovery";
 import { dispatchCollection, FEED_INTERVAL_MINUTES } from "./collection";
-import { dispatchDistribution } from "./distribution";
 
-// The five-minute clock still checks X and out-of-band recovery. Collection
-// uses only its half-hour boundaries, including overnight.
-export const COLLECTION_CRON = "*/5 * * * *";
-// Earlier timers, still accepted while Cron configuration propagates.
-const LEGACY_COMBINED_CRONS = new Set(["*/5 0-15 * * *", "*/5 1-15 * * *"]);
+// Keep the ten-minute publication recovery cadence and the half-hour fetch.
+export const COLLECTION_CRON = "*/10 * * * *";
+const LEGACY_COMBINED_CRONS = new Set(["*/5 * * * *", "*/5 0-15 * * *", "*/5 1-15 * * *"]);
 export const CONFIGURED_CRONS = [SCHEDULE_CRONS[0], SCHEDULE_CRONS[1], COLLECTION_CRON];
 
 // Share one timer, but preserve the existing publication probe frequency.
@@ -27,14 +24,15 @@ export async function runCombinedSchedule(cron: string, scheduledTime: number, e
   // 10-minute tick arriving one minute late must still perform its check.
   // runSchedule separately uses current time for edition/window decisions.
   const publication = publicationCron(scheduledTime);
+  const tick = new Date(scheduledTime);
+  const preScore = tick.getUTCHours() === 22 && tick.getUTCMinutes() === 30;
   const results = await Promise.allSettled([
-      dispatchDistribution(env, "x", now).then(status => console.log(JSON.stringify({ event: "x_dispatch", status }))),
     publication ? runSchedule(publication, now, env) : Promise.resolve(),
-    new Date(scheduledTime).getUTCMinutes() % FEED_INTERVAL_MINUTES === 0
-      ? dispatchCollection(env, now).then(status => console.log(JSON.stringify({ event: "collection_dispatch", status })))
+    tick.getUTCMinutes() % FEED_INTERVAL_MINUTES === 0
+      ? dispatchCollection(env, now, preScore).then(status => console.log(JSON.stringify({ event: "collection_dispatch", status })))
       : Promise.resolve(),
   ]);
   if (results.some(result => result.status === "rejected")) {
-    throw new Error("Scheduled publication, distribution or collection dispatch failed; inspect workflow and dispatcher permissions");
+    throw new Error("Scheduled publication or collection dispatch failed; inspect workflow and dispatcher permissions");
   }
 }

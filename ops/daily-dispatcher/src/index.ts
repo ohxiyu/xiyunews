@@ -78,7 +78,7 @@ export default {
       legacy_scheduled_disabled: env.XIYUNEWS_LEGACY_DISABLED === "true",
       primary_cron_utc: "26 23 * * *",
       schedule_crons_utc: CONFIGURED_CRONS,
-      distribution_gate: "private-queue-due-v1",
+      distribution_gate: "queue-alarm-v1",
       x_check_window_local: "07:26–23:30",
       collection_workflow: FEED_WORKFLOW,
       collection_max_age_hours: FEED_INTERVAL_MS / 3_600_000,

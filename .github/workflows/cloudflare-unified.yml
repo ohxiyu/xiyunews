@@ -193,13 +193,6 @@ jobs:
           --var "SITE_EDITION_DATE:$EDITION_DATE"
           --var "PUBLICATION_RUNTIME:$PUBLICATION_RUNTIME"
 
-      - name: Seed the single-edition Cloudflare reader
-        if: steps.plan.outputs.skip != 'true'
-        env:
-          ARTIFACT_SHA: ${{ steps.source.outputs.artifact }}
-          BUILD_KEY: ${{ steps.plan.outputs.key }}
-        run: python3 -m src.seed_latest_edition --assets .edge-site --artifact "$ARTIFACT_SHA" --build "$BUILD_KEY"
-
       - name: Download exact daily producer report when this is a publication
         if: github.event_name == 'workflow_run'
         uses: actions/download-artifact@v7

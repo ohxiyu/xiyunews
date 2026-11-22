@@ -618,11 +618,14 @@ def test_rejected_copy_advances_to_next_story_and_is_not_paid_for_again(monkeypa
 def test_gap_anchors_on_actual_confirmation_after_slow_send(monkeypatch,tmp_path):
     fake=FakePublisher();runner=orchestrator_for(fake);path=tmp_path/'queue.json'
     items=[item(1),item(2)]
+    original_send = runner._send_x_job
+
+    async def delayed_send(job, publisher, persist, *, now, fixed_clock, run_report):
+        await original_send(job, publisher, persist, now=now + timedelta(minutes=2),
+                            fixed_clock=fixed_clock, run_report=run_report)
+
+    monkeypatch.setattr(runner, "_send_x_job", delayed_send)
     run(monkeypatch,runner,items,path,now=ON_TIME)
-    state=json.loads(path.read_text());first=state['editions'][DAY]['jobs'][0]
-    first['sent_at']=(ON_TIME+timedelta(minutes=2)).isoformat()
-    x_queue.save(state,path)
-    run(monkeypatch,runner,items,path,now=ON_TIME+timedelta(minutes=10))
     second=jobs(path)[1]
     assert datetime.fromisoformat(second['due_at'])==ON_TIME+timedelta(minutes=2+second['gap_minutes'])
 
