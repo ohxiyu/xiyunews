@@ -10,7 +10,7 @@ def fixture(tmp_path):
         'api/latest.json':json.dumps({'date':'2026-11-09','items':[{'id':'one'}]}),'history/index.html':'history','about/index.html':'about','feed.xml':'rss',
         'assets/css/core.css':'body{}','assets/js/core.js':'void 0;',
         's/index.html':'retired','events/old/index.html':'retired','api/events.json':'retired','feeds/crypto.xml':'retired',
-        'editions/2026-11-08/en.html':'legacy English','_worker.js':'private implementation','CNAME':'xiyu.news'}
+        'editions/2026-11-08/en.html':'legacy English','2026/11/08/summary-zh.html':'old','2026/11/09/summary-zh.html':'current','_worker.js':'private implementation','CNAME':'xiyu.news'}
     for name,text in files.items():
         path=source/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_text(text)
     return source
@@ -18,11 +18,12 @@ def fixture(tmp_path):
 
 def test_stages_only_daily_public_surfaces_without_changing_immutable_input(tmp_path):
     source=fixture(tmp_path);target=tmp_path/'site';prepare(source,target)
-    for name in ['s','events','api/events.json','feeds','editions/2026-11-08/en.html','_worker.js','CNAME']:
+    for name in ['s','events','api/events.json','feeds','editions/2026-11-08/en.html','2026/11/08/summary-zh.html','history','_worker.js','CNAME']:
         assert not (target/name).exists()
     assert (source/'api/events.json').read_text()=='retired'
     assert (target/'api/latest.json').read_bytes()==(source/'api/latest.json').read_bytes()
     assert (target/'feed.xml').is_file()
+    assert (target/'2026/11/09/summary-zh.html').read_text() == 'current'
     assert asset_budget(target)<20_000
 
 

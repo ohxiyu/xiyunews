@@ -1,13 +1,15 @@
 """Apply identical source templates to an immutable publication in CI and production."""
 from __future__ import annotations
 import argparse
+from datetime import date
+import json
 from pathlib import Path
 import shutil
 
 REQUIRED_DIRECTORIES = ("_layouts", "_includes", "assets")
 OPTIONAL_DIRECTORIES = ("_sass",)
-REQUIRED_FILES = ("_config.yml", "index.md", "threads.html", "history.html", "feed.xml", "about/index.md")
-RETIRED_SOURCES = ("en", "events", "entity", "threads", "weekly", "s", "admin",
+REQUIRED_FILES = ("_config.yml", "index.md", "threads.html", "feed.xml", "about/index.md")
+RETIRED_SOURCES = ("history", "history.html", "en", "events", "entity", "threads", "weekly", "s", "admin",
                    "developers", "developer", "sources", "entity.html", "weekly.html",
                    "feed-en.xml", "feed-zh.xml", "openapi.json", "llms.txt", "llms-full.txt",
                    "manifest.webmanifest", "offline.html", "pwa-version.json", "_worker.js")
@@ -47,6 +49,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("source", type=Path)
     parser.add_argument("destination", type=Path)
+    parser.add_argument("--latest-only", action="store_true")
     args = parser.parse_args()
     overlay(args.source, args.destination)
+    if args.latest_only:
+        latest = json.loads((args.destination / "api/latest.json").read_text())
+        day = date.fromisoformat(latest["date"]).isoformat()
+        current = args.destination / "_posts" / f"{day}-summary-zh.md"
+        if day != latest["date"] or not current.is_file():
+            raise ValueError("missing current edition in publication snapshot")
+        for post in current.parent.glob("*.md"):
+            if post != current:
+                post.unlink()
     print("Prepared core templates; existing publication evidence preserved")

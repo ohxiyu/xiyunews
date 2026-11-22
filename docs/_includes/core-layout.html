@@ -19,18 +19,15 @@
 <a class="brand" href="{{ '/' | relative_url }}" aria-label="xiyu.news 首页">{% include brand-mark.html %}<strong>xiyu.news</strong></a>
 <nav class="site-nav" aria-label="主导航">
   <a href="{{ '/' | relative_url }}"{% if page.page_type == 'home' %} aria-current="page"{% elsif page.lang %} class="is-current"{% endif %}>信息流</a>
-  <a href="{{ '/history/' | relative_url }}"{% if page.url == '/history/' %} aria-current="page"{% endif %}>往期</a>
   <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>关于</a>
 </nav>
 <button class="theme-toggle" type="button" aria-label="切换深色模式" hidden>◐</button>
 </div></header>
 <main id="content" class="reader{% if page.page_type != 'home' and page.lang == nil %} reader-prose{% endif %}" tabindex="-1">
 {% if page.lang %}
-  {% assign archive_date = page.date | date: '%Y-%m-%d' %}
-  {% include reader-masthead.html current=archive_date %}
+  {% include reader-masthead.html %}
   {% include edition-reader.html edition=page body=content %}
   {% include author-links.html %}
-  <p class="archive-back"><a href="{{ '/history/' | relative_url }}">浏览其他日期</a></p>
 {% else %}
   {{ content }}
 {% endif %}

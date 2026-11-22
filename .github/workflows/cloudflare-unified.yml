@@ -90,6 +90,7 @@ jobs:
         run: |
           echo "code=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           echo "artifact=$(git -C .edge-source rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          python3 -c 'from datetime import date; import json; print("edition=" + date.fromisoformat(json.load(open(".edge-source/api/latest.json"))["date"]).isoformat())' >> "$GITHUB_OUTPUT"
       - name: Compare immutable inputs with the live version
         id: plan
         env:
@@ -142,7 +143,7 @@ jobs:
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
       - name: Overlay current core templates and routes
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
-        run: python3 scripts/overlay_core_site.py docs .edge-source
+        run: python3 scripts/overlay_core_site.py docs .edge-source --latest-only
       - name: Rebuild core reader from the immutable published snapshot
         if: steps.plan.outputs.skip != 'true' && steps.cache-ready.outputs.valid != 'true'
         run: uv run python -m src.core_site --root .edge-source
@@ -181,6 +182,7 @@ jobs:
           SOURCE_SHA: ${{ steps.source.outputs.code }}
           ARTIFACT_SHA: ${{ steps.source.outputs.artifact }}
           BUILD_KEY: ${{ steps.plan.outputs.key }}
+          EDITION_DATE: ${{ steps.source.outputs.edition }}
           PUBLICATION_RUNTIME: ${{ vars.XIYUNEWS_RUNTIME_MODE || 'server' }}
         run: >-
           npx wrangler deploy --config wrangler.unified.jsonc --keep-vars
@@ -188,7 +190,15 @@ jobs:
           --var "SITE_ARTIFACT_COMMIT:$ARTIFACT_SHA"
           --var "RUNTIME_HEALTH_URL:https://api.xiyu.news/ops/runtime.json"
           --var "SITE_BUILD_KEY:$BUILD_KEY"
+          --var "SITE_EDITION_DATE:$EDITION_DATE"
           --var "PUBLICATION_RUNTIME:$PUBLICATION_RUNTIME"
+
+      - name: Seed the single-edition Cloudflare reader
+        if: steps.plan.outputs.skip != 'true'
+        env:
+          ARTIFACT_SHA: ${{ steps.source.outputs.artifact }}
+          BUILD_KEY: ${{ steps.plan.outputs.key }}
+        run: python3 -m src.seed_latest_edition --assets .edge-site --artifact "$ARTIFACT_SHA" --build "$BUILD_KEY"
 
       - name: Download exact daily producer report when this is a publication
         if: github.event_name == 'workflow_run'

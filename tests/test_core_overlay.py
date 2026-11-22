@@ -19,7 +19,7 @@ def test_absent_optional_sass_succeeds_without_overwriting_publication(tmp_path)
     source, published = fixture(tmp_path)
     overlay(source, published)
     assert (published / "_layouts/current.html").read_text() == "new template"
-    assert (published / "history.html").read_text() == "new source: history.html"
+    assert not (published / "history.html").exists()
     assert (published / "api/latest.json").read_text() == "immutable published payload"
     assert not (published / "_sass").exists()
 
@@ -33,8 +33,8 @@ def test_present_optional_sass_is_copied(tmp_path):
 
 def test_missing_required_input_fails_before_any_write(tmp_path):
     source, published = fixture(tmp_path)
-    (source / "history.html").unlink()
-    with pytest.raises(ValueError, match="history.html"):
+    (source / "feed.xml").unlink()
+    with pytest.raises(ValueError, match="feed.xml"):
         overlay(source, published)
     assert not (published / "_layouts").exists()
     assert (published / "api/latest.json").read_text() == "immutable published payload"

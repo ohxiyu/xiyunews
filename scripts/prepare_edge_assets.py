@@ -1,5 +1,6 @@
 """Validate the daily reader and stage only public production assets."""
 import argparse
+from datetime import date
 import json
 from html.parser import HTMLParser
 from pathlib import Path
@@ -41,27 +42,35 @@ def prepare(source:Path,destination:Path):
     source,destination=source.resolve(),destination.resolve()
     if source==destination or source.is_relative_to(destination) or destination.is_relative_to(source):raise ValueError('source and destination must be separate directories')
     if destination.exists():raise ValueError('destination must not already exist')
-    for name in ('index.html','api/latest.json','history/index.html','about/index.html','feed.xml','assets/css/core.css','assets/js/core.js'):
+    required = ('index.html', 'api/latest.json', 'about/index.html', 'feed.xml',
+                'assets/css/core.css', 'assets/js/core.js')
+    for name in required:
         if not (source/name).is_file():raise ValueError('missing rendered public output: '+name)
     latest=json.loads((source/'api/latest.json').read_text())
     if not latest.get('date') or not isinstance(latest.get('items'),list) or not latest['items']:raise ValueError('invalid or empty published latest edition')
+    day = date.fromisoformat(latest['date']).isoformat()
+    if day != latest['date']:
+        raise ValueError('noncanonical publication date')
     if f'data-latest-edition-date="{latest["date"]}"' not in (source/'index.html').read_text():raise ValueError('homepage does not match latest edition')
     for path in source.rglob('*'):
         if path.is_symlink():raise ValueError('symlinks are not allowed in edge assets')
         if any(part in {'.git','.env','.dev.vars','node_modules'} or part.startswith(('.env.','.dev.vars.')) for part in path.relative_to(source).parts):raise ValueError('private files are not allowed in edge assets')
-    shutil.copytree(source,destination,ignore=shutil.ignore_patterns('_worker.js','Gemfile','Gemfile.lock','CNAME','.xiyunews-build-cache.json'))
-    # Old generated inputs may still contain retired routes. Preserve the input
-    # snapshot and remove them only from this derived deployment directory.
-    for relative in ('en','s','admin','developer','developers','feeds','events','entity','threads','weekly','sources','llms.txt','llms-full.txt','openapi.json','manifest.webmanifest','offline.html','core-worker.js','assets/js/story-card.js','assets/js/bmtnews-ui.js','assets/css/bmtnews-ui.css','assets/css/style.css'):
-        target=destination/relative
-        if target.is_dir():shutil.rmtree(target)
-        elif target.exists():target.unlink()
-    for path in (destination/'api').rglob('*'):
-        if path.is_file() and path!=(destination/'api/latest.json'):path.unlink()
-    for path in destination.glob('feed*.xml'):
-        if path.name!='feed.xml':path.unlink()
-    for path in destination.rglob('*-en.html'):path.unlink()
-    for path in destination.rglob('en.html'):path.unlink()
+    # The immutable producer snapshot can still contain archive files during
+    # migration. Publish an allowlist so none can be reached at alternate URLs.
+    files = set(required) | {
+        '404.html', '_headers', 'robots.txt', 'favicon.ico',
+        f"{day.replace('-', '/')}/summary-zh.html",
+        f'editions/{day}/zh.html', f'editions/{day}/edition.json',
+    }
+    destination.mkdir(parents=True)
+    for name in files:
+        if (source / name).is_file():
+            (destination / name).parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source / name, destination / name)
+    for name in ('assets/images', 'contact', 'legal', 'media-kit'):
+        if (source / name).is_dir():
+            shutil.copytree(source / name, destination / name,
+                            ignore=shutil.ignore_patterns('*.md', '*-en.html'))
     asset_budget(destination)
 
 

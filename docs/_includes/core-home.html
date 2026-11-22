@@ -1,16 +1,11 @@
 {% assign posts = site.posts | where: 'lang', 'zh' %}
 {% assign latest = posts | first %}
-{% assign latest_date = latest.date | date: '%Y-%m-%d' %}
-{% include reader-masthead.html home=true current=latest_date %}
+{% include reader-masthead.html home=true %}
 {% if latest %}
   <p class="edition-status" data-edition-status hidden><strong>今日版尚未发布</strong><span>下方显示最近一期日报。</span></p>
-  {% for edition in posts limit: 2 %}
-    {% assign edition_day = edition.date | date: '%Y%m%d' | plus: 0 %}
-    {% if site.data.core_edition.history_start and edition_day < site.data.core_edition.history_start %}{% break %}{% endif %}
-    {% include edition-reader.html edition=edition latest=forloop.first body=edition.content %}
-  {% endfor %}
+  {% include edition-reader.html edition=latest latest=true body=latest.content %}
 {% else %}
   <p class="empty-state">首期日报发布后将在这里显示。</p>
 {% endif %}
 {% include author-links.html %}
-<p class="end-note"><a href="{{ '/history/' | relative_url }}">浏览往期日报</a> · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
+<p class="end-note"><a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
