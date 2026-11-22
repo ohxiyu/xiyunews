@@ -1,4 +1,4 @@
-import {editionStore, type EditionEnv, validateLatest} from "./latest-edition";
+import {wakeup} from "./x-clock";
 
 // Private, fenced SQLite-page transport. No public runtime data or credentials.
 // Reuses the existing RecoveryGate namespace; this is live state, not backups.
@@ -46,7 +46,7 @@ export async function identity(token: string, now = Date.now()): Promise<Record<
   return {...c, workflow, migration: workflow === "publication-runtime.yml"};
 }
 
-export async function publicationRoute(request: Request, env: EditionEnv): Promise<Response> {
+export async function publicationRoute(request: Request, env: Env): Promise<Response> {
   if (request.method !== "POST") return result({error:"method"},405);
   const bearer = request.headers.get("Authorization") ?? "";
   let c: Record<string, unknown>;
@@ -59,17 +59,18 @@ export async function publicationRoute(request: Request, env: EditionEnv): Promi
   try {body = JSON.parse(raw);} catch {return result({error:"invalid"},400);}
   if (!body || typeof body !== "object" || Array.isArray(body)) return result({error:"invalid"},400);
   const action = new URL(request.url).pathname.split("/").at(-1)!;
-  if (action === "publish-latest") {
-    if (c.workflow !== "cloudflare-unified.yml") return result({error:"workflow"},403);
-    if (!validateLatest(body, env)) return result({error:"edition_mismatch"},409);
-    // Pass only the public fields validated above, never other request fields.
-    const {day, artifact, build, home, page, api, rss} = body;
-    await editionStore(env).writeLatestEdition({day, artifact, build, home, page, api, rss});
-    return result({published:day, artifact});
-  }
   if (typeof body.owner !== "string" || !body.owner.startsWith(c.run_id+":"+c.run_attempt+":") ||
       !/^\d+:\d+:[a-f0-9]{32}$/.test(body.owner)) return result({error:"owner"},403);
   const gate = env.RECOVERY_GATE.get(env.RECOVERY_GATE.idFromName("publication-state-v1"));
+  if (action === "schedule-x") {
+    if (c.workflow !== "x-distribution.yml") return result({error:"workflow"},403);
+    const due = wakeup(body.wakeup, Date.now());
+    if (due === undefined) return result({error:"invalid_wakeup"},400);
+    const authorized = await gate.publicationState("check-lease", body, false);
+    if (!authorized.ok) return authorized;
+    const scheduled = await env.RECOVERY_GATE.getByName("x-distribution-clock").armX(due, body.guard === true);
+    return result({scheduled});
+  }
   return gate.publicationState(action, body, Boolean(c.migration));
 }
 
@@ -92,6 +93,7 @@ export async function stateOperation(ctx: DurableObjectState, action: string, b:
     return result({...manifest,until:now+LEASE});
   }
   if (!owns()) return result({error:"lease_lost"},409);
+  if (action === "check-lease") return result({active:true});
   if (action === "release") {
     write("until","0");sql.exec("DELETE FROM publication_pending");return result({released:true});
   }

@@ -23,7 +23,7 @@ it("preserves original publication cadence while adding background collection ti
   expect(publicationCron(Date.parse("2026-09-12T04:10:00Z"))).toBeNull();
 });
 
-it("combined tick runs distribution even when publication is not due", async () => {
+it("ordinary tick skips collection and X when publication is not due", async () => {
   vi.spyOn(Date, "now").mockReturnValue(now);
   const fetcher = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
     if (init?.method === "POST") return new Response(null, { status: 204 });
@@ -34,7 +34,7 @@ it("combined tick runs distribution even when publication is not due", async () 
   });
   vi.stubGlobal("fetch", fetcher);
   await runCombinedSchedule(COLLECTION_CRON, now, env);
-  expect(fetcher).toHaveBeenCalledTimes(2);
+  expect(fetcher).not.toHaveBeenCalled();
   expect(fetcher.mock.calls.every(([input]) => !String(input).includes("feed-collection.yml"))).toBe(true);
 });
 
@@ -56,4 +56,21 @@ it.each([
   await runCombinedSchedule(COLLECTION_CRON, time, env);
   expect(check).toHaveBeenCalledTimes(expected ? 1 : 0);
   if (expected) expect(check.mock.calls[0]?.[1]).toBe(Date.now());
+});
+
+it("requests pre-cutoff scoring at 06:30 Shanghai only", async () => {
+  const calls: Request[] = [];
+  vi.stubGlobal("fetch", vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+    const request = new Request(input, init);
+    if (request.method === "POST") {
+      calls.push(request);
+      return new Response(null, {status: 204});
+    }
+    return Response.json({workflow_runs: []});
+  }));
+  const tick = Date.parse("2026-11-22T22:30:00Z");
+  vi.spyOn(Date, "now").mockReturnValue(tick);
+  await runCombinedSchedule(COLLECTION_CRON, tick, env);
+  expect(calls).toHaveLength(1);
+  expect(await calls[0]?.json()).toEqual({ref: "main", inputs: {pre_score: true}});
 });

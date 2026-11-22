@@ -1,5 +1,5 @@
 import { DurableObject } from "cloudflare:workers";
-import type {LatestEdition} from "./latest-edition";
+import {armX, dispatchXAlarm, type Wakeup} from "./x-clock";
 import {stateOperation} from "./publication-state";
 
 // One object per edition. Synchronous SQL claims are committed before any
@@ -8,12 +8,14 @@ export class RecoveryGate extends DurableObject<Env> {
   publicationState(action:string, body:Record<string,unknown>, migration:boolean): Promise<Response> {
     return stateOperation(this.ctx, action, body, migration);
   }
-  async writeLatestEdition(edition: LatestEdition): Promise<void> {
-    await this.ctx.storage.put("latest-edition", edition);
+  armX(due: Wakeup | null, guard: boolean): Promise<number | null> {
+    return armX(this.ctx, due, guard);
   }
 
-  async readLatestEdition(): Promise<LatestEdition | undefined> {
-    return this.ctx.storage.get<LatestEdition>("latest-edition");
+  alarm(): Promise<void> {
+    const env = this.env as Env & {ENABLE_DISPATCHER?: string};
+    if (env.ENABLE_DISPATCHER !== "true") return Promise.resolve();
+    return dispatchXAlarm(this.ctx, this.env);
   }
 
   constructor(ctx: DurableObjectState, env: Env) {

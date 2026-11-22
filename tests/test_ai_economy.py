@@ -129,15 +129,14 @@ def test_provider_failures_are_bounded_and_sanitized(status, reason, calls):
     assert len(client.calls) == calls
 
 
-def test_failed_jobs_explicitly_preserve_ai_cache():
+def test_production_jobs_use_private_state_without_shipping_per_run_caches():
     root = Path(__file__).parents[1]
     for workflow in ("daily-summary.yml", "feed-collection.yml"):
         text = (root / ".github/workflows" / workflow).read_text()
-        assert "actions/cache/restore@v5" in text
-        assert "actions/cache@v5" not in text
-        step = text.split("      - name: Preserve successful AI work", 1)[1].split("\n      - name:", 1)[0]
-        assert "always()" in step and "uses: actions/cache/save@v5" in step
-        assert text.count("${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}") == 2
+        assert "src.edge_state acquire" in text
+        assert "src.edge_state release" in text
+        assert "actions/cache/save@v5" not in text
+        assert "persist_staging_cache.sh" not in text
 
 
 def test_new_model_and_default_cutoff_on_previous_utc_date():

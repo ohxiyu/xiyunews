@@ -4,7 +4,7 @@ import hashlib
 import json
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
-from ._file_utils import _atomic_write_text
+from .publication_state import read_document, write_document
 from .edition import items_in_edition_window,edition_window_for,EditionWindow
 from .models import ContentItem
 from .ai.chinese import chinese_ready,brief
@@ -23,7 +23,7 @@ def open_window(now,timezone_name='Asia/Shanghai'):
 
 def load(path=PATH):
     try:
-        value=json.loads(path.read_text())
+        value=read_document(path, primary=True)
         return value if isinstance(value,dict) and value.get('version')==1 and isinstance(value.get('editions'),dict) else {'version':1,'editions':{}}
     except (OSError,ValueError,TypeError):return {'version':1,'editions':{}}
 
@@ -38,8 +38,7 @@ def save_selection(items,config,window,*,now=None,path=PATH):
     if previous and previous.get('generated_at','')>=now.isoformat():return
     value['editions'][window.date]={'generated_at':now.isoformat(),'model_key':model_key(config),'dedup_verified':True,'items':[i.model_dump(mode='json') for i in qualified]}
     value['editions']={date:row for date,row in value['editions'].items() if date>=(now-timedelta(days=4)).date().isoformat()}
-    path.parent.mkdir(parents=True,exist_ok=True)
-    _atomic_write_text(path,json.dumps(value,ensure_ascii=False,sort_keys=True)+'\n')
+    write_document(path, value)
 
 
 def cached_selection(config,window,*,path=PATH):

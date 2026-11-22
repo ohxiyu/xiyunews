@@ -1,111 +1,12 @@
-# Cache policy, split by how often each kind of URL actually changes.
-#
-# Only a host that reads this file applies it — Cloudflare Pages and Netlify
-# do; GitHub Pages has no custom-header support and serves its own default
-# instead.
-#
-# Everything here is static, so read traffic never reaches an application:
-# the only thing that decides how a burst of readers is served is how much of
-# it the CDN can answer from cache. A URL with no rule falls back to the
-# host default, which is why the archive, threads, entities and feeds are
-# listed rather than left to inherit.
+# Static asset responses do not invoke the Worker.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cache-Control: no-cache, max-age=0, must-revalidate
 
-# CSS and JavaScript must recover quickly if markup and assets ever deploy out
-# of step. Fingerprinted query strings remain the primary cache-busting layer.
-/assets/css/*
+/assets/*
+  ! Cache-Control
   Cache-Control: public, max-age=300, must-revalidate
 
-/assets/js/*
-  Cache-Control: public, max-age=300, must-revalidate
-
-/assets/images/*
-  Cache-Control: public, max-age=300, must-revalidate
-
-/service-worker.js
-  Cache-Control: no-store
-  CDN-Cache-Control: no-store
-  Content-Type: application/javascript; charset=utf-8
-  Service-Worker-Allowed: /
-
-/pwa-version.json
-  Cache-Control: no-store
-  CDN-Cache-Control: no-store
-
-/manifest.webmanifest
-  Cache-Control: public, max-age=3600, must-revalidate
-  Content-Type: application/manifest+json; charset=utf-8
-
-/admin/*
-  Cache-Control: no-store
-  X-Robots-Tag: noindex
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://unpkg.com blob:; worker-src blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https://*.githubusercontent.com; connect-src 'self' https://api.github.com https://github.com https://raw.githubusercontent.com https://unpkg.com https://*.workers.dev; frame-ancestors 'none'; base-uri 'none'; form-action 'none'
-  Referrer-Policy: no-referrer
-
-# Today's edition: republished during the morning window, so it is checked
-# often but still served from cache while revalidating.
-/
-  Cache-Control: public, max-age=0, must-revalidate
-  CDN-Cache-Control: public, max-age=300, stale-while-revalidate=60
-
-/en/*
-  Cache-Control: public, max-age=0, must-revalidate
-  CDN-Cache-Control: public, max-age=300, stale-while-revalidate=60
-
-/editions/*
-  Cache-Control: public, max-age=300, stale-while-revalidate=60
-  CDN-Cache-Control: public, max-age=300, stale-while-revalidate=60
-
-# Dated editions can be corrected or republished; they are not immutable.
-/20*
-  Cache-Control: public, max-age=0, must-revalidate
-  CDN-Cache-Control: public, max-age=300, must-revalidate
-
-# Threads, entities and weekly reviews are rewritten once per publish.
-/threads/*
-  Cache-Control: public, max-age=300, stale-while-revalidate=3600
-  CDN-Cache-Control: public, max-age=600, stale-while-revalidate=86400
-
-/events/*
-  Cache-Control: public, max-age=300, stale-while-revalidate=3600
-  CDN-Cache-Control: public, max-age=600, stale-while-revalidate=86400
-
-/entity/*
-  Cache-Control: public, max-age=1800, stale-while-revalidate=86400
-  CDN-Cache-Control: public, max-age=3600, stale-while-revalidate=604800
-
-/weekly/*
-  Cache-Control: public, max-age=1800, stale-while-revalidate=86400
-  CDN-Cache-Control: public, max-age=3600, stale-while-revalidate=604800
-
-# Feed readers poll on their own schedule whether or not anything changed,
-# and the feeds carry full edition content, so they are the largest
-# repeat-traffic payload on the site. Serve them from the edge.
-/feed*.xml
-  Cache-Control: public, max-age=900, stale-while-revalidate=3600
-  CDN-Cache-Control: public, max-age=1800, stale-while-revalidate=86400
-
-/feeds/*
-  Cache-Control: public, max-age=900, stale-while-revalidate=3600
-  CDN-Cache-Control: public, max-age=1800, stale-while-revalidate=86400
-
-# The JSON API is the endpoint a third party would poll in a loop.
-/api/*
-  Cache-Control: public, max-age=300, stale-while-revalidate=3600
-  CDN-Cache-Control: public, max-age=600, stale-while-revalidate=86400
+/api/latest.json
   Access-Control-Allow-Origin: *
-
-# Machine-readable discovery files are stable between deployments.
-/openapi.json
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
-  Access-Control-Allow-Origin: *
-
-/llms.txt
-  Content-Type: text/plain; charset=utf-8
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
-  Access-Control-Allow-Origin: *
-
-/sitemap.xml
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
-
-/robots.txt
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400

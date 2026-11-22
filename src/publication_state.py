@@ -11,6 +11,7 @@ from contextlib import contextmanager
 PRODUCERS = {"xiyu.news Feed Collection", "xiyu.news Daily Edition",
     "xiyu.news X Distribution", "xiyunews Cloudflare"}
 DOCUMENTS = {"data/staging-items.json": "staging",
+    "data/qualified-cache.json": "qualified",
     "docs/_data/events.json": "events", "docs/_data/event-legacy-urls.json": "event_urls",
     "docs/_data/bmtnews_state.json": "daily"}
 _stores = {}

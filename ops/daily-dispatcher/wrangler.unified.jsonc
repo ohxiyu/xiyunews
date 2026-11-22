@@ -10,7 +10,7 @@
   "assets": {
     "directory": "../../.edge-site",
     "binding": "ASSETS",
-    "run_worker_first": true,
+    "run_worker_first": false,
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
@@ -38,7 +38,7 @@
     {"binding": "STATE", "id": "469346950dfc4f36b8d9bf9997d960fa"}
   ],
   // Deploy only after the old schedulers are stopped and transfer is verified.
-  "triggers": {"crons": ["26 23 * * *", "36,46,56 23 * * *", "*/5 * * * *"]},
+  "triggers": {"crons": ["26 23 * * *", "36,46,56 23 * * *", "*/10 * * * *"]},
   // www.xiyu.news/* -> xiyunews is an existing operator-managed zone route.
   // The CI token cannot manage zone routes; code publishing must preserve it.
   // With no non-custom routes declared, Wrangler does not replace zone routes.

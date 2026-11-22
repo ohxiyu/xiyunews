@@ -1,4 +1,4 @@
-"""Background collection only scores and caches; it cannot expand or publish."""
+"""Background fetch and optional scoring never expand or publish."""
 import asyncio
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
@@ -43,3 +43,14 @@ def test_scoring_failure_keeps_previous_qualified_cache_without_publication(tmp_
     runner._analyze_content=AsyncMock(side_effect=RuntimeError('scoring unavailable'))
     with pytest.raises(RuntimeError):asyncio.run(collect_and_score(runner))
     assert checkpoint.read_text()=='last qualified cohort' and not Path('docs').exists()
+
+def test_ordinary_collection_makes_no_model_calls(tmp_path, monkeypatch):
+    config = Config.model_validate_json(Path('data/config.github.json').read_text())
+    monkeypatch.chdir(tmp_path)
+    runner = BMTNewsOrchestrator(config, StorageManager(data_dir=str(tmp_path / 'data')))
+    runner._stage_sources = AsyncMock(return_value=[story()])
+    runner._analyze_content = AsyncMock(side_effect=AssertionError('ordinary collection cannot call AI'))
+    report = asyncio.run(collect_and_score(runner, score=False))
+    assert report.metrics['ai_total_tokens'] == 0
+    assert not Path('data/qualified-cache.json').exists()
+    runner._analyze_content.assert_not_awaited()
