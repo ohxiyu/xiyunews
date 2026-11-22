@@ -26,7 +26,12 @@ def test_public_policy_surfaces_do_not_require_private_repo_access() -> None:
     ):
         text = (ROOT / relative).read_text()
         assert "https://github.com/ohxiyu/xiyunews" not in text
-    assert "https://x.com/ohxiyu" in (ROOT / "docs/_includes/author-links.html").read_text()
+    layout = BeautifulSoup((ROOT / "docs/_includes/core-layout.html").read_text(), "html.parser")
+    assert [link["href"] for link in layout.select("footer nav a")] == [
+        "https://x.com/ohxiyu",
+        "{{ '/feed.xml' | relative_url }}",
+        "{{ '/legal/' | relative_url }}",
+    ]
     contact = (ROOT / "docs/contact/index.md").read_text()
     assert "https://x.com/ohxiyu" in contact
     assert "没有站内提交表单" in contact
