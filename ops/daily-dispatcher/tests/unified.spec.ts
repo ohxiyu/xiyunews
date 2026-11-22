@@ -2,8 +2,6 @@ import {env} from "cloudflare:test";
 import {afterEach, describe, expect, it, vi} from "vitest";
 import unified, {type UnifiedEnv} from "../src/unified";
 import dispatcher from "../src/index";
-// @ts-expect-error Independently validated JavaScript watchdog.
-import watchdog from "../../../realtime/scripts/deploy/watchdog/worker.js";
 
 function fixture(extra: Partial<UnifiedEnv> = {}): UnifiedEnv {
   return {...env, ASSETS: {fetch: vi.fn(async () => new Response("site asset"))},
@@ -34,7 +32,7 @@ describe("single xiyunews project", () => {
     expect(response.headers.get("Cache-Control")).toBe("no-store");
     expect(await response.json()).toMatchObject({service: "xiyunews", project: "xiyunews",
       repository: "ohxiyu/xiyunews", dispatcher_enabled: false,
-      realtime_watchdog_enabled: false, site_artifact_commit: "a".repeat(40)});
+      modules: ["daily-edition"], delivery: ["x"], site_artifact_commit: "a".repeat(40)});
   });
   it("reuses website routing rather than the dispatcher 404", async () => {
     const e = fixture();
@@ -112,29 +110,12 @@ describe("single xiyunews project", () => {
     expect(await (await injected.PUBLICATION_FETCH(new Request("https://xiyu.news/?publication_check=1"))).text()).toBe("site asset");
     expect(e.ASSETS.fetch).toHaveBeenCalledOnce();
   });
-  it("does not schedule anything until explicitly enabled", async () => {
+  it("schedules the daily dispatcher only when enabled", async () => {
     const daily = vi.spyOn(dispatcher, "scheduled").mockResolvedValue();
-    const realtime = vi.spyOn(watchdog, "scheduled").mockResolvedValue();
     await unified.scheduled(fiveMinutes, fixture());
     await unified.scheduled(fiveMinutes, fixture({ENABLE_DISPATCHER: "TRUE"}));
     expect(daily).not.toHaveBeenCalled();
-    expect(realtime).not.toHaveBeenCalled();
-  });
-  it("runs both independent components even if one fails without leaking its error", async () => {
-    const daily = vi.spyOn(dispatcher, "scheduled").mockRejectedValue(new Error("secret-url"));
-    const realtime = vi.spyOn(watchdog, "scheduled").mockResolvedValue();
-    await expect(unified.scheduled(fiveMinutes,
-      fixture({ENABLE_DISPATCHER: "true", ENABLE_REALTIME_WATCHDOG: "true"})))
-      .rejects.toThrow("xiyunews scheduled component failed; inspect component logs");
+    await unified.scheduled(fiveMinutes, fixture({ENABLE_DISPATCHER: "true"}));
     expect(daily).toHaveBeenCalledOnce();
-    expect(realtime).toHaveBeenCalledOnce();
-  });
-  it("runs the realtime watchdog only on its original five-minute cron", async () => {
-    const realtime = vi.spyOn(watchdog, "scheduled").mockResolvedValue();
-    await unified.scheduled({...fiveMinutes, cron: "26 23 * * *"},
-      fixture({ENABLE_REALTIME_WATCHDOG: "true"}));
-    expect(realtime).not.toHaveBeenCalled();
-    await unified.scheduled(fiveMinutes, fixture({ENABLE_REALTIME_WATCHDOG: "true"}));
-    expect(realtime).toHaveBeenCalledOnce();
   });
 });

@@ -1,21 +1,17 @@
 #!/usr/bin/env python3
-"""Operate the xiyu.news publication and realtime services from one checkout."""
+"""Operate the xiyu.news daily publication from one checkout."""
 
 import argparse
 import json
 from pathlib import Path
 import re
-import shlex
 import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 REPOSITORY = "ohxiyu/xiyunews"
 DAILY_HEALTH = "https://xiyu.news/health"
-REALTIME_HEALTH = "https://api.xiyu.news/api/health"
-REALTIME_READY = "https://api.xiyu.news/api/ready"
 EDITION = "https://xiyu.news/api/latest.json"
-RELEASE_SCRIPT = "ops/release/install-realtime.sh"
 SHA = re.compile(r"[a-f0-9]{40}")
 
 
@@ -31,7 +27,7 @@ def response(url):
               url, capture=True, timeout=55)
     body, code = raw.rsplit(b"\n", 1)
     http_status = int(code)
-    if http_status != 200 and (url, http_status) != (REALTIME_READY, 503):
+    if http_status != 200:
         raise ValueError(f"{url} returned HTTP {http_status}")
     return http_status, json.loads(body)
 
@@ -39,7 +35,6 @@ def response(url):
 def status():
     _, daily = response(DAILY_HEALTH)
     _, edition = response(EDITION)
-    realtime_status, realtime = response(REALTIME_READY)
     return {
         "product": "xiyu.news",
         "daily": {
@@ -48,15 +43,6 @@ def status():
             "edition": edition["date"],
             "items": len(edition["items"]),
             "runtime": daily.get("runner"),
-        },
-        "realtime": {
-            "revision": realtime["source_commit"],
-            "ready": realtime_status == 200 and realtime["ready"] is True,
-            "telegram_enabled": realtime["telegram_enabled"],
-            "sources_requiring_attention": {
-                name: source["state"] for name, source in realtime["sources"].items()
-                if source["state"] in {"error", "blocked", "warming", "degraded", "stale"}
-            },
         },
     }
 
@@ -96,43 +82,18 @@ def deploy_daily(revision):
         raise ValueError("The daily site did not report the requested source revision")
 
 
-def deploy_realtime(revision, ssh_config, host):
-    if response(REALTIME_HEALTH)[1]["source_commit"] == revision:
-        print(f"Realtime service already runs {revision}", flush=True)
-        return
-    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", host):
-        raise ValueError("Use a host alias from the operator's SSH configuration")
-    check_revision(revision)
-    installer = run("git", "show", f"{revision}:{RELEASE_SCRIPT}", capture=True).decode()
-    archive = run("git", "archive", revision, "realtime", capture=True)
-    command = shlex.join(["sudo", "-n", "bash", "-c", installer, "--", revision])
-    run("ssh", "-F", str(ssh_config), "-o", "BatchMode=yes",
-        "-o", "StrictHostKeyChecking=yes", "-o", "ConnectTimeout=10",
-        host, command, data=archive, timeout=900)
-    if response(REALTIME_HEALTH)[1]["source_commit"] != revision:
-        raise ValueError("The public realtime API did not report the requested source revision")
-
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("status", help="show current production modules")
-    deploy = commands.add_parser("deploy", help="release the current reviewed main revision")
-    deploy.add_argument("--component", choices=("all", "daily", "realtime"), default="all")
-    deploy.add_argument("--ssh-config", type=Path, help="existing Tokyo operator SSH configuration")
-    deploy.add_argument("--host", default="xiyunews-tokyo")
+    commands.add_parser("deploy", help="release the current reviewed main revision")
     args = parser.parse_args()
     try:
         if args.command == "deploy":
-            if args.component != "daily" and (not args.ssh_config or not args.ssh_config.is_file()):
-                parser.error("--ssh-config must identify the existing Tokyo SSH configuration")
             revision = main_revision()
             run("git", "cat-file", "-e", f"{revision}^{{commit}}")
             print(f"xiyu.news release {revision}", flush=True)
-            if args.component != "realtime":
-                deploy_daily(revision)
-            if args.component != "daily":
-                deploy_realtime(revision, args.ssh_config, args.host)
+            deploy_daily(revision)
         print(json.dumps(status(), ensure_ascii=False, indent=2))
     except subprocess.SubprocessError as error:
         print(f"xiyu.news: {error.cmd[0]} did not complete successfully", file=sys.stderr)

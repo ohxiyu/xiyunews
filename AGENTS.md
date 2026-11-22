@@ -1,11 +1,12 @@
 # xiyu.news collaboration
 
-These rules apply to people and coding agents. The user-approved 2026-11-09 daily-edition refactor supersedes older product/process instructions.
+These rules apply to people and coding agents. The 2026-11-22 daily and X scope supersedes the previous realtime deployment instructions.
 
 ## Product and boundaries
 
+- The product publishes its Chinese edition on the website and distributes approved rewrites on X. Production batch jobs run on GitHub-hosted compute with private Cloudflare publication state. Preserve historical receipts and keep private state off public branches.
+
 - The public product is one Chinese crypto/AI daily edition: 07:00 cutoff, 07:26 start, Asia/Shanghai. Background collection only scores and caches; it does not publish or send messages.
-- The owner-approved 2026-11-17 runtime unification makes xiyu.news one business with daily and realtime modules. Keep `realtime/` dependencies, database, alert rules and destinations isolated; Tokyo runs realtime only, production batch jobs use standard GitHub-hosted compute after the verified private-state cutover. Do not put delivery ledgers into public artifacts or fall back to volatile caches.
 - The owner has discontinued xiyu.news backups. Do not install backup timers or upload database copies. Preserve active databases, delivery receipts and published history; other projects' backups are outside this scope.
 - Preserve already published editions and delivery receipts. Do not regenerate or resend history. Keep redirects for retired public addresses.
 - Keep copyright, licenses, source attribution and third-party notices.
@@ -30,5 +31,3 @@ These rules apply to people and coding agents. The user-approved 2026-11-09 dail
 - CI/governance must validate versions, relevant links and a small current task pointer, without requiring historical release archives or ceremonial evidence.
 - Follow the refactor stages in handoff. Report multi-day acceptance as pending until observed; never invent elapsed time, successful delivery, balances, analytics or source facts.
 - On 2026-11-09 the owner explicitly waived the X preview trial and authorized direct main-account operation after quality gates and API availability checks. Keep the daily two-post limit, do not purchase/upgrade a plan, and never automatically retry an unknown delivery. Balance checking/alerts are disabled at the owner's request; retain token cost accounting.
-
-- Operational alerts use the owner-designated 日报运维 forum topic. Create only the explicitly requested topic; never alter realtime destinations or fall back to the general group/reader channel.

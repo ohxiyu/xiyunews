@@ -586,7 +586,7 @@ def test_workflow_restores_the_queue_fail_closed_and_never_force_pushes():
     assert "steps.gate.outputs.attention !=" not in workflow
 
 
-def test_distribution_uses_trusted_deployment_and_readonly_verification_while_default_off():
+def test_distribution_uses_trusted_deployment_and_readonly_verification_with_default_enabled():
     root=Path(__file__).resolve().parents[1]
     text=(root/'.github/workflows/x-distribution.yml').read_text()
     assert "workflows: ['xiyunews Cloudflare']" in text
@@ -595,7 +595,7 @@ def test_distribution_uses_trusted_deployment_and_readonly_verification_while_de
     assert text.index('Find exact production proof')<text.index('Plan and send with remote checkpoints')
     assert "if: ${{ false }}" not in text
     config=json.loads((root/'data/config.github.json').read_text())
-    assert not config['x_delivery']['enabled'] and config['x_delivery']['max_post_chars']==280
+    assert config['x_delivery']['enabled'] and config['x_delivery']['max_post_chars']==280
 
 
 def test_rejected_copy_advances_to_next_story_and_is_not_paid_for_again(monkeypatch,tmp_path):
@@ -631,17 +631,3 @@ def test_before_approved_window_makes_no_plan_or_public_request(monkeypatch,tmp_
     fake=FakePublisher();runner=orchestrator_for(fake);path=tmp_path/'queue.json'
     run(monkeypatch,runner,[item(1)],path,now=ON_TIME-timedelta(minutes=10))
     assert fake.posts==[] and not path.exists()
-
-@pytest.mark.parametrize('outcome',['failed','unknown'])
-def test_failed_or_unknown_alert_contains_exact_body_and_is_not_repeated(monkeypatch,tmp_path,outcome):
-    from unittest.mock import AsyncMock
-    import src.operations as operations
-    alert=AsyncMock(return_value='sent');monkeypatch.setattr(operations,'send_alert',alert)
-    fake=FakePublisher(outcome);runner=orchestrator_for(fake);path=tmp_path/'queue.json'
-    with pytest.raises(RuntimeError,match='needs a person'):
-        run(monkeypatch,runner,[item(1)],path,now=ON_TIME)
-    assert alert.await_count==1
-    key,text=alert.call_args.args
-    assert key.endswith(':'+outcome) and fake.posts[0] in text
-    run(monkeypatch,runner,[item(1)],path,now=ON_TIME+timedelta(minutes=10))
-    assert alert.await_count==1 and len(fake.posts)==1

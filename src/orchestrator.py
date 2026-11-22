@@ -297,7 +297,7 @@ class BMTNewsOrchestrator(CollectionPipeline, SelectionPipeline, EnrichmentPipel
             run_report.set_metric('newly_displayed', len(displayed_identities - existing_display_identities))
             run_report.set_metric('displayed_today', len(important_items))
             run_report.set_metric('high_priority', sum(((item.ai_score or 0) >= 9 for item in important_items)))
-            published = await self._publish_outputs(important_items, date=window.date, total_candidates=total_candidates_considered, timezone_name=timezone_name, run_report=run_report, window_start=window.start, window_end=window.end, x_posted_languages=daily_state.x_posted_languages, skip_telegram=bool(already_published and force_publish))
+            published = await self._publish_outputs(important_items, date=window.date, total_candidates=total_candidates_considered, timezone_name=timezone_name, run_report=run_report, window_start=window.start, window_end=window.end, x_posted_languages=daily_state.x_posted_languages)
             newly_posted = published.get('x_posted') or []
             if newly_posted:
                 daily_state.x_posted_languages = sorted({*daily_state.x_posted_languages, *newly_posted})

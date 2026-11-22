@@ -151,8 +151,6 @@ jobs:
           X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
           X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
           X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
         run: uv run python -m src.x_verification --account-only
 
       - name: Find exact production proof for the saved edition
@@ -172,9 +170,6 @@ jobs:
           X_CONSUMER_SECRET: ${{ secrets.X_CONSUMER_SECRET }}
           X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
           X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
-          TELEGRAM_ALERT_THREAD_ID: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
         shell: bash
         run: |
           set -euo pipefail
@@ -197,9 +192,6 @@ jobs:
       - name: Record costs and operational failure outcome
         if: ${{ always() && (steps.proof.outputs.ready == 'true' || (failure() && (inputs.verify_only || steps.gate.outputs.work == 'true'))) }}
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
-          TELEGRAM_ALERT_THREAD_ID: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
           OPERATIONS_STATUS: ${{ job.status }}
         run: uv run python -m src.operations --workflow-status "$OPERATIONS_STATUS"
 

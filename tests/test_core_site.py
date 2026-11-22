@@ -6,10 +6,8 @@ from unittest.mock import AsyncMock
 import pytest
 from bs4 import BeautifulSoup
 from src.core_site import render_core_feed,convert_feed,republish
-from src.core_delivery import claim,delivery_eligible
 from src.daily_feed import DailyFeedState
 from src.models import ContentItem,SourceType
-from src.publication_state import PublicationState
 from src.web_feed import render_web_feed
 from src.ai.enricher import ContentEnricher
 from src.ai.prompts import CORE_ENRICHMENT_SYSTEM,CONCEPT_EXTRACTION_SYSTEM
@@ -85,25 +83,6 @@ def test_migration_keeps_published_text_revisions_sources_and_is_idempotent():
  assert all(a.select_one('a.source-link')['href']==b.select_one('a.source-link')['href'] for _ in [0])
  assert convert_feed(new)==new
  assert 'headline-rail' not in new and 'data-story-share' not in new
-
-
-def test_delivery_claim_survives_process_restart_and_never_retries_unknown(tmp_path):
- first=PublicationState(tmp_path/'state')
- assert claim(first,'2026-11-08','@daily')
- assert not claim(PublicationState(tmp_path/'state'),'2026-11-08','@daily')
- assert claim(first,'2026-11-09','@daily')
- with first.connect() as db:
-  assert db.execute('select status from core_telegram_receipts').fetchall()==[('attempted_unknown',),('attempted_unknown',)]
-
-
-def test_old_or_rebuilt_editions_cannot_be_sent():
- state=DailyFeedState(date='2026-11-08',timezone='Asia/Shanghai',updated_at=story().published_at,items=[story()])
- report={'date':state.date,'kind':'daily_publish','started_at':state.updated_at.isoformat(),'metrics':{'displayed_today':1},'alerts':[{'code':'telegram_deferred'}]}
- assert delivery_eligible(report,state)
- report['alerts'].append({'code':'telegram_rebuild_skipped'})
- assert not delivery_eligible(report,state)
- report['alerts']=[]
- assert not delivery_eligible(report,state)
 
 
 def test_chinese_enrichment_does_not_require_or_generate_english(monkeypatch):

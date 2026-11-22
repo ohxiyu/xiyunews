@@ -245,12 +245,9 @@ jobs:
       - name: Confirm exact published state checkpoint
         run: uv run python -m src.publication_state --acknowledge-published --reader-only
 
-      - name: Finalize operations topic alerts and costs
+      - name: Record operations status and costs
         if: ${{ always() }}
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_ALERT_CHAT_ID: ${{ secrets.TELEGRAM_ALERT_CHAT_ID || vars.TELEGRAM_ALERT_CHAT_ID }}
-          TELEGRAM_ALERT_THREAD_ID: ${{ secrets.TELEGRAM_ALERT_THREAD_ID || vars.TELEGRAM_ALERT_THREAD_ID }}
           OPERATIONS_STATUS: ${{ job.status }}
         run: uv run python -m src.operations --workflow-status "$OPERATIONS_STATUS"
 

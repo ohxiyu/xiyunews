@@ -88,7 +88,7 @@ async def verify_published_edition(state,*,now=None,root=PROOF_ROOT,state_path=S
         async with httpx.AsyncClient(timeout=15,follow_redirects=False) as owned:
             return await verify_published_edition(state,now=now,root=root,state_path=state_path,client=owned)
     pages={}
-    for path in ('/api/latest.json','/','/'+state.date.replace('-','/')+'/summary-zh.html'):
+    for path in ('/api/latest.json','/','/'+state.date.replace('-','/')+'/summary-zh'):
         response=await client.get('https://xiyu.news'+path,headers={'Cache-Control':'no-cache'})
         if response.status_code!=200 or len(response.content)>1_048_576:raise RuntimeError('published edition read unavailable')
         pages[path]=response.text
@@ -118,18 +118,6 @@ async def verify_published_edition(state,*,now=None,root=PROOF_ROOT,state_path=S
 async def account_diagnostics(output):
     config=Config.model_validate_json(Path('data/config.github.json').read_text())
     result={'checked_at':datetime.now(timezone.utc).isoformat(),'x':await XEditionPublisher(config.x_delivery).verify_account()}
-    token=os.environ.get('TELEGRAM_BOT_TOKEN','');chat=os.environ.get('TELEGRAM_CHANNEL_ID','')
-    result['telegram_channel']={'status':'not_verified'}
-    if token and chat:
-        try:
-            async with httpx.AsyncClient(timeout=15,follow_redirects=False) as client:
-                response=await client.post(f'https://api.telegram.org/bot{token}/getChat',json={'chat_id':chat})
-            data=response.json();channel=data.get('result',{})
-            import re
-            username=channel.get('username')
-            if response.status_code==200 and data.get('ok') is True and channel.get('type')=='channel' and isinstance(username,str) and re.fullmatch('[A-Za-z][A-Za-z0-9_]{4,31}',username):
-                result['telegram_channel']={'status':'verified_public','username':username,'url':'https://t.me/'+username}
-        except Exception:pass
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(result,ensure_ascii=False))

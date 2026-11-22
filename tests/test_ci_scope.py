@@ -12,12 +12,11 @@ from scripts.ci_scope import changed_paths, classify
     (["src/scrapers/rss.py", "tests/test_rss.py"], {"python"}),
     (["docs/assets/js/reader.js"], {"web", "edge"}),
     (["src/web_feed.py"], {"python", "edge"}),
-    (["realtime/src/runner.py"], {"changed"}),
     (["ops/daily-dispatcher/src/unified.ts"], {"web", "edge"}),
     (["src/models.py", "docs/_layouts/default.html"], {"python", "web", "edge"}),
-    ([".github/workflows/daily-summary.yml"], {"python", "web", "edge", "changed"}),
-    (["scripts/ci_scope.py"], {"python", "web", "edge", "changed"}),
-    (["new-owner/file.txt"], {"python", "web", "edge", "changed"}),
+    ([".github/workflows/daily-summary.yml"], {"python", "web", "edge"}),
+    (["scripts/ci_scope.py"], {"python", "web", "edge"}),
+    (["new-owner/file.txt"], {"python", "web", "edge"}),
 ])
 def test_safety_boundaries(paths, expected):
     assert {key for key, value in classify(paths).items() if value} == expected

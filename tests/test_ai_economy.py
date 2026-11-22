@@ -137,8 +137,6 @@ def test_failed_jobs_explicitly_preserve_ai_cache():
         assert "actions/cache@v5" not in text
         step = text.split("      - name: Preserve successful AI work", 1)[1].split("\n      - name:", 1)[0]
         assert "always()" in step and "uses: actions/cache/save@v5" in step
-        if workflow == "feed-collection.yml":
-            assert "!inputs.alert_test" in step and "inputs.alert_setup_chat == ''" in step
         assert text.count("${{ runner.os }}-bmtnews-pipeline-v2-${{ github.run_id }}-${{ github.run_attempt }}") == 2
 
 

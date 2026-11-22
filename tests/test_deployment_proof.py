@@ -1,10 +1,8 @@
 """Production receipts bind a real current edition to its exact producer bytes."""
-import asyncio
 import hashlib
 import json
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from unittest.mock import AsyncMock
 import pytest
 from scripts.verify_daily_deployment import matches
 from src.deployment_proof import valid_proof
@@ -56,21 +54,6 @@ def test_production_matches_complete_first_day_despite_nested_reference_sections
     assert not matches(health,payload,payload,build_key='wrong',artifact='b'*40,home=home,edition_html=edition)
 
 
-def test_missing_production_proof_stops_before_receipt_or_network(tmp_path,monkeypatch):
-    from src import core_delivery
-    from tests.test_core_site import story
-    from src.daily_feed import DailyFeedState
-    state=DailyFeedState(date='2026-11-09',timezone='Asia/Shanghai',updated_at=NOW,items=[story()])
-    (tmp_path/'published/_data').mkdir(parents=True)
-    (tmp_path/'published/_data/bmtnews_state.json').write_text(state.model_dump_json())
-    (tmp_path/'source-report').mkdir()
-    (tmp_path/'source-report/run-report.json').write_text('{}')
-    monkeypatch.chdir(tmp_path)
-    monkeypatch.setattr(core_delivery,'active_store',lambda:pytest.fail('must not claim before verification'))
-    with pytest.raises(RuntimeError,match='proof required'):
-        asyncio.run(core_delivery.main())
-
-
 def test_operations_verifies_original_producer_bytes_before_local_enrichment(tmp_path,monkeypatch):
     from src import operations, deployment_proof
     path=tmp_path/'report.json'
@@ -82,8 +65,7 @@ def test_operations_verifies_original_producer_bytes_before_local_enrichment(tmp
     seen=[]
     monkeypatch.setattr(operations,'active_store',lambda:None)
     monkeypatch.setattr(deployment_proof,'valid_proof',lambda p,r,s:seen.append(r) or r==original)
-    sender=AsyncMock(return_value='sent');monkeypatch.setattr(operations,'send_alert',sender)
-    asyncio.run(operations.finalize(path,'success',publication_proof=receipt,published_state=state))
+    operations.finalize(path,'success',publication_proof=receipt,published_state=state)
     assert seen==[original]
-    assert sender.await_count==1
+    assert json.loads(path.read_text())["operations"]["publication_verified"] is True
     assert 'ai_cost' in json.loads(path.read_text())
