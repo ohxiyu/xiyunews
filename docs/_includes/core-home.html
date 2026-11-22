@@ -1,6 +1,16 @@
 {% assign posts = site.posts | where: 'lang', 'zh' %}
 {% assign latest = posts | first %}
 {% if latest %}
+<header class="reader-intro"><h1>每日情报</h1><p>每天一份加密、AI 与政策日报。</p></header>
+<nav class="recent-editions" aria-label="最近日报"><span>近期</span>
+  {% assign history_start = site.data.core_edition.history_start %}
+  {% for edition in posts limit: 7 %}
+    {% assign edition_key = edition.date | date: '%Y%m%d' | plus: 0 %}
+    {% unless history_start and edition_key < history_start %}
+      {% if forloop.first %}<span aria-current="date">{{ edition.date | date: '%m.%d' }}</span>{% else %}<a href="{{ edition.url | relative_url }}">{{ edition.date | date: '%m.%d' }}</a>{% endif %}
+    {% endunless %}
+  {% endfor %}
+</nav>
 {% include edition-heading.html edition=latest current=true %}
 <section class="daily-day" data-language="zh" data-date="{{ latest.date | date: '%Y-%m-%d' }}">{{ latest.content }}</section>
 {% else %}<header class="edition-heading"><h1>每日加密与 AI 日报</h1></header><p class="empty-state">首期日报发布后将在这里显示。</p>{% endif %}

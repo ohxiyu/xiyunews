@@ -1,4 +1,4 @@
-"""Deterministic Chinese edition artifacts; channel delivery runs after deployment."""
+"""Deterministic Chinese edition artifacts; X distribution runs after deployment."""
 from __future__ import annotations
 import time
 from datetime import date as date_type
@@ -16,7 +16,7 @@ from .web_feed import _top_level_category
 class PublicationPipeline:
     async def _publish_outputs(self, items, *, date, total_candidates, timezone_name,
                                run_report, window_start=None, window_end=None,
-                               x_posted_languages=None, skip_telegram=False, static_only=False):
+                               x_posted_languages=None, static_only=False):
         """Write the single Chinese page and fragment, with no AI or network calls."""
         started=time.perf_counter()
         summary=await DailySummarizer(display_timezone=timezone_name).generate_summary(
@@ -36,9 +36,6 @@ class PublicationPipeline:
         if not static_only or not post.is_file():_atomic_write_text(post,front+body)
         if not static_only or not fragment.is_file():
             _atomic_write_text(fragment,f'<div class="daily-feed-content" data-feed-fragment="2" data-language="zh" data-date="{date}">{body}</div>\n')
-        if not static_only:
-            run_report.add_alert('info','telegram_rebuild_skipped' if skip_telegram else 'telegram_deferred',
-                '已发布刊期不重复发送。' if skip_telegram else 'Telegram由发布后任务发送，不阻塞网站。')
         run_report.set_timing('publish_outputs',time.perf_counter()-started)
         return {'x_posted':[]}
 

@@ -57,4 +57,4 @@ def test_single_deployment_renders_without_collection_ai_or_channel_messages():
     assert "production-edition" in deploy
     assert {p.name for p in WORKFLOWS.glob("*.yml")} == {
         "ci.yml", "codeql.yml", "publication-runtime.yml", "feed-collection.yml",
-        "daily-summary.yml", "daily-telegram.yml", "x-distribution.yml", "cloudflare-unified.yml"}
+        "daily-summary.yml", "x-distribution.yml", "cloudflare-unified.yml"}

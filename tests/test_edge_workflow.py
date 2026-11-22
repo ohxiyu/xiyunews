@@ -21,7 +21,7 @@ def test_final_cutover_preserves_namespace_by_transfer_not_creation():
     assert "www.xiyu.news/* -> xiyunews" in text
     assert "does not replace zone routes" in text
     assert config["vars"]["ENABLE_DISPATCHER"] == "true"
-    assert config["vars"]["ENABLE_REALTIME_WATCHDOG"] == "true"
+    assert "ENABLE_REALTIME_WATCHDOG" not in config["vars"]
 
 
 def test_edge_deployment_requires_main_and_audits_before_upload():

@@ -7,7 +7,7 @@
 {% if page.noindex %}<meta name="robots" content="noindex">{% endif %}
 {% if page.redirect_to %}<meta http-equiv="refresh" content="0; url={{ page.redirect_to | relative_url }}"><link rel="canonical" href="{{ page.redirect_to | absolute_url }}">{% else %}<link rel="canonical" href="{{ page.url | absolute_url }}">{% endif %}
 <link rel="alternate" type="application/rss+xml" title="xiyu.news 日报" href="/feed.xml">
-<meta name="color-scheme" content="light dark"><meta name="theme-color" content="#faf8f3">
+<meta name="color-scheme" content="light dark"><meta name="theme-color" content="#f4f5f7">
 <link rel="icon" href="{{ '/assets/images/app-icon.svg' | relative_url }}" type="image/svg+xml">
 <script>try{var t=localStorage.getItem('xiyu-core-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="{{ '/assets/css/core.css' | relative_url }}?v={{ site.asset_version }}">

@@ -8,13 +8,13 @@
 
 当前实现为单期中文日报首页、往期、日期页和关于页。后台每五分钟检查来源，只评分去重并写私有缓存，不更新首页、不扩写、不构建、不发送。入选内容在每日出刊时扩写。实际耗时受执行队列和供应商影响。生产模型为硅基流动 `deepseek-ai/DeepSeek-V3.2`，并发和候选上限保持原值；当前上限仍是14条、评分门槛7.0，待内容阶段调整。
 
-发布链为 Daily Edition 保存出版快照 → 单一 Cloudflare 工作流重建并核对真实生产 → Telegram 校验精确生产凭证后单次发送。代码部署不构成新一期，不会重发历史。CSS与JS逐页预算20KB，无JS可完整阅读。
+发布链为 Daily Edition 保存出版快照 → 单一 Cloudflare 工作流重建并核对真实生产 → X 校验当天刊期与页面后改写并按计划发送。代码部署不构成新一期，不会重发历史。CSS与JS逐页预算20KB，无JS可完整阅读。
 
-重构后的唯一对外产品为每天一期中文日报，目标 8–10 条、AI 最多 3 条。采集只写评分缓存，入选内容才扩写背景；网站、Telegram、X 引用同一期。用户已明确授权 X 跳过试运行，待质量门与现有 API 校验完成后直接正式发送；目前开关仍关闭。余额检查已按用户要求取消，仅保留 token 费用台账。重构进度和验收门见[当前交接](project-docs/handoff.md)。
+重构后的唯一对外产品为每天一期中文日报，目标 8–10 条、AI 最多 3 条。采集只写评分缓存，入选内容才扩写背景；网站与 X 引用同一期，X 只发送通过质量门的改写内容。余额检查已按用户要求取消，仅保留 token 费用台账。重构进度和验收门见[当前交接](project-docs/handoff.md)。
 
 ## 开发与运行
 
-应用使用 Python 3.11.5+、uv 和固定依赖。站点发布经过 GitHub Actions 与统一 Cloudflare Worker；自托管执行器和持久缓存是实际运行链路的一部分。
+应用使用 Python 3.11.5+、uv 和固定依赖。站点发布经过 GitHub Actions 与统一 Cloudflare Worker；生产使用 GitHub 托管执行及 Cloudflare 私有状态。
 
 ```bash
 uv sync --frozen --extra dev --extra trafilatura
@@ -29,7 +29,6 @@ uv run bmtnews --mode publish --hours 24 --cutoff-hour 7
 - [配置](project-docs/configuration.md) · [数据口径](project-docs/data-contract.md) · [界面规则](project-docs/ui-rules.md)
 - [调度与恢复](project-docs/daily-dispatcher.md) · [X 分发](project-docs/x-distribution.md) · [执行器](project-docs/self-hosted-runner.md)
 - 仓库协作从 [AGENTS.md](AGENTS.md) 和 [agent.md](agent.md) 开始。一个任务一个 PR，相关检查通过后合并，不再要求每 PR 编写五阶段证据或提交截图。
-- `realtime/` 是独立 Telegram 实时应用，这次日报重构不修改它。
 
 ## 权利与来源
 

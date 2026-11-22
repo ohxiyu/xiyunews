@@ -6,8 +6,18 @@ import time
 import pytest
 
 from src.edge_state import EdgePublicationState, acquire, commit, migrate
-from src.core_delivery import claim
 from src.publication_state import PublicationState, StateConflict
+
+
+def claim(store, edition, destination):
+    """Exercise the prior receipt shape without a production sender."""
+    with store.connect() as db:
+        db.execute("CREATE TABLE IF NOT EXISTS core_telegram_receipts ("
+                   "edition TEXT, destination TEXT, status TEXT, PRIMARY KEY(edition,destination))")
+        return db.execute(
+            "INSERT OR IGNORE INTO core_telegram_receipts VALUES (?, ?, 'attempted_unknown')",
+            (edition, destination),
+        ).rowcount == 1
 
 
 class Remote:
@@ -166,7 +176,7 @@ def test_transport_identifies_itself_without_weakening_authentication(monkeypatc
 def test_workflows_fence_remote_state_and_retire_backup():
     from pathlib import Path
     root=Path(__file__).parents[1]
-    for name in ['feed-collection','daily-summary','daily-telegram','x-distribution','cloudflare-unified']:
+    for name in ['feed-collection','daily-summary','x-distribution','cloudflare-unified']:
         text=(root/'.github/workflows'/f'{name}.yml').read_text()
         assert "XIYUNEWS_STATE_BACKEND: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'cloudflare' || '' }}" in text
         assert "vars.XIYUNEWS_RUNTIME_MODE != 'maintenance'" in text

@@ -1,6 +1,6 @@
 # 日报调度与部署
 
-统一 `xiyunews` Worker 是日报调度入口，配置在 `ops/daily-dispatcher/wrangler.unified.jsonc`。沿用既有RecoveryGate命名空间和迁移，不创建第二个调度器。独立realtime看门狗保持原样。
+统一 `xiyunews` Worker 是日报调度入口，配置在 `ops/daily-dispatcher/wrangler.unified.jsonc`。沿用既有RecoveryGate命名空间和迁移，不创建第二个调度器。
 
 ## 时间和恢复
 
@@ -20,17 +20,15 @@ Feed Collection由Worker每五分钟检查，GitHub五分钟schedule备用。新
 
 ## 单一部署和投递
 
-共五个业务工作流：feed-collection、daily-summary、daily-telegram、x-distribution、cloudflare-unified；另有CI、CodeQL和手动publication-runtime迁移/验证。11/17用户取消专属备份，server-backup已移除；正常批处理经验证后切标准托管计算，私有运行状态和互斥锁复用Cloudflare，东京仅保留实时监控，见[运行手册](self-hosted-runner.md)。
+共四个业务工作流：feed-collection、daily-summary、x-distribution、cloudflare-unified；另有CI、CodeQL和手动publication-runtime迁移/验证。11/17用户取消专属备份，server-backup已移除；正常批处理经验证后切标准托管计算，私有运行状态和互斥锁复用Cloudflare，东京执行器已退役，见[运行手册](self-hosted-runner.md)。
 
 Daily Edition只在新刊期生成选稿、中文静态稿与JSON，持久化并发布gh-pages快照。成功后Cloudflare任务读取固定出版快照，复用已核验缓存，叠加当前模板、Jekyll渲染、精简并校验公开资产，然后部署同一Worker。源代码改动也走这个任务，不另用deploy-docs。
 
 部署后从真实正式域读取health、latest、首页和日期页，核对构建键、artifact、完整API与文章revision。验证失败不产生可投递凭证。每日出刊凭证绑定原始producer报告字节与选稿字节SHA256、原始run_id、source/artifact、期号及验证时间；纯代码部署没有每日run_id。
 
-Telegram只监听Cloudflare成功，读取该部署的精确凭证和上游原始报告；要求当日期号、匹配hash、非重建新刊、首个运行attempt以及持久一次性回执。HTTP前落盘unknown，未知结果不自动重发。普通代码部署与历史修复不发消息。运维摘要也须等真实生产验证通过。
 
 ## 运维与验证
 
-运维告警发到指定“日报运维”话题，使用DAILY_TELEGRAM_BOT_TOKEN及专用chat/thread绑定，与realtime的bot/告警目的地隔离。07:45未检测到当期和采集超过30分钟告警；同故障去重，恢复后开新故障周期。余额检查已按用户要求取消，保留实际token费用估算。
 
 `/health`报告版本但不证明自然Cron已运行；`/ready`检查现有Actions写/Contents读权限，不生成真实任务。生产声明需核对真实运行、正式域和版本；两天自然出刊及七期质量验收只能在时间经过后记录。
 

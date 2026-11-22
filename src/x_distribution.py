@@ -339,14 +339,4 @@ class XDistributionPipeline:
                 "x_slot_unknown",
                 f"{label}: {outcome.detail} 不会自动重发，请人工核对账号后处理。\n\n{job['text']}",
             )
-        try:
-            persist()
-        finally:
-            if job['status'] in ('failed','unknown'):
-                from .operations import send_alert
-                try:
-                    status=await send_alert(f"x:{run_report.date}:{job['language']}:{job['slot']}:{job['text_sha256']}:{job['status']}",
-                        f"X {run_report.date} #{job['slot']} {job['status']}：{job['detail']}\n\n{job['text']}\n\n未知结果不会自动重发，请核对主号。")
-                    run_report.add_alert('info','x_operations_alert',status)
-                except Exception:
-                    run_report.add_alert('warning','x_operations_alert_unavailable','X运维告警未确认；保留发送回执。')
+        persist()

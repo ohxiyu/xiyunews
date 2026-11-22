@@ -1,8 +1,0 @@
-[Unit]
-Description=Renew FomoBTC HTTPS certificate
-Wants=network-online.target
-After=network-online.target
-
-[Service]
-Type=oneshot
-ExecStart=/opt/fomobtc-certbot/bin/certbot renew --quiet --deploy-hook "systemctl reload nginx"

@@ -40,14 +40,12 @@ uv run bmtnews --mode publish --cutoff-hour 7
 - 原始暂存：`data/staging-items.json`。
 - AI缓存：`data/analysis-cache.json`。
 - 经过评分、语义去重的简版候选：`data/qualified-cache.json`；必须与刊期、阈值和模型契约一致。
-- 生产 SQLite：由 `XIYUNEWS_STATE_DIR` 指定的受信任持久目录；与独立 realtime 数据库隔离。
+- 生产 SQLite：由 Cloudflare 私有出版状态提供，通过 GitHub OIDC 和单写者租约访问。
 - 既有刊期和投递回执不重写、不重发。静态修复只恢复缺失入口，不调用来源、模型或发送器；补旧刊不倒退 latest。
 
 ## 分发与告警
 
-Telegram 日报须通过同一期真实生产验证凭证，使用 `TELEGRAM_BOT_TOKEN`、`TELEGRAM_CHANNEL_ID`；发布后任务先落盘一次性回执，再发送。未知结果不能自动重试。
 
-运维告警使用同一日报 bot，目的地由 `TELEGRAM_ALERT_CHAT_ID`、`TELEGRAM_ALERT_THREAD_ID` 指定（Actions Secret 或仓库变量）。当前目的地为用户指定群的“日报运维”话题，不能回退到通用群、读者频道或独立 realtime 目的地。统一 Worker 中日报 bot 使用独立的 `DAILY_TELEGRAM_BOT_TOKEN` 绑定，避免与 realtime watchdog 混用。
 
 用户已取消余额检查和余额预警。费用台账只将真实 token 用量换算为估计金额，未知模型标记未计价，不伪造账户余额或可用天数。
 
@@ -56,5 +54,3 @@ X 沿用 OAuth 1.0a 四项 Actions 凭证。当前开关仍关闭；用户已授
 ## 部署边界
 
 只通过 Actions 发布生成分支，正常 PR 走既有自动部署。CI 与生产共用 `scripts/overlay_core_site.py`；缺失必要文件必须失败，可选 `_sass` 不影响构建。
-
-`realtime/` 的采集、配置、依赖、数据库与目的地独立，本次不修改。其他运维参数见 [调度](daily-dispatcher.md) 与 [执行器](self-hosted-runner.md)。

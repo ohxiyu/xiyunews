@@ -5,16 +5,14 @@ import subprocess
 
 
 def classify(paths):
-    flags = {key: False for key in ("python", "web", "edge", "changed")}
+    flags = {key: False for key in ("python", "web", "edge")}
     docs = {"AGENTS.md", "agent.md", "CLAUDE.md", "GEMINI.md", "LICENSE"}
     for path in paths:
         if path.startswith("project-docs/") or path in docs or path.startswith("README"):
             continue
         if path.startswith((".github/", "ops/runner/")) or path == "scripts/ci_scope.py":
             return dict.fromkeys(flags, True)
-        if path.startswith("realtime/"):
-            flags["changed"] = True
-        elif path.startswith("ops/daily-dispatcher/"):
+        if path.startswith("ops/daily-dispatcher/"):
             flags["web"] = flags["edge"] = True
         elif path.startswith("docs/"):
             flags["web"] = flags["edge"] = True
@@ -22,7 +20,7 @@ def classify(paths):
             flags["web"] = True
         elif path.startswith(("src/", "data/", "scripts/", "tests/")) or path in {"pyproject.toml", "uv.lock", "VERSION"}:
             flags["python"] = True
-            if path.startswith(("src/web", "src/site", "src/weekly", "src/services/telegram_group", "scripts/prepare_edge")):
+            if path.startswith(("src/web", "src/site", "src/weekly", "scripts/prepare_edge")):
                 flags["edge"] = True
         elif path in {"_config.yml", "Gemfile", "Gemfile.lock", "CNAME"}:
             flags["web"] = flags["edge"] = True
@@ -47,7 +45,7 @@ def main():
     parser.add_argument("--all", action="store_true")
     args = parser.parse_args()
     if args.all:
-        result = dict.fromkeys(("python", "web", "edge", "changed"), True)
+        result = dict.fromkeys(("python", "web", "edge"), True)
     elif args.base and args.head:
         result = classify(changed_paths(args.base, args.head))
     else:

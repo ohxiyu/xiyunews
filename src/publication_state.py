@@ -8,7 +8,7 @@ import sqlite3
 import time
 from contextlib import contextmanager
 
-PRODUCERS = {"xiyunews Daily Telegram", "xiyu.news Feed Collection", "xiyu.news Daily Edition",
+PRODUCERS = {"xiyu.news Feed Collection", "xiyu.news Daily Edition",
     "xiyu.news X Distribution", "xiyunews Cloudflare"}
 DOCUMENTS = {"data/staging-items.json": "staging",
     "docs/_data/events.json": "events", "docs/_data/event-legacy-urls.json": "event_urls",
