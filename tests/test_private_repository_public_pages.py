@@ -21,12 +21,11 @@ def test_public_notices_match_canonical_rights_files() -> None:
 
 def test_public_policy_surfaces_do_not_require_private_repo_access() -> None:
     for relative in (
-        "docs/about/index.md", "docs/contact/index.md", "docs/legal/index.md",
+        "docs/contact/index.md", "docs/legal/index.md",
         "docs/legal/content-rights.txt",
     ):
         text = (ROOT / relative).read_text()
         assert "https://github.com/ohxiyu/xiyunews" not in text
-    about = (ROOT / "docs/about/index.md").read_text()
     assert "https://x.com/ohxiyu" in (ROOT / "docs/_includes/author-links.html").read_text()
     contact = (ROOT / "docs/contact/index.md").read_text()
     assert "https://x.com/ohxiyu" in contact

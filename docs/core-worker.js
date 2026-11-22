@@ -14,7 +14,7 @@ export default {
     let path;try{path=decodeURIComponent(url.pathname);}catch(_){return new Response(null,{status:400});}
     // Normalize repeated/trailing slashes before feature matching, including POSTs.
     path=path.replace(/\/+/g,'/');
-    if(/^\/(?:en\/)?history(?:\/|\.html?$|$)/i.test(path))return gone();
+    if(/^\/(?:en\/)?(?:history|about)(?:\/|\.html?$|$)/i.test(path))return gone();
     // Link readers from retired products to the current edition.
     if(['GET','HEAD'].includes(request.method)&&/^\/(?:en\/)?(?:events|threads|entity|weekly)(?:\/|\.html?$|$)/i.test(path)){
       url.pathname='/';return Response.redirect(url.href,308);

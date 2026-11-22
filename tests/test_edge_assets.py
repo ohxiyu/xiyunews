@@ -18,7 +18,7 @@ def fixture(tmp_path):
 
 def test_stages_only_daily_public_surfaces_without_changing_immutable_input(tmp_path):
     source=fixture(tmp_path);target=tmp_path/'site';prepare(source,target)
-    for name in ['s','events','api/events.json','feeds','editions/2026-11-08/en.html','2026/11/08/summary-zh.html','history','_worker.js','CNAME']:
+    for name in ['s','events','api/events.json','feeds','editions/2026-11-08/en.html','2026/11/08/summary-zh.html','history','about','_worker.js','CNAME']:
         assert not (target/name).exists()
     assert (source/'api/events.json').read_text()=='retired'
     assert (target/'api/latest.json').read_bytes()==(source/'api/latest.json').read_bytes()
@@ -36,8 +36,8 @@ def test_private_files_fail_before_staging(tmp_path,private):
 def test_wrong_edition_missing_outputs_and_unsafe_destinations_fail(tmp_path):
     source=fixture(tmp_path)
     with pytest.raises(ValueError,match='separate directories'):prepare(source,source/'site')
-    (source/'about/index.html').unlink()
-    with pytest.raises(ValueError,match='about/index.html'):prepare(source,tmp_path/'target')
+    (source/'feed.xml').unlink()
+    with pytest.raises(ValueError,match='feed.xml'):prepare(source,tmp_path/'target')
 
 
 def test_budget_rejects_large_missing_and_external_assets(tmp_path):
