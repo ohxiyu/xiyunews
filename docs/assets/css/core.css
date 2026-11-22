@@ -127,10 +127,11 @@ time { font-variant-numeric: tabular-nums; }
 .story-actions { grid-column: 2; }
 .source-line a, .references a { text-decoration-color: var(--line); }
 .story-background, .references { color: var(--muted); font-size: 13px; line-height: 1.65; }
-.story-body > .story-summary-body + :is(.story-background, .references) { margin-top: .65rem; }
-:is(.story-background, .references) > summary { width: fit-content; padding-block: 4px; font-size: 12px; }
-:is(.story-background, .references) > summary:hover { color: var(--accent); }
-.story-background[open] > :not(summary) { margin-inline-start: .875rem; }
+.story-body > .story-summary-body + :is(.story-background, .references) { margin-top: .75rem; }
+.background-label { margin-bottom: .2rem; font-size: 12px; }
+.story-background + .references { margin-top: .35rem; }
+.references > summary { width: fit-content; padding-block: 4px; font-size: 12px; }
+.references > summary:hover { color: var(--accent); }
 .references ul { padding-left: 1.75rem; margin: 0; }
 .references li + li { margin-top: .2rem; }
 .edition-notice, .empty-state { padding: .7rem .9rem; background: var(--wash); color: var(--muted); border-radius: 12px; }

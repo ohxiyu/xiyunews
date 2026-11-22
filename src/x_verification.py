@@ -66,7 +66,8 @@ def _article_fields(article):
     bg=article.select_one('.story-background')
     background=''
     if bg:
-        for label in bg.find_all('span',recursive=False):label.decompose()
+        for label in bg.select(':scope > .background-label, :scope > summary, :scope > span'):
+            label.decompose()
         background=_words(bg.get_text(' ',strip=True))
         bg.decompose()
     body=article.select_one('.story-body')
