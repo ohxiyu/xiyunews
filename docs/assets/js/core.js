@@ -20,17 +20,26 @@
     matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
   }
 
-  document.querySelectorAll('[data-copy]').forEach(button => { button.hidden = false; });
+  const storyText = button => button.closest('.story-body')?.querySelector(':scope > .story-summary-body');
+  for (const button of document.querySelectorAll('[data-copy-body]')) {
+    button.hidden = !storyText(button)?.textContent.trim();
+  }
   const status = document.querySelector('.copy-status');
   let clearStatus;
   document.addEventListener('click', async event => {
-    const copy = event.target.closest('[data-copy]');
-    if (!copy || !status) return;
+    const copy = event.target.closest('[data-copy-body]');
+    const body = copy && storyText(copy);
+    if (!body || !status) return;
+    const paragraphs = [...body.querySelectorAll(':scope > p')];
+    const text = paragraphs.length
+      ? paragraphs.map(paragraph => paragraph.innerText.trim()).filter(Boolean).join('\n\n')
+      : body.innerText.trim();
+    if (!text) return;
     try {
-      await navigator.clipboard.writeText(new URL(copy.dataset.copy, location.href).href);
-      status.textContent = '链接已复制';
+      await navigator.clipboard.writeText(text);
+      status.textContent = '正文已复制';
     } catch {
-      status.textContent = '复制失败，请复制地址栏链接';
+      status.textContent = '复制失败，请手动选中正文复制';
     }
     clearTimeout(clearStatus);
     clearStatus = setTimeout(() => { status.textContent = ''; }, 2500);
@@ -77,10 +86,6 @@
         target.scrollIntoView();
       }
     };
-    edition.querySelector('.edition-overview').addEventListener('click', event => {
-      const href = event.target.closest('a')?.hash.slice(1);
-      if (href && document.getElementById(href)?.hidden) applyFilter(buttons[0]);
-    });
     window.addEventListener('hashchange', revealAnchor);
   }
 

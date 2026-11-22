@@ -23,34 +23,36 @@ def test_dense_feed_all_full_timestamp_and_background():
  assert len(articles)==5
  assert all(not a.select_one('.compact-story') for a in articles[:3])
  assert not soup.select('details.compact-story')
- assert all('11.08 09:23 CST' in a.select_one('.story-meta').text for a in articles)
+ assert all('11.08 09:23 CST' in a.select_one('.source-line time').text for a in articles)
  assert len(soup.select('.story-background'))==5
  assert '第二段事实。' in articles[-1].text
  assert soup.select_one('#zh-2026-11-08-item-5')
- assert soup.select_one('#zh-2026-11-08-item-5 [data-copy]')['data-copy']=='/2026/11/08/summary-zh.html#zh-2026-11-08-item-5'
+ assert soup.select_one('#zh-2026-11-08-item-5 [data-copy-body]').text == '复制正文'
 
 
-def test_new_and_saved_feeds_open_background_and_references_after_text():
+def test_new_and_saved_feeds_keep_optional_context_and_copy_after_text():
  item = story()
  item.metadata['sources'] = [{'title': '原始资料', 'url': 'https://example.com/reference'}]
  fresh = render_core_feed([item], date='2026-11-08')
  saved = '''<div class="core-feed" data-core-feed="2">
  <article class="digest-item core-story" id="saved" data-content-revision="old">
+ <div class="story-meta"><div class="story-actions"><button class="copy-link" data-copy="#saved" hidden>复制链接</button></div></div>
  <h2>原始新闻标题</h2><div class="story-body">
  <aside class="story-background"><span>背景</span><div class="story-summary-body"><p>有证据的主体背景。</p></div></aside>
  <div class="story-summary-body"><p>第一段事实。</p></div>
  <p class="source-line"><a href="https://example.com/1">原文</a></p>
- <details class="references"><summary>参考资料</summary><section><h3>参考资料</h3><ul><li><a href="https://example.com/reference">原始资料</a></li></ul></section></details>
- <div class="story-actions"></div></div></article></div>'''
+ <details class="references" open><summary>参考资料</summary><section><h3>参考资料</h3><ul><li><a href="https://example.com/reference">原始资料</a></li></ul></section></details>
+ </div></article></div>'''
  for markup in (fresh, convert_feed(saved)):
   soup = BeautifulSoup(markup, 'html.parser')
   parts = soup.select('.story-body > *')
   assert [part['class'][0] for part in parts] == [
-   'story-summary-body', 'source-line', 'story-background', 'references', 'story-actions',
+   'story-summary-body', 'story-background', 'references', 'source-line', 'story-actions',
   ]
-  assert all(part.name == 'details' and part.has_attr('open') for part in parts[2:4])
-  assert parts[3].get_text(strip=True).count('参考资料') == 1
-  assert parts[3].find('a')['href'] == 'https://example.com/reference'
+  assert all(part.name == 'details' and not part.has_attr('open') for part in parts[1:3])
+  assert parts[2].get_text(strip=True).count('参考资料') == 1
+  assert parts[2].find('a')['href'] == 'https://example.com/reference'
+  assert parts[4].select_one('[data-copy-body]').text == '复制正文'
   assert convert_feed(markup) == markup
  assert BeautifulSoup(convert_feed(saved), 'html.parser').select_one('#saved')['data-content-revision'] == 'old'
 
@@ -101,11 +103,10 @@ def test_reader_layout_preserves_x_proof_and_only_decorates_matching_revisions(t
  reader = json.loads((tmp_path / '_data/reader_editions.json').read_text())[day]
  assert [row['id'] for row in reader['headlines']] == [article['id'] for article in articles]
  assert reader['headlines'][0]['category'] == 'AI 科技'
- assert reader['headlines'][0]['score'] == '9.0'
- assert 'score' not in reader['headlines'][1] and 'filters' not in reader
+ assert 'score' not in reader['headlines'][0] and 'filters' not in reader
 
  result = BeautifulSoup(updated, 'html.parser').select('article.digest-item')
- assert result[0].select_one('.story-body > :first-child')['class'] == ['story-background']
+ assert result[0].select_one('.story-body > :first-child')['class'] == ['story-summary-body']
  assert result[0].select_one('.references a')['href'] == 'https://example.com/reference'
  assert [_article_fields(article) for article in result] == [_article_fields(article) for article in articles]
  republish(tmp_path)

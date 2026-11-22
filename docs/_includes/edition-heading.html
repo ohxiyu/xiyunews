@@ -2,20 +2,12 @@
 {% assign stats = include.stats %}
 <header class="day-divider"{% if include.latest %} data-latest-edition-date="{{ publication.date | date: '%Y-%m-%d' }}"{% endif %}>
   <div class="day-divider-title">
-    <span class="day-state">{% if include.latest %}最新{% else %}存档{% endif %}</span>
+    {% if include.latest %}<span class="day-state">最新</span>{% endif %}
     <h2><time datetime="{{ publication.date | date: '%Y-%m-%d' }}">{{ publication.date | date: '%Y.%m.%d' }}</time></h2>
     {% if publication.window_start and publication.window_end %}
       <span class="day-window">{{ publication.window_start | date: '%m.%d %H:%M' }}–{{ publication.window_end | date: '%m.%d %H:%M' }}</span>
     {% endif %}
   </div>
-  <div class="day-divider-stats" aria-label="日报统计">
-    {% assign candidates = stats.candidates | default: publication.fetched_count %}
-    {% assign analyzed = stats.analyzed | default: publication.analyzed_count %}
-    {% assign displayed = stats.displayed | default: publication.selected_count %}
-    {% assign high = stats.high_priority | default: publication.critical_count %}
-    {% if candidates %}<span><strong>{{ candidates | escape }}</strong> 条采集</span>{% endif %}
-    {% if analyzed %}<span><strong>{{ analyzed | escape }}</strong> 条分析</span>{% endif %}
-    {% if displayed %}<span><strong>{{ displayed | escape }}</strong> 条展示</span>{% endif %}
-    {% if high %}<span><strong>{{ high | escape }}</strong> 条高优先级</span>{% endif %}
-  </div>
+  {% assign displayed = stats.displayed | default: publication.selected_count %}
+  {% if displayed %}<p class="day-divider-stats">{{ displayed | escape }} 条资讯</p>{% endif %}
 </header>

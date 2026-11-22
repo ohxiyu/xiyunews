@@ -5,13 +5,13 @@ xiyu.news 只展示最新一期中文日报。首页、刊期页、最新 API �
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "精简日报阅读页页脚",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/406",
+  "goal": "让日报正文优先并支持复制正文",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/408",
   "owner": "当前 Codex 聊天",
-  "branch": "agent/compact-site-footer",
-  "base": "29ef78258403dd1ad4fda94fb1ece0393637cd4e",
-  "status": "合并底部作者、RSS 与版权入口",
-  "next": "部署后核对首页与当期页的页脚，观察首轮定时出刊与 X 到期分发",
+  "branch": "agent/reader-content-hierarchy",
+  "base": "e509a553e15fd1b1e0234f7b0f2b1fd214bb70e7",
+  "status": "正文优先，移除本期脉络，保留折叠的背景和参考资料",
+  "next": "核对现行刊期的剪贴板、阅读顺序和线上版式，观察首轮定时出刊与 X 到期分发",
   "blockers": []
 }
 ```

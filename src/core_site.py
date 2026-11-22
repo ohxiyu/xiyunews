@@ -21,15 +21,13 @@ EVENT_SLOT = "<!--core-events-->"
 HISTORY_DAYS = 7
 
 
-def _open_details(kind: str, title: str, content: str) -> str:
-    return f'<details class="{kind}" open><summary>{title}</summary>{content}</details>'
+def _details(kind: str, title: str, content: str) -> str:
+    return f'<details class="{kind}"><summary>{title}</summary>{content}</details>'
 
 
-def _card(*, attrs: dict, heading: str, body: str, meta: str, index: int) -> str:
+def _card(*, attrs: dict, heading: str, body: str, meta: str) -> str:
     attributes = " ".join(f'{key}="{_escape(value)}"' for key, value in attrs.items())
-    match=re.fullmatch(r"zh-(\d{4})-(\d{2})-(\d{2})-item-\d+",attrs['id'])
-    target=(f"/{match[1]}/{match[2]}/{match[3]}/summary-zh.html" if match else "")+"#"+attrs['id']
-    copy = f'<button type="button" class="copy-link" data-copy="{_escape(target)}" hidden>复制链接</button>'
+    copy = '<button type="button" class="copy-body" data-copy-body hidden>复制正文</button>'
     content = f'<div class="story-body">{body}<div class="story-actions">{copy}</div></div>'
     content = f'<div class="story-meta">{meta}</div>{heading}{content}'
     return f'<article class="digest-item core-story" {attributes}>{content}</article>'
@@ -44,17 +42,16 @@ def render_core_feed(items: list[ContentItem], *, date: str, display_timezone="A
         summary = _localized_text(item, "detailed_summary", "zh") or item.ai_summary or ""
         background = _localized_text(item, "background", "zh")
         body = _summary_html(summary, "zh")
-        body += f'<p class="source-line">{_source_html(item, language="zh", display_timezone=ZoneInfo(display_timezone))}</p>'
         if background:
-            body += _open_details("story-background", "背景", _summary_html(background, "zh"))
+            body += _details("story-background", "背景", _summary_html(background, "zh"))
         refs = _references_html(item, "zh")
         if refs:
-            body += _open_details("references", "参考资料", refs.replace("<h3>参考资料</h3>", "", 1))
-        stamp = item.published_at.astimezone(ZoneInfo(display_timezone))
-        meta = f'<span>{"本期重点" if index <= 3 else "更多资讯"}</span><time datetime="{stamp.isoformat()}">{stamp:%m.%d %H:%M} CST</time>'
+            body += _details("references", "参考资料", refs.replace("<h3>参考资料</h3>", "", 1))
+        body += f'<p class="source-line">{_source_html(item, language="zh", display_timezone=ZoneInfo(display_timezone))}</p>'
+        meta = '<span class="priority-label">本期重点</span>' if index <= 3 else ''
         cards.append(_card(attrs={"id":f"zh-{date}-item-{index}","data-story-id":item.id,
             "data-content-revision":story_revision(str(item.url),title,summary)},
-            heading=f'<h2>{_escape(title)}</h2>', body=body,meta=meta,index=index))
+            heading=f'<h2>{_escape(title)}</h2>', body=body,meta=meta))
         if index == 3: cards.append(EVENT_SLOT)
     if len(items)<3:cards.append(EVENT_SLOT)
     return '<div class="core-feed" data-core-feed="2">'+"".join(cards)+'</div>\n'
@@ -82,27 +79,36 @@ def convert_feed(content: str) -> str:
             changed = True
         for story in feed.select('article .story-body'):
             background = story.select_one(':scope > .story-background')
-            references = story.select_one(':scope > details.references')
+            references = story.select(':scope > details.references')
+            source = story.select_one(':scope > .source-line')
+            actions = story.parent.select_one(':scope > .story-meta > .story-actions, :scope > .story-body > .story-actions')
+            summary_body = story.select_one(':scope > .story-summary-body')
             if background and background.name == 'aside':
                 background.name = 'details'
                 label = background.find('span', recursive=False)
                 if label:
                     label.name = 'summary'
-                background['open'] = ''
-                before = references or story.select_one('.story-actions')
-                if before:
-                    before.insert_before(background.extract())
-                else:
-                    story.append(background.extract())
                 changed = True
-            if references:
-                if not references.has_attr('open'):
-                    references['open'] = ''
+            for context in ([background] if background else []) + references:
+                if context.has_attr('open'):
+                    del context['open']
                     changed = True
-                for title in references.select('section > h3'):
+            for reference in references:
+                for title in reference.select('section > h3'):
                     if title.get_text(strip=True) == '参考资料':
                         title.decompose()
                         changed = True
+            if actions and (button := actions.select_one('button[data-copy]')):
+                del button['data-copy']
+                button['data-copy-body'] = ''
+                button['class'] = 'copy-body'
+                button.string = '复制正文'
+                changed = True
+            order = [part for part in (summary_body, background, *references, source, actions) if part is not None]
+            if summary_body and [part for part in story.find_all(recursive=False) if part in order] != order:
+                for part in order:
+                    story.append(part.extract())
+                changed = True
         return str(soup) if changed else content
 
     soup = BeautifulSoup(content,"html.parser")
@@ -113,11 +119,10 @@ def convert_feed(content: str) -> str:
         if not heading or not summary:raise ValueError('published story missing full heading/body')
         body=str(summary)
         source=article.select_one('.source-line')
-        if source:body+=str(source)
         bg=article.select_one('[data-context-kind="background"]')
         if bg:
             for h in bg.select('h3'):h.decompose()
-            body += _open_details("story-background", "背景", bg.decode_contents())
+            body += _details("story-background", "背景", bg.decode_contents())
         # References markup from all existing generations is retained.
         after=article.select_one('[data-context-placement="after"]')
         if after:
@@ -126,18 +131,15 @@ def convert_feed(content: str) -> str:
                     label = section.find('h3', recursive=False)
                     if label and label.get_text(strip=True) == "参考资料":
                         label.decompose()
-                    body += _open_details("references", "参考资料", str(section))
+                    body += _details("references", "参考资料", str(section))
+        if source:body+=str(source)
         thread=article.select_one('.thread-pill')
         if thread:body+=str(thread).replace('持续追踪','事件流')
-        stamp=source.find('time') if source else None
-        if stamp and stamp.get('datetime'):
-            parsed=datetime.fromisoformat(stamp['datetime']).astimezone(ZONE)
-            stamp.string=parsed.strftime('%m.%d %H:%M CST')
-        meta=f'<span>{"本期重点" if index<=3 else "更多资讯"}</span>'+(str(stamp) if stamp else '<span>来源未提供时间</span>')
+        meta = '<span class="priority-label">本期重点</span>' if index <= 3 else ''
         heading=f'<h2>{_escape(heading.get_text(" ",strip=True))}</h2>'
         attrs={k:article[k] for k in ('id','data-story-id','data-content-revision') if k in article.attrs}
         if not attrs.get('id'):raise ValueError('published story missing stable identity')
-        cards.append(_card(attrs=attrs,heading=heading,body=body,meta=meta,index=index))
+        cards.append(_card(attrs=attrs,heading=heading,body=body,meta=meta))
         if index==3:cards.append(EVENT_SLOT)
     if not cards:
         # An explicit empty edition remains empty; do not erase unknown formats.
@@ -150,7 +152,7 @@ def convert_feed(content: str) -> str:
 READER_CATEGORIES = {"crypto": "Crypto", "technology": "AI 科技", "policy": "宏观政策"}
 
 
-def _reader_layout(content: str, payload: dict, day: str) -> tuple[str, dict]:
+def _reader_layout(content: str, payload: dict) -> tuple[str, dict]:
     """Add reading chrome using the published article IDs and matching API rows."""
     soup = BeautifulSoup(content, "html.parser")
     feed = soup.select_one(".core-feed")
@@ -170,32 +172,22 @@ def _reader_layout(content: str, payload: dict, day: str) -> tuple[str, dict]:
         headline = {"id": article["id"], "rank": rank, "title": heading.get_text(" ", strip=True)}
         public = public_items.get(article.get("data-content-revision"), {})
         category = READER_CATEGORIES.get(public.get("top_category"))
-        score = public.get("score")
         if category:
             headline["category"] = category
             article["data-category"] = category
             filters[category] = filters.get(category, 0) + 1
         else:
             del article["data-category"]
-        if isinstance(score, (int, float)) and not isinstance(score, bool):
-            headline["score"] = f"{score:.1f}"
         headlines.append(headline)
 
         meta = article.select_one(":scope > .story-meta")
         body = article.select_one(":scope > .story-body")
         if meta is None or body is None:
             continue
-        if not article.select_one(":scope > .story-rank"):
-            rail = soup.new_tag("div", attrs={"class": "story-rank"})
-            number = soup.new_tag("strong")
-            number.string = f"#{rank}"
-            rail.append(number)
-            stamp = meta.find("time")
-            if stamp:
-                date_stamp = soup.new_tag("time", datetime=stamp.get("datetime", day))
-                date_stamp.string = stamp.get_text(strip=True).split(" ", 1)[0]
-                rail.append(date_stamp)
-            article.insert(0, rail)
+        if rail := article.select_one(":scope > .story-rank"):
+            rail.decompose()
+        if body.select_one(".source-line time") and (stamp := meta.find("time")):
+            stamp.decompose()
 
         for ornament in meta.select(".category-pill, .score-badge"):
             ornament.decompose()
@@ -204,28 +196,15 @@ def _reader_layout(content: str, payload: dict, day: str) -> tuple[str, dict]:
             if label.get_text(strip=True) == "更多资讯":
                 label.decompose()
             elif label.get_text(strip=True) == "本期重点":
-                label["class"] = "priority-pill"
+                label["class"] = "priority-label"
         if category:
-            pill = soup.new_tag("span", attrs={"class": "category-pill"})
-            pill.string = category
-            meta.insert(0, pill)
-        if copy := body.select_one(".story-actions"):
-            meta.append(copy.extract())
-        if "score" in headline:
-            badge = soup.new_tag("span", attrs={"class": "score-badge"})
-            badge.string = headline["score"]
-            meta.append(badge)
-        if background := body.select_one(":scope > .story-background"):
-            body.insert(0, background.extract())
-        for reference in body.select(":scope > details.references"):
-            del reference["open"]
+            category_label = soup.new_tag("span", attrs={"class": "category-pill"})
+            category_label.string = category
+            meta.insert(0, category_label)
         for thread in body.select(".thread-pill"):
             thread.decompose()
 
-    overview = payload.get("overview")
     data = {"headlines": headlines, "stats": payload.get("stats", {})}
-    if isinstance(overview, dict) and overview.get("zh"):
-        data["overview"] = overview["zh"]
     if sum(filters.values()) == len(headlines):
         data["filters"] = filters
     return str(soup), data
@@ -245,7 +224,7 @@ def republish(root: Path) -> dict:
         payload = json.loads(edition_file.read_text()) if edition_file.exists() else latest_payload
         if payload.get("date") != day:
             payload = {}
-        body, reader_editions[day] = _reader_layout(convert_feed(parts[2]), payload, day)
+        body, reader_editions[day] = _reader_layout(convert_feed(parts[2]), payload)
         _atomic_write_text(post,'---'+parts[1]+'---\n\n'+body)
         fragment=root/'editions'/day/'zh.html';fragment.parent.mkdir(parents=True,exist_ok=True)
         _atomic_write_text(fragment,f'<div class="daily-feed-content" data-feed-fragment="2" data-language="zh" data-date="{day}">{body}</div>\n')
