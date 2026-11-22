@@ -16,4 +16,4 @@ permalink: /about/
 
 {% include author-links.html %}
 
-[往期日报](/history/) · [RSS](/feed.xml) · [软件与内容权利](/legal/)
+[最新日报](/) · [RSS](/feed.xml) · [软件与内容权利](/legal/)

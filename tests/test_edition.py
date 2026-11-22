@@ -487,7 +487,10 @@ def test_background_scoring_and_independent_daily_edition() -> None:
         root / ".github" / "workflows" / "daily-summary.yml"
     ).read_text(encoding="utf-8")
 
-    assert "cron: '*/5 * * * *'" in collection
+    assert "\n  schedule:" not in collection
+    assert "FEED_INTERVAL_MINUTES = 30" in (
+        root / "ops/daily-dispatcher/src/collection.ts"
+    ).read_text(encoding="utf-8")
     assert "17 2,8,14" not in collection
     assert "staging-cache" in collection
     assert "staging-cache" in publication

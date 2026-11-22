@@ -14,9 +14,10 @@ export default {
     let path;try{path=decodeURIComponent(url.pathname);}catch(_){return new Response(null,{status:400});}
     // Normalize repeated/trailing slashes before feature matching, including POSTs.
     path=path.replace(/\/+/g,'/');
-    // Retired content products retain a useful, read-only archive destination.
+    if(/^\/(?:en\/)?history(?:\/|\.html?$|$)/i.test(path))return gone();
+    // Link readers from retired products to the current edition.
     if(['GET','HEAD'].includes(request.method)&&/^\/(?:en\/)?(?:events|threads|entity|weekly)(?:\/|\.html?$|$)/i.test(path)){
-      url.pathname='/history/';return Response.redirect(url.href,308);
+      url.pathname='/';return Response.redirect(url.href,308);
     }
     if(['GET','HEAD'].includes(request.method)&&/^\/feed-(?:zh|en)\.xml$/.test(path)){
       url.pathname='/feed.xml';return Response.redirect(url.href,308);

@@ -1,10 +1,10 @@
 import { SCHEDULE_CRONS } from "./lib";
 import { runSchedule } from "./recovery";
-import { dispatchCollection } from "./collection";
+import { dispatchCollection, FEED_INTERVAL_MINUTES } from "./collection";
 import { dispatchDistribution } from "./distribution";
 
-// Every 5 minutes, all day. Distribution and publication checks keep their own
-// windows below; the collection check needs the overnight ticks.
+// The five-minute clock still checks X and out-of-band recovery. Collection
+// uses only its half-hour boundaries, including overnight.
 export const COLLECTION_CRON = "*/5 * * * *";
 // Earlier timers, still accepted while Cron configuration propagates.
 const LEGACY_COMBINED_CRONS = new Set(["*/5 0-15 * * *", "*/5 1-15 * * *"]);
@@ -30,7 +30,9 @@ export async function runCombinedSchedule(cron: string, scheduledTime: number, e
   const results = await Promise.allSettled([
       dispatchDistribution(env, "x", now).then(status => console.log(JSON.stringify({ event: "x_dispatch", status }))),
     publication ? runSchedule(publication, now, env) : Promise.resolve(),
-    dispatchCollection(env, now).then(status => console.log(JSON.stringify({ event: "collection_dispatch", status }))),
+    new Date(scheduledTime).getUTCMinutes() % FEED_INTERVAL_MINUTES === 0
+      ? dispatchCollection(env, now).then(status => console.log(JSON.stringify({ event: "collection_dispatch", status })))
+      : Promise.resolve(),
   ]);
   if (results.some(result => result.status === "rejected")) {
     throw new Error("Scheduled publication, distribution or collection dispatch failed; inspect workflow and dispatcher permissions");

@@ -1,17 +1,17 @@
 # 当前交接
 
-xiyu.news 保留中文恢复 #306 日报阅读布局。日报阅读采用 #306 的桌面正文与排行双栏、移动版双行页眉、日期条和脉络卡片。首页连续显示最近两期，排行和分类沿用出版快照中的顺序、分数和分类。线上出刊继续使用既有 GitHub Actions、Cloudflare 私有出版账本、公开归档和 X 队列。
+xiyu.news 网站只展示最新一期中文日报，保留 #306 的正文、排行和背景块，并提供单期 RSS。Cloudflare 从单条公开刊期记录提供内容，当前部署首期同时提供静态回退。日报与 X 过渡期继续使用现有快照与发送校验。后台预采每 30 分钟检查一次。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "恢复 #306 日报阅读布局",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/396",
+  "goal": "轻量版最新一期",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/398",
   "owner": "当前 Codex 聊天",
-  "branch": "agent/restore-daily-reader",
-  "base": "f93977e9d202dbd6481801013acdb56c2d42b170",
-  "status": "恢复桌面双栏、移动页眉、刊期信息、脉络、排行与背景卡",
-  "next": "核对正式域的桌面和手机界面、历史刊期与 X 发布校验",
+  "branch": "agent/latest-edition-only",
+  "base": "ca936d144d478b8e8c2ff264fadaa738a7843870",
+  "status": "切换正式域单期阅读和 Cloudflare 单期记录",
+  "next": "验证实时读取与旧地址，继续切换写入及 X 证明，再清理旧正文",
   "blockers": []
 }
 ```

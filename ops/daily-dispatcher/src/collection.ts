@@ -1,10 +1,8 @@
 import { ACTIVE_STATUSES, fetchWorkflowRuns, githubRequest } from "./lib";
 
-// GitHub's own schedule for feed-collection.yml often arrives hours late or
-// not at all. The dispatcher keeps the newest collection at the configured five-minute cadence
-// when no prior run is active; the GitHub schedule stays as a second, independent clock.
+export const FEED_INTERVAL_MINUTES = 30;
 export const FEED_WORKFLOW = "feed-collection.yml";
-export const FEED_INTERVAL_MS = 5 * 60 * 1000;
+export const FEED_INTERVAL_MS = FEED_INTERVAL_MINUTES * 60 * 1000;
 
 export type CollectionStatus =
   | "not_due" | "edition_window" | "active" | "fresh" | "dispatched"

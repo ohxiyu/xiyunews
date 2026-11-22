@@ -1,4 +1,5 @@
 import { DurableObject } from "cloudflare:workers";
+import type {LatestEdition} from "./latest-edition";
 import {stateOperation} from "./publication-state";
 
 // One object per edition. Synchronous SQL claims are committed before any
@@ -7,6 +8,14 @@ export class RecoveryGate extends DurableObject<Env> {
   publicationState(action:string, body:Record<string,unknown>, migration:boolean): Promise<Response> {
     return stateOperation(this.ctx, action, body, migration);
   }
+  async writeLatestEdition(edition: LatestEdition): Promise<void> {
+    await this.ctx.storage.put("latest-edition", edition);
+  }
+
+  async readLatestEdition(): Promise<LatestEdition | undefined> {
+    return this.ctx.storage.get<LatestEdition>("latest-edition");
+  }
+
   constructor(ctx: DurableObjectState, env: Env) {
     super(ctx, env);
     this.ctx.storage.sql.exec(

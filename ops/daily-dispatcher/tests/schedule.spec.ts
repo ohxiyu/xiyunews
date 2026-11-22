@@ -34,7 +34,8 @@ it("combined tick runs distribution even when publication is not due", async () 
   });
   vi.stubGlobal("fetch", fetcher);
   await runCombinedSchedule(COLLECTION_CRON, now, env);
-  expect(fetcher).toHaveBeenCalledTimes(4);
+  expect(fetcher).toHaveBeenCalledTimes(2);
+  expect(fetcher.mock.calls.every(([input]) => !String(input).includes("feed-collection.yml"))).toBe(true);
 });
 
 it.each([

@@ -1,19 +1,4 @@
-{% assign reader_posts = site.posts | where: 'lang', 'zh' %}
-{% assign recent_start = site.data.core_edition.history_start %}
 <header class="section-header">
   <h1>{% if include.home %}每日情报{% else %}<a href="{{ '/' | relative_url }}">每日情报</a>{% endif %}</h1>
   <p class="section-description">每日一期加密市场情报，兼顾 AI 科技与政策变化。</p>
-  {% if reader_posts.size > 0 %}
-  <nav class="day-nav" aria-label="近期日报">
-    <span class="day-nav-label">近期</span>
-    {% for post in reader_posts limit: 7 %}
-      {% assign day_number = post.date | date: '%Y%m%d' | plus: 0 %}
-      {% if recent_start and day_number < recent_start %}{% break %}{% endif %}
-      {% assign edition_date = post.date | date: '%Y-%m-%d' %}
-      {% assign edition_url = post.url %}
-      {% if forloop.first %}{% assign edition_url = '/' %}{% endif %}
-      <a href="{{ edition_url | relative_url }}"{% if edition_date == include.current %} aria-current="date"{% endif %}>{{ post.date | date: '%m.%d' }}</a>
-    {% endfor %}
-  </nav>
-  {% endif %}
 </header>

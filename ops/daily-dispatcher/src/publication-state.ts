@@ -1,3 +1,5 @@
+import {editionStore, type EditionEnv, validateLatest} from "./latest-edition";
+
 // Private, fenced SQLite-page transport. No public runtime data or credentials.
 // Reuses the existing RecoveryGate namespace; this is live state, not backups.
 const AUDIENCE = "https://xiyu.news/internal/publication-state";
@@ -41,10 +43,10 @@ export async function identity(token: string, now = Date.now()): Promise<Record<
       !["schedule","workflow_dispatch","workflow_run","push"].includes(c.event_name) ||
       !Number.isFinite(c.exp) || c.exp * 1000 <= now || !Number.isFinite(c.nbf) || c.nbf * 1000 > now + 30000 ||
       !/^\d+$/.test(c.run_id) || !/^\d+$/.test(c.run_attempt)) throw new Error("identity rejected");
-  return {...c, migration: workflow === "publication-runtime.yml"};
+  return {...c, workflow, migration: workflow === "publication-runtime.yml"};
 }
 
-export async function publicationRoute(request: Request, env: Env): Promise<Response> {
+export async function publicationRoute(request: Request, env: EditionEnv): Promise<Response> {
   if (request.method !== "POST") return result({error:"method"},405);
   const bearer = request.headers.get("Authorization") ?? "";
   let c: Record<string, unknown>;
@@ -55,9 +57,18 @@ export async function publicationRoute(request: Request, env: Env): Promise<Resp
   if (raw.length > 2 * 1024 * 1024) return result({error:"too_large"},413);
   let body: Record<string, unknown>;
   try {body = JSON.parse(raw);} catch {return result({error:"invalid"},400);}
+  if (!body || typeof body !== "object" || Array.isArray(body)) return result({error:"invalid"},400);
+  const action = new URL(request.url).pathname.split("/").at(-1)!;
+  if (action === "publish-latest") {
+    if (c.workflow !== "cloudflare-unified.yml") return result({error:"workflow"},403);
+    if (!validateLatest(body, env)) return result({error:"edition_mismatch"},409);
+    // Pass only the public fields validated above, never other request fields.
+    const {day, artifact, build, home, page, api, rss} = body;
+    await editionStore(env).writeLatestEdition({day, artifact, build, home, page, api, rss});
+    return result({published:day, artifact});
+  }
   if (typeof body.owner !== "string" || !body.owner.startsWith(c.run_id+":"+c.run_attempt+":") ||
       !/^\d+:\d+:[a-f0-9]{32}$/.test(body.owner)) return result({error:"owner"},403);
-  const action = new URL(request.url).pathname.split("/").at(-1)!;
   const gate = env.RECOVERY_GATE.get(env.RECOVERY_GATE.idFromName("publication-state-v1"));
   return gate.publicationState(action, body, Boolean(c.migration));
 }

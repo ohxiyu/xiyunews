@@ -9,9 +9,6 @@ env:
   XIYUNEWS_STATE_BACKEND: ${{ vars.XIYUNEWS_RUNTIME_MODE == 'hosted' && 'cloudflare' || '' }}
 
 on:
-  schedule:
-    # Backup clock; the unified Worker polls every five minutes with active-run guards.
-    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 permissions:

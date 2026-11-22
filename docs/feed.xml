@@ -4,5 +4,8 @@ permalink: /feed.xml
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel><title>xiyu.news 中文日报</title><link>{{ '/' | absolute_url | xml_escape }}</link><description>每天一期，加密与 AI 精选。</description><language>zh-cn</language>
-{% include weekly-editions.html rss=true %}
+{% assign latest = site.posts | where: 'lang', 'zh' | first %}
+{% if latest %}
+<item><title>{{ latest.date | date: '%Y.%m.%d' }} 日报</title><link>{{ latest.url | absolute_url | xml_escape }}</link><guid isPermaLink="true">{{ latest.url | absolute_url | xml_escape }}</guid><pubDate>{{ latest.date | date_to_rfc822 }}</pubDate><description>{{ latest.content | strip_html | normalize_whitespace | truncate: 1200 | xml_escape }}</description></item>
+{% endif %}
 </channel></rss>
