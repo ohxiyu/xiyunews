@@ -8,8 +8,8 @@ import shutil
 
 REQUIRED_DIRECTORIES = ("_layouts", "_includes", "assets")
 OPTIONAL_DIRECTORIES = ("_sass",)
-REQUIRED_FILES = ("_config.yml", "index.md", "threads.html", "feed.xml", "about/index.md")
-RETIRED_SOURCES = ("history", "history.html", "en", "events", "entity", "threads", "weekly", "s", "admin",
+REQUIRED_FILES = ("_config.yml", "index.md", "threads.html", "feed.xml")
+RETIRED_SOURCES = ("about", "about.html", "history", "history.html", "en", "events", "entity", "threads", "weekly", "s", "admin",
                    "developers", "developer", "sources", "entity.html", "weekly.html",
                    "feed-en.xml", "feed-zh.xml", "openapi.json", "llms.txt", "llms-full.txt",
                    "manifest.webmanifest", "offline.html", "pwa-version.json", "_worker.js")

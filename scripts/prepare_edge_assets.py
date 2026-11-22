@@ -42,7 +42,7 @@ def prepare(source:Path,destination:Path):
     source,destination=source.resolve(),destination.resolve()
     if source==destination or source.is_relative_to(destination) or destination.is_relative_to(source):raise ValueError('source and destination must be separate directories')
     if destination.exists():raise ValueError('destination must not already exist')
-    required = ('index.html', 'api/latest.json', 'about/index.html', 'feed.xml',
+    required = ('index.html', 'api/latest.json', 'feed.xml',
                 'assets/css/core.css', 'assets/js/core.js')
     for name in required:
         if not (source/name).is_file():raise ValueError('missing rendered public output: '+name)

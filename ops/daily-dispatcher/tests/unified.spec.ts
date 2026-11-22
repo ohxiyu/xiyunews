@@ -36,7 +36,7 @@ describe("single xiyunews project", () => {
   });
   it("reuses website routing rather than the dispatcher 404", async () => {
     const e = fixture();
-    const response = await unified.fetch(new Request("https://xiyu.news/about/"), e, context);
+    const response = await unified.fetch(new Request("https://xiyu.news/legal/"), e, context);
     expect(response.status).toBe(200);
     expect(await response.text()).toBe("site asset");
     expect(e.ASSETS.fetch).toHaveBeenCalled();

@@ -23,3 +23,9 @@ test('one RSS feed remains public and retired feed APIs retain read redirects',a
 });
 
 test('retired history returns 410',async()=>{for(const route of ['/history','/history/','/history.html','/en/history/'])assert.equal((await run(route)).status,410);});
+
+test('retired about stays closed for its legacy URLs', async () => {
+  for (const path of ['/about', '/about/', '/about.html', '/about/index.html', '/en/about/']) {
+    assert.equal((await run(path)).status, 410, path);
+  }
+});
