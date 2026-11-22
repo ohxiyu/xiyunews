@@ -26,11 +26,16 @@
 {% if page.lang %}
   {% include reader-masthead.html %}
   {% include edition-reader.html edition=page body=content %}
-  {% include author-links.html %}
 {% else %}
   {{ content }}
 {% endif %}
 </main>
-<footer class="site-footer"><a href="/">xiyu.news</a><span>加密 · AI · 政策</span><a href="/legal/">版权与来源权利</a></footer>
+<footer class="site-footer">
+  <nav aria-label="页脚">
+    <a href="https://x.com/ohxiyu">关注 @ohxiyu</a>
+    <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    <a href="{{ '/legal/' | relative_url }}">版权与来源</a>
+  </nav>
+</footer>
 <p class="copy-status" role="status" aria-live="polite"></p>
 </body></html>
