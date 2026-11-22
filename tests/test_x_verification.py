@@ -50,7 +50,14 @@ def verify(state,path,root,public,home,dated=None):
 
 def test_true_publication_time_is_proven_separately_from_generation(tmp_path):
     state,path,root,public,html=publication(tmp_path)
-    assert verify(state,path,root,public,html)==PUBLISHED!=state.updated_at
+    from bs4 import BeautifulSoup
+    saved = BeautifulSoup(html, 'html.parser')
+    background = saved.select_one('.story-background')
+    background.name = 'details'
+    label = background.select_one('.background-label')
+    label.name = 'summary'
+    del label['class']
+    assert verify(state,path,root,public,html,dated=str(saved))==PUBLISHED!=state.updated_at
 
 
 @pytest.mark.parametrize('change',['background','summary','title','revision','date'])

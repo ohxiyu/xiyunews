@@ -25,6 +25,10 @@ def _details(kind: str, title: str, content: str) -> str:
     return f'<details class="{kind}"><summary>{title}</summary>{content}</details>'
 
 
+def _background_html(content: str) -> str:
+    return f'<div class="story-background"><p class="background-label">背景</p>{content}</div>'
+
+
 def _card(*, attrs: dict, heading: str, body: str, meta: str) -> str:
     attributes = " ".join(f'{key}="{_escape(value)}"' for key, value in attrs.items())
     copy = '<button type="button" class="copy-body" data-copy-body hidden>复制正文</button>'
@@ -43,7 +47,7 @@ def render_core_feed(items: list[ContentItem], *, date: str, display_timezone="A
         background = _localized_text(item, "background", "zh")
         body = _summary_html(summary, "zh")
         if background:
-            body += _details("story-background", "背景", _summary_html(background, "zh"))
+            body += _background_html(_summary_html(background, "zh"))
         refs = _references_html(item, "zh")
         if refs:
             body += _details("references", "参考资料", refs.replace("<h3>参考资料</h3>", "", 1))
@@ -83,17 +87,18 @@ def convert_feed(content: str) -> str:
             source = story.select_one(':scope > .source-line')
             actions = story.parent.select_one(':scope > .story-meta > .story-actions, :scope > .story-body > .story-actions')
             summary_body = story.select_one(':scope > .story-summary-body')
-            if background and background.name == 'aside':
-                background.name = 'details'
-                label = background.find('span', recursive=False)
+            if background and background.name in ('details', 'aside'):
+                background.name = 'div'
+                del background['open']
+                label = background.find(['summary', 'span'], recursive=False)
                 if label:
-                    label.name = 'summary'
+                    label.name = 'p'
+                    label['class'] = 'background-label'
                 changed = True
-            for context in ([background] if background else []) + references:
-                if context.has_attr('open'):
-                    del context['open']
-                    changed = True
             for reference in references:
+                if reference.has_attr('open'):
+                    del reference['open']
+                    changed = True
                 for title in reference.select('section > h3'):
                     if title.get_text(strip=True) == '参考资料':
                         title.decompose()
@@ -122,7 +127,7 @@ def convert_feed(content: str) -> str:
         bg=article.select_one('[data-context-kind="background"]')
         if bg:
             for h in bg.select('h3'):h.decompose()
-            body += _details("story-background", "背景", bg.decode_contents())
+            body += _background_html(bg.decode_contents())
         # References markup from all existing generations is retained.
         after=article.select_one('[data-context-placement="after"]')
         if after:
@@ -189,7 +194,7 @@ def _reader_layout(content: str, payload: dict) -> tuple[str, dict]:
         if body.select_one(".source-line time") and (stamp := meta.find("time")):
             stamp.decompose()
 
-        for ornament in meta.select(".category-pill, .score-badge"):
+        for ornament in meta.select(".rank-number, .category-pill, .score-badge"):
             ornament.decompose()
         label = meta.find("span", recursive=False)
         if label:
@@ -201,6 +206,9 @@ def _reader_layout(content: str, payload: dict) -> tuple[str, dict]:
             category_label = soup.new_tag("span", attrs={"class": "category-pill"})
             category_label.string = category
             meta.insert(0, category_label)
+        number = soup.new_tag("span", attrs={"class": "rank-number"})
+        number.string = rank
+        meta.insert(0, number)
         for thread in body.select(".thread-pill"):
             thread.decompose()
 
