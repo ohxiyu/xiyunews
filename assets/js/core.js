@@ -58,24 +58,70 @@
   }
 
   const wide = matchMedia('(min-width: 1101px)');
-  const openWide = () => {
-    for (const disclosure of document.querySelectorAll('[data-desktop-open]')) disclosure.open = wide.matches;
+  const directory = document.getElementById('edition-directory');
+  const jump = document.querySelector('.directory-jump');
+  const syncDirectory = () => {
+    if (directory) directory.open = wide.matches;
+    if (jump) jump.hidden = !directory || wide.matches;
   };
-  openWide();
-  wide.addEventListener('change', openWide);
+  syncDirectory();
+  wide.addEventListener('change', syncDirectory);
+
+  if (directory && jump) {
+    jump.addEventListener('click', () => {
+      directory.open = true;
+      directory.querySelector('summary').focus({ preventScroll: true });
+      directory.scrollIntoView();
+    });
+  }
 
   for (const edition of document.querySelectorAll('.daily-day')) {
+    const stories = [...edition.querySelectorAll('article.digest-item')];
+    const headlines = [...edition.querySelectorAll('.headline-list li')];
+    const links = new Map(headlines.map(row => {
+      const link = row.querySelector('a');
+      return [link.hash, link];
+    }));
+    let activeLink;
+    let trackingFrame = 0;
+    const markCurrent = () => {
+      trackingFrame = 0;
+      let story;
+      if (wide.matches) {
+        const readingLine = document.querySelector('.site-header').getBoundingClientRect().bottom + 96;
+        const atEnd = window.scrollY + window.innerHeight >= root.scrollHeight - 2;
+        for (const candidate of stories) {
+          if (candidate.hidden) continue;
+          if (story && !atEnd && candidate.getBoundingClientRect().top > readingLine) break;
+          story = candidate;
+        }
+      }
+      const nextLink = story && links.get('#' + story.id);
+      if (activeLink === nextLink) return;
+      activeLink?.removeAttribute('aria-current');
+      nextLink?.setAttribute('aria-current', 'location');
+      activeLink = nextLink;
+    };
+    const trackReading = () => {
+      if (!trackingFrame) trackingFrame = requestAnimationFrame(markCurrent);
+    };
+    if (links.size) {
+      markCurrent();
+      window.addEventListener('scroll', trackReading, { passive: true });
+      window.addEventListener('resize', trackReading);
+      wide.addEventListener('change', trackReading);
+    }
+
     const filters = edition.querySelector('.category-filters');
     if (!filters) continue;
     const buttons = [...filters.querySelectorAll('[data-category-filter]')];
-    const stories = edition.querySelectorAll('article.digest-item');
-    const headlines = edition.querySelectorAll('.headline-list li');
     const count = edition.querySelector('[data-ranking-count]');
     const applyFilter = button => {
       const category = button.dataset.categoryFilter;
       for (const toggle of buttons) toggle.setAttribute('aria-pressed', String(toggle === button));
       for (const row of [...stories, ...headlines]) row.hidden = !!category && row.dataset.category !== category;
-      count.textContent = headlines.length - [...headlines].filter(row => row.hidden).length;
+      count.textContent = headlines.filter(row => !row.hidden).length;
+      trackReading();
     };
     filters.hidden = false;
     for (const button of buttons) button.addEventListener('click', () => applyFilter(button));
