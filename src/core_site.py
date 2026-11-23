@@ -9,9 +9,9 @@ from datetime import date as calendar_date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 from ._file_utils import _atomic_write_text
-from .models import ContentItem
+from .models import ContentItem, SourceType
 from .publication_revision import story_revision
 from .web_feed import (_escape, _localized_title, _localized_text, _summary_html,
                        _source_html, _references_html)
@@ -19,6 +19,7 @@ from .web_feed import (_escape, _localized_title, _localized_text, _summary_html
 ZONE = ZoneInfo("Asia/Shanghai")
 EVENT_SLOT = "<!--core-events-->"
 HISTORY_DAYS = 7
+SOURCE_TYPES = {source.value for source in SourceType}
 
 
 def _details(kind: str, title: str, content: str) -> str:
@@ -27,6 +28,18 @@ def _details(kind: str, title: str, content: str) -> str:
 
 def _background_html(content: str) -> str:
     return f'<div class="story-background"><p class="background-label">背景</p>{content}</div>'
+
+
+def _strip_source_type(source) -> bool:
+    if not source or not source.contents or not isinstance(text := source.contents[0], NavigableString):
+        return False
+    kind, separator, attribution = text.partition(' · ')
+    if not separator or kind.strip() not in SOURCE_TYPES:
+        return False
+    if not attribution and not source.select_one('a.source-link'):
+        return False
+    text.replace_with(attribution)
+    return True
 
 
 def _card(*, attrs: dict, heading: str, body: str, meta: str) -> str:
@@ -85,6 +98,7 @@ def convert_feed(content: str) -> str:
             background = story.select_one(':scope > .story-background')
             references = story.select(':scope > details.references')
             source = story.select_one(':scope > .source-line')
+            changed = _strip_source_type(source) or changed
             actions = story.parent.select_one(':scope > .story-meta > .story-actions, :scope > .story-body > .story-actions')
             summary_body = story.select_one(':scope > .story-summary-body')
             if background and background.name in ('details', 'aside'):
@@ -137,7 +151,9 @@ def convert_feed(content: str) -> str:
                     if label and label.get_text(strip=True) == "参考资料":
                         label.decompose()
                     body += _details("references", "参考资料", str(section))
-        if source:body+=str(source)
+        if source:
+            _strip_source_type(source)
+            body += str(source)
         thread=article.select_one('.thread-pill')
         if thread:body+=str(thread).replace('持续追踪','事件流')
         meta = '<span class="priority-label">本期重点</span>' if index <= 3 else ''

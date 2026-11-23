@@ -4,10 +4,10 @@
   <div class="day-divider-title">
     {% if include.latest %}<span class="day-state">最新</span>{% endif %}
     <h2><time datetime="{{ publication.date | date: '%Y-%m-%d' }}">{{ publication.date | date: '%Y.%m.%d' }}</time></h2>
-    {% if publication.window_start and publication.window_end %}
-      <span class="day-window">{{ publication.window_start | date: '%m.%d %H:%M' }}–{{ publication.window_end | date: '%m.%d %H:%M' }}</span>
-    {% endif %}
+    {% assign displayed = stats.displayed | default: publication.selected_count %}
+    {% if displayed %}<span class="day-divider-stats">{{ displayed | escape }} 条</span>{% endif %}
   </div>
-  {% assign displayed = stats.displayed | default: publication.selected_count %}
-  {% if displayed %}<p class="day-divider-stats">{{ displayed | escape }} 条资讯</p>{% endif %}
+  {% if publication.window_start and publication.window_end %}
+    <span class="day-window" title="采集时段（北京时间）">{{ publication.window_start | date: '%m.%d %H:%M' }}–{{ publication.window_end | date: '%m.%d %H:%M' }}</span>
+  {% endif %}
 </header>

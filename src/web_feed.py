@@ -152,7 +152,6 @@ def _source_html(
     published_label = f"{published_at:%m.%d %H:%M} CST"
 
     parts = [
-        _escape(item.source_type.value),
         source_label,
         (
             f'<time datetime="{_escape(published_at.isoformat())}">'
