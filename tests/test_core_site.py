@@ -24,6 +24,7 @@ def test_dense_feed_all_full_timestamp_and_background():
  assert all(not a.select_one('.compact-story') for a in articles[:3])
  assert not soup.select('details.compact-story')
  assert all('11.08 09:23 CST' in a.select_one('.source-line time').text for a in articles)
+ assert all(not a.select_one('.source-line').text.startswith('rss ·') for a in articles)
  assert len(soup.select('.story-background'))==5
  assert '第二段事实。' in articles[-1].text
  assert soup.select_one('#zh-2026-11-08-item-5')
@@ -45,7 +46,7 @@ def test_new_and_saved_feeds_show_background_and_keep_references_collapsed(backg
  <h2>原始新闻标题</h2><div class="story-body">
  {background}
  <div class="story-summary-body"><p>第一段事实。</p></div>
- <p class="source-line"><a href="https://example.com/1">原文</a></p>
+ <p class="source-line">google_news · <a class="source-link" href="https://example.com/1">原文</a> · <time datetime="2026-11-08T09:23:00+08:00">11.08 09:23 CST</time></p>
  <details class="references" open><summary>参考资料</summary><section><h3>参考资料</h3><ul><li><a href="https://example.com/reference">原始资料</a></li></ul></section></details>
  </div></article></div>'''
  for markup in (fresh, convert_feed(saved)):
@@ -60,6 +61,8 @@ def test_new_and_saved_feeds_show_background_and_keep_references_collapsed(backg
   assert parts[2].name == 'details' and not parts[2].has_attr('open')
   assert parts[2].get_text(strip=True).count('参考资料') == 1
   assert parts[2].find('a')['href'] == 'https://example.com/reference'
+  assert parts[3].find('a')['href'] == 'https://example.com/1'
+  assert '11.08 09:23 CST' in parts[3].text and 'google_news' not in parts[3].text
   assert parts[4].select_one('[data-copy-body]').text == '复制正文'
   assert convert_feed(markup) == markup
  assert BeautifulSoup(convert_feed(saved), 'html.parser').select_one('#saved')['data-content-revision'] == 'old'

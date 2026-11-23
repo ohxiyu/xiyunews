@@ -5,13 +5,13 @@ xiyu.news 只展示最新一期中文日报。首页、刊期页、最新 API �
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "正文后直接显示背景并恢复排行序号",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/410",
+  "goal": "压缩日报首屏并简化目录与来源",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/412",
   "owner": "当前 Codex 聊天",
-  "branch": "agent/visible-story-background",
-  "base": "0a0392915b08c2d2a3dc1a7b79a263069b0a1f3c",
-  "status": "背景淡色常显，参考资料继续折叠，卡片与本期目录共用排行序号",
-  "next": "核对首页与当期页的背景和序号，观察首轮定时出刊与 X 到期分发",
+  "branch": "agent/compact-reader-navigation",
+  "base": "ab391e45a6b3e0b5ff0d7cbc52b67bed736623ca",
+  "status": "单行页头可回到目录，桌面指示当前资讯，来源行隐藏采集类型",
+  "next": "验证首页和当期页的目录跳转、触控区与正文复制",
   "blockers": []
 }
 ```
