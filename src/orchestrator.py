@@ -175,7 +175,7 @@ class BMTNewsOrchestrator(CollectionPipeline, SelectionPipeline, EnrichmentPipel
             candidates = [item for item in candidates if item_identity(item) not in published_identities]
             run_report.set_metric('skipped_published_history', before_history_filter - len(candidates))
             total_candidates_considered = before_history_filter
-            analyzed_items = await self._analyze_content(candidates, edition_window=window) if candidates else []
+            analyzed_items, unscored_reserve = await self._analyze_daily_batch(candidates, edition_window=window) if candidates else ([], [])
             filtering_result = await self.filter_items(analyzed_items, apply_balance=False, dedup_context=daily_state.dedup_history)
             qualified_items = self._distinct_daily_events(await self.merge_topic_duplicates(filtering_result.items, daily_events=True))
             threshold_count = filtering_result.threshold_count
@@ -186,7 +186,7 @@ class BMTNewsOrchestrator(CollectionPipeline, SelectionPipeline, EnrichmentPipel
             minimum_display = filtering_config.minimum_display_items
             if minimum_display is not None and len(balanced_result.items) < minimum_display:
                 balanced_result = self.apply_balanced_digest(qualified_items, allow_primary_borrowing=True)
-            fallback_used = bool(fallback_hours is not None and minimum_display is not None and (len(balanced_result.items) < minimum_display))
+            fallback_used = bool((fallback_hours is not None or unscored_reserve) and minimum_display is not None and len(balanced_result.items) < minimum_display)
             if fallback_used:
                 total_candidates_considered += len(supplemental_candidates)
                 run_report.set_metric('fallback_candidates', len(supplemental_candidates))
@@ -200,7 +200,14 @@ class BMTNewsOrchestrator(CollectionPipeline, SelectionPipeline, EnrichmentPipel
                 fallback_before_history = len(supplemental_candidates)
                 supplemental_candidates = [item for item in supplemental_candidates if item_identity(item) not in published_identities and item_identity(item) not in normal_identities]
                 run_report.set_metric('skipped_published_history', run_report.metrics.get('skipped_published_history', 0) + fallback_before_history - len(supplemental_candidates))
-                fallback_analyzed = await self._analyze_content(supplemental_candidates, edition_window=window) if supplemental_candidates else []
+                fallback_pool = supplemental_candidates
+                constrained = self.config.ai.daily_score_target is not None
+                if constrained:
+                    remaining = self.config.ai.prefilter_max_candidates - len(analyzed_items)
+                    fallback_pool = [*unscored_reserve, *self._local_daily_shortlist(supplemental_candidates)][:max(0, remaining)]
+                fallback_analyzed = await self._analyze_content(
+                    fallback_pool, edition_window=window, **({"preselected": True} if constrained else {}),
+                ) if fallback_pool else []
                 analyzed_items.extend(fallback_analyzed)
                 run_report.set_metric('fallback_analyzed', len(fallback_analyzed))
                 fallback_filtering = await self.filter_items(fallback_analyzed, apply_balance=False, dedup_context=[*daily_state.dedup_history, *qualified_items])
@@ -209,7 +216,8 @@ class BMTNewsOrchestrator(CollectionPipeline, SelectionPipeline, EnrichmentPipel
                 fallback_qualified = fallback_filtering.items
                 qualified_items = self._distinct_daily_events(await self.merge_topic_duplicates([*qualified_items, *fallback_qualified], daily_events=True))
                 balanced_result = self.apply_balanced_digest(qualified_items, allow_primary_borrowing=True, fill_to_minimum=True)
-                run_report.add_alert('info', 'fallback_window_used', f'固定窗口内容不足，已启用 {fallback_hours} 小时未发布内容保底；评分阈值和历史去重保持不变。')
+                if any(item_identity(item) not in normal_identities for item in fallback_analyzed):
+                    run_report.add_alert('info', 'fallback_window_used', f'固定窗口内容不足，已启用 {fallback_hours} 小时未发布内容保底；评分阈值和历史去重保持不变。')
             elif minimum_display is not None and len(balanced_result.items) < minimum_display:
                 balanced_result = self.apply_balanced_digest(qualified_items, allow_primary_borrowing=True, fill_to_minimum=True)
             if tuple((id(item) for item in balanced_result.items)) != audited_selection:

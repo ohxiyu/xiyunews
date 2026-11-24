@@ -13,7 +13,7 @@ export function isSourceCollection(run: {displayTitle?: string}): boolean {
   return !["Operations alert test","Operations topic setup"].includes(run.displayTitle ?? "");
 }
 
-export async function dispatchCollection(env: Env, now: number, preScore = false): Promise<CollectionStatus> {
+export async function dispatchCollection(env: Env, now: number): Promise<CollectionStatus> {
   const interval = FEED_INTERVAL_MS;
   const runs = (await fetchWorkflowRuns(env, FEED_WORKFLOW))
     .filter(run => run.headBranch === env.GITHUB_REF);
@@ -24,8 +24,7 @@ export async function dispatchCollection(env: Env, now: number, preScore = false
     ["failure", "timed_out", "startup_failure"].includes(newest.conclusion ?? "");
   // An operator cancellation is respected. Successful or cancelled recent
   // runs retain the normal cadence; infrastructure failures retry after 30m.
-  const upgradingToScoring = preScore && newest?.displayTitle !== "Pre-cutoff scoring";
-  if (age < interval && !failed && !upgradingToScoring) return "fresh";
+  if (age < interval && !failed) return "fresh";
   if (failed && age < 30 * 60_000) return "failed_waiting";
   const gate = env.RECOVERY_GATE.getByName("collection-" + (failed ? "failed-" + newest!.startedAt.getTime() : Math.floor(now / interval)));
   const owner = await gate.claim(now);
@@ -35,7 +34,7 @@ export async function dispatchCollection(env: Env, now: number, preScore = false
     if (claim !== "claimed") return claim as CollectionStatus;
     await githubRequest(env,
     `/repos/${env.GITHUB_REPOSITORY}/actions/workflows/${FEED_WORKFLOW}/dispatches`,
-    { method: "POST", body: JSON.stringify({ ref: env.GITHUB_REF, ...(preScore ? {inputs: {pre_score: true}} : {}) }) });
+    { method: "POST", body: JSON.stringify({ ref: env.GITHUB_REF }) });
     return failed ? "retry_dispatched" : "dispatched";
   } finally { await gate.release(owner); }
 }

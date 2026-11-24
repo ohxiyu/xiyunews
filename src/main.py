@@ -151,9 +151,9 @@ def main():
         # Create and run orchestrator
         orchestrator = BMTNewsOrchestrator(config, storage)
         if args.mode == "fetch":
-            from .rolling_feed import collect_and_score
+            from .rolling_feed import collect
             asyncio.run(
-                collect_and_score(
+                collect(
                     orchestrator,
                     hours=args.hours or config.filtering.time_window_hours,
                     staging_path=args.staging_path,

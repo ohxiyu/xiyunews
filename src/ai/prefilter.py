@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+from collections.abc import Callable
 from dataclasses import dataclass
 from math import isfinite
 
@@ -58,6 +59,8 @@ class ContentPrefilter:
         *,
         maximum: int,
         reserve_per_category: int = 4,
+        compact: bool = False,
+        category_of: Callable[[ContentItem], str] | None = None,
     ) -> PrefilterResult:
         if len(items) <= maximum:
             return PrefilterResult(list(items), 0, 0, 0)
@@ -78,12 +81,22 @@ class ContentPrefilter:
             lines = []
             batch_indices = {index for index, _ in batch}
             for index, item in batch:
-                excerpt = " ".join((item.content or "").split())[:360]
-                lines.append(
-                    f"[{index}] category={item.metadata.get('category', 'other')} "
-                    f"source={item.source_type.value} title={item.title} excerpt={excerpt}"
+                if compact:
+                    title = " ".join(item.title.split())[:160]
+                    excerpt = " ".join((item.content or "").split())[:72]
+                    lines.append(f"{index} | {item.source_type.value} | {title} | {excerpt}")
+                else:
+                    excerpt = " ".join((item.content or "").split())[:360]
+                    lines.append(f"[{index}] category={item.metadata.get('category', 'other')} "
+                                 f"source={item.source_type.value} title={item.title} excerpt={excerpt}")
+            if compact:
+                entries = "\n".join(lines)
+                user_prompt = (
+                    f"Score all {len(batch)} stories from 0 to 10. "
+                    'Return JSON {"scores":[[index,score],...]} with every supplied index once.\n\n' + entries
                 )
-            user_prompt = PREFILTER_USER.format(items="\n".join(lines))
+            else:
+                user_prompt = PREFILTER_USER.format(items="\n".join(lines))
             nonlocal cache_hits, cache_misses, terminal_error
             if self.cache is not None:
                 cached = self.cache.get_prefilter_batch(PREFILTER_SYSTEM, user_prompt)
@@ -108,7 +121,14 @@ class ContentPrefilter:
                         response_format="json",
                     )
                 payload = parse_json_response(response)
-                rows = payload.get("items") if isinstance(payload, dict) else None
+                if compact:
+                    values = payload.get("scores") if isinstance(payload, dict) else None
+                    if not isinstance(values, list) or len(values) != len(batch):
+                        return None, batch_indices
+                    rows = [{"index": pair[0], "score": pair[1]}
+                            for pair in values if isinstance(pair, list) and len(pair) == 2]
+                else:
+                    rows = payload.get("items") if isinstance(payload, dict) else None
                 if not isinstance(rows, list):
                     return None, batch_indices
                 scores: dict[int, float] = {}
@@ -125,7 +145,7 @@ class ContentPrefilter:
                         and isfinite(score)
                     ):
                         scores[index] = max(0.0, min(10.0, float(score)))
-                if len(scores) < max(1, len(batch) // 2):
+                if len(scores) < (len(batch) if compact else max(1, len(batch) // 2)):
                     return None, batch_indices
                 if self.cache is not None and len(scores) == len(batch_indices):
                     self.cache.store_prefilter_batch(PREFILTER_SYSTEM, user_prompt, scores)
@@ -157,20 +177,27 @@ class ContentPrefilter:
 
         # Reserve a few candidates from every configured source category so a
         # broad crypto batch cannot erase scarce policy or AI coverage.
-        reserved: set[int] = set(fail_open)
+        reserved: set[int] = set() if compact else set(fail_open)
         by_category: dict[str, list[int]] = {}
         for index, item in indexed:
-            category = str(item.metadata.get("category") or "other")
+            category = category_of(item) if category_of else str(item.metadata.get("category") or "other")
             by_category.setdefault(category, []).append(index)
         for category_indices in by_category.values():
             category_indices.sort(key=lambda index: scores.get(index, -1), reverse=True)
             reserved.update(category_indices[: max(1, reserve_per_category)])
 
         ranked = sorted(
-            (index for index in scores if index not in reserved),
-            key=lambda index: (scores[index], -index),
+            (index for index in (set(scores) | fail_open if compact else scores) if index not in reserved),
+            key=lambda index: (scores.get(index, 6.0), -index),
             reverse=True,
         )
+        if compact:
+            # Keep source/category coverage but never let a failed batch or a
+            # large number of leaf categories exceed the daily scoring cap.
+            front = sorted(reserved, key=lambda index: (-scores.get(index, 6.0), index))
+            chosen = [items[index] for index in (front + ranked)[:maximum]]
+            return PrefilterResult(chosen, len(scores), len(items) - len(chosen), failed_batches,
+                                   cache_hits, cache_misses)
         target = max(maximum, len(reserved))
         selected = set(reserved)
         selected.update(ranked[: max(0, target - len(selected))])

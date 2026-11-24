@@ -25,11 +25,10 @@ export async function runCombinedSchedule(cron: string, scheduledTime: number, e
   // runSchedule separately uses current time for edition/window decisions.
   const publication = publicationCron(scheduledTime);
   const tick = new Date(scheduledTime);
-  const preScore = tick.getUTCHours() === 22 && tick.getUTCMinutes() === 30;
   const results = await Promise.allSettled([
     publication ? runSchedule(publication, now, env) : Promise.resolve(),
     tick.getUTCMinutes() % FEED_INTERVAL_MINUTES === 0
-      ? dispatchCollection(env, now, preScore).then(status => console.log(JSON.stringify({ event: "collection_dispatch", status })))
+      ? dispatchCollection(env, now).then(status => console.log(JSON.stringify({ event: "collection_dispatch", status })))
       : Promise.resolve(),
   ]);
   if (results.some(result => result.status === "rejected")) {

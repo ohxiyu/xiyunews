@@ -1,11 +1,10 @@
-"""Rolling source collection with an optional pre-cutoff scoring run."""
+"""Rolling source collection and deterministic deduplication."""
 from __future__ import annotations
 import asyncio
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from .edition import DEFAULT_STAGING_PATH,merge_staged_items
-from .edition_fallback import save_selection,open_window
 from .models import Config
 from .orchestrator import BMTNewsOrchestrator
 from .storage.manager import StorageManager
@@ -18,7 +17,7 @@ def active_items(items,now):
     return merge_staged_items([], [i for i in items if start<=i.published_at<now],now=now)
 
 
-async def collect_and_score(runner,*,now=None,staging_path=DEFAULT_STAGING_PATH,hours=24,score=True):
+async def collect(runner,*,now=None,staging_path=DEFAULT_STAGING_PATH,hours=24):
     now=now or datetime.now(timezone.utc)
     if now.tzinfo is None:raise ValueError('background collection requires aware time')
     timezone_name=runner.config.filtering.daily_timezone
@@ -30,18 +29,6 @@ async def collect_and_score(runner,*,now=None,staging_path=DEFAULT_STAGING_PATH,
         candidates=active_items(staged,now)
         report.set_metric('edition_candidates',len(candidates))
         report.set_breakdown('candidate_sources',runner._source_breakdown(candidates))
-        if not score:
-            return report
-        analyzed=await runner._analyze_content(candidates,edition_window=open_window(now,timezone_name))
-        report.set_metric('analyzed_this_run',len(analyzed))
-        report.set_breakdown('scored_sources',runner._source_breakdown([i for i in analyzed if i.ai_score is not None]))
-        filtered=await runner.filter_items(analyzed,apply_balance=False)
-        qualified=runner._distinct_daily_events(await runner.merge_topic_duplicates(filtered.items,daily_events=True))
-        _,selection=await runner._audit_daily_ranking(qualified,runner.apply_balanced_digest(qualified,log=False))
-        save_selection(selection.items,runner.config,open_window(now,timezone_name),now=now)
-        report.set_metric('above_threshold',filtered.threshold_count)
-        report.set_metric('qualified_cached',len(selection.items))
-        report.set_breakdown('qualified_sources',runner._source_breakdown(selection.items))
         return report
     except Exception as exc:
         report.fail(exc)
@@ -51,16 +38,8 @@ async def collect_and_score(runner,*,now=None,staging_path=DEFAULT_STAGING_PATH,
 
 
 async def main():
-    import argparse
-
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--pre-score', action='store_true')
-    args = parser.parse_args()
     config=Config.model_validate_json(Path('data/config.github.json').read_text())
-    now = datetime.now(timezone.utc)
-    hour = now.astimezone(ZoneInfo(config.filtering.daily_timezone)).hour
-    await collect_and_score(BMTNewsOrchestrator(config,StorageManager()), now=now,
-                            score=args.pre_score and hour == 6)
+    await collect(BMTNewsOrchestrator(config,StorageManager()))
 
 
 if __name__=='__main__':asyncio.run(main())

@@ -3,6 +3,7 @@ from __future__ import annotations
 import time
 import hashlib
 import json
+import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -31,6 +32,17 @@ _TRACKING_QUERY_PARAMETERS = {
     "twclid",
     "vero_id",
 }
+_LOW_SIGNAL_TITLE = re.compile(
+    r"^(?:daily roundup|weekly roundup|market recap|(?:每日|每周)?行情回顾|早报[｜|：:]|晚报[｜|：:])"
+    r"|(?:开始领取|免费领取|exclusive giveaway|sponsored post)",
+    re.IGNORECASE,
+)
+_NEWS_SIGNAL = re.compile(
+    r"漏洞|被盗|暂停|披露|批准|调查|裁决|发布|收购|破产|升级|异动|"
+    r"\b(?:hack|breach|exploit|lawsuit|court|filed|launch|release|upgrade|ban|approved|acquire|investigation)\b",
+    re.IGNORECASE,
+)
+_LOCAL_SHORTLIST_MAX = 800
 
 
 def _deduplication_url_key(url: str) -> tuple[str, str, str, str, Optional[int], str, str]:
@@ -85,6 +97,78 @@ class FilteringPipelineResult:
     balanced_digest: BalancedDigestResult
 
 class SelectionPipeline:
+    def _local_daily_shortlist(self, items: List[ContentItem]) -> List[ContentItem]:
+        """Reduce exact syndication and reserve coverage across source categories."""
+        ordered = sorted(items, key=lambda item: (
+            bool(_LOW_SIGNAL_TITLE.search(item.title)),
+            SOURCE_TIERS.index(self._source_tier(item)),
+            not bool(_NEWS_SIGNAL.search(item.title)),
+            -item.published_at.timestamp(),
+            item.id,
+        ))
+        unique = {}
+        for item in ordered:
+            title_key = " ".join(item.title.casefold().split())
+            unique.setdefault(title_key or item.id, item)
+        counts: dict[str, int] = defaultdict(int)
+        reserved, rest = [], []
+        for item in unique.values():
+            category = str(item.metadata.get("category") or "other")
+            if counts[category] < 4:
+                reserved.append(item)
+                counts[category] += 1
+            else:
+                rest.append(item)
+        return (reserved + rest)[:_LOCAL_SHORTLIST_MAX]
+
+    async def _daily_scoring_order(self, items: List[ContentItem]) -> List[ContentItem]:
+        limit = self.config.ai.prefilter_max_candidates
+        shortlist = self._local_daily_shortlist(items)
+        if self.last_run_report:
+            self.last_run_report.set_metric("local_shortlist_candidates", len(shortlist))
+        if len(shortlist) <= limit:
+            return shortlist
+        category_groups = {category: key for key, group in self.config.filtering.category_groups.items()
+                           for category in group.categories}
+        result = await ContentPrefilter(
+            create_ai_client(self.config.ai), batch_size=self.config.ai.prefilter_batch_size,
+            cache=self._result_cache(),
+        ).select(shortlist, maximum=limit, reserve_per_category=3, compact=True,
+                 category_of=lambda item: category_groups.get(item.metadata.get("category"), "other"))
+        self._record_prefilter(result)
+        return result.items
+
+    def _record_prefilter(self, result) -> None:
+        if self.last_run_report:
+            for key, value in {
+                "prefilter_evaluated": result.evaluated,
+                "prefilter_removed": result.removed,
+                "prefilter_failed_batches": result.failed_batches,
+                "prefilter_cache_hits": result.cache_hits,
+                "prefilter_cache_misses": result.cache_misses,
+            }.items():
+                self.last_run_report.set_metric(key, self.last_run_report.metrics.get(key, 0) + value)
+
+    async def _analyze_daily_batch(self, items: List[ContentItem], *, edition_window: EditionWindow):
+        """Evaluate a first pass and retain ranked reserves for an underfilled slate."""
+        target = self.config.ai.daily_score_target
+        if target is None:
+            return await self._analyze_content(items, edition_window=edition_window), []
+        order = await self._daily_scoring_order(items)
+        first = await self._analyze_content(order[:target], edition_window=edition_window, preselected=True)
+        floor = self.config.filtering.ai_score_threshold
+        qualified = sorted(
+            (item.ai_score for item in first
+             if item.ai_score is not None and item.ai_score >= floor and not item.metadata.get("chinese_invalid")),
+            reverse=True,
+        )
+        wanted = self.config.filtering.max_items or 14
+        reserve = order[target:]
+        if reserve and (len(qualified) < wanted or qualified[wanted - 1] <= floor + 0.25):
+            first.extend(await self._analyze_content(reserve, edition_window=edition_window, preselected=True))
+            reserve = []
+        return first, reserve
+
     def _result_cache(self) -> AnalysisResultCache | None:
         if not self.config.ai.result_cache_enabled:
             return None
@@ -876,6 +960,7 @@ class SelectionPipeline:
 
     async def _analyze_content(
         self, items: List[ContentItem], *, edition_window: EditionWindow | None = None,
+        preselected: bool = False,
     ) -> List[ContentItem]:
         """Reuse valid results before paying for prefiltering unseen inputs."""
         started = time.perf_counter()
@@ -886,7 +971,7 @@ class SelectionPipeline:
         # hits fill the pool. Final scoring, not cache status, determines rank.
         new_budget = max(limit // 4, limit - len(cached))
         ai_client = create_ai_client(self.config.ai) if misses else None
-        if self.config.ai.prefilter_enabled and len(misses) > new_budget:
+        if not preselected and self.config.ai.prefilter_enabled and len(misses) > new_budget:
             self.console.print(f"AI prefilter started: {len(misses)} candidates")
             result = await ContentPrefilter(
                 ai_client, batch_size=self.config.ai.prefilter_batch_size,
@@ -897,15 +982,7 @@ class SelectionPipeline:
                 f"AI prefilter complete: {len(misses)} selected, "
                 f"{result.failed_batches} failed batches"
             )
-            if self.last_run_report:
-                for key, value in {
-                    "prefilter_evaluated": result.evaluated,
-                    "prefilter_removed": result.removed,
-                    "prefilter_failed_batches": result.failed_batches,
-                    "prefilter_cache_hits": result.cache_hits,
-                    "prefilter_cache_misses": result.cache_misses,
-                }.items():
-                    self.last_run_report.set_metric(key, self.last_run_report.metrics.get(key, 0) + value)
+            self._record_prefilter(result)
         if self.last_run_report:
             for key, value in {"analysis_cache_hits": len(cached), "analysis_cache_misses": len(misses)}.items():
                 self.last_run_report.set_metric(key, self.last_run_report.metrics.get(key, 0) + value)

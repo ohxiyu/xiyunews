@@ -58,7 +58,7 @@ it.each([
   if (expected) expect(check.mock.calls[0]?.[1]).toBe(Date.now());
 });
 
-it("requests pre-cutoff scoring at 06:30 Shanghai only", async () => {
+it("dispatches ordinary collection at 06:30 Shanghai", async () => {
   const calls: Request[] = [];
   vi.stubGlobal("fetch", vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
     const request = new Request(input, init);
@@ -72,5 +72,5 @@ it("requests pre-cutoff scoring at 06:30 Shanghai only", async () => {
   vi.spyOn(Date, "now").mockReturnValue(tick);
   await runCombinedSchedule(COLLECTION_CRON, tick, env);
   expect(calls).toHaveLength(1);
-  expect(await calls[0]?.json()).toEqual({ref: "main", inputs: {pre_score: true}});
+  expect(await calls[0]?.json()).toEqual({ref: "main"});
 });
