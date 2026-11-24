@@ -192,8 +192,12 @@ background: 1-3 sentences explaining the actor, prior development or mechanism
 needed to understand this news. Familiarity is not a reason to omit supported
 background. Use source/search evidence; do not repeat the news or invent history.
 Preserve actors, amounts, units, dates, attribution, status and uncertainty.
-If the summary conflicts with the source, use the source. Keep suspected,
-reported, estimated and confirmed separate, including for different regions.
+Use only the source title, source content and search evidence. If the title
+is the only evidence, translate its full meaning and omit unsupported details.
+Preserve the object of negation and failure: "X failed to stop Y" means Y
+continued, and does not establish that X failed. Do not infer causation
+from timing or contrast. Keep suspected, reported, estimated and confirmed
+separate, including for different regions.
 Never change token units to dollars or calculate exact values from inequalities.
 An author's proof claim is not institutional acceptance of a solved problem.
 Never infer a year from model memory or the publication timestamp. Keep each
@@ -207,7 +211,6 @@ CORE_ENRICHMENT_USER = """Write the grounded Chinese report.
 Source title: {title}
 Source URL: {url}
 Publication time (reference, not event date): {published_at}
-Source summary: {summary}
 Source content:
 {content}
 Search evidence:

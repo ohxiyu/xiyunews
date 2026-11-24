@@ -270,12 +270,7 @@ class ContentEnricher:
             title=item.title,
             published_at=item.published_at.isoformat(),
             url=str(item.url),
-            summary=item.ai_summary or item.title,
-            score=item.ai_score or 0,
-            reason=item.ai_reason or "",
-            tags=", ".join(item.ai_tags) if item.ai_tags else "",
             content=content_text,
-            comments_section=f"\n**Community Comments:**\n{comments_text}" if comments_text else "",
             web_context=web_context or "No web search results available.",
         )
 
@@ -311,7 +306,7 @@ class ContentEnricher:
             str(result.get(field, ""))
             for result in all_results for field in ("title", "url", "body")
         )
-        evidence = "\n".join((item.title, item.ai_summary or "", content_text, search_evidence))
+        evidence = "\n".join((item.title, content_text, search_evidence))
         year_pattern = r"(?<!\d)(?:19|20)\d{2}(?!\d)"
         supported_years = set(re.findall(year_pattern, evidence))
         generated_years = set(re.findall(year_pattern, "\n".join(backgrounds)))
