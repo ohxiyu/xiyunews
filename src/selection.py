@@ -136,7 +136,7 @@ class SelectionPipeline:
         result = await ContentPrefilter(
             create_ai_client(self.config.ai), batch_size=self.config.ai.prefilter_batch_size,
             cache=self._result_cache(),
-        ).select(shortlist, maximum=limit, reserve_per_category=3, compact=True,
+        ).select(shortlist, maximum=limit, reserve_per_category=5, compact=True,
                  category_of=lambda item: category_groups.get(item.metadata.get("category"), "other"),
                  source_bonus=lambda item: bonuses[item.id])
         self._record_prefilter(result)

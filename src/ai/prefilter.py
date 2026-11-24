@@ -7,6 +7,8 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from math import isfinite
 
+from bs4 import BeautifulSoup
+
 from ..models import ContentItem
 from .client import AIClient
 from .errors import account_error
@@ -26,6 +28,15 @@ the slower full analysis pass. Preserve the supplied integer index.
 {items}
 
 Return exactly: {{"items":[{{"index":0,"score":7.5}}, ...]}}"""
+
+COMPACT_RUBRIC = """Use the same absolute scale in every batch. Score 9-10 for
+material security incidents, binding regulatory actions, completed major
+transactions, consequential protocol changes or original breakthrough research.
+Score 7-8 for material new developments, 5-6 for routine updates, 0-4 for
+recaps, generic price moves, promotion and speculative commentary.
+Give primary announcements and original research a fair score even with a
+short body. Distinguish the actual new event from an opinion or market reaction.
+Do not assume missing facts or treat an unverified claim as a confirmed result."""
 
 
 @dataclass(frozen=True)
@@ -83,9 +94,19 @@ class ContentPrefilter:
             batch_indices = {index for index, _ in batch}
             for index, item in batch:
                 if compact:
-                    title = " ".join(item.title.split())[:160]
-                    excerpt = " ".join((item.content or "").split())[:72]
-                    lines.append(f"{index} | {item.source_type.value} | {title} | {excerpt}")
+                    title = " ".join(item.title.split())[:240]
+                    body = (item.content or "").partition("--- Top Comments ---")[0].strip()
+                    if body.startswith("<"):
+                        body = BeautifulSoup(body[:1500], "html.parser").get_text(" ", strip=True)
+                    body = body.removeprefix(item.title)
+                    excerpt = " ".join(body.split())[:72]
+                    details = [str(index), item.source_type.value,
+                               str(item.metadata.get("category") or "other"), title]
+                    if item.source_type.value == "hackernews" and item.metadata.get("score"):
+                        details.append(f"HN points={item.metadata['score']}")
+                    if excerpt:
+                        details.append(excerpt)
+                    lines.append(" | ".join(details))
                 else:
                     excerpt = " ".join((item.content or "").split())[:360]
                     lines.append(f"[{index}] category={item.metadata.get('category', 'other')} "
@@ -93,6 +114,7 @@ class ContentPrefilter:
             if compact:
                 entries = "\n".join(lines)
                 user_prompt = (
+                    COMPACT_RUBRIC + "\n\n"
                     f"Score all {len(batch)} stories from 0 to 10. "
                     'Return JSON {"scores":[[index,score],...]} with every supplied index once.\n\n' + entries
                 )
@@ -183,13 +205,16 @@ class ContentPrefilter:
         for index, item in indexed:
             category = category_of(item) if category_of else str(item.metadata.get("category") or "other")
             by_category.setdefault(category, []).append(index)
-        for category_indices in by_category.values():
-            category_indices.sort(key=lambda index: scores.get(index, -1), reverse=True)
-            reserved.update(category_indices[: max(1, reserve_per_category)])
-
         def order(index: int) -> tuple[float, int]:
             bonus = source_bonus(items[index]) if source_bonus else 0
             return scores.get(index, 6.0) + bonus, -index
+
+        for category_indices in by_category.values():
+            if compact:
+                category_indices.sort(key=order, reverse=True)
+            else:
+                category_indices.sort(key=lambda index: scores.get(index, -1), reverse=True)
+            reserved.update(category_indices[: max(1, reserve_per_category)])
 
         ranked = sorted(
             (index for index in (set(scores) | fail_open if compact else scores) if index not in reserved),
