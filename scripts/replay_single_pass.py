@@ -14,6 +14,7 @@ from unittest.mock import AsyncMock, patch
 from bs4 import BeautifulSoup
 
 from src.ai.client import create_ai_client
+from src.ai.enricher import ContentEnricher
 from src.ai.tokens import reset_usage, task_usage_snapshot
 from src.daily_feed import DailyFeedState, load_published_daily_feed_state
 from src.edition import edition_window_for_date
@@ -113,11 +114,28 @@ async def main():
     runner = BMTNewsOrchestrator(x_off, StorageManager(data_dir=str(scratch / "data")))
     runner.fetch_all_sources = AsyncMock(return_value=[])
 
+    shortlist = set()
+    precision = {}
+    daily_scoring_order = runner._daily_scoring_order
+    analyze_content = runner._analyze_content
+
+    async def trace_shortlist(items):
+        selected = await daily_scoring_order(items)
+        shortlist.update(key(item.url) for item in selected)
+        return selected
+
+    async def trace_precision(items, **kwargs):
+        selected = await analyze_content(items, **kwargs)
+        precision.update((key(item.url), item.ai_score) for item in selected)
+        return selected
+
     async def frozen_search(self, query, max_results=3):
         return []  # Use the same fixed source text for each historical replay.
 
     started = time.perf_counter()
-    with patch("src.ai.enricher.ContentEnricher._cached_web_search", frozen_search):
+    with (patch.object(ContentEnricher, "_cached_web_search", frozen_search),
+          patch.object(runner, "_daily_scoring_order", trace_shortlist),
+          patch.object(runner, "_analyze_content", trace_precision)):
         await runner.run_daily_edition(staging_path=scratch / "staging-input.json",
                                        edition_date=args.edition, now=start)
     elapsed = round(time.perf_counter() - started, 2)
@@ -130,11 +148,19 @@ async def main():
         assert path.is_file() and path.stat().st_size
     reset_usage()
     client = create_ai_client(config.ai)
+    factual_probe = None
     try:
         baseline_x = await x_replay(client, config, old_published)
         reset_usage()
         new_x = await x_replay(client, config, current)
         x_usage = task_usage_snapshot()
+        if args.edition == "2026-11-21":
+            probe = next(item for item in raw.values() if item.id == "hackernews:story:50574383")
+            probe = probe.model_copy(deep=True)
+            probe.ai_summary = "Anthropic首次公开募股失败，导致股市抛售。"
+            with patch.object(ContentEnricher, "_cached_web_search", frozen_search):
+                await ContentEnricher(client).enrich_batch([probe])
+            factual_probe = row(probe)
     finally:
         await client.client.close()
 
@@ -145,8 +171,14 @@ async def main():
               "timings": report.get("timings_sec", {}), "usage": usage, "cost": estimate_cost(usage),
               "old": [row(item) for item in old_published],
               "new": [row(item) for item in current],
+              "factual_probe": factual_probe,
+              "archived_story_funnel": [
+                  {"id": item.id, "title": item.title, "url": str(item.url),
+                   "shortlisted": key(item.url) in shortlist, "scored": key(item.url) in precision,
+                   "score": precision.get(key(item.url)), "published": key(item.url) in current_keys}
+                  for item in old_published],
               "baseline_overlap": len(baseline_keys & current_keys),
-              "baseline_x": baseline_x, "new_x": new_x, "x_cost": estimate_cost(x_usage),
+              "baseline_x": baseline_x, "new_x": new_x, "x_usage": x_usage, "x_cost": estimate_cost(x_usage),
               "audit": {"analyzed_cap": metrics.get("analyzed_today", 0) <= 80,
                         "token_ceiling": metrics.get("ai_total_tokens", 0) + sum(
                             r["input_tokens"] + r["output_tokens"] for r in x_usage) <= 200_000,
