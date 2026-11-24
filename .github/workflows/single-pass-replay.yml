@@ -1,0 +1,77 @@
+name: Historical single-pass replay
+on:
+  push:
+    branches: [agent/single-pass-daily-scoring-replay]
+    paths:
+      - .github/workflows/single-pass-replay.yml
+      - scripts/replay_single_pass.py
+      - src/**
+      - data/config.github.json
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    if: github.repository == 'ohxiyu/xiyunews' && github.ref == 'refs/heads/agent/single-pass-daily-scoring-replay'
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        include:
+          - edition: '2026-11-20'
+            snapshot: 8057f6ea376ee0920fb4645bedf6cf17485d104c
+          - edition: '2026-11-21'
+            snapshot: 9c3bd9233d4e9fcf869b71b9481a5f1072393582
+          - edition: '2026-11-22'
+            snapshot: 8c46f0759e48f78eed5d516f0c4d77602d32136b
+    env:
+      TZ: Asia/Shanghai
+      X_DELIVERY_ENABLED: 'false'
+      GIT_CONFIG_COUNT: '1'
+      GIT_CONFIG_KEY_0: http.version
+      GIT_CONFIG_VALUE_0: HTTP/1.1
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ matrix.snapshot }}
+          path: .replay-staged
+          persist-credentials: false
+          sparse-checkout: data/staging-items.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v6
+        with:
+          ref: 8336ed179d2f6dad68974f2814cfef737ed7b734
+          path: .replay-published
+          persist-credentials: false
+          sparse-checkout: |
+            editions/2026-11-18/
+            editions/2026-11-19/
+            editions/2026-11-20/
+            editions/2026-11-21/
+            editions/2026-11-22/
+          sparse-checkout-cone-mode: false
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: '0.11.32'
+      - run: uv sync --frozen
+      - name: Run production selection and render in isolated scratch space
+        env:
+          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
+          EDITION: ${{ matrix.edition }}
+        run: |
+          uv run python -m scripts.replay_single_pass --edition "$EDITION" \
+            --stage .replay-staged/data/staging-items.json --archive .replay-published \
+            --scratch "$RUNNER_TEMP/replay" --output "$RUNNER_TEMP/results"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: replay-${{ matrix.edition }}
+          path: ${{ runner.temp }}/results/*.json
+          retention-days: 7
+          if-no-files-found: error
