@@ -17,6 +17,7 @@ from .ai.analyzer import ContentAnalyzer
 from .ai.prefilter import ContentPrefilter
 from .ai.result_cache import AnalysisResultCache, split_cached
 from .dedup import fingerprint, same_thread, legacy_story_assignments
+from .source_quality import direct_tier
 
 _TRACKING_QUERY_PARAMETERS = {
     "_ga",
@@ -130,11 +131,14 @@ class SelectionPipeline:
             return shortlist
         category_groups = {category: key for key, group in self.config.filtering.category_groups.items()
                            for category in group.categories}
+        bonuses = {item.id: {"primary": 1.0, "original": 0.75}.get(direct_tier(item, self.config), 0.0)
+                   for item in shortlist}
         result = await ContentPrefilter(
             create_ai_client(self.config.ai), batch_size=self.config.ai.prefilter_batch_size,
             cache=self._result_cache(),
         ).select(shortlist, maximum=limit, reserve_per_category=3, compact=True,
-                 category_of=lambda item: category_groups.get(item.metadata.get("category"), "other"))
+                 category_of=lambda item: category_groups.get(item.metadata.get("category"), "other"),
+                 source_bonus=lambda item: bonuses[item.id])
         self._record_prefilter(result)
         return result.items
 

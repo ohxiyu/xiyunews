@@ -192,7 +192,10 @@ background: 1-3 sentences explaining the actor, prior development or mechanism
 needed to understand this news. Familiarity is not a reason to omit supported
 background. Use source/search evidence; do not repeat the news or invent history.
 Preserve actors, amounts, units, dates, attribution, status and uncertainty.
-A proposal is not approval; a report is not independent confirmation.
+If the summary conflicts with the source, use the source. Keep suspected,
+reported, estimated and confirmed separate, including for different regions.
+Never change token units to dollars or calculate exact values from inequalities.
+An author's proof claim is not institutional acceptance of a solved problem.
 Never infer a year from model memory or the publication timestamp. Keep each
 event date attached to its own evidence. Omit unknown dates. No investment advice.
 Only use citation URLs appearing verbatim in the search results. Optional fields
