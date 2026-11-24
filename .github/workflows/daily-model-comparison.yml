@@ -1,0 +1,68 @@
+name: Daily model comparison (isolated)
+
+on:
+  push:
+    branches: [agent/daily-model-comparison]
+    paths:
+      - .github/workflows/daily-model-comparison.yml
+      - scripts/compare_daily_models.py
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-model-comparison-isolated
+  cancel-in-progress: false
+
+jobs:
+  compare:
+    if: github.repository == 'ohxiyu/xiyunews' && github.ref == 'refs/heads/agent/daily-model-comparison'
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    env:
+      TZ: Asia/Shanghai
+      GIT_CONFIG_COUNT: '1'
+      GIT_CONFIG_KEY_0: http.version
+      GIT_CONFIG_VALUE_0: HTTP/1.1
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v6
+        with:
+          ref: 612377292dd9bb9501b56126565c3ff43a652182
+          path: .comparison-staged
+          persist-credentials: false
+          sparse-checkout: data/staging-items.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v6
+        with:
+          ref: 7871f15ac0ce6860fd6eeffd422611b382b68013
+          path: .comparison-published
+          persist-credentials: false
+          sparse-checkout: |
+            _data/bmtnews_state.json
+            editions/2026-11-20/
+            editions/2026-11-21/
+            editions/2026-11-22/
+            editions/2026-11-23/
+          sparse-checkout-cone-mode: false
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: '0.11.32'
+      - run: uv sync --frozen
+      - name: Compare models with no production state or publication credentials
+        env:
+          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
+        run: |
+          uv run python -m scripts.compare_daily_models \
+            --staged .comparison-staged --published .comparison-published \
+            --output "$RUNNER_TEMP/comparison"
+      - name: Preserve comparison details
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: daily-model-comparison
+          path: ${{ runner.temp }}/comparison/*.json
+          retention-days: 7
+          if-no-files-found: error
