@@ -1,5 +1,5 @@
 name: xiyu.news Feed Collection
-run-name: ${{ inputs.pre_score && 'Pre-cutoff scoring' || 'Feed collection' }}
+run-name: Feed collection
 # Avoid the observed HTTP/2 CANCEL/early-EOF downloads. Process-local only;
 # never change server Git config or credentials.
 env:
@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       pre_score:
-        description: Run AI scoring in the 06:00–06:59 Shanghai window
+        description: Legacy dispatcher compatibility, ignored by collection
         type: boolean
         default: false
 
@@ -69,13 +69,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           LWN_KEY: ${{ secrets.LWN_KEY }}
-          SILICONFLOW_API_KEY: ${{ inputs.pre_score && secrets.SILICONFLOW_API_KEY || '' }}
-          PRE_SCORE: ${{ inputs.pre_score }}
-        shell: bash
-        run: |
-          args=()
-          if [ "$PRE_SCORE" = true ]; then args+=(--pre-score); fi
-          uv run python -m src.rolling_feed "${args[@]}"
+        run: uv run python -m src.rolling_feed
 
       - name: Record operations status and costs
         if: ${{ always() }}

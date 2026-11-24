@@ -7,6 +7,7 @@ from src.models import ContentItem, SourceType
 
 class _StubAIClient:
     def __init__(self) -> None:
+        self.requests = []
         self._responses = iter(
             [
                 '{"queries": []}',
@@ -22,7 +23,8 @@ class _StubAIClient:
             ]
         )
 
-    async def complete(self, **_kwargs: object) -> str:
+    async def complete(self, **kwargs: object) -> str:
+        self.requests.append(kwargs)
         return next(self._responses)
 
 
@@ -39,7 +41,8 @@ def test_enrichment_preserves_semantic_summary_sections_as_paragraphs(monkeypatc
     async def no_search(*_args, **_kwargs):
         return []
 
-    enricher = ContentEnricher(_StubAIClient())
+    client = _StubAIClient()
+    enricher = ContentEnricher(client)
     monkeypatch.setattr(enricher, "_web_search", no_search)
     asyncio.run(enricher._enrich_item(item))
 
@@ -47,6 +50,8 @@ def test_enrichment_preserves_semantic_summary_sections_as_paragraphs(monkeypatc
         "发生了什么。\n\n为什么重要。\n\n重要限制。"
     )
     assert "detailed_summary_en" not in item.metadata
+    assert item.title in client.requests[-1]["user"]
+    assert item.ai_summary not in client.requests[-1]["user"]
 
 
 def test_identical_web_searches_share_one_in_flight_request(monkeypatch) -> None:

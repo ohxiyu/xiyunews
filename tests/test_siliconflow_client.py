@@ -165,7 +165,7 @@ def test_production_config_and_all_ai_workflow_steps_agree_on_secret():
         assert workflow.count("SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}") == count
         assert "secrets.DEEPSEEK_API_KEY" not in workflow
     collection = (root / ".github/workflows/feed-collection.yml").read_text()
-    assert "SILICONFLOW_API_KEY: ${{ inputs.pre_score && secrets.SILICONFLOW_API_KEY || '' }}" in collection
+    assert "SILICONFLOW_API_KEY" not in collection and "--pre-score" not in collection
 
 
 def test_analyzed_story_records_new_provider_and_model(monkeypatch):

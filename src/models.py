@@ -152,6 +152,7 @@ class AIConfig(BaseModel):
     prefilter_enabled: bool = False
     prefilter_batch_size: int = Field(default=20, ge=5, le=50)
     prefilter_max_candidates: int = Field(default=140, ge=20, le=1000)
+    daily_score_target: int | None = Field(default=None, ge=20, le=1000)
     result_cache_enabled: bool = True
     result_cache_path: str = "data/analysis-cache.json"
     result_cache_ttl_days: int = Field(default=30, ge=1, le=365)

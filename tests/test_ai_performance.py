@@ -129,6 +129,53 @@ def test_prefilter_batches_candidates_and_preserves_scarce_categories():
     assert result.failed_batches == 0
 
 
+def test_compact_prefilter_caps_failed_batches_and_keeps_a_scarce_category():
+    class Client:
+        config = SimpleNamespace(analysis_concurrency=2)
+
+        async def complete(self, **kwargs):
+            indices = [int(line.split(" | ", 1)[0])
+                       for line in kwargs["user"].splitlines() if " | " in line]
+            return json.dumps({"scores": [[index, 8] for index in indices]}) if indices[0] == 0 else "{}"
+
+    items = [_item(i, category="policy" if i == 19 else "crypto") for i in range(20)]
+    result = asyncio.run(ContentPrefilter(Client(), batch_size=5).select(
+        items, maximum=8, reserve_per_category=1, compact=True,
+    ))
+    assert len(result.items) == 8
+    assert items[-1] in result.items
+    assert result.failed_batches == 3
+
+
+def test_daily_precision_keeps_one_ranked_pool_for_initial_and_reserve(tmp_path, monkeypatch):
+    from pathlib import Path
+    from unittest.mock import AsyncMock
+    from src.edition import edition_window_for_date
+
+    config = Config.model_validate_json(Path("data/config.github.json").read_text())
+    runner = BMTNewsOrchestrator(config, StorageManager(data_dir=str(tmp_path)))
+    items = [_item(i) for i in range(80)]
+    runner._daily_scoring_order = AsyncMock(return_value=items)
+    batches = []
+
+    async def analyze(batch, **kwargs):
+        assert kwargs["preselected"]
+        batches.append([item.id for item in batch])
+        for item in batch:
+            item.ai_score = 8 if len(batches) > 2 else 6
+        return list(batch)
+
+    monkeypatch.setattr(runner, "_analyze_content", analyze)
+    window = edition_window_for_date("2026-08-26", "Asia/Shanghai")
+    scored, reserve = asyncio.run(runner._analyze_daily_batch(items, edition_window=window))
+    assert (len(scored), len(reserve)) == (80, 0)
+    assert [len(batch) for batch in batches] == [60, 20]
+    assert set(batches[0]).isdisjoint(batches[1])
+    scored, reserve = asyncio.run(runner._analyze_daily_batch(items, edition_window=window))
+    assert (len(scored), len(reserve)) == (60, 20)
+    assert runner._daily_scoring_order.await_count == 2
+
+
 def test_prefilter_reuses_only_an_identical_complete_batch(tmp_path):
     path = tmp_path / "analysis-cache.json"
     items = [_item(i) for i in range(8)]

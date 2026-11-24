@@ -1,17 +1,17 @@
 # 当前交接
 
-xiyu.news 只展示最新一期中文日报。首页、刊期页、最新 API 与 RSS 由 Cloudflare 静态资产直接交付。后台每 30 分钟采集和去重，06:30 北京时间预评分，07:26 出刊。候选、评分及简版缓存在私有 SQLite。X 在刊期通过线上核验后规划，后续按队列到期时间唤醒。
+xiyu.news 只展示最新一期中文日报。首页、刊期页、最新 API 与 RSS 由 Cloudflare 静态资产直接交付。后台每 30 分钟采集和去重，07:00 北京时间截稿，07:26 出刊任务内统一评分。候选、评分及简版缓存在私有 SQLite。X 在刊期通过线上核验后规划，后续按队列到期时间唤醒。
 
 <!-- execution-pointer -->
 ```json
 {
-  "goal": "压缩日报首屏并简化目录与来源",
-  "issue": "https://github.com/ohxiyu/xiyunews/issues/412",
+  "goal": "日报 V3.2 单轮评分与精评预算",
+  "issue": "https://github.com/ohxiyu/xiyunews/issues/415",
   "owner": "当前 Codex 聊天",
-  "branch": "agent/compact-reader-navigation",
-  "base": "ab391e45a6b3e0b5ff0d7cbc52b67bed736623ca",
-  "status": "单行页头可回到目录，桌面指示当前资讯，来源行隐藏采集类型",
-  "next": "验证首页和当期页的目录跳转、触控区与正文复制",
+  "branch": "agent/single-pass-daily-scoring",
+  "base": "608a0d0b3df0bedfe23097a76c65c8209a69b35c",
+  "status": "合并评分，常态精评 60 条，单期最多 80 条",
+  "next": "回放三期并检查漏选、事实、X 质量门和实际耗时",
   "blockers": []
 }
 ```

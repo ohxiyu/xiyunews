@@ -7,7 +7,7 @@
 - 供应商：`siliconflow`；模型：`deepseek-ai/DeepSeek-V3.2`；兼容地址：`https://api.siliconflow.cn/v1`。
 - 密钥变量：`SILICONFLOW_API_KEY`。旧 DeepSeek 账户不再是默认供应商。
 - 输出为中文，`ai.languages: ["zh"]`。模型只能做评分去重、背景扩写、X 文案。
-- 当前 `analysis_concurrency` 与 `enrichment_concurrency` 均为 5；预筛候选上限 140；保持既有输出预算与缓存。未经用户授权不调整模型、并发、候选上限、付费套餐。
+- 当前 `analysis_concurrency` 与 `enrichment_concurrency` 均为 5；日报在 07:26 任务内从本地短名单统一评分，常态精评 60 条，包含补评时上限 80 条。保持既有输出预算与缓存。未经用户授权不调整模型、并发、候选上限、付费套餐。
 - 标题或摘要不含中文时只修复一次，仍不合格则排除。HTTP 401/402/403 立即停止该客户端的新调用，不以翻译重试绕过账户错误。
 - 评分缓存按输入、模型和评分提示生成键；扩写缓存额外包含输入分数/标签及背景提示。扩写输出标签不替代输入缓存身份。
 

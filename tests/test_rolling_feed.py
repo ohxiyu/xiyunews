@@ -1,10 +1,10 @@
-"""Background fetch and optional scoring never expand or publish."""
+"""Background collection never scores, expands, or publishes."""
 import asyncio
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
 from unittest.mock import AsyncMock
 import pytest
-from src.rolling_feed import active_items,collect_and_score
+from src.rolling_feed import active_items,collect
 from src.models import Config
 from src.orchestrator import BMTNewsOrchestrator
 from src.storage.manager import StorageManager
@@ -18,30 +18,30 @@ def test_background_window_uses_source_time_not_collection_time():
     assert [i.id for i in active_items(items,now)]==['2','0']
 
 
-def test_background_scores_new_input_without_enrichment_delivery_or_site_output(tmp_path,monkeypatch):
+def test_morning_collection_keeps_scoring_for_the_final_daily_run(tmp_path,monkeypatch):
     config=Config.model_validate_json(Path('data/config.github.json').read_text())
     monkeypatch.chdir(tmp_path)
     runner=BMTNewsOrchestrator(config,StorageManager(data_dir=str(tmp_path/'data')))
-    item=story();now=datetime(2026,11,8,2,tzinfo=timezone.utc)
+    item=story();now=datetime(2026,11,7,22,30,tzinfo=timezone.utc)
     runner._stage_sources=AsyncMock(return_value=[item])
     runner._analyze_content=AsyncMock(return_value=[item])
     runner._enrich_important_items=AsyncMock(side_effect=AssertionError('background must never expand'))
     runner._publish_outputs=AsyncMock(side_effect=AssertionError('background must never publish'))
-    report=asyncio.run(collect_and_score(runner,now=now))
-    assert report.metrics['qualified_cached']==1
-    assert Path('data/qualified-cache.json').exists() and Path('data/run-report.json').exists()
+    report=asyncio.run(collect(runner,now=now))
+    assert report.metrics['ai_total_tokens']==0
+    assert not Path('data/qualified-cache.json').exists() and Path('data/run-report.json').exists()
     assert not Path('docs').exists()
+    runner._analyze_content.assert_not_awaited()
     runner._enrich_important_items.assert_not_awaited();runner._publish_outputs.assert_not_awaited()
 
 
-def test_scoring_failure_keeps_previous_qualified_cache_without_publication(tmp_path,monkeypatch):
+def test_collection_failure_keeps_previous_qualified_cache_without_publication(tmp_path,monkeypatch):
     config=Config.model_validate_json(Path('data/config.github.json').read_text())
     monkeypatch.chdir(tmp_path)
     runner=BMTNewsOrchestrator(config,StorageManager(data_dir=str(tmp_path/'data')))
     checkpoint=Path('data/qualified-cache.json');checkpoint.write_text('last qualified cohort')
-    runner._stage_sources=AsyncMock(return_value=[story()])
-    runner._analyze_content=AsyncMock(side_effect=RuntimeError('scoring unavailable'))
-    with pytest.raises(RuntimeError):asyncio.run(collect_and_score(runner))
+    runner._stage_sources=AsyncMock(side_effect=RuntimeError('sources unavailable'))
+    with pytest.raises(RuntimeError):asyncio.run(collect(runner))
     assert checkpoint.read_text()=='last qualified cohort' and not Path('docs').exists()
 
 def test_ordinary_collection_makes_no_model_calls(tmp_path, monkeypatch):
@@ -50,7 +50,7 @@ def test_ordinary_collection_makes_no_model_calls(tmp_path, monkeypatch):
     runner = BMTNewsOrchestrator(config, StorageManager(data_dir=str(tmp_path / 'data')))
     runner._stage_sources = AsyncMock(return_value=[story()])
     runner._analyze_content = AsyncMock(side_effect=AssertionError('ordinary collection cannot call AI'))
-    report = asyncio.run(collect_and_score(runner, score=False))
+    report = asyncio.run(collect(runner))
     assert report.metrics['ai_total_tokens'] == 0
     assert not Path('data/qualified-cache.json').exists()
     runner._analyze_content.assert_not_awaited()

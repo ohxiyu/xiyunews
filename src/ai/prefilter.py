@@ -3,8 +3,11 @@
 from __future__ import annotations
 
 import asyncio
+from collections.abc import Callable
 from dataclasses import dataclass
 from math import isfinite
+
+from bs4 import BeautifulSoup
 
 from ..models import ContentItem
 from .client import AIClient
@@ -25,6 +28,15 @@ the slower full analysis pass. Preserve the supplied integer index.
 {items}
 
 Return exactly: {{"items":[{{"index":0,"score":7.5}}, ...]}}"""
+
+COMPACT_RUBRIC = """Use the same absolute scale in every batch. Score 9-10 for
+material security incidents, binding regulatory actions, completed major
+transactions, consequential protocol changes or original breakthrough research.
+Score 7-8 for material new developments, 5-6 for routine updates, 0-4 for
+recaps, generic price moves, promotion and speculative commentary.
+Give primary announcements and original research a fair score even with a
+short body. Distinguish the actual new event from an opinion or market reaction.
+Do not assume missing facts or treat an unverified claim as a confirmed result."""
 
 
 @dataclass(frozen=True)
@@ -58,6 +70,9 @@ class ContentPrefilter:
         *,
         maximum: int,
         reserve_per_category: int = 4,
+        compact: bool = False,
+        category_of: Callable[[ContentItem], str] | None = None,
+        source_bonus: Callable[[ContentItem], float] | None = None,
     ) -> PrefilterResult:
         if len(items) <= maximum:
             return PrefilterResult(list(items), 0, 0, 0)
@@ -78,12 +93,33 @@ class ContentPrefilter:
             lines = []
             batch_indices = {index for index, _ in batch}
             for index, item in batch:
-                excerpt = " ".join((item.content or "").split())[:360]
-                lines.append(
-                    f"[{index}] category={item.metadata.get('category', 'other')} "
-                    f"source={item.source_type.value} title={item.title} excerpt={excerpt}"
+                if compact:
+                    title = " ".join(item.title.split())[:240]
+                    body = (item.content or "").partition("--- Top Comments ---")[0].strip()
+                    if body.startswith("<"):
+                        body = BeautifulSoup(body[:1500], "html.parser").get_text(" ", strip=True)
+                    body = body.removeprefix(item.title)
+                    excerpt = " ".join(body.split())[:72]
+                    details = [str(index), item.source_type.value,
+                               str(item.metadata.get("category") or "other"), title]
+                    if item.source_type.value == "hackernews" and item.metadata.get("score"):
+                        details.append(f"HN points={item.metadata['score']}")
+                    if excerpt:
+                        details.append(excerpt)
+                    lines.append(" | ".join(details))
+                else:
+                    excerpt = " ".join((item.content or "").split())[:360]
+                    lines.append(f"[{index}] category={item.metadata.get('category', 'other')} "
+                                 f"source={item.source_type.value} title={item.title} excerpt={excerpt}")
+            if compact:
+                entries = "\n".join(lines)
+                user_prompt = (
+                    COMPACT_RUBRIC + "\n\n"
+                    f"Score all {len(batch)} stories from 0 to 10. "
+                    'Return JSON {"scores":[[index,score],...]} with every supplied index once.\n\n' + entries
                 )
-            user_prompt = PREFILTER_USER.format(items="\n".join(lines))
+            else:
+                user_prompt = PREFILTER_USER.format(items="\n".join(lines))
             nonlocal cache_hits, cache_misses, terminal_error
             if self.cache is not None:
                 cached = self.cache.get_prefilter_batch(PREFILTER_SYSTEM, user_prompt)
@@ -108,7 +144,14 @@ class ContentPrefilter:
                         response_format="json",
                     )
                 payload = parse_json_response(response)
-                rows = payload.get("items") if isinstance(payload, dict) else None
+                if compact:
+                    values = payload.get("scores") if isinstance(payload, dict) else None
+                    if not isinstance(values, list) or len(values) != len(batch):
+                        return None, batch_indices
+                    rows = [{"index": pair[0], "score": pair[1]}
+                            for pair in values if isinstance(pair, list) and len(pair) == 2]
+                else:
+                    rows = payload.get("items") if isinstance(payload, dict) else None
                 if not isinstance(rows, list):
                     return None, batch_indices
                 scores: dict[int, float] = {}
@@ -125,7 +168,7 @@ class ContentPrefilter:
                         and isfinite(score)
                     ):
                         scores[index] = max(0.0, min(10.0, float(score)))
-                if len(scores) < max(1, len(batch) // 2):
+                if len(scores) < (len(batch) if compact else max(1, len(batch) // 2)):
                     return None, batch_indices
                 if self.cache is not None and len(scores) == len(batch_indices):
                     self.cache.store_prefilter_batch(PREFILTER_SYSTEM, user_prompt, scores)
@@ -157,20 +200,34 @@ class ContentPrefilter:
 
         # Reserve a few candidates from every configured source category so a
         # broad crypto batch cannot erase scarce policy or AI coverage.
-        reserved: set[int] = set(fail_open)
+        reserved: set[int] = set() if compact else set(fail_open)
         by_category: dict[str, list[int]] = {}
         for index, item in indexed:
-            category = str(item.metadata.get("category") or "other")
+            category = category_of(item) if category_of else str(item.metadata.get("category") or "other")
             by_category.setdefault(category, []).append(index)
+        def order(index: int) -> tuple[float, int]:
+            bonus = source_bonus(items[index]) if source_bonus else 0
+            return scores.get(index, 6.0) + bonus, -index
+
         for category_indices in by_category.values():
-            category_indices.sort(key=lambda index: scores.get(index, -1), reverse=True)
+            if compact:
+                category_indices.sort(key=order, reverse=True)
+            else:
+                category_indices.sort(key=lambda index: scores.get(index, -1), reverse=True)
             reserved.update(category_indices[: max(1, reserve_per_category)])
 
         ranked = sorted(
-            (index for index in scores if index not in reserved),
-            key=lambda index: (scores[index], -index),
+            (index for index in (set(scores) | fail_open if compact else scores) if index not in reserved),
+            key=order,
             reverse=True,
         )
+        if compact:
+            # Keep source/category coverage but never let a failed batch or a
+            # large number of leaf categories exceed the daily scoring cap.
+            front = sorted(reserved, key=order, reverse=True)
+            chosen = [items[index] for index in (front + ranked)[:maximum]]
+            return PrefilterResult(chosen, len(scores), len(items) - len(chosen), failed_batches,
+                                   cache_hits, cache_misses)
         target = max(maximum, len(reserved))
         selected = set(reserved)
         selected.update(ranked[: max(0, target - len(selected))])
