@@ -61,6 +61,7 @@ class ContentPrefilter:
         reserve_per_category: int = 4,
         compact: bool = False,
         category_of: Callable[[ContentItem], str] | None = None,
+        source_bonus: Callable[[ContentItem], float] | None = None,
     ) -> PrefilterResult:
         if len(items) <= maximum:
             return PrefilterResult(list(items), 0, 0, 0)
@@ -186,15 +187,19 @@ class ContentPrefilter:
             category_indices.sort(key=lambda index: scores.get(index, -1), reverse=True)
             reserved.update(category_indices[: max(1, reserve_per_category)])
 
+        def order(index: int) -> tuple[float, int]:
+            bonus = source_bonus(items[index]) if source_bonus else 0
+            return scores.get(index, 6.0) + bonus, -index
+
         ranked = sorted(
             (index for index in (set(scores) | fail_open if compact else scores) if index not in reserved),
-            key=lambda index: (scores.get(index, 6.0), -index),
+            key=order,
             reverse=True,
         )
         if compact:
             # Keep source/category coverage but never let a failed batch or a
             # large number of leaf categories exceed the daily scoring cap.
-            front = sorted(reserved, key=lambda index: (-scores.get(index, 6.0), index))
+            front = sorted(reserved, key=order, reverse=True)
             chosen = [items[index] for index in (front + ranked)[:maximum]]
             return PrefilterResult(chosen, len(scores), len(items) - len(chosen), failed_batches,
                                    cache_hits, cache_misses)
