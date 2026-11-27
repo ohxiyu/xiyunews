@@ -33,7 +33,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           filter: blob:none
           sparse-checkout: |
@@ -45,7 +45,7 @@ jobs:
             .github
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
@@ -89,7 +89,7 @@ jobs:
 
       - name: Keep machine-readable cost and health report
         if: ${{ always() }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: run-report-${{ github.run_id }}-${{ github.run_attempt }}
           path: data/run-report.json
