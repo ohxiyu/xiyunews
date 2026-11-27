@@ -40,7 +40,7 @@ jobs:
     # the bounded Tokyo runner before rendering even starts. Keep all checks.
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
           filter: blob:none
@@ -51,7 +51,7 @@ jobs:
             ops
             data
             .github
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: gh-pages
           path: .edge-source
@@ -74,7 +74,7 @@ jobs:
       - run: bundle exec jekyll build --source .edge-source --destination .edge-rendered
 
       - run: python3 scripts/prepare_edge_assets.py .edge-rendered .edge-site
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: '24'
       - name: Use the validated npm version on the bounded runner
@@ -98,7 +98,7 @@ jobs:
       web: ${{ steps.paths.outputs.web }}
       edge: ${{ steps.paths.outputs.edge }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           filter: blob:none
@@ -122,7 +122,7 @@ jobs:
     # Governance validates screenshot links and retains the complete checkout.
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           filter: blob:none
@@ -140,7 +140,7 @@ jobs:
           GH_TOKEN: '' # Checkout already supplies the scoped read-only header.
           XIYUNEWS_DOCUMENT_CACHE: ${{ runner.environment == 'self-hosted' && '/home/xiyunews-runner/.cache/xiyunews-doc-blobs' || '' }}
         run: python3 scripts/hydrate_checkout.py
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Check versions, handoff, document links and PR evidence
@@ -160,7 +160,7 @@ jobs:
     runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           filter: blob:none
           sparse-checkout: |
@@ -181,7 +181,7 @@ jobs:
         with:
           version: "0.11.32"
           enable-cache: true
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - run: uv sync --frozen --extra dev
@@ -217,7 +217,7 @@ jobs:
     runs-on: ${{ !github.event.repository.private && 'ubuntu-latest' || fromJSON(vars.XIYUNEWS_RUNNER_LABELS || '["ubuntu-latest"]') }}
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
           filter: blob:none
@@ -235,7 +235,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           XIYUNEWS_DOCUMENT_CACHE: ${{ runner.environment == 'self-hosted' && '/home/xiyunews-runner/.cache/xiyunews-doc-blobs' || '' }}
         run: python3 scripts/hydrate_checkout.py
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: "24"
           cache: ${{ runner.environment == 'github-hosted' && 'npm' || '' }}
